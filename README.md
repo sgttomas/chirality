@@ -100,7 +100,7 @@ The repo's governance and specification documents include:
 | [`SPEC.md`](docs/SPEC.md) | Physical structures, file formats, schemas (Dependencies.csv v3.1), folder layout, and validation checklists |
 | [`TYPES.md`](docs/TYPES.md) | Domain vocabulary, stable identifier formats, enumerated types, agent roles, and lifecycle states |
 | [`CONTRACT.md`](docs/CONTRACT.md) | Invariant catalog (21 K-* invariants) with enforcement map |
-| [`PLAN.md`](docs/PLAN.md) | Active roadmap and index of detailed plans under `plans/` |
+| [`PLAN.md`](docs/PLAN.md) | Active roadmap for current architecture and execution priorities |
 | [`DBM_Agent_Instruction_Architecture.md`](docs/DBM_Agent_Instruction_Architecture.md) | Design basis memorandum for the full instruction architecture |
 | [`SE_Design_Analysis.md`](docs/SE_Design_Analysis.md) | Systems engineering design analysis across eight SE disciplines |
 | [`CHIRALITY_FRAMEWORK.md`](CHIRALITY_FRAMEWORK.md) | Philosophical framework: knowledge as warranted accountability, four pillars, epistemic ontology |

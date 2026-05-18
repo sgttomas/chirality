@@ -92,7 +92,7 @@ Tools owned by the `EQUATION_AUDIT` persona (`agents/AGENT_EQUATION_AUDIT.md`); 
 
 ## Drawing Extraction
 
-Drawing-type-aware tool chain. v2 tools read/write per-page stubs at target-aware paths `{source_dir}/{drawing_type}/{extraction_target}/{pdf_stem}_page_{NNNN}_stub.md` with self-describing YAML frontmatter. Combined outputs land in the same per-target subdirectory. See `plans/DRAWING_EXTRACT_ARCHITECTURE_DESIGN.md` for the frozen v2 contract.
+Drawing-type-aware tool chain. v2 tools read/write per-page stubs at target-aware paths `{source_dir}/{drawing_type}/{extraction_target}/{pdf_stem}_page_{NNNN}_stub.md` with self-describing YAML frontmatter. Combined outputs land in the same per-target subdirectory. The registered tool contracts below are the publishable reference surface for the current drawing-extraction implementation.
 
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
