@@ -1,0 +1,11 @@
+name: piping-design
+description: Piping design domain pack for Chirality workflows.
+canonical_shared_roots:
+  agents: ../../agents
+  skills: ../../skills
+  tools: ../../tools
+local_roots:
+  sources: _Sources
+  decomposition: _Decomposition
+  coordination: _Coordination
+  vocabularies: vocabularies

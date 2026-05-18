@@ -1,0 +1,197 @@
+{
+  "generatedAt": "2026-02-25T00:01:07.031Z",
+  "gitSha": "c0110fc8d394b6a9d9efdc6f1c9e5f6b269066a1",
+  "sourceRoot": "/Users/ryan/ai-env/projects/chirality-app-dev",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "01c2b0e0016b4b9e747188bf430d411ec5469dcb9a922a4ecfc678d03613bf69",
+      "sizeBytes": 10788
+    },
+    {
+      "path": "README.md",
+      "sha256": "38f2dfd7794f06885994747de16e4be287b53fc2e51c1af44319799f2101471f",
+      "sizeBytes": 16808
+    },
+    {
+      "path": "WHAT-IS-AN-AGENT.md",
+      "sha256": "662a0eee3789fa256ee62b94e991e095f49659501e4e7bbf0f763ca2eb9dae95",
+      "sizeBytes": 3063
+    },
+    {
+      "path": "PROFESSIONAL_ENGINEERING.md",
+      "sha256": "ff62629288ac53bc7d8eefe323f12e46c1d2e38f33b6627f2e867d00a05fa564",
+      "sizeBytes": 13424
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sha256": "95da186d017a353208fb6261b8528d1b3c2b0cd0c44e8e7bdc8ede3dcb903556",
+      "sizeBytes": 7733
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sha256": "e74d0ca88f13c7c0291d166657cddb62cc19c96d8d8b61e2ee514aca53be4f60",
+      "sizeBytes": 6009
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "e166f5c9069b1457351a133791626d79a8f0c8143dc89d4932a71efc49149e25",
+      "sizeBytes": 33603
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sha256": "24ad5bf687d7b72d71ff31aa6d9da960135df8496ac85061815dc2c967632e73",
+      "sizeBytes": 12301
+    },
+    {
+      "path": "docs/PLAN.md",
+      "sha256": "d046a5cd7e3127c72ebca316c2f396d274f5a1c5fab00fd6cf250e118cd748d4",
+      "sizeBytes": 7332
+    },
+    {
+      "path": "agents/AGENT_4_DOCUMENTS.md",
+      "sha256": "112095aaaaf87903a268b110bc48522f6472d1a5f7e796278ba6faecab2288d9",
+      "sizeBytes": 17724
+    },
+    {
+      "path": "agents/AGENT_AGGREGATION.md",
+      "sha256": "9455d4f91a04aaeae997b47b2fd7790fba836751b283ced4bb12f11870cb08b5",
+      "sizeBytes": 12430
+    },
+    {
+      "path": "agents/AGENT_AUDIT_AGENTS.md",
+      "sha256": "50e7e0d41c43fa0aedf74a6152b54eac2fee7befe2c5a905cd9b368ecb9ac2ac",
+      "sizeBytes": 7895
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DECOMP.md",
+      "sha256": "c99270b7d7f3f8cbf9387f514ed82a92931b0576fc9f7f37042049a1bb2e25b6",
+      "sizeBytes": 20743
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "sha256": "94dffdf42ea82bcd78b53156ae57581520693883610ced5f2c35ba561a3f167d",
+      "sizeBytes": 11201
+    },
+    {
+      "path": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "sha256": "c8b977b22f64350698a79c3710d42bef37c772eb8ea230987a1713c9b555f765",
+      "sizeBytes": 13054
+    },
+    {
+      "path": "agents/AGENT_CHANGE.md",
+      "sha256": "f0cd9b2e2727ec4f61dee4930db7ac60277df5cbb989656379928fb412eb9603",
+      "sizeBytes": 11917
+    },
+    {
+      "path": "agents/AGENT_CHIRALITY_FRAMEWORK.md",
+      "sha256": "1172d578e3fe64abe6d2b56afc7d9c5d9cdecbdf3a76ae0f5e3a28d8737afa57",
+      "sizeBytes": 38824
+    },
+    {
+      "path": "agents/AGENT_CHIRALITY_LENS.md",
+      "sha256": "c28f6262d5ce7adc251b2461ea8b2dcfe00dba8bbb38d6ff1f3dcb85006c13f1",
+      "sizeBytes": 18765
+    },
+    {
+      "path": "agents/AGENT_CONTEXT_TRANSPOSE.md",
+      "sha256": "cb7e44e375b017f4ef131dc235beea7ebe0c54b04396c2ef59c8d9a91e665270",
+      "sizeBytes": 19052
+    },
+    {
+      "path": "agents/AGENT_DECOMP_BASE.md",
+      "sha256": "ec3ad3076d2d229690ecfe064daa4ed646b619ab2fa1e13b21601c82df3dce96",
+      "sizeBytes": 22628
+    },
+    {
+      "path": "agents/AGENT_DEPENDENCIES.md",
+      "sha256": "26698d7c913892bb76feb6b8d04c7458559ac1a162e210d11377e457c6060a3d",
+      "sizeBytes": 20970
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_DECOMP.md",
+      "sha256": "ebaa14f31daaa9e09d62dc809f03e7105073e920c517ca841b1cc0f4659ce4cd",
+      "sizeBytes": 16895
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_DOCUMENTS.md",
+      "sha256": "a0571485bed4143a032f8e4c662b162f7cefb6f9618932b2bbe7bab15cfe8c5d",
+      "sizeBytes": 18712
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "sha256": "ae5a7f806d701b1f39b70b0dfa533a2ee60e410e9734144106d5bee42dc33a97",
+      "sizeBytes": 21362
+    },
+    {
+      "path": "agents/AGENT_ESTIMATE_PREP.md",
+      "sha256": "3e6c8aea8b5b5622725b9bb1351c8aa8d2787cb29a9f75cf13d0021dc65ac818",
+      "sizeBytes": 43400
+    },
+    {
+      "path": "agents/AGENT_ESTIMATING.md",
+      "sha256": "9b53bea601c1098408cfd92d97b2706604cda781c7cd1b26a71b45ae21a08a51",
+      "sizeBytes": 15700
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "ab1b9bac1ed923ef4fa5019a4774da24894b6453ad4cce0564b42ec489e2b18a",
+      "sizeBytes": 17117
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "7efdb499fa552f8541912dea027ac5fe092f7618454099827b6ac0ad5e1395f6",
+      "sizeBytes": 23800
+    },
+    {
+      "path": "agents/AGENT_ORCHESTRATOR.md",
+      "sha256": "88916da4526a1ab14794a139981db26e5da7ca7476ca1da8aa687b8638e6243c",
+      "sizeBytes": 30752
+    },
+    {
+      "path": "agents/AGENT_PREPARATION.md",
+      "sha256": "a56ffa92d50a91be568cbec741944080aae23d26dfd8f845b13c915aa4005fce",
+      "sizeBytes": 21381
+    },
+    {
+      "path": "agents/AGENT_PROJECT_DECOMP.md",
+      "sha256": "1470fddbc882e3ca8bc7defc1e54bfbd91036fc66fa35baed38d307337324242",
+      "sizeBytes": 16092
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "sha256": "0eb28c96f2940f81225f3a5e515edc35513888962205494569da0fdbe0abc94a",
+      "sizeBytes": 10474
+    },
+    {
+      "path": "agents/AGENT_REVIEW.md",
+      "sha256": "a89def3a92d38f3dc0c46d3621485b2c8f8102b6118b42e2c62a25966ebd4a1f",
+      "sizeBytes": 22578
+    },
+    {
+      "path": "agents/AGENT_SCHEDULING.md",
+      "sha256": "86223ce25e1a9c46d7c9f555394bef90a97dc339a83cb0507b8fcd4aeb98c569",
+      "sizeBytes": 21713
+    },
+    {
+      "path": "agents/AGENT_SCOPE_CHANGE.md",
+      "sha256": "f798c9e2869d43742852c0df8dedf2a3b137c71767f82b10f97c5f1dd6c1b4a5",
+      "sizeBytes": 18482
+    },
+    {
+      "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "sha256": "11621c4b4bf54fed9d10abd03fb8857ca55524e38912f8065510af41c9bf01af",
+      "sizeBytes": 19285
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "3978673c0dab3410ac296a618e591a556f0e2e32111773f047d7dc89430f405a",
+      "sizeBytes": 15673
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "d62bfd32930ac1ce44e6ede64ce45154f9a7a315e5f223d8ce01436f2a2b9532",
+      "sizeBytes": 14981
+    }
+  ]
+}

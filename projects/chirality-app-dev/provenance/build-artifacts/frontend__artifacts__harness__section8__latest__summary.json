@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-02-24T03:58:56.817Z",
+  "harnessBaseUrl": "http://127.0.0.1:3000",
+  "projectRoot": "/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-harness-validation/latest/workroots/staged-project-root",
+  "requestedProjectRoot": "/Users/ryan/ai-env/projects/chirality-app-dev/examples/example-project",
+  "stagedFromInstructionRoot": true,
+  "status": "pass",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "pass",
+      "durationMs": 21,
+      "details": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "pass",
+      "durationMs": 19,
+      "details": {
+        "sessionId": "sess_c8eaac9e-bf00-49c8-a234-0cec4f5563e3",
+        "listedCount": 1
+      }
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "pass",
+      "durationMs": 33,
+      "details": {
+        "checkedCodes": [
+          "SESSION_NOT_FOUND",
+          "PERSONA_NOT_FOUND",
+          "SDK_FAILURE",
+          "WORKING_ROOT_INACCESSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "pass",
+      "durationMs": 84,
+      "details": {
+        "eventCount": 6
+      }
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "pass",
+      "durationMs": 168,
+      "details": {
+        "claudeSessionId": "claude_870795f9-213b-43db-9786-b5ea12dcba75"
+      }
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "pass",
+      "durationMs": 85,
+      "details": {
+        "denyEvents": 5,
+        "allowEvents": 7
+      }
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "pass",
+      "durationMs": 234,
+      "details": {
+        "interruptStatus": 200
+      }
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "pass",
+      "durationMs": 84,
+      "details": {
+        "eventCount": 6
+      }
+    }
+  ]
+}
