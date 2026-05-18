@@ -12,6 +12,7 @@ from pathlib import Path
 
 
 DEFAULT_PATTERNS = [
+    "/Users/ryan/ai-env/projects/chirality-app",
     "/Users/ryan/ai-env/projects/chirality-app-test",
     "/Users/ryan/ai-env/projects/chirality-app-dev",
     "/Users/ryan/ai-env/projects/chirality-piping",
@@ -117,6 +118,10 @@ def iter_files(root: Path):
 def classify(rel: str, match: str) -> str:
     parts = rel.split("/")
     if rel.startswith("migration/"):
+        return "historical"
+    if rel.startswith("exports/"):
+        return "historical"
+    if "/historical-imports/" in rel:
         return "historical"
     if rel.startswith("plans/historical-imports/"):
         return "historical"

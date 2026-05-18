@@ -21,6 +21,11 @@ origin	https://github.com/sgttomas/chirality-app.git (push)
 - Tag: `preserve/chirality-app-pre-export-20260518-150242`
 - Dirty stash tag: `preserve/chirality-app-dirty-worktree-20260518-150242`
 
+## Rebuilt Public State
+
+- Rebuilt local commit: `8345802b Rebuild public Chirality App export`
+- Push status: not pushed
+
 ## Dirty Worktree Summary
 
 - Dirty status rows: 258

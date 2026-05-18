@@ -9,6 +9,8 @@ rewrites:
     new: "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev"
   - old: "/Users/ryan/ai-env/projects/chirality-piping"
     new: "/Users/ryan/ai-env/projects/chirality/projects/chirality-piping"
+  - old: "/Users/ryan/ai-env/projects/chirality-app"
+    new: "/Users/ryan/ai-env/projects/chirality"
   - old: "chirality-app-test/domain-test/domains/piping-design"
     new: "domains/piping-design"
   - old: "domain-test/domains/piping-design"
