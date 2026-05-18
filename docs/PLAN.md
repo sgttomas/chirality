@@ -68,6 +68,6 @@ Unsplit backlog items still on the roadmap:
 
 ## 4. Historical Record
 
-Completed migration slices, historical hardening notes, and pre-refactor roadmap narratives are private project records rather than part of the publishable roadmap surface.
+Completed migration slices, hardening notes, and pre-refactor roadmap narratives are historical records rather than the active roadmap surface.
 
 ---

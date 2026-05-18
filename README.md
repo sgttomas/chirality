@@ -1,171 +1,245 @@
 # Chirality
 
-A formally specified agent operating system for deliverable-heavy professional work.
+Chirality is a governed, filesystem-native agent operating system for deliverable-heavy professional work.
 
-Chirality is a desktop harness for running AI agents against a user-selected folder on the local filesystem. It bundles a release-managed instruction architecture inside the app and lets users point the runtime at any working directory where agents read and write state as plain files.
+This repository is the private canonical source tree for Chirality. It holds the shared instruction architecture, governance documents, deterministic tool layer, public-export source surface, private project workspaces, domain workspaces, and export tooling used to produce the sanitized public `chirality-app` package.
 
-The core insight: **if the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.**
+The core insight:
 
----
+> If the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.
 
-## What This System Does
+Chirality is not an autonomous swarm. It is an instruction architecture, tool layer, and desktop harness for directing AI agents under explicit scope, evidence, write-boundary, snapshot, and human-gate rules.
 
-Chirality accelerates deliverable-heavy work — EPC, design-build, proposals, domain knowledge curation, and similar environments — by structuring agent workflows around production deliverables. It makes agentic work auditable and controllable so that outputs can be relied upon in professional, regulated, and high-stakes contexts.
-
-Agents decompose scope into packages and deliverables, scaffold workspaces, draft document kits, extract and track dependencies, perform semantic analysis, reconcile across deliverables, generate cost estimates and schedules, and manage change — all under human authority at every decision gate.
-
-Chirality is intentionally opinionated. Its controls were shaped by recurrent failure modes in real deliverable work: unclear authority, undocumented decisions, broken traceability, overwritten state, silent contradictions, and plausible but weakly grounded claims. Each major constraint exists to make one of those failures harder to repeat.
-
-It is presented here as one rigorous, governance-first implementation for AI-assisted deliverable work, not as the only possible model.
+AI can accelerate professional work. It cannot inherit professional responsibility.
 
 ---
 
-## Architecture
+## Private Canonical Repository
 
-### Filesystem Is the State
+This repo is upstream of the public `chirality-app` export. It is maintained as a canonical source tree for several related but distinct surfaces:
 
-All project truth lives in git-tracked plain files. There is no external database. Deliverable folders contain identity, lifecycle state, dependencies, references, working memory, and production documents. Agents traverse this implicit graph on demand. Analysis artifacts are materialized as markdown and CSV and git-committed for auditability.
+| Maintainer surface | Primary roots | Rule of thumb |
+| --- | --- | --- |
+| Instruction and governance | `AGENTS.md`, `agents/`, `docs/`, root framework docs | Change through live registries and governance docs, not historical inventories |
+| Skills and tools | `skills/`, `tools/` | Keep method logic in skills and deterministic operations in tools |
+| Public export | `exports/chirality-app/`, export-allowed root files/directories | Treat the export profile as the public boundary contract |
+| App development | `projects/chirality-app-dev/`, root `frontend/` | Develop next app work in the private project workspace; keep root `frontend/` as the exported harness snapshot |
+| Domain/project workspaces | `projects/`, `domains/` | Treat as private applied/development workspaces unless a separate export path is created |
+| Archives and historical plans | `.archive/`, `plans/` | Use as historical context only, not live topology or roadmap authority |
+
+---
+
+## Maintainer Orientation Path
+
+For the shared operating-system surface, start here:
+
+1. `INIT.md`
+2. `AGENTS.md`
+3. `docs/DIRECTIVE.md`
+4. `docs/SPEC.md`
+5. `docs/TYPES.md`
+6. `docs/CONTRACT.md`
+7. `docs/PLAN.md`
+8. `skills/README.md`
+9. `tools/REGISTRY.md`
+
+For the deeper rationale, read `CHIRALITY_FRAMEWORK.md`, `PROFESSIONAL_ENGINEERING.md`, and `docs/thesis/`.
+
+For private project context, read the local README/docs inside the relevant workspace instead of promoting those documents into root docs.
+
+---
+
+## What This Repo Contains
+
+The root operating-system surface is the canonical shared surface:
+
+| Path | Role |
+| --- | --- |
+| `AGENTS.md` | Agent matrix, live agent index, governance integration rules, and canonical dispatch relationships |
+| `agents/` | Individual agent instruction contracts |
+| `skills/` | Repo-native method packs loaded by `TASK` |
+| `tools/` | Deterministic helpers, validators, build/reporting utilities, and curated tool registry |
+| `docs/` | Chirality-wide governance, specifications, roadmap, design basis, and thesis context |
+| `examples/` | Sanitized example workspaces and artifacts included in public export |
+| `frontend/` | Public-exported runtime harness snapshot, not the private app-development source |
+| `init/` | Bootstrap and next-session notes |
+
+Private maintainer and development roots are separate:
+
+| Path | Role |
+| --- | --- |
+| `exports/` | Private export profiles, manifests, and reports |
+| `projects/` | Private project-local development workspaces |
+| `domains/` | Private/manual domain packs and local corpus shells |
+| `plans/` | Archival planning imports, not the active roadmap |
+| `.archive/` | Local archived migration and historical material |
+
+Root-level framing documents provide the theoretical and professional-practice basis for the system:
+
+- `INIT.md`
+- `CHIRALITY_FRAMEWORK.md`
+- `PROFESSIONAL_ENGINEERING.md`
+- `LICENSE.md`
+
+---
+
+## Core Architecture
+
+Chirality separates the **instruction root** from the **working root**.
+
+The instruction root contains release-managed instructions, governance documents, skills, tools, and bootstrap files. The working root is the user-selected project filesystem where agents read and write governed state.
+
+Authoritative project state is file-based. Packages, deliverables, references, dependency registers, review records, snapshots, and publication outputs are readable as plain files by humans, agents, and deterministic tools. Runtime convenience state may exist in the harness, but chat context, model memory, browser storage, local UI preferences, and application caches do not override governed project files.
 
 If a decision is not in a versioned file, it does not exist for purposes of reliance.
 
-### Instruction Root / Working Root Separation
+---
 
-The system separates the agent operating system (release-managed instruction files and governance documents bundled with the app) from the working root (user-selected filesystem location where agents execute). This preserves a stable agent OS while keeping project execution fully filesystem-native in user-controlled folders.
+## Governance And Authority
 
-### Type 0 / 1 / 2 Agent Hierarchy
+Chirality is designed around a professional-accountability problem: model output can sound plausible even when it is unsupported. The system response is to make warrant, authority, and uncertainty visible.
 
-Agents are organized into three types with distinct responsibilities:
+The main epistemic mechanisms are:
 
-| Type | Role | Function |
-|------|------|----------|
-| **Type 0 — Architect** | Defines and maintains invariant protocols and design standards | Constitutional layer; all other agents must conform |
-| **Type 1 — Manager** | Interactive personas with gate-controlled workflows | Orchestrates work, spawns specialists, human-facing |
-| **Type 2 — Specialist** | Brief-driven, straight-through task execution | Bounded scope, no mid-run gates, auditable outputs |
+- mandatory provenance for governed claims
+- explicit `TBD` markers for unknowns
+- conflict surfacing instead of silent resolution
+- epistemic labels such as `FACT`, `ASSUMPTION`, `PROPOSAL`, and `TBD`
 
-Authority flows downward; escalation flows upward. A Type 2 agent cannot modify rules set by Type 0. A Type 1 agent cannot approve deliverables for external reliance. Human gates cannot be bypassed by any type.
+Human authority remains non-transferable. Agents can propose, extract, draft, reconcile, validate, and report. Humans decide, approve, adjudicate conflicts, accept residual risk, and issue work for reliance. No agent may certify, approve, sign, seal, or issue professional work product.
 
-### Agents, Teams, and Governance
-
-In Chirality, "agent" first has a narrow technical meaning: `LLM + instructions + access to files + use of tools`. In regulated practice, those same agents are also treated as "others" whose work a human professional supervises, reviews, and decides whether to rely on.
-
-Once those agents are arranged into Type 0 / 1 / 2 roles, decomposition trees, lifecycle states, dependency links, reviews, and change controls, the system becomes a form of project management. This is not an accidental resemblance. The folder structure is the project structure, and the project structure is part of the epistemic architecture.
-
-The same pattern appears in governance. Chirality distinguishes normative, operative, and evaluative roles so that rule-setting, execution, and review are related but not collapsed. This is one reason the system's matrix and hierarchy feel closer to an organization than to a loose collection of prompts.
-
-### Deliverable Lifecycle
-
-Production units progress through a local lifecycle tracked in `_STATUS.md`:
-
-```
-OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED
-```
-
-Stage gates (30/60/90/IFC) are human-managed milestones and are not lifecycle states.
+The invariant system is defined in `docs/CONTRACT.md`. The design basis and professional grounding are developed in `docs/DBM_Agent_Instruction_Architecture.md`, `CHIRALITY_FRAMEWORK.md`, and `PROFESSIONAL_ENGINEERING.md`.
 
 ---
 
-## Agent Suite
+## Agents, Skills, Tools, And Tests
 
-The system ships agent instruction files organized across a 3x4 matrix (see [`AGENTS.md`](AGENTS.md) for the full index):
+Use live registries and discovery tools rather than static counts.
 
-|  | **Guiding** | **Applying** | **Judging** | **Reviewing** |
-|:---|:---|:---|:---|:---|
-| **Normative** | HELP_HUMAN | ORCHESTRATOR | WORKING_ITEMS | AGGREGATION |
-| **Operative** | DECOMP\* | PREPARATION | TASK | AUDIT\* |
-| **Evaluative** | HELPS_HUMANS | DBM_PUBLISHER | CHANGE | RECONCILIATION |
+| Surface | Source |
+| --- | --- |
+| Agents | `AGENTS.md` and `agents/AGENT_*.md` |
+| Skills | `skills/README.md` plus immediate `skills/*/SKILL.md` folders |
+| Tools | `tools/REGISTRY.md` as the curated contract/index surface |
+| Tests | `tools/validation/discover_test_surfaces.py` for this private canonical repo |
+| Roadmap | `docs/PLAN.md` |
 
-Normative and Evaluative agents open interactive workbench sessions. Operative agents run as pipelines.
+Agents are instruction contracts: role, authority, write scope, interaction surface, protocol, and output expectations. The Type 0 / Type 1 / Type 2 model is an authority model, and the matrix in `AGENTS.md` is a governance and routing view.
 
-The suite covers decomposition (3 domain variants sharing a common 7-gate protocol), workspace scaffolding, document drafting, dependency extraction, semantic analysis, cost estimation, scheduling, review, change management, reconciliation, and project evaluation. Reusable bounded-task methods are codified as repo-native skills under `skills/`.
-
-See [`AGENTS.md`](AGENTS.md) for the full agent index and classification. See [`skills/README.md`](skills/README.md) for skill discovery. See [`docs/DBM_Agent_Instruction_Architecture.md`](docs/DBM_Agent_Instruction_Architecture.md) for the design basis.
-
----
-
-## Deterministic Tools
-
-The `tools/` directory contains deterministic tools that agents invoke during pipeline execution. These tools codify LLM-independent operations — filesystem scaffolding, schema validation, CSV aggregation, graph analysis, PDF conversion, drawing extraction — so that agents reserve LLM reasoning for content that requires judgment.
-
-The tool registry at [`tools/REGISTRY.md`](tools/REGISTRY.md) indexes registered deterministic tools. Many agent instructions reference tools from the registry in their PROTOCOL sections. Test surfaces are discovered on demand with [`discover_test_surfaces.py`](tools/validation/discover_test_surfaces.py).
+`TASK` is the canonical bounded Type 2 execution shell. Skills are method packs that `TASK` can hydrate for recurring task shapes. Tools are deterministic helpers for repeatable operations such as scaffolding, validation, PDF/drawing processing, dependency analysis, publication assembly, source cataloging, and test-surface discovery.
 
 ---
 
-## Governance Documents
+## Maintainer Change Workflow
 
-The repo's governance and specification documents include:
+Prefer changing the smallest authoritative surface that owns the behavior:
 
-| Document | Purpose |
-|----------|---------|
-| [`DIRECTIVE.md`](docs/DIRECTIVE.md) | Founding intent, design philosophy, professional responsibility model, scope, and structural constraints |
-| [`SPEC.md`](docs/SPEC.md) | Physical structures, file formats, schemas (Dependencies.csv v3.1), folder layout, and validation checklists |
-| [`TYPES.md`](docs/TYPES.md) | Domain vocabulary, stable identifier formats, enumerated types, agent roles, and lifecycle states |
-| [`CONTRACT.md`](docs/CONTRACT.md) | Invariant catalog (21 K-* invariants) with enforcement map |
-| [`PLAN.md`](docs/PLAN.md) | Active roadmap for current architecture and execution priorities |
-| [`DBM_Agent_Instruction_Architecture.md`](docs/DBM_Agent_Instruction_Architecture.md) | Design basis memorandum for the full instruction architecture |
-| [`SE_Design_Analysis.md`](docs/SE_Design_Analysis.md) | Systems engineering design analysis across eight SE disciplines |
-| [`CHIRALITY_FRAMEWORK.md`](CHIRALITY_FRAMEWORK.md) | Philosophical framework: knowledge as warranted accountability, four pillars, epistemic ontology |
-| [`PROFESSIONAL_ENGINEERING.md`](PROFESSIONAL_ENGINEERING.md) | Professional practice standard for AI agent governance under APEGA |
+- Change agent role, authority, or routing through `AGENTS.md` and `agents/`.
+- Change recurring bounded methods through `skills/` and validate skill metadata.
+- Change deterministic behavior through `tools/` and update `tools/REGISTRY.md` when the tool contract is part of the curated index.
+- Change Chirality-wide governance through root `docs/`, not project-local docs.
+- Change app/product development in `projects/chirality-app-dev/`, then promote only reviewed public-export material into root/export surfaces.
+- Change OpenPipeStress or domain-pack material in its project/domain workspace; do not backfill it into root docs by default.
+- Regenerate the public export manifest after changing any public-exported file.
+
+When live folders, indexes, and narrative documents disagree, treat the live registry/discovery surface as the starting point and surface the discrepancy in the change rather than silently preserving stale prose.
 
 ---
 
-## Invariant System
+## Private Project And Domain Workspaces
 
-The architecture is governed by three layers of formally stated invariants:
+`projects/` and `domains/` are private canonical-repo workspaces. They are not part of the public `chirality-app` export.
 
-- **R1–R12 (Workflow-Component Design Requirements)** — Apply to all agents, skills, and tools. Defined in `AGENT_HELPS_HUMANS.md`.
-- **I1–I10 (Decomposition Invariants)** — Apply to all decomposition agents. Defined in `AGENT_DECOMP_BASE.md`.
-- **K-\* (System-Wide Invariants)** — 21 named invariants covering hierarchy, authority, sealing, dependencies, status, staleness, gates, merge, provenance, claim strength, and write scope. Defined in [`docs/CONTRACT.md`](docs/CONTRACT.md).
+`projects/chirality-app-dev/` is the current private development pathway for the next version of the Chirality App. It contains project-local docs, execution material, examples, plans, provenance, and frontend source. Its current state should be treated as draft/pre-release development material.
 
----
+`projects/chirality-piping/` is the OpenPipeStress project-local workspace. OpenPipeStress is a code-neutral piping flexibility and stress-analysis platform with project-local governance, docs, schemas, code, apps, tests, validation assets, execution material, plans, and provenance. Its project tree is private to this canonical repo and is not exported through `chirality-app`.
 
-## Desktop Application
-
-The `frontend/` directory contains a Next.js + Electron desktop application with:
-
-- Matrix-based navigation routing agents to Workbench (interactive) or Pipeline (task execution) views
-- Session and turn API with streaming event protocol (SSE)
-- Multimodal turn input via server-resolved file attachments
-- Pipeline category selectors (DECOMP, PREP, TASK, AUDIT) with dynamic scope resolution
-- Operator Toolkit panel for per-turn harness options
-- Desktop packaging for macOS (`.dmg`) and Windows (`.exe`)
+`domains/piping-design/` is a private/manual domain pack for piping-design knowledge, decomposition state, vocabulary roots, local source corpora, and local indexes. Large corpora and generated local indexes are intentionally excluded from git and from public export.
 
 ---
 
-## Project Structure
+## Frontend Development Path
 
-```
-chirality-app/
-  agents/              Agent instruction files (AGENT_*.md)
-  skills/              Repo-native skills (reusable bounded-task methods)
-  tools/               Deterministic tools + REGISTRY.md (organized by category)
-  docs/                Governance documents (DIRECTIVE, SPEC, TYPES, CONTRACT, PLAN, DBM, SE Analysis)
-  frontend/            Next.js + Electron desktop application
-  AGENTS.md            Agent index and matrix
-  INIT.md              Agent bootstrap context
-  PROFESSIONAL_ENGINEERING.md  Standard for AI in regulated engineering practice
-  LICENSE.md           MIT License + Professional Engineering Clause
+The root `frontend/` directory is the public-exported runtime harness snapshot. It exists so the public `chirality-app` package can operate the instruction architecture against a selected project root.
+
+Future Chirality App product and frontend development should be oriented around `projects/chirality-app-dev/`, which is the private development workspace for the app pathway. Avoid treating root `frontend/` implementation details as the long-term architecture contract; the durable source of truth is the instruction, governance, skill, tool, export, and project-development surface described here.
+
+---
+
+## Public Export Boundary
+
+The public `chirality-app` export is controlled by `exports/chirality-app/`. The current public export profile includes the shared operating-system surface needed by the app package:
+
+- root governance/bootstrap/framing files
+- `.github/`
+- `AGENTS.md`
+- `agents/`
+- `skills/`
+- `tools/`
+- `docs/`
+- `examples/`
+- `frontend/`
+- `init/`
+
+The current public export profile excludes private or local-only workspace content:
+
+- `.archive/`
+- `projects/`
+- `domains/`
+- `plans/`
+- `exports/`
+- migration records
+- source corpora and local indexes
+- dependency/build/cache folders
+- local runtime state
+- environment files and secrets
+
+Do not infer the public package contents from the root directory listing. The export profile is the boundary for copied content. Some exported tools and docs may still mention canonical private workspace paths because they are maintained from this source tree; those references do not mean the private workspace content is exported.
+
+---
+
+## Publishing Pipeline
+
+Build the public staging package:
+
+```sh
+python3 exports/chirality-app/export_public.py
 ```
 
+The export profile copies allowlisted files, sanitizes private absolute paths in text files, writes the export manifest/report, and fails if boundary checks find forbidden public paths or private absolute path leaks.
+
+To replace a local public checkout after reviewing the staging report:
+
+```sh
+python3 exports/chirality-app/export_public.py --apply-target /path/to/chirality-app
+```
+
 ---
 
-## Design Philosophy
+## Historical And Archived Material
 
-The architecture rests on four philosophical pillars: an **ontology** (what exists — the filesystem-as-graph where folders are nodes, dependency rows are edges, and markdown files carry properties), an **epistemology** (what can be known — mandatory provenance, no invention, conflict surfacing, and epistemic labeling that makes the certainty of every claim transparent), a **praxiology** (how work is done — gate-controlled workflows, write quarantine, brief-driven pipelines, and the Type 0/1/2 authority hierarchy), and an **axiology** (what the system values — public welfare first, professional responsibility non-transferable, evidence over plausibility).
+`.archive/` is local archived material. The moved migration records under `.archive/migration/` are useful for understanding how this canonical repo was assembled, but they are not live inventory, not current topology, and not part of the public export.
 
-The foundational decision is that the filesystem is the database. This is not a simplification. It is the mechanism that enables the system's approach to V-model traceability, immutable snapshots, change propagation, content-addressed approval, and a complete audit trail that requires no infrastructure beyond version control.
+`plans/` is an archival import area. It is not the active roadmap. The governed roadmap surface is `docs/PLAN.md`.
 
-The most distinctive pillar is the epistemology. Chirality does not assume model output is trustworthy by inspection. Instead, it makes the status of claims structurally visible: provenance is mandatory, unknowns become `TBD` rather than guesses, conflicts are surfaced rather than silently resolved, and claims are labeled as `FACT`, `ASSUMPTION`, `PROPOSAL`, or `TBD`.
+---
 
-The systems engineering disciplines that govern this architecture are integral to the agent system, not a compliance layer applied after the fact. The four-document kit that agents produce for every deliverable — Datasheet (ontology), Specification (epistemology), Guidance (axiology), Procedure (praxiology) — mirrors the same structure. The system practices what it produces.
+## Validation
 
-The architecture exists so that a licensed professional can direct AI agents with the same rigor applied to managing any engineering team — and can authenticate the resulting work product under duty of care, backed by an auditable record. See [`CHIRALITY_FRAMEWORK.md`](CHIRALITY_FRAMEWORK.md) for the philosophical account of knowledge, agency, project management, and governance, and [`docs/DIRECTIVE.md`](docs/DIRECTIVE.md) §2 for the system design principles derived from it.
+Use these checks based on the change:
 
-> AI can accelerate engineering work. It cannot inherit professional responsibility.
+```sh
+python3 tools/validation/validate_skill_metadata.py skills
+python3 tools/validation/discover_test_surfaces.py . --text
+python3 exports/chirality-app/export_public.py
+```
+
+Run skill metadata validation after skill changes. Run test discovery when changing test surfaces or reporting available checks. Run the export tool before publishing or after changing any public-exported surface.
 
 ---
 
 ## License
 
-MIT License + Professional Engineering Clause. See [LICENSE.md](LICENSE.md).
+MIT License + Professional Engineering Clause. See `LICENSE.md`.
 
 Copyright (c) 2026 Ryan Tufts
