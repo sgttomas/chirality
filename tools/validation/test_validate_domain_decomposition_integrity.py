@@ -41,6 +41,7 @@ def write_valid_decomposition(root: Path) -> None:
         "KnowledgeTypeID": "KTY-01",
         "ParentCategoryID": "CAT-001",
         "Name": "Example KTY",
+        "SupportsObjectives": "OBJ-001",
     }])
     write_csv(root / "annex_knowledge_subjects.csv", [{
         "SubjectID": "SUB-01",
@@ -109,6 +110,7 @@ def test_legacy_domain_register_names_are_resolved(tmp_path: Path) -> None:
         "KnowledgeTypeID": "KTY-01",
         "ParentCategoryID": "CAT-001",
         "InOutStatus": "IN",
+        "SupportsObjectives": "OBJ-001",
     }])
     write_csv(root / "DeepCut_Knowledge_Subject_Register_v4.csv", [{
         "SubjectID": "SUB-01",
