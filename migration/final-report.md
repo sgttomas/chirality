@@ -235,14 +235,14 @@ These counts match the already-known source working-tree state; the catch-up pas
 
 Resolved after catch-up review.
 
-`docs/REPO_INVENTORY.md` was reconciled against the live migrated tree:
+The former `docs/REPO_INVENTORY.md` aggregate-count surface was intentionally removed after review. Mutable counts now resolve directly to canonical live sources:
 
-| Category | Reconciled count |
-|---|---:|
-| Indexed agents | 37 |
-| Repo-native skills | 35 |
-| Registered deterministic tools | 144 |
+| Category | Canonical source |
+|---|---|
+| Indexed agents | `AGENTS.md` |
+| Repo-native skills | immediate `skills/*/SKILL.md` folders |
+| Registered deterministic tools | `tools/REGISTRY.md` |
 
-The stale deferred blocker `DEFERRED_REPO_INVENTORY_RECONCILIATION` is closed.
+The stale deferred blocker `DEFERRED_REPO_INVENTORY_RECONCILIATION` is closed by removing the separate count document rather than maintaining duplicate counts.
 
 `.pytest_cache/` was removed from the migrated tree and remains ignored by `.gitignore`.

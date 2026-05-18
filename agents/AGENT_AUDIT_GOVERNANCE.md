@@ -263,7 +263,7 @@ Verify that governance documents, agent instructions, and system-level documenta
 - Flag any claim where a conclusion established for a specific context (one jurisdiction, one project type, one decomposition variant) is stated as though it applies universally.
 
 **6b-d. Mutable counts and provenance:**
-- Flag hardcoded mutable counts in governance docs where `docs/REPO_INVENTORY.md` should be the canonical source.
+- Flag hardcoded mutable counts in governance docs; verify mutable counts against live canonical sources (`AGENTS.md`, `skills/`, and `tools/REGISTRY.md`).
 - Flag provenance claims ("analysis of N files") that no longer match the governed suite.
 
 Report findings as issue log entries with `IssueType: K-CLAIM-1` and severity `MAJOR` for unsupported universality/necessity, `MINOR` for scope drift or stale counts.

@@ -7,7 +7,7 @@ Timestamp: 20260518-150242
 
 - Private canonical source updated at `/Users/ryan/ai-env/projects/chirality`.
 - Public export target rebuilt at `/Users/ryan/ai-env/projects/chirality-app`.
-- Public rebuild committed locally on `main`: `8345802b Rebuild public Chirality App export`.
+- Public rebuild committed locally on `main`: `3d8520ff Rebuild public Chirality App export`.
 - No push to GitHub was performed.
 
 ## Preservation

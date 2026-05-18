@@ -23,7 +23,7 @@ origin	https://github.com/sgttomas/chirality-app.git (push)
 
 ## Rebuilt Public State
 
-- Rebuilt local commit: `8345802b Rebuild public Chirality App export`
+- Rebuilt local commit: `3d8520ff Rebuild public Chirality App export`
 - Push status: not pushed
 
 ## Dirty Worktree Summary

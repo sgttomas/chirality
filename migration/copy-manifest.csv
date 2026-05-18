@@ -13,7 +13,7 @@ agents/AGENT_AUDIT_AGENTS.md,7960
 agents/AGENT_AUDIT_DECOMP.md,28430
 agents/AGENT_AUDIT_DEP_CLOSURE.md,11873
 agents/AGENT_AUDIT_EPISTEMIC.md,22700
-agents/AGENT_AUDIT_GOVERNANCE.md,22955
+agents/AGENT_AUDIT_GOVERNANCE.md,22997
 agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md,14326
 agents/AGENT_AUDIT_SCOPE_CLOSURE.md,29931
 agents/AGENT_CHANGE.md,9108
@@ -5252,11 +5252,10 @@ migration/chirality-app-public-export-20260518-150242/file-manifest-before-prese
 migration/chirality-app-public-export-20260518-150242/final-report.md,4610
 migration/chirality-app-public-export-20260518-150242/skipped-generated-payloads.txt,6315
 migration/chirality-app-public-export-20260518-150242/source-state.md,1527
-migration/copy-manifest.csv,1318849
-migration/final-report.md,7308
+migration/final-report.md,7539
 migration/path_map.yaml,1100
 migration/path_reference_audit.before.csv,9497873
-migration/path_reference_audit.csv,8496076
+migration/path_reference_audit.csv,8494278
 migration/provenance-extraction.csv,11543
 migration/rewrite_paths.py,7686
 migration/source-state.md,15191
@@ -10080,7 +10079,7 @@ projects/chirality-piping/validation/witness/content_dictionaries/ops_mechanics_
 projects/chirality-piping/validation/witness/fixtures/tp_phys_015_section_property_stress_witness.json,29802
 projects/chirality-piping/validation/witness/generated/tp_phys_015_section_property_stress_witness.mathml,5978
 projects/chirality-piping/validation/witness/schemas/openmath_calculation_witness.schema.json,11454
-skills/README.md,7884
+skills/README.md,7931
 skills/SKILL_TEMPLATE.md,4626
 skills/content-digest/BRIEF_SCHEMA.md,1617
 skills/content-digest/QA_CHECKS.md,876

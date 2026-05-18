@@ -133,7 +133,7 @@ Agent guidance:
   - `BRIEF_SCHEMA.md`
   - `TOOL_POLICY.md`
   - `QA_CHECKS.md`
-- Use [`docs/REPO_INVENTORY.md`](../docs/REPO_INVENTORY.md) for canonical aggregate counts, not skill membership details.
+- Use the live `skills/` folder rule above for skill counts; use [`AGENTS.md`](../AGENTS.md) and [`tools/REGISTRY.md`](../tools/REGISTRY.md) for agent and tool indexes.
 - Do not assume any other document's embedded skill list is current.
 - If live folder contents and a canonical index disagree, surface the discrepancy explicitly.
 
