@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 140,
+  "page_label": "123",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Bold Arabic numeral 123 printed at top-right below the header rule."
+}

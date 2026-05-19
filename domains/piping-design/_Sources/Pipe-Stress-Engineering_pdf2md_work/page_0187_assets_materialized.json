@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0187.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0187_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        2705
+      ],
+      "caption": "FIG. 6.10 SPRING HANGER TYPES AND APPLICATIONS (BASED ON GRINNELL SPRING [7])",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0187_fig01_spring-hanger-types-applications.png",
+      "png_sha256": "f1edc5282e4634a57fb4957822dc102916c3fc187ebcf4d47d9d2160bdb6f187",
+      "slug": "spring-hanger-types-applications",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 187,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0187.png",
+  "page_image_sha256": "ab28affbddb2ccb4d64d53fcaa19fe10034026637c4f4290e4176862a2ca86d3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0187_assets.json"
+}

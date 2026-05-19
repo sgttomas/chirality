@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0045_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.22,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        597,
+        2480,
+        1930
+      ],
+      "caption": "Compressor inlet straight length requirements",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0045_tbl01_compressor-inlet-straight-length.png",
+      "png_sha256": "c0e763532449ffdabe3bc8c5b01af41969162ae90f631a8db19b92fdf1c08dcf",
+      "slug": "compressor-inlet-straight-length",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0045_tbl01_compressor-inlet-straight-length.json",
+      "table_data_json_sha256": "d17e58166762bd66564eab58b8f4471614ce92265653ae73c628ba5c605db0a8",
+      "table_data_sha256": "d17e58166762bd66564eab58b8f4471614ce92265653ae73c628ba5c605db0a8",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0045_tbl01_compressor-inlet-straight-length.xlsx",
+      "xlsx_sha256": "a1e2012bc0943df3085061263513e8cc63384e3c9ea4befdf8d6177d369a7122"
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0045_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.5,
+        0.97,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1579,
+        2480,
+        2772
+      ],
+      "caption": "Compressor outlet straight length requirements",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0045_tbl02_compressor-outlet-straight-length.png",
+      "png_sha256": "ccf21fa6503e3b47e8993c3d17eaeffd2d907391f83d25786b24f9d910a1d5d4",
+      "slug": "compressor-outlet-straight-length",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0045_tbl02_compressor-outlet-straight-length.json",
+      "table_data_json_sha256": "21d0cddbbb7473a45795f2c84eadccbb637c4853188cad9f72c5920627d0e005",
+      "table_data_sha256": "21d0cddbbb7473a45795f2c84eadccbb637c4853188cad9f72c5920627d0e005",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0045_tbl02_compressor-outlet-straight-length.xlsx",
+      "xlsx_sha256": "7b67952a1849c2d20ff8c1393fa4643e8c391bc66a7fdbdd4f58b77e01299c8d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0045.png",
+  "page_image_sha256": "82d0d8625f4685f6c32dab6680f69bb5fc6e8b6ef253dd0813e502917ecb2d03",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0045_assets.json"
+}

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0139.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0139_fig01",
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.95,
+        0.46
+      ],
+      "bbox_px": [
+        25,
+        69,
+        2490,
+        1760
+      ],
+      "caption": "The M.W. Kellogg Co. - Pipe Flexibility and Stress Analysis - Original Data and Results - Form 7. Tabulated member data and constants (left) with isometric piping diagrams, auxiliary coordinate system, and moments/forces tabulation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0139_fig01_the-m-w-kellogg-co-pipe-flexibility-and.png",
+      "png_sha256": "09cfb2db13040232235ffa26d51eed76b642c2121686dbc4dfff0c1f5ce85596",
+      "slug": "the-m-w-kellogg-co-pipe-flexibility-and",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0139_fig02",
+      "bbox_norm": [
+        0.05,
+        0.49,
+        0.96,
+        0.91
+      ],
+      "bbox_px": [
+        0,
+        1518,
+        2490,
+        3312
+      ],
+      "caption": "The M.W. Kellogg Co. - Pipe Flexibility and Stress Analysis - Coefficients for Circular Arcs - Form No. 8. Two stacked computational tables of member coordinates and programming constants for circular arc members.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0139_fig02_the-m-w-kellogg-co-pipe-flexibility-and.png",
+      "png_sha256": "dceace01cd1a06b14765904889402c79370084c1fa8d91a9b91d145c2a81c6ac",
+      "slug": "the-m-w-kellogg-co-pipe-flexibility-and",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 139,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0139.png",
+  "page_image_sha256": "6571798c30f359916f34868dde5715a43560c5b749d4cd02794e655f544db48e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0139_assets.json"
+}

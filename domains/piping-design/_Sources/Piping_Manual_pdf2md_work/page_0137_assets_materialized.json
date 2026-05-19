@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0137.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0137_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2575,
+        1991
+      ],
+      "caption": "EXHIBIT 6-19. Pier-Mounted Vertical Installation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0137_fig01_exhibit-6-19-pier-mounted-vertical-insta.png",
+      "png_sha256": "23f6431958d268ca2962f7ec0b100ca39ddee6c5a1f0238e3b25b825aaa8eb35",
+      "slug": "exhibit-6-19-pier-mounted-vertical-insta",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0137_fig02",
+      "bbox_norm": [
+        0.04,
+        0.58,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1759,
+        2575,
+        3253
+      ],
+      "caption": "EXHIBIT 6-20. Control and Operator Access in a Spiral Arrangement.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0137_fig02_exhibit-6-20-control-and-operator-access.png",
+      "png_sha256": "b3174f3e009a5277e9c202883802309a3d5e03eebf69a4c3243e572355858828",
+      "slug": "exhibit-6-20-control-and-operator-access",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 137,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0137.png",
+  "page_image_sha256": "f2189afd86a38f520d159f061c5598762a44d18eb1fe37d2e040b9475be6bb3d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0137_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 356,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 10.2 FREE END MOVEMENT OF LONG PIPELINE",
+      "slug": "free-end-movement-long-pipeline",
+      "bbox_norm": [0.04, 0.52, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Three-part diagram showing (a) Virtual Anchor Length with fully restrained region and friction force per unit length, (b) Expansion Rate showing maximum expansion rate, and (c) Longitudinal Stress showing stress distribution. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

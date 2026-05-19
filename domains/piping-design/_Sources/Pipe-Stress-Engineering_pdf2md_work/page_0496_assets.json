@@ -1,0 +1,456 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 496,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "ASME B31.1 Allowable Stress SE (ksi) — continued, At Temperature (°F), materials A312/TP316 through A312/TP347H/E",
+      "slug": "asme-b311-allowable-stress-se-ksi-continued",
+      "bbox_norm": [0.05, 0.09, 0.92, 0.62],
+      "confidence": "high",
+      "notes": "Continuation table from prior pages. Each material spans 3 sub-rows of stress values corresponding to three stacked temperature bands per column (e.g., 100/750/1150 °F). MATERIAL-NAME, MAT GRP, (E) FACT, and SU cells use row_span=3 for each material block.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": {
+          "doc_stem": "Pipe-Stress-Engineering",
+          "page": 495,
+          "tbl_ordinal": 1
+        },
+        "footnotes": [
+          { "marker": "1", "text": "1 ksi = 6.895 MPA" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MATERIAL-NAME", "row_span": 2, "is_header": true },
+              { "value": "MAT GRP", "row_span": 2, "is_header": true },
+              { "value": "(E) FACT", "row_span": 2, "is_header": true },
+              { "value": "SU (ksi)", "row_span": 2, "is_header": true },
+              { "value": "At Temperature (°F)", "col_span": 8, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100\n750\n1150", "is_header": true },
+              { "value": "200\n800\n1200", "is_header": true },
+              { "value": "300\n850\n1250", "is_header": true },
+              { "value": "400\n900\n1300", "is_header": true },
+              { "value": "500\n950\n1350", "is_header": true },
+              { "value": "600\n1000\n1400", "is_header": true },
+              { "value": "650\n1050\n1450", "is_header": true },
+              { "value": "700\n1100\n1500", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP316", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 1.00, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 19.3, "type": "number", "unit": "ksi" },
+              { "value": 18.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.6, "type": "number", "unit": "ksi" },
+              { "value": 16.3, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16.1, "type": "number", "unit": "ksi" },
+              { "value": 15.9, "type": "number", "unit": "ksi" },
+              { "value": 15.7, "type": "number", "unit": "ksi" },
+              { "value": 15.6, "type": "number", "unit": "ksi" },
+              { "value": 15.4, "type": "number", "unit": "ksi" },
+              { "value": 15.3, "type": "number", "unit": "ksi" },
+              { "value": 15.1, "type": "number", "unit": "ksi" },
+              { "value": 12.4, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 9.8, "type": "number", "unit": "ksi" },
+              { "value": 7.4, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP316/E", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 0.85, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.4, "type": "number", "unit": "ksi" },
+              { "value": 15.3, "type": "number", "unit": "ksi" },
+              { "value": 14.5, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" },
+              { "value": 13.9, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 13.7, "type": "number", "unit": "ksi" },
+              { "value": 13.5, "type": "number", "unit": "ksi" },
+              { "value": 13.4, "type": "number", "unit": "ksi" },
+              { "value": 13.2, "type": "number", "unit": "ksi" },
+              { "value": 13.1, "type": "number", "unit": "ksi" },
+              { "value": 13.0, "type": "number", "unit": "ksi" },
+              { "value": 12.9, "type": "number", "unit": "ksi" },
+              { "value": 10.5, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8.3, "type": "number", "unit": "ksi" },
+              { "value": 6.3, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP321", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 1.00, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 19.1, "type": "number", "unit": "ksi" },
+              { "value": 18.7, "type": "number", "unit": "ksi" },
+              { "value": 18.7, "type": "number", "unit": "ksi" },
+              { "value": 18.3, "type": "number", "unit": "ksi" },
+              { "value": 17.9, "type": "number", "unit": "ksi" },
+              { "value": 17.5, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 17.2, "type": "number", "unit": "ksi" },
+              { "value": 16.9, "type": "number", "unit": "ksi" },
+              { "value": 16.7, "type": "number", "unit": "ksi" },
+              { "value": 16.5, "type": "number", "unit": "ksi" },
+              { "value": 16.4, "type": "number", "unit": "ksi" },
+              { "value": 16.2, "type": "number", "unit": "ksi" },
+              { "value": 9.6, "type": "number", "unit": "ksi" },
+              { "value": 6.9, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5.0, "type": "number", "unit": "ksi" },
+              { "value": 3.6, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP321/E", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 0.85, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.2, "type": "number", "unit": "ksi" },
+              { "value": 15.9, "type": "number", "unit": "ksi" },
+              { "value": 15.9, "type": "number", "unit": "ksi" },
+              { "value": 15.5, "type": "number", "unit": "ksi" },
+              { "value": 15.2, "type": "number", "unit": "ksi" },
+              { "value": 14.9, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.6, "type": "number", "unit": "ksi" },
+              { "value": 14.4, "type": "number", "unit": "ksi" },
+              { "value": 14.2, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" },
+              { "value": 13.9, "type": "number", "unit": "ksi" },
+              { "value": 13.8, "type": "number", "unit": "ksi" },
+              { "value": 8.2, "type": "number", "unit": "ksi" },
+              { "value": 5.9, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4.3, "type": "number", "unit": "ksi" },
+              { "value": 3.1, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A321/TP321H", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 1.00, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 19.1, "type": "number", "unit": "ksi" },
+              { "value": 18.7, "type": "number", "unit": "ksi" },
+              { "value": 18.7, "type": "number", "unit": "ksi" },
+              { "value": 18.3, "type": "number", "unit": "ksi" },
+              { "value": 17.9, "type": "number", "unit": "ksi" },
+              { "value": 17.5, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 17.2, "type": "number", "unit": "ksi" },
+              { "value": 16.9, "type": "number", "unit": "ksi" },
+              { "value": 16.7, "type": "number", "unit": "ksi" },
+              { "value": 16.5, "type": "number", "unit": "ksi" },
+              { "value": 16.4, "type": "number", "unit": "ksi" },
+              { "value": 16.2, "type": "number", "unit": "ksi" },
+              { "value": 12.3, "type": "number", "unit": "ksi" },
+              { "value": 9.1, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6.9, "type": "number", "unit": "ksi" },
+              { "value": 5.4, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP321H/E", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 0.85, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.2, "type": "number", "unit": "ksi" },
+              { "value": 15.9, "type": "number", "unit": "ksi" },
+              { "value": 15.9, "type": "number", "unit": "ksi" },
+              { "value": 15.5, "type": "number", "unit": "ksi" },
+              { "value": 15.2, "type": "number", "unit": "ksi" },
+              { "value": 14.9, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.6, "type": "number", "unit": "ksi" },
+              { "value": 14.4, "type": "number", "unit": "ksi" },
+              { "value": 14.2, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" },
+              { "value": 13.9, "type": "number", "unit": "ksi" },
+              { "value": 13.8, "type": "number", "unit": "ksi" },
+              { "value": 10.5, "type": "number", "unit": "ksi" },
+              { "value": 7.7, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5.9, "type": "number", "unit": "ksi" },
+              { "value": 4.6, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP347", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 1.00, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 18.8, "type": "number", "unit": "ksi" },
+              { "value": 17.8, "type": "number", "unit": "ksi" },
+              { "value": 17.2, "type": "number", "unit": "ksi" },
+              { "value": 16.9, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.7, "type": "number", "unit": "ksi" },
+              { "value": 16.6, "type": "number", "unit": "ksi" },
+              { "value": 16.0, "type": "number", "unit": "ksi" },
+              { "value": 12.1, "type": "number", "unit": "ksi" },
+              { "value": 9.1, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6.1, "type": "number", "unit": "ksi" },
+              { "value": 4.4, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP347/E", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 0.85, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.0, "type": "number", "unit": "ksi" },
+              { "value": 15.1, "type": "number", "unit": "ksi" },
+              { "value": 14.6, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.2, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" },
+              { "value": 13.6, "type": "number", "unit": "ksi" },
+              { "value": 10.3, "type": "number", "unit": "ksi" },
+              { "value": 7.8, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5.2, "type": "number", "unit": "ksi" },
+              { "value": 3.8, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP347H", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 1.00, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 20.0, "type": "number", "unit": "ksi" },
+              { "value": 18.8, "type": "number", "unit": "ksi" },
+              { "value": 17.8, "type": "number", "unit": "ksi" },
+              { "value": 17.1, "type": "number", "unit": "ksi" },
+              { "value": 16.9, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.8, "type": "number", "unit": "ksi" },
+              { "value": 16.7, "type": "number", "unit": "ksi" },
+              { "value": 16.6, "type": "number", "unit": "ksi" },
+              { "value": 16.4, "type": "number", "unit": "ksi" },
+              { "value": 16.2, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10.5, "type": "number", "unit": "ksi" },
+              { "value": 7.9, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A312/TP347H/E", "row_span": 3, "type": "text" },
+              { "value": "SS", "row_span": 3, "type": "text" },
+              { "value": 0.85, "row_span": 3, "type": "number" },
+              { "value": 75.0, "row_span": 3, "type": "number", "unit": "ksi" },
+              { "value": 17.0, "type": "number", "unit": "ksi" },
+              { "value": 16.0, "type": "number", "unit": "ksi" },
+              { "value": 16.0, "type": "number", "unit": "ksi" },
+              { "value": 15.1, "type": "number", "unit": "ksi" },
+              { "value": 14.6, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.3, "type": "number", "unit": "ksi" },
+              { "value": 14.2, "type": "number", "unit": "ksi" },
+              { "value": 14.1, "type": "number", "unit": "ksi" },
+              { "value": 14.0, "type": "number", "unit": "ksi" },
+              { "value": 13.7, "type": "number", "unit": "ksi" },
+              { "value": 12.0, "type": "number", "unit": "ksi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8.9, "type": "number", "unit": "ksi" },
+              { "value": 6.7, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" },
+              { "value": 0.0, "type": "number", "unit": "ksi" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

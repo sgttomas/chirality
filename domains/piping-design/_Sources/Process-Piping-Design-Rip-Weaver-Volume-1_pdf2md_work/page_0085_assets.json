@@ -1,0 +1,86 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 85,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 5-1. Cast iron bell and spigot pipe detail.",
+      "slug": "cast-iron-bell-spigot-pipe-detail",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.28],
+      "confidence": "high",
+      "notes": "Diagram shows cross-section of bell end, spigot end, invert point, and flow direction. Caption appears below the figure spanning the full page width."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5-1 Sewer Flow Diagram Symbols",
+      "slug": "sewer-flow-diagram-symbols",
+      "bbox_norm": [0.50, 0.73, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Symbol", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "M", "type": "text" },
+              { "value": "Manhole", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB", "type": "text" },
+              { "value": "Catch basin", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "o—", "type": "text" },
+              { "value": "Drain funnel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "o+—", "type": "text" },
+              { "value": "Drain funnel with seal or running trap", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S-M", "type": "text" },
+              { "value": "Manhole with sealed inlet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S-CB", "type": "text" },
+              { "value": "Catch basin with sealed outlet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CO", "type": "text" },
+              { "value": "Clean out", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table appears in lower right column. Symbol glyphs in image correspond to text values from Markdown context."
+    }
+  ],
+  "issues": []
+}

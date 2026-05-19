@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0268.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0268_fig01",
+      "bbox_norm": [
+        0.08,
+        0.62,
+        0.72,
+        0.97
+      ],
+      "bbox_px": [
+        77,
+        2040,
+        1984,
+        3579
+      ],
+      "caption": "FIG. 8.1 IDEALIZED FLANGE ANALYTICAL MODEL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0268_fig01_idealized-flange-analytical-model.png",
+      "png_sha256": "0f3d05c8bd1bdee1c96af5b1499767a8d242536bb8d673f656c9697479a6be52",
+      "slug": "idealized-flange-analytical-model",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 268,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0268.png",
+  "page_image_sha256": "003e39eb7dd8712fbed363720393a3a87d62401fd27470258c6054775f143b36",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0268_assets.json"
+}

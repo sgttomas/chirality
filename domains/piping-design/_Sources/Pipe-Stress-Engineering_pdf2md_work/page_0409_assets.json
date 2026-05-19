@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 409,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 12.10 FREQUENCY-DEPENDENT DAMPING FOR PIPING [5]",
+      "slug": "frequency-dependent-damping-piping",
+      "bbox_norm": [0.06, 0.55, 0.94, 0.98],
+      "confidence": "high",
+      "notes": "Line chart showing damping (% of critical) vs frequency (cycles/sec) from 0 to 35 Hz. Caption visible below the chart."
+    }
+  ],
+  "issues": []
+}

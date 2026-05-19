@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0137.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0137_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2211
+      ],
+      "caption": "Exchanger outline dimensional drawing \u2014 HeatTran Equipment Division, Item E-91B, Dwg H/T-3429",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_fig01_exchanger-outline-dimensional-drawing-e9.png",
+      "png_sha256": "6d5c1a196e1aab393a8e565faf748ea7cc680d9b7edd5134c3982813858f3d67",
+      "slug": "exchanger-outline-dimensional-drawing-e9",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2560,
+        2871
+      ],
+      "caption": "Exchanger Design Data and Painting/Insulation Requirements",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl01_exchanger-design-data-painting-insulatio.png",
+      "png_sha256": "6c6be7edfc5a03f79454001cdc0133b72f7b0bc7c8d95cc65395842ab41e901f",
+      "slug": "exchanger-design-data-painting-insulatio",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl01_exchanger-design-data-painting-insulatio.json",
+      "table_data_json_sha256": "ac796aa1cfd0d917280b0df1f5d65b0d36443514234d79bd3a720ef3c6b3dc3d",
+      "table_data_sha256": "ac796aa1cfd0d917280b0df1f5d65b0d36443514234d79bd3a720ef3c6b3dc3d",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl01_exchanger-design-data-painting-insulatio.xlsx",
+      "xlsx_sha256": "7100f12f92f777872f379413c7b44d1ecd9779b3b3f09cc6162c38cdab5bcd75"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.81,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2508,
+        2560,
+        3234
+      ],
+      "caption": "Estimated Weight Each and Customer/Service Data",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl02_estimated-weight-customer-service.png",
+      "png_sha256": "2dd05f808b6411ea37066916ea7bc48fc1df82590584d160488a3c2d819cf6f1",
+      "slug": "estimated-weight-customer-service",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl02_estimated-weight-customer-service.json",
+      "table_data_json_sha256": "d7f5945d3e72e6d1b636bf59a68c1e3abf76c03747bcec5f150c0ac6a8861d7a",
+      "table_data_sha256": "d7f5945d3e72e6d1b636bf59a68c1e3abf76c03747bcec5f150c0ac6a8861d7a",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0137_tbl02_estimated-weight-customer-service.xlsx",
+      "xlsx_sha256": "6ccdf18024e622c42b9088e2c44431e4041198bd5ea03281a8f169b80b61cc45"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 137,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0137.png",
+  "page_image_sha256": "1d2ff77cb0982b60f52974d13b0092820a1d0d926f779d16e44c4cc076c7283a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0137_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0190.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0190_fig01",
+      "bbox_norm": [
+        0.05,
+        0.16,
+        0.93,
+        0.86
+      ],
+      "bbox_px": [
+        0,
+        365,
+        2518,
+        3016
+      ],
+      "caption": "EXHIBIT 7-42 Decoking Operation for a Box-Type Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0190_fig01_exhibit-7-42-decoking-operation-for-a-bo.png",
+      "png_sha256": "1e8dc713ba89135631e0ff79dc756934b36f482510910a3e3094512ac51fe345",
+      "slug": "exhibit-7-42-decoking-operation-for-a-bo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 190,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0190.png",
+  "page_image_sha256": "3b25feb0eaa0afc8f30667e14184a1aed32375bb7f736d42a431da082c6cd6a8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0190_assets.json"
+}

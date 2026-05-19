@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0135.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0135_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.72,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1971,
+        1650
+      ],
+      "caption": "Figure 4-9. Cross section, type AKU reboiler. Courtesy HeaTran, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0135_fig01_cross-section-type-aku-reboiler.png",
+      "png_sha256": "a4895aaade481646f550d15291f088a968e4205f60a5cd5d4ee2392f10dcd43e",
+      "slug": "cross-section-type-aku-reboiler",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 135,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0135.png",
+  "page_image_sha256": "d0b19047cc42d5ceb079a7129807ee3007ccac044003c99cb88176eecbd80b70",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0135_assets.json"
+}

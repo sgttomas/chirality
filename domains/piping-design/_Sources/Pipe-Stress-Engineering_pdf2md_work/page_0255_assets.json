@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 255,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 7.20 SLIP JOINTS",
+      "slug": "slip-joints",
+      "bbox_norm": [0.06, 0.47, 0.94, 0.97],
+      "confidence": "high",
+      "notes": "Three sub-diagrams: (a) Rotational Joint (Ball Joint) with Gasket and Angle Range labels, (b) Compression Sleeve (Dresser Coupling), and (c) Axial Joint with Packing and Travel Limit Lugs labels. Caption visible below diagrams."
+    }
+  ],
+  "issues": []
+}

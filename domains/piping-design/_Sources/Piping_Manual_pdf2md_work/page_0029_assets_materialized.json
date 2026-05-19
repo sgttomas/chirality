@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0029.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0029_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1222
+      ],
+      "caption": "EXHIBIT 1-11 Inline Instrumentation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0029_fig01_exhibit-1-11-inline-instrumentation.png",
+      "png_sha256": "a5c168ce0e161354bde8a34c464ebdd98808532c3dc5fe89c5fb4f7919c79672",
+      "slug": "exhibit-1-11-inline-instrumentation",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0029_fig02",
+      "bbox_norm": [
+        0.05,
+        0.34,
+        0.95,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        958,
+        2556,
+        2148
+      ],
+      "caption": "EXHIBIT 1-12 Header-Branch-Header Block Valve",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0029_fig02_exhibit-1-12-header-branch-header-block.png",
+      "png_sha256": "d1478b556ba0041d82eba896ad9fb7f93b0bc495eac8cca99f5c54bb5d892164",
+      "slug": "exhibit-1-12-header-branch-header-block",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 29,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0029.png",
+  "page_image_sha256": "2f9a5e48408c4a91b757ce77deca64371ed1beaffe58e2e4aefe024ac7a2d0ee",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0029_assets.json"
+}

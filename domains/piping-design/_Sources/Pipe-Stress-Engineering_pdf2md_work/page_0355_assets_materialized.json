@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0355_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.92,
+        0.2
+      ],
+      "bbox_px": [
+        75,
+        0,
+        2441,
+        883
+      ],
+      "caption": "TABLE 10.3 TEMPERATURE DERATING FACTOR, T",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0355_tbl01_temperature-derating-factor-t.png",
+      "png_sha256": "acfb28e74961e578be205c6191f29e50b114df6259b001c7418e1cb7c04266fd",
+      "slug": "temperature-derating-factor-t",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0355_tbl01_temperature-derating-factor-t.json",
+      "table_data_json_sha256": "0f1b3a26c5bbc980a5749de9d2520674ee742d44aa11a18cccb6ccd129f0fa77",
+      "table_data_sha256": "0f1b3a26c5bbc980a5749de9d2520674ee742d44aa11a18cccb6ccd129f0fa77",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0355_tbl01_temperature-derating-factor-t.xlsx",
+      "xlsx_sha256": "0fe33d1670d7e662daf1d3f4200d4cd834a3d9bb3f427db6b2f740f652f236eb"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 355,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355.png",
+  "page_image_sha256": "d471ef327dd687abd5fcf06009998073d57a9d9bed340772cacbcd9ffb8565fe",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355_assets.json"
+}

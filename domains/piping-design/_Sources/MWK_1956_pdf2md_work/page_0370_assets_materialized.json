@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0370.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0370_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.46,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1129,
+        965
+      ],
+      "caption": "FIGURE 5A.5",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0370_fig01_figure-5a-5.png",
+      "png_sha256": "541d6cc374839099ca722f4b40dc0796afe30be687b0f5db452660bb31cc2c82",
+      "slug": "figure-5a-5",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0370_fig02",
+      "bbox_norm": [
+        0.55,
+        0.66,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        1107,
+        1900,
+        2214,
+        3114
+      ],
+      "caption": "FIGURE 5A.6",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0370_fig02_figure-5a-6.png",
+      "png_sha256": "c811f318fd9d537020fd09b3692a70834b3cdc739bab92e30e666fbd810ad9c7",
+      "slug": "figure-5a-6",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 370,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0370.png",
+  "page_image_sha256": "dd5c68e224dd523e31dc4ab74dcbd45238947ed61b2482b96bef3d410a858bf7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0370_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 253,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Three bracket detail subfigures labeled (a), (b), (c). (a) cantilevered member from a single vessel clip; (b) knee-braced bracket fixed to shell; (c) bracket with one member affixed to shell and the other bearing/sliding on a shell reinforcing pad. Annotations visible: 'May be bolted to allow slight amount of articulation' near (b), and 'Not welded, bearing contact of angle on pad' near (c)."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 8.20 Typical brackets serving as connecting structures for the support of piping from a vessel.",
+      "bbox_norm": [
+        0.6,
+        0.04,
+        0.99,
+        0.55
+      ]
+    }
+  ]
+}

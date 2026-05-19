@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0021.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0021_fig01",
+      "bbox_norm": [
+        0.02,
+        0.1,
+        0.38,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        174,
+        1065,
+        3485
+      ],
+      "caption": "Figure 1-7. Flanging processes\u2014welded flanged joints. Reprinted courtesy of Crane Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0021_fig01_flanging-processes-welded-flanged-joints.png",
+      "png_sha256": "00dd3938bfa06d4cf37f30591a289bb1d9e1f53edccea278b0dc94ce6ee6605e",
+      "slug": "flanging-processes-welded-flanged-joints",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0021.png",
+  "page_image_sha256": "b2f67c64c5243ca88fef23e03a8fe5965e5ea2db330f748f0e1e01fd2f7e6770",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0021_assets.json"
+}

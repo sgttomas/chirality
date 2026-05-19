@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 316,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. A.7 The angle \u03b1 for a straight member.",
+      "bbox_norm": [
+        0.62,
+        0.08,
+        0.99,
+        0.39
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. A.8 Integration of shape coefficients for weight loading of straight members in the z-plane.",
+      "bbox_norm": [
+        0.6,
+        0.74,
+        0.99,
+        0.97
+      ]
+    }
+  ]
+}

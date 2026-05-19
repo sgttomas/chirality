@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 226,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p226_fig01",
+      "caption": "EXHIBIT 9-10 Top-Head Nozzle Arrangements",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.43],
+      "notes": "Two hand-drawn sketches each showing an elevation and plan view of a reactor top head. Upper sketch: vessel with MAINTENANCE ACCESS and INLET NOZZLE labels (note: SEE CHAPTER 10, TOWERS), in ELEVATION and PLAN. Lower sketch: top head with MAINTENANCE ACCESS and INLET NOZZLE labels with a 4'/100 MIN clearance dimension, in ELEVATION and PLAN."
+    }
+  ],
+  "issues": []
+}

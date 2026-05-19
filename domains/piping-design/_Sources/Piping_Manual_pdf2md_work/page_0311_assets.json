@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 311,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.29, 0.97, 0.88],
+      "caption": "EXHIBIT 12-13 Equipment Supports - Detail \"A\" elevation of vertical agitated vessel supported on lugs at floor (callouts: POINT OF SUPPORT, FLOOR); Detail \"B\" elevation of vertical column/vessel supported on a structural ring/skirt at a floor opening (callout: POINT OF SUPPORT); Detail \"C\" isometric of horizontal shell-and-tube exchanger on two transverse saddles bearing on support steel (callouts: EXCHANGER SADDLE, STRUCTURAL BEAMS, SUPPORT STEEL)."
+    }
+  ],
+  "issues": []
+}

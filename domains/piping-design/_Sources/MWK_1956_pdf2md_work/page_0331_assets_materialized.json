@@ -1,0 +1,11 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0331.anchored.md",
+  "assets": [],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 331,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0331.png",
+  "page_image_sha256": "137d7b30b8b86eadcc82e40f7a5d1e2502de11ef119457b8c9b49737f830c477",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0331_assets.json"
+}

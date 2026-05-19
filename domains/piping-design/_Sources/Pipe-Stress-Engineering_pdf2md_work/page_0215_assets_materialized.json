@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0215.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0215_fig01",
+      "bbox_norm": [
+        0.05,
+        0.7,
+        0.95,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        2281,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 6.24 CIRCUMFERENTIAL STRESSES AT LUG ATTACHMENT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0215_fig01_circumferential-stresses-lug-attachment.png",
+      "png_sha256": "fd186c546dc0cb5aed19bffae956d2912147a5927bac6fe573e5523023a3a044",
+      "slug": "circumferential-stresses-lug-attachment",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 215,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0215.png",
+  "page_image_sha256": "9866fa0543269f8be2683e2bd2aebff2350645e8c97eb1da7dd85747fca791fe",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0215_assets.json"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 24,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.22 Dependence of fatigue strength on steady stress in plain carbon steels.",
+      "bbox_norm": [
+        0.3,
+        0.6,
+        0.94,
+        0.96
+      ]
+    }
+  ]
+}

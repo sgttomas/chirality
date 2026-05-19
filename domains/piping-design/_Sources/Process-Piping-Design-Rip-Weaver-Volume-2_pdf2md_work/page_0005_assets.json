@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 5,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "Gulf Publishing Company logo",
+      "slug": "gulf-publishing-company-logo",
+      "bbox_norm": [0.55, 0.75, 0.85, 0.90],
+      "confidence": "high",
+      "notes": "Publisher logo (gp/gc mark) with Gulf Publishing Company Book Division imprint text below"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0103.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0103_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3488
+      ],
+      "caption": "Figure 6-1. Welding Symbols. Courtesy of Texas Pipe Bending Co., Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0103_fig01_welding-symbols-figure-6-1.png",
+      "png_sha256": "5e9f8b52660627070d361e90361a776ffb759d5b6a27f45fc9d7c4cb0199ae91",
+      "slug": "welding-symbols-figure-6-1",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 103,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0103.png",
+  "page_image_sha256": "5e1591cca8a2c44f73d1b6926cbbaed8078c64c3271cd0b226ca4fc4d6d41cfc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0103_assets.json"
+}

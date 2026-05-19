@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 227,
+  "page_label": "207",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 207 appears in the top-right header as part of the running head 'Pipe Supports and Restraints 207'."
+}

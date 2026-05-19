@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 133,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Appendix 13 — Typical arrangement of control valve manifold (upper arrangement) — preferred construction for situations where the size of the upstream/downstream piping is DN 80 or larger.",
+      "slug": "control-valve-manifold-upper-dn80-larger",
+      "bbox_norm": [0.07, 0.08, 0.72, 0.44],
+      "confidence": "high",
+      "notes": "Piping schematic showing upper control valve manifold arrangement with annotation text to the right. Preferred for DN 80 or larger upstream/downstream piping."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Appendix 13 — Typical arrangement of control valve manifold (lower arrangement) — preferred construction for situations where the size of the upstream/downstream piping is DN 50 or smaller, or required for proper supporting.",
+      "slug": "control-valve-manifold-lower-dn50-smaller",
+      "bbox_norm": [0.07, 0.44, 0.72, 0.82],
+      "confidence": "high",
+      "notes": "Piping schematic showing lower control valve manifold arrangement with annotation text to the right. Preferred for DN 50 or smaller upstream/downstream piping, or where proper supporting is required."
+    }
+  ],
+  "issues": []
+}

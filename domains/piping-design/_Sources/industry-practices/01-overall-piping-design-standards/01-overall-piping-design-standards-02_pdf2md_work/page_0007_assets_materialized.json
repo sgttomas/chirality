@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-02_p0007_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.2,
+        0.97,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        495,
+        2550,
+        2970
+      ],
+      "caption": "Standard Drawing # and Title listing for Piping Design and Plant Layout",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-02_p0007_tbl01_standard-drawing-list.png",
+      "png_sha256": "628483eaadde3718c021291d1af554129712dd89748208aa41b239c9a40c282f",
+      "slug": "standard-drawing-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-02_p0007_tbl01_standard-drawing-list.json",
+      "table_data_json_sha256": "01dbe7da9cedd219d16914494dd1a129fafcf02797ea6f0823bcac8129c04e3a",
+      "table_data_sha256": "01dbe7da9cedd219d16914494dd1a129fafcf02797ea6f0823bcac8129c04e3a",
+      "xlsx_path": "tables/01-overall-piping-design-standards-02_p0007_tbl01_standard-drawing-list.xlsx",
+      "xlsx_sha256": "35ac2cddb3477fc53d6e1e059b6a9fec92b34fd4fa7aba39e073f47c4f25542c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-02",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0007.png",
+  "page_image_sha256": "75d24bab79a8c695b203f6cdd225e0e3fd38b1e329522d9493dfcf8cab2c05f4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0007_assets.json"
+}

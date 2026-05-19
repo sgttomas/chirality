@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 117,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-27. Symmetrical flow at four-pass heater. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "symmetrical-flow-four-pass-heater",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.62],
+      "confidence": "high",
+      "notes": "Isometric piping diagram showing symmetrical flow layout for a four-pass heater with handwritten annotations. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

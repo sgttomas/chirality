@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0034.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0034_fig01",
+      "bbox_norm": [
+        0.04,
+        0.58,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        1747,
+        2550,
+        3296
+      ],
+      "caption": "Fig. 300-10 Single Deck with Elevated Relief Header\u2014Typical",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0034_fig01_fig-300-10-single-deck-elevated-relief-h.png",
+      "png_sha256": "2254e8de7bd41900f77ea1ea02f6c5ec460eef3038a3ab1c31a9fb7f357df8c2",
+      "slug": "fig-300-10-single-deck-elevated-relief-h",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 34,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0034.png",
+  "page_image_sha256": "5d704977064e8be673397bbdd6ca455f4973ba379669e57da9201c90416d4b09",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0034_assets.json"
+}

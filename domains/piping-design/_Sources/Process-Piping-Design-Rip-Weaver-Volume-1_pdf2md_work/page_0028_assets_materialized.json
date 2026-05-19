@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0028.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0028_fig01",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.52,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        140,
+        1412,
+        1223
+      ],
+      "caption": "Figure 1-13. Cast steel wedge gate valves\u2014150 to 1500 pound dimensions. Reprinted courtesy of Crane Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0028_fig01_cast-steel-wedge-gate-valves-diagram.png",
+      "png_sha256": "3aed4a46cfef6a70bfb7e68f0e07eb9c642e68f2846fb7134607367bf3dd5df2",
+      "slug": "cast-steel-wedge-gate-valves-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0028_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        804,
+        2477,
+        3494
+      ],
+      "caption": "Dimensions, in Inches \u2014 Cast steel wedge gate valves\u2014150 to 1500 pound dimensions (Figure 1-13)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0028_tbl01_cast-steel-wedge-gate-valve-dimensions.png",
+      "png_sha256": "be4a19e91947be53c499e000277db1f3006f68f27a1a8cc4157554c74f106d9d",
+      "slug": "cast-steel-wedge-gate-valve-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0028_tbl01_cast-steel-wedge-gate-valve-dimensions.json",
+      "table_data_json_sha256": "261eb2ae8104142bc87a4d20d1044ee2544be86c93459ebb8678fae04644b094",
+      "table_data_sha256": "261eb2ae8104142bc87a4d20d1044ee2544be86c93459ebb8678fae04644b094",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0028_tbl01_cast-steel-wedge-gate-valve-dimensions.xlsx",
+      "xlsx_sha256": "9346995142af54a91079adc1a80a25ea4beaf3a69225e412ac109fb43fbfaf57"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 28,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0028.png",
+  "page_image_sha256": "39b270a7a92650c951a7fe61596907024a9a779f2ecb30ccdfb796385741de66",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0028_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 455,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 13.12 CORRECTION FACTOR FOR U-BEND AND Z-BEND",
+      "slug": "correction-factor-u-bend-z-bend",
+      "bbox_norm": [0.03, 0.62, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Three sub-diagrams showing (a) Equal-leg U-bend C3=0.83, (b) Equal-leg Z-bend (2-D) C3=0.88, (c) Equal-leg Z-bend (3-D) C3=0.74, with caption below"
+    }
+  ],
+  "issues": []
+}

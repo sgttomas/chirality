@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0246.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0246_fig01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1675,
+        2557,
+        3564
+      ],
+      "caption": "Fig. 7.9 TYPICAL ANCHOR AND GUIDE ARRANGEMENTS ON STRAIGHT LINES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0246_fig01_typical-anchor-guide-arrangements-straig.png",
+      "png_sha256": "7f22381479eebbb34a1eff50b36160dcbf78919f9034ca903dcf3704d7d99177",
+      "slug": "typical-anchor-guide-arrangements-straig",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 246,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0246.png",
+  "page_image_sha256": "fd1e65f0fba8ae1ee743629f9bb26e7378825272ec7d235245e89a4213384e4b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0246_assets.json"
+}

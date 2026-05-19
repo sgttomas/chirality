@@ -1,0 +1,106 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-09",
+  "page": 1,
+  "total_pages": 15,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Contents",
+      "slug": "contents",
+      "bbox_norm": [0.07, 0.62, 0.93, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Contents", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "Page", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "110", "type": "text" },
+              { "value": "Codes and Industry Practices", "type": "text" },
+              { "value": "100-3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "111", "type": "text" },
+              { "value": "Piping Code History", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "112", "type": "text" },
+              { "value": "Code Application", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "120", "type": "text" },
+              { "value": "Government Regulations", "type": "text" },
+              { "value": "100-4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "121", "type": "text" },
+              { "value": "OSHA Compliance", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "122", "type": "text" },
+              { "value": "Boiler Piping", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "123", "type": "text" },
+              { "value": "Pipeline Applications", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "124", "type": "text" },
+              { "value": "Foreign Applications", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "130", "type": "text" },
+              { "value": "Company Practices", "type": "text" },
+              { "value": "100-5", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "131", "type": "text" },
+              { "value": "Corporation Piping Specification", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table of contents with section numbers, section titles, and page references. Bold rows are major section headings."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0159.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0159_fig01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 5.5 CYLINDRICAL SHELL WITH AXIALLY SYMMETRICAL LOADING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0159_fig01_cylindrical-shell-axially-symmetrical-lo.png",
+      "png_sha256": "c05f281ffcb8cc24b20d123e48cb0b9c4ed59fb99070b46999ed28051a992b90",
+      "slug": "cylindrical-shell-axially-symmetrical-lo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 159,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0159.png",
+  "page_image_sha256": "a050aab5f3b0d02eaf8ebf0d0e7bac0b6b7ddc5c39d863129f59b390b7d82a02",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0159_assets.json"
+}

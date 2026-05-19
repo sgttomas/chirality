@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0217.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0217_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1690
+      ],
+      "caption": "Exhibit 8-32 Condensate Blowdown Line",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0217_fig01_exhibit-8-32-condensate-blowdown-line.png",
+      "png_sha256": "fbcc665051ae1178c4375a7d27eb199e170300863ed536dcfa906be51154ff10",
+      "slug": "exhibit-8-32-condensate-blowdown-line",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 217,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0217.png",
+  "page_image_sha256": "0b400b71f91ea0c15d2bba74965d5d78b5a60c916bc85b5d454f25b4ff558f89",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0217_assets.json"
+}

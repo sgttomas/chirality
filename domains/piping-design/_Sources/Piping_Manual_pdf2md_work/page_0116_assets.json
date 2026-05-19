@@ -1,0 +1,35 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 116,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0116_fig01",
+      "bbox_norm": [0.04, 0.04, 0.98, 0.32],
+      "caption": "EXHIBIT 5-19 Typical Drum Platform Arrangements - a. Horizontal Drum Platform Supports. Three horizontal drums shown side by side with different support arrangements: supported from concrete piers, supported from trunnions, and supported from grade. Top head platform supported from trunnions is annotated."
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0116_fig02",
+      "bbox_norm": [0.04, 0.32, 0.50, 0.62],
+      "caption": "EXHIBIT 5-19 (cont.) - b. Vertical Drum Platform Supports. Vertical drum with platform extending from upper portion; annotations identify top head platform supported from trunnions, support bracket, and vessel clip."
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0116_fig03",
+      "bbox_norm": [0.48, 0.32, 0.98, 0.66],
+      "caption": "EXHIBIT 5-19 (cont.) - c. Structure-Located Drum. Horizontal drum mounted inside a rectangular structural frame with associated piping and supports; vertical and horizontal structural members form the support framework around the drum."
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0116_fig04",
+      "bbox_norm": [0.10, 0.66, 0.55, 0.93],
+      "caption": "EXHIBIT 5-19 (cont.) - d. Common Platform. Two horizontal drums shown side by side at the same elevation on a common platform/foundation arrangement."
+    }
+  ],
+  "issues": []
+}

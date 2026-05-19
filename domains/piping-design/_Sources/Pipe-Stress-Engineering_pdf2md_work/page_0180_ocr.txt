@@ -1,0 +1,48 @@
+160 Chapter 6
+
+Tower Moves Up
+Hot Operating due to Expansion if
+Position Ny vote
+
+Initial Cold ee
+Position =
+
+FIG. 6.8
+PIPING RESTING ON SUPPORTS
+
+due to the higher temperature and larger tower movement. However, the sustained weight
+stress remains unchanged as no additional supporting location is lifting off its support.
+
+When this maximum operating temperature is maintained for a certain period, the thermal
+expansion stress (displacement stress) will be relaxed somewhat. The amount of relaxation
+depends on stress level and operating temperature. However, the sustained weight plus pres-
+sure stress remains the same.
+
+When the plant cools down, the piping moves back on to its supports. This reduces the weight
+stress to its initial cold condition weight stress. The system, however, generates some reverse
+thermal expansion stress due to relaxation at operating temperature.
+
+If considerable yielding or creep occurs at hot condition, the pipe may return to the support
+point before the temperature reaches the ambient temperature. A continued cooling down to
+ambient temperature will cause high thermal stresses and loads due to stoppage by the support
+that prevents the pipe from moving further down. Generally, this will cause unpredictably high
+loads and stresses at the tower connection.
+
+In the next operating cycle, the weight stress goes back to the hot condition stress sustained,
+but the expansion stress will be reduced to a level corresponding to the relaxed state.
+
+Three main approaches have been adopted by computer software packages in dealing with systems
+like the one shown in Fig. 6.8.
+
+1. General straightforward approach. This is an approach commonly adopted by general-purpose
+
+finite element programs. In this approach, sustained stress and expansion stress are calculated
+separately without checking the situation influenced by the other load. Sustained stress is cal-
+culated by considering only the weight and pressure loads at ambient state. All supports are
+considered active because no temperature and support displacement is involved. The expan-
+sion stress range is calculated only with the temperature change. No weight influence is con-
+sidered. If the pipe lifts off from the support due to temperature only, it is considered inactive
+for the expansion analysis.
+
+This approach may mishandle both sustained and expansion stresses. First, the calculated
+sustained stress is the stress under ambient condition. The most important sustained stress

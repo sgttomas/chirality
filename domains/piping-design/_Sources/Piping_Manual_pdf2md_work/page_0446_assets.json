@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 446,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0446_fig_01",
+      "caption": "EXHIBIT 17-11 Structural Steel Model",
+      "bbox_norm": [0.05, 0.27, 0.50, 0.83],
+      "notes": "Isometric line-art rendering of a multi-level structural steel framework showing vertical columns, horizontal beams, and diagonal bracing forming a tower-like structure with multiple floors/platforms."
+    }
+  ],
+  "issues": []
+}

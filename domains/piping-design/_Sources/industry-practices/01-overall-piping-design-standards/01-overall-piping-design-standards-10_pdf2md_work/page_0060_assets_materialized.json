@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0060_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.65,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1785,
+        1154
+      ],
+      "caption": "Fig. 300-23 Field Fabrication Methods Comparison\u2014Small Pipe",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-10_p0060_tbl01_fig-300-23-field-fabrication-methods-com.png",
+      "png_sha256": "e38f4d853d1a851af754af920abe061038e4c4e7c95833d3693e9eb740f627c5",
+      "slug": "fig-300-23-field-fabrication-methods-com",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-10_p0060_tbl01_fig-300-23-field-fabrication-methods-com.json",
+      "table_data_json_sha256": "1c45cd6e6b81e137eede0e7f2e80a4b25c120fe763d57bdbab6cbb91e74a0954",
+      "table_data_sha256": "1c45cd6e6b81e137eede0e7f2e80a4b25c120fe763d57bdbab6cbb91e74a0954",
+      "xlsx_path": "tables/01-overall-piping-design-standards-10_p0060_tbl01_fig-300-23-field-fabrication-methods-com.xlsx",
+      "xlsx_sha256": "3ffe99bb870d47ca820b6121dac949ec13d940c68fee29e0c3ad4a2f99cd91f2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0060.png",
+  "page_image_sha256": "d947000244e7830b87c0589c151f4522aabaecb3e02c6e16494cfeb2815512f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0060_assets.json"
+}

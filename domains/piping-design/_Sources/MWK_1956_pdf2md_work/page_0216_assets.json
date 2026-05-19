@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 216,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.4 Plain bellows expansion joints.",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.51,
+        0.17
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.5 Self-equalizing expansion joint",
+      "bbox_norm": [
+        0.54,
+        0.77,
+        0.98,
+        0.98
+      ]
+    }
+  ]
+}

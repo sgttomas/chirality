@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0263.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0263_fig01",
+      "bbox_norm": [
+        0.5,
+        0.02,
+        1.0,
+        0.16
+      ],
+      "bbox_px": [
+        1007,
+        0,
+        2238,
+        629
+      ],
+      "caption": "Distributed mass on cantilever.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0263_fig01_distributed-mass-on-cantilever.png",
+      "png_sha256": "9324d2d9bc8d591242dd7700dbc6a9062ef70bcd0b302e031460eb71d1638690",
+      "slug": "distributed-mass-on-cantilever",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0263_fig02",
+      "bbox_norm": [
+        0.62,
+        0.55,
+        1.0,
+        0.71
+      ],
+      "bbox_px": [
+        1276,
+        1497,
+        2238,
+        2275
+      ],
+      "caption": "Cantilever.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0263_fig02_cantilever.png",
+      "png_sha256": "c0351e61a109afe101335e54e44a4c5dd691966aede944d300a551fecc0295b9",
+      "slug": "cantilever",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0263_fig03",
+      "bbox_norm": [
+        0.04,
+        0.7,
+        0.48,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1946,
+        1186,
+        2784
+      ],
+      "caption": "Mass distribution.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0263_fig03_mass-distribution.png",
+      "png_sha256": "b2c25c0bdbf09e49fdae7354ddd6abcabad33349c5f85644a0dfa59fcd92059d",
+      "slug": "mass-distribution",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 263,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0263.png",
+  "page_image_sha256": "ad2b05e8e9e345db1e4fb724ba0b5c6c428268cf38150adce6a9bab877a93b1f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0263_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0050.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0050_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1658
+      ],
+      "caption": "Figure 3-3. Cone roof tank. Courtesy of Chicago Bridge and Iron Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0050_fig01_cone-roof-tank-chicago-bridge-iron.png",
+      "png_sha256": "277929c11858b665076a101afa73cfaea2166a4f9c3d4d94130ea0f924b76010",
+      "slug": "cone-roof-tank-chicago-bridge-iron",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 50,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0050.png",
+  "page_image_sha256": "d3ab47f57412929f34104fccd41503e78d2aa048c6b362d1b50947ba917a3c80",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0050_assets.json"
+}

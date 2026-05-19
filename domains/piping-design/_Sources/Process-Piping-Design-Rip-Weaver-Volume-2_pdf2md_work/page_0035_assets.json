@@ -1,0 +1,284 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 35,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-19. Sectional drawing of end suction pump. Courtesy of Byron Jackson Pump Division.",
+      "slug": "fig-1-19-sectional-drawing-end-suction-pump",
+      "bbox_norm": [0.02, 0.02, 0.98, 0.72],
+      "confidence": "high",
+      "notes": "Full-page sectional engineering drawing of an end suction pump including numbered callout labels, pump size list on left, and Detail A (Fan Cooled Bearing) and Detail B (Water Cooled Bearing) insets. Caption visible at bottom of figure area."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Parts list — end suction pump item numbers and names of parts",
+      "slug": "parts-list-end-suction-pump",
+      "bbox_norm": [0.02, 0.70, 0.98, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM NO.", "is_header": true },
+              { "value": "NAME OF PARTS", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "Case", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "51", "type": "text" },
+              { "value": "Case-Stuffing Box", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "55", "type": "text" },
+              { "value": "Stuffing Box Water Jacket-Closure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "56", "type": "text" },
+              { "value": "Retaining Ring-Water Jacket Closure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "57", "type": "text" },
+              { "value": "Locking Lug-Retaining Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "111", "type": "text" },
+              { "value": "Packing Gland", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "167", "type": "text" },
+              { "value": "Shaft", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "178", "type": "text" },
+              { "value": "Impeller", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "201", "type": "text" },
+              { "value": "Wear Ring-Impeller", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "202", "type": "text" },
+              { "value": "Wear Ring-Impeller Hub", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "208", "type": "text" },
+              { "value": "Wear Ring-Case", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "207", "type": "text" },
+              { "value": "Wear Ring-Case", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "214", "type": "text" },
+              { "value": "Oil Fittings", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "217", "type": "text" },
+              { "value": "Shaft Sleeve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "230", "type": "text" },
+              { "value": "Throat Bushing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "236", "type": "text" },
+              { "value": "Cage Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "241", "type": "text" },
+              { "value": "Deflector-Inboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "241-1", "type": "text" },
+              { "value": "Deflector-Outboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "248", "type": "text" },
+              { "value": "Washer-Impeller", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "249", "type": "text" },
+              { "value": "Locknut-Thrust Bearing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "267", "type": "text" },
+              { "value": "Lockscrew-Impeller", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "280", "type": "text" },
+              { "value": "Bearing Housing-Inboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "281", "type": "text" },
+              { "value": "Bearing Cover-Outboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "289", "type": "text" },
+              { "value": "Fan", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "290", "type": "text" },
+              { "value": "Fan Housing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "312", "type": "text" },
+              { "value": "Bearing Housing Water Jacket", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "314", "type": "text" },
+              { "value": "Bearing Bracket", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "654", "type": "text" },
+              { "value": "Ball Bearing-Thrust", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "655", "type": "text" },
+              { "value": "Ball Bearing-Radial", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "676", "type": "text" },
+              { "value": "Key-Impeller", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "742", "type": "text" },
+              { "value": "Packing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "743", "type": "text" },
+              { "value": "Lockwasher-Thrust Bearing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "744", "type": "text" },
+              { "value": "Gasket-Case to Cover", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "744-1", "type": "text" },
+              { "value": "Gasket-Shaft Sleeve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "744-2", "type": "text" },
+              { "value": "Gasket-Water Jacket-Inboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "744-3", "type": "text" },
+              { "value": "Gasket-Water Jacket-Outboard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "747-4", "type": "text" },
+              { "value": "Gasket-Water Jacket I.D.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "745-5", "type": "text" },
+              { "value": "Gasket-Water Jacket O.D.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "744-6", "type": "text" },
+              { "value": "Gasket-Outboard Bearing Cover", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "804", "type": "text" },
+              { "value": "Oil Filler Cap", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column parts list rendered as a single two-column table (ITEM NO. / NAME OF PARTS) in reading order left-to-right across columns. All 41 part entries included. Original layout shows three side-by-side columns each with ITEM NO. / NAME OF PARTS headers."
+    }
+  ],
+  "issues": []
+}

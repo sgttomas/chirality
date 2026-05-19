@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0078.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0078_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.94,
+        0.51
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2530,
+        1850
+      ],
+      "caption": "EXHIBIT 4-13 Pulsation Dampeners/Volume Bottles",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0078_fig01_exhibit-4-13-pulsation-dampeners-volume.png",
+      "png_sha256": "f540e11437ae9840f9cca313a328ab92a319d71cb3bda9df900703c597c0316a",
+      "slug": "exhibit-4-13-pulsation-dampeners-volume",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0078_fig02",
+      "bbox_norm": [
+        0.04,
+        0.53,
+        0.94,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1586,
+        2530,
+        3073
+      ],
+      "caption": "EXHIBIT 4-14 Single-Stage or Multistage Horizontal Split-Case Compressor",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0078_fig02_exhibit-4-14-single-stage-or-multistage.png",
+      "png_sha256": "bc889f510af1c33487538fb25143ebb0688b905fc49580f22b426babd9d645bf",
+      "slug": "exhibit-4-14-single-stage-or-multistage",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 78,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0078.png",
+  "page_image_sha256": "78c99fb65996949260f27f9625cec2bfc04d9cd21a3e6bf37279159ecf5404b8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0078_assets.json"
+}

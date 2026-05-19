@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0060_fig01",
+      "bbox_norm": [
+        0.07,
+        0.05,
+        0.55,
+        0.31
+      ],
+      "bbox_px": [
+        51,
+        0,
+        1530,
+        1257
+      ],
+      "caption": "Fig. 2.9 Distribution of circumferential stresses in pipe bend subjected to internal pressure.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0060_fig01_fig-2-9-distribution-of-circumferential.png",
+      "png_sha256": "2c27ae7768997a178ee9e55fe4e045585ea068fd22bcc3fb0c93e715f6640931",
+      "slug": "fig-2-9-distribution-of-circumferential",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0060_fig02",
+      "bbox_norm": [
+        0.52,
+        0.62,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        1198,
+        1990,
+        2550,
+        3492
+      ],
+      "caption": "Fig. 3.10 Geometry of miter bends.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0060_fig02_fig-3-10-geometry-of-miter-bends.png",
+      "png_sha256": "fcefc0d3e5318b2195fb95b78ab5ff4ac1174867f6cc75caa179dd42e5946c0d",
+      "slug": "fig-3-10-geometry-of-miter-bends",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0060.png",
+  "page_image_sha256": "378b251eb1622fab480fe098d741239a245a5a116be9aa69fb18a8ad8034e092",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0060_assets.json"
+}

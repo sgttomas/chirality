@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 166,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "Piping_Manual_p0166_fig01",
+      "kind": "fig",
+      "caption": "EXHIBIT 7-9 Maintenance Area for a Combination Oil and Gas Burner",
+      "bbox_norm": [0.06, 0.18, 0.50, 0.68]
+    },
+    {
+      "id": "Piping_Manual_p0166_fig02",
+      "kind": "fig",
+      "caption": "EXHIBIT 7-10 Windproof Gas Burner",
+      "bbox_norm": [0.50, 0.18, 0.96, 0.55]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0282.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0282_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.34,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        958,
+        2556,
+        3304
+      ],
+      "caption": "EXHIBIT 11-2 Basic Pipe Span Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0282_tbl01_exhibit-11-2-basic-pipe-span-table.png",
+      "png_sha256": "b31080105421d6f5ec11c16850da5a69db0edd03a4df344c795e3d70871cb6c2",
+      "slug": "exhibit-11-2-basic-pipe-span-table",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 282,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0282.png",
+  "page_image_sha256": "a028b39a51ce0ba47bfc75168056b9be5953d27e748e247b0d9f8ff74b0b5c16",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0282_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0480_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3538,
+        2523
+      ],
+      "caption": "Standard Nominal Pipe Wall Thickness (inches; 1 IN. = 25.4 MM)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0480_tbl01_standard-nominal-pipe-wall-thickness.csv",
+      "csv_sha256": "e156cd44158ddc6c8c489ed4488fcb607eee379720b354fcf0058190ebe86725",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0480_tbl01_standard-nominal-pipe-wall-thickness.png",
+      "png_sha256": "07fd4af8b97ce8cffbe0f95cd42785ffadb23a4a797ce59a11b7c4c243219af4",
+      "slug": "standard-nominal-pipe-wall-thickness",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 480,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480.png",
+  "page_image_sha256": "7f8592d43242d3ee70118105c6488741a4e708982e7ba97a7ace956a3aaf2dfc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480_assets.json"
+}

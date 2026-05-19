@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0186.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0186_fig01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.8,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1966,
+        2185,
+        3467
+      ],
+      "caption": "FIG. 6.9 CONSTANT-EFFORT SUPPORT SCHEMATIC SKETCH",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0186_fig01_constant-effort-support-schematic.png",
+      "png_sha256": "200e51ec80e49dacb16b23a5b364691cb9c144163d291f4f9df880240bbb076b",
+      "slug": "constant-effort-support-schematic",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 186,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0186.png",
+  "page_image_sha256": "7dfc01b574df71921c2cbf26e366a06a1ba2c377aae739e2a082519a6f20f3aa",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0186_assets.json"
+}

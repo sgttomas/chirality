@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0033.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0033_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 1-17 Constructibility Planning",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0033_fig01_exhibit-1-17-constructibility-planning.png",
+      "png_sha256": "b0ac6d8cad1e14d608303f6118ccd10ceabf07f47a99643bfc8b0c31011e1c36",
+      "slug": "exhibit-1-17-constructibility-planning",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0033.png",
+  "page_image_sha256": "59cffcb1aa604e528468b6408414aaa2634cd77ef604d633e409b71fb41e774a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0033_assets.json"
+}

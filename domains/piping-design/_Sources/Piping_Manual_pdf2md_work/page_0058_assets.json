@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 58,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p058_fig01",
+      "bbox_norm": [0.04, 0.04, 0.98, 0.30],
+      "caption": "EXHIBIT 3-17 Typical Underground Elevations"
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p058_fig02",
+      "bbox_norm": [0.04, 0.30, 0.98, 0.58],
+      "caption": "EXHIBIT 3-18 Total Unit Encasement"
+    }
+  ],
+  "issues": []
+}

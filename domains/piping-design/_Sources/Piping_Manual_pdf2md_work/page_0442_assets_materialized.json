@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0442.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0442_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1682
+      ],
+      "caption": "EXHIBIT 17-6 Typical Plant Design System\u2014Generated Instrument Loop Diagram",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0442_fig01_exhibit-17-6-typical-plant-design-system.png",
+      "png_sha256": "d62fbee805f71c408ea6e1e8ff133516611f767bedf119b25370a89e373fd2fd",
+      "slug": "exhibit-17-6-typical-plant-design-system",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 442,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0442.png",
+  "page_image_sha256": "c67d39d7487504f85a997c38ce85aa74b6ef33c0c1dee8acca1394d7df7cb72e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0442_assets.json"
+}

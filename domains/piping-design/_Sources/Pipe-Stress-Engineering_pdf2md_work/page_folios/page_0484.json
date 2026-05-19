@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 484,
+  "page_label": "464",
+  "page_label_source": "vlm",
+  "location": "bottom-center",
+  "confidence": "high",
+  "rationale": "Arabic numeral 464 centered in the lower portion of the page, below the Appendix D chapter-opener heading."
+}

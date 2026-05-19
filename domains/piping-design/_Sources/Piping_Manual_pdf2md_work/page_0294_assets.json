@@ -1,0 +1,19 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 294,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p294_fig_01",
+      "label": "Exhibit 11-19",
+      "caption": "Pipe Rack Anchor Bent",
+      "bbox_norm": [0.04, 0.30, 0.96, 0.68],
+      "description": "Hand-drawn engineering drawing showing two views of a pipe rack anchor bent. The plan view (top) shows expansion loops rising above the rack with piping anchored at a designated point near the pumps. The elevation view (bottom) shows the anchor bent with cross-bracing between the rack columns. Caption block 'EXHIBIT 11-19 Pipe Rack Anchor Bent' appears at the upper right of the figure."
+    }
+  ],
+  "issues": []
+}

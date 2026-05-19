@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0343.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0343_fig01",
+      "bbox_norm": [
+        0.09,
+        0.19,
+        0.89,
+        0.42
+      ],
+      "bbox_px": [
+        102,
+        462,
+        2397,
+        1551
+      ],
+      "caption": "EXHIBIT 13-19 Closed Drain System: Cross Section",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0343_fig01_exhibit-13-19-closed-drain-system-cross.png",
+      "png_sha256": "25a06a82890503e32e393ca689add25ba199e7901e9a9b99f5a0a7a9b954f17c",
+      "slug": "exhibit-13-19-closed-drain-system-cross",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0343_fig02",
+      "bbox_norm": [
+        0.09,
+        0.42,
+        0.89,
+        0.73
+      ],
+      "bbox_px": [
+        102,
+        1221,
+        2397,
+        2573
+      ],
+      "caption": "EXHIBIT 13-20 Closed Drain System Sump",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0343_fig02_exhibit-13-20-closed-drain-system-sump.png",
+      "png_sha256": "530db005fb4d4c6d3eefad5ea92f17ec876b3d3d9d9f79142a3d752ce8056e30",
+      "slug": "exhibit-13-20-closed-drain-system-sump",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 343,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0343.png",
+  "page_image_sha256": "9b6c8865dcfb7186a98a4814ef47d3d7ceb858b3da81cc969d6b1112afedfba8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0343_assets.json"
+}

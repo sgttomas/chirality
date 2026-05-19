@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.7,
+        0.97,
+        0.97
+      ],
+      "caption": "Partial derivatives of the moment expressions (M_b, M'_b, M_t) with respect to M'_x, M'_y, M'_z, F_x, F_y, F_z, required in the general rotation and displacement formulas (eq. A.2).",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 302,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

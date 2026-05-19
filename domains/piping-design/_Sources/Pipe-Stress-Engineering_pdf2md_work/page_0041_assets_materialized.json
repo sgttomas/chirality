@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0041_fig01",
+      "bbox_norm": [
+        0.05,
+        0.47,
+        0.95,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1508,
+        2591,
+        3518
+      ],
+      "caption": "FIG. 1.10 ROLE OF CODES AND STANDARDS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0041_fig01_role-of-codes-and-standards.png",
+      "png_sha256": "54f53c09ee3bd39cd300e4a3d8811a0eff85753fbcc792540706d1486104f1a0",
+      "slug": "role-of-codes-and-standards",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0041.png",
+  "page_image_sha256": "76228eab98adfd99e592a53ab27f9da748cc142de85412c82557fdb2b5802f56",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0041_assets.json"
+}

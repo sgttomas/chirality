@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0015_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        3538
+      ],
+      "caption": "Nomenclature \u2014 symbols and definitions (page xvi)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0015_tbl01_nomenclature-symbols-definitions.png",
+      "png_sha256": "ce10b56efa4090c39f0e138c9b13a5a77142bb06fddd1f07315322b344618702",
+      "slug": "nomenclature-symbols-definitions",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0015_tbl01_nomenclature-symbols-definitions.json",
+      "table_data_json_sha256": "f380b73296042eb106c42219e99d4524c5940499ec6073e3be8a7fa46dc58bb5",
+      "table_data_sha256": "f380b73296042eb106c42219e99d4524c5940499ec6073e3be8a7fa46dc58bb5",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0015_tbl01_nomenclature-symbols-definitions.xlsx",
+      "xlsx_sha256": "434ecb6c97c5761385b167c4854f0e0f11e1539f07e258f9f9ee70b853bd1ee1"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015.png",
+  "page_image_sha256": "b4a9c8f4e20fd265d8e4601e7570ae7b22e40f52faedc5a64bcdb52fc95892c5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015_assets.json"
+}

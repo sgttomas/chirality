@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 161,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8-2. Pressure recording controller diagram.",
+      "slug": "pressure-recording-controller-diagram",
+      "bbox_norm": [0.05, 0.04, 0.72, 0.38],
+      "confidence": "high",
+      "notes": "Schematic diagram of a pressure recording controller (PRC) with valves, piping, and specification break labels (C and A). Caption visible below the figure."
+    }
+  ],
+  "issues": []
+}

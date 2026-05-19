@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0061.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0061_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1551
+      ],
+      "caption": "Figure 2-7. Typical lube oil piping. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0061_fig01_typical-lube-oil-piping.png",
+      "png_sha256": "5a4c7edf8c093c8c84eeecaa3a7705277404bd8d87dd2d164986f09b1f945cba",
+      "slug": "typical-lube-oil-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 61,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0061.png",
+  "page_image_sha256": "8ecdd7300b1d38fc82f80a113b82ff047866001d750ff0ba20dc78dec2db0181",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0061_assets.json"
+}

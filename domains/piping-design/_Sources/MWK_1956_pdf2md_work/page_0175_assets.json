@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 175,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure containing three coordinate-plane diagrams (x-plane, y-plane, z-plane) showing inclined straight members at angle alpha with associated formulas for w_a, w'_a, w'_aa, and w_aa. Mixed graphic + formula content; treated as a figure rather than a pure table."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Table 5.23 Shape Coefficients for Weight; General Formulas for Straight Members",
+      "bbox_norm": [
+        0.49,
+        0.05,
+        0.99,
+        0.62
+      ]
+    }
+  ]
+}

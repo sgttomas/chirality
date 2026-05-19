@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0314.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0314_fig01",
+      "bbox_norm": [
+        0.7,
+        0.06,
+        1.0,
+        0.34
+      ],
+      "bbox_px": [
+        1326,
+        28,
+        2040,
+        1081
+      ],
+      "caption": "Fig. A.6 Integration of shape coefficients for concentrated loading of circular members.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0314_fig01_fig-a-6-integration-of-shape-coefficient.png",
+      "png_sha256": "c6e90c5657cd3e2ffe2beb144a355676782a5d68e5d99f61a7d3256b372b0727",
+      "slug": "fig-a-6-integration-of-shape-coefficient",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 314,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0314.png",
+  "page_image_sha256": "7af6015bc96ac2c519b84f4b786e01161610b07b9871015814246f9f6660065b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0314_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 18,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figures 1-3a and b continued. Perforated basket temporary strainer photograph (left) and cross-section diagram (right) for 150 LB.-300 LB.-600 LB. flat face, raised face, and ring joint flanges.",
+      "slug": "perforated-basket-temporary-strainer-1-3ab-continued",
+      "bbox_norm": [0.03, 0.32, 0.97, 0.93],
+      "confidence": "high",
+      "notes": "Composite figure: left side shows photograph of basket strainer (Series FR.RJ for Ring Joint Flanges); right side shows cross-section diagram with ANSI STD. RING, 14 GA. perforated sheet basket, 1/8 inch holes, 38 holes per sq. inch, with stiffener and stuffing ring callouts. Caption 'Figures 1-3a and b continued.' appears at bottom."
+    }
+  ],
+  "issues": []
+}

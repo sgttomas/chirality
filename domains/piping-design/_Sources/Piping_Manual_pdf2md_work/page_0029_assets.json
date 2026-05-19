@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 29,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 1-11 Inline Instrumentation",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.32]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 1-12 Header-Branch-Header Block Valve",
+      "bbox_norm": [0.05, 0.34, 0.95, 0.60]
+    }
+  ],
+  "issues": []
+}

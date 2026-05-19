@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 443,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p443_fig01",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.37],
+      "caption": "EXHIBIT 17-7 Equipment Plot Model Using Plot Modeling Software"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p443_fig02",
+      "bbox_norm": [0.04, 0.37, 0.52, 0.60],
+      "caption": "EXHIBIT 17-8 3-D Equipment Plot Model with 2-D and 3-D Layers"
+    }
+  ],
+  "issues": []
+}

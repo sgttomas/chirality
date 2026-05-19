@@ -1,0 +1,108 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0123.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0123_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.31
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1191
+      ],
+      "caption": "EXHIBIT 5-30 Instrument Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0123_fig01_exhibit-5-30-instrument-arrangement.png",
+      "png_sha256": "fdcf04910cf08b48439275b4e471b073e769afdd8db5b636cf1e97837a778418",
+      "slug": "exhibit-5-30-instrument-arrangement",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0123_fig02",
+      "bbox_norm": [
+        0.04,
+        0.32,
+        0.5,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        893,
+        1409,
+        2217
+      ],
+      "caption": "EXHIBIT 5-31 Sample Horizontal Drum Davit Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0123_fig02_exhibit-5-31-sample-horizontal-drum-davi.png",
+      "png_sha256": "16032f387c468c539bee80c652dbed417ac06ab4912b9c3ca0e34a5ac7526acb",
+      "slug": "exhibit-5-31-sample-horizontal-drum-davi",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0123_fig03",
+      "bbox_norm": [
+        0.5,
+        0.32,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1153,
+        893,
+        2562,
+        1985
+      ],
+      "caption": "EXHIBIT 5-32 Drum with Mixer",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0123_fig03_exhibit-5-32-drum-with-mixer.png",
+      "png_sha256": "f1dac59ae04aa72b2e86af1da06e742cf073a09d16bc4e5bfab0d0a45c2bf80c",
+      "slug": "exhibit-5-32-drum-with-mixer",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0123_fig04",
+      "bbox_norm": [
+        0.5,
+        0.56,
+        0.97,
+        0.94
+      ],
+      "bbox_px": [
+        1153,
+        1688,
+        2562,
+        3276
+      ],
+      "caption": "EXHIBIT 5-33 Typical Drum Boot Layout",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Piping_Manual_p0123_fig04_exhibit-5-33-typical-drum-boot-layout.png",
+      "png_sha256": "06e5c5cfdd5ceecca8a39d090dacf5a2d1656ccd325a38bb1582d1e0eae77522",
+      "slug": "exhibit-5-33-typical-drum-boot-layout",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 123,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0123.png",
+  "page_image_sha256": "d6c11eeae0a062228730d91309d0adbc837f1fe743ff050e59d178848d81acce",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0123_assets.json"
+}

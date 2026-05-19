@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0414.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0414_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.95,
+        0.46
+      ],
+      "bbox_px": [
+        26,
+        265,
+        2562,
+        1688
+      ],
+      "caption": "EXHIBIT 16-3 Pipe Stress Review Criteria All Piping Except Rotating Equipment Piping. Chart titled \"Expansion Temperature\" plotting temperature (Fahrenheit, vertical axis) against Pipe Size (Nominal Diameter, horizontal axis), divided into regions labeled \"Computer Analysis,\" \"Detailed Manual Analysis,\" and \"Visual Analysis or Judgment,\" indicating the level of stress analysis required based on pipe size and expansion temperature.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0414_fig01_exhibit-16-3-pipe-stress-review-criteria.png",
+      "png_sha256": "43c9a7030d08a6b409e23411f7a80e070a0703c284f23db4aa5fe564033c132e",
+      "slug": "exhibit-16-3-pipe-stress-review-criteria",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 414,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0414.png",
+  "page_image_sha256": "d6cfac809d16488c02a6f70241dd5226eae358e77f85113e69e71ad800f8d453",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0414_assets.json"
+}

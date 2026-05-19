@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0001.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-03_p0001_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2550,
+        1089
+      ],
+      "caption": "Overview \u2014 Document metadata",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-03_p0001_tbl01_overview-document-metadata.png",
+      "png_sha256": "99ad0bf65afd4b21e253e1944766079aa5d427164a93806f3f8b8f1cba569d0d",
+      "slug": "overview-document-metadata",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-03_p0001_tbl01_overview-document-metadata.json",
+      "table_data_json_sha256": "528cc21ee3308fdc0eb38cc21ff364bedb666a533565adf56335f6bb0f959c90",
+      "table_data_sha256": "528cc21ee3308fdc0eb38cc21ff364bedb666a533565adf56335f6bb0f959c90",
+      "xlsx_path": "tables/01-overall-piping-design-standards-03_p0001_tbl01_overview-document-metadata.xlsx",
+      "xlsx_sha256": "31b729abaa9fe4599ae94c6b92a6a757ab6b94368d62f9c3a9e0f4576aa2de2a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-03",
+  "doc_stem": "01-overall-piping-design-standards-03",
+  "page": 1,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0001.png",
+  "page_image_sha256": "ba744f112bb0df705a9c4edf1b1376f0bbc2f476a5432ac0d93b3225fd32bfb9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0001_assets.json"
+}

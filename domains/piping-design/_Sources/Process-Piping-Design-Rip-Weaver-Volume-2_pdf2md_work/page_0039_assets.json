@@ -1,0 +1,376 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 39,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pump outline dimensions for Type S2 pump — pump size vs. motor frame size (A, B, C dimensions)",
+      "slug": "pump-outline-dimensions-type-s2",
+      "bbox_norm": [0.01, 0.01, 0.99, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "1", "text": "FOR SEAL SPACING" },
+          { "marker": "2", "text": "3 5/8 A.G.M. PUMP SPACER SUPPLIED WITH D-R SEAL" },
+          { "marker": "3", "text": "4 5/8 A.G.M. PUMP SPACER SUPPLIED WITH D-R SEAL" },
+          { "marker": "4", "text": "STUFFING GLAND BOLTS ON 6\" PCD (PUMP FURNISHED TO CUSTOMER'S REQUIREMENTS)" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PUMP SIZE", "col_span": 3, "row_span": 2, "is_header": true },
+              { "value": "MOTOR FRAME SIZE", "col_span": 24, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "33⅛", "col_span": 3, "is_header": true },
+              { "value": "33⅛", "col_span": 3, "is_header": true },
+              { "value": "36½", "col_span": 3, "is_header": true },
+              { "value": "40⅛", "col_span": 3, "is_header": true },
+              { "value": "40⅛", "col_span": 3, "is_header": true },
+              { "value": "44⅛", "col_span": 3, "is_header": true },
+              { "value": "44⅛", "col_span": 3, "is_header": true },
+              { "value": "47½", "col_span": 3, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Suction", "is_header": true },
+              { "value": "Disch", "is_header": true },
+              { "value": "BHP", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½", "type": "fraction" },
+              { "value": "1", "type": "fraction" },
+              { "value": 40, "type": "number" },
+              { "value": "13¾", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "9⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": "1½", "type": "fraction" },
+              { "value": 60, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "13¾", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "9⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": "1½", "type": "fraction" },
+              { "value": 100, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "9⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": "2", "type": "fraction" },
+              { "value": 100, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "9⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": "2", "type": "fraction" },
+              { "value": 150, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "9⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": "3", "type": "fraction" },
+              { "value": 150, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "6", "type": "fraction" },
+              { "value": "10⅛", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": "3", "type": "fraction" },
+              { "value": 200, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "6", "type": "fraction" },
+              { "value": "10⅛", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5", "type": "fraction" },
+              { "value": "4", "type": "fraction" },
+              { "value": 250, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "14⅛", "type": "fraction" },
+              { "value": "6", "type": "fraction" },
+              { "value": "10⅛", "type": "fraction" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Multi-level header table: row 1 spans PUMP SIZE (3 cols, rowspan 2) and MOTOR FRAME SIZE (24 cols). Row 2 has 8 motor frame size sub-group headers each spanning A/B/C (col_span 3). Row 3 is the column label row. Data rows are sparse: each pump size/BHP combination has values only in the applicable motor frame size A/B/C triplet; all other dimension cells are blank. Notes 1-4 appear below the table."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "American Dimensions table (Dim. / In. — E, F)",
+      "slug": "american-dimensions-e-f",
+      "bbox_norm": [0.55, 0.27, 0.99, 0.40],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Dim.", "is_header": true },
+              { "value": "In.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          }
+        ]
+      },
+      "confidence": "low",
+      "notes": "Small two-column American Dimensions table; dimension values for E and F appear blank or illegible in the image. Positioned below the main dimensions table on the right side."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-25. Pump outline dimensions, Type S2. Courtesy of Byron Jackson Pump Division.",
+      "slug": "pump-outline-dimensions-type-s2-diagram",
+      "bbox_norm": [0.01, 0.37, 0.99, 0.98],
+      "confidence": "high",
+      "notes": "Multi-view engineering drawing of Type S2 pump: top view (water cooled configuration with conduit box, pump suction, and base plate), front elevation view (conduit pot and base plate detail), and side elevation view (complete pump assembly with motor, coupling, and base plate). Dimensioned drawings with key measurements including coupling end, suction end, and base plate dimensions. Figure caption visible at bottom of page."
+    }
+  ],
+  "issues": []
+}

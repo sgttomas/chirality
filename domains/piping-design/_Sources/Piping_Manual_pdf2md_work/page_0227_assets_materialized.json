@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0227.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0227_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.98,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        2148
+      ],
+      "caption": "Exhibit 9-11 Bottom-Head Nozzle Arrangements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0227_fig01_exhibit-9-11-bottom-head-nozzle-arrangem.png",
+      "png_sha256": "4364eb29e510fb56e4a92c1a3017e7546aa47636e95b4fcd2b74e56e4b94a68d",
+      "slug": "exhibit-9-11-bottom-head-nozzle-arrangem",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 227,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0227.png",
+  "page_image_sha256": "8c2ef60f54c631dafc4f1d1520b8b8996dbe3a70762208ac790eb3c3191fd4fc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0227_assets.json"
+}

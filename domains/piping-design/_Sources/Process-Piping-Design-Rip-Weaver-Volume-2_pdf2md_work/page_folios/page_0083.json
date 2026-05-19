@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 83,
+  "page_label": "73",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 73 printed in the top-right corner of the page, adjacent to the chapter header 'Compressors'."
+}

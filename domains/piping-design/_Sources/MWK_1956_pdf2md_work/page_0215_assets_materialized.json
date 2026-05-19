@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0215.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0215_fig01",
+      "bbox_norm": [
+        0.46,
+        0.05,
+        0.99,
+        0.55
+      ],
+      "bbox_px": [
+        1046,
+        0,
+        2550,
+        1793
+      ],
+      "caption": "Fig. 7.3 Various shapes of bellows.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0215_fig01_fig-7-3-various-shapes-of-bellows.png",
+      "png_sha256": "882b293ac52054ec68aef5d4742a1acd5c0295b485462e1982c4d216efe62e5e",
+      "slug": "fig-7-3-various-shapes-of-bellows",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 215,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0215.png",
+  "page_image_sha256": "70ea966727607797d8b1e1cfb3113a1ac42a8648f3e3fcca65f80cbb6e63ecf0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0215_assets.json"
+}

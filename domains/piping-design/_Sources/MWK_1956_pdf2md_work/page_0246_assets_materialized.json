@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0246.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0246_fig01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.98,
+        0.43
+      ],
+      "bbox_px": [
+        75,
+        0,
+        2490,
+        1328
+      ],
+      "caption": "Fig. 8.12 Typical sway brace details and load deflection characteristics.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0246_fig01_fig-8-12-typical-sway-brace-details-and.png",
+      "png_sha256": "59380349ca05cd6d40fd84efef7cb9da4b17ff2dbba885984641fca57636735e",
+      "slug": "fig-8-12-typical-sway-brace-details-and",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0246_fig02",
+      "bbox_norm": [
+        0.55,
+        0.6,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        1245,
+        1521,
+        2490,
+        2766
+      ],
+      "caption": "Fig. 8.13 Basic idea of the spring loaded constant support mechanism.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0246_fig02_fig-8-13-basic-idea-of-the-spring-loaded.png",
+      "png_sha256": "6dadd32dccd901d9534171c77b522a4a98abf71d333fedf6654bee7e9fef0784",
+      "slug": "fig-8-13-basic-idea-of-the-spring-loaded",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 246,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0246.png",
+  "page_image_sha256": "1ec453cc62fd6f1ef3baf45e60150484a291705a85b9249eb65711d2a6a64597",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0246_assets.json"
+}

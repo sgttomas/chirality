@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0260.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0260_fig01",
+      "bbox_norm": [
+        0.49,
+        0.18,
+        0.97,
+        0.34
+      ],
+      "bbox_px": [
+        1024,
+        358,
+        2328,
+        1074
+      ],
+      "caption": "Spring-mass system.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0260_fig01_spring-mass-system.png",
+      "png_sha256": "89c0ae5995a8451531854562ab33b6b7c9bcfa7f1c46d0783697ce208cac05b2",
+      "slug": "spring-mass-system",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 260,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0260.png",
+  "page_image_sha256": "e3228424473b387c85ddbfdd323dd4c09a96ade2cbd2b4442c1264a8bff5e5a4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0260_assets.json"
+}

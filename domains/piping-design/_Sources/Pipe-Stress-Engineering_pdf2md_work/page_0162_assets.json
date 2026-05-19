@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 162,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 5.7 CHOKING MODEL ON CYLINDRICAL SHELL",
+      "slug": "choking-model-cylindrical-shell",
+      "bbox_norm": [0.08, 0.58, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "3D diagram of cylindrical shell with radial line load and displacement annotations; caption visible below figure"
+    }
+  ],
+  "issues": []
+}

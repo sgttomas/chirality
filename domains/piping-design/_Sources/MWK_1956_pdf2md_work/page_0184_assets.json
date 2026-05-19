@@ -1,0 +1,33 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.49
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY & STRESS ANALYSIS - 6 - EQUATIONS - A.C.L. NO. 5/14 - FORM F-1. Upper worksheet tabulating Mx, Fx, Fy values across rows 1-17 with a CONSTANTS column and equation summations (F_xx = +1986660, F_yy = +9264.0, x_bar = +1913588, F_ym = -19120.8).",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.51,
+        0.96,
+        0.97
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY AND STRESS ANALYSIS - MOMENTS AND STRESSES - FORM F-1. Lower worksheet 'CONVERSION TO CODE RULES' with stress equations (S_E = S_a/a, S_R = (S_a/a)(1/c), S_E = S_a/(1-c), etc.) and tabulated stress/moment values across points A-I, with PIPE O.D./t parameters.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 184,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

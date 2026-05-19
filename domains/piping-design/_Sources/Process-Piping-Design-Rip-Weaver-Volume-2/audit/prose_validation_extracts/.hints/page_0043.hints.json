@@ -1,0 +1,35 @@
+{
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0043_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.97
+      ],
+      "kind": "fig"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0043_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.32,
+        0.44
+      ],
+      "kind": "tbl"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0043_tbl02",
+      "bbox_norm": [
+        0.54,
+        0.02,
+        0.98,
+        0.46
+      ],
+      "kind": "tbl"
+    }
+  ],
+  "page": 43
+}

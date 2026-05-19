@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0213.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0213_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3488
+      ],
+      "caption": "Table A-6 Specific Gravity and Weights of Various Liquids",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0213_tbl01_table-a6-specific-gravity-weights-liquid.png",
+      "png_sha256": "8902eaf4b9d2aefb24b5169efe891d2264ecb16379e263723cd0885fe569c7da",
+      "slug": "table-a6-specific-gravity-weights-liquid",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0213_tbl01_table-a6-specific-gravity-weights-liquid.json",
+      "table_data_json_sha256": "3971f323bc80d531616704cbc0f8bf8248c5bae7ee155282c996d13924156bac",
+      "table_data_sha256": "3971f323bc80d531616704cbc0f8bf8248c5bae7ee155282c996d13924156bac",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0213_tbl01_table-a6-specific-gravity-weights-liquid.xlsx",
+      "xlsx_sha256": "84d5c7a4224dba56ee67ae141c428a12c3f9023bbde379d6f711cf7d6626a1f5"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 213,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0213.png",
+  "page_image_sha256": "f6751556c7de4e7ae6149abf1157e2f3aacf9d598f090f8839b350c0e38ddf21",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0213_assets.json"
+}

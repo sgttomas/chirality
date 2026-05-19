@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0038_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1549
+      ],
+      "caption": "Fig. 300-13 Expansion Loop\u2014Typical",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0038_fig01_fig-300-13-expansion-loop-typical.png",
+      "png_sha256": "a7d39e915d5904de698685c4e59d3fe5f59d36ed9f98e82e3ad8109fb9a1974e",
+      "slug": "fig-300-13-expansion-loop-typical",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0038.png",
+  "page_image_sha256": "4c616584fea84972fc0cbb9d2d383b087c8daeb5fe5ab6fc2024b786440e6f5d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0038_assets.json"
+}

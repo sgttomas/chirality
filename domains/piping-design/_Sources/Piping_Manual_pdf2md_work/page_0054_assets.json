@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 54,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.09, 0.18, 0.93, 0.57],
+      "caption": "EXHIBIT 3-12 Typical Compressor Area Arrangement"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.07, 0.57, 0.93, 0.88],
+      "caption": "EXHIBIT 3-13 Floor Space Comparison (a. Before Minimum Space Adjustment; b. After Minimum Space Adjustment)"
+    }
+  ],
+  "issues": []
+}

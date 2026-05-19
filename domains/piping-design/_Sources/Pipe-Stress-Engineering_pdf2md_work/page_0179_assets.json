@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 179,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.7 OVERHANGING PIPING SPANS",
+      "slug": "overhanging-piping-spans",
+      "bbox_norm": [0.06, 0.03, 0.94, 0.38],
+      "confidence": "high",
+      "notes": "Chart with curve showing allowable overhanging lengths La/Ls vs La/Ls, with inset diagram of overhanging pipe span configuration. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

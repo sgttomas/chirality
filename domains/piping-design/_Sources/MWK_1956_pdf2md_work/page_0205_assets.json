@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 205,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Photograph of the physical piping model test set-up apparatus on a frame, occupying the right column of the page; bbox includes figure and caption with surrounding whitespace."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 6.6 The model test set-up for the system of Fig. 6.5.",
+      "bbox_norm": [
+        0.585,
+        0.395,
+        0.985,
+        0.965
+      ]
+    }
+  ]
+}

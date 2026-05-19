@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 171,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8-13. Liquid level gage types. Courtesy of Penberthy.",
+      "slug": "liquid-level-gage-types-penberthy",
+      "bbox_norm": [0.03, 0.18, 0.97, 0.88],
+      "confidence": "high",
+      "notes": "Five figures (Fig. 1–5) showing various liquid level gage configurations with heating/cooling features. Caption visible at bottom of figure block."
+    }
+  ],
+  "issues": []
+}

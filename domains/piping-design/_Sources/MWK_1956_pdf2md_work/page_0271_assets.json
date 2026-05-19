@@ -1,0 +1,24 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 271,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Schematic in upper-right of page showing unbalanced rotor mass on a spring-mass elastic foundation; supports the spring-mass model derivation in Section 9.5b.",
+    "migrated_from_legacy: Page is two-column prose with embedded numbered equations (9.48-9.63). Section heading 9.5b 'Elastic Foundations for Rotating Machinery' begins mid-page. Only one extractable asset: Fig. 9.18."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Rotating machinery on elastic foundation.",
+      "bbox_norm": [
+        0.59,
+        0.04,
+        0.99,
+        0.21
+      ]
+    }
+  ]
+}

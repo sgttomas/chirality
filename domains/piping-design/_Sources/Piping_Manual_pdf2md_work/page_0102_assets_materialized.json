@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0102.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0102_fig01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.98,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        731,
+        2582,
+        3158
+      ],
+      "caption": "EXHIBIT 4-46 Compressor Suction Configurations. Five hand-drawn isometric sketches (Arrangements A Base Case, B, C, D, E) showing compressor suction piping for a 12\" line size with L dimension = 4 diameters.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0102_fig01_exhibit-4-46-compressor-suction-configur.png",
+      "png_sha256": "702e52c753e2213d006586737820e74082a52e6a7ee9cb6233b8bde2b681f97e",
+      "slug": "exhibit-4-46-compressor-suction-configur",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 102,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0102.png",
+  "page_image_sha256": "72a334568c5c73a89cb11b0e8deae71a7b4838c8897a815a3bbdc6336f91533a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0102_assets.json"
+}

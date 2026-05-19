@@ -1,0 +1,338 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 17,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figures 1-3a and b. Perforated basket temporary strainers. Courtesy of Mack Iron Works Co.",
+      "slug": "perforated-basket-temporary-strainers-1-3a-3b",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.52],
+      "confidence": "high",
+      "notes": "Technical drawing (left) showing cross-section with dimension callouts D1, D2, D3 and RING; photographic illustration (right) of assembled perforated basket strainer. Caption appears at bottom of page below the table."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Perforated Basket Temporary Strainers — Dimensions by Style, Pipe Size, and Flange Rating",
+      "slug": "perforated-basket-strainer-dimensions",
+      "bbox_norm": [0.03, 0.49, 0.97, 0.95],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Style", "row_span": 2, "is_header": true },
+              { "value": "Pipe Size", "row_span": 2, "is_header": true },
+              { "value": "D1", "col_span": 4, "is_header": true },
+              { "value": "D2", "row_span": 2, "is_header": true },
+              { "value": "D3", "row_span": 2, "is_header": true },
+              { "value": "Please Specify Length PBS-150G; PBL-200G (open area)", "row_span": 2, "is_header": true },
+              { "value": "T", "row_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FF & RF 150", "is_header": true },
+              { "value": "FF & RF 300", "is_header": true },
+              { "value": "FF & RF 600", "is_header": true },
+              { "value": "RJ 300 600", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½\"" },
+              { "value": "15-1/2", "type": "fraction", "raw": "15½\"" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼\"" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼\"" },
+              { "value": "14 Ga.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "2", "type": "fraction", "raw": "2\"" },
+              { "value": "35-1/2", "type": "fraction", "raw": "35½\"" },
+              { "value": "41-1/4", "type": "fraction", "raw": "41¼\"" },
+              { "value": "45-1/4", "type": "fraction", "raw": "45¼\"" },
+              { "value": "41-1/4", "type": "fraction", "raw": "41¼\"" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼\"" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾\"" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½\"" },
+              { "value": "41", "type": "fraction", "raw": "41\"" },
+              { "value": "46-3/4", "type": "fraction", "raw": "46¾\"" },
+              { "value": "51-1/4", "type": "fraction", "raw": "51¼\"" },
+              { "value": "46-3/4", "type": "fraction", "raw": "46¾\"" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾\"" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾\"" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "3", "type": "fraction", "raw": "3\"" },
+              { "value": "50", "type": "fraction", "raw": "50\"" },
+              { "value": "56", "type": "fraction", "raw": "56\"" },
+              { "value": "61-1/4", "type": "fraction", "raw": "61¼\"" },
+              { "value": "56", "type": "fraction", "raw": "56\"" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼\"" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼\"" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½\"" },
+              { "value": "55-1/2", "type": "fraction", "raw": "55½\"" },
+              { "value": "61-3/4", "type": "fraction", "raw": "61¾\"" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "61-3/4", "type": "fraction", "raw": "61¾\"" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾\"" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "4", "type": "fraction", "raw": "4\"" },
+              { "value": "61-3/4", "type": "fraction", "raw": "61¾\"" },
+              { "value": "68", "type": "fraction", "raw": "68\"" },
+              { "value": "75", "type": "fraction", "raw": "75\"" },
+              { "value": "68", "type": "fraction", "raw": "68\"" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼\"" },
+              { "value": "7-1/4", "type": "fraction", "raw": "7¼\"" },
+              { "value": "7-1/4", "type": "fraction", "raw": "7¼\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "5", "type": "fraction", "raw": "5\"" },
+              { "value": "75", "type": "fraction", "raw": "75\"" },
+              { "value": "82-1/2", "type": "fraction", "raw": "82½\"" },
+              { "value": "91-1/2", "type": "fraction", "raw": "91½\"" },
+              { "value": "82-1/2", "type": "fraction", "raw": "82½\"" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼\"" },
+              { "value": "8-1/4", "type": "fraction", "raw": "8¼\"" },
+              { "value": "8-1/4", "type": "fraction", "raw": "8¼\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "6", "type": "fraction", "raw": "6\"" },
+              { "value": "86-1/2", "type": "fraction", "raw": "86½\"" },
+              { "value": "95", "type": "fraction", "raw": "95\"" },
+              { "value": "105", "type": "fraction", "raw": "105\"" },
+              { "value": "95", "type": "fraction", "raw": "95\"" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼\"" },
+              { "value": "9", "type": "fraction", "raw": "9\"" },
+              { "value": "9", "type": "fraction", "raw": "9\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "8", "type": "fraction", "raw": "8\"" },
+              { "value": "108-1/2", "type": "fraction", "raw": "108½\"" },
+              { "value": "120", "type": "fraction", "raw": "120\"" },
+              { "value": "130", "type": "fraction", "raw": "130\"" },
+              { "value": "120", "type": "fraction", "raw": "120\"" },
+              { "value": "8-1/4", "type": "fraction", "raw": "8¼\"" },
+              { "value": "11", "type": "fraction", "raw": "11\"" },
+              { "value": "11", "type": "fraction", "raw": "11\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "10", "type": "fraction", "raw": "10\"" },
+              { "value": "108-1/2", "type": "fraction", "raw": "108½\"" },
+              { "value": "120-1/2", "type": "fraction", "raw": "120½\"" },
+              { "value": "130-1/2", "type": "fraction", "raw": "130½\"" },
+              { "value": "120", "type": "fraction", "raw": "120\"" },
+              { "value": "10-1/4", "type": "fraction", "raw": "10¼\"" },
+              { "value": "13", "type": "fraction", "raw": "13\"" },
+              { "value": "13", "type": "fraction", "raw": "13\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "12", "type": "fraction", "raw": "12\"" },
+              { "value": "127", "type": "fraction", "raw": "127\"" },
+              { "value": "140-1/2", "type": "fraction", "raw": "140½\"" },
+              { "value": "153-1/2", "type": "fraction", "raw": "153½\"" },
+              { "value": "140", "type": "fraction", "raw": "140\"" },
+              { "value": "12-1/4", "type": "fraction", "raw": "12¼\"" },
+              { "value": "15-3/4", "type": "fraction", "raw": "15¾\"" },
+              { "value": "15-3/4", "type": "fraction", "raw": "15¾\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "14", "type": "fraction", "raw": "14\"" },
+              { "value": "137-1/2", "type": "fraction", "raw": "137½\"" },
+              { "value": "152-1/2", "type": "fraction", "raw": "152½\"" },
+              { "value": "170-1/2", "type": "fraction", "raw": "170½\"" },
+              { "value": "152", "type": "fraction", "raw": "152\"" },
+              { "value": "14", "type": "fraction", "raw": "14\"" },
+              { "value": "17", "type": "fraction", "raw": "17\"" },
+              { "value": "17", "type": "fraction", "raw": "17\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "16", "type": "fraction", "raw": "16\"" },
+              { "value": "152-1/2", "type": "fraction", "raw": "152½\"" },
+              { "value": "168-1/2", "type": "fraction", "raw": "168½\"" },
+              { "value": "189", "type": "fraction", "raw": "189\"" },
+              { "value": "168", "type": "fraction", "raw": "168\"" },
+              { "value": "16", "type": "fraction", "raw": "16\"" },
+              { "value": "19-1/4", "type": "fraction", "raw": "19¼\"" },
+              { "value": "19-1/4", "type": "fraction", "raw": "19¼\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "18", "type": "fraction", "raw": "18\"" },
+              { "value": "168", "type": "fraction", "raw": "168\"" },
+              { "value": "185-1/2", "type": "fraction", "raw": "185½\"" },
+              { "value": "208", "type": "fraction", "raw": "208\"" },
+              { "value": "185", "type": "fraction", "raw": "185\"" },
+              { "value": "18", "type": "fraction", "raw": "18\"" },
+              { "value": "21-1/2", "type": "fraction", "raw": "21½\"" },
+              { "value": "21-1/2", "type": "fraction", "raw": "21½\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "20", "type": "fraction", "raw": "20\"" },
+              { "value": "184", "type": "fraction", "raw": "184\"" },
+              { "value": "203", "type": "fraction", "raw": "203\"" },
+              { "value": "229", "type": "fraction", "raw": "229\"" },
+              { "value": "202-1/2", "type": "fraction", "raw": "202½\"" },
+              { "value": "20", "type": "fraction", "raw": "20\"" },
+              { "value": "23-3/4", "type": "fraction", "raw": "23¾\"" },
+              { "value": "23-3/4", "type": "fraction", "raw": "23¾\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBS", "type": "text" },
+              { "value": "24", "type": "fraction", "raw": "24\"" },
+              { "value": "215-1/2", "type": "fraction", "raw": "215½\"" },
+              { "value": "237-1/2", "type": "fraction", "raw": "237½\"" },
+              { "value": "270-1/2", "type": "fraction", "raw": "270½\"" },
+              { "value": "237", "type": "fraction", "raw": "237\"" },
+              { "value": "24", "type": "fraction", "raw": "24\"" },
+              { "value": "28-1/2", "type": "fraction", "raw": "28½\"" },
+              { "value": "28-1/2", "type": "fraction", "raw": "28½\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBL", "type": "text" },
+              { "value": "24", "type": "fraction", "raw": "24\"" },
+              { "value": "215-1/2", "type": "fraction", "raw": "215½\"" },
+              { "value": "237-1/2", "type": "fraction", "raw": "237½\"" },
+              { "value": "270-1/2", "type": "fraction", "raw": "270½\"" },
+              { "value": "237", "type": "fraction", "raw": "237\"" },
+              { "value": "24", "type": "fraction", "raw": "24\"" },
+              { "value": "28-1/2", "type": "fraction", "raw": "28½\"" },
+              { "value": "30-1/2", "type": "fraction", "raw": "30½\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBL", "type": "text" },
+              { "value": "26", "type": "fraction", "raw": "26\"" },
+              { "value": "238", "type": "fraction", "raw": "238\"" },
+              { "value": "261-1/2", "type": "fraction", "raw": "261½\"" },
+              { "value": "301", "type": "fraction", "raw": "301\"" },
+              { "value": "261", "type": "fraction", "raw": "261\"" },
+              { "value": "26", "type": "fraction", "raw": "26\"" },
+              { "value": "31", "type": "fraction", "raw": "31\"" },
+              { "value": "33", "type": "fraction", "raw": "33\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBL", "type": "text" },
+              { "value": "28", "type": "fraction", "raw": "28\"" },
+              { "value": "261", "type": "fraction", "raw": "261\"" },
+              { "value": "285-1/2", "type": "fraction", "raw": "285½\"" },
+              { "value": "329-1/2", "type": "fraction", "raw": "329½\"" },
+              { "value": "285", "type": "fraction", "raw": "285\"" },
+              { "value": "28", "type": "fraction", "raw": "28\"" },
+              { "value": "33-1/2", "type": "fraction", "raw": "33½\"" },
+              { "value": "35-1/2", "type": "fraction", "raw": "35½\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PBL", "type": "text" },
+              { "value": "30", "type": "fraction", "raw": "30\"" },
+              { "value": "284", "type": "fraction", "raw": "284\"" },
+              { "value": "311-1/2", "type": "fraction", "raw": "311½\"" },
+              { "value": "358", "type": "fraction", "raw": "358\"" },
+              { "value": "311", "type": "fraction", "raw": "311\"" },
+              { "value": "30", "type": "fraction", "raw": "30\"" },
+              { "value": "36", "type": "fraction", "raw": "36\"" },
+              { "value": "38", "type": "fraction", "raw": "38\"" },
+              { "value": "\"", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Multi-row header: D1 spans 4 sub-columns (FF & RF 150, FF & RF 300, FF & RF 600, RJ 300 600). Last column T uses ditto marks referencing 14 Ga. from first data row. Column 9 labeled 'Please Specify Length' over PBS-150G; PBL-200G (open area)."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0051.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0051_fig01",
+      "bbox_norm": [
+        0.07,
+        0.1,
+        0.93,
+        0.55
+      ],
+      "bbox_px": [
+        51,
+        165,
+        2499,
+        1978
+      ],
+      "caption": "Fig. 300-22  Level Instrument Mounting\u2014Horizontal Vessels Exceeding Six Feet in Diameter",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0051_fig01_fig-300-22-level-instrument-mounting-hor.png",
+      "png_sha256": "aa99ffdcb946310821f9f94d4c48d0d1a137918f90b24613a881e0262ad0fdfc",
+      "slug": "fig-300-22-level-instrument-mounting-hor",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 51,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0051.png",
+  "page_image_sha256": "ad539811c612ec9e8b7fbd47e94cf9467ff829d6b83f4bf6137ffe57cf5ecc9f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0051_assets.json"
+}

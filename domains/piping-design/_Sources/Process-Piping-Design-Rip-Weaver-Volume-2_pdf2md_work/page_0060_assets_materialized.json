@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0060_fig01",
+      "bbox_norm": [
+        0.03,
+        0.22,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        561,
+        2560,
+        3300
+      ],
+      "caption": "Figure 2-6. Typical steam piping at compressor turbines. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0060_fig01_typical-steam-piping-compressor-turbines.png",
+      "png_sha256": "93664bf5ea537d9d806223132db8af9e5096387db65f045d5dd133ece6f5cf48",
+      "slug": "typical-steam-piping-compressor-turbines",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0060.png",
+  "page_image_sha256": "b5d63a9314663654d20a57ad9200af4d043baa0b93039ac948ca76b83c58bb48",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0060_assets.json"
+}

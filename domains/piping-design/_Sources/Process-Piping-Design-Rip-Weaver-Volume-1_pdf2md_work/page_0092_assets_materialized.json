@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0092.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0092_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1985
+      ],
+      "caption": "Figure 5-7. Fire monitor nozzles. Courtesy of Elkhart Brass Mfg. Co., Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0092_fig01_fire-monitor-nozzles-elkhart.png",
+      "png_sha256": "ec13cb8b40fe995cfc3e3b7e03a65ff7db91292eb331ae41931d5125c593faf8",
+      "slug": "fire-monitor-nozzles-elkhart",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 92,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0092.png",
+  "page_image_sha256": "5fecd5e1a6a1a1b2d96ba23cd52eab8698ee5279d9404d17c42e53b1a3f80639",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0092_assets.json"
+}

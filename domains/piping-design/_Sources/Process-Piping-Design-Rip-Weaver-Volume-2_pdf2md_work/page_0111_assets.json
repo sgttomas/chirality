@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 111,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-21. Inlet piping manifolded at convection section. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "inlet-piping-manifolded-convection-section",
+      "bbox_norm": [0.03, 0.30, 0.52, 0.97],
+      "confidence": "high",
+      "notes": "Engineering diagram of fired heater inlet piping manifold with annotations; caption visible below figure on left side of page"
+    }
+  ],
+  "issues": []
+}

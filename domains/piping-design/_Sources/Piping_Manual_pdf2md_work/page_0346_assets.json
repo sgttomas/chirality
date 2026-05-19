@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 346,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0346_fig01",
+      "kind": "fig",
+      "caption": "EXHIBIT 13-25 Miscellaneous Details — six hand-drawn cast iron drain detail sketches: (1) cast iron boundary drain, (2) cast iron in-line drain, (3) cast iron Y cleanout, (4) cast iron drain at grade, (5) in-line drain pipe box of cast iron drain, (6) cleanout/grating detail.",
+      "bbox_norm": [0.04, 0.05, 0.97, 0.93]
+    }
+  ],
+  "issues": []
+}

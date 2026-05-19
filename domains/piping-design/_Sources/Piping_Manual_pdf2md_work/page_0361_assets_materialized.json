@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0361.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0361_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1291
+      ],
+      "caption": "EXHIBIT 13-45 Diked Area Drain",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0361_fig01_exhibit-13-45-diked-area-drain.png",
+      "png_sha256": "a50ad98c5357d5d1407953992c622607f65f8fa4620ffa90d9ec3a5ffdf7b410",
+      "slug": "exhibit-13-45-diked-area-drain",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0361_fig02",
+      "bbox_norm": [
+        0.04,
+        0.34,
+        0.98,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        960,
+        2562,
+        2349
+      ],
+      "caption": "EXHIBIT 13-46 Lift Station",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0361_fig02_exhibit-13-46-lift-station.png",
+      "png_sha256": "6ea401ed2a620e968fd689e42578932e5f22e66fc61e0f5e896341f9e54c6bb3",
+      "slug": "exhibit-13-46-lift-station",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 361,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0361.png",
+  "page_image_sha256": "57414044f45fc6b7a61f215a444091499cc9cac95ab4ef0ec132075375cba45a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0361_assets.json"
+}

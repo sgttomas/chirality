@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 355,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 10.3 TEMPERATURE DERATING FACTOR, T",
+      "slug": "temperature-derating-factor-t",
+      "bbox_norm": [0.08, 0.03, 0.92, 0.20],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Temperature, °F", "is_header": true },
+              { "value": "Derating factor (T)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "250 or less", "type": "text" },
+              { "value": 1.000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 300, "type": "number", "unit": "°F" },
+              { "value": 0.967, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 350, "type": "number", "unit": "°F" },
+              { "value": 0.933, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 400, "type": "number", "unit": "°F" },
+              { "value": 0.900, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 450, "type": "number", "unit": "°F" },
+              { "value": 0.867, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table title and column headers clearly visible; five data rows with temperature values and corresponding derating factors."
+    }
+  ],
+  "issues": []
+}

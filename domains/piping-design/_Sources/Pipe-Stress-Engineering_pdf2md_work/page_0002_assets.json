@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 2,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "ASME Press publisher logo",
+      "slug": "asme-press-logo",
+      "bbox_norm": [0.28, 0.76, 0.72, 0.93],
+      "confidence": "high",
+      "notes": "ASME PRESS logo in rectangular box, bottom-center of title page"
+    }
+  ],
+  "issues": []
+}

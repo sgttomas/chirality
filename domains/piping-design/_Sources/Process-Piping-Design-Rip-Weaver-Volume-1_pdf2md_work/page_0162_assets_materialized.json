@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0162.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0162_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1500
+      ],
+      "caption": "Figure 8-3. Detail of staggered 45\u00b0 orifice taps.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0162_fig01_staggered-45-orifice-taps.png",
+      "png_sha256": "f9bc26dd543aff79f4c92fab00c5185b0b08efee607cfa30a4b4f93ac114ed40",
+      "slug": "staggered-45-orifice-taps",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 162,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0162.png",
+  "page_image_sha256": "ff6a2a39818257ba9efba17bbfdee86ff994cc934aea769d9ba65dde7f734181",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0162_assets.json"
+}

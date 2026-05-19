@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0370.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0370_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.97,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2342
+      ],
+      "caption": "EXHIBIT 14-10 Level Gauge Assemblies \u2014 a. Typical Gauge Assembly",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0370_fig01_exhibit-14-10-level-gauge-assemblies-a-t.png",
+      "png_sha256": "3e4803e127ffe73b8b55057923a705a6333fc49c194433ec838a47ef0eb64580",
+      "slug": "exhibit-14-10-level-gauge-assemblies-a-t",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0370_fig02",
+      "bbox_norm": [
+        0.1,
+        0.66,
+        0.75,
+        0.92
+      ],
+      "bbox_px": [
+        128,
+        2012,
+        2040,
+        3200
+      ],
+      "caption": "EXHIBIT 14-10 Level Gauge Assemblies \u2014 b. Reflective Glass",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0370_fig02_exhibit-14-10-level-gauge-assemblies-b-r.png",
+      "png_sha256": "e7cbeb09004c142350f3c9ff3e017eb744aaf7e0676a9d585284ab3d9c19ad40",
+      "slug": "exhibit-14-10-level-gauge-assemblies-b-r",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 370,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0370.png",
+  "page_image_sha256": "964edcd4ce6dc6f291aa0068f8c86d03b635ca8e49fc5d68c6e74f7f287ad9a6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0370_assets.json"
+}

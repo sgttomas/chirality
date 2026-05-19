@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0306.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0306_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2577,
+        1253
+      ],
+      "caption": "FIG. 9.1 ALLOWABLE PIPING LOADS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0306_fig01_allowable-piping-loads.png",
+      "png_sha256": "0a5e6db97251d289cc16d1669d1301d44ad6466bbf9d3b9f0af7d7c0ee0ed32c",
+      "slug": "allowable-piping-loads",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 306,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0306.png",
+  "page_image_sha256": "ba3191ce3e5ca51139fd529572b21010a3f3a718164c188f91d34abc45d38b99",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0306_assets.json"
+}

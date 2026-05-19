@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 33,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-17. End suction horizontal pump. Courtesy of Byron Jackson Pump Division.",
+      "slug": "end-suction-horizontal-pump",
+      "bbox_norm": [0.28, 0.04, 0.97, 0.40],
+      "confidence": "high",
+      "notes": "Photograph of end suction horizontal pump in upper right portion of page; caption appears below image on right column"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Figure 1-16. Performance curve for Type 1½ x 2 x 10½H IN-INI pump. Courtesy of Byron Jackson Pump Division.",
+      "slug": "performance-curve-type-1.5x2x10.5h-in-ini-pump",
+      "bbox_norm": [0.03, 0.43, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Performance curve chart occupying lower portion of page; axes show Total Head in Feet vs US Gallons per Minute with NPSH-Water curves; caption appears below chart"
+    }
+  ],
+  "issues": []
+}

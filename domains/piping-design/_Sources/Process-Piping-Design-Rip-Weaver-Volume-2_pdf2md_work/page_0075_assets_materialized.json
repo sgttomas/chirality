@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0075.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0075_fig01",
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1419,
+        2560,
+        3300
+      ],
+      "caption": "Figure 2-19. Reciprocating compressor flow diagram for process lines.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0075_fig01_reciprocating-compressor-flow-diagram.png",
+      "png_sha256": "a183382e9661147ea8068e83fa234ecbb816e544225f741e7af562c03364d439",
+      "slug": "reciprocating-compressor-flow-diagram",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 75,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0075.png",
+  "page_image_sha256": "b405ce4841fdce9b8bd0b78d8434526048131e66339d7fe58a204116837f7b98",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0075_assets.json"
+}

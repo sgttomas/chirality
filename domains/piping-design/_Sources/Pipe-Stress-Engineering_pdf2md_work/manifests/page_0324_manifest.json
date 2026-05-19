@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0324.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0324_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.45,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1426,
+        2557,
+        3564
+      ],
+      "caption": "TABLE 9.2 API STANDARD 610 NOZZLE LOADINGS [8]",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0324_tbl01_api-std-610-nozzle-loadings.csv",
+      "csv_sha256": "a9aa99c7067d886964dcbc5017bc12358c1ae399701c63042f1a936f49611692",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0324_tbl01_api-std-610-nozzle-loadings.png",
+      "png_sha256": "37839c64a459f04df18cc3c272a9129d97b542e2ad14ca9f1ed9dcf6df505f96",
+      "slug": "api-std-610-nozzle-loadings",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 324,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0324.png",
+  "page_image_sha256": "d55ac209e8303ed59bba36f7ff21096e4196cb6842719248629c027da4ea5537",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0324_assets.json"
+}

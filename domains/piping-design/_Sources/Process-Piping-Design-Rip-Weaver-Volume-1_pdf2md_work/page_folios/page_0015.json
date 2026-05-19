@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 15,
+  "page_label": "6",
+  "page_label_source": "vlm",
+  "location": "top-left",
+  "confidence": "high",
+  "rationale": "Arabic numeral 6 printed in the top-left corner as the page folio, with the running header 'Process Piping Design' at the top of the page."
+}

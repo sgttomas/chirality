@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 39,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-4. Proper and improper two-phase piping.",
+      "slug": "proper-improper-two-phase-piping",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.96],
+      "confidence": "high",
+      "notes": "Full page figure showing two isometric piping diagrams: top diagram labeled IMPROPER TWO-PHASE PIPING with Exchanger A and Exchanger B; bottom diagram labeled PROPER TWO-PHASE PIPING with Exchanger A and Exchanger B. Caption visible at bottom of page."
+    }
+  ],
+  "issues": []
+}

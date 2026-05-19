@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "NO_FOLIO",
+  "page": 2,
+  "page_label": null,
+  "page_label_source": "vlm",
+  "location": null,
+  "confidence": "high",
+  "rationale": "Title page bearing only the book title and a controlled-copy stamp; no printed folio is present."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 132,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 7-3. Horizontal accumulator, elevation below 15'-0\". Courtesy of Fluor Corp.",
+      "slug": "horizontal-accumulator-elevation-below-15ft",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.52],
+      "confidence": "high",
+      "notes": "Technical engineering diagram of horizontal accumulator vessel V-101 with instrument and nozzle callouts. Caption appears directly below the figure."
+    }
+  ],
+  "issues": []
+}

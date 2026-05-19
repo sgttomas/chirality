@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-01_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-01_p0015_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.54,
+        0.93,
+        0.71
+      ],
+      "bbox_px": [
+        51,
+        1617,
+        2499,
+        2508
+      ],
+      "caption": "Flange Rating (Class) vs Joint and Pipe Size for maintenance slip blinds",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-01_p0015_tbl01_flange-rating-joint-pipe-size-slip-blind.png",
+      "png_sha256": "ede8f8c4521f9b79ae662248ae31ab63af7fc95ea778a5eaf7e07a8678634047",
+      "slug": "flange-rating-joint-pipe-size-slip-blind",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-01_p0015_tbl01_flange-rating-joint-pipe-size-slip-blind.json",
+      "table_data_json_sha256": "37e93cb6d38cac7338e734fb18cc78e9442056cba0d60c255d04b4e18dd398a3",
+      "table_data_sha256": "37e93cb6d38cac7338e734fb18cc78e9442056cba0d60c255d04b4e18dd398a3",
+      "xlsx_path": "tables/01-overall-piping-design-standards-01_p0015_tbl01_flange-rating-joint-pipe-size-slip-blind.xlsx",
+      "xlsx_sha256": "753da8df71949d301bf74a3d88be56d36218862f8292d13133003a4626f7b138"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-01",
+  "doc_stem": "01-overall-piping-design-standards-01",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-01_pdf2md_work/page_0015.png",
+  "page_image_sha256": "b70539c3681cea3998d4f981b7ece8ef5b31ff3f2e9f46e7b000b44cb48c2732",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-01_pdf2md_work/page_0015_assets.json"
+}

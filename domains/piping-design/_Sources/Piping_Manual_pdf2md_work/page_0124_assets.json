@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 124,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p124_fig01",
+      "bbox_norm": [0.05, 0.10, 0.97, 0.42],
+      "caption": "EXHIBIT 5-34 Sample Sloping Drum"
+    }
+  ],
+  "issues": []
+}

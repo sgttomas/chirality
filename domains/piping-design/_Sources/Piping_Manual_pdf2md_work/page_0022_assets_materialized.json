@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0022.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0022_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.94,
+        0.62
+      ],
+      "bbox_px": [
+        26,
+        431,
+        2543,
+        2220
+      ],
+      "caption": "EXHIBIT 1-5 Elevation Layout",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0022_fig01_exhibit-1-5-elevation-layout.png",
+      "png_sha256": "2f2cdc03d3fa51e2b0e9afde2e793e247add77b581f5b41eaf7a17ac464bd4f8",
+      "slug": "exhibit-1-5-elevation-layout",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0022.png",
+  "page_image_sha256": "896c3f0105432b31cf24731db99a839cb90e747e7d4cf4ee94d5472fb176294e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0022_assets.json"
+}

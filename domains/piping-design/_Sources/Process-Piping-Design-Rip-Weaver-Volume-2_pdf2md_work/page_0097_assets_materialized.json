@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0097.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0097_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.82,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2227,
+        3135
+      ],
+      "caption": "Figure 3-6. Box heater typical plan. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0097_fig01_box-heater-typical-plan.png",
+      "png_sha256": "9ab53cfa625e3fd84a268ed3d97e0916cdc4093cbc1c9e4b4041438c86e6a28f",
+      "slug": "box-heater-typical-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 97,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0097.png",
+  "page_image_sha256": "7303ec47fe7ae9358f71217e6bccf453d698efe68a93246be384653007ee2e7a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0097_assets.json"
+}

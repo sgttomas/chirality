@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0069.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0069_fig01",
+      "bbox_norm": [
+        0.04,
+        0.2,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        495,
+        2560,
+        3300
+      ],
+      "caption": "Figure 2-14. Reciprocating compressor types.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0069_fig01_reciprocating-compressor-types.png",
+      "png_sha256": "da457edb238ba4a7010f149204243e11ecee981f74512f9982e64d629a4a52c8",
+      "slug": "reciprocating-compressor-types",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 69,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0069.png",
+  "page_image_sha256": "ee7cdf65e530fa338b80792dd1f681fc9051bd655ef6dfb70fd057ce88d619ce",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0069_assets.json"
+}

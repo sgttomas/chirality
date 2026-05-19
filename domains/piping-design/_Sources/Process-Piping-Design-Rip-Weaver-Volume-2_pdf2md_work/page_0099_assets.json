@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 99,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-8. Typical fuel gas burner assembly. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "typical-fuel-gas-burner-assembly",
+      "bbox_norm": [0.04, 0.02, 0.96, 0.42],
+      "confidence": "high",
+      "notes": "Technical diagram of fuel gas burner assembly with labeled components including handle (air inlet), pilot gas inlet, fuel gas inlet, and furnace floor or wall. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

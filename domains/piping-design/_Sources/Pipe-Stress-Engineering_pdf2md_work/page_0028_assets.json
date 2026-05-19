@@ -1,0 +1,243 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 28,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 1.1 — Pressure-Temperature Rating for A-105 Carbon Steel Flanges [16]",
+      "slug": "pressure-temperature-rating-a105-flanges",
+      "bbox_norm": [0.06, 0.52, 0.94, 0.98],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Temp.\n°F", "row_span": 3, "is_header": true },
+              { "value": "Allowable Pressure, psi", "col_span": 7, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Classes", "col_span": 7, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "is_header": true },
+              { "value": "300", "is_header": true },
+              { "value": "400", "is_header": true },
+              { "value": "600", "is_header": true },
+              { "value": "900", "is_header": true },
+              { "value": "1500", "is_header": true },
+              { "value": "2500", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "-20 to 100", "type": "text" },
+              { "value": 285, "type": "number", "unit": "psi" },
+              { "value": 740, "type": "number", "unit": "psi" },
+              { "value": 990, "type": "number", "unit": "psi" },
+              { "value": 1480, "type": "number", "unit": "psi" },
+              { "value": 2220, "type": "number", "unit": "psi" },
+              { "value": 3705, "type": "number", "unit": "psi" },
+              { "value": 6170, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 200, "type": "number", "unit": "°F" },
+              { "value": 260, "type": "number", "unit": "psi" },
+              { "value": 680, "type": "number", "unit": "psi" },
+              { "value": 900, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2025, "type": "number", "unit": "psi" },
+              { "value": 3375, "type": "number", "unit": "psi" },
+              { "value": 5625, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 300, "type": "number", "unit": "°F" },
+              { "value": 230, "type": "number", "unit": "psi" },
+              { "value": 655, "type": "number", "unit": "psi" },
+              { "value": 875, "type": "number", "unit": "psi" },
+              { "value": 1315, "type": "number", "unit": "psi" },
+              { "value": 1970, "type": "number", "unit": "psi" },
+              { "value": 3280, "type": "number", "unit": "psi" },
+              { "value": 5470, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 400, "type": "number", "unit": "°F" },
+              { "value": 200, "type": "number", "unit": "psi" },
+              { "value": 635, "type": "number", "unit": "psi" },
+              { "value": 845, "type": "number", "unit": "psi" },
+              { "value": 1270, "type": "number", "unit": "psi" },
+              { "value": 1900, "type": "number", "unit": "psi" },
+              { "value": 3170, "type": "number", "unit": "psi" },
+              { "value": 5280, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 500, "type": "number", "unit": "°F" },
+              { "value": 170, "type": "number", "unit": "psi" },
+              { "value": 600, "type": "number", "unit": "psi" },
+              { "value": 800, "type": "number", "unit": "psi" },
+              { "value": 1200, "type": "number", "unit": "psi" },
+              { "value": 1795, "type": "number", "unit": "psi" },
+              { "value": 2995, "type": "number", "unit": "psi" },
+              { "value": 4990, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 600, "type": "number", "unit": "°F" },
+              { "value": 140, "type": "number", "unit": "psi" },
+              { "value": 570, "type": "number", "unit": "psi" },
+              { "value": 730, "type": "number", "unit": "psi" },
+              { "value": 1095, "type": "number", "unit": "psi" },
+              { "value": 1640, "type": "number", "unit": "psi" },
+              { "value": 2735, "type": "number", "unit": "psi" },
+              { "value": 4560, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 650, "type": "number", "unit": "°F" },
+              { "value": 125, "type": "number", "unit": "psi" },
+              { "value": 535, "type": "number", "unit": "psi" },
+              { "value": 715, "type": "number", "unit": "psi" },
+              { "value": 1075, "type": "number", "unit": "psi" },
+              { "value": 1610, "type": "number", "unit": "psi" },
+              { "value": 2685, "type": "number", "unit": "psi" },
+              { "value": 4475, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 700, "type": "number", "unit": "°F" },
+              { "value": 110, "type": "number", "unit": "psi" },
+              { "value": 535, "type": "number", "unit": "psi" },
+              { "value": 710, "type": "number", "unit": "psi" },
+              { "value": 1065, "type": "number", "unit": "psi" },
+              { "value": 1600, "type": "number", "unit": "psi" },
+              { "value": 2665, "type": "number", "unit": "psi" },
+              { "value": 4440, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 750, "type": "number", "unit": "°F" },
+              { "value": 95, "type": "number", "unit": "psi" },
+              { "value": 505, "type": "number", "unit": "psi" },
+              { "value": 670, "type": "number", "unit": "psi" },
+              { "value": 1010, "type": "number", "unit": "psi" },
+              { "value": 1510, "type": "number", "unit": "psi" },
+              { "value": 2520, "type": "number", "unit": "psi" },
+              { "value": 4200, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 800, "type": "number", "unit": "°F" },
+              { "value": 80, "type": "number", "unit": "psi" },
+              { "value": 410, "type": "number", "unit": "psi" },
+              { "value": 450, "type": "number", "unit": "psi" },
+              { "value": 825, "type": "number", "unit": "psi" },
+              { "value": 1235, "type": "number", "unit": "psi" },
+              { "value": 2060, "type": "number", "unit": "psi" },
+              { "value": 3430, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 850, "type": "number", "unit": "°F" },
+              { "value": 65, "type": "number", "unit": "psi" },
+              { "value": 270, "type": "number", "unit": "psi" },
+              { "value": 355, "type": "number", "unit": "psi" },
+              { "value": 535, "type": "number", "unit": "psi" },
+              { "value": 800, "type": "number", "unit": "psi" },
+              { "value": 1330, "type": "number", "unit": "psi" },
+              { "value": 2220, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 900, "type": "number", "unit": "°F" },
+              { "value": 50, "type": "number", "unit": "psi" },
+              { "value": 170, "type": "number", "unit": "psi" },
+              { "value": 230, "type": "number", "unit": "psi" },
+              { "value": 345, "type": "number", "unit": "psi" },
+              { "value": 515, "type": "number", "unit": "psi" },
+              { "value": 860, "type": "number", "unit": "psi" },
+              { "value": 1430, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 950, "type": "number", "unit": "°F" },
+              { "value": 35, "type": "number", "unit": "psi" },
+              { "value": 105, "type": "number", "unit": "psi" },
+              { "value": 140, "type": "number", "unit": "psi" },
+              { "value": 285, "type": "number", "unit": "psi" },
+              { "value": 310, "type": "number", "unit": "psi" },
+              { "value": 515, "type": "number", "unit": "psi" },
+              { "value": 860, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1000, "type": "number", "unit": "°F" },
+              { "value": 20, "type": "number", "unit": "psi" },
+              { "value": 50, "type": "number", "unit": "psi" },
+              { "value": 70, "type": "number", "unit": "psi" },
+              { "value": 105, "type": "number", "unit": "psi" },
+              { "value": 155, "type": "number", "unit": "psi" },
+              { "value": 260, "type": "number", "unit": "psi" },
+              { "value": 430, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Flange thickness 6-in. Flg.", "type": "text" },
+              { "value": 1.00, "type": "number", "unit": "in" },
+              { "value": 1.44, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 1.88, "type": "number", "unit": "in" },
+              { "value": 2.69, "type": "number", "unit": "in" },
+              { "value": 3.19, "type": "number", "unit": "in" },
+              { "value": 4.25, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Flange thickness 12-in. Flg.", "type": "text" },
+              { "value": 1.25, "type": "number", "unit": "in" },
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 2.25, "type": "number", "unit": "in" },
+              { "value": 2.62, "type": "number", "unit": "in" },
+              { "value": 3.12, "type": "number", "unit": "in" },
+              { "value": 4.88, "type": "number", "unit": "in" },
+              { "value": 7.25, "type": "number", "unit": "in" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "3-row header: row 1 has temperature column (row_span 3) and 'Allowable Pressure, psi' spanning 7 columns; row 2 labels 'Classes' spanning 7 columns; row 3 lists class numbers 150–2500. Data rows cover -20 to 1000°F. Bottom two rows give flange thickness in inches for 6-in. and 12-in. flanges."
+    }
+  ],
+  "issues": []
+}

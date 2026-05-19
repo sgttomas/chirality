@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0327.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0327_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        827,
+        2562,
+        2217
+      ],
+      "caption": "EXHIBIT 13-2 Angle of Repose",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0327_fig01_exhibit-13-2-angle-of-repose.png",
+      "png_sha256": "1626bebafb044d62ad387f0cde3e1bd79ee2f1b0528664a9bda47d90c88e679d",
+      "slug": "exhibit-13-2-angle-of-repose",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 327,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0327.png",
+  "page_image_sha256": "94407ab9dc2c84908a17c3e8361c820338bb5b5a55324ba6a2c2cfe2ab881767",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0327_assets.json"
+}

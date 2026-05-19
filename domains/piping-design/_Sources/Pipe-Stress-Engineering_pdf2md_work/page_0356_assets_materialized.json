@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0356.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0356_fig01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1692,
+        2605,
+        3601
+      ],
+      "caption": "FIG. 10.2 FREE END MOVEMENT OF LONG PIPELINE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0356_fig01_free-end-movement-long-pipeline.png",
+      "png_sha256": "66a9dc7cd8b696cf6a6a10e53fbdebffc1bd6524066b6a3b588d153c52ffe9bd",
+      "slug": "free-end-movement-long-pipeline",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 356,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0356.png",
+  "page_image_sha256": "37e811985b3115c77de5fe807248c26a0dd55a78cbe42c0329884e366a420215",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0356_assets.json"
+}

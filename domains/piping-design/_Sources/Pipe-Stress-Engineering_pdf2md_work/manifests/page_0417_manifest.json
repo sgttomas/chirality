@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0417.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0417_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1163
+      ],
+      "caption": "FIG. 12.16 AXIAL FORCES ACTING ON A PIPING LEG",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0417_fig01_axial-forces-acting-on-a-piping-leg.png",
+      "png_sha256": "1ffa56e34e569b213c9df92442420057752a43cb4dc00f0dc5761773941d863e",
+      "slug": "axial-forces-acting-on-a-piping-leg",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 417,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0417.png",
+  "page_image_sha256": "a571d8fcfe4c2fe80b02bde877200d67df31842ad46c6e613dfcbeb07a868a97",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0417_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0060_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1499
+      ],
+      "caption": "Figure 3-8. Truck access into diked area.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0060_fig01_truck-access-diked-area.png",
+      "png_sha256": "940514136867305f2dceb4755a4401972c79ba6c2329b7b6f8f6ab515755ea68",
+      "slug": "truck-access-diked-area",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0060.png",
+  "page_image_sha256": "6a0fb53c80b256a685bc9d6975a930b3663498b07ba85d3e894675d7c5f7a071",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0060_assets.json"
+}

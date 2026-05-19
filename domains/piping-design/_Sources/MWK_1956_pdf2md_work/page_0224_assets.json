@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 224,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.8 Tied expansion joint.",
+      "bbox_norm": [
+        0.55,
+        0.21,
+        0.99,
+        0.42
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.9 Universal type expansion joint.",
+      "bbox_norm": [
+        0.55,
+        0.43,
+        0.99,
+        0.66
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.10 Hinged expansion joint.",
+      "bbox_norm": [
+        0.55,
+        0.67,
+        0.99,
+        0.94
+      ]
+    }
+  ]
+}

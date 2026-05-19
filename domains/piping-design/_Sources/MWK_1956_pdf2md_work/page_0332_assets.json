@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 332,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. B.2 Tuned resonator",
+      "bbox_norm": [
+        0.5,
+        0.09,
+        0.97,
+        0.27
+      ]
+    }
+  ]
+}

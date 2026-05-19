@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 393,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p393_fig_01",
+      "label": "EXHIBIT 15-22",
+      "caption": "EXHIBIT 15-22 Valve Access Catwalks",
+      "bbox_norm": [0.16, 0.29, 0.92, 0.55]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p393_fig_02",
+      "label": "EXHIBIT 15-23",
+      "caption": "EXHIBIT 15-23 Tank Mixers",
+      "bbox_norm": [0.06, 0.55, 0.92, 0.85]
+    }
+  ],
+  "issues": []
+}

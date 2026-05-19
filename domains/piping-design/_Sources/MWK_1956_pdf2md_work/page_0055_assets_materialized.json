@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0055.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0055_fig01",
+      "bbox_norm": [
+        0.4,
+        0.47,
+        0.99,
+        0.97
+      ],
+      "bbox_px": [
+        851,
+        1263,
+        2430,
+        3006
+      ],
+      "caption": "Fig. 3.3 Flexibility factors for in-plane or out-of-plane bending.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0055_fig01_flexibility-factors-in-plane-out-of-plan.png",
+      "png_sha256": "41c1a3907aa7520ff617c5d2157e35c665b773ea2f03989e339a7a466994b770",
+      "slug": "flexibility-factors-in-plane-out-of-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 55,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0055.png",
+  "page_image_sha256": "29b58820b01f99eae75bc51b7079dc0b74952cad65107ad02b4cc30dd1777b58",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0055_assets.json"
+}

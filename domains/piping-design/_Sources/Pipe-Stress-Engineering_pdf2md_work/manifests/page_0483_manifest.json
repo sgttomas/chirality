@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0483_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3518,
+        2420
+      ],
+      "caption": "Thermal Expansion Rate \u2014 From Ambient (70\u00b0F) to Temperature, (IN./100 FT) (1 IN./100 FT = 0.833 MM/M)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0483_tbl01_thermal-expansion-rate-ambient-to-temper.csv",
+      "csv_sha256": "7589753a9c73e384460104703e8a61255d35a50b0ec94d12b039e7e747217279",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0483_tbl01_thermal-expansion-rate-ambient-to-temper.png",
+      "png_sha256": "c57f20a2664e2105ea7ccdc7795a156c9ae0fec0be6cddc8569d543d27be01a4",
+      "slug": "thermal-expansion-rate-ambient-to-temper",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 483,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483.png",
+  "page_image_sha256": "eafd8bd6db31e5dad4bf975c5bc07765a3fc6271601e1278775e311631c472fc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483_assets.json"
+}

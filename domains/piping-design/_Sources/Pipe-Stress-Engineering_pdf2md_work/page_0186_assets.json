@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 186,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.9 CONSTANT-EFFORT SUPPORT SCHEMATIC SKETCH",
+      "slug": "constant-effort-support-schematic",
+      "bbox_norm": [0.05, 0.60, 0.80, 0.92],
+      "confidence": "high",
+      "notes": "Mechanical schematic diagram showing spring, rocking yoke, pivot pin, load rod with labeled dimensions F, S, L, W, d. Caption and equation F×S=W×L appear below the diagram."
+    }
+  ],
+  "issues": []
+}

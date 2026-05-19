@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0240.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0240_fig01",
+      "bbox_norm": [
+        0.07,
+        0.2,
+        0.49,
+        0.43
+      ],
+      "bbox_px": [
+        51,
+        496,
+        1383,
+        1588
+      ],
+      "caption": "EXHIBIT 10-5  Fractionator Tower",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0240_fig01_exhibit-10-5-fractionator-tower.png",
+      "png_sha256": "5da6e29d14777c866bc410bbd1bf81a7265d0717918d95f79a75e3a977bf3323",
+      "slug": "exhibit-10-5-fractionator-tower",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0240_fig02",
+      "bbox_norm": [
+        0.5,
+        0.2,
+        0.92,
+        0.43
+      ],
+      "bbox_px": [
+        1153,
+        496,
+        2485,
+        1588
+      ],
+      "caption": "EXHIBIT 10-6  Vapor Liquid Flow",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0240_fig02_exhibit-10-6-vapor-liquid-flow.png",
+      "png_sha256": "d7467d3e1056b3b9cc69d145208164037e83be27bcc9d2e5d230c1248cdaaff2",
+      "slug": "exhibit-10-6-vapor-liquid-flow",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 240,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0240.png",
+  "page_image_sha256": "1766f34bd03ef38a76c6cb0457cba45dd599f02a940173054686b39fcf3284db",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0240_assets.json"
+}

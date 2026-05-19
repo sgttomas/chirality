@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0496_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.9,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        106,
+        2384,
+        2364
+      ],
+      "caption": "ASME B31.1 Allowable Stress SE (ksi) \u2014 continued, At Temperature (\u00b0F), materials A312/TP316 through A312/TP347H/E",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0496_tbl01_asme-b311-allowable-stress-se-ksi-contin.csv",
+      "csv_sha256": "cdd478254c561863a33b68dbbc7998db365c8214e977dc9b36ae95c0eb33da6e",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0496_tbl01_asme-b311-allowable-stress-se-ksi-contin.png",
+      "png_sha256": "4aa6f77cd2c08b471454f76a4cbfac53c9e67ca8e271e40f64b95067e65f6a59",
+      "slug": "asme-b311-allowable-stress-se-ksi-contin",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 496,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496.png",
+  "page_image_sha256": "cd5c6ec9f55c09c49d7754306be8781e6dc79dee5609ceccb699597bc81593e9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496_assets.json"
+}

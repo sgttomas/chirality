@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0275.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0275_fig01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.48,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        672,
+        1253,
+        1432
+      ],
+      "caption": "Two-chamber resonator system with one end closed.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0275_fig01_two-chamber-resonator-system-with-one-en.png",
+      "png_sha256": "28bdc697a5750eb9d88e8978b3503f052e9518130319584ffe8b5d8b231a6602",
+      "slug": "two-chamber-resonator-system-with-one-en",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0275_fig02",
+      "bbox_norm": [
+        0.05,
+        0.78,
+        0.48,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2133,
+        1253,
+        2922
+      ],
+      "caption": "Closed two-chamber resonator system.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0275_fig02_closed-two-chamber-resonator-system.png",
+      "png_sha256": "177bf709977e8b6c78314eed7e7b1919c53cecb7bb3e82d412868bce87f975bf",
+      "slug": "closed-two-chamber-resonator-system",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0275_fig03",
+      "bbox_norm": [
+        0.5,
+        0.26,
+        0.97,
+        0.43
+      ],
+      "bbox_px": [
+        1064,
+        614,
+        2364,
+        1403
+      ],
+      "caption": "Acoustic coupling of resonator system with very long neck.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0275_fig03_acoustic-coupling-of-resonator-system-wi.png",
+      "png_sha256": "5a5a33b7d31b71a7d99bdb874c56e685cb0f91d6e6203e727e0df8154a2599b3",
+      "slug": "acoustic-coupling-of-resonator-system-wi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 275,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0275.png",
+  "page_image_sha256": "9b698c10b814582979be8e5cb6c0aa8fac41d52eec8af97cefc3157bffb6c99a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0275_assets.json"
+}

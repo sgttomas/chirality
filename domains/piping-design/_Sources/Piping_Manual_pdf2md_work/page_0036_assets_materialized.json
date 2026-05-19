@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0036.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0036_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1988
+      ],
+      "caption": "EXHIBIT 2-1 Equipment Spacing \u2014 triangular spacing matrix showing minimum distances (in feet) between numbered equipment/facility categories 1 through 30, with split label 'Off-Site Facilities | Process Unit' and adjoining Key (A, B, C, D, E, F, G, H, J, M, NA).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0036_fig01_exhibit-2-1-equipment-spacing-triangular.png",
+      "png_sha256": "dcd5f087e35caa999e50501d7a04300fed54b69d375429743ae8269977519051",
+      "slug": "exhibit-2-1-equipment-spacing-triangular",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0036.png",
+  "page_image_sha256": "8bbb9ffe94117650fc97f2945e379fe2b80bce54ef864839a5cbd8fd536dec82",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0036_assets.json"
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0126.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0126_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.65,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1747,
+        1711
+      ],
+      "caption": "Table 5.4 Shape Coefficients for Circular Members",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0126_tbl01_shape-coefficients-circular-members.png",
+      "png_sha256": "424380436795d8f47bfa0263ac467824a75737e68920250d58447c766f72a4ed",
+      "slug": "shape-coefficients-circular-members",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0126_tbl01_shape-coefficients-circular-members.json",
+      "table_data_json_sha256": "1178e401c52e549b1943c9017160dd829e546adaa151eec85432c60f16e1557b",
+      "table_data_sha256": "1178e401c52e549b1943c9017160dd829e546adaa151eec85432c60f16e1557b",
+      "xlsx_path": "tables/MWK_1956_p0126_tbl01_shape-coefficients-circular-members.xlsx",
+      "xlsx_sha256": "25bc4e46fa66ed82022c4b680d9ada238941cd3d4dc9563ecb03b55ff0da0653"
+    },
+    {
+      "asset_id": "MWK_1956_p0126_fig01",
+      "bbox_norm": [
+        0.02,
+        0.43,
+        0.98,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1327,
+        2496,
+        3492
+      ],
+      "caption": "Sample Calculation 5.4 \u2014 Piping flexibility and stress analysis worksheet (The M.W. Kellogg Co.) showing member input table, plan-view diagram of the Hovgaard configuration with dimensions, and tabulated cold loads, moments (ft-lb), and forces (lb) acting on restraints",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0126_fig01_sample-calculation-5-4-hovgaard-flexibil.png",
+      "png_sha256": "0134819fad0f53ec860ae1afc80494a67660862f576145e8a5139cb41d42aee7",
+      "slug": "sample-calculation-5-4-hovgaard-flexibil",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 126,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0126.png",
+  "page_image_sha256": "e17b7ab8ce1600bb629f5cdbb56d75e2e2d49ca96b058308167cc70a508a9364",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0126_assets.json"
+}

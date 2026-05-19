@@ -1,0 +1,110 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 32,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "ASME rating classes and thermowell size selection",
+      "slug": "asme-rating-thermowell-size-selection",
+      "bbox_norm": [0.07, 0.11, 0.93, 0.32],
+      "confidence": "high",
+      "notes": "Four-column table mapping ASME rating classes to thermowell size and standard drawing number",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "DN 50 is selected for class 2500 and for class 1500 schedule 160 because the wall thickness does not allow the thermowell to fit in a DN 40 pipe."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ASME rating classes", "is_header": true },
+              { "value": "Thermowell size", "is_header": true },
+              { "value": "Standard Drawing", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150, 300, 600 and 900", "type": "text" },
+              { "value": "DN 40", "type": "text" },
+              { "value": "S 38.113", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 (schedule 80 max)", "type": "text" },
+              { "value": "DN 40", "type": "text" },
+              { "value": "S 38.113", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 (schedule 160)", "type": "text" },
+              { "value": "DN 50", "type": "text" },
+              { "value": "S 38.114", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2500", "type": "text" },
+              { "value": "DN 50", "type": "text" },
+              { "value": "S 38.114", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Thermowell length standardization",
+      "slug": "thermowell-length-standardization",
+      "bbox_norm": [0.07, 0.37, 0.93, 0.57],
+      "confidence": "high",
+      "notes": "Two-column table mapping thermowell lengths (mm) to their application",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "If longer thermowells are required for pipes (e.g. if solidified product on the pipe wall may influence the measurement), longer thermowells from the equipment range may be applied after the mechanical strength of the thermowell has been checked with respect to the flow speed and vibration."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Thermowell length (mm)", "is_header": true },
+              { "value": "Used for:", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "230", "type": "text" },
+              { "value": "pipes DN 80 and DN 100", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "255", "type": "text" },
+              { "value": "pipes DN 150 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "305, 355, 405 and 455", "type": "text" },
+              { "value": "equipment (vessels etc)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

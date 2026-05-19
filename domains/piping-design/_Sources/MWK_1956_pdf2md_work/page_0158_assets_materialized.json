@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0158.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0158_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.99,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2424,
+        3387
+      ],
+      "caption": "PIPING FLEXIBILITY AND STRESS ANALYSIS - DEFLECTIONS - The M.W. Kellogg Co., Form G, Calc. No. 8/G. Hand-tabulated worksheet with columns for Component, M_x, M_y, M_z, F_x, F_y, F_z and additional deflection/rotation entries. Page is rotated 90 degrees in scan; cell-by-cell numerical values are not legibly extractable.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0158_tbl01_piping-flexibility-and-stress-analysis-d.png",
+      "png_sha256": "e627dcb1ce905a3d513d8fb0dc194ae0a2c7fb9cb8cc655fc4ea7129572bef06",
+      "slug": "piping-flexibility-and-stress-analysis-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 158,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0158.png",
+  "page_image_sha256": "5c1833ee4ea0f93d76819479ff939815c49ade5b5154965b34af9ba41c52a421",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0158_assets.json"
+}

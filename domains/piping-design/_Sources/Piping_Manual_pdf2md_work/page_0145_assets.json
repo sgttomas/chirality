@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 145,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0145_fig01",
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.74],
+      "caption": "EXHIBIT 6-31 Piping Arrangement for Horizontal Shell and Tube Exchangers"
+    }
+  ],
+  "issues": []
+}

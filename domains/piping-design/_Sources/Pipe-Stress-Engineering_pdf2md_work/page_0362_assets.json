@@ -1,0 +1,89 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 362,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 10.7 SOIL PRESSURE ON TRENCHED PIPE",
+      "slug": "fig-10-7-soil-pressure-trenched-pipe",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.28],
+      "confidence": "high",
+      "notes": "Three-part illustration: (a) Trenched Pipe, (b) Soil Pressure, (c) Idealized Soil Force. Caption appears below the figure."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 10.4 MINIMUM COVER, H, FOR BURIED PIPELINES [4]",
+      "slug": "table-10-4-minimum-cover-buried-pipelines",
+      "bbox_norm": [0.04, 0.78, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Location", "row_span": 2, "is_header": true },
+              { "value": "For normal excavation", "col_span": 2, "is_header": true },
+              { "value": "For rock excavation requiring blasting", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "in.", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "in.", "is_header": true },
+              { "value": "mm", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Industrial, commercial, and residential areas", "type": "text" },
+              { "value": 36, "type": "number", "unit": "in." },
+              { "value": 900, "type": "number", "unit": "mm" },
+              { "value": 24, "type": "number", "unit": "in." },
+              { "value": 600, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "River and stream crossings", "type": "text" },
+              { "value": 48, "type": "number", "unit": "in." },
+              { "value": 1200, "type": "number", "unit": "mm" },
+              { "value": 18, "type": "number", "unit": "in." },
+              { "value": 450, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Drainage ditches at roadways and railroads", "type": "text" },
+              { "value": 36, "type": "number", "unit": "in." },
+              { "value": 900, "type": "number", "unit": "mm" },
+              { "value": 24, "type": "number", "unit": "in." },
+              { "value": 600, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Any other area", "type": "text" },
+              { "value": 30, "type": "number", "unit": "in." },
+              { "value": 750, "type": "number", "unit": "mm" },
+              { "value": 18, "type": "number", "unit": "in." },
+              { "value": 450, "type": "number", "unit": "mm" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "5-column table with 2-row merged header. Location column spans 2 header rows; normal excavation and rock excavation groups each span 2 sub-columns (in. and mm). Reference [4] cited in table title."
+    }
+  ],
+  "issues": []
+}

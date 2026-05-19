@@ -1,0 +1,108 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0309.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0309_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2562,
+        1059
+      ],
+      "caption": "EXHIBIT 12-7 Fireproofed Steel",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0309_fig01_exhibit-12-7-fireproofed-steel.png",
+      "png_sha256": "5ad8c64196c1274f1223ed1ab7fbd176a655b701d99602afbd75c8f2fd9fb851",
+      "slug": "exhibit-12-7-fireproofed-steel",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0309_fig02",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.97,
+        0.54
+      ],
+      "bbox_px": [
+        0,
+        728,
+        2562,
+        1952
+      ],
+      "caption": "EXHIBIT 12-8 Bracing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0309_fig02_exhibit-12-8-bracing.png",
+      "png_sha256": "e0e7a1f1405f81faca23356d2f0535672dc080c46c2d4a01e92b8d9ff090fb31",
+      "slug": "exhibit-12-8-bracing",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0309_fig03",
+      "bbox_norm": [
+        0.05,
+        0.54,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1621,
+        2562,
+        2680
+      ],
+      "caption": "EXHIBIT 12-9 Concrete Platform",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0309_fig03_exhibit-12-9-concrete-platform.png",
+      "png_sha256": "6b4216849665c61433e1035fdad28e5766d72e9bb0ae14ee2b48699c73e3205f",
+      "slug": "exhibit-12-9-concrete-platform",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0309_fig04",
+      "bbox_norm": [
+        0.05,
+        0.76,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        2349,
+        2562,
+        3309
+      ],
+      "caption": "EXHIBIT 12-10 Concrete Platform for Acid Service",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Piping_Manual_p0309_fig04_exhibit-12-10-concrete-platform-for-acid.png",
+      "png_sha256": "865c45e9187185ea3c1efa2a591bf79e2232de5a670c129339b7d42a3873426c",
+      "slug": "exhibit-12-10-concrete-platform-for-acid",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 309,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0309.png",
+  "page_image_sha256": "1170463460c94bc906219062b2bd62e9c6b39156ce36a7fd4a8dbff34be87096",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0309_assets.json"
+}

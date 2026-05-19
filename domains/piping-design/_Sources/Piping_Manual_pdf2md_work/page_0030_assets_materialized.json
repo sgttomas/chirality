@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0030.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0030_fig01",
+      "bbox_norm": [
+        0.12,
+        0.05,
+        0.88,
+        0.3
+      ],
+      "bbox_px": [
+        178,
+        0,
+        2372,
+        1155
+      ],
+      "caption": "EXHIBIT 1-13 Gravity Flow \u2014 Piping & Instrumentation Diagram showing gravity flow arrangement from vertical vessel 108-D through valve to horizontal vessels 108-E, 108-F, 107-J",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0030_fig01_exhibit-1-13-gravity-flow-piping-instrum.png",
+      "png_sha256": "b13db0f4dd4b2cf233176d588151243bc40b906831dfaf160ae3401545b3aad0",
+      "slug": "exhibit-1-13-gravity-flow-piping-instrum",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0030_fig02",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2078
+      ],
+      "caption": "EXHIBIT 1-13 (continued) \u2014 Side-by-side elevation drawings: INCORRECT APPLICATION (left, showing pocket in piping with 'DO NOT POCKET' annotation) and GRAVITY FLOW DESIGN (right, showing 108-D elevated on structure with proper gravity flow to 108-E and 108-F)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0030_fig02_exhibit-1-13-continued-side-by-side-elev.png",
+      "png_sha256": "4602494dd87bad735aa48b1050932f4ed961304756c90299972e6c09c644c5de",
+      "slug": "exhibit-1-13-continued-side-by-side-elev",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0030.png",
+  "page_image_sha256": "eac6cb1e9628806cc2675db946d9020ff5b6bf7854bc0e0c9fb8237f7fa7376f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0030_assets.json"
+}

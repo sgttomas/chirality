@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 113,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 4.1 TEMPERATURE LOADING",
+      "slug": "temperature-loading",
+      "bbox_norm": [0.05, 0.62, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Three sub-diagrams: (a) Uniform Expansion showing pipe cross-section with gradient across wall thickness, (b) Thermal Bowing showing gradient at discontinuity, (c) Temperature Distribution showing T1/T2 labels. Caption 'FIG. 4.1 TEMPERATURE LOADING' appears below."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 205,
+  "page_label": "196",
+  "page_label_source": "vlm",
+  "location": "top-left",
+  "confidence": "high",
+  "rationale": "Arabic numeral 196 printed in the top-left header area of the page."
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 138,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.40],
+      "caption": "EXHIBIT 6-21 Control and Operator Access in a Plate Arrangement"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.42, 0.97, 0.93],
+      "caption": "EXHIBIT 6-22 Typical Column-Supported Air Cooler Arrangement"
+    }
+  ],
+  "issues": []
+}

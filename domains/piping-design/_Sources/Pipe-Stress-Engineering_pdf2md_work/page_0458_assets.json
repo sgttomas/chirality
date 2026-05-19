@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 458,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 13.13 EXTERNAL VIBRATION SOURCES",
+      "slug": "external-vibration-sources",
+      "bbox_norm": [0.05, 0.55, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Two-part figure showing (a) Vortex Shedding Vibration Force with piping diagram and flow arrows, and (b) Anchor Vibration Displacement with sinusoidal waveform. Caption 'FIG. 13.13 EXTERNAL VIBRATION SOURCES' visible below both sub-figures."
+    }
+  ],
+  "issues": []
+}

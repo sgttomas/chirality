@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0173.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0173_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1228
+      ],
+      "caption": "FIG. 6.2 RIGID HANGER AND SUPPORTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0173_fig01_rigid-hanger-and-supports.png",
+      "png_sha256": "6a774d674f0fa438bee7cb9191aeae1e422f73804c8748954076f654eb4aedf3",
+      "slug": "rigid-hanger-and-supports",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 173,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0173.png",
+  "page_image_sha256": "50ad348164b985f6338dd522c355b38cdc14f37321c8396ea0b4bd8a3b5ed9de",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0173_assets.json"
+}

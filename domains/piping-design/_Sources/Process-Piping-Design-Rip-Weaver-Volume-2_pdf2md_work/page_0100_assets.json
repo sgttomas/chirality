@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 100,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-9. Typical combination burner assembly. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "typical-combination-burner-assembly",
+      "bbox_norm": [0.05, 0.03, 0.72, 0.52],
+      "confidence": "high",
+      "notes": "Technical illustration of a combination burner assembly with labeled components including secondary air inlet, pilot gas, fuel gas, combining steam, fuel oil, flexible hose, gas manifold, primary air inlet, and oil gun. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

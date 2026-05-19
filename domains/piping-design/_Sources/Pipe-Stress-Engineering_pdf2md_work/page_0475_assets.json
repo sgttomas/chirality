@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 475,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 13.24 SNUBBER-200 LOAD, WITH DAMPING",
+      "slug": "snubber-200-load-with-damping",
+      "bbox_norm": [0.05, 0.06, 0.95, 0.94],
+      "confidence": "high",
+      "notes": "Three-panel figure showing time-history response plots: (a) Modal Integration 3% Damping, (b) Newmark Method Direct Integration 3.5% Damping, (c) Modal Integration With 1/2 Time-Step 3% Damping. Caption visible below all three panels."
+    }
+  ],
+  "issues": []
+}

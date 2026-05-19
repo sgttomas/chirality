@@ -1,0 +1,62 @@
+Dynamic Analysis — Part 2: MDOF Systems and Applications 439
+
+Vibration of open-air piping from vortex shedding often occurs at such a low wind velocity, that the
+association of the wind effect is often disregarded. A very gentle ocean breeze during sunset is enough
+to cause considerable vibration on piping if resonance occurs. Take a 6-in. standard wall liquid pipe-
+line rigidly supported at every 20 feet, for instance, the fundamental natural frequency of the piping is
+about 10 cps. The resonance wind velocity in this case is about 25 ft/sec. A pipe with longer support
+span can be resonant-at a much lower wind velocity.
+
+(2) Anchor vibration displacement
+
+The equipment and support vibration imparted to the piping is measured by the vibration displace-
+ment and is treated as anchor or support harmonic displacement in the analysis.
+
+Equipment, such as the fractionator and chemical reactor, all have inherent vibration due to slosh-
+ing of fluid inside. The vibration displacement in this case applies to the piping end or ends that are
+attached to the equipment as shown in Fig. 13.13(b). On the other hand, for piping installed on an
+offshore platform or onboard a ship, the platform or ship vibration applies to all anchors and supports
+of the piping.
+
+The anchor and support vibration displacement in piping is handled differently than the force.
+There are different methods that can be used to analyze the effect of the anchor and support vibration
+displacement in piping. One popular method is to convert the vibration displacement into vibration
+force, then treat it in the manner as an ordinary vibration force. In this method, the anchor and sup-
+port stiffness is realistically assumed to be very stiff, but not perfectly rigid as in the theoretical case.
+To simulate the vibration displacement, a very large vibration force is applied at the anchor or support
+point forcing the pipe to move the same amount as the given vibration displacement. For (d sin of)
+vibration displacement, the magnitude of the equivalent vibration force is
+
+F sin ot = Kd sin ot (13.64)
+
+where K is the stiffness or spring constant of the anchor or support in the forcing direction and d is the
+vibration displacement amplitude. After the conversion, the vibration displacement is handled in the
+same manner as an ordinary vibration force.
+
+(3) Pulsation force
+
+Pulsation flow is the main source of harmonic force in piping systems. All piping connected to a
+reciprocating pump or compressor is subject to some type of pulsation flow. A centrifugal pump or
+compressor may also deliver pulsation flow when operating in the surge range.
+
+When dealing with a periodic forcing function, one thing all designers want to avoid is resonance.
+In pulsation flow, there are two potential aspects of resonance to deal with. One is the acoustic reso-
+nance between pulsation fluid and the acoustic chamber or tube formed by the piping and connecting
+volumes. Similar to all resonance, the piping system will generate very large acoustic pulsation pres-
+sure when the natural frequency of the piping acoustic is the same or is in the neighborhood of the
+pulsation flow frequency. The other aspect of the resonance is, of course, the elastic resonance of the
+piping structure and the pulsation pressure force.
+
+Figure 13.14 shows some basic cases of natural acoustic frequencies of pipe sections. Three types
+of pipe section are given: both ends closed, both ends open, and one end closed. Three natural modes,
+from the lowest frequency, are shown with the frequency formulas given. The mode shapes are just
+proportional values, which vibrate between plus and minus with the same proportion. The curve is
+for pressure distribution. In this case, the zero pressure points are called nodes, and the maximum
+pressure points loops. For a frictionless system, the pressure and the velocity are 90 deg. out of phase.
+Therefore, the maximum pressure point is also the zero velocity point, and a zero pressure point is
+
+located at the maximum velocity point. r
+
+The magnitude of pulsation pressure has to be taken into account in the calculation of wall thick-
+ness and other static stress calculations. In addition to the magnitude of the pressure, the shaking
+

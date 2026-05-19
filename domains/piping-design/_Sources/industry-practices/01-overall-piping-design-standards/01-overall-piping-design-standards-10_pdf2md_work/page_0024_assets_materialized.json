@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0024_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1417
+      ],
+      "caption": "Fig. 300-5 Pipeway\u2014Typical On-plot Process Layout",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0024_fig01_fig-300-5-pipeway-typical-on-plot-proces.png",
+      "png_sha256": "ebe39cbbedb67e9769d12bb7e70b2e63e84a00b02dbb599eb147788c24938fb9",
+      "slug": "fig-300-5-pipeway-typical-on-plot-proces",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0024.png",
+  "page_image_sha256": "7128a761a04ca58447857d1736ce7dc0bcde3f1b3da663dd086d2096ba5d76b1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0024_assets.json"
+}

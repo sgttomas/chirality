@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0289.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0289_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1092
+      ],
+      "caption": "EXHIBIT 11-12 Relief Header Location",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0289_fig01_exhibit-11-12-relief-header-location.png",
+      "png_sha256": "4d89494ea467f1f65ea1faf2c32f593a1b8a18bca5a8f3da378318d79d520cd0",
+      "slug": "exhibit-11-12-relief-header-location",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0289_fig02",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.51,
+        0.56
+      ],
+      "bbox_px": [
+        0,
+        761,
+        1435,
+        2018
+      ],
+      "caption": "EXHIBIT 11-13 Alternative Pipe Rack Expansion",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0289_fig02_exhibit-11-13-alternative-pipe-rack-expa.png",
+      "png_sha256": "74f32db62d816af04526788d06b57e770ba0d53713f2444de628584ffe749c1d",
+      "slug": "exhibit-11-13-alternative-pipe-rack-expa",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0289_fig03",
+      "bbox_norm": [
+        0.5,
+        0.28,
+        0.97,
+        0.56
+      ],
+      "bbox_px": [
+        1153,
+        761,
+        2562,
+        2018
+      ],
+      "caption": "EXHIBIT 11-14 Hose Station at a Pipe Rack Column",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0289_fig03_exhibit-11-14-hose-station-at-a-pipe-rac.png",
+      "png_sha256": "f91235d29c215dfae6c6b813dfd6eefa7c8ced773c3ed7b02d61d32069e3dcb6",
+      "slug": "exhibit-11-14-hose-station-at-a-pipe-rac",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 289,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0289.png",
+  "page_image_sha256": "ab26e0bf77f8c3e5d51448dc0a16c498b1590e29e4c7b9594cd68603f5b81f7c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0289_assets.json"
+}

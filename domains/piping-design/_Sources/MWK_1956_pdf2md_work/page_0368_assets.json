@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 368,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "FIGURE 5A.3",
+      "bbox_norm": [
+        0.58,
+        0.07,
+        0.99,
+        0.34
+      ]
+    }
+  ]
+}

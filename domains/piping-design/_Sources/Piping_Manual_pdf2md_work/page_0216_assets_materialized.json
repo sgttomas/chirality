@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0216.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0216_fig01",
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.96,
+        0.55
+      ],
+      "bbox_px": [
+        25,
+        33,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 8-30 Typical Steam Turbine Piping Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0216_fig01_exhibit-8-30-typical-steam-turbine-pipin.png",
+      "png_sha256": "5de799e947717baed5736d5b26d6983b6a7133fed0518c61db72f9a65b7a9705",
+      "slug": "exhibit-8-30-typical-steam-turbine-pipin",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0216_fig02",
+      "bbox_norm": [
+        0.1,
+        0.58,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        128,
+        1748,
+        2550,
+        3200
+      ],
+      "caption": "EXHIBIT 8-31 Improper Valve and Steam Trap Location",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0216_fig02_exhibit-8-31-improper-valve-and-steam-tr.png",
+      "png_sha256": "56e154b1efeb72a5c994a04329f4d87b59a9f10e3f15e0705a17842100d847e3",
+      "slug": "exhibit-8-31-improper-valve-and-steam-tr",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 216,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0216.png",
+  "page_image_sha256": "3b4cae83bb9c089a8cdda20fbd5e7ffcbc8c38eae51aff8a062eb6b090cf2edc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0216_assets.json"
+}

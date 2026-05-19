@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0249.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0249_fig01",
+      "bbox_norm": [
+        0.48,
+        0.04,
+        0.98,
+        0.66
+      ],
+      "bbox_px": [
+        1076,
+        0,
+        2502,
+        1955
+      ],
+      "caption": "Typical non-integral attachments.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0249_fig01_typical-non-integral-attachments.png",
+      "png_sha256": "395760ced1b0c9848bc18f88080628fdd8852e460466c5258fe013035a509414",
+      "slug": "typical-non-integral-attachments",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 249,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0249.png",
+  "page_image_sha256": "64513d74023533052072ea2c2cef1bb71b2a26c8f53467fc139b07ff60391e2d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0249_assets.json"
+}

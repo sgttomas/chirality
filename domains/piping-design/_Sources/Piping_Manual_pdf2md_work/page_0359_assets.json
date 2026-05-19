@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 359,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0359_a01",
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.10, 0.95, 0.62],
+      "caption": "EXHIBIT 13-42 Sewer Box",
+      "notes": "Detailed engineering drawing of a sewer box assembly showing piping arrangement with elevations and dimensions; labels include unpaved area, paved area, vent to atmosphere (with detail reference), top of grade/engineering, precast concrete pipe (Class III), inlet elevation (see plan), invert elevation (see schedule), inside bottom elevation (see schedule), 48 in minimum, outlet, and field cut equipment; shows quarter, eighth, and sixteenth bends with slope notations."
+    }
+  ],
+  "issues": []
+}

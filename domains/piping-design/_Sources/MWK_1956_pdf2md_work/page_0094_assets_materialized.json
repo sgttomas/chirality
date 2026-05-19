@@ -1,0 +1,113 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0094.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0094_fig01",
+      "bbox_norm": [
+        0.42,
+        0.07,
+        0.66,
+        0.22
+      ],
+      "bbox_px": [
+        977,
+        70,
+        1874,
+        944
+      ],
+      "caption": "Sample Calculation 4.2 piping configuration sketch",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0094_fig01_sample-calculation-4-2-piping-configurat.png",
+      "png_sha256": "6ebf29a0e118a38501d71d29c03f3bf9772e0989e325fb0f9a8c63c558487fc9",
+      "slug": "sample-calculation-4-2-piping-configurat",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0094_fig02",
+      "bbox_norm": [
+        0.42,
+        0.27,
+        0.66,
+        0.42
+      ],
+      "bbox_px": [
+        977,
+        770,
+        1874,
+        1644
+      ],
+      "caption": "Sample Calculation 4.3 piping configuration sketch",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0094_fig02_sample-calculation-4-3-piping-configurat.png",
+      "png_sha256": "38353bccb1f27d8e97506481a6ef4dffbf87d70bb44fa34b3670554dc8cd8ef2",
+      "slug": "sample-calculation-4-3-piping-configurat",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0094_fig03",
+      "bbox_norm": [
+        0.42,
+        0.46,
+        0.66,
+        0.62
+      ],
+      "bbox_px": [
+        977,
+        1434,
+        1874,
+        2344
+      ],
+      "caption": "Sample Calculation 4.4 piping configuration sketch",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0094_fig03_sample-calculation-4-4-piping-configurat.png",
+      "png_sha256": "15d4335a2776dfee0093219ddeea5f926d1cec5c73a78a534a961e4d19e74d2e",
+      "slug": "sample-calculation-4-4-piping-configurat",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0094_tbl01",
+      "bbox_norm": [
+        0.66,
+        0.22,
+        0.96,
+        0.4
+      ],
+      "bbox_px": [
+        1610,
+        595,
+        2640,
+        1574
+      ],
+      "caption": "Table 4.1 \u2014 Comparison of Maximum Longitudinal Thermal Stress: ASA B31.1 Code Criterion vs. General Analytical Method (Square-Corner Solution)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0094_tbl01_table-4-1-comparison-of-maximum-longitud.png",
+      "png_sha256": "e0134e335de828e5b32984bbc3c6059a3d11f1a3eba150b8a786a1699754eb7c",
+      "slug": "table-4-1-comparison-of-maximum-longitud",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 94,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0094.png",
+  "page_image_sha256": "5122dbd3851b3312dc549e6b3e732c04174147cbb730c2fc262426b46e56855e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0094_assets.json"
+}

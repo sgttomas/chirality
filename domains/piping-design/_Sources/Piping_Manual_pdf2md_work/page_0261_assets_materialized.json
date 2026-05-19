@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0261.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0261_fig01",
+      "bbox_norm": [
+        0.06,
+        0.2,
+        0.5,
+        0.68
+      ],
+      "bbox_px": [
+        26,
+        496,
+        1409,
+        2416
+      ],
+      "caption": "EXHIBIT 10-42 Platform Width Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0261_fig01_exhibit-10-42-platform-width-requirement.png",
+      "png_sha256": "052b6a2c16e6ffbcbaf8534927ac5603acd6440dba14348917bd9708f3ed86ac",
+      "slug": "exhibit-10-42-platform-width-requirement",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0261_fig02",
+      "bbox_norm": [
+        0.48,
+        0.2,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        1102,
+        496,
+        2562,
+        1754
+      ],
+      "caption": "EXHIBIT 10-43 Maintenance Access Arrangements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0261_fig02_exhibit-10-43-maintenance-access-arrange.png",
+      "png_sha256": "37b374eba93c6b1bc29ca49f6da7e15207f30a4234fc87fa02c0b745dfa899ea",
+      "slug": "exhibit-10-43-maintenance-access-arrange",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 261,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0261.png",
+  "page_image_sha256": "e2a6f35ae645128d7748c3ffaf1a0a05420b001f31049695e9c299995d5a926c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0261_assets.json"
+}

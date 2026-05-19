@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0058.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2008
+      ],
+      "caption": "Table 3-8 Tank Spacing Table\u2014Condition 4",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl01_tank-spacing-table-condition-4.png",
+      "png_sha256": "48361fd29d185965bca81ae77f98b40adb43cc02eeea52dbd67c775bfb2cae88",
+      "slug": "tank-spacing-table-condition-4",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl01_tank-spacing-table-condition-4.json",
+      "table_data_json_sha256": "d56af160818e191665f5ea78db09aab39a451e79d4ac105f8d728dea96124198",
+      "table_data_sha256": "d56af160818e191665f5ea78db09aab39a451e79d4ac105f8d728dea96124198",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl01_tank-spacing-table-condition-4.xlsx",
+      "xlsx_sha256": "4b1549744d0a1b9477de2ced692ba2cf56d8c2c4eacfaa097153dc502e8cf4c1"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1655,
+        2477,
+        3522
+      ],
+      "caption": "Table 3-9 Tank Spacing Table Reference from Tables 3-5 through 3-8",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl02_tank-spacing-table-reference-3-5-through.png",
+      "png_sha256": "4a47b0be308e8baf8bef692f0fc91d12873686c95ba9b0146b0f5f0d72c0ceb7",
+      "slug": "tank-spacing-table-reference-3-5-through",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl02_tank-spacing-table-reference-3-5-through.json",
+      "table_data_json_sha256": "1b49ee92049dd931a54bb7b8ab35f7983687c917a6c1aeb5260e4bef8c9e9c83",
+      "table_data_sha256": "1b49ee92049dd931a54bb7b8ab35f7983687c917a6c1aeb5260e4bef8c9e9c83",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0058_tbl02_tank-spacing-table-reference-3-5-through.xlsx",
+      "xlsx_sha256": "923c7467c0b37d260babbaa2dd850b108c9d8ea7c077b120f67011e4b26b6ffb"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0058.png",
+  "page_image_sha256": "b78821096ea218117826dba03d9d3288a430e23d92a8e77d73b499b49b64245e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0058_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 71,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-3. Plot plan for multiple process units.",
+      "slug": "plot-plan-multiple-process-units",
+      "bbox_norm": [0.04, 0.06, 0.96, 0.94],
+      "confidence": "high",
+      "notes": "Full-page plot plan diagram showing layout of multiple process units including reformer, platforming, vacuum, crude units, existing pipeways, future areas, and street. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

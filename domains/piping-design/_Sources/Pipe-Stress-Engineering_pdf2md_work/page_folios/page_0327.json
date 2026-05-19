@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 327,
+  "page_label": "307",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 307 printed at top-right in the page header alongside the running head 'Interface with Rotating Equipment'."
+}

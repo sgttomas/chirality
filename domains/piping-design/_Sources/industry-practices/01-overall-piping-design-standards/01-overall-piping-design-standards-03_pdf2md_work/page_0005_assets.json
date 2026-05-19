@@ -1,0 +1,117 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-03",
+  "page": 5,
+  "total_pages": 11,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pump Suction and Discharge pressure drop limits",
+      "slug": "pump-suction-discharge-pressure-drop",
+      "bbox_norm": [0.09, 0.17, 0.91, 0.37],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Pump Suction", "is_header": true },
+              { "value": "Pump Discharge", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water, amine, caustic and hydrocarbon liquids more than 28°C below boiling point.", "type": "text" },
+              { "value": "11.3 kPA/100m (0.5 psi/100')", "type": "text" },
+              { "value": "22.6 kPA/100m (1 psi/100')", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water, amine, caustic and hydrocarbon liquids less than 28°C below boiling point.", "type": "text" },
+              { "value": "2.26 kPA/100m (0.1 psi/100')", "type": "text" },
+              { "value": "22.6 kPA/100m (1 psi/100')", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row data table with pump suction and discharge pressure drop limits"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Suction and Discharge Piping and Headers pressure drop limits",
+      "slug": "suction-discharge-piping-headers-pressure-drop",
+      "bbox_norm": [0.09, 0.52, 0.75, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [3],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Suction and Discharge Piping", "is_header": true },
+              { "value": "kPA/100m", "is_header": true },
+              { "value": "(PSI/100')", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10 psig and under", "type": "text" },
+              { "value": 2.8, "type": "number" },
+              { "value": 0.125, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "11 to 50 psig", "type": "text" },
+              { "value": 5.7, "type": "number" },
+              { "value": 0.25, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "over 50 psig", "type": "text" },
+              { "value": 22.6, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Headers", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "75 psig and under", "type": "text" },
+              { "value": 11.3, "type": "number" },
+              { "value": 0.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "over 75 psig", "type": "text" },
+              { "value": 22.6, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-section table: Suction and Discharge Piping rows followed by Headers rows, sharing the same column structure"
+    }
+  ],
+  "issues": []
+}

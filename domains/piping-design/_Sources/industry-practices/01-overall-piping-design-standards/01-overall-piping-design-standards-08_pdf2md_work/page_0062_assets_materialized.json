@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0062_tbl01",
+      "bbox_norm": [
+        0.18,
+        0.32,
+        0.82,
+        0.56
+      ],
+      "bbox_px": [
+        322,
+        947,
+        2158,
+        2140
+      ],
+      "caption": "Nominal pipe size vs. Distance between tank and first pipe support",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0062_tbl01_nominal-pipe-size-distance-first-support.png",
+      "png_sha256": "26fd402d9c0c1145c3604f236040c07a54595bcf5abeae35e85b621f127014b6",
+      "slug": "nominal-pipe-size-distance-first-support",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0062_tbl01_nominal-pipe-size-distance-first-support.json",
+      "table_data_json_sha256": "b9269bd3c770b2923e4d57a69ff9340b4e90e307a5c7c26d5b06b807f9da00ef",
+      "table_data_sha256": "b9269bd3c770b2923e4d57a69ff9340b4e90e307a5c7c26d5b06b807f9da00ef",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0062_tbl01_nominal-pipe-size-distance-first-support.xlsx",
+      "xlsx_sha256": "40a9e7578fd522b0741306b8e66812c424f29b6b869b11cfa1ef2872531a5bd9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0062.png",
+  "page_image_sha256": "0121546899271d1a2d6ca1c8f179b44ef893270268265798d25faed7dc09720b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0062_assets.json"
+}

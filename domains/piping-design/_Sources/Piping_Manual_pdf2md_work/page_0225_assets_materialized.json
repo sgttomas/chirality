@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0225.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0225_fig01",
+      "bbox_norm": [
+        0.03,
+        0.3,
+        0.97,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2045
+      ],
+      "caption": "EXHIBIT 9-8 Minimum Reactor Elevation Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0225_fig01_exhibit-9-8-minimum-reactor-elevation-re.png",
+      "png_sha256": "946a8bc59c9c414ffd772f260c630e853517fc4aebb2ddcf825e672cb9b54ae1",
+      "slug": "exhibit-9-8-minimum-reactor-elevation-re",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0225_fig02",
+      "bbox_norm": [
+        0.54,
+        0.6,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        1250,
+        1814,
+        2550,
+        3233
+      ],
+      "caption": "EXHIBIT 9-9 Direct Unloading from a Reactor to a Truck",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0225_fig02_exhibit-9-9-direct-unloading-from-a-reac.png",
+      "png_sha256": "e375cb35a3a82e166265840552aa60c10edeae583e9e06c20b094d2abebd3b52",
+      "slug": "exhibit-9-9-direct-unloading-from-a-reac",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 225,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0225.png",
+  "page_image_sha256": "2d5b68b2059f391576b4740aefc7e2afd637a1ce67e31476783fd2e3f7f58820",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0225_assets.json"
+}

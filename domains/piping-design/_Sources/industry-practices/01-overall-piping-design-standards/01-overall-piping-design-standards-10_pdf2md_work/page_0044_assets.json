@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 44,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-18 Dampener Arrangements—Preferred Strainer Locations",
+      "slug": "fig-300-18-dampener-arrangements-preferred-strainer-locations",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.52],
+      "confidence": "high",
+      "notes": "Two schematic piping diagrams showing dampener and strainer arrangements; top diagram shows damper with removable strainer, bottom diagram shows damper with strainer and cylinder labels."
+    }
+  ],
+  "issues": []
+}

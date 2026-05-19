@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0207.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0207_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3488
+      ],
+      "caption": "Table A-2 Circumference, Area and Volume of Circles and Cylinders \u2014 Courtesy of Chicago Bridge and Iron Co.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0207_tbl01_table-a2-circumference-area-volume-circl.png",
+      "png_sha256": "60238dac1462c3180778546ec5d28c9bf39dfc8efc6cb93051c04c2db447ace5",
+      "slug": "table-a2-circumference-area-volume-circl",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0207_tbl01_table-a2-circumference-area-volume-circl.json",
+      "table_data_json_sha256": "e1bb7026f09f8aa5306be3430f929d711960106516b346e664d4937bd14e39c1",
+      "table_data_sha256": "e1bb7026f09f8aa5306be3430f929d711960106516b346e664d4937bd14e39c1",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0207_tbl01_table-a2-circumference-area-volume-circl.xlsx",
+      "xlsx_sha256": "b45cb89837b3927f48a33be6a47811469f7a390d11b26d02b4d665c3bb56611c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 207,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0207.png",
+  "page_image_sha256": "a99bfa9c71e35d93fccfe15545b0a84d011f0197c30245354238fc26d22b76d6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0207_assets.json"
+}

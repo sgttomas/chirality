@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0359.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0359_fig01",
+      "bbox_norm": [
+        0.06,
+        0.1,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        26,
+        165,
+        2556,
+        2214
+      ],
+      "caption": "EXHIBIT 13-42 Sewer Box",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0359_fig01_exhibit-13-42-sewer-box.png",
+      "png_sha256": "dbd470eadfb6af36259542b753bf936b0595c41644db2dd46cfdf78685d8d30e",
+      "slug": "exhibit-13-42-sewer-box",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 359,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0359.png",
+  "page_image_sha256": "2c1ef3437173e6f6d70bab48603dc9a5964fbee363d4a0be01afc0619fa219cf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0359_assets.json"
+}

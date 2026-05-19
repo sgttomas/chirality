@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0009_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.52
+      ],
+      "bbox_px": [
+        76,
+        231,
+        2474,
+        1879
+      ],
+      "caption": "Fig. 300-3 Pipe Terminal Conditions, Container at Upstream/Downstream End of Line",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-10_p0009_tbl01_fig-300-3-pipe-terminal-conditions.png",
+      "png_sha256": "ccc13439f0f4431c1a293f49a52cc525bcb48c648c7ca2c0a805e6fcd09c0c41",
+      "slug": "fig-300-3-pipe-terminal-conditions",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0009.png",
+  "page_image_sha256": "70294c69ec7e27321c84ea08b7820bab6ab65b18af6a510c91188735e7282c8c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0009_assets.json"
+}

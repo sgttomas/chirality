@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 429,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0429_exhibit_16-18",
+      "bbox_norm": [0.06, 0.30, 0.94, 0.76],
+      "caption": "EXHIBIT 16-18 — Example Thermal Calculation for Vessel Piping"
+    }
+  ],
+  "issues": []
+}

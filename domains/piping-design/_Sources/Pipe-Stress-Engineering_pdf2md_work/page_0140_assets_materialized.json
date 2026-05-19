@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0140.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0140_fig01",
+      "bbox_norm": [
+        0.08,
+        0.05,
+        0.92,
+        0.75
+      ],
+      "bbox_px": [
+        77,
+        0,
+        2500,
+        2863
+      ],
+      "caption": "FIG. 4.13 TYPICAL PROCEDURE FOR EVALUATING OCCASIONAL STRESS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0140_fig01_typical-procedure-evaluating-occasional.png",
+      "png_sha256": "684bbd348767fda9eb954fb66e2d849a08d9d6b16f455050b5dac1063918ce2d",
+      "slug": "typical-procedure-evaluating-occasional",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 140,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0140.png",
+  "page_image_sha256": "e93ed74f11a670cf0cce45fe00d672e579b233ba41410f8683074de2c27cd648",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0140_assets.json"
+}

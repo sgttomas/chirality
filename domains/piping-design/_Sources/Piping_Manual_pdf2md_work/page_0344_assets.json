@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 344,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.04, 0.97, 0.51],
+      "caption": "EXHIBIT 15-21  Process Cooling Water and Potable Water System"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.50, 0.49, 0.81],
+      "caption": "EXHIBIT 15-22  Cooling Water Crossover Piping"
+    }
+  ],
+  "issues": []
+}

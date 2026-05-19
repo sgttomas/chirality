@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 206,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.20 EFFECTIVE SECTION MODULUS OF LARGE VESSEL OVER A SADDLE AGAINST BEAM BENDING",
+      "slug": "effective-section-modulus-saddle-beam-bending",
+      "bbox_norm": [0.05, 0.62, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Cross-section diagram of pipe over saddle showing ineffective (hatched) top portion and saddle angle geometry. Caption appears below figure."
+    }
+  ],
+  "issues": []
+}

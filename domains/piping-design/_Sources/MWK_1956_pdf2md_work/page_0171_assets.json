@@ -1,0 +1,25 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.97,
+        0.94
+      ],
+      "caption": "PIPING FLEXIBILITY AND STRESS ANALYSIS - 12 EQUATIONS (The M.W. Kellogg Co., Form E, Calc. No. 513). Handwritten worksheet tabulation for the general analytical method; column headers and tabulated values are not legibly transcribable from the scan.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "Worksheet is handwritten on a printed grid form; column headers and numeric entries are not legibly transcribable at this scan fidelity, so csv is left empty.",
+    "Single full-page asset spanning nearly the entire page; bbox_norm generously covers the worksheet, the running header 'FLEXIBILITY ANALYSIS BY THE GENERAL ANALYTICAL METHOD', the form identifier (FORM E, CALC. NO. 513), and surrounding whitespace."
+  ],
+  "page": 171,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

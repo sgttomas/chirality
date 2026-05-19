@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 27,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Table 6: Typical Layout for a Piping Line List",
+      "slug": "table-6-typical-layout-piping-line-list",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Complex schematic/layout diagram showing the structure of a Piping Line List form with annotated blocks and a worked example row. Treated as a figure rather than a data table because it is a form-layout diagram, not a data table."
+    }
+  ],
+  "issues": []
+}

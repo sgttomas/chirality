@@ -1,0 +1,35 @@
+xiv Preface
+
+sometimes an anchor placed at the wrong location may just be the cause of the problem.
+The wrong anchor had been contributing to severe vibration at some rotating equipment.
+Had we known that the pressure thrust force at an expansion joint is generally much
+higher than the force that can be tolerated by the rotating equipment, the problem would
+not have occurred (Chapters 7 and 9).
+
+* A small steam purge line in.a large process pipe had caused the plant piping to twist
+wildly, breaking many connecting leads. Several major re-routing of the piping systems
+were made, but the problem persisted. Had the involved engineers had some idea about
+thermal bowing, the problem could have been easily corrected (see Section 11.1.4).
+
+Providing the knowledge for solving the problems such as the ones listed above is the primary
+goal of the book. Chapter 1 summarizes the scopes and requirements related to piping mechanical
+activities, and the subsequent chapters discuss how to deal with them. Chapter 1 contains some of the
+authors’ inside views, which we hope will help the readers progress more confidently and comfortably
+into the piping mechanical field.
+
+Nowadays, making a calculation with a computer is so fast that we often hear about the “what-if”
+approach in engineering. What all this “what-if” approach accomplishes is making numerous random
+trials.and-the wish that one of these trials will hit the mark sooner or later. The problem is that after a
+few trials, most people lose the ability to make sense of the trials. The more they try, the more they get
+confused. In contrast, this book puts emphasis on the “what, why, and how” to guide the readers into
+this 3-W approach — that is, to be aware of the problem, understand the cause of the problem, and to
+solve the problem or prevent it from happening.
+
+The authors will try to explain all the necessary tasks of pipe stress engineering with basic funda-
+mentals. Although only a few very fundamental equations are introduced, theoretical backgrounds
+will be covered in as much detail as possible. The book is titled Pipe Stress Engineering to distinguish it
+from a regular pipe stress analysis book, which normally lacks the coverage of the engineering aspects.
+Although this book is intended for piping mechanical engineers, it is also a suitable reference book
+for piping designers, plant engineers, and civil-mechanical engineers. The book can be used as the
+textbook for a one- or two-semester elective course given at the senior or graduate level.
+

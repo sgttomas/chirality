@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 34,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Outside diameters for IPS pipe sizes",
+      "slug": "outside-diameters-ips-pipe-sizes",
+      "bbox_norm": [0.25, 0.54, 0.75, 0.76],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pipe Size", "is_header": true },
+              { "value": "OD", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3\"", "type": "text" },
+              { "value": null, "type": "missing", "raw": "___" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6\"", "type": "text" },
+              { "value": null, "type": "missing", "raw": "___" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10\"", "type": "text" },
+              { "value": null, "type": "missing", "raw": "___" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12\"", "type": "text" },
+              { "value": null, "type": "missing", "raw": "___" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "16\"", "type": "text" },
+              { "value": null, "type": "missing", "raw": "___" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Fill-in-the-blank exercise table; OD cells are blank answer lines. Table appears in question 10 of the Chapter 1 Review Test."
+    }
+  ],
+  "issues": []
+}

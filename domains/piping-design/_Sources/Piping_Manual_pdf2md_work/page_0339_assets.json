@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.5,
+        0.62
+      ],
+      "caption": "EXHIBIT 13-14 Calculation Chart - SEWER WATER/RAINFALL CALCULATIONS (handwritten table with AREA, SQ FT, GPM/CFS, REMARKS columns and rainfall data K=.017889, f=5/HR, A=AREA)",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 339,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

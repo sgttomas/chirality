@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0070.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0070_fig01",
+      "bbox_norm": [
+        0.04,
+        0.17,
+        0.97,
+        0.83
+      ],
+      "bbox_px": [
+        0,
+        399,
+        2588,
+        2930
+      ],
+      "caption": "EXHIBIT 3-32 Final Plot Plan Arrangement - Naphtha Hydrotreater Planning Plot Plan",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0070_fig01_exhibit-3-32-final-plot-plan-arrangement.png",
+      "png_sha256": "425786f55850d637be1d91e662d52d507a3f5c2523a9686c3f414b08dab35b8e",
+      "slug": "exhibit-3-32-final-plot-plan-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 70,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0070.png",
+  "page_image_sha256": "49a29b188261c7aa6c467c283a35f7777c14d84ef3938fbe123c0a2d2838c924",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0070_assets.json"
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 221,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Page contains only running prose and inline mathematical equations (eqs. 7.1-7.5); no figures, tables, photographs, diagrams, or other extractable image assets are present."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 273,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0273_fig_01",
+      "caption": "EXHIBIT 10-60 Temperature and Pressure Instrument Arrangements",
+      "bbox_norm": [0.08, 0.28, 0.88, 0.62]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0273_fig_02",
+      "caption": "EXHIBIT 10-61 Common Bridle-Level Instrument Arrangement",
+      "bbox_norm": [0.08, 0.60, 0.68, 0.90]
+    }
+  ],
+  "issues": []
+}

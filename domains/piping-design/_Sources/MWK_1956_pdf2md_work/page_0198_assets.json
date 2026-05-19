@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 198,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Chapter 6 opening page: contains only chapter heading typography, chapter title, and running two-column prose body (sections 6.1 and 6.2). No figures, tables, photographs, or diagrams present. Decorative chapter numeral is typographic ornamentation, not an extractable prose-document asset."
+  ]
+}

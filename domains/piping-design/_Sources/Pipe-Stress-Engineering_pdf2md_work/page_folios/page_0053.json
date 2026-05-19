@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 53,
+  "page_label": "33",
+  "page_label_source": "vlm",
+  "location": "bottom-center",
+  "confidence": "high",
+  "rationale": "Arabic numeral 33 centered in footer of chapter-opener page."
+}

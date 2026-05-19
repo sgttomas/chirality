@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 115,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p115_fig01",
+      "bbox_norm": [0.10, 0.16, 0.95, 0.46],
+      "caption": "Exhibit 5-17 Platform Arrangement at a Horizontal Drum"
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p115_fig02",
+      "bbox_norm": [0.06, 0.46, 0.52, 0.72],
+      "caption": "Exhibit 5-18 Platform Arrangement at a Vertical Drum"
+    }
+  ],
+  "issues": []
+}

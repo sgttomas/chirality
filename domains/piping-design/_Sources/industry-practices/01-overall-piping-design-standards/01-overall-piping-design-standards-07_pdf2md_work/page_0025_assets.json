@@ -1,0 +1,158 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 25,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3: Sizing Criteria for Gases and Steam",
+      "slug": "table-3-sizing-criteria-gases-steam",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Multi-section table with grouped rows for General Gases and Vapors, SO2/SO3 Process Gas, Compressor Suctions, and Steam. Includes footnotes below table body.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) These values are for headers within plant limits; short branch lines may be sized for two to three times the friction loss in this table.",
+          "(2) Sonic or acoustic velocity, where: Vs = sqrt(gkRT/Mw), sonic velocity (ft/sec); g = 32.17 (lb-ft)(lbf-sec2); k = Specific Heat Ratio Cp/Cv; Z = Compressibility factor; R = 1546 (ft-lbf)/(lbmole-°R); Absolute Temperature = °R; Mw = Molecular Weight",
+          "(3) These velocities will usually be applied only to short branches. Their use for headers will result in very high friction loss. d = nominal diameter in inches; P = Operating Pressure",
+          "(4) Same as gases and vapors"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Service", "is_header": true },
+              { "value": "Normal Range Pressure Drop (psi/100 ft)", "is_header": true },
+              { "value": "Velocity (ft/sec) — Normal", "is_header": true },
+              { "value": "Velocity (ft/sec) — Maximum", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "General Gases and Vapors", "type": "text", "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Less than 15 psia (vacuum)", "type": "text" },
+              { "value": "0.05–0.25 (1)", "type": "text" },
+              { "value": "200–250", "type": "text" },
+              { "value": "50% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Up to 100 psig", "type": "text" },
+              { "value": "0.25–0.50 (1)", "type": "text" },
+              { "value": "150–200", "type": "text" },
+              { "value": "50% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100 psig to 1,000 psig", "type": "text" },
+              { "value": "0.50–2.0 (1)", "type": "text" },
+              { "value": "100–150", "type": "text" },
+              { "value": "50% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Over 1,000 psig", "type": "text" },
+              { "value": "0.2% P (1)", "type": "text" },
+              { "value": "100", "type": "text" },
+              { "value": "50% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SO2 and SO3 Process Gas", "type": "text", "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "—", "type": "text" },
+              { "value": "50–90", "type": "text" },
+              { "value": "—", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Compressor Suctions", "type": "text", "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Reciprocating", "type": "text" },
+              { "value": "0.1% P", "type": "text" },
+              { "value": "20–40", "type": "text" },
+              { "value": "7% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Centrifugal", "type": "text" },
+              { "value": "0.2% P", "type": "text" },
+              { "value": "40–80", "type": "text" },
+              { "value": "13% Vs (2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam", "type": "text", "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Saturated, less than 50 psig", "type": "text" },
+              { "value": "1%P (1)", "type": "text" },
+              { "value": "50√d", "type": "text" },
+              { "value": "100√d (3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "50 psig to 250 psig", "type": "text" },
+              { "value": "0.8–1.3 (1)", "type": "text" },
+              { "value": "40√d", "type": "text" },
+              { "value": "100√d (3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "250 psig to 1,000 psig", "type": "text" },
+              { "value": "1.3–3.0 (1)", "type": "text" },
+              { "value": "30√d", "type": "text" },
+              { "value": "100√d (3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Superheated, above 250 psig", "type": "text" },
+              { "value": "0.7% P", "type": "text" },
+              { "value": "50√d", "type": "text" },
+              { "value": "100√d (3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Superheated, less than 250 psig", "type": "text" },
+              { "value": "(4)", "type": "text" },
+              { "value": "(4)", "type": "text" },
+              { "value": "(4)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

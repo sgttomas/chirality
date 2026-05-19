@@ -1,0 +1,135 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 124,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1B Susceptibility to hydrogen blistering, HIC and SOHIC — H₂S content of water vs pH of water and cyanide content",
+      "slug": "table-1b-susceptibility-hydrogen-blistering-hic-sohic",
+      "bbox_norm": [0.05, 0.22, 0.95, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. If the level of cyanide cannot be established during design or from experience, the materials engineer of the Principal shall be consulted for an assessment based upon the type of process unit, feed, water wash practices etc.",
+          "2. The level of cyanide has no significance at pH 7.5 and below."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "pH of water", "is_header": true },
+              { "value": "Cyanide content (mg/kg) (Note 1)", "is_header": true },
+              { "value": "< 50", "is_header": true },
+              { "value": "50 to 1000", "is_header": true },
+              { "value": "> 1000", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "SEVERITY CATEGORY", "is_header": true, "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≤ 4.0", "type": "text" },
+              { "value": "(Note 2)", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "Moderate", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "7.6 to 7.9", "type": "text" },
+              { "value": "≥ 50", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "High", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≥ 8.0", "type": "text" },
+              { "value": "≥ 20", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "High", "type": "text" },
+              { "value": "High", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table 1B from DEP 31.38.01.11-Gen. Severity categories for hydrogen blistering, HIC and SOHIC based on pH, cyanide content and H2S content of water."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 1C Susceptibility to carbonate cracking (as experienced in sour water) — CO₂ content of water vs pH of water",
+      "slug": "table-1c-susceptibility-carbonate-cracking-sour-water",
+      "bbox_norm": [0.05, 0.72, 0.95, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "pH of Water", "is_header": true },
+              { "value": "< 100", "is_header": true },
+              { "value": "100 to 500", "is_header": true },
+              { "value": "501 to 1000", "is_header": true },
+              { "value": "> 1000", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "SEVERITY CATEGORY", "is_header": true, "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "7.6 to 8.3", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Moderate", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8.4 to 8.9", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "High", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≥9.0", "type": "text" },
+              { "value": "Low", "type": "text" },
+              { "value": "Moderate", "type": "text" },
+              { "value": "High", "type": "text" },
+              { "value": "High", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table 1C from DEP 31.38.01.11-Gen. Severity categories for carbonate stress corrosion cracking based on pH and CO2 content of water."
+    }
+  ],
+  "issues": []
+}

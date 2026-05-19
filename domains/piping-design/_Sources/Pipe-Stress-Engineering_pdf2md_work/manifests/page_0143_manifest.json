@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0143.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0143_fig01",
+      "bbox_norm": [
+        0.05,
+        0.58,
+        0.95,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        1860,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 4.15 COMBINATION OF THERMAL EXPANSION AND OCCASIONAL DISPLACEMENT STRESSES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0143_fig01_combination-thermal-expansion-occasional.png",
+      "png_sha256": "98eb519d083f8b33b91172e806c340d5485a035290b2a9ffa2342862383edafc",
+      "slug": "combination-thermal-expansion-occasional",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 143,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0143.png",
+  "page_image_sha256": "5d188d560677f06f520f702292abf21d23001d9479e1486d6c30e486efd26176",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0143_assets.json"
+}

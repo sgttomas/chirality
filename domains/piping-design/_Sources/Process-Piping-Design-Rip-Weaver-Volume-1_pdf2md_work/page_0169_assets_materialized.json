@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0169.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0169_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2271
+      ],
+      "caption": "Figure 8-11. Level controllers \u2014 flanged connections. Courtesy of Masoneilan.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0169_fig01_level-controllers-flanged-connections.png",
+      "png_sha256": "4b78e0725f9b989cdda866b36f5c36106f741f346e4557505be3aff0dd4952a4",
+      "slug": "level-controllers-flanged-connections",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0169_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.57,
+        0.97,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        1817,
+        2477,
+        2970
+      ],
+      "caption": "Dimensions (Inches) \u2014 Level Controllers 12802W, 12808W, 12807W",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0169_tbl01_level-controllers-dimensions-inches.png",
+      "png_sha256": "f23400fd16cb1fa110f9159a0f9817efd0a92624cd5cc203eac3fb2357c21e3d",
+      "slug": "level-controllers-dimensions-inches",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0169_tbl01_level-controllers-dimensions-inches.json",
+      "table_data_json_sha256": "d6276d648e728374c64f22548e12fdd2eb93e97fbdbddc11d022a0375d911b06",
+      "table_data_sha256": "d6276d648e728374c64f22548e12fdd2eb93e97fbdbddc11d022a0375d911b06",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0169_tbl01_level-controllers-dimensions-inches.xlsx",
+      "xlsx_sha256": "59092b23ffdd579eb1895cc4ac3854f8bf5855f7c3505a330d4c0d8add79e217"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 169,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0169.png",
+  "page_image_sha256": "9ac7fccacddc2b0b0b1ee2ec7f2d7dedbedacd86a3db00e32bd1b6c7cfbc6c4a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0169_assets.json"
+}

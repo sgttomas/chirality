@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0422.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0422_fig01",
+      "bbox_norm": [
+        0.08,
+        0.08,
+        0.92,
+        0.88
+      ],
+      "bbox_px": [
+        76,
+        107,
+        2467,
+        3305
+      ],
+      "caption": "FIG. 12.20 NET SAFETY VALVE FORCE ACTING ON A PIPE LEG \u2014 (a) Actual net force (difference) between points n and n+1; (b) Idealized net force (difference between points n and n+1)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0422_fig01_net-safety-valve-force-pipe-leg.png",
+      "png_sha256": "90f121faa8fb67d2fd213f0ab210d7e2203401ae0c55ae1cea2d3b5457cb0914",
+      "slug": "net-safety-valve-force-pipe-leg",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 422,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0422.png",
+  "page_image_sha256": "e41d33f65fc349473b801ae056f06ba909b7d82e087c3302d63418dc63b06c6c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0422_assets.json"
+}

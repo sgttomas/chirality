@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 274,
+  "page_label": "254",
+  "page_label_source": "vlm",
+  "location": "top-left",
+  "confidence": "high",
+  "rationale": "Arabic numeral 254 printed at top-left alongside chapter header 'Chapter 8'."
+}

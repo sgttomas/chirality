@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 252,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Line drawing of a vertical pipe (large diameter) with a 90-degree elbow at the top, supported laterally by a jointed strut labeled 'Jointed strut A' bracing against a vertical structural member labeled 'Structure'. A note on the drawing reads 'Secondary member which is strong enough but not sufficiently stiff relative to the pipe to take any appreciable proportion of the load.' Bbox includes figure body, all callouts/labels, and the caption beneath."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Showing jointed strut attached to an inadequate structure.",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.52,
+        0.52
+      ]
+    }
+  ]
+}

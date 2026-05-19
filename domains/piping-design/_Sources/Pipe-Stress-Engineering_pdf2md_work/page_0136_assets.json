@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 136,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 4.11 STRESSES AT BRANCH PIPE",
+      "slug": "stresses-at-branch-pipe",
+      "bbox_norm": [0.18, 0.62, 0.82, 0.92],
+      "confidence": "high",
+      "notes": "Diagram showing branch pipe connection with Failure Location A (at header wall) and Failure Location B (at branch pipe wall), with moment vector M indicated. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

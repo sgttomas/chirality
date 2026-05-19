@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0049.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0049_fig01",
+      "bbox_norm": [
+        0.1,
+        0.08,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        99,
+        2422,
+        2538
+      ],
+      "caption": "Fig. 300-21 Heat Exchanger\u2014Reversal of Shell-Side Flow",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0049_fig01_fig-300-21-heat-exchanger-reversal.png",
+      "png_sha256": "2f9e460dddecf071d0604068aaf1a0e3637165336ee62d53137698a0ded1db7c",
+      "slug": "fig-300-21-heat-exchanger-reversal-shell",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 49,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0049.png",
+  "page_image_sha256": "e2fb10c2aba1bed76e32f1778bb7a0e0af8a3ef8a440ebd0dc2a4526a007bb10",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0049_assets.json"
+}

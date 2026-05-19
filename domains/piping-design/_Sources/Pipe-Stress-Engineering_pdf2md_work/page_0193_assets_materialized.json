@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0193.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0193_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1233
+      ],
+      "caption": "FIG. 6.13 EFFECT OF SUPPORT FRICTION ON COMPRESSOR PIPING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0193_fig01_fig-6-13-support-friction-compressor-pip.png",
+      "png_sha256": "ee7b88a74c2a3f10f306660bcaedfddf0b44ce8b494a83f2ebe6d1120a10b819",
+      "slug": "fig-6-13-support-friction-compressor-pip",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0193_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.96,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        810,
+        2502,
+        1797
+      ],
+      "caption": "Piping Loads at Compressor Nozzle 15",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0193_tbl01_piping-loads-compressor-nozzle-15.png",
+      "png_sha256": "c6d7ef92bafd92617f023cd625c284a0cd8bda6544c5cc8bce480f040aed8408",
+      "slug": "piping-loads-compressor-nozzle-15",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0193_tbl01_piping-loads-compressor-nozzle-15.json",
+      "table_data_json_sha256": "2c16bdef477ce413e585182747eaef12b32f839b1173c463b3b83a608a1298a0",
+      "table_data_sha256": "2c16bdef477ce413e585182747eaef12b32f839b1173c463b3b83a608a1298a0",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0193_tbl01_piping-loads-compressor-nozzle-15.xlsx",
+      "xlsx_sha256": "593da5417ba8ffd5551192e32800ac5c3031fbfa9f1942b5f64821333f8c3fad"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0193_fig02",
+      "bbox_norm": [
+        0.04,
+        0.54,
+        0.96,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        1726,
+        2502,
+        2995
+      ],
+      "caption": "FIG. 6.14 EFFECT OF SUPPORT FRICTION ON OFF-SITE PIPING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0193_fig02_fig-6-14-support-friction-off-site-pipin.png",
+      "png_sha256": "66ebce19827ccb66591a786fe722da3777954cfcd115c0ef55f9071d4b26790d",
+      "slug": "fig-6-14-support-friction-off-site-pipin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0193_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.78,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2572,
+        2502,
+        3453
+      ],
+      "caption": "Comparison of Analysis Results",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Pipe-Stress-Engineering_p0193_tbl02_comparison-analysis-results-friction.png",
+      "png_sha256": "b55207f8484b886b82b96a46813d9ce1899bd44d815d9b72d5f1755145eb6b13",
+      "slug": "comparison-analysis-results-friction",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0193_tbl02_comparison-analysis-results-friction.json",
+      "table_data_json_sha256": "bbf7f5b5fd48bca44f62fd88fe8978d4ece308570e9f6c2d03c1aa8ae169945f",
+      "table_data_sha256": "bbf7f5b5fd48bca44f62fd88fe8978d4ece308570e9f6c2d03c1aa8ae169945f",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0193_tbl02_comparison-analysis-results-friction.xlsx",
+      "xlsx_sha256": "ba98a98d582828fc8b76064e87ec28b0dd43baaa096b43992571530c548513b1"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 193,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0193.png",
+  "page_image_sha256": "16b17cc80a63b4f47aa534c86a22a37357b2bbcd8ee518f7073e91dd044d750f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0193_assets.json"
+}

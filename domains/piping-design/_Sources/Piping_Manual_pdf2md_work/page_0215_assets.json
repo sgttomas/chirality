@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 215,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p215_fig_01",
+      "caption": "EXHIBIT 8-29 Side-Suction Nozzles on a Centrifugal Pump",
+      "bbox_norm": [0.03, 0.27, 0.82, 0.86]
+    }
+  ],
+  "issues": []
+}

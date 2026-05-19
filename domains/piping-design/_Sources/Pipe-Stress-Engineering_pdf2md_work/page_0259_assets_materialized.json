@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0259.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0259_fig01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1930,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 7.23 HOSE LENGTH REQUIRED FOR OFFSET",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0259_fig01_hose-length-required-for-offset.png",
+      "png_sha256": "11ffb3e20d56287dd865e80c79b24566ee42749be2b8848690a7c753d6fade34",
+      "slug": "hose-length-required-for-offset",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 259,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0259.png",
+  "page_image_sha256": "32baa42613668b1e1f9a33eb090f2bec17572c3f3752b1248d9337e767a43158",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0259_assets.json"
+}

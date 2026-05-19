@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.51,
+        0.97,
+        0.96
+      ],
+      "caption": "Sample Calculation 5.13 \u2014 tabulated coefficients (Mxa, Mxb, \u03a3Mx, Mya, Myb, \u03a3My, Mza, Mzb, \u03a3Mz, Fxa, Fxb, \u03a3Fx, Fya, Fyb, \u03a3Fy, Fza, Fzb, \u03a3Fz across columns 1000 Bx, 1000 By, 1000 Bz, 1000 Sx, 1000 Sy, 1000 Sz, CONSTANTS); Form J \u2014 Calc. No. 5.13, The M. W. Kellogg Co., Piping Flexibility and Stress Analysis",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 166,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

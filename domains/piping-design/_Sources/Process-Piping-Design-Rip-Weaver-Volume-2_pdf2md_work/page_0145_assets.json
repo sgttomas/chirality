@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 145,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-14. Forced draft air cooler model. Courtesy of Hudson Products Corp.",
+      "slug": "forced-draft-air-cooler-model",
+      "bbox_norm": [0.03, 0.03, 0.52, 0.38],
+      "confidence": "high",
+      "notes": "Figure in upper-left portion of page showing a 3D model of a forced draft air cooler with caption below"
+    }
+  ],
+  "issues": []
+}

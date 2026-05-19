@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0068.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0068_fig01",
+      "bbox_norm": [
+        0.06,
+        0.27,
+        0.96,
+        0.86
+      ],
+      "bbox_px": [
+        26,
+        729,
+        2569,
+        3016
+      ],
+      "caption": "EXHIBIT 3-30  Initial Arrangement Sketch",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0068_fig01_exhibit-3-30-initial-arrangement-sketch.png",
+      "png_sha256": "1ce5d7caf8f0d6ebc410908fbdcba0cb838c133d0af28881207de32aeb4ed389",
+      "slug": "exhibit-3-30-initial-arrangement-sketch",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 68,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0068.png",
+  "page_image_sha256": "966a347250bb080b59ef161e171c7ff98ee659d79720fd2f64863d1a411597f6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0068_assets.json"
+}

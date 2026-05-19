@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0025.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0025_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.5,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1125,
+        1067
+      ],
+      "caption": "Fig. 1.23 Dependence of fatigue strength on steady stress in patented (0.62% C) steel wire.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0025_fig01_fig-1-23-dependence-of-fatigue-strength.png",
+      "png_sha256": "56430c54027fb884620b83b6c99854fbda93f796718ace2de2c57569222f0c01",
+      "slug": "fig-1-23-dependence-of-fatigue-strength",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0025_fig02",
+      "bbox_norm": [
+        0.02,
+        0.62,
+        0.5,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1560,
+        1125,
+        2736
+      ],
+      "caption": "Fig. 1.24 Comparison of fatigue strengths of plain and threaded bars of 0.1% C steels.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0025_fig02_fig-1-24-comparison-of-fatigue-strengths.png",
+      "png_sha256": "b157ce57fc8fabdfef02fcb3b73adc6558643db85f74e159735b8b08a953e775",
+      "slug": "fig-1-24-comparison-of-fatigue-strengths",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0025_fig03",
+      "bbox_norm": [
+        0.5,
+        0.62,
+        0.99,
+        0.97
+      ],
+      "bbox_px": [
+        921,
+        1560,
+        2046,
+        2736
+      ],
+      "caption": "Fig. 1.25 The influence of steady (mean) stress upon the fatigue limit.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0025_fig03_fig-1-25-the-influence-of-steady-mean-st.png",
+      "png_sha256": "eb0a35a7324966c0a9a2f5abf1228d7990e79f1bdff8199234f5fe326ef42c93",
+      "slug": "fig-1-25-the-influence-of-steady-mean-st",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 25,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0025.png",
+  "page_image_sha256": "4e88acb9818972bad5ab7bd0532d8e188b06aa410b3945d546a68dd1a829348a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0025_assets.json"
+}

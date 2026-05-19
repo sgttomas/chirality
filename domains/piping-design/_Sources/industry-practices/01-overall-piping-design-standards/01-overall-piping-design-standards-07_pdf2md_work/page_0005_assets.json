@@ -1,0 +1,245 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 5,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Refining Engineering Practices (Cont.)",
+      "slug": "refining-engineering-practices-cont",
+      "bbox_norm": [0.03, 0.15, 0.97, 0.95],
+      "confidence": "high",
+      "notes": "Two-column table listing REP document numbers and titles",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Document Number", "is_header": true },
+              { "value": "Title", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–15", "type": "text" },
+              { "value": "Rupture Disk Devices", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–16", "type": "text" },
+              { "value": "Three-Way Valves for Tandem PRV Installations (Future Release)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–18", "type": "text" },
+              { "value": "Flue Gas Block and Bypass Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–19", "type": "text" },
+              { "value": "FCCU Slide Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–20", "type": "text" },
+              { "value": "Double-Flanged High-Performance Rotary Valves for Hydrocarbon Service", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–21", "type": "text" },
+              { "value": "Supplemental Requirements for Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–23", "type": "text" },
+              { "value": "Valve Packing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–24", "type": "text" },
+              { "value": "Valve Inspection and Testing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–1", "type": "text" },
+              { "value": "Metal Expansion Joints", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–2", "type": "text" },
+              { "value": "Fabric Expansion Joints", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–3", "type": "text" },
+              { "value": "Supplemental Requirements for Expansion Joints", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–4", "type": "text" },
+              { "value": "Flexible Metal Hoses", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–5", "type": "text" },
+              { "value": "Strainers for Rotating and Other Rotating Equipment", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–1", "type": "text" },
+              { "value": "Piping Fabrication", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–2", "type": "text" },
+              { "value": "Welding Requirements for Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–3", "type": "text" },
+              { "value": "Piping Erection and Testing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–5", "type": "text" },
+              { "value": "Supplemental Fabrication Requirements for Jacketed Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–6", "type": "text" },
+              { "value": "Supplemental Requirements for Fabricated Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–7", "type": "text" },
+              { "value": "Supplemental Requirements for Pneumatic Testing of New Piping Systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–8", "type": "text" },
+              { "value": "Supplemental Requirements for ASME Code Section 1 Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–1", "type": "text" },
+              { "value": "Piping for Atmospheric and Low-Pressure Storage Tanks", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–2", "type": "text" },
+              { "value": "Piping for Rotating Equipment", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–3", "type": "text" },
+              { "value": "Piping for Fired Heaters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–4", "type": "text" },
+              { "value": "Piping for Pressure Relief Systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–5", "type": "text" },
+              { "value": "Piping for Instruments", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–6", "type": "text" },
+              { "value": "Steam Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–7", "type": "text" },
+              { "value": "Steam Traps", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–8", "type": "text" },
+              { "value": "Steam Tracing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–7–1", "type": "text" },
+              { "value": "In-Service Welds, Hot Taps and Line Stops", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–7–2", "type": "text" },
+              { "value": "Tie-Ins", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–8–1", "type": "text" },
+              { "value": "Piping and Design of Manual Sampling Systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–9–1", "type": "text" },
+              { "value": "Design and Installation of Non-Metallic Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–9–2", "type": "text" },
+              { "value": "Plastic-Lined Metallic Pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–9–3", "type": "text" },
+              { "value": "Cement-Lined Metallic Pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–10–1", "type": "text" },
+              { "value": "Supplemental Requirements for Piping in HF Service", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 331,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 9.16 EFFECTS OF RADIAL EXPANSION AND FRICTION",
+      "slug": "effects-radial-expansion-friction",
+      "bbox_norm": [0.08, 0.04, 0.92, 0.47],
+      "confidence": "high",
+      "notes": "Graph of Bending Moment (1000 lb-ft) vs Pipe Sizes (inches) with three curves: Effect of Radial Expansion at 400°F, API Std-617 Compressor Allowable Nozzle Load, and Effect of Support Friction with mu=0.1. Includes inset schematic of 20-foot pipe span with moment applied."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 9.17 RESTRAINT TO STIFF STRUCTURE",
+      "slug": "restraint-stiff-structure",
+      "bbox_norm": [0.08, 0.51, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Two engineering schematics (PLAN and SECTION views) showing pipe restraint to a stiff structure. Nodes 10, 15, and 20 labeled; x, y, z axes shown."
+    }
+  ],
+  "issues": []
+}

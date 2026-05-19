@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 274,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 8.7 ASME B16.5 CLASS 1500 FLANGES",
+      "slug": "asme-b16-5-class-1500-flanges",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Stress vs. Pipe Sizes chart showing allowable stresses for ASME B16.5 Class 1500 flanges including M.W. Kellogg suggested allowable, Class 2 Nuclear Piping allowable, and Flange Stress due to Rated Pressure lines. Caption appears below the chart."
+    }
+  ],
+  "issues": []
+}

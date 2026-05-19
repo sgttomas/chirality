@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 232,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p232_fig_01",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.44],
+      "caption": "EXHIBIT 9-21 Multiple-Reactor Arrangement"
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p232_fig_02",
+      "bbox_norm": [0.03, 0.45, 0.97, 0.88],
+      "caption": "EXHIBIT 9-22 Single-Reactor Piping Arrangement"
+    }
+  ],
+  "issues": []
+}

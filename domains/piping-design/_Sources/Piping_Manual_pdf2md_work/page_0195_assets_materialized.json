@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0195.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0195_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.96,
+        0.74
+      ],
+      "bbox_px": [
+        25,
+        429,
+        2550,
+        2606
+      ],
+      "caption": "EXHIBIT 7-49 Transfer Line Exchanger Piping",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0195_fig01_exhibit-7-49-transfer-line-exchanger-pip.png",
+      "png_sha256": "44b32162fdb09602c562ce85b1963d064ce04aa704dbdb5fe10d7bba7ca5c679",
+      "slug": "exhibit-7-49-transfer-line-exchanger-pip",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 195,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0195.png",
+  "page_image_sha256": "476e43fd923986d235a1dfc27ebbef9de8620bee92114e35e31c475200dd26b4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0195_assets.json"
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 29,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-12. Outline dimensions of inline pump. Type INI Courtesy of Byron Jackson Pump Divison.",
+      "slug": "inline-pump-outline-dimensions-type-ini",
+      "bbox_norm": [0.02, 0.03, 0.98, 0.97],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing top (plan) and side (elevation) views of Byron Jackson Type INI inline pump with labeled dimensions and embedded dimension table in lower-right quadrant. Caption visible at bottom of page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pump size and dimensions table (inline pump Type INI)",
+      "slug": "inline-pump-type-ini-dimensions",
+      "bbox_norm": [0.50, 0.65, 0.98, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PUMP SIZE", "is_header": true },
+              { "value": "WEIGHT", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "2⅝\" SHAFT EXTEN D", "is_header": true },
+              { "value": "4½\" SHAFT EXTEN D", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1 x 1½ x 7½", "type": "text" },
+              { "value": 150, "type": "number" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "3¾", "type": "fraction", "raw": "3¾" },
+              { "value": "8¾", "type": "fraction", "raw": "8¾" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2 x 3 x 7½", "type": "text" },
+              { "value": 200, "type": "number" },
+              { "value": "9", "type": "fraction", "raw": "9" },
+              { "value": "9", "type": "fraction", "raw": "9" },
+              { "value": "4¼", "type": "fraction", "raw": "4¼" },
+              { "value": "8¾", "type": "fraction", "raw": "8¾" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½ x 2 x 8½", "type": "text" },
+              { "value": 250, "type": "number" },
+              { "value": "9", "type": "fraction", "raw": "9" },
+              { "value": "8½", "type": "fraction", "raw": "8½" },
+              { "value": "3¾", "type": "fraction", "raw": "3¾" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 4 x 8½", "type": "text" },
+              { "value": 275, "type": "number" },
+              { "value": "9", "type": "fraction", "raw": "9" },
+              { "value": "8½", "type": "fraction", "raw": "8½" },
+              { "value": "3¾", "type": "fraction", "raw": "3¾" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 4 x 8½", "type": "text" },
+              { "value": 300, "type": "number" },
+              { "value": "10½", "type": "fraction", "raw": "10½" },
+              { "value": "10", "type": "fraction", "raw": "10" },
+              { "value": "5¼", "type": "fraction", "raw": "5¼" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4 – 6 x 8½", "type": "text" },
+              { "value": 425, "type": "number" },
+              { "value": "13", "type": "fraction", "raw": "13" },
+              { "value": "11½", "type": "fraction", "raw": "11½" },
+              { "value": "6¼", "type": "fraction", "raw": "6¼" },
+              { "value": "7½", "type": "fraction", "raw": "7½" },
+              { "value": "9¾", "type": "fraction", "raw": "9¾" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½ x 2 x 10½", "type": "text" },
+              { "value": 325, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "9½", "type": "fraction", "raw": "9½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2 x 3 x 10½", "type": "text" },
+              { "value": 325, "type": "number" },
+              { "value": "10", "type": "fraction", "raw": "10" },
+              { "value": "10", "type": "fraction", "raw": "10" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "2½", "type": "fraction", "raw": "2½" },
+              { "value": "9¼", "type": "fraction", "raw": "9¼" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 4 10½", "type": "text" },
+              { "value": 375, "type": "number" },
+              { "value": "12", "type": "fraction", "raw": "12" },
+              { "value": "11½", "type": "fraction", "raw": "11½" },
+              { "value": "5½", "type": "fraction", "raw": "5½" },
+              { "value": "7¾", "type": "fraction", "raw": "7¾" },
+              { "value": "9¾", "type": "fraction", "raw": "9¾" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Table embedded within the engineering drawing in the lower-right quadrant. Column headers span two visual rows (PUMP SIZE, WEIGHT, A, B, C, then shaft extension columns). Some cells are dashes (missing values). Fractional values cross-checked against page Markdown."
+    }
+  ],
+  "issues": []
+}

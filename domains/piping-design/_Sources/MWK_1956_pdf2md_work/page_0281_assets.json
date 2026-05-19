@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 281,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Cutaway line drawing of a cylindrical pulsation dampener (snubbing device) showing inlet tube, perforated internal tubes, and outer shell. Located upper-right of page; bbox includes figure illustration, caption, and surrounding whitespace buffer."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Typical snubbing device.",
+      "bbox_norm": [
+        0.55,
+        0.05,
+        0.98,
+        0.23
+      ]
+    }
+  ]
+}

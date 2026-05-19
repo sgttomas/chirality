@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0038_fig01",
+      "bbox_norm": [
+        0.52,
+        0.02,
+        0.99,
+        0.36
+      ],
+      "bbox_px": [
+        1052,
+        0,
+        2238,
+        1432
+      ],
+      "caption": "Fig. 2.3 Comparison of extrapolated and actual creep-fracture curves for a typical material at constant temperature.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0038_fig01_fig-2-3-comparison-of-extrapolated-and-a.png",
+      "png_sha256": "4039072b2f9badbd12a3e47b8bc947f80ae23fe2c34998f6bfc65be3a9851718",
+      "slug": "fig-2-3-comparison-of-extrapolated-and-a",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0038.png",
+  "page_image_sha256": "41c2136e0cfc810121b40e8d3fcb63398a53830a1c8dc2d68851c22a36ffac62",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0038_assets.json"
+}

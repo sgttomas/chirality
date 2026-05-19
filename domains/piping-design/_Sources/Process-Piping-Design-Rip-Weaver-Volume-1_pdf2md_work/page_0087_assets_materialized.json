@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0087.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0087_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1151
+      ],
+      "caption": "Figure 5-3. Dimensions of service cast iron soil pipe and fittings. Courtesy of Cast Iron Soil Pipe Institute.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0087_fig01_fig-5-3-cast-iron-soil-pipe-dimensions.png",
+      "png_sha256": "cc6c861222324501f5125e1ad35079527461c22736b55b106c592be9eb0ad6ea",
+      "slug": "fig-5-3-cast-iron-soil-pipe-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0087_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        802,
+        2477,
+        3488
+      ],
+      "caption": "Table 5-2 Dimensions of Hubs, Spigots, and Barrels for Service Cast Iron Soil Pipe and Fittings",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0087_tbl01_tbl-5-2-cast-iron-soil-pipe-hub-spigot-b.png",
+      "png_sha256": "334ccb6609d0d7db17bb70bada4b1bf9979219fcc44d956af5de48b5d1cacca0",
+      "slug": "tbl-5-2-cast-iron-soil-pipe-hub-spigot-b",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0087_tbl01_tbl-5-2-cast-iron-soil-pipe-hub-spigot-b.json",
+      "table_data_json_sha256": "9e6db41fadf1e7defee073614647e90276def2c3defa5ad7ffd3814edd6cf062",
+      "table_data_sha256": "9e6db41fadf1e7defee073614647e90276def2c3defa5ad7ffd3814edd6cf062",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0087_tbl01_tbl-5-2-cast-iron-soil-pipe-hub-spigot-b.xlsx",
+      "xlsx_sha256": "f65f4e0907b5bef7c843d225c5c09f59b4eaebd1646987219859ee2b51fe1f76"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 87,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0087.png",
+  "page_image_sha256": "74c7eeea5639eadb849e6cd3bd3c675e19434916c0145a0364e2f9ca16fb9833",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0087_assets.json"
+}

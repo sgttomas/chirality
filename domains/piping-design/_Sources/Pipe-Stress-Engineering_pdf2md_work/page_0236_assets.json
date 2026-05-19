@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 236,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 7.4 BELLOW ELEMENT",
+      "slug": "bellow-element-fig-7-4",
+      "bbox_norm": [0.08, 0.04, 0.92, 0.45],
+      "confidence": "high",
+      "notes": "Three sub-diagrams (a), (b), (c) showing bellow end point geometry, rotational deformation, and lateral displacement deformation patterns. Caption 'FIG. 7.4 BELLOW ELEMENT' appears below sub-diagram (c)."
+    }
+  ],
+  "issues": []
+}

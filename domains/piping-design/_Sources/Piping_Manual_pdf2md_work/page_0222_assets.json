@@ -1,0 +1,26 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 222,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 9-1 Desulfurizer Process",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.40]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 9-2 Hydrotreater Process",
+      "bbox_norm": [0.04, 0.40, 0.50, 0.66]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 9-3 Typical Reactor",
+      "bbox_norm": [0.50, 0.40, 0.97, 0.66]
+    }
+  ],
+  "issues": []
+}

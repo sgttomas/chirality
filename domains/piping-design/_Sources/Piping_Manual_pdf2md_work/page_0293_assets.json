@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 293,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.08, 0.30, 0.95, 0.92],
+      "caption": "EXHIBIT 11-18 Flexibility Check Steps. Composite hand-drawn exhibit with four labeled steps for an expansion-loop flexibility check: STEP I establish potential flexibility problems (plan view of pipe rack with three parallel pipes 10\"-CS @ 450 deg, 8\"-CS @ 390 deg, 6\"-CS @ 350 deg and line branches dropping off); MULTIPLY COEFFICIENT OF EXPANSION x LENGTH OF LINE / STEP II determine line growth for three lines; STEP III determine whether one anchor point will suffice (single line in plan with branch take-offs and an X mark noting 'TRY ANCHOR IN CENTER OF LINE'); STEP IV arrange lines in proper sequence (plan view of three parallel pipes with U-shaped expansion loop centered, anchors at quarter points labeled '1/4 DISTANCE' on each side, with 6\", 8\", 10\" line callouts and note 'LOCATE THE LINE REQUIRING THE LARGEST LOOP ON THE OUTSIDE')."
+    }
+  ],
+  "issues": []
+}

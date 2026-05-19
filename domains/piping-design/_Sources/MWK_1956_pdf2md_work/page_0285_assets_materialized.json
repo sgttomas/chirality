@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0285.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0285_fig01",
+      "bbox_norm": [
+        0.04,
+        0.16,
+        0.49,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        303,
+        1095,
+        1129
+      ],
+      "caption": "Forces at pipe bend.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0285_fig01_forces-at-pipe-bend.png",
+      "png_sha256": "1237308bd9ca4724f0846f0191fd548f78bd0d925e35fbf4bcf95ae92b602b65",
+      "slug": "forces-at-pipe-bend",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0285_fig02",
+      "bbox_norm": [
+        0.5,
+        0.03,
+        0.99,
+        0.27
+      ],
+      "bbox_px": [
+        913,
+        0,
+        2028,
+        881
+      ],
+      "caption": "Sample compressor piping configuration.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0285_fig02_sample-compressor-piping-configuration.png",
+      "png_sha256": "5cfda74c109ca5efdcc8a5a6f4bb36979aecfa204961ad8602952ef41dbf534a",
+      "slug": "sample-compressor-piping-configuration",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 285,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0285.png",
+  "page_image_sha256": "c6c1db785b198211489afefae8a1abd564331a7fd7f27dab55a2e861b2b3b63c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0285_assets.json"
+}

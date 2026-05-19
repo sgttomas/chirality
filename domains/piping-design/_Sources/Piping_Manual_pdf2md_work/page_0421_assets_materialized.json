@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0421.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0421_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.26,
+        0.96,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        694,
+        2556,
+        1982
+      ],
+      "caption": "EXHIBIT 16-9 Allowable Spans for Branch Lines",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0421_tbl01_exhibit-16-9-allowable-spans-for-branch.png",
+      "png_sha256": "c6dc27cd0223fbc308983ee2b0de60c2dfe35ed20a5c0496b5c06dd0314425d1",
+      "slug": "exhibit-16-9-allowable-spans-for-branch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0421_fig01",
+      "bbox_norm": [
+        0.54,
+        0.54,
+        0.98,
+        0.84
+      ],
+      "bbox_px": [
+        1252,
+        1619,
+        2556,
+        2941
+      ],
+      "caption": "EXHIBIT 16-10 Unsupported Overhang",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0421_fig01_exhibit-16-10-unsupported-overhang.png",
+      "png_sha256": "3c1f3f1b2ae10cab04abeb4fdc1b34fca4f6b22ee6809af04a781f200e82b435",
+      "slug": "exhibit-16-10-unsupported-overhang",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 421,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0421.png",
+  "page_image_sha256": "b02afe5b568a5e0159d2e23ac0c59a8743090b9d2c3083b302d26042dd38dd78",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0421_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0408.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0408_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.6,
+        0.94,
+        0.97
+      ],
+      "bbox_px": [
+        25,
+        1952,
+        2511,
+        3549
+      ],
+      "caption": "Table 12.1 Damping in Piping (as Percent of Critical Damping)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0408_tbl01_damping-in-piping-percent-critical-dampi.csv",
+      "csv_sha256": "c399b02ecd76e0c83b963e618e721cd4b1683e30d15fd06c6cbaca79b4fb8a88",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0408_tbl01_damping-in-piping-percent-critical-dampi.png",
+      "png_sha256": "9ea8cfcad6ee188ffc8ddddf83873e5dc7a3c6d23781877ebb6fb164c8112b98",
+      "slug": "damping-in-piping-percent-critical-dampi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 408,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0408.png",
+  "page_image_sha256": "9269e71d229967e7655dcebe81469eb8e3eee6f3b36a01c357743e01fbe70288",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0408_assets.json"
+}

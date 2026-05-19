@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0397.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0397_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1155
+      ],
+      "caption": "EXHIBIT 15-29 Ring Wall",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0397_fig01_exhibit-15-29-ring-wall.png",
+      "png_sha256": "5c5c58ea56bb3bc6fcfe8ed0bb4d53150666e3c7c06ff2bd1d35d30484ae96ba",
+      "slug": "exhibit-15-29-ring-wall",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0397_fig02",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 15-30 Compacted Fill Tank Pad",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0397_fig02_exhibit-15-30-compacted-fill-tank-pad.png",
+      "png_sha256": "5534948e6387cd0a61e8e8a59be67ed25ec8403396ebbab3330aa5454c452cfd",
+      "slug": "exhibit-15-30-compacted-fill-tank-pad",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0397_fig03",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        2550,
+        2804
+      ],
+      "caption": "EXHIBIT 15-31 Low-Temperature Tank Foundation with Elevated Concrete Base",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0397_fig03_exhibit-15-31-low-temperature-tank-found.png",
+      "png_sha256": "b4aa67e5aae1ae5f53fdde3cc7a00215677d20d07f7bf42dbc6e3159b41fc0b2",
+      "slug": "exhibit-15-31-low-temperature-tank-found",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 397,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0397.png",
+  "page_image_sha256": "a74d632ee54703c856ba07fb160833ad58c77e4f3036bb099bc6c7fa0fa8c0e0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0397_assets.json"
+}

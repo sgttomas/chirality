@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0059.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0059_fig01",
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1511,
+        2488,
+        3513
+      ],
+      "caption": "FIG. 2.5 FREE-BODY DIAGRAM",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0059_fig01_free-body-diagram-fig-2-5.png",
+      "png_sha256": "9b630c9934b4adac6884722386688418e8959a0ab6607d1c0510ae4ed9efffef",
+      "slug": "free-body-diagram-fig-2-5",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 59,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0059.png",
+  "page_image_sha256": "3430f6bbc22d211ea398295a56bf80ed0142ce8ed9b9d01592239d4a779f3c98",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0059_assets.json"
+}

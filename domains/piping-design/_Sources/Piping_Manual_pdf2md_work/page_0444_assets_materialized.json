@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0444.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0444_fig01",
+      "bbox_norm": [
+        0.09,
+        0.16,
+        0.95,
+        0.73
+      ],
+      "bbox_px": [
+        102,
+        363,
+        2550,
+        2573
+      ],
+      "caption": "EXHIBIT 17-9 Partial Conceptual Plot Plan (Extracted from Plot Model)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0444_fig01_exhibit-17-9-partial-conceptual-plot-pla.png",
+      "png_sha256": "aa6b9d06e4d005729e58a607a351d23bcb9c7754019e18c175c7736699508320",
+      "slug": "exhibit-17-9-partial-conceptual-plot-pla",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 444,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0444.png",
+  "page_image_sha256": "1cc8a278ee1a371bad926a9fcadef7516bef853d4b706a5a938f14c909fb33da",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0444_assets.json"
+}

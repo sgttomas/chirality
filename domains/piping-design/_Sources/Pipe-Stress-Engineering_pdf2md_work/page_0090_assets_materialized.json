@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0090.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0090_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.75,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2013,
+        1237
+      ],
+      "caption": "FIG. 3.6 EQUIVALENT ELBOWS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0090_fig01_equivalent-elbows.png",
+      "png_sha256": "5dc2a4a60189a6a39087dd75e8e686d0651d78d570d8a6d7c0c889644a01b352",
+      "slug": "equivalent-elbows",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 90,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0090.png",
+  "page_image_sha256": "a7543be763426eaf910846ba3c499e4cb08c458f7a1841e8bb14d04181b3b8b5",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0090_assets.json"
+}

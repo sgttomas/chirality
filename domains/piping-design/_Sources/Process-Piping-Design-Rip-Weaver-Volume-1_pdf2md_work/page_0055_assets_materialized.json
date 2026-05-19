@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0055.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1499
+      ],
+      "caption": "Table 3-3 Tank Liquids Classification",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl01_tank-liquids-classification.png",
+      "png_sha256": "56d04985976b83fa007138a1419733b1781e5209b6434ff453ab0ca076ebbced",
+      "slug": "tank-liquids-classification",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl01_tank-liquids-classification.json",
+      "table_data_json_sha256": "74b4d23a307b9cb27b53d85fafca016387babcf5a29073a5b69af30bc18c319e",
+      "table_data_sha256": "74b4d23a307b9cb27b53d85fafca016387babcf5a29073a5b69af30bc18c319e",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl01_tank-liquids-classification.xlsx",
+      "xlsx_sha256": "dc9d54ae152e482859d403ca911a9587b4d6a1c7370f18d943cf77a64840451a"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.96,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        1220,
+        2477,
+        2440
+      ],
+      "caption": "Table 3-4 Restrictions for Conditions of Storage",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl02_restrictions-conditions-of-storage.png",
+      "png_sha256": "230a209555580f945504109633ff3e29848e020ddc174dd393e62b85a1253f1c",
+      "slug": "restrictions-conditions-of-storage",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl02_restrictions-conditions-of-storage.json",
+      "table_data_json_sha256": "0acf4fc7b6b1680c5375d7f04dcae9376342a8087221117ff0ae1d5f7a711a65",
+      "table_data_sha256": "0acf4fc7b6b1680c5375d7f04dcae9376342a8087221117ff0ae1d5f7a711a65",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0055_tbl02_restrictions-conditions-of-storage.xlsx",
+      "xlsx_sha256": "938fe638479537e99e2fbd2f6222d10c403a43e87b5655df1ddb3fe35b4a3d2d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 55,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0055.png",
+  "page_image_sha256": "6a9009f427d7a3714895f30f2d9729c72fa0472fd9b8304301d704117168e87b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0055_assets.json"
+}

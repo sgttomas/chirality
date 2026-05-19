@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0115.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0115_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3334
+      ],
+      "caption": "Table 8.5 DN 500 to DN 750",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0115_tbl01_table-8-5-dn-500-to-dn-750.png",
+      "png_sha256": "3de00fb6e476c86d68978042e552a5e5f253dc2d7cedf812018857d40f2c2616",
+      "slug": "table-8-5-dn-500-to-dn-750",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 115,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0115.png",
+  "page_image_sha256": "604242dc1d1954f21b2621b27da6a122deee0a561f86b43dfba6c46c778a4ef6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0115_assets.json"
+}

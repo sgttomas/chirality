@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 351,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-11. Required Height - Symmetrical Expansion Loop. Chart plotting (L^2 S_A)/(10^7 D Delta) versus K_2 with curves for various K_1 values; includes inset diagram of the symmetrical expansion loop geometry with guides.",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.95
+      ]
+    }
+  ]
+}

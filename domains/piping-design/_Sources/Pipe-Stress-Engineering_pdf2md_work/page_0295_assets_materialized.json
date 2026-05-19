@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0295.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0295_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        2287
+      ],
+      "caption": "FIG. 8.23 TANK NOZZLE STIFFNESS COEFFICIENTS WITH REINFORCING ON NOZZLE ONLY [32, 34]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0295_fig01_tank-nozzle-stiffness-coefficients-reinf.png",
+      "png_sha256": "fa6dd327e10d138730184f3027d781fd75b968df42c08acadab7f575fefc64b0",
+      "slug": "tank-nozzle-stiffness-coefficients-reinf",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 295,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0295.png",
+  "page_image_sha256": "d390ca56e8a5582bbc78022d58acd64cb47ba0ea4ccf54b5b163bc6971cdbcf1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0295_assets.json"
+}

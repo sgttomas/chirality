@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 27,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-12. Cast steel wedge gate valves—150 to 300 pound. Reported courtesy of Crane Co.",
+      "slug": "cast-steel-wedge-gate-valves-150-300-pound",
+      "bbox_norm": [0.03, 0.52, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Multi-panel diagram showing Flex Gate and Solid Disc valve cross-sections with component callouts and captions. Caption visible at bottom of figure."
+    }
+  ],
+  "issues": []
+}

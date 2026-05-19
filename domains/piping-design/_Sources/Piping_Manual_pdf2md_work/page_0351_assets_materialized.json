@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0351.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0351_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1650
+      ],
+      "caption": "EXHIBIT 13-30 Monitor Range Chart - Effective Fire Monitor Range; trajectory curves for various nozzle elevation angles, vertical distance (0-100 ft) vs horizontal distance (0-180 ft).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0351_fig01_exhibit-13-30-monitor-range-chart-effect.png",
+      "png_sha256": "f0f86cfefbbbe4a4914f224de7b593bf8173b84f446fdec4a4732df896ed0f2f",
+      "slug": "exhibit-13-30-monitor-range-chart-effect",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0351_fig02",
+      "bbox_norm": [
+        0.04,
+        0.46,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1353,
+        2550,
+        3299
+      ],
+      "caption": "EXHIBIT 13-31 Typical Grade-Mounted Fire Monitor - sketch with nozzle, handle, vendor contractor body, drain valve, block valve, pipe risers, underground piping, concrete supports/foundations, and alternative support.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0351_fig02_exhibit-13-31-typical-grade-mounted-fire.png",
+      "png_sha256": "9bf06949391b4d616ead37e0a091d134bfb6104a03efcc89a232925f52f2824e",
+      "slug": "exhibit-13-31-typical-grade-mounted-fire",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 351,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0351.png",
+  "page_image_sha256": "1306afd35d0598911dc500c24a2d5908980ce19041aa5920de331c5969d137b9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0351_assets.json"
+}

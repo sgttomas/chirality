@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 3,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.1 Yield stress-strain curve of copper in compression. After Cook and Larke [1].",
+      "bbox_norm": [
+        0.07,
+        0.04,
+        0.5,
+        0.2
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.2 Stress-strain curve of the \"ideally plastic\" material.",
+      "bbox_norm": [
+        0.5,
+        0.04,
+        0.95,
+        0.2
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.3 Yield stress-strain curve of an annealed low-carbon steel.",
+      "bbox_norm": [
+        0.52,
+        0.74,
+        0.95,
+        0.93
+      ]
+    }
+  ]
+}

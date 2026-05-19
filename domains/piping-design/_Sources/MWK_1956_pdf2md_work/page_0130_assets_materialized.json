@@ -1,0 +1,115 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0130.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0130_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.96,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2412,
+        1676
+      ],
+      "caption": "M252 Flexibility and Stress Analysis - Original Data and Results - Cold Condition. Composite worksheet by The M.W. Kellogg Co. covering Members (OF-A: D=10.75, t=.365, I=24.96, q=1.75, a=9.00, E_c x 10^-6=27.90, E_h x 10^-6=24.00, alpha_h*L*Delta=.14340, Material A 106 GR.A, Temp 750F), Branch deflections (delta_x=+10.00, delta_y=+10.00), Cold Spring (Delta_x=-10.00, Delta_z=-.09950), and Moments (ft-lb) and Forces (lb) - Actions on Restraints under Cold Condition / Hot Condition. Includes embedded X-PLANE schematic with C_x=-19.96 and member dimensions 12.00, 9.00, 24.00, 14.00.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0130_tbl01_m252-flexibility-and-stress-analysis-ori.png",
+      "png_sha256": "4cb15096694cc36f1ffefb8b614d1679639c79929f08e02569f78d19f87ed1ea",
+      "slug": "m252-flexibility-and-stress-analysis-ori",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0130_fig01",
+      "bbox_norm": [
+        0.6,
+        0.06,
+        0.96,
+        0.27
+      ],
+      "bbox_px": [
+        1327,
+        35,
+        2412,
+        1117
+      ],
+      "caption": "M252 Flexibility and Stress Analysis schematic - X-PLANE configuration showing piping member geometry with C_x = -19.96 and labeled dimensions 12.00, 9.00, 24.00, 14.00. Embedded within the upper Original Data and Results worksheet (The M.W. Kellogg Co.).",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0130_fig01_m252-flexibility-and-stress-analysis-sch.png",
+      "png_sha256": "7cbc543db96b778256051f6e867730ea3a39053ac81cac8323b04dd36e19875e",
+      "slug": "m252-flexibility-and-stress-analysis-sch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0130_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.44,
+        0.96,
+        0.69
+      ],
+      "bbox_px": [
+        0,
+        1362,
+        2412,
+        2584
+      ],
+      "caption": "M252 Flexibility and Stress Analysis - Coordinates and Members data block (second analysis block). Tabular worksheet with columns for Trigonometric Constants (alpha, beta, gamma), Member No. & Shape, and Coordinates (The M.W. Kellogg Co.).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0130_tbl02_m252-flexibility-and-stress-analysis-coo.png",
+      "png_sha256": "64b59c174d1f0334f45391ad0387d6a4a4fb94995df08463f579522deb7782c7",
+      "slug": "m252-flexibility-and-stress-analysis-coo",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0130_tbl03",
+      "bbox_norm": [
+        0.05,
+        0.7,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        2270,
+        2412,
+        3492
+      ],
+      "caption": "M252 Flexibility and Stress Analysis - Coordinates and Members data block (third analysis block). Tabular worksheet with columns for Trigonometric Constants (alpha, beta, gamma), Member No. & Shape, and Coordinates (The M.W. Kellogg Co.).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 3,
+      "png_path": "tables/MWK_1956_p0130_tbl03_m252-flexibility-and-stress-analysis-coo.png",
+      "png_sha256": "894ec3a3a40738429f22ab7d26e090f286bdab96bff16e3100e8d0450bc8ad3c",
+      "slug": "m252-flexibility-and-stress-analysis-coo",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 130,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0130.png",
+  "page_image_sha256": "9948126db01dbab02da4e6b0613a9bb6346c34b1eab71c46ddb26d6490ef5796",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0130_assets.json"
+}

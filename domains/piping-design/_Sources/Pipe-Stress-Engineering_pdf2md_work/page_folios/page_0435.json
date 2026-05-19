@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 435,
+  "page_label": "415",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 415 appears at the right end of the running header at the top of the page."
+}

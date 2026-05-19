@@ -1,0 +1,27 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 255,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p255_fig01",
+      "label": "EXHIBIT 10-32",
+      "caption": "EXHIBIT 10-32 Top Head Arrangement",
+      "bbox_norm": [0.05, 0.32, 0.95, 0.62],
+      "description": "Hand-drawn engineering sketch of a vertical vessel top head arrangement showing vapor outlet, vessel vent, alternative vessel vent location, alternative vapor outlet location, relief valve, knuckle radius tangent point, alternative relief valve location, with dimensions 1-nozzle diameter minimum and 0.42 x internal diameter. Adjacent detail shows a large diameter elbow connection directly to the vessel head with the note 'LARGE DIAMETER LINES DO NOT REQUIRE FLANGED NOZZLES'."
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p255_fig02",
+      "label": "EXHIBIT 10-33",
+      "caption": "EXHIBIT 10-33 Bottom Head Arrangement",
+      "bbox_norm": [0.05, 0.63, 0.95, 0.92],
+      "description": "Hand-drawn engineering sketch of a vertical vessel bottom head arrangement on a skirt support, showing vessel drain, bottom outlet, vortex breaker inside the bottom head, tangent line (see head dimensions), 4 inch / .100 minimum dimension from tangent line to elbow centerline, long radius elbow turning the bottom outlet horizontal, check clearance annotations, and 3 inch / .075 + insulation or fireproofing clearance callout."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 75,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-19. Reciprocating compressor flow diagram for process lines.",
+      "slug": "reciprocating-compressor-flow-diagram",
+      "bbox_norm": [0.04, 0.48, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Full-width process flow diagram showing V-101 compressor suction drum, two make-up compressors C-101A and C-101B with associated instrumentation and piping. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

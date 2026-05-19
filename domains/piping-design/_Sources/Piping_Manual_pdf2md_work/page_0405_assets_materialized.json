@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0405.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0405_fig01",
+      "bbox_norm": [
+        0.09,
+        0.27,
+        0.89,
+        0.81
+      ],
+      "bbox_px": [
+        102,
+        727,
+        2403,
+        2841
+      ],
+      "caption": "EXHIBIT 15-46 Liquefied Natural Gas Tank",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0405_fig01_exhibit-15-46-liquefied-natural-gas-tank.png",
+      "png_sha256": "555c93165d5ac61fa70101439aafa439b633b9790a352762761f9d2c8b4764c7",
+      "slug": "exhibit-15-46-liquefied-natural-gas-tank",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 405,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0405.png",
+  "page_image_sha256": "a50792847f57cc495567443864c9147cbc715f385324cbc4aa65fc6d497fb318",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0405_assets.json"
+}

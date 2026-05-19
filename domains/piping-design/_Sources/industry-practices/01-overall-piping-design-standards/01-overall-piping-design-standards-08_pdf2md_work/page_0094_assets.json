@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 94,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1.2 Flow rate 10 m³/h to 1 000 m³/h",
+      "slug": "figure-1-2-flow-rate-10-to-1000",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.82],
+      "confidence": "high",
+      "notes": "Log-log nomograph for preliminary pipe sizing (liquid), flow rate 10–1000 m³/h. Axes: flow rate (m³/h) horizontal, pipe diameter (mm) vertical, with suction and discharge pressure-drop band overlays. Caption appears immediately above the chart."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0301.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0301_fig01",
+      "bbox_norm": [
+        0.36,
+        0.46,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        718,
+        1392,
+        2316,
+        3396
+      ],
+      "caption": "Fig. A.1 Pipe line configuration and loading.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0301_fig01_fig-a-1-pipe-line-configuration-and-load.png",
+      "png_sha256": "05726769c8df51f5c4eede869e0e32969c00f74e9dd7071918a69b288343bc44",
+      "slug": "fig-a-1-pipe-line-configuration-and-load",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 301,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0301.png",
+  "page_image_sha256": "51d923511843dfd50a84448f98a9a743b9256aee92e7f17454f9115c4c60d042",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0301_assets.json"
+}

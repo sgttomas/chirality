@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 299,
+  "page_label": "279",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 279 visible at the top-right of the page as part of the running header 'Interface with Stationary Equipment 279'."
+}

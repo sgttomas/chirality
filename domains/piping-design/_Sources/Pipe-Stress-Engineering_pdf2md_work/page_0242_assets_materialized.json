@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0242_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.92,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2447,
+        1698
+      ],
+      "caption": "FIG. 7.6 MOVEMENT ADJUSTMENT FOR DIFFERENT OPERATING CYCLES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0242_fig01_fig-7-6-movement-adjustment-operating-cy.png",
+      "png_sha256": "1acc42ad4b14ed310e855928a2024602644c27dfd3bb01e6ec210ead889e71a4",
+      "slug": "fig-7-6-movement-adjustment-operating-cy",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0242_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2017,
+        2523,
+        3538
+      ],
+      "caption": "TABLE 7.2 CALCULATION OF NORMALIZED MOVEMENTS",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0242_tbl01_table-7-2-calculation-normalized-movemen.png",
+      "png_sha256": "6f3413474f99f4df8efadf4eec2373c621c60e5a32c291a1ba051e0a310dc7bf",
+      "slug": "table-7-2-calculation-normalized-movemen",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0242_tbl01_table-7-2-calculation-normalized-movemen.json",
+      "table_data_json_sha256": "057cae94d2fbe66170e8accc7ed7ec31ea1c3df0c72cb4da72145b85b280861e",
+      "table_data_sha256": "057cae94d2fbe66170e8accc7ed7ec31ea1c3df0c72cb4da72145b85b280861e",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0242_tbl01_table-7-2-calculation-normalized-movemen.xlsx",
+      "xlsx_sha256": "3ddbe30cd2aeadc61c42059ce5a32417284a06692a5a8a81786a23ea6495ec45"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 242,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242.png",
+  "page_image_sha256": "5d3dd6d9eb4314091d79271fa3654dcc94be6485961ad8a3a538f4498b576b5c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242_assets.json"
+}

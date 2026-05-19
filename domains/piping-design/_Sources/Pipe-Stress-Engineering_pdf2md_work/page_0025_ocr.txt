@@ -1,0 +1,63 @@
+4 Chapter 1
+
+are many items like these, which are not normally called piping flexibility, but are required to be
+considered in piping stress analysis. These items, using Fig. 1.1, shall be identified one by one starting
+from this tank connection.
+
+The next items we come across are flanges and valves. Can they maintain the tightness under piping
+forces and-moments? Can valves operate properly under pipe forces and moments? These need to be
+checked even though the pipe itself is strong enough for the same forces and moments.
+
+We know the support friction can also have a significant effect on piping movement. The situations
+and methods to include the friction effect also need to be considered.
+
+In addition to the average pipe temperature, the pipe might also have a temperature gradient across
+the pipe cross-section due to stratified flow or blow off of low-temperature fluid. Even radiant energy
+from the sun on empty un-insulated pipe can cause this type of temperature difference. This type of
+bowing phenomena can create a great problem in the piping and needs to be considered.
+
+For piping connecting to the rotating equipment such as pumps, the pipe load has to be maintained
+to within the manufacturer’s allowable range to prevent the equipment from excessive vibration, wear,
+and overheating. The piping connected to rotating equipment also needs the consideration of poten-
+tial water hammer, pulsation, and other dynamic phenomena.
+
+Proper spring hangers will need to be selected and placed to ensure that the piping is properly sup-
+ported under all operating conditions.
+
+At the vessel connection, again, the flexibility and displacement at the connection have to be in-
+cluded in the analysis. After pipe forces and moments at the connection are calculated, vessel local
+stresses have to be evaluated to see if they are acceptable. Then, of course, if the structure is located in
+an earthquake or hurricane zone, earthquake and wind loading have to be considered when designing
+the piping system. ;
+
+In general, the purpose of pipe stress analysis can be summarized into two broad categories:
+
+(a) Ensure structural integrity: This involves the calculation of stresses in the pipe due to all design
+loads. Necessary procedures are taken to keep the stress within the code allowable limits. This
+code stress check is the basic assurance that failures from breaks or cracks will not occur in the
+piping.
+
+(b) Maintain system operability: A piping itself can be very strong, yet the system may not be oper-
+able due to problems in the connecting equipment. Flange leakage, valve sticking, high stress
+in the vessel nozzle, and excessive piping load on rotating equipment are some of these prob-
+lems. The work required in maintaining the system operability is generally much greater than
+that required in ensuring the structural integrity. This is mainly attributable to the lack of
+coordination between engineers of different disciplines. Rotating equipment manufacturers,
+for instance, design non-pressure parts, such as support and base plate, based mainly on the
+weight and the torque of the shaft. Then they specify the allowable piping load with that de-
+sign, disregarding the fact that some practical piping load always exists and needs to be ac-
+commodated. The allowable loads they provide are generally much too small to be practical.
+Unfortunately, these allowable values go unchallenged, mainly because the industry as a whole
+gives no incentives to manufacturers to produce equipment that can resist the extra piping
+load. If more and more engineers would request the extra strength or give preferential treat-
+ment to manufacturers that produce stronger equipment, an optimal solution might eventually
+be reached. Until such time comes, piping mechanical engineers should be prepared to spend
+three times as many man-hours in stress engineering the piping system connected to rotating
+
+equipment.
+
+1.2 PIPING COMPONENTS AND CONNECTING EQUIPMENT
+
+In this section, we will deal with three categories of hardware: pressure parts of the piping proper,
+support and restraint elements, and connecting equipment. The functions of support and restraint ele-
+

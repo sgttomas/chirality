@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 94,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p094_fig01",
+      "bbox_norm": [0.08, 0.13, 0.94, 0.58],
+      "caption": "EXHIBIT 4-37 Reciprocating Compressor Area: Totally Enclosed Structure"
+    }
+  ],
+  "issues": []
+}

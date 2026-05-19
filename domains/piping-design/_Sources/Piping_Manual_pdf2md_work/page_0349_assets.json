@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 349,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p349_fig_01",
+      "bbox_norm": [0.05, 0.18, 0.97, 0.46],
+      "caption": "EXHIBIT 13-28 Hydrant Installation"
+    }
+  ],
+  "issues": []
+}

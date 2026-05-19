@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 123,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 5.3 Angles for circular members.",
+      "bbox_norm": [
+        0.605,
+        0.715,
+        0.975,
+        0.975
+      ]
+    }
+  ]
+}

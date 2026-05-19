@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 159,
+  "page_label": "141",
+  "page_label_source": "vlm",
+  "location": "bottom-center",
+  "confidence": "high",
+  "rationale": "Arabic numeral 141 centered in footer of chapter-opener page for Chapter 7 Furnaces."
+}

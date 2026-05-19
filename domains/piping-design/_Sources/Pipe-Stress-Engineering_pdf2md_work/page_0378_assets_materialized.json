@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0378.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0378_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.75,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2023,
+        1170
+      ],
+      "caption": "FIG. 11.1 TEMPERATURE DISTRIBUTION DUE TO PARTIAL FILLING OF COLD LIQUID",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0378_fig01_temperature-distribution-partial-filling.png",
+      "png_sha256": "c6fa376e4514eb4a7e908e2a9e1c6550cfd829a170e504dff75628681e50e12f",
+      "slug": "temperature-distribution-partial-filling",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 378,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0378.png",
+  "page_image_sha256": "993b2597e2bd2674d027722624064d216830d10a9d6ebca2f15c115ebea05d3a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0378_assets.json"
+}

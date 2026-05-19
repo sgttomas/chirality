@@ -1,0 +1,35 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.5,
+        0.46
+      ],
+      "caption": "Fig. 6.2 Load reading instrument console.",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.5,
+        0.55,
+        0.97,
+        0.97
+      ],
+      "caption": "Table 6.1 Piping System of Fig. 6.3 Moments and Forces for Operating Condition: No Cold Spring",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "Page MD shows row label 'E' twice in Table 6.1 source; the second E (with values -1800,-900,-3050,...) corresponds to row 'B' in the printed page image. CSV reflects the printed-page row labels (A,B,C,D,E,F,G,...).",
+    "Several lower rows (H,I,J,K,L,M,N) contain ellipses ('...') in the source MD indicating values omitted/unreadable; CSV uses empty fields for those cells."
+  ],
+  "page": 202,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 150,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.4 Values of m and n",
+      "slug": "values-of-m-and-n",
+      "bbox_norm": [0.08, 0.78, 0.62, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Materials", "is_header": true },
+              { "value": "m", "is_header": true },
+              { "value": "n", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon steel", "type": "text" },
+              { "value": 3.0, "type": "number" },
+              { "value": 0.2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Low alloy steel", "type": "text" },
+              { "value": 2.0, "type": "number" },
+              { "value": 0.2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Martensitic stainless steel", "type": "text" },
+              { "value": 2.0, "type": "number" },
+              { "value": 0.2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Austenitic stainless steel", "type": "text" },
+              { "value": 1.7, "type": "number" },
+              { "value": 0.3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nickel-chromium-iron", "type": "text" },
+              { "value": 1.7, "type": "number" },
+              { "value": 0.3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nickel-copper", "type": "text" },
+              { "value": 1.7, "type": "number" },
+              { "value": 0.3, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table title 'TABLE 4.4 VALUES OF m AND n' appears above the table; three-column table listing material parameter values m and n for nuclear piping fatigue calculations."
+    }
+  ],
+  "issues": []
+}

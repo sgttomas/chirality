@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0184_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1673,
+        2550,
+        3559
+      ],
+      "caption": "TABLE 6.2 VARIABLE SPRING HANGER SELECTION CHART IN (LB), (N) UNITS - SCHEMATIC",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0184_tbl01_variable-spring-hanger-selection-chart.csv",
+      "csv_sha256": "2365940914b35e8002114948b50a58bf65b55d09e1ffd8128761b7088a0a93c3",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0184_tbl01_variable-spring-hanger-selection-chart.png",
+      "png_sha256": "9d368e115e9f30fe255864c8e2a6bf20e19192ba0a6067096f5b4c3eef1ee88a",
+      "slug": "variable-spring-hanger-selection-chart",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 184,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184.png",
+  "page_image_sha256": "ab863e8889c8c46d0486dd10ca8cc86ddb0f353678345f27f3af5a098eb98eb3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184_assets.json"
+}

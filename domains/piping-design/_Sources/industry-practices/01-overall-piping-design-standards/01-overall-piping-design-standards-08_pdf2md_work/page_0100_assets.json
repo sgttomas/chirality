@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 100,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3.3 Roughness factors",
+      "slug": "figure-3-3-roughness-factors",
+      "bbox_norm": [0.08, 0.08, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Log-log chart showing relative roughness (epsilon/D) and corrections to Moody 3.2 vs nominal pipe size DN. Multiple diagonal lines for different pipe materials. Y-axis left: corrections to Moody 3.2; Y-axis right: relative roughness epsilon/D. X-axis: Nominal pipe size, DN (range ~25 to 750). Note below chart states roughness factor for smooth cement-lined pipe DN 400 and larger is 50 µm."
+    }
+  ],
+  "issues": []
+}

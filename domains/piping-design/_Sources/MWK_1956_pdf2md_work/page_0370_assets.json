@@ -1,0 +1,34 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 370,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Diagram in upper-left showing coordinate axes, unit vectors, and a curved pipe bend with working points used to derive the bend shape coefficient matrix.",
+    "asset_note: Diagram in lower-right showing a piping system with two anchors and four closed loops, illustrating the generalized matrix method of piping analysis."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "FIGURE 5A.5",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.46,
+        0.26
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "FIGURE 5A.6",
+      "bbox_norm": [
+        0.55,
+        0.66,
+        0.96,
+        0.97
+      ]
+    }
+  ]
+}

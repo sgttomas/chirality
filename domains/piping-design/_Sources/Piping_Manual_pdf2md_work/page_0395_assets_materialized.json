@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0395.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0395_fig01",
+      "bbox_norm": [
+        0.08,
+        0.14,
+        0.94,
+        0.46
+      ],
+      "bbox_px": [
+        77,
+        297,
+        2530,
+        1685
+      ],
+      "caption": "EXHIBIT 15-26 Interconnecting Catwalks",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0395_fig01_exhibit-15-26-interconnecting-catwalks.png",
+      "png_sha256": "169cf8379703e9f782ba18f1d59372600b7fcf818ce019db1593737c4a8d58e5",
+      "slug": "exhibit-15-26-interconnecting-catwalks",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 395,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0395.png",
+  "page_image_sha256": "d6aa6ac8c8bdcdc7aad54a920f41fafaf44d5e146254db9eef12b5a362fd527b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0395_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 54,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure: SECTION A-A with three sub-diagrams labeled (a) In-plane bending (tangents forced together), (b) In-plane bending (tangents forced apart), (c) Out-of-plane bending, plus a side view of a curved pipe bend with angle markers; visible caption below in lower-left of page.",
+    "asset_note: Two side-by-side circular cross-section diagrams labeled (a) Elementary Bending Theory and (b) Theory of Curved Pipes with stress notation alpha and a small annotation 'Max. longitudinal stress occurs at angle alpha_1 (see Fig. 3.5)'; caption visible below figure in upper-right of page."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 3.1 Ovalization (flattening) of pipe bends under external bending moments. Exaggerated.",
+      "bbox_norm": [
+        0.01,
+        0.59,
+        0.46,
+        0.99
+      ]
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 3.2 Distribution of longitudinal stresses in curved pipes.",
+      "bbox_norm": [
+        0.52,
+        0.02,
+        0.99,
+        0.34
+      ]
+    }
+  ]
+}

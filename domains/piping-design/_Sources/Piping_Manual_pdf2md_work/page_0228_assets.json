@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 228,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig_p228_exhibit_9_12",
+      "label": "EXHIBIT 9-12",
+      "caption": "EXHIBIT 9-12 Side Shell-Mounted Catalyst Unloading Nozzles",
+      "bbox_norm": [0.06, 0.05, 0.52, 0.34]
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p228_exhibit_9_14",
+      "label": "EXHIBIT 9-14",
+      "caption": "EXHIBIT 9-14 Vertically Mounted Temperature Connection",
+      "bbox_norm": [0.50, 0.05, 0.97, 0.62]
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p228_exhibit_9_13",
+      "label": "EXHIBIT 9-13",
+      "caption": "EXHIBIT 9-13 Side Shell-Mounted Temperature Connections",
+      "bbox_norm": [0.06, 0.34, 0.52, 0.69]
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p228_exhibit_9_15",
+      "label": "EXHIBIT 9-15",
+      "caption": "EXHIBIT 9-15 Sample Probe Connection",
+      "bbox_norm": [0.50, 0.69, 0.97, 0.90]
+    }
+  ],
+  "issues": []
+}

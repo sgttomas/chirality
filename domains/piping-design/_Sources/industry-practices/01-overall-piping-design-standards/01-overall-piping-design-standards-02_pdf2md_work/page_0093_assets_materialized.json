@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0093.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-02_p0093_img01",
+      "bbox_norm": [
+        0.06,
+        0.6,
+        0.5,
+        0.75
+      ],
+      "bbox_px": [
+        26,
+        1832,
+        1419,
+        2665
+      ],
+      "caption": "Signature of Paul Crowley, Director of Engineering, Project Services",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/01-overall-piping-design-standards-02_p0093_img01_crowley-signature.png",
+      "png_sha256": "e066fbe47ed5666051a488d9b5ec6519785b53457f17a405078d736819171c97",
+      "slug": "crowley-signature",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-02",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 93,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0093.png",
+  "page_image_sha256": "684f2227fe271a3a4d910e35681d6f3689dee76552d0a47b1fc3a9767077ada0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0093_assets.json"
+}

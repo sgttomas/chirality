@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 165,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.36],
+      "caption": "Exhibit 7-8 Combination Oil and Gas Burner"
+    }
+  ],
+  "issues": []
+}

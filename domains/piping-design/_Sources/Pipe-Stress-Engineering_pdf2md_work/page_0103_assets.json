@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 103,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 3.11 SAMPLE ANALYSIS PROCEDURE",
+      "slug": "sample-analysis-procedure",
+      "bbox_norm": [0.04, 0.48, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "3D piping isometric diagram showing heat exchangers HX-1, HX-2, and vessel V-1 with numbered node points. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

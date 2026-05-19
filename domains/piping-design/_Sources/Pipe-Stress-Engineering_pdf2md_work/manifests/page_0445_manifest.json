@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0445.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0445_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1511
+      ],
+      "caption": "FIG. 13.7 VERTICAL DESIGN RESPONSE SPECTRA [19] - SCALED TO 1.0 G HORIZONTAL GROUND ACCELERATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0445_fig01_vertical-design-response-spectra-fig-13.png",
+      "png_sha256": "3e7ab52fdabc3aeeb625eac1cd1144b93bec1b9bcaf9dfc152bae47bd2844b1d",
+      "slug": "vertical-design-response-spectra-fig-13",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0445_fig02",
+      "bbox_norm": [
+        0.05,
+        0.68,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2213,
+        2488,
+        3513
+      ],
+      "caption": "FIG. 13.8 BUILDING AMPLIFICATION ON RESPONSE SPECTRA",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0445_fig02_building-amplification-response-spectra.png",
+      "png_sha256": "e5e1843d774ab669f2591dc871b8ed92056c2d7a9541d1c0415d1f06eb9cda52",
+      "slug": "building-amplification-response-spectra",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 445,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0445.png",
+  "page_image_sha256": "be3be975c985008bbf146e4f73cf653a628ddcf072fe2bcd3ef5f3bc9696f6e8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0445_assets.json"
+}

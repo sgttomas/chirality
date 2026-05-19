@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 246,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 8.12 Typical sway brace details and load deflection characteristics.",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.98,
+        0.43
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 8.13 Basic idea of the spring loaded constant support mechanism.",
+      "bbox_norm": [
+        0.55,
+        0.6,
+        0.98,
+        0.97
+      ]
+    }
+  ]
+}

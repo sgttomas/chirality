@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0448.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0448_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2575,
+        3219
+      ],
+      "caption": "EXHIBIT 17-15  Partial Piping Layout Drawing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0448_fig01_exhibit-17-15-partial-piping-layout-draw.png",
+      "png_sha256": "fc6cba5eac9b1086bd6e8cb445b2de1549d00d09f9a1f217704794ce6d51235b",
+      "slug": "exhibit-17-15-partial-piping-layout-draw",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 448,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0448.png",
+  "page_image_sha256": "c2098fb9fc681090d14a915946fe91d00f620e73bb3e016790218fed83c6ed8d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0448_assets.json"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 346,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-6. Moments and Forces - Two-Member System, Both Ends Fixed, Thermal Expansion in Plane of Members. Log-log chart of A1, A2, A3, A4 versus K (0.1 to 1.0), with configuration diagrams for K<1 and K>1 cases and an axis-convention sketch showing Fx, Fy, and Mz at the corner.",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.99,
+        0.99
+      ]
+    }
+  ]
+}

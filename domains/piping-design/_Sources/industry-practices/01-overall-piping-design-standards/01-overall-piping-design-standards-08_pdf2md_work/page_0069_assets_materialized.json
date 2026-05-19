@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0069.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0069_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.27,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        772,
+        2480,
+        3053
+      ],
+      "caption": "Table \u2014 Design temperatures for bolting material combinations vs. piping material",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0069_tbl01_bolting-material-design-temperatures.png",
+      "png_sha256": "804d33ca9b3e8ac40937340d89bbfad45e5cb1b729213515e6cccb09f46f5c4e",
+      "slug": "bolting-material-design-temperatures",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 69,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0069.png",
+  "page_image_sha256": "4e94f7d2518fb85b435c76ae2a55950f268cec9a4eb019ff5fd28bd4f9b71ecd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0069_assets.json"
+}

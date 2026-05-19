@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 65,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.08, 0.17, 0.92, 0.66],
+      "caption": "Exhibit 3-26 Typical Compressor Area Spacing — plan view showing interstage coolers, suction drums, a 3'-0\"/915 mm wide operator access, pipe rack columns, grade sleepers, cylinder removal area, tube removal area, centrifugal compressors, reciprocating compressors, and an adjacent road; with dimensional callouts: A = minimum; B = 8'-0\"/2400; C = cylinder removal + 12\"/300; D = 6'-0\"/1800 minimum; F = 2 x C + 18\"/450"
+    }
+  ],
+  "issues": []
+}

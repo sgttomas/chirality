@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 352,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Symmetrical Expansion Loop geometry diagram showing guides, leg lengths L1, L2, L3, dimensions K2, K3, and points A' and B'.",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.46,
+        0.23
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Force and moment diagram for symmetrical expansion loop showing F_B, F_A, and M_A at point B with subscript convention.",
+      "bbox_norm": [
+        0.7,
+        0.13,
+        0.92,
+        0.22
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Log-log chart of A1 and A2 versus K2 and K3 for symmetrical expansion loop, showing families of curves for parameter K3 with axes K2 (horizontal, .05 to 1.0), A1 (right vertical, .04 to 10), and A2 (left vertical, .03 to 10).",
+      "bbox_norm": [
+        0.06,
+        0.3,
+        0.96,
+        0.92
+      ]
+    }
+  ]
+}

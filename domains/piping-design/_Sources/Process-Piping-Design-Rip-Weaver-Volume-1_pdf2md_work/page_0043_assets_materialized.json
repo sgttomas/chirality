@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0043.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0043_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2004
+      ],
+      "caption": "Table 2-2 Water Static Head Pressures",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0043_tbl01_water-static-head-pressures.png",
+      "png_sha256": "4813eb67149e56eea1a20066069510d6ea41dac24ba7b72454bcc317cca6c457",
+      "slug": "water-static-head-pressures",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0043_tbl01_water-static-head-pressures.json",
+      "table_data_json_sha256": "b3e9429899c2ba2ff95a9b64769578a2d5cdd89f70af8a676c336bab9555eafe",
+      "table_data_sha256": "b3e9429899c2ba2ff95a9b64769578a2d5cdd89f70af8a676c336bab9555eafe",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0043_tbl01_water-static-head-pressures.xlsx",
+      "xlsx_sha256": "27f6af2b140b1e113d34b56ea605469e648106c16424ee403414ef3a42af140c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 43,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0043.png",
+  "page_image_sha256": "75fe2b59c3e3293b4d847843ba13690db6aa3dd395f16fb48d198dd75fc7f40f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0043_assets.json"
+}

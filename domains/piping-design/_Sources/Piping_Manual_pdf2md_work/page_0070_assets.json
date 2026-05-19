@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 70,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0070_fig_01",
+      "bbox_norm": [0.04, 0.17, 0.97, 0.83],
+      "caption": "EXHIBIT 3-32 Final Plot Plan Arrangement - Naphtha Hydrotreater Planning Plot Plan"
+    }
+  ],
+  "issues": []
+}

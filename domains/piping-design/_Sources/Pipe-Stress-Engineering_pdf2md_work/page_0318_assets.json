@@ -1,0 +1,141 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 318,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 9.9 FORCES AND MOMENTS ON A STEAM TURBINE DRIVE",
+      "slug": "forces-moments-steam-turbine-drive",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.47],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (a) Sign Convention with force/moment vectors on turbine shaft axes X, Y, Z, (b) Load Resolving Point showing inlet/exhaust geometry with combined load resolving point. Caption appears below both diagrams."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 9.1 NEMA SM-23 ALLOWABLE PIPING LOADS FOR INDIVIDUAL NOZZLE CONNECTION",
+      "slug": "nema-sm23-allowable-piping-loads-individual-nozzle",
+      "bbox_norm": [0.04, 0.49, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "1", "text": "3F and MR each has a half-share of the 5000e allowable." },
+          { "marker": "2", "text": "Bending stresses are based on standard wall pipes." },
+          { "marker": "3", "text": "Bellows pressure force equivalent to full allowable F = 5000Do/3. No moment." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pipe sizes, in.", "is_header": true },
+              { "value": "Do, in.", "is_header": true },
+              { "value": "Force (83.3Do), lb", "is_header": true, "footnote_markers": ["1"] },
+              { "value": "Moment (250Do), lb-ft", "is_header": true, "footnote_markers": ["1"] },
+              { "value": "Bending stress, psi", "is_header": true, "footnote_markers": ["2"] },
+              { "value": "Bellow eff. area, in.²", "is_header": true },
+              { "value": "Pressure for 167Do, psi", "is_header": true, "footnote_markers": ["3"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 167, "type": "number" },
+              { "value": 500, "type": "number" },
+              { "value": 10780, "type": "number", "raw": "10,780" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": 333, "type": "number" },
+              { "value": 1000, "type": "number", "raw": "1,000" },
+              { "value": 3740, "type": "number", "raw": "3,740" },
+              { "value": 20.87, "type": "number" },
+              { "value": 32, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": 6, "type": "number" },
+              { "value": 500, "type": "number" },
+              { "value": 1500, "type": "number", "raw": "1,500" },
+              { "value": 1120, "type": "number", "raw": "1,120" },
+              { "value": 36.84, "type": "number" },
+              { "value": 23, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": 666, "type": "number" },
+              { "value": 2000, "type": "number", "raw": "2,000" },
+              { "value": 1400, "type": "number", "raw": "1,400" },
+              { "value": 69.74, "type": "number" },
+              { "value": 19, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 9.67, "type": "number" },
+              { "value": 722, "type": "number" },
+              { "value": 2188, "type": "number", "raw": "2,188" },
+              { "value": 880, "type": "number" },
+              { "value": 112.60, "type": "number" },
+              { "value": 13, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 9.33, "type": "number" },
+              { "value": 777, "type": "number" },
+              { "value": 2333, "type": "number", "raw": "2,333" },
+              { "value": 640, "type": "number" },
+              { "value": 168.10, "type": "number" },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": 10.08, "type": "number" },
+              { "value": 833, "type": "number" },
+              { "value": 2500, "type": "number", "raw": "2,500" },
+              { "value": 510, "type": "number" },
+              { "value": 185.00, "type": "number" },
+              { "value": 9, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number" },
+              { "value": 10.67, "type": "number" },
+              { "value": 889, "type": "number" },
+              { "value": 2688, "type": "number", "raw": "2,688" },
+              { "value": 460, "type": "number" },
+              { "value": 236.30, "type": "number" },
+              { "value": 8, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "7-column table with 8 data rows. Two cells in the 2-inch pipe size row (Bellow eff. area and Pressure) show em-dash indicating not applicable. Three footnotes appear below the table."
+    }
+  ],
+  "issues": []
+}

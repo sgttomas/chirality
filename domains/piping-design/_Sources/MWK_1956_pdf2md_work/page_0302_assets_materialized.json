@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0302.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0302_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.7,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        20,
+        1786,
+        2046,
+        2748
+      ],
+      "caption": "Partial derivatives of the moment expressions (M_b, M'_b, M_t) with respect to M'_x, M'_y, M'_z, F_x, F_y, F_z, required in the general rotation and displacement formulas (eq. A.2).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0302_tbl01_partial-derivatives-of-the-moment-expres.png",
+      "png_sha256": "8790e0b4671dfae722f0c447446b59cc44e0c0e93e86ccd8e5e333b9a84bc625",
+      "slug": "partial-derivatives-of-the-moment-expres",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 302,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0302.png",
+  "page_image_sha256": "30c9a9a8d1ce8793b082f582806ee0f5660898be76eb8780d5e0d746e8e9fa52",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0302_assets.json"
+}

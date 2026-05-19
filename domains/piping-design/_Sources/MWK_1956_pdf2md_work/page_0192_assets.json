@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 192,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY & STRESS ANALYSIS - 6-EQUATIONS - FORM F-1 (handwritten matrix worksheet showing M_x, F_x, F_y columns with reaction forces, constants column, and shape coefficient calculations including X=4000, F_zw, F_zR, F_zL, and 1,000,000 diagonal entries)",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.55
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY AND STRESS ANALYSIS - MOMENTS AND STRESSES - FORM F-1 (handwritten tabulation across columns A-J of M_x, M_y, M_z, M_b, M_t bending/torsion moments, computed stresses S_x, S_y, S_b, S_e, S_t, allowable stress entries, and code-rule formula legend in left margin)",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.97
+      ]
+    }
+  ]
+}

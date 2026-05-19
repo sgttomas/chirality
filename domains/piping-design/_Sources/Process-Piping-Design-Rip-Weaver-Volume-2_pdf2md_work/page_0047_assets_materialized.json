@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0047.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0047_fig01",
+      "bbox_norm": [
+        0.02,
+        0.06,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2560,
+        3300
+      ],
+      "caption": "Figure 1-31. Vertical pump parts. Courtesy of Byron Jackson Pump Division.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0047_fig01_vertical-pump-parts-kx-rx-sectional.png",
+      "png_sha256": "b8bfe3bdbc1f192b1178ae76db12923d9423c24f7e4400b44ee035c3056f2abe",
+      "slug": "vertical-pump-parts-kx-rx-sectional",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0047_tbl01",
+      "bbox_norm": [
+        0.58,
+        0.34,
+        0.98,
+        0.91
+      ],
+      "bbox_px": [
+        1357,
+        957,
+        2560,
+        3168
+      ],
+      "caption": "Parts list for Vertical Circulating Pumps Type KX & RX",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0047_tbl01_vertical-pump-parts-list-kx-rx.png",
+      "png_sha256": "22098e0cc0439949934997b5fce7d8ee26948b80273e467766930bfd8269fe43",
+      "slug": "vertical-pump-parts-list-kx-rx",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0047_tbl01_vertical-pump-parts-list-kx-rx.json",
+      "table_data_json_sha256": "78a00044e8aca8782323ac1f2b7e6da4d02f3c1d5a1eb391fcad7d5709759ac9",
+      "table_data_sha256": "78a00044e8aca8782323ac1f2b7e6da4d02f3c1d5a1eb391fcad7d5709759ac9",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0047_tbl01_vertical-pump-parts-list-kx-rx.xlsx",
+      "xlsx_sha256": "26ed60112d42c0443e485b68919a7d0519c39ae631f703fe79733963d8a0c501"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 47,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0047.png",
+  "page_image_sha256": "24346ba26ffd22e90c3dcafd8b147283a33d65466e38ce7f86e7605901b0826b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0047_assets.json"
+}

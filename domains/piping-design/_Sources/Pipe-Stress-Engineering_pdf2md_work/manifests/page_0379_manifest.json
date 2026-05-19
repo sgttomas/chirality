@@ -1,0 +1,61 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0379_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        1663
+      ],
+      "caption": "Fig. 11.2 THERMAL STRESS FACTOR, C = Si/(E\u03b1(T1 - T2)) AND LINEAR CORRECTION FACTOR, K[1]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0379_fig01_thermal-stress-factor-linear-correction.png",
+      "png_sha256": "8623cfc50ff4a93d7b88d83905d42dfae88afb74224d47abfe7c4dbc20f1e06b",
+      "slug": "thermal-stress-factor-linear-correction",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0379_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        1521
+      ],
+      "caption": "Thermal stress factor C and linear correction factor K for various fill positions and assumed temperature distributions",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0379_tbl01_thermal-stress-factor-table.csv",
+      "csv_sha256": "cbea973701c96b97ee3adbe110cae5e75674239de30360fc519376461139f032",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0379_tbl01_thermal-stress-factor-table.png",
+      "png_sha256": "1d810d4546ce66d98001b26771b5cb02056ce8f9be8f8525c8cf591723b102da",
+      "slug": "thermal-stress-factor-table",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 379,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379.png",
+  "page_image_sha256": "e6bdc913358888d01b5d1bac670c2cd9fe056ea7534905aa8bb6210fc099c354",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379_assets.json"
+}

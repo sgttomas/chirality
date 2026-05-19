@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 392,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0392_fig_01",
+      "caption": "EXHIBIT 15-20  Tank Details",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.61]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0392_fig_02",
+      "caption": "EXHIBIT 15-21  Tank Maintenance Accesses (a. Standard Maintenance Access; b. Large Tank Maintenance Access)",
+      "bbox_norm": [0.05, 0.63, 0.95, 0.90]
+    }
+  ],
+  "issues": []
+}

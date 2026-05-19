@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0128.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0128_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2575,
+        1062
+      ],
+      "caption": "EXHIBIT 6-3 Sample of Tube and Shell Exchanger Passes",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0128_fig01_exhibit-6-3-sample-of-tube-and-shell-exc.png",
+      "png_sha256": "c727861b2ffb1ec1f524631a7ec5228da5001c80327535d83b3636bb87224444",
+      "slug": "exhibit-6-3-sample-of-tube-and-shell-exc",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0128_fig02",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        763,
+        2575,
+        1991
+      ],
+      "caption": "EXHIBIT 6-4 Key Items for a Typical Shell and Tube Exchanger",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0128_fig02_exhibit-6-4-key-items-for-a-typical-shel.png",
+      "png_sha256": "67d112cbd56bac4a8f9beda5e43def99f9ed7d3cf508c5f0a7d5b2c657d6ec4b",
+      "slug": "exhibit-6-4-key-items-for-a-typical-shel",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 128,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0128.png",
+  "page_image_sha256": "65006b2cac75aad454bb1735a02fc91029b36c29d81548bf0951038bc922d72f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0128_assets.json"
+}

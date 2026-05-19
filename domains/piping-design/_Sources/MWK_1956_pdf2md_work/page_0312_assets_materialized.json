@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0312.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0312_fig01",
+      "bbox_norm": [
+        0.52,
+        0.78,
+        0.95,
+        0.95
+      ],
+      "bbox_px": [
+        1058,
+        2172,
+        2250,
+        2976
+      ],
+      "caption": "Angle notation for circular members.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0312_fig01_angle-notation-for-circular-members.png",
+      "png_sha256": "eec2476a4c612e2ded9b2702ccdcdb9e0cd2d762ec2b5bfa69d39f65d3b44e6a",
+      "slug": "angle-notation-for-circular-members",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 312,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0312.png",
+  "page_image_sha256": "b2808eac2c4e18d249b718f0b6175d0169b6cef7043a933d4518a3ccdf2437f2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0312_assets.json"
+}

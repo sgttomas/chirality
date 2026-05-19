@@ -1,0 +1,81 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 57,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3-7 Tank Spacing Table—Condition 3",
+      "slug": "tank-spacing-table-condition-3",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Type of Tank", "is_header": true },
+              { "value": "Protection", "is_header": true },
+              { "value": "Minimum Distance (Feet) from Property Line Which May Be Built On, Including the Opposite Side of a Public Way", "is_header": true },
+              { "value": "Minimum Distance (Feet) from Nearest Side of Any Public Way", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horizontal and vertical tanks with emergency relief venting to permit pressure not in excess of 2.5 psig", "row_span": 3, "type": "text" },
+              { "value": "Tank protected with any one of the following: Approved water spray, Approved inerting, Approved insulation and refrigeration, Approved barricade", "type": "text" },
+              { "value": "Table 3-9 but not less than 25'", "type": "text" },
+              { "value": "Not less than 25'", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Protection for exposures", "type": "text" },
+              { "value": "2½ times, Table 3-9 but not less than 50'", "type": "text" },
+              { "value": "Not less than 50'", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "No Protection", "type": "text" },
+              { "value": "5 times Table 3-9 but not less than 100'", "type": "text" },
+              { "value": "Not less than 100'", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horizontal and vertical tanks with emergency relief venting to permit pressure over 2.5 psig", "row_span": 3, "type": "text" },
+              { "value": "Tank protected with any one of the following: Approved water spray, Approved inerting, Approved insulation and refrigeration, Approved barricade", "type": "text" },
+              { "value": "Twice Table 3-9 but not less than 50'", "type": "text" },
+              { "value": "Not less than 50'", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Protection for exposures", "type": "text" },
+              { "value": "4 times Table 3-9 but not less than 100'", "type": "text" },
+              { "value": "Not less than 100'", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "No protection", "type": "text" },
+              { "value": "8 times Table 3-9 but not less than 150'", "type": "text" },
+              { "value": "Not less than 150'", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table 3-7 spans upper portion of page. Two row groups with row_span=3 on Type of Tank column. Caption visible above table."
+    }
+  ],
+  "issues": []
+}

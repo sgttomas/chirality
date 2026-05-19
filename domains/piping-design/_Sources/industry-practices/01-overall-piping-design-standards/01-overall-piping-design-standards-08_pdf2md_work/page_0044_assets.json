@@ -1,0 +1,88 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 44,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Minimum straight pipe length at suction of centrifugal pumps",
+      "slug": "min-straight-pipe-length-suction-centrifugal-pumps",
+      "bbox_norm": [0.05, 0.27, 0.95, 0.57],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "* For vertical close coupled pumps with 1.5 D straight length, eccentric reducers (bottom flat) are preferred.",
+          "** It shall be studied how unequal flow to the impeller eye can best be avoided. The advice of the pump Manufacturer should be sought in this respect."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE OF PUMP", "is_header": true },
+              { "value": "POSITION OF SUCTION PIPING", "is_header": true },
+              { "value": "MINIMUM STRAIGHT LENGTH", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Vertical close-coupled", "type": "text" },
+              { "value": "in same plane as pump shaft", "type": "text" },
+              { "value": "1.5 D *", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "perpendicular to pump shaft", "type": "text" },
+              { "value": "4 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Single suction, end suction type", "type": "text" },
+              { "value": "not applicable", "type": "text" },
+              { "value": "4 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Single suction, top-top connection", "type": "text" },
+              { "value": "at top of pump", "type": "text" },
+              { "value": "4 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "in same plane as pump shaft", "type": "text" },
+              { "value": "1.5 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Double suction", "type": "text" },
+              { "value": "perpendicular to pump shaft (preferred situation)", "type": "text" },
+              { "value": "3 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "any position other than perpendicular **", "type": "text" },
+              { "value": "5 D to 10 D", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with footnotes marked * and **"
+    }
+  ],
+  "issues": []
+}

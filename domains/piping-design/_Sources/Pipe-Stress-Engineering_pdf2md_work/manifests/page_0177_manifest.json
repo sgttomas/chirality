@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0177.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0177_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.92,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2420,
+        2005
+      ],
+      "caption": "FIG. 6.6 SNUBBERS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0177_fig01_snubbers-hydraulic-mechanical.png",
+      "png_sha256": "a8e43e018ea163067b403df86c5cb283e5d1a24acc5f0865b2b40ac31743620b",
+      "slug": "snubbers-hydraulic-mechanical",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 177,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0177.png",
+  "page_image_sha256": "51480ef7dde233fbcdec9f762c73da2692c0916d79ff0b128a7dfa9b8d6b6746",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0177_assets.json"
+}

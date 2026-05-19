@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0134.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0134_fig01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.5,
+        0.27
+      ],
+      "bbox_px": [
+        72,
+        0,
+        1323,
+        1052
+      ],
+      "caption": "Fig. 5.7 Pipe line with one end hinged.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0134_fig01_fig-5-7-pipe-line-one-end-hinged.png",
+      "png_sha256": "c8c54d8f457a572b89a44d893a0265e83cc06f248344d4c41e76ae337e6c97d5",
+      "slug": "fig-5-7-pipe-line-one-end-hinged",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0134_fig02",
+      "bbox_norm": [
+        0.5,
+        0.04,
+        0.94,
+        0.27
+      ],
+      "bbox_px": [
+        1083,
+        0,
+        2382,
+        1052
+      ],
+      "caption": "Fig. 5.8 System with two large joints.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0134_fig02_fig-5-8-system-two-large-joints.png",
+      "png_sha256": "3a55bf8c35fa5fff78549d33d07fb6a2c3c6e116bd5b270df0fc23b8db7381ef",
+      "slug": "fig-5-8-system-two-large-joints",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 134,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0134.png",
+  "page_image_sha256": "5689789602ebf6fa0fdb1f1f1c4d65237d277e085fb8801d49fde3c10be69b53",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0134_assets.json"
+}

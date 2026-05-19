@@ -1,0 +1,647 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 480,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Standard Nominal Pipe Wall Thickness (inches; 1 IN. = 25.4 MM)",
+      "slug": "standard-nominal-pipe-wall-thickness",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "†", "text": "-1.00 means not available." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Schedule No.", "col_span": 2, "row_span": 2, "is_header": true },
+              { "value": "10", "is_header": true },
+              { "value": "20", "is_header": true },
+              { "value": "30", "is_header": true },
+              { "value": "40", "is_header": true },
+              { "value": "60", "is_header": true },
+              { "value": "80", "is_header": true },
+              { "value": "100", "is_header": true },
+              { "value": "120", "is_header": true },
+              { "value": "140", "is_header": true },
+              { "value": "160", "is_header": true },
+              { "value": "STD", "is_header": true },
+              { "value": "XS", "is_header": true },
+              { "value": "XXS", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Size\n(in.)", "is_header": true },
+              { "value": "OD\n(in.)", "is_header": true },
+              { "value": "5S", "is_header": true },
+              { "value": "10S", "is_header": true },
+              { "value": "40S", "is_header": true },
+              { "value": "80S", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.50", "type": "fraction" },
+              { "value": 0.840, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.147, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.187, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.147, "type": "number", "unit": "in" },
+              { "value": 0.294, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.75", "type": "fraction" },
+              { "value": 1.050, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.113, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.154, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": 0.113, "type": "number", "unit": "in" },
+              { "value": 0.154, "type": "number", "unit": "in" },
+              { "value": 0.308, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.00", "type": "number" },
+              { "value": 1.315, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.133, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.179, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.133, "type": "number", "unit": "in" },
+              { "value": 0.179, "type": "number", "unit": "in" },
+              { "value": 0.358, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.25", "type": "fraction" },
+              { "value": 1.660, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.140, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.191, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.140, "type": "number", "unit": "in" },
+              { "value": 0.191, "type": "number", "unit": "in" },
+              { "value": 0.382, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.50", "type": "fraction" },
+              { "value": 1.900, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.145, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.200, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.281, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.145, "type": "number", "unit": "in" },
+              { "value": 0.200, "type": "number", "unit": "in" },
+              { "value": 0.400, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2.00", "type": "number" },
+              { "value": 2.375, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.154, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.343, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.154, "type": "number", "unit": "in" },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.436, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2.50", "type": "fraction" },
+              { "value": 2.875, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.203, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.276, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.065, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": 0.203, "type": "number", "unit": "in" },
+              { "value": 0.276, "type": "number", "unit": "in" },
+              { "value": 0.552, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3.00", "type": "number" },
+              { "value": 3.500, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.216, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.300, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.437, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": 0.216, "type": "number", "unit": "in" },
+              { "value": 0.300, "type": "number", "unit": "in" },
+              { "value": 0.600, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3.50", "type": "fraction" },
+              { "value": 4.000, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.226, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.318, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.503, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": 0.226, "type": "number", "unit": "in" },
+              { "value": 0.318, "type": "number", "unit": "in" },
+              { "value": 0.636, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4.00", "type": "number" },
+              { "value": 4.500, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.237, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.337, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.437, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.531, "type": "number", "unit": "in" },
+              { "value": 0.083, "type": "number", "unit": "in" },
+              { "value": 0.120, "type": "number", "unit": "in" },
+              { "value": 0.237, "type": "number", "unit": "in" },
+              { "value": 0.337, "type": "number", "unit": "in" },
+              { "value": 0.674, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5.00", "type": "number" },
+              { "value": 5.563, "type": "number", "unit": "in" },
+              { "value": 0.131, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.258, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.625, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.134, "type": "number", "unit": "in" },
+              { "value": 0.258, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.750, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6.00", "type": "number" },
+              { "value": 6.625, "type": "number", "unit": "in" },
+              { "value": 0.134, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.280, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.432, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.562, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.718, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.134, "type": "number", "unit": "in" },
+              { "value": 0.280, "type": "number", "unit": "in" },
+              { "value": 0.432, "type": "number", "unit": "in" },
+              { "value": 0.864, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8.00", "type": "number" },
+              { "value": 8.625, "type": "number", "unit": "in" },
+              { "value": 0.148, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.277, "type": "number", "unit": "in" },
+              { "value": 0.322, "type": "number", "unit": "in" },
+              { "value": 0.406, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.593, "type": "number", "unit": "in" },
+              { "value": 0.718, "type": "number", "unit": "in" },
+              { "value": 0.812, "type": "number", "unit": "in" },
+              { "value": 0.906, "type": "number", "unit": "in" },
+              { "value": 0.109, "type": "number", "unit": "in" },
+              { "value": 0.148, "type": "number", "unit": "in" },
+              { "value": 0.322, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.875, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10.00", "type": "number" },
+              { "value": 10.75, "type": "number", "unit": "in" },
+              { "value": 0.165, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.307, "type": "number", "unit": "in" },
+              { "value": 0.365, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.593, "type": "number", "unit": "in" },
+              { "value": 0.718, "type": "number", "unit": "in" },
+              { "value": 0.843, "type": "number", "unit": "in" },
+              { "value": 1.000, "type": "number", "unit": "in" },
+              { "value": 1.125, "type": "number", "unit": "in" },
+              { "value": 0.134, "type": "number", "unit": "in" },
+              { "value": 0.165, "type": "number", "unit": "in" },
+              { "value": 0.365, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12.00", "type": "number" },
+              { "value": 12.75, "type": "number", "unit": "in" },
+              { "value": 0.180, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.330, "type": "number", "unit": "in" },
+              { "value": 0.406, "type": "number", "unit": "in" },
+              { "value": 0.562, "type": "number", "unit": "in" },
+              { "value": 0.687, "type": "number", "unit": "in" },
+              { "value": 0.843, "type": "number", "unit": "in" },
+              { "value": 1.000, "type": "number", "unit": "in" },
+              { "value": 1.125, "type": "number", "unit": "in" },
+              { "value": 1.312, "type": "number", "unit": "in" },
+              { "value": 0.156, "type": "number", "unit": "in" },
+              { "value": 0.180, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "14.00", "type": "number" },
+              { "value": 14.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.437, "type": "number", "unit": "in" },
+              { "value": 0.593, "type": "number", "unit": "in" },
+              { "value": 0.750, "type": "number", "unit": "in" },
+              { "value": 0.937, "type": "number", "unit": "in" },
+              { "value": 1.093, "type": "number", "unit": "in" },
+              { "value": 1.250, "type": "number", "unit": "in" },
+              { "value": 1.406, "type": "number", "unit": "in" },
+              { "value": 0.156, "type": "number", "unit": "in" },
+              { "value": 0.188, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "16.00", "type": "number" },
+              { "value": 16.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.656, "type": "number", "unit": "in" },
+              { "value": 0.843, "type": "number", "unit": "in" },
+              { "value": 1.031, "type": "number", "unit": "in" },
+              { "value": 1.218, "type": "number", "unit": "in" },
+              { "value": 1.437, "type": "number", "unit": "in" },
+              { "value": 1.593, "type": "number", "unit": "in" },
+              { "value": 0.165, "type": "number", "unit": "in" },
+              { "value": 0.188, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "18.00", "type": "number" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.437, "type": "number", "unit": "in" },
+              { "value": 0.562, "type": "number", "unit": "in" },
+              { "value": 0.750, "type": "number", "unit": "in" },
+              { "value": 0.937, "type": "number", "unit": "in" },
+              { "value": 1.156, "type": "number", "unit": "in" },
+              { "value": 1.375, "type": "number", "unit": "in" },
+              { "value": 1.562, "type": "number", "unit": "in" },
+              { "value": 1.781, "type": "number", "unit": "in" },
+              { "value": 0.165, "type": "number", "unit": "in" },
+              { "value": 0.188, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20.00", "type": "number" },
+              { "value": 20.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.593, "type": "number", "unit": "in" },
+              { "value": 0.812, "type": "number", "unit": "in" },
+              { "value": 1.031, "type": "number", "unit": "in" },
+              { "value": 1.281, "type": "number", "unit": "in" },
+              { "value": 1.500, "type": "number", "unit": "in" },
+              { "value": 1.750, "type": "number", "unit": "in" },
+              { "value": 1.968, "type": "number", "unit": "in" },
+              { "value": 0.188, "type": "number", "unit": "in" },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "22.00", "type": "number" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.875, "type": "number", "unit": "in" },
+              { "value": 1.125, "type": "number", "unit": "in" },
+              { "value": 1.375, "type": "number", "unit": "in" },
+              { "value": 1.625, "type": "number", "unit": "in" },
+              { "value": 1.875, "type": "number", "unit": "in" },
+              { "value": 2.125, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.188, "type": "number", "unit": "in" },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "24.00", "type": "number" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.562, "type": "number", "unit": "in" },
+              { "value": 0.688, "type": "number", "unit": "in" },
+              { "value": 0.969, "type": "number", "unit": "in" },
+              { "value": 1.218, "type": "number", "unit": "in" },
+              { "value": 1.531, "type": "number", "unit": "in" },
+              { "value": 1.812, "type": "number", "unit": "in" },
+              { "value": 2.062, "type": "number", "unit": "in" },
+              { "value": 2.344, "type": "number", "unit": "in" },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "26.00", "type": "number" },
+              { "value": 26.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.218, "type": "number", "unit": "in" },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "28.00", "type": "number" },
+              { "value": 28.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "30.00", "type": "number" },
+              { "value": 30.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.625, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "32.00", "type": "number" },
+              { "value": 32.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": 0.625, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.250, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "34.00", "type": "number" },
+              { "value": 34.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.625, "type": "number", "unit": "in" },
+              { "value": 0.688, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "36.00", "type": "number" },
+              { "value": 36.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.750, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "42.00", "type": "number" },
+              { "value": 42.00, "type": "number", "unit": "in" },
+              { "value": 0.312, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 0.500, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] },
+              { "value": null, "type": "missing", "raw": "-1.00", "footnote_markers": ["†"] }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table of standard nominal pipe wall thicknesses by schedule number and pipe size. Two-row header: top row labels schedule numbers (10–160, STD, XS, XXS); second row labels size/OD columns and stainless steel designations (5S, 10S, 40S, 80S) under the STD/XS/XXS group. Values in inches; -1.00 indicates schedule/size combinations not available per footnote."
+    }
+  ],
+  "issues": []
+}

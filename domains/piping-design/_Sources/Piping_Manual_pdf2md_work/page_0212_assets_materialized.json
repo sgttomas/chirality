@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0212.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0212_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1588
+      ],
+      "caption": "EXHIBIT 8-24 Primary and Standby Pump for Hot Slurry Service",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0212_fig01_exhibit-8-24-primary-and-standby-pump-fo.png",
+      "png_sha256": "1a9ee3995814fb2fda1a4eadc49b6b20ae632fdbe4906a04073338f8481478cb",
+      "slug": "exhibit-8-24-primary-and-standby-pump-fo",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0212_fig02",
+      "bbox_norm": [
+        0.02,
+        0.42,
+        0.52,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        1224,
+        1460,
+        2416
+      ],
+      "caption": "EXHIBIT 8-25 Primary and Standby Pump with Below-Grade Suction",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0212_fig02_exhibit-8-25-primary-and-standby-pump-wi.png",
+      "png_sha256": "d0a361496af2f0087f0c77ed9ef10c710df567e048d6f629cf66fc822e43d6bb",
+      "slug": "exhibit-8-25-primary-and-standby-pump-wi",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0212_fig03",
+      "bbox_norm": [
+        0.5,
+        0.42,
+        0.99,
+        0.62
+      ],
+      "bbox_px": [
+        1153,
+        1224,
+        2562,
+        2217
+      ],
+      "caption": "EXHIBIT 8-26 Spool Piece Removal",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0212_fig03_exhibit-8-26-spool-piece-removal.png",
+      "png_sha256": "fa6753ec483c59a654baefa97413bede4b8773728fe33fa7de5f872a148591de",
+      "slug": "exhibit-8-26-spool-piece-removal",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 212,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0212.png",
+  "page_image_sha256": "8252c2d52ceeaa99153b2db4bad69bb040fc77694c65aa13d9d8474f8e9e81b4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0212_assets.json"
+}

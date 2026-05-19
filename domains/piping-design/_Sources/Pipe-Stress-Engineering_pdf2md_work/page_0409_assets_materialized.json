@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0409.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0409_fig01",
+      "bbox_norm": [
+        0.06,
+        0.55,
+        0.94,
+        0.98
+      ],
+      "bbox_px": [
+        26,
+        1784,
+        2538,
+        3569
+      ],
+      "caption": "Fig. 12.10 FREQUENCY-DEPENDENT DAMPING FOR PIPING [5]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0409_fig01_frequency-dependent-damping-piping.png",
+      "png_sha256": "78ac7dd36a703540641f22166b1bef3d4a3294e96677752063a465e33d4dd4ea",
+      "slug": "frequency-dependent-damping-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 409,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0409.png",
+  "page_image_sha256": "27ccbddf6cc5a1efb591e432b2b101d74494b172e2e385a938e4999b67c2a83f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0409_assets.json"
+}

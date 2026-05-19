@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 12,
+  "page_label": "xiii",
+  "page_label_source": "vlm",
+  "location": "bottom-center",
+  "confidence": "high",
+  "rationale": "Lowercase Roman numeral xiii centered in footer of Preface chapter-opener page."
+}

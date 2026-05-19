@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0091.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0091_fig01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.5,
+        0.63
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1402,
+        2243
+      ],
+      "caption": "EXHIBIT 4-55 Maintenance Sequence",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0091_fig01_exhibit-4-55-maintenance-sequence.png",
+      "png_sha256": "30c53daef5b5cdce7bb6c6c76219c8817723d422534a7a724da096c811e43215",
+      "slug": "exhibit-4-55-maintenance-sequence",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 91,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0091.png",
+  "page_image_sha256": "e4757bba64bfff04b123f7f7a32cdfef884a39fe93e8ed98ffb1ff0b49eb28f8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0091_assets.json"
+}

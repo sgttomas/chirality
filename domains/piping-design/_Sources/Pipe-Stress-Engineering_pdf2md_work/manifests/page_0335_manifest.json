@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0335.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0335_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1409
+      ],
+      "caption": "Fig. 9.19 Flow Rate of Duplex \u2014 Double Acting Pump",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0335_fig01_flow-rate-duplex-double-acting-pump.png",
+      "png_sha256": "145ca33a589f5e6584e5f97d6778a8ad1395a09de7e8ef10e58a1a41e06d80e5",
+      "slug": "flow-rate-duplex-double-acting-pump",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 335,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0335.png",
+  "page_image_sha256": "578f747be53001118c17039cd0709d6d7882ec6da557accb58858094ee0f611c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0335_assets.json"
+}

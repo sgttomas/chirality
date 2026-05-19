@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0127.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0127_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1651
+      ],
+      "caption": "Fig. 4.6 Miter Bend Characteristics",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0127_fig01_miter-bend-characteristics.png",
+      "png_sha256": "8ee14499b40714981388e73f1e21220919ca3ade1c554b23681d5c5afe886fcf",
+      "slug": "miter-bend-characteristics",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 127,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0127.png",
+  "page_image_sha256": "33ec8eff902af9ee2b26f017a6ece1d9da7169024cf8f6140cf04658ce10a8c7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0127_assets.json"
+}

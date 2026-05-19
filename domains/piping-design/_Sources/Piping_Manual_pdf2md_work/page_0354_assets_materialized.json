@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0354.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0354_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2342
+      ],
+      "caption": "EXHIBIT 13-36 Typical Deluge and Spray Systems",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0354_fig01_exhibit-13-36-typical-deluge-and-spray-s.png",
+      "png_sha256": "f9e42b25cc82340d6dc2b395209c36efaab186712aa3fff7d8e2fae8961dc3df",
+      "slug": "exhibit-13-36-typical-deluge-and-spray-s",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 354,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0354.png",
+  "page_image_sha256": "86b4fde11897604a371ff971ba4cfd79c12e4b40fa3bb17c87584ce238f9e15c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0354_assets.json"
+}

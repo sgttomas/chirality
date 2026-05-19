@@ -1,0 +1,44 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.27
+      ],
+      "caption": "Table 5.16",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.98,
+        0.5
+      ],
+      "caption": "Table 5.17",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.3,
+        0.66,
+        0.98,
+        0.85
+      ],
+      "caption": "Table 5.18",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 159,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

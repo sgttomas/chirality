@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 89,
+  "page_label": "69",
+  "page_label_source": "vlm",
+  "location": "top-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 69 printed at the top-right of the page as part of the running header 'Thermal Expansion and Piping Flexibility 69'."
+}

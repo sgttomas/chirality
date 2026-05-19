@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0070.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0070_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2571,
+        1251
+      ],
+      "caption": "FIG. 2.12 TWO-DIMENSIONAL STRESS RELATIONS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0070_fig01_two-dimensional-stress-relations.png",
+      "png_sha256": "7a13f36c3b0f763a5abdb0e078daeec20a152d4464c8cf879229e783797727b2",
+      "slug": "two-dimensional-stress-relations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 70,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0070.png",
+  "page_image_sha256": "eb60bf04cf3df660d0f2073e1b7719b52aeb9633d3e1a3d021c5e361fde07db6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0070_assets.json"
+}

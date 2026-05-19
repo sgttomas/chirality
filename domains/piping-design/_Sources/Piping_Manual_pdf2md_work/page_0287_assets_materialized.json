@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0287.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0287_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        3304
+      ],
+      "caption": "EXHIBIT 11-10 Pipe Rack Layout",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0287_fig01_exhibit-11-10-pipe-rack-layout.png",
+      "png_sha256": "87367be71455415ca1c8838991fdd99cbf635b448393d3902dca469d453f3939",
+      "slug": "exhibit-11-10-pipe-rack-layout",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 287,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0287.png",
+  "page_image_sha256": "4cc7c27ef6586c66fb12d36f39e862a2249d809e732ac9ba8d1553fd8f9dd082",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0287_assets.json"
+}

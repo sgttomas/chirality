@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0203.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0203_fig01",
+      "bbox_norm": [
+        0.0,
+        0.02,
+        1.0,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2058,
+        1530
+      ],
+      "caption": "Fig. 6.3 Central station main steam system operating at 1050 F and 1990 psi pressure.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0203_fig01_fig-6-3-central-station-main-steam-syste.png",
+      "png_sha256": "b4f2583805663faf6941f19f062008ed959052dab1bce9671f3dc29ff89a75f6",
+      "slug": "fig-6-3-central-station-main-steam-syste",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0203_fig02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.5,
+        0.94
+      ],
+      "bbox_px": [
+        0,
+        1500,
+        1132,
+        2970
+      ],
+      "caption": "Fig. 6.4 The model test set-up for the system of Fig. 6.3.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0203_fig02_fig-6-4-the-model-test-set-up-for-the-sy.png",
+      "png_sha256": "6d97a45cdb7c2baf0a0b7f8fcef5fa6cc0df63ebcfe46ff95dc71a4215912d9a",
+      "slug": "fig-6-4-the-model-test-set-up-for-the-sy",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 203,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0203.png",
+  "page_image_sha256": "82cf138b7082f78a265c830b943234f78fdee3a552d894e91c9a16f78e68922e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0203_assets.json"
+}

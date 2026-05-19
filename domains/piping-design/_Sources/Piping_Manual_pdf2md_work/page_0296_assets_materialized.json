@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0296.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0296_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1059
+      ],
+      "caption": "Pipe Rack Spandrel Location",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0296_fig01_pipe-rack-spandrel-location.png",
+      "png_sha256": "e9a1afba9314a0b71cbd16513a83b781deb9c05f08ef31b8af4f12afb25556ae",
+      "slug": "pipe-rack-spandrel-location",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0296_fig02",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        728,
+        2562,
+        1985
+      ],
+      "caption": "Pipe Rack Spandrel Variations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0296_fig02_pipe-rack-spandrel-variations.png",
+      "png_sha256": "b4d9099705628f5282546fb786b4e5b842ff32d9addab694da3e168e380978b2",
+      "slug": "pipe-rack-spandrel-variations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 296,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0296.png",
+  "page_image_sha256": "8deef2ee11af47b1def51634b648c39b643d4777b9b22f9e767ebfbcf913182b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0296_assets.json"
+}

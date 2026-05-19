@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0371.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0371_fig01",
+      "bbox_norm": [
+        0.6,
+        0.06,
+        0.99,
+        0.45
+      ],
+      "bbox_px": [
+        1317,
+        30,
+        2394,
+        1488
+      ],
+      "caption": "FIGURE 5A.7",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0371_fig01_figure-5a-7.png",
+      "png_sha256": "cc929de44a1f1c4078feff8b8cf8c96a8e57f7133fe4f04aa2ac5008f344f13a",
+      "slug": "figure-5a-7",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0371_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.46,
+        0.98,
+        0.63
+      ],
+      "bbox_px": [
+        0,
+        1220,
+        2394,
+        2024
+      ],
+      "caption": "Summation of Shape Coefficient Matrices For Redundant Forces by Path and Displacements (EI)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0371_tbl01_summation-of-shape-coefficient-matrices.png",
+      "png_sha256": "4af4387c126375f08256b927aa51c7331485fb395c0014887416d45cede83bd9",
+      "slug": "summation-of-shape-coefficient-matrices",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 371,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0371.png",
+  "page_image_sha256": "345ae48d3ba816bcb53f26e3c9ed95c721010b5075963194fa8de5d611655999",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0371_assets.json"
+}

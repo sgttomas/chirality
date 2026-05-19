@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0443.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0443_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.37
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1390
+      ],
+      "caption": "EXHIBIT 17-7 Equipment Plot Model Using Plot Modeling Software",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0443_fig01_exhibit-17-7-equipment-plot-model-using.png",
+      "png_sha256": "5bbba825ae23ac407f63ea8ae5d54b6a684933309bb5232d42a7f4d888436e75",
+      "slug": "exhibit-17-7-equipment-plot-model-using",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0443_fig02",
+      "bbox_norm": [
+        0.04,
+        0.37,
+        0.52,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        1059,
+        1460,
+        2151
+      ],
+      "caption": "EXHIBIT 17-8 3-D Equipment Plot Model with 2-D and 3-D Layers",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0443_fig02_exhibit-17-8-3-d-equipment-plot-model-wi.png",
+      "png_sha256": "12c2b9a733bedd76203b3e506c7ffae6e5fcf50b4359ec32dc7382216d416e15",
+      "slug": "exhibit-17-8-3-d-equipment-plot-model-wi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 443,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0443.png",
+  "page_image_sha256": "60fe15c3edbe84a97180f8c6810fd7fcefa1831c60144ee5f93e5958f2212d34",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0443_assets.json"
+}

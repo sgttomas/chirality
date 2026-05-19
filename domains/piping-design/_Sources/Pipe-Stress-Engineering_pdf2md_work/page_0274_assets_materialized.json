@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0274.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0274_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2605,
+        1548
+      ],
+      "caption": "Fig. 8.7 ASME B16.5 CLASS 1500 FLANGES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0274_fig01_asme-b16-5-class-1500-flanges.png",
+      "png_sha256": "f21a2184c452476d9e438553778a8431f47cd5078e49e9d9593e86790583355d",
+      "slug": "asme-b16-5-class-1500-flanges",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 274,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0274.png",
+  "page_image_sha256": "05b6c1b634a298d24fd4b6f8914cae6d5da846a3316be2cfcfc13e4cdfacfeb1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0274_assets.json"
+}

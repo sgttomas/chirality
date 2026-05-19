@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 167,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6-9. Level controller installation diagrams, sheet 2. Courtesy of Masoneilan.",
+      "slug": "level-controller-installation-diagrams-sheet-2",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.96],
+      "confidence": "high",
+      "notes": "Full-page composite figure with three sub-panels: (1) Control of distillate and water levels in a gas and water separator, (2) Transmission of level to remote recorder and signal lights, (3) Level transmission and control of a reflux accumulator. Caption at bottom of figure."
+    }
+  ],
+  "issues": []
+}

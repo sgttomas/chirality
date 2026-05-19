@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0480_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3538,
+        2523
+      ],
+      "caption": "Standard Nominal Pipe Wall Thickness (inches; 1 IN. = 25.4 MM)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0480_tbl01_standard-nominal-pipe-wall-thickness.png",
+      "png_sha256": "07fd4af8b97ce8cffbe0f95cd42785ffadb23a4a797ce59a11b7c4c243219af4",
+      "slug": "standard-nominal-pipe-wall-thickness",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0480_tbl01_standard-nominal-pipe-wall-thickness.json",
+      "table_data_json_sha256": "f34ec6053f13bac6cdd60f8cf4291f3139b1d8d28f1a84a4de1fd47f8cd566df",
+      "table_data_sha256": "f34ec6053f13bac6cdd60f8cf4291f3139b1d8d28f1a84a4de1fd47f8cd566df",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0480_tbl01_standard-nominal-pipe-wall-thickness.xlsx",
+      "xlsx_sha256": "c9f65ae209f37890cb48144bcb3484513359edf70a86215a79027af9ff1aece0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 480,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480.png",
+  "page_image_sha256": "7f8592d43242d3ee70118105c6488741a4e708982e7ba97a7ace956a3aaf2dfc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0480_assets.json"
+}

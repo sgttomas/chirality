@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0058.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0058_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.72,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2011,
+        1118
+      ],
+      "caption": "Fig. 2.4 Shear Deformation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0058_fig01_shear-deformation.png",
+      "png_sha256": "18112acd84314b83a83ecb4e70f5ff8a68729faa43ceadfccdf5c4ef3515afcb",
+      "slug": "shear-deformation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0058.png",
+  "page_image_sha256": "382647ad4bedbf25a965b498781966cc8177e4e1782d190e1110e8039dd5bcc7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0058_assets.json"
+}

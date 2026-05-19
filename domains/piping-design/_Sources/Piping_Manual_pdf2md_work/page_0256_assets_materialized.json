@@ -1,0 +1,113 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0256.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0256_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.98,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        1353
+      ],
+      "caption": "EXHIBIT 10-34 Temperature and Pressure Locations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0256_fig01_exhibit-10-34-temperature-and-pressure-l.png",
+      "png_sha256": "7468b8c89a3fb70c7d6daac18e5c8123a2caf05c8ab32dce8ea771088ecef638",
+      "slug": "exhibit-10-34-temperature-and-pressure-l",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0256_fig02",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.98,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1089,
+        2550,
+        2342
+      ],
+      "caption": "EXHIBIT 10-35 Level Instrument Locations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0256_fig02_exhibit-10-35-level-instrument-locations.png",
+      "png_sha256": "e5d2012dd3a2341b2222d663a0ef68e370ca1477d5f3495a9936f749177d4769",
+      "slug": "exhibit-10-35-level-instrument-locations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0256_fig03",
+      "bbox_norm": [
+        0.04,
+        0.68,
+        0.55,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2078,
+        1530,
+        3233
+      ],
+      "caption": "EXHIBIT 10-36 Tray Support Beam Sizes",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0256_fig03_exhibit-10-36-tray-support-beam-sizes.png",
+      "png_sha256": "fefb83406dc6b8f13394906e5b153752bed6f86e5ac3f31c232e3ca0f54b661e",
+      "slug": "exhibit-10-36-tray-support-beam-sizes",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0256_tbl01",
+      "bbox_norm": [
+        0.55,
+        0.74,
+        0.98,
+        0.92
+      ],
+      "bbox_px": [
+        1275,
+        2276,
+        2550,
+        3200
+      ],
+      "caption": "EXHIBIT 10-36 Tray Support Beam Sizes - Tower Diameter vs Beam Size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0256_tbl01_exhibit-10-36-tray-support-beam-sizes-to.png",
+      "png_sha256": "db7c8a023b1a9db39bf9b69ce75bb229442473061f6b49767316a1268eb447f2",
+      "slug": "exhibit-10-36-tray-support-beam-sizes-to",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 256,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0256.png",
+  "page_image_sha256": "bb6ec64c4f02d63543130655218b8dbbe41c33e5b147b626ef75732fcf819b03",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0256_assets.json"
+}

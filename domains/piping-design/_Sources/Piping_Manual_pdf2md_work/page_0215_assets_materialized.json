@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0215.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0215_fig01",
+      "bbox_norm": [
+        0.03,
+        0.27,
+        0.82,
+        0.86
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2218,
+        3002
+      ],
+      "caption": "EXHIBIT 8-29 Side-Suction Nozzles on a Centrifugal Pump",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0215_fig01_exhibit-8-29-side-suction-nozzles-on-a-c.png",
+      "png_sha256": "0d101545750a2e28fbc9b8441d7855b4ee11db43eb194c50946e960b24a03311",
+      "slug": "exhibit-8-29-side-suction-nozzles-on-a-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 215,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0215.png",
+  "page_image_sha256": "e0dee144eef424bb18a9b97ca39ab2a39c0e6aa6d110616e11ad062f94475db7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0215_assets.json"
+}

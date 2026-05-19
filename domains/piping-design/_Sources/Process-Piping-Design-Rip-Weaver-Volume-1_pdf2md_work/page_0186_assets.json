@@ -1,0 +1,268 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 186,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factor F (continued)",
+      "slug": "conversion-factor-f-continued",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": {
+          "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+          "page": 185,
+          "tbl_ordinal": 1
+        },
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Feet/minute", "type": "text" },
+            { "value": "x 0.1894 x 10⁻³", "type": "text" },
+            { "value": "Mile/minute", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 30.48", "type": "text" },
+            { "value": "Centimeters/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 1.097", "type": "text" },
+            { "value": "Kilometers/hour", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 0.5921", "type": "text" },
+            { "value": "Knots", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 18.29", "type": "text" },
+            { "value": "Meters/minute", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 0.681818", "type": "text" },
+            { "value": "Miles/hour", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 0.0113636", "type": "text" },
+            { "value": "Miles/minute", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 3600", "type": "text" },
+            { "value": "Feet/hour", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second", "type": "text" },
+            { "value": "x 60", "type": "text" },
+            { "value": "Feet/minute", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second/second", "type": "text" },
+            { "value": "x 30.48", "type": "text" },
+            { "value": "Centimeters/second/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second/second", "type": "text" },
+            { "value": "x 1.097", "type": "text" },
+            { "value": "Kilometers/hour/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second/second", "type": "text" },
+            { "value": "x 1.097", "type": "text" },
+            { "value": "Meters/second/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second/second", "type": "text" },
+            { "value": "x 0.3048", "type": "text" },
+            { "value": "Meters/second/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/second/second", "type": "text" },
+            { "value": "x 0.6818", "type": "text" },
+            { "value": "Miles/hour/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Feet/100 feet", "type": "text" },
+            { "value": "x 1", "type": "text" },
+            { "value": "Percent grade", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Firkin", "type": "text" },
+            { "value": "x 9", "type": "text" },
+            { "value": "Gallon, liquid, USA", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Firkin", "type": "text" },
+            { "value": "x 34.06798", "type": "text" },
+            { "value": "Liter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x 10.764", "type": "text" },
+            { "value": "Lumen/square meter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x 1", "type": "text" },
+            { "value": "Lumen/square foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x 10.764", "type": "text" },
+            { "value": "Lux", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x 1.076", "type": "text" },
+            { "value": "Milliphot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x 0.001076", "type": "text" },
+            { "value": "Phot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-candle", "type": "text" },
+            { "value": "x distance in feet²", "type": "text" },
+            { "value": "Candlepower", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 0.3425 x 10⁻³", "type": "text" },
+            { "value": "Candle/square centimeters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 0.3183", "type": "text" },
+            { "value": "Candle/square foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 0.00221", "type": "text" },
+            { "value": "Candle/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 0.001076", "type": "text" },
+            { "value": "Lambert", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x square foot Area", "type": "text" },
+            { "value": "Lumen", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 1.076", "type": "text" },
+            { "value": "Millilambert", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-Lambert", "type": "text" },
+            { "value": "x 0.342 x 10⁻³", "type": "text" },
+            { "value": "Stilb", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 1.2853 x 10⁻³", "type": "text" },
+            { "value": "Btu", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 1.356 x 10⁷", "type": "text" },
+            { "value": "Ergs", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.32389", "type": "text" },
+            { "value": "Gram-calorie", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.0505 x 10⁻³", "type": "text" },
+            { "value": "Horsepower-hours, USA", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 5.12 x 10⁻⁷", "type": "text" },
+            { "value": "Horsepower-hours, metric", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 12", "type": "text" },
+            { "value": "Inch-pound", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.13382", "type": "text" },
+            { "value": "Joule absolute", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 1.3554", "type": "text" },
+            { "value": "Joule international", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 3.238 x 10⁻⁴", "type": "text" },
+            { "value": "Kilogram-calories", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.1383", "type": "text" },
+            { "value": "Kilogram-meters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 3.766 x 10⁻⁷", "type": "text" },
+            { "value": "Kilowatt-hours", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.001356", "type": "text" },
+            { "value": "Kilowatt-second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.01338", "type": "text" },
+            { "value": "Liter-atmosphere", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.3766 x 10⁻³", "type": "text" },
+            { "value": "Watt-hour", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 1.356", "type": "text" },
+            { "value": "Watt-second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound", "type": "text" },
+            { "value": "x 0.077118", "type": "text" },
+            { "value": "Btu", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Foot-pound/minute", "type": "text" },
+            { "value": "x 1.286 x 10⁻³", "type": "text" },
+            { "value": "Btu/minute", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page continuation of Conversion Factor F table. Three-column layout: From | Multiply by | To. Header 'Conversion factor F (continued)' at top; footer note 'Conversion factor F (continued on following page)' at bottom. No column header row visible on this continuation page."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0222.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0222_fig01",
+      "bbox_norm": [
+        0.08,
+        0.62,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        77,
+        2037,
+        2494,
+        3574
+      ],
+      "caption": "Fig. 6.27 WRC-107 STRESS LOCATIONS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0222_fig01_wrc-107-stress-locations.png",
+      "png_sha256": "02da491e04b87656b0fbc6207e194f20736b999cb826a770abc2f26fd8aed583",
+      "slug": "wrc-107-stress-locations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 222,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0222.png",
+  "page_image_sha256": "6047e0dcfee860f4b6eb9ba681063f99deb3eb8b2a00d6fc38dd305b2e6f5eab",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0222_assets.json"
+}

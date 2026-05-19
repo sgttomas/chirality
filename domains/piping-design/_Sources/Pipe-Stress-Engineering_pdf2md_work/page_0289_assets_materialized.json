@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0289.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0289_fig01",
+      "bbox_norm": [
+        0.04,
+        0.62,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2014,
+        2516,
+        3533
+      ],
+      "caption": "Fig. 8.19 TYPICAL LEAD PIPING AND SUPPORT SCHEME OF AIR COOLER",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0289_fig01_typical-lead-piping-support-scheme-air-c.png",
+      "png_sha256": "b16d36995cb0f2f566dc02fa82faac677af060fd09c86c626e29ba9c301eb0f3",
+      "slug": "typical-lead-piping-support-scheme-air-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 289,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0289.png",
+  "page_image_sha256": "d1244a7aa58e410ce4ebc830dd2245d2f72c138a2715dbc2ca8ca9709033c36d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0289_assets.json"
+}

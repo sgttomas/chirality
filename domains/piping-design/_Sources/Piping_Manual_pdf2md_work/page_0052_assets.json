@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 52,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0052_fig01",
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.08, 0.98, 0.93],
+      "caption": "EXHIBIT 3-10 Planning Piping with a Process Flow Diagram. Composite three-part exhibit: (a) Subdivided Process Flow Diagram showing four subsystems A, B, C, D enclosed by dashed boundaries with a 'Typical Subsystem' callout; (b) Subsystem Arrangement plan view of subsystem B; (c) Interconnection of Subsystems plan view showing the four subsystem plots and inter-subsystem flow arrows."
+    }
+  ],
+  "issues": []
+}

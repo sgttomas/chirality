@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0333.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0333_fig01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1756,
+        2488,
+        3513
+      ],
+      "caption": "FIG. 9.18 PULSATING FLOW AT RECIPROCATING COMPRESSOR AND PUMP",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0333_fig01_pulsating-flow-reciprocating-compressor.png",
+      "png_sha256": "0d7c27357594bf6eca5af4e466769881877f2402754d38b5afd9e0a73a2a4b53",
+      "slug": "pulsating-flow-reciprocating-compressor",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 333,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0333.png",
+  "page_image_sha256": "08209c0cf9e2b6b034f0d4a90c7fd25ef6f43c04eb7b6d648f54a105bd799055",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0333_assets.json"
+}

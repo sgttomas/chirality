@@ -1,0 +1,134 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 49,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "General Specifications — Type AYR",
+      "slug": "general-specifications-type-ayr",
+      "bbox_norm": [0.03, 0.05, 0.48, 0.42],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true },
+              { "value": "AYR", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Maximum initial pressure (psig)", "type": "text" },
+              { "value": 750, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Maximum initial temperature", "type": "text" },
+              { "value": 750, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Exhaust pressures (psig)", "type": "text" },
+              { "value": 100, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Speed range (rpm)", "type": "text" },
+              { "value": "1000-5000", "type": "text", "raw": "1000-5000" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Wheel pitch diameter (in.)", "type": "text" },
+              { "value": 14, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Number of stages (impulse type)", "type": "text" },
+              { "value": 1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Number of rows of rotating blades", "type": "text" },
+              { "value": 2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inlet sizes (in.)", "type": "text" },
+              { "value": 3, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inlet location (facing governor)", "type": "text" },
+              { "value": "right", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Exhaust size (in.)", "type": "text" },
+              { "value": 6, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Exhaust location (r.h. or l.h.)", "type": "text" },
+              { "value": "optional", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Centerline height (in.)", "type": "text" },
+              { "value": 12, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Approximate range of capacities (hp)", "type": "text" },
+              { "value": "to 750", "type": "text", "raw": "to 750" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Casing cover weight (lb)", "type": "text" },
+              { "value": 85, "type": "number", "unit": "lb" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Shipping weight (lb)", "type": "text" },
+              { "value": 870, "type": "number", "unit": "lb" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column specifications table for Type AYR turbine. Header row contains TYPE / AYR labels. All values clearly legible."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-34. Approximate dimensions, Type AYR turbine. Courtesy of Elliot Company.",
+      "slug": "fig-1-34-approximate-dimensions-type-ayr-turbine",
+      "bbox_norm": [0.03, 0.43, 0.48, 0.97],
+      "confidence": "high",
+      "notes": "Two-view dimensioned engineering drawing of the Type AYR turbine (top view and side/front view) with dimensional annotations. Caption appears below the figure at bottom-left."
+    }
+  ],
+  "issues": []
+}

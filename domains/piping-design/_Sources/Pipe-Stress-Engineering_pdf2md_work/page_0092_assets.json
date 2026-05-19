@@ -1,0 +1,139 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 92,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 3.1 B31.3 Flexibility Factors and Stress Intensification Factors [6]",
+      "slug": "b313-flexibility-stress-intensification-factors",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.77],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE 3.1\nB31.3 FLEXIBILITY FACTORS AND STRESS INTENSIFICATION FACTORS [6]", "col_span": 6, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Description", "row_span": 2, "is_header": true },
+              { "value": "Flexibility factor, k", "row_span": 2, "is_header": true },
+              { "value": "Stress intensification factor", "col_span": 2, "is_header": true },
+              { "value": "Flexibility characteristic, h", "row_span": 2, "is_header": true },
+              { "value": "Sketch", "row_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Out-plane, io", "is_header": true },
+              { "value": "In-plane, ii", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Welding elbow or pipe bend", "type": "text" },
+              { "value": "1.65/h", "type": "text", "raw": "1.65/h" },
+              { "value": "0.75/h^(2/3)", "type": "text", "raw": "0.75/h^(2/3)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "tn*R/r^2", "type": "text", "raw": "tn R/r²" },
+              { "value": "[sketch: welding elbow or pipe bend]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Closely spaced miter bend s < r(1 + tan θ)", "type": "text" },
+              { "value": "1.52/h^(5/6)", "type": "text", "raw": "1.52/h^(5/6)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "(cot θ/2)*(tn*s/r^2)", "type": "text", "raw": "cot θ/2 · tn s/r²" },
+              { "value": "[sketch: closely spaced miter bend]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Single miter bend or widely spaced miter bend s ≥ r(1 + tan θ)", "type": "text" },
+              { "value": "1.52/h^(5/6)", "type": "text", "raw": "1.52/h^(5/6)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "(1 + cot θ)/2 * tn/r", "type": "text", "raw": "(1 + cot θ)/2 · tn/r" },
+              { "value": "[sketch: single miter bend or widely spaced miter bend]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Welding tee per ASME B16.9", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3/4*io + 1/4", "type": "text", "raw": "¾ io + ¼" },
+              { "value": "3.1*rb/t", "type": "text", "raw": "3.1 rb/t" },
+              { "value": "[sketch: welding tee per ASME B16.9]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Reinforced fabricated tee with pad or saddle", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3/4*io + 1/4", "type": "text", "raw": "¾ io + ¼" },
+              { "value": "(tr/t)^(1/2) * r/T", "type": "text", "raw": "(tr/t)^½ · r/T" },
+              { "value": "[sketch: reinforced fabricated tee with pad or saddle]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Un-reinforced fabricated tee", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3/4*io + 1/4", "type": "text", "raw": "¾ io + ¼" },
+              { "value": "tn/r", "type": "text" },
+              { "value": "[sketch: un-reinforced fabricated tee]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Extruded welding tee", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3/4*io + 1/4", "type": "text", "raw": "¾ io + ¼" },
+              { "value": "(1 + rx/r) * tn/r", "type": "text", "raw": "(1 + rx/r) · tn/r" },
+              { "value": "[sketch: extruded welding tee]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Welded-in contour insert", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3/4*io + 1/4", "type": "text", "raw": "¾ io + ¼" },
+              { "value": "3.1*rb/t", "type": "text", "raw": "3.1 rb/t" },
+              { "value": "[sketch: welded-in contour insert]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Branch welded-on fitting (integrally reinforced)", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "0.90/h^(2/3)", "type": "text", "raw": "0.90/h^(2/3)" },
+              { "value": "3.5*rb/t", "type": "text", "raw": "3.5 rb/t" },
+              { "value": "[sketch: branch welded-on fitting integrally reinforced]", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table spans most of the page. Three-row header: title row (col_span 6), column-group row (with merged 'Stress intensification factor' col_span 2, and row_span 2 cells for Description/Flexibility factor k/Flexibility characteristic h/Sketch), and sub-header row for Out-plane io / In-plane ii. Last column contains small engineering pipe-fitting sketches rendered inline; described as text placeholders. All engineering formula values captured as text with raw forms preserving original notation."
+    }
+  ],
+  "issues": []
+}

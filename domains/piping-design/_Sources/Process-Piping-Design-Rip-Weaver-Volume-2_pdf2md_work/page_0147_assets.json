@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 147,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-17. Induced draft air cooler mounted directly on rack.",
+      "slug": "induced-draft-air-cooler-on-rack",
+      "bbox_norm": [0.05, 0.38, 0.95, 0.95],
+      "confidence": "high",
+      "notes": "Photograph of induced draft air cooler mounted on rack, with caption below image"
+    }
+  ],
+  "issues": []
+}

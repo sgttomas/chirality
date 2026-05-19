@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 159,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8-1. Thermowell detail.",
+      "slug": "thermowell-detail",
+      "bbox_norm": [0.05, 0.03, 0.72, 0.32],
+      "confidence": "high",
+      "notes": "Technical illustration of a thermowell showing the immersion length with caption 'Figure 8-1. Thermowell detail.' below the diagram"
+    }
+  ],
+  "issues": []
+}

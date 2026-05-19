@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 102,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4.2  Superheated steam 13 bar (ga), 270°c",
+      "slug": "figure-4-2-superheated-steam-13bar-270c",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.95],
+      "confidence": "high",
+      "notes": "Log-log flow rate vs pressure drop chart for superheated steam at 13 bar (ga) and 270°C. Flow rate axes on both left (kg/h) and right (kg/s) sides; x-axis shows pressure drop Δp in bar/100 m length. Multiple diagonal pipe-diameter lines annotated across the chart with a bold stepped line indicating a worked example or design envelope."
+    }
+  ],
+  "issues": []
+}

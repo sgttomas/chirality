@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0152.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0152_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3486
+      ],
+      "caption": "Figure 7-13. Plants for vertical vessels. Courtesy of Fluor Corp.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0152_fig01_plants-for-vertical-vessels-fluor.png",
+      "png_sha256": "f783c41e3a6fa0a7813603e5cab0722952bdc7f8435937440a55ccb06e3b88b7",
+      "slug": "plants-for-vertical-vessels-fluor",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 152,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0152.png",
+  "page_image_sha256": "8d8bff05b44880be4403e89d8f1143e2dca83b039142be324b7c963f4f49b010",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0152_assets.json"
+}

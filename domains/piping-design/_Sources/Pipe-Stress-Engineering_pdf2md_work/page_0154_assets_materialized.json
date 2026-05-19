@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0154.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0154_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.9,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2468,
+        1115
+      ],
+      "caption": "FIG. 5.1 BEAM ON ELASTIC FOUNDATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0154_fig01_beam-on-elastic-foundation.png",
+      "png_sha256": "c8bf864557c640199967dd3cdceb125535f792b3460a579d9e2d9fe9d3f4e279",
+      "slug": "beam-on-elastic-foundation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 154,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0154.png",
+  "page_image_sha256": "3bb594039bef57592d07b58da22baa00503847b138888e3948c138daafbd5c00",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0154_assets.json"
+}

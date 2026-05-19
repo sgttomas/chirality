@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0047.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0047_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.17,
+        0.93,
+        0.38
+      ],
+      "bbox_px": [
+        51,
+        396,
+        2499,
+        1419
+      ],
+      "caption": "Table 5: Elastomer Sensitivities to CO2 Decompression Damage",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-06_p0047_tbl01_elastomer-sensitivities-co2-decompressio.png",
+      "png_sha256": "db7a54f22c4f479dddb6e3ded18a15a18d950c61d13df66a43138f9defe342db",
+      "slug": "elastomer-sensitivities-co2-decompressio",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-06_p0047_tbl01_elastomer-sensitivities-co2-decompressio.json",
+      "table_data_json_sha256": "df96e682a9429f7cc44a81d5c8473dd32faf3274db947ca1831e13b203b7cf30",
+      "table_data_sha256": "df96e682a9429f7cc44a81d5c8473dd32faf3274db947ca1831e13b203b7cf30",
+      "xlsx_path": "tables/01-overall-piping-design-standards-06_p0047_tbl01_elastomer-sensitivities-co2-decompressio.xlsx",
+      "xlsx_sha256": "6d9ef25ca54c32bb594c39f03826b7a1e4b462babd0b95227bb487c8053cb31b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-06",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 47,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0047.png",
+  "page_image_sha256": "224b8265b6fae5914b0585caa6188160bd2902063cb75a69d7f008afd1bb2a66",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0047_assets.json"
+}

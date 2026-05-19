@@ -1,0 +1,89 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0195.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0195_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2490,
+        1760
+      ],
+      "caption": "THE M.W. KELLOGG CO. FLEXIBILITY ANALYSIS - LOAD CONSTANTS FOR J = WIND. Member No. 8-7, Plane Z. Coordinate data, straight member data, curved member data, and load constants worksheet (upper form).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0195_tbl01_the-m-w-kellogg-co-flexibility-analysis.png",
+      "png_sha256": "035c2ee43ff59f556af7e0f4ba10a4c339a6d1855d492617704551ca9380958f",
+      "slug": "the-m-w-kellogg-co-flexibility-analysis",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0195_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1484,
+        2490,
+        3347
+      ],
+      "caption": "THE M.W. KELLOGG CO. FLEXIBILITY ANALYSIS - LOAD CONSTANTS FOR J = (WIND). Member No. 8-7, Plane Z. Coordinate data, straight member data, curved member data, and load constants worksheet (lower form).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0195_tbl02_the-m-w-kellogg-co-flexibility-analysis.png",
+      "png_sha256": "8fe043d7b87c885bf0d41a2ba7a8f6a8c43841f2db6fd0a0e0f845df1990dc2a",
+      "slug": "the-m-w-kellogg-co-flexibility-analysis",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0195_fig01",
+      "bbox_norm": [
+        0.05,
+        0.515,
+        0.18,
+        0.585
+      ],
+      "bbox_px": [
+        0,
+        1604,
+        573,
+        2191
+      ],
+      "caption": "Schematic sketch in 'SHAPE AND DIRECTION' cell of lower worksheet - small line/angle diagram indicating member orientation for Member No. 8-7.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0195_fig01_schematic-sketch-in-shape-and-direction.png",
+      "png_sha256": "5e16bc0a351063e885b3e6a49cb9362b1131fff691eb2a59653d3ac80ef56090",
+      "slug": "schematic-sketch-in-shape-and-direction",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 195,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0195.png",
+  "page_image_sha256": "cc71aea9d35732cdb354910e38f76cc16a8e6364ac52bfe5933aae217b4fc775",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0195_assets.json"
+}

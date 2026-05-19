@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0157.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0157_fig01",
+      "bbox_norm": [
+        0.06,
+        0.16,
+        0.49,
+        0.58
+      ],
+      "bbox_px": [
+        26,
+        365,
+        1387,
+        2088
+      ],
+      "caption": "EXHIBIT 6-53 Tower-Mounted Air Cooler",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0157_fig01_exhibit-6-53-tower-mounted-air-cooler.png",
+      "png_sha256": "2d50a888f0b2b5e5bba32536db465b2105051c658667580a85c44b1854802d66",
+      "slug": "exhibit-6-53-tower-mounted-air-cooler",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0157_fig02",
+      "bbox_norm": [
+        0.49,
+        0.16,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        1130,
+        365,
+        2569,
+        1988
+      ],
+      "caption": "EXHIBIT 6-54 Stub-In Reboiler",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0157_fig02_exhibit-6-54-stub-in-reboiler.png",
+      "png_sha256": "089585d932cad028f1ce690ded13a492959f14bf33fba096a41c60224a7811b1",
+      "slug": "exhibit-6-54-stub-in-reboiler",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 157,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0157.png",
+  "page_image_sha256": "f4edbe4f2ae73fe4305e3e1505ef7f8a851655a6751c5d110f46f5308e979b9e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0157_assets.json"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 316,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.33],
+      "caption": "EXHIBIT 12-20 Two-Level Small Structure"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.34, 0.97, 0.86],
+      "caption": "EXHIBIT 12-21 Horizontal Arrangement"
+    }
+  ],
+  "issues": []
+}

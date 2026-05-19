@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0024_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3201
+      ],
+      "caption": "Figure 1-7. Piping at end suction pumps.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0024_fig01_piping-at-end-suction-pumps.png",
+      "png_sha256": "b4e13a0daa10ed7702bb31508ecb9ee7dd7f6e069772da79f45f5bc43aee7dfc",
+      "slug": "piping-at-end-suction-pumps",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0024.png",
+  "page_image_sha256": "d7a0071cdf0587070926803f34ecb994f0ea2c284c7efc4ef16f8a66b7f072cf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0024_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0315.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0315_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1823
+      ],
+      "caption": "Exhibit 12-19 \u2014 Single-Level, Two-Bay Small Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0315_fig01_exhibit-12-19-single-level-two-bay-small.png",
+      "png_sha256": "a0abf35583ad2de8961488d9802a483cbc08c4d1477af16c2c1e3eb521fc3457",
+      "slug": "exhibit-12-19-single-level-two-bay-small",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 315,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0315.png",
+  "page_image_sha256": "55ad22319690a1a6f8deddebe46cec59cdbf0d547c1f5c4b9f6915f41e6bf1df",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0315_assets.json"
+}

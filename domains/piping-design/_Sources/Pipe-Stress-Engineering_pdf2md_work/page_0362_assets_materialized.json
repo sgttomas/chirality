@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0362.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0362_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2529,
+        1170
+      ],
+      "caption": "FIG. 10.7 SOIL PRESSURE ON TRENCHED PIPE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0362_fig01_fig-10-7-soil-pressure-trenched-pipe.png",
+      "png_sha256": "f23d0e89e0a284197768f7e96b1f6331a299633e225cc6b3a1dd8f724ca1d3a3",
+      "slug": "fig-10-7-soil-pressure-trenched-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0362_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.78,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2587,
+        2529,
+        3544
+      ],
+      "caption": "TABLE 10.4 MINIMUM COVER, H, FOR BURIED PIPELINES [4]",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0362_tbl01_table-10-4-minimum-cover-buried-pipeline.png",
+      "png_sha256": "e94a3b21dff1f680819befa21ce8841b795d6afe83ce568dfe1812774a4aeb91",
+      "slug": "table-10-4-minimum-cover-buried-pipeline",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0362_tbl01_table-10-4-minimum-cover-buried-pipeline.json",
+      "table_data_json_sha256": "0d97363fe636108c67c5813db00f9b065da03fd4d2a46e4c3e19a80c480d67c5",
+      "table_data_sha256": "0d97363fe636108c67c5813db00f9b065da03fd4d2a46e4c3e19a80c480d67c5",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0362_tbl01_table-10-4-minimum-cover-buried-pipeline.xlsx",
+      "xlsx_sha256": "238d9170990ae0e1a59534a46be8039c9cc90159ebcee21fe4b16ed4101e453b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 362,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0362.png",
+  "page_image_sha256": "4e13ad85fccc344d7cc736be27b57fb24042133e456dbfdb7a7df886c95961eb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0362_assets.json"
+}

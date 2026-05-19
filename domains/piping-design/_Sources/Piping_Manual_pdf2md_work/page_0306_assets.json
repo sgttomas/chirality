@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 306,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.08, 0.17, 0.92, 0.50],
+      "caption": "EXHIBIT 12-3: Stairway Dimensional Detail. Two-panel engineering drawing. Left panel shows a side-elevation view of an inclined stairway with handrails, indicating an overall vertical dimension labeled approximately 2'-6\". Right panel shows an end-elevation view of the same stairway showing tread spacing dimensions labeled \"2'-6\" - 5'-0\"\" and \".760 - .815\" (tread spacing in feet-inches and meters)."
+    }
+  ],
+  "issues": []
+}

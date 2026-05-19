@@ -1,0 +1,64 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0141.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0141_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.97,
+        0.49
+      ],
+      "bbox_px": [
+        25,
+        69,
+        2490,
+        1863
+      ],
+      "caption": "The M.W. Kellogg Co. Piping Flexibility Analysis - Shape Coefficients - Equation Y (upper table)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0141_tbl01_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "b2581056a4726f85983268e4808b374d0a59579870f686ba8721eab9a8fd7582",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0141_tbl02",
+      "bbox_norm": [
+        0.06,
+        0.5,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        25,
+        1552,
+        2490,
+        3347
+      ],
+      "caption": "The M.W. Kellogg Co. Piping Flexibility Analysis - Shape Coefficients - Equation Y (lower table)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0141_tbl02_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "0b80fe27a159111b9dbff9c79ad1becd4f46377f224c64f3a5179758c3040353",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 141,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0141.png",
+  "page_image_sha256": "562b448a3029894bd82d2461630f65e012d1ff2ed57ca704fc6f2591bd00d5c1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0141_assets.json"
+}

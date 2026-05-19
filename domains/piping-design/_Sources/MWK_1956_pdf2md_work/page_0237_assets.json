@@ -1,0 +1,92 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 237,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 8.3 Use of a stop for the control of thermal expansion reactions.",
+      "slug": "fig-8-3-stop-thermal-expansion-reactions",
+      "bbox_norm": [0.03, 0.38, 0.55, 0.82],
+      "confidence": "high",
+      "notes": "Piping isometric: Reboiler at top connected via 16 in. O.D. Sch. 80 pipe through a Double Acting Stop down to a Turbine. Coordinate axes and moment/force vectors annotated at Point A near the stop. Points A, B, C, D labeled along the run. Caption below diagram."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Moments (ft.kips) and Forces (kips) Acting at Point A; Max. Stress (psi) Magnitude/Point",
+      "slug": "moments-forces-point-a-stop-included",
+      "bbox_norm": [0.03, 0.80, 0.57, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Point of Stop", "row_span": 2, "is_header": true },
+              { "value": "Moments (ft.kips) and Forces (kips) Acting at Point A", "col_span": 6, "is_header": true },
+              { "value": "Max. Stress (psi)", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "M_x", "is_header": true },
+              { "value": "M_y", "is_header": true },
+              { "value": "M_z", "is_header": true },
+              { "value": "F_x", "is_header": true },
+              { "value": "F_y", "is_header": true },
+              { "value": "F_z", "is_header": true },
+              { "value": "Magnitude", "is_header": true },
+              { "value": "Point", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Not included", "type": "text" },
+              { "value": -47.7, "type": "number", "unit": "ft.kips" },
+              { "value": -37.5, "type": "number", "unit": "ft.kips" },
+              { "value": 38.7, "type": "number", "unit": "ft.kips", "raw": "+38.7" },
+              { "value": 1.00, "type": "number", "unit": "kips", "raw": "+1.00" },
+              { "value": -1.97, "type": "number", "unit": "kips" },
+              { "value": 1.77, "type": "number", "unit": "kips", "raw": "+1.77" },
+              { "value": 11600, "type": "number", "unit": "psi" },
+              { "value": "C", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Included", "type": "text" },
+              { "value": -27.9, "type": "number", "unit": "ft.kips" },
+              { "value": 4.1, "type": "number", "unit": "ft.kips", "raw": "+4.1" },
+              { "value": -5.4, "type": "number", "unit": "ft.kips" },
+              { "value": -0.720, "type": "number", "unit": "kips", "raw": "-.720" },
+              { "value": 0.71, "type": "number", "unit": "kips", "raw": "+.71" },
+              { "value": 2.44, "type": "number", "unit": "kips", "raw": "+2.44" },
+              { "value": 13400, "type": "number", "unit": "psi" },
+              { "value": "D", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-level header: row 0 has spanning group labels; row 1 has per-column sub-headers. Data rows compare reactions with stop not included vs. included."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 8.4 Typical stops employing tie rods or jointed struts.",
+      "slug": "fig-8-4-stops-tie-rods-jointed-struts",
+      "bbox_norm": [0.45, 0.03, 0.98, 0.48],
+      "confidence": "high",
+      "notes": "Multiple sketches of stop configurations: tie rod with clevis-and-pin on horizontal pipe, Simple Variant Used for Small Lines, and additional stop arrangement noted as providing two-axis restraint. Caption below figures."
+    }
+  ],
+  "issues": []
+}

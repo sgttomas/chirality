@@ -1,0 +1,89 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 62,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Nominal pipe size vs. Distance between tank and first pipe support",
+      "slug": "nominal-pipe-size-distance-first-support",
+      "bbox_norm": [0.18, 0.32, 0.82, 0.56],
+      "confidence": "high",
+      "notes": "Two-column table: Nominal pipe size DN and Distance between tank and first support (m)",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Nominal pipe size DN", "is_header": true },
+              { "value": "Distance between tank and first support (m)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100 and smaller", "type": "text" },
+              { "value": "—", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": 6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "200", "type": "text" },
+              { "value": 6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "250", "type": "text" },
+              { "value": 8, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "350", "type": "text" },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "450", "type": "text" },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500 and larger", "type": "text" },
+              { "value": 12, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

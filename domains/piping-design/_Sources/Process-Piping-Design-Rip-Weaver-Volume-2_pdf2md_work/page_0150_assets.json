@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 150,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-20. Flow patterns for air cooler piping.",
+      "slug": "flow-patterns-air-cooler-piping",
+      "bbox_norm": [0.04, 0.08, 0.90, 0.87],
+      "confidence": "high",
+      "notes": "Three schematic diagrams showing flow patterns for air cooler piping: for 4 to 6 nozzles, for less than 4 nozzles, and for more than 6 nozzles. Caption visible below diagrams."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 71,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure with four labeled sub-panels (TEE, 90 ELBOW, LATERAL, WYE OR 45 ELBOW) showing sectional engineering drawings with annotated dimensions and pressure-area thickness formulas. Visible caption appears at the bottom of the page."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 3.14 Special heavy wall fittings; check of mind-recessed for internal pressure.",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.96,
+        0.94
+      ]
+    }
+  ]
+}

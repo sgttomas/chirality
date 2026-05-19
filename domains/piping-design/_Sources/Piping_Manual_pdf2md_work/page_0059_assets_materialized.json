@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0059.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0059_fig01",
+      "bbox_norm": [
+        0.07,
+        0.17,
+        0.93,
+        0.47
+      ],
+      "bbox_px": [
+        51,
+        396,
+        2505,
+        1718
+      ],
+      "caption": "Exhibit 3-19 Individual Equipment Houses",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0059_fig01_exhibit-3-19-individual-equipment-houses.png",
+      "png_sha256": "90c5c003c87ae7ecf573785c3888bb4162a85223da59daad653e959edcc84db2",
+      "slug": "exhibit-3-19-individual-equipment-houses",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 59,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0059.png",
+  "page_image_sha256": "14c70160e1cdfc5fc96f62f8f61eaa25e4f82403807f38c9694630f1ddcf901e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0059_assets.json"
+}

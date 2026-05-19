@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0258.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0258_fig01",
+      "bbox_norm": [
+        0.02,
+        0.27,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2550,
+        3299
+      ],
+      "caption": "EXHIBIT 10-39 Nozzle Elevations - elevation drawing of tower T-100 showing nozzle centerline elevations, tangent lines, face-of-flange elevations, platforms, ladder, and skirt access. Legend: FF = FACE OF FLANGE; T.L. = TANGENT LINE; POS = POINT OF SUPPORT.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0258_fig01_exhibit-10-39-nozzle-elevations-elevatio.png",
+      "png_sha256": "13d6cabb08b7989b97bb6a20f850f3031b0137507d005c27284637fda24e750c",
+      "slug": "exhibit-10-39-nozzle-elevations-elevatio",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 258,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0258.png",
+  "page_image_sha256": "2d9cb290a08db5730e764f0966d168cf354f1b1f30d79851fbb688e14738a294",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0258_assets.json"
+}

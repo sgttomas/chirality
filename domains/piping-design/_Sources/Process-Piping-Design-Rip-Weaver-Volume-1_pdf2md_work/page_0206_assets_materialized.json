@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0206.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0206_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        36,
+        2477,
+        3602
+      ],
+      "caption": "Table A-1 (concluded) \u2014 Pressure conversion lb./sq.in. to kg/cm\u00b2",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0206_tbl01_table-a1-concluded-pressure-conversion.png",
+      "png_sha256": "b757d4ac01e9aa3b265cb43d825846be1f723555be7ab3fa836d2f4da504f75d",
+      "slug": "table-a1-concluded-pressure-conversion",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0206_tbl01_table-a1-concluded-pressure-conversion.json",
+      "table_data_json_sha256": "5dcf00774b8fde945540bcf903a7c49a87f65befa84b5e6ba292daecaeba66ac",
+      "table_data_sha256": "5dcf00774b8fde945540bcf903a7c49a87f65befa84b5e6ba292daecaeba66ac",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0206_tbl01_table-a1-concluded-pressure-conversion.xlsx",
+      "xlsx_sha256": "046000f5dc248d97e2f1a821a874339318a798b941f348f7cc1d0538336a0ed8"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 206,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0206.png",
+  "page_image_sha256": "39dcfd10610ee93b026a4124de89c7bab3d40dd8727364176379053683a7ca0c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0206_assets.json"
+}

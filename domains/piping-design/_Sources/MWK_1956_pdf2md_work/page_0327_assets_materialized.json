@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0327.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0327_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1605,
+        2520,
+        3210
+      ],
+      "caption": "Table A.9. System of Equations for a Three-Anchor Configuration",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0327_tbl01_table-a-9-system-of-equations-for-a-thre.png",
+      "png_sha256": "ba8e01e7aae47da68d8a36858de77d1e4802212b58923a5401474f27ad1c075b",
+      "slug": "table-a-9-system-of-equations-for-a-thre",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 327,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0327.png",
+  "page_image_sha256": "b07b4671f95197ab2275fe67d38c258cd2bb2e12f8740736407337466ce5039c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0327_assets.json"
+}

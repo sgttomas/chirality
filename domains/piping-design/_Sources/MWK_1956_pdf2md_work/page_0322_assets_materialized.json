@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0322.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0322_fig01",
+      "bbox_norm": [
+        0.05,
+        0.34,
+        0.48,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        858,
+        1352,
+        1982
+      ],
+      "caption": "Fig. A.17 Integration of shape coefficients for straight members in the p-plane acted upon by z-wind.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0322_fig01_fig-a-17-integration-of-shape-coefficien.png",
+      "png_sha256": "77fa402296f3ed9b8c788189aa58cb17c82e96b4480669b7369337ac0f0ffb8a",
+      "slug": "fig-a-17-integration-of-shape-coefficien",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0322_fig02",
+      "bbox_norm": [
+        0.52,
+        0.2,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        1198,
+        444,
+        2550,
+        1568
+      ],
+      "caption": "Fig. A.18 Integration of shape coefficients for straight members in the p-plane acted upon by z-wind.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0322_fig02_fig-a-18-integration-of-shape-coefficien.png",
+      "png_sha256": "b2e19b1126606ad6f85595d3a12270a85a89db190b84b173ea2f8cffdc660420",
+      "slug": "fig-a-18-integration-of-shape-coefficien",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 322,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0322.png",
+  "page_image_sha256": "3925e183ee8ec261e1c9b421c2f93d4c5a1c860b5f2a3d45bfe65bc2128c561a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0322_assets.json"
+}

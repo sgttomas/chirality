@@ -1,0 +1,1308 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 13,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1-2 continued — Pipe dimensions, weights, and section modulus",
+      "slug": "table-1-2-continued-pipe-dimensions-weights-section-modulus",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Continuation of Table 1-2 covering nominal pipe sizes 10 through 24 inches. Two-row header; data rows use merged Nominal Pipe Size and Outside Diameter cells across schedule groups.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": {
+          "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+          "page": 12,
+          "tbl_ordinal": 1
+        },
+        "footnotes": [
+          { "marker": "4", "text": "See Note 4 regarding Schedule No." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Nominal Pipe Size (ID) Inches", "is_header": true },
+              { "value": "Outside Diameter Inches", "is_header": true },
+              { "value": "Schedule No.", "is_header": true, "footnote_markers": ["4"] },
+              { "value": "Wall Thickness Inches (t)", "col_span": 2, "is_header": true },
+              { "value": "Area Metal Square Inches (a)", "col_span": 2, "is_header": true },
+              { "value": "Transverse Internal Area", "col_span": 2, "is_header": true },
+              { "value": "Moment of Inertia of Pipe (I) Inches⁴", "is_header": true },
+              { "value": "Weight of Pipe Pounds per foot", "is_header": true },
+              { "value": "Weight of Water Pounds per foot of pipe", "is_header": true },
+              { "value": "External Surface Sq. Ft. per foot of pipe", "is_header": true },
+              { "value": "Section Modulus (S/D)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Inches", "is_header": true },
+              { "value": "Inches", "is_header": true },
+              { "value": "Square Inches", "is_header": true },
+              { "value": "Square Inches", "is_header": true },
+              { "value": "Square Feet", "is_header": true },
+              { "value": "Inch⁴ (I)", "is_header": true },
+              { "value": "Pounds per foot", "is_header": true },
+              { "value": "Pounds per foot", "is_header": true },
+              { "value": "Sq. Ft. per foot of pipe", "is_header": true },
+              { "value": "(S/D)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "number" },
+              { "value": "10.750", "type": "number", "unit": "in" },
+              { "value": "20", "type": "number" },
+              { "value": ".307", "type": "number", "unit": "in" },
+              { "value": "10.136", "type": "number", "unit": "in" },
+              { "value": "10.07", "type": "number", "unit": "sq in" },
+              { "value": "80.69", "type": "number", "unit": "sq in" },
+              { "value": ".5603", "type": "number", "unit": "sq ft" },
+              { "value": "137.4", "type": "number", "unit": "in⁴" },
+              { "value": "34.24", "type": "number", "unit": "lb/ft" },
+              { "value": "34.99", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "25.57", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30", "type": "number" },
+              { "value": ".365", "type": "number", "unit": "in" },
+              { "value": "10.020", "type": "number", "unit": "in" },
+              { "value": "11.91", "type": "number", "unit": "sq in" },
+              { "value": "78.85", "type": "number", "unit": "sq in" },
+              { "value": ".5476", "type": "number", "unit": "sq ft" },
+              { "value": "160.7", "type": "number", "unit": "in⁴" },
+              { "value": "40.48", "type": "number", "unit": "lb/ft" },
+              { "value": "34.19", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "29.90", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "9.750", "type": "number", "unit": "in" },
+              { "value": "16.10", "type": "number", "unit": "sq in" },
+              { "value": "74.66", "type": "number", "unit": "sq in" },
+              { "value": ".5185", "type": "number", "unit": "sq ft" },
+              { "value": "211.9", "type": "number", "unit": "in⁴" },
+              { "value": "54.74", "type": "number", "unit": "lb/ft" },
+              { "value": "32.38", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "39.43", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".594", "type": "number", "unit": "in" },
+              { "value": "9.562", "type": "number", "unit": "in" },
+              { "value": "18.92", "type": "number", "unit": "sq in" },
+              { "value": "71.81", "type": "number", "unit": "sq in" },
+              { "value": ".4989", "type": "number", "unit": "sq ft" },
+              { "value": "244.9", "type": "number", "unit": "in⁴" },
+              { "value": "64.33", "type": "number", "unit": "lb/ft" },
+              { "value": "31.13", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "45.58", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80s", "type": "text" },
+              { "value": ".719", "type": "number", "unit": "in" },
+              { "value": "9.312", "type": "number", "unit": "in" },
+              { "value": "22.63", "type": "number", "unit": "sq in" },
+              { "value": "68.13", "type": "number", "unit": "sq in" },
+              { "value": ".4731", "type": "number", "unit": "sq ft" },
+              { "value": "286.2", "type": "number", "unit": "in⁴" },
+              { "value": "76.93", "type": "number", "unit": "lb/ft" },
+              { "value": "29.54", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "53.26", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": ".843", "type": "number", "unit": "in" },
+              { "value": "9.064", "type": "number", "unit": "in" },
+              { "value": "26.24", "type": "number", "unit": "sq in" },
+              { "value": "64.53", "type": "number", "unit": "sq in" },
+              { "value": ".4481", "type": "number", "unit": "sq ft" },
+              { "value": "324.3", "type": "number", "unit": "in⁴" },
+              { "value": "89.20", "type": "number", "unit": "lb/ft" },
+              { "value": "27.96", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "60.32", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.000", "type": "number", "unit": "in" },
+              { "value": "8.750", "type": "number", "unit": "in" },
+              { "value": "30.63", "type": "number", "unit": "sq in" },
+              { "value": "60.13", "type": "number", "unit": "sq in" },
+              { "value": ".4176", "type": "number", "unit": "sq ft" },
+              { "value": "367.8", "type": "number", "unit": "in⁴" },
+              { "value": "104.13", "type": "number", "unit": "lb/ft" },
+              { "value": "26.07", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "68.43", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.125", "type": "number", "unit": "in" },
+              { "value": "8.500", "type": "number", "unit": "in" },
+              { "value": "34.02", "type": "number", "unit": "sq in" },
+              { "value": "56.75", "type": "number", "unit": "sq in" },
+              { "value": ".3941", "type": "number", "unit": "sq ft" },
+              { "value": "399.3", "type": "number", "unit": "in⁴" },
+              { "value": "115.65", "type": "number", "unit": "lb/ft" },
+              { "value": "24.59", "type": "number", "unit": "lb/ft" },
+              { "value": "2.814", "type": "number", "unit": "sq ft/ft" },
+              { "value": "74.29", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12", "type": "number" },
+              { "value": "12.750", "type": "number", "unit": "in" },
+              { "value": "20", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "12.250", "type": "number", "unit": "in" },
+              { "value": "9.82", "type": "number", "unit": "sq in" },
+              { "value": "117.86", "type": "number", "unit": "sq in" },
+              { "value": ".8185", "type": "number", "unit": "sq ft" },
+              { "value": "279.3", "type": "number", "unit": "in⁴" },
+              { "value": "33.38", "type": "number", "unit": "lb/ft" },
+              { "value": "51.11", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "43.80", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30", "type": "number" },
+              { "value": ".330", "type": "number", "unit": "in" },
+              { "value": "12.090", "type": "number", "unit": "in" },
+              { "value": "12.87", "type": "number", "unit": "sq in" },
+              { "value": "114.80", "type": "number", "unit": "sq in" },
+              { "value": ".7972", "type": "number", "unit": "sq ft" },
+              { "value": "361.5", "type": "number", "unit": "in⁴" },
+              { "value": "43.77", "type": "number", "unit": "lb/ft" },
+              { "value": "49.77", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "56.70", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "12.000", "type": "number", "unit": "in" },
+              { "value": "14.58", "type": "number", "unit": "sq in" },
+              { "value": "113.10", "type": "number", "unit": "sq in" },
+              { "value": ".7854", "type": "number", "unit": "sq ft" },
+              { "value": "406.9", "type": "number", "unit": "in⁴" },
+              { "value": "49.56", "type": "number", "unit": "lb/ft" },
+              { "value": "49.03", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "63.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".406", "type": "number", "unit": "in" },
+              { "value": "11.938", "type": "number", "unit": "in" },
+              { "value": "15.74", "type": "number", "unit": "sq in" },
+              { "value": "111.93", "type": "number", "unit": "sq in" },
+              { "value": ".7773", "type": "number", "unit": "sq ft" },
+              { "value": "438.0", "type": "number", "unit": "in⁴" },
+              { "value": "53.52", "type": "number", "unit": "lb/ft" },
+              { "value": "48.52", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "68.7", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "11.750", "type": "number", "unit": "in" },
+              { "value": "19.24", "type": "number", "unit": "sq in" },
+              { "value": "108.43", "type": "number", "unit": "sq in" },
+              { "value": ".7528", "type": "number", "unit": "sq ft" },
+              { "value": "527.6", "type": "number", "unit": "in⁴" },
+              { "value": "65.42", "type": "number", "unit": "lb/ft" },
+              { "value": "46.99", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "82.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80s", "type": "text" },
+              { "value": ".562", "type": "number", "unit": "in" },
+              { "value": "11.626", "type": "number", "unit": "in" },
+              { "value": "21.52", "type": "number", "unit": "sq in" },
+              { "value": "106.16", "type": "number", "unit": "sq in" },
+              { "value": ".7372", "type": "number", "unit": "sq ft" },
+              { "value": "585.4", "type": "number", "unit": "in⁴" },
+              { "value": "73.16", "type": "number", "unit": "lb/ft" },
+              { "value": "46.02", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "91.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".687", "type": "number", "unit": "in" },
+              { "value": "11.376", "type": "number", "unit": "in" },
+              { "value": "26.03", "type": "number", "unit": "sq in" },
+              { "value": "101.64", "type": "number", "unit": "sq in" },
+              { "value": ".7058", "type": "number", "unit": "sq ft" },
+              { "value": "698.4", "type": "number", "unit": "in⁴" },
+              { "value": "88.51", "type": "number", "unit": "lb/ft" },
+              { "value": "44.07", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "109.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": ".843", "type": "number", "unit": "in" },
+              { "value": "11.064", "type": "number", "unit": "in" },
+              { "value": "31.53", "type": "number", "unit": "sq in" },
+              { "value": "96.13", "type": "number", "unit": "sq in" },
+              { "value": ".6676", "type": "number", "unit": "sq ft" },
+              { "value": "831.5", "type": "number", "unit": "in⁴" },
+              { "value": "107.20", "type": "number", "unit": "lb/ft" },
+              { "value": "41.67", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "130.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.000", "type": "number", "unit": "in" },
+              { "value": "10.750", "type": "number", "unit": "in" },
+              { "value": "36.91", "type": "number", "unit": "sq in" },
+              { "value": "90.76", "type": "number", "unit": "sq in" },
+              { "value": ".6303", "type": "number", "unit": "sq ft" },
+              { "value": "953.4", "type": "number", "unit": "in⁴" },
+              { "value": "125.49", "type": "number", "unit": "lb/ft" },
+              { "value": "39.34", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "149.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "1.125", "type": "number", "unit": "in" },
+              { "value": "10.500", "type": "number", "unit": "in" },
+              { "value": "41.08", "type": "number", "unit": "sq in" },
+              { "value": "86.59", "type": "number", "unit": "sq in" },
+              { "value": ".6013", "type": "number", "unit": "sq ft" },
+              { "value": "1046.3", "type": "number", "unit": "in⁴" },
+              { "value": "139.68", "type": "number", "unit": "lb/ft" },
+              { "value": "37.53", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "164.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.312", "type": "number", "unit": "in" },
+              { "value": "10.126", "type": "number", "unit": "in" },
+              { "value": "47.14", "type": "number", "unit": "sq in" },
+              { "value": "80.53", "type": "number", "unit": "sq in" },
+              { "value": ".5592", "type": "number", "unit": "sq ft" },
+              { "value": "1171.5", "type": "number", "unit": "in⁴" },
+              { "value": "160.27", "type": "number", "unit": "lb/ft" },
+              { "value": "34.91", "type": "number", "unit": "lb/ft" },
+              { "value": "3.338", "type": "number", "unit": "sq ft/ft" },
+              { "value": "183.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "14", "type": "number" },
+              { "value": "14.00", "type": "number", "unit": "in" },
+              { "value": "10", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "13.500", "type": "number", "unit": "in" },
+              { "value": "10.80", "type": "number", "unit": "sq in" },
+              { "value": "143.14", "type": "number", "unit": "sq in" },
+              { "value": ".9940", "type": "number", "unit": "sq ft" },
+              { "value": "372.8", "type": "number", "unit": "in⁴" },
+              { "value": "36.71", "type": "number", "unit": "lb/ft" },
+              { "value": "62.03", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "53.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "20", "type": "number" },
+              { "value": ".312", "type": "number", "unit": "in" },
+              { "value": "13.376", "type": "number", "unit": "in" },
+              { "value": "13.42", "type": "number", "unit": "sq in" },
+              { "value": "140.52", "type": "number", "unit": "sq in" },
+              { "value": ".9758", "type": "number", "unit": "sq ft" },
+              { "value": "461.0", "type": "number", "unit": "in⁴" },
+              { "value": "45.61", "type": "number", "unit": "lb/ft" },
+              { "value": "60.93", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "65.9", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "13.250", "type": "number", "unit": "in" },
+              { "value": "16.05", "type": "number", "unit": "sq in" },
+              { "value": "137.88", "type": "number", "unit": "sq in" },
+              { "value": ".9575", "type": "number", "unit": "sq ft" },
+              { "value": "548.4", "type": "number", "unit": "in⁴" },
+              { "value": "54.57", "type": "number", "unit": "lb/ft" },
+              { "value": "59.77", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "78.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".437", "type": "number", "unit": "in" },
+              { "value": "13.126", "type": "number", "unit": "in" },
+              { "value": "18.62", "type": "number", "unit": "sq in" },
+              { "value": "135.28", "type": "number", "unit": "sq in" },
+              { "value": ".9394", "type": "number", "unit": "sq ft" },
+              { "value": "633.5", "type": "number", "unit": "in⁴" },
+              { "value": "63.30", "type": "number", "unit": "lb/ft" },
+              { "value": "58.64", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "90.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "13.000", "type": "number", "unit": "in" },
+              { "value": "21.21", "type": "number", "unit": "sq in" },
+              { "value": "132.73", "type": "number", "unit": "sq in" },
+              { "value": ".9217", "type": "number", "unit": "sq ft" },
+              { "value": "717.1", "type": "number", "unit": "in⁴" },
+              { "value": "72.09", "type": "number", "unit": "lb/ft" },
+              { "value": "57.54", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "102.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".593", "type": "number", "unit": "in" },
+              { "value": "12.814", "type": "number", "unit": "in" },
+              { "value": "25.02", "type": "number", "unit": "sq in" },
+              { "value": "128.96", "type": "number", "unit": "sq in" },
+              { "value": ".8956", "type": "number", "unit": "sq ft" },
+              { "value": "836.5", "type": "number", "unit": "in⁴" },
+              { "value": "85.05", "type": "number", "unit": "lb/ft" },
+              { "value": "55.91", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "119.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80", "type": "number" },
+              { "value": ".750", "type": "number", "unit": "in" },
+              { "value": "12.500", "type": "number", "unit": "in" },
+              { "value": "31.22", "type": "number", "unit": "sq in" },
+              { "value": "122.72", "type": "number", "unit": "sq in" },
+              { "value": ".8522", "type": "number", "unit": "sq ft" },
+              { "value": "1017.9", "type": "number", "unit": "in⁴" },
+              { "value": "106.13", "type": "number", "unit": "lb/ft" },
+              { "value": "53.21", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "145.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": ".937", "type": "number", "unit": "in" },
+              { "value": "12.126", "type": "number", "unit": "in" },
+              { "value": "38.45", "type": "number", "unit": "sq in" },
+              { "value": "115.49", "type": "number", "unit": "sq in" },
+              { "value": ".8020", "type": "number", "unit": "sq ft" },
+              { "value": "1220.4", "type": "number", "unit": "in⁴" },
+              { "value": "130.73", "type": "number", "unit": "lb/ft" },
+              { "value": "50.07", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "174.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.093", "type": "number", "unit": "in" },
+              { "value": "11.814", "type": "number", "unit": "in" },
+              { "value": "44.32", "type": "number", "unit": "sq in" },
+              { "value": "109.62", "type": "number", "unit": "sq in" },
+              { "value": ".7613", "type": "number", "unit": "sq ft" },
+              { "value": "1382.5", "type": "number", "unit": "in⁴" },
+              { "value": "150.67", "type": "number", "unit": "lb/ft" },
+              { "value": "47.53", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "197.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "1.250", "type": "number", "unit": "in" },
+              { "value": "11.500", "type": "number", "unit": "in" },
+              { "value": "50.07", "type": "number", "unit": "sq in" },
+              { "value": "103.87", "type": "number", "unit": "sq in" },
+              { "value": ".7214", "type": "number", "unit": "sq ft" },
+              { "value": "1534.0", "type": "number", "unit": "in⁴" },
+              { "value": "170.21", "type": "number", "unit": "lb/ft" },
+              { "value": "45.01", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "219.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.406", "type": "number", "unit": "in" },
+              { "value": "11.188", "type": "number", "unit": "in" },
+              { "value": "55.63", "type": "number", "unit": "sq in" },
+              { "value": "98.31", "type": "number", "unit": "sq in" },
+              { "value": ".6827", "type": "number", "unit": "sq ft" },
+              { "value": "1676.4", "type": "number", "unit": "in⁴" },
+              { "value": "189.11", "type": "number", "unit": "lb/ft" },
+              { "value": "42.62", "type": "number", "unit": "lb/ft" },
+              { "value": "3.665", "type": "number", "unit": "sq ft/ft" },
+              { "value": "239.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "16", "type": "number" },
+              { "value": "16.00", "type": "number", "unit": "in" },
+              { "value": "10", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "15.500", "type": "number", "unit": "in" },
+              { "value": "12.37", "type": "number", "unit": "sq in" },
+              { "value": "188.69", "type": "number", "unit": "sq in" },
+              { "value": "1.3103", "type": "number", "unit": "sq ft" },
+              { "value": "561.8", "type": "number", "unit": "in⁴" },
+              { "value": "42.05", "type": "number", "unit": "lb/ft" },
+              { "value": "81.80", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "70.2", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "20", "type": "number" },
+              { "value": ".312", "type": "number", "unit": "in" },
+              { "value": "15.376", "type": "number", "unit": "in" },
+              { "value": "15.38", "type": "number", "unit": "sq in" },
+              { "value": "185.69", "type": "number", "unit": "sq in" },
+              { "value": ".12895", "type": "number", "unit": "sq ft" },
+              { "value": "692.7", "type": "number", "unit": "in⁴" },
+              { "value": "52.36", "type": "number", "unit": "lb/ft" },
+              { "value": "80.51", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "86.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "15.250", "type": "number", "unit": "in" },
+              { "value": "18.41", "type": "number", "unit": "sq in" },
+              { "value": "182.65", "type": "number", "unit": "sq in" },
+              { "value": ".12684", "type": "number", "unit": "sq ft" },
+              { "value": "824.5", "type": "number", "unit": "in⁴" },
+              { "value": "62.58", "type": "number", "unit": "lb/ft" },
+              { "value": "79.21", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "103.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "15.000", "type": "number", "unit": "in" },
+              { "value": "24.35", "type": "number", "unit": "sq in" },
+              { "value": "176.71", "type": "number", "unit": "sq in" },
+              { "value": ".12272", "type": "number", "unit": "sq ft" },
+              { "value": "1076.9", "type": "number", "unit": "in⁴" },
+              { "value": "82.77", "type": "number", "unit": "lb/ft" },
+              { "value": "76.60", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "134.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".656", "type": "number", "unit": "in" },
+              { "value": "14.688", "type": "number", "unit": "in" },
+              { "value": "31.62", "type": "number", "unit": "sq in" },
+              { "value": "169.44", "type": "number", "unit": "sq in" },
+              { "value": ".11767", "type": "number", "unit": "sq ft" },
+              { "value": "1373.6", "type": "number", "unit": "in⁴" },
+              { "value": "107.50", "type": "number", "unit": "lb/ft" },
+              { "value": "73.45", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "171.7", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80", "type": "number" },
+              { "value": ".843", "type": "number", "unit": "in" },
+              { "value": "14.314", "type": "number", "unit": "in" },
+              { "value": "40.14", "type": "number", "unit": "sq in" },
+              { "value": "160.92", "type": "number", "unit": "sq in" },
+              { "value": ".11175", "type": "number", "unit": "sq ft" },
+              { "value": "1704.6", "type": "number", "unit": "in⁴" },
+              { "value": "136.46", "type": "number", "unit": "lb/ft" },
+              { "value": "69.76", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "213.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": "1.031", "type": "number", "unit": "in" },
+              { "value": "13.938", "type": "number", "unit": "in" },
+              { "value": "48.48", "type": "number", "unit": "sq in" },
+              { "value": "152.57", "type": "number", "unit": "sq in" },
+              { "value": ".10595", "type": "number", "unit": "sq ft" },
+              { "value": "2020.8", "type": "number", "unit": "in⁴" },
+              { "value": "164.82", "type": "number", "unit": "lb/ft" },
+              { "value": "66.14", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "252.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.218", "type": "number", "unit": "in" },
+              { "value": "13.564", "type": "number", "unit": "in" },
+              { "value": "56.61", "type": "number", "unit": "sq in" },
+              { "value": "144.46", "type": "number", "unit": "sq in" },
+              { "value": ".10032", "type": "number", "unit": "sq ft" },
+              { "value": "2318.8", "type": "number", "unit": "in⁴" },
+              { "value": "192.43", "type": "number", "unit": "lb/ft" },
+              { "value": "62.62", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "289.9", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "1.437", "type": "number", "unit": "in" },
+              { "value": "13.126", "type": "number", "unit": "in" },
+              { "value": "65.78", "type": "number", "unit": "sq in" },
+              { "value": "135.28", "type": "number", "unit": "sq in" },
+              { "value": ".09394", "type": "number", "unit": "sq ft" },
+              { "value": "2637.3", "type": "number", "unit": "in⁴" },
+              { "value": "223.64", "type": "number", "unit": "lb/ft" },
+              { "value": "58.67", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "329.7", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.593", "type": "number", "unit": "in" },
+              { "value": "12.814", "type": "number", "unit": "in" },
+              { "value": "72.14", "type": "number", "unit": "sq in" },
+              { "value": "128.96", "type": "number", "unit": "sq in" },
+              { "value": ".08956", "type": "number", "unit": "sq ft" },
+              { "value": "2847.5", "type": "number", "unit": "in⁴" },
+              { "value": "245.25", "type": "number", "unit": "lb/ft" },
+              { "value": "55.91", "type": "number", "unit": "lb/ft" },
+              { "value": "4.189", "type": "number", "unit": "sq ft/ft" },
+              { "value": "355.9", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "18", "type": "number" },
+              { "value": "18.00", "type": "number", "unit": "in" },
+              { "value": "10", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "17.500", "type": "number", "unit": "in" },
+              { "value": "13.94", "type": "number", "unit": "sq in" },
+              { "value": "240.53", "type": "number", "unit": "sq in" },
+              { "value": "1.6703", "type": "number", "unit": "sq ft" },
+              { "value": "800.4", "type": "number", "unit": "in⁴" },
+              { "value": "47.39", "type": "number", "unit": "lb/ft" },
+              { "value": "104.28", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "88.9", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "20", "type": "number" },
+              { "value": ".312", "type": "number", "unit": "in" },
+              { "value": "17.376", "type": "number", "unit": "in" },
+              { "value": "17.34", "type": "number", "unit": "sq in" },
+              { "value": "237.13", "type": "number", "unit": "sq in" },
+              { "value": ".16467", "type": "number", "unit": "sq ft" },
+              { "value": "990.2", "type": "number", "unit": "in⁴" },
+              { "value": "58.94", "type": "number", "unit": "lb/ft" },
+              { "value": "102.81", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "110.0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "17.250", "type": "number", "unit": "in" },
+              { "value": "20.76", "type": "number", "unit": "sq in" },
+              { "value": "233.71", "type": "number", "unit": "sq in" },
+              { "value": ".16230", "type": "number", "unit": "sq ft" },
+              { "value": "1175.7", "type": "number", "unit": "in⁴" },
+              { "value": "70.59", "type": "number", "unit": "lb/ft" },
+              { "value": "101.30", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "130.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "17.000", "type": "number", "unit": "in" },
+              { "value": "27.49", "type": "number", "unit": "sq in" },
+              { "value": "226.98", "type": "number", "unit": "sq in" },
+              { "value": ".15763", "type": "number", "unit": "sq ft" },
+              { "value": "1547.7", "type": "number", "unit": "in⁴" },
+              { "value": "93.45", "type": "number", "unit": "lb/ft" },
+              { "value": "98.38", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "171.9", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".562", "type": "number", "unit": "in" },
+              { "value": "16.876", "type": "number", "unit": "in" },
+              { "value": "30.79", "type": "number", "unit": "sq in" },
+              { "value": "223.68", "type": "number", "unit": "sq in" },
+              { "value": ".15533", "type": "number", "unit": "sq ft" },
+              { "value": "1731.5", "type": "number", "unit": "in⁴" },
+              { "value": "104.67", "type": "number", "unit": "lb/ft" },
+              { "value": "96.96", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "192.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".625", "type": "number", "unit": "in" },
+              { "value": "16.750", "type": "number", "unit": "in" },
+              { "value": "34.14", "type": "number", "unit": "sq in" },
+              { "value": "220.35", "type": "number", "unit": "sq in" },
+              { "value": ".15302", "type": "number", "unit": "sq ft" },
+              { "value": "1913.6", "type": "number", "unit": "in⁴" },
+              { "value": "116.07", "type": "number", "unit": "lb/ft" },
+              { "value": "95.52", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "212.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".750", "type": "number", "unit": "in" },
+              { "value": "16.500", "type": "number", "unit": "in" },
+              { "value": "40.64", "type": "number", "unit": "sq in" },
+              { "value": "213.82", "type": "number", "unit": "sq in" },
+              { "value": ".14849", "type": "number", "unit": "sq ft" },
+              { "value": "2256.4", "type": "number", "unit": "in⁴" },
+              { "value": "138.17", "type": "number", "unit": "lb/ft" },
+              { "value": "92.70", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "250.7", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80", "type": "number" },
+              { "value": ".937", "type": "number", "unit": "in" },
+              { "value": "16.126", "type": "number", "unit": "in" },
+              { "value": "50.23", "type": "number", "unit": "sq in" },
+              { "value": "204.24", "type": "number", "unit": "sq in" },
+              { "value": ".14183", "type": "number", "unit": "sq ft" },
+              { "value": "2750.3", "type": "number", "unit": "in⁴" },
+              { "value": "170.84", "type": "number", "unit": "lb/ft" },
+              { "value": "88.55", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "305.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": "1.156", "type": "number", "unit": "in" },
+              { "value": "15.688", "type": "number", "unit": "in" },
+              { "value": "61.18", "type": "number", "unit": "sq in" },
+              { "value": "193.30", "type": "number", "unit": "sq in" },
+              { "value": ".13424", "type": "number", "unit": "sq ft" },
+              { "value": "3298.5", "type": "number", "unit": "in⁴" },
+              { "value": "207.96", "type": "number", "unit": "lb/ft" },
+              { "value": "83.82", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "366.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.375", "type": "number", "unit": "in" },
+              { "value": "15.250", "type": "number", "unit": "in" },
+              { "value": "71.81", "type": "number", "unit": "sq in" },
+              { "value": "182.65", "type": "number", "unit": "sq in" },
+              { "value": ".12684", "type": "number", "unit": "sq ft" },
+              { "value": "3828.3", "type": "number", "unit": "in⁴" },
+              { "value": "244.14", "type": "number", "unit": "lb/ft" },
+              { "value": "79.21", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "425.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "1.562", "type": "number", "unit": "in" },
+              { "value": "15.876", "type": "number", "unit": "in" },
+              { "value": "80.66", "type": "number", "unit": "sq in" },
+              { "value": "172.80", "type": "number", "unit": "sq in" },
+              { "value": ".12000", "type": "number", "unit": "sq ft" },
+              { "value": "4246.4", "type": "number", "unit": "in⁴" },
+              { "value": "274.22", "type": "number", "unit": "lb/ft" },
+              { "value": "74.93", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "471.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.781", "type": "number", "unit": "in" },
+              { "value": "14.438", "type": "number", "unit": "in" },
+              { "value": "90.75", "type": "number", "unit": "sq in" },
+              { "value": "163.72", "type": "number", "unit": "sq in" },
+              { "value": ".11369", "type": "number", "unit": "sq ft" },
+              { "value": "4717.1", "type": "number", "unit": "in⁴" },
+              { "value": "308.50", "type": "number", "unit": "lb/ft" },
+              { "value": "70.97", "type": "number", "unit": "lb/ft" },
+              { "value": "4.712", "type": "number", "unit": "sq ft/ft" },
+              { "value": "524.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20", "type": "number" },
+              { "value": "20.00", "type": "number", "unit": "in" },
+              { "value": "10", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "19.500", "type": "number", "unit": "in" },
+              { "value": "15.51", "type": "number", "unit": "sq in" },
+              { "value": "298.65", "type": "number", "unit": "sq in" },
+              { "value": "2.0740", "type": "number", "unit": "sq ft" },
+              { "value": "1095.5", "type": "number", "unit": "in⁴" },
+              { "value": "52.73", "type": "number", "unit": "lb/ft" },
+              { "value": "129.49", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "109.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "20s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "19.250", "type": "number", "unit": "in" },
+              { "value": "23.12", "type": "number", "unit": "sq in" },
+              { "value": "291.04", "type": "number", "unit": "sq in" },
+              { "value": ".20211", "type": "number", "unit": "sq ft" },
+              { "value": "1606.0", "type": "number", "unit": "in⁴" },
+              { "value": "78.60", "type": "number", "unit": "lb/ft" },
+              { "value": "126.18", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "160.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30s", "type": "text" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "19.000", "type": "number", "unit": "in" },
+              { "value": "30.63", "type": "number", "unit": "sq in" },
+              { "value": "283.53", "type": "number", "unit": "sq in" },
+              { "value": ".19690", "type": "number", "unit": "sq ft" },
+              { "value": "2105.0", "type": "number", "unit": "in⁴" },
+              { "value": "104.13", "type": "number", "unit": "lb/ft" },
+              { "value": "122.93", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "210.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40", "type": "number" },
+              { "value": ".593", "type": "number", "unit": "in" },
+              { "value": "18.814", "type": "number", "unit": "in" },
+              { "value": "36.15", "type": "number", "unit": "sq in" },
+              { "value": "278.00", "type": "number", "unit": "sq in" },
+              { "value": ".19306", "type": "number", "unit": "sq ft" },
+              { "value": "2467.9", "type": "number", "unit": "in⁴" },
+              { "value": "122.91", "type": "number", "unit": "lb/ft" },
+              { "value": "120.52", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "246.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".812", "type": "number", "unit": "in" },
+              { "value": "18.376", "type": "number", "unit": "in" },
+              { "value": "49.01", "type": "number", "unit": "sq in" },
+              { "value": "265.21", "type": "number", "unit": "sq in" },
+              { "value": ".18417", "type": "number", "unit": "sq ft" },
+              { "value": "3301.2", "type": "number", "unit": "in⁴" },
+              { "value": "166.60", "type": "number", "unit": "lb/ft" },
+              { "value": "115.03", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "330.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80", "type": "number" },
+              { "value": "1.031", "type": "number", "unit": "in" },
+              { "value": "17.938", "type": "number", "unit": "in" },
+              { "value": "61.44", "type": "number", "unit": "sq in" },
+              { "value": "252.72", "type": "number", "unit": "sq in" },
+              { "value": ".17550", "type": "number", "unit": "sq ft" },
+              { "value": "4085.7", "type": "number", "unit": "in⁴" },
+              { "value": "208.87", "type": "number", "unit": "lb/ft" },
+              { "value": "109.61", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "408.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": "1.281", "type": "number", "unit": "in" },
+              { "value": "17.438", "type": "number", "unit": "in" },
+              { "value": "75.31", "type": "number", "unit": "sq in" },
+              { "value": "238.83", "type": "number", "unit": "sq in" },
+              { "value": ".16585", "type": "number", "unit": "sq ft" },
+              { "value": "4920.0", "type": "number", "unit": "in⁴" },
+              { "value": "256.05", "type": "number", "unit": "lb/ft" },
+              { "value": "103.59", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "492.0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.500", "type": "number", "unit": "in" },
+              { "value": "17.000", "type": "number", "unit": "in" },
+              { "value": "87.18", "type": "number", "unit": "sq in" },
+              { "value": "226.98", "type": "number", "unit": "sq in" },
+              { "value": ".15763", "type": "number", "unit": "sq ft" },
+              { "value": "5606.2", "type": "number", "unit": "in⁴" },
+              { "value": "296.37", "type": "number", "unit": "lb/ft" },
+              { "value": "98.41", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "560.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "1.750", "type": "number", "unit": "in" },
+              { "value": "16.500", "type": "number", "unit": "in" },
+              { "value": "100.33", "type": "number", "unit": "sq in" },
+              { "value": "213.82", "type": "number", "unit": "sq in" },
+              { "value": ".14849", "type": "number", "unit": "sq ft" },
+              { "value": "6322.0", "type": "number", "unit": "in⁴" },
+              { "value": "341.09", "type": "number", "unit": "lb/ft" },
+              { "value": "92.73", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "632.2", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "1.968", "type": "number", "unit": "in" },
+              { "value": "16.064", "type": "number", "unit": "in" },
+              { "value": "111.49", "type": "number", "unit": "sq in" },
+              { "value": "202.67", "type": "number", "unit": "sq in" },
+              { "value": ".14074", "type": "number", "unit": "sq ft" },
+              { "value": "6923.6", "type": "number", "unit": "in⁴" },
+              { "value": "379.01", "type": "number", "unit": "lb/ft" },
+              { "value": "87.88", "type": "number", "unit": "lb/ft" },
+              { "value": "5.236", "type": "number", "unit": "sq ft/ft" },
+              { "value": "692.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "24", "type": "number" },
+              { "value": "24.00", "type": "number", "unit": "in" },
+              { "value": "10", "type": "number" },
+              { "value": ".250", "type": "number", "unit": "in" },
+              { "value": "23.500", "type": "number", "unit": "in" },
+              { "value": "18.65", "type": "number", "unit": "sq in" },
+              { "value": "433.74", "type": "number", "unit": "sq in" },
+              { "value": "3.0121", "type": "number", "unit": "sq ft" },
+              { "value": "1943.7", "type": "number", "unit": "in⁴" },
+              { "value": "63.41", "type": "number", "unit": "lb/ft" },
+              { "value": "188.04", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "162.0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "20s", "type": "text" },
+              { "value": ".375", "type": "number", "unit": "in" },
+              { "value": "23.250", "type": "number", "unit": "in" },
+              { "value": "27.83", "type": "number", "unit": "sq in" },
+              { "value": "424.56", "type": "number", "unit": "sq in" },
+              { "value": ".29483", "type": "number", "unit": "sq ft" },
+              { "value": "2873.3", "type": "number", "unit": "in⁴" },
+              { "value": "94.62", "type": "number", "unit": "lb/ft" },
+              { "value": "184.10", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "239.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": ".500", "type": "number", "unit": "in" },
+              { "value": "23.000", "type": "number", "unit": "in" },
+              { "value": "36.91", "type": "number", "unit": "sq in" },
+              { "value": "415.48", "type": "number", "unit": "sq in" },
+              { "value": ".28853", "type": "number", "unit": "sq ft" },
+              { "value": "3787.0", "type": "number", "unit": "in⁴" },
+              { "value": "125.49", "type": "number", "unit": "lb/ft" },
+              { "value": "180.13", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "315.6", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "30s", "type": "text" },
+              { "value": ".562", "type": "number", "unit": "in" },
+              { "value": "22.876", "type": "number", "unit": "in" },
+              { "value": "41.39", "type": "number", "unit": "sq in" },
+              { "value": "411.00", "type": "number", "unit": "sq in" },
+              { "value": ".28541", "type": "number", "unit": "sq ft" },
+              { "value": "4233.5", "type": "number", "unit": "in⁴" },
+              { "value": "140.68", "type": "number", "unit": "lb/ft" },
+              { "value": "178.19", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "352.8", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40s", "type": "text" },
+              { "value": ".687", "type": "number", "unit": "in" },
+              { "value": "22.626", "type": "number", "unit": "in" },
+              { "value": "50.31", "type": "number", "unit": "sq in" },
+              { "value": "402.07", "type": "number", "unit": "sq in" },
+              { "value": ".27921", "type": "number", "unit": "sq ft" },
+              { "value": "5118.2", "type": "number", "unit": "in⁴" },
+              { "value": "171.05", "type": "number", "unit": "lb/ft" },
+              { "value": "174.32", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "426.5", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "60", "type": "number" },
+              { "value": ".968", "type": "number", "unit": "in" },
+              { "value": "22.064", "type": "number", "unit": "in" },
+              { "value": "70.04", "type": "number", "unit": "sq in" },
+              { "value": "382.35", "type": "number", "unit": "sq in" },
+              { "value": ".26552", "type": "number", "unit": "sq ft" },
+              { "value": "6984.7", "type": "number", "unit": "in⁴" },
+              { "value": "238.11", "type": "number", "unit": "lb/ft" },
+              { "value": "165.78", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "582.1", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "80", "type": "number" },
+              { "value": "1.218", "type": "number", "unit": "in" },
+              { "value": "21.564", "type": "number", "unit": "in" },
+              { "value": "87.24", "type": "number", "unit": "sq in" },
+              { "value": "365.21", "type": "number", "unit": "sq in" },
+              { "value": ".25362", "type": "number", "unit": "sq ft" },
+              { "value": "8572.0", "type": "number", "unit": "in⁴" },
+              { "value": "296.58", "type": "number", "unit": "lb/ft" },
+              { "value": "158.34", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "714.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "100", "type": "number" },
+              { "value": "1.531", "type": "number", "unit": "in" },
+              { "value": "20.938", "type": "number", "unit": "in" },
+              { "value": "108.07", "type": "number", "unit": "sq in" },
+              { "value": "344.32", "type": "number", "unit": "sq in" },
+              { "value": ".23911", "type": "number", "unit": "sq ft" },
+              { "value": "10455.9", "type": "number", "unit": "in⁴" },
+              { "value": "367.39", "type": "number", "unit": "lb/ft" },
+              { "value": "149.28", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "871.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "120", "type": "number" },
+              { "value": "1.812", "type": "number", "unit": "in" },
+              { "value": "20.376", "type": "number", "unit": "in" },
+              { "value": "126.34", "type": "number", "unit": "sq in" },
+              { "value": "326.08", "type": "number", "unit": "sq in" },
+              { "value": ".22645", "type": "number", "unit": "sq ft" },
+              { "value": "12027.3", "type": "number", "unit": "in⁴" },
+              { "value": "429.39", "type": "number", "unit": "lb/ft" },
+              { "value": "141.37", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "1002.3", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "140", "type": "number" },
+              { "value": "2.062", "type": "number", "unit": "in" },
+              { "value": "19.876", "type": "number", "unit": "in" },
+              { "value": "142.11", "type": "number", "unit": "sq in" },
+              { "value": "310.28", "type": "number", "unit": "sq in" },
+              { "value": ".21547", "type": "number", "unit": "sq ft" },
+              { "value": "13348.4", "type": "number", "unit": "in⁴" },
+              { "value": "483.12", "type": "number", "unit": "lb/ft" },
+              { "value": "134.54", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "1112.4", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "160", "type": "number" },
+              { "value": "2.343", "type": "number", "unit": "in" },
+              { "value": "19.314", "type": "number", "unit": "in" },
+              { "value": "159.41", "type": "number", "unit": "sq in" },
+              { "value": "292.98", "type": "number", "unit": "sq in" },
+              { "value": ".20346", "type": "number", "unit": "sq ft" },
+              { "value": "14696.2", "type": "number", "unit": "in⁴" },
+              { "value": "541.94", "type": "number", "unit": "lb/ft" },
+              { "value": "127.03", "type": "number", "unit": "lb/ft" },
+              { "value": "6.283", "type": "number", "unit": "sq ft/ft" },
+              { "value": "1224.7", "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 103,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6-1. Welding Symbols. Courtesy of Texas Pipe Bending Co., Inc.",
+      "slug": "welding-symbols-figure-6-1",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page reference chart containing multiple embedded sub-tables and diagrams: basic weld symbols and their location significance, supplementary symbols, location of elements of a welding symbol, typical welding symbols, supplementary symbols used with welding symbols, and basic joints identification. Caption appears at bottom of figure."
+    }
+  ],
+  "issues": []
+}

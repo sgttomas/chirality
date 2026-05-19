@@ -1,0 +1,68 @@
+292 Chapter 9
+
+Line-by-line analysis permits a group of engineers to work independently on the same major equip-
+ment, such as the main compressor at a process plant or the power turbine in a power plant. Each
+unit of major equipment has several main process piping systems connected to it. With each engineer
+or a group of engineers working independently on each line connected to the equipment, the overall
+turnaround time can be greatly reduced.
+
+Figure 9.5(b) shows the analysis of one piping system combined with the results of two sets of in-
+dependently analyzed nozzle loads from two other connected piping systems. The nozzle loads of the
+independently analyzed piping are applied as external forces and moments at the nozzles 10 and 20.
+It should be emphasized here that the signs of forces and moments should be those corresponding to
+the loads that are applied to the equipment. A pipe stress computer program has its own unique sign
+conventions. The loads shown in the member force and moment table may be the ones applied at the
+piping element, whereas the force and moment given in the support load table generally are the ones
+applied to the support. Therefore, depending on which table the loads are taken, the signs may have
+to be reversed before being applied to the analysis.
+
+The example in Fig. 9.5(b) still has one piping system connected to the equipment. This system is
+generally analyzed by the lead engineer, who takes charge of combining the results from all connected
+piping systems and ensuring the compliance of all loads applied on the equipment. If the combined
+loads are not acceptable, he will coordinate the procedure to fix the problem. This assumes that the
+computer program used can automatically combine the results and tabulate the load compliance re-
+sult. In any case, all lines can be analyzed separately with loads combined with the formulas given in
+Eq. (9.2). Results are then compared with the allowable values.
+
+9.2.4 Selecting the Spring Hangers to Minimize the Weight Load
+
+Unlike the thermal expansion load, which is very difficult to control, the weight load is much more
+manageable. That is the main reason why NEMA SM-23 insists that dead weight of the piping should
+be entirely supported by pipe hangers or supports. To support the weight, there are two main types of
+hardware that can be used: rigid support and resilient or spring support. A rigid support can be used
+only at a location that has negligible vertical thermal movement. If the situation permits, rigid sup-
+ports should be used whenever it is feasible to do so. This is because rigid supports are more economi-
+cal and more stable. They can easily absorb any load fluctuation expected from operational condition
+changes. However, there are many locations where rigid support is not permitted due to the vertical
+movement of the piping.
+
+Figure 9.6 shows the discharge piping of an overhung volute pump. Except for piping systems op-
+erating at ambient temperature, the first support at the discharge piping is generally the resilient type
+such as a variable spring hanger. From the drawing, it is easy to understand why the pump can take so
+little piping load. Any vertical force will create a large overturning moment in this type of overhanging
+construction. The weight of discharge piping plus valves and fittings has to be fully supported by the
+piping supports.
+
+When there is a support at the proper location as shown in Fig. 9.6(b), the spring can be selected and
+adjusted to take any weight away from the nozzle connection. In the past, when the spring supports
+were selected manually, this spring load was simply the sum of the weight of the portion of piping and
+the components it was assigned to carry. The weight load at the nozzle connection was reduced to zero
+or close to zero very easily. However, in a computerized analysis environment, one needs a trick for
+the computer to do the right thing — that is, to have the computer mathematically release the vertical
+translation restraint when sizing the spring. After the spring selection process is completed, the verti-
+cal translation restraint is put back, together with the selected spring force applied, to analyze the pip-
+ing system for various load cases. This procedure is generally referred to as the anchor release option
+for spring sizing. Without this anchor release procedure, the computer program would equally divide
+the weight into two portions. One-half of the weight would go to the spring and the other to the anchor
+
+soeety
+ob
+
+RE,
+enero
+
+cf
+
+Fr .
+
+Nees

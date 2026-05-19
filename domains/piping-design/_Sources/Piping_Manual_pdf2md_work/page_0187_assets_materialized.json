@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0187.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0187_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1817
+      ],
+      "caption": "EXHIBIT 7-38 Furnace Elevation for the Lower Level of a Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0187_fig01_exhibit-7-38-furnace-elevation-for-the-l.png",
+      "png_sha256": "bf8e0cd204fbf79becd530462ff4f5a8c2f30ff9432ff18674aaf064e84a994a",
+      "slug": "exhibit-7-38-furnace-elevation-for-the-l",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0187_fig02",
+      "bbox_norm": [
+        0.03,
+        0.52,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1553,
+        2556,
+        3304
+      ],
+      "caption": "EXHIBIT 7-39 Burner Piping Detail",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0187_fig02_exhibit-7-39-burner-piping-detail.png",
+      "png_sha256": "79108994def071afbf4a6deede9cf2f989fac3559c3e3e6d235c40bb7e031266",
+      "slug": "exhibit-7-39-burner-piping-detail",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 187,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0187.png",
+  "page_image_sha256": "4b0e5f50f29ab06c580c564741230187fb1aa464c2b59feb45a904a4b0bf4d98",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0187_assets.json"
+}

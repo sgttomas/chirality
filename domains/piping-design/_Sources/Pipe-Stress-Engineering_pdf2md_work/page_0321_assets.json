@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 321,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 9.11 PUMP TYPES AND NOZZLE ORIENTATIONS",
+      "slug": "pump-types-nozzle-orientations",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.45],
+      "confidence": "high",
+      "notes": "Six sub-figures (a)-(f) showing different pump types: overhung frame mounted, overhung centerline support, in-line pump, vertically suspended pump, single stage horizontal split pump, and multi stage horizontal pump. Caption visible below figures."
+    }
+  ],
+  "issues": []
+}

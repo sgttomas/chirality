@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0107.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0107_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3509
+      ],
+      "caption": "Figure 6.1  Flow rate 1 m\u00b3/h to 10 m\u00b3/h",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0107_fig01_figure-6-1-flow-rate-1-to-10-m3-h.png",
+      "png_sha256": "87c3053f59c33ae0b06e0bf7b974517c5271abf41da31a01a5685d8688584911",
+      "slug": "figure-6-1-flow-rate-1-to-10-m3-h",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 107,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0107.png",
+  "page_image_sha256": "cada2f782ae216d9a9189f8c355d7be87767c2020a51cec01f377f4a62c06b32",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0107_assets.json"
+}

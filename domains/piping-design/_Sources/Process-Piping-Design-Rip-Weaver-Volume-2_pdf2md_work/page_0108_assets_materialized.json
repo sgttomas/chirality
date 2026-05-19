@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0108.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0108_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2079
+      ],
+      "caption": "Figure 3-17. Vertical heater location. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0108_fig01_vertical-heater-location.png",
+      "png_sha256": "cc1ff11504de027d8b4a87e70207ce0b2ffc39c51357f32a12fd34d8a57ccca7",
+      "slug": "vertical-heater-location",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 108,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0108.png",
+  "page_image_sha256": "e93026326ff92a0c26e91ca7110a1ada256df4821dac4533b086531c97839292",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0108_assets.json"
+}

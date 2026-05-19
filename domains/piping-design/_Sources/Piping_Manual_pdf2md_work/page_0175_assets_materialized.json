@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0175.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0175_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1287
+      ],
+      "caption": "EXHIBIT 7-20 Burner Management Skid",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0175_fig01_exhibit-7-20-burner-management-skid.png",
+      "png_sha256": "1fa3fc4d137bd90ee0908b9f08963755ead8e5edc640aeabacff9eee8ae19161",
+      "slug": "exhibit-7-20-burner-management-skid",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0175_fig02",
+      "bbox_norm": [
+        0.04,
+        0.36,
+        0.5,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1023,
+        1402,
+        2342
+      ],
+      "caption": "EXHIBIT 7-21 Burner Management Control Panel",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0175_fig02_exhibit-7-21-burner-management-control-p.png",
+      "png_sha256": "90c22c527af59aa30be7167953a3ea7e758d31d4554447f835726e99b13a066c",
+      "slug": "exhibit-7-21-burner-management-control-p",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 175,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0175.png",
+  "page_image_sha256": "62e92ae41a1377786c1e588c3f6bde858d476fa9e38d61fa7c99b11ce0df48ad",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0175_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 261,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0261_fig_01",
+      "caption": "EXHIBIT 10-42 Platform Width Requirements",
+      "bbox_norm": [0.06, 0.20, 0.50, 0.68]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0261_fig_02",
+      "caption": "EXHIBIT 10-43 Maintenance Access Arrangements",
+      "bbox_norm": [0.48, 0.20, 0.95, 0.48]
+    }
+  ],
+  "issues": []
+}

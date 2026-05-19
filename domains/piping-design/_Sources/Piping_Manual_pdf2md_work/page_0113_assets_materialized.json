@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0113.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0113_fig01",
+      "bbox_norm": [
+        0.07,
+        0.12,
+        0.82,
+        0.43
+      ],
+      "bbox_px": [
+        52,
+        232,
+        2240,
+        1593
+      ],
+      "caption": "EXHIBIT 5-14 Preferred Nozzle Locations for a Horizontal Drum",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0113_fig01_exhibit-5-14-preferred-nozzle-locations.png",
+      "png_sha256": "23f3c99c861664acedb738c23ab082497a5017653d70f55674f8cf4b9bbb7e96",
+      "slug": "exhibit-5-14-preferred-nozzle-locations",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0113_fig02",
+      "bbox_norm": [
+        0.05,
+        0.43,
+        0.45,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1261,
+        1288,
+        2755
+      ],
+      "caption": "EXHIBIT 5-15 Typical Hillside Nozzle",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0113_fig02_exhibit-5-15-typical-hillside-nozzle.png",
+      "png_sha256": "39526b0476bee8a1b95aaa70dc6eec1ad59b4576b8760779ea49d491c9560ade",
+      "slug": "exhibit-5-15-typical-hillside-nozzle",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 113,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0113.png",
+  "page_image_sha256": "b71593fe6dd6b54cf5ed51025f509fdbe1c50f566ad59af9b7b0d34cbfff630e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0113_assets.json"
+}

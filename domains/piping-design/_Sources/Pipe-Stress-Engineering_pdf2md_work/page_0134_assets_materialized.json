@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0134.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0134_fig01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1677,
+        2487,
+        3569
+      ],
+      "caption": "FIG. 4.10 TORSION MOMENT, AND IN-PLANE AND OUT-PLANE BENDING MOMENTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0134_fig01_torsion-moment-in-plane-out-plane-bendin.png",
+      "png_sha256": "a187113a966c0656376a130f13089b483c6b5713c8957c0cc7e5af72b4ef4d22",
+      "slug": "torsion-moment-in-plane-out-plane-bendin",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 134,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0134.png",
+  "page_image_sha256": "045746478536cb135bc46b112ec27587470f87001cf62928cfdb661b41ded947",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0134_assets.json"
+}

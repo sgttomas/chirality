@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0156.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0156_fig01",
+      "bbox_norm": [
+        0.05,
+        0.32,
+        0.95,
+        0.79
+      ],
+      "bbox_px": [
+        0,
+        893,
+        2562,
+        2780
+      ],
+      "caption": "EXHIBIT 6-52 Tube Bundle Extractor Details \u2014 Hydraulic Tube Bundle Extractor engineering drawing showing Side View, Plan View, and Front View of the assembly with numbered callouts.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0156_fig01_exhibit-6-52-tube-bundle-extractor-detai.png",
+      "png_sha256": "c4dbb9c07c430ec73add1d46584f09b3db45ee91056ea8c563479b02545474a1",
+      "slug": "exhibit-6-52-tube-bundle-extractor-detai",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0156_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.76,
+        0.58,
+        0.92
+      ],
+      "bbox_px": [
+        128,
+        2349,
+        1614,
+        3210
+      ],
+      "caption": "Legend \u2014 Item No. callouts mapping numbers to components (Main superstructure, Drive chain, Flange clamp, Hydraulic motors, Sling cylinders, Tandem pumps, Hydraulic control valves, Air motor, Balance cylinders, Main frame, Reaction lugs, Cylinder main car, Air cylinder for reaction lugs, Main cylinder).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0156_tbl01_legend-item-no-callouts-mapping-numbers.png",
+      "png_sha256": "97f506bcd4da7a6531218f50006f81e13321a4fcd6733cd1062fe888b977f6a7",
+      "slug": "legend-item-no-callouts-mapping-numbers",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 156,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0156.png",
+  "page_image_sha256": "ccb83d5ade5d1224915d0c54c514a58e87b11cf28483fcb11ac9f574f7d2898e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0156_assets.json"
+}

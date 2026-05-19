@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 96,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-5. Vertical Heater Details.",
+      "slug": "vertical-heater-details",
+      "bbox_norm": [0.04, 0.03, 0.72, 0.48],
+      "confidence": "high",
+      "notes": "Annotated engineering diagram of a typical vertical heater (radiant convection and radiant types) with labels for observation doors, snuffing steam, temperature connection, peep hole, access door, concrete piers, radiant section tubes, header box, tube skin thermocouples, burners, and fireproofing requirements. Caption appears below the diagram title."
+    }
+  ],
+  "issues": []
+}

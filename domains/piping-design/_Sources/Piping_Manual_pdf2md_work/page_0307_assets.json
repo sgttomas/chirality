@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 307,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p307_fig_01",
+      "caption": "EXHIBIT 12-4  Traveling Belt Lift",
+      "bbox_norm": [0.06, 0.14, 0.49, 0.73]
+    }
+  ],
+  "issues": []
+}

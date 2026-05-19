@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0336.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0336_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1889
+      ],
+      "caption": "EXHIBIT 13-11 Lateral and Sublateral Detail",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0336_fig01_exhibit-13-11-lateral-and-sublateral-det.png",
+      "png_sha256": "c5ff6f7265a4dfa05e7bc65f5a63defd386d4a358a65b3029a200675ec9e67a6",
+      "slug": "exhibit-13-11-lateral-and-sublateral-det",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 336,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0336.png",
+  "page_image_sha256": "e9c86ca26b374d7319117eddc28137f4291b65a1e38c841ad37d15dbced07b44",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0336_assets.json"
+}

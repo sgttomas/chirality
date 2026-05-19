@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0158.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0158_fig01",
+      "bbox_norm": [
+        0.48,
+        0.28,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1101,
+        759,
+        2560,
+        1980
+      ],
+      "caption": "Fig. 5-1. L-shaped configuration.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0158_fig01_l-shaped-configuration.png",
+      "png_sha256": "438f14d11aeb660c036efcfafd67949618f3072ebf361fcf82de2b0cb820e479",
+      "slug": "l-shaped-configuration",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 158,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0158.png",
+  "page_image_sha256": "01784d4638c899468be71c789782705d01bed252ba526969b44348252c4c475c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0158_assets.json"
+}

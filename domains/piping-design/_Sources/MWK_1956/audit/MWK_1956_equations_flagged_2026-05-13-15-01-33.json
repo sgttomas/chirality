@@ -1,0 +1,65 @@
+{
+  "5:b4fcc24a1569": {
+    "page": 5,
+    "hash": "b4fcc24a1569",
+    "current_latex": "\\frac{2}{\\sqrt{3}} Y = \\sigma_1 - \\sigma_3 = 1.155 Y \\qquad (1.5)",
+    "description": "\\frac{2}{\\sqrt{3}} Y = \\sigma_1 - \\sigma_3 \\approx 1.15 Y \\qquad (1.5)",
+    "flagged_at": "2026-05-12"
+  },
+  "6:23291db554ae": {
+    "page": 6,
+    "hash": "23291db554ae",
+    "current_latex": "d\\epsilon/\\sigma = -dA/A  \\quad (1.13)",
+    "description": "d\\sigma/\\sigma = -dA/A  \\quad (1.13)",
+    "flagged_at": "2026-05-12"
+  },
+  "6:caa7f9b29732": {
+    "page": 6,
+    "hash": "caa7f9b29732",
+    "current_latex": "dl/l = -dA/A  \\quad (1.14)",
+    "description": "dl/l = -dA/A  \\quad",
+    "flagged_at": "2026-05-12"
+  },
+  "6:8d4364b035e6": {
+    "page": 6,
+    "hash": "8d4364b035e6",
+    "current_latex": "d\\epsilon/\\sigma = dl/l  \\quad (1.14)",
+    "description": "d\\sigma/\\sigma = dl/l  \\quad (1.14)",
+    "flagged_at": "2026-05-12"
+  },
+  "6:9ff13d410da0": {
+    "page": 6,
+    "hash": "9ff13d410da0",
+    "current_latex": "d\\epsilon/\\sigma = \\epsilon/(1 + \\epsilon)  \\quad (1.15)",
+    "description": "d\\sigma/\\epsilon = \\sigma/(1 + \\epsilon)  \\quad (1.15)",
+    "flagged_at": "2026-05-12"
+  },
+  "6:48d448c3857f": {
+    "page": 6,
+    "hash": "48d448c3857f",
+    "current_latex": "d\\sigma/\\epsilon = \\sigma/(1 + \\epsilon)  \\quad (1.15)",
+    "description": "d\\sigma/d\\epsilon = \\sigma/(1 + \\epsilon)  \\quad (1.15)",
+    "flagged_at": "2026-05-12"
+  },
+  "7:224a4e44e662": {
+    "page": 7,
+    "hash": "224a4e44e662",
+    "current_latex": "l_0/l = 1/(1+s)",
+    "description": "l_0/l = 1/(1+\\epsilon)",
+    "flagged_at": "2026-05-12"
+  },
+  "7:af2ac3b6d6bd": {
+    "page": 7,
+    "hash": "af2ac3b6d6bd",
+    "current_latex": "S_u = \\sigma_m \\frac{1}{1+s_m} \\tag{1.18}",
+    "description": "S_u = \\sigma_m \\frac{1}{1+\\epsilon_u} \\tag{1.18}",
+    "flagged_at": "2026-05-12"
+  },
+  "7:dc3be01d4d09": {
+    "page": 7,
+    "hash": "dc3be01d4d09",
+    "current_latex": "\\epsilon^* = \\log_e (1+s) \\tag{1.19}",
+    "description": "\\epsilon^* = \\log_e (1+\\epsilon) \\tag{1.19}",
+    "flagged_at": "2026-05-12"
+  }
+}

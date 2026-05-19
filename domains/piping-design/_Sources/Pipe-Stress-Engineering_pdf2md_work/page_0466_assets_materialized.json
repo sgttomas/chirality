@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0466.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0466_fig01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1935,
+        2420,
+        3518
+      ],
+      "caption": "FIG. 13.17 DIVIDING THE FORCING FUNCTION INTO STEPS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0466_fig01_dividing-forcing-function-into-steps.png",
+      "png_sha256": "b55fa6929a774af33d5d787819b9600b6a2ea8ff50bf682c7fce79565cf78257",
+      "slug": "dividing-forcing-function-into-steps",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 466,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0466.png",
+  "page_image_sha256": "629c5d399d6390f308a7a9b8acf0d0a97bcb9c47f15483c512a79aacdd51a3aa",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0466_assets.json"
+}

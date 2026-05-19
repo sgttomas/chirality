@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0036_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1759,
+        2495,
+        3518
+      ],
+      "caption": "FIG. 1.7 CREEP AT A GIVEN TEMPERATURE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0036_fig01_creep-at-given-temperature.png",
+      "png_sha256": "81acea0ac2f268889114ac45f0528952cc8f645f0b0af231e905a1fce957fbb4",
+      "slug": "creep-at-given-temperature",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0036.png",
+  "page_image_sha256": "b3a76ea574bef79ed96eafaf9418d02301fedb9faa91b0725565e1784259a05d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0036_assets.json"
+}

@@ -1,0 +1,88 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0104.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0104_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.24
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2477,
+        1012
+      ],
+      "caption": "Standard Welding Symbols \u2014 weld symbol types by joint category (Flush base, Back or backing, Melt-thru, Surfacing, Edge, Corner, Resistance spot, Projection, Resistance seam, Finish or other)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0104_tbl01_standard-welding-symbols-type-matrix.png",
+      "png_sha256": "449efc9d17602818db9b91a964e4825ec67fd77e0a1579ab29d6d93bc5334108",
+      "slug": "standard-welding-symbols-type-matrix",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0104_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3035
+      ],
+      "caption": "Figure 6-1., continued. STANDARD WELDING SYMBOLS \u2014 annotated reference diagram showing symbol construction rules for groove, plug, slot, resistance-type, flush-contour, convex-contour, projection, flush/upset, brazing/forge, melt-thru, and edge/corner-flange weld symbols",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0104_fig01_standard-welding-symbols-annotated-refer.png",
+      "png_sha256": "583829f8e55e91f0822835d312762258b42818b96871547190c59afe9a375493",
+      "slug": "standard-welding-symbols-annotated-refer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0104_fig02",
+      "bbox_norm": [
+        0.03,
+        0.8,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2616,
+        2477,
+        3488
+      ],
+      "caption": "Arrow-side and other-side member of joint \u2014 diagrams showing butt joint, lap joint, and edge joint with arrow-side and other-side designations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0104_fig02_arrow-side-other-side-joint-diagrams.png",
+      "png_sha256": "8267568c090dba94d680585515ae4aa68b470510b3eb14d9dc4e6bf07ae62588",
+      "slug": "arrow-side-other-side-joint-diagrams",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 104,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0104.png",
+  "page_image_sha256": "c5733fca0a7a6cc61cb33a1c8c388db83600f5e2972268603f12252497468f82",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0104_assets.json"
+}

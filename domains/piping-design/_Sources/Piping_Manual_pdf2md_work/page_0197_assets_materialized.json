@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0197.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0197_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.92,
+        0.56
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2505,
+        2028
+      ],
+      "caption": "EXHIBIT 7-51 Waste Heat Recovery Unit",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0197_fig01_exhibit-7-51-waste-heat-recovery-unit.png",
+      "png_sha256": "7eed31711277b58245460b13599dffe7d7b45d43f40b892d359e824f1ad6f26d",
+      "slug": "exhibit-7-51-waste-heat-recovery-unit",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 197,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0197.png",
+  "page_image_sha256": "077e0189377dfc277a799c26e3aee53de146f28b073be61f0fa7ec184b58cd62",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0197_assets.json"
+}

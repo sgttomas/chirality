@@ -1,0 +1,35 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.26,
+        0.96,
+        0.55
+      ],
+      "caption": "EXHIBIT 16-9 Allowable Spans for Branch Lines",
+      "csv": "PIPE SIZE,3/4,1,1 1/2,2,3,4,6,8,10,12,14,16,18,20,24\nSPAN (FT),10,15,17,20,25,30,35,35,40,40,45,45,45,50,50\n",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "notes": "Table titled 'MAXIMUM ALLOWABLE SPANS FOR BRANCH LINES' with two data rows (PIPE SIZE in inches, SPAN in feet). Followed by four numbered notes describing wall thickness schedules (2\" through 6\" Sch 40; 8\" through 12\" Sch 80; 14\" through 24\" Sch 20), water-filled and 450F insulated assumption, longitudinal bending stress limit <=9,000 psi with deflection limited by past experience, and special consideration for mid-span supports of continuous main pipeway runs."
+    },
+    {
+      "bbox_norm": [
+        0.54,
+        0.54,
+        0.98,
+        0.84
+      ],
+      "caption": "EXHIBIT 16-10 Unsupported Overhang",
+      "kind": "fig",
+      "notes": "Hand-drawn schematic showing an 'UNSUPPORTED OVERHANG' with a downward arrow pointing to a rectangular pipe segment containing two labeled vertical span dimensions A (upper) and B (lower) shown with up/down arrows. A '3'/0\" MAXIMUM' callout indicates the maximum allowable unsupported overhang dimension."
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 421,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

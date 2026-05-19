@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 374,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 10.15 PIPELINE ANCHOR — (a) Anchor Block showing concrete anchor block with anchor force, anchor flange, and undisturbed soil; (b) Analytical Model showing long pipeline interface, anchor simulation spring-plastic element, and external piping",
+      "slug": "pipeline-anchor",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Two-part figure with caption below. Left part shows physical anchor block cross-section; right part shows analytical model with force-displacement diagram and piping schematic."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0081.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0081_fig01",
+      "bbox_norm": [
+        0.15,
+        0.12,
+        0.85,
+        0.22
+      ],
+      "bbox_px": [
+        256,
+        231,
+        2304,
+        891
+      ],
+      "caption": "Fig. 2-26. Pipe spans, hold-down or anchor both ends. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_fig01_pipe-spans-hold-down-anchor-both-ends-di.png",
+      "png_sha256": "2fce035db4f05a6e57de305d0c9d0f1ed8b02dab10bd62b04b9ed9f3f4e7fc57",
+      "slug": "pipe-spans-hold-down-anchor-both-ends-di",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1716
+      ],
+      "caption": "Table 2-2 Pipe Spans Hold-Down or Anchored Both Ends \u2014 To Be Used for Calculating the Maximum Span Between the Supports with Hold-Downs",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl01_pipe-spans-hold-down-anchor-both-ends.png",
+      "png_sha256": "0c01a593221068887da0a4e8d261e49bc8a3e2984b416876de5a724153054377",
+      "slug": "pipe-spans-hold-down-anchor-both-ends",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl01_pipe-spans-hold-down-anchor-both-ends.json",
+      "table_data_json_sha256": "eb99e2a73cf98bf73adf8579705b4d9044173044a363c2cd1a4aba8fbf61e415",
+      "table_data_sha256": "eb99e2a73cf98bf73adf8579705b4d9044173044a363c2cd1a4aba8fbf61e415",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl01_pipe-spans-hold-down-anchor-both-ends.xlsx",
+      "xlsx_sha256": "6eb78dd9472a90e33c5b636c16791f87bd62b459a71af053987119b37c0b70cf"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0081_fig02",
+      "bbox_norm": [
+        0.15,
+        0.53,
+        0.85,
+        0.62
+      ],
+      "bbox_px": [
+        256,
+        1584,
+        2304,
+        2211
+      ],
+      "caption": "Fig. 2-27. Pipe spans, hold-down one end. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_fig02_pipe-spans-hold-down-one-end-diagram.png",
+      "png_sha256": "0c2dd1fbdb7553f250086297a3dea035e2f439570f659ca3428e6619809d3033",
+      "slug": "pipe-spans-hold-down-one-end-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.47,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1386,
+        2560,
+        3300
+      ],
+      "caption": "Table 2-3 Pipe Spans Hold-Down One End\u2014Supported Other End \u2014 To Be Used for Calculating the Maximum Span Between a Support with a Hold-Down and an Intermediate Support without a Hold-Down",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl02_pipe-spans-hold-down-one-end-supported-o.png",
+      "png_sha256": "0e0e2bbb4a864a5809486d83b37e91b16872f0ceb7018c8bb66a98a57afb3e72",
+      "slug": "pipe-spans-hold-down-one-end-supported-o",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl02_pipe-spans-hold-down-one-end-supported-o.json",
+      "table_data_json_sha256": "1cd46d531846fe39d1b6e3125b0144e11b0acd481c791d343b58f3f00f06661a",
+      "table_data_sha256": "1cd46d531846fe39d1b6e3125b0144e11b0acd481c791d343b58f3f00f06661a",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0081_tbl02_pipe-spans-hold-down-one-end-supported-o.xlsx",
+      "xlsx_sha256": "e922ef102952aca993e9da87731f6afa4b81d54b624b1fc09dbdc3350524119c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 81,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0081.png",
+  "page_image_sha256": "3c3791dbc34f3d1a9eb3cda8c157a39fb784fd6037d1c26802514ae2d853a40a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0081_assets.json"
+}

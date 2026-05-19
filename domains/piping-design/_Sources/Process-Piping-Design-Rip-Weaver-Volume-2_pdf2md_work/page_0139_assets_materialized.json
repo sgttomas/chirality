@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0139.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0139_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2145
+      ],
+      "caption": "Outline dimensional drawing of a kettle-type heat exchanger \u2014 Heatran Equipment Division, Drawing H/T-3409, Sheet 1 of 8",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_fig01_heat-exchanger-outline-dimensional-ht-34.png",
+      "png_sha256": "0e576e8032a13f6df021b5aa0bdadf3d3a0ba684165a5a89d0736e38b0a0c1cf",
+      "slug": "heat-exchanger-outline-dimensional-ht-34",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.4,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        1152,
+        2607
+      ],
+      "caption": "Estimated Weight Each",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl01_estimated-weight-each.png",
+      "png_sha256": "12770016c25a2259af1365f4f439e6d155796517c35dd46a7754cbd58274e192",
+      "slug": "estimated-weight-each",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl01_estimated-weight-each.json",
+      "table_data_json_sha256": "d4a7cad8e35be738a0d3e510a71031d8bf538925d54098c3c23b144d901f5d0f",
+      "table_data_sha256": "d4a7cad8e35be738a0d3e510a71031d8bf538925d54098c3c23b144d901f5d0f",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl01_estimated-weight-each.xlsx",
+      "xlsx_sha256": "416d49d5b2d34c2a6fbea322a800ed7e45a6851b796d1e7440f9ac5039298d92"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl02",
+      "bbox_norm": [
+        0.44,
+        0.56,
+        0.97,
+        0.84
+      ],
+      "bbox_px": [
+        998,
+        1683,
+        2560,
+        2937
+      ],
+      "caption": "Design Data \u2014 Shell and Tube Side specifications for heat exchanger E-1P-901",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl02_design-data-shell-tube.png",
+      "png_sha256": "24239c0fe4897857eadc5ae23217f4729d9e5925d066511e916dd0486133c344",
+      "slug": "design-data-shell-tube",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl02_design-data-shell-tube.json",
+      "table_data_json_sha256": "764b6617b0e6bc615bc678fa9b60d619ef11202bcf554308470d421ceac5d638",
+      "table_data_sha256": "764b6617b0e6bc615bc678fa9b60d619ef11202bcf554308470d421ceac5d638",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0139_tbl02_design-data-shell-tube.xlsx",
+      "xlsx_sha256": "6f3b63ede2512895dc612858532b0c4d953a5884707a53ec0c7bfa16b754b227"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 139,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0139.png",
+  "page_image_sha256": "68aa2420fcb02ca3a0cb9194591bbc23c78807c1ea32c7d33a955dfcfe2b7e21",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0139_assets.json"
+}

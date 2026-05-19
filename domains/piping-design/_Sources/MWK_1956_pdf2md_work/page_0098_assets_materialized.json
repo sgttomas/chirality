@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0098.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0098_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.51,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1415,
+        956
+      ],
+      "caption": "Fig. 4.4 Deflections assumed to occur in a single-plane system under the guided cantilever approximation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0098_fig01_fig-4-4-deflections-assumed-to-occur-in.png",
+      "png_sha256": "c2693fc56d45dc4acabdf272b47216f837f1b3b1cbd0e9514cefdb37a13a0da9",
+      "slug": "fig-4-4-deflections-assumed-to-occur-in",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0098_fig02",
+      "bbox_norm": [
+        0.04,
+        0.74,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2000,
+        2526,
+        2898
+      ],
+      "caption": "Fig. 4.5 Deflections assumed to occur in a multiplane system under the guided cantilever approximation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0098_fig02_fig-4-5-deflections-assumed-to-occur-in.png",
+      "png_sha256": "4061bef695b19f1614a55685442e1ae0dc3d83cb401f5856f29adbed09cbcaf6",
+      "slug": "fig-4-5-deflections-assumed-to-occur-in",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 98,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0098.png",
+  "page_image_sha256": "1c9210d3a83399bb4cd004d874f9559af1070d91df36b90a67e3567038989b99",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0098_assets.json"
+}

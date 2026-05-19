@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0015.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0015_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1502
+      ],
+      "caption": "Figure 1-1. Forged steel socketwelding fittings (2000, 3000, 4000 and 6000 pound W.O.G.). Reprinted courtesy of Crane Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0015_fig01_forged-steel-socketwelding-fittings-cran.png",
+      "png_sha256": "b13969352f45fc57d72b33575cdb4c244c60e0a6ebdcd96e89eec97e0171ddb5",
+      "slug": "forged-steel-socketwelding-fittings-cran",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0015_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.37,
+        0.53,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1118,
+        1437,
+        2830
+      ],
+      "caption": "Working Pressures \u2014 Steam, Water, Oil, Oil Vapor, Gas, or Air",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0015_tbl01_working-pressures-steam-water-oil-gas-ai.png",
+      "png_sha256": "eb92a586ace1b167e54bf0aa419fe846f8680d09085db22541cb873cb99dd236",
+      "slug": "working-pressures-steam-water-oil-gas-ai",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0015_tbl01_working-pressures-steam-water-oil-gas-ai.json",
+      "table_data_json_sha256": "4275e4505a50808b521cead85dbc473badbde18890aac6f94be1253089b806d2",
+      "table_data_sha256": "4275e4505a50808b521cead85dbc473badbde18890aac6f94be1253089b806d2",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0015_tbl01_working-pressures-steam-water-oil-gas-ai.xlsx",
+      "xlsx_sha256": "6c43ee0483ccc54b89777ab0bc7acb7391b2e541fd990d249cf7abe5f4c3c065"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0015.png",
+  "page_image_sha256": "9785f31eec350bb412c92b99aa113ee356783ad7f54ee3d3554d0c17f32e4541",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0015_assets.json"
+}

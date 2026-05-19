@@ -1,0 +1,54 @@
+Flexible Connections 225
+
+Component clearance. When an expansion joint is furnished with internal sleeves, external covers, or
+tie devices, they require adequate clearance to accommodate the movements. The clearances between
+these components are generally constructed uniformly around the circumference. With movements
+tilted to one side, the clearance should be large enough to cover the full potential movements. A large
+clearance makes the joint shaky. With a 50% cold spring, the clearance needed is reduced by half.
+
+7.3. APPLICATIONS OF BELLOW EXPANSION JOINTS
+
+EJMA [1] and most of the manufacturers’ catalogs have an extensive collection of examples on the
+application of bellow expansion joints. The applications can be classified based on the direction of the
+main movement as applied on the bellows. The most direct applications use the axial deformation of
+the bellow to absorb pipe expansion. The expansion is handled directly through bellow axial displace-
+ment. Other applications may use the bellow’s lateral deformation and rotation.
+
+7.3.1 Application of Axial Deformation
+
+The most basic characteristic of the bellow is its axial flexibility. Comparatively, a very small force
+is needed to deform the bellow axially a significant amount than that is needed to squeeze the same
+amount of deformation in the piping system. Therefore, a bellow is especially suited for absorbing
+the expansion of a long straight line. Because a bellow is not capable of transmitting the longitudinal
+pressure stress, it results in a large pressure thrust force acting toward the piping at both ends of the
+bellow. Taking care of these pressure thrust forces is the main concern of bellow expansion joint ap-
+plications. Extensive anchors and guides placed at strategic locations are always required.
+
+Figure 7.8 shows the typical anchor and guide requirements at a bellow expansion joint. To start
+with, two anchors located at each side of the bellow are needed to stop the pressure thrust force from
+pushing the piping system and its connecting equipments. The pressure thrust force is calculated by
+multiplying the maximum operating pressure with the effective bellow area given by the manufacturer.
+The effective area is generally the same as the circular area of the pitch diameter of the bellow. To
+
+F=Pa
+eo
+
+F=Pa
+“>
+
+wyvyre)
+a]
+Hy
+
+Bellow Pressure Thrust Force
+
+D = Pipe Outside Diameter See equation in text
+
+Expansion 4D 14D Lax x
+Joint we I< >\<— >< >|
+
+Anchor First Guide(G1) | Second Guide (G2) _—_— All Other Guides (G)
+
+FIG. 7.8
+ANCHOR AND GUIDE SCHEME OF AXIAL EXPANSION JOINT
+

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0063.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0063_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.16,
+        0.99,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        361,
+        2358,
+        3282
+      ],
+      "caption": "Table 3.1 Summation of Internal Pressure Test Results on Piping Branch Connections",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0063_tbl01_table-3-1-internal-pressure-test-results.png",
+      "png_sha256": "9ce072e6e67a79952e9be063c6a4df990cf3bb95414bec3465e2f9f650345737",
+      "slug": "table-3-1-internal-pressure-test-results",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0063_tbl01_table-3-1-internal-pressure-test-results.json",
+      "table_data_json_sha256": "a53abc32e80d5c084589d7a616c043e3ba1e8d3f20cd8b2dd241ba02590ba121",
+      "table_data_sha256": "a53abc32e80d5c084589d7a616c043e3ba1e8d3f20cd8b2dd241ba02590ba121",
+      "xlsx_path": "tables/MWK_1956_p0063_tbl01_table-3-1-internal-pressure-test-results.xlsx",
+      "xlsx_sha256": "9de212142f01f08c132e6365fd92a8ad3a6ca3c2dd32af4017b40738ae381aa5"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0063.png",
+  "page_image_sha256": "75e10018060d34f3ce8489fac3f31afbd3360098fdded6c45d9ddb69b65b5ab3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0063_assets.json"
+}

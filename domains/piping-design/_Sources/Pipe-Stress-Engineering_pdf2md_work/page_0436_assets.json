@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 436,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 13.3 AVERAGE ACCELERATION SPECTRUM CURVE [10] — EL CENTRO, MAY 18, 1940, NORTH–SOUTH DIRECTION",
+      "slug": "average-acceleration-spectrum-curve-el-centro",
+      "bbox_norm": [0.05, 0.04, 0.92, 0.38],
+      "confidence": "high",
+      "notes": "Plot of Response Acceleration vs Period of Vibration with multiple damping curves (0%, 2%, 5%, 10%, 40%). Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

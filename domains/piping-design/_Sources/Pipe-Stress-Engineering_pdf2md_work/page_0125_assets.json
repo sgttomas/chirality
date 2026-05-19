@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 125,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 4.5 PRESSURE STRESS AT BEND",
+      "slug": "pressure-stress-at-bend",
+      "bbox_norm": [0.08, 0.03, 0.72, 0.30],
+      "confidence": "high",
+      "notes": "Diagram of a pipe bend cross-section showing radial pie segment with labeled dimensions (D, R, D/2) and points (a, b, m, n, d). Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

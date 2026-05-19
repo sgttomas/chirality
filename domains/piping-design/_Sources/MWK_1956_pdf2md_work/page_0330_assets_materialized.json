@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0330.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0330_fig01",
+      "bbox_norm": [
+        0.52,
+        0.05,
+        0.99,
+        0.16
+      ],
+      "bbox_px": [
+        1094,
+        0,
+        2328,
+        627
+      ],
+      "caption": "Fig. B.1 Multiple resonator.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0330_fig01_fig-b-1-multiple-resonator.png",
+      "png_sha256": "0f65df7ddfda8c4fc351ea18ce130134c32ddd26b2122ecca24d930f65eb1b92",
+      "slug": "fig-b-1-multiple-resonator",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 330,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0330.png",
+  "page_image_sha256": "1f0bfab390d3e9e1ec484f984652e89f6a503c425f11158d85aa7abb36df37dd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0330_assets.json"
+}

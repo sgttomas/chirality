@@ -1,0 +1,46 @@
+228 Chapter 7
+
+The uncertain IA load should be considered as acting in both axial and lateral directions. The fric-
+tion force and bellow deformation force at the IA are generally very small when the system is properly
+supported, making the forces from both sides of the IA balance each other. However, because the
+piping at both sides of the IA does not necessarily move in synch, EJMA recommends taking the fric-
+tion force and bellow deformation force from one side only as the design load for the IA. The design
+specification shall give the specific design load for each specific situation. The intermediate anchor
+placed close to the bellow, such as the ones shown in Figs. 7.9 and 7.10, is not subject to friction force,
+which is absorbed by the main anchor or the IA located away from the bellow.
+
+Figure 7.9(c) shows a branch connection with the bellow placed at the branch line, as well as at each
+of the through runs. The anchor is a main anchor due to the unbalanced pressure thrust force applied
+at the branch line.
+
+Alignment guides. The guides required in expansion joint installations have to be effective in both
+up-and-down and horizontal lateral directions. It is popular to use catalog items, termed as alignment
+guides as shown in Fig. 7.11, for this purpose. However, it should be noted that the alignment guide
+as offered by the manufacturer’s catalog is not capable of taking the weight load. Therefore, the align-
+ment guides are installed in addition to the normal weight supports. The guides do not replace the
+weight supports. Some designers use a special support detail that combines the weight support with
+the guide function. In this case, the guide function should include both vertical and horizontal direc-
+tions. For some liquid lines, the weight hold-down effect is enough to act as a guide in the vertical
+direction, thus only the horizontal direction guide needs to be added. This can be done by placing
+guide lugs against both sides of the sole plate of the support shoe, provided the support shoe is strong
+enough. However, hold-down stops are always recommended for expansion joint installations due to
+the difficulty of assessing the adequacy of the weight hold-down effect.
+
+In-line pressure balanced expansion joint. From the above discussions, it is clear that an extensive
+anchor and guide system is required when using an expansion joint to accommodate axial movement.
+This can be very expensive or difficult to install in some cases. For instance, to provide a main anchor
+at piping located several stories high in the air would require beefing up of the entire structure from
+the ground level and up. Because the problem stems mainly from the pressure thrust force acting
+at the bellow, an expansion joint without this pressure thrust force will make the application much
+simpler. A joint without this pressure thrust force effect is called a pressure balanced joint. The one
+that works on axial deformation is called an in-line pressure balanced expansion joint. As shown in
+Fig. 7.12, the in-line pressure balanced joint uses an ingenious bellow and linkage arrangement, so
+the pressure thrust force at one bellow is canceled by that of another bellow. Figure 7.12(a) shows the
+
+basic arrangement.
+
+Insulation
+
+FIG. 7.11
+ALIGNMENT GUIDE
+

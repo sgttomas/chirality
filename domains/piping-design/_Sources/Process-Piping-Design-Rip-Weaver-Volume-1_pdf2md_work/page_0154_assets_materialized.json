@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0154.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0154_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2267
+      ],
+      "caption": "Figure 7-15. Vertical vessel pipe guides. Courtesy of Fluor Corp.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0154_fig01_vertical-vessel-pipe-guides.png",
+      "png_sha256": "ff3e9e329e2388a179357f2a03ff712e0485150c57bbe2ff88ed7285f5dd55c5",
+      "slug": "vertical-vessel-pipe-guides",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0154_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.52,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1918,
+        1412,
+        3314
+      ],
+      "caption": "MAXIMUM GUIDE SPACING",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0154_tbl01_maximum-guide-spacing.png",
+      "png_sha256": "fc88cc7e23d280eeb5f36bbc71240797fa18599b37511fbb268e480078fb3e6c",
+      "slug": "maximum-guide-spacing",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0154_tbl01_maximum-guide-spacing.json",
+      "table_data_json_sha256": "973ace9b5c9baf898dd2132e054eb07506a04ed506a5e15fbedeea8ad7ee031b",
+      "table_data_sha256": "973ace9b5c9baf898dd2132e054eb07506a04ed506a5e15fbedeea8ad7ee031b",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0154_tbl01_maximum-guide-spacing.xlsx",
+      "xlsx_sha256": "ba73980190726889d465e654145d7154999b9b3871aa97f83e1b0cc94996a18e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 154,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0154.png",
+  "page_image_sha256": "6700e0fbd6fa656926e67ce331693ca03d9b15df3de14dca9ad74b32ed2b40b9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0154_assets.json"
+}

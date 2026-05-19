@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 22,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.19 Typical stress cycle.",
+      "bbox_norm": [
+        0.18,
+        0.7,
+        0.55,
+        0.95
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.20 Representative fatigue fracture curves for metals.",
+      "bbox_norm": [
+        0.55,
+        0.04,
+        0.97,
+        0.3
+      ]
+    }
+  ]
+}

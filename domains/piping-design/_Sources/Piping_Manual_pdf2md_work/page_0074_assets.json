@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 74,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig_p0074_01",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.32],
+      "caption": "EXHIBIT 4-4 Lube Oil Console"
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p0074_02",
+      "bbox_norm": [0.05, 0.33, 0.95, 0.55],
+      "caption": "EXHIBIT 4-5 Seal Oil Console"
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p0074_03",
+      "bbox_norm": [0.04, 0.56, 0.95, 0.88],
+      "caption": "EXHIBIT 4-6 Surface Condenser"
+    }
+  ],
+  "issues": []
+}

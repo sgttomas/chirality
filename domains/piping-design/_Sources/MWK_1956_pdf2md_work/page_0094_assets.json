@@ -1,0 +1,52 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.42,
+        0.07,
+        0.66,
+        0.22
+      ],
+      "caption": "Sample Calculation 4.2 piping configuration sketch",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.42,
+        0.27,
+        0.66,
+        0.42
+      ],
+      "caption": "Sample Calculation 4.3 piping configuration sketch",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.42,
+        0.46,
+        0.66,
+        0.62
+      ],
+      "caption": "Sample Calculation 4.4 piping configuration sketch",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.66,
+        0.22,
+        0.96,
+        0.4
+      ],
+      "caption": "Table 4.1 \u2014 Comparison of Maximum Longitudinal Thermal Stress: ASA B31.1 Code Criterion vs. General Analytical Method (Square-Corner Solution)",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 94,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

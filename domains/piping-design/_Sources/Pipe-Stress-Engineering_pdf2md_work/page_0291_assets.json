@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 291,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 8.20 Displacement and Rotation at Low-Type Tank Connection",
+      "slug": "displacement-rotation-low-type-tank-connection",
+      "bbox_norm": [0.05, 0.62, 0.95, 0.98],
+      "confidence": "high",
+      "notes": "Diagram shows two cases (Case-A and Case-B) of free pressure displacement for uniform thickness and API-650 tanks respectively. Caption visible below diagram."
+    }
+  ],
+  "issues": []
+}

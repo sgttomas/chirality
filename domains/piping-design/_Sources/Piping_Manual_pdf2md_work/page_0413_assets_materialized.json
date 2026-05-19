@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0413.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0413_fig01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        1814
+      ],
+      "caption": "EXHIBIT 16-2 Pipe Stress Review Criteria Rotating Equipment Piping",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0413_fig01_exhibit-16-2-pipe-stress-review-criteria.png",
+      "png_sha256": "85fa08809f7681f04fd485680730ed82b960729681fe2e8d1ad6775371754cab",
+      "slug": "exhibit-16-2-pipe-stress-review-criteria",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 413,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0413.png",
+  "page_image_sha256": "ecb4ec6853c87481d14132967a65e6cf5603945af8b44bd3b5f58b3db40b6ef1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0413_assets.json"
+}

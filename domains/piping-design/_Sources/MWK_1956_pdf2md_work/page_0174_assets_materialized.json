@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0174.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0174_tbl01",
+      "bbox_norm": [
+        0.42,
+        0.06,
+        0.99,
+        0.36
+      ],
+      "bbox_px": [
+        941,
+        32,
+        2544,
+        1316
+      ],
+      "caption": "Table 5.19 \u2014 Equations for a space pipe line with two ends (shape coefficients, load constants, deformation constants)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0174_tbl01_table-5-19-space-pipe-line-equations.png",
+      "png_sha256": "f49bd5cb5330463226ff92153d442a95dd6e63133b97dd3b6aaeb3873973e62f",
+      "slug": "table-5-19-space-pipe-line-equations",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0174_tbl01_table-5-19-space-pipe-line-equations.json",
+      "table_data_json_sha256": "729e705dda2839a67e87df5bc8650fea4ddb49d6f561adf9c3c300257f75aac6",
+      "table_data_sha256": "729e705dda2839a67e87df5bc8650fea4ddb49d6f561adf9c3c300257f75aac6",
+      "xlsx_path": "tables/MWK_1956_p0174_tbl01_table-5-19-space-pipe-line-equations.xlsx",
+      "xlsx_sha256": "5be463e63768b05478b30a864bd4214d49e0b7ff4c98087620d55134edde0daa"
+    },
+    {
+      "asset_id": "MWK_1956_p0174_tbl02",
+      "bbox_norm": [
+        0.42,
+        0.54,
+        0.99,
+        0.88
+      ],
+      "bbox_px": [
+        941,
+        1573,
+        2544,
+        2985
+      ],
+      "caption": "Table 5.20 \u2014 Load constants for a concentrated weight applied at point N",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0174_tbl02_table-5-20-concentrated-weight-load-cons.png",
+      "png_sha256": "203242f8b6f5ce05205157cc7be825cb2bcf03ab8cad089f3c42d20c21787750",
+      "slug": "table-5-20-concentrated-weight-load-cons",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0174_tbl02_table-5-20-concentrated-weight-load-cons.json",
+      "table_data_json_sha256": "644d7c9514c13f118a4f39f665bb85f58c22f22db970f35512c68af752169865",
+      "table_data_sha256": "644d7c9514c13f118a4f39f665bb85f58c22f22db970f35512c68af752169865",
+      "xlsx_path": "tables/MWK_1956_p0174_tbl02_table-5-20-concentrated-weight-load-cons.xlsx",
+      "xlsx_sha256": "e06432a65abc4af6900b8f1c21788099f11cb44e89feabe27d70a9f2aef2b807"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 174,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0174.png",
+  "page_image_sha256": "a6a3b4f2e52e16ad47f173624071e044d6f1bb547d40d0311436be015b8f39f4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0174_assets.json"
+}

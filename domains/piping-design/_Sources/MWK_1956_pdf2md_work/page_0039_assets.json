@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 39,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Schematic of an end-restrained bar with a reduced-area section (members 1 and 2), labeled with cross-sectional areas A_1, A_2 and lengths L_1, L_2; arrows indicate end restraints. Caption sits directly beneath the schematic in the top-left of the page."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Representation of bar for calculation of plastic strain concentration factor.",
+      "bbox_norm": [
+        0.07,
+        0.03,
+        0.51,
+        0.19
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0026_fig01",
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.94,
+        0.47
+      ],
+      "bbox_px": [
+        25,
+        66,
+        2524,
+        1714
+      ],
+      "caption": "Fig. 300-6 Change of Pipeway Sequence",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0026_fig01_fig-300-6-change-of-pipeway-sequence.png",
+      "png_sha256": "dc90eb265dd9d3f3e807d72e8d163d3e2e18b99c13afa9f70c922cd8956a0c54",
+      "slug": "fig-300-6-change-of-pipeway-sequence",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0026.png",
+  "page_image_sha256": "2edf38f583c702801f31ce4f32fa6e96fa5677c9e8ceb8d26806f796e6661def",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0026_assets.json"
+}

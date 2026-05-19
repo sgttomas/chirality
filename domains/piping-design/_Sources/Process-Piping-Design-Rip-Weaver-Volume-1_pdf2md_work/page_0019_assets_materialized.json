@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0019.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0019_fig01",
+      "bbox_norm": [
+        0.02,
+        0.03,
+        0.42,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1164,
+        3494
+      ],
+      "caption": "Figure 1-5. Steel buttwelding fittings for use with standard pipe. Reprinted courtesy of Crane Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0019_fig01_steel-buttwelding-fittings-standard-pipe.png",
+      "png_sha256": "0a279537b5bb09101b70c1cd4a4caf96a483479d8be9eb551312f4f145f8c27a",
+      "slug": "steel-buttwelding-fittings-standard-pipe",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 19,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0019.png",
+  "page_image_sha256": "42f262b7457aebd87df64b35320dce19b28eb36a116c825d078370591cd09ce8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0019_assets.json"
+}

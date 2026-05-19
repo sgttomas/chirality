@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 76,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-6. Foundation location plan for Figure 4-1.",
+      "slug": "foundation-location-plan-figure-4-1",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Full-page engineering plan drawing with caption rotated vertically along the right margin"
+    }
+  ],
+  "issues": []
+}

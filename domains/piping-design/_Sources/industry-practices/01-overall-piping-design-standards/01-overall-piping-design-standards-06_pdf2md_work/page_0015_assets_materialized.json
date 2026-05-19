@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0015_fig01",
+      "bbox_norm": [
+        0.18,
+        0.38,
+        0.82,
+        0.65
+      ],
+      "bbox_px": [
+        332,
+        1089,
+        2218,
+        2310
+      ],
+      "caption": "Figure 1: Separation between Pipe Axis",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-06_p0015_fig01_separation-between-pipe-axis.png",
+      "png_sha256": "794444f69ba5dd457113429f24e49cca7c57975d2e5dc2666ab767576a355a42",
+      "slug": "separation-between-pipe-axis",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-06",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0015.png",
+  "page_image_sha256": "416c6b09a6a413d0fe1f57abeb8632d7fb917a7822c414d8f868fc90f93ea29d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0015_assets.json"
+}

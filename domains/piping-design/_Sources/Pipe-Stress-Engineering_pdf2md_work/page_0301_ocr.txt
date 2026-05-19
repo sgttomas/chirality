@@ -1,0 +1,67 @@
+Interface with Stationary Equipment 281
+
+OR = 2160” Tank thick = 1.5”, Product $.G.=1.0 y
+Temperature 70°F to 150°F
+Pipe 10” Sch-40, E=29.5E6 psi x
+
+ee
+
+| / Shell radial deformation
+due to product head and
+! temperature
+
+240”
+
+Nozzle
+Displacement
+
+Analysis Conditions
+
+With tank displacement and
+rotation, and flexibility
+
+Tank as an anchor with
+displacement and rotation
+
+2200 850,000 0.49 1.47
+
+0.64 ra
+
+1.345 0.0
+
+1,182,000
+
+Tank as an anchor with un-choked
+displacement, but no rotation
+
+-142,000
+
+Tank as an anchor without
+Displacement and rotation
+
+0.0
+
+; FIG. 8.27
+RESULTS OF PIPING ANALYSES WITH DIFFERENT TANK MODELS
+
+a large influence on piping loads for the piping layout given. However, this is not the case for most
+piping configurations. Radial displacement is also critical in most layouts.
+
+In addition to the tank shell displacement and rotation, a tank is also generally subject to a fairly
+large amount of settlement due to poor soil conditions. The piping, of course, also has to accom-
+modate this tank settlement. Tank settlement is generally classified into three categories. One is the
+compaction settlement through the first fill-up or hydrostatic test of the tank. The water weight or
+product weight causes additional soil compaction resulting in some settlement. The second category
+is the long-term settlement expected through the usage life of the tank. This is sometimes called plastic
+settlement. It increases with time, but at a somewhat gradually slow rate. The third category is the
+elastic settlement caused by the full-empty cycle of the tank. The compaction and elastic settlement
+can be partially taken care of by connecting the piping after the tank has been hydrostatic tested and
+the water discharged to half-empty. This connecting at half-empty procedure also reduces the effect
+of tank shell displacement and rotation. The treatment of long-term settlement varies greatly among
+operators and conditions. For an expected large long-term settlement, it may not be practical to de-
+sign the piping system to absorb all settlement at once. Step adjustments of supports at fixed periods
+may be required. At any rate, in order to achieve a practical design, the settlement profile should be
+obtained so the proper differential settlements between tank nozzle and pipe supports at various loca-
+tions can be included in the design analysis. If the settlement profile is not available, then the designer
+is forced to consider that only the tank settles whereas all the supports do not. This type of design can
+be very costly and difficult to achieve.

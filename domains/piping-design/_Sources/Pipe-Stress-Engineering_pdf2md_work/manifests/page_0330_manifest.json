@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0330.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0330_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.78,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2134,
+        1179
+      ],
+      "caption": "Fig. 9.15 THE EFFECT OF RADIAL PIPE EXPANSION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0330_fig01_effect-of-radial-pipe-expansion.png",
+      "png_sha256": "cf37fe0d0b72d697050ea33c61a3b1f1f7932755df64f6e4f957cd29581fa023",
+      "slug": "effect-of-radial-pipe-expansion",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 330,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0330.png",
+  "page_image_sha256": "885432518058b4df6749ea99571c07050f57de9deccfd0677049b703bb6ae576",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0330_assets.json"
+}

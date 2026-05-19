@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 93,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-3. Vertical heater piping plan. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "vertical-heater-piping-plan",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.96],
+      "confidence": "high",
+      "notes": "Full-page engineering plan drawing showing two plan views: upper (Radiant Type, Top Fired) and lower (Radiant-Convection Type, Bottom Fired) vertical heater piping layouts. Caption appears at bottom right."
+    }
+  ],
+  "issues": []
+}

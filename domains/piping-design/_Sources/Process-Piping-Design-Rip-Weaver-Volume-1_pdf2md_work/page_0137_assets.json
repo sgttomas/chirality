@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 137,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 7-6. Manhole davits and hinges. Courtesy of Fluor Corp.",
+      "slug": "manhole-davits-and-hinges",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.62],
+      "confidence": "high",
+      "notes": "Full-width technical engineering drawing showing manhole cover hinge and davit details with section view and an embedded specification table listing davit sizes per pipe/flange rating. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

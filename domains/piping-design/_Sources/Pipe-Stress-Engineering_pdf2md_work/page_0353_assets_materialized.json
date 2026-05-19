@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0353_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        774,
+        2495,
+        3412
+      ],
+      "caption": "Table 10.1 GAS PIPELINE LOCATION CLASSES",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0353_tbl01_gas-pipeline-location-classes.png",
+      "png_sha256": "8cf42733c90a110a755b4dc88f544f7f13516c191dfda37ba3a5c05d9bd927eb",
+      "slug": "gas-pipeline-location-classes",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0353_tbl01_gas-pipeline-location-classes.json",
+      "table_data_json_sha256": "eee6f955f5bfbb470b0f8e6cdb9cb1679e1fc14e4b5fdc1c72ecdcf9ca261b6b",
+      "table_data_sha256": "eee6f955f5bfbb470b0f8e6cdb9cb1679e1fc14e4b5fdc1c72ecdcf9ca261b6b",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0353_tbl01_gas-pipeline-location-classes.xlsx",
+      "xlsx_sha256": "7f15b68d77c9e52d9bbd4a77b6d618e48a8dcd4f5a7df1957bf0bb65d13e8177"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 353,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353.png",
+  "page_image_sha256": "9fbca88e64c9329ed2ace1ccaaaad394a79496fff61e8c3ccb208b8eb15065f8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353_assets.json"
+}

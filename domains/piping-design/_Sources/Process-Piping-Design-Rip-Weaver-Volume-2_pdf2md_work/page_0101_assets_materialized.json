@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0101.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0101_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Figure 3-10. Typical burner piping with overhead supply. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0101_fig01_typical-burner-piping-overhead-supply.png",
+      "png_sha256": "c31c90d14535120277f1b3e4e9fdf633547f128c8445ca80aa54d9bec1e15d97",
+      "slug": "typical-burner-piping-overhead-supply",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0101.png",
+  "page_image_sha256": "ef08ef5bb9ea92a07d11fb567c4d5d150b59052bd38ffb135ea844d0cd6a61f6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0101_assets.json"
+}

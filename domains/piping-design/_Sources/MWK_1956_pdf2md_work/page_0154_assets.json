@@ -1,0 +1,43 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.96,
+        0.42
+      ],
+      "caption": "The M.W. Kellogg Co. - Piping Flexibility and Stress Analysis - Original Data and Results (Calc. No. P-9)",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.78,
+        0.08,
+        0.96,
+        0.18
+      ],
+      "caption": "Piping system geometry sketch with coordinate axes (x, y, z) and labeled points a, b, c, d, e (inset on Original Data and Results sheet)",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.45,
+        0.97,
+        0.88
+      ],
+      "caption": "The M.W. Kellogg Co. - Piping Flexibility and Stress Analysis - Plane Summation of Shape Coefficients ('STIF.' Summation - Members a-b) (Calc. No. P-9)",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 154,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

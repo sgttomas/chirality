@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0315.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0315_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 9.8 SCHEMATIC LAYOUT OF POWER TURBINE PIPING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0315_fig01_schematic-layout-power-turbine-piping.png",
+      "png_sha256": "60f083baab43a643b8ec02e54440846505f35dcbb296a3adcb603f0636dd4144",
+      "slug": "schematic-layout-power-turbine-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 315,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0315.png",
+  "page_image_sha256": "66df6801ebdc01fafe4472bcc899856a8fbccf6f6ed03511e04c847ccf352f79",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0315_assets.json"
+}

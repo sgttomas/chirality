@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.07,
+        0.13,
+        0.96,
+        0.83
+      ],
+      "caption": "C-18. Correction Factors for Use with Charts C-16 and C-17",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Hand-drawn engineering table with six rows of beam loading cases. Columns: CASE, END FIXATION (sketches of beam supports with load diagrams), MOMENT DIAG. (hand-drawn moment diagrams), MAXIMUM MOMENT, MAXIMUM DEFLECTION, F5, F6. Contains embedded hand-drawn sketches within END FIXATION and MOMENT DIAG. columns that are integral to interpreting the table."
+  ],
+  "page": 359,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

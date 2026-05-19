@@ -1,0 +1,90 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 24,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2: U-Bolt Requirements",
+      "slug": "table-2-u-bolt-requirements",
+      "bbox_norm": [
+        0.03,
+        0.71,
+        0.97,
+        0.82
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Pipe size (nominal)",
+                "is_header": true
+              },
+              {
+                "value": "<1",
+                "is_header": true
+              },
+              {
+                "value": "1 - 2",
+                "is_header": true
+              },
+              {
+                "value": "3 - 6",
+                "is_header": true
+              },
+              {
+                "value": "8 - 14",
+                "is_header": true
+              },
+              {
+                "value": ">14",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "U-bolt diameter (inches)",
+                "type": "text"
+              },
+              {
+                "value": "\u00bc",
+                "type": "text"
+              },
+              {
+                "value": "\u215c",
+                "type": "text"
+              },
+              {
+                "value": "\u00bd",
+                "type": "text"
+              },
+              {
+                "value": "\u215d",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row table mapping nominal pipe size ranges to required U-bolt diameter in inches"
+    }
+  ],
+  "issues": []
+}

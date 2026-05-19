@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 264,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.31, 0.97, 0.89],
+      "caption": "EXHIBIT 10-50 — Platform Orientation. Four plan-view diagrams of tower T-100 showing platform layouts at successive elevation ranges (PLATFORM EL.178'-1\" & ABOVE [123800]; PLATFORM EL.169'-0\" TO 178'-1\" [121030/123800]; PLATFORM EL.109'-0\" TO 139'-0\" [102740/111890]; PLATFORM EL.139'-0\" TO 169'-0\" [111890/121030]), oriented to North, with ladder & cage and platform brackets called out as typical."
+    }
+  ],
+  "issues": []
+}

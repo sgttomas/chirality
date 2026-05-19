@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0273.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0273_fig01",
+      "bbox_norm": [
+        0.08,
+        0.28,
+        0.88,
+        0.62
+      ],
+      "bbox_px": [
+        76,
+        759,
+        2372,
+        2210
+      ],
+      "caption": "EXHIBIT 10-60 Temperature and Pressure Instrument Arrangements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0273_fig01_exhibit-10-60-temperature-and-pressure-i.png",
+      "png_sha256": "8863f5c1e2cfad3ec8800e3916ebc06a22c5acbef6c88e03bf601603dc88829f",
+      "slug": "exhibit-10-60-temperature-and-pressure-i",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0273_fig02",
+      "bbox_norm": [
+        0.08,
+        0.6,
+        0.68,
+        0.9
+      ],
+      "bbox_px": [
+        76,
+        1814,
+        1862,
+        3134
+      ],
+      "caption": "EXHIBIT 10-61 Common Bridle-Level Instrument Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0273_fig02_exhibit-10-61-common-bridle-level-instru.png",
+      "png_sha256": "1d589e8888e0f2148b500df0569d84723981b84ba440cdaac7bcb7651ee13105",
+      "slug": "exhibit-10-61-common-bridle-level-instru",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 273,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0273.png",
+  "page_image_sha256": "43a6cf89fbad9a222f5b39d1065741509ed17cf0315b1c7e96231c030d0a8a22",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0273_assets.json"
+}

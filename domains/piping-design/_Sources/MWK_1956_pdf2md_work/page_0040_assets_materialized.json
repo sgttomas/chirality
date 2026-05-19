@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0040.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0040_fig01",
+      "bbox_norm": [
+        0.48,
+        0.04,
+        1.0,
+        0.45
+      ],
+      "bbox_px": [
+        968,
+        0,
+        2250,
+        1641
+      ],
+      "caption": "Fig. 2.5. Strain magnification in a locally weakened bar.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0040_fig01_fig-2-5-strain-magnification-in-a-locall.png",
+      "png_sha256": "4a69aa8872d2fef355f9ac6f936b4be52945270ab07de771309557547feeb7ce",
+      "slug": "fig-2-5-strain-magnification-in-a-locall",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 40,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0040.png",
+  "page_image_sha256": "42cdff2ee80ccecb9a7f3b639ea72d83d5eb43688e626eda85772b794d2dcbe7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0040_assets.json"
+}

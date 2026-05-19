@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0192.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0192_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1491
+      ],
+      "caption": "EXHIBIT 7-44 Convection Section Steam Piping with Miscellaneous Structural Details",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0192_fig01_exhibit-7-44-convection-section-steam-pi.png",
+      "png_sha256": "aaeddff07ed346f6f0a28e50af44fd78fb8c995e4323e93e25145f1d14dc969a",
+      "slug": "exhibit-7-44-convection-section-steam-pi",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0192_fig02",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.96,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1160,
+        2569,
+        2618
+      ],
+      "caption": "EXHIBIT 7-45 Piping and Instrumentation Diagram for a Burner Management Skid",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0192_fig02_exhibit-7-45-piping-and-instrumentation.png",
+      "png_sha256": "8cb223cb18af1dc0b7cf2239a5860a4ac2759d93e9511758aab5f4ec7051c554",
+      "slug": "exhibit-7-45-piping-and-instrumentation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 192,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0192.png",
+  "page_image_sha256": "d0cf48a8c7433a2be235282c350c810a1411214de2a7429cc6451a820c2cafa8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0192_assets.json"
+}

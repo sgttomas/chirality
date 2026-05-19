@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 176,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p176_fig1",
+      "caption": "EXHIBIT 7-22 Circular Furnace Platform Requirements",
+      "bbox_norm": [0.05, 0.04, 0.96, 0.40]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p176_fig2",
+      "caption": "EXHIBIT 7-23 Miscellaneous Platform Requirements for a Circular Furnace",
+      "bbox_norm": [0.05, 0.42, 0.96, 0.78]
+    }
+  ],
+  "issues": []
+}

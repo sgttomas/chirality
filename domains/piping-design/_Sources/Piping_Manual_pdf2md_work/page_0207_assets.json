@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 207,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0207_fig01",
+      "caption": "EXHIBIT 8-13 Components of a Typical Pump Suction and Discharge Piping System",
+      "bbox_norm": [0.04, 0.06, 0.98, 0.36]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0207_fig02",
+      "caption": "EXHIBIT 8-14 Typical Temporary Tee-Type Strainer",
+      "bbox_norm": [0.04, 0.37, 0.98, 0.59]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0207_fig03",
+      "caption": "EXHIBIT 8-15 Typical Basket Strainer",
+      "bbox_norm": [0.04, 0.60, 0.98, 0.94]
+    }
+  ],
+  "issues": []
+}

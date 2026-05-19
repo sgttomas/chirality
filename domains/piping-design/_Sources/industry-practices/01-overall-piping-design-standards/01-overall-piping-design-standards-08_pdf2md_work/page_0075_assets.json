@@ -1,0 +1,131 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 75,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Spectacle blinds requiring a force of more than 250 N (ASME rating class vs Size (DN))",
+      "slug": "spectacle-blinds-force-250n",
+      "bbox_norm": [0.08, 0.36, 0.65, 0.54],
+      "confidence": "high",
+      "notes": "Six-row two-column table listing ASME rating classes 150–2500 and corresponding minimum DN sizes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ASME rating class", "is_header": true },
+              { "value": "Size (DN)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": "450 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": "400 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": "350 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900", "type": "text" },
+              { "value": "300 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500", "type": "text" },
+              { "value": "300 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2500", "type": "text" },
+              { "value": "300 and larger", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Spades having a weight of more than 250 N (ASME rating class vs Size DN)",
+      "slug": "spades-weight-250n",
+      "bbox_norm": [0.08, 0.73, 0.65, 0.90],
+      "confidence": "high",
+      "notes": "Six-row two-column table listing ASME rating classes 150–2500 and corresponding minimum DN sizes for spades exceeding 250 N",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ASME rating class", "is_header": true },
+              { "value": "Size DN", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": "350 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": "300 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": "250 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900", "type": "text" },
+              { "value": "200 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500", "type": "text" },
+              { "value": "200 and larger", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2500", "type": "text" },
+              { "value": "150 and larger", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

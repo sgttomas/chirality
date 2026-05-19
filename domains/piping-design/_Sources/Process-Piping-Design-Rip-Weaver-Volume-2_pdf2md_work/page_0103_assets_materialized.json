@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0103.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0103_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3201
+      ],
+      "caption": "Figure 3-12. Burner piping at box heater. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0103_fig01_burner-piping-box-heater.png",
+      "png_sha256": "39722d0a9ddc966bbb8523b66363f462a6922d697adb09a01c55cb4ffecfff92",
+      "slug": "burner-piping-box-heater",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 103,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0103.png",
+  "page_image_sha256": "cae62f07f1d7b56ad02bb06e85482d9a2f9fc3fb6ab3ba9e95d10893869f86dd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0103_assets.json"
+}

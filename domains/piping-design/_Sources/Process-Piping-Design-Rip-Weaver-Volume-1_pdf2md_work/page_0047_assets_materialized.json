@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0047.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0047_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3488
+      ],
+      "caption": "Figure 3-1. Refinery block plot plan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0047_fig01_refinery-block-plot-plan.png",
+      "png_sha256": "3873277066742ce037ba8ceea99b1c22b3839cee9a94c22b0b2938ed90b1babc",
+      "slug": "refinery-block-plot-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 47,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0047.png",
+  "page_image_sha256": "f2948ca809682fe2732f9313e4ebe44d7f901e368cc654393529bb4bb9e348b8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0047_assets.json"
+}

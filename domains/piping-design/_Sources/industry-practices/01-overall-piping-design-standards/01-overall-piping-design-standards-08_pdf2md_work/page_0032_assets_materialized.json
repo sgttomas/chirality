@@ -1,0 +1,68 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0032.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0032_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.11,
+        0.93,
+        0.32
+      ],
+      "bbox_px": [
+        50,
+        211,
+        2430,
+        1298
+      ],
+      "caption": "ASME rating classes and thermowell size selection",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0032_tbl01_asme-rating-thermowell-size-selection.png",
+      "png_sha256": "4cc23135dd301be6ce6b214300fd87d5e21f1144a4d20e9edeaa8ab8eca8558e",
+      "slug": "asme-rating-thermowell-size-selection",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0032_tbl02",
+      "bbox_norm": [
+        0.07,
+        0.37,
+        0.93,
+        0.57
+      ],
+      "bbox_px": [
+        50,
+        1123,
+        2430,
+        2176
+      ],
+      "caption": "Thermowell length standardization",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0032_tbl02_thermowell-length-standardization.png",
+      "png_sha256": "b8dde97dae9de6bbf4ecbba5619039cf329b31fac8526f893ec08e48fccbfe52",
+      "slug": "thermowell-length-standardization",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0032.png",
+  "page_image_sha256": "912127ec7011b1faa6a337b9d344a41873fb4de935aeb9f72af04aa6f19fae45",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0032_assets.json"
+}

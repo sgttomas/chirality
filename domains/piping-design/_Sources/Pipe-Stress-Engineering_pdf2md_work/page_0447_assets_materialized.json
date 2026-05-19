@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0447.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0447_fig01",
+      "bbox_norm": [
+        0.05,
+        0.45,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1404,
+        2482,
+        3509
+      ],
+      "caption": "Fig. 13.10 Frequency Shift Technique on Harmonic Analysis",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0447_fig01_frequency-shift-technique-harmonic-analy.png",
+      "png_sha256": "f91fe9fb46f728e55c048e9839ee1a06ab9331209429d486a40ce85bd986520a",
+      "slug": "frequency-shift-technique-harmonic-analy",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 447,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0447.png",
+  "page_image_sha256": "882030823f5f47eb489cd0697c5bdbc51890292d4281f332405f39a03b74a0b1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0447_assets.json"
+}

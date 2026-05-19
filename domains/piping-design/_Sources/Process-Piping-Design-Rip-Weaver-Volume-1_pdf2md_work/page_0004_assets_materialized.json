@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0004_img01",
+      "bbox_norm": [
+        0.53,
+        0.68,
+        0.72,
+        0.78
+      ],
+      "bbox_px": [
+        1189,
+        2205,
+        1907,
+        2905
+      ],
+      "caption": "Gulf Publishing Company logo (gp bc mark)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/Process-Piping-Design-Rip-Weaver-Volume-1_p0004_img01_gulf-publishing-logo.png",
+      "png_sha256": "e74ae20fbcdd4f179ab37b9adb5b2b395206f05a2949f6474156ba57231c1395",
+      "slug": "gulf-publishing-logo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0004.png",
+  "page_image_sha256": "035917baf8bcfd5eb85b45f4525b7522a23f56bce1bda1d60aefe2e4beeddcb7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0004_assets.json"
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 28,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Schematic plot of Log Sa (Sa = Sa-fatigue strength) vs Log N (N = Number of stress cycles) showing the Damage Area (hatched region), Damage Line, and Fatigue Fracture Stress Curve. Top-right of page.",
+    "asset_note: Plot of % Alternating Stress of Cycle (10^3 psi) on the Y-axis vs % Mean Stress of Cycle (10^3 psi) on the X-axis. Speed of cycling 214,000 reversals/hr. Family of curves labeled by Time to Fracture: 5, 15, 50, 150, 500, 1500 hrs. Bottom-left of page."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.27 The damage area in fatigue.",
+      "bbox_norm": [
+        0.5,
+        0.03,
+        1.0,
+        0.32
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.26 Fatigue-creep rupture interaction curves for N-155 at 1500 F. After Lazan and Westberg.",
+      "bbox_norm": [
+        0.01,
+        0.55,
+        0.51,
+        0.97
+      ]
+    }
+  ]
+}

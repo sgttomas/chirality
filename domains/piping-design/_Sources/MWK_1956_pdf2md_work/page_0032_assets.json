@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 32,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Page 32 contains only running prose text under section heading 'DESIGN ASSUMPTIONS, STRESS EVALUATION, AND DESIGN LIMITS' with bolded inline subsection headers (ASME Boiler and Pressure Vessel Code; ASA B31.1; ASA B9; Piping for Ships; Flange and Fitting Standards; Steel Flanges). No figures, tables, diagrams, photographs, or other extractable visual assets are present."
+  ]
+}

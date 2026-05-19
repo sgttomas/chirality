@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 81,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0081_exhibit_4-20",
+      "bbox_norm": [0.04, 0.06, 0.95, 0.39],
+      "caption": "EXHIBIT 4-20 Lube Oil Console Maintenance"
+    },
+    {
+      "kind": "fig",
+      "id": "page_0081_exhibit_4-21",
+      "bbox_norm": [0.04, 0.40, 0.95, 0.93],
+      "caption": "EXHIBIT 4-21 Lube Oil Console Piping and Instrumentation Diagram"
+    }
+  ],
+  "issues": []
+}

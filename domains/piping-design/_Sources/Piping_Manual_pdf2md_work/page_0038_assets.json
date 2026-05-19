@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.97,
+        0.66
+      ],
+      "caption": "Exhibit 2-2 Equipment Elevations",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 38,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

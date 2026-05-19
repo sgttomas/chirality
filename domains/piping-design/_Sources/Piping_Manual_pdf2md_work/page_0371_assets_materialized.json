@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0371.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0371_fig01",
+      "bbox_norm": [
+        0.09,
+        0.23,
+        0.96,
+        0.87
+      ],
+      "bbox_px": [
+        102,
+        596,
+        2562,
+        3044
+      ],
+      "caption": "EXHIBIT 14-11 External-Cage Level Controller and Transmitter",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0371_fig01_exhibit-14-11-external-cage-level-contro.png",
+      "png_sha256": "0b891653995329f1ebda493ee9362d55b6f7b851f9fd7f41b42d3a4674279d52",
+      "slug": "exhibit-14-11-external-cage-level-contro",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 371,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0371.png",
+  "page_image_sha256": "4df551e4d0b2149c2e9e13a414f3cc699705044d6867f1a704f4dc99fe0d613f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0371_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0101.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0101_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3509
+      ],
+      "caption": "Figure 4.1 Saturated steam 3.5 bar (ge), 150\u00b0C",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0101_fig01_figure-4-1-saturated-steam-3-5-bar-ge-15.png",
+      "png_sha256": "d73784d636ab94a2c8c8f6a10051668f780ec302ab4bbdd45c400e59643efaae",
+      "slug": "figure-4-1-saturated-steam-3-5-bar-ge-15",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0101.png",
+  "page_image_sha256": "9c1aac8b938c58e567c331641e7a1820e5b66e03f21b929b3084ba018d7e434d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0101_assets.json"
+}

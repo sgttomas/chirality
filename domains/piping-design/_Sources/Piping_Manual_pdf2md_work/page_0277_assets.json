@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 277,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p277_fig_01",
+      "caption": "EXHIBIT 10-66 Stiffening Rings",
+      "bbox_norm": [0.06, 0.20, 0.50, 0.45]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p277_fig_02",
+      "caption": "EXHIBIT 10-67 Tower Weld Seams",
+      "bbox_norm": [0.06, 0.45, 0.45, 0.74]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p277_fig_03",
+      "caption": "EXHIBIT 10-68 Utility Station Requirements",
+      "bbox_norm": [0.48, 0.20, 0.94, 0.45]
+    }
+  ],
+  "issues": []
+}

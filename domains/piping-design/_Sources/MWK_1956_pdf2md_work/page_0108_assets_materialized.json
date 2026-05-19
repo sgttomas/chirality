@@ -1,0 +1,114 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0108.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0108_fig01",
+      "bbox_norm": [
+        0.66,
+        0.04,
+        1.0,
+        0.4
+      ],
+      "bbox_px": [
+        1164,
+        0,
+        1908,
+        1218
+      ],
+      "caption": "Isometric sketch of multi-plane piping system showing Steps 1-10 with member dimensions 15'-0\", 5'-0\", and 28'-0\" (Form A reference figure).",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0108_fig01_isometric-sketch-of-multi-plane-piping-s.png",
+      "png_sha256": "827b0474a2d8684de22f41c3b334438fa52b20455a0bbcefa4689f056abcb8b1",
+      "slug": "isometric-sketch-of-multi-plane-piping-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0108_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.66,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1355,
+        1380
+      ],
+      "caption": "Form A \u2014 Piping Flexibility and Stress Analysis, Original Data and Results (Calc. No. 214). Members ALL data (D, t, I, Z, R), Pipe Expansion Data, Cold/Hot Condition, and Moments/Forces acting on Restraints.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0108_tbl01_form-a-piping-flexibility-and-stress-ana.png",
+      "png_sha256": "1ab63b791114678a3d8a01646f79323cc5e83997e8a1d0c4b9d2a8e05de19dba",
+      "slug": "form-a-piping-flexibility-and-stress-ana",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0108_fig02",
+      "bbox_norm": [
+        0.02,
+        0.48,
+        0.18,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1164,
+        439,
+        1921
+      ],
+      "caption": "STEP 6 isometric sketch of multi-plane piping system (Form 6 reference figure).",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0108_fig02_step-6-isometric-sketch-of-multi-plane-p.png",
+      "png_sha256": "b7aed676d5ac70694232847edc4dbafa26e2ec31c18c3d9e624acd64ea27d5c2",
+      "slug": "step-6-isometric-sketch-of-multi-plane-p",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0108_tbl02",
+      "bbox_norm": [
+        0.02,
+        0.48,
+        1.0,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        1164,
+        1908,
+        2706
+      ],
+      "caption": "Form 6 \u2014 Piping Flexibility & Stress Analysis, Multi-Plane Systems (Calc. No. 214, dated 9/22/53). Formulas for members parallel to X/Y/Z axes with member-by-member shape coefficient sums across columns 0-1, 1-2, 2-0, 0-3, 3-A and Sum of Shape Coefficients.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0108_tbl02_form-6-piping-flexibility-stress-analysi.png",
+      "png_sha256": "f07b0b8a07b45714da3bc4829112e2a580e29b16b90d2220f636dda6b9d05e5b",
+      "slug": "form-6-piping-flexibility-stress-analysi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 108,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0108.png",
+  "page_image_sha256": "7f630d2b0dbf1db7f44048bba25d4cd6ee9072d06846861a67a226d853864bf7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0108_assets.json"
+}

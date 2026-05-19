@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0099.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0099_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1551
+      ],
+      "caption": "Figure 3-8. Typical fuel gas burner assembly. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0099_fig01_typical-fuel-gas-burner-assembly.png",
+      "png_sha256": "39efe29e22645837e69873f7925107a46f70b18cb000b551a3f03ade572c3854",
+      "slug": "typical-fuel-gas-burner-assembly",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 99,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0099.png",
+  "page_image_sha256": "1f129196c2ccbf643e007b58e2056fc3a9612cb50aa1dffd71238ea4b2041457",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0099_assets.json"
+}

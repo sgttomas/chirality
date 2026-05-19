@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0348.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0348_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.98,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        27,
+        2268,
+        2664
+      ],
+      "caption": "C-8. Moments and Forces - Two-Member System, Both Ends Fixed - One Support Displaced in the Direction of the Adjoining Member",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0348_fig01_c-8-moments-and-forces-two-member-system.png",
+      "png_sha256": "4a66028c14484cc795263ae13d65708005ba5790b0000c035b76719cef70d2a7",
+      "slug": "c-8-moments-and-forces-two-member-system",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 348,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0348.png",
+  "page_image_sha256": "c0cebdb2cb35aa0fdd9692108bdf9de64d6a4d2d6e848728d9cf93b260b9afcb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0348_assets.json"
+}

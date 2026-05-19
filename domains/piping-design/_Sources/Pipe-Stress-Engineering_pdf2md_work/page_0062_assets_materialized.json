@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0062_fig01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1966,
+        2571,
+        3574
+      ],
+      "caption": "Fig. 2.7 MOMENT OF INERTIA OF CROSS SECTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0062_fig01_moment-of-inertia-cross-section.png",
+      "png_sha256": "d06a3c485577835ffddd8851f1737a53216c4d6d794734da43900f551fe24727",
+      "slug": "moment-of-inertia-cross-section",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0062.png",
+  "page_image_sha256": "b5b7a980f6fe30cf808c08a9cab3a8ec820bb12ba384d4d60f0068f807914081",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0062_assets.json"
+}

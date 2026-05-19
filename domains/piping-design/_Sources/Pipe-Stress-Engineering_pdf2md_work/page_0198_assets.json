@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 198,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.17 TANGENTIAL SHEAR FORCE DISTRIBUTION",
+      "slug": "tangential-shear-force-distribution",
+      "bbox_norm": [0.05, 0.68, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Diagram showing pipe cross-section with fuzzy zone, undisturbed tangential shear force distribution, dimensions 2r and 2t labeled, load W and reaction Q shown, with caption below"
+    }
+  ],
+  "issues": []
+}

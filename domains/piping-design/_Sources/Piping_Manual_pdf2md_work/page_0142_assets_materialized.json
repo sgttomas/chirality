@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0142.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0142_fig01",
+      "bbox_norm": [
+        0.05,
+        0.15,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        331,
+        2569,
+        1889
+      ],
+      "caption": "EXHIBIT 6-26 Considerations for Vendor- or Contractor-Supplied Supporting Columns. Two side-by-side hand-drawn elevation views (A and B) of an exchanger supported on columns: View A 'SUPPORTING COLUMN BY CONTRACTOR' showing platform steel and pipe support carried by contractor-supplied columns to grade; View B 'SUPPORTING COLUMN BY VENDOR' showing supporting columns down to grade integrated into the vendor scope.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0142_fig01_exhibit-6-26-considerations-for-vendor-o.png",
+      "png_sha256": "92841304f3c8f7a0b7290b8f93905f6b89f92cbcce76698bb0e4f97574faf039",
+      "slug": "exhibit-6-26-considerations-for-vendor-o",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 142,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0142.png",
+  "page_image_sha256": "0affd025ad63a056a6366d95b2aec1d282b6f15a5f2cc6815a48eb6f63027996",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0142_assets.json"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 185,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0185_fig_01",
+      "caption": "EXHIBIT 7-36 Furnace Elevation for the Upper Level of a Circular Furnace",
+      "bbox_norm": [0.06, 0.30, 0.96, 0.92]
+    }
+  ],
+  "issues": []
+}

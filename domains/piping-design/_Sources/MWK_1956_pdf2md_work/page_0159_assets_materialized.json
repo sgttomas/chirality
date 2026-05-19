@@ -1,0 +1,90 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0159.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0159_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2316,
+        1023
+      ],
+      "caption": "Table 5.16",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0159_tbl01_table-5-16.png",
+      "png_sha256": "8a32b710231271ff12aad77b704a0695ca5705e3630c6281b9c79b1d8e415c28",
+      "slug": "table-5-16",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0159_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.98,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        736,
+        2316,
+        1759
+      ],
+      "caption": "Table 5.17",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0159_tbl02_table-5-17.png",
+      "png_sha256": "2de39d90f16473fe2b3c2947840805e632db9053923e13f846e2285abea6fb5b",
+      "slug": "table-5-17",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0159_tbl03",
+      "bbox_norm": [
+        0.3,
+        0.66,
+        0.98,
+        0.85
+      ],
+      "bbox_px": [
+        579,
+        1951,
+        2316,
+        2878
+      ],
+      "caption": "Table 5.18",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 3,
+      "png_path": "tables/MWK_1956_p0159_tbl03_table-5-18.png",
+      "png_sha256": "de084a2afba27dc1ee33530ba9a78a377e6803cd0a4693d3ccf652dc72ec6024",
+      "slug": "table-5-18",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 159,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0159.png",
+  "page_image_sha256": "4d7206741cd6446ca4b0fa397a69f2b9fe0bb2f9a9c7e7e598c4de23733abe37",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0159_assets.json"
+}

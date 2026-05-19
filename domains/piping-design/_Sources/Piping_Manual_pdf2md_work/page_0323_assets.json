@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 323,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p323_fig_01",
+      "caption": "EXHIBIT 12-28 Operations Structure",
+      "bbox_norm": [0.05, 0.11, 0.49, 0.78],
+      "notes": "Isometric line drawing of a multi-level operations structure surrounding a tall vertical vessel; approximately five stacked platform levels with railings, steel framework with diagonal bracing, stairs and access ladders, with ground-level hatching at the base. Caption appears above the figure."
+    }
+  ],
+  "issues": []
+}

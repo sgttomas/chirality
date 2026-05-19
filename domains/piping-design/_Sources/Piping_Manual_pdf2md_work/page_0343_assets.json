@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 343,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.09, 0.19, 0.89, 0.42],
+      "caption": "EXHIBIT 13-19 Closed Drain System: Cross Section"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.09, 0.42, 0.89, 0.73],
+      "caption": "EXHIBIT 13-20 Closed Drain System Sump"
+    }
+  ],
+  "issues": []
+}

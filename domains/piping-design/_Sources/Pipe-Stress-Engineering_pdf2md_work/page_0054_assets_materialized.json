@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0054.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0054_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2591,
+        1544
+      ],
+      "caption": "FIG. 2.1 BASIC STRESS STRAIN RELATIONS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0054_fig01_fig-2-1-basic-stress-strain-relations.png",
+      "png_sha256": "5dff576a0045561172379ff56c032ae624ea7c6e2b4472e86078521fbbd6f9d2",
+      "slug": "fig-2-1-basic-stress-strain-relations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 54,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0054.png",
+  "page_image_sha256": "a1a9839cb76a706b63f6b2d80931072a5d4291b0e06b640d61de3fbc81c7c136",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0054_assets.json"
+}

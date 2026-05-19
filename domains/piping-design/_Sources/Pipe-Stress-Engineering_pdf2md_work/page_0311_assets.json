@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 311,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 9.5 ANALYSIS APPROACHES ON ROTATING EQUIPMENT PIPING",
+      "slug": "analysis-approaches-rotating-equipment-piping",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.38],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (a) All-in-One Analysis and (b) Line-by-Line Analysis, with caption below"
+    }
+  ],
+  "issues": []
+}

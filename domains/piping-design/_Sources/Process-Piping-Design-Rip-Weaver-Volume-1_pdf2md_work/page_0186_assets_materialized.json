@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0186.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0186_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3497
+      ],
+      "caption": "Conversion factor F (continued)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0186_tbl01_conversion-factor-f-continued.png",
+      "png_sha256": "51e54f3b4b5b410ebb852b93a854209d6ce0c230c14ad0d42ab1549e227f1d73",
+      "slug": "conversion-factor-f-continued",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0186_tbl01_conversion-factor-f-continued.json",
+      "table_data_json_sha256": "7c8d8877e67796f6ee7a70276803c2f6e38fc7d2a90abda03169dc13f4e27635",
+      "table_data_sha256": "7c8d8877e67796f6ee7a70276803c2f6e38fc7d2a90abda03169dc13f4e27635",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0186_tbl01_conversion-factor-f-continued.xlsx",
+      "xlsx_sha256": "d1d2792752ef897ce73e527204b70173fa545bee177df21acef495d58b0f148c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 186,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0186.png",
+  "page_image_sha256": "b9c0696c9f3db8c81ab1576953110defe8b7af9c244959c405079a526e84e5e9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0186_assets.json"
+}

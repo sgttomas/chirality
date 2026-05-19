@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0041_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1641
+      ],
+      "caption": "Figure 2-6. Hot vapor by-pass.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0041_fig01_hot-vapor-by-pass.png",
+      "png_sha256": "53e25d8cdff28f0333cfef051a437d82df3703ea5978c943060615c21e7fe244",
+      "slug": "hot-vapor-by-pass",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0041.png",
+  "page_image_sha256": "65438934d99a1d617c7ba4186ffb97ee8b41d88bc137e0a65f844cfcdd5dc43a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0041_assets.json"
+}

@@ -1,0 +1,242 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 192,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factors — J (Joule)",
+      "slug": "conversion-factors-j-joule",
+      "bbox_norm": [0.03, 0.08, 0.97, 0.28],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 9.48 x 10⁻⁴", "type": "text" },
+            { "value": "= Btu", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 10⁷", "type": "text" },
+            { "value": "= Erg", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 0.7376", "type": "text" },
+            { "value": "= Foot-pound", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 2.389 x 10⁻⁴", "type": "text" },
+            { "value": "= Kilogram-calorie", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 1.0197 x 10⁴", "type": "text" },
+            { "value": "= Gram-centimeter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Joule", "type": "text" },
+            { "value": "x 2.778 x 10⁻⁴", "type": "text" },
+            { "value": "= Watt-hours", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Section header J visible above table; six conversion rows. No printed column headers; columns are From / Factor / To."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Conversion factors — K (Kilogram, Kilometers, etc.) — continued on following page",
+      "slug": "conversion-factors-k-kilogram-kilometers",
+      "bbox_norm": [0.03, 0.30, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 1,000", "type": "text" },
+            { "value": "= Grams", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 70.93", "type": "text" },
+            { "value": "= Poundals", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 2.205", "type": "text" },
+            { "value": "= Pounds", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 9.842 x 10⁻⁴", "type": "text" },
+            { "value": "= Tons, long", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 1.102 x 10⁻³", "type": "text" },
+            { "value": "= Tons, short", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilogram", "type": "text" },
+            { "value": "x 0.001", "type": "text" },
+            { "value": "= Tons, metric", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/cubic meter", "type": "text" },
+            { "value": "x 0.001", "type": "text" },
+            { "value": "= Grams/cubic centimeter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/cubic meter", "type": "text" },
+            { "value": "x 0.06243", "type": "text" },
+            { "value": "= Pounds/cubic foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/cubic meter", "type": "text" },
+            { "value": "x 3.613 x 10⁻⁵", "type": "text" },
+            { "value": "= Pounds/cubic inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/cubic meter", "type": "text" },
+            { "value": "x 3.405 x 10⁻¹⁰", "type": "text" },
+            { "value": "= Pounds/mil-foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/cubic meter", "type": "text" },
+            { "value": "x 8.428 x 10⁻³", "type": "text" },
+            { "value": "= Ton, short/cubic yard", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/meter", "type": "text" },
+            { "value": "x 10", "type": "text" },
+            { "value": "= Gram/centimeters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/meter", "type": "text" },
+            { "value": "x 391.983", "type": "text" },
+            { "value": "= Gram/inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/meter", "type": "text" },
+            { "value": "x 0.672", "type": "text" },
+            { "value": "= Pounds/foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/meter", "type": "text" },
+            { "value": "x 0.056", "type": "text" },
+            { "value": "= Pounds/inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square centimeter", "type": "text" },
+            { "value": "x 0.9678", "type": "text" },
+            { "value": "= Atmospheres", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square centimeter", "type": "text" },
+            { "value": "x 32.81", "type": "text" },
+            { "value": "= Feet of water", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square centimeter", "type": "text" },
+            { "value": "x 28.96", "type": "text" },
+            { "value": "= Inch of mercury", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square centimeter", "type": "text" },
+            { "value": "x 2.048", "type": "text" },
+            { "value": "= Pounds/square foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square centimeter", "type": "text" },
+            { "value": "x 14.22", "type": "text" },
+            { "value": "= Pounds/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 9.678 x 10⁻⁵", "type": "text" },
+            { "value": "= Atmospheres", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 3.281 x 10⁻³", "type": "text" },
+            { "value": "= Feet of water", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 2.896 x 10⁻³", "type": "text" },
+            { "value": "= Inches of mercury", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 0.03937", "type": "text" },
+            { "value": "= Inches of water", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 0.2048", "type": "text" },
+            { "value": "= Pounds/square foot", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilograms/square meter", "type": "text" },
+            { "value": "x 1.422 x 10⁻³", "type": "text" },
+            { "value": "= Pounds/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers", "type": "text" },
+            { "value": "x 3281", "type": "text" },
+            { "value": "= Feet", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers", "type": "text" },
+            { "value": "x 3.937 x 10⁴", "type": "text" },
+            { "value": "= Inches", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers", "type": "text" },
+            { "value": "x 1,000", "type": "text" },
+            { "value": "= Meters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers", "type": "text" },
+            { "value": "x 0.6214", "type": "text" },
+            { "value": "= Miles", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers", "type": "text" },
+            { "value": "x 1,094", "type": "text" },
+            { "value": "= Yards", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers/hour", "type": "text" },
+            { "value": "x 27.78", "type": "text" },
+            { "value": "= Centimeters/second", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Kilometers/hour", "type": "text" },
+            { "value": "x 54.08", "type": "text" },
+            { "value": "= Feet/minute", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Section header K visible above table; continues on following page per footer note. No printed column headers; columns are From / Factor / To."
+    }
+  ],
+  "issues": []
+}

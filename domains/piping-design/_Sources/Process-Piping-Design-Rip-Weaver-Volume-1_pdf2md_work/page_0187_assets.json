@@ -1,0 +1,369 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 187,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factor F (concluded)",
+      "slug": "conversion-factor-F-concluded",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.52],
+      "confidence": "high",
+      "notes": "Continuation of F-series conversion factor table from previous page; three-column layout: From, Factor (multiplier), To.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": {"doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1", "page": 186, "tbl_ordinal": 1},
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "From", "is_header": true},
+              {"value": "Factor", "is_header": true},
+              {"value": "To", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 2.259 x 10⁵"},
+              {"value": "Erg/second"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 0.01666"},
+              {"value": "Foot-pound/second"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 3.066 x 10⁻³"},
+              {"value": "Horsepower, metric"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 3.0303 x 10⁻³"},
+              {"value": "Horsepower, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 2.2597 x 10⁻⁵"},
+              {"value": "Kilowatt"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/minute"},
+              {"value": "x 0.022597"},
+              {"value": "Watt"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 0.0771"},
+              {"value": "Btu/minute"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 4.6263"},
+              {"value": "Btu/hour"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 1.843 x 10⁻³"},
+              {"value": "Horsepower, metric"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 1.818 x 10⁻³"},
+              {"value": "Horsepower, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 1.356"},
+              {"value": "Joule"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 1.3558 x 10⁻³"},
+              {"value": "Kilowatts"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foot-pound/second"},
+              {"value": "x 1.3558"},
+              {"value": "Watt"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fot"},
+              {"value": "x 0.974"},
+              {"value": "Foot, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fot"},
+              {"value": "x 100"},
+              {"value": "Lines"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fot"},
+              {"value": "x 0.2969"},
+              {"value": "Meter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fot"},
+              {"value": "x 10"},
+              {"value": "Turn"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Foute"},
+              {"value": "x 1"},
+              {"value": "Foot, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 6.6"},
+              {"value": "Chain, engineer"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 10"},
+              {"value": "Chain, Gunter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 660"},
+              {"value": "Feet"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 201.168"},
+              {"value": "Meters"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 0.125"},
+              {"value": "Mile, statue, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Furlong"},
+              {"value": "x 220"},
+              {"value": "Yards"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fuss"},
+              {"value": "x 40"},
+              {"value": "Rods"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fuss"},
+              {"value": "x 0.9842"},
+              {"value": "Foot, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fuss"},
+              {"value": "x 0.300"},
+              {"value": "Meter"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Conversion factor G",
+      "slug": "conversion-factor-G",
+      "bbox_norm": [0.04, 0.52, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "G-series unit conversion table starting mid-page; continues on facing page per footer note.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "From", "is_header": true},
+              {"value": "Factor", "is_header": true},
+              {"value": "To", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 0.125"},
+              {"value": "Bushel, dry, British"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 4546"},
+              {"value": "Cubic centimeter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 0.16046"},
+              {"value": "Cubic foot"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 0.0045"},
+              {"value": "Cubic meter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 1.032"},
+              {"value": "Gallon, dry, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 1.2009"},
+              {"value": "Gallon, liquid, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 4.34596"},
+              {"value": "Kilogram"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 10"},
+              {"value": "Pound, water, 62°F"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, British, Imperial Liquid"},
+              {"value": "x 0.125"},
+              {"value": "Bushel, dry, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 4404.92"},
+              {"value": "Cubic centimeter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 0.155555"},
+              {"value": "Cubic foot"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 268.803"},
+              {"value": "Cubic inch"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 1.16365"},
+              {"value": "Gallon, liquid, USA"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 4.4049"},
+              {"value": "Liter"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 0.05"},
+              {"value": "Peck"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 8"},
+              {"value": "Pint"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gallon, dry, USA"},
+              {"value": "x 4.6546"},
+              {"value": "Quart, liquid, USA"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

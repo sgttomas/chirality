@@ -1,0 +1,47 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 128,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Maximum lateral misalignment values by DN",
+      "slug": "maximum-lateral-misalignment-by-dn",
+      "bbox_norm": [0.07, 0.47, 0.60, 0.60],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "DN", "is_header": true },
+              { "value": "Maximum misalignment", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≤ 100", "type": "text" },
+              { "value": "2 mm", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 100", "type": "text" },
+              { "value": "3 mm", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing maximum lateral misalignment by DN size"
+    }
+  ],
+  "issues": []
+}

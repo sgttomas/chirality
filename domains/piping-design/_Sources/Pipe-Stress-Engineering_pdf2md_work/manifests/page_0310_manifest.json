@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0310.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0310_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2529,
+        1311
+      ],
+      "caption": "FIG. 9.4 NOZZLE MOVEMENT APPLICATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0310_fig01_nozzle-movement-application.png",
+      "png_sha256": "767324fc0074df2ac4a05ee018127df56daf2c6f4b204c9772060157e6a404c2",
+      "slug": "nozzle-movement-application",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 310,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0310.png",
+  "page_image_sha256": "01bbf124e40f83e625759de0e02f4db10d485fb343a229ce76eca3a95cddd643",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0310_assets.json"
+}

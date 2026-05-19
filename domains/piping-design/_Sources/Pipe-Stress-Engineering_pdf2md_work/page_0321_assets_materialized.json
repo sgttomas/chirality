@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0321.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0321_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1756
+      ],
+      "caption": "FIG. 9.11 PUMP TYPES AND NOZZLE ORIENTATIONS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0321_fig01_pump-types-nozzle-orientations.png",
+      "png_sha256": "3e26517b71748d1619f0eaa281412c04eb29e2dcbd36fac6ebe35eb9c7b177cf",
+      "slug": "pump-types-nozzle-orientations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 321,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0321.png",
+  "page_image_sha256": "c3fa787bd060f23e2aebfa5f6b20c5c5e096c619bf423f264bd7f018aec5df76",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0321_assets.json"
+}

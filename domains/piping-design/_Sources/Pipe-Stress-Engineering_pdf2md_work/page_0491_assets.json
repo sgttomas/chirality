@@ -1,0 +1,753 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 491,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Class 800 — (A) WEIGHT (lb) — Valve weight by size and end type (*Warning: Valve weight varies greatly from vendor to vendor*)",
+      "slug": "class-800-valve-weight-lb",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.52],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "Valve weight varies greatly from vendor to vendor" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Size (in.)", "is_header": true },
+              { "value": "OD (in.)", "is_header": true },
+              { "value": "BLIN", "is_header": true },
+              { "value": "WNF", "is_header": true },
+              { "value": "SLPN", "is_header": true },
+              { "value": "LAPJ", "is_header": true },
+              { "value": "FGTV", "is_header": true },
+              { "value": "GTV", "is_header": true },
+              { "value": "FGLV", "is_header": true },
+              { "value": "GLV", "is_header": true },
+              { "value": "FCKV", "is_header": true },
+              { "value": "CKV", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 0.840, "type": "number", "unit": "in" },
+              { "value": 8, "type": "number" },
+              { "value": 9, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": 22, "type": "number" },
+              { "value": 10, "type": "number" },
+              { "value": 22, "type": "number" },
+              { "value": 10, "type": "number" },
+              { "value": 18, "type": "number" },
+              { "value": 6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.75, "type": "number", "unit": "in" },
+              { "value": 1.050, "type": "number", "unit": "in" },
+              { "value": 9, "type": "number" },
+              { "value": 10, "type": "number" },
+              { "value": 10, "type": "number" },
+              { "value": 9, "type": "number" },
+              { "value": 28, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 28, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 21, "type": "number" },
+              { "value": 8, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.00, "type": "number", "unit": "in" },
+              { "value": 1.315, "type": "number", "unit": "in" },
+              { "value": 12, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 83, "type": "number" },
+              { "value": 65, "type": "number" },
+              { "value": 83, "type": "number" },
+              { "value": 65, "type": "number" },
+              { "value": 60, "type": "number" },
+              { "value": 42, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.25, "type": "number", "unit": "in" },
+              { "value": 1.660, "type": "number", "unit": "in" },
+              { "value": 15, "type": "number" },
+              { "value": 15, "type": "number" },
+              { "value": 15, "type": "number" },
+              { "value": 15, "type": "number" },
+              { "value": 100, "type": "number" },
+              { "value": 80, "type": "number" },
+              { "value": 100, "type": "number" },
+              { "value": 80, "type": "number" },
+              { "value": 75, "type": "number" },
+              { "value": 52, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.50, "type": "number", "unit": "in" },
+              { "value": 1.900, "type": "number", "unit": "in" },
+              { "value": 19, "type": "number" },
+              { "value": 19, "type": "number" },
+              { "value": 19, "type": "number" },
+              { "value": 19, "type": "number" },
+              { "value": 124, "type": "number" },
+              { "value": 95, "type": "number" },
+              { "value": 124, "type": "number" },
+              { "value": 95, "type": "number" },
+              { "value": 90, "type": "number" },
+              { "value": 62, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 2.375, "type": "number", "unit": "in" },
+              { "value": 32, "type": "number" },
+              { "value": 32, "type": "number" },
+              { "value": 32, "type": "number" },
+              { "value": 32, "type": "number" },
+              { "value": 198, "type": "number" },
+              { "value": 140, "type": "number" },
+              { "value": 198, "type": "number" },
+              { "value": 140, "type": "number" },
+              { "value": 130, "type": "number" },
+              { "value": 88, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 2.875, "type": "number", "unit": "in" },
+              { "value": 45, "type": "number" },
+              { "value": 46, "type": "number" },
+              { "value": 46, "type": "number" },
+              { "value": 46, "type": "number" },
+              { "value": 259, "type": "number" },
+              { "value": 190, "type": "number" },
+              { "value": 259, "type": "number" },
+              { "value": 190, "type": "number" },
+              { "value": 192, "type": "number" },
+              { "value": 125, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3.00, "type": "number", "unit": "in" },
+              { "value": 3.500, "type": "number", "unit": "in" },
+              { "value": 38, "type": "number" },
+              { "value": 38, "type": "number" },
+              { "value": 38, "type": "number" },
+              { "value": 38, "type": "number" },
+              { "value": 290, "type": "number" },
+              { "value": 215, "type": "number" },
+              { "value": 290, "type": "number" },
+              { "value": 215, "type": "number" },
+              { "value": 156, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3.50, "type": "number", "unit": "in" },
+              { "value": 4.000, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" },
+              { "value": null, "type": "missing", "raw": "-1" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4.00, "type": "number", "unit": "in" },
+              { "value": 4.500, "type": "number", "unit": "in" },
+              { "value": 67, "type": "number" },
+              { "value": 67, "type": "number" },
+              { "value": 65, "type": "number" },
+              { "value": 67, "type": "number" },
+              { "value": 490, "type": "number" },
+              { "value": 400, "type": "number" },
+              { "value": 490, "type": "number" },
+              { "value": 400, "type": "number" },
+              { "value": 359, "type": "number" },
+              { "value": 260, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 5.563, "type": "number", "unit": "in" },
+              { "value": 104, "type": "number" },
+              { "value": 103, "type": "number" },
+              { "value": 100, "type": "number" },
+              { "value": 100, "type": "number" },
+              { "value": 710, "type": "number" },
+              { "value": 560, "type": "number" },
+              { "value": 710, "type": "number" },
+              { "value": 560, "type": "number" },
+              { "value": 514, "type": "number" },
+              { "value": 364, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6.00, "type": "number", "unit": "in" },
+              { "value": 6.625, "type": "number", "unit": "in" },
+              { "value": 133, "type": "number" },
+              { "value": 128, "type": "number" },
+              { "value": 128, "type": "number" },
+              { "value": 125, "type": "number" },
+              { "value": 1037, "type": "number" },
+              { "value": 845, "type": "number" },
+              { "value": 1037, "type": "number" },
+              { "value": 845, "type": "number" },
+              { "value": 741, "type": "number" },
+              { "value": 548, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8.00, "type": "number", "unit": "in" },
+              { "value": 8.625, "type": "number", "unit": "in" },
+              { "value": 232, "type": "number" },
+              { "value": 222, "type": "number" },
+              { "value": 207, "type": "number" },
+              { "value": 225, "type": "number" },
+              { "value": 1531, "type": "number" },
+              { "value": 1220, "type": "number" },
+              { "value": 1531, "type": "number" },
+              { "value": 1220, "type": "number" },
+              { "value": 1103, "type": "number" },
+              { "value": 793, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.750, "type": "number", "unit": "in" },
+              { "value": 338, "type": "number" },
+              { "value": 328, "type": "number" },
+              { "value": 310, "type": "number" },
+              { "value": 325, "type": "number" },
+              { "value": 2600, "type": "number" },
+              { "value": 2150, "type": "number" },
+              { "value": 2600, "type": "number" },
+              { "value": 2150, "type": "number" },
+              { "value": 1841, "type": "number" },
+              { "value": 1404, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.750, "type": "number", "unit": "in" },
+              { "value": 475, "type": "number" },
+              { "value": 434, "type": "number" },
+              { "value": 398, "type": "number" },
+              { "value": 433, "type": "number" },
+              { "value": 3482, "type": "number" },
+              { "value": 2900, "type": "number" },
+              { "value": 3482, "type": "number" },
+              { "value": 2900, "type": "number" },
+              { "value": 2467, "type": "number" },
+              { "value": 1985, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.00, "type": "number", "unit": "in" },
+              { "value": 14.000, "type": "number", "unit": "in" },
+              { "value": 576, "type": "number" },
+              { "value": 542, "type": "number" },
+              { "value": 488, "type": "number" },
+              { "value": 477, "type": "number" },
+              { "value": 4830, "type": "number" },
+              { "value": 4140, "type": "number" },
+              { "value": 4830, "type": "number" },
+              { "value": 4140, "type": "number" },
+              { "value": 3421, "type": "number" },
+              { "value": 2691, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16.00, "type": "number", "unit": "in" },
+              { "value": 16.000, "type": "number", "unit": "in" },
+              { "value": 719, "type": "number" },
+              { "value": 785, "type": "number" },
+              { "value": 559, "type": "number" },
+              { "value": 558, "type": "number" },
+              { "value": 8059, "type": "number" },
+              { "value": 6220, "type": "number" },
+              { "value": 8059, "type": "number" },
+              { "value": 6220, "type": "number" },
+              { "value": 4231, "type": "number" },
+              { "value": 3393, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.000, "type": "number", "unit": "in" },
+              { "value": 1020, "type": "number" },
+              { "value": 1074, "type": "number" },
+              { "value": 797, "type": "number" },
+              { "value": 820, "type": "number" },
+              { "value": 8294, "type": "number" },
+              { "value": 6300, "type": "number" },
+              { "value": 8294, "type": "number" },
+              { "value": 6300, "type": "number" },
+              { "value": 5810, "type": "number" },
+              { "value": 4615, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20.00, "type": "number", "unit": "in" },
+              { "value": 20.000, "type": "number", "unit": "in" },
+              { "value": 1287, "type": "number" },
+              { "value": 1344, "type": "number" },
+              { "value": 972, "type": "number" },
+              { "value": 1048, "type": "number" },
+              { "value": 9308, "type": "number" },
+              { "value": 7850, "type": "number" },
+              { "value": 9308, "type": "number" },
+              { "value": 7850, "type": "number" },
+              { "value": 6560, "type": "number" },
+              { "value": 5102, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.000, "type": "number", "unit": "in" },
+              { "value": 1805, "type": "number" },
+              { "value": 1786, "type": "number" },
+              { "value": 1289, "type": "number" },
+              { "value": 1520, "type": "number" },
+              { "value": 10657, "type": "number" },
+              { "value": 8970, "type": "number" },
+              { "value": 10657, "type": "number" },
+              { "value": 8970, "type": "number" },
+              { "value": 6510, "type": "number" },
+              { "value": 5531, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.000, "type": "number", "unit": "in" },
+              { "value": 2442, "type": "number" },
+              { "value": 2450, "type": "number" },
+              { "value": 1623, "type": "number" },
+              { "value": 2002, "type": "number" },
+              { "value": 12235, "type": "number" },
+              { "value": 9500, "type": "number" },
+              { "value": 12235, "type": "number" },
+              { "value": 9500, "type": "number" },
+              { "value": 8909, "type": "number" },
+              { "value": 6175, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "21 data rows for sizes 0.50 to 24.00 in. Size 3.50 in row has all -1 sentinels (not available); size 3.00 in CKV is missing (—). Vendor weight warning applies to this table."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Class 800 — (B) LENGTH (in.) — Valve face-to-face/end-to-end length by size and end type",
+      "slug": "class-800-valve-length-in",
+      "bbox_norm": [0.03, 0.53, 0.97, 0.99],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Size (in.)", "is_header": true },
+              { "value": "OD (in.)", "is_header": true },
+              { "value": "BLIN", "is_header": true },
+              { "value": "WNF", "is_header": true },
+              { "value": "SLPN", "is_header": true },
+              { "value": "LAPJ", "is_header": true },
+              { "value": "FGTV", "is_header": true },
+              { "value": "GTV", "is_header": true },
+              { "value": "FGLV", "is_header": true },
+              { "value": "GLV", "is_header": true },
+              { "value": "FCKV", "is_header": true },
+              { "value": "CKV", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 0.840, "type": "number", "unit": "in" },
+              { "value": 0.88, "type": "number", "unit": "in" },
+              { "value": 2.38, "type": "number", "unit": "in" },
+              { "value": 1.25, "type": "number", "unit": "in" },
+              { "value": 3.75, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" },
+              { "value": 8.50, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" },
+              { "value": 8.50, "type": "number", "unit": "in" },
+              { "value": 8.50, "type": "number", "unit": "in" },
+              { "value": 8.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.75, "type": "number", "unit": "in" },
+              { "value": 1.050, "type": "number", "unit": "in" },
+              { "value": 1.00, "type": "number", "unit": "in" },
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 1.38, "type": "number", "unit": "in" },
+              { "value": 4.00, "type": "number", "unit": "in" },
+              { "value": 10.50, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" },
+              { "value": 10.50, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" },
+              { "value": 9.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.00, "type": "number", "unit": "in" },
+              { "value": 1.315, "type": "number", "unit": "in" },
+              { "value": 1.12, "type": "number", "unit": "in" },
+              { "value": 2.88, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.25, "type": "number", "unit": "in" },
+              { "value": 1.660, "type": "number", "unit": "in" },
+              { "value": 1.12, "type": "number", "unit": "in" },
+              { "value": 3.00, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 11.00, "type": "number", "unit": "in" },
+              { "value": 11.00, "type": "number", "unit": "in" },
+              { "value": 11.00, "type": "number", "unit": "in" },
+              { "value": 11.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1.50, "type": "number", "unit": "in" },
+              { "value": 1.900, "type": "number", "unit": "in" },
+              { "value": 1.25, "type": "number", "unit": "in" },
+              { "value": 3.25, "type": "number", "unit": "in" },
+              { "value": 1.75, "type": "number", "unit": "in" },
+              { "value": 1.75, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 2.375, "type": "number", "unit": "in" },
+              { "value": 1.38, "type": "number", "unit": "in" },
+              { "value": 3.50, "type": "number", "unit": "in" },
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" },
+              { "value": 14.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 2.875, "type": "number", "unit": "in" },
+              { "value": 1.62, "type": "number", "unit": "in" },
+              { "value": 4.12, "type": "number", "unit": "in" },
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" },
+              { "value": 16.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3.00, "type": "number", "unit": "in" },
+              { "value": 3.500, "type": "number", "unit": "in" },
+              { "value": 1.75, "type": "number", "unit": "in" },
+              { "value": 4.25, "type": "number", "unit": "in" },
+              { "value": 2.75, "type": "number", "unit": "in" },
+              { "value": 2.75, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3.50, "type": "number", "unit": "in" },
+              { "value": 4.000, "type": "number", "unit": "in" },
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "-1.00" },
+              { "value": null, "type": "missing", "raw": "-1.00" },
+              { "value": null, "type": "missing", "raw": "-1.00" },
+              { "value": 18.50, "type": "number", "unit": "in" },
+              { "value": 18.50, "type": "number", "unit": "in" },
+              { "value": 18.50, "type": "number", "unit": "in" },
+              { "value": 18.50, "type": "number", "unit": "in" },
+              { "value": 18.50, "type": "number", "unit": "in" },
+              { "value": 18.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4.00, "type": "number", "unit": "in" },
+              { "value": 4.500, "type": "number", "unit": "in" },
+              { "value": 2.00, "type": "number", "unit": "in" },
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 3.12, "type": "number", "unit": "in" },
+              { "value": 3.75, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 5.563, "type": "number", "unit": "in" },
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 3.12, "type": "number", "unit": "in" },
+              { "value": 3.13, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6.00, "type": "number", "unit": "in" },
+              { "value": 6.625, "type": "number", "unit": "in" },
+              { "value": 2.50, "type": "number", "unit": "in" },
+              { "value": 6.00, "type": "number", "unit": "in" },
+              { "value": 3.75, "type": "number", "unit": "in" },
+              { "value": 4.38, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8.00, "type": "number", "unit": "in" },
+              { "value": 8.625, "type": "number", "unit": "in" },
+              { "value": 3.00, "type": "number", "unit": "in" },
+              { "value": 6.38, "type": "number", "unit": "in" },
+              { "value": 4.00, "type": "number", "unit": "in" },
+              { "value": 4.50, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" },
+              { "value": 29.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10.00, "type": "number", "unit": "in" },
+              { "value": 10.750, "type": "number", "unit": "in" },
+              { "value": 3.00, "type": "number", "unit": "in" },
+              { "value": 7.00, "type": "number", "unit": "in" },
+              { "value": 4.50, "type": "number", "unit": "in" },
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" },
+              { "value": 33.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12.00, "type": "number", "unit": "in" },
+              { "value": 12.750, "type": "number", "unit": "in" },
+              { "value": 3.12, "type": "number", "unit": "in" },
+              { "value": 7.88, "type": "number", "unit": "in" },
+              { "value": 4.62, "type": "number", "unit": "in" },
+              { "value": 5.62, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" },
+              { "value": 38.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14.00, "type": "number", "unit": "in" },
+              { "value": 14.000, "type": "number", "unit": "in" },
+              { "value": 3.38, "type": "number", "unit": "in" },
+              { "value": 8.12, "type": "number", "unit": "in" },
+              { "value": 5.00, "type": "number", "unit": "in" },
+              { "value": 6.00, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" },
+              { "value": 40.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16.00, "type": "number", "unit": "in" },
+              { "value": 16.000, "type": "number", "unit": "in" },
+              { "value": 3.50, "type": "number", "unit": "in" },
+              { "value": 8.50, "type": "number", "unit": "in" },
+              { "value": 5.25, "type": "number", "unit": "in" },
+              { "value": 6.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" },
+              { "value": 44.50, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 18.00, "type": "number", "unit": "in" },
+              { "value": 18.000, "type": "number", "unit": "in" },
+              { "value": 4.00, "type": "number", "unit": "in" },
+              { "value": 9.75, "type": "number", "unit": "in" },
+              { "value": 5.75, "type": "number", "unit": "in" },
+              { "value": 8.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" },
+              { "value": 48.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20.00, "type": "number", "unit": "in" },
+              { "value": 20.000, "type": "number", "unit": "in" },
+              { "value": 4.25, "type": "number", "unit": "in" },
+              { "value": 9.75, "type": "number", "unit": "in" },
+              { "value": 6.25, "type": "number", "unit": "in" },
+              { "value": 8.25, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" },
+              { "value": 52.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 22.00, "type": "number", "unit": "in" },
+              { "value": 22.000, "type": "number", "unit": "in" },
+              { "value": 4.50, "type": "number", "unit": "in" },
+              { "value": 10.50, "type": "number", "unit": "in" },
+              { "value": 6.38, "type": "number", "unit": "in" },
+              { "value": 9.25, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" },
+              { "value": 56.00, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24.00, "type": "number", "unit": "in" },
+              { "value": 24.000, "type": "number", "unit": "in" },
+              { "value": 5.50, "type": "number", "unit": "in" },
+              { "value": 11.50, "type": "number", "unit": "in" },
+              { "value": 8.00, "type": "number", "unit": "in" },
+              { "value": 10.50, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" },
+              { "value": 61.00, "type": "number", "unit": "in" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "21 data rows for sizes 0.50 to 24.00 in. Size 3.50 in row has -1.00 sentinels for WNF, SLPN, LAPJ (not available); BLIN and all valve type columns have data."
+    }
+  ],
+  "issues": []
+}

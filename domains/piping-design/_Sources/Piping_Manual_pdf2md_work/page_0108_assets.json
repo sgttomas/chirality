@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 108,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.53, 0.30, 0.98, 0.63],
+      "caption": "EXHIBIT 5-1 Typical Vertical Compressor Suction Drum"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.64, 0.98, 0.93],
+      "caption": "EXHIBIT 5-2 Typical Horizontal Reflux Drum"
+    }
+  ],
+  "issues": []
+}

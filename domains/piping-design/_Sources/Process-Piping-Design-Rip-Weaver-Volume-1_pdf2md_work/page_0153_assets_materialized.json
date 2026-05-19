@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0153.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0153_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3383
+      ],
+      "caption": "Figure 7-14. Vertical vessel pipe supports. Courtesy of Fluor Corp.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0153_fig01_vertical-vessel-pipe-supports.png",
+      "png_sha256": "88274b48bb26ad6d60e2579d5145b298e15eb65c6dcbf309865fb2d269d3b0f1",
+      "slug": "vertical-vessel-pipe-supports",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 153,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0153.png",
+  "page_image_sha256": "f90733bee5b5d8c6d7b6c14e48c44795f0fc64484fbdf5940c8b0194ab0b2505",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0153_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0235.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0235_fig01",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.98,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        966,
+        2226,
+        2760
+      ],
+      "caption": "Section through typical outdoor overhead pipe rack showing arrangement of north-south runs at two elevations and east-west runs at an intermediate elevation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0235_fig01_section-through-typical-outdoor-overhead.png",
+      "png_sha256": "010c6809a84869bea6b9da313433b9dc0ddce6d131feca6004ce80eb500c55f4",
+      "slug": "section-through-typical-outdoor-overhead",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 235,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0235.png",
+  "page_image_sha256": "494d93ed7afb87a1ab22981ac35b242efc2fa1ce065e1c82681c5289eac6d354",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0235_assets.json"
+}

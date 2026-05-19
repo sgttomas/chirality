@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 250,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 7.13 CORNER PRESSURE BALANCED EXPANSION JOINT",
+      "slug": "corner-pressure-balanced-expansion-joint",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.30],
+      "confidence": "high",
+      "notes": "Diagram of corner pressure balanced expansion joint showing minor movements, main movement, bellows, and guide/support. Caption visible below diagram."
+    }
+  ],
+  "issues": []
+}

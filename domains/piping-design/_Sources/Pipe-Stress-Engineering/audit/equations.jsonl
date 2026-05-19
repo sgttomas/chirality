@@ -1,0 +1,743 @@
+{"page": 35, "index": 1, "latex": "SN^m = C \\tag{1.1}", "hash": "ff3a5d358e47", "png": "page_0035.png"}
+{"page": 37, "index": 1, "latex": "\\text{LMP} = T(C + \\log t) \\tag{1.2}", "hash": "fb71a3764a15", "png": "page_0037.png"}
+{"page": 38, "index": 1, "latex": "P_{allow} = \\frac{2E}{3(1-v^2)} \\left(\\frac{t}{D}\\right)^3 \\tag{1.3}", "hash": "6e61ef956e59", "png": "page_0038.png"}
+{"page": 38, "index": 2, "latex": "S_{allow} = \\frac{0.125}{2} E(t/R) \\tag{1.4}", "hash": "ba2310a964e7", "png": "page_0038.png"}
+{"page": 53, "index": 1, "latex": "S = \\frac{F}{A} \\tag{2.1}", "hash": "f78946efacef", "png": "page_0053.png"}
+{"page": 53, "index": 2, "latex": "\\varepsilon = \\frac{\\ell}{L} \\tag{2.2}", "hash": "23a267354d3c", "png": "page_0053.png"}
+{"page": 54, "index": 1, "latex": "E = \\frac{S}{\\varepsilon} \\tag{2.3}", "hash": "94d3d5b3496f", "png": "page_0054.png"}
+{"page": 56, "index": 1, "latex": "S_n = \\frac{F_n}{A_m} = \\frac{F\\cos\\theta}{A/\\cos\\theta} = S\\cos^2\\theta \\tag{2.4}", "hash": "8eea56c5ba9b", "png": "page_0056.png"}
+{"page": 56, "index": 2, "latex": "S_s = \\frac{F_s}{A_m} = \\frac{F\\sin\\theta}{A/\\cos\\theta} = S\\sin\\theta\\cos\\theta = \\frac{S}{2}\\sin 2\\theta \\tag{2.5}", "hash": "57630070a757", "png": "page_0056.png"}
+{"page": 56, "index": 3, "latex": "S_{s,max} = \\frac{1}{2}S \\tag{2.6}", "hash": "d31543699456", "png": "page_0056.png"}
+{"page": 57, "index": 1, "latex": "\\text{Poisson's ratio, } \\nu = \\left|\\frac{\\varepsilon_y}{\\varepsilon_x}\\right| = \\frac{l_y/L_y}{l_x/L_x} \\tag{2.7}", "hash": "b56fe6845b47", "png": "page_0057.png"}
+{"page": 58, "index": 1, "latex": "\\varepsilon_x = \\frac{S_x}{E} - \\frac{S_y}{E} - \\frac{S_z}{E}, \\quad \\varepsilon_y = \\frac{S_y}{E} - \\frac{S_x}{E} - \\frac{S_z}{E}, \\quad \\text{etc.} \\tag{2.8}", "hash": "897cd729df44", "png": "page_0058.png"}
+{"page": 58, "index": 2, "latex": "G = \\frac{\\tau}{\\gamma}, \\quad G = \\frac{E}{2(1 + \\nu)} \\tag{2.9}", "hash": "8cc4d25db3f8", "png": "page_0058.png"}
+{"page": 59, "index": 1, "latex": "\\Sigma F_x = 0 \\qquad \\Sigma F_y = 0 \\qquad \\Sigma F_z = 0", "hash": "a9ab604c64b9", "png": "page_0059.png"}
+{"page": 59, "index": 2, "latex": "\\Sigma M_x = 0 \\qquad \\Sigma M_y = 0 \\qquad \\Sigma M_z = 0", "hash": "02c4beef7963", "png": "page_0059.png"}
+{"page": 60, "index": 1, "latex": "\\sum F_x = 0: \\quad F_{bx} + F_{ax} = 0; \\quad \\text{or} \\quad F_{bx} = -F_{ax}", "hash": "f890dacd6406", "png": "page_0060.png"}
+{"page": 60, "index": 2, "latex": "\\sum F_y = 0: \\quad F_{by} + F_{ay} = 0; \\quad \\text{or} \\quad F_{by} = -F_{ay} + W", "hash": "5ee7ba966257", "png": "page_0060.png"}
+{"page": 60, "index": 3, "latex": "\\sum F_z = 0: \\quad F_{bz} + F_{az} = 0; \\quad \\text{or} \\quad F_{bz} = -F_{az}", "hash": "86f6308199db", "png": "page_0060.png"}
+{"page": 60, "index": 4, "latex": "\\sum M_x = 0: \\quad M_{bx} + M_{ax} = 0; \\quad \\text{or} \\quad M_{bx} = -M_{ax}", "hash": "4fdc520f985f", "png": "page_0060.png"}
+{"page": 60, "index": 5, "latex": "\\sum M_y = 0: \\quad M_{by} + M_{ay} - F_{ax}l = 0; \\quad \\text{or} \\quad M_{by} = -M_{ay} + F_{ax}l", "hash": "490b6b096663", "png": "page_0060.png"}
+{"page": 60, "index": 6, "latex": "\\sum M_z = 0: \\quad M_{bz} + M_{az} + F_{ay}l - Wl/2 = 0; \\quad \\text{or} \\quad M_{bz} = -M_{az} - F_{ay}l + Wl/2", "hash": "fb8773517525", "png": "page_0060.png"}
+{"page": 61, "index": 1, "latex": "M = 2 \\int_0^{h/2} b S_y \\cdot y \\, dy = 2 \\int_0^{h/2} b (2S_{max}/h) y^2 \\, dy", "hash": "f19ed733f27d", "png": "page_0061.png"}
+{"page": 61, "index": 2, "latex": "= \\frac{2S_{max}}{h} \\cdot 2 \\int_0^{h/2} b \\cdot y^2 \\, dy = \\frac{2S_{max}}{h} \\cdot I", "hash": "363aca597539", "png": "page_0061.png"}
+{"page": 61, "index": 3, "latex": "S_{max} = M \\frac{h}{2I} = \\frac{M}{Z} \\tag{2.19}", "hash": "373c70673d56", "png": "page_0061.png"}
+{"page": 61, "index": 4, "latex": "I = 2 \\int_0^{h/2} b \\cdot y^2 \\, dy = 2b \\left[ \\frac{y^3}{3} \\right]_0^{h/2} = \\frac{bh^3}{12}", "hash": "cacd819ff19e", "png": "page_0061.png"}
+{"page": 61, "index": 5, "latex": "Z = \\frac{I}{h/2} = \\frac{bh^2}{6}", "hash": "ecd0c55e5d61", "png": "page_0061.png"}
+{"page": 62, "index": 1, "latex": "I = \\frac{\\pi D^4}{64} \\quad Z = \\frac{\\pi D^3}{32}", "hash": "98db1fbcddf8", "png": "page_0062.png"}
+{"page": 62, "index": 2, "latex": "I_{z-z} = \\int_A y^2 \\, dA", "hash": "5b6a3f7d31cf", "png": "page_0062.png"}
+{"page": 62, "index": 3, "latex": "I_{y-y} = \\int_A z^2 \\, dA", "hash": "dd5321c34b35", "png": "page_0062.png"}
+{"page": 62, "index": 4, "latex": "I_p = \\int_A r^2 \\, dA", "hash": "fbd8a7e11f96", "png": "page_0062.png"}
+{"page": 62, "index": 5, "latex": "= \\int_A (y^2 + z^2) \\, dA", "hash": "9abb79132a4c", "png": "page_0062.png"}
+{"page": 62, "index": 6, "latex": "= I_{z-z} + I_{y-y}", "hash": "136b4228d58a", "png": "page_0062.png"}
+{"page": 63, "index": 1, "latex": "I_{p_x} = \\int r^2 dA \\qquad I_{p_y} = \\int r^2 dA", "hash": "e26dcfa10ebc", "png": "page_0063.png"}
+{"page": 63, "index": 2, "latex": "I_p = \\int r^2 dA = \\int (x^2 + y^2) dA = I_{xx} + I_{yy} \\tag{2.11}", "hash": "f92bad032399", "png": "page_0063.png"}
+{"page": 63, "index": 3, "latex": "I_p = \\int_0^{R} r^2 \\cdot 2\\pi r \\cdot dr = 2\\pi \\int_0^{R} r^3 dr = 2\\pi \\left[\\frac{r^4}{4}\\right]_0^R = \\frac{\\pi R^4}{2} = \\frac{\\pi D^4}{32}", "hash": "19070c25ec44", "png": "page_0063.png"}
+{"page": 63, "index": 4, "latex": "Z_p = \\frac{I_p}{R} = \\frac{\\pi D^3}{16}", "hash": "ef690577a627", "png": "page_0063.png"}
+{"page": 63, "index": 5, "latex": "I = I_{xx} = I_{yy} = \\frac{I_p}{2} = \\frac{\\pi R^4}{4} = \\frac{\\pi D^4}{64}", "hash": "2d351e685f18", "png": "page_0063.png"}
+{"page": 63, "index": 6, "latex": "Z = \\frac{I}{R} = \\frac{\\pi D^3}{32}", "hash": "08cc6f244007", "png": "page_0063.png"}
+{"page": 64, "index": 1, "latex": "M_t = \\int \\tau \\cdot 2\\pi r \\, dr \\cdot r = \\int \\frac{\\tau_{\\max}}{R} 2\\pi r \\, dr \\cdot r = \\frac{\\tau_{\\max}}{R} \\int 2\\pi r \\cdot r^2", "hash": "d50a7bd672e6", "png": "page_0064.png"}
+{"page": 64, "index": 2, "latex": "= \\frac{\\tau_{\\max}}{R} \\cdot I_p", "hash": "d0a131da1bc3", "png": "page_0064.png"}
+{"page": 64, "index": 3, "latex": "\\tau_{\\max} = M_t \\frac{R}{I_p} = \\frac{M_t}{Z_p} \\tag{2.12}", "hash": "5ad9def871b4", "png": "page_0064.png"}
+{"page": 66, "index": 1, "latex": "\\pi r_i^2 P = \\pi(2r_m) S_H", "hash": "ad9d7296cbae", "png": "page_0066.png"}
+{"page": 66, "index": 2, "latex": "S_H = \\frac{r_i^2 P}{2r_m t} = \\frac{r_i^2 P}{2r_m t} = \\frac{r_m^2 P}{2r_m t} = \\frac{r_m P}{2t}", "hash": "b90d61147d35", "png": "page_0066.png"}
+{"page": 66, "index": 3, "latex": "S_H = \\frac{r_o}{t} P", "hash": "6b1b81be19cf", "png": "page_0066.png"}
+{"page": 66, "index": 4, "latex": "\\frac{(2R - r_m)}{(2R - 2r_m)} = \\frac{4(R/D) - 1}{4(R/D) - 2} \\quad \\text{at intrados (crotch)}", "hash": "f075ff70aa7d", "png": "page_0066.png"}
+{"page": 66, "index": 5, "latex": "\\frac{(2R + r_m)}{(2R + 2r_m)} = \\frac{4(R/D) + 1}{4(R/D) + 2} \\quad \\text{at extrados (crown)}", "hash": "b44b37e11714", "png": "page_0066.png"}
+{"page": 67, "index": 1, "latex": "\\tau_{s,max} = \\frac{2F_s}{A}, \\quad \\tau_{s,max} = 2\\frac{F_s}{A}, \\quad A = \\pi(d_o^2 - d_i^2) = 2\\pi r_m t", "hash": "fcca75d62e8e", "png": "page_0067.png"}
+{"page": 68, "index": 1, "latex": "S_b = \\frac{F_a}{A}, \\quad \\tau_s = 2\\frac{F_s}{A}, \\quad A = 2\\pi r_m t \\tag{2.15}", "hash": "0826a36a35d4", "png": "page_0068.png"}
+{"page": 68, "index": 2, "latex": "S_{by} = \\frac{M_y}{Z}, \\quad S_{bz} = \\frac{M_z}{Z}, \\quad Z = \\frac{I}{r_o} = \\frac{\\pi}{4r_o}(r_o^4 - r_i^4)", "hash": "1f32d71d1d67", "png": "page_0068.png"}
+{"page": 68, "index": 3, "latex": "S_b = \\sqrt{S_{by}^2 + S_{bz}^2} = \\frac{1}{Z}\\sqrt{M_y^2 + M_z^2}", "hash": "bf405f6c2e0c", "png": "page_0068.png"}
+{"page": 68, "index": 4, "latex": "\\tau_t = \\frac{M_t}{Z_p} = \\frac{M_t}{2Z}", "hash": "c5013c9fe304", "png": "page_0068.png"}
+{"page": 68, "index": 5, "latex": "I_p = 2\\pi r_m t \\cdot r_m^2 = 2\\pi r_m^3 t, \\quad Z_p = \\frac{I_p}{r_m} = 2\\pi r_m^2 t, \\quad Z = \\frac{Z_p}{2} = \\pi r_m^2 t", "hash": "69d130f4cc35", "png": "page_0068.png"}
+{"page": 70, "index": 1, "latex": "S = S_x \\sin\\theta \\sin\\theta + S_y \\cos\\theta \\cos\\theta + \\tau_{xy} \\sin\\theta \\cos\\theta + \\tau_{xy} \\cos\\theta \\sin\\theta", "hash": "2f259d4d05ec", "png": "page_0070.png"}
+{"page": 70, "index": 2, "latex": "= S_x(1 - \\cos 2\\theta)/2 + S_y(1 + \\cos 2\\theta)/2 + \\tau_{xy} \\sin 2\\theta", "hash": "d8a14df894b2", "png": "page_0070.png"}
+{"page": 70, "index": 3, "latex": "= \\frac{1}{2}(S_x + S_y) - \\frac{1}{2}(S_x - S_y)\\cos 2\\theta + \\tau_{xy} \\sin 2\\theta \\tag{2.16a}", "hash": "fed1d09f15c3", "png": "page_0070.png"}
+{"page": 70, "index": 4, "latex": "\\tau = S_x \\sin\\theta \\cos\\theta - S_y \\cos\\theta \\sin\\theta - \\tau_{xy} \\sin\\theta \\sin\\theta + \\tau_{xy} \\cos\\theta \\cos\\theta", "hash": "0d6a9f6c13e2", "png": "page_0070.png"}
+{"page": 70, "index": 5, "latex": "= \\frac{1}{2}(S_x - S_y)\\sin 2\\theta + \\tau_{xy} \\cos 2\\theta \\tag{2.16b}", "hash": "86190a5857e7", "png": "page_0070.png"}
+{"page": 70, "index": 6, "latex": "\\left[S - \\frac{1}{2}(S_x + S_y)\\right]^2 + \\tau^2 = \\left[\\frac{1}{2}(S_x - S_y)\\cos 2\\theta - \\tau_{xy} \\sin 2\\theta\\right]^2 + \\left[\\frac{1}{2}(S_x - S_y)\\sin 2\\theta + \\tau_{xy} \\cos 2\\theta\\right]^2", "hash": "c592d89bf750", "png": "page_0070.png"}
+{"page": 70, "index": 7, "latex": "\\left[S - \\frac{1}{2}(S_x + S_y)\\right]^2 + \\tau^2 = \\left(\\frac{S_x - S_y}{2}\\right)^2 + \\tau_{xy}^2 \\tag{2.16c}", "hash": "41e632f44209", "png": "page_0070.png"}
+{"page": 71, "index": 1, "latex": "S_1 = \\frac{S_x + S_y}{2} + \\sqrt{\\left(\\frac{S_x - S_y}{2}\\right)^2 + \\tau_{xy}^2} \\tag{2.17a}", "hash": "6a1bf8c751ce", "png": "page_0071.png"}
+{"page": 71, "index": 2, "latex": "S_2 = \\frac{S_x + S_y}{2} - \\sqrt{\\left(\\frac{S_x - S_y}{2}\\right)^2 + \\tau_{xy}^2} \\tag{2.17b}", "hash": "2384f0ee4912", "png": "page_0071.png"}
+{"page": 71, "index": 3, "latex": "\\tau_{max} = \\sqrt{\\left(\\frac{S_x - S_y}{2}\\right)^2 + \\tau_{xy}^2} = \\frac{S_1 - S_2}{2} \\tag{2.18}", "hash": "ca5292047136", "png": "page_0071.png"}
+{"page": 72, "index": 1, "latex": "\\text{Stress intensity,} \\quad S_i = 2\\tau_{\\max} = S_x - S_y", "hash": "76554fff1301", "png": "page_0072.png"}
+{"page": 72, "index": 2, "latex": "S_i = 2\\tau_{\\max} = 2\\sqrt{\\left(\\frac{S_x - S_y}{2}\\right)^2 + \\tau_{xy}^2} = \\sqrt{(S_x - S_y)^2 + 4\\tau_{xy}^2} \\tag{2.19}", "hash": "e2e877161e09", "png": "page_0072.png"}
+{"page": 73, "index": 1, "latex": "(S_1 - S_2)^2 + (S_2 - S_3)^2 + (S_3 - S_1)^2 = 2S_y^2", "hash": "3370b4d43dd7", "png": "page_0073.png"}
+{"page": 73, "index": 2, "latex": "S_e = \\sqrt{\\frac{1}{2}[(S_1 - S_2)^2 + (S_2 - S_3)^2 + (S_3 - S_1)^2]}", "hash": "f6d05e86548d", "png": "page_0073.png"}
+{"page": 73, "index": 3, "latex": "S_e = \\sqrt{S_1^2 - S_1 S_2 + S_2^2}", "hash": "0659b8ad9895", "png": "page_0073.png"}
+{"page": 73, "index": 4, "latex": "S_e = \\sqrt{(S_x - S_y)^2 + S_x S_y + 3S_{xy}^2}", "hash": "3bf59332f002", "png": "page_0073.png"}
+{"page": 74, "index": 1, "latex": "R = \\frac{wL}{2}, \\quad M_{\\max} = \\frac{wL^2}{8} \\quad \\text{(at Center)}", "hash": "a737d28f2d07", "png": "page_0074.png"}
+{"page": 74, "index": 2, "latex": "\\Delta_{\\max} = \\frac{5wL^4}{384EI} \\quad \\text{(at Center)}", "hash": "7ff63d2417e9", "png": "page_0074.png"}
+{"page": 74, "index": 3, "latex": "R = \\frac{P}{2}, \\quad M_{\\max} = \\frac{PL}{4} \\quad \\text{(at Center)}", "hash": "c7934e86427a", "png": "page_0074.png"}
+{"page": 74, "index": 4, "latex": "\\Delta_{\\max} = \\frac{PL^3}{48EI} \\quad \\text{(at Center)}", "hash": "262d073e0b07", "png": "page_0074.png"}
+{"page": 74, "index": 5, "latex": "R = \\frac{wL}{2}, \\quad M_{\\max} = \\frac{wL^2}{12} \\quad \\text{(at Ends)}", "hash": "c66029dcb6a6", "png": "page_0074.png"}
+{"page": 74, "index": 6, "latex": "\\Delta_{\\max} = \\frac{wL^4}{384EI} \\quad \\text{(at Center)}", "hash": "6830abdde471", "png": "page_0074.png"}
+{"page": 74, "index": 7, "latex": "R = \\frac{P}{2}, \\quad M_{\\max} = \\frac{PL}{8} \\quad \\text{(at Ends and Center)}", "hash": "b15571473176", "png": "page_0074.png"}
+{"page": 74, "index": 8, "latex": "\\Delta_{\\max} = \\frac{PL^3}{192EI} \\quad \\text{(at Center)}", "hash": "a316a3254a30", "png": "page_0074.png"}
+{"page": 74, "index": 9, "latex": "b = \\frac{M}{Z} = \\frac{wL^2}{10Z}, \\quad b = \\frac{5wL^4}{384EI}", "hash": "6d23da292ade", "png": "page_0074.png"}
+{"page": 75, "index": 1, "latex": "\\Delta = \\frac{FL^3}{3EI}, \\quad F = \\frac{3EI}{L^3}\\Delta", "hash": "1abd931b0137", "png": "page_0075.png"}
+{"page": 75, "index": 2, "latex": "\\theta = \\frac{FL^2}{2EI}, \\quad M = FL = \\frac{3EI}{L^2}\\Delta", "hash": "4221e02453e0", "png": "page_0075.png"}
+{"page": 75, "index": 3, "latex": "\\Delta = \\frac{FL^3}{12EI}, \\quad F = \\frac{12EI}{L^3}\\Delta", "hash": "61c91f586500", "png": "page_0075.png"}
+{"page": 75, "index": 4, "latex": "\\theta = 0, \\quad M = \\frac{FL}{2} = \\frac{6EI}{L^2}\\Delta", "hash": "8fd6cd88173e", "png": "page_0075.png"}
+{"page": 77, "index": 1, "latex": "\\{F'\\} = [K']\\{D'\\} \\tag{1.22}", "hash": "3736ef751a9b", "png": "page_0077.png"}
+{"page": 78, "index": 1, "latex": "\\{F\\} = [L]\\{f\\}, \\qquad \\{D\\} = [L]\\{d\\}", "hash": "ba354c9ffa68", "png": "page_0078.png"}
+{"page": 78, "index": 2, "latex": "[L]\\{D\\} = [A^e][L]\\{D\\} \\qquad \\text{or} \\qquad \\{F\\} = [L]^{-1}[k^e][L]\\{D\\}", "hash": "edb5d06ff03d", "png": "page_0078.png"}
+{"page": 78, "index": 3, "latex": "[K] = [L][k^e], \\qquad \\text{where} \\quad [A] = [L]^{-1}[k^e][L] = [L]^T[k^e][L] \\tag{2.23}", "hash": "f398bedda6a2", "png": "page_0078.png"}
+{"page": 78, "index": 4, "latex": "\\begin{Bmatrix} F_1 \\\\ F_2 \\end{Bmatrix} = \\begin{bmatrix} K_{11} & K_{12} \\\\ K_{21} & K_{22} \\end{bmatrix} \\begin{Bmatrix} D_1 \\\\ D_2 \\end{Bmatrix} \\tag{2.24}", "hash": "d1913892da59", "png": "page_0078.png"}
+{"page": 79, "index": 1, "latex": "\\begin{Bmatrix} F_1 \\\\ F_2 \\\\ \\vdots \\\\ F_N \\end{Bmatrix} = \\begin{bmatrix} K_{11} & K_{12} & & & K_{1N} \\\\ K_{21} & K_{22} & K_{23} & & K_{2N} \\\\ & & K_{33} & & \\\\ & & & \\ddots & \\\\ K_{N1} & & & & K_{NN} \\end{bmatrix} \\begin{Bmatrix} D_1 \\\\ D_2 \\\\ \\vdots \\\\ D_N \\end{Bmatrix}\n\\tag{3.25}", "hash": "84f555dfadd0", "png": "page_0079.png"}
+{"page": 81, "index": 1, "latex": "\\Delta = \\alpha(T_2 - T_1)L = \\varepsilon L = \\frac{F}{A}L = \\frac{F}{AE}L", "hash": "021a0f3d3a33", "png": "page_0081.png"}
+{"page": 82, "index": 1, "latex": "F = EAo(T_e - T_0), \\quad S = En(T_e - T_0) \\tag{3.1}", "hash": "b4b61754f638", "png": "page_0082.png"}
+{"page": 83, "index": 1, "latex": "\\Delta_1 = \\frac{F}{k}, \\quad \\Delta_2 = \\frac{F \\cdot L}{EA}", "hash": "69940d092415", "png": "page_0083.png"}
+{"page": 83, "index": 2, "latex": "\\Delta = aL(T_2 - T_1) = \\Delta_1 + \\Delta_2 = \\frac{F}{k} + \\frac{FL}{EA} = F\\left(\\frac{1}{k} + \\frac{L}{EA}\\right)", "hash": "22b5608c8396", "png": "page_0083.png"}
+{"page": 83, "index": 3, "latex": "F = \\frac{aL(T_2 - T_1)}{L\\left(\\frac{1}{kL} + \\frac{1}{EA}\\right)} = \\frac{a(T_2 - T_1)EA}{\\left(\\frac{kL}{1} + 1\\right)}", "hash": "413e94209acd", "png": "page_0083.png"}
+{"page": 84, "index": 1, "latex": "S = \\frac{M}{Z} = \\frac{1}{Z} \\frac{6EI}{L^2} \\Delta = \\frac{1}{2r} \\frac{6Er \\cdot \\Delta}{L^2} = \\frac{6Er}{L^2} \\Delta = \\frac{3ED}{L^2} \\Delta \\tag{3.3}", "hash": "501234066595", "png": "page_0084.png"}
+{"page": 85, "index": 1, "latex": "L = \\sqrt{\\frac{3ED}{S}} \\Delta = 66\\sqrt{D\\Delta}", "hash": "5cfa454c669d", "png": "page_0085.png"}
+{"page": 85, "index": 2, "latex": "\\frac{DY}{(L-U)^2} \\le 0.03", "hash": "89e362126570", "png": "page_0085.png"}
+{"page": 85, "index": 3, "latex": "\\frac{DY}{(L-U)^2} \\le 208.3", "hash": "16962081f63f", "png": "page_0085.png"}
+{"page": 88, "index": 1, "latex": "k = 1.65/h \\tag{3.5}", "hash": "9273966b44a3", "png": "page_0088.png"}
+{"page": 88, "index": 2, "latex": "i = \\frac{S}{\\Delta I/Z} \\tag{3.6}", "hash": "077d155e6435", "png": "page_0088.png"}
+{"page": 88, "index": 3, "latex": "i_b = \\frac{0.84}{h^{2/3}} \\quad \\text{for in-plane bending} \\tag{3.7}", "hash": "4256afff61b3", "png": "page_0088.png"}
+{"page": 89, "index": 1, "latex": "i_o = \\frac{1.08}{\\Delta^{2/3}}", "hash": "326e0d471d86", "png": "page_0089.png"}
+{"page": 89, "index": 2, "latex": "i_i = \\frac{1.80}{\\Delta^{2/3}}", "hash": "1f2ae1901045", "png": "page_0089.png"}
+{"page": 89, "index": 3, "latex": "i_o = \\frac{1.59}{\\Delta^{2/3}}", "hash": "0bd2bccea009", "png": "page_0089.png"}
+{"page": 89, "index": 4, "latex": "i_i = \\frac{0.90}{\\Delta^{2/3}}", "hash": "07266760e32d", "png": "page_0089.png"}
+{"page": 89, "index": 5, "latex": "i_o = \\frac{0.75}{\\Delta^{2/3}}", "hash": "ac3cc5ebefdb", "png": "page_0089.png"}
+{"page": 95, "index": 1, "latex": "S_{EB} = (S_{yc} + S_{hh}) \\tag{3.13a}", "hash": "e7b543e11e96", "png": "page_0095.png"}
+{"page": 95, "index": 2, "latex": "S_{EB} = 1.6(S_c + S_h) \\tag{3.13b}", "hash": "64820e1b6066", "png": "page_0095.png"}
+{"page": 95, "index": 3, "latex": "S_{EB} = 1.5(S_c + S_h) \\tag{3.13c}", "hash": "0ff17c5eb8f8", "png": "page_0095.png"}
+{"page": 95, "index": 4, "latex": "S_A = S_{EM} = 1.25(S_c + S_h) \\tag{3.14}", "hash": "798286f6b294", "png": "page_0095.png"}
+{"page": 96, "index": 1, "latex": "S_a = f(1.25S_c + 0.25S_h) \\tag{3.15}", "hash": "2c56ab6c7f6e", "png": "page_0096.png"}
+{"page": 98, "index": 1, "latex": "\\delta_x = C[\\alpha(T_2 - T_1)(X_B - X_A) - (D_{Bx} - D_{Ax})]", "hash": "7285f2c96d38", "png": "page_0098.png"}
+{"page": 101, "index": 1, "latex": "e_\\theta = \\frac{S_\\theta}{E} - \\frac{\\nu S_\\theta}{E} = \\frac{S_\\theta}{E}(1 - 0.5\\nu) \\tag{3.16}", "hash": "1b8a36e7b5b5", "png": "page_0101.png"}
+{"page": 101, "index": 2, "latex": "e_L = \\frac{\\nu S_\\theta}{E} - \\frac{S_\\theta}{2E} = \\frac{S_\\theta}{E}(0.5 - \\nu) \\tag{3.17}", "hash": "3fd4f6d0df46", "png": "page_0101.png"}
+{"page": 102, "index": 1, "latex": "\\left[1 + 6\\left(\\frac{P}{E}\\right)\\left(\\frac{r_m}{t_n}\\right)^{5/3}\\left(\\frac{R}{r_m}\\right)^{1/3}\\right] \\tag{3.18}", "hash": "8d6cd01b1377", "png": "page_0102.png"}
+{"page": 102, "index": 2, "latex": "\\left[1 + 3.25\\left(\\frac{P}{E}\\right)\\left(\\frac{r_m}{t_n}\\right)^{5/3}\\left(\\frac{R}{r_m}\\right)^{1/3}\\right] \\tag{3.19}", "hash": "172fd6e71ce4", "png": "page_0102.png"}
+{"page": 113, "index": 1, "latex": "P_T = \\frac{1.5PS_T}{S} \\tag{4.1}", "hash": "313f271ad1e8", "png": "page_0113.png"}
+{"page": 114, "index": 1, "latex": "R = \\frac{D}{\\alpha(T_1 - T_2)} \\tag{4.2}", "hash": "e9497c1a50e5", "png": "page_0114.png"}
+{"page": 114, "index": 2, "latex": "\\theta = \\sin^{-1}\\!\\left(\\frac{L/2}{R}\\right) \\tag{4.3}", "hash": "dbcf7955e546", "png": "page_0114.png"}
+{"page": 114, "index": 3, "latex": "y = R - \\sqrt{R^2 - (L/2)^2} \\tag{4.4}", "hash": "d7c8efb8fadf", "png": "page_0114.png"}
+{"page": 114, "index": 4, "latex": "n = m\\alpha(T_1 - T_2)/2", "hash": "6094e1434b74", "png": "page_0114.png"}
+{"page": 114, "index": 5, "latex": "R/m = (D/2)/n = D/m\\alpha(T_1 - T_2)", "hash": "10e3f7044377", "png": "page_0114.png"}
+{"page": 114, "index": 6, "latex": "R = D/\\alpha(T_1 - T_2)", "hash": "dad3c344285e", "png": "page_0114.png"}
+{"page": 122, "index": 1, "latex": "t = \\frac{PD}{2(SE W + Py)} \\tag{4.5}", "hash": "078091c35c7e", "png": "page_0122.png"}
+{"page": 122, "index": 2, "latex": "t = \\frac{P(d + 2c)}{2[SEW - P(1 - y)]} \\tag{4.6}", "hash": "0945c3339b01", "png": "page_0122.png"}
+{"page": 122, "index": 3, "latex": "t = \\frac{PD}{2SE} \\tag{4.7}", "hash": "090f241129a0", "png": "page_0122.png"}
+{"page": 123, "index": 1, "latex": "P = \\frac{(SE)}{1-\\gamma} \\quad \\text{for zero inside diameter with Eq. (4.5)}", "hash": "14216b535e1b", "png": "page_0123.png"}
+{"page": 124, "index": 1, "latex": "t_n = \\frac{t_c + a}{1 - u/100} \\tag{4.8}", "hash": "5d6eb65c8dc9", "png": "page_0124.png"}
+{"page": 125, "index": 1, "latex": "\\left(\\frac{1}{2}tR^2 - \\frac{1}{4}t(R - D/2)^2\\right)P = t(R - D/2)S", "hash": "e26b8a3ce088", "png": "page_0125.png"}
+{"page": 125, "index": 2, "latex": "t = \\frac{4(R/D) - 1}{4(R/D) - 2} \\cdot \\frac{PD}{2S}", "hash": "c87b14247dcf", "png": "page_0125.png"}
+{"page": 125, "index": 3, "latex": "I = \\frac{4(R/D) - 1}{4(R/D) - 2} \\quad \\text{at intrados (crotch)} \\tag{4.9a}", "hash": "7b7cc89a2e4b", "png": "page_0125.png"}
+{"page": 125, "index": 4, "latex": "I = \\frac{4(R/D) + 1}{4(R/D) + 2} \\quad \\text{at extrados (crown)} \\tag{4.9b}", "hash": "c92f3dea21be", "png": "page_0125.png"}
+{"page": 126, "index": 1, "latex": "\\theta < \\frac{9}{r} \\quad (\\theta \\text{ in deg.}) \\tag{4.10}", "hash": "c12a14af06dc", "png": "page_0126.png"}
+{"page": 127, "index": 1, "latex": "R = \\frac{A}{\\tan \\theta} + r \\tag{4.11}", "hash": "75be53fe3567", "png": "page_0127.png"}
+{"page": 127, "index": 2, "latex": "u = \\frac{1}{\\beta} = \\frac{t}{\\sqrt{\\frac{2t^2}{R(1 - v^2)}}} = 0.781\\sqrt{rt}, \\quad \\text{for } v = 0.3", "hash": "24162d04faab", "png": "page_0127.png"}
+{"page": 128, "index": 1, "latex": "\\text{Pressure force} = Pr\\left(0.781\\sqrt{rt} + 0.5r\\tan\\theta\\right)", "hash": "63657b9b5d13", "png": "page_0128.png"}
+{"page": 128, "index": 2, "latex": "\\text{Stress Force} = bt\\left(0.781\\sqrt{rt}\\right)", "hash": "b85a97d8b5a3", "png": "page_0128.png"}
+{"page": 128, "index": 3, "latex": "Pr\\left(0.781\\sqrt{rt} + 0.5r\\tan\\theta\\right) = SEW\\left(0.781\\sqrt{rt}\\right)", "hash": "72adf3a58632", "png": "page_0128.png"}
+{"page": 128, "index": 4, "latex": "P = \\frac{SEW(t_n - c)}{\\left(r_n - c\\right) + \\left(1 + 0.64\\sqrt{rt}\\tan\\theta\\right)} \\tag{4.12}", "hash": "f7865c2b76f8", "png": "page_0128.png"}
+{"page": 128, "index": 5, "latex": "t = \\frac{Pr}{SEW}\\left(1 + 0.64\\sqrt{r/t}\\tan\\theta\\right) \\tag{4.13}", "hash": "23cefb8e5f7d", "png": "page_0128.png"}
+{"page": 130, "index": 1, "latex": "A_1 = (2d_2 - d_1)(T_h - t_h - c_h)", "hash": "4081a175f87f", "png": "page_0130.png"}
+{"page": 130, "index": 2, "latex": "A_2 = 2L_4(T_b - t_b - c_b)/\\sin\\beta", "hash": "546d23da3346", "png": "page_0130.png"}
+{"page": 131, "index": 1, "latex": "b_r = \\frac{Pd_b}{2(SE + Py)}, \\quad b_h = \\frac{Pd_h}{2(SE + Py)}", "hash": "077de555c5a1", "png": "page_0131.png"}
+{"page": 131, "index": 2, "latex": "A_1 = d_b b_r, \\quad A_2 = (2d_b - d_b)(h_b - c_b - b_r)", "hash": "02eee925a817", "png": "page_0131.png"}
+{"page": 131, "index": 3, "latex": "A_3 = 2L_r(T_h - c_h - b_r), \\quad A_4 = w^2", "hash": "8601e18c4834", "png": "page_0131.png"}
+{"page": 132, "index": 1, "latex": "d_1 t_h = (2d_2 - d_1)(T_h - c_h - t_h) + 2L_4(T_h - c_h) + w^2", "hash": "772750751ffd", "png": "page_0132.png"}
+{"page": 132, "index": 2, "latex": "d_1 t_h = (2d_2 - d_1)(T_h - c_h) - (2d_2 - d_1)t_h + 2L_4(T_h - c_h) + 2L_4 t_h + w^2", "hash": "7d386f6eef31", "png": "page_0132.png"}
+{"page": 132, "index": 3, "latex": "2d_2 t_h + 2L_4 t_h + (2d_2 - d_1)(T_h - c_h) + 2L_4(T_h - c_h) + w^2", "hash": "43440ffb959c", "png": "page_0132.png"}
+{"page": 132, "index": 4, "latex": "2d_2 \\frac{Pd_1}{2(SE + PY)} + 2L_4 \\frac{Pd_2}{2(SE + PY)} = K", "hash": "d95f8ed20d78", "png": "page_0132.png"}
+{"page": 132, "index": 5, "latex": "P = \\frac{K(SE)}{d_1 D_h + L_4 D_b - Ky} \\tag{4.15}", "hash": "435a593b0bd4", "png": "page_0132.png"}
+{"page": 134, "index": 1, "latex": "S_{bi} = \\frac{i_i M_i}{Z}", "hash": "1fbb7cbb4c65", "png": "page_0134.png"}
+{"page": 135, "index": 1, "latex": "S_m = \\frac{M_i}{Z_e}", "hash": "d44766caf8fa", "png": "page_0135.png"}
+{"page": 135, "index": 2, "latex": "S_b = \\sqrt{(S_{bi})^2 + (S_{bo})^2} = \\frac{\\sqrt{(iM_i)^2 + (oM_o)^2}}{Z}", "hash": "ee6facd5450f", "png": "page_0135.png"}
+{"page": 135, "index": 3, "latex": "\\tau = S_t = \\frac{M_t}{2Z_e} = \\frac{M_t}{2Z} \\cdot h", "hash": "2d48ec96a0cf", "png": "page_0135.png"}
+{"page": 135, "index": 4, "latex": "S_E = S_i = \\sqrt{S_b^2 + 4S_t^2} = \\frac{1}{Z}\\sqrt{(iM_i)^2 + (oM_o)^2 + 4\\left(\\frac{M_t}{2}\\right)^2}", "hash": "35f4b8df2069", "png": "page_0135.png"}
+{"page": 135, "index": 5, "latex": "S_E = S_i = \\frac{1}{Z}\\sqrt{(iM_i)^2 + (oM_o)^2 + (tM_t)^2}", "hash": "45b34b451bc8", "png": "page_0135.png"}
+{"page": 135, "index": 6, "latex": "S_E = S_i = \\frac{i}{Z} M_R \\quad \\text{where,} \\quad M_R = \\sqrt{M_i^2 + M_o^2 + M_t^2}", "hash": "4b6fc00c3575", "png": "page_0135.png"}
+{"page": 136, "index": 1, "latex": "Z_e = \\pi r_b^2 t_e \\tag{4.19}", "hash": "af4d5ae5fca3", "png": "page_0136.png"}
+{"page": 137, "index": 1, "latex": "i_{eq} = i_e \\frac{Z_b}{Z_h} = i_e(A)", "hash": "4741d3d736bb", "png": "page_0137.png"}
+{"page": 138, "index": 1, "latex": "S_L = \\frac{Pd_o}{4t_n} + \\frac{0.75iM_A}{Z} \\leq 1.0S_h \\tag{4.21}", "hash": "389dfe077d23", "png": "page_0138.png"}
+{"page": 139, "index": 1, "latex": "S_{SL} = B_1 \\frac{PD_o}{2t} + B_2 \\frac{M_A}{Z} \\leq 1.5S_h \\tag{4.22}", "hash": "bf78f7d767f8", "png": "page_0139.png"}
+{"page": 141, "index": 1, "latex": "\\frac{P D_0}{4t} + \\frac{(0.75i)M_A}{Z} + \\frac{(0.75i)M_B}{Z} \\leq kS_h \\tag{4.23}", "hash": "28d90f9758b8", "png": "page_0141.png"}
+{"page": 144, "index": 1, "latex": "S_E \\leq S_A + f(S_h - S_l) = f(1.25S_c + S_h) - S_l \\tag{4.24}", "hash": "ca83989a4cd0", "png": "page_0144.png"}
+{"page": 146, "index": 1, "latex": "B_1 \\frac{PD_o}{2t} + B_2 \\frac{D_o}{2I} M_i \\leq 1.5S_m \\tag{4.25}", "hash": "bf04386a80f3", "png": "page_0146.png"}
+{"page": 147, "index": 1, "latex": "S_n = C_1 \\frac{P_o D_o}{2t} + C_2 \\frac{D_o}{2I} M_i + C_3 E_{ab} | \\alpha_a T_a - \\alpha_b T_b | \\le 3S_m \\tag{4.26}", "hash": "041d1786db0a", "png": "page_0147.png"}
+{"page": 148, "index": 1, "latex": "S_p = K_1 C_1 \\frac{P_0 D_0}{2t} + K_2 C_2 \\frac{D_0}{2I} |M_i| + K_3 \\frac{E_a |\\Delta T_1|}{2(1 - \\nu)}", "hash": "01a6d9ed4005", "png": "page_0148.png"}
+{"page": 148, "index": 2, "latex": "+ K_3 C_3 \\frac{E_a \\alpha_1 - E_b \\alpha_2}{2} |\\Delta T| + \\frac{E \\alpha |\\Delta T_2|}{2} \\tag{4.27}", "hash": "190519998bbb", "png": "page_0148.png"}
+{"page": 149, "index": 1, "latex": "S_e = C_2 \\frac{D_o}{2I} M_i^* \\leq 3S_m \\tag{4.28}", "hash": "c326c328dd23", "png": "page_0149.png"}
+{"page": 150, "index": 1, "latex": "\\Delta T_i \\text{ range} \\leq \\frac{\\gamma S_a}{E \\cdot E \\alpha} C_4 \\tag{4.29}", "hash": "d1ffb1766f28", "png": "page_0150.png"}
+{"page": 150, "index": 2, "latex": "C_1 \\frac{PD_o}{2t} + C_2 \\frac{D_o}{2I} M_i + C_3 \\frac{D_o}{2I} (|M_i - M_j|) \\leq 3S_m \\tag{4.30}", "hash": "7e6f08be89b5", "png": "page_0150.png"}
+{"page": 150, "index": 3, "latex": "S_{alt} = K_e \\frac{S_p}{2} \\tag{4.31}", "hash": "dfa429eb607f", "png": "page_0150.png"}
+{"page": 150, "index": 4, "latex": "B_1 \\frac{D_o}{2I} M_i \\left( = B_2 \\frac{D_o}{2I} M_j \\right) \\text{ replaced with } B_{1b} \\frac{M_b}{Z_b} + B_{1r} \\frac{M_r}{Z_r} \\tag{4.32}", "hash": "84dacb94a447", "png": "page_0150.png"}
+{"page": 151, "index": 1, "latex": "|M_{t1}| = |M_{b2}| - M_b = M_b + M_b - M_b - 2M_b", "hash": "eab4f7308623", "png": "page_0151.png"}
+{"page": 151, "index": 2, "latex": "M_t = \\frac{1}{2} \\left[ M_{r2} - M_{r1} - |M_b| \\right] \\tag{4.31}", "hash": "38390b13929f", "png": "page_0151.png"}
+{"page": 153, "index": 1, "latex": "-V - q\\,dx + V + dV = 0", "hash": "af5320cf9bdd", "png": "page_0153.png"}
+{"page": 153, "index": 2, "latex": "\\frac{dV}{dx} = q \\tag{5.1}", "hash": "151f3bc5ac3e", "png": "page_0153.png"}
+{"page": 154, "index": 1, "latex": "M - (M + dM) + (V + dV)dx - qdx\\frac{dx}{2} = 0", "hash": "1fbac257ed37", "png": "page_0154.png"}
+{"page": 154, "index": 2, "latex": "\\frac{dM}{dx} = V \\tag{5.2}", "hash": "1361f2fab133", "png": "page_0154.png"}
+{"page": 154, "index": 3, "latex": "\\frac{d^2M}{dx^2} + q = ky \\tag{5.3}", "hash": "d573ceeeaee7", "png": "page_0154.png"}
+{"page": 154, "index": 4, "latex": "EI\\frac{d^2y}{dx^2} = -M \\tag{5.4}", "hash": "e70e3de86fc1", "png": "page_0154.png"}
+{"page": 154, "index": 5, "latex": "EI\\frac{d^4y}{dx^4} = -ky \\quad \\text{or} \\quad \\frac{d^4y}{dx^4} + \\frac{k}{EI}y = 0 \\tag{5.5}", "hash": "5fce71f8d9b2", "png": "page_0154.png"}
+{"page": 154, "index": 6, "latex": "\\alpha^4 + \\frac{k}{EI} = 0 \\quad \\text{or} \\quad \\alpha = \\sqrt[4]{-\\frac{k}{EI}} = \\sqrt{\\frac{k}{EI}} \\cdot \\sqrt{-1}", "hash": "576e302a6cb6", "png": "page_0154.png"}
+{"page": 154, "index": 7, "latex": "\\sqrt[4]{-1} = \\frac{1}{\\sqrt{2}}(\\pm 1 \\pm i); \\quad (i = \\sqrt{-1})", "hash": "15af3580b7da", "png": "page_0154.png"}
+{"page": 155, "index": 1, "latex": "\\beta = \\sqrt[4]{\\frac{k}{4EI}}", "hash": "9d89ccfeb3a0", "png": "page_0155.png"}
+{"page": 155, "index": 2, "latex": "y_1 = e^{\\beta x}\\cos\\beta x, \\quad y_2 = e^{\\beta x}\\sin\\beta x, \\quad y_3 = e^{-\\beta x}\\cos\\beta x, \\quad y_4 = e^{-\\beta x}\\sin\\beta x", "hash": "aea0660e4c7c", "png": "page_0155.png"}
+{"page": 155, "index": 3, "latex": "y = Ay_1 + By_2 + Cy_3 + Dy_4", "hash": "85348df1acde", "png": "page_0155.png"}
+{"page": 155, "index": 4, "latex": "y = e^{\\beta x}(C_1\\cos\\beta x + C_2\\sin\\beta x) + e^{-\\beta x}(C_3\\cos\\beta x + C_4\\sin\\beta x)", "hash": "04eb8b0f1808", "png": "page_0155.png"}
+{"page": 155, "index": 5, "latex": "y = e^{-\\beta x}(C_3\\cos\\beta x + C_4\\sin\\beta x)", "hash": "6123e58e8982", "png": "page_0155.png"}
+{"page": 155, "index": 6, "latex": "y' = \\frac{dy}{dx} = \\beta e^{-\\beta x}[(-C_3 - C_4)\\cos\\beta x + (-C_3 + C_4)\\sin\\beta x]", "hash": "6dd451748017", "png": "page_0155.png"}
+{"page": 155, "index": 7, "latex": "V = \\frac{dM}{dx} = EI\\frac{d^3y}{dx^3} = EI\\beta^3 e^{-\\beta x}[2(C_3 + C_4)\\cos\\beta x - 2(-C_3 + C_4)\\sin\\beta x]", "hash": "adae4893b8fb", "png": "page_0155.png"}
+{"page": 155, "index": 8, "latex": "C_3 = C_4 = \\frac{F}{8EI\\beta^3} = \\frac{F\\beta}{2k}", "hash": "6e81a2a247bb", "png": "page_0155.png"}
+{"page": 156, "index": 1, "latex": "y = \\frac{P\\beta}{2k} e^{-\\beta x}(\\cos \\beta x + \\sin \\beta x) \\tag{5.9}", "hash": "d9c48a5612be", "png": "page_0156.png"}
+{"page": 156, "index": 2, "latex": "\\theta = \\frac{dy}{dx} = -\\frac{P\\beta^2}{k} e^{-\\beta x} \\sin \\beta x \\tag{5.10}", "hash": "4dc73eb1d6c2", "png": "page_0156.png"}
+{"page": 156, "index": 3, "latex": "M = -\\text{EI}\\frac{d^2y}{dx^2} = -\\frac{P}{4\\beta} e^{-\\beta x}(\\sin \\beta x - \\cos \\beta x) = \\frac{P}{4\\beta} e^{-\\beta x}(\\cos \\beta x - \\sin \\beta x) \\tag{5.11}", "hash": "a6fbdd184379", "png": "page_0156.png"}
+{"page": 156, "index": 4, "latex": "V = -\\text{EI}\\frac{d^3y}{dx^3} = -\\frac{P}{2} e^{-\\beta x} \\cos \\beta x \\tag{5.12}", "hash": "a5e86f0df5e8", "png": "page_0156.png"}
+{"page": 156, "index": 5, "latex": "y = \\frac{P\\beta}{2k} f_3(\\beta x) \\tag{5.13}", "hash": "16f7cf31e29d", "png": "page_0156.png"}
+{"page": 156, "index": 6, "latex": "\\theta = -\\frac{P\\beta^2}{k} f_4(\\beta x) \\tag{5.14}", "hash": "3d26fe4738de", "png": "page_0156.png"}
+{"page": 157, "index": 1, "latex": "M = \\frac{P}{4\\beta} f_4(\\beta x) \\tag{5.15}", "hash": "df5417e1f83b", "png": "page_0157.png"}
+{"page": 157, "index": 2, "latex": "V = -\\frac{P}{2} f_1(\\beta x) \\tag{5.16}", "hash": "3b2a1eea2d22", "png": "page_0157.png"}
+{"page": 157, "index": 3, "latex": "f_1(\\beta x) = e^{-\\beta x} \\cos \\beta x \\tag{5.17a}", "hash": "3ea6ed946db8", "png": "page_0157.png"}
+{"page": 157, "index": 4, "latex": "f_2(\\beta x) = e^{-\\beta x}(\\cos \\beta x - \\sin \\beta x) \\tag{5.17b}", "hash": "a72a13be9530", "png": "page_0157.png"}
+{"page": 157, "index": 5, "latex": "f_3(\\beta x) = e^{-\\beta x}(\\cos \\beta x + \\sin \\beta x) \\tag{5.17c}", "hash": "c70763433d5e", "png": "page_0157.png"}
+{"page": 157, "index": 6, "latex": "f_4(\\beta x) = e^{-\\beta x} \\sin \\beta x \\tag{5.17d}", "hash": "a51f3cb00b2f", "png": "page_0157.png"}
+{"page": 158, "index": 1, "latex": "y = e^{-\\beta x}(C_3 \\cos \\beta x - C_4 \\sin \\beta x)", "hash": "07d4f0dff3f3", "png": "page_0158.png"}
+{"page": 158, "index": 2, "latex": "EI\\left(\\frac{d^2y}{dx^2}\\right)_{x=0} = -M_0", "hash": "e02d9fd02c26", "png": "page_0158.png"}
+{"page": 158, "index": 3, "latex": "EI\\left(\\frac{d^3y}{dx^3}\\right)_{x=0} = -V + P", "hash": "0044b47b74ac", "png": "page_0158.png"}
+{"page": 158, "index": 4, "latex": "C_3 = \\frac{1}{2\\beta^3 EI}(P - \\beta M_0); \\quad \\text{and} \\quad C_4 = \\frac{M_0}{2\\beta^2 EI}", "hash": "c9ae693c5044", "png": "page_0158.png"}
+{"page": 158, "index": 5, "latex": "y = \\frac{e^{-\\beta x}}{2\\beta^3 EI}[P \\cos \\beta x - \\beta M_0(\\cos \\beta x - \\sin \\beta x)]", "hash": "06d5160dcfad", "png": "page_0158.png"}
+{"page": 158, "index": 6, "latex": "(5.18)", "hash": "531851aedcb9", "png": "page_0158.png"}
+{"page": 158, "index": 7, "latex": "y = \\frac{2\\beta}{k}[Pf_3(\\beta x) - \\beta M_0 f_4(\\beta x)] = \\frac{2\\beta}{k} \\cdot Pf_3(\\beta x) - \\frac{4\\beta^2}{k} \\cdot M_0 f_4(\\beta x)", "hash": "84074dc2d975", "png": "page_0158.png"}
+{"page": 158, "index": 8, "latex": "(5.19)", "hash": "db2d74265641", "png": "page_0158.png"}
+{"page": 158, "index": 9, "latex": "\\theta = \\frac{dy}{dx} = \\frac{2P\\beta^2}{k} f_4(\\beta x) - \\frac{4M_0\\beta^3}{k} f_1(\\beta x)", "hash": "d438ef45c884", "png": "page_0158.png"}
+{"page": 158, "index": 10, "latex": "(5.20)", "hash": "104390365fc5", "png": "page_0158.png"}
+{"page": 159, "index": 1, "latex": "M = -EI\\frac{d^2y}{dx^2} = -\\frac{1}{\\beta}f_2(\\beta x) + M_0 f_4(\\beta x) \\tag{5.21}", "hash": "f85cb5783097", "png": "page_0159.png"}
+{"page": 159, "index": 2, "latex": "V = -EI\\frac{d^3y}{dx^3} = -F_0 f_1(\\beta x) - 2M_0\\beta f_3(\\beta x) \\tag{5.22}", "hash": "5eec57fbb8f0", "png": "page_0159.png"}
+{"page": 159, "index": 3, "latex": "y_0 = \\frac{2F_0}{k} - \\frac{2M_0\\beta}{k} \\tag{5.23}", "hash": "b69e24684cb3", "png": "page_0159.png"}
+{"page": 159, "index": 4, "latex": "\\theta_0 = -\\frac{F_0}{k} + \\frac{4M_0\\beta^2}{k} \\tag{5.24}", "hash": "0b929f3a1d16", "png": "page_0159.png"}
+{"page": 160, "index": 1, "latex": "N = -\\frac{Ey}{r^2 y}", "hash": "98a4bef37169", "png": "page_0160.png"}
+{"page": 160, "index": 2, "latex": "P = 2N\\sin\\frac{\\theta}{2} \\approx 2N\\frac{\\Delta 2}{2} = \\frac{N}{r}\\Delta\\frac{1}{r}\\left(\\frac{Ey}{r^2}\\right)b = \\frac{Ey}{r^2} \\quad \\text{for } b = 1", "hash": "559f11a0363e", "png": "page_0160.png"}
+{"page": 160, "index": 3, "latex": "k = \\frac{P}{y} = \\frac{E}{r^2} \\tag{5.25}", "hash": "07138eb5ca03", "png": "page_0160.png"}
+{"page": 160, "index": 4, "latex": "\\varepsilon_\\phi = \\frac{S_\\phi}{E} - \\frac{v}{E} S_x = 0 \\quad \\text{or} \\quad S_\\phi = vS_x", "hash": "78a6c5bedcf1", "png": "page_0160.png"}
+{"page": 160, "index": 5, "latex": "\\varepsilon_x = \\frac{1}{E}\\left(S_x - vS_\\phi\\right) = \\frac{1 - v^2}{E} S_x", "hash": "cca689b5f814", "png": "page_0160.png"}
+{"page": 161, "index": 1, "latex": "E' = \\frac{E}{1 - \\nu^2} \\quad \\text{or} \\quad I' = \\frac{I}{1 - \\nu^2}, \\text{ but not both}", "hash": "30e788012852", "png": "page_0161.png"}
+{"page": 161, "index": 2, "latex": "I' = \\frac{I}{1 - \\nu^2} = \\frac{t^3 b}{12(1 - \\nu^2)} = \\frac{t^3}{12(1 - \\nu^2)}", "hash": "a34e9feb7047", "png": "page_0161.png"}
+{"page": 161, "index": 3, "latex": "\\beta = \\sqrt[4]{\\frac{k}{4EI'}} = \\sqrt[4]{\\frac{3(1 - \\nu^2)}{r^2 t^2}} = \\frac{1.285}{\\sqrt{rt}}, \\text{ for } \\nu = 0.3 \\tag{5.26}", "hash": "ae82741efe0c", "png": "page_0161.png"}
+{"page": 161, "index": 4, "latex": "\\beta x = \\left(\\frac{1.285}{\\sqrt{rt}}\\right) x = 1.0 \\quad \\text{i.e., effective width } x = 0.778\\sqrt{rt} \\tag{5.27}", "hash": "ca66011dc88e", "png": "page_0161.png"}
+{"page": 162, "index": 1, "latex": "\\beta x = \\left(\\frac{1.285}{\\sqrt{rt}}\\right) x = 2.6, \\quad \\text{i.e., required width } x = 2.0\\sqrt{rt}", "hash": "be195126cf49", "png": "page_0162.png"}
+{"page": 162, "index": 2, "latex": "M = \\frac{f}{4\\beta} = \\frac{f}{4 \\times \\frac{1.285}{\\sqrt{rt}}} \\sqrt{rt} = 0.1946f\\sqrt{rt}", "hash": "0ca7da8655c6", "png": "page_0162.png"}
+{"page": 162, "index": 3, "latex": "S_b = \\frac{M}{Z} = \\frac{1.167f\\sqrt{rt}}{t^2} = 1.167\\frac{f}{t^2}\\sqrt{rt}", "hash": "8bd9fc7400db", "png": "page_0162.png"}
+{"page": 163, "index": 1, "latex": "\\Delta_c = \\frac{\\delta\\theta}{5k} = \\frac{f}{2} \\left(\\frac{1.285}{\\sqrt{Dt}}\\right)^2 \\left(\\frac{t^2}{Et}\\right) = 0.643 \\left(\\frac{t}{r}\\right)^{3/2} f", "hash": "a537e7b22976", "png": "page_0163.png"}
+{"page": 163, "index": 2, "latex": "S_{mc} = \\frac{E\\Delta_c}{r} = 0.643 \\frac{E}{r} \\left(\\frac{t}{r}\\right)^{3/2} f \\tag{5.30}", "hash": "bbc43cf992f1", "png": "page_0163.png"}
+{"page": 164, "index": 1, "latex": "\\frac{2P\\beta_a^2}{k_a} - \\frac{4M_0\\beta_a^3}{k_a} = \\frac{2P\\beta_b^2}{k_b} - \\frac{4M_0\\beta_b^3}{k_b}", "hash": "30feb0566bee", "png": "page_0164.png"}
+{"page": 164, "index": 2, "latex": "2P\\left(\\frac{\\beta_a^2}{k_a} - \\frac{\\beta_b^2}{k_b}\\right) = 4M_0\\left(\\frac{\\beta_a^3}{k_a} - \\frac{\\beta_b^3}{k_b}\\right) \\tag{5.31}", "hash": "26fca297fcaa", "png": "page_0164.png"}
+{"page": 164, "index": 3, "latex": "r(\\Delta T)(\\alpha_a - \\alpha_b) = \\frac{2P\\beta_a}{k_a} - \\frac{2P\\beta_b}{k_b} - \\frac{2M_0\\beta_a^2}{k_a} - \\frac{2M_0\\beta_b^2}{k_b}", "hash": "15a9a669e744", "png": "page_0164.png"}
+{"page": 164, "index": 4, "latex": "r(\\Delta T)(\\alpha_a - \\alpha_b) = 2P\\left(\\frac{\\beta_a}{k_a} - \\frac{\\beta_b}{k_b}\\right) - 2M_0\\left(\\frac{\\beta_a^2}{k_a} + \\frac{\\beta_b^2}{k_b}\\right) \\tag{5.32}", "hash": "a81b1f3dc3fa", "png": "page_0164.png"}
+{"page": 164, "index": 5, "latex": "r(\\Delta T)(\\alpha_a - \\alpha_b) = \\frac{4P\\beta}{k} \\quad \\text{or} \\quad P = \\frac{1}{4} \\frac{k}{\\beta} r(\\Delta T)(\\alpha_a - \\alpha_b)", "hash": "446e1c8e02b0", "png": "page_0164.png"}
+{"page": 165, "index": 1, "latex": "M = -\\frac{2}{\\beta} f_4(\\beta a) - \\frac{k}{4\\beta^3} r(\\Delta T)(a_1 - a_2) f_4(\\beta a)", "hash": "52d36076be45", "png": "page_0165.png"}
+{"page": 165, "index": 2, "latex": "S_{b,max} = M_{max} \\frac{6}{t^2} = \\frac{0.3224 \\times 6}{4t^2} \\left(\\frac{Et}{1.285}\\right)^2 \\frac{1}{\\beta^2} r(\\Delta T)(a_1 - a_2)", "hash": "984d04a459a2", "png": "page_0165.png"}
+{"page": 165, "index": 3, "latex": "S_{b,max} = 0.298 Et(\\Delta T)(a_1 - a_2) \\tag{5.33}", "hash": "3c82fdc906e1", "png": "page_0165.png"}
+{"page": 165, "index": 4, "latex": "S'_h = \\frac{E \\cdot 0.5\\delta}{r} = 0.5E(\\Delta T)(a_1 - a_2) \\tag{5.34}", "hash": "fa71780552fe", "png": "page_0165.png"}
+{"page": 166, "index": 1, "latex": "S_{d2} = 0.60(\\Delta T)(\\alpha_a - \\alpha_b) = 0.60E(T_2 - T_1)(\\alpha_a - \\alpha_b) \\tag{5.33}", "hash": "62ab5c24dfea", "png": "page_0166.png"}
+{"page": 166, "index": 2, "latex": "P = 2\\lambda k\\beta; \\quad \\text{and} \\quad r(\\Delta T)(\\alpha_a - \\alpha_b) = 2\\frac{P}{k} - 2\\frac{\\lambda}{k}\\beta \\tag{}", "hash": "6139b7a47a67", "png": "page_0166.png"}
+{"page": 167, "index": 1, "latex": "M_b = \\frac{1}{2\\beta} F(AT)(\\alpha_a - \\alpha_s) \\quad \\text{and} \\quad P = E \\cdot AT(\\alpha_a - \\alpha_s)", "hash": "b845a2955c1d", "png": "page_0167.png"}
+{"page": 167, "index": 2, "latex": "M = \\frac{P}{2\\beta}", "hash": "64ec6c1a006f", "png": "page_0167.png"}
+{"page": 167, "index": 3, "latex": "S_b = M_b \\frac{6}{t^2} = \\frac{3}{\\beta^2 t^2} \\cdot \\frac{E \\beta t}{\\sqrt{12}} F(AT)(\\alpha_a - \\alpha_s) = 1.817E(AT)(\\alpha_a - \\alpha_s) \\tag{5.36}", "hash": "13ff505b40e6", "png": "page_0167.png"}
+{"page": 167, "index": 4, "latex": "S_c = E \\frac{\\delta}{R} = 1.0E(AT)(\\alpha_a - \\alpha_s) \\tag{5.37}", "hash": "d4a18e71a25b", "png": "page_0167.png"}
+{"page": 167, "index": 5, "latex": "S_{d} = [1.817(1 - 0.3) + 1]E(AT)(\\alpha_a - \\alpha_s) = 2.272E(T_1 - T_2)(\\alpha_a - \\alpha_s) \\tag{5.38}", "hash": "67378bc19375", "png": "page_0167.png"}
+{"page": 167, "index": 6, "latex": "\\delta = \\frac{pR^2}{Et} + \\alpha(R - \\Delta r) \\cdot T = \\frac{pR^2}{Et} + \\alpha(E - T)r \\tag{5.39}", "hash": "1b8a7c13172b", "png": "page_0167.png"}
+{"page": 168, "index": 1, "latex": "P = \\frac{2\\beta}{2} \\quad \\text{and} \\quad \\theta_0 = -\\frac{2\\beta^2}{\\beta k} = -\\beta\\Delta", "hash": "6cbd5a7359bb", "png": "page_0168.png"}
+{"page": 168, "index": 2, "latex": "(5.40)", "hash": "479fe2882300", "png": "page_0168.png"}
+{"page": 168, "index": 3, "latex": "\\delta = \\frac{2P\\beta}{k} f_3(\\beta s) = \\Delta f_3(\\beta s) \\quad \\text{and} \\quad \\theta = \\frac{2P\\beta}{k} f_4(\\beta s) = \\lambda\\beta \\cdot \\Delta f_4(\\beta s)", "hash": "7d492a9837e3", "png": "page_0168.png"}
+{"page": 168, "index": 4, "latex": "(5.41)", "hash": "0b421f9651ed", "png": "page_0168.png"}
+{"page": 178, "index": 1, "latex": "L_s = \\sqrt{\\frac{10ZS}{w}} \\tag{6.1}", "hash": "3afb21cd8340", "png": "page_0178.png"}
+{"page": 178, "index": 2, "latex": "L_s = \\sqrt[4]{\\frac{128EI\\Delta}{5w}} \\tag{6.2}", "hash": "6d29bb5fb56b", "png": "page_0178.png"}
+{"page": 183, "index": 1, "latex": "\\text{Load variation} = \\frac{\\text{Cold load} - \\text{Hot load}}{\\text{Hot load}} = \\frac{\\text{Displacement} \\times \\text{Spring rate}}{\\text{Hot load}} \\tag{6.3}", "hash": "4906fb460d76", "png": "page_0183.png"}
+{"page": 183, "index": 2, "latex": "\\text{Spring rate} = \\frac{\\text{Load variation} \\times \\text{Hot load}}{\\text{Displacement}} \\tag{6.4}", "hash": "82676b9a11f8", "png": "page_0183.png"}
+{"page": 185, "index": 1, "latex": "\\text{Cold load} = \\text{Hot load} + (\\text{Displacement} \\times \\text{Spring rate}) \\tag{6.5}", "hash": "e0d17774d1d7", "png": "page_0185.png"}
+{"page": 186, "index": 1, "latex": "F \\times S = W \\times L", "hash": "95f371254169", "png": "page_0186.png"}
+{"page": 194, "index": 1, "latex": "f = \\sqrt{f_1^2 + f_2^2} < F\\mu, \\quad \\text{Stopped}", "hash": "534b99cb781c", "png": "page_0194.png"}
+{"page": 194, "index": 2, "latex": "f = \\sqrt{f_1^2 + f_2^2} = F\\mu, \\quad \\text{Moving}", "hash": "331ea67dbd5c", "png": "page_0194.png"}
+{"page": 194, "index": 3, "latex": "\\frac{f_1}{d_1} = \\frac{f_2}{d_2}", "hash": "3a110c47f159", "png": "page_0194.png"}
+{"page": 195, "index": 1, "latex": "\\text{Spring rate} = \\frac{f_\\mu}{\\sqrt{d_x^2 + d_y^2}} = \\frac{\\mu F}{\\sqrt{d_x^2 + d_y^2}}", "hash": "e6dd67df69a1", "png": "page_0195.png"}
+{"page": 198, "index": 1, "latex": "V = \\frac{W}{\\pi r} \\sin\\theta \\tag{6.6}", "hash": "fe6d8e3eab9c", "png": "page_0198.png"}
+{"page": 199, "index": 1, "latex": "S_{\\text{max}} = k \\frac{Q}{t^2} \\ln\\left(\\frac{r}{t}\\right) \\tag{6.7}", "hash": "e5c37267e3a2", "png": "page_0199.png"}
+{"page": 199, "index": 2, "latex": "k = 0.02 - 0.00012(\\theta - 90) \\tag{6.8}", "hash": "6d82ba87cce1", "png": "page_0199.png"}
+{"page": 199, "index": 3, "latex": "k = 0.01 - 0.0001(70 - \\theta) \\tag{6.9}", "hash": "85b42af061ba", "png": "page_0199.png"}
+{"page": 201, "index": 1, "latex": "p = y_p - y_r \\tag{6.10}", "hash": "1942d895a58b", "png": "page_0201.png"}
+{"page": 201, "index": 2, "latex": "y = \\frac{2H\\beta}{k} + \\frac{2M_0\\beta^2}{k} \\tag{6.11}", "hash": "812865f171f1", "png": "page_0201.png"}
+{"page": 201, "index": 3, "latex": "\\theta = -\\frac{2H\\beta^2}{k} - \\frac{4M_0\\beta^3}{k} \\tag{6.12}", "hash": "0926237c7021", "png": "page_0201.png"}
+{"page": 201, "index": 4, "latex": "M_0 = \\frac{H}{2\\beta} \\tag{6.13}", "hash": "e64cd95f2902", "png": "page_0201.png"}
+{"page": 201, "index": 5, "latex": "y_p - y_r = \\frac{H\\beta}{k} + \\frac{r^2H\\beta}{Et} \\tag{6.14}", "hash": "e8e680fd0ee8", "png": "page_0201.png"}
+{"page": 202, "index": 1, "latex": "y_p = \\frac{pr^2}{4E} \\tag{6.15}", "hash": "7f8717b86591", "png": "page_0202.png"}
+{"page": 202, "index": 2, "latex": "N_\\theta = (pc + 2H)r \\tag{6.16}", "hash": "c93da3dd6a68", "png": "page_0202.png"}
+{"page": 202, "index": 3, "latex": "y_r = S_\\theta \\frac{r}{E} = (pc + 2H)\\frac{r^2}{A_r E} \\tag{6.17}", "hash": "06dc6ed0aae6", "png": "page_0202.png"}
+{"page": 202, "index": 4, "latex": "\\frac{pr^2}{4E} - (pc + 2H)\\frac{r^2}{A_r E} = \\frac{2H\\beta}{EI}", "hash": "e23b7ee463a0", "png": "page_0202.png"}
+{"page": 202, "index": 5, "latex": "H = \\frac{\\beta(A_r - ct)}{B\\left(A_r + 2\\frac{1}{\\beta}\\right)} \\cdot \\frac{r}{1} \\cdot \\frac{(A_r - ct)}{...} \\tag{6.18}", "hash": "0700c54a0170", "png": "page_0202.png"}
+{"page": 202, "index": 6, "latex": "H = \\frac{\\beta(A_r - ct)}{\\beta \\cdot A_r + 2\\frac{r}{\\beta}} \\cdot \\frac{r^2}{1} \\cdot \\frac{p(A_r - ct)}{4E} \\bigg/ \\frac{r^2}{4E} \\left(A_r + 2\\frac{r}{\\beta}\\right)", "hash": "bb78ca0c10b7", "png": "page_0202.png"}
+{"page": 202, "index": 7, "latex": "M_0 = \\frac{H}{2\\beta^2} \\cdot \\frac{(A_r - ct)}{\\left(A_r + 2\\frac{r}{\\beta}\\right)} \\tag{6.19}", "hash": "c467146798b1", "png": "page_0202.png"}
+{"page": 202, "index": 8, "latex": "H = 0.78pr\\frac{\\sqrt{rt}}{(A_r + 1.56\\sqrt{rt})} \\cdot \\frac{(A_r - ct)}{(A_r + 1.56\\sqrt{rt})} \\tag{6.20}", "hash": "975eb944b635", "png": "page_0202.png"}
+{"page": 202, "index": 9, "latex": "M_0 = 0.303pr \\frac{(A_r - ct)}{(A_r + 1.56\\sqrt{rt})} \\tag{6.21}", "hash": "7f4c8822d614", "png": "page_0202.png"}
+{"page": 202, "index": 10, "latex": "S_L = \\frac{M_0}{t^2/6} = 1.82 \\frac{(A_r - ct)}{(A_r + 1.56\\sqrt{rt})} \\cdot \\frac{pr}{t^2} \\tag{6.22}", "hash": "9abb2b4492ca", "png": "page_0202.png"}
+{"page": 203, "index": 1, "latex": "\\frac{S_h}{S_f} = \\frac{1}{k}, \\quad \\text{where } k = \\frac{L_h}{L_f} \\sqrt{\\frac{f}{1}} \\tag{6.23}", "hash": "fe463a0451c7", "png": "page_0203.png"}
+{"page": 204, "index": 1, "latex": "S_b \\geq 0.06E\\left(\\frac{t}{r}\\right) \\tag{6.24}", "hash": "e6c3ff0081ee", "png": "page_0204.png"}
+{"page": 204, "index": 2, "latex": "M_{\\varphi,1} = \\frac{QR}{\\pi}\\left[\\varphi\\sin\\varphi - \\frac{1}{2}\\cos\\varphi - \\frac{1}{\\pi}\\cdot\\frac{2e}{R}\\left(\\cos\\varphi - \\frac{1}{2}\\right)\\right] \\tag{6.25}", "hash": "274f8d26a317", "png": "page_0204.png"}
+{"page": 204, "index": 3, "latex": "M_{\\varphi,2} = \\frac{QR}{\\pi}\\left[(\\pi - \\varphi)\\sin\\varphi - \\frac{1}{2}\\cos\\varphi - \\frac{1}{\\pi}\\cdot\\frac{2e}{R}\\left(\\cos\\varphi + \\frac{1}{2}\\right)\\right] \\tag{6.26}", "hash": "82595431e565", "png": "page_0204.png"}
+{"page": 205, "index": 1, "latex": "S_{xp} = \\frac{M_x c_1}{I} \\quad S_{xo} = \\frac{M_x c_2}{I} \\tag{6.27}", "hash": "0598361b75e6", "png": "page_0205.png"}
+{"page": 205, "index": 2, "latex": "N = \\frac{Q}{4} \\quad \\text{and} \\quad S_c = \\frac{Q}{4A_r} \\tag{6.28}", "hash": "8c747ceffe07", "png": "page_0205.png"}
+{"page": 205, "index": 3, "latex": "S_h = \\frac{c p_t r'}{A_r} = \\frac{p r'}{A_r} \\left[ c + 1.56\\sqrt{rt} \\cdot \\frac{(A_r - ct)}{(A_r + 1.56c\\sqrt{rt})} \\right] \\tag{6.29}", "hash": "e624f0239bac", "png": "page_0205.png"}
+{"page": 207, "index": 1, "latex": "K_s = \\frac{\\sin(1.0\\Delta)}{4} \\cdot \\frac{\\frac{\\sin^2\\!\\beta}{\\beta}}{4\\left(\\frac{\\Delta}{\\beta}\\cdot\\cos\\!\\beta\\right)}", "hash": "0297d74ee5af", "png": "page_0207.png"}
+{"page": 207, "index": 2, "latex": "K_s = \\frac{\\sin(1.0\\Delta) - \\Delta\\cos\\!\\Delta}{4\\left(\\Delta - \\sin\\!\\Delta\\cos\\!\\Delta\\right)}", "hash": "3e89f35e1f68", "png": "page_0207.png"}
+{"page": 207, "index": 3, "latex": "M_\\phi = \\frac{QR}{4}\\left[\\cos\\phi + \\frac{2}{\\beta}\\sin\\phi\\cdot\\frac{\\cos\\!\\beta}{\\beta} - \\frac{1}{\\beta}\\left(\\cos\\phi - \\frac{\\sin\\phi}{\\phi}\\right)\\right]", "hash": "2565ca89599d", "png": "page_0207.png"}
+{"page": 207, "index": 4, "latex": "\\times\\left[\\delta - \\frac{4 - 6\\sin(\\delta/\\beta) + 2\\cos^2\\!\\beta}{(\\sin(\\delta/\\beta)\\cos\\!\\beta + 1 - 2\\sin(\\beta/\\beta)^2)}\\right] \\tag{6.30}", "hash": "439416bb0065", "png": "page_0207.png"}
+{"page": 208, "index": 1, "latex": "P_\\beta = \\frac{Q}{\\pi} \\left[ \\frac{\\beta \\sin\\beta}{2(1 - \\cos\\beta)} - \\cos\\beta \\right] - \\frac{\\cos\\beta}{2(1 - \\cos\\beta)} (M_0 - M) \\tag{6.31}", "hash": "d67f621ace80", "png": "page_0208.png"}
+{"page": 208, "index": 2, "latex": "S_{c,\\text{max}} = S_{c,\\beta} = -\\frac{P_\\beta}{A_c} + \\frac{c_o M_\\beta}{I_c} + \\frac{CP}{A_t} \\quad \\text{at the pipe} \\tag{6.32a}", "hash": "08474e69662f", "png": "page_0208.png"}
+{"page": 208, "index": 3, "latex": "S_{c,\\text{max}} = S_{c,\\beta} = -\\frac{P_\\beta}{A_c} - \\frac{c_i M_\\beta}{I_c} + \\frac{CP}{A_t} \\quad \\text{at ring} \\tag{6.32b}", "hash": "350e3ea6add5", "png": "page_0208.png"}
+{"page": 209, "index": 1, "latex": "S_{c2} = -\\frac{Q}{4\\phi(t + 1.56\\sqrt{rt})} \\pm \\frac{M_c}{4r^2t/6} \\tag{6.33}", "hash": "ae1a03c078bc", "png": "page_0209.png"}
+{"page": 209, "index": 2, "latex": "M_c = -\\frac{QR}{2\\pi} \\left\\{ \\frac{\\pi - \\beta}{\\sin\\beta} \\cdot \\phi \\sin\\phi - \\cos\\phi \\left[ 3/2 + (\\pi - \\beta)\\cot\\beta \\right] \\right\\} \\tag{6.34}", "hash": "ff268d6a4d0e", "png": "page_0209.png"}
+{"page": 211, "index": 1, "latex": "S_{b,\\max} = \\frac{M_{b,\\max}}{Z} = \\frac{0.239Qr}{t^2/6} = \\frac{0.239Qr}{4t^2} = 0.358\\frac{Q}{t^2}", "hash": "e9c55d7342d4", "png": "page_0211.png"}
+{"page": 211, "index": 2, "latex": "\\frac{k}{M/Qr} = 0.309, \\quad \\text{i.e.,} \\quad k = 0.309 \\frac{M}{Qr} = 0.399 \\frac{0.2317Qr}{Qr} = 0.072", "hash": "e91618ad4ebd", "png": "page_0211.png"}
+{"page": 211, "index": 3, "latex": "S_{b,4} = 0.072 \\frac{Q}{t^2} \\ln\\left(\\frac{r}{t}\\right) \\tag{6.35}", "hash": "1f2e0819abf4", "png": "page_0211.png"}
+{"page": 212, "index": 1, "latex": "S = \\frac{0.239Q}{(b + 1.56\\sqrt{rt})t}", "hash": "4b6360b036f6", "png": "page_0212.png"}
+{"page": 214, "index": 1, "latex": "S_b = \\frac{M}{Z} = \\frac{0.2395F}{\\frac{t^2}{6}} = 0.7171\\frac{F}{t^2}", "hash": "7ea3ea893695", "png": "page_0214.png"}
+{"page": 214, "index": 2, "latex": "f = 1.395S\\frac{F}{b} \\tag{6.37}", "hash": "740741da7473", "png": "page_0214.png"}
+{"page": 215, "index": 1, "latex": "F_{allow} = 28,000\\frac{t^2}{D}  \\quad \\text{(in inch pound units)} \\tag{6.38}", "hash": "823987ca916f", "png": "page_0215.png"}
+{"page": 215, "index": 2, "latex": "L_{Lc} = 1.6181X^{[-2.970-0.0136\\ln(t)+0.8039\\ln T]} \\tag{6.39}", "hash": "006d5a4a4e75", "png": "page_0215.png"}
+{"page": 215, "index": 3, "latex": "L_{Lt} = 49.9374X^{[-2.970-0.0396\\ln(t)+0.1904\\ln T]} \\tag{6.40}", "hash": "5c02bb3ce072", "png": "page_0215.png"}
+{"page": 215, "index": 4, "latex": "S_{allow} = 2S_h - S \\tag{6.41}", "hash": "3225adfb9f4b", "png": "page_0215.png"}
+{"page": 216, "index": 1, "latex": "L_a = K(L_t)S_{allow} \\tag{6.42}", "hash": "1c07c616a1c9", "png": "page_0216.png"}
+{"page": 217, "index": 1, "latex": "F = -\\frac{W_r}{\\ell} + \\frac{6M}{\\ell^2} \\tag{6.43}", "hash": "40af1c862e99", "png": "page_0217.png"}
+{"page": 217, "index": 2, "latex": "W_r = W \\sin \\alpha = 1000 \\sin(50) = 766 \\text{ lb}", "hash": "da6d279bdd03", "png": "page_0217.png"}
+{"page": 217, "index": 3, "latex": "M = We = W\\ell\\cos\\alpha = 1000 \\times 2 \\times \\cos(50) = 1286 \\text{ lb-in.}", "hash": "6ccb31ef1be9", "png": "page_0217.png"}
+{"page": 217, "index": 4, "latex": "F = -\\frac{766}{3} + \\frac{6 \\times 1286}{9}", "hash": "f050a5e58062", "png": "page_0217.png"}
+{"page": 217, "index": 5, "latex": "\\Lambda = D/t^2 = 4.0/0.3^2 = 44.44", "hash": "bf0f7b3f3654", "png": "page_0217.png"}
+{"page": 217, "index": 6, "latex": "L_{C_1} = 0.02255; \\text{ and } L_{C_2} = 0.04052", "hash": "ba11e8c567f1", "png": "page_0217.png"}
+{"page": 217, "index": 7, "latex": "S = \\frac{PD}{2t} - P = \\frac{2000(4)}{2(0.3)} - 2000 = 9.4(2000) = 13,333 - 800 = 12,533 \\text{ psi}", "hash": "34f39bbb7022", "png": "page_0217.png"}
+{"page": 217, "index": 8, "latex": "S_{allow} = 2.0S_o - S = 2.0(15,000) - 12,533 = 17,467 \\text{ psi}", "hash": "c35187cf6201", "png": "page_0217.png"}
+{"page": 218, "index": 1, "latex": "F = \\frac{766}{4.5} \\cdot \\frac{6 \\times 1286}{4.5^2}", "hash": "ebac4ebe3ef8", "png": "page_0218.png"}
+{"page": 218, "index": 2, "latex": "= 211\\ \\text{lb/in. (tension)}", "hash": "ed2c6eea1730", "png": "page_0218.png"}
+{"page": 218, "index": 3, "latex": "= -551\\ \\text{lb/in. (compression)}", "hash": "9d2c90ff9a9a", "png": "page_0218.png"}
+{"page": 218, "index": 4, "latex": "S_{b,c} = \\frac{F_c}{K(L_a)} = \\frac{551}{1.161(0.02255)} = 14,580\\ \\text{psi due to compression load}", "hash": "d02f348dc64e", "png": "page_0218.png"}
+{"page": 218, "index": 5, "latex": "S_{b,t} = \\frac{F_t}{K(L_a)} = \\frac{211}{1.161(0.04852)} = 4485\\ \\text{psi due to tension load}", "hash": "7f45ae49708f", "png": "page_0218.png"}
+{"page": 219, "index": 1, "latex": "S_p = 1.167 \\sqrt{\\frac{R_m}{t^2}} f \\quad \\text{Longitudinal bending stress} \\tag{6.44}", "hash": "f54df11f2423", "png": "page_0219.png"}
+{"page": 219, "index": 2, "latex": "S_c = 0.643 \\sqrt{\\frac{R_m}{t}} f \\quad \\text{Circumferential membrane stress} \\tag{6.45}", "hash": "4f487d9ddd37", "png": "page_0219.png"}
+{"page": 220, "index": 1, "latex": "n_i = \\frac{M}{r^2}", "hash": "eef4d2768934", "png": "page_0220.png"}
+{"page": 220, "index": 2, "latex": "n_f = \\frac{F}{2\\pi r}", "hash": "50fdda533fba", "png": "page_0220.png"}
+{"page": 220, "index": 3, "latex": "f = \\frac{1}{4\\pi r^2} \\sqrt{M_l^2 + (1.5 M_c)^2} + \\frac{1}{2\\pi r} [1.5F]", "hash": "0f7abd415f1f", "png": "page_0220.png"}
+{"page": 221, "index": 1, "latex": "f = \\frac{1}{\\pi(5.375)^2} \\sqrt{12{,}000^2 + (1.5 \\times 8000)^2} + \\frac{1.5}{2\\pi(5.375)} \\cdot 3000 = 320 \\text{ lb/in.} \\ (56.0 \\text{ N/mm})", "hash": "8529f61870c9", "png": "page_0221.png"}
+{"page": 221, "index": 2, "latex": "S_p = \\frac{12 \\times 400}{0.375 - 0.05} = 12{,}973 \\text{ psi} \\ (89.4 \\text{ MPa})", "hash": "c33a74d19ab2", "png": "page_0221.png"}
+{"page": 221, "index": 3, "latex": "S_{cm} = 0.643 \\sqrt{\\frac{12}{(0.375)^{1.5}}} \\cdot 320 = 3847 \\text{ psi} \\ (26.52 \\text{ MPa})", "hash": "d17e613f44e4", "png": "page_0221.png"}
+{"page": 221, "index": 4, "latex": "S_b = 1.167 \\frac{\\sqrt{12}}{(0.375)^{1.5}} \\cdot 320 = 5633 \\text{ psi} \\ (38.84 \\text{ MPa})", "hash": "9409d07b8ed4", "png": "page_0221.png"}
+{"page": 233, "index": 1, "latex": "e_x = q_a - q \\quad \\text{(Negative is compression)} \\tag{7.1}", "hash": "275523f9c762", "png": "page_0233.png"}
+{"page": 234, "index": 1, "latex": "e_q = e_p = e_F = e_M = e_c \\tag{7.2}", "hash": "b55d2057c11a", "png": "page_0234.png"}
+{"page": 234, "index": 2, "latex": "e_\\varphi = \\frac{\\varphi d_e}{2} \\quad \\text{(\\textit{p} is rotation per convolution)} \\tag{7.3}", "hash": "c75780df7f26", "png": "page_0234.png"}
+{"page": 234, "index": 3, "latex": "f_w = \\frac{F}{e_c} \\tag{7.4}", "hash": "e1de620c92f4", "png": "page_0234.png"}
+{"page": 234, "index": 4, "latex": "f_{w_e} = \\frac{f_w}{\\pi d_e} \\tag{7.5}", "hash": "973dfc0b9f1a", "png": "page_0234.png"}
+{"page": 235, "index": 1, "latex": "S_b = e_b \\left(\\frac{f_a}{d_a}\\right) \\frac{1}{t} = \\left(\\frac{e_0 \\phi}{2}\\right) \\left(\\frac{f_a}{d_a}\\right) \\frac{1}{t} = \\frac{f_a e_0}{2d_a t} \\phi \\tag{7.6}", "hash": "775f3f4db398", "png": "page_0235.png"}
+{"page": 235, "index": 2, "latex": "S_b = \\frac{M}{Z} = \\frac{M}{\\pi (d_m)^2 t / 4} \\tag{7.7}", "hash": "19271348c64d", "png": "page_0235.png"}
+{"page": 235, "index": 3, "latex": "M = \\left(\\frac{f_a e_0}{2d_a}\\right) \\frac{\\pi d_m^2}{4} = \\frac{1}{4} f_a e_0 \\phi \\tag{7.8}", "hash": "201a3b5b0feb", "png": "page_0235.png"}
+{"page": 235, "index": 4, "latex": "e_{\\text{com}} = e_b \\pm e_b = \\frac{F}{f_a} \\pm \\left(\\frac{d_m}{2}\\right) \\phi = \\frac{F}{f_a} \\pm \\frac{4M}{f_a e_0} \\tag{7.9}", "hash": "5cbbed848f8f", "png": "page_0235.png"}
+{"page": 235, "index": 5, "latex": "F = f_a e_a = f_a \\frac{x}{N} = (K_a) x \\quad \\text{where } K_a = \\left(\\frac{f_a}{N}\\right) \\tag{7.10}", "hash": "e04ea3efb413", "png": "page_0235.png"}
+{"page": 235, "index": 6, "latex": "M_b = \\frac{1}{4} f_a e_0 \\phi = \\frac{1}{4} \\left(\\frac{f_a}{N}\\right) e_0 \\frac{\\theta}{N} \\cdot N = \\frac{f_a}{4N} K_0 \\theta = (K_{\\theta 0}) \\theta", "hash": "86796885c00a", "png": "page_0235.png"}
+{"page": 235, "index": 7, "latex": "\\text{where } K_{\\theta 0} = \\frac{f_a}{4N} K_0 \\tag{7.11}", "hash": "118d78020359", "png": "page_0235.png"}
+{"page": 236, "index": 1, "latex": "e_y = \\frac{3d_b}{4L_e^2} y \\tag{7.12}", "hash": "f3c9cea3693f", "png": "page_0236.png"}
+{"page": 236, "index": 2, "latex": "M_e = \\frac{f_b d_b q}{4} = \\frac{1}{2} \\left(\\frac{K_x}{L_e}\\right) y = \\frac{3K_x}{4L_e} y = (K_\\theta)_F y \\tag{7.13}", "hash": "a344211542b9", "png": "page_0236.png"}
+{"page": 236, "index": 3, "latex": "\\text{where } K_\\theta = \\frac{3d_b^2}{4L_e} K_x", "hash": "0b50f8c9d01a", "png": "page_0236.png"}
+{"page": 237, "index": 1, "latex": "V = \\frac{f_y d_y}{2L} - \\frac{1}{2}\\left(\\frac{d_y}{L}\\right)\\frac{d_y}{L} \\cdot y + \\frac{3}{2}\\left(\\frac{d_y}{L}\\right)^2 K_{LY} - (K_Y) y", "hash": "7c10d9d72c7f", "png": "page_0237.png"}
+{"page": 237, "index": 2, "latex": "\\text{where } K_Y = \\frac{3}{2}\\left(\\frac{d_y}{L}\\right)^2 K_s \\tag{7.14}", "hash": "06365186a492", "png": "page_0237.png"}
+{"page": 237, "index": 3, "latex": "\\Delta = z \\sin\\theta = R\\tan(\\theta/2)\\sin\\theta = \\frac{L}{\\theta}\\tan(\\theta/2)\\sin\\theta \\approx \\frac{1}{2}L\\theta \\tag{7.15}", "hash": "7df324f9631f", "png": "page_0237.png"}
+{"page": 238, "index": 1, "latex": "V_0 = \\frac{3}{2}\\left(\\frac{d}{L_b}\\right)K_x\\Delta = \\frac{3d}{2L_b}K_x\\Delta = \\frac{3d}{4L_b}K_x\\theta \\tag{7.16}", "hash": "88b730d7cb54", "png": "page_0238.png"}
+{"page": 238, "index": 2, "latex": "M_0 = \\frac{3}{2}\\left(\\frac{d}{4}\\right)K_x\\Delta = \\frac{3d}{8}K_x\\Delta = \\frac{3d^2}{16}K_x\\theta \\tag{7.17}", "hash": "db154693df77", "png": "page_0238.png"}
+{"page": 238, "index": 3, "latex": "M_{0\\,(u)} = \\frac{3d^2}{16}K_x\\theta + \\frac{d^2}{16}K_\\theta\\theta = \\frac{d^2}{4}K_x\\theta \\tag{7.18}", "hash": "2db1651c85ab", "png": "page_0238.png"}
+{"page": 239, "index": 1, "latex": "K_x = \\frac{\\lambda_x}{n}", "hash": "a1c1330f47f4", "png": "page_0239.png"}
+{"page": 239, "index": 2, "latex": "K_\\theta = \\frac{\\pi^2}{4} K_x", "hash": "855a8430030b", "png": "page_0239.png"}
+{"page": 239, "index": 3, "latex": "K_L = \\frac{1}{L} \\left(\\frac{\\pi}{2}\\right)^2 K_x", "hash": "5027571ba085", "png": "page_0239.png"}
+{"page": 239, "index": 4, "latex": "x = Ne_a \\hspace{4cm} \\text{(Axial)} \\hspace{4cm} (7.20)", "hash": "d22b05cd7d51", "png": "page_0239.png"}
+{"page": 239, "index": 5, "latex": "\\theta = N\\phi = N\\frac{2}{\\pi}\\frac{e_a}{r_2} = N\\frac{2}{\\pi}\\frac{e_a}{r_2} \\hspace{1cm} \\text{(Rotation, } e_2 \\leq e_a\\text{)} \\hspace{1cm} (7.21)", "hash": "48ef7bbcad46", "png": "page_0239.png"}
+{"page": 239, "index": 6, "latex": "y = \\frac{L}{2}\\cdot N\\frac{2}{\\pi}\\frac{e_a}{r_2} \\hspace{2cm} \\text{(Lateral, } e_2 \\leq e_a\\text{)} \\hspace{2cm} (7.22)", "hash": "c0368a828196", "png": "page_0239.png"}
+{"page": 240, "index": 1, "latex": "\\text{The adjusted rating} = \\text{Catalog rating} \\times \\frac{\\text{Allowable stress at higher temperature}}{\\text{Allowable stress at benchmark temperature}}", "hash": "ae60ccc0f922", "png": "page_0240.png"}
+{"page": 241, "index": 1, "latex": "\\text{Usage factor} = \\frac{x}{x_a} + \\frac{y}{y_a} + \\frac{\\theta}{\\theta_a} \\leq 1.0 \\tag{7.21}", "hash": "ee022d909010", "png": "page_0241.png"}
+{"page": 241, "index": 2, "latex": "N = \\sum_i (r_i^n N_i) \\quad \\text{for } i = 1, \\ldots, n \\tag{7.24}", "hash": "a08a6448ce53", "png": "page_0241.png"}
+{"page": 243, "index": 1, "latex": "S_s = \\frac{2M_t}{d^2 t \\pi} \\leq 0.25 S_t \\tag{7.23}", "hash": "f43e5669a330", "png": "page_0243.png"}
+{"page": 246, "index": 1, "latex": "F_a = p_a + F_f + F_m + K_b x \\tag{7.26}", "hash": "c6c66fd87dd0", "png": "page_0246.png"}
+{"page": 246, "index": 2, "latex": "\\ell_{MAX} = 0.131 \\sqrt{\\frac{\\pi r}{p_a - K_b x}} \\tag{7.27}", "hash": "21e0dfc42716", "png": "page_0246.png"}
+{"page": 247, "index": 1, "latex": "C = \\text{Uncertainty Factor} = 0.1 \\sim 0.2", "hash": "64ceaaebf681", "png": "page_0247.png"}
+{"page": 247, "index": 2, "latex": "K = \\text{Differential Bellow Force}", "hash": "5649f012296a", "png": "page_0247.png"}
+{"page": 247, "index": 3, "latex": "F = Cpa_1 + K", "hash": "22dbb8bb75a1", "png": "page_0247.png"}
+{"page": 247, "index": 4, "latex": "F = (pa_1 - pa_2) + Cpa_2 + K", "hash": "90138fba1388", "png": "page_0247.png"}
+{"page": 247, "index": 5, "latex": "F = pa_1 + K", "hash": "686606261dc8", "png": "page_0247.png"}
+{"page": 252, "index": 1, "latex": "M = K_\\theta \\theta = K_\\theta \\frac{\\Delta}{L} \\tag{7.28}", "hash": "2ab97da6a63f", "png": "page_0252.png"}
+{"page": 252, "index": 2, "latex": "F = \\frac{2M}{L} = \\frac{2K_\\theta \\Delta}{L^2} \\tag{7.29}", "hash": "4bd9db44cf19", "png": "page_0252.png"}
+{"page": 252, "index": 3, "latex": "K_L = \\frac{2K_\\theta}{L^2} \\tag{7.30}", "hash": "694cf74ade89", "png": "page_0252.png"}
+{"page": 256, "index": 1, "latex": "\\theta = \\sqrt{(\\tau_{xa} - \\tau_{xb})^2 + (\\tau_{ya} - \\tau_{yb})^2 + (\\tau_{za} - \\tau_{zb})^2}", "hash": "4c19e1cc5cc4", "png": "page_0256.png"}
+{"page": 256, "index": 2, "latex": "K_\\theta = M_b/\\theta", "hash": "0b1948b1e16e", "png": "page_0256.png"}
+{"page": 256, "index": 3, "latex": "\\text{FRX} = K_\\theta; \\quad \\text{FRY} = K_\\theta; \\quad \\text{FRZ} = K_\\theta", "hash": "8649276fb05b", "png": "page_0256.png"}
+{"page": 259, "index": 1, "latex": "2l = 2R\\theta = 2R\\cos^{-1}\\left(\\frac{R - \\Delta/2}{R}\\right) = 2R\\cos^{-1}\\left(1 - \\frac{\\Delta}{2R}\\right) \\tag{7.31}", "hash": "e580218980ab", "png": "page_0259.png"}
+{"page": 259, "index": 2, "latex": "L = 2A + 2D = 2l + 2A + 2d - 2R\\cos^{-1}\\left(1 - \\frac{\\Delta}{2R}\\right) \\tag{7.32}", "hash": "07aa6e6e78ae", "png": "page_0259.png"}
+{"page": 261, "index": 1, "latex": "L = a(k + W/2) + H + 2A + 2D \\tag{7.33}", "hash": "25a61b9c2c76", "png": "page_0261.png"}
+{"page": 269, "index": 1, "latex": "H_D = \\frac{\\pi B^2}{4} P_i \\quad \\text{Pressure end force from pipe (operating condition)}", "hash": "efb9c809460e", "png": "page_0269.png"}
+{"page": 269, "index": 2, "latex": "H_T = \\frac{\\pi (G^2 - B^2)}{4} P_i \\quad \\text{Pressure force at flange face (operating condition)}", "hash": "aa0128ecb0c1", "png": "page_0269.png"}
+{"page": 269, "index": 3, "latex": "H_{G,S} = b \\pi G_c \\quad \\text{Gasket force for sealing (sealing condition)}", "hash": "3e029ed23f81", "png": "page_0269.png"}
+{"page": 269, "index": 4, "latex": "H_{G,O} = m(2b) \\pi G \\cdot P_i \\quad \\text{Gasket force for sealing (operating condition)}", "hash": "651153903ab0", "png": "page_0269.png"}
+{"page": 270, "index": 1, "latex": "h_D = R + g_1/2", "hash": "2cb0cd9d23ae", "png": "page_0270.png"}
+{"page": 270, "index": 2, "latex": "h_G = (C - G)/2", "hash": "cc2e54b51c63", "png": "page_0270.png"}
+{"page": 270, "index": 3, "latex": "h_T = (h_D + h_G - B)/4", "hash": "b7cc6bef67dd", "png": "page_0270.png"}
+{"page": 270, "index": 4, "latex": "M_O = H_D h_D + H_T h_T + H_G h_G \\quad \\text{Operating condition}", "hash": "2dc412f2946d", "png": "page_0270.png"}
+{"page": 270, "index": 5, "latex": "M_O = (H_G)_2 + (h_G)h_G \\quad \\text{Seating condition}", "hash": "648cb105657e", "png": "page_0270.png"}
+{"page": 270, "index": 6, "latex": "M_L = \\frac{1}{2}(S_b A_b - P A_g)", "hash": "6d681656b1f4", "png": "page_0270.png"}
+{"page": 271, "index": 1, "latex": "S_P + S_M = S_0", "hash": "539de51cdf36", "png": "page_0271.png"}
+{"page": 271, "index": 2, "latex": "\\frac{F}{\\pi Gb} + \\frac{M}{\\pi G^2 b/4} = \\frac{\\pi G^2 P_e A}{4 \\pi Gb}", "hash": "d7fd761f75b5", "png": "page_0271.png"}
+{"page": 272, "index": 1, "latex": "P_t = P_d + P_e \\tag{8.6}", "hash": "3332b875051f", "png": "page_0272.png"}
+{"page": 275, "index": 1, "latex": "M_b \\leq \\frac{A_b S_b C}{n} \\tag{8.7}", "hash": "f1c59822f0fa", "png": "page_0275.png"}
+{"page": 275, "index": 2, "latex": "M_b \\leq \\frac{S_{bm}}{S_{by}} A_b S_{by} \\frac{A_{by}}{n} \\tag{8.8}", "hash": "8ed843c13355", "png": "page_0275.png"}
+{"page": 280, "index": 1, "latex": "y = \\delta_0 = 0.643 \\left(\\frac{R}{T}\\right)^{3/2} \\frac{f}{E}", "hash": "7f1571f881a8", "png": "page_0280.png"}
+{"page": 280, "index": 2, "latex": "f = \\frac{M}{\\pi r^2}", "hash": "b481b4097eea", "png": "page_0280.png"}
+{"page": 280, "index": 3, "latex": "\\theta = \\frac{y}{s} = \\frac{0.643}{s} \\left(\\frac{R}{T}\\right)^{3/2} \\frac{1}{E} \\cdot \\frac{M}{\\pi r^2} = \\frac{0.2047M}{Er^2} \\left(\\frac{R}{T}\\right)^{3/2} \\frac{1}{T}", "hash": "139ac8c243c3", "png": "page_0280.png"}
+{"page": 280, "index": 4, "latex": "K_\\theta = \\frac{\\theta}{M} = \\frac{Er^2}{0.2047} \\left(\\frac{T}{R}\\right)^{3/2} \\frac{1}{T}", "hash": "6a84d9a2ae42", "png": "page_0280.png"}
+{"page": 281, "index": 1, "latex": "\\theta = k \\left(\\frac{Md}{EI_b}\\right) \\tag{8.13}", "hash": "3543304910a7", "png": "page_0281.png"}
+{"page": 281, "index": 2, "latex": "k = 0.1 \\left(\\frac{D}{T}\\right)^{1.5} \\sqrt{(T/t)} (d/D) \\left(\\frac{t}{r}\\right) \\quad \\text{for circumferential bending} \\tag{8.14}", "hash": "0eabc7aad9e9", "png": "page_0281.png"}
+{"page": 281, "index": 3, "latex": "k = 0.2 \\left(\\frac{D}{T}\\right)^{1.5} \\sqrt{(T/t)} (d/D) \\left(\\frac{t}{r}\\right) \\quad \\text{for longitudinal bending} \\tag{8.15}", "hash": "e5fb8a9d3872", "png": "page_0281.png"}
+{"page": 281, "index": 4, "latex": "\\text{Spring constant, } K_\\theta = \\frac{M}{\\theta} = \\frac{1}{k} \\left(\\frac{EI_b}{d}\\right) \\tag{8.16}", "hash": "494261cab2a5", "png": "page_0281.png"}
+{"page": 282, "index": 1, "latex": "\\frac{y}{F}ER = A_m \\left(\\frac{R}{T}\\right)^m, \\quad \\text{where } A_m = f(\\alpha, \\beta); \\quad m = f(\\beta)", "hash": "362937671452", "png": "page_0282.png"}
+{"page": 282, "index": 2, "latex": "\\frac{y}{F}ER = A_0 \\left(\\frac{R}{T}\\right)^{2.21} \\quad \\text{for } \\beta = 0 \\text{ (Point Load)} \\tag{8.17}", "hash": "63d7feae6ea4", "png": "page_0282.png"}
+{"page": 282, "index": 3, "latex": "\\frac{y}{F}ER = A_{1/8} \\left(\\frac{R}{T}\\right)^{2.21} \\quad \\text{for } \\beta = 1/8 \\tag{8.18}", "hash": "0eb5f4a8a2a7", "png": "page_0282.png"}
+{"page": 282, "index": 4, "latex": "\\frac{y}{F}ER = A_{1/4} \\left(\\frac{R}{T}\\right)^{2.10} \\quad \\text{for } \\beta = 1/4 \\tag{8.19}", "hash": "2d972ef2cec5", "png": "page_0282.png"}
+{"page": 283, "index": 1, "latex": "\\frac{y \\cdot ET^2}{F \\cdot R}", "hash": "d3347577f678", "png": "page_0283.png"}
+{"page": 283, "index": 2, "latex": "u = 1.82r/\\sqrt{RT}", "hash": "98dee267ebba", "png": "page_0283.png"}
+{"page": 283, "index": 3, "latex": "\\frac{y_r \\cdot ET^2}{M \\cdot \\sqrt{R/T}}", "hash": "229da6638a2e", "png": "page_0283.png"}
+{"page": 283, "index": 4, "latex": "u = 1.82r/\\sqrt{RT}", "hash": "98dee267ebba", "png": "page_0283.png"}
+{"page": 284, "index": 1, "latex": "k_{RX} = k_{RZ} = \\frac{M}{\\phi} = \\frac{M}{\\phi_r} = \\frac{M}{r_o} = \\frac{ET^3}{/RT} / \\left[\\frac{t}{M/RT}\\right]^2 \\tag{8.20}", "hash": "1369aa8e567c", "png": "page_0284.png"}
+{"page": 284, "index": 2, "latex": "\\gamma = \\gamma_0 + (\\gamma_0 - \\gamma_{00}) \\frac{s}{s + s_0} \\tag{8.21}", "hash": "d3e027e48ae2", "png": "page_0284.png"}
+{"page": 291, "index": 1, "latex": "\\Delta y = R\\alpha(T_2 - T_1) \\tag{8.22}", "hash": "76771aff0e50", "png": "page_0291.png"}
+{"page": 291, "index": 2, "latex": "\\Delta p = \\frac{\\nu P}{E} R = \\frac{P}{2E\\mu} R^2 \\tag{8.23}", "hash": "5f1ef55a45a8", "png": "page_0291.png"}
+{"page": 292, "index": 1, "latex": "\\Delta = \\Delta_p + (1 - \\beta)\\delta_T \\tag{8.24}", "hash": "9f5a83bad4f9", "png": "page_0292.png"}
+{"page": 292, "index": 2, "latex": "w = \\Delta[1 - f(\\beta L)] + \\beta \\delta_T = [\\Delta_p + (1 - \\beta)\\delta_T][1 - e^{-\\beta L}\\cos\\beta L] + \\beta \\delta_T \\tag{8.25}", "hash": "360aa534f055", "png": "page_0292.png"}
+{"page": 292, "index": 3, "latex": "\\theta = \\Delta f_2(\\beta L) = [\\Delta_p + (1 - \\beta)\\delta_T]e^{-\\beta L}(\\cos\\beta L + \\sin\\beta L) \\tag{8.26}", "hash": "f39dee4e2fad", "png": "page_0292.png"}
+{"page": 292, "index": 4, "latex": "w_i = -\\frac{5}{8}h_i \\frac{L}{H}, \\quad \\theta_i = \\frac{3\\delta_T}{H} \\tag{8.27}", "hash": "8cf8ef3c4b18", "png": "page_0292.png"}
+{"page": 293, "index": 1, "latex": "\\begin{bmatrix} w_R \\\\ \\theta_c \\end{bmatrix} = \\begin{bmatrix} 1/K_R & -L/K_c \\\\ -1/LK_R & 1/K_c \\end{bmatrix} \\begin{bmatrix} + & F_R \\\\ + & M_c \\end{bmatrix} \\tag{8.28}", "hash": "fedd0a7e81f6", "png": "page_0293.png"}
+{"page": 293, "index": 2, "latex": "\\frac{L}{K_c} = \\frac{1}{LK_R} \\quad \\text{or} \\quad K_R = \\frac{K_c}{L^2} \\tag{8.29}", "hash": "f1a7494083f6", "png": "page_0293.png"}
+{"page": 296, "index": 1, "latex": "\\frac{\\lambda}{2Y_b\\left(\\frac{F_p}{p}\\right)}, \\quad \\frac{\\lambda}{aK_c\\left(\\frac{M_c}{F_p}\\right)}, \\quad \\text{and} \\quad \\frac{\\lambda}{aK_c\\left(\\frac{M_c}{F_p}\\right)}", "hash": "bc4115cb57f9", "png": "page_0296.png"}
+{"page": 296, "index": 2, "latex": "\\frac{\\lambda}{aK_c\\left(\\frac{M_c}{F_p}\\right)} \\cdot \\frac{a\\sqrt{Rt}}{a} \\cdot \\frac{M_c}{Y_c} \\cdot \\frac{1}{1} = 1.0 = \\frac{S_{Mc}}{1.1S_c} = \\frac{S_{Mc}}{1.1pRt}", "hash": "eb8cce355442", "png": "page_0296.png"}
+{"page": 296, "index": 3, "latex": "S_{Mc} = \\left(\\frac{1.1}{Y_c}\\right) \\frac{\\sqrt{R}}{t^{3/2}} \\left(\\frac{M_c}{2\\pi p}\\right)", "hash": "42542d0139f7", "png": "page_0296.png"}
+{"page": 296, "index": 4, "latex": "S_{MC} = \\left(\\frac{1.1}{Y_C}\\right) \\frac{\\sqrt{R}}{t^{3/2}} \\left(\\frac{M_C}{2\\pi p}\\right)", "hash": "e3c7f369184e", "png": "page_0296.png"}
+{"page": 296, "index": 5, "latex": "S_p = \\left(\\frac{1.1}{Y_b}\\right) \\frac{\\sqrt{R}}{t^{3/2}} \\left(\\frac{F_b}{2\\pi a}\\right)", "hash": "acce2c9b2ced", "png": "page_0296.png"}
+{"page": 298, "index": 1, "latex": "S_{hp} = S_h[1 - f_c(\\beta s)[1 + S_p][1 - e^{-\\pi \\cos \\beta s}]", "hash": "6b8d169317a9", "png": "page_0298.png"}
+{"page": 298, "index": 2, "latex": "S_{allow} = 1.1S_c - S_{hp} = \\left[1.0 - 0.9[1.0 - e^{-\\pi \\cos \\beta s}]\\right](1.1S_c)", "hash": "a4226ed1c1a5", "png": "page_0298.png"}
+{"page": 298, "index": 3, "latex": "S_{allow} = 0.09 + 0.91e^{-\\pi \\cos \\beta s} \\quad \\text{(based on } 1.1S_c = 1.0\\text{)}", "hash": "0c612fbb88c0", "png": "page_0298.png"}
+{"page": 298, "index": 4, "latex": "S_{hp} = S_h \\frac{\\beta s}{\\pi/2} = S_h \\frac{2\\beta s}{\\pi} = S_h \\frac{2}{\\pi} \\cdot 0.818 \\frac{s}{\\sqrt{Rt}} S_h", "hash": "a6afff975ada", "png": "page_0298.png"}
+{"page": 298, "index": 5, "latex": "S_{allow} = 1.1S_c - S_{hp} = \\left[1.0 - \\frac{2}{1} \\cdot 0.818 \\frac{s}{\\sqrt{Rt}}\\right](1.1S_c)", "hash": "04ec02cfd955", "png": "page_0298.png"}
+{"page": 298, "index": 6, "latex": "S_{allow} = 1.0 - 0.744 \\frac{s}{\\sqrt{Rt}} \\quad \\text{(based on } 1.1S_c = 1.0\\text{)}", "hash": "b5bad9db1334", "png": "page_0298.png"}
+{"page": 300, "index": 1, "latex": "S_p = \\frac{\\lambda}{2B} \\left(\\frac{f_b}{f_p}\\right), \\quad S_{Mc} = \\frac{\\lambda}{4A} \\left(\\frac{M_c}{f_p}\\right), \\quad S_{Mc'} = \\frac{\\lambda}{4A} \\left(\\frac{M_c}{f_p}\\right)", "hash": "c22832a7c83e", "png": "page_0300.png"}
+{"page": 300, "index": 2, "latex": "S_{N} = 0.75 \\frac{F_a}{f_p}, \\quad S_B = 0.75 \\frac{F_b}{f_p}, \\quad S_{Mc} = 0.75 \\frac{M_c}{f_p} \\quad (\\text{max } S_P = 0.9)", "hash": "6504fc8f0e23", "png": "page_0300.png"}
+{"page": 308, "index": 1, "latex": "F_x = \\sum f_{xi}, \\quad F_y = \\sum f_{yi}, \\quad F_z = \\sum f_{zi}", "hash": "53e457402c41", "png": "page_0308.png"}
+{"page": 308, "index": 2, "latex": "M_x = \\sum (m_{xi} + f_{zi} \\cdot \\Delta y_i - f_{yi} \\cdot \\Delta z_i)", "hash": "525dc70f22f9", "png": "page_0308.png"}
+{"page": 308, "index": 3, "latex": "M_y = \\sum (m_{yi} + f_{xi} \\cdot \\Delta z_i - f_{zi} \\cdot \\Delta x_i)", "hash": "56f482b63e2c", "png": "page_0308.png"}
+{"page": 308, "index": 4, "latex": "M_z = \\sum (m_{zi} + f_{yi} \\cdot \\Delta x_i - f_{xi} \\cdot \\Delta y_i)", "hash": "97a21da3c1a1", "png": "page_0308.png"}
+{"page": 309, "index": 1, "latex": "F_{x0} = \\sum_{i=1}^{n} F_{xi}, \\quad F_{y0} = \\sum_{i=1}^{n} F_{yi}, \\quad F_{z0} = \\sum_{i=1}^{n} F_{zi}", "hash": "ad139a0dffd5", "png": "page_0309.png"}
+{"page": 309, "index": 2, "latex": "M_{x0} = \\sum_{i=1}^{n} (M_{xi} - F_{yi}z_i + F_{zi}y_i) \\qquad i = 1,\\ldots,n \\text{ is the nozzle number}", "hash": "91eba77b5304", "png": "page_0309.png"}
+{"page": 309, "index": 3, "latex": "M_{y0} = \\sum_{i=1}^{n} (M_{yi} - F_{zi}x_i + F_{xi}z_i) \\qquad \\text{0 is the resolving point} \\tag{9.2}", "hash": "316251b940e6", "png": "page_0309.png"}
+{"page": 309, "index": 4, "latex": "M_{z0} = \\sum_{i=1}^{n} (M_{zi} - F_{xi}y_i + F_{yi}x_i)", "hash": "3541a53feaa7", "png": "page_0309.png"}
+{"page": 316, "index": 1, "latex": "3F_R + M_R \\leq 500D_e \\quad \\text{(Inconsistent units)} \\tag{9.3}", "hash": "6f5907195bbf", "png": "page_0316.png"}
+{"page": 316, "index": 2, "latex": "F_R = \\sqrt{F_x^2 + F_y^2 + F_z^2} = \\text{resultant force (lb)}", "hash": "bdc2969f6956", "png": "page_0316.png"}
+{"page": 316, "index": 3, "latex": "M_R = \\sqrt{M_x^2 + M_y^2 + M_z^2} = \\text{resultant moment (lb-ft)}", "hash": "db380668cce2", "png": "page_0316.png"}
+{"page": 317, "index": 1, "latex": "36F_b + M_c \\le 6000D_e \\quad \\text{(Inconsistent units)} \\tag{9.3a}", "hash": "44a4e8c6a2b9", "png": "page_0317.png"}
+{"page": 317, "index": 2, "latex": "2F_c + M_c \\le 250D_e \\quad \\text{(Inconsistent unit)} \\tag{9.4}", "hash": "bfe6b1f743e8", "png": "page_0317.png"}
+{"page": 317, "index": 3, "latex": "F_C = \\sqrt{F_x^2 + F_y^2 + F_z^2}", "hash": "3de626be590f", "png": "page_0317.png"}
+{"page": 317, "index": 4, "latex": "M_c = \\sqrt{M_{cx}^2 + M_{cy}^2 + M_{cz}^2}", "hash": "c48808f4aeb7", "png": "page_0317.png"}
+{"page": 317, "index": 5, "latex": "D_{eq} = \\sqrt{\\sum D_i^2}", "hash": "132107430e8b", "png": "page_0317.png"}
+{"page": 317, "index": 6, "latex": "F_{cx} = 50D_e, \\quad M_{cx} = 250D_e \\quad \\text{(Inconsistent unit)}", "hash": "cfccbd151f36", "png": "page_0317.png"}
+{"page": 317, "index": 7, "latex": "F_{cy} = 125D_e, \\quad M_{cy} = 125D_e \\tag{9.5}", "hash": "bb785f0d3c10", "png": "page_0317.png"}
+{"page": 317, "index": 8, "latex": "F_{cz} = 100D_e, \\quad M_{cz} = 125D_e", "hash": "6d4547cca23c", "png": "page_0317.png"}
+{"page": 326, "index": 1, "latex": "\\frac{F_{RA}}{1.5F_R} + \\frac{M_{RA}}{1.5M_R} \\leq 2, \\quad \\text{for each section and discharge nozzle} \\tag{9.6}", "hash": "3fbc956381eb", "png": "page_0326.png"}
+{"page": 326, "index": 2, "latex": "F_{RCA} < 1.5(F_{R,S} + F_{R,D})", "hash": "7fca1acd233c", "png": "page_0326.png"}
+{"page": 326, "index": 3, "latex": "M_{RCA} < 2.0(M_{R,S} + M_{R,D}) \\tag{9.7}", "hash": "d250b8d5d2e9", "png": "page_0326.png"}
+{"page": 326, "index": 4, "latex": "M_{ZCA} < 1.5(M_{Z,S} + M_{Z,D})", "hash": "fd28fb03a110", "png": "page_0326.png"}
+{"page": 334, "index": 1, "latex": "f_n = \\frac{nN}{60}, \\quad n = 1, 2, 3, \\ldots \\quad \\text{for reciprocating compressors} \\tag{9.8}", "hash": "34ef9d91dd5e", "png": "page_0334.png"}
+{"page": 334, "index": 2, "latex": "f_n = \\frac{nmN}{60}, \\quad n = 1, 2, 3, \\ldots \\quad \\text{for reciprocating pumps} \\tag{9.9}", "hash": "1ab1dd1c95b7", "png": "page_0334.png"}
+{"page": 335, "index": 1, "latex": "\\Delta P = \\rho a \\Delta v = \\rho a \\frac{\\Delta Q}{A} \\tag{9.10}", "hash": "47e2da383e56", "png": "page_0335.png"}
+{"page": 336, "index": 1, "latex": "\\sum \\Delta P = \\frac{P_{p0}}{2} \\cdot \\frac{L}{a} \\Delta Q \\tag{9.11}", "hash": "f6e5bdbf4c81", "png": "page_0336.png"}
+{"page": 336, "index": 2, "latex": "P_{p0} = \\frac{P_{p0}}{Q_t} Q_t \\tag{9.12}", "hash": "2ec1b3f7cfd8", "png": "page_0336.png"}
+{"page": 351, "index": 1, "latex": "S = 0.72E_f(\\text{SMYS}) \\tag{10.1}", "hash": "3513eb5e4d3f", "png": "page_0351.png"}
+{"page": 351, "index": 2, "latex": "t_n = \\frac{PD}{2S} + A \\tag{10.2a}", "hash": "0c38f43bb40b", "png": "page_0351.png"}
+{"page": 352, "index": 1, "latex": "S_{HP} = \\frac{PD}{2(t_n - A)} \\leq 1.0S", "hash": "d027c68ea15b", "png": "page_0352.png"}
+{"page": 352, "index": 2, "latex": "S_E = S_{EC} - E\\alpha(T_2 - T_1)", "hash": "816bccc6da4c", "png": "page_0352.png"}
+{"page": 352, "index": 3, "latex": "S_E = \\text{greater of } |S_E| \\text{ or } |S_E - S_{EC}|", "hash": "d36f4fa300f2", "png": "page_0352.png"}
+{"page": 352, "index": 4, "latex": "S_E \\leq 0.9(SMYS)", "hash": "3633aecf8adc", "png": "page_0352.png"}
+{"page": 352, "index": 5, "latex": "S_E \\leq 0.7 \\text{ (SMYS)}", "hash": "6a2d80101e23", "png": "page_0352.png"}
+{"page": 352, "index": 6, "latex": "S_L = \\frac{S_{HP}}{2} + S_b \\leq 0.832(SMYS)", "hash": "8bc21d0f1496", "png": "page_0352.png"}
+{"page": 352, "index": 7, "latex": "S_h + S_{hc} + S_{hG} \\leq 1.0S", "hash": "78309cfb605f", "png": "page_0352.png"}
+{"page": 352, "index": 8, "latex": "S_{OCC} = \\frac{S_{HP}}{2} + S_L + S_E + \\text{greater of } (S_W \\text{ or } S_Q) \\leq 0.8(SMYS)", "hash": "1f69983d1f64", "png": "page_0352.png"}
+{"page": 353, "index": 1, "latex": "S = F\\!E\\!T(SMY\\!S) \\tag{10.8}", "hash": "6954b1666170", "png": "page_0353.png"}
+{"page": 354, "index": 1, "latex": "S_{HP} = \\frac{FD}{2t_n} \\le 1.6S", "hash": "cd6f84cd25c0", "png": "page_0354.png"}
+{"page": 354, "index": 2, "latex": "S_E \\le 0.72 \\text{ (SMYS)}", "hash": "d268704c4377", "png": "page_0354.png"}
+{"page": 355, "index": 1, "latex": "S_{OCC} = \\frac{P_i}{2t} + S_{LI} + S_{LT} + \\text{greater of } (S_{IW} \\text{ or } S_{IG}) \\leq 0.75(\\text{SMYS})", "hash": "578cc56dd3fa", "png": "page_0355.png"}
+{"page": 355, "index": 2, "latex": "S_{TII} = S_I + S_{OCC} \\leq 1.0(\\text{SMYS})", "hash": "e84ae3791a93", "png": "page_0355.png"}
+{"page": 355, "index": 3, "latex": "e_t = \\frac{S_{PL}}{E}(0.5 - v)", "hash": "f46b57c19d9f", "png": "page_0355.png"}
+{"page": 355, "index": 4, "latex": "r = e_T + e_t = \\alpha(T_2 - T_1) + (0.5 - v)\\frac{S_{PL}}{E}", "hash": "fda563faa7bb", "png": "page_0355.png"}
+{"page": 356, "index": 1, "latex": "F = AS = AE\\alpha = A[E\\alpha(T_2 - T_1) + (0.5 - \\nu)S_{HP}]", "hash": "7361793c7dfd", "png": "page_0356.png"}
+{"page": 356, "index": 2, "latex": "L = \\frac{F}{f}", "hash": "1e36af3076d8", "png": "page_0356.png"}
+{"page": 356, "index": 3, "latex": "\\delta_E = \\frac{L}{2}\\varepsilon_L - \\left(\\frac{1}{2}\\frac{F}{AE}\\right)L = \\frac{FL}{2AE}", "hash": "53e14da832c1", "png": "page_0356.png"}
+{"page": 357, "index": 1, "latex": "e = \\frac{F - Q}{AE}, \\quad L = \\frac{F - Q}{f}", "hash": "8224fd373f00", "png": "page_0357.png"}
+{"page": 357, "index": 2, "latex": "y = \\frac{L}{2}e = \\frac{(F - Q)^2}{2AEf}", "hash": "179daaedb383", "png": "page_0357.png"}
+{"page": 358, "index": 1, "latex": "a = \\alpha(T_2 - T_1) - \\nu \\frac{S_{Hp}}{E} \\quad \\text{for fully restrained} \\tag{10.19}", "hash": "b68f6d10d135", "png": "page_0358.png"}
+{"page": 358, "index": 2, "latex": "S_L = -Ea = \\nu S_{Hp} - E\\alpha(T_2 - T_1) \\quad \\text{for fully restrained} \\tag{10.20}", "hash": "26266e24c5a1", "png": "page_0358.png"}
+{"page": 358, "index": 3, "latex": "S_C = \\text{greater of } (|S_L|; |S_{Hp}|; \\text{ or } |S_{Hp} - S_L|) \\tag{10.21}", "hash": "c7410ad169b6", "png": "page_0358.png"}
+{"page": 359, "index": 1, "latex": "\\int_0^\\theta Rq\\cos\\theta\\, d\\theta - F\\sin\\phi = 0 \\quad \\text{or} \\quad Rq\\left[\\sin\\theta\\right]_0^\\theta - F\\sin\\phi = 0", "hash": "cfd213106a2a", "png": "page_0359.png"}
+{"page": 359, "index": 2, "latex": "R = \\frac{F}{q} \\tag{10.22}", "hash": "ccfb53ef9028", "png": "page_0359.png"}
+{"page": 360, "index": 1, "latex": "f = \\mu n = \\mu w \\cos\\phi", "hash": "7c9d04d69723", "png": "page_0360.png"}
+{"page": 361, "index": 1, "latex": "\\mu w \\cos\\varphi = w \\sin\\varphi, \\quad \\text{or} \\quad \\mu = \\frac{w \\sin\\varphi}{w \\cos\\varphi} = \\tan\\varphi \\tag{10.23}", "hash": "786186c83948", "png": "page_0361.png"}
+{"page": 361, "index": 2, "latex": "s_s = c + s_n \\tan \\varphi \\tag{10.24}", "hash": "c2731dabad64", "png": "page_0361.png"}
+{"page": 361, "index": 3, "latex": "s_s = s_n \\tan \\varphi \\quad \\text{for cohesionless soil} \\tag{10.25}", "hash": "32d3b1479c26", "png": "page_0361.png"}
+{"page": 362, "index": 1, "latex": "f = \\mu(W_c + W_s + W_p) = \\mu(2W_s + W_p) \\tag{10.26}", "hash": "a7f483be3c37", "png": "page_0362.png"}
+{"page": 362, "index": 2, "latex": "W_s = \\rho D H - \\mu k H + H, \\quad \\text{or} \\quad \\frac{W_s}{\\rho D H} = 1 - \\frac{\\mu k H}{\\rho D H} = 1 - \\frac{\\mu k H}{B}", "hash": "c39ab6c0bfc3", "png": "page_0362.png"}
+{"page": 363, "index": 1, "latex": "f = \\mu(2\\rho DH + W_p) \\tag{10.27}", "hash": "3cb85d34c1af", "png": "page_0363.png"}
+{"page": 364, "index": 1, "latex": "n = n_s \\tan\\phi = \\rho H_s \\tan\\phi \\quad \\text{and} \\quad K_a = \\tan^2\\left(45 \\deg - \\frac{\\phi}{2}\\right)", "hash": "1e6a96256ffe", "png": "page_0364.png"}
+{"page": 364, "index": 2, "latex": "S = 2lH + 2\\int_0^H \\rho H_s \\tan\\phi \\, dh - 2lH + 2\\left[\\frac{1}{2}V\\rho K_a \\tan\\phi\\right]_0^H - 2lH\\left[c + \\frac{1}{2}\\rho H K_a \\tan\\phi\\right]", "hash": "71ef12c6c358", "png": "page_0364.png"}
+{"page": 364, "index": 3, "latex": "q_h = \\rho D H + 2lH\\left(c + \\frac{1}{2}\\rho H K_a \\tan\\phi\\right) + W_p", "hash": "2d9ea9fbd9ac", "png": "page_0364.png"}
+{"page": 364, "index": 4, "latex": "q_h = \\frac{1}{2}c(H + D)^2 \\tan^2\\left(45\\deg + \\frac{\\phi}{2}\\right)", "hash": "5569332b0f14", "png": "page_0364.png"}
+{"page": 365, "index": 1, "latex": "k_e = \\frac{f_s}{d_e} \\tag{10.30}", "hash": "f3f316991065", "png": "page_0365.png"}
+{"page": 365, "index": 2, "latex": "k_s = \\frac{q_u}{d_{es}} \\tag{10.31}", "hash": "f0308a882802", "png": "page_0365.png"}
+{"page": 366, "index": 1, "latex": "h = \\frac{PD}{2S} = \\frac{1200 \\times 20}{2 \\times 37,440} = 0.321 \\text{ in.}, \\quad \\text{use } 11/32 = 0.344 \\text{ in.}", "hash": "044550ac8d78", "png": "page_0366.png"}
+{"page": 366, "index": 2, "latex": "S_{HY} = \\frac{PD}{2(t_n - A)} = \\frac{1200 \\times 20}{2(0.344 - 0)} = 34,883 \\text{ psi}", "hash": "43b0f15a518b", "png": "page_0366.png"}
+{"page": 366, "index": 3, "latex": "S_L = \\nu S_{HY} - E\\alpha(T_2 - T_1)", "hash": "90784dac2c34", "png": "page_0366.png"}
+{"page": 366, "index": 4, "latex": "= 0.3 \\times 34,883 - 29.5 \\times 10^6 \\times 6.5 \\times 10^{-6}(170 - 50)", "hash": "01d553ba60fe", "png": "page_0366.png"}
+{"page": 366, "index": 5, "latex": "= -12,545 \\text{ psi}", "hash": "8b3d5f7d6053", "png": "page_0366.png"}
+{"page": 366, "index": 6, "latex": "S_E = |S_L - S_{HY}| = |-12,545 - 34,883| = 47,428 \\text{ psi}, \\quad \\text{for } t_n = 0.344 \\text{ in.}", "hash": "f1a06abf08aa", "png": "page_0366.png"}
+{"page": 367, "index": 1, "latex": "S_L = 0.3 \\times 32,000 - 20.5 \\times 10^6 \\times 6.5 \\times 10^{-6}(170 - 50)", "hash": "5beff61b28b1", "png": "page_0367.png"}
+{"page": 367, "index": 2, "latex": "= -13,410 \\text{ psi}; \\quad t_0 = 0.375 \\text{ in.}", "hash": "a6b86120f9f6", "png": "page_0367.png"}
+{"page": 367, "index": 3, "latex": "S_{Eq} = |-13,410 - 32,000| = 45,410 \\text{ psi}; \\quad t_0 = 0.375 \\text{ in.}", "hash": "3a859837157d", "png": "page_0367.png"}
+{"page": 367, "index": 4, "latex": "F = \\pi D t [E\\alpha(170 - 50) + 0.25q_0]", "hash": "adbf5c7a5de0", "png": "page_0367.png"}
+{"page": 367, "index": 5, "latex": "= 23.56(23.010 + 0.2 \\times 32,000)", "hash": "f80c4b953863", "png": "page_0367.png"}
+{"page": 367, "index": 6, "latex": "= 692,900 \\text{ lb}", "hash": "a8709b5ad17b", "png": "page_0367.png"}
+{"page": 367, "index": 7, "latex": "f = \\mu(2\\gamma DH + W_p) = 0.4\\left(\\frac{133}{12} \\times 48 + 15.475\\right) = 61.7 \\text{ lb/in. pipe}", "hash": "a278b923b312", "png": "page_0367.png"}
+{"page": 368, "index": 1, "latex": "p_8 = \\frac{f^2}{2AEf} = \\frac{692,500^2}{2(20 + 0.375) \\times 29.5 \\times 10^6 \\times 61.7}", "hash": "e0eda25a143c", "png": "page_0368.png"}
+{"page": 368, "index": 2, "latex": "= \\frac{480.1 \\times 10^{11}}{85,772 \\times 10^{9}} = 5.60 \\text{ in.}", "hash": "6a342338ca3d", "png": "page_0368.png"}
+{"page": 368, "index": 3, "latex": "L = \\frac{f}{f_s} = \\frac{692,900}{61.7} = 11,230 \\text{ in.} = 936 \\text{ ft}", "hash": "2526516b631b", "png": "page_0368.png"}
+{"page": 368, "index": 4, "latex": "w_h = \\frac{1}{2}D(H + D) \\tan^2\\left(45 \\text{ deg} + \\frac{\\phi}{2}\\right)", "hash": "53157413cb0e", "png": "page_0368.png"}
+{"page": 368, "index": 5, "latex": "= 0.5 \\frac{125}{12} (48 + 20) \\tan^2\\left(45 \\text{ deg} + \\frac{30 \\text{ deg}}{2}\\right)", "hash": "eb5fd29a1adb", "png": "page_0368.png"}
+{"page": 368, "index": 6, "latex": "= 501.7 \\text{ lb/in. pipe}", "hash": "149f798730ef", "png": "page_0368.png"}
+{"page": 368, "index": 7, "latex": "k_h = \\frac{w_h}{0.015(D + H)} = \\frac{501.7}{0.015(48 + 20)} = 492 \\text{ lb/in./in. pipe}", "hash": "33cb6c6ffa7b", "png": "page_0368.png"}
+{"page": 368, "index": 8, "latex": "R = \\frac{f}{f_s} = \\frac{692,900}{501.7} = 1381 \\text{ in.} = 115 \\text{ ft}", "hash": "550b2cc441f0", "png": "page_0368.png"}
+{"page": 368, "index": 9, "latex": "\\ell \\leq \\frac{1}{6} \\frac{\\pi}{\\beta} = \\frac{\\pi}{6} \\sqrt[4]{\\frac{4EI}{K}}", "hash": "bec66a1b4d11", "png": "page_0368.png"}
+{"page": 368, "index": 10, "latex": "(10.32)", "hash": "f529b91d1f7d", "png": "page_0368.png"}
+{"page": 369, "index": 1, "latex": "\\ell = \\frac{2}{4}\\sqrt[4]{\\frac{4 \\times 285 \\times 10^6 \\times 1110}{492}}", "hash": "97c282980cd0", "png": "page_0369.png"}
+{"page": 369, "index": 2, "latex": "= \\frac{2}{4}\\sqrt[4]{} = 127.7 = 66.88 \\text{ in.}", "hash": "d744bde1ce3b", "png": "page_0369.png"}
+{"page": 377, "index": 1, "latex": "R = \\frac{D}{\\alpha(\\bar{T}_1 - \\bar{T}_2)} \\tag{11.1}", "hash": "379feeddc11c", "png": "page_0377.png"}
+{"page": 378, "index": 1, "latex": "T_i' - T_o' = K(T_i - T_o) \\quad \\text{with the same bowing effect}", "hash": "92cc1cab1eaa", "png": "page_0378.png"}
+{"page": 378, "index": 2, "latex": "R = \\frac{D}{\\alpha K(T_i - T_o)}", "hash": "e156a7f783a9", "png": "page_0378.png"}
+{"page": 378, "index": 3, "latex": "R = \\frac{12.75}{8.16 \\times 10^{-6} \\times 300} = 5208 \\text{ ft.} \\quad (1132 \\text{ m})", "hash": "e84e19f6f4a9", "png": "page_0378.png"}
+{"page": 378, "index": 4, "latex": "\\theta = \\sin^{-1}(40/5208) = 0.046 \\text{ rad} = 2.64 \\text{ deg}", "hash": "707211f192ca", "png": "page_0378.png"}
+{"page": 378, "index": 5, "latex": "y = 5208 - \\sqrt{5208^2 - 240^2} = 5.53 \\text{ in.} \\quad (140 \\text{ mm})", "hash": "1550b960b21e", "png": "page_0378.png"}
+{"page": 378, "index": 6, "latex": "\\text{Force:} \\quad F = \\frac{48EI_y}{L^3} = \\frac{48 \\times 30 \\times 10^6 \\times 279 \\times 5.53}{480^3} = 20,889 \\text{ lb} \\quad (89,360 \\text{ N})", "hash": "09460256bfb5", "png": "page_0378.png"}
+{"page": 379, "index": 1, "latex": "M = \\frac{FL}{4} = \\frac{20,089 \\times 480}{4} = 2,410,680 \\text{ in.-lb}", "hash": "49d0208c2bd5", "png": "page_0379.png"}
+{"page": 379, "index": 2, "latex": "S = \\frac{M}{Z} = \\frac{2,410,680}{2 \\times 279/12.73} = 55,100 \\text{ psi}", "hash": "dc337d20fe62", "png": "page_0379.png"}
+{"page": 379, "index": 3, "latex": "S_t = CE\\alpha(T_1 - T_2) \\tag{11.3}", "hash": "d4b8d1cf7426", "png": "page_0379.png"}
+{"page": 386, "index": 1, "latex": "E_e I_p = E_p I_p + \\sum_i (E_i I_i) \\tag{11.4}", "hash": "7da9fc0b1e53", "png": "page_0386.png"}
+{"page": 386, "index": 2, "latex": "E_i = w^{1.5} \\left(33\\sqrt{f_r}\\right), \\text{ which is in non-consistent units} \\tag{11.5}", "hash": "d8335befd853", "png": "page_0386.png"}
+{"page": 388, "index": 1, "latex": "s_r = s_\\theta = \\frac{1}{2}E\\alpha(T_h - T_c) \\approx 126,000 \\text{ psi} \\quad \\text{Within the cold spot}", "hash": "57a8095202be", "png": "page_0388.png"}
+{"page": 388, "index": 2, "latex": "s_r = s_\\theta = \\frac{1}{2}E\\alpha(T_h - T_c) \\approx 126,000 \\text{ psi} \\quad \\text{Outside the cold spot}", "hash": "9f11842fbfae", "png": "page_0388.png"}
+{"page": 393, "index": 1, "latex": "\\Delta_{st} = \\frac{W}{k} \\tag{12.1}", "hash": "7b2f21e94958", "png": "page_0393.png"}
+{"page": 394, "index": 1, "latex": "W \\cdot \\Delta_1 = \\frac{1}{2} k \\Delta_1 \\cdot \\Delta_1", "hash": "6a47556d6a1c", "png": "page_0394.png"}
+{"page": 394, "index": 2, "latex": "\\Delta_1 = \\frac{2W}{k} = 2\\Delta_{st} \\quad \\text{for suddenly applied load}", "hash": "332e0d8a91b5", "png": "page_0394.png"}
+{"page": 394, "index": 3, "latex": "\\Delta = (\\text{DLF})\\Delta_{st} \\quad \\text{or} \\quad \\text{DLF} = \\frac{\\Delta}{\\Delta_{st}} \\tag{12.2}", "hash": "fa592f11724a", "png": "page_0394.png"}
+{"page": 395, "index": 1, "latex": "W \\cdot (h + \\delta_S) = \\frac{1}{2} k \\delta_S \\cdot \\delta_S \\quad \\text{or} \\quad 2\\lambda_0 h + 2\\lambda_0 \\delta_S = \\delta_S^2", "hash": "ca12cde02ad3", "png": "page_0395.png"}
+{"page": 395, "index": 2, "latex": "\\delta_S = \\frac{2\\delta_{st} + \\sqrt{4\\delta_{st}^2 + 8\\delta_{st}h}}{2} = \\delta_{st}\\left(1 + \\sqrt{1 + \\frac{2h}{\\delta_{st}}}\\right)", "hash": "02abb8d83fa3", "png": "page_0395.png"}
+{"page": 396, "index": 1, "latex": "M\\ddot{y} + c\\dot{y} + ky = F(t) \\tag{12.1}", "hash": "ce363b499e92", "png": "page_0396.png"}
+{"page": 396, "index": 2, "latex": "M\\ddot{y} + ky = 0 \\tag{12.4}", "hash": "6ff27c6268a6", "png": "page_0396.png"}
+{"page": 396, "index": 3, "latex": "\\omega_n = \\omega = \\sqrt{\\frac{k}{M}} \\tag{12.5}", "hash": "e77748d8dcba", "png": "page_0396.png"}
+{"page": 397, "index": 1, "latex": "y = C_1 \\sin \\omega_n t + C_2 \\cos \\omega_n t \\tag{12.6}", "hash": "db061d556e99", "png": "page_0397.png"}
+{"page": 397, "index": 2, "latex": "y = \\frac{\\dot{y}_0}{\\omega_n} \\sin \\omega_n t + y_0 \\cos \\omega_n t \\tag{12.7}", "hash": "6127a5eb03c8", "png": "page_0397.png"}
+{"page": 397, "index": 3, "latex": "\\text{Natural period} = T = \\frac{2\\pi}{\\omega_n} = 2\\pi \\sqrt{\\frac{M}{K}} \\tag{12.8}", "hash": "3d6c76800c37", "png": "page_0397.png"}
+{"page": 397, "index": 4, "latex": "\\text{Natural frequency} = f_n = \\frac{1}{T} = \\frac{1}{2\\pi} \\sqrt{\\frac{K}{M}} \\tag{12.9}", "hash": "67201a03dc4c", "png": "page_0397.png"}
+{"page": 398, "index": 1, "latex": "M\\ddot{y} + ky = F_0 \\tag{12.10}", "hash": "4cfd9dd04a6d", "png": "page_0398.png"}
+{"page": 398, "index": 2, "latex": "y = C_1 \\sin \\omega_n t + C_2 \\cos \\omega_n t + \\frac{F_0}{k} \\tag{12.11}", "hash": "b5ecc99d779b", "png": "page_0398.png"}
+{"page": 398, "index": 3, "latex": "y = \\frac{F_0}{k} \\cos \\omega_n t + \\frac{F_0}{k}(1 - \\cos \\omega_n t) \\tag{12.12}", "hash": "1e0093f3fd72", "png": "page_0398.png"}
+{"page": 398, "index": 4, "latex": "M\\ddot{y} + ky = F_0 \\sin \\omega t \\tag{12.13}", "hash": "9b4332067866", "png": "page_0398.png"}
+{"page": 398, "index": 5, "latex": "A = \\frac{F_0}{k - M\\omega^2} = \\frac{F_0/k}{1 - \\omega^2(M/k)} = \\frac{F_0/k}{1 - (\\omega/\\omega_n)^2}", "hash": "2d085aca0df1", "png": "page_0398.png"}
+{"page": 398, "index": 6, "latex": "y = \\frac{F_0/k}{1 - (\\omega/\\omega_n)^2} \\sin \\omega t \\tag{12.14}", "hash": "2b71e4d14f4f", "png": "page_0398.png"}
+{"page": 399, "index": 1, "latex": "y = \\frac{y_{st}}{1 - (\\omega/\\omega_n)^2} \\sin\\omega t \\tag{12.15}", "hash": "2c97f0f52ca2", "png": "page_0399.png"}
+{"page": 399, "index": 2, "latex": "y = C_1 \\sin \\omega_n t + C_2 \\cos \\omega_n t + \\frac{y_{st}}{1 - (\\omega/\\omega_n)^2} \\sin\\omega t \\tag{12.16}", "hash": "9e6678b17cae", "png": "page_0399.png"}
+{"page": 399, "index": 3, "latex": "C_1 = \\frac{y_{st}}{1 - (\\omega/\\omega_n)^2} \\cdot \\frac{\\omega}{\\omega_n}", "hash": "f7c9082d3985", "png": "page_0399.png"}
+{"page": 399, "index": 4, "latex": "y = \\frac{y_{st}}{1 - (\\omega/\\omega_n)^2} \\left[\\sin\\omega t - \\frac{\\omega}{\\omega_n} \\sin\\omega_n t\\right] \\tag{12.17}", "hash": "bc4ef3b88173", "png": "page_0399.png"}
+{"page": 399, "index": 5, "latex": "\\text{DLF} = \\frac{y}{y_{st}} = \\frac{1}{1 - (\\omega/\\omega_n)^2} \\left[\\sin\\omega t - \\frac{\\omega}{\\omega_n} \\sin\\omega_n t\\right] \\tag{12.18}", "hash": "473c113dd8ed", "png": "page_0399.png"}
+{"page": 399, "index": 6, "latex": "(\\text{DLF})_{\\max} = \\frac{1 + \\omega/\\omega_n}{1 - (\\omega/\\omega_n)^2} = \\frac{2}{1 - \\omega/\\omega_n} \\tag{12.19}", "hash": "1b13568a4759", "png": "page_0399.png"}
+{"page": 399, "index": 7, "latex": "(\\text{DLF})_{\\max} = \\frac{1}{1 - (\\omega/\\omega_n)^2} \\tag{12.20}", "hash": "2f943647efa9", "png": "page_0399.png"}
+{"page": 401, "index": 1, "latex": "DLF = \\frac{F_{max}}{F_0} = 2 \\quad \\text{when } t_d \\geq 0.5T", "hash": "9ab3ccf26903", "png": "page_0401.png"}
+{"page": 401, "index": 2, "latex": "DLF = \\sqrt{(t_d/t_0)^2 + (t_d t_0)^2} \\quad \\text{when } t_d < 0.5T", "hash": "0ccbb25aa933", "png": "page_0401.png"}
+{"page": 402, "index": 1, "latex": "M\\ddot{y} + c\\dot{y} + ky = F(t) \\tag{12.3}", "hash": "5d52b3ec30c2", "png": "page_0402.png"}
+{"page": 402, "index": 2, "latex": "M\\ddot{y} + c\\dot{y} + ky = 0 \\tag{12.21}", "hash": "1c0986e0fc91", "png": "page_0402.png"}
+{"page": 402, "index": 3, "latex": "Ms^2 + cs + k = 0", "hash": "c5ec7387f4da", "png": "page_0402.png"}
+{"page": 402, "index": 4, "latex": "s_i = -\\frac{c}{2M} \\pm \\sqrt{\\left(\\frac{c}{2M}\\right)^2 - \\frac{k}{M}}, \\quad i = 1, 2 \\tag{12.22}", "hash": "be0efc063a23", "png": "page_0402.png"}
+{"page": 402, "index": 5, "latex": "y = C_1 e^{s_1 t} + C_2 e^{s_2 t} \\tag{12.23}", "hash": "0b24df90383b", "png": "page_0402.png"}
+{"page": 402, "index": 6, "latex": "\\left(\\frac{c_c}{2M}\\right)^2 = \\frac{k}{M} \\quad \\text{or} \\quad c_c = 2M\\sqrt{\\frac{k}{M}} = 2\\sqrt{Mk} = 2M\\omega_n \\tag{12.24}", "hash": "ef4aaf526c72", "png": "page_0402.png"}
+{"page": 403, "index": 1, "latex": "y = e^{-\\zeta \\omega_n t}(C_1 \\sin \\omega_d t + C_2 \\cos \\omega_d t) \\tag{12.25}", "hash": "3ca74fa39970", "png": "page_0403.png"}
+{"page": 403, "index": 2, "latex": "c/2M = c/(\\omega_n \\omega_n) = \\frac{c}{k} \\omega_n^2 / \\omega_n = \\zeta \\omega_n", "hash": "839be84b4800", "png": "page_0403.png"}
+{"page": 403, "index": 3, "latex": "\\omega_d = \\sqrt{\\frac{k}{M} - \\left(\\frac{c}{2M}\\right)^2} = \\sqrt{\\omega_n^2 - \\zeta^2 \\omega_n^2} = \\omega_n \\sqrt{1 - \\zeta^2} \\tag{12.26}", "hash": "3712c0e9904e", "png": "page_0403.png"}
+{"page": 403, "index": 4, "latex": "y = e^{-\\zeta \\omega_n t}\\left[\\frac{\\dot{y}_0 + y_0 \\zeta \\omega_n}{\\omega_d} \\sin \\omega_d t + y_0 \\cos \\omega_d t\\right] \\tag{12.27}", "hash": "31975280f9ef", "png": "page_0403.png"}
+{"page": 403, "index": 5, "latex": "y = e^{-\\zeta \\omega_n t}\\left[\\frac{y_0 \\zeta \\omega_n}{\\omega_d} \\sin \\omega_d t + y_0 \\cos \\omega_d t\\right] \\tag{12.28}", "hash": "f0992f8ab252", "png": "page_0403.png"}
+{"page": 403, "index": 6, "latex": "y = y_0 e^{-\\zeta \\omega_n t} \\cos \\omega_d t \\tag{12.29}", "hash": "dc95ff853c00", "png": "page_0403.png"}
+{"page": 404, "index": 1, "latex": "\\frac{y_n}{y_{n+1}} = \\frac{e^{-\\zeta\\omega_n(2n\\pi/\\omega_D)}}{e^{-\\zeta\\omega_n(2(n+1)\\pi/\\omega_D)}} = e^{2\\pi\\zeta\\omega_n/\\omega_D} \\tag{12.30}", "hash": "0cd80b692415", "png": "page_0404.png"}
+{"page": 404, "index": 2, "latex": "\\ln\\left(\\frac{y_n}{y_{n+1}}\\right) = 2\\pi\\zeta\\frac{\\omega_n}{\\omega_D} \\tag{12.31}", "hash": "ee5ea3ccdf47", "png": "page_0404.png"}
+{"page": 404, "index": 3, "latex": "\\ln\\left(\\frac{y_n}{y_{n+1}}\\right) = \\frac{2\\pi\\zeta}{\\sqrt{1-\\zeta^2}} \\tag{12.32}", "hash": "dfbbd829eaa2", "png": "page_0404.png"}
+{"page": 404, "index": 4, "latex": "\\ln\\left(\\frac{y_n}{y_{n+j}}\\right) \\approx 2j\\pi\\zeta \\quad \\text{for low damping systems}", "hash": "dd0898fd1332", "png": "page_0404.png"}
+{"page": 404, "index": 5, "latex": "\\ddot{y} + 2\\zeta\\omega_n\\dot{y} + \\omega_n^2 y = \\frac{F(t)}{M} \\tag{12.33}", "hash": "da4a4f74080e", "png": "page_0404.png"}
+{"page": 405, "index": 1, "latex": "M\\ddot{y} + c\\dot{y} + ky = F_0 \\sin \\omega t \\tag{12.34}", "hash": "f9415303c835", "png": "page_0405.png"}
+{"page": 405, "index": 2, "latex": "y = \\frac{F_0}{k} \\frac{1}{(1-\\beta^2)^2 + (2\\zeta\\beta)^2} \\left[(1-\\beta^2)\\sin\\omega t - 2\\zeta\\beta\\cos\\omega t\\right] \\tag{12.35}", "hash": "ea05a89a1353", "png": "page_0405.png"}
+{"page": 405, "index": 3, "latex": "A \\sin \\omega t + B \\cos \\omega t = \\rho \\sin(\\omega t + \\theta) = \\rho[\\sin \\omega t \\cos \\theta + \\cos \\omega t \\sin \\theta]", "hash": "0de2e55f233b", "png": "page_0405.png"}
+{"page": 405, "index": 4, "latex": "\\rho \\cos \\theta = A, \\quad \\rho \\sin \\theta = B, \\quad \\text{or} \\quad \\rho^2 \\cos^2 \\theta = A^2, \\quad \\rho^2 \\sin^2 \\theta = B^2", "hash": "b4dd976accb7", "png": "page_0405.png"}
+{"page": 405, "index": 5, "latex": "\\rho^2(\\cos^2\\theta + \\sin^2\\theta) = A^2 + B^2, \\quad \\text{and} \\quad \\frac{\\rho^2 \\sin^2\\theta}{\\rho^2 \\cos^2\\theta} = \\tan^2\\theta = \\frac{B^2}{A^2}", "hash": "efd1775d5cca", "png": "page_0405.png"}
+{"page": 405, "index": 6, "latex": "y = \\frac{F_0}{k} \\frac{1}{\\sqrt{(1-\\beta^2)^2 + (2\\zeta\\beta)^2}} \\sin(\\omega t + \\theta) \\tag{12.36}", "hash": "4b5be2b8eb11", "png": "page_0405.png"}
+{"page": 405, "index": 7, "latex": "\\theta = \\tan^{-1}\\left(\\frac{-2\\zeta\\beta}{1-\\beta^2}\\right) \\quad \\text{or} \\quad \\theta = -\\tan^{-1}\\left(\\frac{2\\zeta\\beta}{1-\\beta^2}\\right) \\tag{12.37}", "hash": "a6de0a25db9c", "png": "page_0405.png"}
+{"page": 405, "index": 8, "latex": "(DLF)_{\\max} = \\frac{y_{\\max}}{F_0/k} = \\frac{1}{\\sqrt{(1-\\beta^2)^2 + (2\\zeta\\beta)^2}} \\tag{12.38}", "hash": "054e5a268285", "png": "page_0405.png"}
+{"page": 410, "index": 1, "latex": "\\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2} = R", "hash": "f6075a848a30", "png": "page_0410.png"}
+{"page": 410, "index": 2, "latex": "pv = \\frac{R}{M_w} RT \\tag{12.39}", "hash": "f15c8777240d", "png": "page_0410.png"}
+{"page": 410, "index": 3, "latex": "R = \\frac{R}{M_w} \\tag{12.40}", "hash": "cfc3ec8af037", "png": "page_0410.png"}
+{"page": 410, "index": 4, "latex": "R = 1545.4 \\frac{\\text{ft\u00b7lbf}}{\\text{R(lbm\u00b7mole)}} = (1545.4)(32.2) \\frac{\\text{ft\u00b7lbf}}{\\text{R(slug\u00b7mole)}} \\quad \\text{(English units)}", "hash": "bfa557387b68", "png": "page_0410.png"}
+{"page": 410, "index": 5, "latex": "= 8312 \\frac{\\text{ft\u00b7N}}{\\text{K(kg\u00b7mole)}} \\quad \\text{(S.I. units)}", "hash": "053c647e8059", "png": "page_0410.png"}
+{"page": 410, "index": 6, "latex": "T = 459.67 + \u00b0\\text{F} = \u00b0\\text{R} \\quad \\text{(English units, degree Rankine)}", "hash": "c6aec19e4118", "png": "page_0410.png"}
+{"page": 410, "index": 7, "latex": "T = 273.15 + \u00b0\\text{C} = \u00b0\\text{K} \\quad \\text{(SI units, degree Kelvin)}", "hash": "263ffa9c4e7f", "png": "page_0410.png"}
+{"page": 410, "index": 8, "latex": "a = \\sqrt{\\Delta p / \\Delta \\rho} = \\sqrt{k p v} = \\sqrt{k RT} = \\sqrt{k R T / M_w} \\tag{12.41}", "hash": "37bf1039fe2c", "png": "page_0410.png"}
+{"page": 411, "index": 1, "latex": "k = \\frac{n+2}{n} \\tag{12.42}", "hash": "fddde5eec727", "png": "page_0411.png"}
+{"page": 411, "index": 2, "latex": "a = \\sqrt{1.4(1545/0.03217)(0 + 459.67)(29 + 1128/ft/sec}", "hash": "33df12b27ba8", "png": "page_0411.png"}
+{"page": 411, "index": 3, "latex": "a = \\sqrt{1.4(8312)(21 + 273.15)/29} = 344 \\text{ m/sec}", "hash": "54483d9a9c25", "png": "page_0411.png"}
+{"page": 412, "index": 1, "latex": "a = \\sqrt{\\frac{dp}{d\\rho}} = \\sqrt{\\frac{1}{\\rho}\\left(\\frac{dp}{d\\rho/\\rho}\\right)} = \\sqrt{\\frac{1}{\\rho}\\left(\\frac{1}{-\\frac{1}{V}\\frac{dV}{dp}}\\right)} = \\sqrt{\\frac{1}{\\rho} \\cdot \\frac{1}{(-dV/V)/dp}} = \\sqrt{\\frac{K}{\\rho}}", "hash": "745891a0cf6d", "png": "page_0412.png"}
+{"page": 412, "index": 2, "latex": "a = \\sqrt{\\frac{319,000 \\times 144}{62.4/32.2}} = 4868 \\text{ ft/sec} (1484 \\text{ m/sec})", "hash": "e7235b614ebf", "png": "page_0412.png"}
+{"page": 412, "index": 3, "latex": "\\frac{P^*}{P_0} = \\left(\\frac{2}{k+1}\\right)^{k/(k-1)} = 0.5283, \\quad \\text{for } k = 1.4", "hash": "015092747ce0", "png": "page_0412.png"}
+{"page": 413, "index": 1, "latex": "\\frac{P^*}{P_0} = \\left(\\frac{2}{k+1}\\right)^{k/(k-1)} = 0.8333, \\quad \\text{for } k = 1.4 \\tag{12.45}", "hash": "738fd4f756f2", "png": "page_0413.png"}
+{"page": 413, "index": 2, "latex": "\\left(\\frac{\\dot{m}}{A}\\right) = \\frac{P_0}{\\sqrt{T_0}} \\sqrt{\\frac{Mg}{R} \\cdot \\frac{2k}{k-1} \\left(\\frac{P_b}{P_0}\\right)^{2/k} \\left[1 - \\left(\\frac{P_b}{P_0}\\right)^{(k-1)/k}\\right]} \\tag{12.46}", "hash": "e282fe8869bf", "png": "page_0413.png"}
+{"page": 413, "index": 3, "latex": "\\left(\\frac{\\dot{m}}{A}\\right)_{\\max} = \\frac{P_0}{\\sqrt{T_0}} \\sqrt{\\frac{Mg k}{R} \\left(\\frac{2}{k+1}\\right)^{(k+1)/(k-1)}} = C_D \\sqrt{\\frac{Mg}{R_0}} \\tag{12.47a}", "hash": "603e05ec88d9", "png": "page_0413.png"}
+{"page": 414, "index": 1, "latex": "\\left(\\frac{\\dot{m}}{A}\\right)_{\\max} = \\eta C_h \\sqrt{\\frac{P_0}{v_0}}", "hash": "6ea9bcb1e66e", "png": "page_0414.png"}
+{"page": 414, "index": 2, "latex": "\\left(\\frac{\\dot{m}}{A}\\right)_{\\max} = \\eta C_h \\sqrt{\\frac{P_0}{v_0}}", "hash": "6ea9bcb1e66e", "png": "page_0414.png"}
+{"page": 414, "index": 3, "latex": "\\frac{J_A}{\\dot{m}} = \\frac{115,920}{(3545.4 \\times 32.2)} = 520 \\quad \\text{(for U.S. conventional units)}", "hash": "0f41083a7e89", "png": "page_0414.png"}
+{"page": 414, "index": 4, "latex": "\\left(\\frac{\\dot{m}}{A}\\right)_{\\max} = K_0 P_1 \\quad \\text{(Napier's law)}", "hash": "b77c4e6ea3aa", "png": "page_0414.png"}
+{"page": 416, "index": 1, "latex": "Mk\\ddot{x} = \\frac{d}{dt} \\int_{\\text{leg}} v_o \\rho dv + Cx + Kx = 0", "hash": "5c505887e5ec", "png": "page_0416.png"}
+{"page": 417, "index": 1, "latex": "F_{E_s} = p_2 A + \\rho_2 V_2^2 A - p_3 A - \\rho_3 V_3^2 A - \\tau L \\qquad (12.50)", "hash": "6a6d7c8535c2", "png": "page_0417.png"}
+{"page": 417, "index": 2, "latex": "F_1 = \\dot{m}V_e + (p_e - p_a)A_e = \\rho_e V_e^2 A_e + (p_e - p_a)A_e \\qquad (12.51)", "hash": "20773c7e2d90", "png": "page_0417.png"}
+{"page": 418, "index": 1, "latex": "F_i = \\dot{m}V_1 + (P_1 - P_a)A_1 = \\dot{m}V^* + P^*A_T", "hash": "000d7054ac17", "png": "page_0418.png"}
+{"page": 418, "index": 2, "latex": "F_i = \\frac{\\dot{m}_0 A_T}{\\sqrt{R}} \\left[ \\frac{Mak}{R} \\left(\\frac{2}{k+1}\\right)^{\\frac{1}{2}} \\sqrt{\\frac{kRT_0}{M_m}} \\cdot \\left(\\frac{kA_T}{\\left(\\frac{2}{k+1}\\right)}\\right)^{\\frac{k}{k-1}} \\right] \\dot{m}_0 A_T", "hash": "9be841736602", "png": "page_0418.png"}
+{"page": 418, "index": 3, "latex": "= \\dot{m}_0 A_T \\left[ \\frac{2kT_0}{M_m} \\left(\\frac{2}{k+1}\\right)^{\\frac{1}{2}} \\sqrt{\\frac{2}{M_m}} \\cdot \\left(\\frac{k+1}{k+1}\\right)^{\\frac{k}{k-1}} \\right]", "hash": "ef5bf375a9d2", "png": "page_0418.png"}
+{"page": 419, "index": 1, "latex": "F_V = P_0 A_0 f_1 + \\dot{m} \\left(\\frac{k+1}{k-1}\\right)^{1/2} = P_0 A_0 C_F \\tag{12.52}", "hash": "84e6b988960e", "png": "page_0419.png"}
+{"page": 420, "index": 1, "latex": "T = 2\\pi \\sqrt{\\frac{W h^3}{32.2 \\times 12 \\times 3EI}} = 0.1845 \\sqrt{\\frac{Wh^3}{EI}}", "hash": "0ae337d97526", "png": "page_0420.png"}
+{"page": 420, "index": 2, "latex": "T = 2\\pi \\sqrt{\\frac{M}{k}} = 2\\pi \\sqrt{\\frac{M h^3}{3EI}}", "hash": "8ab954cf5bfb", "png": "page_0420.png"}
+{"page": 421, "index": 1, "latex": "\\Delta t = L/a", "hash": "6b7686c8a885", "png": "page_0421.png"}
+{"page": 421, "index": 2, "latex": "F_{\\max} = \\frac{\\Delta t}{t_o} F_s = \\frac{L}{a\\, t_o} F_s \\tag{12.54}", "hash": "ebd461e4d0b6", "png": "page_0421.png"}
+{"page": 423, "index": 1, "latex": "(\\Delta P)_i = \\rho a (\\Delta V)_i \\tag{12.55}", "hash": "95290ce578cf", "png": "page_0423.png"}
+{"page": 423, "index": 2, "latex": "(\\Delta P)_T = \\rho a V \\tag{12.56}", "hash": "d51772241c36", "png": "page_0423.png"}
+{"page": 424, "index": 1, "latex": "F_S = \\rho u k F \\tag{12.57}", "hash": "b515bb7e5142", "png": "page_0424.png"}
+{"page": 425, "index": 1, "latex": "\\ell = \\ell_{12} + \\ell_{23} = \\ell_{34} + \\ell_{45}", "hash": "86dc6115759e", "png": "page_0425.png"}
+{"page": 426, "index": 1, "latex": "F_{max} = F_0 \\frac{l_0}{a t_c} \\quad \\text{(for } l_0 \\leq a t_c\\text{)} \\tag{12.58}", "hash": "0ab0b1c26859", "png": "page_0426.png"}
+{"page": 429, "index": 1, "latex": "[M]\\{\\ddot{X}\\} + [C]\\{\\dot{X}\\} + [K]\\{X\\} = \\{F\\} \\tag{13.1}", "hash": "195b119da632", "png": "page_0429.png"}
+{"page": 430, "index": 1, "latex": "\\begin{bmatrix} m_1 & m_{12} & \\cdots & m_{1n} \\\\ m_{21} & m_2 & \\cdots & m_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ m_{n1} & m_{n2} & \\cdots & m_{nn} \\end{bmatrix} \\begin{Bmatrix} \\ddot{x}_1 \\\\ \\ddot{x}_2 \\\\ \\vdots \\\\ \\ddot{x}_n \\end{Bmatrix} + \\begin{bmatrix} c_{11} & c_{12} & \\cdots & c_{1n} \\\\ c_{21} & c_{22} & \\cdots & c_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ c_{n1} & c_{n2} & \\cdots & c_{nn} \\end{bmatrix} \\begin{Bmatrix} \\dot{x}_1 \\\\ \\dot{x}_2 \\\\ \\vdots \\\\ \\dot{x}_n \\end{Bmatrix} + \\begin{bmatrix} k_{11} & k_{12} & \\cdots & k_{1n} \\\\ k_{21} & k_{22} & \\cdots & k_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ k_{n1} & k_{n2} & \\cdots & k_{nn} \\end{bmatrix} \\begin{Bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{Bmatrix} = \\begin{Bmatrix} f_1 \\\\ f_2 \\\\ \\vdots \\\\ f_n \\end{Bmatrix} \\tag{13.2}", "hash": "6748bd2939b2", "png": "page_0430.png"}
+{"page": 430, "index": 2, "latex": "\\{X\\} = [x_1\\ x_2\\ x_3\\ x_4\\ x_5\\ \\cdots\\ x_{n-3}\\ x_{n-2}\\ x_{n-1}\\ x_n]^T", "hash": "8fa69c5f0757", "png": "page_0430.png"}
+{"page": 430, "index": 3, "latex": "\\{X\\} = [d_{x1}\\ d_{y1}\\ d_{z1}\\ r_{x1}\\ r_{y1}\\ r_{z1}\\ d_{x2}\\ d_{y2}\\ d_{z2}\\ \\cdots\\ d_{xp}\\ d_{yp}\\ d_{zp}\\ r_{xp}\\ r_{yp}\\ r_{zp}]^T", "hash": "2ec40f5a8cb5", "png": "page_0430.png"}
+{"page": 431, "index": 1, "latex": "\\ell_{max} = \\frac{1}{3} \\sqrt{\\frac{1.57}{f} \\sqrt{\\frac{EI}{m}}}", "hash": "c7335344b003", "png": "page_0431.png"}
+{"page": 432, "index": 1, "latex": "[M]\\{\\ddot{z}\\} + [K]\\{z\\} = 0 \\tag{13.4}", "hash": "254631ae70de", "png": "page_0432.png"}
+{"page": 432, "index": 2, "latex": "\\{z\\} = \\{\\phi\\} \\sin\\omega_n t \\tag{13.5}", "hash": "98b274c81255", "png": "page_0432.png"}
+{"page": 432, "index": 3, "latex": "-\\omega_n^2[M]\\{\\phi\\} + [K]\\{\\phi\\} = 0 \\quad \\text{or} \\quad ([K] - \\omega_n^2[M])\\{\\phi\\} = 0 \\tag{13.6}", "hash": "543d1713dd61", "png": "page_0432.png"}
+{"page": 432, "index": 4, "latex": "(\\omega_{n1}^2\\{\\phi\\}_1),\\ (\\omega_{n2}^2\\{\\phi\\}_2),\\ \\ldots,\\ (\\omega_{nN}^2\\{\\phi\\}_N)", "hash": "8ac2aa26338d", "png": "page_0432.png"}
+{"page": 432, "index": 5, "latex": "\\{\\phi\\}_i^T[M]\\{\\phi\\}_j = 0 \\quad \\text{for all } i \\neq j \\tag{13.7}", "hash": "c5c52bfd3d2b", "png": "page_0432.png"}
+{"page": 432, "index": 6, "latex": "\\{\\phi\\}_i^T[M]\\{\\phi\\}_i = 1 \\quad \\text{and} \\quad \\{\\phi\\}_i^T[K]\\{\\phi\\}_i = f_{ii}^2 \\tag{13.8}", "hash": "beb363e092f7", "png": "page_0432.png"}
+{"page": 432, "index": 7, "latex": "[\\phi]^T[K][\\phi] = \\left[\\omega^2\\right]_D \\tag{13.9}", "hash": "ad6fac92995f", "png": "page_0432.png"}
+{"page": 433, "index": 1, "latex": "\\{X\\} = \\xi_1\\{\\phi\\}_1 + \\xi_2\\{\\phi\\}_2 + \\cdots = \\sum \\xi_i\\{\\phi\\}_i = [\\Phi]\\{\\xi\\} \\tag{13.10}", "hash": "a8e654db563d", "png": "page_0433.png"}
+{"page": 433, "index": 2, "latex": "[M][\\Phi]\\{\\ddot{\\xi}\\} + [C][\\Phi]\\{\\dot{\\xi}\\} + [K][\\Phi]\\{\\xi\\} = \\{F\\} \\tag{13.11}", "hash": "da1d26307d4b", "png": "page_0433.png"}
+{"page": 433, "index": 3, "latex": "[\\Phi]^T[M][\\Phi]\\{\\ddot{\\xi}\\} + [\\Phi]^T[C][\\Phi]\\{\\dot{\\xi}\\} + [\\Phi]^T[K][\\Phi]\\{\\xi\\} = [\\Phi]^T\\{F\\} \\tag{13.12}", "hash": "6fa80dd88e25", "png": "page_0433.png"}
+{"page": 433, "index": 4, "latex": "[I]\\{\\ddot{\\xi}\\} + [\\Phi]^T[C][\\Phi]\\{\\dot{\\xi}\\} + [\\omega^2]\\{\\xi\\} = [\\Phi]^T\\{F\\} \\tag{13.13}", "hash": "5d69ea6b3fb8", "png": "page_0433.png"}
+{"page": 433, "index": 5, "latex": "\\ddot{\\xi}_i + 2\\zeta_i\\omega_i\\dot{\\xi}_i + \\omega_i^2\\xi_i = \\{\\phi\\}_i^T\\{F\\} \\quad i = 1, \\ldots, N \\tag{13.14}", "hash": "5de0cc168678", "png": "page_0433.png"}
+{"page": 433, "index": 6, "latex": "[\\Phi]^T[C][\\Phi] = [2\\zeta\\omega]_0 \\tag{13.15}", "hash": "0bc9e1c8f681", "png": "page_0433.png"}
+{"page": 434, "index": 1, "latex": "\\{\\ddot{X}\\}_{ab} = \\{X\\} + [I]_S = \\{X\\} + [Q]\\{S\\} \\tag{13.16}", "hash": "738b86ae7258", "png": "page_0434.png"}
+{"page": 434, "index": 2, "latex": "[Q] = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} \\cdot [Q]\\{Q\\cdot Q\\} \\quad \\{S\\} = \\begin{Bmatrix} S_{gx} \\\\ S_{gy} \\\\ S_{gz} \\end{Bmatrix} = \\begin{Bmatrix} \\ddot{u}_{gx} \\\\ \\ddot{u}_{gy} \\\\ \\ddot{u}_{gz} \\end{Bmatrix} \\tag{13.17}", "hash": "00edf856a981", "png": "page_0434.png"}
+{"page": 434, "index": 3, "latex": "[M]\\{\\ddot{X}\\} + [C]\\{\\dot{X}\\} + [K]\\{X\\} = -[M][Q]\\{\\ddot{S}\\}", "hash": "fe12e3ed6e7b", "png": "page_0434.png"}
+{"page": 434, "index": 4, "latex": "[M]\\{\\ddot{X}\\} + [C]\\{\\dot{X}\\} + [K]\\{X\\} = -[M][Q]\\{\\ddot{S}_g\\} \\tag{13.18}", "hash": "bf5c77253bdb", "png": "page_0434.png"}
+{"page": 434, "index": 5, "latex": "\\ddot{\\xi}_r + 2\\zeta_r \\omega_r \\dot{\\xi}_r + \\omega_r^2 \\xi_r = -\\{\\Phi_r\\}^T [M][Q]\\{\\ddot{S}_g\\}", "hash": "329926fa216d", "png": "page_0434.png"}
+{"page": 434, "index": 6, "latex": "\\ddot{\\xi}_r + 2\\zeta_r \\omega_r \\dot{\\xi}_r + \\omega_r^2 \\xi_r = -\\{\\Phi_r\\}^T [M] \\{\\ddot{S}_g\\} = -\\{\\Phi_r\\}^T [M] (\\{Q_1\\} \\ddot{S}_{g1} + \\{Q_2\\} \\ddot{S}_{g2} + \\cdots) \\tag{13.19}", "hash": "e8c7da8d36f6", "png": "page_0434.png"}
+{"page": 436, "index": 1, "latex": "R_v = \\omega^{-1} R_a \\quad \\text{and} \\quad R_d = \\omega^{-1} R_v \\tag{13.20}", "hash": "3fc83e72a15c", "png": "page_0436.png"}
+{"page": 436, "index": 2, "latex": "\\text{Absolute acceleration} = a = \\frac{K}{M} R_d = \\omega^2 R_d", "hash": "25d30a10a2d6", "png": "page_0436.png"}
+{"page": 437, "index": 1, "latex": "\\xi_i = \\frac{1}{\\omega_i^2} = \\frac{1}{\\omega_i^2} [\\Phi_i]^T [M] [(Q_j) R_{Aj} \\& (Q_j) R_{Aj} \\& (Q_j) R_{Aj} \\& \\ldots]", "hash": "2b90092cc479", "png": "page_0437.png"}
+{"page": 437, "index": 2, "latex": "\\xi_i = \\xi_{i1} \\& \\xi_{i2} \\& \\xi_{i3} \\& \\ldots \\text{ etc.} \\quad \\xi_i = \\frac{1}{\\omega_i^2} [\\Phi_i]^T [M] \\{Q_j\\} R_{Aj} \\tag{13.21}", "hash": "4b10b6100bbd", "png": "page_0437.png"}
+{"page": 438, "index": 1, "latex": "\\hat{q}_n = \\sqrt{\\hat{q}_{nx}^2 + \\hat{q}_{ny}^2 + \\hat{q}_{nz}^2} = \\sqrt{\\sum_i(\\hat{q}_{ni})^2}", "hash": "350fe482bbda", "png": "page_0438.png"}
+{"page": 438, "index": 2, "latex": "\\frac{\\omega_j - \\omega_i}{\\omega_i} \\leq 0.1 \\quad \\text{where } \\omega_i \\leq \\omega_j", "hash": "4b6919dc7e27", "png": "page_0438.png"}
+{"page": 438, "index": 3, "latex": "R = \\sqrt{\\sum_k \\left(\\sum_i R_i\\right)_k^2}", "hash": "5dd839379fcb", "png": "page_0438.png"}
+{"page": 439, "index": 1, "latex": "R = \\sqrt{\\sum_{i=1}^{n_g} \\sum_{j=1}^{n_m} \\varepsilon_{ij}(R_i R_j)}", "hash": "ab2150b1acbb", "png": "page_0439.png"}
+{"page": 439, "index": 2, "latex": "\\varepsilon_{ij} = \\frac{\\sqrt{\\zeta_i \\zeta_j}\\left(1 + \\frac{f_j}{f_i}\\right)^2}{\\left(\\zeta_i + \\zeta_j\\right)^2 \\left[1 + \\left(\\frac{f_j}{f_i} + \\frac{\\zeta_j}{\\zeta_i}\\right)\\right]}", "hash": "1c324c772048", "png": "page_0439.png"}
+{"page": 439, "index": 3, "latex": "\\varepsilon_{ij} = \\frac{8\\sqrt{\\zeta_i \\zeta_j}(\\zeta_i + r\\zeta_j)r^{3/2}}{(1 - r^2)^2 + 4\\zeta_i \\zeta_j r(1 + r^2) + 4(\\zeta_i^2 + \\zeta_j^2)r^2}", "hash": "b0254ed45b38", "png": "page_0439.png"}
+{"page": 443, "index": 1, "latex": "\\{\\ddot{u}_0\\} = [Q]\\{a_0\\} \\tag{13.28}", "hash": "6bb6bf4309f6", "png": "page_0443.png"}
+{"page": 443, "index": 2, "latex": "\\{\\ddot{u}_0\\} = \\sum_{i=1}^{N} (\\{\\phi_i\\}^T [M]\\{Q\\}\\{a_0\\})\\{\\phi_i\\} \\tag{13.29}", "hash": "346c21f27e91", "png": "page_0443.png"}
+{"page": 443, "index": 3, "latex": "\\{\\ddot{u}_{0n}\\} = \\sum_{i=1}^{n} (\\{\\phi_i\\}^T [M]\\{Q\\}\\{a_0\\})\\{\\phi_i\\} \\tag{13.30}", "hash": "204447e9f32c", "png": "page_0443.png"}
+{"page": 443, "index": 4, "latex": "\\{\\ddot{u}_{0r}\\} = \\{\\ddot{u}_0\\} - \\{\\ddot{u}_{0n}\\}, \\quad \\{\\ddot{u}_{0r}\\} \\neq \\{0\\} \\tag{13.31}", "hash": "01498589b507", "png": "page_0443.png"}
+{"page": 444, "index": 1, "latex": "\\ln(R_s) = \\ln(2\\pi) + \\ln(f) - \\ln(R_v); \\quad \\ln(R_a) = \\ln(R_v) + \\ln(f) - \\ln(2\\pi)", "hash": "adfaa6a78a08", "png": "page_0444.png"}
+{"page": 448, "index": 1, "latex": "y = e^{-\\zeta \\omega_n t} \\left( \\frac{\\dot{y}_0 + \\zeta \\omega_n y_0}{\\omega_d} \\sin \\omega_d t + y_0 \\cos \\omega_d t \\right) + \\frac{P_0}{k} \\cdot \\frac{1}{(1 - \\beta^2)^2 + (2\\zeta\\beta)^2} \\left[ (1 - \\beta^2) \\sin \\omega t - 2\\zeta\\beta \\cos \\omega t \\right] \\tag{13.32}", "hash": "d9abbe88db07", "png": "page_0448.png"}
+{"page": 450, "index": 1, "latex": "\\omega_n = \\frac{n^2\\pi^2}{l^2}\\sqrt{\\frac{EI}{m}} = \\frac{n^2}{(L/n)^2}\\sqrt{\\frac{EI}{m}} = \\frac{n^2}{L^2}\\sqrt{\\frac{EI}{m}} \\tag{13.33}", "hash": "c237b11aa6b5", "png": "page_0450.png"}
+{"page": 450, "index": 2, "latex": "M = EI\\frac{d^2y}{dx^2} \\quad \\text{and} \\quad S_b = \\frac{M}{Z} = \\frac{MD}{2I} \\tag{13.34}", "hash": "8f40b6eec6d8", "png": "page_0450.png"}
+{"page": 450, "index": 3, "latex": "y = \\sin \\alpha_1 x", "hash": "4a4210032586", "png": "page_0450.png"}
+{"page": 450, "index": 4, "latex": "\\alpha_1 = \\frac{\\pi}{L}, \\quad \\omega = \\alpha_1^2\\sqrt{\\frac{EI}{m}} = \\frac{\\pi^2}{L^2}\\sqrt{\\frac{EI}{m}} \\tag{13.35}", "hash": "5659d0f5abd9", "png": "page_0450.png"}
+{"page": 450, "index": 5, "latex": "y = 0.5[-0.7341(\\sinh\\alpha_1 x - \\sin\\alpha_1 x) - \\cosh\\alpha_1 x - \\cos\\alpha_1 x]", "hash": "6d3dda21c66e", "png": "page_0450.png"}
+{"page": 451, "index": 1, "latex": "a_1 = \\frac{0.597\\pi}{\\ell}, \\quad \\omega = \\frac{(0.597\\pi)^2}{\\ell^2}\\sqrt{\\frac{EI}{m}}", "hash": "58a53b5239e6", "png": "page_0451.png"}
+{"page": 451, "index": 2, "latex": "y = 0.635[-0.9925(\\sinh a_1 x - \\sin a_1 x) + \\cosh a_1 x - \\cos a_1 x]", "hash": "82840b6bdc62", "png": "page_0451.png"}
+{"page": 451, "index": 3, "latex": "a_1 = \\frac{3\\pi}{2\\ell}, \\quad \\omega = \\left(\\frac{3\\pi}{2\\ell}\\right)^2\\sqrt{\\frac{EI}{m}}", "hash": "d69266d95486", "png": "page_0451.png"}
+{"page": 451, "index": 4, "latex": "y = 0.6624[-1.0007(\\sinh a_1 x - \\sin a_1 x) + \\cosh a_1 x - \\cos a_1 x]", "hash": "2f553b49b8ec", "png": "page_0451.png"}
+{"page": 451, "index": 5, "latex": "a_1 = \\frac{5\\pi}{4\\ell}, \\quad \\omega = \\left(\\frac{5\\pi}{4\\ell}\\right)^2\\sqrt{\\frac{EI}{m}}", "hash": "44b7693e4098", "png": "page_0451.png"}
+{"page": 451, "index": 6, "latex": "M = 1.0EI\\left(\\frac{\\pi}{\\ell}\\right)^2 \\Delta", "hash": "8109c619635f", "png": "page_0451.png"}
+{"page": 451, "index": 7, "latex": "M = 1.0EI\\left(\\frac{0.597\\pi}{\\ell}\\right)^2 \\Delta = 0.356EI\\left(\\frac{\\pi}{\\ell}\\right)^2 \\Delta", "hash": "44ccb51b261b", "png": "page_0451.png"}
+{"page": 451, "index": 8, "latex": "M = 1.26EI\\left(\\frac{3\\pi}{2\\ell}\\right)^2 \\Delta = 2.835EI\\left(\\frac{\\pi}{\\ell}\\right)^2 \\Delta", "hash": "48cdb487ac73", "png": "page_0451.png"}
+{"page": 451, "index": 9, "latex": "M = 1.325EI\\left(\\frac{5\\pi}{4\\ell}\\right)^2 \\Delta = 2.07EI\\left(\\frac{\\pi}{\\ell}\\right)^2 \\Delta", "hash": "b0bd2d427059", "png": "page_0451.png"}
+{"page": 451, "index": 10, "latex": "M = C_M EI\\left(\\frac{\\pi}{\\ell}\\right)^2 \\Delta", "hash": "6dbe41621460", "png": "page_0451.png"}
+{"page": 452, "index": 1, "latex": "S_W = \\frac{M}{Z} = C_{ED} \\frac{E I}{L^3} \\left(\\frac{\\pi}{f}\\right)^{1/2} A = C_{ED} \\frac{E D^2}{2L^3} A", "hash": "2bdf25bea295", "png": "page_0452.png"}
+{"page": 452, "index": 2, "latex": "S_b = C_2 K_2 C_{ED} \\frac{E z^2}{2} \\frac{D}{L^3} A", "hash": "529ee59b6003", "png": "page_0452.png"}
+{"page": 452, "index": 3, "latex": "A_{\\text{allow}} = \\frac{S_{\\text{allow}}}{C_2 K_2 C_{ED} E z^2} \\cdot 2 \\left(\\frac{L}{D}\\right)^3", "hash": "bb84571d9344", "png": "page_0452.png"}
+{"page": 452, "index": 4, "latex": "A_{\\text{allow}} = \\frac{S_{\\text{allow}}}{C_2 K_2 C_{ED}} \\left(\\frac{1}{145 \\times 10^6}\\right) \\left(\\frac{L}{D}\\right)^3 = \\frac{S_E}{10,000 C_2 K_2} \\cdot \\frac{1}{C_{ED}} \\left(\\frac{1}{16,500 C_{ED}}\\right) \\left(\\frac{L}{D}\\right)^3", "hash": "817218d43cac", "png": "page_0452.png"}
+{"page": 452, "index": 5, "latex": "A_{\\text{allow}} = \\frac{S_E}{10,000 C_2 K_2 C_{ED}} \\left(\\frac{1}{191 C_{ED}}\\right) \\left(\\frac{L}{D}\\right)^3 \\quad \\text{(in., lb, G in ft)}", "hash": "f81c6dc2dd5f", "png": "page_0452.png"}
+{"page": 453, "index": 1, "latex": "M = 1.0EI\\left(\\frac{\\pi}{l}\\right)^2 \\Delta = 1.0EI\\Delta\\omega\\sqrt{\\frac{m}{EI}} = 1.0V\\sqrt{EIm}", "hash": "f1eb09396a96", "png": "page_0453.png"}
+{"page": 453, "index": 2, "latex": "M = 1.0EI\\left(\\frac{0.597\\pi}{l}\\right)^2 \\Delta = 1.0V\\sqrt{EIm}", "hash": "6617f995356b", "png": "page_0453.png"}
+{"page": 453, "index": 3, "latex": "M = 1.26\\left(\\frac{3\\pi}{2l}\\right)^2 \\Delta = 1.26V\\sqrt{EIm}", "hash": "8f9e52fd7aed", "png": "page_0453.png"}
+{"page": 453, "index": 4, "latex": "M = 1.325\\left(\\frac{\\pi}{sl}\\right)^2 \\Delta = 1.325V\\sqrt{EIm}", "hash": "3bf8d9725d06", "png": "page_0453.png"}
+{"page": 453, "index": 5, "latex": "M = C_{SV} 1.325\\sqrt{EIm}V", "hash": "24b9ee820022", "png": "page_0453.png"}
+{"page": 453, "index": 6, "latex": "S_m = \\frac{M}{Z} = 1.325C_{SV}\\sqrt{\\frac{EI}{Z^2}m}V = 1.325C_{SV}\\sqrt{\\frac{E(\\pi r^3/4)(2m)}{(\\pi r^3)^2}}V", "hash": "1d776c1cb16c", "png": "page_0453.png"}
+{"page": 453, "index": 7, "latex": "= 1.874C_{SV}\\sqrt{E\\rho_w}V", "hash": "90968cd1c956", "png": "page_0453.png"}
+{"page": 454, "index": 1, "latex": "S_v = 1.874C_2K_2C_W C_g v\\sqrt{\\rho}\\sqrt{E/\\rho V} \\tag{13.54}", "hash": "7d57d1a17ce0", "png": "page_0454.png"}
+{"page": 454, "index": 2, "latex": "V_{allow} = \\frac{S_{allow}}{1.874C_2K_2C_WC_g\\sqrt{\\rho}\\sqrt{E/m}} \\tag{13.55}", "hash": "7c7c5bda7ab7", "png": "page_0454.png"}
+{"page": 454, "index": 3, "latex": "\\Delta = \\frac{1}{192}\\frac{Fl^3}{EI}, \\quad k = \\frac{F}{\\Delta} = \\frac{192EI}{l^3}", "hash": "1bd613ec0c3a", "png": "page_0454.png"}
+{"page": 454, "index": 4, "latex": "\\omega = \\sqrt{\\frac{k}{M_{mass}}} = \\sqrt{\\frac{192EI}{M_{mass}l^3}} = \\frac{13.856}{l^2}\\sqrt{\\frac{EI}{m}}", "hash": "3586c40edad4", "png": "page_0454.png"}
+{"page": 454, "index": 5, "latex": "M = \\frac{1}{8}Fl = \\frac{1}{8}(m l)\\omega^2 \\Delta l^2 = \\frac{m l^2}{8}V\\hat{u} = 1.732l^2\\sqrt{EIm} \\tag{13.56}", "hash": "76f9297c6c8d", "png": "page_0454.png"}
+{"page": 454, "index": 6, "latex": "C_g = 1 + 1.375\\sqrt{\\frac{M_{mass}}{(m l)}} \\tag{13.57}", "hash": "f4afefc18a76", "png": "page_0454.png"}
+{"page": 455, "index": 1, "latex": "V_{allow} = \\frac{C_1 C_3}{C_1^* C_3} \\left(\\frac{S_a}{n}\\right) \\frac{1}{1.874 C_2 K_1} \\frac{1}{\\sqrt{\\rho}} \\tag{13.58}", "hash": "7986df39d46c", "png": "page_0455.png"}
+{"page": 455, "index": 2, "latex": "V_{allow} = \\frac{C_1 C_3}{C_1^*} \\left(\\frac{S_a}{n}\\right) \\frac{0.00354}{C_2 K_1} \\quad \\text{(in./sec)} \\tag{13.59}", "hash": "5f4ebfeda946", "png": "page_0455.png"}
+{"page": 456, "index": 1, "latex": "V_{allow} = \\frac{0.15 \\times 0.7}{1.5 \\times 1.0} \\times \\frac{0.00564}{4.0} = 0.5 \\text{ in./sec} \\quad (12.7 \\text{ mm/sec})", "hash": "2ae7abb7b2f2", "png": "page_0456.png"}
+{"page": 457, "index": 1, "latex": "[M]\\{\\ddot{x}\\} + [C]\\{\\dot{x}\\} + [K]\\{x\\} = \\{F\\} \\sin \\omega t \\tag{13.60}", "hash": "f2a3b01ba57c", "png": "page_0457.png"}
+{"page": 457, "index": 2, "latex": "(-\\omega^2[M] + [K])\\{A\\}\\sin \\omega t = \\{F\\}\\sin \\omega t", "hash": "8eb5b059dcaa", "png": "page_0457.png"}
+{"page": 457, "index": 3, "latex": "(\\omega^2[M] - [K])\\{A\\} = -\\{F\\} \\tag{13.61}", "hash": "f6cd1b8248ab", "png": "page_0457.png"}
+{"page": 458, "index": 1, "latex": "\\frac{fD}{V} = N_S \\tag{13.62}", "hash": "d7f337c4c75d", "png": "page_0458.png"}
+{"page": 458, "index": 2, "latex": "F_k = C_k \\left(\\frac{1}{2}\\rho V^2\\right) D \\sin \\omega t \\tag{13.63}", "hash": "9fe81a0c4ebd", "png": "page_0458.png"}
+{"page": 459, "index": 1, "latex": "F \\sin \\omega t = Kd \\sin \\omega t \\tag{13.64}", "hash": "bd12bd62f380", "png": "page_0459.png"}
+{"page": 460, "index": 1, "latex": "P_1 = P_0 \\sin \\omega t \\quad \\text{at point 1 (the reference point)}", "hash": "d9c240555ea2", "png": "page_0460.png"}
+{"page": 461, "index": 1, "latex": "P_2 = P_1 \\sin\\alpha \\left(t - \\frac{\\ell_{12}}{a}\\right) = P_1 \\sin\\left(\\omega t - \\frac{\\omega \\ell_{12}}{a}\\right) \\quad \\text{at point 2}", "hash": "cb544fc83848", "png": "page_0461.png"}
+{"page": 461, "index": 2, "latex": "F_{xn} = AP_n = AP_1 \\sin\\left(\\omega t - \\frac{\\omega \\ell_{1n}}{a}\\right), \\quad \\ell_{1n} = \\ell_{12} \\cdots \\ell_{n-1,n} \\tag{13.65}", "hash": "6019b85f7c78", "png": "page_0461.png"}
+{"page": 461, "index": 3, "latex": "P_0 = P_1 \\sin\\omega t \\quad \\text{at loop point}", "hash": "88120399889b", "png": "page_0461.png"}
+{"page": 462, "index": 1, "latex": "P_a = \\cos\\left(\\frac{\\pi \\ell_0}{\\ell_0}\\right) P_s \\sin \\omega t \\quad \\text{at a point } \\ell_s \\text{ away from loop point}", "hash": "eda9b940022e", "png": "page_0462.png"}
+{"page": 462, "index": 2, "latex": "F_{pa} = A \\cos\\left(\\frac{\\pi \\ell_s}{\\ell_0}\\right) P_s \\sin \\omega t \\tag{13.66}", "hash": "c303399576d4", "png": "page_0462.png"}
+{"page": 462, "index": 3, "latex": "\\{F(t)\\} = \\{F \\sin(\\omega t - \\theta)\\} = \\{|a|\\sin\\omega t - \\theta\\}_0 \\{F\\}", "hash": "1ea1b1439d4c", "png": "page_0462.png"}
+{"page": 462, "index": 4, "latex": "f_i = f_i \\sin(\\omega t - \\theta_i) = f_i[\\sin\\omega t \\cos\\theta_i - \\cos\\omega t \\sin\\theta_i] = f_{ci}\\sin\\omega t + f_{si}\\cos\\omega t", "hash": "2777bf109fbb", "png": "page_0462.png"}
+{"page": 463, "index": 1, "latex": "\\{F(t)\\} = \\{F_s\\} \\sin \\omega t + \\{F_c\\} \\cos \\omega t \\tag{13.67}", "hash": "75f3383e34c5", "png": "page_0463.png"}
+{"page": 463, "index": 2, "latex": "\\ddot{q}_i + 2\\zeta_i \\omega_{n_i} \\dot{q}_i + \\omega_{n_i}^2 q_i = \\{\\Phi\\}^T \\{F_s\\} \\sin \\omega t + \\{\\Phi\\}^T \\{F_c\\} \\cos \\omega t", "hash": "c4b67a428594", "png": "page_0463.png"}
+{"page": 463, "index": 3, "latex": "\\ddot{q}_i + 2\\zeta_i \\omega_{n_i} \\dot{q}_i + \\omega_{n_i}^2 q_i = F_{si} \\sin \\omega t + F_{ci} \\cos \\omega t, \\quad i = 1, N \\tag{13.68}", "hash": "a48e4a3520c9", "png": "page_0463.png"}
+{"page": 463, "index": 4, "latex": "q_i = \\frac{1}{\\omega_{n_i}^2 \\sqrt{(1-\\beta_i^2)^2 + (2\\zeta_i \\beta_i)^2}} \\left[ F_{si} \\sin(\\omega t - \\alpha_i) + F_{ci} \\cos(\\omega t - \\alpha_i) \\right]", "hash": "3a7a5de190ed", "png": "page_0463.png"}
+{"page": 463, "index": 5, "latex": "\\alpha_i = \\tan^{-1}\\left(\\frac{2\\zeta_i \\beta_i}{1 - \\beta_i^2}\\right) \\tag{13.69}", "hash": "ec6e56b43247", "png": "page_0463.png"}
+{"page": 463, "index": 6, "latex": "q_i = [q_{si} \\sin \\omega t + q_{ci} \\cos \\omega t] \\tag{13.70}", "hash": "3a3f786e75a4", "png": "page_0463.png"}
+{"page": 463, "index": 7, "latex": "q_{si} = \\frac{F_{si} \\cos \\alpha_i - F_{ci} \\sin \\alpha_i}{\\omega_{n_i}^2 \\sqrt{(1 - \\beta_i^2)^2 + (2\\zeta_i \\beta_i)^2}}, \\qquad q_{ci} = \\frac{F_{ci} \\cos \\alpha_i - F_{si} \\sin \\alpha_i}{\\omega_{n_i}^2 \\sqrt{(1 - \\beta_i^2)^2 + (2\\zeta_i \\beta_i)^2}}", "hash": "350fc674540d", "png": "page_0463.png"}
+{"page": 463, "index": 8, "latex": "q_i = \\xi_{qi} \\sin(\\omega t + \\theta_{qi})", "hash": "85ce4efa396b", "png": "page_0463.png"}
+{"page": 463, "index": 9, "latex": "\\xi_{qi} = \\sqrt{(q_{si})^2 + (q_{ci})^2}, \\qquad \\theta_{qi} = \\tan^{-1}\\left(\\frac{q_{ci}}{q_{si}}\\right) \\tag{13.71}", "hash": "e450f0053596", "png": "page_0463.png"}
+{"page": 464, "index": 1, "latex": "\\{X\\} = [\\Phi]\\{\\xi\\} = [\\Phi][\\xi_s] \\sin \\omega t = [\\Phi][\\xi_c] \\cos \\omega t = \\{\\xi_s\\} \\sin \\omega t + \\{\\xi_c\\} \\cos \\omega t", "hash": "f5c8ea8dcf08", "png": "page_0464.png"}
+{"page": 464, "index": 2, "latex": "\\{\\xi_s\\} = [\\Phi]\\{\\xi_s\\}, \\quad \\{\\xi_c\\} = [\\Phi]\\{\\xi_c\\} \\tag{13.72}", "hash": "932b8b7f7a05", "png": "page_0464.png"}
+{"page": 465, "index": 1, "latex": "S_{Al} = \\frac{S_e}{\\alpha}", "hash": "564c703b6e3f", "png": "page_0465.png"}
+{"page": 465, "index": 2, "latex": "S_{Al} = \\frac{C_2 K_2}{2Z} M \\leq S_{Al}", "hash": "5efcf0338aab", "png": "page_0465.png"}
+{"page": 465, "index": 3, "latex": "C_2 K_2 = 2i", "hash": "ce8ffc9a27d1", "png": "page_0465.png"}
+{"page": 467, "index": 1, "latex": "[C] = \\alpha[M] + \\beta[K] \\tag{13.76}", "hash": "f40b833149f4", "png": "page_0467.png"}
+{"page": 467, "index": 2, "latex": "[\\phi]^T[C][\\phi] = [\\phi]^T\\{\\alpha[M] + \\beta[K]\\}[\\phi]", "hash": "d707d021aaaa", "png": "page_0467.png"}
+{"page": 467, "index": 3, "latex": "\\zeta_n = \\frac{\\alpha}{2\\omega_n} + \\frac{\\beta\\omega_n}{2} \\tag{13.77}", "hash": "c9e0731629e1", "png": "page_0467.png"}
+{"page": 469, "index": 1, "latex": "[M]\\{\\ddot{X}\\}_{t+\\Delta t} + [C]\\{\\dot{X}\\}_{t+\\Delta t} + [K]\\{X\\}_{t+\\Delta t} = \\{F\\}_{t+\\Delta t} \\tag{13.78}", "hash": "337c77485f06", "png": "page_0469.png"}
+{"page": 469, "index": 2, "latex": "\\{\\dot{X}\\}_{t+\\Delta t} = \\{\\dot{X}\\}_t + \\frac{\\Delta t}{2}\\left[\\{\\ddot{X}\\}_t + \\{\\ddot{X}\\}_{t+\\Delta t}\\right] \\tag{13.79a}", "hash": "c7df5216dd80", "png": "page_0469.png"}
+{"page": 469, "index": 3, "latex": "\\{X\\}_{t+\\Delta t} = \\{X\\}_t + \\Delta t\\{\\dot{X}\\}_t + \\frac{(\\Delta t)^2}{6}\\left[2\\{\\ddot{X}\\}_t + \\{\\ddot{X}\\}_{t+\\Delta t}\\right] \\tag{13.79b}", "hash": "fdf95f207a7f", "png": "page_0469.png"}
+{"page": 469, "index": 4, "latex": "\\{\\dot{X}\\}_{t+\\Delta t} = \\{\\dot{X}\\}_t + \\frac{\\Delta t}{2}\\left[\\{\\ddot{X}\\}_t + \\{\\ddot{X}\\}_{t+\\Delta t}\\right] \\tag{13.80a}", "hash": "13f48d785712", "png": "page_0469.png"}
+{"page": 469, "index": 5, "latex": "\\{X\\}_{t+\\Delta t} = \\{X\\}_t + \\Delta t\\{\\dot{X}\\}_t + \\frac{(\\Delta t)^2}{4}\\left[\\{\\ddot{X}\\}_t + \\{\\ddot{X}\\}_{t+\\Delta t}\\right] \\tag{13.80b}", "hash": "e0e6d2d47ccf", "png": "page_0469.png"}
+{"page": 469, "index": 6, "latex": "\\{\\dot{X}\\}_{t+\\theta\\Delta t} = \\{\\dot{X}\\}_t + \\frac{\\theta\\Delta t}{2}\\left[\\{\\ddot{X}\\}_{t+\\theta\\Delta t} + \\{\\ddot{X}\\}_t\\right] \\tag{13.81a}", "hash": "f033ac68dc08", "png": "page_0469.png"}
+{"page": 469, "index": 7, "latex": "\\{X\\}_{t+\\theta\\Delta t} = \\{X\\}_t + \\theta\\Delta t\\{\\dot{X}\\}_t + \\frac{(\\theta\\Delta t)^2}{6}\\left[2\\{\\ddot{X}\\}_t + \\{\\ddot{X}\\}_{t+\\theta\\Delta t}\\right] \\tag{13.81b}", "hash": "59c3e4bdf44d", "png": "page_0469.png"}
+{"page": 469, "index": 8, "latex": "\\{\\ddot{X}\\}_{t+\\Delta t} = \\{\\ddot{X}\\}_t + \\frac{1}{\\theta}\\left[\\{\\ddot{X}\\}_{t+\\theta\\Delta t} - \\{\\ddot{X}\\}_t\\right] \\tag{13.82a}", "hash": "0f372f8d8343", "png": "page_0469.png"}
+{"page": 469, "index": 9, "latex": "\\{\\dot{X}\\}_{t+\\Delta t} = \\{\\dot{X}\\}_t + \\Delta t\\{\\ddot{X}\\}_t + \\frac{\\Delta t}{2}\\left[\\{\\ddot{X}\\}_{t+\\Delta t} - \\{\\ddot{X}\\}_t\\right] \\tag{13.82b}", "hash": "3ca4c377862c", "png": "page_0469.png"}
+{"page": 469, "index": 10, "latex": "\\{X\\}_{t+\\Delta t} = \\{X\\}_t + \\Delta t\\{\\dot{X}\\}_t + \\frac{(\\Delta t)^2}{3}\\{\\ddot{X}\\}_t + \\frac{(\\Delta t)^2}{60}\\left[\\{\\ddot{X}\\}_{t+\\theta\\Delta t} - \\{\\ddot{X}\\}_t\\right] \\tag{13.82c}", "hash": "a9efd31558b2", "png": "page_0469.png"}

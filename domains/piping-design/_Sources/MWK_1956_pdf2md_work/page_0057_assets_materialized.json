@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0057.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0057_fig01",
+      "bbox_norm": [
+        0.39,
+        0.54,
+        0.97,
+        0.94
+      ],
+      "bbox_px": [
+        800,
+        1711,
+        2352,
+        3457
+      ],
+      "caption": "FIG. 3.8 In-plane bending; angle alpha_l corresponding to location of maximum longitudinal fiber stress.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0057_fig01_fig-3-8-in-plane-bending-angle-alpha-l-c.png",
+      "png_sha256": "c8ea5dc13e11abcd77be72d8db1f847204ffafb0415edba0dff54319875200a4",
+      "slug": "fig-3-8-in-plane-bending-angle-alpha-l-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 57,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0057.png",
+  "page_image_sha256": "248ba5bc542fcb0435cb504268ed80bad2c833dd94007cd94ffc7f613fc1e164",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0057_assets.json"
+}

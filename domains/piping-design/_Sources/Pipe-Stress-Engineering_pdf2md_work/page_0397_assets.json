@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 397,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 12.3 FREE VIBRATION OF SDOF SYSTEM WITH INITIAL DISPLACEMENT",
+      "slug": "free-vibration-sdof-initial-displacement",
+      "bbox_norm": [0.06, 0.62, 0.72, 0.97],
+      "confidence": "high",
+      "notes": "Sinusoidal plot showing free vibration with labels for Period T, Peak to Peak 2y0, Amplitude y0, and time axis markings at pi/omega_n, 2pi/omega_n, 3pi/omega_n. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

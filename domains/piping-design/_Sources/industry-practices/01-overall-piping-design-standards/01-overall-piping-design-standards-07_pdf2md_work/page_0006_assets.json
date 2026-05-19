@@ -1,0 +1,135 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 6,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Standards and Publications (Continued)",
+      "slug": "standards-and-publications-continued",
+      "bbox_norm": [0.04, 0.09, 0.96, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Refining Engineering Practices (Cont.)", "is_header": true, "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–2", "type": "text" },
+            { "value": "Inspection, Repair, Alteration, Rerating, and Fitness-for-Service of In-Service Piping Systems", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–3", "type": "text" },
+            { "value": "On-Stream Leak Repairs of Piping Components", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–4", "type": "text" },
+            { "value": "Installation of Repair Patches and Sleeves", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–5", "type": "text" },
+            { "value": "Valve Reconditioning – Gate, Globe, Check, Ball, and Plug Valves (Future Release)", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–6", "type": "text" },
+            { "value": "Valve Reconditioning – Pressure Relief Valves (Future Release)", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 5–11–7", "type": "text" },
+            { "value": "Valve Reconditioning – FCCU Slide Valves (Future Release)", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 8–2–1", "type": "text" },
+            { "value": "Fired Heaters – Overlay to API Std 560", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 10–2–2", "type": "text" },
+            { "value": "Supplemental Material Requirements for Metallic Materials", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 12–1–1", "type": "text" },
+            { "value": "Instrument Design – General", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "REP 12–2–1", "type": "text" },
+            { "value": "Instrument Installation – General", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Phillips 66", "is_header": true, "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "Phillips 66 Engineering Services Recommended Environmental Guidelines", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "American Petroleum Institute (API)", "is_header": true, "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "570", "type": "text" },
+            { "value": "Piping Inspection Code: In-service Inspection, Rating, Repair, and Alteration of Piping Systems", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Std 650", "type": "text" },
+            { "value": "Welded Steel Tanks for Oil Storage", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "American Society of Mechanical Engineers (ASME)", "is_header": true, "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "Boiler and Pressure Vessel Code (BPVC)", "type": "text", "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "Section I", "type": "text" },
+            { "value": "Power Boilers", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "B31.1", "type": "text" },
+            { "value": "Power Piping", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "B31.3", "type": "text" },
+            { "value": "Process Piping", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "B31.4", "type": "text" },
+            { "value": "Pipeline Transportation Systems for Liquid Hydrocarbons and Other Liquids", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "B31.8", "type": "text" },
+            { "value": "Gas Transmission and Distribution Piping Systems", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "National Fire Protection Association (NFPA)", "is_header": true, "colspan": 2 }
+          ]},
+          { "cells": [
+            { "value": "13", "type": "text" },
+            { "value": "Installation of Sprinkler Systems", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "24", "type": "text" },
+            { "value": "Installation of Private Fire Service Mains and Their Appurtenances", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "30", "type": "text" },
+            { "value": "Flammable and Combustible Liquids Code", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "59A", "type": "text" },
+            { "value": "Standard for the Production, Storage, and Handling of Liquefied Natural Gas (LNG)", "type": "text" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Multi-section two-column reference table; section headers span both columns. Continuation from previous page."
+    }
+  ],
+  "issues": []
+}

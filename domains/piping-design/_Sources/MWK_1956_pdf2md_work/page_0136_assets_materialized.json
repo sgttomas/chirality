@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0136.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0136_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.49
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2442,
+        1889
+      ],
+      "caption": "Table 5.8 Formulas for Plane Rotating about x-Axis",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0136_tbl01_formulas-plane-rotating-x-axis.png",
+      "png_sha256": "4fce4ebd4846d629dbe985494b1665d0e60cf227f58e6f559607fd926288ed82",
+      "slug": "formulas-plane-rotating-x-axis",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0136_tbl01_formulas-plane-rotating-x-axis.json",
+      "table_data_json_sha256": "651ef62278594ddf0d6021d096bdd4808f00336684c6ea08e1b3443a9356f3eb",
+      "table_data_sha256": "651ef62278594ddf0d6021d096bdd4808f00336684c6ea08e1b3443a9356f3eb",
+      "xlsx_path": "tables/MWK_1956_p0136_tbl01_formulas-plane-rotating-x-axis.xlsx",
+      "xlsx_sha256": "52c4c683c389a946693d8b2c80c7ba16bb6b54233a90ac7d7406bfde74a80559"
+    },
+    {
+      "asset_id": "MWK_1956_p0136_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.5,
+        0.97,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1574,
+        2442,
+        3498
+      ],
+      "caption": "Table 5.9 Formulas for Plane Rotating about y-Axis",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0136_tbl02_formulas-plane-rotating-y-axis.png",
+      "png_sha256": "320e4f5cf18c09571eca968c7c3f708cb673ec158b837c49b83c3da1f1bb6036",
+      "slug": "formulas-plane-rotating-y-axis",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0136_tbl02_formulas-plane-rotating-y-axis.json",
+      "table_data_json_sha256": "616a91e920209e2a5f303d1b3476c340d2f10fd8440c9f0b3833647e8a4a495f",
+      "table_data_sha256": "616a91e920209e2a5f303d1b3476c340d2f10fd8440c9f0b3833647e8a4a495f",
+      "xlsx_path": "tables/MWK_1956_p0136_tbl02_formulas-plane-rotating-y-axis.xlsx",
+      "xlsx_sha256": "f8bca71a725b087fc996c6e98742ed6bdd410153992d9634e3004d121319527a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 136,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0136.png",
+  "page_image_sha256": "62582342f4963496f388473a91e51d213cc6bb5a9cfe130147b443326394bab3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0136_assets.json"
+}

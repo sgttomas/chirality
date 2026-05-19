@@ -1,0 +1,503 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 63,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3.1 Summation of Internal Pressure Test Results on Piping Branch Connections",
+      "slug": "table-3-1-internal-pressure-test-results-branch-connections",
+      "bbox_norm": [0.03, 0.16, 0.99, 0.97],
+      "confidence": "high",
+      "notes": "Multi-row header (2 header rows). Parent header columns 'Size of', 'Pressure as per cent of that supported by intact header', and 'Pressure as per cent of that supported by right-angle intersection' each span sub-columns. Two footnotes (* and ‡) appear below the table. Some cells use brace notation '}81.0' to indicate values grouped/averaged across multiple rows; transcribed verbatim as text.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "See Fig. 3.11 for identification of types of reinforcements." },
+          { "marker": "‡", "text": "Last column denotes 1/(cosec α — 0.5 cot α) instead of sin α or that for equal-sized V-intersections." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Ref. No.", "row_span": 2, "is_header": true },
+              { "value": "Authors", "row_span": 2, "is_header": true },
+              { "value": "Size of", "col_span": 2, "is_header": true },
+              { "value": "Angle of Intersection, degrees", "row_span": 2, "is_header": true },
+              { "value": "Type of Reinforcement*", "row_span": 2, "is_header": true, "footnote_markers": ["*"] },
+              { "value": "Pressure as per cent of that supported by intact header", "col_span": 2, "is_header": true },
+              { "value": "Pressure as per cent of that supported by right-angle intersection", "col_span": 2, "is_header": true },
+              { "value": "σis n", "row_span": 2, "is_header": true },
+              { "value": "Remarks", "row_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Header in.", "is_header": true },
+              { "value": "Branch in.", "is_header": true },
+              { "value": "at Proportional limit", "is_header": true },
+              { "value": "at Bursting", "is_header": true },
+              { "value": "at Proportional limit", "is_header": true },
+              { "value": "at Bursting", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 33, "type": "number" },
+              { "value": "Everett & McUtchan", "type": "text" },
+              { "value": 8, "type": "number", "unit": "in" },
+              { "value": 8, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 38.5, "type": "number" },
+              { "value": 69.6, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 40, "type": "number" },
+              { "value": "Crane Co.", "type": "text" },
+              { "value": 8, "type": "number", "unit": "in" },
+              { "value": 4, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 76.9, "type": "number" },
+              { "value": 101.1, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 12, "type": "number", "unit": "in" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 91.6, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 8, "type": "number", "unit": "in" },
+              { "value": 8, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Pad", "type": "text" },
+              { "value": 61.5, "type": "number" },
+              { "value": 98.9, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 12, "type": "number", "unit": "in" },
+              { "value": 12, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Pad", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 93.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 41, "type": "number" },
+              { "value": "Seabloom", "type": "text" },
+              { "value": 24, "type": "number", "unit": "in" },
+              { "value": 24, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Horseshoe and gusset", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 38.5, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 46, "type": "number" },
+              { "value": "Blair", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": "≈70.0", "type": "text", "raw": "≈70.0" },
+              { "value": "≈70.0", "type": "text", "raw": "≈70.0" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Averaged test values", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 6.2, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": "}81.0", "type": "text", "raw": "}81.0" },
+              { "value": "}62.5", "type": "text", "raw": "}62.5" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Values averaged for two tests", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 10, "type": "number", "unit": "in" },
+              { "value": 6.2, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Pad", "type": "text" },
+              { "value": 74.5, "type": "number" },
+              { "value": 96.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Pad", "type": "text" },
+              { "value": 79.0, "type": "number" },
+              { "value": 90.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 80, "type": "number" },
+              { "value": "Collar", "type": "text" },
+              { "value": 85.0, "type": "number" },
+              { "value": 90.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 80, "type": "number" },
+              { "value": "Gusset & pad", "type": "text" },
+              { "value": 110.0, "type": "number" },
+              { "value": ">100.0", "type": "text", "raw": ">100.0" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 7.5, "type": "number", "unit": "in" },
+              { "value": 80, "type": "number" },
+              { "value": "Unbalanced triform", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Averaged values", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "Balanced triform", "type": "text" },
+              { "value": 121.0, "type": "number" },
+              { "value": ">100.0", "type": "text", "raw": ">100.0" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 49, "type": "number" },
+              { "value": "N. Gross", "type": "text" },
+              { "value": "~8", "type": "text", "raw": "~8" },
+              { "value": "~8", "type": "text", "raw": "~8" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "≈90.0", "type": "text", "raw": "≈90.0" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Averaged value", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 48, "type": "number" },
+              { "value": "Blair", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 70.0, "type": "number" },
+              { "value": 70.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Averaged value", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 10, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 79.0, "type": "number" },
+              { "value": 79.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 4, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 83.0, "type": "number" },
+              { "value": 86.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 60.0, "type": "number" },
+              { "value": 60.0, "type": "number" },
+              { "value": 85.6, "type": "number" },
+              { "value": 85.6, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 56.0, "type": "number" },
+              { "value": 66.0, "type": "number" },
+              { "value": 70.9, "type": "number" },
+              { "value": 83.5, "type": "number" },
+              { "value": 0.665, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 11.9, "type": "number", "unit": "in" },
+              { "value": 10, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 76.7, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 4, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 71.4, "type": "number" },
+              { "value": 71.4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Averaged values", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 45, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 50.0, "type": "number" },
+              { "value": 50.0, "type": "number" },
+              { "value": 71.4, "type": "number" },
+              { "value": 71.4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 45, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 43.0, "type": "number" },
+              { "value": 44.0, "type": "number" },
+              { "value": 54.5, "type": "number" },
+              { "value": 52.7, "type": "number" },
+              { "value": 0.737, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 6, "type": "number", "unit": "in" },
+              { "value": 4, "type": "number", "unit": "in" },
+              { "value": 45, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 51.0, "type": "number" },
+              { "value": 51.0, "type": "number" },
+              { "value": 81.5, "type": "number" },
+              { "value": 73.9, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 60, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 62.0, "type": "number" },
+              { "value": 65.0, "type": "number" },
+              { "value": 90.0, "type": "number" },
+              { "value": 92.8, "type": "number" },
+              { "value": 0.880, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 60, "type": "number" },
+              { "value": "None", "type": "text" },
+              { "value": 54.0, "type": "number" },
+              { "value": 40.0, "type": "number" },
+              { "value": 68.6, "type": "number" },
+              { "value": 57.1, "type": "number" },
+              { "value": 0.502, "type": "number" },
+              { "value": "V-connection‡", "type": "text", "footnote_markers": ["‡"] }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0078.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0078_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        2560,
+        3300
+      ],
+      "caption": "Figure 2-22. Phase 1 of pipe support spacing. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0078_fig01_phase-1-pipe-support-spacing.png",
+      "png_sha256": "0930dd9abd4f9d4c59e171c9eebf071f5eddfb0437648dd51d962b7ac15492f0",
+      "slug": "phase-1-pipe-support-spacing",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 78,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0078.png",
+  "page_image_sha256": "0a9f39c60a6bb3ecbcaf1d55cd4c67bd5f4ccc23552db27cd798fee8bc218085",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0078_assets.json"
+}

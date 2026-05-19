@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0116.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0116_fig01",
+      "bbox_norm": [
+        0.08,
+        0.09,
+        0.92,
+        0.55
+      ],
+      "bbox_px": [
+        74,
+        140,
+        2406,
+        2105
+      ],
+      "caption": "Appendix 9 \u2014 Ergonomic valve positioning: two human silhouettes showing ergonomic reach zones with height reference lines at 0.2 m, 0.7 m, and 1.6 m (left figure, zone A and B labels) and 0.700 m, 1.800 m, and 2.100 m (right figure, zone A and B labels); vertical scale 0\u20132500 mm; left figure operating an overhead valve wheel, right figure operating a handwheel at mid-body level; centre dimension 1.8 m indicated.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0116_fig01_appendix-9-ergonomic-valve-positioning.png",
+      "png_sha256": "c410a7be2effb22c460f3257bd2a733c556cda4b4e22705ac0478f56733ca524",
+      "slug": "appendix-9-ergonomic-valve-positioning",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 116,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0116.png",
+  "page_image_sha256": "2ae738b6551a47faba832c8b663486d1d63ef1dfbcb9534d8f1081fd5f121bc1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0116_assets.json"
+}

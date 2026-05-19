@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0301.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0301_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        2181
+      ],
+      "caption": "FIG. 8.27 RESULTS OF PIPING ANALYSES WITH DIFFERENT TANK MODELS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0301_fig01_fig-8-27-piping-analyses-tank-models.png",
+      "png_sha256": "2f8edd5963ec2bfcefbeb0685a9d68a2d03537fc4ee0fefcd6dce40a863266cf",
+      "slug": "fig-8-27-piping-analyses-tank-models",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0301_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.3,
+        0.95,
+        0.53
+      ],
+      "bbox_px": [
+        75,
+        880,
+        2495,
+        2040
+      ],
+      "caption": "Piping Loads at Nozzle \u2014 Results of Piping Analyses with Different Tank Models (FIG. 8.27)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0301_tbl01_piping-loads-nozzle-tank-models.png",
+      "png_sha256": "9ed9c12a4261a5825b95429f85d39fcf772290da59935051246a04efad44d515",
+      "slug": "piping-loads-nozzle-tank-models",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0301_tbl01_piping-loads-nozzle-tank-models.json",
+      "table_data_json_sha256": "d8592dba759140964aea6213ea25bcdae301dfe080986f398286546bfc58a390",
+      "table_data_sha256": "d8592dba759140964aea6213ea25bcdae301dfe080986f398286546bfc58a390",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0301_tbl01_piping-loads-nozzle-tank-models.xlsx",
+      "xlsx_sha256": "3177a11ff5cca92f584b29b0c16f495187bfc6f317b830176a4a8b6cb2afc95c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 301,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0301.png",
+  "page_image_sha256": "3d91df2f42e01486f3105ed81a8b0bc43f1494e04e519a23f74faeffa2a67640",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0301_assets.json"
+}

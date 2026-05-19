@@ -1,0 +1,8 @@
+{"page": 340, "index": 1, "latex": "\\frac{(9 \\text{ in} + 6 \\text{ in} + 12 \\text{ in}) 4}{3.1416} = 34.37 \\text{ in}", "hash": "79d58ab4555d", "png": "page_0340.png"}
+{"page": 340, "index": 2, "latex": "\\frac{(9 \\text{ in} + 7.5 \\text{ in} + 12 \\text{ in}) 8}{3.1416} = 72.57 \\text{ in}", "hash": "9107aeff4478", "png": "page_0340.png"}
+{"page": 389, "index": 1, "latex": "\\frac{150{,}000 \\times 42}{7.48} = 842{,}245 \\text{ ft}^3 \\text{ of liquid}", "hash": "3c4c80051c60", "png": "page_0389.png"}
+{"page": 389, "index": 2, "latex": "h = \\frac{4V}{\\pi D^2}", "hash": "def2af1216af", "png": "page_0389.png"}
+{"page": 389, "index": 3, "latex": "h = \\frac{4 \\times 842{,}245}{(3.1417)(150^2)}", "hash": "e15cd49ce8ac", "png": "page_0389.png"}
+{"page": 389, "index": 4, "latex": "V = \\frac{\\pi b}{3}(r^2 + rR + R^2)", "hash": "24228a9527e3", "png": "page_0389.png"}
+{"page": 390, "index": 1, "latex": "V = \\frac{5.1417 \\times 1}{3} \\times (6{,}084 + 6{,}201 + 6{,}320)", "hash": "2f6aac8016df", "png": "page_0390.png"}
+{"page": 390, "index": 2, "latex": "\\begin{aligned}\n& 842{,}245 \\text{ ft}^3 \\text{ of stored liquid} \\\\\n+ \\ & 19{,}479 \\text{ ft}^3 \\text{ of berm soil} \\\\\n\\hline\n& 861{,}724 \\text{ dike area required}\n\\end{aligned}", "hash": "aa02548e4242", "png": "page_0390.png"}

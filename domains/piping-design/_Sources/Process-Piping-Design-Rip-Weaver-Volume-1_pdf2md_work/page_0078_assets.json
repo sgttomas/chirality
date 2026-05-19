@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 78,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4.2. Piping drawing index for Figure 4.1.",
+      "slug": "piping-drawing-index-figure-4-1",
+      "bbox_norm": [0.03, 0.07, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page plot plan drawing index showing battery limits, existing plant facilities, existing pipe rack, existing control building, and numbered drawing areas. Caption appears rotated along the right margin."
+    }
+  ],
+  "issues": []
+}

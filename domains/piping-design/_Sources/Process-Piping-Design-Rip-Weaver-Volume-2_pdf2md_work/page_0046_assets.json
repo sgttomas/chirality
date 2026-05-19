@@ -1,0 +1,79 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 46,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-30. Vertical pump installation. Courtesy of Byron Jackson Pump Division.",
+      "slug": "vertical-circulating-pumps-kx-rx-installation",
+      "bbox_norm": [0.03, 0.17, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full figure block including heading 'VERTICAL CIRCULATING PUMPS—TYPE KX-RX', subtitle text, large photograph of pump installation, embedded specification table overlay at bottom-right of photo, and caption below photo."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Vertical Circulating Pumps Type KX-RX specifications",
+      "slug": "vertical-circulating-pumps-kx-rx-specs",
+      "bbox_norm": [0.50, 0.65, 0.97, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "TYPE KX", "is_header": true },
+              { "value": "TYPE RX", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PUMP SIZES", "is_header": true },
+              { "value": "16\" to 36\"", "type": "text" },
+              { "value": "16\" to 94\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CAPACITIES IN G.P.M.", "is_header": true },
+              { "value": "to 60,000", "type": "text" },
+              { "value": "to 130,000", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TOTAL HEAD IN FEET", "is_header": true },
+              { "value": "to 500", "type": "text" },
+              { "value": "to 350", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SPEED - R.P.M.", "is_header": true },
+              { "value": "to 1760", "type": "text" },
+              { "value": "to 1760", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TYPES OF DRIVE", "is_header": true },
+              { "value": "Motor or Right Angle Gear", "type": "text", "col_span": 2 }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Specification table embedded as overlay in lower-right corner of the pump photograph. Three columns: row label, TYPE KX, TYPE RX. The TYPES OF DRIVE row spans both data columns with a single value."
+    }
+  ],
+  "issues": []
+}

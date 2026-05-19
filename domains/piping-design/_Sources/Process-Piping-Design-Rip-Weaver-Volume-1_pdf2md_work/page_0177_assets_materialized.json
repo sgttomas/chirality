@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0177.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0177_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2477,
+        2341
+      ],
+      "caption": "Figure 8-19. Conventional flanged relief valve. Courtesy of J.E. Lonergan Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0177_fig01_conventional-flanged-relief-valve-lonerg.png",
+      "png_sha256": "f7afa540357bb224f98c62f4e56ac70b1bc035679754a3d45aa113c42a430e96",
+      "slug": "conventional-flanged-relief-valve-lonerg",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0177_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1922,
+        2477,
+        3494
+      ],
+      "caption": "Parts and materials for LONERGAN Safety-Relief Valves D Series Conventional",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0177_tbl01_lonergan-d-series-parts-materials.png",
+      "png_sha256": "0a3ae208ab537357fc1f2b6ae8f27d7c4897cc591fc4a5ff774a13aac88b1368",
+      "slug": "lonergan-d-series-parts-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0177_tbl01_lonergan-d-series-parts-materials.json",
+      "table_data_json_sha256": "74f2efce1ac714c2fc8f36f7a901c89819b7ce22213cf530805571dcdc2cd95b",
+      "table_data_sha256": "74f2efce1ac714c2fc8f36f7a901c89819b7ce22213cf530805571dcdc2cd95b",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0177_tbl01_lonergan-d-series-parts-materials.xlsx",
+      "xlsx_sha256": "c2a9859665d2b2f4f5a7a7e3de201e9760702c42cfe3caee54aea8e5b4dfb9df"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 177,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0177.png",
+  "page_image_sha256": "a8eed15e59f4cc48d828455f3b42f53247efdc0e943a179b60e470e618ff82af",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0177_assets.json"
+}

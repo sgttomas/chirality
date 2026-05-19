@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0136.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0136_fig01",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2210
+      ],
+      "caption": "EXHIBIT 6-18 Structure-Supported Vertical Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0136_fig01_exhibit-6-18-structure-supported-vertica.png",
+      "png_sha256": "6c00d087fdcc5af2008aabf9620c995e086575c88303bc0203b14a4c2cdc7b2f",
+      "slug": "exhibit-6-18-structure-supported-vertica",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 136,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0136.png",
+  "page_image_sha256": "54adda3f1719f35bcc1c0a9b4b59f6cdaefcd8e0d0a4469586f7b5772695b63f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0136_assets.json"
+}

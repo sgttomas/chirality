@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0160.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0160_fig01",
+      "bbox_norm": [
+        0.08,
+        0.6,
+        0.72,
+        0.97
+      ],
+      "bbox_px": [
+        77,
+        1966,
+        1980,
+        3574
+      ],
+      "caption": "Fig. 5.6 SIDEWISE CONSTRICTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0160_fig01_sidewise-constriction.png",
+      "png_sha256": "203b08d0da715cf68305092624cff993c99e560b836b972c0fd7125be9e3c3ef",
+      "slug": "sidewise-constriction",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 160,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0160.png",
+  "page_image_sha256": "5ab27a79b4225ad9044f8f117caca0ab02c40577649f3a1c6e58e25f69c6807c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0160_assets.json"
+}

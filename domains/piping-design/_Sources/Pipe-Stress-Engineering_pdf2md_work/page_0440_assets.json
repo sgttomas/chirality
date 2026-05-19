@@ -1,0 +1,276 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 440,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 13.1 Comparison of Different Methods in Combining Closely Spaced Modes",
+      "slug": "comparison-methods-combining-closely-spaced-modes",
+      "bbox_norm": [0.04, 0.28, 0.96, 0.97],
+      "confidence": "medium",
+      "notes": "Complex table with 2-row merged header (cases A/B/C each spanning 2 sub-columns X-/Z-) and grouped row sections with merged row-label cells in the first column. Mode Participation Coefficients section has blank cells in alternating columns by design. Some cell values read from Markdown source cross-checked against page image.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Mode Orientations (Two modes with same frequency)", "is_header": true, "row_span": 2 },
+              { "value": "", "is_header": true, "row_span": 2 },
+              { "value": "A (1st Mode X-, 2nd Mode Z-)", "is_header": true, "col_span": 2 },
+              { "value": "B (1st Mode 45°, 2nd Mode 45°)", "is_header": true, "col_span": 2 },
+              { "value": "C (1st Mode X-, 2nd Mode 30°)", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X-", "is_header": true },
+              { "value": "Z-", "is_header": true },
+              { "value": "X-", "is_header": true },
+              { "value": "Z-", "is_header": true },
+              { "value": "X-", "is_header": true },
+              { "value": "0°", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Components", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "X-", "type": "text" },
+              { "value": "Z-", "type": "text" },
+              { "value": "X-", "type": "text" },
+              { "value": "Z-", "type": "text" },
+              { "value": "X-", "type": "text" },
+              { "value": "0-", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode Shapes (Same Scales)", "is_header": true, "row_span": 2 },
+              { "value": "Mode-1", "type": "text" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 0.7071, "type": "number" },
+              { "value": -0.7071, "type": "number" },
+              { "value": 0.866, "type": "number" },
+              { "value": -0.500, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-2", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.7071, "type": "number" },
+              { "value": 0.7071, "type": "number" },
+              { "value": 0.500, "type": "number" },
+              { "value": 0.866, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode Participation Coefficients", "is_header": true, "row_span": 4 },
+              { "value": "Mode-1", "type": "text" },
+              { "value": 1.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.7071, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.866, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-2", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": -0.7071, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": -0.500, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-1", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.7071, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.500, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-2", "type": "text" },
+              { "value": 1.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.7071, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 0.866, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Responses (in each Response Spectra)", "is_header": true, "row_span": 4 },
+              { "value": "Mode-1", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": -0.5, "type": "number" },
+              { "value": 0.750, "type": "number" },
+              { "value": -0.433, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-2", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.250, "type": "number" },
+              { "value": 0.433, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-1", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.433, "type": "number" },
+              { "value": 0.750, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mode-2", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.5, "type": "number" },
+              { "value": 0.433, "type": "number" },
+              { "value": 0.750, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SRSS Mode Combinations", "is_header": true, "row_span": 2 },
+              { "value": "X-Quake", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.707, "type": "number" },
+              { "value": 0.707, "type": "number" },
+              { "value": 0.612, "type": "number" },
+              { "value": 0.791, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z-Quake", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.707, "type": "number" },
+              { "value": 0.707, "type": "number" },
+              { "value": 0.612, "type": "number" },
+              { "value": 0.791, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ABS Mode Combinations", "is_header": true, "row_span": 2 },
+              { "value": "X-Quake", "type": "text" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.866, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z-Quake", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.866, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CQC Mode Combinations", "is_header": true, "row_span": 2 },
+              { "value": "X-Quake", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z-Quake", "type": "text" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Total Response SRSS Combined X and Z-Quake", "is_header": true, "row_span": 3 },
+              { "value": "SRSS", "is_header": true },
+              { "value": 0.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ABS", "is_header": true },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.414, "type": "number" },
+              { "value": 1.414, "type": "number" },
+              { "value": 1.323, "type": "number" },
+              { "value": 1.323, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CQC", "is_header": true },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": 1.0, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

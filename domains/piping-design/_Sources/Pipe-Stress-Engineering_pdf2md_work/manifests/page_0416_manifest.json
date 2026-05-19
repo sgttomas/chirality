@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0416.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0416_fig01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.92,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2453,
+        957
+      ],
+      "caption": "FIG. 12.14 FORCES THAT CAUSE THE SYSTEM TO SHAKE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0416_fig01_forces-that-cause-system-to-shake.png",
+      "png_sha256": "3b8417d1aa3f010cb30f057b6c6941f44440370c099d04ae038c06610d092e0a",
+      "slug": "forces-that-cause-system-to-shake",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0416_fig02",
+      "bbox_norm": [
+        0.05,
+        0.75,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2481,
+        2453,
+        3544
+      ],
+      "caption": "FIG. 12.15 FORCES ON PIPING ELEMENT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0416_fig02_forces-on-piping-element.png",
+      "png_sha256": "2d8806c44035ab509ae0e63e80c6c098789db4f229d635417a30699e4a810e50",
+      "slug": "forces-on-piping-element",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 416,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0416.png",
+  "page_image_sha256": "a3313b838e80ca463d6cb71ff32802fff354df57ecb1b02764f2f9be6a132af9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0416_assets.json"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 174,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8-16. Control valve actuator. Courtesy of Fisher Controls Co.",
+      "slug": "fig-8-16-control-valve-actuator",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.92],
+      "confidence": "high",
+      "notes": "Cross-sectional diagram of Type 667 direct acting diaphragm actuator with numbered callouts 1-11. Parts legend table embedded below diagram. Caption at bottom of figure."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Type 667 direct acting diaphragm actuator — component legend",
+      "slug": "type-667-actuator-component-legend",
+      "bbox_norm": [0.03, 0.76, 0.97, 0.91],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "1", "type": "number" },
+              { "value": "Diaphragm Case", "type": "text" },
+              { "value": "4", "type": "number" },
+              { "value": "Actuator Spring", "type": "text" },
+              { "value": "7", "type": "number" },
+              { "value": "Spring Adjuster", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "number" },
+              { "value": "Diaphragm", "type": "text" },
+              { "value": "5", "type": "number" },
+              { "value": "Actuator Stem", "type": "text" },
+              { "value": "8", "type": "number" },
+              { "value": "Stem Connector", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "number" },
+              { "value": "Diaphragm Plate", "type": "text" },
+              { "value": "6", "type": "number" },
+              { "value": "Spring Seat", "type": "text" },
+              { "value": "9", "type": "number" },
+              { "value": "Yoke", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "10", "type": "number" },
+              { "value": "Travel Indicator", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "11", "type": "number" },
+              { "value": "Travel Indicator Scale", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Six-column parts legend table embedded within figure. Three columns of (No., Component) pairs. Components 10 and 11 appear only in the third pair column, leaving first four columns blank for those rows."
+    }
+  ],
+  "issues": []
+}

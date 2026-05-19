@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 286,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p286_fig01",
+      "caption": "EXHIBIT 11-8 Planning for Line Growth",
+      "bbox_norm": [0.03, 0.07, 0.97, 0.43]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p286_fig02",
+      "caption": "EXHIBIT 11-9 Large-Diameter Lines",
+      "bbox_norm": [0.03, 0.45, 0.97, 0.93]
+    }
+  ],
+  "issues": []
+}

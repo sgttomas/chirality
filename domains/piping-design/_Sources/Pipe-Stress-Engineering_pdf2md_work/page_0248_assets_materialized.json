@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0248.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0248_fig01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.72,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2050,
+        2000,
+        3596
+      ],
+      "caption": "FIG. 7.11 ALIGNMENT GUIDE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0248_fig01_alignment-guide.png",
+      "png_sha256": "07c52da2e724aa69014cf2accd8f0b000088c56abfcf9fc5e1ada11b68572b65",
+      "slug": "alignment-guide",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 248,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0248.png",
+  "page_image_sha256": "7e37f5040ac7b30547afaa85c6235357ffad6793de40788b471ec391b4eff75e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0248_assets.json"
+}

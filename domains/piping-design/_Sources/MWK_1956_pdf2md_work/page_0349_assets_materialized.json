@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0349.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0349_fig01",
+      "bbox_norm": [
+        0.2,
+        0.09,
+        0.55,
+        0.22
+      ],
+      "bbox_px": [
+        275,
+        119,
+        1102,
+        805
+      ],
+      "caption": "C-9. Length of Leg Required - Two-Member System, Both Ends Fixed, One Support Displaced Normal to Plane of Members. Diagram showing members AB and BC with leg lengths L and KL, displacement Delta at point C normal to plane of members.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0349_fig01_c-9-length-of-leg-required-two-member-sy.png",
+      "png_sha256": "698c6b3a6f8e39361bf3d29242c3b02bdd25e68ab200673977ab25baa4ba4b63",
+      "slug": "c-9-length-of-leg-required-two-member-sy",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0349_fig02",
+      "bbox_norm": [
+        0.05,
+        0.24,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        567,
+        1836,
+        2893
+      ],
+      "caption": "Chart C-9. Log-log plot of (L^2 * S_A) / (10^7 * Delta) (vertical axis, range 0.02 to 2.0) versus K (horizontal axis, range 0 to 1.0), with curves for nominal pipe sizes from 1\" through 30\".",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0349_fig02_chart-c-9-log-log-plot-of-l-2-s-a-10-7-d.png",
+      "png_sha256": "56f1ed2a1fdaf4d8a7e5c4740742c57d17112fcc681f48e3750b5763664050c1",
+      "slug": "chart-c-9-log-log-plot-of-l-2-s-a-10-7-d",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 349,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0349.png",
+  "page_image_sha256": "7ee2cb2efa544c9746a38a4a98156e6d2f1f006b4b0e0d0a238cfab010dd43e4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0349_assets.json"
+}

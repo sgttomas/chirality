@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 350,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-10. Moments and Forces \u2014 Two-Member System, Both Ends Fixed, One Support Displaced Normal to Plane of Members. Chart of A1, A2, A3, A4, A5 versus K for 0 <= K <= 1.0, with accompanying schematic of the two-member system showing supports A, B, C, dimensions L, KL, and displacement Delta, plus a moment-diagram sketch.",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.78
+      ]
+    }
+  ]
+}

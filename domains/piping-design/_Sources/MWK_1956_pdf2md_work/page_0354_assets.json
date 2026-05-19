@@ -1,0 +1,51 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 354,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Case I. For any exterior leg L.",
+      "bbox_norm": [
+        0.13,
+        0.12,
+        0.4,
+        0.23
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Case II. For any interior leg L whose maximum deflection is in the plane of L and L_A where L_A is the shorter of the connecting legs.",
+      "bbox_norm": [
+        0.4,
+        0.1,
+        0.97,
+        0.24
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Case III. For any interior leg L whose maximum deflection is perpendicular to the plane of L and L_A where L_A is the shorter of the connecting legs.",
+      "bbox_norm": [
+        0.4,
+        0.24,
+        0.97,
+        0.38
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "C-14. Correction Factor f_2 Guided Cantilever Method - log-log chart of f versus L/L_A = LENGTH OF LEG UNDER CONSIDERATION / LENGTH OF SHORTER ADJACENT LEG, showing curves for CASE I, CASE II, and CASE III.",
+      "bbox_norm": [
+        0.06,
+        0.36,
+        0.97,
+        0.95
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0207.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0207_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2490,
+        3341
+      ],
+      "caption": "Fig. 6.8 Models of power plant piping.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0207_fig01_fig-6-8-models-of-power-plant-piping.png",
+      "png_sha256": "4447cdeeb2be10cff826ca7d9405af057ebb9b476d44175367a61dee5ccd2754",
+      "slug": "fig-6-8-models-of-power-plant-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 207,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0207.png",
+  "page_image_sha256": "fe5eb826390eefe3d3ec7eeaa2f4bef6d30b267e2b79b025f52a443267a4621a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0207_assets.json"
+}

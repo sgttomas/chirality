@@ -1,0 +1,1113 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 28,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3: Branch Selection Guidelines",
+      "slug": "table-3-branch-selection-guidelines",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.42
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. Do not use o-lets greater than 3 IPS for stainless or duplex stainless."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Run/Hdr",
+                "is_header": true
+              },
+              {
+                "value": "\u00be",
+                "is_header": true
+              },
+              {
+                "value": "1",
+                "is_header": true
+              },
+              {
+                "value": "1\u00bc",
+                "is_header": true
+              },
+              {
+                "value": "1\u00bd",
+                "is_header": true
+              },
+              {
+                "value": "2",
+                "is_header": true
+              },
+              {
+                "value": "3",
+                "is_header": true
+              },
+              {
+                "value": "4",
+                "is_header": true
+              },
+              {
+                "value": "6",
+                "is_header": true
+              },
+              {
+                "value": "8",
+                "is_header": true
+              },
+              {
+                "value": "10",
+                "is_header": true
+              },
+              {
+                "value": "12",
+                "is_header": true
+              },
+              {
+                "value": "14",
+                "is_header": true
+              },
+              {
+                "value": "16",
+                "is_header": true
+              },
+              {
+                "value": "18",
+                "is_header": true
+              },
+              {
+                "value": "24",
+                "is_header": true
+              },
+              {
+                "value": "30",
+                "is_header": true
+              },
+              {
+                "value": "36+",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Group 2",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Group 1: o-lets",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "16",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "18",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Group 1 \u00b9\u207e",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "24",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Group 2 or 3",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "30",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Tee or Split Tee",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "36+",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Matrix table showing branch selection guidelines by run/header size (rows) vs branch size (columns). Diagonal zone labels indicate fitting group requirements. Note 1 footnote applies to Group 1 entry for 18-inch run."
+    }
+  ],
+  "issues": []
+}

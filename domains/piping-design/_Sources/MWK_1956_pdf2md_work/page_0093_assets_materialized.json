@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0093.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0093_fig01",
+      "bbox_norm": [
+        0.7,
+        0.49,
+        0.97,
+        0.69
+      ],
+      "bbox_px": [
+        1525,
+        1539,
+        2346,
+        2589
+      ],
+      "caption": "Sample Calculation 4.1 piping configuration sketch: planar pipe routing with anchor points; anchor distance U = 36.6 ft; developed length L = 100 ft; segment dimension 25 ft shown.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0093_fig01_sample-calculation-4-1-piping-configurat.png",
+      "png_sha256": "351e7d0a7a5d6906a7627535b10760a1ce29d1edd44d57b2aad7a0bfe1182de6",
+      "slug": "sample-calculation-4-1-piping-configurat",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 93,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0093.png",
+  "page_image_sha256": "cea5482cfc4bd532bbac6162a437e7c39ba89d6fe285f56227ad3b699c3542be",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0093_assets.json"
+}

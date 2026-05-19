@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 61,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 2.6 BENDING STRESS DISTRIBUTION",
+      "slug": "bending-stress-distribution",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.32],
+      "confidence": "high",
+      "notes": "Diagram showing beam with applied moments M, cross-sections m-m and p-p before and after bending, and triangular stress distribution with S_max labeled. Caption 'FIG. 2.6 BENDING STRESS DISTRIBUTION' appears directly below the figure."
+    }
+  ],
+  "issues": []
+}

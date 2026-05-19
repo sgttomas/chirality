@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0300.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0300_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.96,
+        0.41
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1518
+      ],
+      "caption": "EXHIBIT 11-29 Rack Intersection (Cont) \u2014 b. Rack Intersection Detail. Hand-drawn plan view comparing two pipe rack intersection arrangements: the left side labeled WRONG shows piping routed directly through the crossing of two perpendicular pipe racks (causing congestion), while the right side labeled RIGHT shows the secondary rack intersection shifted off to the side so the crossing remains clear. Both views show parallel pipes on the rack with vertical drop-offs.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0300_fig01_exhibit-11-29-rack-intersection-cont-b-r.png",
+      "png_sha256": "6b8de9305c09fb3b2fcce7473a7b1429f59ed95a5c68d32c34dfef45799d579f",
+      "slug": "exhibit-11-29-rack-intersection-cont-b-r",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0300_fig02",
+      "bbox_norm": [
+        0.5,
+        0.41,
+        0.96,
+        0.94
+      ],
+      "bbox_px": [
+        1148,
+        1188,
+        2550,
+        3266
+      ],
+      "caption": "EXHIBIT 11-30 Pipe Rack Additions. Elevation view of a pipe rack showing four stacked future-addition zones labeled A through D. Level A (bottom) is the standard two-level pipe rack with parallel pipes on transverse beams supported by two columns. Level B is an added new piping level. Level C shows a centrally located air cooler unit (horizontal finned-tube bundle) mounted above the rack. Level D (top) shows a row of bonnet-style shell-and-tube exchangers on the uppermost beam. Each level is called out with a circled letter (A-D) on the right side.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0300_fig02_exhibit-11-30-pipe-rack-additions-elevat.png",
+      "png_sha256": "9c5a01ad3628a2bd901b30311bb00fd7192aef5219ba5acdd7b63e04d2a49b7e",
+      "slug": "exhibit-11-30-pipe-rack-additions-elevat",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 300,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0300.png",
+  "page_image_sha256": "832e6b0f671f12650dd5b59108ce3b7ec5842762e3aeb90cc4d86bb2d4a8137f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0300_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0138.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0138_fig01",
+      "bbox_norm": [
+        0.18,
+        0.03,
+        0.82,
+        0.24
+      ],
+      "bbox_px": [
+        332,
+        0,
+        2225,
+        1034
+      ],
+      "caption": "Fig. 4.12 SUSTAINED STRESSES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0138_fig01_sustained-stresses-pipe-cross-section.png",
+      "png_sha256": "a402a73037fdfdf0e0a10999780f5c8a3859c076d0bcb81468844e250136b5e3",
+      "slug": "sustained-stresses-pipe-cross-section",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 138,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0138.png",
+  "page_image_sha256": "63a56b3e0451bf2a95958d9cecd27bdb4cb9dc80d708579b90e4c3d43c50ff3d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0138_assets.json"
+}

@@ -1,0 +1,35 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.52,
+        0.03,
+        0.985,
+        0.235
+      ],
+      "caption": "Fig. 3.12 Edge reinforcement of circular cut-outs in flat plates.",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.025,
+        0.44,
+        0.555,
+        0.985
+      ],
+      "caption": "Table 3.2 \"Effective Stress\" Concentrations around Circular Holes in Flat Plates, Reinforced by Various Methods",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Schematic showing rim (pipe collar) reinforcement geometry above and doubler (reinforcing pad) plus flat plate geometry below; labels include H, L, t_n, R, and flat plate. Caption appears beneath the diagrams.",
+    "asset_note: Table spans the lower-left of the page. Columns: H1/R, t/t_bar, t'/R, then Stress Intensification Factor sub-columns (Biaxial Tension, Uniaxial Tension, Average), then Area of Reinforcement / Area of Cut-out sub-columns (Rim, Doubler, Total). Three section headers separate the body: 'Rim Reinforcement only', 'Doubler Plate Reinforcement only', and 'Doubler and Rim Combined'. Em-dash entries in source rendered as empty cells."
+  ],
+  "page": 65,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

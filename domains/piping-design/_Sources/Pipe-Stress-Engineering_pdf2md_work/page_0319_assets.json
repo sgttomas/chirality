@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 319,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 9.10 EXPANSION JOINT ARRANGEMENTS AT TURBINE CONNECTIONS",
+      "slug": "expansion-joint-arrangements-turbine-connections",
+      "bbox_norm": [0.04, 0.54, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Multi-panel figure showing four expansion joint configurations: (a) No Tie-rod with Anchor (No Good), (b) Tie-rod with Sliding Support, (c) Tie-rod with Anchor (No Good), (d) Sliding Guide and Hold-down. Caption visible at bottom."
+    }
+  ],
+  "issues": []
+}

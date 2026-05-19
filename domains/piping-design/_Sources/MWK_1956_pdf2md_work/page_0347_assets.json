@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 347,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-7. Length of Leg Required - Two-Member System, Both Ends Fixed - One Support Displaced in the Direction of the Adjoining Member",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.93
+      ]
+    }
+  ]
+}

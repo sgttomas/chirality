@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0400.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0400_fig01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1670,
+        2543,
+        3554
+      ],
+      "caption": "FIG. 12.5 DYNAMIC LOAD FACTORS FOR IMPULSE LOADS RECTANGULAR SHAPED AND RAMPED CONSTANT LOADS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0400_fig01_dynamic-load-factors-impulse-loads-recta.png",
+      "png_sha256": "d5c5bdd59d019e835cf17b08061fd6e3315a7e9682c1aa57299b814d99918728",
+      "slug": "dynamic-load-factors-impulse-loads-recta",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 400,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0400.png",
+  "page_image_sha256": "38e8dac59dc5c794a1a4aef8da2b7ff0a8be1d61bb5dfc50c554830ca5abdfaf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0400_assets.json"
+}

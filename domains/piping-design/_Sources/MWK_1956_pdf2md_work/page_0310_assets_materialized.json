@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0310.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0310_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2364,
+        3198
+      ],
+      "caption": "Table A.3 Shape Coefficients for x, y, and z Planes and the Summation Coefficients",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0310_tbl01_table-a-3-shape-coefficients-for-x-y-and.png",
+      "png_sha256": "f9b6b4387d7a74970a84b57c136aa2053095375e011145f8528a1ae66ef82976",
+      "slug": "table-a-3-shape-coefficients-for-x-y-and",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 310,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0310.png",
+  "page_image_sha256": "a19c26c7b7f909bf6b69803ceec2a9fd3148ebd16b58e54b1219e39c2ed65618",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0310_assets.json"
+}

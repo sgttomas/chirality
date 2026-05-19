@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 288,
+  "page_label": "288",
+  "page_label_source": "vlm",
+  "location": "top-left",
+  "confidence": "high",
+  "rationale": "Arabic numeral 288 printed at top-left of page header."
+}

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0274.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0274_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.56
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2012
+      ],
+      "caption": "EXHIBIT 10-62 Typical Tower Davit Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0274_fig01_exhibit-10-62-typical-tower-davit-arrang.png",
+      "png_sha256": "0b16c1c441681ee3df8e7e354d16cca73d1f465c5834e89ace15283a9396702a",
+      "slug": "exhibit-10-62-typical-tower-davit-arrang",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0274_fig02",
+      "bbox_norm": [
+        0.05,
+        0.58,
+        0.95,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1748,
+        2550,
+        3134
+      ],
+      "caption": "EXHIBIT 10-63 Typical Tower Trolley Beam Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0274_fig02_exhibit-10-63-typical-tower-trolley-beam.png",
+      "png_sha256": "4a573cbb1e9596537068ebdbeb0791a4c7d76bc6179e0197a99a1a53b2634a02",
+      "slug": "exhibit-10-63-typical-tower-trolley-beam",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 274,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0274.png",
+  "page_image_sha256": "c5ec842721fc4aedadbcba9e1dc1acabae3a605e4e142109f6da228a20e376a6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0274_assets.json"
+}

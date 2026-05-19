@@ -1,0 +1,94 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 133,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-7. TEMA exchanger part definitions.",
+      "slug": "tema-exchanger-part-definitions",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.72],
+      "confidence": "high",
+      "notes": "Three-column figure showing STATIONARY HEAD TYPES (A, B, C, D), SHELL TYPES (E, F, G, H, J, K), and REAR HEAD TYPES (L, M, N, P, S, T, U) with engineering drawings and labels. Caption appears below the figure."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Figure 4-7. TEMA exchanger part definitions.",
+      "slug": "tema-exchanger-part-definitions-table",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "STATIONARY HEAD TYPES", "is_header": true },
+              { "value": "SHELL TYPES", "is_header": true },
+              { "value": "REAR HEAD TYPES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A — REMOVABLE CHANNEL AND COVER", "type": "text" },
+              { "value": "E — ONE PASS SHELL", "type": "text" },
+              { "value": "L — FIXED TUBE SHEET LIKE \"A\" STATIONARY HEAD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B — BONNET (INTEGRAL COVER)", "type": "text" },
+              { "value": "F — 2 PASS SHELL WITH LONGITUDINAL BAFFLE", "type": "text" },
+              { "value": "M — FIXED TUBE SHEET LIKE \"B\" STATIONARY HEAD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C — INTEGRAL WITH TUBE SHEET REMOVABLE COVER", "type": "text" },
+              { "value": "G — SPLIT FLOW", "type": "text" },
+              { "value": "N — FIXED TUBE SHEET LIKE \"C\" STATIONARY HEAD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "D — SPECIAL HIGH PRESSURE CLOSURE", "type": "text" },
+              { "value": "H — DOUBLE SPLIT FLOW", "type": "text" },
+              { "value": "P — OUTSIDE PACKED FLOATING HEAD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "J — DIVIDED FLOW", "type": "text" },
+              { "value": "S — FLOATING HEAD WITH BACKING DEVICE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "K — KETTLE TYPE REBOILER", "type": "text" },
+              { "value": "T — PULL-THROUGH FLOATING HEAD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "U — U TUBE BUNDLE", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Tabular legend embedded within the figure mapping TEMA type codes to descriptions across three categories."
+    }
+  ],
+  "issues": []
+}

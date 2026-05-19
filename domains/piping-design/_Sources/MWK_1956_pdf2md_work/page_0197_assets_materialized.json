@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0197.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0197_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2370,
+        2049
+      ],
+      "caption": "M.W. Kellogg Co. Form F-1 \u2014 Piping Flexibility and Stress Analysis: Moments and Stresses (Hot / Cold / Equiv.). Worksheet showing conversion to coordinate rules and calculated reactions for points 1-8, including SigmaFx, SigmaFy, moments (SigmaMx, SigmaMy), and stresses (Sx, Sy, Sz) based on hot modulus E_h.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0197_tbl01_m-w-kellogg-co-form-f-1-piping-flexibili.png",
+      "png_sha256": "96fccc81bcf1350fb468e342d85d41a83ad43fb7284c1d025a2d1bda2c5c75f7",
+      "slug": "m-w-kellogg-co-form-f-1-piping-flexibili",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 197,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0197.png",
+  "page_image_sha256": "f1a6554159b9a5efebc805509efe7446f70a5976f0335436200e9dde586b8690",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0197_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 47,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-20 Manway Location Vertical Vessel Access",
+      "slug": "fig-300-20-manway-location-vertical-vessel-access",
+      "bbox_norm": [0.08, 0.32, 0.92, 0.88],
+      "confidence": "high",
+      "notes": "Two-view diagram: PLAN view (top, circular cross-section showing Manholes and work space, Access arrows, Piping label) and ELEVATION (example) view (bottom, showing Ladders & Cage on vertical vessel). Caption appears above the figure."
+    }
+  ],
+  "issues": []
+}

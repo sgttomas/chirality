@@ -1,0 +1,64 @@
+J
+
+aed
+
+;
+
+Code Stress Requirements 101
+
+strength. Therefore, the contribution of these minor weld stresses is expected to be significant too.
+The fraction of the weld strength reduction, in comparison with base pipe material, at creep range is
+called weld strength reduction factor, or simply, W factor.
+
+The weld strength reduction factor is a very complex function of temperature, pipe base material,
+weld material, welding process, smoothness of the weld, and heat treatment of the weld. The code
+provides certain W factors for some materials. The listed factors should be used if available. As a gen-
+eral idea, the W factor for austenitic stainless steels and creep strength enhanced ferritic (CSEF) steels
+with normalizing plus tempering (N + T) post-weld heat treatment (PWHT) is 1.0 for 950°F (510°C)
+and below, and is 0.5 at 1500°F (815°C). The factor can be linearly interpolated for temperatures
+between 950°F and 1500°F.
+
+The application of W factor depends on weld location and load category. The longitudinal weld
+and spiral weld, which are used in the production of the pipe, work only against the hoop stress in
+pressure design of the pipe and its components. Circumferential welds, which are used to assemble
+the piping, work only against longitudinal stress. Therefore, the W factor for circumferential weld is
+used in reducing the allowable stress for the sustained longitudinal stress. However, the W factor does
+not apply to occasional loads due to the load’s short duration, which has little effect on creep failure.
+The W factor is also not applicable to expansion and displacement stresses due to their non-sustained
+natures, which have little effect on creep failure.
+
+Application of the circumferential W factor would require the identification of all weld locations in
+the design analysis. This is simply impractical for non-nuclear industries with short project schedules.
+Therefore, the same approach used in setting the evaluation procedure for thermal expansion stress
+might be used here. In the development of thermal expansion stress evaluation procedure [9], we have
+assumed that the piping has a circumferential weld everywhere. With this assumption, we simply ig-
+nored the existence of circumferential weld and adjust the stress intensification factor and allowable
+stress accordingly. For the W factor, we can also assume that the circumferential weld exists at every
+point. In the case of W factor, we do not even have to adjust anything. The factor is used “as is” for
+all points.
+
+4.4 PRESSURE DESIGN
+
+The most basic and important requirement of pipe stress analysis is to ensure that each piping
+component is strong enough to contain the service pressure. However, most engineering design pro-
+cedures delegate this important task to the systems engineering group rather than to the piping me-
+chanical group. This is a necessity so that the systems engineering group can properly determine the
+pipe size for the flow rate needed for the process. Wall thickness, together with the required flow area,
+determines the pipe size. However, regardless of who determines the wall thickness, it is the pipe stress
+engineer’s responsibility to ensure that the thickness is sufficient for the design pressure and other
+loads to be considered. Pressure design can be accomplished by several different ways.
+
+* Use of standard components having established ratings
+
+Pressure-temperature ratings for certain piping components have been established in some of the
+standards approved by the applicable code. Typical examples are flanges (ASME B16.5, ASME
+B16.47, etc.) and valves (ASME B16.34). In using these components, the designer only needs to se-
+lect the proper material type and the class of which the allowable pressure at the design temperature
+is equal to, or higher than, the design pressure. This is known as design by selection. No calculation
+is involved.
+* Use of standard components not having specific ratings
+
+Some of the code approved standards for components, such as butt-welding fittings (ASME
+B16.9, ASME B16.11, etc.), do not provide specific pressure-temperature ratings, but state that the
+pressure-temperature ratings are based on the straight seamless pipe. Because the standards specify
+that the components shall be furnished in nominal thickness, the manufacturing under-tolerance,

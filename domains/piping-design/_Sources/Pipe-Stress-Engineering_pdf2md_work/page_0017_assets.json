@@ -1,0 +1,341 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 17,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Nomenclature — symbols M through S (molecular weight through flange bolt stress)",
+      "slug": "nomenclature-m-through-s",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Symbol", "is_header": true },
+              { "value": "Definition", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mw", "type": "text" },
+              { "value": "Molecular weight", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mb", "type": "text" },
+              { "value": "Moment produced by bellow lateral displacement without free end rotation", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mb", "type": "text" },
+              { "value": "Moment produced by bellow rotation with free lateral displacement", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "M(b+delta)", "type": "text", "raw": "M(b+δ)" },
+              { "value": "Moment produced by bellow rotation without free lateral displacement", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "m", "type": "text" },
+              { "value": "Flange gasket factor", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "m", "type": "text" },
+              { "value": "Mass per unit length of pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "m-dot", "type": "text", "raw": "ṁ" },
+              { "value": "Mass flow rate", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N", "type": "text" },
+              { "value": "Circumferential force per unit length of pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N", "type": "text" },
+              { "value": "Number of bellow convolutions", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N", "type": "text" },
+              { "value": "Number of operating cycles", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N", "type": "text" },
+              { "value": "Strouhal number on vortex shedding frequency; Ns = fD/V", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "n", "type": "text" },
+              { "value": "Number of stiffening rings at each support saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "P", "type": "text" },
+              { "value": "Pressure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pf", "type": "text" },
+              { "value": "Flange design pressure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pe", "type": "text" },
+              { "value": "Equivalent pressure due to force and moment acting on a flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pa", "type": "text" },
+              { "value": "Pressure amplitude of a standing wave", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pt", "type": "text" },
+              { "value": "Pressure amplitude of a traveling wave", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "p*", "type": "text" },
+              { "value": "Pressure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "p**", "type": "text" },
+              { "value": "Critical pressure at sonic velocity state", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q", "type": "text" },
+              { "value": "Pipeline end resistance force", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q", "type": "text" },
+              { "value": "Total support load", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q", "type": "text" },
+              { "value": "Volumetric flow rate", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "[Q]", "type": "text" },
+              { "value": "Influence or relation matrix relating ground motion to every part of the structure", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "q", "type": "text" },
+              { "value": "Distributed external force per unit length of beam", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "q", "type": "text" },
+              { "value": "Pitch of bellow convolution", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "qc", "type": "text" },
+              { "value": "Deformed pitch at centerline of bellow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "qi", "type": "text" },
+              { "value": "Compressed pitch at pitch diameter of bellow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "qo", "type": "text" },
+              { "value": "Extended pitch at pitch diameter of bellow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "qh", "type": "text" },
+              { "value": "Horizontal soil resistance force per unit length of pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "qv", "type": "text" },
+              { "value": "Vertical soil resistance force per unit length of pipe", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Bend radius", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Gas constant = R/Mw", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Radius of curvature", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Radius of circular cross-section", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Radius of vessel shell", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Reaction force", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "Universal gas constant", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rh", "type": "text" },
+              { "value": "Acceleration response spectra", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rj", "type": "text" },
+              { "value": "Acceleration response spectra of jth independent support motion", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rc", "type": "text" },
+              { "value": "Radius of the crown on a vessel head", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rd", "type": "text" },
+              { "value": "Displacement response spectra", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rv", "type": "text" },
+              { "value": "Velocity response spectra", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "r", "type": "text" },
+              { "value": "Radius of an arbitrary circular ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "r", "type": "text" },
+              { "value": "Radius of pipe cross-section", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "r", "type": "text" },
+              { "value": "Radius of round attachment", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": "Rotation", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "rm", "type": "text" },
+              { "value": "Mean radius of pipe cross-section", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": "Basic allowable stress for pipeline", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": "Stress", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sa", "type": "text" },
+              { "value": "Basic allowable thermal expansion stress range", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sb", "type": "text" },
+              { "value": "Flange bolt stress", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page two-column nomenclature table; page header shows 'xviii Nomenclature'. Table continues across multiple pages. Legacy csv_text replaced with structured table_data."
+    }
+  ],
+  "issues": []
+}

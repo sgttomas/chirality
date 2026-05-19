@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0169.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0169_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.99,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        709,
+        2028,
+        3222
+      ],
+      "caption": "Form E (Flexibility Stress Analysis) 6-Equations - The M.W. Kellogg Co. Tabulated simultaneous-equation worksheet combining shape-coefficient sums (Form D-3), deflection equations (Form J), and the six-equation system (Forms E-2 / E-3) for the General Analytical Method sample calculation. Columns: Mx, My, Mz, Fx, Fy, Fz, CONSTANTS.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0169_tbl01_form-e-flexibility-stress-analysis-6-equ.png",
+      "png_sha256": "c5c0838be4a59e45a15991451fb215d11d543182ce2117df6225d5dc1e6c3c27",
+      "slug": "form-e-flexibility-stress-analysis-6-equ",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 169,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0169.png",
+  "page_image_sha256": "5ae5c1956cf336355c098e9cf937d9ada2de7e12200db3b797d1f29295c8b312",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0169_assets.json"
+}

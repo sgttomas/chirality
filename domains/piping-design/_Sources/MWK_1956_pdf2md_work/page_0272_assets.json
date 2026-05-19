@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 272,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "F_max/F* and \u03b4_max/\u03b4*_st vs. \u03c9/\u03c9_n, no damping",
+      "bbox_norm": [
+        0.55,
+        0.04,
+        0.99,
+        0.32
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "F_max/F* vs. \u03c9/\u03c9_n for damped vibration",
+      "bbox_norm": [
+        0.55,
+        0.33,
+        0.99,
+        0.63
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "\u03b4_max/\u03b4*_st vs. \u03c9/\u03c9_n for damped vibration",
+      "bbox_norm": [
+        0.55,
+        0.65,
+        0.99,
+        0.97
+      ]
+    }
+  ]
+}

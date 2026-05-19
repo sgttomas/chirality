@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 212,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p212_fig01",
+      "caption": "EXHIBIT 8-24 Primary and Standby Pump for Hot Slurry Service",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.43]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p212_fig02",
+      "caption": "EXHIBIT 8-25 Primary and Standby Pump with Below-Grade Suction",
+      "bbox_norm": [0.02, 0.42, 0.52, 0.68]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p212_fig03",
+      "caption": "EXHIBIT 8-26 Spool Piece Removal",
+      "bbox_norm": [0.50, 0.42, 0.99, 0.62]
+    }
+  ],
+  "issues": []
+}

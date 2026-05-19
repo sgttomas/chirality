@@ -1,0 +1,118 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0038.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.42,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1203,
+        1056
+      ],
+      "caption": "Parts list for Type SJ pump",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl01_parts-list-type-sj-pump.png",
+      "png_sha256": "cf91ba0c48b3a9eecfee888f7083bd30e1d30153881c3f55f4a1254d86a83f83",
+      "slug": "parts-list-type-sj-pump",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl01_parts-list-type-sj-pump.json",
+      "table_data_json_sha256": "82442e242bbdeb927768d11582769dc2e803306fee10527653992219a925da05",
+      "table_data_sha256": "82442e242bbdeb927768d11582769dc2e803306fee10527653992219a925da05",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl01_parts-list-type-sj-pump.xlsx",
+      "xlsx_sha256": "722413010f14352f310d59168324a6eb9bc1d582fbbe18eaaadd94cc00e04acd"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.27,
+        0.42,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        726,
+        1203,
+        1419
+      ],
+      "caption": "Minimum dimensions table for Type SJ pump",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl02_minimum-dimensions-type-sj.png",
+      "png_sha256": "538b73338b39c73f16b4e13469c3ba9e4ee12c1ba8538f92a4eb0eed4dbdd3f6",
+      "slug": "minimum-dimensions-type-sj",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0038_fig01",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.62,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1089,
+        1715,
+        3300
+      ],
+      "caption": "Figure 1-22 Pump outline dimensions, Type SJ. Courtesy of Byron Jackson Pump Division.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_fig01_pump-outline-dimensions-type-sj.png",
+      "png_sha256": "09030d768f09b22a0ba8f621a4b8418f30a7779e8fe277afe63e6376b0653063",
+      "slug": "pump-outline-dimensions-type-sj",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl03",
+      "bbox_norm": [
+        0.6,
+        0.03,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        1408,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Pump outline dimensional data for various Type SJ pump sizes (dimensions A through P)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 3,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0038_tbl03_pump-outline-dimensional-data-type-sj.png",
+      "png_sha256": "a468519b7b95864f28cff51d0ba7a9a4a3329d4c2844b973e9787102c80aa872",
+      "slug": "pump-outline-dimensional-data-type-sj",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0038.png",
+  "page_image_sha256": "f81ecbec17ebe0a6b9cf8c889362b8f2de7646981ca29d03e1d8f4a8e2bd7ccf",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0038_assets.json"
+}

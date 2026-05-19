@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0160.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0160_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2406,
+        3210
+      ],
+      "caption": "Piping Flexibility and Stress Analysis - 12 Equations - A-D Branch - The M.W. Kellogg Co. - Calc. No. 5/1",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0160_tbl01_piping-flexibility-and-stress-analysis-1.png",
+      "png_sha256": "d1b36f1cbbf37abf481845d3c0ecbcb7430e085c46759e7595898b614b0a173d",
+      "slug": "piping-flexibility-and-stress-analysis-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 160,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0160.png",
+  "page_image_sha256": "76f3c2febb179f17621a9021381c015eb818ea276047e58d3ba7e96ba3e9cc56",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0160_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0060.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0060_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1353
+      ],
+      "caption": "EXHIBIT 3-20 Typical Pipe Rack Elevation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0060_fig01_exhibit-3-20-typical-pipe-rack-elevation.png",
+      "png_sha256": "1c223ac2ede24b236a8474e72fc547b7ae31ba6b11b3e4287243fad0f3165c8b",
+      "slug": "exhibit-3-20-typical-pipe-rack-elevation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0060.png",
+  "page_image_sha256": "3304f9fa4b87b1bf841094bdb8ce1c3aef449320ae73bce0f8e347dd100e4b72",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0060_assets.json"
+}

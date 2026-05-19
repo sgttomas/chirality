@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 345,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-5. LENGTH OF LEG REQUIRED \u2014 Two-Member System, Both Ends Fixed, Thermal Expansion in Plane of Members. Nomograph plotting LS_A/10^4 e versus K with nominal pipe size curves (1\", 1\u00bd\", 2\", 2\u00bd\", 3\", 4\", 5\", 6\", 8\", 10\", 12\", 14\", 16\", 18\", 20\", 24\", 30\", 36\"). Accompanying sketch shows two-member system ABC with leg L from A to B and leg KL from B to C.",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.88
+      ]
+    }
+  ]
+}

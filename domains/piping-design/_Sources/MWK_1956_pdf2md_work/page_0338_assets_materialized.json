@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0338.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0338_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2046,
+        2982
+      ],
+      "caption": "C-1. Properties and Weights of Pipe \u2014 Continued",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0338_tbl01_c-1-properties-and-weights-of-pipe-conti.png",
+      "png_sha256": "16f6dfecc196f71acac316da3d9d357cd6ab0f296b92fa8e4173ddc22f6a983a",
+      "slug": "c-1-properties-and-weights-of-pipe-conti",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 338,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0338.png",
+  "page_image_sha256": "cd3deea925275c25f7eeef7611c366b620ab356c1de1e0d40c7a155976e623f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0338_assets.json"
+}

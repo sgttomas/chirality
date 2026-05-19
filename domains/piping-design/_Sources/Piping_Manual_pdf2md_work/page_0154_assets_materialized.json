@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0154.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0154_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2045
+      ],
+      "caption": "EXHIBIT 6-47 Fixed Structure with a Traveling Gantry",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0154_fig01_exhibit-6-47-fixed-structure-with-a-trav.png",
+      "png_sha256": "0a2790718939d49aaba41c9e9079553360bcd50970db6d9dfb1f5debe6d8125f",
+      "slug": "exhibit-6-47-fixed-structure-with-a-trav",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0154_fig02",
+      "bbox_norm": [
+        0.05,
+        0.59,
+        0.5,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1781,
+        1402,
+        3200
+      ],
+      "caption": "EXHIBIT 6-48 Removal of a Tube Bundle by Crane",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0154_fig02_exhibit-6-48-removal-of-a-tube-bundle-by.png",
+      "png_sha256": "89189dd6807a3221ecf6700b7c34480fd357488ad4262363a35b9aa7035334de",
+      "slug": "exhibit-6-48-removal-of-a-tube-bundle-by",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0154_fig03",
+      "bbox_norm": [
+        0.5,
+        0.59,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        1148,
+        1781,
+        2550,
+        3200
+      ],
+      "caption": "EXHIBIT 6-49 Removal of Air Cooler Sections with a Mobile Crane",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0154_fig03_exhibit-6-49-removal-of-air-cooler-secti.png",
+      "png_sha256": "1b0c57d0cfc539c4b735c429f2de86989e85f34d61c78331eda62eca7865031c",
+      "slug": "exhibit-6-49-removal-of-air-cooler-secti",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 154,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0154.png",
+  "page_image_sha256": "35f81532fe629237f27297943d48f6abe0cce0857b00b6e86c8cc85b0a4020ae",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0154_assets.json"
+}

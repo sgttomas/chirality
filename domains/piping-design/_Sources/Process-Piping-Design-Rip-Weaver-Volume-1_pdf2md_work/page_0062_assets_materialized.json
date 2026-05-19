@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0062_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1500
+      ],
+      "caption": "Figure 3-10. Crude tank dikes.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0062_fig01_crude-tank-dikes.png",
+      "png_sha256": "765b83e3b7b00c535f0bf5e251ff572dc3d03bc309bfc8aa90f3921f39e94c62",
+      "slug": "crude-tank-dikes",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0062.png",
+  "page_image_sha256": "2cea7478db51326637d54810f7f7aeddabdc6b670d24e70d0170dc4ba16355fa",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0062_assets.json"
+}

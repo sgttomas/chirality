@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 82,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Line drawing of a conical transition between a cylinder and cone, with two intersection points (1 outside, 2 re-entrant) labeled, applied moment M, axial end force F, internal pressure p, and geometric parameters (radius, half-apex angle alpha, thickness)."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 3.19 Conical transition.",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.46,
+        0.32
+      ]
+    }
+  ]
+}

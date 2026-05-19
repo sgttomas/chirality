@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0214.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0214_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        828,
+        2569,
+        3215
+      ],
+      "caption": "EXHIBIT 8-28 CO2 Medium Pumps - Hand-drawn sketch with PLAN view (top) showing vessel cross-section with end suction pump and side suction pump arrangement, and isometric/elevation view (bottom) showing vertical cylindrical vessel with suction nozzles, sloped piping (10' minimum slope), block valves, and pump symbols at grade. Annotations: MAXIMUM, ONE NOZZLE FOR EACH PUMP, 10' MINIMUM SLOPE, MINIMUM HEADROOM, 5-phi STRAIGHT RUN FOR SIDE SUCTION PUMPS.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0214_fig01_exhibit-8-28-co2-medium-pumps-hand-drawn.png",
+      "png_sha256": "dd02aa9a81b483e314b3471c2b8b72424b1810bbba481f6f8598f97fe91d9bef",
+      "slug": "exhibit-8-28-co2-medium-pumps-hand-drawn",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 214,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0214.png",
+  "page_image_sha256": "cadcdca675c259c7bf39e4fc6e66ceb0aacd1184463348a8a0224f16b508392a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0214_assets.json"
+}

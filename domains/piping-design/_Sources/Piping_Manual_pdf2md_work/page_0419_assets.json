@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.58,
+        0.36
+      ],
+      "caption": "EXHIBIT 16-7 Allowable Spans for Continuously Supported Pipe Routing \u2014 MAXIMUM ALLOWABLE SPAN IN A PIPEWAY*",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 419,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

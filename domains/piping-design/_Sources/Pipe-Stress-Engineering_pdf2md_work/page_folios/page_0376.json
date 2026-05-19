@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "NO_FOLIO",
+  "page": 376,
+  "page_label": null,
+  "page_label_source": "vlm",
+  "location": null,
+  "confidence": "high",
+  "rationale": "Page is nearly blank with only a right-edge index tab strip visible; no printed folio number appears in any header, footer, or margin zone."
+}

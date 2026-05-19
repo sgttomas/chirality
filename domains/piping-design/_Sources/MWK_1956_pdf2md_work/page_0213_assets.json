@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 213,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Line drawing of a slip type expansion joint with labeled callouts: Built-In Limit Stop, Body, Packing, Stuffing Box, Slip Pipe, Lubrication Fittings, and a note 'Drain may be provided to eliminate pocketing in horizontal lines.' Caption included within bbox."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.2 A conventional slip type expansion joint.",
+      "bbox_norm": [
+        0.4,
+        0.05,
+        0.99,
+        0.34
+      ]
+    }
+  ]
+}

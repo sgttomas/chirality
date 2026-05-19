@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0146.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0146_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.98,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2562,
+        1688
+      ],
+      "caption": "EXHIBIT 6-32 Piping Arrangement for Underground Cooling Water System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0146_fig01_exhibit-6-32-piping-arrangement-for-unde.png",
+      "png_sha256": "aa53da3c4f783dabd6c693050792993103c00d11a72b215bfb347de8075b7cb2",
+      "slug": "exhibit-6-32-piping-arrangement-for-unde",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0146_fig02",
+      "bbox_norm": [
+        0.04,
+        0.47,
+        0.98,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1390,
+        2562,
+        3243
+      ],
+      "caption": "EXHIBIT 6-33 Piping Arrangement for Steam and Condensate System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0146_fig02_exhibit-6-33-piping-arrangement-for-stea.png",
+      "png_sha256": "41e5ab6a692bfaac5818b268b60b8c49e1cc43ea959887b69f43748935d8d0a3",
+      "slug": "exhibit-6-33-piping-arrangement-for-stea",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 146,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0146.png",
+  "page_image_sha256": "37ee5e9c781b3c84250df2b637601bb3501d26906b24367dbda72a325caff336",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0146_assets.json"
+}

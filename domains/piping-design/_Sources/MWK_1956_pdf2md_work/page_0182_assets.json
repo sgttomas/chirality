@@ -1,0 +1,522 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 182,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Member No. 4-3 — Straight and Curved Member Data, Load Constants for Weight (Pipe Flexibility and Stress Analysis)",
+      "slug": "member-4-3-load-constants-weight",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.50],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [6],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MEMBER NO. 4-3", "is_header": true },
+              { "value": "COORDINATE DATA", "is_header": true },
+              { "value": "STRAIGHT MEMBER DATA", "is_header": true },
+              { "value": "CURVED MEMBER DATA", "is_header": true },
+              { "value": "wp = .080", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SHAPE AND DIRECTION", "is_header": true },
+              { "value": "a", "is_header": true },
+              { "value": "Lx = -12.98", "is_header": true },
+              { "value": "l = 7.00", "is_header": true },
+              { "value": "R = 7.00", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "b" },
+              { "value": "Ly = 0" },
+              { "value": "Ly = 18.40" },
+              { "value": "R/L = 5.71" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "c" },
+              { "value": "Lz = -17.27" },
+              { "value": "L'y = 24°50'" },
+              { "value": "Ly N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "L = 21.59" },
+              { "value": "90°54'" },
+              { "value": "Lz N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "(none)" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PLANE", "is_header": true },
+              { "value": "FORMULAS FOR STRAIGHT MEMBERS", "is_header": true },
+              { "value": "FORMULAS FOR CURVED MEMBERS", "is_header": true },
+              { "value": "CONSTANTS FOR CURVED & STRAIGHT MEMBERS", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Y" },
+              { "value": "Kxx = +13 Lz Ly Ly" },
+              { "value": "SEE TABLES 5.26 & 5.29" },
+              { "value": "Kxx (curved)" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Ly)^2 Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy (curved)" },
+              { "value": "Kyy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Lz Ly (Ly)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy (curved)" },
+              { "value": "Kzy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z" },
+              { "value": "Kxx = +(Lz)^2 Lz" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kxx (curved) = +161.68" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Ly)^2 Lz" },
+              { "value": "SEE TABLES 5.26 & 5.29" },
+              { "value": "Kyy (curved) = -550.16" },
+              { "value": "Kyy = -2,247.09" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Ly Lz (Lz)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy (curved) = -856.16" },
+              { "value": "Kzy = +2393.09" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X" },
+              { "value": "Kxx = +12 Lx Lz Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Lx)^2 Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Lx Ly (Ly)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mxx" },
+              { "value": "Mxx = 104,938.68" },
+              { "value": "Fxx = -3,144.00" },
+              { "value": "fx + KB = -180" },
+              { "value": "LOAD CONSTANTS" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Axx" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axx (curved)" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Myy" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Fyy" },
+              { "value": "fy" },
+              { "value": "Ayy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ayy" },
+              { "value": "Ayy = +136.51" },
+              { "value": "Fyy = -55.50" },
+              { "value": "fy = +161.68" },
+              { "value": "Ayy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mzz" },
+              { "value": "Mzz = +5347.481" },
+              { "value": "Fzz = +775.602" },
+              { "value": "fz = -2,030" },
+              { "value": "Azz = +575,783" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Azz" },
+              { "value": "Azz = +1526.16" },
+              { "value": "Cxx" },
+              { "value": "Cxx = -330.16" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mxy" },
+              { "value": "Mxy = +5060.000" },
+              { "value": "Fxy = +35,066,448" },
+              { "value": "fxy -180 = -820,008" },
+              { "value": "Axy = +1,762,816,181" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Axy" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axy (curved)" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Myz" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Ayz = +10,879,676" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ayz" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "THE M.W.KELLOGG CO." },
+              { "value": "PIPE FLEXIBILITY AND STRESS ANALYSIS — LOAD CONSTANTS FOR WEIGHT" },
+              { "value": "D2/2 = .12694/2 = .06347" },
+              { "value": "RUN NO. 4-3" },
+              { "value": "FORM NO. ____" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Complex multi-section engineering calculation worksheet. Formulas use subscript notation rendered as ASCII. Some handwritten numeric cells have limited legibility; values transcribed best-effort from cleaned Markdown. Section divider at row index 6 separates the coordinate/weight data block from the K-constant formula block."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Member No. 5-4 — Straight and Curved Member Data, Load Constants for Weight (Pipe Flexibility and Stress Analysis)",
+      "slug": "member-5-4-load-constants-weight",
+      "bbox_norm": [0.04, 0.51, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [6],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MEMBER NO. 5-4", "is_header": true },
+              { "value": "COORDINATE DATA", "is_header": true },
+              { "value": "STRAIGHT MEMBER DATA", "is_header": true },
+              { "value": "CURVED MEMBER DATA", "is_header": true },
+              { "value": "wp = .080", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SHAPE AND DIRECTION", "is_header": true },
+              { "value": "a", "is_header": true },
+              { "value": "Lx = -12.98", "is_header": true },
+              { "value": "l = 7.00", "is_header": true },
+              { "value": "R = -33", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "b" },
+              { "value": "Ly = 0" },
+              { "value": "Ly = 7.40" },
+              { "value": "R/L = 1.726" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "c" },
+              { "value": "Lz = +.05" },
+              { "value": "L'y = ____" },
+              { "value": "W2 = ____" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "L = 12.98" },
+              { "value": "L'y N°" },
+              { "value": "W = ____" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "40°54'" },
+              { "value": "(none)" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PLANE", "is_header": true },
+              { "value": "FORMULAS FOR STRAIGHT MEMBERS", "is_header": true },
+              { "value": "FORMULAS FOR CURVED MEMBERS", "is_header": true },
+              { "value": "CONSTANTS FOR CURVED & STRAIGHT MEMBERS", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Y" },
+              { "value": "Kxx = +13 Lz Ly Ly" },
+              { "value": "SEE TABLES 5.26 & 5.27" },
+              { "value": "Kxx (curved)" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Ly)^2 Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy (curved)" },
+              { "value": "Kyy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Lz Ly (Ly)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy (curved)" },
+              { "value": "Kzy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z" },
+              { "value": "Kxx = +(Lz)^2 Lz" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kxx (curved) = +41.96" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Ly)^2 Lz" },
+              { "value": "SEE TABLES 5.26 & 5.27" },
+              { "value": "Kyy (curved) = -536.10" },
+              { "value": "Kyy = +584.68" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Ly Lz (Lz)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy (curved) = -60.81" },
+              { "value": "Kzy = +65.32" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzz (curved) = -510.79" },
+              { "value": "Kzz = +540.37" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X" },
+              { "value": "Kxx = +12 Lx Lz Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kxx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = (Lx)^2 Ly" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kyy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = +12 Lx Ly (Ly)^2" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Kzy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mxx" },
+              { "value": "Mxx = +1750.84" },
+              { "value": "Fxx = -0.78" },
+              { "value": "fx + KB = -180" },
+              { "value": "LOAD CONSTANTS" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Axx" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axx (curved)" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Axx = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Myy" },
+              { "value": "Myy = +161.30" },
+              { "value": "Fyy = +395,001" },
+              { "value": "fy = +14.79" },
+              { "value": "Ayy = +44,008,448" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ayy" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Ayy (curved)" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Ayy = 0" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mzz" },
+              { "value": "Mzz = +13,002.40" },
+              { "value": "Fzz = -49,254.78" },
+              { "value": "fz + KB = -6.05" },
+              { "value": "Azz = +65.32" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Azz" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "-530.16" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mxy" },
+              { "value": "Mxy = +290.10" },
+              { "value": "Fxy = +33,003.10" },
+              { "value": "fxy -180 = -630,866" },
+              { "value": "Axy = +06,385,153" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Axy" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "THE M.W.KELLOGG CO." },
+              { "value": "PIPE FLEXIBILITY AND STRESS ANALYSIS — LOAD CONSTANTS FOR WEIGHT" },
+              { "value": "D2/2 = .12694/2 = .06347" },
+              { "value": "RUN NO. 5-4" },
+              { "value": "FORM NO. ____" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Structurally identical layout to Member 4-3 above. Several weight cells (Wp, ww, W2, W) are blank/unfilled in the source form. Section divider at row index 6 separates coordinate/weight data from K-constant formula block."
+    }
+  ],
+  "issues": []
+}

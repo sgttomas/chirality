@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 113,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-23. Inlet piping with automatic control. Courtesy Fluor Engineers and Constructors, Inc.",
+      "slug": "inlet-piping-automatic-control-cylindrical-heater",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.96],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing Section A-A elevation view (upper half) and Plan view of inlet piping automatic control for cylindrical heater (lower half). Caption visible at bottom of page."
+    }
+  ],
+  "issues": []
+}

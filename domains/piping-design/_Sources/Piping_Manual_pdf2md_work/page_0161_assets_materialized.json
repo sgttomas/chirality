@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0161.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0161_fig01",
+      "bbox_norm": [
+        0.04,
+        0.18,
+        0.5,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        430,
+        1406,
+        2313
+      ],
+      "caption": "EXHIBIT 7-2 Typical Box-Type Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0161_fig01_exhibit-7-2-typical-box-type-furnace.png",
+      "png_sha256": "6ee3ddf79509afa344a848f42830bc28313dc5691fb5aca71fd9642566f53b45",
+      "slug": "exhibit-7-2-typical-box-type-furnace",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0161_fig02",
+      "bbox_norm": [
+        0.5,
+        0.18,
+        0.96,
+        0.65
+      ],
+      "bbox_px": [
+        1150,
+        430,
+        2556,
+        2313
+      ],
+      "caption": "EXHIBIT 7-3 Typical Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0161_fig02_exhibit-7-3-typical-circular-furnace.png",
+      "png_sha256": "ef442780de5f56aad4dad907b640f8521e09560eed5e3367b577040a4fab5ea0",
+      "slug": "exhibit-7-3-typical-circular-furnace",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 161,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0161.png",
+  "page_image_sha256": "cd9d5269595a37b618e505ccd8fd2838615a5bd4e28a4004be4f6c19147240ef",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0161_assets.json"
+}

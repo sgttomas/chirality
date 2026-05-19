@@ -1,0 +1,191 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 127,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Maximum Span (mm) (NOTES 1, 2 and 3)",
+      "slug": "maximum-span-stainless-steel-schedule-10s",
+      "bbox_norm": [0.08, 0.12, 0.92, 0.58],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. Spans are based on straight pipe, other configurations shall be multiplied by a shape factor (see sketch below).",
+          "2. Free draining pipes with a slope less than 1.5 mm/m require an additional check of the span.",
+          "3. Spans are limited by longitudinal bending stress.",
+          "4. The weight of insulation and sheeting is based on insulation thickness varying from 70 mm for DN 25 to 200 mm for DN 600 and a density of 190 kg/m³."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Maximum Span (mm)", "is_header": true, "colspan": 4 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Vapour service", "is_header": true, "colspan": 2 },
+              { "value": "Liquid service", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DN", "is_header": true },
+              { "value": "Bare", "is_header": true },
+              { "value": "Insulated (NOTE 4)", "is_header": true },
+              { "value": "Bare", "is_header": true },
+              { "value": "Insulated (NOTE 4)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "25", "type": "text" },
+              { "value": 3900, "type": "number" },
+              { "value": 2200, "type": "number" },
+              { "value": 3450, "type": "number" },
+              { "value": 2100, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40", "type": "text" },
+              { "value": 4850, "type": "number" },
+              { "value": 2800, "type": "number" },
+              { "value": 4000, "type": "number" },
+              { "value": 2600, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "50", "type": "text" },
+              { "value": 5450, "type": "number" },
+              { "value": 3300, "type": "number" },
+              { "value": 4900, "type": "number" },
+              { "value": 3000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "80", "type": "text" },
+              { "value": 6700, "type": "number" },
+              { "value": 4050, "type": "number" },
+              { "value": 4950, "type": "number" },
+              { "value": 3500, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100", "type": "text" },
+              { "value": 7650, "type": "number" },
+              { "value": 4800, "type": "number" },
+              { "value": 5300, "type": "number" },
+              { "value": 4000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": 9400, "type": "number" },
+              { "value": 5750, "type": "number" },
+              { "value": 5950, "type": "number" },
+              { "value": 4600, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "200", "type": "text" },
+              { "value": 10750, "type": "number" },
+              { "value": 6800, "type": "number" },
+              { "value": 6450, "type": "number" },
+              { "value": 5200, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "250", "type": "text" },
+              { "value": 12000, "type": "number" },
+              { "value": 7600, "type": "number" },
+              { "value": 5300, "type": "number" },
+              { "value": 5650, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": 13000, "type": "number" },
+              { "value": 8250, "type": "number" },
+              { "value": 7350, "type": "number" },
+              { "value": 6050, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "350", "type": "text" },
+              { "value": 13750, "type": "number" },
+              { "value": 8700, "type": "number" },
+              { "value": 7600, "type": "number" },
+              { "value": 6300, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": 14200, "type": "number" },
+              { "value": 9450, "type": "number" },
+              { "value": 7750, "type": "number" },
+              { "value": 6500, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "450", "type": "text" },
+              { "value": 15650, "type": "number" },
+              { "value": 10150, "type": "number" },
+              { "value": 7050, "type": "number" },
+              { "value": 6750, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500", "type": "text" },
+              { "value": 16450, "type": "number" },
+              { "value": 13000, "type": "number" },
+              { "value": 8400, "type": "number" },
+              { "value": 7300, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": 18050, "type": "number" },
+              { "value": 12700, "type": "number" },
+              { "value": 9050, "type": "number" },
+              { "value": 8050, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with 3 header rows (spanning header, service type grouping, and column labels). 14 data rows for DN 25 through DN 600."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Shape factor sketch for pipe span configurations",
+      "slug": "shape-factor-sketch-pipe-span",
+      "bbox_norm": [0.08, 0.78, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Diagram showing two pipe span configurations with dimension labels L/2 x 0.45 and L/2 x 0.7, referenced by Note 1 to the table above."
+    }
+  ],
+  "issues": []
+}

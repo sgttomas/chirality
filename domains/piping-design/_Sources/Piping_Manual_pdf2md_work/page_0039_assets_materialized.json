@@ -1,0 +1,64 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0039.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0039_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1551
+      ],
+      "caption": "Exhibit 2-5 Roads, Paving, and Railroads",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0039_tbl01_exhibit-2-5-roads-paving-and-railroads.png",
+      "png_sha256": "5bcd6d7a84c3331bb6c2ea04e33ef1511fdf045923fec06f3ea20f1ae0b7bcc4",
+      "slug": "exhibit-2-5-roads-paving-and-railroads",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0039_tbl02",
+      "bbox_norm": [
+        0.5,
+        0.46,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        1148,
+        1353,
+        2550,
+        3233
+      ],
+      "caption": "Exhibit 2-6 Platforms, Ladders, and Stairs",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/Piping_Manual_p0039_tbl02_exhibit-2-6-platforms-ladders-and-stairs.png",
+      "png_sha256": "28c8b3a5992ff60b347378b4d71fcd3a38c646693d8a4612ddca52d2eff828c8",
+      "slug": "exhibit-2-6-platforms-ladders-and-stairs",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 39,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0039.png",
+  "page_image_sha256": "1b104a497e0e90636916b617123fe5d1260caec2a4488a9fcdffb8d1622e8649",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0039_assets.json"
+}

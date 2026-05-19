@@ -1,0 +1,34 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 98,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Upper-left figure: schematic of two-member single-plane system showing deflections delta_x and delta_y at the corner with assumption labels (no rotation of tangents at corner). Includes caption immediately below the figure.",
+    "asset_note: Bottom-spanning composite figure with three sub-panels: (a) x-direction, (b) y-direction, (c) z-direction, plus a legend for thermal expansions Delta_x, Delta_y, Delta_z. Caption sits beneath the composite."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 4.4 Deflections assumed to occur in a single-plane system under the guided cantilever approximation.",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.51,
+        0.28
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 4.5 Deflections assumed to occur in a multiplane system under the guided cantilever approximation.",
+      "bbox_norm": [
+        0.04,
+        0.74,
+        0.97,
+        0.98
+      ]
+    }
+  ]
+}

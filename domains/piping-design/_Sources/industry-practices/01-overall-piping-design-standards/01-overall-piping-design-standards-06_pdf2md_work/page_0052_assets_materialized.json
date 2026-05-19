@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0052.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0052_tbl01",
+      "bbox_norm": [
+        0.28,
+        0.07,
+        0.72,
+        0.25
+      ],
+      "bbox_px": [
+        587,
+        66,
+        1964,
+        990
+      ],
+      "caption": "Table 8: Main and Bypass Valve Sizes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-06_p0052_tbl01_main-and-bypass-valve-sizes.png",
+      "png_sha256": "c34cec615ec5a9927ddd850ce3b64795264b8c9900347b3cbfad184375c7531f",
+      "slug": "main-and-bypass-valve-sizes",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-06_p0052_tbl01_main-and-bypass-valve-sizes.json",
+      "table_data_json_sha256": "b90fef5dc9d279a0afc9fee0ae14ee51c548c188aa4de32f64ca19cc7b11243d",
+      "table_data_sha256": "b90fef5dc9d279a0afc9fee0ae14ee51c548c188aa4de32f64ca19cc7b11243d",
+      "xlsx_path": "tables/01-overall-piping-design-standards-06_p0052_tbl01_main-and-bypass-valve-sizes.xlsx",
+      "xlsx_sha256": "46554a4a06c7d91c0c9d2bedde43d3e77acdfa89d92b2e9e5b201e6a5ad78c43"
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0052_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.54,
+        0.95,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1617,
+        2550,
+        3036
+      ],
+      "caption": "Table 9: Acceptable Alternative Materials",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-06_p0052_tbl02_acceptable-alternative-materials.png",
+      "png_sha256": "3411440920b028476c720974c6d4bc111e459d77adaea05158b36b324ee773e2",
+      "slug": "acceptable-alternative-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-06_p0052_tbl02_acceptable-alternative-materials.json",
+      "table_data_json_sha256": "06d86a977a3c21f6bde68a0674500b96afa3030d41ca0b13d4a1e7e32d053fac",
+      "table_data_sha256": "06d86a977a3c21f6bde68a0674500b96afa3030d41ca0b13d4a1e7e32d053fac",
+      "xlsx_path": "tables/01-overall-piping-design-standards-06_p0052_tbl02_acceptable-alternative-materials.xlsx",
+      "xlsx_sha256": "b424a7b888cb413ca3a7f9b477bed2905dfdaedee732d3172926ac7823cd3614"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-06",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 52,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0052.png",
+  "page_image_sha256": "004785ebc9d11d649bbc013753ef89334b24596d1cd9412709082668a510c82c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0052_assets.json"
+}

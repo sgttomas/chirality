@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0132.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0132_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.14,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        316,
+        2480,
+        3509
+      ],
+      "caption": "Table 3 ASME B16.47 flanges, series B, all sizes, all ratings",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0132_tbl01_table-3-asme-b1647-flanges-series-b-all.png",
+      "png_sha256": "354509e98564ea0dc339d0ca6fbad917bb13338e1d5f33fef5a66107451d1fbb",
+      "slug": "table-3-asme-b1647-flanges-series-b-all",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 132,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0132.png",
+  "page_image_sha256": "da0b695f154236a490ab1f3f1cb9fb2759bb4ededd81b12ade66787deb5366c2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0132_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0343.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0343_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.98,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3210
+      ],
+      "caption": "C-3. Modulus of Elasticity, Carbon and Alloy Steels",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0343_fig01_c-3-modulus-of-elasticity-carbon-and-all.png",
+      "png_sha256": "5d3b97e2eb198d5958651329902f23132366c065c1f77db8e2f39e924537b13f",
+      "slug": "c-3-modulus-of-elasticity-carbon-and-all",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 343,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0343.png",
+  "page_image_sha256": "f46bf0980dcbdd0c96ce7df14b1272c1a0b19ccc1dedb64d769b1e105218b319",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0343_assets.json"
+}

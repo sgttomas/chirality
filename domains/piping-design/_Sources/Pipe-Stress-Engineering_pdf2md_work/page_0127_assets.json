@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 127,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 4.6 Miter Bend Characteristics",
+      "slug": "miter-bend-characteristics",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.42],
+      "confidence": "high",
+      "notes": "Technical diagram of miter bend geometry with labeled dimensions (A, B, R, r, theta, S, M, u, w) and a cross-section sub-diagram (a) at right. Caption appears below the diagram."
+    }
+  ],
+  "issues": []
+}

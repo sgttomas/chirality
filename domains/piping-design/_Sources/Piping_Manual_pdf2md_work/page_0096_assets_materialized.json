@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0096.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0096_fig01",
+      "bbox_norm": [
+        0.09,
+        0.31,
+        0.86,
+        0.88
+      ],
+      "bbox_px": [
+        103,
+        863,
+        2343,
+        3087
+      ],
+      "caption": "EXHIBIT 4-38 \u2014 Setting Elevations of Centrifugal Compressors. Two hand-drawn elevation views: Arrangement \"A\" (Centrifugal Compressor, Horizontal Split Case Bottom Connections or Vertical Split Case Bottom Connections) showing compressor on an elevated pedestal with bottom suction/discharge nozzles routing downward, annotated with COMPRESSOR INLET LINE STRAIGHT RUN REQUIREMENTS (SEE EXHIBIT 4-46), CONSIDERATION FOR MISCELLANEOUS EQUIPMENT: INTERCOOLERS, LUBE OIL CONSOLE, ETC., and HEADROOM/MATCH LINE dimensions; Arrangement \"B\" (Centrifugal Compressor, Vertical Split Case Top Connections or Horizontal Split Case Top Connections) showing compressor on a low concrete pedestal at grade with top suction/discharge nozzles projecting upward.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0096_fig01_exhibit-4-38-setting-elevations-of-centr.png",
+      "png_sha256": "a44fdf9dedf029014b497a3d01c8b56d68efd97ed33214ca2a786d81fa25d8cc",
+      "slug": "exhibit-4-38-setting-elevations-of-centr",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 96,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0096.png",
+  "page_image_sha256": "a96ee2307b0ffb667398eb2bf65bc7ca3fb99078306909261e92782b7e4cb6ae",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0096_assets.json"
+}

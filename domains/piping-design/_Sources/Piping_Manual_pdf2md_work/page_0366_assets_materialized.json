@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0366.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0366_fig01",
+      "bbox_norm": [
+        0.06,
+        0.66,
+        0.49,
+        0.96
+      ],
+      "bbox_px": [
+        26,
+        2018,
+        1383,
+        3309
+      ],
+      "caption": "EXHIBIT 14-1 Locally Mounted System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0366_fig01_exhibit-14-1-locally-mounted-system.png",
+      "png_sha256": "6fc78138e68996e4044fbf1470104733d4179da055f65bef17585b1bc1fd9742",
+      "slug": "exhibit-14-1-locally-mounted-system",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0366_fig02",
+      "bbox_norm": [
+        0.5,
+        0.66,
+        0.95,
+        0.96
+      ],
+      "bbox_px": [
+        1153,
+        2018,
+        2562,
+        3309
+      ],
+      "caption": "EXHIBIT 14-2 Local Control System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0366_fig02_exhibit-14-2-local-control-system.png",
+      "png_sha256": "f669d28d8df014e94fd9979f5b1923236850b12e5b825b7c7cf24794bb9123c5",
+      "slug": "exhibit-14-2-local-control-system",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 366,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0366.png",
+  "page_image_sha256": "b85f1d4d1e5c716f188bd5a609f401d13c6682674d61ae5f0b182a68dd542437",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0366_assets.json"
+}

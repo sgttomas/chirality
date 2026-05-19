@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0179.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0179_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        205,
+        2358,
+        2562
+      ],
+      "caption": "Table 5.29 Shape Coefficients for Uniform Loading: Formulas for 90\u00b0 and 180\u00b0 Circular Members For Weight of Members in the z-Plane",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0179_tbl01_shape-coefficients-uniform-loading-circu.png",
+      "png_sha256": "58a7bf7058dac6545c477e58be9ca68467dfaf944be625ac326dc54011df3f35",
+      "slug": "shape-coefficients-uniform-loading-circu",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0179_tbl01_shape-coefficients-uniform-loading-circu.json",
+      "table_data_json_sha256": "425e0089baf330c3a99e0a5e0b0a6159b4b6cb6311511e7747319bbf14c3e6ca",
+      "table_data_sha256": "425e0089baf330c3a99e0a5e0b0a6159b4b6cb6311511e7747319bbf14c3e6ca",
+      "xlsx_path": "tables/MWK_1956_p0179_tbl01_shape-coefficients-uniform-loading-circu.xlsx",
+      "xlsx_sha256": "b91a8bdcf9f35afc3f65b4054eb758b1e13ee2f9b157d5864789d22525ef3b6e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 179,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0179.png",
+  "page_image_sha256": "659c88109f9277a69a4c205406de41d0c0fbbff5f99d4e06605dcc6c30e48079",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0179_assets.json"
+}

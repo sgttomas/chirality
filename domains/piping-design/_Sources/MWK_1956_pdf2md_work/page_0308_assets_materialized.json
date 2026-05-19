@@ -1,0 +1,64 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0308.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0308_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.98,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2028,
+        1478
+      ],
+      "caption": "Table A.1. General Equations",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0308_tbl01_table-a-1-general-equations.png",
+      "png_sha256": "5f0abc4ebc258bd48d434693442eeec98ed2752626c884fe896f65d8f0d87c29",
+      "slug": "table-a-1-general-equations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0308_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1263,
+        2028,
+        2688
+      ],
+      "caption": "Table A.2. General Equations with Moments",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0308_tbl02_table-a-2-general-equations-with-moments.png",
+      "png_sha256": "c0ca7836848b46264c8f253f4e6823abf63043f13d95771d5dee6ee10e3ed53a",
+      "slug": "table-a-2-general-equations-with-moments",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 308,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0308.png",
+  "page_image_sha256": "b6a741940854fe3ff54fcf84cdf10ac729615717b4c1dfbea9a8f723a6311858",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0308_assets.json"
+}

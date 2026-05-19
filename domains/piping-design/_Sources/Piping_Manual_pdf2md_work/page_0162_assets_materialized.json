@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0162.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0162_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1985
+      ],
+      "caption": "EXHIBIT 7-4 Typical Pyrolysis Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0162_fig01_exhibit-7-4-typical-pyrolysis-furnace.png",
+      "png_sha256": "7093c067c2c86024a921bf57bf145c3468f5773d4d8da70a3bbd18fb1fc8768c",
+      "slug": "exhibit-7-4-typical-pyrolysis-furnace",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 162,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0162.png",
+  "page_image_sha256": "5fd76da713232a8065c61a032e7cd09e9c582cf84c5ebca860bfc733f5aebe5c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0162_assets.json"
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0030.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0030_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1220
+      ],
+      "caption": "Figure 1-15. Cast steel globe and angle valves. Reprinted courtesy of Crane Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0030_fig01_cast-steel-globe-angle-valves-crane.png",
+      "png_sha256": "c0413ba0829802077fc9a2ebc901949914ec4e1cd3dd923f9903334a931f1b09",
+      "slug": "cast-steel-globe-angle-valves-crane",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0030_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1150,
+        2477,
+        3415
+      ],
+      "caption": "Cast steel globe and angle valve dimensions by class, size, and end type (inches)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0030_tbl01_cast-steel-globe-angle-valve-dimensions.png",
+      "png_sha256": "484dfeadcceb1aa094a7893a0f2dd9311af14f729e0a6ad2c016618fe802ca7c",
+      "slug": "cast-steel-globe-angle-valve-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0030_tbl01_cast-steel-globe-angle-valve-dimensions.json",
+      "table_data_json_sha256": "cd39f0a8bfde5aca7f06de5707e406951789bda5832e6bcb8253b9eadbb08427",
+      "table_data_sha256": "cd39f0a8bfde5aca7f06de5707e406951789bda5832e6bcb8253b9eadbb08427",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0030_tbl01_cast-steel-globe-angle-valve-dimensions.xlsx",
+      "xlsx_sha256": "8259fc8e840cc91b9d953a190a7f44462fc6da1376f1fa64819bf65d5f6bcb67"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0030.png",
+  "page_image_sha256": "e322551175f5819699cd0050c2b93ebe46230b94f8f8a6c254dab31ceef92d44",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0030_assets.json"
+}

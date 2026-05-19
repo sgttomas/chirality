@@ -1,0 +1,182 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 140,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-12. Horizontal thermosiphon reboiler outline drawing. Courtesy of HeaTran.",
+      "slug": "horizontal-thermosiphon-reboiler-outline",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.92],
+      "confidence": "high",
+      "notes": "Full-page engineering outline drawing showing front and side views with dimensional annotations, nozzle labels (T1, T2, T4, T9, S1, S2), davit bracket, pulling lug, and embedded connection tables. Caption appears at the bottom of the page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Tube Side Connections",
+      "slug": "tube-side-connections",
+      "bbox_norm": [0.04, 0.72, 0.48, 0.83],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MK", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "FACING", "is_header": true },
+              { "value": "SERVICE", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T4" },
+              { "value": "20\"", "type": "text" },
+              { "value": "300#", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T9" },
+              { "value": "16\"", "type": "text" },
+              { "value": "300#", "type": "text" },
+              { "value": "R.F." },
+              { "value": "OUTLET" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T1" },
+              { "value": "16\"", "type": "text" },
+              { "value": "300#", "type": "text" },
+              { "value": "R.F." },
+              { "value": "INLET" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table embedded in lower-left of drawing area listing tube-side nozzle connections with mark, size, pressure rating, facing type, and service."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Shell Side Connections",
+      "slug": "shell-side-connections",
+      "bbox_norm": [0.48, 0.72, 0.97, 0.83],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MK", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "FACING", "is_header": true },
+              { "value": "SERVICE", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S2" },
+              { "value": "(1)30\"", "type": "text" },
+              { "value": "150#", "type": "text" },
+              { "value": "R.F." },
+              { "value": "OUTLET" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S1" },
+              { "value": "(1)18\"", "type": "text" },
+              { "value": "150#", "type": "text" },
+              { "value": "R.F." },
+              { "value": "INLET" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table embedded in lower-right of drawing area listing shell-side nozzle connections with mark, size, pressure rating, facing type, and service. A '2 1/4\"' dimension annotation appears to the right of the table."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Revision block",
+      "slug": "revision-block",
+      "bbox_norm": [0.03, 0.83, 0.55, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Rev.", "is_header": true },
+              { "value": "Description", "is_header": true },
+              { "value": "Date", "is_header": true },
+              { "value": "By", "is_header": true },
+              { "value": "Ck.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Revision history table at bottom of drawing. Rev. column shows four rows all reading 'A'; Description, Date, By, and Ck. columns are blank in the source drawing."
+    }
+  ],
+  "issues": []
+}

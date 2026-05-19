@@ -1,0 +1,366 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 54,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3-2 API Standard 650 Tanks for High Stress Design For Appendix D and Appendix G",
+      "slug": "api-650-tanks-high-stress-design-appendix-d-g",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "1", "text": "Maximum tank size limited by 1⅝\" maximum plate thickness." },
+          { "marker": "2", "text": "The design of tank shells storing products with a specific gravity of 0.91 or less is governed by the hydrostatic test (provided no corrosion allowance is added)." },
+          { "marker": "3", "text": "Type of steel applied for App. D design varies with design metal temperature specified. Either ASTM A283 Grade C, ASTM A131 Grade A, B, or C, or ASTM A131 Grade C, Normalized. In cold climates, the higher cost of the quality steel required may offset any anticipated saving from weight reduction when compared with an Appendix G A-500 shell design." },
+          { "marker": "4", "text": "For certain tank sizes, circumferential stiffening rings are not mandatory for Appendix D design but are recommended by CB&I." },
+          { "marker": "5", "text": "The high stress design uses high strength steels having a minimum tensile strength of 70,000 psi, a minimum yield of 50,000 psi, and the improved notch-toughness. The use of high strength steels makes it possible to build larger tanks without exceeding 1⅝\" plate thickness. The weight of circumferential windgirders is included in the Appendix G design. (Basis of 100 mph wind)." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Capacity in Barrels Exact", "row_span": 2, "is_header": true },
+              { "value": "Tank Dimensions in Feet", "col_span": 2, "is_header": true },
+              { "value": "Appendix D Design", "col_span": 2, "is_header": true },
+              { "value": "High Stress Design (App. G)", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Diameter", "is_header": true },
+              { "value": "Height", "is_header": true },
+              { "value": "No Corrosion Allowance (See Note 2)", "is_header": true, "footnote_markers": ["2"] },
+              { "value": "With ⅛\" Corrosion Allowance", "is_header": true },
+              { "value": "No Corrosion Allowance (See Note 2)", "is_header": true, "footnote_markers": ["2"] },
+              { "value": "With ⅛\" Corrosion Allowance", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Weight is Pounds for 0.85 Product Specific Gravity — Weight Includes ¼\" Bottom, ⅛\" Roof, and Cantilevered Roof Framing", "col_span": 7, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 42970, "type": "number" },
+              { "value": "80-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 278200, "type": "number" },
+              { "value": 288600, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 50130, "type": "number" },
+              { "value": "80-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 321000, "type": "number" },
+              { "value": 334000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 67140, "type": "number" },
+              { "value": "100-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 412200, "type": "number" },
+              { "value": 427200, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 78330, "type": "number" },
+              { "value": "100-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 479000, "type": "number" },
+              { "value": 496400, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 96690, "type": "number" },
+              { "value": "120-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 596800, "type": "number" },
+              { "value": 614800, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 112800, "type": "number" },
+              { "value": "120-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 693200, "type": "number" },
+              { "value": 710000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 131600, "type": "number" },
+              { "value": "140-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 800200, "type": "number" },
+              { "value": 814800, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 153500, "type": "number" },
+              { "value": "140-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 931300, "type": "number" },
+              { "value": 952000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 171900, "type": "number" },
+              { "value": "160-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 1037000, "type": "number" },
+              { "value": 1051000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 200500, "type": "number" },
+              { "value": "160-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 1209000, "type": "number" },
+              { "value": 1222000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 217200, "type": "number" },
+              { "value": "180-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 1304000, "type": "number" },
+              { "value": 1321000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 253800, "type": "number" },
+              { "value": "180-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 1520000, "type": "number" },
+              { "value": 1538000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 268600, "type": "number" },
+              { "value": "200-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 1599000, "type": "number" },
+              { "value": 1617000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 313300, "type": "number" },
+              { "value": "200-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 1867000, "type": "number" },
+              { "value": 1885000, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 334000, "type": "number" },
+              { "value": "220-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 1940000, "type": "number" },
+              { "value": 1935000, "type": "number" },
+              { "value": 1762000, "type": "number" },
+              { "value": 1778000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 379100, "type": "number" },
+              { "value": "220-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 2266000, "type": "number" },
+              { "value": 2279000, "type": "number" },
+              { "value": 2013000, "type": "number" },
+              { "value": 2029300, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 387000, "type": "number" },
+              { "value": "240-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 2301000, "type": "number" },
+              { "value": 2316000, "type": "number" },
+              { "value": 2086000, "type": "number" },
+              { "value": 2101000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 451200, "type": "number" },
+              { "value": "240-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": 2669000, "type": "number" },
+              { "value": 2667000, "type": "number" },
+              { "value": 2385000, "type": "number" },
+              { "value": 2403000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 453500, "type": "number" },
+              { "value": "260-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 2691000, "type": "number" },
+              { "value": 2705000, "type": "number" },
+              { "value": 2438000, "type": "number" },
+              { "value": 2452000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 526000, "type": "number" },
+              { "value": "280-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": 3112000, "type": "number" },
+              { "value": 3124000, "type": "number" },
+              { "value": 2792000, "type": "number" },
+              { "value": 2805000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 529200, "type": "number" },
+              { "value": "260-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": "See Note 1", "type": "text", "footnote_markers": ["1"] },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 2793000, "type": "number" },
+              { "value": 2803000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 604000, "type": "number" },
+              { "value": "300-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 3204000, "type": "number" },
+              { "value": 3216000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 614000, "type": "number" },
+              { "value": "280-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 3199000, "type": "number" },
+              { "value": 3209000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 672500, "type": "number" },
+              { "value": "293-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 3505000, "type": "number" },
+              { "value": 3517000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 687500, "type": "number" },
+              { "value": "320-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 3634000, "type": "number" },
+              { "value": 3643000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 703000, "type": "number" },
+              { "value": "300-0", "type": "text" },
+              { "value": "56-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "See Note 1", "type": "text", "footnote_markers": ["1"] },
+              { "value": "See Note 1", "type": "text", "footnote_markers": ["1"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 776000, "type": "number" },
+              { "value": "340-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 4092000, "type": "number" },
+              { "value": 4102000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 769600, "type": "number" },
+              { "value": "343-0", "type": "text" },
+              { "value": "48-0", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "4,163,000 See Note 1", "type": "text", "footnote_markers": ["1"] },
+              { "value": "4,173,000 See Note 1", "type": "text", "footnote_markers": ["1"] }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table. 3-row spanning header (title row with col-groups, column sub-headers, weight note spanning all columns). 28 data rows. Source: Chicago Bridge and Iron Co. Five footnotes at bottom of page."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,52 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.5,
+        0.45
+      ],
+      "caption": "EXHIBIT 9-4 Process Vessel Sketch",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.46,
+        0.1,
+        0.96,
+        0.32
+      ],
+      "caption": "Nozzle Summary",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.46,
+        0.48,
+        0.93
+      ],
+      "caption": "EXHIBIT 9-5 High-Pressure Reactor",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.46,
+        0.46,
+        0.97,
+        0.88
+      ],
+      "caption": "EXHIBIT 9-6 Partial Plot Plan for a Hydrotreater Unit",
+      "kind": "fig"
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 223,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

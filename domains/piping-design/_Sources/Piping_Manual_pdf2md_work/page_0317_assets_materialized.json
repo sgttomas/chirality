@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0317.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0317_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        2214
+      ],
+      "caption": "EXHIBIT 12-22 Vertical Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0317_fig01_exhibit-12-22-vertical-arrangement.png",
+      "png_sha256": "3ceb5cf923db2bb97592640fb311bbcbc58852462e8c12d29893aaf73cf38f6d",
+      "slug": "exhibit-12-22-vertical-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 317,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0317.png",
+  "page_image_sha256": "07055aee5caa811560be335eba4c6f8453cf0e0f37d56978103d577bdecf546b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0317_assets.json"
+}

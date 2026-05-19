@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0274.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0274_fig01",
+      "bbox_norm": [
+        0.18,
+        0.78,
+        0.82,
+        0.95
+      ],
+      "bbox_px": [
+        327,
+        2335,
+        2187,
+        3198
+      ],
+      "caption": "Two-chamber resonator system with both ends open.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0274_fig01_two-chamber-resonator-system-with-both-e.png",
+      "png_sha256": "ec9c16853cac6f86fa9203e431ceb79ce27729b3aacf1d9133c7c68caea96322",
+      "slug": "two-chamber-resonator-system-with-both-e",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 274,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0274.png",
+  "page_image_sha256": "6d001740a4e0642ede963c74ecc5bdce3b1fcd9bc8fdbdcd328b0ff735cf0459",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0274_assets.json"
+}

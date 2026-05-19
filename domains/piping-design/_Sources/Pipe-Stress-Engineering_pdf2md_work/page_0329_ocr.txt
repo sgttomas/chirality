@@ -1,0 +1,44 @@
+STE agree
+
+ares
+
+Interface with Rotating Equipment 309
+
+Inter stage Cooler and
+Liquid Extraction
+
+FIG. 9.14
+CENTRIFUGAL PROCESS COMPRESSOR
+
+possible, these allowable forces and moments should be increased after considering such factors as
+location and degree of compressor supports, nozzle strength and degree of reinforcement, and casing
+configuration and thickness. The allowable forces and moments shall be shown on the outline draw-
+ing.” The 1.85 times NEMA SM-23 allowable means increasing the right-hand side of Eq. (9.3) from
+500D, to 925D,.
+
+Although API Std-617 requires compressors designed for external forces and moments to be at
+least equal to 1.85 times the NEMA SM-23 allowable, most compressor manufacturers will give no
+more than 1.85 times the NEMA SM-23 allowable. Considering the notoriously low NEMA SM-23
+allowable external loads for large nozzles, meeting this 1.85 times NEMA SM-23 allowable imposed
+by compressors is a very huge task for piping engineers to accomplish. Furthermore, NEMA SM-23
+requires the combined load evaluation, which includes the loads from all the nozzles, to be resolved
+at the center of exhaust flange face. Not only is the allowable for combined loads smaller than the al-
+lowable for the individual nozzle, the resolving point location also creates confusion. Some engineers
+take the exhaust flange literally as an outlet flange, whereas some engineers consider the exhaust flange
+equivalent to the inlet flange in a compressor. It appears that the latter is more logical because com-
+pressors are more likely to be fixed near the larger inlet flange. Respectably, starting from the 5th edi-
+tion of the standard, API Std-617 no longer requires the evaluation of the combined load. This is a big
+relief to piping designers, but the difficulty for the piping to meet the allowable nozzle loads remains.
+Because of the big line sizes and low allowable piping load, there are a few special situations pertinent
+to the design and analysis of compressor piping that need to be emphasized.
+
+(a) Radial expansion of pipe. Thermal expansion in the diametrical direction of the pipe is generally
+ignored in the design and analysis of the piping system. However, when a restraint is needed
+near the equipment to control the piping load, expansion in the diametrical direction can be
+significant in large high-temperature compressor piping.
+
+Figure 9'15(a) shows the typical arrangement where a pipe is stopped or guided. The piping
+is analyzed simply as being stopped or guided at the location. However, because the piping
+analysis is based on the centerline of the pipe, a more accurate analysis would include the radial
+thermal expansion of the pipe, covering the length, L, which is slightly larger than the radius
+of the pipe. This often-ignored radial expansion may not have significant effect on most piping

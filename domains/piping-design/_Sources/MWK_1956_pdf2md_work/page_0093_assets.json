@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 93,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Sample Calculation 4.1 piping configuration sketch: planar pipe routing with anchor points; anchor distance U = 36.6 ft; developed length L = 100 ft; segment dimension 25 ft shown.",
+      "bbox_norm": [
+        0.7,
+        0.49,
+        0.97,
+        0.69
+      ]
+    }
+  ]
+}

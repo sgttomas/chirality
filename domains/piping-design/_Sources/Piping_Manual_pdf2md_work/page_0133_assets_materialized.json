@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0133.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0133_fig01",
+      "bbox_norm": [
+        0.06,
+        0.2,
+        0.5,
+        0.42
+      ],
+      "bbox_px": [
+        25,
+        495,
+        1402,
+        1551
+      ],
+      "caption": "EXHIBIT 6-12 Sample Single and Paired Exchanger Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0133_fig01_exhibit-6-12-sample-single-and-paired-ex.png",
+      "png_sha256": "524b90a08604e71ec8884e139dc59e3bb75cbcb8414bf39d314296ad9e311f5f",
+      "slug": "exhibit-6-12-sample-single-and-paired-ex",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0133_fig02",
+      "bbox_norm": [
+        0.49,
+        0.2,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        1122,
+        495,
+        2550,
+        1551
+      ],
+      "caption": "EXHIBIT 6-14 Sample Structure-Mounted Exchanger Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0133_fig02_exhibit-6-14-sample-structure-mounted-ex.png",
+      "png_sha256": "30b69d2c6a352a844865845faed4f8d5e352108ec6a6781bf6da2aa4d670b605",
+      "slug": "exhibit-6-14-sample-structure-mounted-ex",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0133_fig03",
+      "bbox_norm": [
+        0.06,
+        0.43,
+        0.5,
+        0.74
+      ],
+      "bbox_px": [
+        25,
+        1254,
+        1402,
+        2606
+      ],
+      "caption": "EXHIBIT 6-13 Parallel and Series Exchanger Installations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0133_fig03_exhibit-6-13-parallel-and-series-exchang.png",
+      "png_sha256": "4558c80392e3528ed0637cfac42204cbb6200bd423ec64861a01802b633adcbc",
+      "slug": "exhibit-6-13-parallel-and-series-exchang",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 133,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0133.png",
+  "page_image_sha256": "6b29e183b0901697520af33da0313a8e0ec3b54ab933725c06b421be4f9a4639",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0133_assets.json"
+}

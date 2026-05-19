@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 169,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.08, 0.18, 0.94, 0.90],
+      "caption": "EXHIBIT 7-13 Conventional Recuperative System"
+    }
+  ],
+  "issues": []
+}

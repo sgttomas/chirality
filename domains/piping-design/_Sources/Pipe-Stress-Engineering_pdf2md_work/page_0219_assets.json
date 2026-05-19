@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 219,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.26 TRUNNION REACTION FORCE DISTRIBUTION",
+      "slug": "trunnion-reaction-force-distribution",
+      "bbox_norm": [0.04, 0.70, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Three sub-diagrams (a), (b), (c) showing trunnion reaction forces and moments with labeled axes and components. Caption visible below diagrams."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,108 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0354.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0354_fig01",
+      "bbox_norm": [
+        0.13,
+        0.12,
+        0.4,
+        0.23
+      ],
+      "bbox_px": [
+        161,
+        211,
+        907,
+        845
+      ],
+      "caption": "Case I. For any exterior leg L.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0354_fig01_case-i-for-any-exterior-leg-l.png",
+      "png_sha256": "528aadc0eb9000fc925696168a0d08b3fef5648e809db17bf7b7c89c50f7ffb5",
+      "slug": "case-i-for-any-exterior-leg-l",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0354_fig02",
+      "bbox_norm": [
+        0.4,
+        0.1,
+        0.97,
+        0.24
+      ],
+      "bbox_px": [
+        706,
+        151,
+        2016,
+        875
+      ],
+      "caption": "Case II. For any interior leg L whose maximum deflection is in the plane of L and L_A where L_A is the shorter of the connecting legs.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0354_fig02_case-ii-for-any-interior-leg-l-whose-max.png",
+      "png_sha256": "f0de71b236a3ce6eebf9988c7512b3a29d6bffa28dfc6a2f2d86cb4f2faa8d71",
+      "slug": "case-ii-for-any-interior-leg-l-whose-max",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0354_fig03",
+      "bbox_norm": [
+        0.4,
+        0.24,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        706,
+        573,
+        2016,
+        1298
+      ],
+      "caption": "Case III. For any interior leg L whose maximum deflection is perpendicular to the plane of L and L_A where L_A is the shorter of the connecting legs.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0354_fig03_case-iii-for-any-interior-leg-l-whose-ma.png",
+      "png_sha256": "ed93cc65936aee1d3e7309acfb2c4a91098f1975b5a30c02cc504dc8927a4934",
+      "slug": "case-iii-for-any-interior-leg-l-whose-ma",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0354_fig04",
+      "bbox_norm": [
+        0.06,
+        0.36,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        20,
+        936,
+        2016,
+        3018
+      ],
+      "caption": "C-14. Correction Factor f_2 Guided Cantilever Method - log-log chart of f versus L/L_A = LENGTH OF LEG UNDER CONSIDERATION / LENGTH OF SHORTER ADJACENT LEG, showing curves for CASE I, CASE II, and CASE III.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/MWK_1956_p0354_fig04_c-14-correction-factor-f-2-guided-cantil.png",
+      "png_sha256": "4cb02501ce65f9b4e6c513c563b05d55bcbd5defd2bc43fd025bc040ac162b11",
+      "slug": "c-14-correction-factor-f-2-guided-cantil",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 354,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0354.png",
+  "page_image_sha256": "fcc472f528c96f4db9fb7db021e26eae1d9fbfb1e25f156ecec8749d3c6f4857",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0354_assets.json"
+}

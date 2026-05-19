@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0118.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0118_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        3158
+      ],
+      "caption": "Figure 10.1  Material selection for sodium hydroxide service",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0118_fig01_material-selection-sodium-hydroxide-serv.png",
+      "png_sha256": "9368552115eafc2f76030f9e9dfa0800f8e14616f661188e402514b4b6ce51cc",
+      "slug": "material-selection-sodium-hydroxide-serv",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 118,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0118.png",
+  "page_image_sha256": "3cce445601ea1b3a405ef1beef3484eb14dc9afb9750a14d257c0c9de352ec9e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0118_assets.json"
+}

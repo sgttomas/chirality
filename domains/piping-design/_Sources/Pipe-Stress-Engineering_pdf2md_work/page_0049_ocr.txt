@@ -1,0 +1,68 @@
+28 Chapter 1
+
+* Support friction. Inclusion of support friction in the design analysis is costly. Therefore, support
+friction is included only in the analysis of critical piping systems specified. Piping systems con-
+nected to large rotating equipment are normally analyzed with support friction included.
+
+* Stress intensification factors for sustained loads. Use of the stress intensification factor on sustained
+loads is not explicitly stipulated in some codes. In such cases, the owner may have to specify the
+policy to be used in the design analysis.
+
+* Special allowable stresses. This includes allowable stresses for special conditions, such as one-time
+foundation settlement.
+
+* Standards to be used for rotating equipment and stationary equipment. The allowable piping loads
+given in the equipment standard are generally applicable to normal operating conditions. Greater
+allowable loads, if permitted, for the standby, idle, upset, and occasional conditions need to be
+specified.
+
+* Stresses at active valves. To ensure the proper function of the safety related valves, special require-
+ments are imposed on the active valves such as safety relief valves and control valves. A reduced
+allowable stress and/or a minimum flange class can be specified.
+
+* Stiffness of fittings and equipment. The stiffness of valves and flanges is normally considered as three
+times as stiff as the connecting pipe of equal length. The stiffness of the rotating equipment is
+normally considered rigid, which is set to be 1000 times as stiff as the connecting pipe of the same
+length. These or other desirable numbers have to be specified.
+
+* Special limitations and requirements. Limitations are normally placed on the use of rod hangers,
+springs hangers, expansion joints, flexible hoses, snubbers, and other special supports and com-
+
+ponents.
+
+1.6.2 Project Specification
+
+Project specification is also called job specification, or job requirements in some cases. It combines
+the requirements given in the owner’s specification and those of the constructor into one document
+for the design engineers to follow. The basic document has the same features as the owner’s specifica-
+tion. The project specification, as a whole, also includes material specification, line list, and standard
+support details. Aside from covering the general requirements, it also defines the specific requirements
+
+for every piping system in the plant.
+
+(1) Material specification
+The materials required for piping systems in the project are classified into material specification
+
+groups. Each group covers a certain portion of similar piping systems, and is assigned a specification
+number or name. Each company uses its own set of identification symbols, usually consisting of two or
+three characters for easy reference. Some companies use names that are related to the class of flanges
+and valves used in the group, such as 150-A, 150-B, etc. Material specification generally contains the
+
+following items:
+
+* Group Name: Name to be referenced by other documents, such as the line list and isometrics
+
+* Service: Type(s) of fluid(s) handled
+
+* Pipes: The wall thickness, given as schedule number or weight designation, and the ASTM or
+ASME specification name for the pipes. All pipe sizes are covered. Different specifications may
+be used for different pipe sizes.
+
+* Corrosion Allowance: This is the additional thickness to be allowed for combined corrosion and
+erosion. Manufacturing under-tolerance is given in the applicable ASTM or ASME specification,
+and is not specified here.
+
+* Service Limits: Each material specification has limits placed on its services by pressure and tem-
+perature combinations. This is mainly determined by the allowable stress of the pipe material. A
+
+Yeu.

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0044_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1879
+      ],
+      "caption": "Fig. 300-18 Dampener Arrangements\u2014Preferred Strainer Locations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0044_fig01_fig-300-18-dampener-arrangements-preferr.png",
+      "png_sha256": "94f6a68043cb4cb4489744ee89dd66d6ecbf3ce702e1b0f108fe5da10cfee0b6",
+      "slug": "fig-300-18-dampener-arrangements-preferr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0044.png",
+  "page_image_sha256": "b1639c50a40d86d31cb34433c201d4ccb758fb1ac243f2c902595ed2bd135c63",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0044_assets.json"
+}

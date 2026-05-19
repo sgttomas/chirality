@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 62,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 5.6 Condensing turbine and surface condenser arrangements. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "condensing-turbine-surface-condenser-arrangements",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing multiple condensing turbine and surface condenser arrangement configurations (ground mounted, mezzanine mounted, bracket mounted) plus horizontal and vertical relief valve details. Caption visible at bottom right."
+    }
+  ],
+  "issues": []
+}

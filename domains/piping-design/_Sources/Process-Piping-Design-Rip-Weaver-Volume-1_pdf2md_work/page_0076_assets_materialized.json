@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0076.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0076_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2477,
+        3485
+      ],
+      "caption": "Figure 4-6. Foundation location plan for Figure 4-1.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0076_fig01_foundation-location-plan-figure-4-1.png",
+      "png_sha256": "949e6caeef7e2181b0114b4450dd030e745363e49f44f60ea90621d47e223d4a",
+      "slug": "foundation-location-plan-figure-4-1",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 76,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0076.png",
+  "page_image_sha256": "f0f60d204a161d3b243804c339f6affdfc51a4131a148752089508f604f601dc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0076_assets.json"
+}

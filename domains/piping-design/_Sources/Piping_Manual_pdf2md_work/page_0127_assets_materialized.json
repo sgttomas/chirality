@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0127.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0127_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.64
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2575,
+        2290
+      ],
+      "caption": "EXHIBIT 6-2 Common Heat Exchangers \u2014 composite illustration showing (a) Shell and Tube Exchanger, (b) Plate Exchanger, (c) Spiral Exchanger, (d) Double Pipe Exchanger, and (e) Air Cooler Exchanger.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0127_fig01_exhibit-6-2-common-heat-exchangers-compo.png",
+      "png_sha256": "b7a48ad170e8808bb432c9f43f90f06362371f643d0e6923366bbe17aa89be48",
+      "slug": "exhibit-6-2-common-heat-exchangers-compo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 127,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0127.png",
+  "page_image_sha256": "47bc0f31e79d9c5d430b074679d3b48abfe5715c13c716bce90116c3a7e04718",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0127_assets.json"
+}

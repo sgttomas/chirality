@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0311.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0311_fig01",
+      "bbox_norm": [
+        0.04,
+        0.29,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        794,
+        2562,
+        3077
+      ],
+      "caption": "EXHIBIT 12-13 Equipment Supports - Detail \"A\" elevation of vertical agitated vessel supported on lugs at floor (callouts: POINT OF SUPPORT, FLOOR); Detail \"B\" elevation of vertical column/vessel supported on a structural ring/skirt at a floor opening (callout: POINT OF SUPPORT); Detail \"C\" isometric of horizontal shell-and-tube exchanger on two transverse saddles bearing on support steel (callouts: EXCHANGER SADDLE, STRUCTURAL BEAMS, SUPPORT STEEL).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0311_fig01_exhibit-12-13-equipment-supports-detail.png",
+      "png_sha256": "d674d015399e01997b2ef69323ca9112cd90fa57d6bbe234cf550d0d5da2dab9",
+      "slug": "exhibit-12-13-equipment-supports-detail",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 311,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0311.png",
+  "page_image_sha256": "148b43c329e8a85f37df715083c48b8105da3494aa166edd4d8e2ee1d81b5ba2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0311_assets.json"
+}

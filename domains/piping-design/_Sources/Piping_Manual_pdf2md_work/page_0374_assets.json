@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 374,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "Piping_Manual_p374_a01",
+      "kind": "fig",
+      "label": "EXHIBIT 14-15",
+      "caption": "EXHIBIT 14-15 Level Transmitter Control Diagram",
+      "bbox_norm": [0.04, 0.04, 0.97, 0.46]
+    },
+    {
+      "id": "Piping_Manual_p374_a02",
+      "kind": "fig",
+      "label": "EXHIBIT 14-16",
+      "caption": "EXHIBIT 14-16 Level Control Operating Principle",
+      "bbox_norm": [0.04, 0.47, 0.50, 0.95]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 272,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.40],
+      "caption": "EXHIBIT 10-59 Arrangements for Level Instruments — a. Single-Mounted Level Controller. Plan and elevation views of a level controller (right hand) mounted to a tower with a cover swing area indicated. Elevation shows the level controller bridle with two side connections sized 1 1/2\" or 2\"ø, mounted to the tower over a platform, with a 3/4\" drain at the bottom. Vertical center-to-center distance between bridle taps noted as 3'-6\" to 6'-7\" (200 to 2000)."
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.40, 0.97, 0.73],
+      "caption": "EXHIBIT 10-59 Arrangements for Level Instruments — b. Single-Mounted Level Gauge and Switch. Plan and elevation views of a level gauge and a level switch mounted to a tower. Elevation shows a vertical bridle assembly with 1 1/2\" vent at top, GLASS section, 1/2\" drain, 3/4\" drain, and 1\"ø connection to a level switch on the side; bridle is mounted to the tower over a platform."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0143.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0143_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2310
+      ],
+      "caption": "Outline drawing of crude column condenser (shell and tube heat exchanger) \u2014 plan view, side elevation, and VIEW X-X nozzle orientation diagram with dimensional annotations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_fig01_crude-column-condenser-outline-drawing.png",
+      "png_sha256": "fbd3074f4d6cc6a763215bb88f1c69a8ddbfd301419e7f715d299432835041f3",
+      "slug": "crude-column-condenser-outline-drawing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.65,
+        0.35,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1980,
+        1024,
+        2739
+      ],
+      "caption": "Estimated Weight \u2014 Dry and Wet",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl01_estimated-weight.png",
+      "png_sha256": "703aa70050898206fce8425fa8ad497de9bbf7dbadc0db45beebfa7059b980a0",
+      "slug": "estimated-weight",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl01_estimated-weight.json",
+      "table_data_json_sha256": "0981d7d1fb9d09fc564384f063eddcc273c86142ef3544f6108445dd603f4ef0",
+      "table_data_sha256": "0981d7d1fb9d09fc564384f063eddcc273c86142ef3544f6108445dd603f4ef0",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl01_estimated-weight.xlsx",
+      "xlsx_sha256": "cd7546849c0a66f7ab94bf6491c79243e37bd0caec10ce929b66923d5b2498f3"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl02",
+      "bbox_norm": [
+        0.33,
+        0.63,
+        0.97,
+        0.83
+      ],
+      "bbox_px": [
+        717,
+        1914,
+        2560,
+        2904
+      ],
+      "caption": "Design Data \u2014 Shell and Tube side parameters for crude column condenser",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl02_design-data-shell-tube.png",
+      "png_sha256": "eb2fe291ec68a89b72e9248fa90924d599921b4194cf45135b0fb41c1a33ccf2",
+      "slug": "design-data-shell-tube",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl02_design-data-shell-tube.json",
+      "table_data_json_sha256": "3d55edd1ad9ba746effd46641c275524c7c8772362d165d55af1229d972b17fc",
+      "table_data_sha256": "3d55edd1ad9ba746effd46641c275524c7c8772362d165d55af1229d972b17fc",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl02_design-data-shell-tube.xlsx",
+      "xlsx_sha256": "f113c5ae8d890de936f11e065070063b45eb59841d9c84674f227eebb3917c12"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.81,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2508,
+        2560,
+        3300
+      ],
+      "caption": "Title block and drawing information \u2014 service, manufacturer, owner, tube surface, size, type, drawing number, date, item number",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl03_title-block-drawing-info.png",
+      "png_sha256": "d2535b2ba7b383899ea93df8844753f96df89ead9482c98fe92489e73c75293b",
+      "slug": "title-block-drawing-info",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl03_title-block-drawing-info.json",
+      "table_data_json_sha256": "51f5625d3619ae14942d70a4c0ed905fc6b5bd5c4492635a10f67f54ac89ced3",
+      "table_data_sha256": "51f5625d3619ae14942d70a4c0ed905fc6b5bd5c4492635a10f67f54ac89ced3",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0143_tbl03_title-block-drawing-info.xlsx",
+      "xlsx_sha256": "e3a0ba5592b85d62bdbbd76e110f67aca45c98f2ceea3e9063bbb4d07cf42f9d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 143,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0143.png",
+  "page_image_sha256": "248667181ded3046b27058a77cda851e573d3870a698d148ea754b9dc027a2e3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0143_assets.json"
+}

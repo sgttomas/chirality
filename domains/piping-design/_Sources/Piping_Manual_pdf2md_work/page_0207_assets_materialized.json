@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0207.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0207_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.98,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        1353
+      ],
+      "caption": "EXHIBIT 8-13 Components of a Typical Pump Suction and Discharge Piping System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0207_fig01_exhibit-8-13-components-of-a-typical-pum.png",
+      "png_sha256": "74889f66b2325063f904c253d3b7c631c65b82019220e1dac55447230af564c2",
+      "slug": "exhibit-8-13-components-of-a-typical-pum",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0207_fig02",
+      "bbox_norm": [
+        0.04,
+        0.37,
+        0.98,
+        0.59
+      ],
+      "bbox_px": [
+        0,
+        1056,
+        2550,
+        2111
+      ],
+      "caption": "EXHIBIT 8-14 Typical Temporary Tee-Type Strainer",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0207_fig02_exhibit-8-14-typical-temporary-tee-type.png",
+      "png_sha256": "0b0281f89d4db89c4c93867901e3de162b95b1cf140d869cba565fbef572842d",
+      "slug": "exhibit-8-14-typical-temporary-tee-type",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0207_fig03",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.98,
+        0.94
+      ],
+      "bbox_px": [
+        0,
+        1814,
+        2550,
+        3266
+      ],
+      "caption": "EXHIBIT 8-15 Typical Basket Strainer",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0207_fig03_exhibit-8-15-typical-basket-strainer.png",
+      "png_sha256": "8158924b2bc5d1fe4e60653292b17d9476e0da5e020b48824220de3b0cc876b4",
+      "slug": "exhibit-8-15-typical-basket-strainer",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 207,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0207.png",
+  "page_image_sha256": "8151c0fd52ff4160fadba3298d5deefd48cabdce5f47ea42975488245825a486",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0207_assets.json"
+}

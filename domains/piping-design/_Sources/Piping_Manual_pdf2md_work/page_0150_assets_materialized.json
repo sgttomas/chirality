@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0150.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0150_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2210
+      ],
+      "caption": "EXHIBIT 6-41 Piping Arrangement for Plate Exchangers",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0150_fig01_exhibit-6-41-piping-arrangement-for-plat.png",
+      "png_sha256": "925c9d08085aea9140375cbe9e77793270861a63f9de116e74e1b48234ee499c",
+      "slug": "exhibit-6-41-piping-arrangement-for-plat",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0150_fig02",
+      "bbox_norm": [
+        0.04,
+        0.64,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1946,
+        2550,
+        3299
+      ],
+      "caption": "EXHIBIT 6-42 Air Cooler Piping Configurations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0150_fig02_exhibit-6-42-air-cooler-piping-configura.png",
+      "png_sha256": "4da1d521b10f267871873e8ab72a6ac426b48172d834e52ec32af2c4b1b53a88",
+      "slug": "exhibit-6-42-air-cooler-piping-configura",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 150,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0150.png",
+  "page_image_sha256": "8d3e632704245c639d58c93c8a43eeccdda12559a5b57d51aabab19bd842c8ea",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0150_assets.json"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 68,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Diagram of branch-to-header reinforcement zone with dimensions and labels (R_H, R_B, t_H, t_B, t_p, w, etc.); caption appears below the diagram."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 3.13 \"Area of reinforcement,\" as specified by the Piping Code, ASA B31.1, Section 6.",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.51,
+        0.32
+      ]
+    }
+  ]
+}

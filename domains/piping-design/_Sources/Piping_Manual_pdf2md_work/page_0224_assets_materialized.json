@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0224.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0224_fig01",
+      "bbox_norm": [
+        0.03,
+        0.3,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        828,
+        2569,
+        2883
+      ],
+      "caption": "EXHIBIT 9-7 Methods for Reactor Support \u2014 four arrangements: (a) Skirt Supported (Foundation); (b) Lug Supported (lugs on concrete piers); (c) Ring Girder Supported (steel structure with ring girder on concrete table top); (d) Skirt Supported (Table Top)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0224_fig01_exhibit-9-7-methods-for-reactor-support.png",
+      "png_sha256": "cab4d8bf7c8e5f80217eea90069166dcd01b69671508d7ae0b6cbeab700c40de",
+      "slug": "exhibit-9-7-methods-for-reactor-support",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 224,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0224.png",
+  "page_image_sha256": "e7893de57928f46daf5bb2b7ccd1b69d6ea002647f8db6d9a896fe1084de33c4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0224_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0296.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0296_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2564,
+        1249
+      ],
+      "caption": "FIG. 8.24 STRESSES AT TANK NOZZLE CONNECTION \u2014 (a) Stress Locations and Sign Convention, (b) Pressure Hoop Stress",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0296_fig01_stresses-at-tank-nozzle-connection.png",
+      "png_sha256": "df2edc9795693391f4e9adb0c23c6882225e0ba5e5d165b7f959ec38d0e5ff79",
+      "slug": "stresses-at-tank-nozzle-connection",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 296,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0296.png",
+  "page_image_sha256": "f91156f0100c3fa42b501db200add2450170ef765509828def582e71ccf18334",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0296_assets.json"
+}

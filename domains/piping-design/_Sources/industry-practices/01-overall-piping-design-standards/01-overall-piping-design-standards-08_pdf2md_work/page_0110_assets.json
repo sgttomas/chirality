@@ -1,0 +1,212 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 110,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Appendix 7 — Visible length of plate-type level gauges in relation to standard displacer-type level instruments for ASME rating classes 150, 300 and 600",
+      "slug": "appendix-7-visible-length-plate-type-level-gauges",
+      "bbox_norm": [0.08, 0.10, 0.92, 0.45],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Displacer chamber centre to centre", "is_header": true, "rowspan": 3 },
+              { "value": "Number of level gauges to cover instrument range", "is_header": true, "colspan": 3 },
+              { "value": "Visible length of level gauge", "is_header": true, "rowspan": 3 },
+              { "value": "Stand pipe required", "is_header": true, "rowspan": 3 },
+              { "value": "\"A\" in mm¹) Elevation difference between LG and LC", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1 element", "is_header": true },
+              { "value": "2 elements", "is_header": true },
+              { "value": "3 elements", "is_header": true },
+              { "value": "minimum", "is_header": true },
+              { "value": "maximum", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "mm", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "–", "type": "text" },
+              { "value": "1x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 304, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 356, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "1x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 670, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 90, "type": "number" },
+              { "value": 394, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 508, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "1x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 670, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 90, "type": "number" },
+              { "value": 242, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 559, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "1x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 670, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 90, "type": "number" },
+              { "value": 191, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 813, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "1x", "type": "text" },
+              { "value": 1036, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 315, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1219, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "2x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 1315, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 90, "type": "number" },
+              { "value": 176, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1524, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "1x + 1x", "type": "text" },
+              { "value": 1681, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 249, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1829, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "2x", "type": "text" },
+              { "value": 2047, "type": "number" },
+              { "value": "no", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 310, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2134, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "2x + 1x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 2326, "type": "number" },
+              { "value": "yes", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 284, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2438, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "1x + 2x", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": 2692, "type": "number" },
+              { "value": "yes", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 346, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2743, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "3x", "type": "text" },
+              { "value": 3058, "type": "number" },
+              { "value": "yes", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 407, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3048, "type": "number" },
+              { "value": "–", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "3x", "type": "text" },
+              { "value": 3058, "type": "number" },
+              { "value": "yes", "type": "text" },
+              { "value": 102, "type": "number" },
+              { "value": 102, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Multi-row header spanning columns for gauge count and elevation difference. Header rows use colspan/rowspan layout."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Level instrument connection LC (left) and Level gauge connection LG (right) — piping arrangement diagrams for Appendix 7",
+      "slug": "level-instrument-lc-level-gauge-lg-connection-diagrams",
+      "bbox_norm": [0.06, 0.46, 0.94, 0.88],
+      "confidence": "high",
+      "notes": "Two side-by-side engineering schematic diagrams. Left shows level instrument connection LC with DN 50 label. Right shows level gauge connection LG with DN 20 labels. NOTE 1 text appears below the left diagram within the figure region."
+    }
+  ],
+  "issues": []
+}

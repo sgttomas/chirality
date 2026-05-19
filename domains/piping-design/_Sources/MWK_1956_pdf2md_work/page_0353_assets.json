@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 353,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-15. Guided Cantilever Chart. Assumed mode of deflection of guided cantilever. L = Length of leg, ft. b = Lateral deflection, in. Value of E used = 29 x 10^6 psi. S_A = Code allowable stress range (1.25S_c + 0.25S_h), psi. Instructions: Determine value of L sqrt(S_A)/10^3. Enter with this value of ordinate scale and read over to line for proper nominal pipe size. Read down to abscissa scale. The value obtained will be the permissible lateral deflection for leg.",
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.97,
+        0.96
+      ]
+    }
+  ]
+}

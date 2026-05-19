@@ -1,0 +1,90 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 353,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 10.1 GAS PIPELINE LOCATION CLASSES",
+      "slug": "gas-pipeline-location-classes",
+      "bbox_norm": [0.05, 0.27, 0.95, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "1",
+            "text": "A \"class location unit\" is an area that extends 220 yd (200 m) on either side of the centerline of any continuous 1-mile (1.6 km) length of pipeline."
+          },
+          {
+            "marker": "2",
+            "text": "Each separate dwelling unit in a multiple dwelling unit building is counted as a separate building intended for human occupancy."
+          },
+          {
+            "marker": "3",
+            "text": "Ample allowance should be made for potential future increases of buildings."
+          },
+          {
+            "marker": "4",
+            "text": "For pipelines shorter than 1 mile, a class location shall be assigned that is typical of the class location that would be required if the rate of pipeline traversal continues."
+          },
+          {
+            "marker": "5",
+            "text": "The length of class locations 2, 3, and 4 may be adjusted as follows: (a) a class 4 location ends 220 yd (200 m) from the nearest building with four or more stories aboveground; (b) when a cluster of buildings intended for human occupancy requires a class 2 or class 3 location, the class location ends 220 yd (200 m) from the nearest building in the cluster."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE 10.1 GAS PIPELINE LOCATION CLASSES", "col_span": 3, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Location class", "is_header": true },
+              { "value": "Description", "is_header": true },
+              { "value": "Remarks", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Class 1 location", "type": "text" },
+              { "value": "Any class location unit that has 10 or fewer buildings intended for human occupancy. It has two construction divisions: Division 1 and Division 2", "type": "text" },
+              { "value": "Wasteland, deserts, mountains, grazing lands, farmland, offshore", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Class 2 location", "type": "text" },
+              { "value": "Any class location unit that has more than 10 but fewer than 46 buildings intended for human occupancy", "type": "text" },
+              { "value": "Fringe areas around cities and towns, industrial areas, ranch or country estates, etc.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Class 3 location", "type": "text" },
+              { "value": "Any class location unit that has 46 or more buildings intended for human occupancy, or an area where the pipeline lies within 100 yd (91 m) of either a building or a small, well-defined outside area that is occupied by 20 or more persons on at least 5 days a week for 10 wk in any 12-month period", "type": "text" },
+              { "value": "Suburban housing developments, shopping centers, residential areas, industrial areas, and other populated areas not meeting Class 4 requirements", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Class 4 location", "type": "text" },
+              { "value": "Any class location unit where multi-story buildings are prevalent, and where traffic is heavy or dense, and where there may be numerous other utilities underground", "type": "text" },
+              { "value": "Multistory means four or more floors aboveground including the first aboveground floor. The depth of basement or number of basement floors is immaterial", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with two-row merged header (title row spanning all columns + column label row). Five numbered footnotes appear below the table body."
+    }
+  ],
+  "issues": []
+}

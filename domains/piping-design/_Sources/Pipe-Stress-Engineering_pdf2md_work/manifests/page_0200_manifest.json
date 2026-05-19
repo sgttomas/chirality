@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0200.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0200_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1784,
+        2564,
+        3569
+      ],
+      "caption": "Fig. 6.18 CIRCUMFERENTIAL BENDING MOMENT AT RING GIRDER",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0200_fig01_circumferential-bending-moment-ring-gird.png",
+      "png_sha256": "fcda4da59a46a977b16a6452dd5ec857ee38179297e2541e2ae183532b54828f",
+      "slug": "circumferential-bending-moment-ring-gird",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 200,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0200.png",
+  "page_image_sha256": "b69798a974caf545d43cd9f834207b41b5235f6342a704fecc5ac123ff837ed9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0200_assets.json"
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 172,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p172_fig_01",
+      "label": "EXHIBIT 7-16",
+      "caption": "EXHIBIT 7-16 Radiant Tube Removal in a Circular Furnace",
+      "bbox_norm": [0.06, 0.18, 0.96, 0.90],
+      "notes": "Isometric cutaway illustration of a circular (cylindrical) furnace showing radiant tube removal arrangement. Callouts: MONORAIL FOR TUBE REMOVAL, RADIANT TUBE REMOVAL, CONVECTION TUBE REMOVAL AREA, CONVECTION TUBES, CONVECTION SECTION, DAMPER, ACCESS DOOR, RADIANT SECTION, RADIANT TUBES, PEEP DOORS, BURNERS. A worker is shown at ground level pulling a rope/cable. Caption block 'EXHIBIT 7-16 / Radiant Tube Removal in a Circular Furnace' is placed to the right of the figure top."
+    }
+  ],
+  "issues": []
+}

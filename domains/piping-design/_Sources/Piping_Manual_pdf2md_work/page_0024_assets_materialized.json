@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0024.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0024_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2582,
+        1662
+      ],
+      "caption": "EXHIBIT 1-7 Valve Manifolds \u2014 LAYOUT \"A\" (Inadvertent Design, Excessive Fittings) with 10\"x6\" reducer, 6\"x4\" reducer and multiple elbows; LAYOUT \"B\" (Preferred Design, Minimum Fittings) with 10\"x6\" reducer, weld cap, and branch connection",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0024_fig01_exhibit-1-7-valve-manifolds-layout-a-ina.png",
+      "png_sha256": "30a4c4a0e7d20cb422ea5d9ef570d8e5d0e958737dbe38349245bb5f61da129f",
+      "slug": "exhibit-1-7-valve-manifolds-layout-a-ina",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0024.png",
+  "page_image_sha256": "532a6cb1f2d543b3abfaeb65d3dc280876983e8b29a5dc504330fe934d6e7aae",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0024_assets.json"
+}

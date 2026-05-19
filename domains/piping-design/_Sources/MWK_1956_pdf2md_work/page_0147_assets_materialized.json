@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0147.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0147_fig01",
+      "bbox_norm": [
+        0.07,
+        0.08,
+        0.93,
+        0.49
+      ],
+      "bbox_px": [
+        51,
+        105,
+        2499,
+        1886
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY AND STRESS ANALYSIS SKETCH",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0147_fig01_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "77ca03f9ae0c04b5ec426d5ae85eae7f1a677d60e86d1af471aa6bf3e0adaf40",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0147_fig02",
+      "bbox_norm": [
+        0.07,
+        0.5,
+        0.93,
+        0.92
+      ],
+      "bbox_px": [
+        51,
+        1571,
+        2499,
+        3387
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY AND STRESS ANALYSIS - ORIGINAL DATA AND RESULTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0147_fig02_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "056dd5922f25642944617404ec0279e5ebd02648c2048cff0f9d4d0736131935",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 147,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0147.png",
+  "page_image_sha256": "b0a2e3ff96fe5e7638ee637f770f4c214579ddc9775fbd40fffea48096c61b0d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0147_assets.json"
+}

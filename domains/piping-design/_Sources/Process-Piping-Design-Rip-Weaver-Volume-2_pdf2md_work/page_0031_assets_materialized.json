@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0031_fig01",
+      "bbox_norm": [
+        0.3,
+        0.38,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        640,
+        1089,
+        2560,
+        3300
+      ],
+      "caption": "Figure 1-14. Performance Curve for Type 1\u00bd x 2 x 8\u00bdL IN-INI pump. Courtesy of Byron Jackson Pump Division.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0031_fig01_performance-curve-type-1-5x2x8-5l-in-ini.png",
+      "png_sha256": "a8bc0a9d02dc7330c113c4f980f8b7f243b35fcee1c7b1b11ccf07d803ecf5fe",
+      "slug": "performance-curve-type-1-5x2x8-5l-in-ini",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0031.png",
+  "page_image_sha256": "cdb151292b67e1325ca64e045adfc38f6397c42d8ce60f5a1bba633c968e3f8f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0031_assets.json"
+}

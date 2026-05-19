@@ -1,0 +1,64 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0162.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0162_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.99,
+        0.51
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2424,
+        1798
+      ],
+      "caption": "A-O Branch \u2014 Piping Flexibility and Stress Analysis, Inversion of Six Equations (M.W. Kellogg Co., Form E-4, Calc. No. 5.6)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0162_tbl01_ao-branch-inversion-six-equations.png",
+      "png_sha256": "978b8272d9603a630699f9a7c94efeecb696840383b701f592b655add2b389a4",
+      "slug": "ao-branch-inversion-six-equations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0162_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.99,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1509,
+        2424,
+        3210
+      ],
+      "caption": "O\u2019-O Branch \u2014 Piping Flexibility and Stress Analysis, Inversion of Six Equations (M.W. Kellogg Co., Form E-4, Calc. No. 5.6)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0162_tbl02_oo-branch-inversion-six-equations.png",
+      "png_sha256": "440b456e5c74433500b62ba4fa44e8520d4748b3f34b91911a5b9132ae5e2154",
+      "slug": "oo-branch-inversion-six-equations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 162,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0162.png",
+  "page_image_sha256": "758f87e1ed10f149060e650d67c819eb6381e9fb5cf540ea1c100593b18575e2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0162_assets.json"
+}

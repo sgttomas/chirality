@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0315.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0315_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2316,
+        3210
+      ],
+      "caption": "Table A.4. Shape Coefficient Expressions for Uniform Loading",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0315_tbl01_table-a-4-shape-coefficient-expressions.png",
+      "png_sha256": "6ca4c4c9f268611ace82de1e1b1e260dd3587c5a705da8019686a0421fb60ccf",
+      "slug": "table-a-4-shape-coefficient-expressions",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 315,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0315.png",
+  "page_image_sha256": "890fbd52a6deca2e0d578403d9348c09f49fa4b3139f81c70732ed1da4242e10",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0315_assets.json"
+}

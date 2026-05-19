@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0226.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0226_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.72,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1953,
+        1171
+      ],
+      "caption": "Fig. 6.29 SUPPORT AND PIPE MOVEMENTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0226_fig01_support-and-pipe-movements.png",
+      "png_sha256": "0e703696e9fae1eecae3394e3bcc551f1dbcef0aa7c4e9b274adc60c4894fdde",
+      "slug": "support-and-pipe-movements",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 226,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0226.png",
+  "page_image_sha256": "fa8b343a83d43313c0a7eda5dd76b3ca498901880d296444f6ea878a451d65da",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0226_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0287.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0287_fig01",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        2357,
+        2495,
+        3518
+      ],
+      "caption": "FIG. 8.17 MODELING OF ALLOWABLE MOVEMENTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0287_fig01_modeling-of-allowable-movements.png",
+      "png_sha256": "8d28c14dda0cec70487103882432bb9e82501a2dbb7698e2018794044bf7c80c",
+      "slug": "modeling-of-allowable-movements",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 287,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0287.png",
+  "page_image_sha256": "8595f8c1c45da424f6160acf9dee3842b33fbcf407f75aee2e3fd96915e7c43e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0287_assets.json"
+}

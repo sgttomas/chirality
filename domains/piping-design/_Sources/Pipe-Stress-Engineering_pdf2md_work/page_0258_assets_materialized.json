@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0258.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0258_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.75,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2018,
+        1415
+      ],
+      "caption": "FIG. 7.22 BRAID COVER OF CORRUGATED HOSE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0258_fig01_braid-cover-corrugated-hose.png",
+      "png_sha256": "119698ba97c9bc391b98118af4e579db836ccdfd6ad968b83bd7ac6972602c89",
+      "slug": "braid-cover-corrugated-hose",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 258,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0258.png",
+  "page_image_sha256": "89eb9f72980b20ac3d394cfadef859ac71c3c84798beb155bf85c55ae30a20a8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0258_assets.json"
+}

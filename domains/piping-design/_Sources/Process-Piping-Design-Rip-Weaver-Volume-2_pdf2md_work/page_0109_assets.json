@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 109,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-18. Heater Arrangement A. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "heater-arrangement-a",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.90],
+      "confidence": "high",
+      "notes": "Full-page arrangement diagram showing two plan-view layouts: upper shows reactors with sub-pipeway and unit pipeway; lower shows heaters with access road. Title 'ARRANGEMENT A' and caption both included in bbox."
+    }
+  ],
+  "issues": []
+}

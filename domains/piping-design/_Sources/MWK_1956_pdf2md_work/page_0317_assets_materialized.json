@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0317.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0317_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.45,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        30,
+        1023,
+        800
+      ],
+      "caption": "Fig. A.9 Integration of shape coefficients for weight of straight members in the y-plane.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0317_fig01_fig-a-9-integration-of-shape-coefficient.png",
+      "png_sha256": "2be6b9a35dbbb1730bffbc0072a5a468f30e7bcf7a5a935b07da16a31ff8d76a",
+      "slug": "fig-a-9-integration-of-shape-coefficient",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0317_fig02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.45,
+        0.71
+      ],
+      "bbox_px": [
+        0,
+        1482,
+        1023,
+        2253
+      ],
+      "caption": "Fig. A.10 Integration of shape coefficients for weight of straight members in the x-plane.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0317_fig02_fig-a-10-integration-of-shape-coefficien.png",
+      "png_sha256": "4604ac35fd1de8a7d91f5a9bd7063a52a82c2ff07cd6e951c74956379f067f57",
+      "slug": "fig-a-10-integration-of-shape-coefficien",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 317,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0317.png",
+  "page_image_sha256": "0a8c70ce339d1c99e3906435bc1c84e9a481870b24a3ace507d83e8b0c009f54",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0317_assets.json"
+}

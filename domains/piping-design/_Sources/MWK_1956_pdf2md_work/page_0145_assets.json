@@ -1,0 +1,376 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 145,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 5.10 Four-branch system.",
+      "slug": "four-branch-system",
+      "bbox_norm": [0.03, 0.55, 0.45, 0.90],
+      "confidence": "high",
+      "notes": "Line diagram of a four-branch piping system with x/y axes and labeled junction points O', P, Q, R, S, T. Caption appears directly beneath the diagram."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.11",
+      "slug": "table-5-11-four-branch-equations",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "M₂P", "is_header": true },
+              { "value": "F₂P", "is_header": true },
+              { "value": "FyP", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "M₂Q", "is_header": true },
+              { "value": "F₂Q", "is_header": true },
+              { "value": "FyQ", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "M₂S", "is_header": true },
+              { "value": "F₂S", "is_header": true },
+              { "value": "FyS", "is_header": true },
+              { "value": "Constant", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AP", "type": "text" },
+              { "value": "BP", "type": "text" },
+              { "value": "DP", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AR", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AT", "type": "text" },
+              { "value": "BT", "type": "text" },
+              { "value": "DT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BP", "type": "text" },
+              { "value": "CP", "type": "text" },
+              { "value": "GP", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BR", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BT", "type": "text" },
+              { "value": "CT", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DP", "type": "text" },
+              { "value": "GP", "type": "text" },
+              { "value": "HP", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DT", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "HT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AR", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AQ", "type": "text" },
+              { "value": "BQ", "type": "text" },
+              { "value": "DQ", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AR", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BR", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BQ", "type": "text" },
+              { "value": "CQ", "type": "text" },
+              { "value": "GQ", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BR", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxQ", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DQ", "type": "text" },
+              { "value": "GQ", "type": "text" },
+              { "value": "HQ", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyQ", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AT", "type": "text" },
+              { "value": "BT", "type": "text" },
+              { "value": "DT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AR", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "AS", "type": "text" },
+              { "value": "BS", "type": "text" },
+              { "value": "DS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BT", "type": "text" },
+              { "value": "CT", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BR", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "BS", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "GS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DT", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "HT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "DS", "type": "text" },
+              { "value": "GS", "type": "text" },
+              { "value": "HS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyS", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "9-row by 13-column matrix of shape coefficients for a four-branch piping flexibility system. Columns are grouped into three sets of three (P, Q, S branches) separated by blank spacer columns, plus a Constant column. Subscripts transcribed using compact notation (e.g. AP = A_P, EI*ΔxP = EI*Π_xP)."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 5.12",
+      "slug": "table-5-12-rearranged-branch-equations",
+      "bbox_norm": [0.03, 0.38, 0.97, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [3],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "M₂P", "is_header": true },
+              { "value": "MxQ", "is_header": true },
+              { "value": "MxS", "is_header": true },
+              { "value": "F₂P", "is_header": true },
+              { "value": "FyQ", "is_header": true },
+              { "value": "FxS", "is_header": true },
+              { "value": "FyP", "is_header": true },
+              { "value": "FyQ", "is_header": true },
+              { "value": "FyS", "is_header": true },
+              { "value": "Constant", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AP", "type": "text" },
+              { "value": "AR", "type": "text" },
+              { "value": "AR", "type": "text" },
+              { "value": "BP", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "BT", "type": "text" },
+              { "value": "DP", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "DT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AR", "type": "text" },
+              { "value": "AQ", "type": "text" },
+              { "value": "AR", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "BQ", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "DQ", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AT", "type": "text" },
+              { "value": "AR", "type": "text" },
+              { "value": "AS", "type": "text" },
+              { "value": "BT", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "BS", "type": "text" },
+              { "value": "DT", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "DS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "0", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BP", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "BT", "type": "text" },
+              { "value": "CP", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "CT", "type": "text" },
+              { "value": "GP", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BR", "type": "text" },
+              { "value": "BQ", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "CQ", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GQ", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxQ", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BT", "type": "text" },
+              { "value": "BR", "type": "text" },
+              { "value": "BS", "type": "text" },
+              { "value": "CT", "type": "text" },
+              { "value": "CR", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔxS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DP", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "DT", "type": "text" },
+              { "value": "GP", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "HP", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "HT", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DR", "type": "text" },
+              { "value": "DQ", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GQ", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "HQ", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyQ", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DT", "type": "text" },
+              { "value": "DR", "type": "text" },
+              { "value": "DS", "type": "text" },
+              { "value": "GT", "type": "text" },
+              { "value": "GR", "type": "text" },
+              { "value": "GS", "type": "text" },
+              { "value": "HT", "type": "text" },
+              { "value": "HR", "type": "text" },
+              { "value": "HS", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "EI*ΔyS", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Rearranged form of Table 5.11 placing rotation equations (rows 1-3, constants = 0) before deflection equations (rows 4-9). Symmetry of coefficients is preserved. Section divider at row index 3 separates rotation from deflection rows."
+    }
+  ],
+  "issues": []
+}

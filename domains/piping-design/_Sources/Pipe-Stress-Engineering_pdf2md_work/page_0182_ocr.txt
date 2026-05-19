@@ -1,0 +1,68 @@
+162 Chapter 6
+
+secondary stress. At low temperatures, when the hot allowable stress has the same value as the cold
+allowable stress, the weight allowable stress limit is only about one-third of the expansion stress allow-
+able limit. At higher operating temperatures in the creep range, the weight allowable stress limit can
+be as low as only one-tenth of the expansion stress allowable limit. Therefore, it is important to note
+that the first priority of piping analysis is to accurately determine the sustained weight stress under
+hot operating condition. This is not to say that expansion stress is unimportant. A good analysis shall
+calculate both sustained and expansion stresses as accurately as possible.
+
+It should be noted that by calculating weight stress at cold condition, the result is not expected to
+indicate where a spring support is needed. It is only when the weight stress at hot operating condition
+is calculated that the engineer will be able to detect where and when a spring support is needed. Spring
+supports are used to reduce the weight stress at hot operating condition.
+
+The operating condition approach may be somewhat conservative for pipes that only lift up a very
+small amount from the support. In this case, the rule of thumb is to consider the support double-acting
+to check both sustained and expansion stresses. If both stresses are within the code allowable limits,
+
+then the system should be considered acceptable.
+
+6.4 VARIABLE SPRING AND CONSTANT EFFORT SUPPORTS
+
+As previously noted, the most economical and efficient way to support the piping is to simply rest
+the piping on a rigid support structure. Being supported with rigid supports, the pipe will either gener-
+ate a potentially huge upward force when the pipe expands downward or leave the support inactive
+when the pipe moves upward. One way to maintain the pipe properly supported is to replace the rigid
+support with a spring support. With spring support, the pipe will always be supported with an appro-
+priate amount of force, regardless of its vertical movement. The magnitude of the supporting force,
+however, changes somewhat as the pipe moves vertically. Because of this change in support force
+as the pipe moves up and down, spring support is also called a variable spring support. Although
+the support force changes throughout the operating cycle, the amount of change is predictable from
+the spring selected. In the design, the spring is properly selected so that the load variation is within the
+acceptable limit that will not compromise the integrity of the piping system.
+
+Since the pipe always has the tendency to move in the vertical direction, it takes some engineer-
+ing judgment to decide when and where the spring support shall be used. A straightforward method
+often mentioned is the use of the free vertical thermal movement of the piping as the criterion. In this
+method, the system is first analyzed for thermal expansion, without any support included, to find out
+the free vertical piping movement at the intended support location. If the free vertical thermal expan-
+sion exceeds a certain limit, say 0.5 in. (13 mm), then a spring support is used. If it exceeds 3 in. (75
+mm), then a constant-effort support is used. This type of approach may appear to be reasonable,
+but actually does not serve any real purpose. At the location near a fixed point, such as an anchor or
+equipment, even a very small vertical displacement is too much to use a rigid support. On the other
+hand, a large vertical free thermal displacement in a wide-open area can still be supported with a rigid
+support due to the large flexibility of the piping. With a computerized environment, a good approach
+is to use double-acting rigid supports as much as possible for a trial. After the trial analysis, the sup-
+ports that generate huge thermal loads are removed to see if the sustained stress is still within the
+allowable range. If it is not, then spring supports should be used at some or all of the locations where
+the trial double-acting rigid supports are eliminated.
+
+In the configuration shown in Fig. 6.8, a 12-in. (300-mm) pipe will lift off and be unsupported at
+all three supports with a tower movement of 3.2 in. (80 mm). Ideally, all three supports should be
+replaced with spring hangers. However, with a compact layout as shown, only the mid-support may
+be required to be spring-supported, whereas the other two are simply removed. This, naturally, needs
+to be verified with an analysis. It should be also noted that some of the resting supports, although
+not active under operating condition, might be required for the hydrostatic test. However, a support
+
+a
+RE uate
+
+a
+
+woes
+
+wemeoce
+
+sm

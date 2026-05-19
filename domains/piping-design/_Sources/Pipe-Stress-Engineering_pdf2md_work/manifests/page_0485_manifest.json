@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0485.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0485_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        105,
+        174,
+        3404,
+        1911
+      ],
+      "caption": "MODULUS OF ELASTICITY (1.E6 PSI) NOTE: 1 PSI = 6.895 KPA",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0485_tbl01_modulus-of-elasticity-psi-temperature.csv",
+      "csv_sha256": "9a2d978a8b81896c987c9df08179ba7521e28c168ac9730a4e8a5f645c37651d",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0485_tbl01_modulus-of-elasticity-psi-temperature.png",
+      "png_sha256": "c50187bb1385b91ff2531ef308b3db336b697ae0a6aacee0e29ac44572eb78fb",
+      "slug": "modulus-of-elasticity-psi-temperature",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 485,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0485.png",
+  "page_image_sha256": "2fba6bdd063f55fb8df1072ed501a6837d04756a1ef4ffe0a82a7a3bde1eee32",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0485_assets.json"
+}

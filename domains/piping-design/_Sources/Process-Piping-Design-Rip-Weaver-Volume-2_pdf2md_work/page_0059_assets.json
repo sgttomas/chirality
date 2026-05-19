@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 59,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-5. Typical turbine connections. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "typical-turbine-connections",
+      "bbox_norm": [0.05, 0.28, 0.97, 0.95],
+      "confidence": "high",
+      "notes": "Diagram showing turbine with labeled connection points (steam inlet, exhaust flange, trip-throttle valve, drive shaft) and numbered callouts for valve stem leakoff, governor valve leakoff, steam chest drain, and high/low pressure casing drains. Caption visible below diagram."
+    }
+  ],
+  "issues": []
+}

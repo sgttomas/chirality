@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0026_fig01",
+      "bbox_norm": [
+        0.08,
+        0.32,
+        0.92,
+        0.98
+      ],
+      "bbox_px": [
+        77,
+        891,
+        2483,
+        3300
+      ],
+      "caption": "Figure 1-9. P-100A discharge piping. Courtesy of Fluor Engineers and Constructors.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0026_fig01_p-100a-discharge-piping.png",
+      "png_sha256": "3b8ffa6062af40cf9ca8bc3b97ee9655e3b7bae372dbbb28e201c473dd3445c5",
+      "slug": "p-100a-discharge-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0026.png",
+  "page_image_sha256": "56c1cab7fd8009135e924e68cfe18421866199a88fa0b66e55ab03c8b6e43727",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0026_assets.json"
+}

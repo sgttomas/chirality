@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0129.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0129_fig01",
+      "bbox_norm": [
+        0.05,
+        0.11,
+        0.48,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        200,
+        1372,
+        2830
+      ],
+      "caption": "EXHIBIT 6-5 Typical Shell and Tube Exchanger Arrangements. (a) U-Tube; (b) Fixed Tube (with expansion joint); (c) Kettle.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0129_fig01_exhibit-6-5-typical-shell-and-tube-excha.png",
+      "png_sha256": "3c982758938ce2dc5c6f87198922f9e79b4d04478bbbe91c689431c6dd388f7c",
+      "slug": "exhibit-6-5-typical-shell-and-tube-excha",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 129,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0129.png",
+  "page_image_sha256": "da6e2871de147bc9cfa5fd395264dc6f532642cfa05592d38f92195b86778ef3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0129_assets.json"
+}

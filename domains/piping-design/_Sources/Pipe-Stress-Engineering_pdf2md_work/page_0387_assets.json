@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 387,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 11.8 INTERNALLY INSULATED AMMONIA PLANT REFORMER PIPING",
+      "slug": "internally-insulated-ammonia-plant-reformer-piping",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.38],
+      "confidence": "high",
+      "notes": "Diagram showing secondary reformer, primary reformer, hot pipe, cold pipe, cold-hot pipe junction, and refractory. Caption appears directly below the figure."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 11.9 COLD PIPE AND HOT PIPE JUNCTION",
+      "slug": "cold-pipe-and-hot-pipe-junction",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.98],
+      "confidence": "high",
+      "notes": "Multi-part figure: (a) Properly Insulated, (b) Improperly Insulated cross-sections, and (c) Pipe Wall Temperature Distribution graph. Caption appears directly below the figure."
+    }
+  ],
+  "issues": []
+}

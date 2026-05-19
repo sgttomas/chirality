@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0481.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0481_fig01",
+      "bbox_norm": [
+        0.05,
+        0.19,
+        0.75,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        497,
+        2029,
+        1526
+      ],
+      "caption": "Fig. Appendix B \u2014 Butt-welding fitting types showing dimensional labels: 90\u00b0 Elbow (dimension A), 45\u00b0 Elbow (dimensions B and R), Tee (dimensions M and C), Reducer (dimension D), Cap (dimension E)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0481_fig01_butt-welding-fitting-types-dimensional-l.png",
+      "png_sha256": "12d3dbd2eedccd879facd8bf790351ad976d1817d99623099798b27ef4b02b98",
+      "slug": "butt-welding-fitting-types-dimensional-l",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0481_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1171,
+        2536,
+        3478
+      ],
+      "caption": "Table Appendix B \u2014 Dimension of Butt-Welding Fittings",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0481_tbl01_dimension-butt-welding-fittings.png",
+      "png_sha256": "0082ec27589e4a6f099ab6b46d0a465b01cfbc03999e454c47126b727f37a3b4",
+      "slug": "dimension-butt-welding-fittings",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0481_tbl01_dimension-butt-welding-fittings.json",
+      "table_data_json_sha256": "c6dfbebb4b7e85e91d8b9ebdab05dbbae1b2520ffd8345c41622c974801b22dc",
+      "table_data_sha256": "c6dfbebb4b7e85e91d8b9ebdab05dbbae1b2520ffd8345c41622c974801b22dc",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0481_tbl01_dimension-butt-welding-fittings.xlsx",
+      "xlsx_sha256": "b83527234f23abee13150049618725b48dbc80e0f3eb68f186360911ab80a1ff"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 481,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0481.png",
+  "page_image_sha256": "bec4fe271c5fbfd7300c2ae4332907959654a556433a29f62db47c6c5af8d27a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0481_assets.json"
+}

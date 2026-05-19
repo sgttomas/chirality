@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 141,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.28, 0.92, 0.93],
+      "caption": "Exhibit 6-25. Typical Traveling-Platform Air Cooler Arrangement. Hand-drawn elevation view of a forced draft air cooler with two fan units beneath the bundle, step-off platform with ladder access, traveling platform riding on a runway beam, four support columns to grade, intermediate beam with step, ladder to grade, and ladder to header box platform."
+    }
+  ],
+  "issues": []
+}

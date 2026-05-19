@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0241.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0241_fig01",
+      "bbox_norm": [
+        0.49,
+        0.04,
+        1.0,
+        0.62
+      ],
+      "bbox_px": [
+        982,
+        0,
+        2232,
+        1990
+      ],
+      "caption": "Fig. 8.8 Typical resting support assemblies.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0241_fig01_fig-8-8-typical-resting-support-assembli.png",
+      "png_sha256": "5353d93cef416e20f15319d1acb121151b778d433cde1bd3346e0e05f77ae9dd",
+      "slug": "fig-8-8-typical-resting-support-assembli",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 241,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0241.png",
+  "page_image_sha256": "23afeaeeef270282ac869e20c7e096594ec13a58e84029715ae47a34acebbd1d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0241_assets.json"
+}

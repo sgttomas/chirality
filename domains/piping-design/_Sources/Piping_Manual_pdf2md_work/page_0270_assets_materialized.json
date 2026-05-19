@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0270.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0270_fig01",
+      "bbox_norm": [
+        0.08,
+        0.3,
+        0.95,
+        0.9
+      ],
+      "bbox_px": [
+        77,
+        826,
+        2556,
+        3139
+      ],
+      "caption": "EXHIBIT 10-57 Tower Piping Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0270_fig01_exhibit-10-57-tower-piping-arrangement.png",
+      "png_sha256": "3ae4313931a3905513717b0390671e9fe0bf92366bf32d9843f00cfe1562f894",
+      "slug": "exhibit-10-57-tower-piping-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 270,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0270.png",
+  "page_image_sha256": "9fe84b1bec6d3e793da10ef455da7cb2bf1564cd3072d5c3302ee1de4fc70c8d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0270_assets.json"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "NO_FOLIO",
+  "page": 34,
+  "page_label": null,
+  "page_label_source": "vlm",
+  "location": null,
+  "confidence": "high",
+  "rationale": "Page is blank with only a faint horizontal rule near the bottom; no printed folio label is visible."
+}

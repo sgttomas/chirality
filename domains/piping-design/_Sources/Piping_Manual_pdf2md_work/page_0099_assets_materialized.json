@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0099.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0099_fig01",
+      "bbox_norm": [
+        0.49,
+        0.09,
+        0.96,
+        0.56
+      ],
+      "bbox_px": [
+        1133,
+        133,
+        2575,
+        2025
+      ],
+      "caption": "EXHIBIT 4-42 Centrifugal Compressor with Inter-Cooler and Piping Between Stages",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0099_fig01_exhibit-4-42-centrifugal-compressor-with.png",
+      "png_sha256": "3e7c9111233d5aa648b25db8409de6985516bf57a17e43e0d535bea42b5ffe80",
+      "slug": "exhibit-4-42-centrifugal-compressor-with",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 99,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0099.png",
+  "page_image_sha256": "ce3b1eea3f268435e825391c243777226392e0b90631251eb741dee3654df014",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0099_assets.json"
+}

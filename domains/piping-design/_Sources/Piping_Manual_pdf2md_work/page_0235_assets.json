@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 235,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p235_fig_01",
+      "caption": "EXHIBIT 9-27 Spherical Reactor",
+      "bbox_norm": [0.05, 0.04, 0.97, 0.46]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p235_fig_02",
+      "caption": "EXHIBIT 9-28 Horizontal Reactor",
+      "bbox_norm": [0.05, 0.47, 0.97, 0.74]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,60 @@
+Dynamic Analysis — Part 2: MDOF Systems and Applications 419
+
+where R is the combined response for each component of force, moment, displacement, and so forth.
+R; is the modal response of the ith mode. The notation #, represents the number of closely spaced
+modal groups, whereas 7,, represents the number of modes in each closely spaced group. For widely
+spaced modes, each group contains only one mode. If all modes are widely spaced, then n,, = 1 and
+n, = n, the number of modes.
+
+Equation (13.24) is the so-called on-off interface approach, which combines the modal results either
+by SRSS or by absolute (ABS) method. This method is generally too conservative without considering
+the degree of closeness and other factors. A more gradually interfaced combination, called complete
+quadratic combination (CQC), as shown in Eqs. (13.25) and (13.26), can also be used [11].
+
+R= > (Rij) (13.25)
+\ zi ja
+
+VS Gi; hi-fi
+G+G)2|'* (f + Za)
+
+bij = (13.26)
+
+where ¢; and f; are damping ratio and frequency, respectively, of the ith mode and so forth. It should be
+emphasized that the signs of R; and R; in Eq. (13.25) are important and shall be preserved. Equation
+(13.26) is called the Rosenblueth [12] correlation coefficient. Another equally popular correlation is
+called the Der Kiureghian [13] correlation coefficient as given by Eq. (13.27).
+
+- BVECI(G + ror?
+(1 = 72)? + 40:0 jr(1 + 9?) + 4(G? + 6?)r?
+
+&y (13.27)
+
+where r= o,/ 0; = f/f.
+
+The interaction between any two modes depends on the damping difference as well as the frequency
+difference. For any two modes with the same damping ratio and frequency, the cross modal coefficient,
+€;, becomes 1.0, and the two modes are combined algebraically. Again, it should be emphasized that
+the two modes with identical frequency are combined algebraically, not absolutely, in CQC method.
+
+The combinations are operated on all components of force, moment, displacement, rotation, accel-
+eration, support load, and so forth. Occasionally, there are attempts to just combine the displacement
+components and calculate all other components by multiplying the combined displacements with the
+stiffness matrix. This is incorrect because the signs of the displacements will be lost after the combina-
+tion. Without the proper signs of the displacement, calculation of the element force and moment is
+impossible.
+
+13.2.3 Comparison of Modal Combination Methods
+
+The methods of combining modal results present some confusion to many piping engineers. We
+have the SRSS, ABS, CQC, and algebraic methods; they all have been used in one situation or another.
+However, we do not really have a clear picture of as to when and why a certain method is used.
+
+For earthquake response, the response spectra approach and the probabilistic nature call for SRSS
+combination in most occasions. The question is: When there are two modes that are vibrating at al-
+most the same pace, would not their peaks coincide with each other most of the time? The question is
+valid, but also opens a can of worms, as they say in the field. For closely spaced modes, the simplest
+solution is to add them absolutely, which is the most direct and reliable, but it is also considered too
+conservative. To trim all the fat, the CQC method is recommended. It appears that the CQC method
+offers a more realistic combination than the ABS method in most situations. To get some picture of
+the problem, two sets of modal responses with identical frequency are combined with the above-men-
+tioned methods for comparison.

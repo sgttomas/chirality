@@ -1,0 +1,80 @@
+302 Chapter 9
+
+Figure 9.11(d) shows a double-barrel suspended vertical pump. The vertical pump also has the driv-
+ing motor floating over it. Therefore, the potential misalignment of the two shafts is small. However,
+because the pump generally involves a long overhung shaft, and the barrel casing is generally not very
+strong, it saves a great deal on layout spacing, but does not provide much in increasing the allowable
+piping loads.
+
+Figure 9.11(e) shows a single-stage horizontal pump. It has a double suction impeller, which is lo-
+cated in between two supporting bearings. Both suction and discharge are in the horizontal direction,
+making the support somewhat easier. The base support is used for low temperature applications. A
+centerline support is generally used for high temperature applications.
+
+Figure 9.11(f) shows a multi-stage horizontal pump. This is generally for high pressure applications
+that require better quality than usual. The pump construction is generally very robust due to the high
+design pressure. However, the pedestal and baseplate may not have the same proportion of strength.
+In this case, it makes sense to specify the double-strength baseplate if available.
+
+9.5.2 Basic Piping Support Schemes
+
+The most basic and important support for pump piping is the first support off the pump connection.
+This support, often with added horizontal restraints, controls the amount of piping load transmitted to
+the pump connection. The support type and the analytical modeling require careful investigation.
+
+Figure 9.12 shows the three basic support types for end suction piping. Regardless of the tempera-
+ture, the shaft centerline is generally maintained at the same elevation to minimize the misalignment
+with the driver. This is done with a centerline support of the casing with a water-cooled pedestal if
+required. The first support off the pump should also be. required to maintain this shaft elevation with
+minimum tilting. Generally, if the temperature is lower than 200°F (100°C), a rigid support as shown
+in Fig. 9.12(a) can be used. The rigid adjustable support as shown in Fig. 9.12(b) can be used for tem-
+peratures up to 400°F (200°C). A spring support is generally required for temperatures higher than
+
+p+e : — a
+
+Poo Saha
+
+rh
+
+(b) Adjustable (c) Spring
+
+Support Support
+Weight Weight
+big
+Support ~~
+PP Support
+
+(d) Two-Point Elbow Element (ec) Modified Base-Elbow Element
+
+FIG. 9.12
+FIRST SUPPORT AT SUCTION PIPING AND MODELING TECHNIQUE
+
+|
+
+semper
+i
+
+om
+
+k
+
+cloud
+
+eet el
+
+tt it thle pint bn ee tea
+
+“Premera
+
+(
+ke
+
+sence
+|
+
+ra
+
+aden
+
+sper
+

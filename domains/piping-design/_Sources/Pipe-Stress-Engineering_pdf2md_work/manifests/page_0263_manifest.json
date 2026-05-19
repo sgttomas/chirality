@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0263.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0263_fig01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        2108
+      ],
+      "caption": "FIG. 7.27 PROBLEMS ASSOCIATED WITH TIE-RODS AND LIMIT-RODS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0263_fig01_problems-associated-with-tie-rods-and-li.png",
+      "png_sha256": "ce3b551b680f4f8027c5395071b7b66ec582559cd584c39e9e2b8c90893a6317",
+      "slug": "problems-associated-with-tie-rods-and-li",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 263,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0263.png",
+  "page_image_sha256": "52a3ed1f96264dd09d7b417aa0fb7d6aaa51a06d32d7a13dd36c1e2ad76a61b6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0263_assets.json"
+}

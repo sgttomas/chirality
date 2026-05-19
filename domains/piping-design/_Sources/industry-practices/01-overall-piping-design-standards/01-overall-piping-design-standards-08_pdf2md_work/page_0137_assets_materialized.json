@@ -1,0 +1,68 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0137.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0137_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        1930
+      ],
+      "caption": "Table 5 Minimum required wall thickness for DN 100 pipe",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0137_tbl01_table-5-min-wall-thickness-dn100.png",
+      "png_sha256": "49365d8b260ee9fb289c49d276172eb2e9b3ec1624e97fda8948ff7b468a4673",
+      "slug": "table-5-min-wall-thickness-dn100",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0137_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.51,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1614,
+        2480,
+        3509
+      ],
+      "caption": "Table 6 Minimum required wall thickness for DN 150 pipe",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0137_tbl02_table-6-min-wall-thickness-dn150.png",
+      "png_sha256": "f035a09de173ee81c15e13cef960bc1d5aeb69dbc7e7cf5764544e3af859caaa",
+      "slug": "table-6-min-wall-thickness-dn150",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 137,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0137.png",
+  "page_image_sha256": "d5b853f102c113cfead875d5ea3dfe0a5cbd666f42c5f29ff926194a15a46445",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0137_assets.json"
+}

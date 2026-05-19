@@ -1,0 +1,701 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 215,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table A-8 Inches to Millimeters and Feet to Meters",
+      "slug": "table-a8-inches-to-millimeters-feet-to-meters",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "Exact conversion value" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Inches", "col_span": 6, "is_header": true },
+              { "value": "Decimal*", "is_header": true },
+              { "value": "Milli-meters", "is_header": true },
+              { "value": "Inches", "col_span": 6, "is_header": true },
+              { "value": "Decimal*", "is_header": true },
+              { "value": "Milli-meters", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1/2s", "is_header": true },
+              { "value": "1/4s", "is_header": true },
+              { "value": "1/8s", "is_header": true },
+              { "value": "1/16s", "is_header": true },
+              { "value": "1/32s", "is_header": true },
+              { "value": "1/64s", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "1/2s", "is_header": true },
+              { "value": "1/4s", "is_header": true },
+              { "value": "1/8s", "is_header": true },
+              { "value": "1/16s", "is_header": true },
+              { "value": "1/32s", "is_header": true },
+              { "value": "1/64s", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "1", "type": "number" },
+              { "value": "0.015625", "type": "text" },
+              { "value": 0.397, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "17", "type": "number" },
+              { "value": "0.515625", "type": "text" },
+              { "value": 13.097, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "2", "type": "number" },
+              { "value": "0.03125", "type": "text" },
+              { "value": 0.794, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "34", "type": "number" },
+              { "value": "0.53125", "type": "text" },
+              { "value": 13.494, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3", "type": "number" },
+              { "value": "0.046875", "type": "text" },
+              { "value": 1.191, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "35", "type": "number" },
+              { "value": "0.546875", "type": "text" },
+              { "value": 13.891, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "1", "type": "number" },
+              { "value": "2", "type": "number" },
+              { "value": "4", "type": "number" },
+              { "value": "0.0625", "type": "text" },
+              { "value": 1.588, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "9", "type": "number" },
+              { "value": "18", "type": "number" },
+              { "value": "36", "type": "number" },
+              { "value": "0.5625", "type": "text" },
+              { "value": 14.288, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5", "type": "number" },
+              { "value": "0.078125", "type": "text" },
+              { "value": 1.984, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "37", "type": "number" },
+              { "value": "0.578125", "type": "text" },
+              { "value": 14.684, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "6", "type": "number" },
+              { "value": "0.09375", "type": "text" },
+              { "value": 2.381, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "38", "type": "number" },
+              { "value": "0.59375", "type": "text" },
+              { "value": 15.081, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "7", "type": "number" },
+              { "value": "0.109375", "type": "text" },
+              { "value": 2.778, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "39", "type": "number" },
+              { "value": "0.609375", "type": "text" },
+              { "value": 15.478, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "1", "type": "number" },
+              { "value": "2", "type": "number" },
+              { "value": "4", "type": "number" },
+              { "value": "8", "type": "number" },
+              { "value": "0.1250", "type": "text" },
+              { "value": "3.175", "type": "text", "footnote_markers": ["*"] },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5", "type": "number" },
+              { "value": "10", "type": "number" },
+              { "value": "20", "type": "number" },
+              { "value": "40", "type": "number" },
+              { "value": "0.6250", "type": "text" },
+              { "value": "15.875", "type": "text", "footnote_markers": ["*"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "9", "type": "number" },
+              { "value": "0.140625", "type": "text" },
+              { "value": 3.572, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "41", "type": "number" },
+              { "value": "0.640625", "type": "text" },
+              { "value": 16.272, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5", "type": "number" },
+              { "value": "10", "type": "number" },
+              { "value": "0.15625", "type": "text" },
+              { "value": 3.969, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "21", "type": "number" },
+              { "value": "42", "type": "number" },
+              { "value": "0.65625", "type": "text" },
+              { "value": 16.669, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "11", "type": "number" },
+              { "value": "0.171875", "type": "text" },
+              { "value": 4.366, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "43", "type": "number" },
+              { "value": "0.671875", "type": "text" },
+              { "value": 17.066, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3", "type": "number" },
+              { "value": "6", "type": "number" },
+              { "value": "12", "type": "number" },
+              { "value": "0.1875", "type": "text" },
+              { "value": 4.762, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "11", "type": "number" },
+              { "value": "22", "type": "number" },
+              { "value": "44", "type": "number" },
+              { "value": "0.6875", "type": "text" },
+              { "value": 17.462, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "13", "type": "number" },
+              { "value": "0.203125", "type": "text" },
+              { "value": 5.159, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "45", "type": "number" },
+              { "value": "0.703125", "type": "text" },
+              { "value": 17.859, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "7", "type": "number" },
+              { "value": "14", "type": "number" },
+              { "value": "0.21875", "type": "text" },
+              { "value": 5.556, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "23", "type": "number" },
+              { "value": "46", "type": "number" },
+              { "value": "0.71875", "type": "text" },
+              { "value": 18.256, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "15", "type": "number" },
+              { "value": "0.234375", "type": "text" },
+              { "value": 5.953, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "47", "type": "number" },
+              { "value": "0.734375", "type": "text" },
+              { "value": 18.653, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "1", "type": "number" },
+              { "value": "2", "type": "number" },
+              { "value": "4", "type": "number" },
+              { "value": "8", "type": "number" },
+              { "value": "16", "type": "number" },
+              { "value": "0.2500", "type": "text" },
+              { "value": "6.350", "type": "text", "footnote_markers": ["*"] },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3", "type": "number" },
+              { "value": "6", "type": "number" },
+              { "value": "12", "type": "number" },
+              { "value": "24", "type": "number" },
+              { "value": "48", "type": "number" },
+              { "value": "0.7500", "type": "text" },
+              { "value": "19.050", "type": "text", "footnote_markers": ["*"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "17", "type": "number" },
+              { "value": "0.265625", "type": "text" },
+              { "value": 6.747, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "49", "type": "number" },
+              { "value": "0.765625", "type": "text" },
+              { "value": 19.447, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "9", "type": "number" },
+              { "value": "18", "type": "number" },
+              { "value": "0.28125", "type": "text" },
+              { "value": 7.144, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "25", "type": "number" },
+              { "value": "50", "type": "number" },
+              { "value": "0.78125", "type": "text" },
+              { "value": 19.844, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "19", "type": "number" },
+              { "value": "0.296875", "type": "text" },
+              { "value": 7.541, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "51", "type": "number" },
+              { "value": "0.796875", "type": "text" },
+              { "value": 20.241, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5", "type": "number" },
+              { "value": "10", "type": "number" },
+              { "value": "20", "type": "number" },
+              { "value": "0.3125", "type": "text" },
+              { "value": 7.938, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "13", "type": "number" },
+              { "value": "26", "type": "number" },
+              { "value": "52", "type": "number" },
+              { "value": "0.8125", "type": "text" },
+              { "value": 20.638, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "21", "type": "number" },
+              { "value": "0.328125", "type": "text" },
+              { "value": 8.334, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "53", "type": "number" },
+              { "value": "0.828125", "type": "text" },
+              { "value": 21.034, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "11", "type": "number" },
+              { "value": "22", "type": "number" },
+              { "value": "0.34375", "type": "text" },
+              { "value": 8.731, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "27", "type": "number" },
+              { "value": "54", "type": "number" },
+              { "value": "0.84375", "type": "text" },
+              { "value": 21.431, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "23", "type": "number" },
+              { "value": "0.359375", "type": "text" },
+              { "value": 9.128, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "55", "type": "number" },
+              { "value": "0.859375", "type": "text" },
+              { "value": 21.828, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3", "type": "number" },
+              { "value": "6", "type": "number" },
+              { "value": "12", "type": "number" },
+              { "value": "24", "type": "number" },
+              { "value": "24", "type": "number" },
+              { "value": "0.3750", "type": "text" },
+              { "value": "9.525", "type": "text", "footnote_markers": ["*"] },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "7", "type": "number" },
+              { "value": "14", "type": "number" },
+              { "value": "28", "type": "number" },
+              { "value": "56", "type": "number" },
+              { "value": "0.8750", "type": "text" },
+              { "value": "22.225", "type": "text", "footnote_markers": ["*"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "25", "type": "number" },
+              { "value": "0.390625", "type": "text" },
+              { "value": 10.922, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "57", "type": "number" },
+              { "value": "0.890625", "type": "text" },
+              { "value": 22.622, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "13", "type": "number" },
+              { "value": "26", "type": "number" },
+              { "value": "0.40625", "type": "text" },
+              { "value": 10.319, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "29", "type": "number" },
+              { "value": "58", "type": "number" },
+              { "value": "0.90625", "type": "text" },
+              { "value": 23.019, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "27", "type": "number" },
+              { "value": "0.421875", "type": "text" },
+              { "value": 10.716, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "59", "type": "number" },
+              { "value": "0.921875", "type": "text" },
+              { "value": 23.416, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "7", "type": "number" },
+              { "value": "14", "type": "number" },
+              { "value": "28", "type": "number" },
+              { "value": "28", "type": "number" },
+              { "value": "0.4375", "type": "text" },
+              { "value": 11.113, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "15", "type": "number" },
+              { "value": "30", "type": "number" },
+              { "value": "60", "type": "number" },
+              { "value": "60", "type": "number" },
+              { "value": "0.9375", "type": "text" },
+              { "value": "23.813", "type": "text", "footnote_markers": ["*"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "29", "type": "number" },
+              { "value": "0.453125", "type": "text" },
+              { "value": 11.509, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "61", "type": "number" },
+              { "value": "0.953125", "type": "text" },
+              { "value": 24.209, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "15", "type": "number" },
+              { "value": "30", "type": "number" },
+              { "value": "0.46875", "type": "text" },
+              { "value": 11.906, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "31", "type": "number" },
+              { "value": "62", "type": "number" },
+              { "value": "0.96875", "type": "text" },
+              { "value": 24.606, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "31", "type": "number" },
+              { "value": "0.484375", "type": "text" },
+              { "value": 12.303, "type": "number", "unit": "mm" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "63", "type": "number" },
+              { "value": "0.984375", "type": "text" },
+              { "value": 25.003, "type": "number", "unit": "mm" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "number" },
+              { "value": "2", "type": "number" },
+              { "value": "4", "type": "number" },
+              { "value": "8", "type": "number" },
+              { "value": "16", "type": "number" },
+              { "value": "32", "type": "number" },
+              { "value": "0.5000", "type": "text" },
+              { "value": "12.700", "type": "text", "footnote_markers": ["*"] },
+              { "value": "2", "type": "number" },
+              { "value": "4", "type": "number" },
+              { "value": "8", "type": "number" },
+              { "value": "16", "type": "number" },
+              { "value": "32", "type": "number" },
+              { "value": "64", "type": "number" },
+              { "value": "1.0000", "type": "text" },
+              { "value": "25.400", "type": "text", "footnote_markers": ["*"] }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page two-column conversion table. Left half covers 1/64 to 32/64 inch; right half covers 33/64 to 64/64 inch. Asterisk marks exact conversion values. Table continues on facing page per footer note."
+    }
+  ],
+  "issues": []
+}

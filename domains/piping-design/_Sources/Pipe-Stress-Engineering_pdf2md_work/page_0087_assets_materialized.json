@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0087.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0087_fig01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1300
+      ],
+      "caption": "Fig. 3.4 Sustained vs. Self-Limiting Stresses",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0087_fig01_sustained-vs-self-limiting-stresses.png",
+      "png_sha256": "6c695f46beaab243233c3c92c78ae0e8088478b8a817bbd65bc643ec29380635",
+      "slug": "sustained-vs-self-limiting-stresses",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 87,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0087.png",
+  "page_image_sha256": "e80b481f8c25f4b3f7e1b05b9cd869a668960c3e063c95437a869dbf5d3d7431",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0087_assets.json"
+}

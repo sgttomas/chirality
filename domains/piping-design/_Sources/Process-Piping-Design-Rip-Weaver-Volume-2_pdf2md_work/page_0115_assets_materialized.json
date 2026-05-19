@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0115.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0115_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1551
+      ],
+      "caption": "Figure 3-25. Outlet piping ring header. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0115_fig01_outlet-piping-ring-header.png",
+      "png_sha256": "e0ef05c0cfbcf8f7be4b50862a06354f2891ad05c99324092f47b0bc03a12607",
+      "slug": "outlet-piping-ring-header",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 115,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0115.png",
+  "page_image_sha256": "ef8413db0772d7feae626bc6a13632d4ee0edc4ae623544ec4bf21a2dc9e3f5a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0115_assets.json"
+}

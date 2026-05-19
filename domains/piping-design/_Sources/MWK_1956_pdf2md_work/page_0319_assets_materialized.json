@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0319.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0319_fig01",
+      "bbox_norm": [
+        0.07,
+        0.07,
+        0.62,
+        0.33
+      ],
+      "bbox_px": [
+        51,
+        64,
+        1708,
+        1220
+      ],
+      "caption": "Clockwise integration of shape coefficients for weight of circular members in the x-plane.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0319_fig01_clockwise-integration-of-shape-coefficie.png",
+      "png_sha256": "0769b2b7e599da2e888d41edc0b258e65c7778e7bc13dab3e7a289d02f807ef0",
+      "slug": "clockwise-integration-of-shape-coefficie",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 319,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0319.png",
+  "page_image_sha256": "e9b7c6b04665ad4be48bb82336837d159db874aa8ceb8feaf349a7e5c113fe01",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0319_assets.json"
+}

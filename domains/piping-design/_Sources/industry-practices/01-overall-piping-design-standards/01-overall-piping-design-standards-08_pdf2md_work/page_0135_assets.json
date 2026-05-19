@@ -1,0 +1,439 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 135,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 Minimum required wall thickness for DN 25 pipe",
+      "slug": "table-1-min-wall-thickness-dn25",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.47],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "For the above table, mechanical strength calculations were performed for water-filled straight pipes with a span of 3440 mm and an additional load of 250 N in the middle of the span."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pressure", "is_header": true },
+              { "value": "Temperature", "is_header": true, "colspan": 9 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "bar (ga)", "is_header": true },
+              { "value": "°C", "is_header": true, "colspan": 9 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "200", "is_header": true },
+              { "value": "225", "is_header": true },
+              { "value": "250", "is_header": true },
+              { "value": "275", "is_header": true },
+              { "value": "300", "is_header": true },
+              { "value": "325", "is_header": true },
+              { "value": "350", "is_header": true },
+              { "value": "375", "is_header": true },
+              { "value": "400", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "15", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "25", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "30", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "50", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "60", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "75", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "125", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with pressure (bar ga) vs temperature (°C) showing minimum wall thickness in mm for DN 25 pipe. Bold values visible in lower rows indicate governing cases."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 2 Minimum required wall thickness for DN 40 pipe",
+      "slug": "table-2-min-wall-thickness-dn40",
+      "bbox_norm": [0.05, 0.51, 0.95, 0.96],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "For the above table, mechanical strength calculations were performed for water-filled straight pipes with a span of 4100 mm and an additional load of 400 N in the middle of the span."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pressure", "is_header": true },
+              { "value": "Temperature", "is_header": true, "colspan": 9 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "bar (ga)", "is_header": true },
+              { "value": "°C", "is_header": true, "colspan": 9 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "200", "is_header": true },
+              { "value": "225", "is_header": true },
+              { "value": "250", "is_header": true },
+              { "value": "275", "is_header": true },
+              { "value": "300", "is_header": true },
+              { "value": "325", "is_header": true },
+              { "value": "350", "is_header": true },
+              { "value": "375", "is_header": true },
+              { "value": "400", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "15", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "25", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "30", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "50", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "60", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "75", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "125", "type": "text" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": 4, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with pressure (bar ga) vs temperature (°C) showing minimum wall thickness in mm for DN 40 pipe. Bold values visible in lower rows indicate governing cases."
+    }
+  ],
+  "issues": []
+}

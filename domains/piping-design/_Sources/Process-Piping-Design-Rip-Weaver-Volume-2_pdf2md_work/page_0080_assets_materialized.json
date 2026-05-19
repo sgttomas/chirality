@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0080.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0080_tbl01",
+      "bbox_norm": [
+        0.28,
+        0.12,
+        0.72,
+        0.28
+      ],
+      "bbox_px": [
+        589,
+        231,
+        1971,
+        1089
+      ],
+      "caption": "Design Natural Frequency (from body of Figure 2-24) and L = Pipe Span",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0080_tbl01_design-natural-frequency-pipe-span.png",
+      "png_sha256": "b87cbdef49e75163b72341fc33f4555ece18d7c146d312ff65a6f318b2d7f109",
+      "slug": "design-natural-frequency-pipe-span",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0080_tbl01_design-natural-frequency-pipe-span.json",
+      "table_data_json_sha256": "3497e03fdf18bfe7286283cbd43d1baded87848fffe6a9e93136f5c4cd08a780",
+      "table_data_sha256": "3497e03fdf18bfe7286283cbd43d1baded87848fffe6a9e93136f5c4cd08a780",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0080_tbl01_design-natural-frequency-pipe-span.xlsx",
+      "xlsx_sha256": "71c4df0be9203f751e34a3fc7aef1c217872460b7a608545c3719c9b271950f6"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0080_fig01",
+      "bbox_norm": [
+        0.03,
+        0.53,
+        0.97,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        1584,
+        2560,
+        3300
+      ],
+      "caption": "Fig. 2-25. Phase 3 of pipe support spacing. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0080_fig01_phase-3-pipe-support-spacing.png",
+      "png_sha256": "c4ec28a24245cf7eb96d88e32457ea9ec24a42374dbb92bc8b2b5fa903765529",
+      "slug": "phase-3-pipe-support-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 80,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0080.png",
+  "page_image_sha256": "397442b0773883189d0fbce3f43e6d5aa2d4ae2089a9d3e95fe336b7a129016f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0080_assets.json"
+}

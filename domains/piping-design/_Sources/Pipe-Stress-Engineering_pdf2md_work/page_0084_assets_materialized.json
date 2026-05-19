@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0084.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0084_fig01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.92,
+        0.28
+      ],
+      "bbox_px": [
+        77,
+        0,
+        2480,
+        1176
+      ],
+      "caption": "FIG. 3.2 PIPE EXPANSION LOOP",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0084_fig01_pipe-expansion-loop.png",
+      "png_sha256": "a2ea1ca288c19ac5981c291a9718d4aa7adce8f4534707e4316a142a8b031a46",
+      "slug": "pipe-expansion-loop",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0084_fig02",
+      "bbox_norm": [
+        0.04,
+        0.62,
+        0.94,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2031,
+        2531,
+        3564
+      ],
+      "caption": "FIG. 3.3 EXPANSION STRESS BY GUIDED CANTILEVER APPROACH",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0084_fig02_expansion-stress-guided-cantilever.png",
+      "png_sha256": "6f6fda25898c4c162f9090182e838e13a78364d29c98af0ff9f27f959e7afe1c",
+      "slug": "expansion-stress-guided-cantilever",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 84,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0084.png",
+  "page_image_sha256": "50d3aed33c20761ca2911d0f096c31aa3cf1445b7afee729ef1b41d5bfe518a5",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0084_assets.json"
+}

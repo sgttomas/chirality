@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 142,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 7-9. Manhole orientation. Courtesy of Fluor Corp.",
+      "slug": "manhole-orientation",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Four engineering diagrams showing plan and section views of manhole orientation for single-pass and two-pass vessels. Caption appears at bottom of figure."
+    }
+  ],
+  "issues": []
+}

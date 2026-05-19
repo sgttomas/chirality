@@ -1,0 +1,32 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.55,
+        0.58
+      ],
+      "caption": "EXHIBIT 10-20 Process Vessel Sketch - vertical tower T-100 showing 4'-0\" I.D. top section, 15 trays @ 21\" spacing, 11 trays @ 24\" spacing, 152'-0\" T/T (18,500 mm), 9'-6\" I.D. bottom section, with labeled nozzles A, P1, N1, P2, N2, M1, N3, P3, M2, P4, N4, P5, F, M3 and skirt with base ring.",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.42,
+        0.07,
+        0.92,
+        0.42
+      ],
+      "caption": "NOZZLE SUMMARY table (part of Exhibit 10-20) listing SYMBOL / SIZE / SERVICE for nozzles A (18\" 150# RF Vapor), B (8\" Reflux), C (6\" Feed), D (10\" Reboiler Draw Off), E (10\" Reboiler Return), F (6\" Bottoms Outlet), P (1\" Pressure), T (1\" Temperature), L (2\" Level), S (1\" Steam Out), M (24\" Maintenance Access), G (3\" Drain).",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 247,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

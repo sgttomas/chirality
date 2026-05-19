@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 135,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-9. Cross section, type AKU reboiler. Courtesy HeaTran, Inc.",
+      "slug": "cross-section-type-aku-reboiler",
+      "bbox_norm": [0.03, 0.03, 0.72, 0.45],
+      "confidence": "high",
+      "notes": "Detailed cross-section diagram of a type AKU reboiler with numbered component callouts 1-17. Caption appears below and to the right of the figure."
+    }
+  ],
+  "issues": []
+}

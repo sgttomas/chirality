@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 89,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0089_fig_01",
+      "caption": "EXHIBIT 4-31 Grade-Mounted Compressor: Curtain Wall Shelter",
+      "bbox_norm": [0.07, 0.30, 0.95, 0.81]
+    }
+  ],
+  "issues": []
+}

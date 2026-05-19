@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 257,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.04, 0.97, 0.36],
+      "caption": "Exhibit 10-37 Nozzle Standouts. Vessel cross-section showing inside nozzles and flanged sections, inside diameter, and platform penetrations, plus a side elevation view; includes embedded tables of SIZE vs. STANDOUT (1\" to 3\": 8.5\"/210; 4\" to 20\": 12\"/300; 24\": 18.5\"/470) and STANDOUT vs. RATING (7\"/180: 150# & 300#; 9\"/230: 600#; 12\"/300: 900#)."
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.36, 0.97, 0.66],
+      "caption": "Exhibit 10-38 Head Dimensions. Diagram comparing a 2:1 elliptical head and a flanged & dished head with internal diameter and dimension F labeled; includes embedded table of VESSEL INTERNAL DIAMETER vs. DIMENSION-F for diameters from 2'-0\"/610 to 14'-0\"/4270."
+    }
+  ],
+  "issues": []
+}

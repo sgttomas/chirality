@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0299.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0299_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        2111
+      ],
+      "caption": "FIG. 8.26 EVALUATION OF PIPING LOADS AT TANK NOZZLE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0299_fig01_evaluation-piping-loads-tank-nozzle.png",
+      "png_sha256": "f0a369a96eb75a30a568cc3f91f4325e20e7a5476a3250533d65980e56ee6bbd",
+      "slug": "evaluation-piping-loads-tank-nozzle",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 299,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0299.png",
+  "page_image_sha256": "bec56598a0b68b4d2a909df419563a117a2220dfef78d2724378df3ea808f310",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0299_assets.json"
+}

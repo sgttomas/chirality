@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0121.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0121_fig01",
+      "bbox_norm": [
+        0.09,
+        0.27,
+        0.99,
+        0.82
+      ],
+      "bbox_px": [
+        102,
+        726,
+        2550,
+        2870
+      ],
+      "caption": "EXHIBIT 5-27 Sample Drum Piping Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0121_fig01_exhibit-5-27-sample-drum-piping-arrangem.png",
+      "png_sha256": "71301c0bb60bcc85352bdb878f2377e9abfa2b2fd4ca6ba7d00a42e980b83ac0",
+      "slug": "exhibit-5-27-sample-drum-piping-arrangem",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 121,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0121.png",
+  "page_image_sha256": "eee4c549aec4b1b6afcc44686d8c6c5b5f6d16cbbafe7e47456065a764715687",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0121_assets.json"
+}

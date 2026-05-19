@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 60,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 300-23 Field Fabrication Methods Comparison—Small Pipe",
+      "slug": "fig-300-23-field-fabrication-methods-comparison-small-pipe",
+      "bbox_norm": [0.05, 0.12, 0.65, 0.30],
+      "confidence": "high",
+      "notes": "Four-row two-column table listing joint types and hours per linear foot",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Joint Type", "is_header": true },
+              { "value": "Hours per Linear Foot", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Screwed", "type": "text" },
+              { "value": 0.4, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Screwed & Seal weld", "type": "text" },
+              { "value": 0.7, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Socket weld", "type": "text" },
+              { "value": 0.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Butt weld", "type": "text" },
+              { "value": 0.9, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

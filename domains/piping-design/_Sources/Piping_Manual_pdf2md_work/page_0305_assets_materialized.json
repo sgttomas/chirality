@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0305.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0305_fig01",
+      "bbox_norm": [
+        0.07,
+        0.29,
+        0.94,
+        0.67
+      ],
+      "bbox_px": [
+        51,
+        793,
+        2530,
+        2379
+      ],
+      "caption": "EXHIBIT 12-1 Typical Ladder Detail",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0305_fig01_exhibit-12-1-typical-ladder-detail.png",
+      "png_sha256": "7ed9284c2e45c1b024cfa4fc02037fc834f52875597001077bae6998d62a90f1",
+      "slug": "exhibit-12-1-typical-ladder-detail",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0305_fig02",
+      "bbox_norm": [
+        0.07,
+        0.68,
+        0.52,
+        0.93
+      ],
+      "bbox_px": [
+        51,
+        2082,
+        1457,
+        3238
+      ],
+      "caption": "EXHIBIT 12-2 Preferred Positions for Ladders, Stairways, and Ramps",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0305_fig02_exhibit-12-2-preferred-positions-for-lad.png",
+      "png_sha256": "2c8c29760be5026f90a2938cc9870c5a97a70122ea075a9d908227dff1abc833",
+      "slug": "exhibit-12-2-preferred-positions-for-lad",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 305,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0305.png",
+  "page_image_sha256": "084d352ebc608473661f9dea253d77d1c9b46c62bee13fe58545aa9aef9ee904",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0305_assets.json"
+}

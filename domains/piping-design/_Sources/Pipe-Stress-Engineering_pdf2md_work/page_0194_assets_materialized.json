@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0194.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0194_fig01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.75,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1684,
+        2067,
+        3584
+      ],
+      "caption": "FIG. 6.15 SUPPORT FRICTION COMPONENTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0194_fig01_support-friction-components.png",
+      "png_sha256": "f57427cc5e2b1a80449e661716d82c0eceaa7bfd13f7919127684af0293db0fe",
+      "slug": "support-friction-components",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 194,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0194.png",
+  "page_image_sha256": "4f6b365c00dff1c1037990737e63164d670eb22d0292a414d96eeb8d6c6d06cd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0194_assets.json"
+}

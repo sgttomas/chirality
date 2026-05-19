@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0252.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0252_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.52,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1443,
+        1611
+      ],
+      "caption": "Showing jointed strut attached to an inadequate structure.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0252_fig01_showing-jointed-strut-attached-to-an-ina.png",
+      "png_sha256": "f4429bc485d997bc8aac20b33686cba45d16f03a1627d714fbd2103ad674939a",
+      "slug": "showing-jointed-strut-attached-to-an-ina",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 252,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0252.png",
+  "page_image_sha256": "ee756108df0dea335a680464c4ac77a215a90a3cfa2e5cf0b5d3e6f1bb45d576",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0252_assets.json"
+}

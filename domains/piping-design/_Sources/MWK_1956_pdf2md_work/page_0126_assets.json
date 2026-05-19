@@ -1,0 +1,146 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 126,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.4 Shape Coefficients for Circular Members",
+      "slug": "shape-coefficients-circular-members",
+      "bbox_norm": [0.02, 0.04, 0.65, 0.44],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "s", "type": "text" },
+            { "value": "kQRθ", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "sx", "type": "text" },
+            { "value": "s'x + (x × s)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "sy", "type": "text" },
+            { "value": "s'y + (y × s)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "q̄", "type": "text" },
+            { "value": "QR(k − 1.3)ωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "c", "type": "text" },
+            { "value": "c × q̄", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cx", "type": "text" },
+            { "value": "QR(kωo + 1.3ωn)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cy", "type": "text" },
+            { "value": "c'x + (x × c) − (q̄ × k)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cx", "type": "text" },
+            { "value": "c × y", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "f", "type": "text" },
+            { "value": "QR(kωot − 1.3ωnt)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cxx", "type": "text" },
+            { "value": "c'x + (x × c) − (q̄ × k)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cyy", "type": "text" },
+            { "value": "c × y", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "sxx + x²q̄", "type": "text" },
+            { "value": "s'xx + (s'x × x) + (s'x × x²) + (cx × c)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "cxx", "type": "text" },
+            { "value": "c × xx", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "sxy + xyq̄", "type": "text" },
+            { "value": "s'xy + (2x × s'x) + (s'x × x²) + (cx × c)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "syy + y²q̄", "type": "text" },
+            { "value": "s'xy + (2k × s'x) + (k × s'x × x) + (kx × s'x)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "sxy + xyq̄", "type": "text" },
+            { "value": "[s'xy + s'x × y] + (s'x × x) + (cx × y) + (s'x × y) + (s'x × x) + (k × xy)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "S", "type": "text" },
+            { "value": "2.6QωoRθ", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "U", "type": "text" },
+            { "value": "Qωo²R(2.6ωo + 0.5ωn)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "W", "type": "text" },
+            { "value": "Qωo²R(2.6ωo + 0.5ωn) − 2.1QωoWωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "where", "type": "text" },
+            { "value": "s'x = kQRx̄ωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "s'y = kQRȳωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "s'xx = kQRx̄²ωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "s'yy = kQRȳ²ωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "s'xy = kQRx̄ȳωo", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "ω'o = 1.3QRx̄ωn", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "ω'n = 1.3QRȳωn", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "", "type": "text" },
+            { "value": "ω'x = 1.3QRx̄ȳωn", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Two-column formula reference table: left column is the symbol/quantity, right column is the corresponding formula. Mathematical notation uses subscripts, superscripts, primes, and Greek letters (θ, ω, q̄); transcribed with Unicode approximations. Some symbol rows appear duplicated in the source (e.g. cx/cxx, sxy rows) — preserved as in the original. The 'where' section defines auxiliary variables."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Sample Calculation 5.4 — Piping flexibility and stress analysis worksheet (The M.W. Kellogg Co.) showing member input table, plan-view diagram of the Hovgaard configuration with dimensions, and tabulated cold loads, moments (ft-lb), and forces (lb) acting on restraints",
+      "slug": "sample-calculation-5-4-hovgaard-flexibility-worksheet",
+      "bbox_norm": [0.02, 0.43, 0.98, 0.99],
+      "confidence": "high",
+      "notes": "Composite M.W. Kellogg calculation worksheet occupying the lower half of the page. Contains: (1) a member input data table at left listing pipe segment properties; (2) a plan-view line diagram of the Hovgaard piping configuration with annotated dimensions; (3) a results summary table of moments (ft-lb) and forces (lb) on restraints. Treated as a single fig because the diagram and tables are parts of an integrated printed form not independently extractable."
+    }
+  ],
+  "issues": []
+}

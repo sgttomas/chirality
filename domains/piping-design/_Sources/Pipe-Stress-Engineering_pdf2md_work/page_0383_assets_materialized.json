@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0383.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0383_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1317
+      ],
+      "caption": "Fig. 11.5 PIPE CRACK DUE TO THERMAL STRATIFICATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0383_fig01_pipe-crack-thermal-stratification.png",
+      "png_sha256": "032b86218900eb4a43d34b2375fa3d8f7ebf0d2a90438ee42b44f1feb814442c",
+      "slug": "pipe-crack-thermal-stratification",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0383_fig02",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1957,
+        2550,
+        3559
+      ],
+      "caption": "Fig. 11.6 COMMON BOWING PHENOMENA AT PETROCHEMICAL PLANTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0383_fig02_common-bowing-phenomena-petrochemical-pl.png",
+      "png_sha256": "b53aff7e3a5caae1e5f11afa1b41f88d06c2dfce77a2a2475e84055429000083",
+      "slug": "common-bowing-phenomena-petrochemical-pl",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 383,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0383.png",
+  "page_image_sha256": "9de2e423d0903f05d92a732b85a05f3d48d7b4577c7f47cef489f1cc211c4a74",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0383_assets.json"
+}

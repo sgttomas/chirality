@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 31,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 1-14 Open and Closed Systems",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.45]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 1-15 Line Flexibility",
+      "bbox_norm": [0.05, 0.46, 0.95, 0.90]
+    }
+  ],
+  "issues": []
+}

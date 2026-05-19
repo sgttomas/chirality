@@ -1,0 +1,35 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 104,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0104_fig_01",
+      "caption": "EXHIBIT 4-48 Inlet Line Strainers",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.28]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0104_fig_02",
+      "caption": "EXHIBIT 4-49 Maintenance Break-Out Flanges",
+      "bbox_norm": [0.04, 0.28, 0.50, 0.56]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0104_fig_03",
+      "caption": "EXHIBIT 4-50 Operating Valve Accessibility",
+      "bbox_norm": [0.04, 0.56, 0.50, 0.80]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0104_fig_04",
+      "caption": "EXHIBIT 4-51 High-Pressure Steam Inlet Piping",
+      "bbox_norm": [0.50, 0.28, 0.96, 0.44]
+    }
+  ],
+  "issues": []
+}

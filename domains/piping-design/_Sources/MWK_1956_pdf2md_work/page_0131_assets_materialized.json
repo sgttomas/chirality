@@ -1,0 +1,89 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0131.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0131_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2490,
+        1760
+      ],
+      "caption": "The M.W. Kellogg Company - General Flexibility and Stress Analysis - Shape Coefficients of Circular Members - Calculation Sheet No. 1",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0131_tbl01_the-m-w-kellogg-company-general-flexibil.png",
+      "png_sha256": "327185638b669c225e5101c439ba1e2f4c068c50a24b23fbbfeb9cd021784bde",
+      "slug": "the-m-w-kellogg-company-general-flexibil",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0131_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1484,
+        2490,
+        3381
+      ],
+      "caption": "The M.W. Kellogg Company - Piping Flexibility Analysis - Calculation Sheet No. 2",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0131_tbl02_the-m-w-kellogg-company-piping-flexibili.png",
+      "png_sha256": "77bdf8011dcca818e1806562212e8c05a34f66af0eb5bd5528d5e41a8b8da4bf",
+      "slug": "the-m-w-kellogg-company-piping-flexibili",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0131_fig01",
+      "bbox_norm": [
+        0.16,
+        0.49,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        274,
+        1518,
+        2490,
+        2070
+      ],
+      "caption": "Member shape icons across the seven member columns of Calculation Sheet No. 2 (T-1 through 6-A) plus summation column",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0131_fig01_member-shape-icons-across-the-seven-memb.png",
+      "png_sha256": "9133305f3b1441b673006b93a7c9abdd7e1698d1defe7a91f33d2c57503ceb8a",
+      "slug": "member-shape-icons-across-the-seven-memb",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 131,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0131.png",
+  "page_image_sha256": "79fb19ea7fddc1252e6450e3cdd8e839c38cfd1da91e17f5be2c55781366c09e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0131_assets.json"
+}

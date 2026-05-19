@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-03_p0005_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.17,
+        0.91,
+        0.37
+      ],
+      "bbox_px": [
+        102,
+        396,
+        2448,
+        1386
+      ],
+      "caption": "Pump Suction and Discharge pressure drop limits",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-03_p0005_tbl01_pump-suction-discharge-pressure-drop.png",
+      "png_sha256": "ffedf2e47be0eada9d62fe3069b260e18bba2026a1bee8b210a485c08ff5cf64",
+      "slug": "pump-suction-discharge-pressure-drop",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-03_p0005_tbl01_pump-suction-discharge-pressure-drop.json",
+      "table_data_json_sha256": "dd7c12f0f77447e431df0a8a08622eb0646ea4c71143154ea353da7799af48b9",
+      "table_data_sha256": "dd7c12f0f77447e431df0a8a08622eb0646ea4c71143154ea353da7799af48b9",
+      "xlsx_path": "tables/01-overall-piping-design-standards-03_p0005_tbl01_pump-suction-discharge-pressure-drop.xlsx",
+      "xlsx_sha256": "dd600f9dd2da211821bca29d9777e9cd7b8b9ff63da2f8209c84f519eda5e07b"
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-03_p0005_tbl02",
+      "bbox_norm": [
+        0.09,
+        0.52,
+        0.75,
+        0.72
+      ],
+      "bbox_px": [
+        102,
+        1551,
+        2040,
+        2541
+      ],
+      "caption": "Suction and Discharge Piping and Headers pressure drop limits",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-03_p0005_tbl02_suction-discharge-piping-headers-pressur.png",
+      "png_sha256": "a237f805469cd62380af8f637f145daf60c97c4f8404c0418f60678a27849759",
+      "slug": "suction-discharge-piping-headers-pressur",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-03_p0005_tbl02_suction-discharge-piping-headers-pressur.json",
+      "table_data_json_sha256": "4d33a59d61b4d7c34e96321084b437a2c0150876a284ac50b58628a99570f849",
+      "table_data_sha256": "4d33a59d61b4d7c34e96321084b437a2c0150876a284ac50b58628a99570f849",
+      "xlsx_path": "tables/01-overall-piping-design-standards-03_p0005_tbl02_suction-discharge-piping-headers-pressur.xlsx",
+      "xlsx_sha256": "4225833c481c1b70b5359f75b1552442d32c4a58bcf9ddac0079967ab2e6594f"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-03",
+  "doc_stem": "01-overall-piping-design-standards-03",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0005.png",
+  "page_image_sha256": "a553a290257b1d9190ae19f06d0891a24f567375fce3651a0d9e4cae7975089b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-03_pdf2md_work/page_0005_assets.json"
+}

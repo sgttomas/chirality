@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0216.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0216_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.51,
+        0.17
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1324,
+        607
+      ],
+      "caption": "Fig. 7.4 Plain bellows expansion joints.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0216_fig01_fig-7-4-plain-bellows-expansion-joints.png",
+      "png_sha256": "235008afe1286ecc8c2be7356ec423220d4862051aac581d16db1d3999a4e603",
+      "slug": "fig-7-4-plain-bellows-expansion-joints",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0216_fig02",
+      "bbox_norm": [
+        0.54,
+        0.77,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        1158,
+        1987,
+        2364,
+        2760
+      ],
+      "caption": "Fig. 7.5 Self-equalizing expansion joint",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0216_fig02_fig-7-5-self-equalizing-expansion-joint.png",
+      "png_sha256": "569c8c93b33cf2cf3b657094dfa001fb7c23a37639356ad227c220575c16734f",
+      "slug": "fig-7-5-self-equalizing-expansion-joint",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 216,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0216.png",
+  "page_image_sha256": "7fa75345cc2fa0a8bfa24c62dfa832667e217736e9c6cc4de292be60f2aa4eeb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0216_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0306.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0306_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.46,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        60,
+        1037,
+        1168
+      ],
+      "caption": "Fig. A.2 Configuration in the y-plane.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0306_fig01_fig-a-2-configuration-in-the-y-plane.png",
+      "png_sha256": "b65023eda34697aa32ce98258f9693239017c46f81b84830178901737c649bed",
+      "slug": "fig-a-2-configuration-in-the-y-plane",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 306,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0306.png",
+  "page_image_sha256": "7ba68662a838597b95e9c9746d9613707ef8509d946661afdc6e3bf4df48f6f1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0306_assets.json"
+}

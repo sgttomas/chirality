@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0084.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0084_fig01",
+      "bbox_norm": [
+        0.06,
+        0.12,
+        0.94,
+        0.64
+      ],
+      "bbox_px": [
+        26,
+        232,
+        2549,
+        2290
+      ],
+      "caption": "Exhibit 4-26 Surface Condenser and Auxiliary Equipment",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0084_fig01_exhibit-4-26-surface-condenser-and-auxil.png",
+      "png_sha256": "5199482ebf19b7c972e4d7dbd9d9d0597e5adb7bc0a2c2de5ecfb677a29e9985",
+      "slug": "exhibit-4-26-surface-condenser-and-auxil",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 84,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0084.png",
+  "page_image_sha256": "cd8caf19796cefa968fc8db7582b3a51c6cf6d88eef4e3439a88fb48945ce3fb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0084_assets.json"
+}

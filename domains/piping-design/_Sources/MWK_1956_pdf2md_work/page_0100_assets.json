@@ -1,0 +1,87 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 100,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Piping configuration diagram with 15 ft horizontal segment and associated pipe data table — Sample Calculations 4.9, 4.10, 4.11 (Form FA, Calc. No. 4.11, M.W. Kellogg Co., Piping Flexibility and Stress Analysis, Rough Approximation)",
+      "slug": "piping-config-sample-calcs-4-9-4-10-4-11",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.43],
+      "confidence": "high",
+      "notes": "Combined figure showing isometric piping layout with annotated dimensions (15 ft span, bend coordinates) above a Form FA pipe data table with calculated values for Sample Calcs 4.9, 4.10, and 4.11. Form title block visible at bottom of figure."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.2 Comparison of Maximum Stress — Guided Cantilever vs. General Analytical Method for Sample Calculations 4.9, 4.10, 4.11",
+      "slug": "table-4-2-guided-cantilever-vs-general-analytical",
+      "bbox_norm": [0.04, 0.62, 0.96, 0.84],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Method", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Guided Cantilever", "col_span": 2, "is_header": true },
+              { "value": "General Analytical", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Layout according to:", "is_header": true },
+              { "value": "Maximum Stress Value", "is_header": true },
+              { "value": "Location", "is_header": true },
+              { "value": "Maximum Stress Value", "is_header": true },
+              { "value": "Location", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sample Calc. 4.9", "type": "text" },
+              { "value": 14500, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": 16750, "type": "number" },
+              { "value": 4, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sample Calc. 4.10", "type": "text" },
+              { "value": 13220, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": 15550, "type": "number" },
+              { "value": 0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sample Calc. 4.11", "type": "text" },
+              { "value": 13220, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": 8900, "type": "number" },
+              { "value": 5, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "3-row header: row 1 spans 'Method' across 4 cols; row 2 spans 'Guided Cantilever' and 'General Analytical' each over 2 cols; row 3 lists sub-columns Value/Location for each method. Stress values in psi (units from surrounding prose); Location values are point reference numbers."
+    }
+  ],
+  "issues": []
+}

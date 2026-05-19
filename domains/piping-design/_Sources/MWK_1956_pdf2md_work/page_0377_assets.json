@@ -1,0 +1,33 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.95,
+        0.46
+      ],
+      "caption": "THE M. W. KELLOGG COMPANY \u2014 Piping Flexibility and Stress Analysis \u2014 Calculation Summary \u2014 Moments (ft lbs) and Forces (lbs) Acting on Restraints",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.97,
+        0.99
+      ],
+      "caption": "THE M. W. KELLOGG COMPANY \u2014 Piping Flexibility and Stress Analysis \u2014 Stress, Moments, Deflections and Rotations at the Point",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 377,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

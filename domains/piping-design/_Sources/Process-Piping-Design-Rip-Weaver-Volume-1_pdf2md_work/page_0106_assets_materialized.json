@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0106.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0106_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2335
+      ],
+      "caption": "Figure 6-3. Isometric pipe spool. Courtesy of Texas Pipe Bending Co., Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_fig01_isometric-pipe-spool-fig6-3.png",
+      "png_sha256": "8121fffbbb8aa1e06a5f5c6e05dc006ff04a236a9327a23586f6f529fddd1b93",
+      "slug": "isometric-pipe-spool-fig6-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.72,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1986,
+        1907,
+        2823
+      ],
+      "caption": "Material List \u2014 fittings for pipe spool",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl01_material-list-fittings.png",
+      "png_sha256": "db2ac190906889108ba3dbf86d5f15e9f50538d205a9d3ff22dae74bf3375d16",
+      "slug": "material-list-fittings",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl01_material-list-fittings.json",
+      "table_data_json_sha256": "fb0c8418b632c1d8185befb54d18fdf4c0221a893dfa873f27df2815ce925d5b",
+      "table_data_sha256": "fb0c8418b632c1d8185befb54d18fdf4c0221a893dfa873f27df2815ce925d5b",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl01_material-list-fittings.xlsx",
+      "xlsx_sha256": "bd34ec66dd023c480d15dcf1b92858c47f446c2417b96ae2d40b00c6b47037f9"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.78,
+        0.72,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2544,
+        1907,
+        3415
+      ],
+      "caption": "Material List \u2014 pipe cut list for pipe spool (ASTM A-106 Gr B, Smls Sch. 40)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl02_material-list-pipe-cut-list.png",
+      "png_sha256": "6ffff63d3f7863427435faabbf924db1d3cab96a4c32670f51069ac72bd5af26",
+      "slug": "material-list-pipe-cut-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl02_material-list-pipe-cut-list.json",
+      "table_data_json_sha256": "08f6932bf72cfcd42cfa4e2e5475065063b62865def617e16e40af16cb8490d4",
+      "table_data_sha256": "08f6932bf72cfcd42cfa4e2e5475065063b62865def617e16e40af16cb8490d4",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0106_tbl02_material-list-pipe-cut-list.xlsx",
+      "xlsx_sha256": "0d7fff4b86501ff68f1040e0a8b047cf758d5ca50ab17e4edc5fbfb90dc4888d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 106,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0106.png",
+  "page_image_sha256": "0309c806f1ffc36fd544962a6b61ec900b4ab9c73d56c888bb78dc4a88462580",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0106_assets.json"
+}

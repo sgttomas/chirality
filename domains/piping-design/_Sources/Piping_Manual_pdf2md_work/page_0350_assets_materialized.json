@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0350.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0350_fig01",
+      "bbox_norm": [
+        0.1,
+        0.31,
+        0.92,
+        0.86
+      ],
+      "bbox_px": [
+        128,
+        859,
+        2479,
+        3007
+      ],
+      "caption": "EXHIBIT 13-29 Hydrant and Monitor Installations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0350_fig01_exhibit-13-29-hydrant-and-monitor-instal.png",
+      "png_sha256": "9eb8154655aa8e40ffc80afa3cafd0cb2fb3bd33a7b61127a53d07f0337699d9",
+      "slug": "exhibit-13-29-hydrant-and-monitor-instal",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 350,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0350.png",
+  "page_image_sha256": "0f136d99b9d6e478e20540cc8b505ea428846b943e8bdc7c46edcec60f93f407",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0350_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0039.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0039_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2543,
+        1670
+      ],
+      "caption": "FIG. 1.9 STRUCTURAL STABILITY PROBLEMS IN PIPING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0039_fig01_structural-stability-problems-in-piping.png",
+      "png_sha256": "41b9777f07d3e9768fe15352d6c553f9d29fd457ef6c0161c8bdd273fddc4d88",
+      "slug": "structural-stability-problems-in-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 39,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0039.png",
+  "page_image_sha256": "7e3754894aa3cb17e152131c650b7634fa9cf34fd1641775e937255908abd525",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0039_assets.json"
+}

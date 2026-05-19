@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0118.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0118_fig01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2477,
+        1081
+      ],
+      "caption": "Table 6-9A diagrams \u2014 90\u00b0 Ell, Tee, Cross, 45\u00b0 Ell, Coupling, Half Coupling, Flange socket weld fittings with dimensional labels A, B, C, D, E",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_fig01_table-6-9a-socket-weld-fitting-diagrams.png",
+      "png_sha256": "dd178c8af241526642944bd55ec1c31000f84d5006c4ba3858d3d8470cf252c4",
+      "slug": "table-6-9a-socket-weld-fitting-diagrams",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1918
+      ],
+      "caption": "Table 6-9A Socket Weld Fittings",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl01_table-6-9a-socket-weld-fittings.png",
+      "png_sha256": "307dd33c0a9ca8df0a74c80db97f5d39562e32c1aac0524d77ba74e72894da4d",
+      "slug": "table-6-9a-socket-weld-fittings",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl01_table-6-9a-socket-weld-fittings.json",
+      "table_data_json_sha256": "90ca47a1ad700665dfd57ba57b7db6aeeb2f22f0c02e3a5a85d17efdc425da16",
+      "table_data_sha256": "90ca47a1ad700665dfd57ba57b7db6aeeb2f22f0c02e3a5a85d17efdc425da16",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl01_table-6-9a-socket-weld-fittings.xlsx",
+      "xlsx_sha256": "9bc07b95a716adb44abf2bc34648766afbfd3f7a4ac5ebb4c7d72056518ece2d"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0118_fig02",
+      "bbox_norm": [
+        0.03,
+        0.51,
+        0.97,
+        0.67
+      ],
+      "bbox_px": [
+        0,
+        1604,
+        2477,
+        2511
+      ],
+      "caption": "Table 6-9B diagrams \u2014 90\u00b0 Ell, Tee, Cross, 45\u00b0 Ell, Coupling threaded fittings with dimensional labels A, B, C, D",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_fig02_table-6-9b-threaded-fitting-diagrams.png",
+      "png_sha256": "60fa2ec071f161bed9f5fa2b071f6a327c16ef1a11e03f1addcba68efa7c5be2",
+      "slug": "table-6-9b-threaded-fitting-diagrams",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.49,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1535,
+        2477,
+        3488
+      ],
+      "caption": "Table 6-9B Threaded Fittings",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl02_table-6-9b-threaded-fittings.png",
+      "png_sha256": "9365eb17b2af158d297e17a329058ecb17c03f2c0464aa4db0e0b6a05f517b5c",
+      "slug": "table-6-9b-threaded-fittings",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl02_table-6-9b-threaded-fittings.json",
+      "table_data_json_sha256": "de0ef643ac84218b43976258fa8d47693b8393d6d89784a4d072e8ab4b42ce8a",
+      "table_data_sha256": "de0ef643ac84218b43976258fa8d47693b8393d6d89784a4d072e8ab4b42ce8a",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0118_tbl02_table-6-9b-threaded-fittings.xlsx",
+      "xlsx_sha256": "6de2ef37da63f1ba52841543d6af1430f820b7fc88fe60c42d8f75f2863f0ea2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 118,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0118.png",
+  "page_image_sha256": "c5c4fa54b5f0446289d68163efc4e7fa8bc2170f27c3fd5465b2bc537b4421d8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0118_assets.json"
+}

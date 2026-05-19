@@ -1,0 +1,80 @@
+288 Chapter 9
+
+different parts of the pump. The pump body is designed to be as strong, if not stronger, than the piping
+so that the body can resist the same internal pressure as the piping. The foundation, normally designed
+with the combined pump and motor effect, is also massive and stiff due to the limitation of the soil
+bearing capacity. It is also designed for the piping load and shaft torque as requested or specified.
+However, the pedestal/baseplate is a different story. Without considering any piping load, the pedes-
+tal/baseplate is designed only by shaft torque and pump weight. That is the main reason why earlier
+versions of the pump allowable piping loads were based on the weight of the pump only [5]. This weak
+link is the main reason why some units of the equipment do indeed can take very low piping load.
+
+By understanding this situation, the problem can actually be relieved rather easily. Improvements
+have already been seen in pump applications. Pump application engineers, who long realized the
+low allowable piping load problem, customarily specified double (2x) or triple (3x) baseplates to
+increase the allowable piping load by two or three times, respectively. Surprisingly to most, the cost
+of a 2x or 3x pump was only marginally more than that of a regular pump. Actually, it should not
+have been surprising, because all the vendor needs to do is add a couple of braces or stiffeners to the
+pedestal/baseplate. Recognizing the popularity of 2x and 3x baseplates, API formally adopted the
+philosophy to its pump standard. Since the sixth edition of API Std-610 [5], the pipe load allowable
+has been increased to a level that makes the 2x and 3x baseplate specification no longer necessary. In
+other words, the strength of the-whole pump assembly has become fairly uniform that no additional
+allowable load can be squeezed out without adding a substantial cost. Figure 9.1 also shows that the
+API Std-610 allowable values are comparable to the loads that have been applied by sensible designs.
+Regrettably, this is only true for API Std-610 pumps. For other pumps, the 2x and 3x specification is
+
+still recommended.
+
+9.2 EVALUATION OF PIPING LOAD ON ROTATING EQUIPMENT
+
+Each type of rotating equipment has its own piping load allowable and evaluation method. How-
+ever, the general procedures are all about the same. Although most modern pipe stress analysis com-
+puter software packages automatically, when requested, evaluate the piping loads on most common
+types of equipment, there are still procedures that need to be followed. This section discusses the gen-
+eral background and procedures. The detailed background and procedures for each type of specific
+equipment will be discussed in separate sections that follow.
+
+9.2.1 Effect of Piping Loads
+
+Normally, piping loads are evaluated for two categories of effect on the equipment. The first effect
+is the loads applied at an individual nozzle connection. The other is the combined effect of all the
+loads applied at all nozzles on the entire machine. The limitation of the load at an individual nozzle is
+to ensure the integrity of the nozzle and prevent local deformation of the casing. The combined effect
+is limited to prevent excessive deformation of the pedestal and baseplate. Excessive deformation on
+the pedestal or baseplate causes misalignment of the shaft either within the machine or between the
+machine and its drive.
+
+The evaluation of the combined effect requires the specification of the moment resolving point at
+which the moments are resolved or applied. Because a force generates moment at all points that are
+not in the line of action of the force, the magnitude of the moment effect differs from point to point.
+Because the evaluation of combined effect is mainly done to prevent the deformation of the machine
+support system, the best measure of the moment is the one applied at or near the support location.
+The resolving point is, therefore, best specified at or near these support locations. NEMA SM-23 has
+the resolving point specified at the center of the exhaust flange face. API Std-610 uses the center of the
+pump as the resolving point. The forces and moments at each nozzle connection are resolved to the
+
+resolving point by the following relations using the notations given by Fig. 9.3:
+
+fees,
+
+et
+was
+
+c
+
+poorer
+oe
+
+Merce a
+
+hae
+
+Suto tual
+
+esse at
+
+a)
+
+i ° :
+
+‘ee

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0313.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0313_fig01",
+      "bbox_norm": [
+        0.1,
+        0.04,
+        0.95,
+        0.5
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2556,
+        1817
+      ],
+      "caption": "Exhibit 12-15 Pipe Chase Detail",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0313_fig01_exhibit-12-15-pipe-chase-detail.png",
+      "png_sha256": "780f3d7335fef1f31112de6a3d5f456e8e9dc3a0fd32f44aedd40083efc61eb3",
+      "slug": "exhibit-12-15-pipe-chase-detail",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0313_fig02",
+      "bbox_norm": [
+        0.06,
+        0.5,
+        0.5,
+        0.9
+      ],
+      "bbox_px": [
+        26,
+        1487,
+        1406,
+        3139
+      ],
+      "caption": "Exhibit 12-16 Small Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0313_fig02_exhibit-12-16-small-structure.png",
+      "png_sha256": "321da3c718b6db3cc24b2f4fd565fc35829c7649ccca8c42b417340ccd631c0a",
+      "slug": "exhibit-12-16-small-structure",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 313,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0313.png",
+  "page_image_sha256": "bbb4c28633a21af867d2698dcbdf2fa077ab080b6c6343c918ee4566475cf969",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0313_assets.json"
+}

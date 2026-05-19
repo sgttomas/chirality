@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0093_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1159
+      ],
+      "caption": "TABLE 3.2 FLEXIBILITY FACTOR AND STRESS INTENSIFICATION FACTOR FOR JOINTS [6]",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0093_tbl01_flexibility-stress-intensification-facto.csv",
+      "csv_sha256": "68bf52f1501ff2c035c7b9df19a91f7b41a794c73f7333fc91b892b16c12b295",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0093_tbl01_flexibility-stress-intensification-facto.png",
+      "png_sha256": "bbb528638424e0127ca3badccfe6e28f652b12b97ea113fd90e4947a831bf397",
+      "slug": "flexibility-stress-intensification-facto",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 93,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093.png",
+  "page_image_sha256": "8c134f382644f7099b766bd6b77e38d17e2e4d30320a7abe3f8fccdcfdc4322f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093_assets.json"
+}

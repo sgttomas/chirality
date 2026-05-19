@@ -1,0 +1,47 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 202,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig01",
+      "bbox_norm": [0.04, 0.05, 0.52, 0.32],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — a. Horizontal Split-Case, Double Suction Pump"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig02",
+      "bbox_norm": [0.50, 0.05, 0.98, 0.34],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — b. Chemical Process Pump (ANSI) (for chemical and corrosive liquids)"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig03",
+      "bbox_norm": [0.04, 0.34, 0.52, 0.58],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — c. Multistage, High-Pressure Pump"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig04",
+      "bbox_norm": [0.50, 0.34, 0.98, 0.58],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — d. Horizontal Frame-Mounted Pump"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig05",
+      "bbox_norm": [0.04, 0.58, 0.52, 0.92],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — e. Inline Process Pump"
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0202_fig06",
+      "bbox_norm": [0.50, 0.58, 0.98, 0.92],
+      "caption": "EXHIBIT 8-3 Examples of Centrifugal Pumps — f. Vertical Sump Pump"
+    }
+  ],
+  "issues": []
+}

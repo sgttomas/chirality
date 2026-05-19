@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0149.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0149_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2477,
+        3488
+      ],
+      "caption": "Figure 7-12. Instrumentation on vertical vessels. Courtesy of Fluor Corp.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0149_fig01_instrumentation-vertical-vessels.png",
+      "png_sha256": "ce36b90b46bab389ea973cd7d60fe46592950f2080cafe294e2f2351dffe8233",
+      "slug": "instrumentation-vertical-vessels",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 149,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0149.png",
+  "page_image_sha256": "a95babc350951fd3c36fa42d7dc5329ccf15af8ab6c0edaf1b81b805dcf1f247",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0149_assets.json"
+}

@@ -1,0 +1,48 @@
+CHAPTER
+
+9
+
+INTERFACE WITH ROTATING
+EQUIPMENT
+
+Rotating machineries are delicate equipment that depend on perfect shaft alignment, balanced ro-
+tating parts, and proper clearance for smooth operation. Excessive piping loads and stresses imposed
+on the equipment can deform machine parts to the point that they may considerably affect the reli-
+ability of the equipment. These loads, either from the expansion of piping or weight of the system,
+can cause shaft misalignment and casing deformation that interferes with the internal moving parts.
+Therefore, it is important to design the piping system to impose as little load as possible on the equip-
+ment. Ideally, it is preferred to have no piping load imposed on the equipment, but this is not possible.
+The common practice is for the manufacturer to specify a reasonable allowable piping load to which
+the piping engineers design the piping system to meet. There is no problem with this procedure, except
+that the allowable loads given by the manufacturers, generally through the standards of their own as-
+sociations, are too small to be practical. This low allowable piping load is given partially due to the
+actual design of the machine and partially to protect the manufacturer’s interests. The actual load that
+can be taken could be many times higher for most machines. Nevertheless, most equipment purchas-
+ing contracts have a clause stating that the manufacturer will guarantee the machine’s performance
+and integrity only when the piping load is within the allowable limit.
+
+Although the low allowable piping load may have improved the reliability of the machine on paper,
+it has actually created many unsuspected problems caused by the unusual piping layouts required for
+reducing the piping loads. To reduce the piping load to the allowable limit, many laborious piping
+layouts and ingenious restraint schemes are used. These unusual arrangements may show on paper
+that the allowable load is met, but the reliability of the system is actually compromised. Some of these
+pitfalls will be discussed later in this chapter.
+
+As mentioned in the introductory chapter, the effort required for designing a piping system con-
+nected to a rotating equipment can easily be several times the effort needed for designing a compa-
+rable system not connected to a rotating equipment. This can be better explained with Fig. 9.1. This
+figure shows the allowable piping moments for American Petroleum Institute (API) pumps and Na-
+tional Electrical Manufacturers Association (NEMA) turbines. These two are the most common types
+of rotating equipment and are covered by well-established standards. To get an idea of the significance
+of these allowable moments, the moments that generate a pipe stress of 6000 psi on the pipes with
+standard wall thickness are also given. This value (6000 psi) is one of the reference piping stresses used
+by some companies for designing the piping system connected to a pump.
+
+At pipe sizes 3 in. or smaller, the allowable moment corresponds to a pipe stress of about 8000 psi.
+For an 8-int. pipe, the pump allowable moment corresponds to 4000 psi at the pipe, and the turbine al-
+lowable moment corresponds to a pipe stress of only 1500 psi. For 12-in. nozzles, the pump allowable
+moment corresponds to only 2500 psi pipe stress, and the turbine allowable moment corresponds to
+only about 1000 psi pipe stress. This means that for a 12-in. (300 mm) piping system, the pipe stress
+has to be reduced to 1000 psi (7000 kPa) in order for the piping load to meet the turbine allowable. In
+
+285

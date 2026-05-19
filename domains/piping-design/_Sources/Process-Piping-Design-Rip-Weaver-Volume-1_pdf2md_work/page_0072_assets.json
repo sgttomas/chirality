@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 72,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-4. Rough layout for light ends plot plan.",
+      "slug": "rough-layout-light-ends-plot-plan",
+      "bbox_norm": [0.03, 0.06, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page schematic plot plan diagram with caption visible at bottom of page"
+    }
+  ],
+  "issues": []
+}

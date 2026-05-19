@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0131.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0131_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1057
+      ],
+      "caption": "EXHIBIT 6-8 Double Pipe Exchanger Construction",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0131_fig01_exhibit-6-8-double-pipe-exchanger-constr.png",
+      "png_sha256": "172e69d8d5e464a9c5ce0ef563ab8543295aaa1219db53ee728a6e62393f7ca3",
+      "slug": "exhibit-6-8-double-pipe-exchanger-constr",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0131_fig02",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        727,
+        2556,
+        2082
+      ],
+      "caption": "EXHIBIT 6-9 Air Cooler Exchanger Construction",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0131_fig02_exhibit-6-9-air-cooler-exchanger-constru.png",
+      "png_sha256": "ba6088a4ee297b4d9db6d6becc07446a43c19e089dee2f11732bacc54baa2e0d",
+      "slug": "exhibit-6-9-air-cooler-exchanger-constru",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 131,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0131.png",
+  "page_image_sha256": "1e9ea4b3dcbc86dcc20c87764de7bcf6518bc675acd6ef9937f95837de12b8e4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0131_assets.json"
+}

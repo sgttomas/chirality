@@ -1,0 +1,61 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0242_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2447,
+        1521
+      ],
+      "caption": "FIG. 7.6 MOVEMENT ADJUSTMENT FOR DIFFERENT OPERATING CYCLES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0242_fig01_movement-adjustment-different-operating.png",
+      "png_sha256": "36700cbb9aef51c5db2a4df262f4e1c04d6418bf122c5f44d31f87d6dfa1281f",
+      "slug": "movement-adjustment-different-operating",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0242_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2370,
+        2523,
+        3538
+      ],
+      "caption": "TABLE 7.2 CALCULATION OF NORMALIZED MOVEMENTS",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0242_tbl01_calculation-normalized-movements.csv",
+      "csv_sha256": "5287ece65b6b89937f58ec599ed4421e948a9cf680f8554b781524397410f29a",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0242_tbl01_calculation-normalized-movements.png",
+      "png_sha256": "f892d973a08db9d6eeb401dd6b4fc4e8278e74a7b09d5bd4d9aff673e82b8b14",
+      "slug": "calculation-normalized-movements",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 242,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242.png",
+  "page_image_sha256": "5d3dd6d9eb4314091d79271fa3654dcc94be6485961ad8a3a538f4498b576b5c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0242_assets.json"
+}

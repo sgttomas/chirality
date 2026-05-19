@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0275.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0275_fig01",
+      "bbox_norm": [
+        0.16,
+        0.3,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        280,
+        825,
+        2550,
+        3233
+      ],
+      "caption": "EXHIBIT 10-64 Planned Drop Zone",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0275_fig01_exhibit-10-64-planned-drop-zone.png",
+      "png_sha256": "9d9521ec74e1013308fb6ceb4628182121bb7894a8e3a557bf3daabbe49705ce",
+      "slug": "exhibit-10-64-planned-drop-zone",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 275,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0275.png",
+  "page_image_sha256": "3abab9f1a6c4d49d7954eb4b1b0f8984a28174d90809cc00b7e5d21840344cce",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0275_assets.json"
+}

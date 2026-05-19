@@ -1,0 +1,442 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 126,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 6-16 — ID of Nozzle to Header Ell — Branch Connections Standard Weight Pipe",
+      "slug": "table-6-16-id-nozzle-header-ell-branch-connections-std-weight",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Table 6-16 ID of Nozzle to Header Ell — Branch Connections Standard Weight Pipe", "col_span": 17, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HEADER ELL", "is_header": true },
+              { "value": "1", "is_header": true },
+              { "value": "1-1/2", "type": "fraction", "is_header": true },
+              { "value": "2", "is_header": true },
+              { "value": "2-1/2", "type": "fraction", "is_header": true },
+              { "value": "3", "is_header": true },
+              { "value": "3-1/2", "type": "fraction", "is_header": true },
+              { "value": "4", "is_header": true },
+              { "value": "6", "is_header": true },
+              { "value": "8", "is_header": true },
+              { "value": "10", "is_header": true },
+              { "value": "12", "is_header": true },
+              { "value": "14", "is_header": true },
+              { "value": "16", "is_header": true },
+              { "value": "18", "is_header": true },
+              { "value": "20", "is_header": true },
+              { "value": "24", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1/2", "type": "fraction", "is_header": true },
+              { "value": "1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3/4", "type": "fraction", "is_header": true },
+              { "value": "3/4", "type": "fraction" },
+              { "value": "1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "is_header": true },
+              { "value": "1", "type": "number" },
+              { "value": "7/8", "type": "fraction" },
+              { "value": "1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/4", "type": "fraction", "is_header": true },
+              { "value": "1-1/4", "type": "fraction" },
+              { "value": "1-1/8", "type": "fraction" },
+              { "value": "5/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "is_header": true },
+              { "value": "1-1/2", "type": "fraction" },
+              { "value": "1-3/8", "type": "fraction" },
+              { "value": "7/8", "type": "fraction" },
+              { "value": "1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "is_header": true },
+              { "value": "2-1/16", "type": "fraction" },
+              { "value": "1-9/16", "type": "fraction" },
+              { "value": "1-1/16", "type": "fraction" },
+              { "value": "5/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "2-1/16", "type": "fraction" },
+              { "value": "1-1/4", "type": "fraction" },
+              { "value": "1", "type": "number" },
+              { "value": "1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3-1/2", "type": "fraction", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "1-3/4", "type": "fraction" },
+              { "value": "1-13/16", "type": "fraction" },
+              { "value": "1", "type": "number" },
+              { "value": "2", "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "2-1/8", "type": "fraction" },
+              { "value": "2-1/16", "type": "fraction" },
+              { "value": "1-13/16", "type": "fraction" },
+              { "value": "1", "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3/4", "type": "fraction" },
+              { "value": "2-7/16", "type": "fraction" },
+              { "value": "2-1/16", "type": "fraction" },
+              { "value": "2-5/8", "type": "fraction" },
+              { "value": "3-7/16", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3-7/16", "type": "fraction" },
+              { "value": "2-7/8", "type": "fraction" },
+              { "value": "2-5/8", "type": "fraction" },
+              { "value": "3-7/16", "type": "fraction" },
+              { "value": "4-5/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "3-5/8", "type": "fraction" },
+              { "value": "3-7/16", "type": "fraction" },
+              { "value": "3-7/8", "type": "fraction" },
+              { "value": "4-5/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "4-3/8", "type": "fraction" },
+              { "value": "4-1/8", "type": "fraction" },
+              { "value": "4-5/8", "type": "fraction" },
+              { "value": "5-1/16", "type": "fraction" },
+              { "value": "5-3/4", "type": "fraction" },
+              { "value": "5-3/4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "14", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "4-5/8", "type": "fraction" },
+              { "value": "4-1/16", "type": "fraction" },
+              { "value": "4-5/8", "type": "fraction" },
+              { "value": "5-1/16", "type": "fraction" },
+              { "value": "5-5/8", "type": "fraction" },
+              { "value": "6-3/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "16", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5-3/8", "type": "fraction" },
+              { "value": "5-11/16", "type": "fraction" },
+              { "value": "5-11/16", "type": "fraction" },
+              { "value": "6-3/4", "type": "fraction" },
+              { "value": "6-7/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "18", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "5-11/16", "type": "fraction" },
+              { "value": "6", "type": "number" },
+              { "value": "6-1/16", "type": "fraction" },
+              { "value": "7-1/16", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "6-1/16", "type": "fraction" },
+              { "value": "6-5/8", "type": "fraction" },
+              { "value": "7-1/16", "type": "fraction" },
+              { "value": "7-3/4", "type": "fraction" },
+              { "value": "8-1/2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "24", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "6-7/8", "type": "fraction" },
+              { "value": "7-7/8", "type": "fraction" },
+              { "value": "8-1/2", "type": "fraction" },
+              { "value": "9-3/8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Triangular matrix table of nozzle ID values (fractions in inches) indexed by branch size (rows) vs header ell size (columns). Markdown OCR had garbled header row; column headers corrected from image to: 1, 1-1/2, 2, 2-1/2, 3, 3-1/2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24. Empty lower-triangle cells represent inapplicable size combinations."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Diagram showing nozzle-to-header ell branch connection geometry with formulas Z = R + 1/2 I.D. Of Nozzle; S = sqrt((R+S)^2 - Y^2); Z^2 = (R+S)^2 - Y^2; R = Y - X; and labeled dimensions B, S, X, Y, Z, R",
+      "slug": "nozzle-header-ell-branch-connection-geometry-formula",
+      "bbox_norm": [0.33, 0.60, 0.97, 0.95],
+      "confidence": "high",
+      "notes": "Technical diagram illustrating the geometric variables used in the formulas. Formula block appears to the upper-left of the figure cross-section drawing. Source: Texas Pipe Bending Co., Inc., Houston, Texas."
+    }
+  ],
+  "issues": []
+}

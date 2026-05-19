@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0097.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0097_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3509
+      ],
+      "caption": "Table 2.2 Schedule 30, Schedule 20 and Schedule 10 pipes (continued) \u2014 Flow rates for pipes containing liquid or gas",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0097_tbl01_table-2-2-schedule-30-20-10-flow-rates-c.png",
+      "png_sha256": "993f9a795b1571e5b620a6d5652407f9fd929e708fa6afc25b88434194328941",
+      "slug": "table-2-2-schedule-30-20-10-flow-rates-c",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0097_tbl01_table-2-2-schedule-30-20-10-flow-rates-c.json",
+      "table_data_json_sha256": "8727c899c3081c91080c78bb6bac59063f24812beb86f4c4788e9fd3e16a1c32",
+      "table_data_sha256": "8727c899c3081c91080c78bb6bac59063f24812beb86f4c4788e9fd3e16a1c32",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0097_tbl01_table-2-2-schedule-30-20-10-flow-rates-c.xlsx",
+      "xlsx_sha256": "f075426cacc7bd92ce800cc52ef56a49698beb5118883e32f95723c7523f1ee7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 97,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0097.png",
+  "page_image_sha256": "bf9a2afd11de2735f25996dbfcb76b491480793d34465259cf1b678cdacffd22",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0097_assets.json"
+}

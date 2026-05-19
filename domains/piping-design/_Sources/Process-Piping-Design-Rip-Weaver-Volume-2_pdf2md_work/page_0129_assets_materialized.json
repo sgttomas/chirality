@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0129.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0129_fig01",
+      "bbox_norm": [
+        0.32,
+        0.42,
+        0.99,
+        0.97
+      ],
+      "bbox_px": [
+        691,
+        1221,
+        2560,
+        3300
+      ],
+      "caption": "Fig. 4-3. Installation, disassembly and dimensions. Courtesy of Brown Fintube Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0129_fig01_fig-4-3-installation-disassembly-dimensi.png",
+      "png_sha256": "4b5aa5c3e84318b007c3d3556ee5223d383e0f5aedc74e75f001ba30b02e20cb",
+      "slug": "fig-4-3-installation-disassembly-dimensi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0129_tbl01",
+      "bbox_norm": [
+        0.33,
+        0.76,
+        0.98,
+        0.92
+      ],
+      "bbox_px": [
+        717,
+        2343,
+        2560,
+        3201
+      ],
+      "caption": "Dimensions of Low Pressure Tube Side \u2014 Type 40 (Approximate)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0129_tbl01_dimensions-low-pressure-tube-side-type-4.png",
+      "png_sha256": "69e5457f18bf6416bd0ebeb2263c7b630291e96978c093188bb402b6b51c9edf",
+      "slug": "dimensions-low-pressure-tube-side-type-4",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0129_tbl01_dimensions-low-pressure-tube-side-type-4.json",
+      "table_data_json_sha256": "e1950065c0bb53465d2b22c6ad31e452d9aee61b2f195cf699bda5922c284b80",
+      "table_data_sha256": "e1950065c0bb53465d2b22c6ad31e452d9aee61b2f195cf699bda5922c284b80",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0129_tbl01_dimensions-low-pressure-tube-side-type-4.xlsx",
+      "xlsx_sha256": "dde6b9b001988476acc5aed1e3310a20deb9c099b8e5b8d2eaac42160e725f05"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 129,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0129.png",
+  "page_image_sha256": "910f128712393baf8727f47a9b2d4739e96f990bfc94ef0cc4ff38ed293183ea",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0129_assets.json"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 193,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 7-46 Burner Piping",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.62]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0318.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0318_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2577,
+        1861
+      ],
+      "caption": "FIG. 9.9 FORCES AND MOMENTS ON A STEAM TURBINE DRIVE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0318_fig01_forces-moments-steam-turbine-drive.png",
+      "png_sha256": "1ecdd25959074e2b40354b5b6bdc2581f53fca541b53d346550d53e0e1ad9f7b",
+      "slug": "forces-moments-steam-turbine-drive",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0318_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.49,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1575,
+        2577,
+        3579
+      ],
+      "caption": "Table 9.1 NEMA SM-23 ALLOWABLE PIPING LOADS FOR INDIVIDUAL NOZZLE CONNECTION",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0318_tbl01_nema-sm23-allowable-piping-loads-individ.png",
+      "png_sha256": "faf7912f23a9109ebf8d4dc2990e978a7519d4ac81c8a4cc0860df1eca045246",
+      "slug": "nema-sm23-allowable-piping-loads-individ",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0318_tbl01_nema-sm23-allowable-piping-loads-individ.json",
+      "table_data_json_sha256": "eb87fd0ed93a522ac892d07dc1362a71c30114c87b15fcae66bf3be7d9a8a9cc",
+      "table_data_sha256": "eb87fd0ed93a522ac892d07dc1362a71c30114c87b15fcae66bf3be7d9a8a9cc",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0318_tbl01_nema-sm23-allowable-piping-loads-individ.xlsx",
+      "xlsx_sha256": "a3b39dae1f96a793af48ff68393018bc0ac7f0f1922636898a47ae503bd5122e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 318,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0318.png",
+  "page_image_sha256": "1a0ec418562c7c2243862a84e2a08c3907ac4b7011d851a16272612796bc47db",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0318_assets.json"
+}

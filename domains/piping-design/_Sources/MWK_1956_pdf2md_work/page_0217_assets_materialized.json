@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0217.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0217_fig01",
+      "bbox_norm": [
+        0.495,
+        0.045,
+        0.965,
+        0.575
+      ],
+      "bbox_px": [
+        1135,
+        0,
+        2550,
+        1931
+      ],
+      "caption": "Fig. 7.6 Internal sleeve arrangements.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0217_fig01_fig-7-6-internal-sleeve-arrangements.png",
+      "png_sha256": "6d2ec4d8e72d4c71fdb769f8b9c2ee0c58dd3f8c9ca91de363df775cb6849ba0",
+      "slug": "fig-7-6-internal-sleeve-arrangements",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 217,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0217.png",
+  "page_image_sha256": "054780b3332f9212cc119e2f4f030ed538e315bf2cab40650bbb1c7acac2143f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0217_assets.json"
+}

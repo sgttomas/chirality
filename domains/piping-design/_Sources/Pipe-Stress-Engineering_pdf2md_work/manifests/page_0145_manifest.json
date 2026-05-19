@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0145.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0145_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        1513
+      ],
+      "caption": "Fig. 4.16 Typical Code Stress Compliance Chart",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0145_fig01_typical-code-stress-compliance-chart.png",
+      "png_sha256": "8a9bfee5d712a2c17035e6b91913e5865fe7dc83d76467124b60e5db88e18ab0",
+      "slug": "typical-code-stress-compliance-chart",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 145,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0145.png",
+  "page_image_sha256": "d513738ab09dc8d1faf13a20b2de24c3ff20773418f053650a18eeaa78383319",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0145_assets.json"
+}

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0180.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0180_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1721
+      ],
+      "caption": "EXHIBIT 7-29 Induced Draft Fan",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0180_fig01_exhibit-7-29-induced-draft-fan.png",
+      "png_sha256": "9aa43239017ea972a00fcf28482fdff6e4a6d69c8c5780aa1389bcff17dcea15",
+      "slug": "exhibit-7-29-induced-draft-fan",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0180_fig02",
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        1423,
+        2562,
+        3309
+      ],
+      "caption": "EXHIBIT 7-30 Steam Drum and Transfer Line Exchanger",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0180_fig02_exhibit-7-30-steam-drum-and-transfer-lin.png",
+      "png_sha256": "e9c77350f3d816038f2774de068aef7216bf87adb6a2c541d57c337679e8d907",
+      "slug": "exhibit-7-30-steam-drum-and-transfer-lin",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 180,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0180.png",
+  "page_image_sha256": "254a633e99d2d13735098c5f8300d82e7198c80420b83f7753c888263fdcc51a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0180_assets.json"
+}

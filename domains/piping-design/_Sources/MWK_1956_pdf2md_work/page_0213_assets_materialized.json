@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0213.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0213_fig01",
+      "bbox_norm": [
+        0.4,
+        0.05,
+        0.99,
+        0.34
+      ],
+      "bbox_px": [
+        800,
+        0,
+        2286,
+        1074
+      ],
+      "caption": "Fig. 7.2 A conventional slip type expansion joint.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0213_fig01_fig-7-2-a-conventional-slip-type-expansi.png",
+      "png_sha256": "90e569efabc4d043fc2b5ae793ce369258c418521aec8bc55f7cad6b417913bf",
+      "slug": "fig-7-2-a-conventional-slip-type-expansi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 213,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0213.png",
+  "page_image_sha256": "c1358c75a23a1b3879b1de9e1117b8f7fe5e3e4089f18128f4fb2d101df26176",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0213_assets.json"
+}

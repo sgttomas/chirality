@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0495.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0495_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        3513
+      ],
+      "caption": "ASME B31.1 Allowable Stress, SE (ksi) \u2014 At Temperature (\u00b0F), continued",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0495_tbl01_asme-b311-allowable-stress-se-ksi-contin.png",
+      "png_sha256": "7ac79af3b73fbd19409fd73cc964aa8559edfa0f5e4d91da94de157bed034215",
+      "slug": "asme-b311-allowable-stress-se-ksi-contin",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0495_tbl01_asme-b311-allowable-stress-se-ksi-contin.json",
+      "table_data_json_sha256": "6b78806b49204bd229ad026471082b0a1ad71e81b076b92baa04225d483a4be0",
+      "table_data_sha256": "6b78806b49204bd229ad026471082b0a1ad71e81b076b92baa04225d483a4be0",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0495_tbl01_asme-b311-allowable-stress-se-ksi-contin.xlsx",
+      "xlsx_sha256": "30c6771e0adb73876f3397aa3756ff90234c57a44c2ff8b3e0727d73d4f3f71c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 495,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0495.png",
+  "page_image_sha256": "fb9ced8ae71003dd615f7f1d5ef1aa783baddb4b3f62fc99b56cb0104281a82b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0495_assets.json"
+}

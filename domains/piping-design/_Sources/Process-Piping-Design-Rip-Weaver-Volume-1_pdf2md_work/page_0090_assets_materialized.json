@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0090.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0090_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1638
+      ],
+      "caption": "Figure 5-8. Drain funnel installation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0090_fig01_drain-funnel-installation.png",
+      "png_sha256": "52ebc9281dc1f13644793f19f4a4e94ea0fd9111c69f17f13df50e91e884f5b4",
+      "slug": "drain-funnel-installation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 90,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0090.png",
+  "page_image_sha256": "e3642dfb50e040f392046a788995a7c5be53b81be3b5e317390894ab79559a41",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0090_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 97,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-6. Box heater typical plan. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "box-heater-typical-plan",
+      "bbox_norm": [0.04, 0.06, 0.82, 0.90],
+      "confidence": "high",
+      "notes": "Full-page engineering plan view drawing of a box heater with pipeway, control valves, and labeled callouts. Caption appears below the drawing."
+    }
+  ],
+  "issues": []
+}

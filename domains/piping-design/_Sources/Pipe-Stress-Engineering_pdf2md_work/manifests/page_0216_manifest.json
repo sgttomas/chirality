@@ -1,0 +1,61 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0216.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0216_tbl01",
+      "bbox_norm": [
+        0.18,
+        0.04,
+        0.82,
+        0.32
+      ],
+      "bbox_px": [
+        334,
+        0,
+        2237,
+        1322
+      ],
+      "caption": "TABLE 6.7 K VALUES (ADJUSTMENT FOR LUG THICKNESS)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0216_tbl01_k-values-lug-thickness.csv",
+      "csv_sha256": "2cc5a93096aa0aa02fbbd2deb0770b75c1aaf466a85d1e6c3a40b7c68bc899c1",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0216_tbl01_k-values-lug-thickness.png",
+      "png_sha256": "7a5cc858ca327193841d8ac8936081fa2fae1f18f726dbf58c5086042d2345e5",
+      "slug": "k-values-lug-thickness",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0216_fig01",
+      "bbox_norm": [
+        0.08,
+        0.62,
+        0.92,
+        0.98
+      ],
+      "bbox_px": [
+        77,
+        2037,
+        2494,
+        3574
+      ],
+      "caption": "FIG. 6.25 LOADS AT LUG",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0216_fig01_loads-at-lug.png",
+      "png_sha256": "ea10a90b781f977fcdba89bc255467617de49e670d6f38a4f702e4dabc6cc0f1",
+      "slug": "loads-at-lug",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 216,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0216.png",
+  "page_image_sha256": "072489d3a7c65d74038d5a3c5733a73c0a665c97e28243f43b258cfbe5037567",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0216_assets.json"
+}

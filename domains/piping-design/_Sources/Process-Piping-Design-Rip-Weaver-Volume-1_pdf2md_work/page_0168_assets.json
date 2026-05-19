@@ -1,0 +1,146 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 168,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8-10. Level controllers — screwed connections. Courtesy of Masoneilan.",
+      "slug": "fig-8-10-level-controllers-screwed-connections",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.62],
+      "confidence": "high",
+      "notes": "Three level controller configurations (I2809W, I2805W, I2806W) with dimensional drawings showing FF, MR, and A connection points. Caption visible at bottom of figure box."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Dimensions (Inches) — Level Controllers I2809W, I2805W, I2806W",
+      "slug": "dimensions-inches-level-controllers-i2809w-i2805w-i2806w",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "A", "text": "Screwed Connections A = 1½” — 2” NPT — 600 lb. ASA rating" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "RANGE", "row_span": 2, "is_header": true },
+              { "value": "I2809W", "col_span": 2, "is_header": true },
+              { "value": "I2805W", "col_span": 2, "is_header": true },
+              { "value": "I2806W", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FF", "is_header": true },
+              { "value": "MR", "is_header": true },
+              { "value": "FF", "is_header": true },
+              { "value": "MR", "is_header": true },
+              { "value": "FF", "is_header": true },
+              { "value": "MR", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number", "unit": "in" },
+              { "value": 14, "type": "number", "unit": "in" },
+              { "value": 7, "type": "number", "unit": "in" },
+              { "value": 20, "type": "number", "unit": "in" },
+              { "value": 7, "type": "number", "unit": "in" },
+              { "value": 16, "type": "number", "unit": "in" },
+              { "value": 7, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 32, "type": "number", "unit": "in" },
+              { "value": 32, "type": "number", "unit": "in" },
+              { "value": 16, "type": "number", "unit": "in" },
+              { "value": 38, "type": "number", "unit": "in" },
+              { "value": 16, "type": "number", "unit": "in" },
+              { "value": 34, "type": "number", "unit": "in" },
+              { "value": 16, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 48, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number", "unit": "in" },
+              { "value": 24, "type": "number", "unit": "in" },
+              { "value": 54, "type": "number", "unit": "in" },
+              { "value": 24, "type": "number", "unit": "in" },
+              { "value": 50, "type": "number", "unit": "in" },
+              { "value": 24, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 60, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number", "unit": "in" },
+              { "value": 30, "type": "number", "unit": "in" },
+              { "value": 66, "type": "number", "unit": "in" },
+              { "value": 30, "type": "number", "unit": "in" },
+              { "value": 62, "type": "number", "unit": "in" },
+              { "value": 30, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 72, "type": "number", "unit": "in" },
+              { "value": 72, "type": "number", "unit": "in" },
+              { "value": 36, "type": "number", "unit": "in" },
+              { "value": 78, "type": "number", "unit": "in" },
+              { "value": 36, "type": "number", "unit": "in" },
+              { "value": 74, "type": "number", "unit": "in" },
+              { "value": 36, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 84, "type": "number", "unit": "in" },
+              { "value": 84, "type": "number", "unit": "in" },
+              { "value": 42, "type": "number", "unit": "in" },
+              { "value": 90, "type": "number", "unit": "in" },
+              { "value": 42, "type": "number", "unit": "in" },
+              { "value": 86, "type": "number", "unit": "in" },
+              { "value": 42, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 96, "type": "number", "unit": "in" },
+              { "value": 96, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number", "unit": "in" },
+              { "value": 102, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number", "unit": "in" },
+              { "value": 98, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 120, "type": "number", "unit": "in" },
+              { "value": 120, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number", "unit": "in" },
+              { "value": 126, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number", "unit": "in" },
+              { "value": 122, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number", "unit": "in" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row header: first row spans model groups (I2809W, I2805W, I2806W) each col_span=2 with RANGE spanning both header rows; second row has FF/MR sub-columns per group. Footnote A documents screwed connection spec."
+    }
+  ],
+  "issues": []
+}

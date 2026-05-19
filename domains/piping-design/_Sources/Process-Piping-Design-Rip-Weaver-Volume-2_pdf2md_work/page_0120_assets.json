@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 120,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-30. Flame scanner or fireye. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "flame-scanner-fireye",
+      "bbox_norm": [0.05, 0.04, 0.88, 0.42],
+      "confidence": "high",
+      "notes": "Technical diagram of flame safeguard / fireye assembly with labeled components (flame scanner, electrical lead, burner, flange) and caption below"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Figure 3-31. Thermowell connection details. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "thermowell-connection-details",
+      "bbox_norm": [0.04, 0.60, 0.88, 0.97],
+      "confidence": "high",
+      "notes": "Multi-panel diagram showing types of thermowell connections (process piping, tube side, flanged) with labeled details under heading TYPES OF THERMOWELL CONNECTIONS"
+    }
+  ],
+  "issues": []
+}

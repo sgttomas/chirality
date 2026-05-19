@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 95,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 6.2 Representative cases for chart-form solutions. (a) Two-member System Subjected to Thermal Expansion. (b) Two-member System, with One Support Displaced in the Direction of the Adjoining Member. (c) Two-member System, with One Support Displaced Normal to Initial Plane. (d) Symmetrical Expansion Loop Subjected to Thermal Expansion.",
+      "bbox_norm": [
+        0.07,
+        0.07,
+        0.95,
+        0.4
+      ]
+    }
+  ]
+}

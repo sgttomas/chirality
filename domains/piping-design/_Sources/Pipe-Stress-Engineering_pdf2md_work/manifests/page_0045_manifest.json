@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0045_fig01",
+      "bbox_norm": [
+        0.06,
+        0.68,
+        0.94,
+        0.97
+      ],
+      "bbox_px": [
+        26,
+        2248,
+        2538,
+        3569
+      ],
+      "caption": "FIG. 1.11 PIPE ON SUPPORT STEEL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0045_fig01_pipe-on-support-steel.png",
+      "png_sha256": "1a5d33fd011179cac0519b97f79854cc28271966763b88ee23a88f4e4d606434",
+      "slug": "pipe-on-support-steel",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0045.png",
+  "page_image_sha256": "04b62abe2aa320524a616ef90ee71beb192248b0a761022eecd183d5e08ab6b9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0045_assets.json"
+}

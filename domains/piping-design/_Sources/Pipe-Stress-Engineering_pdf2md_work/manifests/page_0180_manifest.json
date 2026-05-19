@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0180.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0180_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2543,
+        1670
+      ],
+      "caption": "FIG. 6.8 \u2014 PIPING RESTING ON SUPPORTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0180_fig01_piping-resting-on-supports.png",
+      "png_sha256": "5b6ce3545ad5fdf7307529ffe791495286b81efdd75c7e125c66346648e91017",
+      "slug": "piping-resting-on-supports",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 180,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0180.png",
+  "page_image_sha256": "82e5930271e9b50a42f94c5d00b3227ba134989b3554c3ed83d642483237b474",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0180_assets.json"
+}

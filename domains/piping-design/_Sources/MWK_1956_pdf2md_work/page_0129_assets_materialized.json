@@ -1,0 +1,64 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0129.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0129_tbl01",
+      "bbox_norm": [
+        0.49,
+        0.05,
+        1.0,
+        0.43
+      ],
+      "bbox_px": [
+        900,
+        0,
+        2046,
+        1322
+      ],
+      "caption": "Table 5.5",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0129_tbl01_table-5-5.png",
+      "png_sha256": "9943ab30c7101bc4b9289944b8c6d07c2c80ddf890cc550f620c69ab90c48b03",
+      "slug": "table-5-5",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0129_tbl02",
+      "bbox_norm": [
+        0.0,
+        0.74,
+        1.0,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        1900,
+        2046,
+        2754
+      ],
+      "caption": "Table 5.6 General Equations of a Pipe Line Subject to Deformation at Either End",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0129_tbl02_table-5-6-general-equations-of-a-pipe-li.png",
+      "png_sha256": "7a5d365c2dda3b5adc1f43ac6da5fdc3bca1052065d17be6ddbfe97e5a713693",
+      "slug": "table-5-6-general-equations-of-a-pipe-li",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 129,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0129.png",
+  "page_image_sha256": "8b0a8d77dc61b17c2538591a26c8996293b54f572984adc08596eedd2ca6a94c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0129_assets.json"
+}

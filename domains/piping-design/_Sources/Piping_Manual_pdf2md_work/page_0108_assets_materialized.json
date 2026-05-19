@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0108.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0108_fig01",
+      "bbox_norm": [
+        0.53,
+        0.3,
+        0.98,
+        0.63
+      ],
+      "bbox_px": [
+        1230,
+        827,
+        2562,
+        2250
+      ],
+      "caption": "EXHIBIT 5-1 Typical Vertical Compressor Suction Drum",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0108_fig01_exhibit-5-1-typical-vertical-compressor.png",
+      "png_sha256": "f4a4b7ce241766a960c8cb70019b3336f5e4eefe35e477d2d8c8adaac3e6c455",
+      "slug": "exhibit-5-1-typical-vertical-compressor",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0108_fig02",
+      "bbox_norm": [
+        0.04,
+        0.64,
+        0.98,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1952,
+        2562,
+        3243
+      ],
+      "caption": "EXHIBIT 5-2 Typical Horizontal Reflux Drum",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0108_fig02_exhibit-5-2-typical-horizontal-reflux-dr.png",
+      "png_sha256": "b6ae95f04b49e6a1c6cecda46446963c6c6e9ffe0ad9310c62557751f5f4f6b7",
+      "slug": "exhibit-5-2-typical-horizontal-reflux-dr",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 108,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0108.png",
+  "page_image_sha256": "cffc3792b82acd17676c068ee4275613593cfa1eff55c3da322fe83207b3c6da",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0108_assets.json"
+}

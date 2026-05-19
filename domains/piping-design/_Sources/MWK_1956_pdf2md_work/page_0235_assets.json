@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 235,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Section through typical outdoor overhead pipe rack showing arrangement of north-south runs at two elevations and east-west runs at an intermediate elevation.",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.98,
+        0.96
+      ]
+    }
+  ]
+}

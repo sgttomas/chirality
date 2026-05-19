@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0047.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0047_fig01",
+      "bbox_norm": [
+        0.08,
+        0.32,
+        0.92,
+        0.88
+      ],
+      "bbox_px": [
+        76,
+        890,
+        2474,
+        3065
+      ],
+      "caption": "Fig. 300-20 Manway Location Vertical Vessel Access",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0047_fig01_fig-300-20-manway-location-vertical-vess.png",
+      "png_sha256": "c6469697cc4d9bd476119e62911566e87b5a9c9c54097a3ea0813461bd5009d1",
+      "slug": "fig-300-20-manway-location-vertical-vess",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 47,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0047.png",
+  "page_image_sha256": "6c238b29af30670cb729c405334ec7004864b1b6f37894f273b78bcef03ea32b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0047_assets.json"
+}

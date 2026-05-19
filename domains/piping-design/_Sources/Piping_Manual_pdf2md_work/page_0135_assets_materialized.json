@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0135.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0135_fig01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.94,
+        0.46
+      ],
+      "bbox_px": [
+        26,
+        0,
+        2530,
+        1685
+      ],
+      "caption": "EXHIBIT 6-17 Tower-Supported Vertical Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0135_fig01_exhibit-6-17-tower-supported-vertical-in.png",
+      "png_sha256": "d023c0ae6eb694fc6fa8b287df2f28c0cd53ce8a56f8409f2583845414ffd8a7",
+      "slug": "exhibit-6-17-tower-supported-vertical-in",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0135_fig02",
+      "bbox_norm": [
+        0.06,
+        0.47,
+        0.94,
+        0.94
+      ],
+      "bbox_px": [
+        26,
+        1388,
+        2530,
+        3271
+      ],
+      "caption": "EXHIBIT 6-17A Tube Bundle Maintenance",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0135_fig02_exhibit-6-17a-tube-bundle-maintenance.png",
+      "png_sha256": "4fd08a61debdcc11eeda56251cd550795b1258f8626cbc24452dedbca6a22fbc",
+      "slug": "exhibit-6-17a-tube-bundle-maintenance",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 135,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0135.png",
+  "page_image_sha256": "fd8ede136cffccf29155091bb8a72679dc896a3e7d620f6b00bc16eafd7f22ee",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0135_assets.json"
+}

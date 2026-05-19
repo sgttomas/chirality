@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0148.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0148_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        3210
+      ],
+      "caption": "EXHIBIT 6-38 Piping Arrangement for High-Temperature, High-Pressure Feed Exchangers. Shows Alternative \"A\" (provide loop in piping for flexibility) and Alternative \"B\" (cost effective; provide spring support at center exchanger channel end only) with high-temperature, high-pressure alloy piping.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0148_fig01_exhibit-6-38-piping-arrangement-for-high.png",
+      "png_sha256": "4f4f194dc647629b0ad0f581e0e149f0c6d39d766657e5759f9054d9140d4888",
+      "slug": "exhibit-6-38-piping-arrangement-for-high",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 148,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0148.png",
+  "page_image_sha256": "4ae0beb6e0dce536f7941d1cf77e2d3131f29ee3b8c7926fd586ed12ab27beca",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0148_assets.json"
+}

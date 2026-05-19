@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0100.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0100_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.72,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1971,
+        1881
+      ],
+      "caption": "Figure 3-9. Typical combination burner assembly. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0100_fig01_typical-combination-burner-assembly.png",
+      "png_sha256": "3e84e2c0dbdeddb2249864b5e92d4a1ca1ef6769bbde8c79f43cf37654764f92",
+      "slug": "typical-combination-burner-assembly",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 100,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0100.png",
+  "page_image_sha256": "cdba1c5661fd5ba34bf13e13af28f5c4d8d9f75fc59ee6569c40daedb6b15c73",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0100_assets.json"
+}

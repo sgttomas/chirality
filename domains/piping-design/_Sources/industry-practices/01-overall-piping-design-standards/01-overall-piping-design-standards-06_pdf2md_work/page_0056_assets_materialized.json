@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0056.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0056_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.92,
+        0.48
+      ],
+      "bbox_px": [
+        76,
+        66,
+        2474,
+        1749
+      ],
+      "caption": "Flange bolt and ring joint dimensions \u2014 Size columns (continuation)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-06_p0056_tbl01_flange-bolt-ring-joint-dimensions-contin.png",
+      "png_sha256": "c88b98ae4b632d7b9d4e558f0c98a681eadc6d26cd43f2cf48c7877c5b3da867",
+      "slug": "flange-bolt-ring-joint-dimensions-contin",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-06_p0056_tbl01_flange-bolt-ring-joint-dimensions-contin.json",
+      "table_data_json_sha256": "8b307dde45409de4326d91eb7ebe4116b08fcc94c58208f4d815df8af500eddb",
+      "table_data_sha256": "8b307dde45409de4326d91eb7ebe4116b08fcc94c58208f4d815df8af500eddb",
+      "xlsx_path": "tables/01-overall-piping-design-standards-06_p0056_tbl01_flange-bolt-ring-joint-dimensions-contin.xlsx",
+      "xlsx_sha256": "0447eba4e87231540473071148648f7835b8c405d6a78fa27d4aa43c980e70e3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-06",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 56,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0056.png",
+  "page_image_sha256": "5acc6c46bca174a1cc1cef39e859efd010a202c128cd73ce110b4e3ba2a93e0e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0056_assets.json"
+}

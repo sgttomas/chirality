@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 288,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p288_fig01",
+      "bbox_norm": [0.04, 0.15, 0.96, 0.53],
+      "caption": "EXHIBIT 11-11 — Pipe Rack Meter Runs. Elevation/side view of a pipe rack showing horizontal pipes supported on structural beams at multiple levels. The upper section depicts piping with orifice flanges (labeled \"ORIFICE FLANGES\") arranged in a meter run configuration with vertical riser legs and connections. A vertical \"LADDER\" is shown attached to the rack structure providing access. Multiple parallel pipes run horizontally across the rack at the lower levels."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0036_fig01",
+      "bbox_norm": [
+        0.13,
+        0.05,
+        0.92,
+        0.55
+      ],
+      "bbox_px": [
+        204,
+        0,
+        2474,
+        1978
+      ],
+      "caption": "Fig. 300-12 Small Pipe Supported from Larger Lines or Intermediate Supports",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0036_fig01_fig-300-12-small-pipe-supported-from-lar.png",
+      "png_sha256": "7a47e22a45ae9523c3d26b1a397b5aed52b21d5073a85c6f777b97a1c58d5762",
+      "slug": "fig-300-12-small-pipe-supported-from-lar",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0036.png",
+  "page_image_sha256": "871de34e748f46a6975be8051fbeb779a6e2dfe9dcfff3ce88d058890b71fc53",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0036_assets.json"
+}

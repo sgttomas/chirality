@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0100.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0100_fig01",
+      "bbox_norm": [
+        0.08,
+        0.08,
+        0.95,
+        0.82
+      ],
+      "bbox_px": [
+        74,
+        105,
+        2480,
+        3053
+      ],
+      "caption": "Figure 3.3 Roughness factors",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0100_fig01_figure-3-3-roughness-factors.png",
+      "png_sha256": "99abd1fc2cb6956d70830655239b2fb4bf3b4c8869d729559161050afd3b67d7",
+      "slug": "figure-3-3-roughness-factors",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 100,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0100.png",
+  "page_image_sha256": "6320cbca49fdc2842352e0854b6a184fea56e1b806b7123c2cf81e324d251809",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0100_assets.json"
+}

@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "caption": "Table A.4. Shape Coefficient Expressions for Uniform Loading",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Full-page table with three columns (Member in x-Plane, Member in y-Plane, Member in z-Plane) and three loading-case row groups (Weight w_y, z-Wind w_x, x-Wind w_z). Each cell header includes a small 3D coordinate-axis sketch indicating the member orientation; these axis sketches are integral to the table and are captured within the table bbox rather than as separate figure assets."
+  ],
+  "page": 315,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

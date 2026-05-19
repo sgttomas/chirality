@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 135,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.04, 0.94, 0.46],
+      "caption": "EXHIBIT 6-17 Tower-Supported Vertical Installation"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.47, 0.94, 0.94],
+      "caption": "EXHIBIT 6-17A Tube Bundle Maintenance"
+    }
+  ],
+  "issues": []
+}

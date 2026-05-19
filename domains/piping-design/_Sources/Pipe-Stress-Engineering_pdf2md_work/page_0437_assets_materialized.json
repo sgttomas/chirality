@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0437.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0437_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1649
+      ],
+      "caption": "FIG. 13.4 ENVELOPE RESPONSE SPECTRA (SHADED) - DAMPING RATIO \u03b6=0.02, N-S DIRECTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0437_fig01_envelope-response-spectra-damping-ratio.png",
+      "png_sha256": "3b367f7da39bf4edb8d023309d845b5c50ce2e52b346a5bf7b6ca8d0ae579915",
+      "slug": "envelope-response-spectra-damping-ratio",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 437,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0437.png",
+  "page_image_sha256": "e71e69fd63e4ebd976fb8e1510f88b7a2585ea78df168f41dbbc12b83e35aca3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0437_assets.json"
+}

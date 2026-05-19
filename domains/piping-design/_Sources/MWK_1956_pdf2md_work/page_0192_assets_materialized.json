@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0192.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0192_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2095
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY & STRESS ANALYSIS - 6-EQUATIONS - FORM F-1 (handwritten matrix worksheet showing M_x, F_x, F_y columns with reaction forces, constants column, and shape coefficient calculations including X=4000, F_zw, F_zR, F_zL, and 1,000,000 diagonal entries)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0192_fig01_the-m-w-kellogg-co-piping-flexibility-st.png",
+      "png_sha256": "f8acbf0b0452d4a586e0df15998f754fdbd2168b818a075f745e4c6fec7ef93b",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-st",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0192_fig02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1746,
+        2550,
+        3492
+      ],
+      "caption": "THE M.W. KELLOGG CO. - PIPING FLEXIBILITY AND STRESS ANALYSIS - MOMENTS AND STRESSES - FORM F-1 (handwritten tabulation across columns A-J of M_x, M_y, M_z, M_b, M_t bending/torsion moments, computed stresses S_x, S_y, S_b, S_e, S_t, allowable stress entries, and code-rule formula legend in left margin)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0192_fig02_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "08c5a34f07b55a1b59c5928ac04e35b924f6ed3d679a807a9dea03105243eab9",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 192,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0192.png",
+  "page_image_sha256": "1852ac4309aa91dfe98060e0ae12e7b9b46e8c48e951fa17db2c3323afed21dc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0192_assets.json"
+}

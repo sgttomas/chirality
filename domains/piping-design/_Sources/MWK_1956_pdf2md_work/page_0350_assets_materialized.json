@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0350.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0350_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2232,
+        2674
+      ],
+      "caption": "C-10. Moments and Forces \u2014 Two-Member System, Both Ends Fixed, One Support Displaced Normal to Plane of Members. Chart of A1, A2, A3, A4, A5 versus K for 0 <= K <= 1.0, with accompanying schematic of the two-member system showing supports A, B, C, dimensions L, KL, and displacement Delta, plus a moment-diagram sketch.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0350_fig01_c-10-moments-and-forces-two-member-syste.png",
+      "png_sha256": "034eba6c803eb27b1aaad484d71a5ff1c17a84ab614496856286ad54f548a51a",
+      "slug": "c-10-moments-and-forces-two-member-syste",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 350,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0350.png",
+  "page_image_sha256": "474244ac2c7c3554258fb383d848b200acec9a03b1b6c6a3fccf7c4360be0d8b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0350_assets.json"
+}

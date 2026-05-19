@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 350,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "Piping_Manual_p350_fig_01",
+      "kind": "fig",
+      "caption": "EXHIBIT 13-29 Hydrant and Monitor Installations",
+      "bbox_norm": [0.10, 0.31, 0.92, 0.86]
+    }
+  ],
+  "issues": []
+}

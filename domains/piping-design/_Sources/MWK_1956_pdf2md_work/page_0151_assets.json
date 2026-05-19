@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 151,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Figure 5 Calc. No. 2-8 - The M.W. Kellogg Co. Piping Flexibility and Stress Analysis - General Analytical Method computation sheet showing tabulated columns Fxd, Fyd, Fzd, Mxd, Myd, Mzd and Constants with successive line entries and summation bars across multiple line groups.",
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.97,
+        0.97
+      ]
+    }
+  ]
+}

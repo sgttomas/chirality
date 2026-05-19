@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0351.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0351_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2520,
+        3462
+      ],
+      "caption": "C-11. Required Height - Symmetrical Expansion Loop. Chart plotting (L^2 S_A)/(10^7 D Delta) versus K_2 with curves for various K_1 values; includes inset diagram of the symmetrical expansion loop geometry with guides.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0351_fig01_c-11-required-height-symmetrical-expansi.png",
+      "png_sha256": "31ac2a7d0a3ac9b5703fee09ce4ef2c09f344f6bc209139f244f2d123040e949",
+      "slug": "c-11-required-height-symmetrical-expansi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 351,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0351.png",
+  "page_image_sha256": "a720bf0dca0c1d0a03490eff7a093996d2dc94d662ee5b990a9b6a26a2506dde",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0351_assets.json"
+}

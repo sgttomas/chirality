@@ -1,0 +1,355 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 185,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factors — E",
+      "slug": "conversion-factors-E",
+      "bbox_norm": [0.05, 0.09, 0.95, 0.30],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Unit", "is_header": true },
+              { "value": "Factor", "is_header": true },
+              { "value": "Equivalent", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ell", "type": "text" },
+              { "value": 114.30, "type": "number" },
+              { "value": "Centimeters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ell", "type": "text" },
+              { "value": 45, "type": "number" },
+              { "value": "Inches", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Em, pica", "type": "text" },
+              { "value": 0.167, "type": "number" },
+              { "value": "Inch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Em, pica", "type": "text" },
+              { "value": 0.4233, "type": "number" },
+              { "value": "Centimeter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Erg/second", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "Dyne-centimeter/second", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Erg", "type": "text" },
+              { "value": "9.480 × 10⁻¹¹", "type": "text", "raw": "9.480 × 10^{-11}" },
+              { "value": "Btu", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Erg", "type": "text" },
+              { "value": 1, "type": "number" },
+              { "value": "Dyne-centimeter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Erg", "type": "text" },
+              { "value": "7.367 × 10⁻⁸", "type": "text", "raw": "7.367 × 10^{-8}" },
+              { "value": "Foot-pounds", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Expansion coefficient, °F", "type": "text" },
+              { "value": 1.8, "type": "number" },
+              { "value": "Expansion coefficient, °C", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Section E of unit conversion table. Three-column layout: Unit, Factor, Equivalent."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Conversion factors — F (continued on facing page)",
+      "slug": "conversion-factors-F",
+      "bbox_norm": [0.05, 0.32, 0.95, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Unit", "is_header": true },
+              { "value": "Factor", "is_header": true },
+              { "value": "Equivalent", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fahrenheit −32", "type": "text" },
+              { "value": 0.555, "type": "number" },
+              { "value": "Centigrade", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Famm", "type": "text" },
+              { "value": 5.8455, "type": "number" },
+              { "value": "Foot, USA", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Famm", "type": "text" },
+              { "value": 1.7814, "type": "number" },
+              { "value": "Meter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Faradays", "type": "text" },
+              { "value": 26.8, "type": "number" },
+              { "value": "Ampere-hour", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, British", "type": "text" },
+              { "value": 6.08, "type": "number" },
+              { "value": "Feet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, British", "type": "text" },
+              { "value": 1.8532, "type": "number" },
+              { "value": "Meters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, British", "type": "text" },
+              { "value": 0.001, "type": "number" },
+              { "value": "Nautical mile, British", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, USA", "type": "text" },
+              { "value": 6, "type": "number" },
+              { "value": "Feet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, USA", "type": "text" },
+              { "value": 1.8288, "type": "number" },
+              { "value": "Meter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fathom, USA", "type": "text" },
+              { "value": 2, "type": "number" },
+              { "value": "Yard", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": 12, "type": "number" },
+              { "value": "Inches", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": 0.3048, "type": "number" },
+              { "value": "Meters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": 0.3333, "type": "number" },
+              { "value": "Yards", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": "0.18939 × 10⁻³", "type": "text", "raw": "0.18939 × 10^{-3}" },
+              { "value": "Miles, USA statute", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": "1.2 × 10⁴", "type": "text", "raw": "1.2 × 10^4" },
+              { "value": "Mils", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet, USA", "type": "text" },
+              { "value": 0.0606, "type": "number" },
+              { "value": "Rod", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 0.0295, "type": "number" },
+              { "value": "Atmospheres", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 0.8826, "type": "number" },
+              { "value": "Inches of mercury", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 0.03048, "type": "number" },
+              { "value": "Kilograms/square centimeters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 304.8, "type": "number" },
+              { "value": "Kilograms/square meter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 62.43, "type": "number" },
+              { "value": "Pounds/square foot", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet of water", "type": "text" },
+              { "value": 0.4335, "type": "number" },
+              { "value": "Pounds/square inch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/hour", "type": "text" },
+              { "value": 0.01666, "type": "number" },
+              { "value": "Feet/minute", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/hour", "type": "text" },
+              { "value": 0.3048, "type": "number" },
+              { "value": "Feet/second", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/hour", "type": "text" },
+              { "value": "0.2777 × 10⁻³", "type": "text", "raw": "0.2777 × 10^{-3}" },
+              { "value": "Miles/hour", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/hour", "type": "text" },
+              { "value": "0.1894 × 10⁻³", "type": "text", "raw": "0.1894 × 10^{-3}" },
+              { "value": "Miles/hour", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.5080, "type": "number" },
+              { "value": "Centimeters/second", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.01666, "type": "number" },
+              { "value": "Feet/second", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.18288, "type": "number" },
+              { "value": "Kilometer/hour", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.009868, "type": "number" },
+              { "value": "Knot", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.3048, "type": "number" },
+              { "value": "Meter/minute", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.00508, "type": "number" },
+              { "value": "Meter/second", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet/minute", "type": "text" },
+              { "value": 0.01136, "type": "number" },
+              { "value": "Mile/hour", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Section F of unit conversion table. Continues on facing page. Three-column layout: Unit, Factor, Equivalent."
+    }
+  ],
+  "issues": []
+}

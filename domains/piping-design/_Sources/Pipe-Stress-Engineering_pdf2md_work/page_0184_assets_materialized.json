@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0184_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.5,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1602,
+        2550,
+        3559
+      ],
+      "caption": "TABLE 6.2 VARIABLE SPRING HANGER SELECTION CHART IN (LB), (N) UNITS - SCHEMATIC",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0184_tbl01_variable-spring-hanger-selection-chart.png",
+      "png_sha256": "299f8cf4cf4efd1a773912046906fec38230a3afcba94280d59a97168fcb8d8a",
+      "slug": "variable-spring-hanger-selection-chart",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0184_tbl01_variable-spring-hanger-selection-chart.json",
+      "table_data_json_sha256": "6c71974a081bc1796853a72378f5685e987960f2e31813c498a75892cab10b45",
+      "table_data_sha256": "6c71974a081bc1796853a72378f5685e987960f2e31813c498a75892cab10b45",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0184_tbl01_variable-spring-hanger-selection-chart.xlsx",
+      "xlsx_sha256": "d21e1edeaf46a35d2881ff532a4222670021e41688b0aa7187743338cc53c2c7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 184,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184.png",
+  "page_image_sha256": "ab863e8889c8c46d0486dd10ca8cc86ddb0f353678345f27f3af5a098eb98eb3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0184_assets.json"
+}

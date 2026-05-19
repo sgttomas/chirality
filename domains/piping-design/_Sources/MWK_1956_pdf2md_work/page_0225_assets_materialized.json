@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0225.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0225_fig01",
+      "bbox_norm": [
+        0.06,
+        0.55,
+        0.96,
+        0.99
+      ],
+      "bbox_px": [
+        23,
+        1380,
+        2256,
+        2760
+      ],
+      "caption": "Fig. 7.11 Axial movement type expansion joints.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0225_fig01_fig-7-11-axial-movement-type-expansion-j.png",
+      "png_sha256": "37c03879d0d6b5590406cc3f2576b316085f5bab6b89b7252969daa30a8250e2",
+      "slug": "fig-7-11-axial-movement-type-expansion-j",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 225,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0225.png",
+  "page_image_sha256": "b8c39eca7ec0146f84b966932524a1552f7128c55e511e386a07f0398b0c8fbd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0225_assets.json"
+}

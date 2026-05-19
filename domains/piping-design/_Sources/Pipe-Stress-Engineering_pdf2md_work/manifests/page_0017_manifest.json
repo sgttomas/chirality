@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0017.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0017_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2529,
+        3544
+      ],
+      "caption": "Nomenclature \u2014 symbols M through S (molecular weight through flange bolt stress)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0017_tbl01_nomenclature-m-through-s.csv",
+      "csv_sha256": "9b8ed993386bc4565dcedfcccfeb83404c59a5e3e110204b16667db0a5190703",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0017_tbl01_nomenclature-m-through-s.png",
+      "png_sha256": "d7e246f10677bd266337b62619f3bcf99e6fa99c8b7f88fade1aff52c61a7967",
+      "slug": "nomenclature-m-through-s",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0017.png",
+  "page_image_sha256": "148d591c6c6cbfd1511ff5a550507fc1affc83b3e332ed05297e23c21d493d1f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0017_assets.json"
+}

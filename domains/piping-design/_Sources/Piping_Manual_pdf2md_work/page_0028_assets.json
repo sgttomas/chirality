@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 28,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0028_fig01",
+      "caption": "EXHIBIT 1-10 — Steam-Traced Line",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.52]
+    }
+  ],
+  "issues": []
+}

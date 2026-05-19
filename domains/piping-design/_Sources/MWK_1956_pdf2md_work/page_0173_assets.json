@@ -1,0 +1,44 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 173,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "THE M.W. KELLOGG CO. — PIPING FLEXIBILITY AND STRESS ANALYSIS — INVERSION OF SIX EQUATIONS — FORM J-4 — CALC. NO. J-13. Tabulation of M, F, and g coefficients with summations for 1-CONDS through 7-CONDS.",
+      "slug": "coefficient-tabulation-conditions-1-7-form-j4",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.49],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Large multi-column engineering worksheet with 12 coefficient columns (Mxx, Myy, Mzz, Fxy, Fyz, Fxz, gxx, gyy, gzz, gxy, gyz, gxz) and rows for 1-CONDS through 7-CONDS. Many cells carry hatched/shaded placeholder backgrounds. Typewritten values are small and numerous; OCR output shows significant garbling throughout (e.g., '1.07.00', '12977', mixed characters in numeric values). Column-to-cell mapping is ambiguous in several rows. Safe cell-level transcription is not possible."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "THE M.W. KELLOGG CO. — PIPING FLEXIBILITY AND STRESS ANALYSIS — FORM J — CALC. NO. J-13. Gaussian elimination table for G_j1, G_jL coefficients with constants from item E-3; concludes with solved values G_j1 = -2.11, G_jL = -6.07, G_jL = -7.84.",
+      "slug": "gij-gaussian-elimination-form-j",
+      "bbox_norm": [0.03, 0.51, 0.97, 0.97],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Gaussian elimination worksheet with columns G_j1, G_jL, G_jL, and CONSTANT (from E-3). Multiple cells contain character-substitution OCR errors (e.g., '6917C.7C', '1070G.06', '6406.5.50', '6580.87' vs. source '6,5808.87'). Intermediate elimination rows are unreliable; final solved values are partially legible but cannot be confirmed without clean source data. Safe structured transcription not achievable from this raster."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_unreadable",
+      "asset_ordinal": 1,
+      "asset_kind": "tbl",
+      "detail": "Dense typewritten engineering coefficient table with 12 columns and 20+ sub-rows; numerous cells are shaded/hatched placeholders and OCR produces garbled numeric values throughout. Column-to-populated-cell mapping is ambiguous in several rows. Structured extraction deferred."
+    },
+    {
+      "code": "table_unreadable",
+      "asset_ordinal": 2,
+      "asset_kind": "tbl",
+      "detail": "Gaussian elimination worksheet; OCR shows letter-digit substitution errors in multiple numeric cells (e.g., 'C' for '0', 'G' for '0'). Reliable cell-level transcription not achievable from this raster. Structured extraction deferred."
+    }
+  ]
+}

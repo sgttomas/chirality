@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 30,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-8 Typical Arrangements of Relief Header and Lateral Lines",
+      "slug": "fig-300-8-typical-arrangements-relief-header-lateral-lines",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Diagram showing two arrangements of relief header and lateral lines; caption and annotation visible above the figure"
+    }
+  ],
+  "issues": []
+}

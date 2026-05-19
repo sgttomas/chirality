@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0164.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0164_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.65,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1792,
+        1320
+      ],
+      "caption": "Table 5-4 Values for Constant K",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0164_tbl01_table-5-4-values-for-constant-k.png",
+      "png_sha256": "01bfea878cb1628a4219050204378064e730fb7001072040269a7e9349b46d85",
+      "slug": "table-5-4-values-for-constant-k",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0164_tbl01_table-5-4-values-for-constant-k.json",
+      "table_data_json_sha256": "78f9e582b93861fef7d8396a3680dfb49ab05a0388f531d6de355e9f3b63d87c",
+      "table_data_sha256": "78f9e582b93861fef7d8396a3680dfb49ab05a0388f531d6de355e9f3b63d87c",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0164_tbl01_table-5-4-values-for-constant-k.xlsx",
+      "xlsx_sha256": "c7c32b61f05dd0449b29e655efb36a72b055a1ab8186b6ee0ffea603e444a2e0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 164,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0164.png",
+  "page_image_sha256": "0d07087ddb738aa92b6d21672a9c4760e2ac3a8efada2d4dc3d198866f80d085",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0164_assets.json"
+}

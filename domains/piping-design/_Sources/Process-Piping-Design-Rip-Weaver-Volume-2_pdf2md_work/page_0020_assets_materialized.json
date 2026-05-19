@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0020.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0020_fig01",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1089,
+        2560,
+        3300
+      ],
+      "caption": "Figure 1-4b. Conical temporary strainers.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0020_fig01_conical-temporary-strainers.png",
+      "png_sha256": "8abec3eb0ac89fe411ebe093c11bab5039d21cec19f75163b756e99a6c2d9d89",
+      "slug": "conical-temporary-strainers",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0020.png",
+  "page_image_sha256": "70acbaaafaf7a6f4c52a9e33c273e0c6ec3ed0f5b7a9c75fafcefef43c8ce78e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0020_assets.json"
+}

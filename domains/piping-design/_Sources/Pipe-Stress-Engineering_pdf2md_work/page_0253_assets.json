@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 253,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 7.16 PRESSURE BALANCED UNIVERSAL EXPANSION",
+      "slug": "pressure-balanced-universal-expansion",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.30],
+      "confidence": "high",
+      "notes": "Diagram of pressure balanced universal expansion joint showing lateral and axial movement labels; caption below figure"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 7.17 HINGE AND GIMBAL EXPANSION JOINTS",
+      "slug": "hinge-and-gimbal-expansion-joints",
+      "bbox_norm": [0.04, 0.68, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (a) Hinge Expansion Joint with hinge plate labeled, (b) Gimbal Expansion Joint with ring labeled; caption below"
+    }
+  ],
+  "issues": []
+}

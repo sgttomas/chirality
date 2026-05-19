@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0101.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0101_fig01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.5,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1641,
+        1304,
+        3184
+      ],
+      "caption": "Fig. 4.6 Illustration of the error involved in Mitchell's assumption regarding the thrust axis.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0101_fig01_fig-4-6-illustration-of-the-error-involv.png",
+      "png_sha256": "4b9e77ed5bcab763209a7f86e83c4b247f982b8383c74c3f1e1504a24c09a3ba",
+      "slug": "fig-4-6-illustration-of-the-error-involv",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0101_fig02",
+      "bbox_norm": [
+        0.5,
+        0.05,
+        0.97,
+        0.4
+      ],
+      "bbox_px": [
+        1066,
+        0,
+        2370,
+        1477
+      ],
+      "caption": "Fig. 4.7 The modification to Mitchell's thrust axis location suggested by Bridge.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0101_fig02_fig-4-7-the-modification-to-mitchell-s-t.png",
+      "png_sha256": "8e0357fab2ecdb48f3259393668cf4f6ce8a94e9902c47ccb1b4f9c37c550786",
+      "slug": "fig-4-7-the-modification-to-mitchell-s-t",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0101.png",
+  "page_image_sha256": "b98f6f7da31b82a18628741b7a12e5add296b0872d2a1b07efdff3c19c62adc2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0101_assets.json"
+}

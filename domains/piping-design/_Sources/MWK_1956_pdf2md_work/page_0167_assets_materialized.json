@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0167.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0167_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2490,
+        3450
+      ],
+      "caption": "PIPING FLEXIBILITY AND STRESS ANALYSIS - The M.W. Kellogg Co., Form F.E., Calc. No. A/4. Full-page pre-printed worksheet grid for general analytical method flexibility analysis, with diagonal column headers (Number, Member, Length, Direction, and other geometric and stress-analysis parameters) and rows of numerical/symbolic entries.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0167_tbl01_piping-flexibility-and-stress-analysis-t.png",
+      "png_sha256": "50ef2a6690adb3c4129d3a0d86012cf50c802709be9d335054d5d7d1fa5e8889",
+      "slug": "piping-flexibility-and-stress-analysis-t",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 167,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0167.png",
+  "page_image_sha256": "a005d5b584a4ff252d294dfbf481c0d4b2bd57ff1afa621caa52916898367750",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0167_assets.json"
+}

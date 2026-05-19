@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0061.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0061_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1747
+      ],
+      "caption": "Figure 3-5. Aerial view of Shuley Petroleum's refinery and storage. Courtesy of Chevron Design and Construction.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0061_fig01_aerial-view-shuley-petroleum-refinery-st.png",
+      "png_sha256": "9ddd79aa61246ed3cc0e4513544eaa14304ed7c6ab434a1dfc0fe17ca08e0b5d",
+      "slug": "aerial-view-shuley-petroleum-refinery-st",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 61,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0061.png",
+  "page_image_sha256": "63ee6eb1318c33425646dc876b6962b5d022b89c2df583148ca328c5028af61d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0061_assets.json"
+}

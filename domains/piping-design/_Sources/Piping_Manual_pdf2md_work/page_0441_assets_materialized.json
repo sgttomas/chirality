@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0441.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0441_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2575,
+        1494
+      ],
+      "caption": "EXHIBIT 17-5 Automatically Generated Heat Exchanger Setting Plan",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0441_fig01_exhibit-17-5-automatically-generated-hea.png",
+      "png_sha256": "cb48f406a28cc71967b69353f7a18ca22e47250658a7d1b4cc55b07631ec390e",
+      "slug": "exhibit-17-5-automatically-generated-hea",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 441,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0441.png",
+  "page_image_sha256": "d49363b59a331daf1ec3e304e9b9410c0f4a6419aaa2dd6aedf201e437cf3139",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0441_assets.json"
+}

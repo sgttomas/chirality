@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 17,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.15 Scheme of the classical triaxial tension theory of notch brittleness, after Mesnager [25], Ludwik [26], and Orowan [27].",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.5,
+        0.32
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 1.16 The origin of plastic constraint in a notched tensile specimen illustrated by the frictional constraint acting upon a flat compression specimen.",
+      "bbox_norm": [
+        0.5,
+        0.55,
+        0.98,
+        0.97
+      ]
+    }
+  ]
+}

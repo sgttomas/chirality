@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0042.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0042_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1318
+      ],
+      "caption": "Fig. 300-16 Steam Turbine Discharge Piping\u2014Typical for Low Pressure Exhaust",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0042_fig01_fig-300-16-steam-turbine-discharge-pipin.png",
+      "png_sha256": "105bd243d65a7439807554046f33e344809ce9733cd5fd45c9086e862653cca4",
+      "slug": "fig-300-16-steam-turbine-discharge-pipin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0042_fig02",
+      "bbox_norm": [
+        0.03,
+        0.36,
+        0.97,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        1022,
+        2550,
+        2307
+      ],
+      "caption": "Fig. 300-17 Steam Turbine Piping\u2014Packing Gland, Lube Oil Connection, Governor Accessibility",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0042_fig02_fig-300-17-steam-turbine-piping-packing.png",
+      "png_sha256": "f33f464adb6d08a275fd86a67bef55e8f8fd8a820c2b0ec27c68948089873f44",
+      "slug": "fig-300-17-steam-turbine-piping-packing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 42,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0042.png",
+  "page_image_sha256": "0a474652b24735a0984ccbcabc2246be98e8ad8d32433f3be00d35f7529ef680",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0042_assets.json"
+}

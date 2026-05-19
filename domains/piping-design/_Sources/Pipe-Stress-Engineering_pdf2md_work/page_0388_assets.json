@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 388,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 11.10 FAILURE MECHANISM OF IMPROPERLY ARRANGED INSULATION",
+      "slug": "failure-mechanism-improperly-arranged-insulation",
+      "bbox_norm": [0.04, 0.60, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Composite figure showing pipe cross-section with refractory, miter bend, cold pipe, rain/cold spot, hot pipe, external insulation, crack location, and a circular plate stress model. Caption centered below figure."
+    }
+  ],
+  "issues": []
+}

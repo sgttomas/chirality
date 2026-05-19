@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.07,
+        0.09,
+        0.95,
+        0.9
+      ],
+      "caption": "Table 5.28 Shape Coefficients for Uniform Loading: Formulas for 90 and 180 Circular Members For x-Wind Acting on Members in the x-Plane or z-Wind Acting on Members in the z-Plane or Weight of Members in the y-Plane",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Full-page tabulation of shape coefficients (w_x, w_z, w'_xy) versus alpha angle and shape glyph. Contains an embedded glyph column (small line drawings of curved circular members) that is integral to row identity. Table content is captured in the page Markdown."
+  ],
+  "page": 178,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

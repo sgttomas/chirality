@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0067.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0067_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2403,
+        3488
+      ],
+      "caption": "Figure 6.1 Plot plan for process unit.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0067_fig01_plot-plan-process-unit.png",
+      "png_sha256": "39c326bb7947630df133fa3a0d5e9d6db1d129a2176cee326b5a7ae973ef5c96",
+      "slug": "plot-plan-process-unit",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 67,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0067.png",
+  "page_image_sha256": "2b3e3dd9d536e5a31ec09bd79ac2b46e1652794c019f5e2171ec31a848aba723",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0067_assets.json"
+}

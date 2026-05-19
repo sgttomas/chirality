@@ -1,0 +1,131 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 45,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Compressor inlet straight length requirements",
+      "slug": "compressor-inlet-straight-length",
+      "bbox_norm": [0.03, 0.22, 0.97, 0.50],
+      "confidence": "high",
+      "notes": "Three-column table: type of compressor, inlet opening preceded by, minimum straight length before inlet",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE OF COMPRESSOR", "is_header": true },
+              { "value": "INLET OPENING PRECEDED BY:", "is_header": true },
+              { "value": "MINIMUM STRAIGHT LENGTH BEFORE INLET", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Centrifugal compressors, axial compressors or combinations thereof and compressors with interstage side stream inlets", "type": "text" },
+              { "value": "straight pipe", "type": "text" },
+              { "value": "3 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Elbow", "type": "text" },
+              { "value": "3 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Reducer", "type": "text" },
+              { "value": "5 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Valve", "type": "text" },
+              { "value": "10 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "flow device", "type": "text" },
+              { "value": "5 D", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Compressor outlet straight length requirements",
+      "slug": "compressor-outlet-straight-length",
+      "bbox_norm": [0.03, 0.50, 0.97, 0.74],
+      "confidence": "high",
+      "notes": "Three-column table: type of compressor, outlet opening followed by, minimum straight length after outlet",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE OF COMPRESSOR", "is_header": true },
+              { "value": "OUTLET OPENING FOLLOWED BY:", "is_header": true },
+              { "value": "MINIMUM STRAIGHT LENGTH AFTER OUTLET", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Centrifugal compressors, axial compressors or combinations thereof and compressors with interstage side stream outlets", "type": "text" },
+              { "value": "straight pipe", "type": "text" },
+              { "value": "3 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Elbow", "type": "text" },
+              { "value": "3 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Reducer", "type": "text" },
+              { "value": "5 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Valve", "type": "text" },
+              { "value": "5 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "flow device", "type": "text" },
+              { "value": "10 D", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

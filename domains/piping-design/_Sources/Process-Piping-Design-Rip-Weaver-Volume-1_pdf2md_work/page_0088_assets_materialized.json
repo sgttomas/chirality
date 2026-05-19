@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0088.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0088_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2477,
+        1291
+      ],
+      "caption": "Figure 5.4. Dimensions of extra heavy cast iron soil pipe and fittings. Courtesy of Cast Iron Soil Pipe Institute.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_fig01_fig-5-4-extra-heavy-cast-iron-soil-pipe.png",
+      "png_sha256": "e024f903fef8ec142b769a360c03262d14d6420e480cb48a94a568a532cfa44e",
+      "slug": "fig-5-4-extra-heavy-cast-iron-soil-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.32,
+        0.96,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        942,
+        2477,
+        2267
+      ],
+      "caption": "Table 5-3 Dimensions of Hubs, Spigots, and Barrels for Extra Heavy Cast Iron Soil Pipe and Fittings (Part 1: Size, hub ID, spigot OD, barrel OD, telescoping length, barrel ID, barrel thickness)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl01_table-5-3-extra-heavy-cast-iron-soil-pip.png",
+      "png_sha256": "0dc30ec2eedc89775b24e30bb288a83654af789c47448d5833dc9cd49ae42bb1",
+      "slug": "table-5-3-extra-heavy-cast-iron-soil-pip",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl01_table-5-3-extra-heavy-cast-iron-soil-pip.json",
+      "table_data_json_sha256": "90cf46bd6d40984848454f960f4287b1da1eb414509e65713765b6bfea75c5c3",
+      "table_data_sha256": "90cf46bd6d40984848454f960f4287b1da1eb414509e65713765b6bfea75c5c3",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl01_table-5-3-extra-heavy-cast-iron-soil-pip.xlsx",
+      "xlsx_sha256": "cff6bf104ffca895de62bb4d02801e015ac05069fe7731e8114837ea8d61f7cb"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.59,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1884,
+        2477,
+        3244
+      ],
+      "caption": "Table 5-3 Dimensions of Hubs, Spigots, and Barrels for Extra Heavy Cast Iron Soil Pipe and Fittings (Part 2: hub thickness, hub head width, spigot bead width, lead groove dimensions)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl02_table-5-3-extra-heavy-cast-iron-soil-pip.png",
+      "png_sha256": "d4d5b7acb6e14e86d4afbf07e511d1fab249c2ee22713dbfa3570fda74265fe2",
+      "slug": "table-5-3-extra-heavy-cast-iron-soil-pip",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl02_table-5-3-extra-heavy-cast-iron-soil-pip.json",
+      "table_data_json_sha256": "f0262d34fd41e83318861e17898a48cfdcb153d9d3927375e1e81a8999115551",
+      "table_data_sha256": "f0262d34fd41e83318861e17898a48cfdcb153d9d3927375e1e81a8999115551",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0088_tbl02_table-5-3-extra-heavy-cast-iron-soil-pip.xlsx",
+      "xlsx_sha256": "f59d84c55fcf42ce0258488a8cea9efff484d4bb73c79c5dcd9ba10444a86674"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 88,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0088.png",
+  "page_image_sha256": "b8246eeeb281fd225824eb418a4f83d2eeac32f3de64c0f0a34dd29f471bdb39",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0088_assets.json"
+}

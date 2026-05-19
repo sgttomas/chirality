@@ -1,0 +1,142 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 137,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Exchanger outline dimensional drawing — HeatTran Equipment Division, Item E-91B, Dwg H/T-3429",
+      "slug": "exchanger-outline-dimensional-drawing-e91b",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.62],
+      "confidence": "high",
+      "notes": "Full outline dimensional drawing of heat exchanger with annotated dimensions and notes; includes overall length 18'-7 7/16\", tube bundle, shell cover removal requirement, nozzle/slot details, and HeatTran Equipment Division certification stamp with signature."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Exchanger Design Data and Painting/Insulation Requirements",
+      "slug": "exchanger-design-data-painting-insulation",
+      "bbox_norm": [0.03, 0.60, 0.97, 0.82],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true, "col_span": 3 },
+              { "value": "Shell", "is_header": true },
+              { "value": "Tube", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PAINTING REQUIREMENTS", "is_header": true, "row_span": 2 },
+              { "value": "NONE", "type": "text", "col_span": 2 },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "", "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DESIGN PRESSURE", "is_header": true },
+              { "value": "PSI", "type": "text" },
+              { "value": 100, "type": "number", "unit": "PSI" },
+              { "value": 100, "type": "number", "unit": "PSI" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "INSULATION REQUIREMENTS", "is_header": true, "row_span": 4 },
+              { "value": "HYDROSTATIC TEST PRESS", "is_header": true },
+              { "value": "PSI", "type": "text" },
+              { "value": 150, "type": "number", "unit": "PSI" },
+              { "value": 150, "type": "number", "unit": "PSI" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DESIGN TEMPERATURE", "is_header": true },
+              { "value": "°F", "type": "text" },
+              { "value": 600, "type": "number", "unit": "°F" },
+              { "value": 200, "type": "number", "unit": "°F" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CORROSION ALLOWANCE", "is_header": true },
+              { "value": "IN.", "type": "text" },
+              { "value": "1/16", "type": "fraction" },
+              { "value": "1/8 (CS)", "type": "text", "raw": "1/8 (CS)" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "NUMBER OF PASSES", "is_header": true },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "ONE", "type": "text" },
+              { "value": "TWO", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "notes": "Left portion of table contains Painting Requirements (NONE) and Insulation Requirements (BY OTHERS) spanning multiple rows; right portion is Design Data with Shell and Tube columns. BY OTHERS text visible in insulation row."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Estimated Weight Each and Customer/Service Data",
+      "slug": "estimated-weight-customer-service",
+      "bbox_norm": [0.03, 0.81, 0.97, 0.93],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ESTIMATED WEIGHT EACH", "is_header": true, "col_span": 2 },
+              { "value": "CUST.", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DRY", "type": "text" },
+              { "value": "3600 LBS.", "type": "text" },
+              { "value": "P.O.", "is_header": true },
+              { "value": "", "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "WET", "type": "text" },
+              { "value": "5100 LBS.", "type": "text" },
+              { "value": "SERVICE", "is_header": true },
+              { "value": "HOT WATER", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BUNDLE", "type": "text" },
+              { "value": "1700 LBS.", "type": "text" },
+              { "value": "", "type": "missing", "raw": "" },
+              { "value": "", "type": "missing", "raw": "" }
+            ]
+          }
+        ]
+      },
+      "notes": "Combined table with estimated weights (DRY/WET/BUNDLE) on left and customer/service fields (P.O. blank, SERVICE: HOT WATER) on right. Footer row below shows HEATRAN EQUIPMENT DIVISION, HOUSTON, TEXAS."
+    }
+  ],
+  "issues": []
+}

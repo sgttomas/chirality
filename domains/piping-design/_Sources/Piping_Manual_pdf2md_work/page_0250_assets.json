@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 250,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.49],
+      "caption": "EXHIBIT 10-27 Packed Tower Components: (a) Packed Bed Section showing liquid feed, liquid distributor, packing, maintenance access, body flange, vapor inlet, and packing support, with Raschig Ring, Slotted Ring, and Cross-Partition Ring details; (b) Liquid Distributor with splash plate, vapor riser, and liquid downcomer; (c) Packing Support Grid showing vapor and liquid flow paths."
+    }
+  ],
+  "issues": []
+}

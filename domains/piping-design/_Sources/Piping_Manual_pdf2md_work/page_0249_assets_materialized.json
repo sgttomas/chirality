@@ -1,0 +1,132 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0249.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0249_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.96,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1287
+      ],
+      "caption": "EXHIBIT 10-22 Examples of Downcomer Trays - a. Single-Pass Downcomer Tray; b. Double-Pass Downcomer Tray",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0249_fig01_exhibit-10-22-examples-of-downcomer-tray.png",
+      "png_sha256": "f762da5454dff0f70052f603d87e27830596c42461dc941ddaffbb5d95ad1041",
+      "slug": "exhibit-10-22-examples-of-downcomer-tray",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0249_fig02",
+      "bbox_norm": [
+        0.05,
+        0.35,
+        0.5,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        990,
+        1402,
+        2078
+      ],
+      "caption": "EXHIBIT 10-23 Tower Transition Section - showing single-pass downcomer and double-pass downcomer",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0249_fig02_exhibit-10-23-tower-transition-section-s.png",
+      "png_sha256": "d71e5cd7d2853f44dfcb6481b935b8863075b2e9a3d237b47478164ea1b567f0",
+      "slug": "exhibit-10-23-tower-transition-section-s",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0249_fig03",
+      "bbox_norm": [
+        0.5,
+        0.35,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        1148,
+        990,
+        2550,
+        2078
+      ],
+      "caption": "EXHIBIT 10-25 Opposing Downcomers - showing odd-numbered downcomers and even-numbered downcomers",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0249_fig03_exhibit-10-25-opposing-downcomers-showin.png",
+      "png_sha256": "8eebc1c90009df711618e3528681c5ef66e2af5454934295d7f90f92bd281aed",
+      "slug": "exhibit-10-25-opposing-downcomers-showin",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0249_fig04",
+      "bbox_norm": [
+        0.05,
+        0.59,
+        0.5,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1781,
+        1402,
+        3068
+      ],
+      "caption": "EXHIBIT 10-24 Chimney Tray Arrangement - showing chimney (or multiple chimneys) and way to support tray, beam channel",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Piping_Manual_p0249_fig04_exhibit-10-24-chimney-tray-arrangement-s.png",
+      "png_sha256": "98a824ea6b4da8f3a790af4cd2751be8d082031c0e76ba4db87c2914f99d1be7",
+      "slug": "exhibit-10-24-chimney-tray-arrangement-s",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0249_fig05",
+      "bbox_norm": [
+        0.5,
+        0.59,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        1148,
+        1781,
+        2550,
+        3068
+      ],
+      "caption": "EXHIBIT 10-26 Reboiler Arrangement - showing reboiler, tower, and downcomer tray #17",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 5,
+      "png_path": "figures/Piping_Manual_p0249_fig05_exhibit-10-26-reboiler-arrangement-showi.png",
+      "png_sha256": "2332633a42c54efc808b8571058bb448647ad59df75e3f4dc7a5e8110c524abf",
+      "slug": "exhibit-10-26-reboiler-arrangement-showi",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 249,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0249.png",
+  "page_image_sha256": "0f152db171447da1aa300daf8be7b9c826580b9ec608a7453b7ffa953ec16b4a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0249_assets.json"
+}

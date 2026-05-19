@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 373,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0373_fig_01",
+      "caption": "EXHIBIT 14-13 Side-Mounted Internal Level Switch and Transmitter (a. Switch; b. Transmitter)",
+      "bbox_norm": [0.05, 0.04, 0.97, 0.27]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0373_fig_02",
+      "caption": "EXHIBIT 14-14 Top-Mounted Internal Level Switch and Transmitter (a. Switch; b. Transmitter)",
+      "bbox_norm": [0.05, 0.27, 0.52, 0.72]
+    }
+  ],
+  "issues": []
+}

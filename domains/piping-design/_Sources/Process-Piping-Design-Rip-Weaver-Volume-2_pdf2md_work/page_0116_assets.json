@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 116,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-26. Symmetrical and nonsymmetrical piping. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "symmetrical-nonsymmetrical-piping-heater-outlet",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.58],
+      "confidence": "high",
+      "notes": "Full-page-width piping diagram showing non-symmetrical configuration (left) and symmetrical piping heater outlet four-pass (right). Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0015_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        3538
+      ],
+      "caption": "Nomenclature \u2014 symbols D through G",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0015_tbl01_nomenclature-symbols-d-through-g.csv",
+      "csv_sha256": "16ea0893b2cadedd1510bfe38e8bb1edb8d17069a948619af12f41a6fa5b64cf",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0015_tbl01_nomenclature-symbols-d-through-g.png",
+      "png_sha256": "ce10b56efa4090c39f0e138c9b13a5a77142bb06fddd1f07315322b344618702",
+      "slug": "nomenclature-symbols-d-through-g",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015.png",
+  "page_image_sha256": "b4a9c8f4e20fd265d8e4601e7570ae7b22e40f52faedc5a64bcdb52fc95892c5",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0015_assets.json"
+}

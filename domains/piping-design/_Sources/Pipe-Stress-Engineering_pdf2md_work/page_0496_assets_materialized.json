@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0496_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.09,
+        0.92,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        141,
+        2434,
+        2364
+      ],
+      "caption": "ASME B31.1 Allowable Stress SE (ksi) \u2014 continued, At Temperature (\u00b0F), materials A312/TP316 through A312/TP347H/E",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0496_tbl01_asme-b311-allowable-stress-se-ksi-contin.png",
+      "png_sha256": "73cc0c2b87c7e01e66021fadfef05d7958d6e3e5a40bd95617a8afe5e3778bb0",
+      "slug": "asme-b311-allowable-stress-se-ksi-contin",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0496_tbl01_asme-b311-allowable-stress-se-ksi-contin.json",
+      "table_data_json_sha256": "971c4c8e24d987e6c30dd628c82a4e76a827f6e01b687730a018f379ff60a78e",
+      "table_data_sha256": "971c4c8e24d987e6c30dd628c82a4e76a827f6e01b687730a018f379ff60a78e",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0496_tbl01_asme-b311-allowable-stress-se-ksi-contin.xlsx",
+      "xlsx_sha256": "0a828d65088b67887f5eb621904ba18c8dcf7ec25b50e1784bcde95c3a3db7e8"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 496,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496.png",
+  "page_image_sha256": "cd5c6ec9f55c09c49d7754306be8781e6dc79dee5609ceccb699597bc81593e9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0496_assets.json"
+}

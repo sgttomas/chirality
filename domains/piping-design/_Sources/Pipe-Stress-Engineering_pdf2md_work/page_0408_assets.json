@@ -1,0 +1,104 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 408,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 12.1 Damping in Piping (as Percent of Critical Damping)",
+      "slug": "damping-in-piping-percent-critical-damping",
+      "bbox_norm": [0.06, 0.62, 0.94, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [7],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Newmark Recommendation [4]", "col_span": 2, "is_header": true },
+              { "value": "U.S. NRC Regulatory Guide 1.61, 1973 [5]", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stress category", "is_header": true },
+              { "value": "Damping", "is_header": true },
+              { "value": "Load category", "is_header": true },
+              { "value": "Damping", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stress below ½ yield point", "type": "text" },
+              { "value": 0.5, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stress no more than ½ to yield point", "type": "text" },
+              { "value": 1.0, "type": "number" },
+              { "value": "Operation Basis Earthquake D > 12 in.", "type": "text" },
+              { "value": 2.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Operation Basis Earthquake D ≤ 12 in.", "type": "text" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stress just below yield point", "type": "text" },
+              { "value": 2.0, "type": "number" },
+              { "value": "Safe Shutdown Earthquake D > 12 in.", "type": "text" },
+              { "value": 3.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Safe Shutdown Earthquake D ≤ 12 in.", "type": "text" },
+              { "value": 2.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U.S. NRC Regulatory Guide 1.61, Revision 1, 2007 [5]", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Operation Basis Earthquake", "is_header": true },
+              { "value": "Damping", "is_header": true },
+              { "value": "Safe Shutdown Earthquake", "is_header": true },
+              { "value": "Damping", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 3.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 4.0, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-part table. Upper section (rows 0-6) has two column groups: Newmark Recommendation and NRC Reg Guide 1.61 (1973). Section divider at row index 7 separates the 2007 Revision 1 sub-table. The 2007 section has its own spanning header row and a separate column header row before the single data row."
+    }
+  ],
+  "issues": []
+}

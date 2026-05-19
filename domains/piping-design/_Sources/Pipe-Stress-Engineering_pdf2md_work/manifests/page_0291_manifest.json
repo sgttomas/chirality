@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0291.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0291_fig01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2011,
+        2509,
+        3528
+      ],
+      "caption": "Fig. 8.20 Displacement and Rotation at Low-Type Tank Connection",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0291_fig01_displacement-rotation-low-type-tank-conn.png",
+      "png_sha256": "6d58ef8975cdbc4ae972e2ef51838d82b4be83eed5669976eb2b165c1388c446",
+      "slug": "displacement-rotation-low-type-tank-conn",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 291,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0291.png",
+  "page_image_sha256": "4194ff1a73a86dd6efac6beac9d5b6c8f4170779b9d2c0aba974c026c760d38c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0291_assets.json"
+}

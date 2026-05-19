@@ -1,0 +1,92 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0042.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.52,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1459,
+        1221
+      ],
+      "caption": "Parts list for Type 8J pump (Items 1\u201320)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl01_type-8j-parts-list.png",
+      "png_sha256": "2dc696b8a8dd6143cf531c44b99be42fba48bc5efd3a7b6d730c12f94ec674d5",
+      "slug": "type-8j-parts-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl01_type-8j-parts-list.json",
+      "table_data_json_sha256": "3ed5624c957f93a985aa28c6e295e28ae0f81539427b02d7f7f0387690193977",
+      "table_data_sha256": "3ed5624c957f93a985aa28c6e295e28ae0f81539427b02d7f7f0387690193977",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl01_type-8j-parts-list.xlsx",
+      "xlsx_sha256": "c32e4f053f2f9cb22c054a6dd95f8c5f7198d4a3e25d0c8de1787fe93112fa0d"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0042_fig01",
+      "bbox_norm": [
+        0.03,
+        0.3,
+        0.65,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        825,
+        1792,
+        3300
+      ],
+      "caption": "Figure 1-26. Pump outline dimensions, Type 8J. Courtesy of Byron Jackson Pump Division.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0042_fig01_pump-outline-dimensions-type-8j.png",
+      "png_sha256": "92e337b3b87ac0e269d9855ce3c540022dd1fcceea1c26e58b012d40186187e3",
+      "slug": "pump-outline-dimensions-type-8j",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.03,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        1280,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Dimensional data table for Type 8J pump sizes (columns A\u2013Z)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0042_tbl02_type-8j-dimensional-data.png",
+      "png_sha256": "616bac0ece65127e780ba1d2c80b7fdd3dfad580beee420ad84e849d3a249d75",
+      "slug": "type-8j-dimensional-data",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 42,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0042.png",
+  "page_image_sha256": "2e930fc0a22c5bba64b3377cf851d675a0c3d6c5ef5c582c0d30a7baf4ef5414",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0042_assets.json"
+}

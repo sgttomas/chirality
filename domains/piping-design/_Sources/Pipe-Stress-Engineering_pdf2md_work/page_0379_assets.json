@@ -1,0 +1,76 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 379,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "FIG. 11.2 THERMAL STRESS FACTOR, C= Si/(Eα(T1 - T2)) AND LINEAR CORRECTION FACTOR, K[1]",
+      "slug": "thermal-stress-factor-c-k-fig-11-2",
+      "bbox_norm": [0.05, 0.02, 0.95, 0.43],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "[1]", "text": "Reference [1]" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Fill Position", "row_span": 2, "is_header": true },
+              { "value": "Assumed Temperature Distribution", "col_span": 3, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Constant Steps", "is_header": true },
+              { "value": "Constant Linear", "is_header": true },
+              { "value": "Linear", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fill", "type": "text" },
+              { "value": "[diagram: pipe full, T1 top / T2 bottom — constant step]", "type": "text" },
+              { "value": "[diagram: pipe full, T1 / +T2 — constant linear]", "type": "text" },
+              { "value": "[diagram: pipe full, T1 — linear]", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "¾ Full", "type": "text" },
+              { "value": "C= -0.391 / -0.609; K=1.103", "type": "text", "raw": "C=\n-0.391\nC=\n-0.609\nK=1.103" },
+              { "value": "C= -0.391 / -0.391; K=0.782", "type": "text", "raw": "C=\n-0.391\nC=\n-0.391\nK=0.782" },
+              { "value": "C= -0.413 / C>0.0; K=1.000", "type": "text", "raw": "C=\n-0.413\nC>0.0\nK=1.000" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "½ Full", "type": "text" },
+              { "value": "C= -0.500; K=1.233", "type": "text", "raw": "C=\n-0.500\nK=1.233" },
+              { "value": "C= 0.500 / -0.182; K=1.000", "type": "text", "raw": "C=\n0.500\nC=\n-0.182\nK=1.000" },
+              { "value": "C= 0.318 / C>0.0; K=1.000", "type": "text", "raw": "C=\n0.318\nC>0.0\nK=1.000" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "¼ Full", "type": "text" },
+              { "value": "C= -0.609 / 0.391; K=1.103", "type": "text", "raw": "C=\n-0.609\nC=\n0.391\nK=1.103" },
+              { "value": "C= -0.150 / -0.138; K=1.073", "type": "text", "raw": "C=\n-0.150\nC=\n-0.138\nK=1.073" },
+              { "value": "C= 0.138 / C>0.0; K=1.000", "type": "text", "raw": "C=\n0.138\nC>0.0\nK=1.000" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "This is the combined figure/table labeled Fig. 11.2. The top portion contains pipe cross-section diagrams in the Fill row showing temperature distribution shape assumptions. Data rows contain C (thermal stress factor) and K (linear correction factor) values for ¾ Full, ½ Full, and ¼ Full conditions across three temperature distribution types. Caption appears below the figure/table composite."
+    }
+  ],
+  "issues": []
+}

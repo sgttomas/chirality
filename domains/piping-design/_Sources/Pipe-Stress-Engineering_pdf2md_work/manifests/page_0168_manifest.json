@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0168.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0168_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2605,
+        1332
+      ],
+      "caption": "FIG. 5.10 DEFORMATION OF TANK SHELL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0168_fig01_deformation-of-tank-shell.png",
+      "png_sha256": "e1b28ea73ddf11f05be635679abba57bf7e3228cc981407349e6d2d722b83df7",
+      "slug": "deformation-of-tank-shell",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 168,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0168.png",
+  "page_image_sha256": "3c6c944f3ca794556143410af791b07059b1129a8b506e2d7d604da2f578b38b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0168_assets.json"
+}

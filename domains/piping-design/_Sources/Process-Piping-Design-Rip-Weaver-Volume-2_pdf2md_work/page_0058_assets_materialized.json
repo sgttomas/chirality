@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0058.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0058_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2541
+      ],
+      "caption": "Figure 2-4. Platforming for grade-mounted compressors. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0058_fig01_platforming-grade-mounted-compressors.png",
+      "png_sha256": "4306cde762630c079a9b3403602a37706a6e19cf6cdd7a4dfc8772d14e5f9862",
+      "slug": "platforming-grade-mounted-compressors",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0058.png",
+  "page_image_sha256": "1d9be2abe81046fa532ecc9438680c8f41e5207424041ebf3ce6b0de77dccdeb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0058_assets.json"
+}

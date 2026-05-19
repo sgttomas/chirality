@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0067.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0067_fig01",
+      "bbox_norm": [
+        0.08,
+        0.52,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        76,
+        1663,
+        2447,
+        3538
+      ],
+      "caption": "FIG. 2.10 STRESSES DUE TO FORCES AND MOMENTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0067_fig01_stresses-due-to-forces-and-moments.png",
+      "png_sha256": "46a874fc7474360839ef9269a738b0c32a364df32ad56fe1a65c8dfc8c6fbf4f",
+      "slug": "stresses-due-to-forces-and-moments",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 67,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0067.png",
+  "page_image_sha256": "5d697eee7db4deba400390a825baacc0c3a767d37603722bee3dcb7a03d89319",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0067_assets.json"
+}

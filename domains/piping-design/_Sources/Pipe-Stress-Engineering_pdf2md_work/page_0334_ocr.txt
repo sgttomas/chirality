@@ -1,0 +1,68 @@
+314 Chapter 9
+
+piston is working both ways, having inlet and outlet ports at both ends of the cylinder. The machine
+shown in Fig. 9.18 is double acting.
+
+The piston is pushed back and forth by the connecting rod connected to the crank, which is revoly-
+ing at a constant speed. With a constant angular crank speed, the linear speed of the piston varies
+very closely to a sinusoidal shape. If the connecting rod is infinitely long, then the piston speed fol-
+lows a pure sinusoidal form. With a finite-length connecting rod, the piston speed tends to be slower
+than given by the sine curve at the side closer to the crankshaft, and quicker toward the other side.
+However, for practical purposes, a sinusoidal form can be used. The discharge volume of the cylinder
+chamber at the B side is smaller than that of the A side due to the volume occupied by the piston rod.
+Again, for a general discussion purposes, the volumes at both sides of the cylinder are assumed to be
+similar.
+
+The volumetric historical discharge shape of a compressor is different from the historical discharge
+shape of a pump. In a compressor, the gas has to be first compressed from the inlet pressure to the out-
+let pressure before being discharged to the outlet system. Because of its compressible nature, it takes
+the piston to move to point c to compress the gas to reach outlet pressure. The gas is then discharged
+volumetrically according to the speed of the piston. This assumes that the outlet pressure maintains
+a constant pressure without being influenced by the discharge of the machine. The discharge shape
+of the pump is.quite different due to a practically incompressible nature of the liquid pumped. In a
+pump, the liquid starts to discharge almost instantaneously as the piston starts to move. Therefore,
+the volumetric shape is similar to the sinusoidal shape without the initial silent period as shown in Fig.
+9.18(b). The figure shows the curve from both sides of the double-acting cylinder. They are discharged
+to a common header creating a combined volumetric pulsation before being discharged to the outlet
+piping.
+
+The combined pulsation flow averages out by the multiple outlets spaced at strategically straddled
+crank phase angles. More cylinders result in a higher pulsation frequency, but lower pulsation ampli-
+tude. Figure 9.18(b) shows two humps and two valleys in one crankshaft revolution for a one cylinder
+(simplex) double-acting pump — that is, two cycles of pulsation per revolution of crankshaft. The
+shape of the pulsation has quite deviated from sinusoidal. The shape of the compressor pulsations is
+especially irregularly shaped. Because of its imperfect but nevertheless cyclic shape, the pulsation is
+regarded as the combination of many sinusoidal pulsations at crankshaft rotation frequency and its
+higher harmonic frequencies. The pulsation shape is matched by varying the amplitude of each of the
+harmonic frequencies. These harmonic frequencies, f, (in cycles per second), are calculated as [10]
+
+nN
+
+io = eo 7= 1,2,3,... for reciprocating compressors (9.8)
+nmN : :
+t= oo? = 1,2,3,... for reciprocating pumps (9.9)
+
+where Nis the crankshaft speed in revolution per minute (R.P.M.), and m is the number of plungers or
+pistons for multiplex pumps. With all these harmonic pulsations, the dominant pulsation is generally
+given higher priority. For pumps, the dominant frequency is easier to spot because its pulsation shape
+is close to sinusoidal. The single-cylinder double-acting pump shown in Fig. 9.18(b), for instance,
+has the dominant pulsation at two cycles of pulsation per one crankshaft revolution. Because the
+average flow rate is only 2/z = 0.637 of the maximum flow rate, the pulsation flow has a maximum of
+(1 — 0.637)/0.637 = 0.57 of the average flow rate, and a minimum of zero flow rate. In other words, the
+flow is pulsating between +57% of the mean flow rate and —-100% of the mean flow rate.
+
+The shape of the pulsation flow is not very well defined. In a duplex double-acting pump, for in-
+stance, the cranks of the two cylinders are set 90 deg. apart for the best flow balance. The ideal si-
+nusoidal flow pulsation is shown in Fig. 9.19(a), with a maximum at 17.2% above the mean average
+flow rate and a minimum at 17.2% below the average rate. The ideal sinusoidal shape is created by
+
+7
+fee
+
+a
+eee
+
+aud
+
+ra
+

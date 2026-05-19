@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0165.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0165_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2477,
+        3491
+      ],
+      "caption": "Figure 8-7. Level controller types. Courtesy of Masoneilan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0165_fig01_level-controller-types-masoneilan.png",
+      "png_sha256": "45b614e940e028e42dd01f5dd22266c37da7ba2abff83c716f8dd24b27041f53",
+      "slug": "level-controller-types-masoneilan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 165,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0165.png",
+  "page_image_sha256": "fc02343044299b61fa849bdb3ff560935fc663fe1df2467a0477b3c7055348ce",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0165_assets.json"
+}

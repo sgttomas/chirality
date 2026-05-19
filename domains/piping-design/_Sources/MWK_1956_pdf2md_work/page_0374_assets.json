@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 374,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Full-page isometric piping flexibility/stress analysis drawing (The M.W. Kellogg Company, Piping Flexibility & Stress Analysis) showing piping geometry with dimensions, anchor/support points, and a coordinate compass inset. Caption 'FIGURE 5A.9' appears at top of page; title block at lower right."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "FIGURE 5A.9",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.98
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0016_fig01",
+      "bbox_norm": [
+        0.03,
+        0.5,
+        0.52,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1485,
+        1459,
+        3300
+      ],
+      "caption": "Figure 1-2. P-100A suction piping. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0016_fig01_p-100a-suction-piping.png",
+      "png_sha256": "584f78eb44ca6b4070003b3e2ab029ffb9410b73ef48fe14813dde531e8783d3",
+      "slug": "p-100a-suction-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0016.png",
+  "page_image_sha256": "d98ec5f4596f91c0524e6091c827680de20086061e9ef24fc656eb9d3f08361d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0016_assets.json"
+}

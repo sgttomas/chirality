@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 295,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0295_fig_01",
+      "caption": "EXHIBIT 11-20 Steam Line Drip Legs",
+      "bbox_norm": [0.04, 0.04, 0.97, 0.30]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0295_fig_02",
+      "caption": "EXHIBIT 11-21 Proper Line Support",
+      "bbox_norm": [0.04, 0.30, 0.97, 0.51]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0295_fig_03",
+      "caption": "EXHIBIT 11-22 Intermediate Pipe Support",
+      "bbox_norm": [0.04, 0.51, 0.50, 0.69]
+    }
+  ],
+  "issues": []
+}

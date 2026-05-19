@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 245,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p245_fig_10-15",
+      "caption": "EXHIBIT 10-15 Minimum Clearance",
+      "bbox_norm": [0.085, 0.355, 0.505, 0.625]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p245_fig_10-17",
+      "caption": "EXHIBIT 10-17 Common Access",
+      "bbox_norm": [0.515, 0.355, 0.925, 0.615]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p245_fig_10-16",
+      "caption": "EXHIBIT 10-16 Vertical Reboiler",
+      "bbox_norm": [0.085, 0.625, 0.505, 0.925]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 239,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0239_fig_01",
+      "caption": "EXHIBIT 10-1  Crude Distillation of Products Across Temperature Range",
+      "bbox_norm": [0.05, 0.05, 0.50, 0.32]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0239_fig_02",
+      "caption": "EXHIBIT 10-2  Batch Shell Still Distillation Process",
+      "bbox_norm": [0.50, 0.05, 0.97, 0.27]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0239_fig_03",
+      "caption": "EXHIBIT 10-3  Continuous Shell Still Distillation Process",
+      "bbox_norm": [0.04, 0.32, 0.97, 0.55]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0239_fig_04",
+      "caption": "EXHIBIT 10-4  Multiunit Fractional Distillation Process",
+      "bbox_norm": [0.04, 0.55, 0.97, 0.78]
+    }
+  ],
+  "issues": []
+}

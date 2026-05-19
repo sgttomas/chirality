@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0391.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0391_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1409
+      ],
+      "caption": "FIG. 11.12 SOCKET WELD CONNECTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0391_fig01_socket-weld-connection.png",
+      "png_sha256": "3eda2abe04719524f93db30c33ef75d5e06b84c14cc2f0f07e82f2993598b272",
+      "slug": "socket-weld-connection",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 391,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0391.png",
+  "page_image_sha256": "820a6c5d8ead72a8b3c1febf26d731d2f5dce61cd46bf702110e49f6d9a8bd20",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0391_assets.json"
+}

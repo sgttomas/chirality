@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 184,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.10, 0.28, 0.94, 0.94],
+      "caption": "EXHIBIT 7-35 Plan for the Upper Level of a Circular Furnace"
+    }
+  ],
+  "issues": []
+}

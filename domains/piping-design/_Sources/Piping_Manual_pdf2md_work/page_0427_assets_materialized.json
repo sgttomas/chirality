@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0427.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0427_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        3299
+      ],
+      "caption": "EXHIBIT 16-17 \u2014 Nomograph for Absorbing Leg on Pump Piping (Chart for Determining the Absorbing Leg on Pump Piping). Five-scale nomograph (Total Thermal Expansion in inches; Pivot Line; Force in pounds; Force Pipe Length in feet; Nominal Pipe Diameter / Standard Weight in inches; Moment of Inertia in inches^4) with a dashed construction line and reference points 4.1, 4.2, 4.3, 4.4, 4.5.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0427_fig01_exhibit-16-17-nomograph-for-absorbing-le.png",
+      "png_sha256": "e0c3229ff965ef789a0d1a253b6bc7ac42e5f3813b37961da4fe6b572ac7fb0b",
+      "slug": "exhibit-16-17-nomograph-for-absorbing-le",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 427,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0427.png",
+  "page_image_sha256": "bb0bada512d8adf9e3fb262ff27641bcabe4621713df9eb4003dadaf721a939b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0427_assets.json"
+}

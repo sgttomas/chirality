@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0444.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0444_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2536,
+        1526
+      ],
+      "caption": "FIG. 13.6 HORIZONTAL DESIGN RESPONSE SPECTRA [19] - SCALED TO 1.0 G HORIZONTAL GROUND ACCELERATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0444_fig01_horizontal-design-response-spectra.png",
+      "png_sha256": "44938f809c7c85387060f00c933a8c382bf7a4561b7f1c5cf7482bee81c1ec05",
+      "slug": "horizontal-design-response-spectra",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 444,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0444.png",
+  "page_image_sha256": "aba4e6925366e1b390deb9011c5f15c0048a2217360b7cf8059994bdf63d803d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0444_assets.json"
+}

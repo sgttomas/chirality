@@ -1,0 +1,32 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.55,
+        0.05,
+        0.97,
+        0.23
+      ],
+      "caption": "Three-anchor configuration.",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.97,
+        0.97
+      ],
+      "caption": "System of Equations for Stop at Point N",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 326,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0288.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0288_fig01",
+      "bbox_norm": [
+        0.04,
+        0.15,
+        0.96,
+        0.53
+      ],
+      "bbox_px": [
+        0,
+        331,
+        2562,
+        1919
+      ],
+      "caption": "EXHIBIT 11-11 \u2014 Pipe Rack Meter Runs. Elevation/side view of a pipe rack showing horizontal pipes supported on structural beams at multiple levels. The upper section depicts piping with orifice flanges (labeled \"ORIFICE FLANGES\") arranged in a meter run configuration with vertical riser legs and connections. A vertical \"LADDER\" is shown attached to the rack structure providing access. Multiple parallel pipes run horizontally across the rack at the lower levels.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0288_fig01_exhibit-11-11-pipe-rack-meter-runs-eleva.png",
+      "png_sha256": "e1a02e803f18a92460246db3afcc265694c1691403e90ca2c03880db99f3b1b2",
+      "slug": "exhibit-11-11-pipe-rack-meter-runs-eleva",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 288,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0288.png",
+  "page_image_sha256": "e62b0ecbbf5087a8d1da6c4556c41440ace818d8ca83a1a082d3bf891361e98a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0288_assets.json"
+}

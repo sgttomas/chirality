@@ -1,0 +1,34 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.96,
+        0.45
+      ],
+      "caption": "EXHIBIT 11-6 Line Spacing Chart",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "notes": "Centerline-to-centerline line spacing chart for 150# and 300# flanges across line sizes 1\" through 20\". Includes a small inset diagram showing two flanges with a 1\" OD centerline-to-centerline reference dimension on the left side of the table body."
+    },
+    {
+      "bbox_norm": [
+        0.08,
+        0.6,
+        0.96,
+        0.92
+      ],
+      "caption": "EXHIBIT 11-7 Line Spacing",
+      "kind": "fig",
+      "notes": "Three-pipe arrangement diagram showing flanged pipes side by side. Top callout points to SEE LINE SPACING CHART (EXHIBIT 11-6). Bottom labels identify UNINSULATED FLANGES, STAGGER FLANGES, and INSULATED FLANGES."
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 285,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

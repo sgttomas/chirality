@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0375.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0375_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.98,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1359
+      ],
+      "caption": "EXHIBIT 14-17 Standard Control Valve Station",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0375_fig01_exhibit-14-17-standard-control-valve-sta.png",
+      "png_sha256": "2e2ac114def08fa50e7e3b20848edc3d96fe0df3fd8fbc05bce00b05155acf68",
+      "slug": "exhibit-14-17-standard-control-valve-sta",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0375_fig02",
+      "bbox_norm": [
+        0.05,
+        0.36,
+        0.5,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1027,
+        1413,
+        2353
+      ],
+      "caption": "EXHIBIT 14-18 Single Control Valve Station",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0375_fig02_exhibit-14-18-single-control-valve-stati.png",
+      "png_sha256": "f61087171794ebb3902e09d2409eeb57ab88f02ac39d53fd47a52bec29ddf130",
+      "slug": "exhibit-14-18-single-control-valve-stati",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 375,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0375.png",
+  "page_image_sha256": "9bc59c6694515900c1c9d8fc32478bd8e19c83f8d93462ac46c289328c37deaf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0375_assets.json"
+}

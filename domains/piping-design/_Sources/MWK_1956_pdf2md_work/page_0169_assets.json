@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.99,
+        0.99
+      ],
+      "caption": "Form E (Flexibility Stress Analysis) 6-Equations - The M.W. Kellogg Co. Tabulated simultaneous-equation worksheet combining shape-coefficient sums (Form D-3), deflection equations (Form J), and the six-equation system (Forms E-2 / E-3) for the General Analytical Method sample calculation. Columns: Mx, My, Mz, Fx, Fy, Fz, CONSTANTS.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 169,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

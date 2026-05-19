@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 107,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6-4. Isometric spool with mitres. Courtesy of Texas Pipe Bending Co., Inc.",
+      "slug": "isometric-spool-with-mitres",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.88],
+      "confidence": "high",
+      "notes": "Full-page isometric engineering drawing of a 14-inch mitered pipe spool with annotated dimensions, flange callouts, and mitre cut angles. Caption appears near the bottom of the page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Material List — Isometric spool with mitres",
+      "slug": "material-list-isometric-spool-mitres",
+      "bbox_norm": [0.08, 0.63, 0.92, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "a",
+            "text": "All pipe to be ASTM A-106 Gr. B, Smls. 0.375\" Wall"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Quantity", "is_header": true },
+              { "value": "Size", "is_header": true },
+              { "value": "Description", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": "14\"", "type": "text" },
+              { "value": "150 lb. SO RF Flg.", "type": "text", "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number", "footnote_markers": ["a"] },
+              { "value": "14\"", "type": "text" },
+              { "value": "16′ – 11-1/8″", "type": "fraction", "raw": "16′ – 11-1/8″" },
+              { "value": "3PE", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Material list with two data rows. A pipe-spec note (ASTM A-106 Gr. B, Smls. 0.375\" Wall) appears between rows and is captured as footnote 'a'. Header declares 3 logical columns; the second data row splits Description into a length field and a pipe-end-prep field, modelled as col_span=2 on the header Description cell."
+    }
+  ],
+  "issues": []
+}

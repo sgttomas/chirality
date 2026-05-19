@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0440.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0440_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        814,
+        2523,
+        3538
+      ],
+      "caption": "Table 13.1 Comparison of Different Methods in Combining Closely Spaced Modes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0440_tbl01_comparison-methods-combining-closely-spa.png",
+      "png_sha256": "94e3c4c6776c12cb4f43e013ef63959da73e36cc401b24a47a2e90a85a187620",
+      "slug": "comparison-methods-combining-closely-spa",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0440_tbl01_comparison-methods-combining-closely-spa.json",
+      "table_data_json_sha256": "177802f0360910e5ee14b0ede4a30144158a1460d471cf46e32765244e79efeb",
+      "table_data_sha256": "177802f0360910e5ee14b0ede4a30144158a1460d471cf46e32765244e79efeb",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0440_tbl01_comparison-methods-combining-closely-spa.xlsx",
+      "xlsx_sha256": "47e1da99e5bd004ac6d9d83c9a35abe1943921b558ba3be07244a648d40599b3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 440,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0440.png",
+  "page_image_sha256": "30c74475bb824aba120103ce25e69c72e891bb19fa7442ac20b40b68477a595b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0440_assets.json"
+}

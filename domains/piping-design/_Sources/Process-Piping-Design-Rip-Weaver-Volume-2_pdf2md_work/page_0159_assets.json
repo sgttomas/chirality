@@ -1,0 +1,86 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 159,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5-2 A Coefficients for Carbon Steel",
+      "slug": "table-5-2-a-coefficients-carbon-steel",
+      "bbox_norm": [0.03, 0.03, 0.50, 0.21],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Design Temp. °F", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "Design Temp. °F", "is_header": true },
+              { "value": "A", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 150, "type": "number", "unit": "°F" },
+              { "value": 0.4, "type": "number" },
+              { "value": 600, "type": "number", "unit": "°F" },
+              { "value": 2.00, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 200, "type": "number", "unit": "°F" },
+              { "value": 0.6, "type": "number" },
+              { "value": 700, "type": "number", "unit": "°F" },
+              { "value": 2.30, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 300, "type": "number", "unit": "°F" },
+              { "value": 1.0, "type": "number" },
+              { "value": 800, "type": "number", "unit": "°F" },
+              { "value": 2.50, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 400, "type": "number", "unit": "°F" },
+              { "value": 1.4, "type": "number" },
+              { "value": 900, "type": "number", "unit": "°F" },
+              { "value": 2.95, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 500, "type": "number", "unit": "°F" },
+              { "value": 1.8, "type": "number" },
+              { "value": 1000, "type": "number", "unit": "°F" },
+              { "value": 3.15, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column-pair table with temperature (°F) and A coefficient values for carbon steel piping flexibility calculations"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 5-2. Single-plane configuration.",
+      "slug": "figure-5-2-single-plane-configuration",
+      "bbox_norm": [0.50, 0.52, 0.97, 0.76],
+      "confidence": "high",
+      "notes": "L-shaped single-plane piping configuration diagram with labeled dimensions a, b, c, d, e, f showing segment lengths between anchors"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 75,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.04, 0.96, 0.30],
+      "caption": "EXHIBIT 4-7 Vertical Condensate Pump"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.31, 0.96, 0.55],
+      "caption": "EXHIBIT 4-8 Air Blower"
+    }
+  ],
+  "issues": []
+}

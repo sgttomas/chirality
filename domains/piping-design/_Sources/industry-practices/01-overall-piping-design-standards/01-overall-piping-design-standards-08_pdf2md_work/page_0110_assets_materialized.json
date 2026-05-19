@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0110.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0110_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.1,
+        0.92,
+        0.45
+      ],
+      "bbox_px": [
+        74,
+        175,
+        2406,
+        1754
+      ],
+      "caption": "Appendix 7 \u2014 Visible length of plate-type level gauges in relation to standard displacer-type level instruments for ASME rating classes 150, 300 and 600",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0110_tbl01_appendix-7-visible-length-plate-type-lev.png",
+      "png_sha256": "70717ba745ea0a34b67817990d5cef82694a74ecb8f20c700025dedc7a1eb1b5",
+      "slug": "appendix-7-visible-length-plate-type-lev",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0110_tbl01_appendix-7-visible-length-plate-type-lev.json",
+      "table_data_json_sha256": "b8c14dd1749422dd2d80fe7ca6ffcf7f9b24136d4ebe0d9ae96220f860451049",
+      "table_data_sha256": "b8c14dd1749422dd2d80fe7ca6ffcf7f9b24136d4ebe0d9ae96220f860451049",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0110_tbl01_appendix-7-visible-length-plate-type-lev.xlsx",
+      "xlsx_sha256": "039f69ae4d8716631144b1e5e9e75f6b4d5d6de6f64ad42547f884143c9398ea"
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0110_fig01",
+      "bbox_norm": [
+        0.06,
+        0.46,
+        0.94,
+        0.88
+      ],
+      "bbox_px": [
+        25,
+        1439,
+        2455,
+        3263
+      ],
+      "caption": "Level instrument connection LC (left) and Level gauge connection LG (right) \u2014 piping arrangement diagrams for Appendix 7",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0110_fig01_level-instrument-lc-level-gauge-lg-conne.png",
+      "png_sha256": "26e8658f0ac8ff20164e6fa56cc3e45bbe187760b1f85d496ad6f0510d2d3a80",
+      "slug": "level-instrument-lc-level-gauge-lg-conne",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 110,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0110.png",
+  "page_image_sha256": "ad6873623e399809bdfa78ce073b6d4367dd6ecd372320f6b302e2a07c0e525e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0110_assets.json"
+}

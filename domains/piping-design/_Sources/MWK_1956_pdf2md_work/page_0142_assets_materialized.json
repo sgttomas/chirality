@@ -1,0 +1,89 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0142.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0142_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2508,
+        2174
+      ],
+      "caption": "Piping flexibility and stress analysis \u2014 shape coefficients for coordinate system rotation about the Y-axis. Columns: M_x, M_y, M_z, F_x, F_y, F_z. Rows give trigonometric (sin \u03b8, cos \u03b8) coefficients for transforming moments and forces between coordinate systems.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0142_tbl01_piping-flexibility-and-stress-analysis-s.png",
+      "png_sha256": "eab222286502eb4ec3b946d9f7b87436663d0b08bee025a9b1d3b56733ea29bf",
+      "slug": "piping-flexibility-and-stress-analysis-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0142_fig01",
+      "bbox_norm": [
+        0.3,
+        0.58,
+        0.6,
+        0.82
+      ],
+      "bbox_px": [
+        627,
+        1828,
+        1630,
+        3002
+      ],
+      "caption": "3D coordinate axes diagram: X, Y, Z axes with a rotated coordinate plane indicating rotation angle \u03b8 about the Y-axis.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0142_fig01_3d-coordinate-axes-diagram-x-y-z-axes-wi.png",
+      "png_sha256": "a1244edd3781f3e95f791ba6bef329068409e88f36b994d10f1922c1325b0863",
+      "slug": "3d-coordinate-axes-diagram-x-y-z-axes-wi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0142_tbl02",
+      "bbox_norm": [
+        0.58,
+        0.6,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        1329,
+        1897,
+        2433,
+        3002
+      ],
+      "caption": "Sign convention / index inset table (lower right) listing coordinate transformation entries associated with the rotation about the Y-axis.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0142_tbl02_sign-convention-index-inset-table-lower.png",
+      "png_sha256": "67d609a7bd1b477fe31f0931c64c688e05682361a8da6b7f96e53f186d4b7332",
+      "slug": "sign-convention-index-inset-table-lower",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 142,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0142.png",
+  "page_image_sha256": "fae7e5c7964fb849a28fd7cfe2dcc861af3587049302c4831f157133bc2f914b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0142_assets.json"
+}

@@ -1,0 +1,220 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0185.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0185_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.51,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        424,
+        1327,
+        2840
+      ],
+      "caption": "Table 5.30 Shape Coefficients for x-Wind: General Formulas for Straight Members",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0185_tbl01_shape-coefficients-x-wind-straight-membe.png",
+      "png_sha256": "17b6f8739b25b8410a8adfddca8528f1836e227a6fcb1e0b857a4b64cea85d1a",
+      "slug": "shape-coefficients-x-wind-straight-membe",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0185_tbl01_shape-coefficients-x-wind-straight-membe.json",
+      "table_data_json_sha256": "2c2113381b2ac5065b20a0df6ea9839817534f78bcf5eb0dcbff4fe5d901fbb4",
+      "table_data_sha256": "2c2113381b2ac5065b20a0df6ea9839817534f78bcf5eb0dcbff4fe5d901fbb4",
+      "xlsx_path": "tables/MWK_1956_p0185_tbl01_shape-coefficients-x-wind-straight-membe.xlsx",
+      "xlsx_sha256": "17916bcc72e1896c6321b24e614353bd03196517217f1537b51cec504905eea5"
+    },
+    {
+      "asset_id": "MWK_1956_p0185_tbl02",
+      "bbox_norm": [
+        0.5,
+        0.03,
+        0.98,
+        0.7
+      ],
+      "bbox_px": [
+        1066,
+        0,
+        2370,
+        2448
+      ],
+      "caption": "Table 5.31 Shape Coefficients for z-Wind: General Formulas for Straight Members",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0185_tbl02_shape-coefficients-z-wind-straight-membe.png",
+      "png_sha256": "6fdd2990f21e1183e1c0699f9b1efb5073793fdb105ce1c69ae43120b90a4c4f",
+      "slug": "shape-coefficients-z-wind-straight-membe",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0185_tbl02_shape-coefficients-z-wind-straight-membe.json",
+      "table_data_json_sha256": "63ae0449b99ea48871c9e625c3f1fc146d354a81c606ceca54871a2906926fba",
+      "table_data_sha256": "63ae0449b99ea48871c9e625c3f1fc146d354a81c606ceca54871a2906926fba",
+      "xlsx_path": "tables/MWK_1956_p0185_tbl02_shape-coefficients-z-wind-straight-membe.xlsx",
+      "xlsx_sha256": "29e5c1a8f308270f07b49a32cb535f4456445a479b6e09e9cdd3591586ca2d74"
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig01",
+      "bbox_norm": [
+        0.04,
+        0.26,
+        0.22,
+        0.37
+      ],
+      "bbox_px": [
+        0,
+        685,
+        640,
+        1371
+      ],
+      "caption": "x-plane orientation diagram for x-wind: member at +\u03b1 angle relative to y-axis in x-y reference frame",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0185_fig01_x-wind-x-plane-orientation.png",
+      "png_sha256": "9cd8c5bf86614a78adc44201c4cbf80eff095f47fbc9be4f991b58b502543672",
+      "slug": "x-wind-x-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig02",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.22,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        1142,
+        640,
+        1860
+      ],
+      "caption": "y-plane orientation diagram for x-wind: member at \u2212\u03b1 angle relative to x-axis in y-x reference frame",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0185_fig02_x-wind-y-plane-orientation.png",
+      "png_sha256": "92d24efad0448d4f1f5beecfe229c15350de27ee0a1cb8add0d890e81ebc6095",
+      "slug": "x-wind-y-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig03",
+      "bbox_norm": [
+        0.04,
+        0.57,
+        0.22,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        1697,
+        640,
+        2383
+      ],
+      "caption": "z-plane orientation diagram for x-wind: member shown in y-z reference frame with arc indicator",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0185_fig03_x-wind-z-plane-orientation.png",
+      "png_sha256": "51fee113d41c8b9e8acd2a0074961de20fc72d3966412713d034f6c1938e4a99",
+      "slug": "x-wind-z-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig04",
+      "bbox_norm": [
+        0.51,
+        0.11,
+        0.67,
+        0.23
+      ],
+      "bbox_px": [
+        1090,
+        196,
+        1706,
+        914
+      ],
+      "caption": "x-plane orientation diagram for z-wind: member at +\u03b1 angle in z-x reference frame",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/MWK_1956_p0185_fig04_z-wind-x-plane-orientation.png",
+      "png_sha256": "50d480dff17efd637c25c3a4b9d68bcee8e4825185417d34fe667d69cb8adc81",
+      "slug": "z-wind-x-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig05",
+      "bbox_norm": [
+        0.51,
+        0.29,
+        0.67,
+        0.42
+      ],
+      "bbox_px": [
+        1090,
+        783,
+        1706,
+        1534
+      ],
+      "caption": "y-plane orientation diagram for z-wind: member at \u2212\u03b1 angle in z-y reference frame",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 5,
+      "png_path": "figures/MWK_1956_p0185_fig05_z-wind-y-plane-orientation.png",
+      "png_sha256": "4b122778ffb0f921f433d4824584af5adc23c549d2e1c96f2cfe2b4c93a7124c",
+      "slug": "z-wind-y-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0185_fig06",
+      "bbox_norm": [
+        0.51,
+        0.47,
+        0.67,
+        0.58
+      ],
+      "bbox_px": [
+        1090,
+        1371,
+        1706,
+        2056
+      ],
+      "caption": "z-plane orientation diagram for z-wind: member with vector arrow in y-z reference frame",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 6,
+      "png_path": "figures/MWK_1956_p0185_fig06_z-wind-z-plane-orientation.png",
+      "png_sha256": "b4d0269bdec4d81cfe8f2199f5b12de850134bd8f133ec44a1f79fe2ef7c8d10",
+      "slug": "z-wind-z-plane-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 185,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0185.png",
+  "page_image_sha256": "f3c368197375cdf5520b0a7045f31d447b77ecda7c6f09bc9aff3b621e74a3f5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0185_assets.json"
+}

@@ -1,0 +1,69 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0124.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0124_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.22,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        597,
+        2480,
+        2105
+      ],
+      "caption": "Table 1B Susceptibility to hydrogen blistering, HIC and SOHIC \u2014 H\u2082S content of water vs pH of water and cyanide content",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0124_tbl01_table-1b-susceptibility-hydrogen-blister.png",
+      "png_sha256": "20725c6c53f0776a551693b2a36518e4c54091666f1ecd2dd3973395d3f8edc1",
+      "slug": "table-1b-susceptibility-hydrogen-blister",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0124_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2351,
+        2480,
+        3509
+      ],
+      "caption": "Table 1C Susceptibility to carbonate cracking (as experienced in sour water) \u2014 CO\u2082 content of water vs pH of water",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0124_tbl02_table-1c-susceptibility-carbonate-cracki.png",
+      "png_sha256": "31a1e27546038cd538cc99b0b8a55bdb216c70751bb3c05b870a45365705f587",
+      "slug": "table-1c-susceptibility-carbonate-cracki",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-08_p0124_tbl02_table-1c-susceptibility-carbonate-cracki.json",
+      "table_data_json_sha256": "24191175e7af163681235890f0257267cbabe48b8ee099e44b2b9950c19b6280",
+      "table_data_sha256": "24191175e7af163681235890f0257267cbabe48b8ee099e44b2b9950c19b6280",
+      "xlsx_path": "tables/01-overall-piping-design-standards-08_p0124_tbl02_table-1c-susceptibility-carbonate-cracki.xlsx",
+      "xlsx_sha256": "444bf73dabb2e748229c1cc1a219ffaaa7944755855249dc439cf905a774ae98"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 124,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0124.png",
+  "page_image_sha256": "6a122a8e55cfb0158d9ac6ae02b81a1d4dfd07032269d02fc9161104d695269f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0124_assets.json"
+}

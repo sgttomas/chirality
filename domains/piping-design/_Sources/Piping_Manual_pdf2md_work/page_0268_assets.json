@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 268,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p268_fig_01",
+      "caption": "EXHIBIT 10-55 Relief Valve Systems",
+      "bbox_norm": [0.04, 0.30, 0.82, 0.94]
+    }
+  ],
+  "issues": []
+}

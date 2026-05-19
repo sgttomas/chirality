@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 200,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 6.18 CIRCUMFERENTIAL BENDING MOMENT AT RING GIRDER",
+      "slug": "circumferential-bending-moment-ring-girder",
+      "bbox_norm": [0.04, 0.55, 0.96, 0.95],
+      "confidence": "high",
+      "notes": "Three-part figure: (a) Ring Girder with a=0.0, (b) Circumferential Moment at phi=0°, 90°, 111°, (c) Circumferential Moment with a=0.04R. Caption and figure label visible below diagrams."
+    }
+  ],
+  "issues": []
+}

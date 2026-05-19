@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0024_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2495,
+        3061
+      ],
+      "caption": "FIG. 1.1 TASKS OF PIPE STRESS ANALYSIS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0024_fig01_tasks-of-pipe-stress-analysis.png",
+      "png_sha256": "5ace69ea4cec9fabcd7a1e770fe0b1a7329697a79678d489883642d1be2bb42b",
+      "slug": "tasks-of-pipe-stress-analysis",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0024.png",
+  "page_image_sha256": "1f37bc55b32e93bbc06cb5739cee1ffd39326b9c52babb8b74e14709a033ffb9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0024_assets.json"
+}

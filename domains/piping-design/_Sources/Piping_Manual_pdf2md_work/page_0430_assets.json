@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 430,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p430_fig_01",
+      "caption": "EXHIBIT 16-19 — Nomograph for Absorbing Leg on Vessel Piping (Chart for Determining the Absorbing Leg on Vessel Piping)",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.91],
+      "notes": "Full-page nomograph rotated 90 degrees on the page. Five parallel scales: Nominal Diameter (inches), Pipe Stress (psi), Pipe Length, Pivot Line, and Total Thermal Expansion (inches). Reference points 3.1-3.5 with dashed construction lines illustrate the procedure."
+    }
+  ],
+  "issues": []
+}

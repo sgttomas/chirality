@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0001.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0001_img01",
+      "bbox_norm": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        3514
+      ],
+      "caption": "Book cover \u2014 Pipe Stress Engineering by Liang-Chuan (L.C.) Peng and Tsen-Loong (Alvin) Peng, featuring a decorative piping engineering illustration with circular lens overlay on a blue and grey background",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/Pipe-Stress-Engineering_p0001_img01_book-cover-pipe-stress-engineering.png",
+      "png_sha256": "5d296c3f6aff216d8cf6da248d6079e68f3c54f6a393ec603568c244325df318",
+      "slug": "book-cover-pipe-stress-engineering",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 1,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0001.png",
+  "page_image_sha256": "c7d6bf414ebd8743f660ee9a13b7cef7fcba74c08ba88aac36a113f6aaf4278b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0001_assets.json"
+}

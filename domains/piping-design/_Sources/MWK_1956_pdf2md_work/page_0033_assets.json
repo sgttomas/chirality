@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 33,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Page 33 contains only running prose text in a two-column layout (continuation of Section 2.1 'Steel Flanged Fitting Thicknesses', 'Steel Butt Welding Fitting Thicknesses', 'API-ASME Code for Unfired Pressure Vessels', 'API Standards', 'Other Standards', and the start of Section 2.2 'Design Considerations: Loadings'). No figures, tables, diagrams, photographs, schematics, or other extractable image assets are present on this page."
+  ]
+}

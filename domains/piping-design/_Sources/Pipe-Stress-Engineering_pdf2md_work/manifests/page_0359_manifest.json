@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0359.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0359_fig01",
+      "bbox_norm": [
+        0.08,
+        0.57,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        75,
+        1829,
+        2420,
+        3518
+      ],
+      "caption": "FIG. 10.5 MINIMUM BEND RADIUS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0359_fig01_minimum-bend-radius.png",
+      "png_sha256": "d7dc8e57f4127eb25192a0cde80f4dde8fca3b90bcd9d14646090620b9dac7d1",
+      "slug": "minimum-bend-radius",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 359,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0359.png",
+  "page_image_sha256": "7a8849854a66ca128741c75575820635c51cccbbbe610b32f16b7e507391fedf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0359_assets.json"
+}

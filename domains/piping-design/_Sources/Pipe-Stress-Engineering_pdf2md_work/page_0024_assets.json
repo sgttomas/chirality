@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 24,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 1.1 TASKS OF PIPE STRESS ANALYSIS",
+      "slug": "tasks-of-pipe-stress-analysis",
+      "bbox_norm": [0.05, 0.06, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Large engineering diagram showing piping system connected to vessel and tank, annotated with labels for Vessel Flexibility and Local Stresses, Vibration and Shock Loading, Earthquake, Wind, Spring Selection, Flange Load/Leakage, Equipment Load/Alignment, Support and Friction, Thermal Bowing, Tank Flexibility and Shell Rotation, Tank Settlement, Tank Nozzle Load. Caption 'FIG. 1.1 TASKS OF PIPE STRESS ANALYSIS' appears directly below the figure."
+    }
+  ],
+  "issues": []
+}

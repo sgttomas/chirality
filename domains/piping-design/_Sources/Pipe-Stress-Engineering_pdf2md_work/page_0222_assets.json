@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 222,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 6.27 WRC-107 STRESS LOCATIONS",
+      "slug": "wrc-107-stress-locations",
+      "bbox_norm": [0.08, 0.62, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Diagram of a vessel shell attachment showing stress evaluation points A, B, C, D with loads M_L, M_c, P labeled; caption visible below figure"
+    }
+  ],
+  "issues": []
+}

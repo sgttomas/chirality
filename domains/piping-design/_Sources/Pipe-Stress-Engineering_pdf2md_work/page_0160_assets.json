@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 160,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 5.6 SIDEWISE CONSTRICTION",
+      "slug": "sidewise-constriction",
+      "bbox_norm": [0.08, 0.60, 0.72, 0.97],
+      "confidence": "high",
+      "notes": "3D beam diagram illustrating Poisson Strain and Bending Strain under sidewise constriction. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

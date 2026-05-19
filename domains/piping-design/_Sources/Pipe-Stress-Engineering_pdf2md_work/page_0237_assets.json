@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 237,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 7.5 BELLOW ROTATION WITH NATURAL DISPLACEMENT",
+      "slug": "bellow-rotation-natural-displacement",
+      "bbox_norm": [0.05, 0.52, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (a) Rotation with Displacement and (b) Rotation without Displacement. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

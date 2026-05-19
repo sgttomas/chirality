@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0150.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0150_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.97,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2400,
+        3492
+      ],
+      "caption": "The M.W. Kellogg Co. Piping Flexibility and Stress Analysis worksheet \u2014 multi-column tabular calculation form (rotated 90\u00b0) for recording flexibility/stress analysis values; specific cell values not legibly transcribable.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0150_fig01_the-m-w-kellogg-co-piping-flexibility-an.png",
+      "png_sha256": "64706c0976c4202808451c0c188fcd4fe11771e3cd44453c339b2dcc60b04c09",
+      "slug": "the-m-w-kellogg-co-piping-flexibility-an",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 150,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0150.png",
+  "page_image_sha256": "d3bafc64cc78cdd44990ee8f822d809acd823c67913b36b007c21757ab76b8e1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0150_assets.json"
+}

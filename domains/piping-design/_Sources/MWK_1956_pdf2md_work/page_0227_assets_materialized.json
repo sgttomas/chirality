@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0227.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0227_fig01",
+      "bbox_norm": [
+        0.47,
+        0.48,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        1058,
+        1272,
+        2520,
+        2958
+      ],
+      "caption": "Fig. 7.13 Action of expansion bellows under various movements.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0227_fig01_fig-7-13-action-of-expansion-bellows-und.png",
+      "png_sha256": "1b8f676062108f9b0e72cc03500bb9cff228c856c40aee19abdfb9e4781c1b69",
+      "slug": "fig-7-13-action-of-expansion-bellows-und",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 227,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0227.png",
+  "page_image_sha256": "60aee6888430b2eeb5f48b97e2ae23104edcaeefd4f59781de26386bb524b7ed",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0227_assets.json"
+}

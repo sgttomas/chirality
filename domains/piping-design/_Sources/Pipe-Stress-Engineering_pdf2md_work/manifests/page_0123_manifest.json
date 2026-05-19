@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0123_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        950
+      ],
+      "caption": "TABLE 4.1 VALUES OF COEFFICIENT \u03b3 (FOR t < D/6)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0123_tbl01_coefficient-gamma-values.csv",
+      "csv_sha256": "7953f198b43ecb22e23884458d5a391bca35a8adfb5f34bb9e8d3be8d29b5a37",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0123_tbl01_coefficient-gamma-values.png",
+      "png_sha256": "e765dfd46e4a59a46a19488dea190297590c47159d96c5f623e875eddbc93fc7",
+      "slug": "coefficient-gamma-values",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 123,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123.png",
+  "page_image_sha256": "03723596ee2d1ff715773a956acd5e816b1c03dd105ee7978d22ef9158c8c4d8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123_assets.json"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 91,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0091_fig01",
+      "caption": "EXHIBIT 4-55 Maintenance Sequence",
+      "bbox_norm": [0.04, 0.12, 0.50, 0.63],
+      "notes": "Two-part diagram. Top: 'CRANE MAINTENANCE' side elevation (STRUCTURAL FLOOR PLAN) with PLATFORM, DECK, and circled numbers (I) and (II). Bottom: GRADE LEVEL PLAN with DROP AREA FROM OPERATING FLOOR, CLEAR AREA FOR VEHICLE EQUIPMENT, and circled numbers (III) and (IV). Followed by I-IV legend describing the maintenance lift/lower sequence."
+    }
+  ],
+  "issues": []
+}

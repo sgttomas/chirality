@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 234,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Full-page photograph showing pipe bank installation in an oil refinery; occupies lower-center of page below opening prose. Caption included within bbox."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 8.1 A pipe bank in a large unit of an oil refinery.",
+      "bbox_norm": [
+        0.29,
+        0.19,
+        0.81,
+        0.91
+      ]
+    }
+  ]
+}

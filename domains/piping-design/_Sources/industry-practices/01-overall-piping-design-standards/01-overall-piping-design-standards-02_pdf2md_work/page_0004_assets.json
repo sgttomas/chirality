@@ -1,0 +1,298 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 4,
+  "total_pages": 95,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "3.1.1 Standards \u2014 Suncor Standards and Drawings",
+      "slug": "suncor-standards-drawings",
+      "bbox_norm": [
+        0.03,
+        0.23,
+        0.97,
+        0.97
+      ],
+      "confidence": "high",
+      "notes": "Two-column table listing Suncor standard numbers and their descriptions",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Standard",
+                "is_header": true
+              },
+              {
+                "value": "Description",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0060",
+                "type": "text"
+              },
+              {
+                "value": "FIRE PREVENTION AND PROTECTION",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0202",
+                "type": "text"
+              },
+              {
+                "value": "PIPING MATERIAL SPECIFICATIONS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0203",
+                "type": "text"
+              },
+              {
+                "value": "VALVES",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0204",
+                "type": "text"
+              },
+              {
+                "value": "PIPING FABRICATION AND INSTALLATION",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0206",
+                "type": "text"
+              },
+              {
+                "value": "STEAM TRAP SELECTION",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0209",
+                "type": "text"
+              },
+              {
+                "value": "STEAM WARMING SYSTEMS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0210",
+                "type": "text"
+              },
+              {
+                "value": "PIPE SUPPORTS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0211",
+                "type": "text"
+              },
+              {
+                "value": "INSTALLATION INSTRUCTIONS FOR SPRING SUPPORTS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0215",
+                "type": "text"
+              },
+              {
+                "value": "CHEMICAL CLEANING OF PIPING SYSTEMS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0216",
+                "type": "text"
+              },
+              {
+                "value": "UNDERGOUND PIPING EXTERNAL AND INTERNAL COATING",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0220",
+                "type": "text"
+              },
+              {
+                "value": "ON LINE WELDING AND HOT TAP DESIGN AND INSTALLATION REQUIREMENTS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0222",
+                "type": "text"
+              },
+              {
+                "value": "ABOVE AND BELOW GROUN DPIPELINES TO CSA Z662",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0300",
+                "type": "text"
+              },
+              {
+                "value": "STRUCTURAL ENGINEERING CRITERIA",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0301",
+                "type": "text"
+              },
+              {
+                "value": "DESIGN OF STEEL STRUCTURES",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0501",
+                "type": "text"
+              },
+              {
+                "value": "STANDARD FOR GENERAL ELECTRICAL DESIGN",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0521",
+                "type": "text"
+              },
+              {
+                "value": "ELECTRIC HEAT TRACING",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 0903",
+                "type": "text"
+              },
+              {
+                "value": "WELDING",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 1003",
+                "type": "text"
+              },
+              {
+                "value": "FIRE PROOFING OF STRUCTURES AND EQUIPMENT",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 1310.2",
+                "type": "text"
+              },
+              {
+                "value": "MECHANICAL EQUIPMENT FIELD INSTALLATION REQUIREMENTS",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 1516",
+                "type": "text"
+              },
+              {
+                "value": "CONSTRUCTION OF UNDERGROUND UTILITIES",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "STD 1517",
+                "type": "text"
+              },
+              {
+                "value": "CLEAN WATER-INDUSTRIAL & CHEMICAL SEWER SYSTEMS",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

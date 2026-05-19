@@ -1,0 +1,108 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0228.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0228_fig01",
+      "bbox_norm": [
+        0.06,
+        0.05,
+        0.52,
+        0.34
+      ],
+      "bbox_px": [
+        26,
+        0,
+        1464,
+        1292
+      ],
+      "caption": "EXHIBIT 9-12 Side Shell-Mounted Catalyst Unloading Nozzles",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0228_fig01_exhibit-9-12-side-shell-mounted-catalyst.png",
+      "png_sha256": "ecab3e5fa1a4fd76df5e4f4365ed77a51cc126c4d1c3eab7b88c0d32624648fb",
+      "slug": "exhibit-9-12-side-shell-mounted-catalyst",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0228_fig02",
+      "bbox_norm": [
+        0.5,
+        0.05,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        1156,
+        0,
+        2569,
+        2220
+      ],
+      "caption": "EXHIBIT 9-14 Vertically Mounted Temperature Connection",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0228_fig02_exhibit-9-14-vertically-mounted-temperat.png",
+      "png_sha256": "c020f1791c4530956b4219a38ffb4064a6f81879eabf042cd8119f8f2985924d",
+      "slug": "exhibit-9-14-vertically-mounted-temperat",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0228_fig03",
+      "bbox_norm": [
+        0.06,
+        0.34,
+        0.52,
+        0.69
+      ],
+      "bbox_px": [
+        26,
+        961,
+        1464,
+        2452
+      ],
+      "caption": "EXHIBIT 9-13 Side Shell-Mounted Temperature Connections",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0228_fig03_exhibit-9-13-side-shell-mounted-temperat.png",
+      "png_sha256": "7f9f38dc47f7d17e3ad0dd4fd5726102587bb5af65ffc5a31cffd7d5f9b2458a",
+      "slug": "exhibit-9-13-side-shell-mounted-temperat",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0228_fig04",
+      "bbox_norm": [
+        0.5,
+        0.69,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        1156,
+        2121,
+        2569,
+        3148
+      ],
+      "caption": "EXHIBIT 9-15 Sample Probe Connection",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Piping_Manual_p0228_fig04_exhibit-9-15-sample-probe-connection.png",
+      "png_sha256": "df2bb8ae04cbbca944c3f98fe1f0e5aab8c6dd95bdf0a1d9f4e98521f00924ea",
+      "slug": "exhibit-9-15-sample-probe-connection",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 228,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0228.png",
+  "page_image_sha256": "815a4c14342d3359ecf65341b7cb0290528464cde1f0e123a1fefe14e947d4ac",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0228_assets.json"
+}

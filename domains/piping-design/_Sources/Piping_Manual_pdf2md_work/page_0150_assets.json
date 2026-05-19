@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 150,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.62],
+      "caption": "EXHIBIT 6-41 Piping Arrangement for Plate Exchangers"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.64, 0.96, 0.95],
+      "caption": "EXHIBIT 6-42 Air Cooler Piping Configurations"
+    }
+  ],
+  "issues": []
+}

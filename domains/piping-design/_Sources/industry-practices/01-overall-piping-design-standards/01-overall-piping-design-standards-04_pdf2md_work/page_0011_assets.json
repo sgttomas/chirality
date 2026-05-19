@@ -1,0 +1,53 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-04",
+  "page": 11,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 – Maximum Figure-8 Blind Sizes",
+      "slug": "table-1-maximum-figure-8-blind-sizes",
+      "bbox_norm": [0.30, 0.52, 0.72, 0.68],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Class", "is_header": true },
+              { "value": "Max. Figure-8 Size (NPS)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150 and 300", "type": "text" },
+              { "value": 12, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600 and 900", "type": "text" },
+              { "value": 8, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 and 2500", "type": "text" },
+              { "value": 6, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Simple two-column table listing class ranges and maximum figure-8 blind sizes in NPS"
+    }
+  ],
+  "issues": []
+}

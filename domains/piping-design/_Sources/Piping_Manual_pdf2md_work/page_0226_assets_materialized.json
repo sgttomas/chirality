@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0226.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0226_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1584
+      ],
+      "caption": "EXHIBIT 9-10 Top-Head Nozzle Arrangements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0226_fig01_exhibit-9-10-top-head-nozzle-arrangement.png",
+      "png_sha256": "1189e95290ca1c5795cdb881e11bc5d5d0668281bcb1c1d3dfa93fff12ceaa5d",
+      "slug": "exhibit-9-10-top-head-nozzle-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 226,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0226.png",
+  "page_image_sha256": "a4685dc7664205b9eeaa5384ae034dfc92e6bcd07e4874ccb14dcc10c7a80538",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0226_assets.json"
+}

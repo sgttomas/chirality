@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0066.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0066_fig01",
+      "bbox_norm": [
+        0.06,
+        0.07,
+        0.96,
+        0.5
+      ],
+      "bbox_px": [
+        26,
+        67,
+        2595,
+        1834
+      ],
+      "caption": "EXHIBIT 3-27 Typical Air Cooler Spacing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0066_fig01_exhibit-3-27-typical-air-cooler-spacing.png",
+      "png_sha256": "0094f139a217358aee62dd91e9c19fbb816c26d8c36c65fa6ee7be4e67de5292",
+      "slug": "exhibit-3-27-typical-air-cooler-spacing",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0066_fig02",
+      "bbox_norm": [
+        0.06,
+        0.52,
+        0.96,
+        0.94
+      ],
+      "bbox_px": [
+        26,
+        1567,
+        2595,
+        3301
+      ],
+      "caption": "EXHIBIT 3-28 Typical Furnace Area Spacing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0066_fig02_exhibit-3-28-typical-furnace-area-spacin.png",
+      "png_sha256": "dde234fa39d17a69f9b58be03bbb2a4281bb4ab3e7f1fc151f0ac3924c0a8781",
+      "slug": "exhibit-3-28-typical-furnace-area-spacin",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 66,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0066.png",
+  "page_image_sha256": "e7f44f4414c7ae3bebd5c21001577a2f427525f0610fead574f305812e9e30a9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0066_assets.json"
+}

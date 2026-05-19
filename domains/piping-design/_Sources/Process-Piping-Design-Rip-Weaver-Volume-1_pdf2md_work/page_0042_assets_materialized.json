@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0042.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0042_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2013
+      ],
+      "caption": "Figure 2-7. Impact of water head.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0042_fig01_impact-of-water-head.png",
+      "png_sha256": "e534668eee066fb344be1525fbc685f0594b219e959beac90b674969606973f4",
+      "slug": "impact-of-water-head",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 42,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0042.png",
+  "page_image_sha256": "8c7aa903f48e2abd7f5a79698247010f399fa4e24c6b97107c2f401060eeb7af",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0042_assets.json"
+}

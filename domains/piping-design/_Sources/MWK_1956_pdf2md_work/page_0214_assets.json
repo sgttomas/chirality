@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 214,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Page 214 is pure prose (two-column body text) with section headers 7.5, 7.5a, and 7.5b. The text references Fig. 7.3, but the figure itself does not appear on this page."
+  ]
+}

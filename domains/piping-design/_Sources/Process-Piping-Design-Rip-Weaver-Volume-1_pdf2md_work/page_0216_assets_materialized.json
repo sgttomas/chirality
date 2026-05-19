@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0216.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1918
+      ],
+      "caption": "Table A-8 (concluded) \u2014 Inches to Millimeters conversion",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl01_table-a8-concluded-inches-to-millimeters.png",
+      "png_sha256": "aabe3e6490dfc26a5b1a13a0b0299625d14381da1e71d054b04668e49313bc59",
+      "slug": "table-a8-concluded-inches-to-millimeters",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl01_table-a8-concluded-inches-to-millimeters.json",
+      "table_data_json_sha256": "8dab05bcaf3a304a790141a50d2e0dd6875b0089c4856986a4dd6ee295550578",
+      "table_data_sha256": "8dab05bcaf3a304a790141a50d2e0dd6875b0089c4856986a4dd6ee295550578",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl01_table-a8-concluded-inches-to-millimeters.xlsx",
+      "xlsx_sha256": "f320a68d69f795c490ef63915c7188a37a28a994cd7e3bac2c8e9a16a0846400"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.51,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1604,
+        2477,
+        3488
+      ],
+      "caption": "Table A-8 (concluded) \u2014 Feet to Meters conversion",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl02_table-a8-concluded-feet-to-meters.png",
+      "png_sha256": "9e830af7376a7fd79cee4c8cfb9b40ba7dde4ffffde0b4c993659bf1d0b2b3be",
+      "slug": "table-a8-concluded-feet-to-meters",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl02_table-a8-concluded-feet-to-meters.json",
+      "table_data_json_sha256": "c44ea38d4b3e1afa45e694da8855baac96054fd34a9795df206312044263d757",
+      "table_data_sha256": "c44ea38d4b3e1afa45e694da8855baac96054fd34a9795df206312044263d757",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0216_tbl02_table-a8-concluded-feet-to-meters.xlsx",
+      "xlsx_sha256": "f479218345378430984c8057ba09315edc24e92b8edff3166dec353eec60832e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 216,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0216.png",
+  "page_image_sha256": "403d27b655cc65730a5228cde55cbf0e51e2490998cce0abe7c5c1c5bcdafa72",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0216_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 277,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Example of branched piping system.",
+      "bbox_norm": [
+        0.5,
+        0.03,
+        0.99,
+        0.22
+      ]
+    }
+  ],
+  "issues": [
+    "migrated_from_legacy: Single figure (Fig. 9.29) located in upper-right of page; rest of page is prose. No tables present."
+  ]
+}

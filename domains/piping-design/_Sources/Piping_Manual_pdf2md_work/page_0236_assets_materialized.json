@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0236.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0236_fig01",
+      "bbox_norm": [
+        0.13,
+        0.34,
+        0.52,
+        0.78
+      ],
+      "bbox_px": [
+        205,
+        960,
+        1460,
+        2746
+      ],
+      "caption": "EXHIBIT 9-29  Stacked Reactors",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0236_fig01_exhibit-9-29-stacked-reactors.png",
+      "png_sha256": "f268a98b8aa3f14f2fee9d8e31f91323e1feaf44883a6d814d74ecf626875a60",
+      "slug": "exhibit-9-29-stacked-reactors",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0236_fig02",
+      "bbox_norm": [
+        0.52,
+        0.34,
+        0.92,
+        0.78
+      ],
+      "bbox_px": [
+        1204,
+        960,
+        2485,
+        2746
+      ],
+      "caption": "EXHIBIT 9-30  Multibed Reactor",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0236_fig02_exhibit-9-30-multibed-reactor.png",
+      "png_sha256": "ba964d7d5f2ed3edbee1d209cf426eaa12b45743329bcb98e02c8ca44f46bcec",
+      "slug": "exhibit-9-30-multibed-reactor",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 236,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0236.png",
+  "page_image_sha256": "2778e671471ad9e74f79dd2cb1169299be961bd7a30e1e2552251ccabdd2fb57",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0236_assets.json"
+}

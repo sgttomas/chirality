@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "NO_FOLIO",
+  "page": 266,
+  "page_label": null,
+  "page_label_source": "vlm",
+  "location": null,
+  "confidence": "high",
+  "rationale": "Page is blank with no printed text, folio, header, or footer visible; only scanner artifacts appear along the right margin."
+}

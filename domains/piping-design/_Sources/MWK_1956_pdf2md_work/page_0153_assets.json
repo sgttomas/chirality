@@ -1,0 +1,104 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 153,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.15 \u2014 Flexibility equations with stops at a remote point R (coefficients for equations 1, 2, 3, 5\u2032, 6\u2032)",
+      "slug": "table-5-15-flexibility-equations-stop-remote-point",
+      "bbox_norm": [0.04, 0.27, 0.96, 0.57],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Equation", "is_header": true },
+              { "value": "MxF", "is_header": true },
+              { "value": "FxF", "is_header": true },
+              { "value": "FyF", "is_header": true },
+              { "value": "FzF", "is_header": true },
+              { "value": "FzR", "is_header": true },
+              { "value": "Constant", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "+AF", "type": "text" },
+              { "value": "+BF", "type": "text" },
+              { "value": "+DF", "type": "text" },
+              { "value": "+BR\u2212yR AR", "type": "text", "raw": "[+BR / \u2212yR AR]" },
+              { "value": "+DR\n+zR AR", "type": "text", "raw": "[+DR / +zR AR]" },
+              { "value": "0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "text" },
+              { "value": "+BF", "type": "text" },
+              { "value": "+CF", "type": "text" },
+              { "value": "+GF", "type": "text" },
+              { "value": "+CR\n\u2212yR BR", "type": "text", "raw": "[+CR / \u2212yR BR]" },
+              { "value": "+GR\n+zR BR", "type": "text", "raw": "[+GR / +zR BR]" },
+              { "value": "+EI\u2019\u0394xF", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "text" },
+              { "value": "+DF", "type": "text" },
+              { "value": "+GF", "type": "text" },
+              { "value": "+HF", "type": "text" },
+              { "value": "+GR\n\u2212yR DR", "type": "text", "raw": "[+GR / \u2212yR DR]" },
+              { "value": "+HR\n+zR DR", "type": "text", "raw": "[+HR / +zR DR]" },
+              { "value": "+EI\u2019\u0394yF", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5\u2032", "type": "text" },
+              { "value": "+BR\n\u2212yR AR", "type": "text", "raw": "[+BR / \u2212yR AR]" },
+              { "value": "+CR\n\u2212yR BR", "type": "text", "raw": "[+CR / \u2212yR BR]" },
+              { "value": "+GR\n\u2212yR DR", "type": "text", "raw": "[+GR / \u2212yR DR]" },
+              { "value": "+CR\n\u22122yR BR\n+yR\u00b2 AR", "type": "text", "raw": "[+CR / \u22122yR BR / +yR\u00b2 AR]" },
+              { "value": "+GR\n\u2212yR HR\n+zR BR\n\u2212zR yR AR", "type": "text", "raw": "[+GR / \u2212yR HR / +zR BR / \u2212zR yR AR]" },
+              { "value": "+EI\u2019\u0394xR", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6\u2032", "type": "text" },
+              { "value": "+DR\n+zR AR", "type": "text", "raw": "[+DR / +zR AR]" },
+              { "value": "+GR\n+zR BR", "type": "text", "raw": "[+GR / +zR BR]" },
+              { "value": "+HR\n+zR DR", "type": "text", "raw": "[+HR / +zR DR]" },
+              { "value": "+GR\n+zR BR\n\u2212yR DR\n\u2212zR yR AR", "type": "text", "raw": "[+GR / +zR BR / \u2212yR DR / \u2212zR yR AR]" },
+              { "value": "+HR\n+2zR DR\n+zR\u00b2 AR", "type": "text", "raw": "[+HR / +2zR DR / +zR\u00b2 AR]" },
+              { "value": "+EI\u2019\u0394yR", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Mathematical flexibility equations table. Multi-line bracket expressions in cells represent combined terms (coefficient groups shown in square brackets in the original). Columns: Equation, MxF, FxF, FyF, and two F columns for forces at point R. The sixth data column header appears as a second FzF in the Markdown but corresponds to the force at remote stop R."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Piping flexibility and stress analysis isometric sketch \u2014 The M.W. Kellogg Co. Form A1, with dimensions and angles annotated",
+      "slug": "piping-flexibility-stress-analysis-isometric-sketch",
+      "bbox_norm": [0.04, 0.55, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Isometric piping sketch with annotated dimensions and angles. Title block at bottom reads 'THE M.W. KELLOGG CO. PIPING FLEXIBILITY AND STRESS ANALYSIS' with form designation 'FORM A1'. Corresponds to Sample Calculation 5.9 referenced in the page text."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0126.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0126_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2337
+      ],
+      "caption": "Table 6-16 \u2014 ID of Nozzle to Header Ell \u2014 Branch Connections Standard Weight Pipe",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0126_tbl01_table-6-16-id-nozzle-header-ell-branch-c.png",
+      "png_sha256": "962a62135beef638a3e22fb386be16f721f8fad51ceb59d5cf02388467ad1d74",
+      "slug": "table-6-16-id-nozzle-header-ell-branch-c",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0126_tbl01_table-6-16-id-nozzle-header-ell-branch-c.json",
+      "table_data_json_sha256": "51d52b586c485fdbf3d06ec0410fdde71cdcce9644247857a44bafc70153b5e6",
+      "table_data_sha256": "51d52b586c485fdbf3d06ec0410fdde71cdcce9644247857a44bafc70153b5e6",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0126_tbl01_table-6-16-id-nozzle-header-ell-branch-c.xlsx",
+      "xlsx_sha256": "6732fa1407960464ba2699ab92fe3b4dd5a3bc2f4e25e341ef70163522c3d421"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0126_fig01",
+      "bbox_norm": [
+        0.33,
+        0.6,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        694,
+        1918,
+        2477,
+        3488
+      ],
+      "caption": "Diagram showing nozzle-to-header ell branch connection geometry with formulas Z = R + 1/2 I.D. Of Nozzle; S = sqrt((R+S)^2 - Y^2); Z^2 = (R+S)^2 - Y^2; R = Y - X; and labeled dimensions B, S, X, Y, Z, R",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0126_fig01_nozzle-header-ell-branch-connection-geom.png",
+      "png_sha256": "2609fa49b84ab5706554e580522fdc5227f15d46f6d63b76a0ec02da2728a950",
+      "slug": "nozzle-header-ell-branch-connection-geom",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 126,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0126.png",
+  "page_image_sha256": "5da2417e1d8c921c7e13e2a6b5b270f488b0fdefdb7d7b7fcb6d9e28bf05cbab",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0126_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0062.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0062_fig01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.69
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2441
+      ],
+      "caption": "EXHIBIT 3-25 Typical Process Unit Road and Paving Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0062_fig01_exhibit-3-25-typical-process-unit-road-a.png",
+      "png_sha256": "eec92ad2e383855f66992518410cf21982cce8e1faf8215c2882c54923d9e343",
+      "slug": "exhibit-3-25-typical-process-unit-road-a",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0062.png",
+  "page_image_sha256": "61214d35d58dc49ca138f1dcfe12ccaf3d15dff347e8a15229b145835b689955",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0062_assets.json"
+}

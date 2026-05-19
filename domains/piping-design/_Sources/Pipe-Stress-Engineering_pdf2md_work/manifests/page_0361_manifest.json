@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0361.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0361_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1159
+      ],
+      "caption": "FIG. 10.6 INTERNAL FRICTION OF COHESIONLESS SOIL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0361_fig01_internal-friction-cohesionless-soil.png",
+      "png_sha256": "198c2bff6fe91dc7fff84f1757ab67f18b6547349052560e202543123d9410fb",
+      "slug": "internal-friction-cohesionless-soil",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 361,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0361.png",
+  "page_image_sha256": "9236dd8aeb6e24878037a9007e1307fc4a03a2fb89cf4fbc5a71f7350b7c46a0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0361_assets.json"
+}

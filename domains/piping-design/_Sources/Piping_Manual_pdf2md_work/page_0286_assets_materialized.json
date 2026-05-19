@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0286.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0286_fig01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        1584
+      ],
+      "caption": "EXHIBIT 11-8 Planning for Line Growth",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0286_fig01_exhibit-11-8-planning-for-line-growth.png",
+      "png_sha256": "06c9273289a82dfae836c61fa400193cd06be9982094d6d8a55641603462bd33",
+      "slug": "exhibit-11-8-planning-for-line-growth",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0286_fig02",
+      "bbox_norm": [
+        0.03,
+        0.45,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1320,
+        2550,
+        3233
+      ],
+      "caption": "EXHIBIT 11-9 Large-Diameter Lines",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0286_fig02_exhibit-11-9-large-diameter-lines.png",
+      "png_sha256": "dbd36ecdfefb54b4598f0aab1d9cdc6d00a88be122fb3296d09b20117a090cf4",
+      "slug": "exhibit-11-9-large-diameter-lines",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 286,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0286.png",
+  "page_image_sha256": "a8f09b0c1bfcdf84e787de04d642c130983f78cc58e3bdf9198cd48b3742b25a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0286_assets.json"
+}

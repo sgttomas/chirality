@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0021.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0021_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1881
+      ],
+      "caption": "Fig. 1-5. Perforated flat-type temporary strainers. Courtesy of Mack Iron Works Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0021_fig01_perforated-flat-type-temporary-strainers.png",
+      "png_sha256": "c1fc4bf6f401adffe5a4fc6d8263d6b2d07b19d4c514456182e7a8ebf0d3dded",
+      "slug": "perforated-flat-type-temporary-strainers",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0021_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.52,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2560,
+        3234
+      ],
+      "caption": "Flat Perforated Strainers \u2014 150 lb., 300 lb., 300 & 600 lb., and 900 lb. specifications",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0021_tbl01_flat-perforated-strainers-specs.png",
+      "png_sha256": "c0589b62977a61ecb62856cf30b2c74805970d4d0a038927de763684418748e7",
+      "slug": "flat-perforated-strainers-specs",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0021_tbl01_flat-perforated-strainers-specs.json",
+      "table_data_json_sha256": "c1c5e0f37f6c29e3342cf0565dab854eecfc3382e5d92f8d0c5fcaf59994d6d3",
+      "table_data_sha256": "c1c5e0f37f6c29e3342cf0565dab854eecfc3382e5d92f8d0c5fcaf59994d6d3",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0021_tbl01_flat-perforated-strainers-specs.xlsx",
+      "xlsx_sha256": "a8b093efe0c496a15ab7d6db9a75577e094c79dbc3849c51da4abe75a23e9891"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0021.png",
+  "page_image_sha256": "707005cad22788c9be0672a1033329a4e69b217e9ba2f5d27fe59cf07e083d44",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0021_assets.json"
+}

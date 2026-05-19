@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 100,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0100_fig01",
+      "caption": "EXHIBIT 4-43 A Reciprocating Compressor with All Components",
+      "bbox_norm": [0.10, 0.17, 0.50, 0.55]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0100_fig02",
+      "caption": "EXHIBIT 4-44 After-Cooler Piping and Instrumentation Diagram",
+      "bbox_norm": [0.50, 0.17, 0.92, 0.43]
+    }
+  ],
+  "issues": []
+}

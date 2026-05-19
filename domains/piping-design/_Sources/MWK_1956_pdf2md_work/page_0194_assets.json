@@ -1,0 +1,36 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.99,
+        0.5
+      ],
+      "caption": "THE M.W. KELLOGG CO. \u2014 PIPING FLEXIBILITY AND STRESS ANALYSIS \u2014 LOAD CONSTANTS FOR Z-WIND (FORM No. PA-FA-7) \u2014 upper form: Straight and Curved Member Data with Load Constants for Z-Wind",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.5,
+        0.99,
+        0.97
+      ],
+      "caption": "THE M.W. KELLOGG CO. \u2014 PIPING FLEXIBILITY AND STRESS ANALYSIS \u2014 LOAD CONSTANTS FOR Z-WIND (FORM No. PA-FA-7) \u2014 lower form: Straight and Curved Member Data with Load Constants for Z-Wind",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "Both tables are scanned engineering forms (PA-FA-7) with handwritten entries; many cells are partially legible and several values may be OCR-ambiguous (e.g., decimal points vs. commas, sign characters). CSV reflects the Markdown context provided and a visual cross-check against the page raster.",
+    "No standalone figures or images are present on this page; only the two filled-in form-tables."
+  ],
+  "page": 194,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

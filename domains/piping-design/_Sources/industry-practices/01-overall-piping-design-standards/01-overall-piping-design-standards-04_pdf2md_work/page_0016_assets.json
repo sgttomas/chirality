@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-04",
+  "page": 16,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2 – Gear Operator Applications for Gate Valves",
+      "slug": "gear-operator-applications-gate-valves",
+      "bbox_norm": [0.10, 0.38, 0.90, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pressure Class", "is_header": true },
+              { "value": "Gate Valves Sizes (NPS)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": "14 and greater", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": "12 and greater", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600 and 900", "type": "text" },
+              { "value": "8 and greater", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 and greater", "type": "text" },
+              { "value": "6 and greater", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table with pressure class and corresponding minimum NPS for gear operators"
+    }
+  ],
+  "issues": []
+}

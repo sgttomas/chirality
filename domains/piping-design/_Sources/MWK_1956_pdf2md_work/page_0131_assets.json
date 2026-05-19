@@ -1,0 +1,51 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.46
+      ],
+      "caption": "The M.W. Kellogg Company - General Flexibility and Stress Analysis - Shape Coefficients of Circular Members - Calculation Sheet No. 1",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.48,
+        0.97,
+        0.93
+      ],
+      "caption": "The M.W. Kellogg Company - Piping Flexibility Analysis - Calculation Sheet No. 2",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2
+    },
+    {
+      "bbox_norm": [
+        0.16,
+        0.49,
+        0.95,
+        0.55
+      ],
+      "caption": "Member shape icons across the seven member columns of Calculation Sheet No. 2 (T-1 through 6-A) plus summation column",
+      "kind": "fig",
+      "ordinal": 1
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "Page is a scanned image of a pre-printed engineering calculation form filled in with handwritten pencil entries; numeric cell values are not reliably extractable as CSV at this raster resolution. Captured tables structurally but omitted full csv_text.",
+    "asset_note: Large pre-printed Kellogg calculation form occupying the upper half of the page. Two stacked sub-blocks: (top) 'TRIGONOMETRIC CONSTANTS' / 'MEMBER USED' / 'COORDINATES' columns with rows for k, alpha (deg), sin alpha, cos alpha, sin^2, cos^2, etc., for member numbers, plus 'SHAPE COEFFICIENTS' columns at right; (bottom) 'SHAPE COEFFICIENT CALCULATION' grid with rows for s, s_a, s_b, s_ab, s_aa, s_bb, etc. Title block at lower-left reads 'THE M.W. KELLOGG CO. - GENERAL FLEXIBILITY AND STRESS ANALYSIS - SHAPE COEFFICIENTS OF CIRCULAR MEMBERS - CALC. SHEET No. 1'. Numerical entries are handwritten in pencil and largely illegible at this raster resolution; CSV transcription not attempted.",
+    "asset_note: Large pre-printed Kellogg calculation form occupying the lower half of the page. Header row: PLANE / MEMBER / SHAPE with seven shape-icon columns labeled T-1, 1-2, 2-3, 3-4, 4-5, 5-6, 6-A and a final SUM (sigma) column. Row labels in left margin include s, s_a, s_b, s_ab, s_aa, s_bb, c_v, U, V, U_aa, V_bb, U_ab, delta_x, delta_y, U^2, V^2, UV, etc., with shape-coefficient values entered per member. Title block at lower-left reads 'THE M.W. KELLOGG CO. - PIPING FLEXIBILITY ANALYSIS - CALC. SHEET No. 2'. Handwritten pencil entries throughout; column-by-column shape diagrams (straight, vertical bend, half-bend, full quarter-circle, etc.) are embedded in the SHAPE row. CSV transcription not attempted due to legibility.",
+    "asset_note: Horizontal strip of eight small line drawings forming the SHAPE row of Calculation Sheet No. 2: a vertical straight member (T-1), two vertical straights (1-2, 2-3), a horizontal-axis half-bend / D-shape (3-4), a mirrored D-shape (4-5), a vertical straight (5-6), a quarter-circle elbow (6-A), and a sigma summation glyph. These are the schematic member-shape indicators used to apply the corresponding shape-coefficient formulas above each column."
+  ],
+  "page": 131,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

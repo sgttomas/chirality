@@ -1,0 +1,57 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 47,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5: Elastomer Sensitivities to CO2 Decompression Damage",
+      "slug": "elastomer-sensitivities-co2-decompression-damage",
+      "bbox_norm": [0.07, 0.17, 0.93, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Sensitivity", "is_header": true },
+              { "value": "Elastomer Type", "is_header": true },
+              { "value": "Typical Applications", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Least", "type": "text" },
+              { "value": "EPDM, EP, Atlas™", "type": "text" },
+              { "value": "lean gas, CO₂, steam", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Medium", "type": "text" },
+              { "value": "Buna-N, Hydrin®", "type": "text" },
+              { "value": "Gas, oil, water", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Most", "type": "text" },
+              { "value": "Viton®, Fluorel®, Kalrez®", "type": "text" },
+              { "value": "Gas, oil, water", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with sensitivity ranking, elastomer types, and typical applications"
+    }
+  ],
+  "issues": []
+}

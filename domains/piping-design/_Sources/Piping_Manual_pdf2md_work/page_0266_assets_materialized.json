@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0266.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0266_fig01",
+      "bbox_norm": [
+        0.1,
+        0.32,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        128,
+        895,
+        2569,
+        3248
+      ],
+      "caption": "EXHIBIT 10-53 \u2014 Overhead Arrangement. Plan view of pipe rack, overhead condenser, support, overhead line, tower, and horizontal leg for flexibility; with elevation/isometric view showing tower temperature zones (180\u00b0, 310\u00b0, 400\u00b0), elevations (120'/36.570, 20'/6.100), calculated growth (A), line growth (B), horizontal leg (C), guide, support, line temperature 180\u00b0, and air cooler. Note: subtract growth (B) from growth (A); difference is used to calculate horizontal leg (C).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0266_fig01_exhibit-10-53-overhead-arrangement-plan.png",
+      "png_sha256": "2fc25399bd2a1c5cdc5f3a8e5781bd29293fe645adfb664070bcb39d0b983126",
+      "slug": "exhibit-10-53-overhead-arrangement-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 266,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0266.png",
+  "page_image_sha256": "7aeea5c8cb6ba008f8aec5a363da98a7d87b2678bdae520a2c5a5c4be8ed1b19",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0266_assets.json"
+}

@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0488.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0488_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        1946
+      ],
+      "caption": "(A) WEIGHT (lb) \u2014 CLASS 300 valve and flange weight data. Warning: Valve weight varies greatly from vendor to vendor",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0488_tbl01_class-300-weight-lb.png",
+      "png_sha256": "8e237065bd3bbec4513c7071b8b09396d0cb568a4cc41115147786e677997fd6",
+      "slug": "class-300-weight-lb",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0488_tbl01_class-300-weight-lb.json",
+      "table_data_json_sha256": "cdeb178d2457c589d3ce123d92c9075ff2fb6e68647e7e688a9e14ebe68188d5",
+      "table_data_sha256": "cdeb178d2457c589d3ce123d92c9075ff2fb6e68647e7e688a9e14ebe68188d5",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0488_tbl01_class-300-weight-lb.xlsx",
+      "xlsx_sha256": "0e50257a751fc151f499752a9fd96b0c09ef470c599be1bb0c32c9be837a1c7f"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0488_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.51,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1627,
+        2523,
+        3538
+      ],
+      "caption": "(B) LENGTH (in.) \u2014 CLASS 300 valve and flange length data",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Pipe-Stress-Engineering_p0488_tbl02_class-300-length-in.png",
+      "png_sha256": "b49b3acf62a6ce770b1af288666b929bd884eb4bfd2888030054c40cd0063d40",
+      "slug": "class-300-length-in",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0488_tbl02_class-300-length-in.json",
+      "table_data_json_sha256": "94e42b992f3427ddf858bfc4b568f6942d06e8555ea116dbae3c7e56a2933e56",
+      "table_data_sha256": "94e42b992f3427ddf858bfc4b568f6942d06e8555ea116dbae3c7e56a2933e56",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0488_tbl02_class-300-length-in.xlsx",
+      "xlsx_sha256": "4e865dae15ec1089c4af0c03d22a33ff713ad39b07def53d8a010a9bf4380981"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 488,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0488.png",
+  "page_image_sha256": "8e4da0f3cae4a8117e97b68848c2a2eb964045d3543a068931879dac0faf20bd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0488_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0093_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1159
+      ],
+      "caption": "TABLE 3.2 FLEXIBILITY FACTOR AND STRESS INTENSIFICATION FACTOR FOR JOINTS [6]",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0093_tbl01_flexibility-factor-stress-intensificatio.png",
+      "png_sha256": "bbb528638424e0127ca3badccfe6e28f652b12b97ea113fd90e4947a831bf397",
+      "slug": "flexibility-factor-stress-intensificatio",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0093_tbl01_flexibility-factor-stress-intensificatio.json",
+      "table_data_json_sha256": "bf1ac50117a52599a73404eb6b2313ed1368fc475ea8303b1e07026a21a11f8c",
+      "table_data_sha256": "bf1ac50117a52599a73404eb6b2313ed1368fc475ea8303b1e07026a21a11f8c",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0093_tbl01_flexibility-factor-stress-intensificatio.xlsx",
+      "xlsx_sha256": "8aeb3dcc8f31d1c69726c4db7b27578cbb5f1e47ef5f82ed452a112f0776e781"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 93,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093.png",
+  "page_image_sha256": "8c134f382644f7099b766bd6b77e38d17e2e4d30320a7abe3f8fccdcfdc4322f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0093_assets.json"
+}

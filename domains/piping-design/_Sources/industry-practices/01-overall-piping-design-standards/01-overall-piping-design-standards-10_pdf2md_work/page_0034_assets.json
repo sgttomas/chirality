@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 34,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-10 Single Deck with Elevated Relief Header—Typical",
+      "slug": "fig-300-10-single-deck-elevated-relief-header-typical",
+      "bbox_norm": [0.04, 0.58, 0.96, 0.96],
+      "confidence": "high",
+      "notes": "Technical diagram of pipeway stanchion elevation showing future deck and access. Caption visible immediately above the figure."
+    }
+  ],
+  "issues": []
+}

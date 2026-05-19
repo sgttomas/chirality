@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0050.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0050_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.89,
+        0.69
+      ],
+      "bbox_px": [
+        26,
+        430,
+        2408,
+        2449
+      ],
+      "caption": "EXHIBIT 3-7 Grade-Mounted Horizontal Inline Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0050_fig01_exhibit-3-7-grade-mounted-horizontal-inl.png",
+      "png_sha256": "063e5c27f48c8b0eb80370130b5f97f22a5f11e4c9860b8e400f9a25f9486f37",
+      "slug": "exhibit-3-7-grade-mounted-horizontal-inl",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 50,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0050.png",
+  "page_image_sha256": "c904de51665158bff962e90f1f431c9bf38200766c122c02510893994a1b0812",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0050_assets.json"
+}

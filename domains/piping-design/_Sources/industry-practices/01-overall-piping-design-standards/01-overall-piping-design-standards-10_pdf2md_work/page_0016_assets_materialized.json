@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0016_fig01",
+      "bbox_norm": [
+        0.08,
+        0.28,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        758,
+        2474,
+        2538
+      ],
+      "caption": "Fig. 300-4 Pressure Drop for Gas Flow in Short Lines",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0016_fig01_fig-300-4-pressure-drop-gas-flow-short-l.png",
+      "png_sha256": "bdd21c0f78904bea7f800c1332eb3f30e60fa3efadb5fc3d214aaef9e272fd5f",
+      "slug": "fig-300-4-pressure-drop-gas-flow-short-l",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0016.png",
+  "page_image_sha256": "81f78481bb33f73ca5a6eb0d9313c5f47d72412a782b7a631ade91c89c616e1a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0016_assets.json"
+}

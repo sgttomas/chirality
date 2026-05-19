@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0002_img01",
+      "bbox_norm": [
+        0.28,
+        0.76,
+        0.72,
+        0.93
+      ],
+      "bbox_px": [
+        574,
+        2498,
+        1921,
+        3448
+      ],
+      "caption": "ASME Press publisher logo",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/Pipe-Stress-Engineering_p0002_img01_asme-press-logo.png",
+      "png_sha256": "a71fbdf6096d2fa6b5f9366acdfbddee667297c767717ce4143fd14ebcd00e20",
+      "slug": "asme-press-logo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0002.png",
+  "page_image_sha256": "bf0d3d2666060a8b7554a7b80d1baf9ee6b1974fa188b250aba2653d3107c1cb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0002_assets.json"
+}

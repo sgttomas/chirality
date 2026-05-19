@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0109.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0109_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2560,
+        3135
+      ],
+      "caption": "Figure 3-18. Heater Arrangement A. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0109_fig01_heater-arrangement-a.png",
+      "png_sha256": "be65f5a9901e3648f4d2f9a15b1afc385d21146e9e628c26db6688148f8e0d25",
+      "slug": "heater-arrangement-a",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 109,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0109.png",
+  "page_image_sha256": "dc8a32148f542e501b2ac10655eb001577e6f73867bf3394c47ecb6206ce1258",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0109_assets.json"
+}

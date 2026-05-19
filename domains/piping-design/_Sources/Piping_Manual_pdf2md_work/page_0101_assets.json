@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 101,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0101_a01",
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.02, 0.99, 0.36],
+      "caption": "EXHIBIT 4-45  Compressor Shelter: Siting Criteria",
+      "notes": "Hand-drawn elevation/section sketch of a compressor shelter showing siting criteria. Labels include CLEAR MAINTENANCE AREA, ALL ELEVATIONS ABOVE THIS POINT BY STRUCTURAL DISCIPLINE OR BUILDING CONTRACTOR, ALTERNATIVE MAINTENANCE AREA, 4 HOOK PLUS RUNNING BLOCK TROLLEY, CONTROL ROOM. Vertical dimensions Y, A, H and horizontal dimension C are tagged."
+    }
+  ],
+  "issues": []
+}

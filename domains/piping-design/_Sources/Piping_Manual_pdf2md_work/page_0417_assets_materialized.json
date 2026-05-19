@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0417.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0417_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.16,
+        0.95,
+        0.29
+      ],
+      "bbox_px": [
+        25,
+        363,
+        2550,
+        1122
+      ],
+      "caption": "EXHIBIT 16-5 Wind Force on Pipe",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0417_tbl01_exhibit-16-5-wind-force-on-pipe.png",
+      "png_sha256": "082fa509522653614bf438791275fa32b42a7a829814a96562683dd6b3c4c2fc",
+      "slug": "exhibit-16-5-wind-force-on-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 417,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0417.png",
+  "page_image_sha256": "75096e48de9c49b55f066c39908902dea14d942e3de4d7af4f553cc1bb91ec1d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0417_assets.json"
+}

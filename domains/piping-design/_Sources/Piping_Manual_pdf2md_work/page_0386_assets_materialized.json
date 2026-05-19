@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0386.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0386_fig01",
+      "bbox_norm": [
+        0.05,
+        0.17,
+        0.95,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        397,
+        2562,
+        1489
+      ],
+      "caption": "EXHIBIT 15-12 Plant Topography",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0386_fig01_exhibit-15-12-plant-topography.png",
+      "png_sha256": "8702139d9e8258fcc10fa1339193581522e2febaec6f137a515fa2c1d42422aa",
+      "slug": "exhibit-15-12-plant-topography",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0386_fig02",
+      "bbox_norm": [
+        0.05,
+        0.4,
+        0.95,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1158,
+        2562,
+        2349
+      ],
+      "caption": "EXHIBIT 15-13 Earthen and Concrete Containment for Buried Low-Temperature Tank",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0386_fig02_exhibit-15-13-earthen-and-concrete-conta.png",
+      "png_sha256": "24e11b83d640e5654be36601c5ac9c479990f2fb271617fa8407f07879740d38",
+      "slug": "exhibit-15-13-earthen-and-concrete-conta",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 386,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0386.png",
+  "page_image_sha256": "74e186a7c37d4b6c546f45d6d6602b2650b0f261ef052e470e246baeb00e8126",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0386_assets.json"
+}

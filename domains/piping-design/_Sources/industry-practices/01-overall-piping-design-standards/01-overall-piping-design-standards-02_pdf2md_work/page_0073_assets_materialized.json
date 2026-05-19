@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0073.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-02_p0073_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        3201
+      ],
+      "caption": "Table 2 Typical requirements for gusseting in vibration service",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-02_p0073_tbl01_table-2-gusseting-vibration-service.png",
+      "png_sha256": "b7a9b69793dbd6343f8d944b134e533b0ff1a9ffb5313246540b14c0a42465ef",
+      "slug": "table-2-gusseting-vibration-service",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-02_p0073_tbl01_table-2-gusseting-vibration-service.json",
+      "table_data_json_sha256": "03d24ce65674d572841ce306fb85abc66ed340e41e46962bd8aea4c1bff9dc5d",
+      "table_data_sha256": "03d24ce65674d572841ce306fb85abc66ed340e41e46962bd8aea4c1bff9dc5d",
+      "xlsx_path": "tables/01-overall-piping-design-standards-02_p0073_tbl01_table-2-gusseting-vibration-service.xlsx",
+      "xlsx_sha256": "96c424a232fc16774fbd81b45409ca3c46cb73f214a363363f35cea5b5a10134"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-02",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 73,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0073.png",
+  "page_image_sha256": "0be7041fd7822ac2414a0e5732fe2b361eef349b0da0523bff90c2fc08fc22e3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-02_pdf2md_work/page_0073_assets.json"
+}

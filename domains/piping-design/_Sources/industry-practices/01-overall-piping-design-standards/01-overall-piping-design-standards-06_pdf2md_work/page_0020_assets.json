@@ -1,0 +1,47 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 20,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Service color coding (continued)",
+      "slug": "service-color-coding-continued",
+      "bbox_norm": [0.08, 0.06, 0.92, 0.20],
+      "confidence": "high",
+      "notes": "Two-row continuation of service color coding table; both entries map to Green",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Service", "is_header": true },
+              { "value": "Color", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water - Processed, Injection", "type": "text" },
+              { "value": "Green", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water - Raw, Potable, Seawater", "type": "text" },
+              { "value": "Green", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

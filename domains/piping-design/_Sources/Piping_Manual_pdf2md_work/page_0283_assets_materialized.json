@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0283.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0283_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1551
+      ],
+      "caption": "EXHIBIT 11-3 Pipe Rack Column Spacing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0283_fig01_exhibit-11-3-pipe-rack-column-spacing.png",
+      "png_sha256": "76d390daa960bfd0813d01f6079fb860fba43367b7888f6bdcb49f4d1ff6a3b4",
+      "slug": "exhibit-11-3-pipe-rack-column-spacing",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0283_fig02",
+      "bbox_norm": [
+        0.05,
+        0.44,
+        0.96,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1287,
+        2550,
+        3134
+      ],
+      "caption": "EXHIBIT 11-4 Pipe Rack Cross Section (at Column 12)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0283_fig02_exhibit-11-4-pipe-rack-cross-section-at.png",
+      "png_sha256": "5bf87c495728c039ff8820691827522179c1b0691ec9a29a64478bb4a3827a51",
+      "slug": "exhibit-11-4-pipe-rack-cross-section-at",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 283,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0283.png",
+  "page_image_sha256": "0b5fbc646f4c043bfc04257dd6a9d4c7663774df24b230a0dafe14fc2b65b3b3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0283_assets.json"
+}

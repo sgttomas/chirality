@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0022.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0022_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2560,
+        2046
+      ],
+      "caption": "Figures 1-6a and b. Bathtub-type temporary strainers. Courtesy of Mack Iron Works Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0022_fig01_bathtub-temporary-strainers-1-6a-b.png",
+      "png_sha256": "3ce63ddfa4c1b20f7200dae57e50ba46203bf4026e17b832eae258c8153ae84b",
+      "slug": "bathtub-temporary-strainers-1-6a-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0022_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.57,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1716,
+        2560,
+        3234
+      ],
+      "caption": "BT-F UNIT For Flange Connection and BT-W UNIT For Welded Connection dimensional data",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0022_tbl01_bathtub-strainer-dimensional-data.png",
+      "png_sha256": "84d3443c27a61e43e1c12bad0a66e2171813971aeeaa8e1e6c2b7af9fe2e244d",
+      "slug": "bathtub-strainer-dimensional-data",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0022_tbl01_bathtub-strainer-dimensional-data.json",
+      "table_data_json_sha256": "f4fcdc28cf713515d4f167460a31a2cfcd4cfc360f5ab897b6deb8e6ae7149b0",
+      "table_data_sha256": "f4fcdc28cf713515d4f167460a31a2cfcd4cfc360f5ab897b6deb8e6ae7149b0",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0022_tbl01_bathtub-strainer-dimensional-data.xlsx",
+      "xlsx_sha256": "51c7379c889dcdc7668544670d203bc96ab9c907840153cf0b5fa722e83bbaf9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0022.png",
+  "page_image_sha256": "537cba0495a54d81fac610e65ebc5c95967f56fed452dcb5bbe5dcf5eff57163",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0022_assets.json"
+}

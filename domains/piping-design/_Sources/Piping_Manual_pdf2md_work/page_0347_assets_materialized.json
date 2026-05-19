@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0347.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0347_fig01",
+      "bbox_norm": [
+        0.1,
+        0.07,
+        0.96,
+        0.49
+      ],
+      "bbox_px": [
+        166,
+        51,
+        3314,
+        1387
+      ],
+      "caption": "EXHIBIT 13-25 Miscellaneous Details (Cont) \u2014 SUMP/LEAD PLUG VALVE (7), HYDRANT VALVE (8), CHEMICAL DRAIN (9)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0347_fig01_exhibit-13-25-miscellaneous-details-cont.png",
+      "png_sha256": "151565eec1c5dc89a2fbd904ad14e254664ef6346d53b571b295cab936d4f0fb",
+      "slug": "exhibit-13-25-miscellaneous-details-cont",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 347,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0347.png",
+  "page_image_sha256": "c5fa3b0e31d2b3ae2729cf2cc944490300016a244fe8059c3259abb4ec4a3553",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0347_assets.json"
+}

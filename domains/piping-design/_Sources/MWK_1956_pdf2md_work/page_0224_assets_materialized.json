@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0224.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0224_fig01",
+      "bbox_norm": [
+        0.55,
+        0.21,
+        0.99,
+        0.42
+      ],
+      "bbox_px": [
+        1206,
+        524,
+        2412,
+        1540
+      ],
+      "caption": "Fig. 7.8 Tied expansion joint.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0224_fig01_fig-7-8-tied-expansion-joint.png",
+      "png_sha256": "d59e67243f79113381d79ad31d8d9d81a1bad124b51ba8af095d2d59963db2a1",
+      "slug": "fig-7-8-tied-expansion-joint",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0224_fig02",
+      "bbox_norm": [
+        0.55,
+        0.43,
+        0.99,
+        0.66
+      ],
+      "bbox_px": [
+        1206,
+        1245,
+        2412,
+        2326
+      ],
+      "caption": "Fig. 7.9 Universal type expansion joint.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0224_fig02_fig-7-9-universal-type-expansion-joint.png",
+      "png_sha256": "7dfa6fcd09ed8f76132b5ee509ca216067961b41d5b53d0dda572132a1ca11cf",
+      "slug": "fig-7-9-universal-type-expansion-joint",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0224_fig03",
+      "bbox_norm": [
+        0.55,
+        0.67,
+        0.99,
+        0.94
+      ],
+      "bbox_px": [
+        1206,
+        2031,
+        2412,
+        3243
+      ],
+      "caption": "Fig. 7.10 Hinged expansion joint.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0224_fig03_fig-7-10-hinged-expansion-joint.png",
+      "png_sha256": "944230ef3dfabd97342b016a685ff7934a7a87a8dc37e8225da040292c6e4809",
+      "slug": "fig-7-10-hinged-expansion-joint",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 224,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0224.png",
+  "page_image_sha256": "9cafc2b6bd2154156874c2014b0603279c9d9a99998418ece474377fc2e7b8f8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0224_assets.json"
+}

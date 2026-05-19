@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0033_fig01",
+      "bbox_norm": [
+        0.04,
+        0.54,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1746,
+        2557,
+        3564
+      ],
+      "caption": "FIG. 1.5 IMPACT TEST REQUIREMENT OF MILD CARBON STEEL PIPE (A-53, A-106, A-135, ETC.) [7]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0033_fig01_impact-test-requirement-mild-carbon-stee.png",
+      "png_sha256": "b5292755859fd7b6113d98d62b32d0a1f65860dfabde2743c869376dc7b738c4",
+      "slug": "impact-test-requirement-mild-carbon-stee",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0033.png",
+  "page_image_sha256": "b605e514c649f8db66ede2a068c88f0185e5219a563c63f767044082051800e3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0033_assets.json"
+}

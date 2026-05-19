@@ -1,0 +1,98 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 279,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 8.10 Effect of vessel flexibility on piping forces and moments [17]",
+      "slug": "fig-8-10-vessel-flexibility-piping-forces-moments",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Isometric diagram of piping system with miter bend, compressor, and cylindrical shell. Labeled parameters: Piping Carbon Steel d=36\", t=0.5\", ΔT=65°F; Cylindrical Shell D=132\", T=0.625\", L=480\", ΔT=65°F; Elbow Radius=36\". Dimension annotations 10'-9\", 4'-3\", 3'-3\"."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Analysis results comparing At Compressor vs At Cyl. Shell for Rigid Shell and Flexible Shell conditions (part of Fig. 8.10)",
+      "slug": "tbl-8-10-rigid-flexible-shell-forces-moments",
+      "bbox_norm": [0.04, 0.38, 0.75, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Analysis With", "is_header": true, "col_span": 2 },
+              { "value": "At Compressor", "is_header": true },
+              { "value": "At Cyl. Shell", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rigid Shell", "is_header": true, "row_span": 3 },
+              { "value": "Fx, lb", "type": "text" },
+              { "value": -72312, "type": "number", "unit": "lb", "raw": "-72,312" },
+              { "value": 72512, "type": "number", "unit": "lb", "raw": "+72,512" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fy, lb", "type": "text" },
+              { "value": -2026, "type": "number", "unit": "lb", "raw": "-2,026" },
+              { "value": -2026, "type": "number", "unit": "lb", "raw": "-2,026" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mz, lb-in", "type": "text" },
+              { "value": 3654876, "type": "number", "unit": "lb-in", "raw": "+3,654,876" },
+              { "value": -2701620, "type": "number", "unit": "lb-in", "raw": "-2,701,620" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Flexible Shell", "is_header": true, "row_span": 3 },
+              { "value": "Fx, lb", "type": "text" },
+              { "value": -12454, "type": "number", "unit": "lb", "raw": "-12,454" },
+              { "value": 12454, "type": "number", "unit": "lb", "raw": "+12,454" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fy, lb", "type": "text" },
+              { "value": -2102, "type": "number", "unit": "lb", "raw": "-2,102" },
+              { "value": -2102, "type": "number", "unit": "lb", "raw": "-2,102" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mz, lb-in", "type": "text" },
+              { "value": 883668, "type": "number", "unit": "lb-in", "raw": "+883,668" },
+              { "value": -92604, "type": "number", "unit": "lb-in", "raw": "-92,604" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table embedded within the Fig. 8.10 block. Header row spans all 4 columns with merged 'Analysis With' spanning the first two columns. 'Rigid Shell' and 'Flexible Shell' each row_span 3 data rows. Load components are Fx (lb), Fy (lb), Mz (lb-in)."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 8.11 Directions with significant flexibility",
+      "slug": "fig-8-11-directions-significant-flexibility",
+      "bbox_norm": [0.04, 0.70, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Two diagrams side by side: left shows cylindrical shell nozzle with labeled force/moment directions (Mx, My, Mz, Fx, Fy, Fz, x, y, z axes); right shows spherical shell nozzle with same labels. Caption below reads FIG. 8.11 DIRECTIONS WITH SIGNIFICANT FLEXIBILITY."
+    }
+  ],
+  "issues": []
+}

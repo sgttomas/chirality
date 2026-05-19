@@ -1,0 +1,42 @@
+Pipe Supports and Restraints 159
+
+1.0 TTT. 7 oa
+
+0.5 1.0
+La/Ls —_>
+FIG. 6.7
+OVERHANGING PIPING SPANS
+
+on the curve determine the two allowable overhanging lengths. For instance, if Lg =0.45Ls, then the
+allowable La is 0.16Zs.
+
+6.3. ANALYSIS OF PIPING SYSTEMS RESTING ON SUPPORTS
+
+The most common and economical approach in dealing with the countless piping in a process
+plant or power plant is to rest the piping on pipe racks or other support structures [4]. The piping is
+supported either directly on the pipe wall or through pipe shoes. These types of supports are gener-
+ally called resting supports. These supports are single-acting, because they only stop the pipe from
+moving downward but allow the pipe to move up freely. Due to the nature of this non-linearity, exact
+solutions are not expected for piping that goes through various temperature cycles. Therefore, three
+major schools of thought have developed in the pipe stress software community with regard to resting
+supports and temperature cycles. The analysis results and the qualities of the system designed differ
+considerably among the methods used.
+
+A simple example shall be used to demonstrate the merits and pitfalls of some analysis approaches
+designed to satisfy the code requirements and philosophy. Figure 6.8 shows a typical piping system
+resting on the support structure. The piping has one end connected to a process tower and the other
+end connected to another process equipment. The system is supported at three locations. As the tem-
+perature of the process fluid rises, the tower grows upward and the pipe expands. With the tower con-
+nection moving up gradually, the piping system also goes through the following sequence of changes:
+
+¢ With a small tower movement, the piping is held down on all supports by the weight of the
+piping including fluid and attachments. Some thermal expansion (displacement) stress is gen-
+erated, but the weight stress remains the same as in the cold condition.
+
++ As the temperature rises gradually and the tower movement increases somewhat, the piping
+wilF lift from the first support (support 20). A further increase of the tower movement will lift
+the pipe off support 30, thus making a large portion of the piping unsupported. This substan-
+tially increases the sustained weight stress.
+
+* As the system reaches the maximum operating temperature, the tower connection moves up
+some more, but the pipe is still being held down at support 40. The expansion stress increases

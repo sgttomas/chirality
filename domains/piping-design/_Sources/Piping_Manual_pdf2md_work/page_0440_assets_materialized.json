@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0440.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0440_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1588
+      ],
+      "caption": "EXHIBIT 17-4 Scanning Comparison \u2014 a. Manually Drafted. Engineering drawing showing a plan view of an external vessel (manually drafted) with nozzles, dimensions, and annotations, plus elevation/section views on the right showing the face of the vessel.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0440_fig01_exhibit-17-4-scanning-comparison-a-manua.png",
+      "png_sha256": "abdc88a4c7774f6bcc914457e18adba608d457d17bf1dcb6d722779e91580bff",
+      "slug": "exhibit-17-4-scanning-comparison-a-manua",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0440_fig02",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.97,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1224,
+        2562,
+        2614
+      ],
+      "caption": "EXHIBIT 17-4 Scanning Comparison \u2014 b. After Scanning into CAD System. Engineering drawing showing the same plan view of the external vessel after scanning into a CAD system, with nozzles, dimensions, annotations, and elevation/section views on the right showing the face of the vessel.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0440_fig02_exhibit-17-4-scanning-comparison-b-after.png",
+      "png_sha256": "19dc045301c9905ebdff920f62817888d74572a0ef81835bbb765fa48036ba17",
+      "slug": "exhibit-17-4-scanning-comparison-b-after",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 440,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0440.png",
+  "page_image_sha256": "c10559b40034069e4332fc9dcb5f35378d06feea0949edc02fa968789f8aaf5e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0440_assets.json"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 266,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p266_fig_01",
+      "caption": "EXHIBIT 10-53 — Overhead Arrangement. Plan view of pipe rack, overhead condenser, support, overhead line, tower, and horizontal leg for flexibility; with elevation/isometric view showing tower temperature zones (180°, 310°, 400°), elevations (120'/36.570, 20'/6.100), calculated growth (A), line growth (B), horizontal leg (C), guide, support, line temperature 180°, and air cooler. Note: subtract growth (B) from growth (A); difference is used to calculate horizontal leg (C).",
+      "bbox_norm": [0.10, 0.32, 0.97, 0.93]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 117,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Figure 10.1 — Preventive measures for sodium hydroxide service by area and piping class",
+      "slug": "fig-10-1-preventive-measures-sodium-hydroxide",
+      "bbox_norm": [0.05, 0.30, 0.97, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "AREA", "is_header": true, "colspan": 2 },
+              { "value": "SPECIAL REQUIREMENTS", "is_header": true },
+              { "value": "PIPING CLASS", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text", "rowspan": 2 },
+              { "value": "without heat tracing", "type": "text" },
+              { "value": "None", "type": "text" },
+              { "value": "For suitable piping class selection see Standard Form DEP 31.38.01.84-Gen.", "type": "text", "rowspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "\"A\"", "type": "text" },
+              { "value": "with heat tracing", "type": "text" },
+              { "value": "PWHT of welds (including attachment welds)\nPWHT of cold-formed parts (which shall be avoided as far as possible).", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "\"B\"", "type": "text", "colspan": 2 },
+              { "value": "PWHT of welds (including attachment welds)\nPWHT of cold-formed parts (which shall be avoided as far as possible).", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "\"C\"", "type": "text", "colspan": 2 },
+              { "value": "None", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with merged cells; area column spans sub-rows for heat tracing conditions"
+    }
+  ],
+  "issues": []
+}

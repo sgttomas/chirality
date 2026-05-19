@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0160.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.52,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1459,
+        891
+      ],
+      "caption": "Figure 5-3. Three-plane configuration.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig01_three-plane-configuration.png",
+      "png_sha256": "aea749becad2083ae366371fbe84aead1c56eaaeaee3b93fafe63f39f495fa77",
+      "slug": "three-plane-configuration",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig02",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.52,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        1459,
+        2871
+      ],
+      "caption": "Figure 5-4. Z-shaped configuration.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig02_z-shaped-configuration.png",
+      "png_sha256": "9b812b59a47ab6feec4b0c8623eeefbf16997f926e6dd9ead684b3effa6f84d5",
+      "slug": "z-shaped-configuration",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig03",
+      "bbox_norm": [
+        0.52,
+        0.75,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        1203,
+        2310,
+        2560,
+        3300
+      ],
+      "caption": "Figure 5-5. U-shaped configuration with equal legs.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0160_fig03_u-shaped-configuration-equal-legs.png",
+      "png_sha256": "32507e85afd0944604b0450d997a8ea195e4cd29eb62566034df8e240e79d7a5",
+      "slug": "u-shaped-configuration-equal-legs",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 160,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0160.png",
+  "page_image_sha256": "12f4c16d42c511b175d1846c3576898e22bdc1c45039f541ae28ef89e44269b5",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0160_assets.json"
+}

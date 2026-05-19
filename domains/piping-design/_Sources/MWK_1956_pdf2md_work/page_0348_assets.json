@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 348,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-8. Moments and Forces - Two-Member System, Both Ends Fixed - One Support Displaced in the Direction of the Adjoining Member",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.98,
+        0.96
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 345,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig_p345_01",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.30],
+      "caption": "EXHIBIT 13-23 Cooling Water at Exchangers"
+    },
+    {
+      "kind": "fig",
+      "id": "fig_p345_02",
+      "bbox_norm": [0.04, 0.31, 0.96, 0.55],
+      "caption": "EXHIBIT 13-24 Cooling Water at Pumps"
+    }
+  ],
+  "issues": []
+}

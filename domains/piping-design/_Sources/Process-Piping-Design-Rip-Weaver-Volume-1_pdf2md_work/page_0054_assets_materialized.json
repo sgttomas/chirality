@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0054.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0054_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3488
+      ],
+      "caption": "Table 3-2 API Standard 650 Tanks for High Stress Design For Appendix D and Appendix G",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0054_tbl01_api-650-tanks-high-stress-design-appendi.png",
+      "png_sha256": "92065be9e1b8cd903c49daf8880423b7b5856c071a1b8629f20f789b536c1b78",
+      "slug": "api-650-tanks-high-stress-design-appendi",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0054_tbl01_api-650-tanks-high-stress-design-appendi.json",
+      "table_data_json_sha256": "e59894f46cf83f5b9cfd5b26e2c6bd0cbfe968435b31de115cc5a6d7dae5858c",
+      "table_data_sha256": "e59894f46cf83f5b9cfd5b26e2c6bd0cbfe968435b31de115cc5a6d7dae5858c",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0054_tbl01_api-650-tanks-high-stress-design-appendi.xlsx",
+      "xlsx_sha256": "ed41c3ffa7b052a72ce444c8245413a3b10248bba16d93466f98fcd0eef19bcd"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 54,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0054.png",
+  "page_image_sha256": "6cb83b40d2fff75754540989fa2f1077e0eba15cf1704e9a9f6a2492d3bc95b3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0054_assets.json"
+}

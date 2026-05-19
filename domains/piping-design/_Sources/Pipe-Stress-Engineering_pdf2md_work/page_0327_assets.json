@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 327,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.13 COMPUTER GENERATED REPORT ON API STD-610 PUMP NOZZLE LOADS",
+      "slug": "fig-6-13-api-std-610-pump-nozzle-loads",
+      "bbox_norm": [0.04, 0.68, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Piping isometric diagram showing suction and discharge nozzle locations with annotated load values (Fx, Fy, Fz, Mx, My) at two nozzle points. Caption visible below diagram."
+    }
+  ],
+  "issues": []
+}

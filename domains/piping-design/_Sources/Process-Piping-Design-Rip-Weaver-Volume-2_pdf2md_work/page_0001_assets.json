@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 1,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "Book cover illustration showing piping design drawing with vessel, valves, and equipment on grid background",
+      "slug": "cover-piping-design-illustration",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Full cover page image including title text and author name integrated into the cover design"
+    }
+  ],
+  "issues": []
+}

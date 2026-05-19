@@ -1,0 +1,894 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 207,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table A-2 Circumference, Area and Volume of Circles and Cylinders — Courtesy of Chicago Bridge and Iron Co.",
+      "slug": "table-a2-circumference-area-volume-circles-cylinders",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Diam. in Feet", "row_span": 2, "is_header": true },
+              { "value": "Circumference", "col_span": 2, "is_header": true },
+              { "value": "Area of Circle", "col_span": 2, "is_header": true },
+              { "value": "Volume of Cylinder Per Foot of Height", "col_span": 3, "is_header": true },
+              { "value": "Diam. in Feet", "row_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Feet", "is_header": true },
+              { "value": "Meters", "is_header": true },
+              { "value": "Sq. Feet", "is_header": true },
+              { "value": "Sq. Meters", "is_header": true },
+              { "value": "U.S. Gals.", "is_header": true },
+              { "value": "Imperial Gals.", "is_header": true },
+              { "value": "U.S. Bbl. (42 Gals.)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": 3.14, "type": "number", "unit": "ft" },
+              { "value": 0.9576, "type": "number", "unit": "m" },
+              { "value": 0.785, "type": "number", "unit": "sq ft" },
+              { "value": 0.0730, "type": "number", "unit": "sq m", "raw": ".0730" },
+              { "value": 5.9, "type": "number", "unit": "U.S. Gals." },
+              { "value": 4.9, "type": "number", "unit": "Imperial Gals." },
+              { "value": 0.140, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": 6.28, "type": "number", "unit": "ft" },
+              { "value": 1.9131, "type": "number", "unit": "m" },
+              { "value": 3.142, "type": "number", "unit": "sq ft" },
+              { "value": 0.2919, "type": "number", "unit": "sq m", "raw": ".2919" },
+              { "value": 23.5, "type": "number", "unit": "U.S. Gals." },
+              { "value": 19.6, "type": "number", "unit": "Imperial Gals." },
+              { "value": 0.560, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": 9.42, "type": "number", "unit": "ft" },
+              { "value": 2.8727, "type": "number", "unit": "m" },
+              { "value": 7.069, "type": "number", "unit": "sq ft" },
+              { "value": 0.6567, "type": "number", "unit": "sq m", "raw": ".6567" },
+              { "value": 52.9, "type": "number", "unit": "U.S. Gals." },
+              { "value": 44.0, "type": "number", "unit": "Imperial Gals." },
+              { "value": 1.259, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": 12.57, "type": "number", "unit": "ft" },
+              { "value": 3.8322, "type": "number", "unit": "m" },
+              { "value": 12.566, "type": "number", "unit": "sq ft" },
+              { "value": 1.1675, "type": "number", "unit": "sq m" },
+              { "value": 94.0, "type": "number", "unit": "U.S. Gals." },
+              { "value": 78.2, "type": "number", "unit": "Imperial Gals." },
+              { "value": 2.238, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 4, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5, "type": "number" },
+              { "value": 15.71, "type": "number", "unit": "ft" },
+              { "value": 4.7878, "type": "number", "unit": "m" },
+              { "value": 19.635, "type": "number", "unit": "sq ft" },
+              { "value": 1.8241, "type": "number", "unit": "sq m" },
+              { "value": 146.9, "type": "number", "unit": "U.S. Gals." },
+              { "value": 122.3, "type": "number", "unit": "Imperial Gals." },
+              { "value": 3.497, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": 18.85, "type": "number", "unit": "ft" },
+              { "value": 5.7434, "type": "number", "unit": "m" },
+              { "value": 28.274, "type": "number", "unit": "sq ft" },
+              { "value": 2.6268, "type": "number", "unit": "sq m" },
+              { "value": 211.5, "type": "number", "unit": "U.S. Gals." },
+              { "value": 176.1, "type": "number", "unit": "Imperial Gals." },
+              { "value": 5.036, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 7, "type": "number" },
+              { "value": 21.99, "type": "number", "unit": "ft" },
+              { "value": 6.6989, "type": "number", "unit": "m" },
+              { "value": 38.485, "type": "number", "unit": "sq ft" },
+              { "value": 3.5755, "type": "number", "unit": "sq m" },
+              { "value": 287.9, "type": "number", "unit": "U.S. Gals." },
+              { "value": 239.7, "type": "number", "unit": "Imperial Gals." },
+              { "value": 6.85, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 7, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": 25.13, "type": "number", "unit": "ft" },
+              { "value": 7.6545, "type": "number", "unit": "m" },
+              { "value": 50.265, "type": "number", "unit": "sq ft" },
+              { "value": 4.6703, "type": "number", "unit": "sq m" },
+              { "value": 376.0, "type": "number", "unit": "U.S. Gals." },
+              { "value": 313.0, "type": "number", "unit": "Imperial Gals." },
+              { "value": 8.95, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 8, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 9, "type": "number" },
+              { "value": 28.27, "type": "number", "unit": "ft" },
+              { "value": 8.6100, "type": "number", "unit": "m" },
+              { "value": 63.617, "type": "number", "unit": "sq ft" },
+              { "value": 5.9105, "type": "number", "unit": "sq m" },
+              { "value": 476.0, "type": "number", "unit": "U.S. Gals." },
+              { "value": 396.4, "type": "number", "unit": "Imperial Gals." },
+              { "value": 11.33, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 9, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 31.42, "type": "number", "unit": "ft" },
+              { "value": 9.5756, "type": "number", "unit": "m" },
+              { "value": 78.540, "type": "number", "unit": "sq ft" },
+              { "value": 7.2966, "type": "number", "unit": "sq m" },
+              { "value": 587.5, "type": "number", "unit": "U.S. Gals." },
+              { "value": 489.2, "type": "number", "unit": "Imperial Gals." },
+              { "value": 13.99, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 10, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 11, "type": "number" },
+              { "value": 34.56, "type": "number", "unit": "ft" },
+              { "value": 10.531, "type": "number", "unit": "m" },
+              { "value": 95.033, "type": "number", "unit": "sq ft" },
+              { "value": 8.8284, "type": "number", "unit": "sq m" },
+              { "value": 711.1, "type": "number", "unit": "U.S. Gals." },
+              { "value": 592.1, "type": "number", "unit": "Imperial Gals." },
+              { "value": 16.93, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 11, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 37.70, "type": "number", "unit": "ft" },
+              { "value": 11.4867, "type": "number", "unit": "m" },
+              { "value": 113.097, "type": "number", "unit": "sq ft" },
+              { "value": 10.5071, "type": "number", "unit": "sq m" },
+              { "value": 846.0, "type": "number", "unit": "U.S. Gals." },
+              { "value": 704.5, "type": "number", "unit": "Imperial Gals." },
+              { "value": 20.13, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 12, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 13, "type": "number" },
+              { "value": 40.84, "type": "number", "unit": "ft" },
+              { "value": 12.4422, "type": "number", "unit": "m" },
+              { "value": 132.732, "type": "number", "unit": "sq ft" },
+              { "value": 12.3318, "type": "number", "unit": "sq m" },
+              { "value": 992.8, "type": "number", "unit": "U.S. Gals." },
+              { "value": 826.8, "type": "number", "unit": "Imperial Gals." },
+              { "value": 23.63, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 13, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": 43.98, "type": "number", "unit": "ft" },
+              { "value": 13.4058, "type": "number", "unit": "m" },
+              { "value": 153.938, "type": "number", "unit": "sq ft" },
+              { "value": 14.3013, "type": "number", "unit": "sq m" },
+              { "value": 1151.5, "type": "number", "unit": "U.S. Gals.", "raw": "1,151.5" },
+              { "value": 958.9, "type": "number", "unit": "Imperial Gals." },
+              { "value": 27.42, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 14, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 15, "type": "number" },
+              { "value": 47.12, "type": "number", "unit": "ft" },
+              { "value": 14.3634, "type": "number", "unit": "m" },
+              { "value": 176.714, "type": "number", "unit": "sq ft" },
+              { "value": 16.4173, "type": "number", "unit": "sq m" },
+              { "value": 1321.9, "type": "number", "unit": "U.S. Gals.", "raw": "1,321.9" },
+              { "value": 1100.8, "type": "number", "unit": "Imperial Gals.", "raw": "1,100.8" },
+              { "value": 31.47, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 15, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number" },
+              { "value": 50.27, "type": "number", "unit": "ft" },
+              { "value": 15.3289, "type": "number", "unit": "m" },
+              { "value": 201.062, "type": "number", "unit": "sq ft" },
+              { "value": 18.6761, "type": "number", "unit": "sq m" },
+              { "value": 1504.0, "type": "number", "unit": "U.S. Gals.", "raw": "1,504.0" },
+              { "value": 1252.4, "type": "number", "unit": "Imperial Gals.", "raw": "1,252.4" },
+              { "value": 35.81, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 16, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 17, "type": "number" },
+              { "value": 53.41, "type": "number", "unit": "ft" },
+              { "value": 16.2785, "type": "number", "unit": "m" },
+              { "value": 226.980, "type": "number", "unit": "sq ft" },
+              { "value": 21.0891, "type": "number", "unit": "sq m" },
+              { "value": 1698.1, "type": "number", "unit": "U.S. Gals.", "raw": "1,698.1" },
+              { "value": 1414.0, "type": "number", "unit": "Imperial Gals.", "raw": "1,414.0" },
+              { "value": 40.43, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 17, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 18, "type": "number" },
+              { "value": 56.55, "type": "number", "unit": "ft" },
+              { "value": 17.2400, "type": "number", "unit": "m" },
+              { "value": 254.469, "type": "number", "unit": "sq ft" },
+              { "value": 23.6477, "type": "number", "unit": "sq m" },
+              { "value": 1903.6, "type": "number", "unit": "U.S. Gals.", "raw": "1,903.6" },
+              { "value": 1585.1, "type": "number", "unit": "Imperial Gals.", "raw": "1,585.1" },
+              { "value": 45.32, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 18, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 19, "type": "number" },
+              { "value": 59.69, "type": "number", "unit": "ft" },
+              { "value": 18.1956, "type": "number", "unit": "m" },
+              { "value": 283.529, "type": "number", "unit": "sq ft" },
+              { "value": 26.3446, "type": "number", "unit": "sq m" },
+              { "value": 2120.9, "type": "number", "unit": "U.S. Gals.", "raw": "2,120.9" },
+              { "value": 1766.0, "type": "number", "unit": "Imperial Gals.", "raw": "1,766.0" },
+              { "value": 50.50, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 19, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number" },
+              { "value": 62.83, "type": "number", "unit": "ft" },
+              { "value": 19.1511, "type": "number", "unit": "m" },
+              { "value": 314.159, "type": "number", "unit": "sq ft" },
+              { "value": 29.1863, "type": "number", "unit": "sq m" },
+              { "value": 2350.0, "type": "number", "unit": "U.S. Gals.", "raw": "2,350.0" },
+              { "value": 1957.2, "type": "number", "unit": "Imperial Gals.", "raw": "1,957.2" },
+              { "value": 55.95, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 20, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 21, "type": "number" },
+              { "value": 65.97, "type": "number", "unit": "ft" },
+              { "value": 20.1067, "type": "number", "unit": "m" },
+              { "value": 346.361, "type": "number", "unit": "sq ft" },
+              { "value": 32.1780, "type": "number", "unit": "sq m" },
+              { "value": 2591.0, "type": "number", "unit": "U.S. Gals.", "raw": "2,591.0" },
+              { "value": 2157.8, "type": "number", "unit": "Imperial Gals.", "raw": "2,157.8" },
+              { "value": 61.69, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 21, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 22, "type": "number" },
+              { "value": 69.11, "type": "number", "unit": "ft" },
+              { "value": 21.0663, "type": "number", "unit": "m" },
+              { "value": 380.132, "type": "number", "unit": "sq ft" },
+              { "value": 35.3148, "type": "number", "unit": "sq m" },
+              { "value": 2843.7, "type": "number", "unit": "U.S. Gals.", "raw": "2,843.7" },
+              { "value": 2368.2, "type": "number", "unit": "Imperial Gals.", "raw": "2,368.2" },
+              { "value": 67.71, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 22, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 23, "type": "number" },
+              { "value": 72.26, "type": "number", "unit": "ft" },
+              { "value": 22.0218, "type": "number", "unit": "m" },
+              { "value": 415.476, "type": "number", "unit": "sq ft" },
+              { "value": 38.5989, "type": "number", "unit": "sq m" },
+              { "value": 3108.0, "type": "number", "unit": "U.S. Gals.", "raw": "3,108.0" },
+              { "value": 2588.7, "type": "number", "unit": "Imperial Gals.", "raw": "2,588.7" },
+              { "value": 73.99, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 23, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24, "type": "number" },
+              { "value": 75.40, "type": "number", "unit": "ft" },
+              { "value": 22.9774, "type": "number", "unit": "m" },
+              { "value": 452.389, "type": "number", "unit": "sq ft" },
+              { "value": 42.0268, "type": "number", "unit": "sq m" },
+              { "value": 3384.1, "type": "number", "unit": "U.S. Gals.", "raw": "3,384.1" },
+              { "value": 2817.9, "type": "number", "unit": "Imperial Gals.", "raw": "2,817.9" },
+              { "value": 80.57, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 24, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 25, "type": "number" },
+              { "value": 78.54, "type": "number", "unit": "ft" },
+              { "value": 23.9389, "type": "number", "unit": "m" },
+              { "value": 490.874, "type": "number", "unit": "sq ft" },
+              { "value": 45.6037, "type": "number", "unit": "sq m" },
+              { "value": 3672.0, "type": "number", "unit": "U.S. Gals.", "raw": "3,672.0" },
+              { "value": 3057.6, "type": "number", "unit": "Imperial Gals.", "raw": "3,057.6" },
+              { "value": 87.43, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 25, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 26, "type": "number" },
+              { "value": 81.68, "type": "number", "unit": "ft" },
+              { "value": 24.8985, "type": "number", "unit": "m" },
+              { "value": 530.929, "type": "number", "unit": "sq ft" },
+              { "value": 49.3323, "type": "number", "unit": "sq m" },
+              { "value": 3971.6, "type": "number", "unit": "U.S. Gals.", "raw": "3,971.6" },
+              { "value": 3307.1, "type": "number", "unit": "Imperial Gals.", "raw": "3,307.1" },
+              { "value": 94.56, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 26, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 27, "type": "number" },
+              { "value": 84.82, "type": "number", "unit": "ft" },
+              { "value": 25.8541, "type": "number", "unit": "m" },
+              { "value": 572.555, "type": "number", "unit": "sq ft" },
+              { "value": 53.1051, "type": "number", "unit": "sq m" },
+              { "value": 4283.0, "type": "number", "unit": "U.S. Gals.", "raw": "4,283.0" },
+              { "value": 3566.3, "type": "number", "unit": "Imperial Gals.", "raw": "3,566.3" },
+              { "value": 101.98, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 27, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 28, "type": "number" },
+              { "value": 87.96, "type": "number", "unit": "ft" },
+              { "value": 26.8096, "type": "number", "unit": "m" },
+              { "value": 615.752, "type": "number", "unit": "sq ft" },
+              { "value": 57.0346, "type": "number", "unit": "sq m" },
+              { "value": 4606.4, "type": "number", "unit": "U.S. Gals.", "raw": "4,606.4" },
+              { "value": 3835.7, "type": "number", "unit": "Imperial Gals.", "raw": "3,835.7" },
+              { "value": 109.68, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 28, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 29, "type": "number" },
+              { "value": 91.11, "type": "number", "unit": "ft" },
+              { "value": 27.7692, "type": "number", "unit": "m" },
+              { "value": 660.520, "type": "number", "unit": "sq ft" },
+              { "value": 61.3643, "type": "number", "unit": "sq m" },
+              { "value": 4941.9, "type": "number", "unit": "U.S. Gals.", "raw": "4,941.9" },
+              { "value": 4115.1, "type": "number", "unit": "Imperial Gals.", "raw": "4,115.1" },
+              { "value": 117.61, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 29, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 30, "type": "number" },
+              { "value": 94.25, "type": "number", "unit": "ft" },
+              { "value": 28.7247, "type": "number", "unit": "m" },
+              { "value": 706.858, "type": "number", "unit": "sq ft" },
+              { "value": 65.6609, "type": "number", "unit": "sq m" },
+              { "value": 5289.4, "type": "number", "unit": "U.S. Gals.", "raw": "5,289.4" },
+              { "value": 4404.9, "type": "number", "unit": "Imperial Gals.", "raw": "4,404.9" },
+              { "value": 125.94, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 30, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 31, "type": "number" },
+              { "value": 97.39, "type": "number", "unit": "ft" },
+              { "value": 29.6883, "type": "number", "unit": "m" },
+              { "value": 754.768, "type": "number", "unit": "sq ft" },
+              { "value": 70.1292, "type": "number", "unit": "sq m" },
+              { "value": 5646.1, "type": "number", "unit": "U.S. Gals.", "raw": "5,646.1" },
+              { "value": 4701.4, "type": "number", "unit": "Imperial Gals.", "raw": "4,701.4" },
+              { "value": 134.43, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 31, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 32, "type": "number" },
+              { "value": 100.53, "type": "number", "unit": "ft" },
+              { "value": 30.6358, "type": "number", "unit": "m" },
+              { "value": 804.248, "type": "number", "unit": "sq ft" },
+              { "value": 74.7370, "type": "number", "unit": "sq m" },
+              { "value": 6016.1, "type": "number", "unit": "U.S. Gals.", "raw": "6,016.1" },
+              { "value": 5009.0, "type": "number", "unit": "Imperial Gals.", "raw": "5,009.0" },
+              { "value": 143.24, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 32, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 33, "type": "number" },
+              { "value": 103.67, "type": "number", "unit": "ft" },
+              { "value": 31.5914, "type": "number", "unit": "m" },
+              { "value": 855.299, "type": "number", "unit": "sq ft" },
+              { "value": 79.4849, "type": "number", "unit": "sq m" },
+              { "value": 6398.1, "type": "number", "unit": "U.S. Gals.", "raw": "6,398.1" },
+              { "value": 5327.3, "type": "number", "unit": "Imperial Gals.", "raw": "5,327.3" },
+              { "value": 152.34, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 33, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 34, "type": "number" },
+              { "value": 106.81, "type": "number", "unit": "ft" },
+              { "value": 32.5470, "type": "number", "unit": "m" },
+              { "value": 907.920, "type": "number", "unit": "sq ft" },
+              { "value": 84.3407, "type": "number", "unit": "sq m" },
+              { "value": 6791.6, "type": "number", "unit": "U.S. Gals.", "raw": "6,791.6" },
+              { "value": 5655.3, "type": "number", "unit": "Imperial Gals.", "raw": "5,655.3" },
+              { "value": 161.71, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 34, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 35, "type": "number" },
+              { "value": 109.96, "type": "number", "unit": "ft" },
+              { "value": 33.5145, "type": "number", "unit": "m" },
+              { "value": 962.112, "type": "number", "unit": "sq ft" },
+              { "value": 89.3914, "type": "number", "unit": "sq m" },
+              { "value": 7196.9, "type": "number", "unit": "U.S. Gals.", "raw": "7,196.9" },
+              { "value": 5994.1, "type": "number", "unit": "Imperial Gals.", "raw": "5,994.1" },
+              { "value": 171.36, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 35, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 36, "type": "number" },
+              { "value": 113.10, "type": "number", "unit": "ft" },
+              { "value": 34.4721, "type": "number", "unit": "m" },
+              { "value": 1017.88, "type": "number", "unit": "sq ft", "raw": "1,017.88" },
+              { "value": 94.5638, "type": "number", "unit": "sq m" },
+              { "value": 7614.2, "type": "number", "unit": "U.S. Gals.", "raw": "7,614.2" },
+              { "value": 6341.2, "type": "number", "unit": "Imperial Gals.", "raw": "6,341.2" },
+              { "value": 181.29, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 36, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 37, "type": "number" },
+              { "value": 116.24, "type": "number", "unit": "ft" },
+              { "value": 35.4296, "type": "number", "unit": "m" },
+              { "value": 1075.21, "type": "number", "unit": "sq ft", "raw": "1,075.21" },
+              { "value": 99.8704, "type": "number", "unit": "sq m" },
+              { "value": 8043.1, "type": "number", "unit": "U.S. Gals.", "raw": "8,043.1" },
+              { "value": 6698.7, "type": "number", "unit": "Imperial Gals.", "raw": "6,698.7" },
+              { "value": 191.50, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 37, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 38, "type": "number" },
+              { "value": 119.38, "type": "number", "unit": "ft" },
+              { "value": 36.3852, "type": "number", "unit": "m" },
+              { "value": 1134.11, "type": "number", "unit": "sq ft", "raw": "1,134.11" },
+              { "value": 105.3627, "type": "number", "unit": "sq m" },
+              { "value": 8483.8, "type": "number", "unit": "U.S. Gals.", "raw": "8,483.8" },
+              { "value": 7065.3, "type": "number", "unit": "Imperial Gals.", "raw": "7,065.3" },
+              { "value": 201.99, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 38, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 39, "type": "number" },
+              { "value": 122.52, "type": "number", "unit": "ft" },
+              { "value": 37.3447, "type": "number", "unit": "m" },
+              { "value": 1194.59, "type": "number", "unit": "sq ft", "raw": "1,194.59" },
+              { "value": 110.9929, "type": "number", "unit": "sq m" },
+              { "value": 8936.4, "type": "number", "unit": "U.S. Gals.", "raw": "8,936.4" },
+              { "value": 7442.7, "type": "number", "unit": "Imperial Gals.", "raw": "7,442.7" },
+              { "value": 212.77, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 39, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 40, "type": "number" },
+              { "value": 125.66, "type": "number", "unit": "ft" },
+              { "value": 38.3003, "type": "number", "unit": "m" },
+              { "value": 1256.63, "type": "number", "unit": "sq ft", "raw": "1,256.63" },
+              { "value": 116.7615, "type": "number", "unit": "sq m" },
+              { "value": 9400.8, "type": "number", "unit": "U.S. Gals.", "raw": "9,400.8" },
+              { "value": 7827.5, "type": "number", "unit": "Imperial Gals.", "raw": "7,827.5" },
+              { "value": 223.82, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 40, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 41, "type": "number" },
+              { "value": 128.81, "type": "number", "unit": "ft" },
+              { "value": 39.2558, "type": "number", "unit": "m" },
+              { "value": 1320.25, "type": "number", "unit": "sq ft", "raw": "1,320.25" },
+              { "value": 122.6643, "type": "number", "unit": "sq m" },
+              { "value": 9877.1, "type": "number", "unit": "U.S. Gals.", "raw": "9,877.1" },
+              { "value": 8224.5, "type": "number", "unit": "Imperial Gals.", "raw": "8,224.5" },
+              { "value": 235.17, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 41, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 42, "type": "number" },
+              { "value": 131.95, "type": "number", "unit": "ft" },
+              { "value": 40.2154, "type": "number", "unit": "m" },
+              { "value": 1385.44, "type": "number", "unit": "sq ft", "raw": "1,385.44" },
+              { "value": 128.7130, "type": "number", "unit": "sq m" },
+              { "value": 10365.3, "type": "number", "unit": "U.S. Gals.", "raw": "10,365.3" },
+              { "value": 8629.7, "type": "number", "unit": "Imperial Gals.", "raw": "8,629.7" },
+              { "value": 246.79, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 42, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 43, "type": "number" },
+              { "value": 135.09, "type": "number", "unit": "ft" },
+              { "value": 41.1709, "type": "number", "unit": "m" },
+              { "value": 1452.20, "type": "number", "unit": "sq ft", "raw": "1,452.20" },
+              { "value": 134.8975, "type": "number", "unit": "sq m" },
+              { "value": 10863.9, "type": "number", "unit": "U.S. Gals.", "raw": "10,863.9" },
+              { "value": 9045.0, "type": "number", "unit": "Imperial Gals.", "raw": "9,045.0" },
+              { "value": 258.66, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 43, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 44, "type": "number" },
+              { "value": 138.23, "type": "number", "unit": "ft" },
+              { "value": 42.1265, "type": "number", "unit": "m" },
+              { "value": 1520.53, "type": "number", "unit": "sq ft", "raw": "1,520.53" },
+              { "value": 141.3189, "type": "number", "unit": "sq m" },
+              { "value": 11377.4, "type": "number", "unit": "U.S. Gals.", "raw": "11,377.4" },
+              { "value": 9472.1, "type": "number", "unit": "Imperial Gals.", "raw": "9,472.1" },
+              { "value": 270.89, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 44, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 45, "type": "number" },
+              { "value": 141.37, "type": "number", "unit": "ft" },
+              { "value": 43.0901, "type": "number", "unit": "m" },
+              { "value": 1590.43, "type": "number", "unit": "sq ft", "raw": "1,590.43" },
+              { "value": 147.7762, "type": "number", "unit": "sq m" },
+              { "value": 11900.1, "type": "number", "unit": "U.S. Gals.", "raw": "11,900.1" },
+              { "value": 9909.3, "type": "number", "unit": "Imperial Gals.", "raw": "9,909.3" },
+              { "value": 283.34, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 45, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 46, "type": "number" },
+              { "value": 144.51, "type": "number", "unit": "ft" },
+              { "value": 44.0456, "type": "number", "unit": "m" },
+              { "value": 1661.90, "type": "number", "unit": "sq ft", "raw": "1,661.90" },
+              { "value": 154.3695, "type": "number", "unit": "sq m" },
+              { "value": 12436.6, "type": "number", "unit": "U.S. Gals.", "raw": "12,436.6" },
+              { "value": 10355.7, "type": "number", "unit": "Imperial Gals.", "raw": "10,355.7" },
+              { "value": 296.11, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 46, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 47, "type": "number" },
+              { "value": 147.65, "type": "number", "unit": "ft" },
+              { "value": 45.0012, "type": "number", "unit": "m" },
+              { "value": 1734.94, "type": "number", "unit": "sq ft", "raw": "1,734.94" },
+              { "value": 161.1016, "type": "number", "unit": "sq m" },
+              { "value": 12983.9, "type": "number", "unit": "U.S. Gals.", "raw": "12,983.9" },
+              { "value": 10812.9, "type": "number", "unit": "Imperial Gals.", "raw": "10,812.9" },
+              { "value": 309.14, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 47, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 48, "type": "number" },
+              { "value": 150.80, "type": "number", "unit": "ft" },
+              { "value": 45.9567, "type": "number", "unit": "m" },
+              { "value": 1809.56, "type": "number", "unit": "sq ft", "raw": "1,809.56" },
+              { "value": 168.0776, "type": "number", "unit": "sq m" },
+              { "value": 13543.0, "type": "number", "unit": "U.S. Gals.", "raw": "13,543.0" },
+              { "value": 11279.7, "type": "number", "unit": "Imperial Gals.", "raw": "11,279.7" },
+              { "value": 322.45, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 48, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 49, "type": "number" },
+              { "value": 153.94, "type": "number", "unit": "ft" },
+              { "value": 46.9163, "type": "number", "unit": "m" },
+              { "value": 1885.74, "type": "number", "unit": "sq ft", "raw": "1,885.74" },
+              { "value": 175.1954, "type": "number", "unit": "sq m" },
+              { "value": 14115.5, "type": "number", "unit": "U.S. Gals.", "raw": "14,115.5" },
+              { "value": 11756.7, "type": "number", "unit": "Imperial Gals.", "raw": "11,756.7" },
+              { "value": 336.08, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 49, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 50, "type": "number" },
+              { "value": 157.08, "type": "number", "unit": "ft" },
+              { "value": 47.8718, "type": "number", "unit": "m" },
+              { "value": 1963.50, "type": "number", "unit": "sq ft", "raw": "1,963.50" },
+              { "value": 182.4611, "type": "number", "unit": "sq m" },
+              { "value": 14695.5, "type": "number", "unit": "U.S. Gals.", "raw": "14,695.5" },
+              { "value": 12235.7, "type": "number", "unit": "Imperial Gals.", "raw": "12,235.7" },
+              { "value": 349.89, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 50, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 51, "type": "number" },
+              { "value": 160.22, "type": "number", "unit": "ft" },
+              { "value": 48.8334, "type": "number", "unit": "m" },
+              { "value": 2042.82, "type": "number", "unit": "sq ft", "raw": "2,042.82" },
+              { "value": 189.7682, "type": "number", "unit": "sq m" },
+              { "value": 15281.4, "type": "number", "unit": "U.S. Gals.", "raw": "15,281.4" },
+              { "value": 12721.5, "type": "number", "unit": "Imperial Gals.", "raw": "12,721.5" },
+              { "value": 363.85, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 51, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 52, "type": "number" },
+              { "value": 163.36, "type": "number", "unit": "ft" },
+              { "value": 49.7889, "type": "number", "unit": "m" },
+              { "value": 2123.72, "type": "number", "unit": "sq ft", "raw": "2,123.72" },
+              { "value": 197.3012, "type": "number", "unit": "sq m" },
+              { "value": 15882.5, "type": "number", "unit": "U.S. Gals.", "raw": "15,882.5" },
+              { "value": 13225.8, "type": "number", "unit": "Imperial Gals.", "raw": "13,225.8" },
+              { "value": 378.15, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 52, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 53, "type": "number" },
+              { "value": 166.50, "type": "number", "unit": "ft" },
+              { "value": 50.7365, "type": "number", "unit": "m" },
+              { "value": 2206.18, "type": "number", "unit": "sq ft", "raw": "2,206.18" },
+              { "value": 204.9611, "type": "number", "unit": "sq m" },
+              { "value": 16503.4, "type": "number", "unit": "U.S. Gals.", "raw": "16,503.4" },
+              { "value": 13742.8, "type": "number", "unit": "Imperial Gals.", "raw": "13,742.8" },
+              { "value": 392.94, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 53, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 54, "type": "number" },
+              { "value": 169.65, "type": "number", "unit": "ft" },
+              { "value": 51.7040, "type": "number", "unit": "m" },
+              { "value": 2290.22, "type": "number", "unit": "sq ft", "raw": "2,290.22" },
+              { "value": 212.7568, "type": "number", "unit": "sq m" },
+              { "value": 17134.5, "type": "number", "unit": "U.S. Gals.", "raw": "17,134.5" },
+              { "value": 14268.0, "type": "number", "unit": "Imperial Gals.", "raw": "14,268.0" },
+              { "value": 407.97, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 54, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 55, "type": "number" },
+              { "value": 172.79, "type": "number", "unit": "ft" },
+              { "value": 52.6596, "type": "number", "unit": "m" },
+              { "value": 2375.83, "type": "number", "unit": "sq ft", "raw": "2,375.83" },
+              { "value": 220.6883, "type": "number", "unit": "sq m" },
+              { "value": 17775.5, "type": "number", "unit": "U.S. Gals.", "raw": "17,775.5" },
+              { "value": 14803.2, "type": "number", "unit": "Imperial Gals.", "raw": "14,803.2" },
+              { "value": 423.23, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 55, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 56, "type": "number" },
+              { "value": 175.93, "type": "number", "unit": "ft" },
+              { "value": 53.6032, "type": "number", "unit": "m" },
+              { "value": 2463.01, "type": "number", "unit": "sq ft", "raw": "2,463.01" },
+              { "value": 228.8558, "type": "number", "unit": "sq m" },
+              { "value": 18426.8, "type": "number", "unit": "U.S. Gals.", "raw": "18,426.8" },
+              { "value": 15345.7, "type": "number", "unit": "Imperial Gals.", "raw": "15,345.7" },
+              { "value": 438.74, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 56, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 57, "type": "number" },
+              { "value": 179.07, "type": "number", "unit": "ft" },
+              { "value": 54.5747, "type": "number", "unit": "m" },
+              { "value": 2551.76, "type": "number", "unit": "sq ft", "raw": "2,551.76" },
+              { "value": 237.0573, "type": "number", "unit": "sq m" },
+              { "value": 19088.0, "type": "number", "unit": "U.S. Gals.", "raw": "19,088.0" },
+              { "value": 15896.7, "type": "number", "unit": "Imperial Gals.", "raw": "15,896.7" },
+              { "value": 454.47, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 57, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 58, "type": "number" },
+              { "value": 182.21, "type": "number", "unit": "ft" },
+              { "value": 55.5303, "type": "number", "unit": "m" },
+              { "value": 2642.08, "type": "number", "unit": "sq ft", "raw": "2,642.08" },
+              { "value": 245.5087, "type": "number", "unit": "sq m" },
+              { "value": 19761.5, "type": "number", "unit": "U.S. Gals.", "raw": "19,761.5" },
+              { "value": 16457.2, "type": "number", "unit": "Imperial Gals.", "raw": "16,457.2" },
+              { "value": 470.52, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 58, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 59, "type": "number" },
+              { "value": 185.35, "type": "number", "unit": "ft" },
+              { "value": 56.4858, "type": "number", "unit": "m" },
+              { "value": 2733.97, "type": "number", "unit": "sq ft", "raw": "2,733.97" },
+              { "value": 253.9459, "type": "number", "unit": "sq m" },
+              { "value": 20445.3, "type": "number", "unit": "U.S. Gals.", "raw": "20,445.3" },
+              { "value": 17027.5, "type": "number", "unit": "Imperial Gals.", "raw": "17,027.5" },
+              { "value": 486.79, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 59, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 60, "type": "number" },
+              { "value": 188.50, "type": "number", "unit": "ft" },
+              { "value": 57.4414, "type": "number", "unit": "m" },
+              { "value": 2827.43, "type": "number", "unit": "sq ft", "raw": "2,827.43" },
+              { "value": 262.6772, "type": "number", "unit": "sq m" },
+              { "value": 21156.7, "type": "number", "unit": "U.S. Gals.", "raw": "21,156.7" },
+              { "value": 17611.7, "type": "number", "unit": "Imperial Gals.", "raw": "17,611.7" },
+              { "value": 503.59, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 60, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 61, "type": "number" },
+              { "value": 191.64, "type": "number", "unit": "ft" },
+              { "value": 58.4110, "type": "number", "unit": "m" },
+              { "value": 2922.47, "type": "number", "unit": "sq ft", "raw": "2,922.47" },
+              { "value": 271.4744, "type": "number", "unit": "sq m" },
+              { "value": 21862.5, "type": "number", "unit": "U.S. Gals.", "raw": "21,862.5" },
+              { "value": 18207.3, "type": "number", "unit": "Imperial Gals.", "raw": "18,207.3" },
+              { "value": 520.54, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 61, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 62, "type": "number" },
+              { "value": 194.78, "type": "number", "unit": "ft" },
+              { "value": 59.3666, "type": "number", "unit": "m" },
+              { "value": 3019.07, "type": "number", "unit": "sq ft", "raw": "3,019.07" },
+              { "value": 280.4586, "type": "number", "unit": "sq m" },
+              { "value": 22581.2, "type": "number", "unit": "U.S. Gals.", "raw": "22,581.2" },
+              { "value": 18805.3, "type": "number", "unit": "Imperial Gals.", "raw": "18,805.3" },
+              { "value": 537.82, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 62, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 63, "type": "number" },
+              { "value": 197.92, "type": "number", "unit": "ft" },
+              { "value": 60.3221, "type": "number", "unit": "m" },
+              { "value": 3117.24, "type": "number", "unit": "sq ft", "raw": "3,117.24" },
+              { "value": 289.5887, "type": "number", "unit": "sq m" },
+              { "value": 23312.3, "type": "number", "unit": "U.S. Gals.", "raw": "23,312.3" },
+              { "value": 19415.9, "type": "number", "unit": "Imperial Gals.", "raw": "19,415.9" },
+              { "value": 555.06, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 63, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 64, "type": "number" },
+              { "value": 201.06, "type": "number", "unit": "ft" },
+              { "value": 61.2837, "type": "number", "unit": "m" },
+              { "value": 3216.99, "type": "number", "unit": "sq ft", "raw": "3,216.99" },
+              { "value": 298.8602, "type": "number", "unit": "sq m" },
+              { "value": 24054.8, "type": "number", "unit": "U.S. Gals.", "raw": "24,054.8" },
+              { "value": 20035.2, "type": "number", "unit": "Imperial Gals.", "raw": "20,035.2" },
+              { "value": 572.97, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 64, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 65, "type": "number" },
+              { "value": 204.20, "type": "number", "unit": "ft" },
+              { "value": 62.2312, "type": "number", "unit": "m" },
+              { "value": 3318.31, "type": "number", "unit": "sq ft", "raw": "3,318.31" },
+              { "value": 308.2686, "type": "number", "unit": "sq m" },
+              { "value": 24808.5, "type": "number", "unit": "U.S. Gals.", "raw": "24,808.5" },
+              { "value": 20663.5, "type": "number", "unit": "Imperial Gals.", "raw": "20,663.5" },
+              { "value": 590.68, "type": "number", "unit": "U.S. Bbl." },
+              { "value": 65, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page reference table, diameters 1-65 ft. 2-row merged header with col_span and row_span. All 65 data rows fully transcribed. Table continues on facing page per footer note."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0429.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0429_fig01",
+      "bbox_norm": [
+        0.06,
+        0.3,
+        0.94,
+        0.76
+      ],
+      "bbox_px": [
+        26,
+        826,
+        2530,
+        2676
+      ],
+      "caption": "EXHIBIT 16-18 \u2014 Example Thermal Calculation for Vessel Piping",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0429_fig01_exhibit-16-18-example-thermal-calculatio.png",
+      "png_sha256": "53e7cdc8f167deb3a203cfb8ed99f8268f8bc254585e8f9d16b88d38df91dbd1",
+      "slug": "exhibit-16-18-example-thermal-calculatio",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 429,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0429.png",
+  "page_image_sha256": "760d3688f9836d7ee775232ee6a083f40db956b769980a548c2dacd3b51c7a36",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0429_assets.json"
+}

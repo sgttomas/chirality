@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0117.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0117_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.94,
+        0.47
+      ],
+      "bbox_px": [
+        26,
+        265,
+        2543,
+        1723
+      ],
+      "caption": "Exhibit 5-20 \u2014 Horizontal Drum Platforms and Ladder Elevation Requirements. Elevation view of a horizontal drum showing a step-through ladder run (max 10'-0\"/3050 mm), an intermediate platform to suit a maximum ladder run of 30'-0\" (9150 mm), maintenance access (2'-0\" to 5'-0\" / .615 to 1525), 10\" min. (.250) clearance above the drum, top of concrete pier, and labeled vent, instrument, blind, and valve access at the top.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0117_fig01_exhibit-5-20-horizontal-drum-platforms-a.png",
+      "png_sha256": "916a5cb3d6370535dbf172ba67a27d5c06a774c9e423793a82aae93326f7373e",
+      "slug": "exhibit-5-20-horizontal-drum-platforms-a",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 117,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0117.png",
+  "page_image_sha256": "fc2127d8479ce1dbfa3e25fdd3371795de83e52afeb5249b078bdf381bc9f35f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0117_assets.json"
+}

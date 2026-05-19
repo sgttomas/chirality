@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0123_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        1231
+      ],
+      "caption": "TABLE 4.1 VALUES OF COEFFICIENT \u03b3 (FOR t < D/6)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0123_tbl01_table-4-1-coefficient-gamma.png",
+      "png_sha256": "feffd41db479dc66e1080bbdf5fc29ef771880c9ac5e3ba5678491d9f8e00376",
+      "slug": "table-4-1-coefficient-gamma",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0123_tbl01_table-4-1-coefficient-gamma.json",
+      "table_data_json_sha256": "ef96c3e6703979fef23d49ffae7713024e3de411f4a8eb2e51bddb71ac400c8a",
+      "table_data_sha256": "ef96c3e6703979fef23d49ffae7713024e3de411f4a8eb2e51bddb71ac400c8a",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0123_tbl01_table-4-1-coefficient-gamma.xlsx",
+      "xlsx_sha256": "a7897ece211aefe3e958471c15e781e3dc8c5e19a301d14d59db664313109d23"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 123,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123.png",
+  "page_image_sha256": "03723596ee2d1ff715773a956acd5e816b1c03dd105ee7978d22ef9158c8c4d8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0123_assets.json"
+}

@@ -1,0 +1,45 @@
+186 Chapter 6
+
+Beam bending stress and reduction of pipe section modulus. Based on strain gauge studies, Zick has
+discovered that when the vessel is supported by a saddle, only the portion of the shell in contact with
+saddle plus a small portion nearby is effective in resisting the beam bending moment. The hatched
+top portion of the shell cross-section, as shown in Figure 6.20, is ineffective in resisting the bending
+moment. The section modulus of the effective portion, which is the saddle angle plus one-sixth of the
+non-contact angle, is only a small fraction of the normal section modulus with the entire circumfer-
+ence of the shell active. Table 6.4 shows the section modulus reduction factors for different saddle
+angles. Take a 120-deg. saddle, for instance, the effective pipe section modulus is only 0.1066 of the
+full-pipe section modulus. This reduction factor reaches 0.0655 for the 90-deg. saddles normally used
+in piping. Therefore, to adopt this effective section modulus, an equivalent stress intensification factor
+(SIF) of 15.27 has to be applied for 90-deg. saddles in piping stress analyses. This appears to be incon-
+sistent with field experiences on piping. The strength of the pipe does not suddenly decrease to 10%
+of the original strength by adding a saddle. This is the impression that many engineers have about this
+reduced section modulus. The saddle, if anything, should have reinforced the pipe instead.
+
+Because the section modulus reduction is independent of the support load, the behavior of the ring
+supporting its own weight may reveal some connection. A large thin vessel shell often does not have
+enough ring stiffness to hold its own weight. Thus, the shell requires the use of saddles and stiffening
+rings to maintain its roundness before any load is applied. For piping systems with support types as
+tentatively suggested by Table 6.6, the section modulus reduction is most likely insignificant. How-
+ever, this needs to be further investigated either in the filed or in the laboratory. In any case, the sec-
+
+tion modulus reduction is applicable only to shells for very low pressure applications.
+For beam loading, we also have to take into account the fact that a reduction in section modulus
+
+also means a reduction in moment of inertia, thus a reduction in stiffness. This reduction in moment
+of inertia serves as a hinge, which considerably reduces the moment carrying capacity. That is, a very
+small beam bending moment will be produced at the support location of a continuous piping when the
+section modulus of the pipe over the support point is reduced. The increase in beam bending stress at
+the support is, therefore, not as much as the supposed reduction in the section modulus.
+
+Circumferential stress at horn of saddles. The pipe load sustained by the pipe located far away from
+the support is distributed as shear forces in a sinusoidal function such that no circumferential bending
+stress is generated. As the load transfers from the pipe to saddle, the shear forces redistribute and, at
+the same time, generate circumferential bending moments on the pipe shell. As previously discussed,
+the exact shear forces distribution at the fuzzy zone in the proximity of the support is not known. Cal-
+culating the exact bending moments resulting from the shear and the support forces is not possible.
+
+Zick’s method uses a semi-empirical approach.
+
+FIG. 6.20
+EFFECTIVE SECTION MODULUS OF LARGE VESSEL OVER A SADDLE AGAINST
+BEAM BENDING

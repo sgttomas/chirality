@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0374.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0374_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2010,
+        3060
+      ],
+      "caption": "FIGURE 5A.9",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0374_fig01_figure-5a-9.png",
+      "png_sha256": "54fd601f38197cf13cf50243fc85d5078f49ac047999b4b0206ec28d92e2c996",
+      "slug": "figure-5a-9",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 374,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0374.png",
+  "page_image_sha256": "4a502076917c9e92ac469c2f9fe7502c90b56b9e2e0cf5917ca6caf64014c1c8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0374_assets.json"
+}

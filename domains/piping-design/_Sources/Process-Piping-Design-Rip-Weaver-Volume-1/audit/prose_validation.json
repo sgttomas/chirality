@@ -1,0 +1,2615 @@
+{
+  "audit_dir": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1/audit",
+  "counts": {
+    "asset_structural_fails": 6,
+    "caption_notes": 6,
+    "equation_content_proposals": 0,
+    "equation_structural_fails": 1,
+    "pages_compared": 13,
+    "pages_with_structural_fails": 6,
+    "prose_hunks": 360
+  },
+  "missing_reextract": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    121,
+    122,
+    123,
+    124,
+    125,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219
+  ],
+  "pages": [
+    {
+      "asset_structural_fails": [
+        {
+          "kind": "img",
+          "original_count": 0,
+          "page": 1,
+          "reason": "count_mismatch",
+          "reextract_count": 1
+        }
+      ],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": true,
+      "page": 1,
+      "prose_hunks": [
+        {
+          "original": "[Cover image]",
+          "page": 1,
+          "position": 0,
+          "reextract": ""
+        },
+        {
+          "original": "# Process Piping Design Volume 1",
+          "page": 1,
+          "position": 1,
+          "reextract": ""
+        },
+        {
+          "original": "**Rip Weaver**",
+          "page": 1,
+          "position": 2,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [
+        {
+          "kind": "tbl",
+          "original_caption": "Reducing Tee and Reducing Cross dimensions (Size, T, E columns)",
+          "page": 20,
+          "position": 0,
+          "reextract_caption": "Reducing Tee and Reducing Cross dimensions table showing columns for Size, T, and various dimension values"
+        },
+        {
+          "kind": "tbl",
+          "original_caption": "Steel buttwelding fittings dimensions table (Size, A through S columns, Pipe Schedule Numbers)",
+          "page": 20,
+          "position": 1,
+          "reextract_caption": "Steel buttwelding fittings dimensions table showing columns for Size, A, B, C, D, E, F, G, H, J, K, L, M, N, P, Q, S and rows for pipe sizes from 1/2 through 36 inches, with Pipe Schedule Numbers for Pipe and Extra Strong columns"
+        }
+      ],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 20,
+      "prose_hunks": [
+        {
+          "original": "## General Piping",
+          "page": 20,
+          "position": 0,
+          "reextract": "General Piping"
+        },
+        {
+          "original": "**American Standard:** These fittings conform in sizes and types included therein, to the American Standard, B16.9-56.",
+          "page": 20,
+          "position": 2,
+          "reextract": "**American Standard:** These fittings conform in sizes and types included therein, to the American Standard, B16.9-55."
+        },
+        {
+          "original": "**Thickness:** Standard Fittings 12-inch and smaller are made for use with Standard pipe (heaviest weight on 8, 10, and 12-inch sizes); sizes 14-inch and larger are made for use with Schedule 10 thick.",
+          "page": 20,
+          "position": 3,
+          "reextract": "**Thickness:** Standard Fittings 12-inch and smaller are made for use with Standard pipe (heaviest weight on 8, 10, and 12-inch sizes); sizes 14-inch and larger are made for use with Schedule 20 pipe 3/8-inch thick."
+        },
+        {
+          "original": "Extra Strong Fittings 12-inch and smaller are made for use with Extra Strong pipe; larger sizes are made for use with O.D. pipe 3/8-inch thick.",
+          "page": 20,
+          "position": 4,
+          "reextract": "Extra Strong Fittings 12-inch and smaller are made for use with Extra Strong pipe; larger sizes are made for use with O.D. pipe 1/2-inch thick."
+        },
+        {
+          "original": "The figure shows various buttwelding fitting types including:",
+          "page": 20,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "- 90\u00b0 Long Radius Elbow (Straight or Reducing)",
+          "page": 20,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "- 90\u00b0 Long Radius Elbow with Long Tangent on One End",
+          "page": 20,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "- 90\u00b0 Short Radius Elbow",
+          "page": 20,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "- 45\u00b0 Long Radius Elbow",
+          "page": 20,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "- Straight Tee",
+          "page": 20,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "- Straight Cross",
+          "page": 20,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "- Cap",
+          "page": 20,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "- Short Radius Return Bend",
+          "page": 20,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "- Reinforcing Welding Saddle",
+          "page": 20,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "- Crossover",
+          "page": 20,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "- 90\u00b0 Type Stub End",
+          "page": 20,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "- 45\u00b0 Type Shaped Nipples",
+          "page": 20,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "- Concentric Reducer",
+          "page": 20,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "- Eccentric Reducer",
+          "page": 20,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "- Reducing Tee",
+          "page": 20,
+          "position": 22,
+          "reextract": ""
+        },
+        {
+          "original": "- Reducing Cross",
+          "page": 20,
+          "position": 23,
+          "reextract": ""
+        },
+        {
+          "original": "*Dimension \"T\" is shown in table heading; refer to large table for dimension \"E\".*",
+          "page": 20,
+          "position": 24,
+          "reextract": ""
+        },
+        {
+          "original": "| Size | T | E |",
+          "page": 20,
+          "position": 25,
+          "reextract": ""
+        },
+        {
+          "original": "| :--- | :--- | :--- |",
+          "page": 20,
+          "position": 26,
+          "reextract": ""
+        },
+        {
+          "original": "| 1\u00bd\u00d7\u00be | 1\u215c | \u2014 |",
+          "page": 20,
+          "position": 27,
+          "reextract": ""
+        },
+        {
+          "original": "| 1\u00bd\u00d71 | 1\u215c | \u2014 |",
+          "page": 20,
+          "position": 28,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00d7\u00be | 1\u00bd | \u2014 |",
+          "page": 20,
+          "position": 29,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00d71 | 1\u00bd | \u2014 |",
+          "page": 20,
+          "position": 30,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00d71\u00bc | 1\u00bd | \u2014 |",
+          "page": 20,
+          "position": 31,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00d71\u00bd | 1\u00bd | \u2014 |",
+          "page": 20,
+          "position": 32,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00bd\u00d71 | 1\u00be | \u2014 |",
+          "page": 20,
+          "position": 33,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00bd\u00d71\u00bc | 1\u00be | \u2014 |",
+          "page": 20,
+          "position": 34,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00bd\u00d71\u00bd | 1\u00be | \u2014 |",
+          "page": 20,
+          "position": 35,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00bd\u00d72 | 1\u00be | \u2014 |",
+          "page": 20,
+          "position": 36,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00d71 | 2 | \u2014 |",
+          "page": 20,
+          "position": 37,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00d71\u00bc | 2 | \u2014 |",
+          "page": 20,
+          "position": 38,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00d71\u00bd | 2 | \u2014 |",
+          "page": 20,
+          "position": 39,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00d72 | 2 | \u2014 |",
+          "page": 20,
+          "position": 40,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00d72\u00bd | 2 | \u2014 |",
+          "page": 20,
+          "position": 41,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00bd\u00d72 | 2\u00bc | \u2014 |",
+          "page": 20,
+          "position": 42,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00bd\u00d72\u00bd | 2\u00bc | \u2014 |",
+          "page": 20,
+          "position": 43,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00bd\u00d73 | 2\u00bc | \u2014 |",
+          "page": 20,
+          "position": 44,
+          "reextract": ""
+        },
+        {
+          "original": "| 4\u00d72 | 2\u00bd | \u2014 |",
+          "page": 20,
+          "position": 45,
+          "reextract": ""
+        },
+        {
+          "original": "| 4\u00d72\u00bd | 2\u00bd | \u2014 |",
+          "page": 20,
+          "position": 46,
+          "reextract": ""
+        },
+        {
+          "original": "| 4\u00d73 | 2\u00bd | \u2014 |",
+          "page": 20,
+          "position": 47,
+          "reextract": ""
+        },
+        {
+          "original": "| 4\u00d73\u00bd | 2\u00bd | \u2014 |",
+          "page": 20,
+          "position": 48,
+          "reextract": ""
+        },
+        {
+          "original": "| 5\u00d72\u00bd | 3 | \u2014 |",
+          "page": 20,
+          "position": 49,
+          "reextract": ""
+        },
+        {
+          "original": "| 5\u00d73 | 3 | \u2014 |",
+          "page": 20,
+          "position": 50,
+          "reextract": ""
+        },
+        {
+          "original": "| 5\u00d74 | 3 | \u2014 |",
+          "page": 20,
+          "position": 51,
+          "reextract": ""
+        },
+        {
+          "original": "| 6\u00d72\u00bd | 3\u00bd | \u2014 |",
+          "page": 20,
+          "position": 52,
+          "reextract": ""
+        },
+        {
+          "original": "| 6\u00d73 | 3\u00bd | \u2014 |",
+          "page": 20,
+          "position": 53,
+          "reextract": ""
+        },
+        {
+          "original": "| 6\u00d74 | 3\u00bd | \u2014 |",
+          "page": 20,
+          "position": 54,
+          "reextract": ""
+        },
+        {
+          "original": "| 6\u00d75 | 3\u00bd | \u2014 |",
+          "page": 20,
+          "position": 55,
+          "reextract": ""
+        },
+        {
+          "original": "| 8\u00d74 | 4 | \u2014 |",
+          "page": 20,
+          "position": 56,
+          "reextract": ""
+        },
+        {
+          "original": "| 8\u00d75 | 4 | \u2014 |",
+          "page": 20,
+          "position": 57,
+          "reextract": ""
+        },
+        {
+          "original": "| 8\u00d76 | 4 | \u2014 |",
+          "page": 20,
+          "position": 58,
+          "reextract": ""
+        },
+        {
+          "original": "| 10\u00d76 | 5 | \u2014 |",
+          "page": 20,
+          "position": 59,
+          "reextract": ""
+        },
+        {
+          "original": "| 10\u00d78 | 5 | \u2014 |",
+          "page": 20,
+          "position": 60,
+          "reextract": ""
+        },
+        {
+          "original": "| 12\u00d76 | 5\u00bd | \u2014 |",
+          "page": 20,
+          "position": 61,
+          "reextract": ""
+        },
+        {
+          "original": "| 12\u00d78 | 5\u00bd | \u2014 |",
+          "page": 20,
+          "position": 62,
+          "reextract": ""
+        },
+        {
+          "original": "| 12\u00d710 | 5\u00bd | \u2014 |",
+          "page": 20,
+          "position": 63,
+          "reextract": ""
+        },
+        {
+          "original": "| 14\u00d78 | 6 | \u2014 |",
+          "page": 20,
+          "position": 64,
+          "reextract": ""
+        },
+        {
+          "original": "| 14\u00d710 | 6 | \u2014 |",
+          "page": 20,
+          "position": 65,
+          "reextract": ""
+        },
+        {
+          "original": "| 14\u00d712 | 6 | \u2014 |",
+          "page": 20,
+          "position": 66,
+          "reextract": ""
+        },
+        {
+          "original": "| 16\u00d78 | 6\u00bd | \u2014 |",
+          "page": 20,
+          "position": 67,
+          "reextract": ""
+        },
+        {
+          "original": "| 16\u00d710 | 6\u00bd | \u2014 |",
+          "page": 20,
+          "position": 68,
+          "reextract": ""
+        },
+        {
+          "original": "| 16\u00d712 | 6\u00bd | \u2014 |",
+          "page": 20,
+          "position": 69,
+          "reextract": ""
+        },
+        {
+          "original": "| 16\u00d714 | 6\u00bd | \u2014 |",
+          "page": 20,
+          "position": 70,
+          "reextract": ""
+        },
+        {
+          "original": "| 18\u00d710 | 7 | \u2014 |",
+          "page": 20,
+          "position": 71,
+          "reextract": ""
+        },
+        {
+          "original": "| 18\u00d712 | 7 | \u2014 |",
+          "page": 20,
+          "position": 72,
+          "reextract": ""
+        },
+        {
+          "original": "| 18\u00d714 | 7 | \u2014 |",
+          "page": 20,
+          "position": 73,
+          "reextract": ""
+        },
+        {
+          "original": "| 18\u00d716 | 7 | \u2014 |",
+          "page": 20,
+          "position": 74,
+          "reextract": ""
+        },
+        {
+          "original": "| 20\u00d710 | 7\u00bd | \u2014 |",
+          "page": 20,
+          "position": 75,
+          "reextract": ""
+        },
+        {
+          "original": "| 20\u00d712 | 7\u00bd | \u2014 |",
+          "page": 20,
+          "position": 76,
+          "reextract": ""
+        },
+        {
+          "original": "| 20\u00d714 | 7\u00bd | \u2014 |",
+          "page": 20,
+          "position": 77,
+          "reextract": ""
+        },
+        {
+          "original": "| 20\u00d716 | 7\u00bd | \u2014 |",
+          "page": 20,
+          "position": 78,
+          "reextract": ""
+        },
+        {
+          "original": "| 20\u00d718 | 7\u00bd | \u2014 |",
+          "page": 20,
+          "position": 79,
+          "reextract": ""
+        },
+        {
+          "original": "| 24\u00d712 | 9 | \u2014 |",
+          "page": 20,
+          "position": 80,
+          "reextract": ""
+        },
+        {
+          "original": "| 24\u00d714 | 9 | \u2014 |",
+          "page": 20,
+          "position": 81,
+          "reextract": ""
+        },
+        {
+          "original": "| 24\u00d716 | 9 | \u2014 |",
+          "page": 20,
+          "position": 82,
+          "reextract": ""
+        },
+        {
+          "original": "| 24\u00d718 | 9 | \u2014 |",
+          "page": 20,
+          "position": 83,
+          "reextract": ""
+        },
+        {
+          "original": "| 24\u00d720 | 9 | \u2014 |",
+          "page": 20,
+          "position": 84,
+          "reextract": ""
+        },
+        {
+          "original": "| Size | A | B | C | D | E | F | G | H | J | K | L | M | N | P | Q | S | Pipe Sched Std | Pipe Sched Extra Strong |",
+          "page": 20,
+          "position": 85,
+          "reextract": ""
+        },
+        {
+          "original": "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+          "page": 20,
+          "position": 86,
+          "reextract": ""
+        },
+        {
+          "original": "| \u00bd | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 87,
+          "reextract": ""
+        },
+        {
+          "original": "| \u00be | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 88,
+          "reextract": ""
+        },
+        {
+          "original": "| 1 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 89,
+          "reextract": ""
+        },
+        {
+          "original": "| 1\u00bc | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 90,
+          "reextract": ""
+        },
+        {
+          "original": "| 1\u00bd | 1\u215e | 1\u00bd | \u2014 | 1\u215b | \u2014 | \u2014 | 2\u00bd | \u2014 | 2\u00bd | \u2014 | \u2014 | 4 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 91,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 | 2\u00bc | 1\u00bd | \u2014 | \u2014 | \u2014 | \u2014 | 2\u00bd | \u2014 | 3 | \u2014 | \u2014 | 4 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 92,
+          "reextract": ""
+        },
+        {
+          "original": "| 2\u00bd | 2\u00be | 2 | \u2014 | \u2014 | \u2014 | \u2014 | 3 | \u2014 | 3\u00bd | \u2014 | \u2014 | 5 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 93,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 | 3\u00be | 2 | \u2014 | \u2014 | \u2014 | \u2014 | 3\u00bd | \u2014 | 4 | \u2014 | \u2014 | 5\u00bd | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 94,
+          "reextract": ""
+        },
+        {
+          "original": "| 3\u00bd | 3\u00be | 2\u00bd | \u2014 | \u2014 | \u2014 | \u2014 | 4 | \u2014 | 4\u00bd | \u2014 | \u2014 | 6 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 95,
+          "reextract": ""
+        },
+        {
+          "original": "| 4 | 4 | 3 | \u2014 | 2\u00bd | \u2014 | \u2014 | 5 | \u2014 | 5 | \u2014 | \u2014 | 6 | \u2014 | 4 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 96,
+          "reextract": ""
+        },
+        {
+          "original": "| 5 | 5 | 3\u00bd | \u2014 | \u2014 | \u2014 | \u2014 | 6 | 6\u00bc | 6\u00bc | \u2014 | \u2014 | \u2014 | 10\u00bc | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 97,
+          "reextract": ""
+        },
+        {
+          "original": "| 6 | 6 | 4 | \u2014 | 3\u00bd | \u2014 | \u2014 | 8 | \u2014 | 8 | \u2014 | \u2014 | \u2014 | 10\u00be | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 98,
+          "reextract": ""
+        },
+        {
+          "original": "| 8 | 8 | 5 | \u2014 | \u2014 | \u2014 | 12 | \u2014 | \u2014 | 10 | \u2014 | 15 | 10 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 99,
+          "reextract": ""
+        },
+        {
+          "original": "| 10 | 10 | 6 | \u2014 | \u2014 | \u2014 | 15 | \u2014 | \u2014 | 13 | \u2014 | \u2014 | 13 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 100,
+          "reextract": ""
+        },
+        {
+          "original": "| 12 | 12 | 8 | \u2014 | \u2014 | \u2014 | 18 | \u2014 | \u2014 | 16 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 40 | 80 |",
+          "page": 20,
+          "position": 101,
+          "reextract": ""
+        },
+        {
+          "original": "| 14 | 14 | 8 | \u2014 | \u2014 | \u2014 | 21 | \u2014 | \u2014 | 18 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 10 | \u2014 |",
+          "page": 20,
+          "position": 102,
+          "reextract": ""
+        },
+        {
+          "original": "| 16 | 16 | 10 | \u2014 | \u2014 | \u2014 | 24 | \u2014 | \u2014 | 21 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 10 | \u2014 |",
+          "page": 20,
+          "position": 103,
+          "reextract": ""
+        },
+        {
+          "original": "| 18 | 18 | 11 | \u2014 | \u2014 | \u2014 | 27 | \u2014 | \u2014 | 24 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 10 | \u2014 |",
+          "page": 20,
+          "position": 104,
+          "reextract": ""
+        },
+        {
+          "original": "| 20 | 20 | 12 | 11\u215c | 13\u215c | \u2014 | 30 | \u2014 | \u2014 | 27 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 30 | 20 | 10 | \u2014 |",
+          "page": 20,
+          "position": 105,
+          "reextract": ""
+        },
+        {
+          "original": "| 24 | 24 | 14 | \u2014 | \u2014 | \u2014 | 36 | \u2014 | \u2014 | 32 | \u2014 | \u2014 | \u2014 | \u2014 | \u2014 | 20 | 10 | \u2014 |",
+          "page": 20,
+          "position": 106,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 40,
+      "prose_hunks": [
+        {
+          "original": "## Two-Phase Flow",
+          "page": 40,
+          "position": 0,
+          "reextract": "Process Terms"
+        },
+        {
+          "original": "Next to adequate flexibility, two-phase flow causes piping designers the most problems. Two-phase flow occurs when both liquid and vapor are in the same pipe, flowing together. Since the pipe's friction reacts more on the liquid portion, the vapors tend to flow at a greater velocity. The real problem occurs when two-phase flow must be divided equally into separate piping systems.",
+          "page": 40,
+          "position": 1,
+          "reextract": "**Two-Phase Flow**"
+        },
+        {
+          "original": "Figure 2-4 shows improper and proper two-phase piping at exchanger inlets. In the improper illustration, the major portion of the flow would be routed to exchanger *B*. This would cause exchanger *A* to have less pressure drop and exchanger *B* to have more, when both exchangers were designed for the same pressure drop, as well as for the same heat transfer duty. Since *A* has less pressure drop and the liquid's velocity will direct it to *B*, another problem is evident. The vapor of the two-phase flow will take the path of least resistance and most of it will go to exchanger *A*. Now exchanger *A* is getting the vapor and *B* is getting the liquid. But the heat transfer rate of both exchangers is designed for equal flow of liquid and vapor. So designed for equal heat transfer as designed. And because these exchangers will not perform as designed, the process unit will not perform and must be shut down for correction. And this is because a piping designer did not recognize he was piping two-phase flow, or if he knew he was not knowledgeable enough to design the piping.",
+          "page": 40,
+          "position": 2,
+          "reextract": "Next to adequate flexibility, two-phase flow causes piping designers the most problems. Two-phase flow occurs when both liquid and vapor are in the same pipe, flowing together. Since the pipe's friction resists more on the liquid portion, the va-pors tend to flow at a greater velocity. The real problem occurs when two-phase flow must be divided equally into separate piping systems."
+        },
+        {
+          "original": "",
+          "page": 40,
+          "position": 3,
+          "reextract": "Figure 2-4 shows improper and proper two-phase piping at exchanger inlets. In the improper illustration, the major portion of the flow would be routed to exchanger $B$. This would cause exchanger $A$ to have less pressure drop and exchanger $B$ to have more when both exchangers were de-signed for the same pressure drop, as well as for the same heat transfer duty. Since $A$ has less pressure drop and the liquid's velocity will direct it to $B$, another problem is evident. The vapor of the two-phase flow will take the path of least resistance and most of it will go to exchanger $A$. Now exchanger $A$ is getting the vapor and $B$ is getting the liquid. But the heat transfer rate of both exchangers is designed for equal flow of liquid and vapor. So designed for equal transfer heat as designed. And because these exchangers will not perform as designed, the process unit will not perform and must be shut down for correction. And this is because a piping designer did not recognize he was piping two-phase flow, or if he knew he was not knowledgeable enough to design the piping."
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 60,
+      "prose_hunks": [
+        {
+          "original": "## Storage Tank Design",
+          "page": 60,
+          "position": 5,
+          "reextract": "**Storage Tank Design**"
+        },
+        {
+          "original": "In many companies the design of atmospheric storage tanks rests with the piping designer since it is a nonprossure vessel. It then becomes his task not only to orient the nozzles but to specify the tank materials and sizes. To do this he must have more than a passing knowledge of tank design and material specifications.",
+          "page": 60,
+          "position": 6,
+          "reextract": "In many companies the design of atmospheric storage tanks rests with the piping designer since it is a nonpressure vessel. It then becomes his task not only to orient the nozzles but to specify the tank materials and sizes. To do this he must have more than a passing knowledge of tank design and material specifications."
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 80,
+      "prose_hunks": [
+        {
+          "original": "## Chapter 4",
+          "page": 80,
+          "position": 0,
+          "reextract": "**Chapter 4"
+        },
+        {
+          "original": "### Review Test",
+          "page": 80,
+          "position": 1,
+          "reextract": "Review Test**"
+        },
+        {
+          "original": "1. Ferrous metals differ from nonferrous because they _______________________________________________",
+          "page": 80,
+          "position": 3,
+          "reextract": "1. Ferrous metals differ from nonferrous because they \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "2. Define ANSI. _______________________________________________",
+          "page": 80,
+          "position": 4,
+          "reextract": "2. Define ANSI. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "3. A joint efficiency is applied to a __________ joint.",
+          "page": 80,
+          "position": 5,
+          "reextract": "3. A joint efficiency is applied to a \\_\\_\\_\\_\\_\\_\\_\\_ joint."
+        },
+        {
+          "original": "Seamless piping has a __________ % joint efficiency.",
+          "page": 80,
+          "position": 6,
+          "reextract": "Seamless piping has a \\_\\_\\_\\_\\_\\_% joint efficiency."
+        },
+        {
+          "original": "4. Pipe made from plate has a mill tolerance of _______________.",
+          "page": 80,
+          "position": 7,
+          "reextract": "4. Pipe made from plate has a mill tolerance of \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "5. Seamless pipe has a mill tolerance of _____ %.",
+          "page": 80,
+          "position": 8,
+          "reextract": "5. Seamless pipe has a mill tolerance of \\_\\_\\_\\_\\_% ."
+        },
+        {
+          "original": "6. Random length carbon steel pipe is \u00b1_____ feet long.",
+          "page": 80,
+          "position": 9,
+          "reextract": "6. Random length carbon steel pipe is \u00b1\\_\\_\\_ feet long."
+        },
+        {
+          "original": "7. What is the difference between pipe and tubing? _______________________________________________",
+          "page": 80,
+          "position": 10,
+          "reextract": "7. What is the difference between pipe and tubing? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "8. Name the three basic types of valves. _______________ , _______________ , _______________",
+          "page": 80,
+          "position": 11,
+          "reextract": "8. Name the three basic types of valves. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ , \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ , \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "9. Which valve is for throttling? _______________________________________________",
+          "page": 80,
+          "position": 12,
+          "reextract": "9. Which valve is for throttling? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "10. What type of check valve is specified for pulsating flow? _______________________________________________",
+          "page": 80,
+          "position": 13,
+          "reextract": "10. What type of check valve is specified for pulsating flow? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "11. Define hydrocarbon. _______________________________________________",
+          "page": 80,
+          "position": 14,
+          "reextract": "11. Define hydrocarbon. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "12. Define mercaptan. _______________________________________________",
+          "page": 80,
+          "position": 15,
+          "reextract": "12. Define mercaptan. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "13. Which is the lightest hydrocarbon? _______________________________________________",
+          "page": 80,
+          "position": 16,
+          "reextract": "13. Which is the lightest hydrocarbon? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "14. Define fractionation. _______________________________________________",
+          "page": 80,
+          "position": 17,
+          "reextract": "14. Define fractionation. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "15. What is flashing? _______________________________________________",
+          "page": 80,
+          "position": 18,
+          "reextract": "15. What is flashing? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "16. Define equilibrium. _______________________________________________",
+          "page": 80,
+          "position": 19,
+          "reextract": "16. Define equilibrium. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "17. Define head. _______________________________________________",
+          "page": 80,
+          "position": 20,
+          "reextract": "17. Define head. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "18. Define two-phase flow. _______________________________________________",
+          "page": 80,
+          "position": 21,
+          "reextract": "18. Define two-phase flow. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "19. What is hydrotesting and why is it done? _______________________________________________",
+          "page": 80,
+          "position": 22,
+          "reextract": "19. What is hydrotesting and why is it done? \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        },
+        {
+          "original": "20. Define topography. _______________________________________________",
+          "page": 80,
+          "position": 23,
+          "reextract": "20. Define topography. \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_."
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 100,
+      "prose_hunks": [
+        {
+          "original": "## Chapter 5",
+          "page": 100,
+          "position": 0,
+          "reextract": "**Chapter 5"
+        },
+        {
+          "original": "### Review Test",
+          "page": 100,
+          "position": 1,
+          "reextract": "Review Test**"
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [
+        {
+          "kind": "fig",
+          "original_count": 0,
+          "page": 120,
+          "reason": "count_mismatch",
+          "reextract_count": 1
+        },
+        {
+          "kind": "tbl",
+          "original_count": 1,
+          "page": 120,
+          "reason": "count_mismatch",
+          "reextract_count": 2
+        }
+      ],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": true,
+      "page": 120,
+      "prose_hunks": [
+        {
+          "original": "## Table 6-11 Table of 30\u00b0 Offsets",
+          "page": 120,
+          "position": 0,
+          "reextract": "Pipe Fabrication"
+        },
+        {
+          "original": "**2' \u2013 0\" to 2' = 11-3/4\"**",
+          "page": 120,
+          "position": 1,
+          "reextract": "Table 6-11"
+        },
+        {
+          "original": "| O | H | A | O | H | A | O | H | A | O | H | A |",
+          "page": 120,
+          "position": 2,
+          "reextract": "Table of 30\u00b0 Offsets"
+        },
+        {
+          "original": "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+          "page": 120,
+          "position": 3,
+          "reextract": "2\u2032 \u2013 0\u2033 to 2\u2032 = 11-3/4\u2033"
+        },
+        {
+          "original": "| 2 \u2013 0 | 4 \u2013 0 | 3 \u2013 5 9/16 | 2 \u2013 4 | 4 \u2013 8 | 4 \u2013 0 1/2 | 2 \u2013 8 | 5 \u2013 4 | 4 \u2013 7 7/16 | | | |",
+          "page": 120,
+          "position": 4,
+          "reextract": "3\u2032 \u2013 0\u2033 to 3\u2032 = 11-3/4\u2033"
+        },
+        {
+          "original": "| 2 \u2013 0 1/4 | 4 \u2013 0 1/2 | 3 \u2013 6 | 2 \u2013 4 1/4 | 4 \u2013 8 1/2 | 4 \u2013 0 15/16 | 2 \u2013 8 1/4 | 5 \u2013 4 1/2 | 4 \u2013 7 7/8 | | | |",
+          "page": 120,
+          "position": 5,
+          "reextract": "Source: Texas Pipe Bending Co., Inc., Houston, Texas."
+        },
+        {
+          "original": "| 2 \u2013 0 1/2 | 4 \u2013 1 | 3 \u2013 6 7/16 | 2 \u2013 4 1/2 | 4 \u2013 9 | 4 \u2013 1 3/8 | 2 \u2013 8 1/2 | 5 \u2013 5 | 4 \u2013 8 5/16 | | | |",
+          "page": 120,
+          "position": 6,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 0 3/4 | 4 \u2013 1 1/2 | 3 \u2013 6 7/8 | 2 \u2013 4 3/4 | 4 \u2013 9 1/2 | 4 \u2013 1 13/16 | 2 \u2013 8 3/4 | 5 \u2013 5 1/2 | 4 \u2013 8 3/4 | | | |",
+          "page": 120,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 1 | 4 \u2013 2 | 3 \u2013 7 5/16 | 2 \u2013 5 | 4 \u2013 10 | 4 \u2013 2 1/4 | 2 \u2013 9 | 5 \u2013 6 | 4 \u2013 9 3/16 | | | |",
+          "page": 120,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 1 1/4 | 4 \u2013 2 1/2 | 3 \u2013 7 3/4 | 2 \u2013 5 1/4 | 4 \u2013 10 1/2 | 4 \u2013 2 11/16 | 2 \u2013 9 1/4 | 5 \u2013 6 1/2 | 4 \u2013 9 9/16 | | | |",
+          "page": 120,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 1 1/2 | 4 \u2013 3 | 3 \u2013 8 3/16 | 2 \u2013 5 1/2 | 4 \u2013 11 | 4 \u2013 3 1/8 | 2 \u2013 9 1/2 | 5 \u2013 7 | 4 \u2013 10 | | | |",
+          "page": 120,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 1 3/4 | 4 \u2013 3 1/2 | 3 \u2013 8 5/8 | 2 \u2013 5 3/4 | 4 \u2013 11 1/2 | 4 \u2013 3 1/2 | 2 \u2013 9 3/4 | 5 \u2013 7 1/2 | 4 \u2013 10 7/16 | | | |",
+          "page": 120,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 2 | 4 \u2013 4 | 3 \u2013 9 1/16 | 2 \u2013 6 | 5 \u2013 0 | 4 \u2013 3 15/16 | 2 \u2013 10 | 5 \u2013 8 | 4 \u2013 10 7/8 | | | |",
+          "page": 120,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 2 1/4 | 4 \u2013 4 1/2 | 3 \u2013 9 1/2 | 2 \u2013 6 1/4 | 5 \u2013 0 1/2 | 4 \u2013 4 3/8 | 2 \u2013 10 1/4 | 5 \u2013 8 1/2 | 4 \u2013 11 5/16 | | | |",
+          "page": 120,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 2 1/2 | 4 \u2013 5 | 3 \u2013 9 7/8 | 2 \u2013 6 1/2 | 5 \u2013 1 | 4 \u2013 4 5/16 | 2 \u2013 10 1/2 | 5 \u2013 9 | 4 \u2013 11 3/4 | | | |",
+          "page": 120,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 2 3/4 | 4 \u2013 5 1/2 | 3 \u2013 10 5/16 | 2 \u2013 6 3/4 | 5 \u2013 1 1/2 | 4 \u2013 5 1/4 | 2 \u2013 10 3/4 | 5 \u2013 9 1/2 | 5 \u2013 0 3/16 | | | |",
+          "page": 120,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 3 | 4 \u2013 6 | 3 \u2013 10 3/4 | 2 \u2013 7 | 5 \u2013 2 | 4 \u2013 5 11/16 | 2 \u2013 11 | 5 \u2013 10 | 5 \u2013 0 5/8 | | | |",
+          "page": 120,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 3 1/4 | 4 \u2013 6 1/2 | 3 \u2013 11 3/16 | 2 \u2013 7 1/4 | 5 \u2013 2 1/2 | 4 \u2013 6 1/8 | 2 \u2013 11 1/4 | 5 \u2013 10 1/2 | 5 \u2013 1 1/16 | | | |",
+          "page": 120,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 3 1/2 | 4 \u2013 7 | 3 \u2013 11 5/8 | 2 \u2013 7 1/2 | 5 \u2013 3 | 4 \u2013 6 9/16 | 2 \u2013 11 1/2 | 5 \u2013 11 | 5 \u2013 1 1/2 | | | |",
+          "page": 120,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 \u2013 3 3/4 | 4 \u2013 7 1/2 | 4 \u2013 0 1/16 | 2 \u2013 7 3/4 | 5 \u2013 3 1/2 | 4 \u2013 7 | 2 \u2013 11 3/4 | 5 \u2013 11 1/2 | 5 \u2013 1 13/16 | | | |",
+          "page": 120,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "**3' \u2013 0\" to 3' = 11-3/4\"**",
+          "page": 120,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "| O | H | A | O | H | A | O | H | A | O | H | A |",
+          "page": 120,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+          "page": 120,
+          "position": 22,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 0 | 6 \u2013 0 | 5 \u2013 2 3/8 | 3 \u2013 4 | 6 \u2013 8 | 5 \u2013 9 5/16 | 3 \u2013 8 | 7 \u2013 4 | 6 \u2013 4 3/16 | | | |",
+          "page": 120,
+          "position": 23,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 0 1/4 | 6 \u2013 0 1/2 | 5 \u2013 2 13/16 | 3 \u2013 4 1/4 | 6 \u2013 8 1/2 | 5 \u2013 9 3/4 | 3 \u2013 8 1/4 | 7 \u2013 4 1/2 | 6 \u2013 4 5/8 | | | |",
+          "page": 120,
+          "position": 24,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 0 1/2 | 6 \u2013 1 | 5 \u2013 3 1/4 | 3 \u2013 4 1/2 | 6 \u2013 9 | 5 \u2013 10 3/16 | 3 \u2013 8 1/2 | 7 \u2013 5 | 6 \u2013 5 1/16 | | | |",
+          "page": 120,
+          "position": 25,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 0 3/4 | 6 \u2013 1 1/2 | 5 \u2013 3 5/8 | 3 \u2013 4 3/4 | 6 \u2013 9 1/2 | 5 \u2013 10 9/16 | 3 \u2013 8 3/4 | 7 \u2013 5 1/2 | 6 \u2013 5 1/2 | | | |",
+          "page": 120,
+          "position": 26,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 1 | 6 \u2013 2 | 5 \u2013 4 1/16 | 3 \u2013 5 | 6 \u2013 10 | 5 \u2013 11 | 3 \u2013 9 | 7 \u2013 6 | 6 \u2013 5 15/16 | | | |",
+          "page": 120,
+          "position": 27,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 1 1/4 | 6 \u2013 2 1/2 | 5 \u2013 4 1/2 | 3 \u2013 5 1/4 | 6 \u2013 10 1/2 | 5 \u2013 11 7/16 | 3 \u2013 9 1/4 | 7 \u2013 6 1/2 | 6 \u2013 6 3/8 | | | |",
+          "page": 120,
+          "position": 28,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 1 1/2 | 6 \u2013 3 | 5 \u2013 4 15/16 | 3 \u2013 5 1/2 | 6 \u2013 11 | 5 \u2013 11 13/16 | 3 \u2013 9 1/2 | 7 \u2013 7 | 6 \u2013 6 13/16 | | | |",
+          "page": 120,
+          "position": 29,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 1 3/4 | 6 \u2013 3 1/2 | 5 \u2013 5 3/16 | 3 \u2013 5 3/4 | 6 \u2013 11 1/2 | 6 \u2013 0 1/4 | 3 \u2013 9 3/4 | 7 \u2013 7 1/2 | 6 \u2013 7 1/4 | | | |",
+          "page": 120,
+          "position": 30,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 2 | 6 \u2013 4 | 5 \u2013 5 13/16 | 3 \u2013 6 | 7 \u2013 0 | 6 \u2013 0 3/4 | 3 \u2013 10 | 7 \u2013 8 | 6 \u2013 7 11/16 | | | |",
+          "page": 120,
+          "position": 31,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 2 1/4 | 6 \u2013 4 1/2 | 5 \u2013 6 1/4 | 3 \u2013 6 1/4 | 7 \u2013 0 1/2 | 6 \u2013 1 3/16 | 3 \u2013 10 1/4 | 7 \u2013 8 1/2 | 6 \u2013 8 1/8 | | | |",
+          "page": 120,
+          "position": 32,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 2 1/2 | 6 \u2013 5 | 5 \u2013 6 11/16 | 3 \u2013 6 1/2 | 7 \u2013 1 | 6 \u2013 1 5/8 | 3 \u2013 10 1/2 | 7 \u2013 9 | 6 \u2013 8 9/16 | | | |",
+          "page": 120,
+          "position": 33,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 2 3/4 | 6 \u2013 5 1/2 | 5 \u2013 7 1/8 | 3 \u2013 6 3/4 | 7 \u2013 1 1/2 | 6 \u2013 2 1/16 | 3 \u2013 10 3/4 | 7 \u2013 9 1/2 | 6 \u2013 9 | | | |",
+          "page": 120,
+          "position": 34,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 3 | 6 \u2013 6 | 5 \u2013 7 9/16 | 3 \u2013 7 | 7 \u2013 2 | 6 \u2013 2 1/2 | 3 \u2013 11 | 7 \u2013 10 | 6 \u2013 9 7/16 | | | |",
+          "page": 120,
+          "position": 35,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 3 1/4 | 6 \u2013 6 1/2 | 5 \u2013 8 | 3 \u2013 7 1/4 | 7 \u2013 2 1/2 | 6 \u2013 2 15/16 | 3 \u2013 11 1/4 | 7 \u2013 10 1/2 | 6 \u2013 9 13/16 | | | |",
+          "page": 120,
+          "position": 36,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 3 1/2 | 6 \u2013 7 | 5 \u2013 8 7/16 | 3 \u2013 7 1/2 | 7 \u2013 3 | 6 \u2013 3 3/8 | 3 \u2013 11 1/2 | 7 \u2013 11 | 6 \u2013 10 1/4 | | | |",
+          "page": 120,
+          "position": 37,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 \u2013 3 3/4 | 6 \u2013 7 1/2 | 5 \u2013 8 7/8 | 3 \u2013 7 3/4 | 7 \u2013 3 1/2 | 6 \u2013 3 13/16 | 3 \u2013 11 3/4 | 7 \u2013 11 1/2 | 6 \u2013 10 11/16 | | | |",
+          "page": 120,
+          "position": 38,
+          "reextract": ""
+        },
+        {
+          "original": "*Source: Texas Pipe Bending Co., Inc., Houston, Texas.*",
+          "page": 120,
+          "position": 39,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [
+        {
+          "kind": "fig",
+          "original_caption": "Fig. \u2014 Diagram showing nozzle-to-header ell branch connection geometry with labels B, S, X, Y, Z and R dimensions",
+          "page": 126,
+          "position": 0,
+          "reextract_caption": "Diagram showing nozzle-to-header intersection geometry with labeled dimensions R, S, X, Y, and Z on a curved surface cross-section."
+        },
+        {
+          "kind": "tbl",
+          "original_caption": "Table 6-16 ID of Nozzle to Header Ell \u2014 Branch Connections Standard Weight Pipe",
+          "page": 126,
+          "position": 0,
+          "reextract_caption": "Table 6-15 \u2014 ID of Nozzle to Header for Various Size Combinations, Standard Weight Pipe. Rows are indexed by HEADER ELL size; columns are indexed by nozzle nominal pipe size (2 through 20NNN). Cells contain dimensional values (inches and fractions) for the nozzle ID dimension Z."
+        }
+      ],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [
+        {
+          "original_count": 4,
+          "page": 126,
+          "reason": "count_mismatch",
+          "reextract_count": 3
+        }
+      ],
+      "has_structural_fails": true,
+      "page": 126,
+      "prose_hunks": [
+        {
+          "original": "## Table 6-16 \u2014 ID of Nozzle to Header Ell \u2014 Branch Connections Standard Weight Pipe",
+          "page": 126,
+          "position": 0,
+          "reextract": "Table 6-15"
+        },
+        {
+          "original": "| HEADER ELL | 3/2 | 3/2 | 1-1/2 | 2 | 3/2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 24 |",
+          "page": 126,
+          "position": 1,
+          "reextract": "ID of Nozzle to Header for Various Size Combinations"
+        },
+        {
+          "original": "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+          "page": 126,
+          "position": 2,
+          "reextract": "Standard Weight Pipe"
+        },
+        {
+          "original": "| 1/2 | 1/2 | | | | | | | | | | | | | | |",
+          "page": 126,
+          "position": 3,
+          "reextract": "FORMULA:   Z = \u221a2 I.D. NOZZLE"
+        },
+        {
+          "original": "| 3/4 | 3/4 | 1/2 | | | | | | | | | | | | | |",
+          "page": 126,
+          "position": 4,
+          "reextract": "Source: Texas Pipe Bending Co., Inc., Houston, Texas"
+        },
+        {
+          "original": "| 1 | 1 | 7/8 | 1/2 | | | | | | | | | | | | |",
+          "page": 126,
+          "position": 5,
+          "reextract": ""
+        },
+        {
+          "original": "| 1-1/4 | 1-1/4 | 1-1/8 | 5/8 | | | | | | | | | | | | |",
+          "page": 126,
+          "position": 6,
+          "reextract": ""
+        },
+        {
+          "original": "| 1-1/2 | 1-1/2 | 1-3/8 | 7/8 | 1/2 | | | | | | | | | | | |",
+          "page": 126,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "| 2 | 2-1/16 | 1-9/16 | 1-1/16 | 5/8 | | | | | | | | | | | |",
+          "page": 126,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "| 3 | | 2-1/16 | 1-1/4 | 1 | 1/2 | | | | | | | | | | |",
+          "page": 126,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "| 3-1/2 | | | 1-3/4 | 1-13/16 | 1 | 2 | | | | | | | | | |",
+          "page": 126,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "| 4 | | | 2-1/8 | 2-1/16 | 1-13/16 | 1 | | | | | | | | | |",
+          "page": 126,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "| 6 | | | 3/4 | 2-7/16 | 2-1/16 | 2-5/8 | 3-7/16 | | | | | | | | |",
+          "page": 126,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "| 8 | | | 3-7/16 | 2-7/8 | 2-5/8 | 3-7/16 | 4-5/8 | | | | | | | | |",
+          "page": 126,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "| 10 | | | | 3-5/8 | 3-7/16 | 3-7/8 | 4-5/8 | | | | | | | | |",
+          "page": 126,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "| 12 | | | | 4-3/8 | 4-1/8 | 4-5/8 | 5-1/16 | 5-3/4 | 5-3/4 | | | | | | |",
+          "page": 126,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "| 14 | | | | 4-5/8 | 4-1/16 | 4-5/8 | 5-1/16 | 5-5/8 | 6-3/8 | | | | | | |",
+          "page": 126,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "| 16 | | | | | 5-3/8 | 5-11/16 | 5-11/16 | 6-3/4 | 6-7/8 | | | | | | |",
+          "page": 126,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "| 18 | | | | | | 5-11/16 | 6 | 6-1/16 | 7-1/16 | | | | | | |",
+          "page": 126,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "| 20 | | | | | | 6-1/16 | 6-5/8 | 7-1/16 | 7-3/4 | 8-1/2 | | | | | |",
+          "page": 126,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "| 24 | | | | | | | 6-7/8 | 7-7/8 | 8-1/2 | 9-3/8 | | | | | |",
+          "page": 126,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "**FORMULA:**",
+          "page": 126,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "*Source: Texas Pipe Bending Co., Inc., Houston, Texas*",
+          "page": 126,
+          "position": 22,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [
+        {
+          "kind": "fig",
+          "original_caption": "Figure 7.7. Typical saddle details.",
+          "page": 140,
+          "position": 0,
+          "reextract_caption": "Technical drawings showing vessel saddle configurations, including plan and elevation views with dimensional annotations. FOR ALTERNATE CONNECTION OF SIDE PLATE TO BASE PLATE note is shown. Labeled dimensions include A, B, C, and others for saddle geometry."
+        },
+        {
+          "kind": "tbl",
+          "original_caption": "Table \u2014 Saddle details dimensional data for Mark 246, 248 & 260",
+          "page": 140,
+          "position": 0,
+          "reextract_caption": "Saddle details table for Mark 240, 241 & 300 only, with columns for vessel diameter ranges, dimensions A, B, C, E, F, G/H/J/K, and other parameters, along with General Notes describing vessel diameter listed, weld requirements, continuous fillet welding, and provisions for pipes in saddle."
+        }
+      ],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 140,
+      "prose_hunks": [
+        {
+          "original": "*SADDLE DETAILS FOR MARK 246, 248 & 260 ONLY*",
+          "page": 140,
+          "position": 0,
+          "reextract": "SADDLE DETAILS FOR MARK 240, 241 & 300 ONLY"
+        },
+        {
+          "original": "| Vessel Diameter | Shell Size | A | B | C | E | F | G | H | L | M | N | C | L | W |",
+          "page": 140,
+          "position": 1,
+          "reextract": "Figure 7.7. Typical saddle details."
+        },
+        {
+          "original": "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
+          "page": 140,
+          "position": 2,
+          "reextract": ""
+        },
+        {
+          "original": "| 120 | 120,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 3,
+          "reextract": ""
+        },
+        {
+          "original": "| | 126,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 4,
+          "reextract": ""
+        },
+        {
+          "original": "| | 130,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 5,
+          "reextract": ""
+        },
+        {
+          "original": "| | 144,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 6,
+          "reextract": ""
+        },
+        {
+          "original": "| 14 | 144,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "| | 150,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "| | 156,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "| | 162,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "| 160 | 160,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "| | 168,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "| | 174,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "| | 180,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "| 168 | 180,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "| | 186,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "| | 192,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "| | 198,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "| 120 | 192,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "| | 198,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "| | 204,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "| | 210,000 | | | | | | | | | | | | | |",
+          "page": 140,
+          "position": 22,
+          "reextract": ""
+        },
+        {
+          "original": "**GENERAL NOTES**",
+          "page": 140,
+          "position": 23,
+          "reextract": ""
+        },
+        {
+          "original": "Vessel diameters listed are inside diameters. The sizes (standard dimensions may change in the case of very thick vessel shells or if very thin insulation is used on certain vessel sizes. The vessel drawing shall have precedence.",
+          "page": 140,
+          "position": 24,
+          "reextract": ""
+        },
+        {
+          "original": "Saddles are set attachment plate unless otherwise noted. Other welds shall be a continuous fillet or equal to 3/8 including 1/2 diameter if vessel is stress relieved or whole plate 18 millimeter vessel or heavier.",
+          "page": 140,
+          "position": 25,
+          "reextract": ""
+        },
+        {
+          "original": "Procure A (see top to under plate of vessel is stress relieved or whole plate less than 18 millimeter shells.",
+          "page": 140,
+          "position": 26,
+          "reextract": ""
+        },
+        {
+          "original": "**Notes:**",
+          "page": 140,
+          "position": 27,
+          "reextract": ""
+        },
+        {
+          "original": "a. Procure holes in saddle and as follows:",
+          "page": 140,
+          "position": 28,
+          "reextract": ""
+        },
+        {
+          "original": "- 3/4 for 5/8 bolts",
+          "page": 140,
+          "position": 29,
+          "reextract": ""
+        },
+        {
+          "original": "- 7/8 for 3/4 bolts",
+          "page": 140,
+          "position": 30,
+          "reextract": ""
+        },
+        {
+          "original": "b. Procure slotted holes in expansion end as follows:",
+          "page": 140,
+          "position": 31,
+          "reextract": ""
+        },
+        {
+          "original": "- 1-1/8 x 2 long for 5/8 bolts",
+          "page": 140,
+          "position": 32,
+          "reextract": ""
+        },
+        {
+          "original": "- 1-1/4 x 2-1/2 long for 3/4 bolts",
+          "page": 140,
+          "position": 33,
+          "reextract": ""
+        },
+        {
+          "original": "c. Applies only to horizontal shell vessels less than 48 in. long.",
+          "page": 140,
+          "position": 34,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": false,
+      "page": 160,
+      "prose_hunks": [
+        {
+          "original": "Always leave 2\" clear from a thermowell to allow insertion of the instrument. A thermocouple in a large line may require more distance. If the designer is presented with this problem, he should check the thermocouple length and leave ample room.",
+          "page": 160,
+          "position": 0,
+          "reextract": "**Instrumentation**"
+        },
+        {
+          "original": "This brings up the most prevalent error committed by piping people. They quite often orient thermowells for thermocouples so that they point horizontally into a walkway or platform area. The piper considers only the coupling, and he wants to make the connection accessible. It looks good on paper. Then the instrument installer comes along and inserts a thermocouple that sticks out 18\" into a 3' aisleway or platform. After saying a few words about the piper's background, the field crew has to plug another coupling and install a new one to parallel the aisleway or platform.",
+          "page": 160,
+          "position": 1,
+          "reextract": "Always leave 2\" clear from a thermowell to allow mention of the instrument. A thermocouple in a large line may require more distance. If the designer is presented with this problem, he should check the thermocouple length and leave ample room."
+        },
+        {
+          "original": "Thermowells for local temperature indicators are often mislocated by pipers. Again pipers must consider what will be inserted into the thermowell. To properly locate the TW coupling, the designer must know the temperature indicator type. For the back-mounted or \"T\" type indicator, the face should never point up, requiring pointing above the horizontal. This would force the thermowell's glass to be pointed up, which will accumulate water on its face and eventually rust out the face. In common piping language, \"never point them toward the moon.\"",
+          "page": 160,
+          "position": 2,
+          "reextract": "This brings up the most prevalent error committed by piping people. They quite often orient thermowells for thermocouples so that they point horizontally into a walkway or platform area. The piper considers only the coupling, and he wants to make the connection accessible. It looks good on paper. Then the instrument installer comes along and inserts a thermocouple that sticks out 18\" into a 3' aisleway or platform. After saying a few words about the piper's background, the field crew has to plug another coupling and install a new one to parallel the aisleway or platform."
+        },
+        {
+          "original": "Other types of temperature indicators are the bottom-mounted type and one type that rotates on a head. The rotating type costs a little more but has many advantages.",
+          "page": 160,
+          "position": 3,
+          "reextract": "Thermowells for small temperature indicators are often mislocated by pipers. Again pipers must consider what will be inserted into the thermowell. To properly locate the TW coupling, the designer must know the temperature indicator type. For the backconnected or \"T\" type indicator, the designer should never locate the coupling pointing above the horizontal. This would force the thermowell's glass to be pointed up, which will accumulate water on its face and eventually rust out the face. In common piping language, \"never point them toward the moon.\""
+        },
+        {
+          "original": "## Other Temperature Instruments",
+          "page": 160,
+          "position": 4,
+          "reextract": "Other types of temperature indicators are the bottom-mounted type and one type that rotates on a head. The rotating type costs a little more but has many advantages."
+        },
+        {
+          "original": "A board-mounted temperature indicator will employ a thermocouple. Electrical impulse wire(s) will transmit the signal to the control room instrument panel. The receiving instrument converts this signal to a readable indication which is either visually observed (an indicator) or is recorded with pen and ink on a chart (a recorder). Recorders and indicators may also be located near the pipe or equipment.",
+          "page": 160,
+          "position": 5,
+          "reextract": "**Other Temperature Instruments**"
+        },
+        {
+          "original": "Capillary tubing is used to transmit signals to many local temperature instruments. It is a factory-built, small-bore fluid with mercury or mercury and sealed. Capillary tubing is ordered to a certain length and cannot be cut or lengthened in the field.",
+          "page": 160,
+          "position": 6,
+          "reextract": "A board-mounted temperature indicator will employ a thermocouple. Electrical impulse wire(s) will transmit the signal to the control room instrument panel. The receiving instrument converts this signal to a readable indication which is either visually observed (an indicator) or is recorded with pen and ink on a chart (a recorder). Recorders and indicators may also be located near the pipe or equipment."
+        },
+        {
+          "original": "The piping designer must locate the temperature connection and receiving instrument, sometimes a control valve, to be compatible with the capillary tubing length. This length is specified on the instrument specification sheet. There is a maximum economical length of tubing, which will vary from time to time, but is approximately 30-35'. For distances greater than this, employ a transmitter with a signal to the receiving instrument.",
+          "page": 160,
+          "position": 7,
+          "reextract": "Capillary tubing is used to transmit signals to many local temperature instruments. It is a factory-made tube that is filled with inert gas, mercury, and sealed. Capillary tubing is ordered to a certain length and cannot be cut or lengthened in the field."
+        },
+        {
+          "original": "## Pressure Instruments",
+          "page": 160,
+          "position": 8,
+          "reextract": "The piping designer must locate the temperature connection and receiving instrument, sometimes a control valve, to be compatible with the capillary tubing length. This length is specified on the instrument specification sheet. There is a maximum economical length of tubing, which will vary from time to time, but is approximately 30-35'. For distances greater than this, employ a transmitter with a signal to the receiving instrument."
+        },
+        {
+          "original": "The pressure indicator shown as PI on flow diagrams is the most common pressure instrument. Pressure recorders and controllers are also utilized. Piping designers supply a 1/2\" or 3/4\" nipple nippled off the pipe at these connections. The instrument designer usually starts with the valve and supplies the instrument hook-up. The first nipple and valve should always conform to the piping specification for material and rating. After the valve, a smaller instrument valve and tubing is quite often used.",
+          "page": 160,
+          "position": 9,
+          "reextract": "**Pressure Instruments**"
+        },
+        {
+          "original": "Piping designers must locate pressure connections with great care, considering their function with accuracy, and orienting them toward their companion instrument when there is one. A pressure controller tap will connect to a control valve. This tap (or coupling, nipple and valve) should be located near and oriented toward the control valve to keep the piping as short and compact as possible.",
+          "page": 160,
+          "position": 10,
+          "reextract": "The pressure indicator shown as PI on flow diagrams is the most common pressure instrument. Pressure recorders and controllers are also utilized. Piping designers supply a 1/2\" or 3/4\" nipple, nippled up or down for these connections. The instrument designer usually starts with the valve and supplies the instrument hook-up. The first nipple and valve should always conform to the piping specification for material and rating. After the valve, a smaller instrument valve and tubing is quite often used."
+        },
+        {
+          "original": "Figure 8-2 shows a pressure recording controller portion from a mechanical flow diagram. The impulse point is on the 6\" line. The A-3\" line is mixed with the A-4\" line which comes from a high-pressure line, the C-3\". The control valve reduces the pressure from the C-3\" (450 pound) flange rating to an A (150 pound) flange rating. This could cause a change in velocity or some surging in the line. The impulse point is located downstream of the junction to allow the flow to stabilize. The 10' shown can be reduced for smaller line sizes, but it should be at least the pipe diameter \u00d7 10.",
+          "page": 160,
+          "position": 11,
+          "reextract": "Piping designers must locate pressure connections with great care, considering their function with great care, and orienting them toward their companion instrument when there is one. A pressure controller tap will connect to a control valve. This tap (or coupling, nipple and valve) should be located near and oriented toward the control valve to keep the piping as short and compact as possible."
+        },
+        {
+          "original": "The pressure recording controller is shown as a board-mounted recorder. The impulse line is routed to the control panel. After the control valve an impulse line goes to a transmitter which transmits to the recording controller on the main control panel.",
+          "page": 160,
+          "position": 12,
+          "reextract": "Figure 8-2 shows a pressure recording controller portion from a mechanical flow diagram. The impulse point is on the 6\" line. The A-3\" line is mixed with the A-4\" line which comes from a high-or pressure line, the C-4\". The control valve reduces the pressure from the A-4\" (150 pound) flange rating to an A (150 pound) flange rating. This could cause a change in velocity or some surging in the line. The impulse point is located downstream of the junction to allow the flow to stabilize. The 10' shown can be reduced for smaller line sizes, but it should be 10 diameters for larger lines."
+        },
+        {
+          "original": "",
+          "page": 160,
+          "position": 13,
+          "reextract": "The pressure recording controller is shown as a board-mounted recorder. The impulse line pointed to the recorder goes directly to a control valve an impulse line goes to a transmitter which transmits to the recording controller on the main control panel."
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [
+        {
+          "kind": "tbl",
+          "original_count": 0,
+          "page": 180,
+          "reason": "count_mismatch",
+          "reextract_count": 1
+        }
+      ],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": true,
+      "page": 180,
+      "prose_hunks": [
+        {
+          "original": "In any international operation, measurement conversion is common. Engineers, designers and draftsmen are constantly seeking conversion tables and charts and usually find every one but the one they need. In this chapter conversion factors are assembled in alphabetical order. Following the factors are conversion tables useful to engineers and designers.",
+          "page": 180,
+          "position": 1,
+          "reextract": "In any international operation, measurement conversion is common. Engineers, designers and"
+        },
+        {
+          "original": "## A",
+          "page": 180,
+          "position": 2,
+          "reextract": "draftsmen are constantly seeking conversion tables and charts and usually find every one but the one"
+        },
+        {
+          "original": "| From | Multiply by | To |",
+          "page": 180,
+          "position": 3,
+          "reextract": "they need. In this chapter conversion factors are assembled in alphabetical order. Following the factors"
+        },
+        {
+          "original": "| :--- | :---: | :--- |",
+          "page": 180,
+          "position": 4,
+          "reextract": "are conversion tables useful to engineers and designers."
+        },
+        {
+          "original": "| Acre | x 10 | = Square chain (Gunters) |",
+          "page": 180,
+          "position": 5,
+          "reextract": ""
+        },
+        {
+          "original": "| Acre | x 160 | = Rods |",
+          "page": 180,
+          "position": 6,
+          "reextract": ""
+        },
+        {
+          "original": "| Acre | x 1 x 10\u2075 | = Square links (Gunters) |",
+          "page": 180,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "| Acre | x 0.4047 | = Hectare or square hectometer |",
+          "page": 180,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "| Acres | x 43,560 | = Square feet |",
+          "page": 180,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "| Acres | x 4,047 | = Square meters |",
+          "page": 180,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "| Acres | x 1.562 x 10\u207b\u00b3 | = Square miles |",
+          "page": 180,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "| Acres | x 4,840 | = Square yards |",
+          "page": 180,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "| Acres | x 43,560 | = Cubic feet |",
+          "page": 180,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "| Acre-feet | x 3.259 x 10\u2075 | = Gallons |",
+          "page": 180,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "| Acre-feet | x 6.452 | = Amperes/square inch |",
+          "page": 180,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square centimeters | x 10\u2074 | = Amperes/square meter |",
+          "page": 180,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square centimeters | x 0.1550 | = Amperes/square centimeters |",
+          "page": 180,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square inch | x 1,550 | = Amperes/square meter |",
+          "page": 180,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square inches | x 10\u207b\u2074 | = Amperes/square centimeter |",
+          "page": 180,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square meter | x 6.452 x 10\u207b\u2074 | = Amperes/square inch |",
+          "page": 180,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "| Amperes/square meter | x 0.02471 | = Acre (USA) |",
+          "page": 180,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "| Arc | x 119.60 | = Square yards |",
+          "page": 180,
+          "position": 22,
+          "reextract": ""
+        },
+        {
+          "original": "| Ares | x 100 | = Square meters |",
+          "page": 180,
+          "position": 23,
+          "reextract": ""
+        },
+        {
+          "original": "| Atmospheres | x 14.7 | = Pounds/square inch |",
+          "page": 180,
+          "position": 24,
+          "reextract": ""
+        },
+        {
+          "original": "| Atmospheres | x 1.058 | = Tons/square-foot |",
+          "page": 180,
+          "position": 25,
+          "reextract": ""
+        },
+        {
+          "original": "*Conversion factor A (continued on following page)*",
+          "page": 180,
+          "position": 26,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [
+        {
+          "kind": "tbl",
+          "original_count": 0,
+          "page": 200,
+          "reason": "count_mismatch",
+          "reextract_count": 1
+        }
+      ],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": true,
+      "page": 200,
+      "prose_hunks": [
+        {
+          "original": "Snow, cubic foot x 7.2 = Pounds, 32\u00b0F",
+          "page": 200,
+          "position": 1,
+          "reextract": ""
+        },
+        {
+          "original": "Snow, inch deep x 0.1 = Inch, water",
+          "page": 200,
+          "position": 2,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 1.076 x 10\u207b\u00b3 = Square foot",
+          "page": 200,
+          "position": 3,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 0.155 = Square inch",
+          "page": 200,
+          "position": 4,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 0.0001 = Square meter",
+          "page": 200,
+          "position": 5,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 3.861 x 10\u207b\u00b9\u00b9 = Square miles",
+          "page": 200,
+          "position": 6,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 1.196 x 10\u207b\u2074 = Square yards",
+          "page": 200,
+          "position": 7,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 1.296 x 10\u207b\u00b3 = Square millimeters",
+          "page": 200,
+          "position": 8,
+          "reextract": ""
+        },
+        {
+          "original": "Square centimeter x 100 = Square millimeters",
+          "page": 200,
+          "position": 9,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 9.29 x 10\u207b\u00b2 = Are",
+          "page": 200,
+          "position": 10,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 929.034 = Square centimeters",
+          "page": 200,
+          "position": 11,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 144 = Square inches",
+          "page": 200,
+          "position": 12,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 0.0929 = Square meter",
+          "page": 200,
+          "position": 13,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 3.587 x 10\u207b\u2078 = Square miles",
+          "page": 200,
+          "position": 14,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 9.29 x 10\u207b\u2078 = Square millimeters",
+          "page": 200,
+          "position": 15,
+          "reextract": ""
+        },
+        {
+          "original": "Square feet, USA x 0.1111 = Square yards",
+          "page": 200,
+          "position": 16,
+          "reextract": ""
+        },
+        {
+          "original": "Square inches x 6.452 = Square centimeters",
+          "page": 200,
+          "position": 17,
+          "reextract": ""
+        },
+        {
+          "original": "Square inches x 6.944 x 10\u207b\u00b3 = Square feet",
+          "page": 200,
+          "position": 18,
+          "reextract": ""
+        },
+        {
+          "original": "Square inches x 645.2 = Square millimeters",
+          "page": 200,
+          "position": 19,
+          "reextract": ""
+        },
+        {
+          "original": "Square inches x 7.716 x 10\u207b\u2074 = Square yard",
+          "page": 200,
+          "position": 20,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 247.1 = Acre",
+          "page": 200,
+          "position": 21,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 10.76 x 10\u2076 = Hectare",
+          "page": 200,
+          "position": 22,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 1.55 x 10\u2079 = Square feet",
+          "page": 200,
+          "position": 23,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 10\u2076 = Square inches",
+          "page": 200,
+          "position": 24,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 0.3861 = Square meters",
+          "page": 200,
+          "position": 25,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 1.196 x 10\u2076 = Square mile, USA",
+          "page": 200,
+          "position": 26,
+          "reextract": ""
+        },
+        {
+          "original": "Square kilometer x 2.471 x 10\u207b\u2074 = Square yards",
+          "page": 200,
+          "position": 27,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 0.01 = Acre",
+          "page": 200,
+          "position": 28,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 0.0001 = Are",
+          "page": 200,
+          "position": 29,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 10,000 = Hectare",
+          "page": 200,
+          "position": 30,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 10.764 = Square centimeters",
+          "page": 200,
+          "position": 31,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 1,550 = Square feet",
+          "page": 200,
+          "position": 32,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 3.861 x 10\u207b\u2077 = Square inches",
+          "page": 200,
+          "position": 33,
+          "reextract": ""
+        },
+        {
+          "original": "Square meters x 1.196 = Square miles",
+          "page": 200,
+          "position": 34,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 640 = Square yards",
+          "page": 200,
+          "position": 35,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 2.59 = Acre",
+          "page": 200,
+          "position": 36,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 27.88 x 10\u2076 = Hectare",
+          "page": 200,
+          "position": 37,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 2.59 = Square feet",
+          "page": 200,
+          "position": 38,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 2.59 x 10\u2076 = Square kilometers",
+          "page": 200,
+          "position": 39,
+          "reextract": ""
+        },
+        {
+          "original": "Square miles x 3.098 x 10\u2076 = Square meters",
+          "page": 200,
+          "position": 40,
+          "reextract": ""
+        },
+        {
+          "original": "Square millimeters x 0.01 = Square yards",
+          "page": 200,
+          "position": 41,
+          "reextract": ""
+        },
+        {
+          "original": "Square millimeters x 1.076 x 10\u207b\u2075 = Square centimeters",
+          "page": 200,
+          "position": 42,
+          "reextract": ""
+        },
+        {
+          "original": "Square millimeters x 1.55 x 10\u207b\u00b3 = Square feet",
+          "page": 200,
+          "position": 43,
+          "reextract": ""
+        },
+        {
+          "original": "Square rods x 0.00625 = Square inches",
+          "page": 200,
+          "position": 44,
+          "reextract": ""
+        },
+        {
+          "original": "Square rods x 272.25 = Acre",
+          "page": 200,
+          "position": 45,
+          "reextract": ""
+        },
+        {
+          "original": "Square rods x 25.293 = Square feet",
+          "page": 200,
+          "position": 46,
+          "reextract": ""
+        },
+        {
+          "original": "= Square meter",
+          "page": 200,
+          "position": 47,
+          "reextract": ""
+        },
+        {
+          "original": "*Conversion factor S (continued on following page)*",
+          "page": 200,
+          "position": 48,
+          "reextract": ""
+        }
+      ]
+    },
+    {
+      "asset_structural_fails": [
+        {
+          "kind": "img",
+          "original_count": 0,
+          "page": 220,
+          "reason": "count_mismatch",
+          "reextract_count": 2
+        }
+      ],
+      "caption_notes": [],
+      "equation_content_proposals": [],
+      "equation_structural_fails": [],
+      "has_structural_fails": true,
+      "page": 220,
+      "prose_hunks": [
+        {
+          "original": "Easy-to-understand and absolutely complete, this book includes review questions at the end of each chapter and dozens of illustrations by the author as well as many from industry publications.",
+          "page": 220,
+          "position": 5,
+          "reextract": "Easy-to-understand and absolutely complete, this book includes review questions at the end of each chapter and dozens of illustrations by the author as well as many from industrial publications."
+        },
+        {
+          "original": "## About the Author",
+          "page": 220,
+          "position": 7,
+          "reextract": "## Process Piping Design"
+        },
+        {
+          "original": "Rip Weaver has more than 35 years of experience in drafting, design, and engineering for such firms as M.W. Kellogg, Fluor, and SMC McEvoy. During his career, he has trained hundreds of drafting technicians and has had numerous articles published in trade and technical magazines. His books are used as textbooks in hundreds of schools in the United States and Canada, and in companies throughout the world. Mr. Weaver is presently a consultant in Houston, Texas.",
+          "page": 220,
+          "position": 8,
+          "reextract": "Volume 1"
+        },
+        {
+          "original": "## Piping Videos Are Also Available From Gulf Publishing Company\u2014",
+          "page": 220,
+          "position": 9,
+          "reextract": "1. General Piping"
+        },
+        {
+          "original": "### Piping Fundamentals",
+          "page": 220,
+          "position": 10,
+          "reextract": "2. Process Terms"
+        },
+        {
+          "original": "This 10-part series is packed with proven techniques of piping drafting, design, and engineering. The tapes cover Piping Codes and Equipment; Flanges, Fittings, and Valves; Symbology and Orthographic Projections; Flow Diagrams; Plant Coordinate Systems, Elevations, and Math; Detail Dimensions; Piping Details; Piping Specifications and Plans; Isometric Configurations; and Dimensioned Isometrics.",
+          "page": 220,
+          "position": 11,
+          "reextract": "3. Plant Arrangement and Storage Tanks"
+        },
+        {
+          "original": "### Piping Familiarization",
+          "page": 220,
+          "position": 12,
+          "reextract": "4. Process Unit Plot Plans"
+        },
+        {
+          "original": "This 13-part video series provides a clear, thorough understanding of process plant terminology, components, and functions. The tapes describe flanges, valves, utility systems, fractionating towers, pressure vessels, pump, compressors, instrumentation, heat exchangers, and much more.",
+          "page": 220,
+          "position": 13,
+          "reextract": "5. Piping Systems and Details"
+        },
+        {
+          "original": "### Piping Pointers",
+          "page": 220,
+          "position": 14,
+          "reextract": "6. Pipe Fabrication"
+        },
+        {
+          "original": "Aimed at beginners and supervisors, this 5-part series reveals time-saving, cost-cutting tips for doing better, more efficient piping drafting.",
+          "page": 220,
+          "position": 15,
+          "reextract": "7. Vessels"
+        },
+        {
+          "original": "Preview tapes are available. Call (713) 520-4444.",
+          "page": 220,
+          "position": 16,
+          "reextract": "8. Instrumentation"
+        },
+        {
+          "original": "**Process Piping Design**",
+          "page": 220,
+          "position": 17,
+          "reextract": "9. Appendix on Conversions"
+        },
+        {
+          "original": "**Volume 1**",
+          "page": 220,
+          "position": 18,
+          "reextract": "Volume 2"
+        },
+        {
+          "original": "1. General Piping",
+          "page": 220,
+          "position": 19,
+          "reextract": "1. Pumps and Turbines"
+        },
+        {
+          "original": "2. Process Terms",
+          "page": 220,
+          "position": 20,
+          "reextract": "2. Compressors"
+        },
+        {
+          "original": "3. Plant Arrangement and Storage Tanks",
+          "page": 220,
+          "position": 21,
+          "reextract": "3. Fired Heaters"
+        },
+        {
+          "original": "4. Process Unit Plot Plans",
+          "page": 220,
+          "position": 22,
+          "reextract": "4. Exchangers"
+        },
+        {
+          "original": "5. Piping Systems and Details",
+          "page": 220,
+          "position": 23,
+          "reextract": "5. Piping Flexibility"
+        },
+        {
+          "original": "6. Pipe Fabrication",
+          "page": 220,
+          "position": 24,
+          "reextract": "## About the Author"
+        },
+        {
+          "original": "7. Vessels",
+          "page": 220,
+          "position": 25,
+          "reextract": "Rip Weaver has more than 35 years of experience in drafting, design, and engineering for such firms as M.W. Kellogg, Fluor, and SMC McEvee. During his career, he has trained hundreds of drafting technicians and has had numerous articles published in trade and technical magazines. His books are used as textbooks in hundreds of schools in the United States and Canada, and in companies throughout the world. Mr. Weaver is presently a consultant in Houston, Texas."
+        },
+        {
+          "original": "8. Instrumentation",
+          "page": 220,
+          "position": 26,
+          "reextract": "## Piping Videos Are Also Available From Gulf Publishing Company\u2014"
+        },
+        {
+          "original": "9. Appendix on Conversions",
+          "page": 220,
+          "position": 27,
+          "reextract": "**Piping Fundamentals**"
+        },
+        {
+          "original": "**Volume 2**",
+          "page": 220,
+          "position": 28,
+          "reextract": "This 10-part series is packed with proven techniques of piping drafting, design, and engineering. The tapes cover Piping Codes and Equipment; Flanges, Fittings, and Valves; Symbology and Orthographic Projections; Flow Diagrams; Plant Coordinate Systems, Elevations, and Math; Detail Dimensions; Piping Details; Piping Specifications and Plans; Isometric Configurations; and Dimensioned Isometrics."
+        },
+        {
+          "original": "1. Pumps and Turbines",
+          "page": 220,
+          "position": 29,
+          "reextract": "**Piping Familiarization**"
+        },
+        {
+          "original": "2. Compressors",
+          "page": 220,
+          "position": 30,
+          "reextract": "This 13-part video series provides a clear, thorough understanding of process plant terminology, components, and functions. The tapes describe flanges, valves, utility systems, fractionating towers, pressure vessels, pump, compressors, instrumentation, heat exchangers, and much more."
+        },
+        {
+          "original": "3. Fired Heaters",
+          "page": 220,
+          "position": 31,
+          "reextract": "**Piping Pointers**"
+        },
+        {
+          "original": "4. Exchangers",
+          "page": 220,
+          "position": 32,
+          "reextract": "Aimed at beginners and supervisors, this 5-part series reveals time-saving, cost-cutting tips for doing better, more efficient piping drafting."
+        },
+        {
+          "original": "5. Piping Flexibility",
+          "page": 220,
+          "position": 33,
+          "reextract": "Preview tapes are available. Call (713) 520-4444."
+        },
+        {
+          "original": "[Gulf Publishing Company logo]",
+          "page": 220,
+          "position": 34,
+          "reextract": "PRODUCT #1993"
+        },
+        {
+          "original": "Gulf Publishing Company",
+          "page": 220,
+          "position": 35,
+          "reextract": "ISBN 0-87201-993-4"
+        },
+        {
+          "original": "Book Division",
+          "page": 220,
+          "position": 36,
+          "reextract": ""
+        },
+        {
+          "original": "P.O. Box 2608",
+          "page": 220,
+          "position": 37,
+          "reextract": ""
+        },
+        {
+          "original": "Houston, Texas 77252-2608",
+          "page": 220,
+          "position": 38,
+          "reextract": ""
+        },
+        {
+          "original": "PRODUCT #1903",
+          "page": 220,
+          "position": 39,
+          "reextract": ""
+        },
+        {
+          "original": "ISBN 0-87201-913-4",
+          "page": 220,
+          "position": 40,
+          "reextract": ""
+        },
+        {
+          "original": "(Series) ISBN 0-87201-915-0",
+          "page": 220,
+          "position": 41,
+          "reextract": ""
+        }
+      ]
+    }
+  ],
+  "reextract_dir": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1/audit/prose_validation_extracts",
+  "schema_version": "pdf2md-prose-validate/v1",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work"
+}

@@ -1,0 +1,129 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.5
+      ],
+      "caption": "The M.W. Kellogg Co. \u2014 Piping Flexibility and Stress Analysis \u2014 Original Data and Results \u2014 Form B (members table, moments and forces action vs restraints table for cold and hot conditions, and isometric sketch of piping configuration)",
+      "kind": "fig",
+      "ordinal": 1
+    },
+    {
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.5,
+        0.32
+      ],
+      "caption": "Members \u2014 original data (Form B)",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1
+    },
+    {
+      "bbox_norm": [
+        0.06,
+        0.32,
+        0.72,
+        0.46
+      ],
+      "caption": "Moments (FT-LB) and Forces (LB) \u2014 Action vs Restraints, Cold Condition / Hot Condition (Form B)",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.97,
+        0.96
+      ],
+      "caption": "The M.W. Kellogg Co. \u2014 Piping Flexibility and Stress Analysis \u2014 Single Plane System \u2014 Form B-1 (expanded members table with columns 0'-1 through 6-A and Sigma, stress calculations table, check table, and summary column)",
+      "kind": "fig",
+      "ordinal": 2
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.51,
+        0.97,
+        0.74
+      ],
+      "caption": "Members \u2014 single plane system data sheet (Form B-1)",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 3
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.74,
+        0.97,
+        0.86
+      ],
+      "caption": "Stress Calculations (Form B-1)",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 4
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.85,
+        0.97,
+        0.92
+      ],
+      "caption": "Check (Form B-1)",
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 5
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.45,
+        0.62,
+        0.5
+      ],
+      "caption": "The M.W. Kellogg Co. masthead / logo block on Form B",
+      "kind": "img",
+      "ordinal": 1
+    },
+    {
+      "bbox_norm": [
+        0.05,
+        0.91,
+        0.62,
+        0.96
+      ],
+      "caption": "The M.W. Kellogg Co. masthead / logo block on Form B-1",
+      "kind": "img",
+      "ordinal": 2
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    {
+      "code": "table_handwritten_unreadable",
+      "detail": "Form B and Form B-1 tables are filled with handwritten engineering values that are not confidently legible at the available raster resolution; csv_text left empty so deterministic tools can crop the table region for human transcription rather than risk inventing values."
+    },
+    "asset_note: Pre-printed Kellogg data sheet filled with handwritten engineering data; includes isometric sketch in upper right and Kellogg masthead band at bottom",
+    "asset_note: Handwritten entries in pre-printed members grid (rows: D, t, I, Z, L, h, MATERIAL, TEMP, BRANCH, dx, dy, dz; columns include 0'-A); values not confidently legible from raster",
+    "asset_note: Pre-printed restraints table with point columns 0' and A under both Cold and Hot conditions and rows Mx, My, Mz, Fx, Fy, Fz; handwritten values not confidently legible",
+    "asset_note: Pre-printed Kellogg single-plane-system data sheet filled with handwritten engineering data; includes Kellogg masthead band at bottom",
+    "asset_note: Pre-printed members grid with member columns 0'-1, 1-2, 2-3, 3-4, 4-5, 5-6, 6-A, 0'-A and Sigma summary; rows include D, t, I, Z, L, h and additional parameters; handwritten values not confidently legible",
+    "asset_note: Pre-printed stress calculations grid with handwritten engineering values not confidently legible from raster",
+    "asset_note: Pre-printed check table with handwritten verification values not confidently legible",
+    "asset_note: Stylized 'THE M.W. KELLOGG CO.' wordmark band at bottom of Form B",
+    "asset_note: Stylized 'THE M.W. KELLOGG CO.' wordmark band at bottom of Form B-1"
+  ],
+  "page": 124,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

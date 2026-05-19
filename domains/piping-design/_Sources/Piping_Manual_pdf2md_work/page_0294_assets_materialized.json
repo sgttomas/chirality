@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0294.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0294_fig01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.96,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        828,
+        2569,
+        2419
+      ],
+      "caption": "Pipe Rack Anchor Bent",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0294_fig01_pipe-rack-anchor-bent.png",
+      "png_sha256": "c885bff4181469f8f3d427db035f6b425506233ae149ace3cbebe689102fab9e",
+      "slug": "pipe-rack-anchor-bent",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 294,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0294.png",
+  "page_image_sha256": "69c0bf18a5a5ce41f3401ea52f65e076131c3fb011cd8a80c3ffc2f64fb2667d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0294_assets.json"
+}

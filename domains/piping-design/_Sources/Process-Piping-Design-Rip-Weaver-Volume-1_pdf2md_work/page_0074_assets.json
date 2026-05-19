@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 74,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-5. Preliminary plot plan dimensions.",
+      "slug": "preliminary-plot-plan-dimensions",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.93],
+      "confidence": "high",
+      "notes": "Full-page schematic diagram of a preliminary plot plan showing equipment layout with row numbers 1-16, equipment tags (E-1 through E-4, T-1 through T-3, V-1 through V-3, FF-1 through FF-5), and plot limit boundary. Caption visible at bottom of figure."
+    }
+  ],
+  "issues": []
+}

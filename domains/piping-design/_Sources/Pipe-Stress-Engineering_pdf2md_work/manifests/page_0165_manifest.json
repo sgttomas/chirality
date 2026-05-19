@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0165.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0165_fig01",
+      "bbox_norm": [
+        0.08,
+        0.62,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        75,
+        2005,
+        2420,
+        3518
+      ],
+      "caption": "FIG. 5.9 SUBTRACTIVE NATURE OF POISSON'S STRESS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0165_fig01_subtractive-nature-poissons-stress.png",
+      "png_sha256": "f3e6572f70397f3267b3f39f25dd649405093faad4768e8ab5bf338f72284aeb",
+      "slug": "subtractive-nature-poissons-stress",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 165,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0165.png",
+  "page_image_sha256": "b6aa944815f1b34dfd14e4af2d18f72efe325986459176c79cd209113d6ecae7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0165_assets.json"
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 146,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 5.11a Three-branch system.",
+      "bbox_norm": [
+        0.08,
+        0.06,
+        0.46,
+        0.22
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 5.11b Intermediate restraints.",
+      "bbox_norm": [
+        0.58,
+        0.74,
+        0.94,
+        0.93
+      ]
+    }
+  ]
+}

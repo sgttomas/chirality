@@ -1,0 +1,551 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 23,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pounds per Square Inch, Non-Shock pressure-temperature ratings for Steam, Water, Oil Vapor, Gas, or Air — Carbon Steel Flanges",
+      "slug": "psi-nonshock-ratings-carbon-steel-flanges",
+      "bbox_norm": [0.03, 0.05, 0.63, 0.63],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "*",
+            "text": "Where welded construction is used, consideration should be given to the possible reduction in ductility on carbon steel at temperatures above 775 F."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Metal", "is_header": true, "row_span": 2 },
+              { "value": "Temp. Deg. Fahr.", "is_header": true, "row_span": 2 },
+              { "value": "Pounds per Square Inch, Non-Shock", "is_header": true, "col_span": 7 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150 Lb.", "is_header": true },
+              { "value": "300 Lb.", "is_header": true },
+              { "value": "400 Lb.", "is_header": true },
+              { "value": "600 Lb.", "is_header": true },
+              { "value": "900 Lb.", "is_header": true },
+              { "value": "1500 Lb.", "is_header": true },
+              { "value": "2500 Lb.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel Flanges", "row_span": 20 },
+              { "value": "100°", "type": "text" },
+              { "value": 275, "type": "number", "unit": "psi" },
+              { "value": 720, "type": "number", "unit": "psi" },
+              { "value": 960, "type": "number", "unit": "psi" },
+              { "value": 1440, "type": "number", "unit": "psi" },
+              { "value": 2160, "type": "number", "unit": "psi" },
+              { "value": 3600, "type": "number", "unit": "psi" },
+              { "value": 6000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150", "type": "text" },
+              { "value": 265, "type": "number", "unit": "psi" },
+              { "value": 720, "type": "number", "unit": "psi" },
+              { "value": 960, "type": "number", "unit": "psi" },
+              { "value": 1440, "type": "number", "unit": "psi" },
+              { "value": 2160, "type": "number", "unit": "psi" },
+              { "value": 3600, "type": "number", "unit": "psi" },
+              { "value": 6000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "200", "type": "text" },
+              { "value": 240, "type": "number", "unit": "psi" },
+              { "value": 700, "type": "number", "unit": "psi" },
+              { "value": 930, "type": "number", "unit": "psi" },
+              { "value": 2400, "type": "number", "unit": "psi" },
+              { "value": 2100, "type": "number", "unit": "psi" },
+              { "value": 3500, "type": "number", "unit": "psi" },
+              { "value": 5839, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "250", "type": "text" },
+              { "value": 225, "type": "number", "unit": "psi" },
+              { "value": 695, "type": "number", "unit": "psi" },
+              { "value": 925, "type": "number", "unit": "psi" },
+              { "value": 1380, "type": "number", "unit": "psi" },
+              { "value": 2025, "type": "number", "unit": "psi" },
+              { "value": 3450, "type": "number", "unit": "psi" },
+              { "value": 5750, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": 210, "type": "number", "unit": "psi" },
+              { "value": 680, "type": "number", "unit": "psi" },
+              { "value": 910, "type": "number", "unit": "psi" },
+              { "value": 1365, "type": "number", "unit": "psi" },
+              { "value": 2050, "type": "number", "unit": "psi" },
+              { "value": 3415, "type": "number", "unit": "psi" },
+              { "value": 5690, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "350", "type": "text" },
+              { "value": 195, "type": "number", "unit": "psi" },
+              { "value": 655, "type": "number", "unit": "psi" },
+              { "value": 870, "type": "number", "unit": "psi" },
+              { "value": 1250, "type": "number", "unit": "psi" },
+              { "value": 1960, "type": "number", "unit": "psi" },
+              { "value": 3255, "type": "number", "unit": "psi" },
+              { "value": 5430, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": 180, "type": "number", "unit": "psi" },
+              { "value": 665, "type": "number", "unit": "psi" },
+              { "value": 890, "type": "number", "unit": "psi" },
+              { "value": 1330, "type": "number", "unit": "psi" },
+              { "value": 2000, "type": "number", "unit": "psi" },
+              { "value": 3330, "type": "number", "unit": "psi" },
+              { "value": 5550, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "450", "type": "text" },
+              { "value": 165, "type": "number", "unit": "psi" },
+              { "value": 640, "type": "number", "unit": "psi" },
+              { "value": 870, "type": "number", "unit": "psi" },
+              { "value": 1290, "type": "number", "unit": "psi" },
+              { "value": 1935, "type": "number", "unit": "psi" },
+              { "value": 3255, "type": "number", "unit": "psi" },
+              { "value": 5430, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500", "type": "text" },
+              { "value": 150, "type": "number", "unit": "psi" },
+              { "value": 635, "type": "number", "unit": "psi" },
+              { "value": 835, "type": "number", "unit": "psi" },
+              { "value": 1210, "type": "number", "unit": "psi" },
+              { "value": 1875, "type": "number", "unit": "psi" },
+              { "value": 3125, "type": "number", "unit": "psi" },
+              { "value": 5210, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "550", "type": "text" },
+              { "value": 140, "type": "number", "unit": "psi" },
+              { "value": 590, "type": "number", "unit": "psi" },
+              { "value": 790, "type": "number", "unit": "psi" },
+              { "value": 1180, "type": "number", "unit": "psi" },
+              { "value": 1775, "type": "number", "unit": "psi" },
+              { "value": 2960, "type": "number", "unit": "psi" },
+              { "value": 4930, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": 130, "type": "number", "unit": "psi" },
+              { "value": 535, "type": "number", "unit": "psi" },
+              { "value": 740, "type": "number", "unit": "psi" },
+              { "value": 1080, "type": "number", "unit": "psi" },
+              { "value": 1665, "type": "number", "unit": "psi" },
+              { "value": 2770, "type": "number", "unit": "psi" },
+              { "value": 4620, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "650", "type": "text" },
+              { "value": 120, "type": "number", "unit": "psi" },
+              { "value": 515, "type": "number", "unit": "psi" },
+              { "value": 690, "type": "number", "unit": "psi" },
+              { "value": 1030, "type": "number", "unit": "psi" },
+              { "value": 1550, "type": "number", "unit": "psi" },
+              { "value": 2580, "type": "number", "unit": "psi" },
+              { "value": 4300, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "700", "type": "text" },
+              { "value": 110, "type": "number", "unit": "psi" },
+              { "value": 450, "type": "number", "unit": "psi" },
+              { "value": 600, "type": "number", "unit": "psi" },
+              { "value": 900, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2250, "type": "number", "unit": "psi" },
+              { "value": 3750, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "750", "type": "text" },
+              { "value": 100, "type": "number", "unit": "psi" },
+              { "value": 415, "type": "number", "unit": "psi" },
+              { "value": 575, "type": "number", "unit": "psi" },
+              { "value": 850, "type": "number", "unit": "psi" },
+              { "value": 1275, "type": "number", "unit": "psi" },
+              { "value": 2125, "type": "number", "unit": "psi" },
+              { "value": 3550, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "800", "type": "text" },
+              { "value": 95, "type": "number", "unit": "psi" },
+              { "value": 300, "type": "number", "unit": "psi" },
+              { "value": 400, "type": "number", "unit": "psi" },
+              { "value": 730, "type": "number", "unit": "psi" },
+              { "value": 1095, "type": "number", "unit": "psi" },
+              { "value": 1830, "type": "number", "unit": "psi" },
+              { "value": 3050, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "850", "type": "text" },
+              { "value": 82, "type": "number", "unit": "psi" },
+              { "value": 300, "type": "number", "unit": "psi" },
+              { "value": 400, "type": "number", "unit": "psi" },
+              { "value": 600, "type": "number", "unit": "psi" },
+              { "value": 900, "type": "number", "unit": "psi" },
+              { "value": 1500, "type": "number", "unit": "psi" },
+              { "value": 2500, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "870", "type": "text" },
+              { "value": 375, "type": "number", "unit": "psi" },
+              { "value": 1015, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2025, "type": "number", "unit": "psi" },
+              { "value": 3040, "type": "number", "unit": "psi" },
+              { "value": 5065, "type": "number", "unit": "psi" },
+              { "value": 8440, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900", "type": "text" },
+              { "value": 70, "type": "number", "unit": "psi" },
+              { "value": 225, "type": "number", "unit": "psi" },
+              { "value": 295, "type": "number", "unit": "psi" },
+              { "value": "7445", "type": "text", "raw": "7445" },
+              { "value": "7070", "type": "text", "raw": "7070" },
+              { "value": "11115", "type": "text", "raw": "11115" },
+              { "value": "7885", "type": "text", "raw": "7885" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "950", "type": "text" },
+              { "value": 65, "type": "number", "unit": "psi", "footnote_markers": ["*"] },
+              { "value": "200*", "type": "text", "raw": "200*", "footnote_markers": ["*"] },
+              { "value": "7269*", "type": "text", "raw": "7269*", "footnote_markers": ["*"] },
+              { "value": "1110*", "type": "text", "raw": "1110*", "footnote_markers": ["*"] },
+              { "value": "7465*", "type": "text", "raw": "7465*", "footnote_markers": ["*"] },
+              { "value": "7775*", "type": "text", "raw": "7775*", "footnote_markers": ["*"] },
+              { "value": "7290*", "type": "text", "raw": "7290*", "footnote_markers": ["*"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1000", "type": "text" },
+              { "value": "550*", "type": "text", "raw": "550*", "footnote_markers": ["*"] },
+              { "value": "1155*", "type": "text", "raw": "1155*", "footnote_markers": ["*"] },
+              { "value": "7369*", "type": "text", "raw": "7369*", "footnote_markers": ["*"] },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Carbon Steel Flanges pressure-temperature ratings table. 9-column layout: Metal, Temp, then 7 pressure classes 150-2500 Lb. Several values in the 900-1000 F rows appear OCR-garbled (prefixed with 7 or preceded by implausible magnitudes); retained verbatim as text type. Footnote * relates to welded construction ductility considerations above 775 F."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Pounds per Square Inch, Non-Shock pressure-temperature ratings — No. 5 Chromium-Molybdenum Alloy Steel (made to order)",
+      "slug": "psi-nonshock-ratings-cr-mo-alloy-steel",
+      "bbox_norm": [0.03, 0.63, 0.63, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "†",
+            "text": "Product used with the permission of Section I, Power Boiler, of the ASME Boiler and Pressure Vessel Code; application is subject to maximum temperature limitations depending upon the material."
+          },
+          {
+            "marker": "§",
+            "text": "Consideration should be given to the possibility of excessive oxidation (scaling) above 1100 F when No. 5 Chromium-Molybdenum Steel is used."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Metal", "is_header": true, "row_span": 2 },
+              { "value": "Temp. Deg. Fahr.", "is_header": true, "row_span": 2 },
+              { "value": "Pounds per Square Inch, Non-Shock", "is_header": true, "col_span": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300 Lb.", "is_header": true },
+              { "value": "400 Lb.", "is_header": true },
+              { "value": "600 Lb.", "is_header": true },
+              { "value": "900 Lb.", "is_header": true },
+              { "value": "1500 Lb.", "is_header": true },
+              { "value": "2500 Lb.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "No. 5 Chromium-Molybdenum Alloy Steel (made to order)", "row_span": 18 },
+              { "value": "700°", "type": "text" },
+              { "value": 495, "type": "number", "unit": "psi" },
+              { "value": 645, "type": "number", "unit": "psi" },
+              { "value": 965, "type": "number", "unit": "psi" },
+              { "value": 1450, "type": "number", "unit": "psi" },
+              { "value": 2415, "type": "number", "unit": "psi" },
+              { "value": 4025, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "750", "type": "text" },
+              { "value": 450, "type": "number", "unit": "psi" },
+              { "value": 600, "type": "number", "unit": "psi" },
+              { "value": 900, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2250, "type": "number", "unit": "psi" },
+              { "value": 3749, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "800", "type": "text" },
+              { "value": 420, "type": "number", "unit": "psi" },
+              { "value": 560, "type": "number", "unit": "psi" },
+              { "value": 840, "type": "number", "unit": "psi" },
+              { "value": 1260, "type": "number", "unit": "psi" },
+              { "value": 2100, "type": "number", "unit": "psi" },
+              { "value": 3499, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "850", "type": "text" },
+              { "value": 385, "type": "number", "unit": "psi" },
+              { "value": 510, "type": "number", "unit": "psi" },
+              { "value": 765, "type": "number", "unit": "psi" },
+              { "value": 1150, "type": "number", "unit": "psi" },
+              { "value": 1915, "type": "number", "unit": "psi" },
+              { "value": 3190, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "875", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900", "type": "text" },
+              { "value": 350, "type": "number", "unit": "psi" },
+              { "value": 465, "type": "number", "unit": "psi" },
+              { "value": 700, "type": "number", "unit": "psi" },
+              { "value": 1050, "type": "number", "unit": "psi" },
+              { "value": 1700, "type": "number", "unit": "psi" },
+              { "value": 2915, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "950", "type": "text" },
+              { "value": 330, "type": "number", "unit": "psi" },
+              { "value": 440, "type": "number", "unit": "psi" },
+              { "value": 660, "type": "number", "unit": "psi" },
+              { "value": 990, "type": "number", "unit": "psi" },
+              { "value": 1650, "type": "number", "unit": "psi" },
+              { "value": 2750, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1000", "type": "text" },
+              { "value": 315, "type": "number", "unit": "psi" },
+              { "value": 420, "type": "number", "unit": "psi" },
+              { "value": 630, "type": "number", "unit": "psi" },
+              { "value": 950, "type": "number", "unit": "psi" },
+              { "value": 1585, "type": "number", "unit": "psi" },
+              { "value": 2640, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1050", "type": "text" },
+              { "value": 280, "type": "number", "unit": "psi" },
+              { "value": 375, "type": "number", "unit": "psi" },
+              { "value": 560, "type": "number", "unit": "psi" },
+              { "value": 840, "type": "number", "unit": "psi" },
+              { "value": 1400, "type": "number", "unit": "psi" },
+              { "value": 2335, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1100", "type": "text" },
+              { "value": 230, "type": "number", "unit": "psi" },
+              { "value": 305, "type": "number", "unit": "psi" },
+              { "value": 460, "type": "number", "unit": "psi" },
+              { "value": 690, "type": "number", "unit": "psi" },
+              { "value": 1150, "type": "number", "unit": "psi" },
+              { "value": 1920, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1150", "type": "text" },
+              { "value": 195, "type": "number", "unit": "psi" },
+              { "value": 260, "type": "number", "unit": "psi" },
+              { "value": 390, "type": "number", "unit": "psi" },
+              { "value": 585, "type": "number", "unit": "psi" },
+              { "value": 975, "type": "number", "unit": "psi" },
+              { "value": 1625, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1200", "type": "text" },
+              { "value": 160, "type": "number", "unit": "psi" },
+              { "value": 215, "type": "number", "unit": "psi" },
+              { "value": 325, "type": "number", "unit": "psi" },
+              { "value": 485, "type": "number", "unit": "psi" },
+              { "value": 810, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1250", "type": "text" },
+              { "value": 135, "type": "number", "unit": "psi" },
+              { "value": 180, "type": "number", "unit": "psi" },
+              { "value": 270, "type": "number", "unit": "psi" },
+              { "value": 405, "type": "number", "unit": "psi" },
+              { "value": 675, "type": "number", "unit": "psi" },
+              { "value": 1125, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1100", "type": "text" },
+              { "value": 135, "type": "number", "unit": "psi" },
+              { "value": 180, "type": "number", "unit": "psi" },
+              { "value": 270, "type": "number", "unit": "psi" },
+              { "value": 405, "type": "number", "unit": "psi" },
+              { "value": 675, "type": "number", "unit": "psi" },
+              { "value": 1125, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1115†", "type": "text", "footnote_markers": ["†"] },
+              { "value": 90, "type": "number", "unit": "psi" },
+              { "value": 125, "type": "number", "unit": "psi" },
+              { "value": 190, "type": "number", "unit": "psi" },
+              { "value": 285, "type": "number", "unit": "psi" },
+              { "value": 470, "type": "number", "unit": "psi" },
+              { "value": 785, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1175†", "type": "text", "footnote_markers": ["†"] },
+              { "value": 70, "type": "number", "unit": "psi" },
+              { "value": 95, "type": "number", "unit": "psi" },
+              { "value": 140, "type": "number", "unit": "psi" },
+              { "value": 210, "type": "number", "unit": "psi" },
+              { "value": 375, "type": "number", "unit": "psi" },
+              { "value": 625, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1175†", "type": "text", "footnote_markers": ["†"] },
+              { "value": 60, "type": "number", "unit": "psi" },
+              { "value": 85, "type": "number", "unit": "psi" },
+              { "value": 125, "type": "number", "unit": "psi" },
+              { "value": 190, "type": "number", "unit": "psi" },
+              { "value": 315, "type": "number", "unit": "psi" },
+              { "value": 520, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1200†", "type": "text", "footnote_markers": ["†"] },
+              { "value": 50, "type": "number", "unit": "psi" },
+              { "value": 65, "type": "number", "unit": "psi" },
+              { "value": 95, "type": "number", "unit": "psi" },
+              { "value": 145, "type": "number", "unit": "psi" },
+              { "value": 245, "type": "number", "unit": "psi" },
+              { "value": 420, "type": "number", "unit": "psi" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "No. 5 Chromium-Molybdenum Alloy Steel section. This material section uses 6 pressure-class columns (300–2500 Lb.); the 150 Lb. column is absent because ratings below 700 F match Carbon Steel Flanges per the inter-table note. Dagger markers (†) indicate rows applicable under ASME Boiler and Pressure Vessel Code Section I permission."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-9. Forged steel flanges—working pressures. Reprinted courtesy of Crane Co.",
+      "slug": "forged-steel-flanges-working-pressures-crane",
+      "bbox_norm": [0.03, 0.05, 0.63, 0.97],
+      "confidence": "high",
+      "notes": "The book figure label 'Figure 1-9' at bottom of page designates the entire reproduced Crane Co. pressure-temperature ratings page as a figure. The figure region encompasses both tables above and all footnote text."
+    }
+  ],
+  "issues": [
+    {
+      "code": "ocr_garbled_values",
+      "asset": "tbl-1",
+      "detail": "Several values in the Carbon Steel Flanges rows at 900-1000 F appear OCR-garbled in the source Markdown (e.g. rows at 900 F contain '7445', '7070', '11115', '7885'; rows at 950-1000 F show values prefixed with '7' such as '7269*', '7369*', '71250*', '710000*'). These are likely scan artifacts. Values retained verbatim as type:text with raw field; manual verification against original source recommended."
+    }
+  ]
+}

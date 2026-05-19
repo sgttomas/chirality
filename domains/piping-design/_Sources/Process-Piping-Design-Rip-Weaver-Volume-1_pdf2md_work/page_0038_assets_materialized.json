@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0038_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2011
+      ],
+      "caption": "Figure 2-3. Correct equilibrium piping.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0038_fig01_figure-2-3-correct-equilibrium-piping.png",
+      "png_sha256": "b688143ef27038921989475c5d455809fb4b425b05143a7d34751edd8b50374c",
+      "slug": "figure-2-3-correct-equilibrium-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0038.png",
+  "page_image_sha256": "1b865df2e69f8d52b91ecc1310a3f217304fea448f162c25f6ce8435ef4195a2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0038_assets.json"
+}

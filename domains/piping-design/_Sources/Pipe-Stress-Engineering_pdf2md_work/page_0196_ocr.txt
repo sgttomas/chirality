@@ -1,0 +1,76 @@
+176 Chapter 6
+
+(4) The results of each iteration are checked to see if variations from the last iteration are all within
+the range of acceptable values. If the variation between current iteration and last iteration is
+not acceptable for any support, the new spring rates are calculated and a new iteration is per-
+
+formed.
+
+6.6.3 Application of Friction Force
+
+The procedure outlined is for the analysis including all loads, such as weight, thermal, etc. This is
+the condition required for evaluating equipment loads. However, in code stress compliance analysis, it
+is often required to separate the loads into different analyses so stresses can be separated into proper
+categories. For instance, the weight load is not included when the thermal expansion stress is being
+calculated. However, without the weight load, friction is mostly non-existent. This becomes a paradox
+in piping stress analysis, because friction would never get into the act. Friction is irrelevant in the
+weight load case, yet non-existent in the thermal expansion case.
+
+Weight initial load is the key element for solving the above paradox. The cited inconsequential fric-
+tion paradox can be solved by maintaining the initial weight load for each support or restraint. An
+analysis considering only the weight load is performed to determine the magnitude of the weight load
+that is normally carried by each support or restraint. These nominal weight loads are then recorded
+
+and remembered. We will then recognize that these weight initial loads are always present at the sup-
+ports to affect the friction effect. The friction force can then be calculated with this weight initial load
+superimposed on the support reaction force produced from thermal expansion and other loads.
+
+Because the friction is mostly the result of weight load, some may argue that friction force is a sus-
+tained load simply because weight is a sustained load. This, of course, is not true because friction force
+is a passive force. It is always in the defensive mode (and is never in an active mode to affect anything).
+Friction force will tend to reduce the effect of a sustained load, but it does not have the damaging na-
+ture of a sustained load. Friction is actually an effect rather than a force.
+
+Friction generally serves as restraints to a piping system. It increases the effective stiffness of the
+system. Obviously, the stiffer the system, the higher the load, and also the higher the stress, which will
+result in the piping acting against thermal expansion. Therefore, inclusion of friction in thermal ex-
+pansion analysis is necessary. On the other hand, friction can help reduce the damage from occasional
+load, such as earthquake and wind. In these cases, the inclusion of friction is a matter of judgment. It
+should be clearly specified in the design specification.
+
+6.6.4 Methods of Reducing Friction Force
+
+Support friction is not desirable in some situations. In the examples given in Figs. 6.13 and 6.14,
+friction has increased anchor reactions and pipe stresses. The necessity of reducing support friction is
+seldom the consequence of pipe stress. The reduction is mostly required for reducing the equipment
+load and support structure load. We are all aware of just how small the allowable piping load can be
+at an equipment connection. However, we often forget that the support structure cannot take a large
+friction force either. Most support structures are mainly designed for the vertical load. They are gener-
+ally very weak in resisting the horizontal load.
+
+In the system shown in Fig. 6.13, restraint 25 generates a high x-direction friction force, causing a
+very large x-direction equipment force and z-direction equipment moment. Because these loads are
+not acceptable, one way to solve the problem is to reduce the friction force.
+
+The best way to reduce support and restraint friction is to eliminate the sliding surface. This can be
+achieved by using hangers and struts. The strut as shown in Fig. 6.4(a) can be used here. However,
+there are situations in the field wherein the use of hangers and struts is not feasible. For example, for
+off-site and yard piping in a process plant, sliding support is often the only feasible support.
+
+rg
+af
+
+PRrnott my
+
+Se a we ow
+
+etree Ee,
+we
+
+art
+nee
+
+« :
+eae i a
+
+eT

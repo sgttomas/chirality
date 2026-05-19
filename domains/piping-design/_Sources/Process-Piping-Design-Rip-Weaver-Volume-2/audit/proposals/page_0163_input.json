@@ -1,0 +1,35 @@
+{
+  "page": 163,
+  "equations": [
+    {
+      "page": 163,
+      "index": 1,
+      "latex": "\\frac{DE}{(L - U)^2} \\leq 0.03",
+      "png": "page_0163.png"
+    },
+    {
+      "page": 163,
+      "index": 2,
+      "latex": "U = \\sqrt{x^2 + y^2 + z^2}",
+      "png": "page_0163.png"
+    },
+    {
+      "page": 163,
+      "index": 3,
+      "latex": "= \\sqrt{12^2 + 2^2 + 16^2}",
+      "png": "page_0163.png"
+    },
+    {
+      "page": 163,
+      "index": 4,
+      "latex": "= \\sqrt{404}",
+      "png": "page_0163.png"
+    },
+    {
+      "page": 163,
+      "index": 5,
+      "latex": "= 20.1 \\text{ (say 20\u2032)}",
+      "png": "page_0163.png"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0033_fig01",
+      "bbox_norm": [
+        0.28,
+        0.04,
+        0.97,
+        0.4
+      ],
+      "bbox_px": [
+        589,
+        0,
+        2560,
+        1485
+      ],
+      "caption": "Figure 1-17. End suction horizontal pump. Courtesy of Byron Jackson Pump Division.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0033_fig01_end-suction-horizontal-pump.png",
+      "png_sha256": "ad2ab332d03b9e023a4aa0c76a014f4acacce9c19db0cf8ff3d2a5606b929b7a",
+      "slug": "end-suction-horizontal-pump",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0033_fig02",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1254,
+        2560,
+        3300
+      ],
+      "caption": "Figure 1-16. Performance curve for Type 1\u00bd x 2 x 10\u00bdH IN-INI pump. Courtesy of Byron Jackson Pump Division.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0033_fig02_performance-curve-type-1-5x2x10-5h-in-in.png",
+      "png_sha256": "86ced061dc58d80b4d4598bddf09e7dcc6ca9ea31b76e04eeff2b8647aa3414b",
+      "slug": "performance-curve-type-1-5x2x10-5h-in-in",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0033.png",
+  "page_image_sha256": "763c07226b000ec3760f106a923b0864e695a4d052ec7fa5256d8aaea787d10b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0033_assets.json"
+}

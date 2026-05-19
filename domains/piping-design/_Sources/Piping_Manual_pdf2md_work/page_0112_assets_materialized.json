@@ -1,0 +1,88 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0112.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0112_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.5,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1402,
+        1221
+      ],
+      "caption": "EXHIBIT 5-12 Drum Elevation Sketch",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0112_fig01_exhibit-5-12-drum-elevation-sketch.png",
+      "png_sha256": "ff4db38ad5d9dded3a3764bdff555b1340354ca56a6b060fcb7aa2c1ac690a3c",
+      "slug": "exhibit-5-12-drum-elevation-sketch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0112_fig02",
+      "bbox_norm": [
+        0.49,
+        0.05,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        1122,
+        0,
+        2550,
+        1155
+      ],
+      "caption": "EXHIBIT 5-13 Typical Process Vessel Sketch for a Horizontal Drum",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0112_fig02_exhibit-5-13-typical-process-vessel-sket.png",
+      "png_sha256": "a203fb9af701e54789e356c69973bf7afb1e46e104b2f3d49f956dbce3aedaab",
+      "slug": "exhibit-5-13-typical-process-vessel-sket",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0112_tbl01",
+      "bbox_norm": [
+        0.51,
+        0.29,
+        0.93,
+        0.5
+      ],
+      "bbox_px": [
+        1173,
+        792,
+        2499,
+        1814
+      ],
+      "caption": "NOZZLE SUMMARY (associated with EXHIBIT 5-13)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0112_tbl01_nozzle-summary-associated-with-exhibit-5.png",
+      "png_sha256": "7cadfc98f618cda8859e255faf46b1795bb47716de341629b743047dc3c909fc",
+      "slug": "nozzle-summary-associated-with-exhibit-5",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 112,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0112.png",
+  "page_image_sha256": "bc35977ba226dca5bb15c4c38107ee5acfad45f75421dfd0c8177e1215113d3b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0112_assets.json"
+}

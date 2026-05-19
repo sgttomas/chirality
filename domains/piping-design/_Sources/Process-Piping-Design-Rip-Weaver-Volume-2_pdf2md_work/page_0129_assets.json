@@ -1,0 +1,78 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 129,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 4-3. Installation, disassembly and dimensions. Courtesy of Brown Fintube Co.",
+      "slug": "fig-4-3-installation-disassembly-dimensions",
+      "bbox_norm": [0.32, 0.42, 0.99, 0.97],
+      "confidence": "high",
+      "notes": "Technical drawing showing fintube hairpin heat exchanger installation arrangement, bracket/nozzle details, and labeled dimension callouts. Includes the dimensions table and caption at bottom. Combined figure block as labeled Fig. 4-3."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Dimensions of Low Pressure Tube Side — Type 40 (Approximate)",
+      "slug": "dimensions-low-pressure-tube-side-type-40",
+      "bbox_norm": [0.33, 0.76, 0.98, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "HEAT EXCHANGER NUMBER", "is_header": true },
+              { "value": "OVERALL LENGTH", "is_header": true },
+              { "value": "OVERALL WIDTH", "is_header": true },
+              { "value": "OVERALL HEIGHT", "is_header": true },
+              { "value": "FIN LENGTH", "is_header": true },
+              { "value": "TO REMOVE HAIR PIN", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40-1XXXX-X10", "type": "text" },
+              { "value": "11'¾\"", "type": "fraction", "raw": "11'¾\"" },
+              { "value": "8\"", "type": "fraction", "raw": "8\"" },
+              { "value": "13⅝\"", "type": "fraction", "raw": "13⅝\"" },
+              { "value": "9'9⅝\"", "type": "fraction", "raw": "9'9⅝\"" },
+              { "value": "11'3\"", "type": "fraction", "raw": "11'3\"" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40-1XXXX-X20", "type": "text" },
+              { "value": "21'7⅛\"", "type": "fraction", "raw": "21'7⅛\"" },
+              { "value": "8\"", "type": "fraction", "raw": "8\"" },
+              { "value": "13⅝\"", "type": "fraction", "raw": "13⅝\"" },
+              { "value": "19'11⅛\"", "type": "fraction", "raw": "19'11⅛\"" },
+              { "value": "21'5\"", "type": "fraction", "raw": "21'5\"" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "40-1XXXX-X25", "type": "text" },
+              { "value": "26'7⅛\"", "type": "fraction", "raw": "26'7⅛\"" },
+              { "value": "8\"", "type": "fraction", "raw": "8\"" },
+              { "value": "13⅝\"", "type": "fraction", "raw": "13⅝\"" },
+              { "value": "24'11⅛\"", "type": "fraction", "raw": "24'11⅛\"" },
+              { "value": "26'5\"", "type": "fraction", "raw": "26'5\"" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Six-column dimensions table for Type 40 low pressure tube side fintube heat exchangers. Three model variants listed. All dimension values are fractional feet/inches."
+    }
+  ],
+  "issues": []
+}

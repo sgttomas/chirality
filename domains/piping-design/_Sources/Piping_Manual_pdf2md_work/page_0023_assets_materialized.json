@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0023.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0023_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.96,
+        0.49
+      ],
+      "bbox_px": [
+        26,
+        265,
+        2562,
+        1787
+      ],
+      "caption": "EXHIBIT 1-6 Diagonal Piping Runs",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0023_fig01_exhibit-1-6-diagonal-piping-runs.png",
+      "png_sha256": "0a799d84983a19bc4b0eee5d3597c8bdb7688deb8f14c15a7ad9773cacafa5e9",
+      "slug": "exhibit-1-6-diagonal-piping-runs",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0023.png",
+  "page_image_sha256": "e81459ba0b3be57e37775561b351701f126c44a2fdedb46cec90b6313000841b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0023_assets.json"
+}

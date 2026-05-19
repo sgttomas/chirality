@@ -1,0 +1,207 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 288,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 8.18 ALLOWABLE PIPING LOADS AT AIR COOLER NOZZLES [31] — nozzle coordinate system diagram showing forces Fx, Fy, Fz and moments Mx, My, Mz",
+      "slug": "fig-8-18-air-cooler-nozzle-coordinate-system",
+      "bbox_norm": [0.28, 0.44, 0.72, 0.62],
+      "confidence": "high",
+      "notes": "Schematic showing nozzle axis orientation with labeled force and moment vectors; appears above the allowable loads table"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "FIG. 8.18 ALLOWABLE PIPING LOADS AT AIR COOLER NOZZLES [31]",
+      "slug": "fig-8-18-allowable-piping-loads-air-cooler-nozzles",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Nozzle Sizes", "col_span": 2, "is_header": true },
+              { "value": "Allowable Moments", "col_span": 6, "is_header": true },
+              { "value": "Allowable Forces", "col_span": 6, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "NPS", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "Mx (lb-ft)", "is_header": true },
+              { "value": "Mx (N·m)", "is_header": true },
+              { "value": "My (lb-ft)", "is_header": true },
+              { "value": "My (N·m)", "is_header": true },
+              { "value": "Mz (lb-ft)", "is_header": true },
+              { "value": "Mz (N·m)", "is_header": true },
+              { "value": "Fx (lbs)", "is_header": true },
+              { "value": "Fx (N)", "is_header": true },
+              { "value": "Fy (lbs)", "is_header": true },
+              { "value": "Fy (N)", "is_header": true },
+              { "value": "Fz (lbs)", "is_header": true },
+              { "value": "Fz (N)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": 50, "type": "number", "unit": "mm" },
+              { "value": 200, "type": "number", "unit": "lb-ft" },
+              { "value": 270, "type": "number", "unit": "N·m" },
+              { "value": 70, "type": "number", "unit": "lb-ft" },
+              { "value": 95, "type": "number", "unit": "N·m" },
+              { "value": 150, "type": "number", "unit": "lb-ft" },
+              { "value": 205, "type": "number", "unit": "N·m" },
+              { "value": 150, "type": "number", "unit": "lbs" },
+              { "value": 670, "type": "number", "unit": "N" },
+              { "value": 100, "type": "number", "unit": "lbs" },
+              { "value": 445, "type": "number", "unit": "N" },
+              { "value": 100, "type": "number", "unit": "lbs" },
+              { "value": 445, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": 75, "type": "number", "unit": "mm" },
+              { "value": 200, "type": "number", "unit": "lb-ft" },
+              { "value": 270, "type": "number", "unit": "N·m" },
+              { "value": 300, "type": "number", "unit": "lb-ft" },
+              { "value": 410, "type": "number", "unit": "N·m" },
+              { "value": 200, "type": "number", "unit": "lb-ft" },
+              { "value": 270, "type": "number", "unit": "N·m" },
+              { "value": 300, "type": "number", "unit": "lbs" },
+              { "value": 1335, "type": "number", "unit": "N" },
+              { "value": 250, "type": "number", "unit": "lbs" },
+              { "value": 1110, "type": "number", "unit": "N" },
+              { "value": 250, "type": "number", "unit": "lbs" },
+              { "value": 1110, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": 100, "type": "number", "unit": "mm" },
+              { "value": 450, "type": "number", "unit": "lb-ft" },
+              { "value": 610, "type": "number", "unit": "N·m" },
+              { "value": 600, "type": "number", "unit": "lb-ft" },
+              { "value": 815, "type": "number", "unit": "N·m" },
+              { "value": 400, "type": "number", "unit": "lb-ft" },
+              { "value": 540, "type": "number", "unit": "N·m" },
+              { "value": 500, "type": "number", "unit": "lbs" },
+              { "value": 2225, "type": "number", "unit": "N" },
+              { "value": 400, "type": "number", "unit": "lbs" },
+              { "value": 1780, "type": "number", "unit": "N" },
+              { "value": 400, "type": "number", "unit": "lbs" },
+              { "value": 1780, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": 150, "type": "number", "unit": "mm" },
+              { "value": 1050, "type": "number", "unit": "lb-ft" },
+              { "value": 1420, "type": "number", "unit": "N·m" },
+              { "value": 1500, "type": "number", "unit": "lb-ft" },
+              { "value": 2030, "type": "number", "unit": "N·m" },
+              { "value": 800, "type": "number", "unit": "lb-ft" },
+              { "value": 1085, "type": "number", "unit": "N·m" },
+              { "value": 600, "type": "number", "unit": "lbs" },
+              { "value": 2670, "type": "number", "unit": "N" },
+              { "value": 750, "type": "number", "unit": "lbs" },
+              { "value": 3340, "type": "number", "unit": "N" },
+              { "value": 750, "type": "number", "unit": "lbs" },
+              { "value": 3340, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": 200, "type": "number", "unit": "mm" },
+              { "value": 1500, "type": "number", "unit": "lb-ft" },
+              { "value": 2030, "type": "number", "unit": "N·m" },
+              { "value": 3000, "type": "number", "unit": "lb-ft" },
+              { "value": 4070, "type": "number", "unit": "N·m" },
+              { "value": 1100, "type": "number", "unit": "lb-ft" },
+              { "value": 1490, "type": "number", "unit": "N·m" },
+              { "value": 850, "type": "number", "unit": "lbs" },
+              { "value": 3780, "type": "number", "unit": "N" },
+              { "value": 1200, "type": "number", "unit": "lbs" },
+              { "value": 5340, "type": "number", "unit": "N" },
+              { "value": 1200, "type": "number", "unit": "lbs" },
+              { "value": 5340, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 250, "type": "number", "unit": "mm" },
+              { "value": 2000, "type": "number", "unit": "lb-ft" },
+              { "value": 2710, "type": "number", "unit": "N·m" },
+              { "value": 3000, "type": "number", "unit": "lb-ft" },
+              { "value": 4070, "type": "number", "unit": "N·m" },
+              { "value": 1250, "type": "number", "unit": "lb-ft" },
+              { "value": 1690, "type": "number", "unit": "N·m" },
+              { "value": 1000, "type": "number", "unit": "lbs" },
+              { "value": 4450, "type": "number", "unit": "N" },
+              { "value": 2000, "type": "number", "unit": "lbs" },
+              { "value": 8900, "type": "number", "unit": "N" },
+              { "value": 1500, "type": "number", "unit": "lbs" },
+              { "value": 6670, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 300, "type": "number", "unit": "mm" },
+              { "value": 2500, "type": "number", "unit": "lb-ft" },
+              { "value": 3390, "type": "number", "unit": "N·m" },
+              { "value": 3000, "type": "number", "unit": "lb-ft" },
+              { "value": 4070, "type": "number", "unit": "N·m" },
+              { "value": 1500, "type": "number", "unit": "lb-ft" },
+              { "value": 2030, "type": "number", "unit": "N·m" },
+              { "value": 1250, "type": "number", "unit": "lbs" },
+              { "value": 5560, "type": "number", "unit": "N" },
+              { "value": 2000, "type": "number", "unit": "lbs" },
+              { "value": 8900, "type": "number", "unit": "N" },
+              { "value": 2000, "type": "number", "unit": "lbs" },
+              { "value": 8900, "type": "number", "unit": "N" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": 350, "type": "number", "unit": "mm" },
+              { "value": 3000, "type": "number", "unit": "lb-ft" },
+              { "value": 4070, "type": "number", "unit": "N·m" },
+              { "value": 3500, "type": "number", "unit": "lb-ft" },
+              { "value": 4750, "type": "number", "unit": "N·m" },
+              { "value": 1750, "type": "number", "unit": "lb-ft" },
+              { "value": 2375, "type": "number", "unit": "N·m" },
+              { "value": 1500, "type": "number", "unit": "lbs" },
+              { "value": 6670, "type": "number", "unit": "N" },
+              { "value": 2500, "type": "number", "unit": "lbs" },
+              { "value": 11120, "type": "number", "unit": "N" },
+              { "value": 2500, "type": "number", "unit": "lbs" },
+              { "value": 11120, "type": "number", "unit": "N" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table shows allowable nozzle loads for NPS 2-14 (50-350 mm); dual-unit columns (US customary and SI) for all six load components (Mx, My, Mz, Fx, Fy, Fz). Caption and figure number appear below the table."
+    }
+  ],
+  "issues": []
+}

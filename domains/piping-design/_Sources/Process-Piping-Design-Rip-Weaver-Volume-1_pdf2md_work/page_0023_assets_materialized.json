@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0023.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.63,
+        0.63
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1684,
+        2374
+      ],
+      "caption": "Pounds per Square Inch, Non-Shock pressure-temperature ratings for Steam, Water, Oil Vapor, Gas, or Air \u2014 Carbon Steel Flanges",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl01_psi-nonshock-ratings-carbon-steel-flange.png",
+      "png_sha256": "5d0548f859cb29b0a80e4853b87d8afa36ce12d80ea2bd80296163bdee67b08c",
+      "slug": "psi-nonshock-ratings-carbon-steel-flange",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl01_psi-nonshock-ratings-carbon-steel-flange.json",
+      "table_data_json_sha256": "2e877561123222227d8b060b337117c7bc7cdae742d33c419453650be7886821",
+      "table_data_sha256": "2e877561123222227d8b060b337117c7bc7cdae742d33c419453650be7886821",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl01_psi-nonshock-ratings-carbon-steel-flange.xlsx",
+      "xlsx_sha256": "1e123183929ed74031fd4e61e78672f03d419db9effaf78c50efc9f7b8ab47a6"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.63,
+        0.63,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        2025,
+        1684,
+        3247
+      ],
+      "caption": "Pounds per Square Inch, Non-Shock pressure-temperature ratings \u2014 No. 5 Chromium-Molybdenum Alloy Steel (made to order)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl02_psi-nonshock-ratings-cr-mo-alloy-steel.png",
+      "png_sha256": "0e946da2e85ebaf2f3191b67b84cf5966ded3cfccd0c1e7aee3b760db9399b00",
+      "slug": "psi-nonshock-ratings-cr-mo-alloy-steel",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl02_psi-nonshock-ratings-cr-mo-alloy-steel.json",
+      "table_data_json_sha256": "05536dee05f7483b6a303b6f25cdc5c664c29861e7e3610f31c161d1ff7d6731",
+      "table_data_sha256": "05536dee05f7483b6a303b6f25cdc5c664c29861e7e3610f31c161d1ff7d6731",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_tbl02_psi-nonshock-ratings-cr-mo-alloy-steel.xlsx",
+      "xlsx_sha256": "bff17d9e20a7b61c59418dbbb79c9860f6814dfd01a513f1c9c11d47841c3f72"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0023_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.63,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1684,
+        3491
+      ],
+      "caption": "Figure 1-9. Forged steel flanges\u2014working pressures. Reprinted courtesy of Crane Co.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0023_fig01_forged-steel-flanges-working-pressures-c.png",
+      "png_sha256": "638e509b1ca0b51286f7af2470a98c97a0d59b7ee7e60eff1ad1f91d0fb4a923",
+      "slug": "forged-steel-flanges-working-pressures-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0023.png",
+  "page_image_sha256": "29a89b578b05c4bfcedcfe0ee760d6f788bfd3ecbf0a199bf1892a01a35d1b71",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0023_assets.json"
+}

@@ -1,0 +1,33 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.98,
+        0.55
+      ],
+      "caption": "Stress, Moments, Deflections and Rotations at the Point (Continued) - The M. W. Kellogg Company, Piping Flexibility and Stress Analysis",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.58,
+        0.98,
+        0.97
+      ],
+      "caption": "Moments, Forces and Coordinates Referred to the Origin - The M. W. Kellogg Company, Piping Flexibility and Stress Analysis",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 378,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

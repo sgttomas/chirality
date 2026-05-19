@@ -1,0 +1,165 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 28,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-11. Outline dimensions of inline pump, Type IN. Courtesy of Byron Jackson Pump Division.",
+      "slug": "inline-pump-type-in-outline-dimensions",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing plan and elevation views of Byron Jackson inline pump Type IN with dimensional callouts, connection details, motor specification fields, and embedded dimensions table. Caption appears at the bottom of the page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pump dimensions table for inline pump Type IN",
+      "slug": "inline-pump-type-in-dimensions",
+      "bbox_norm": [0.52, 0.73, 0.97, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PUMP SIZE", "is_header": true },
+              { "value": "WGT (LBS)", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "D", "is_header": true },
+              { "value": "3½% SHAFT EXTEN.", "is_header": true },
+              { "value": "4½% SHAFT EXTEN.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1 x 1½ x 7½", "type": "fraction" },
+              { "value": 165, "type": "number", "unit": "lbs" },
+              { "value": "7½", "type": "fraction" },
+              { "value": "3½", "type": "fraction" },
+              { "value": "4½", "type": "fraction" },
+              { "value": "14¾", "type": "fraction" },
+              { "value": "16¾", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2 x 3 x 7½", "type": "fraction" },
+              { "value": 192, "type": "number", "unit": "lbs" },
+              { "value": "9½", "type": "fraction" },
+              { "value": "9", "type": "number" },
+              { "value": "4½", "type": "fraction" },
+              { "value": "13¾", "type": "fraction" },
+              { "value": "17¾", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½ x 2 x 8½", "type": "fraction" },
+              { "value": 275, "type": "number", "unit": "lbs" },
+              { "value": "9", "type": "number" },
+              { "value": "7", "type": "number" },
+              { "value": "3½", "type": "fraction" },
+              { "value": "14⅜", "type": "fraction" },
+              { "value": "16½", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2 x 3 x 8½", "type": "fraction" },
+              { "value": 302, "type": "number", "unit": "lbs" },
+              { "value": "10", "type": "number" },
+              { "value": "9½", "type": "fraction" },
+              { "value": "4½", "type": "fraction" },
+              { "value": "14⅝", "type": "fraction" },
+              { "value": "16⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 4 x 8½", "type": "fraction" },
+              { "value": 330, "type": "number", "unit": "lbs" },
+              { "value": "10½", "type": "fraction" },
+              { "value": "10", "type": "number" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "14¾", "type": "fraction" },
+              { "value": "16¾", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 6 x 8½", "type": "fraction" },
+              { "value": 465, "type": "number", "unit": "lbs" },
+              { "value": "13", "type": "number" },
+              { "value": "14", "type": "number" },
+              { "value": "9½", "type": "fraction" },
+              { "value": "15", "type": "number" },
+              { "value": "17", "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½ x 2 x 10½", "type": "fraction" },
+              { "value": 305, "type": "number", "unit": "lbs" },
+              { "value": "10", "type": "number" },
+              { "value": "9½", "type": "fraction" },
+              { "value": "4", "type": "number" },
+              { "value": "14⅝", "type": "fraction" },
+              { "value": "16⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2 x 3 x 10½", "type": "fraction" },
+              { "value": 357, "type": "number", "unit": "lbs" },
+              { "value": "10½", "type": "fraction" },
+              { "value": "10", "type": "number" },
+              { "value": "4½", "type": "fraction" },
+              { "value": "14½", "type": "fraction" },
+              { "value": "16½", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3 x 4 x 10½", "type": "fraction" },
+              { "value": 412, "type": "number", "unit": "lbs" },
+              { "value": "12", "type": "number" },
+              { "value": "11½", "type": "fraction" },
+              { "value": "5½", "type": "fraction" },
+              { "value": "14⅝", "type": "fraction" },
+              { "value": "16⅝", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Pump dimensions table embedded in the lower-right quadrant of Figure 1-11. Eight columns: PUMP SIZE, WGT (LBS), A, B, C, D, 3½% SHAFT EXTEN., 4½% SHAFT EXTEN. The last column (4½% SHAFT EXTEN.) values are not legible in the page image for any row and are also absent from the Markdown source; all cells in that column are marked as missing."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_column_unreadable",
+      "asset_ordinal": 1,
+      "asset_kind": "tbl",
+      "detail": "The rightmost column '4½% SHAFT EXTEN.' values are not legible in the page image for any data row. The Markdown source likewise omits these values. All cells in that column have been recorded as type 'missing'."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0407.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0407_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2536,
+        2023
+      ],
+      "caption": "FIG. 12.9 COMBINATION OF SINE AND COSINE WAVES \u2014 (a) Combination of sine and cosine waves with same frequency; (b) Combination of two sine waves with different frequency",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0407_fig01_combination-sine-cosine-waves.png",
+      "png_sha256": "2dd211c45a233948c5d738c5d885cdbebcdb3cc64039d4d56c94b1c1b9dcc0d2",
+      "slug": "combination-sine-cosine-waves",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 407,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0407.png",
+  "page_image_sha256": "3be3dabcb41765060ce6cb71066f07efa4fdeff6863e77235bf8579c8dda040f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0407_assets.json"
+}

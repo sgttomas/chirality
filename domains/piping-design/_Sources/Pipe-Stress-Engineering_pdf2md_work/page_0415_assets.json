@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 415,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 12.13 GAS FLOW THROUGH CONVERGENT-DIVERGENT NOZZLE [11]",
+      "slug": "gas-flow-convergent-divergent-nozzle",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Composite figure showing nozzle cross-section diagram on the left with labeled zones (Throat, Nozzle, Shock) and reservoir conditions (V0=0, P0=const, T0=const), and a pressure-flow rate plot on the right showing conditions (1)-(5) with P/P0 vs x and mass flow vs P_b/P_0. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

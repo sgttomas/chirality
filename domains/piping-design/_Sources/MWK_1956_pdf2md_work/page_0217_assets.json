@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 217,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure showing five internal sleeve arrangements for expansion joints: Simple Weld-In Sleeve (with Bleed Connection), Recessed Sleeve With Bleed Connection (permits cocking or offset movement), Two-piece Overlapping Sleeve (permits small gap for cocking movement), and Removable Sleeve For Flanged Joint."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 7.6 Internal sleeve arrangements.",
+      "bbox_norm": [
+        0.495,
+        0.045,
+        0.965,
+        0.575
+      ]
+    }
+  ]
+}

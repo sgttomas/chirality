@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 244,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 10-11 Considerations for Tower Elevation and Support",
+      "bbox_norm": [0.07, 0.32, 0.50, 0.59]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 10-13 Operator Access",
+      "bbox_norm": [0.50, 0.32, 0.93, 0.59]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 10-12 Net Positive Suction Head",
+      "bbox_norm": [0.07, 0.60, 0.50, 0.88]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 10-14 Maintenance Access",
+      "bbox_norm": [0.50, 0.60, 0.93, 0.88]
+    }
+  ],
+  "issues": []
+}

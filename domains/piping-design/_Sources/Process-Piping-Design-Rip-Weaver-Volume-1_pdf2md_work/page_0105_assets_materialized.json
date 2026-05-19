@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0105.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0105_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2265
+      ],
+      "caption": "Figure 6-2. Orthographic pipe spool. Courtesy of Texas Pipe Bending Co., Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_fig01_orthographic-pipe-spool.png",
+      "png_sha256": "34ef8626d315b6f68aaee19bf2df7e2f1937cbe888020a98063cce5633b33ef4",
+      "slug": "orthographic-pipe-spool",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.59,
+        0.97,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        1882,
+        2477,
+        2962
+      ],
+      "caption": "Material List",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl01_material-list.png",
+      "png_sha256": "06998661a4bbd7ac659e2d820ea184be3ffb78df35cbd271a7031335b6ec9bc8",
+      "slug": "material-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl01_material-list.json",
+      "table_data_json_sha256": "c2d6a0a3d71d3b8654d66267f45f2ced2930b3459671703fb13201e416d62f46",
+      "table_data_sha256": "c2d6a0a3d71d3b8654d66267f45f2ced2930b3459671703fb13201e416d62f46",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl01_material-list.xlsx",
+      "xlsx_sha256": "402bd9dac0a30f7571eeb1cc12a55cc8f957325184d33185d26aff59e4b18deb"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.78,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        2544,
+        2477,
+        3380
+      ],
+      "caption": "Pipe cut list (lengths and end preparations)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl02_pipe-cut-list.png",
+      "png_sha256": "eb4e74b0ba7d72250fb34f3adbbb30cdced691685e04bad1e1372c30656e436a",
+      "slug": "pipe-cut-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl02_pipe-cut-list.json",
+      "table_data_json_sha256": "826bf040cbebf546435d29366f84ba1ca42d1d5a12b84c239994a7126a16bc4b",
+      "table_data_sha256": "826bf040cbebf546435d29366f84ba1ca42d1d5a12b84c239994a7126a16bc4b",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0105_tbl02_pipe-cut-list.xlsx",
+      "xlsx_sha256": "d1893cf7a10edcdebc56a4674226f5b3c04ddad649f00d3685c336818e95a350"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 105,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0105.png",
+  "page_image_sha256": "dfbd642ccd23930e031785a1a089fc985dd8ca20e01352134b674cffbf20f2da",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0105_assets.json"
+}

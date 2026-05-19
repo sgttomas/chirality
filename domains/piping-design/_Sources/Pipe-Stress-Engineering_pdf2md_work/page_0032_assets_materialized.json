@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0032.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0032_fig01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.72,
+        0.32
+      ],
+      "bbox_px": [
+        74,
+        0,
+        1911,
+        1298
+      ],
+      "caption": "FIG. 1.4 EFFECT OF NOTCHES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0032_fig01_effect-of-notches.png",
+      "png_sha256": "07f9a6917e5340c112d346f14561f752095a9b432fe130cf6c28cc9609888905",
+      "slug": "effect-of-notches",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0032.png",
+  "page_image_sha256": "3e03537b16f8360ce698a0c3192b298b752d1cdef07bac5e78436ac3c5947ab1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0032_assets.json"
+}

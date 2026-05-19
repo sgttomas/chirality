@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0267.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0267_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.95,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        828,
+        2569,
+        3248
+      ],
+      "caption": "Exhibit 10-54 \u2014 Pump Suction Arrangement (Plan View and isometric showing pipe rack with pumps, supports, tower, and platform above)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0267_fig01_exhibit-10-54-pump-suction-arrangement-p.png",
+      "png_sha256": "e2386e7e9eab266d01293490a32da9ab1e449cc6e20b6650addf498b0a4e2f9a",
+      "slug": "exhibit-10-54-pump-suction-arrangement-p",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 267,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0267.png",
+  "page_image_sha256": "9ec751511c19d81d0069bbf8f34286f9e5faa4d8a5dc60ecffec0a758a459404",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0267_assets.json"
+}

@@ -1,0 +1,63 @@
+370 Chapter 11
+
+PEOPLE fa’
+
+LEE |
+
+a PL ELE
+
+CELE LLL m
+
+REET EL LE EE LEE EE EE 0
+
+MOLL EL AL EEE EL ELLE EL.
+
+aE EE AE LP EEE EEE EE EEL
+
+(a) Small Temperature (b) Large Temperature  (c) Large Temperature
+Difference Difference Difference with
+Reflector
+FIG. 11.11
+
+SMALL INSERTS TO HOT PROCESS LINE
+
+of the main pipe if the branch flow rate is high. To reduce this possibility, the nozzle can be extended
+to the center of the main pipe with the nozzle end cambered. The cambered nozzle end reflects the
+
+flow toward and along the centerline of the main pipe, as shown in Fig. 11.11(c).
+
+11.5 SOCKET-WELDED CONNECTIONS
+
+Smaller piping, 2 in. or smaller, are generally connected with socket-welded joints. This simplifies
+the alignment and expedites the construction. For thinner pipes, the automatic alignment of the socket
+also helps to maintain a certain level of joint quality. However, socket welds also create frequent fail-
+ures. A single failure of the small socket weld can sometimes require the shutdown of certain systems
+or even an entire plant. This is especially so in a nuclear plant where even a slight compromise of
+safety is not tolerated.
+
+The failures of socket welds can be divided into two categories: those caused by a very low cycle of
+operation and those caused by high cycle fatigue. The low cycle failures, due to fatigue or otherwise,
+were well known as soon as the socket weld was introduced, but the high cycle fatigue failures drew
+attention only rather recently. High cycle fatigues are caused by vibration, very often amplified from
+the minute vibration of the main pipe to which the small socket welded branch is connected. The small
+branch very often has heavy appendages attached. The heavy appendages, such as values, produce
+
+high vibration bending on the joint due to large inertia resistance.
+Originally, most of the low cycle failures were attributed to the bottoming out of the socket as shown
+
+in Fig. 11.12(b). It was believed, and is still believed, that the failure is due to shrinkage of the weld
+and the joining components during the welding process. With bottomed-out construction, the join-
+ing parts do not have the freedom to move around during welding. A slight mismatch of temperature
+on the joining parts is enough to plant the seed for failure. However, tests [13, 14] have shown that,
+although it may cause micro-cracks at the root of the fillet welds in worst-case situations, the welding
+on bottomed-out sockets does not create serious problems. Nevertheless, the gap at the socket does
+alleviate crack problems during operation. This is reason enough for the code to set the gap require-
+ment on socket welds as shown in Fig. 11.12(a).
+
+In addition to the concern of welding, the bottomed-out socket also has a thermal stress problem
+due to potential jack up actions, which can be much more serious than the welding problem in some
+cases. Typically, socket welded small piping is used in secondary functions, such as for blow-offs and
+drains. These functions are intermittent with sudden discharge when called for. This sudden flow pro-
+
+ui
+

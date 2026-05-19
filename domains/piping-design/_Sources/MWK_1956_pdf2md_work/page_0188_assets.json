@@ -1,0 +1,188 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 188,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.35 Shape Coefficients for Uniform Loading: Formulas for 90° and 180° Circular Members. For z-Wind Acting on Members in the x-Plane or x-Wind Acting on Members in the y-Plane",
+      "slug": "table-5-35-shape-coefficients-uniform-loading-circular-members",
+      "bbox_norm": [0.05, 0.09, 0.97, 0.99],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Shape", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "w_a", "is_header": true },
+              { "value": "w_ab", "is_header": true },
+              { "value": "w_aa", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 0°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.39270kQR³", "type": "text" },
+              { "value": "+0.16667kQR⁴", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 90°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.17810kQR³", "type": "text" },
+              { "value": "-0.16667kQR⁴", "type": "text" },
+              { "value": "-0.04793kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 90°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.17810kQR³", "type": "text" },
+              { "value": "+0.16667kQR⁴", "type": "text" },
+              { "value": "-0.04793kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 180°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.39270kQR³", "type": "text" },
+              { "value": "-0.16667kQR⁴", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 180°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.39270kQR³", "type": "text" },
+              { "value": "+0.16667kQR⁴", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 270°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.17810kQR³", "type": "text" },
+              { "value": "-0.16667kQR⁴", "type": "text" },
+              { "value": "-0.04793kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 270°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.17810kQR³", "type": "text" },
+              { "value": "+0.16667kQR⁴", "type": "text" },
+              { "value": "-0.04793kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 0°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.39270kQR³", "type": "text" },
+              { "value": "-0.16667kQR⁴", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 0°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.42920kQR³", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" },
+              { "value": "+0.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 180°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-0.42920kQR³", "type": "text" },
+              { "value": "-0.33333kQR⁴", "type": "text" },
+              { "value": "+0.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 180°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.42920kQR³", "type": "text" },
+              { "value": "+0.33333kQR⁴", "type": "text" },
+              { "value": "+0.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 0°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+0.42920kQR³", "type": "text" },
+              { "value": "-0.33333kQR⁴", "type": "text" },
+              { "value": "+0.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 90°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+2.35619kQR³", "type": "text" },
+              { "value": "+1.33333kQR⁴", "type": "text" },
+              { "value": "+1.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 270°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-2.35619kQR³", "type": "text" },
+              { "value": "-1.33333kQR⁴", "type": "text" },
+              { "value": "+1.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 270°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "-2.35619kQR³", "type": "text" },
+              { "value": "+1.33333kQR⁴", "type": "text" },
+              { "value": "+1.57080kQR⁴", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α = 90°", "type": "text" },
+              { "value": "(shape)", "type": "text" },
+              { "value": "+2.35619kQR³", "type": "text" },
+              { "value": "-1.33333kQR⁴", "type": "text" },
+              { "value": "+1.57080kQR⁴", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table has 5 columns: alpha angle label, a small inline pipe-bend shape diagram (recorded as '(shape)' placeholder — visual drawings not transcribable to text), and three formula columns w_a, w_ab, w_aa. The shape diagrams are embedded pictograms within the table cells and are not separable figures."
+    }
+  ],
+  "issues": [
+    {
+      "kind": "info",
+      "asset_ordinal": 1,
+      "message": "Column 2 ('Shape') contains small schematic pipe-bend pictograms that cannot be transcribed to text. These are recorded as '(shape)' string placeholders in table_data. The visual shapes will be visible in the cropped table image artifact."
+    }
+  ]
+}

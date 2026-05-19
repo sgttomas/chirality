@@ -1,0 +1,151 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 178,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 6.1 SUGGESTED PIPE SUPPORT SPACING FOR POWER PIPING [2]",
+      "slug": "suggested-pipe-support-spacing-power-piping",
+      "bbox_norm": [0.05, 0.52, 0.95, 0.98],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Nominal pipe sizes", "col_span": 2, "row_span": 2, "is_header": true },
+              { "value": "Suggested maximum span, La", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Liquid service", "col_span": 2, "is_header": true },
+              { "value": "Gas service", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "in.", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "ft", "is_header": true },
+              { "value": "m", "is_header": true },
+              { "value": "ft", "is_header": true },
+              { "value": "m", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number", "unit": "in." },
+              { "value": 25, "type": "number", "unit": "mm" },
+              { "value": 7, "type": "number", "unit": "ft" },
+              { "value": 2.1, "type": "number", "unit": "m" },
+              { "value": 9, "type": "number", "unit": "ft" },
+              { "value": 2.7, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number", "unit": "in." },
+              { "value": 50, "type": "number", "unit": "mm" },
+              { "value": 10, "type": "number", "unit": "ft" },
+              { "value": 3.0, "type": "number", "unit": "m" },
+              { "value": 13, "type": "number", "unit": "ft" },
+              { "value": 4.0, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number", "unit": "in." },
+              { "value": 80, "type": "number", "unit": "mm" },
+              { "value": 12, "type": "number", "unit": "ft" },
+              { "value": 3.7, "type": "number", "unit": "m" },
+              { "value": 15, "type": "number", "unit": "ft" },
+              { "value": 4.6, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number", "unit": "in." },
+              { "value": 100, "type": "number", "unit": "mm" },
+              { "value": 14, "type": "number", "unit": "ft" },
+              { "value": 4.3, "type": "number", "unit": "m" },
+              { "value": 17, "type": "number", "unit": "ft" },
+              { "value": 5.2, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number", "unit": "in." },
+              { "value": 150, "type": "number", "unit": "mm" },
+              { "value": 17, "type": "number", "unit": "ft" },
+              { "value": 5.2, "type": "number", "unit": "m" },
+              { "value": 21, "type": "number", "unit": "ft" },
+              { "value": 6.4, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number", "unit": "in." },
+              { "value": 200, "type": "number", "unit": "mm" },
+              { "value": 19, "type": "number", "unit": "ft" },
+              { "value": 5.8, "type": "number", "unit": "m" },
+              { "value": 24, "type": "number", "unit": "ft" },
+              { "value": 7.3, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number", "unit": "in." },
+              { "value": 300, "type": "number", "unit": "mm" },
+              { "value": 23, "type": "number", "unit": "ft" },
+              { "value": 7.0, "type": "number", "unit": "m" },
+              { "value": 30, "type": "number", "unit": "ft" },
+              { "value": 9.1, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number", "unit": "in." },
+              { "value": 400, "type": "number", "unit": "mm" },
+              { "value": 27, "type": "number", "unit": "ft" },
+              { "value": 8.2, "type": "number", "unit": "m" },
+              { "value": 35, "type": "number", "unit": "ft" },
+              { "value": 10.7, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number", "unit": "in." },
+              { "value": 500, "type": "number", "unit": "mm" },
+              { "value": 30, "type": "number", "unit": "ft" },
+              { "value": 9.1, "type": "number", "unit": "m" },
+              { "value": 39, "type": "number", "unit": "ft" },
+              { "value": 11.9, "type": "number", "unit": "m" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24, "type": "number", "unit": "in." },
+              { "value": 600, "type": "number", "unit": "mm" },
+              { "value": 32, "type": "number", "unit": "ft" },
+              { "value": 9.8, "type": "number", "unit": "m" },
+              { "value": 42, "type": "number", "unit": "ft" },
+              { "value": 12.8, "type": "number", "unit": "m" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-row merged header: row 1 spans all 6 columns (pipe sizes col_span=2 row_span=2, max span col_span=4); row 2 splits into Liquid service and Gas service (each col_span=2); row 3 gives unit sub-headers (in., mm, ft, m, ft, m). 10 data rows for nominal pipe sizes 1 through 24 in. No footnotes."
+    }
+  ],
+  "issues": []
+}

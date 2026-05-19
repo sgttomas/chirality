@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 158,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 5-1. L-shaped configuration.",
+      "slug": "l-shaped-configuration",
+      "bbox_norm": [0.48, 0.28, 0.97, 0.55],
+      "confidence": "high",
+      "notes": "Diagram of L-shaped pipe configuration showing L and h legs with anchor point label. Caption visible directly below diagram."
+    }
+  ],
+  "issues": []
+}

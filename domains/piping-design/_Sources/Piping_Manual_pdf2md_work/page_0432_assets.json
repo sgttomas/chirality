@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 432,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p432_fig01",
+      "bbox_norm": [0.10, 0.13, 0.92, 0.40],
+      "caption": "EXHIBIT 16-20 Piperack Loop Sizing"
+    }
+  ],
+  "issues": []
+}

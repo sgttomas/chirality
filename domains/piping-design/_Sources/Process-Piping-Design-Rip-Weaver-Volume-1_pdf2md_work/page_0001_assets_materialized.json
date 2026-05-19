@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0001.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0001_img01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3525
+      ],
+      "caption": "Book cover \u2014 Process Piping Design Volume 1 by Rip Weaver, featuring a piping layout drawing with vessels and valves on a grid background",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/Process-Piping-Design-Rip-Weaver-Volume-1_p0001_img01_cover-process-piping-design-vol1.png",
+      "png_sha256": "64e3bac5d03c79309be9b19910a46d49ceaecba83208e226c15f223f80ff59a4",
+      "slug": "cover-process-piping-design-vol1",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 1,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0001.png",
+  "page_image_sha256": "250ad308a9c76309c7de1d84080a6ccad5f03630aee2c7092a18fd0eac6a845e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0001_assets.json"
+}

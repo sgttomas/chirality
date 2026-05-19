@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0379_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.43
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2523,
+        1698
+      ],
+      "caption": "FIG. 11.2 THERMAL STRESS FACTOR, C= Si/(E\u03b1(T1 - T2)) AND LINEAR CORRECTION FACTOR, K[1]",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0379_tbl01_thermal-stress-factor-c-k-fig-11-2.png",
+      "png_sha256": "d23dea178b4458c77dfeff5aa60619c46db3326b2c8a53d081c54988a25f4009",
+      "slug": "thermal-stress-factor-c-k-fig-11-2",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0379_tbl01_thermal-stress-factor-c-k-fig-11-2.json",
+      "table_data_json_sha256": "d4763cd76fd7ed742519f6ab75d52a01d461955df29aae2ce0c7114978309f7b",
+      "table_data_sha256": "d4763cd76fd7ed742519f6ab75d52a01d461955df29aae2ce0c7114978309f7b",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0379_tbl01_thermal-stress-factor-c-k-fig-11-2.xlsx",
+      "xlsx_sha256": "882191f2ca623943382f919a67a111d74b815a42d49e479e358457a23f1d98fa"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 379,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379.png",
+  "page_image_sha256": "e6bdc913358888d01b5d1bac670c2cd9fe056ea7534905aa8bb6210fc099c354",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0379_assets.json"
+}

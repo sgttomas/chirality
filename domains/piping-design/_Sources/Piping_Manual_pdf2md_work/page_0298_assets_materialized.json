@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0298.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0298_fig01",
+      "bbox_norm": [
+        0.08,
+        0.06,
+        0.95,
+        0.51
+      ],
+      "bbox_px": [
+        77,
+        33,
+        2569,
+        1856
+      ],
+      "caption": "EXHIBIT 11-26 Equipment Support Column Location",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0298_fig01_exhibit-11-26-equipment-support-column-l.png",
+      "png_sha256": "eddd57105d3ecac4ec339ca960ed2e09933f3bccbe9d896929dd92095a5414d6",
+      "slug": "exhibit-11-26-equipment-support-column-l",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0298_fig02",
+      "bbox_norm": [
+        0.08,
+        0.51,
+        0.95,
+        0.89
+      ],
+      "bbox_px": [
+        77,
+        1524,
+        2569,
+        3115
+      ],
+      "caption": "EXHIBIT 11-27 Fireproofing Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0298_fig02_exhibit-11-27-fireproofing-requirements.png",
+      "png_sha256": "f0781aa88104bb49ba7a3e089520d87ef849cf8d3ab8ac0df3eb72e284678111",
+      "slug": "exhibit-11-27-fireproofing-requirements",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 298,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0298.png",
+  "page_image_sha256": "39f944c59ae7a67488e29f1e8d9db9c86702361f9e3b849d9e532de14f762bd3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0298_assets.json"
+}

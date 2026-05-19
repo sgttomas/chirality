@@ -1,0 +1,84 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 230,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 7.1 EFFECTS OF FLEXIBLE CONNECTIONS (SEE FIGURE 7.1 FOR ARTICULATION SCHEMES)",
+      "slug": "effects-of-flexible-connections",
+      "bbox_norm": [0.06, 0.04, 0.94, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Articulation Schemes", "row_span": 2, "is_header": true },
+              { "value": "Anchor Force, Same at A/B", "col_span": 2, "is_header": true },
+              { "value": "Anchor A Moment, lb-ft", "row_span": 2, "is_header": true },
+              { "value": "Anchor B Moment, lb-ft", "row_span": 2, "is_header": true },
+              { "value": "Stress at Bend, psi", "row_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horz.-Force, lbs", "is_header": true },
+              { "value": "Vert.-Force, lbs", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "None", "type": "text" },
+              { "value": 1135, "type": "number", "unit": "lbs" },
+              { "value": 1135, "type": "number", "unit": "lbs" },
+              { "value": 13381, "type": "number", "unit": "lb-ft" },
+              { "value": 13381, "type": "number", "unit": "lb-ft" },
+              { "value": 14300, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "(a)", "type": "text" },
+              { "value": 1010, "type": "number", "unit": "lbs" },
+              { "value": 455, "type": "number", "unit": "lbs" },
+              { "value": 1413, "type": "number", "unit": "lb-ft" },
+              { "value": 12523, "type": "number", "unit": "lb-ft" },
+              { "value": 12600, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "(b)", "type": "text" },
+              { "value": 373, "type": "number", "unit": "lbs" },
+              { "value": 373, "type": "number", "unit": "lbs" },
+              { "value": 1250, "type": "number", "unit": "lb-ft" },
+              { "value": 1250, "type": "number", "unit": "lb-ft" },
+              { "value": 10200, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "(c)", "type": "text" },
+              { "value": 62, "type": "number", "unit": "lbs" },
+              { "value": 62, "type": "number", "unit": "lbs" },
+              { "value": 624, "type": "number", "unit": "lb-ft" },
+              { "value": 624, "type": "number", "unit": "lb-ft" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row header: first row groups anchor force columns under 'Anchor Force, Same at A/B' with col_span 2; remaining header columns span both rows via row_span 2. Four data rows for None, (a), (b), (c) articulation schemes. All values fully legible."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,91 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0279.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0279_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1509
+      ],
+      "caption": "FIG. 8.10 Effect of vessel flexibility on piping forces and moments [17]",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0279_fig01_fig-8-10-vessel-flexibility-piping-force.png",
+      "png_sha256": "9808c361c977c60d8b1fb52c26e0e5bbcaa601ebbde8f4b2677a6cef5f07f6ae",
+      "slug": "fig-8-10-vessel-flexibility-piping-force",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0279_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.75,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        1158,
+        1986,
+        2105
+      ],
+      "caption": "Analysis results comparing At Compressor vs At Cyl. Shell for Rigid Shell and Flexible Shell conditions (part of Fig. 8.10)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0279_tbl01_tbl-8-10-rigid-flexible-shell-forces-mom.png",
+      "png_sha256": "1cc2b85675908ac63f4cb218a8446d78490c8df252b970ff3adecf23d5331f9e",
+      "slug": "tbl-8-10-rigid-flexible-shell-forces-mom",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0279_tbl01_tbl-8-10-rigid-flexible-shell-forces-mom.json",
+      "table_data_json_sha256": "58e03f2a0456920f3d30f030ca40eac20edbecd5b08b70d6513babec4c210eba",
+      "table_data_sha256": "58e03f2a0456920f3d30f030ca40eac20edbecd5b08b70d6513babec4c210eba",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0279_tbl01_tbl-8-10-rigid-flexible-shell-forces-mom.xlsx",
+      "xlsx_sha256": "30465c657e66cb0987e3411c9a324ad2143bbc9b666dfd3489625ab7b92dc50b"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0279_fig02",
+      "bbox_norm": [
+        0.04,
+        0.7,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2281,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 8.11 Directions with significant flexibility",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0279_fig02_fig-8-11-directions-significant-flexibil.png",
+      "png_sha256": "a3def18f9169fcfcaadaf41d014a77cfc6cba3f76eb0907c48e57ec03d3ba588",
+      "slug": "fig-8-11-directions-significant-flexibil",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 279,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0279.png",
+  "page_image_sha256": "db9105d6b9f4afc7b16733f31bf64a9a40eeba12dc12c00d375fc796e96ed11a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0279_assets.json"
+}

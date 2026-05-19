@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0210.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0210_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.75,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2029,
+        1313
+      ],
+      "caption": "FIG. 6.22 STIFFENING RINGS ADJACENT TO SADDLE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0210_fig01_stiffening-rings-adjacent-to-saddle.png",
+      "png_sha256": "16eb411abfd35ef06e56f53e130f7526555f3504cc04bbd9825ba3a7524d27bf",
+      "slug": "stiffening-rings-adjacent-to-saddle",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 210,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0210.png",
+  "page_image_sha256": "98fb667a2363820a29d9650b6a9f88c5f6f4c39e68e05dc51d93226b1fd60bdf",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0210_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 29,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-14. Cast steel globe and angle valves. Reprinted courtesy of Crane Co.",
+      "slug": "cast-steel-globe-angle-valves-crane",
+      "bbox_norm": [0.03, 0.04, 0.55, 0.42],
+      "confidence": "high",
+      "notes": "Two cross-section illustrations side by side: Plug Type Disc on left and Ball Type Disc on right. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

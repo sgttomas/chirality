@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0127.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0127_fig01",
+      "bbox_norm": [
+        0.5,
+        0.05,
+        1.0,
+        0.49
+      ],
+      "bbox_px": [
+        999,
+        0,
+        2220,
+        1545
+      ],
+      "caption": "Fig. 5.4 Effect of the secondary term on a symmetrical 90\u00b0 bend with various lengths of tangents.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0127_fig01_fig-5-4-effect-of-the-secondary-term-on.png",
+      "png_sha256": "5e436ca7c24a669fc45a3b6c75d75eeaa9fa8e24d446913cfc250ecfd35dda10",
+      "slug": "fig-5-4-effect-of-the-secondary-term-on",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0127_fig02",
+      "bbox_norm": [
+        0.66,
+        0.5,
+        0.92,
+        0.66
+      ],
+      "bbox_px": [
+        1354,
+        1288,
+        2153,
+        2032
+      ],
+      "caption": "Triangle diagram showing cyclic permutation of axes x, y, z.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0127_fig02_triangle-diagram-showing-cyclic-permutat.png",
+      "png_sha256": "5353c5bf917d1aaf4e4d3acd6e52fa31c661e03f6dd31b8f49dbe1cfb58cdad1",
+      "slug": "triangle-diagram-showing-cyclic-permutat",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0127_fig03",
+      "bbox_norm": [
+        0.42,
+        0.66,
+        1.0,
+        0.99
+      ],
+      "bbox_px": [
+        821,
+        1746,
+        2220,
+        2862
+      ],
+      "caption": "Fig. 5.5 Projections of the working planes.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/MWK_1956_p0127_fig03_fig-5-5-projections-of-the-working-plane.png",
+      "png_sha256": "e46446b6d903390417eb76b529f75ee8bc18bad44331e6e08c8fa00bb8b8dcaf",
+      "slug": "fig-5-5-projections-of-the-working-plane",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 127,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0127.png",
+  "page_image_sha256": "7a5b0ad861ae929b5efc89eb35a7019480a89033c999c70f8902dd6108e38da0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0127_assets.json"
+}

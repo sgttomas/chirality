@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0170.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0170_fig01",
+      "bbox_norm": [
+        0.05,
+        0.17,
+        0.95,
+        0.71
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2556,
+        2511
+      ],
+      "caption": "EXHIBIT 7-16 Typical Arrangement of a Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0170_fig01_exhibit-7-16-typical-arrangement-of-a-ci.png",
+      "png_sha256": "ea548c12cd36715f353c5deba75fcca87cc091f452d0c5809d79096fe722391d",
+      "slug": "exhibit-7-16-typical-arrangement-of-a-ci",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 170,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0170.png",
+  "page_image_sha256": "932e724b51ec213c1190bea2c402171d08e75a3aebe9468dddf1bb21f9807f20",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0170_assets.json"
+}

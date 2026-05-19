@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0208.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0208_fig01",
+      "bbox_norm": [
+        0.06,
+        0.21,
+        0.5,
+        0.49
+      ],
+      "bbox_px": [
+        26,
+        531,
+        1416,
+        1792
+      ],
+      "caption": "EXHIBIT 8-16 Eccentric Reducers",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0208_fig01_exhibit-8-16-eccentric-reducers.png",
+      "png_sha256": "7c3172e70451ddd71d379d021f0d2facf7b584767fef78b3d5e3440da0401455",
+      "slug": "exhibit-8-16-eccentric-reducers",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0208_fig02",
+      "bbox_norm": [
+        0.06,
+        0.5,
+        0.5,
+        0.85
+      ],
+      "bbox_px": [
+        26,
+        1494,
+        1416,
+        2987
+      ],
+      "caption": "EXHIBIT 8-17 A-Frame for Pump Maintenance",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0208_fig02_exhibit-8-17-a-frame-for-pump-maintenanc.png",
+      "png_sha256": "0e5a534b3feeb96632166a3404e53a2ffbd8c9c8d16a905e7075b535798371ed",
+      "slug": "exhibit-8-17-a-frame-for-pump-maintenanc",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 208,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0208.png",
+  "page_image_sha256": "46795a03fa6b8799f9c19c7186d10352c6dff05c9cf8f60005ca89bb60aa0b77",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0208_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0349.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0349_fig01",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1935,
+        2495,
+        3518
+      ],
+      "caption": "Fig. 10.1 Transporting Crude Oil and Refined Products",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0349_fig01_transporting-crude-oil-refined-products.png",
+      "png_sha256": "16da939ab735d4cb16ec691dc012ccf192c0c90edceead9f81ce0751d583aed6",
+      "slug": "transporting-crude-oil-refined-products",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 349,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0349.png",
+  "page_image_sha256": "5306817a0801c048fe70b73f35b86603ebe65691b7aced9ca661b1daf6938874",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0349_assets.json"
+}

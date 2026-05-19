@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0169.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0169_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1651
+      ],
+      "caption": "FIG. 5.11 TANK DEFLECTION AND STRESS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0169_fig01_tank-deflection-and-stress.png",
+      "png_sha256": "e4f7b4e1e9975876c0e3eae149de01c6e34e110576ece584ab9ee2b8adf23ce5",
+      "slug": "tank-deflection-and-stress",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 169,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0169.png",
+  "page_image_sha256": "034a0077c217ab3aff9256c0042e54a5216cb70178a2d9d7491d53dd6032337b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0169_assets.json"
+}

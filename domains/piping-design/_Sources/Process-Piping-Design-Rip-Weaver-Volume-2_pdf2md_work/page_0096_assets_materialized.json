@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0096.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0096_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.72,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1971,
+        1749
+      ],
+      "caption": "Figure 3-5. Vertical Heater Details.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0096_fig01_vertical-heater-details.png",
+      "png_sha256": "31864f237a5645aa8ff50fb5530ce897fb02ecbff80d54358375d7b3ca23396d",
+      "slug": "vertical-heater-details",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 96,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0096.png",
+  "page_image_sha256": "e57936eaae6be7130e31dbee6826982c14cf868599349d2d8d589a482c2b8fb4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0096_assets.json"
+}

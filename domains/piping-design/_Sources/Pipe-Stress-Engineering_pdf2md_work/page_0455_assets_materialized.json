@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0455.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0455_fig01",
+      "bbox_norm": [
+        0.03,
+        0.62,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2002,
+        2488,
+        3513
+      ],
+      "caption": "FIG. 13.12 CORRECTION FACTOR FOR U-BEND AND Z-BEND",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0455_fig01_correction-factor-u-bend-z-bend.png",
+      "png_sha256": "06abbf5e04a98fe182cf7533f9be7891ac3a5b2ff472193d91c86c90b76cfb04",
+      "slug": "correction-factor-u-bend-z-bend",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 455,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0455.png",
+  "page_image_sha256": "9f63bdce2d7b55522ae1ea4b7db0df7c6dbf8c8de1818f850c43575aecebb1db",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0455_assets.json"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 186,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.32 Shape Coefficients for Uniform Loading: General Formulas for Circular Members — For x-Wind Acting on Members in the y-Plane or z-Wind Acting on Members in the z-Plane",
+      "slug": "table-5-32-shape-coefficients-circular-members-x-wind-y-plane",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.50],
+      "needs_extraction": true,
+      "confidence": "high",
+      "notes": "Table 5.32 consists entirely of mathematical formula equations (w_a, w'_aa, w'_ax for Counterclockwise and Clockwise directions) with a sign-selection note and an embedded quadrant diagram. No row/cell grid structure exists; formulas cannot be safely represented as structured table_data cells."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Quadrant diagram for Table 5.32 showing four quadrants (I–IV) — reference for arc Φ sign conventions used in x-Wind / y-Plane formulas",
+      "slug": "table-5-32-quadrant-diagram",
+      "bbox_norm": [0.72, 0.07, 0.97, 0.27],
+      "confidence": "high",
+      "notes": "Small embedded quadrant reference diagram at upper-right of Table 5.32 block; quadrants labeled III (top-left), II (top-right), IV (bottom-left), I (bottom-right)"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 5.33 Shape Coefficients for Uniform Loading: General Formulas for Circular Members — For z-Wind Acting on Members in the x-Plane or x-Wind Acting on Members in the y-Plane",
+      "slug": "table-5-33-shape-coefficients-circular-members-z-wind-x-plane",
+      "bbox_norm": [0.04, 0.50, 0.97, 0.98],
+      "needs_extraction": true,
+      "confidence": "high",
+      "notes": "Table 5.33 consists entirely of mathematical formula equations (w_a, w'_aa, w'_ax for Counterclockwise and Clockwise directions) with a sign-selection note and an embedded quadrant diagram. No row/cell grid structure exists; formulas cannot be safely represented as structured table_data cells."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Quadrant diagram for Table 5.33 showing four quadrants (I–IV) — reference for arc Φ sign conventions used in z-Wind / x-Plane formulas",
+      "slug": "table-5-33-quadrant-diagram",
+      "bbox_norm": [0.72, 0.54, 0.97, 0.73],
+      "confidence": "high",
+      "notes": "Small embedded quadrant reference diagram at upper-right of Table 5.33 block; quadrants labeled III (top-left), II (top-right), IV (bottom-left), I (bottom-right)"
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_unreadable",
+      "asset_kind": "tbl",
+      "asset_ordinal": 1,
+      "message": "Table 5.32 contains only mathematical formula equations (w_a, w'_aa, w'_ax) — no row/cell grid structure. Safe structured table_data transcription is not possible; needs manual extraction or a formula-aware tool."
+    },
+    {
+      "code": "table_unreadable",
+      "asset_kind": "tbl",
+      "asset_ordinal": 2,
+      "message": "Table 5.33 contains only mathematical formula equations (w_a, w'_aa, w'_ax) — no row/cell grid structure. Safe structured table_data transcription is not possible; needs manual extraction or a formula-aware tool."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0061.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0061_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2509,
+        1305
+      ],
+      "caption": "FIG. 2.6 BENDING STRESS DISTRIBUTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0061_fig01_bending-stress-distribution.png",
+      "png_sha256": "49f59780d1d64a318c3afaf01f47964002cc1d0b91f4bee041928799d0fd8adb",
+      "slug": "bending-stress-distribution",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 61,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0061.png",
+  "page_image_sha256": "59f4f8da3a6f7c25d9e9ccf8d27056b719ec020abd7a5f6296c9917e3ec738bd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0061_assets.json"
+}

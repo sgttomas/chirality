@@ -1,0 +1,186 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 184,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 6.2 VARIABLE SPRING HANGER SELECTION CHART IN (LB), (N) UNITS - SCHEMATIC",
+      "slug": "variable-spring-hanger-selection-chart",
+      "bbox_norm": [0.04, 0.50, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [7],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "1", "text": "1 lb = 4.4482 N; 1 in = 25.4 mm; 1 lb/in = 0.175 N/mm" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Range", "col_span": 5, "is_header": true },
+              { "value": "Hanger Size", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "XXL", "is_header": true },
+              { "value": "XL", "is_header": true },
+              { "value": "L", "is_header": true },
+              { "value": "N", "is_header": true },
+              { "value": "S", "is_header": true },
+              { "value": "0", "is_header": true },
+              { "value": "...", "is_header": true },
+              { "value": "21", "is_header": true },
+              { "value": "22", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Spring Displacement (in.)", "row_span": 5, "type": "text" },
+              { "value": "0.64\n0.32", "type": "text", "raw": "0.64 0.32" },
+              { "value": "0.64\n0.32", "type": "text", "raw": "0.64 0.32" },
+              { "value": "0.64\n0.32", "type": "text", "raw": "0.64 0.32" },
+              { "value": "0.64\n0.32", "type": "text", "raw": "0.64 0.32" },
+              { "value": "0.64\n0.32", "type": "text", "raw": "0.64 0.32" },
+              { "value": 41, "type": "number" },
+              { "value": 53, "type": "number" },
+              { "value": 18750, "type": "number" },
+              { "value": 32005, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 50, "type": "number" },
+              { "value": 74, "type": "number" },
+              { "value": 21875, "type": "number" },
+              { "value": 29175, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Support Loads, lbs", "col_span": 9, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "7.5", "type": "number" },
+              { "value": "7.5", "type": "number" },
+              { "value": "13", "type": "number" },
+              { "value": "13.9", "type": "number" },
+              { "value": 88, "type": "number" },
+              { "value": 126, "type": "number" },
+              { "value": 162, "type": "number" },
+              { "value": 37500, "type": "number" },
+              { "value": 50010, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "11.3\n13.9", "type": "text", "raw": "11.3 13.9" },
+              { "value": "8.8\n10.1", "type": "text", "raw": "8.8 10.1" },
+              { "value": "13\n17.5", "type": "text", "raw": "13 17.5" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 93, "type": "number" },
+              { "value": 137, "type": "number" },
+              { "value": 178, "type": "number" },
+              { "value": 40625, "type": "number" },
+              { "value": 54178, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Spring Rate - (lb/in)", "col_span": 5, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Spring Rate - (lb/in)", "row_span": 5, "type": "text" },
+              { "value": "N", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 30, "type": "number" },
+              { "value": 42, "type": "number" },
+              { "value": 12500, "type": "number" },
+              { "value": 16670, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 5, "type": "number" },
+              { "value": 7, "type": "number" },
+              { "value": 2083, "type": "number" },
+              { "value": 3335, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "L", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 7.5, "type": "number" },
+              { "value": 10.6, "type": "number" },
+              { "value": 3125, "type": "number" },
+              { "value": 4167, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XL", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 5, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 2083, "type": "number" },
+              { "value": 2778, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XXL", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": 375, "type": "number" },
+              { "value": 525, "type": "number" },
+              { "value": 1563, "type": "number" },
+              { "value": 2084, "type": "number", "footnote_markers": ["1"] }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Complex multi-row/multi-column variable spring hanger selection chart. 10 columns: 1 row label + 5 range cols (XXL, XL, L, N, S) + 4 hanger size cols (0, ..., 21, 22). Row labels 'Spring Displacement (in.)' and 'Spring Rate - (lb/in)' each span 5 data rows. The '...' column represents omitted intermediate hanger sizes (1-20). Section divider at row index 7 separates load data from spring rate rows. Intermediate load values shown with bullet separators in source; elided in this schematic representation."
+    }
+  ],
+  "issues": []
+}

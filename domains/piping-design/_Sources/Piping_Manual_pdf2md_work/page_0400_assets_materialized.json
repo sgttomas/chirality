@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0400.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0400_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1553
+      ],
+      "caption": "EXHIBIT 15-38 Flexible Dike Seal",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0400_fig01_exhibit-15-38-flexible-dike-seal.png",
+      "png_sha256": "fbdfbcfed36e5486c8ebd5ca0eeb7fd2edf3b4182d3d68a928f5b47ff9d3d542",
+      "slug": "exhibit-15-38-flexible-dike-seal",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0400_fig02",
+      "bbox_norm": [
+        0.04,
+        0.43,
+        0.96,
+        0.73
+      ],
+      "bbox_px": [
+        0,
+        1256,
+        2556,
+        2577
+      ],
+      "caption": "EXHIBIT 15-39 Differential Settlement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0400_fig02_exhibit-15-39-differential-settlement.png",
+      "png_sha256": "e625b6edcea94896e40153eedb921d2dbbf0173a52b939ace6f81dc562801b69",
+      "slug": "exhibit-15-39-differential-settlement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 400,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0400.png",
+  "page_image_sha256": "b3056f4f45a5de69a92a65ecde637a6f5abae0d1a8a58147446732718523dd8f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0400_assets.json"
+}

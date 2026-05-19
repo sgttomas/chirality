@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0385.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0385_fig01",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.95,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2550,
+        2078
+      ],
+      "caption": "EXHIBIT 15-10 Natural Terrain Diking",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0385_fig01_exhibit-15-10-natural-terrain-diking.png",
+      "png_sha256": "94469d72d39aed33ea35e2a3abe9b12adf536a4e1aaa3afa8e4694a437e7145f",
+      "slug": "exhibit-15-10-natural-terrain-diking",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0385_fig02",
+      "bbox_norm": [
+        0.05,
+        0.61,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1847,
+        2550,
+        3233
+      ],
+      "caption": "EXHIBIT 15-11 Natural Terrain Diking with Tanks Containing Highly Volatile Liquids",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0385_fig02_exhibit-15-11-natural-terrain-diking-wit.png",
+      "png_sha256": "b5bfbd9d1b814fd69b5d0cde3daad5e4026b995d4f9e0d15dee70b746429ebc0",
+      "slug": "exhibit-15-11-natural-terrain-diking-wit",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 385,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0385.png",
+  "page_image_sha256": "b34278a5a68257468f994773b26a7897de92b8f12b39f984dad8d21d286e6fe1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0385_assets.json"
+}

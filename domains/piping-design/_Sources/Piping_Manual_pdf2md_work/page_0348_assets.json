@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 348,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 13-26 Emergency Eyewash and Shower",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.57]
+    },
+    {
+      "kind": "fig",
+      "caption": "EXHIBIT 13-27 Typical Fire Hydrant",
+      "bbox_norm": [0.03, 0.57, 0.52, 0.94]
+    }
+  ],
+  "issues": []
+}

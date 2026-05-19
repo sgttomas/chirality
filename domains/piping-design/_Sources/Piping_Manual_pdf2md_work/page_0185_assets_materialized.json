@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0185.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0185_fig01",
+      "bbox_norm": [
+        0.06,
+        0.3,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        26,
+        827,
+        2562,
+        3210
+      ],
+      "caption": "EXHIBIT 7-36 Furnace Elevation for the Upper Level of a Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0185_fig01_exhibit-7-36-furnace-elevation-for-the-u.png",
+      "png_sha256": "b794de0f23adcf79c15c101e5ba0e444146721775a0412326c7f3fbe6ba5bca5",
+      "slug": "exhibit-7-36-furnace-elevation-for-the-u",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 185,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0185.png",
+  "page_image_sha256": "3c0e0e402e25e42759700bb33e2ba64d21acf4cf949b5c4b548f847ab5e55830",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0185_assets.json"
+}

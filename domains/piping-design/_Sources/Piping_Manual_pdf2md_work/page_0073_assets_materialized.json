@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0073.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0073_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.33
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1256
+      ],
+      "caption": "EXHIBIT 6-3 Types of Compressor Systems (Cont) c. Elevated Centrifugal Compressor with Gas Turbine Drive and Waste Heat Recovery System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0073_fig01_exhibit-6-3-types-of-compressor-systems.png",
+      "png_sha256": "e1c9e9bd9695be93f1d585ddc97004ceb44e0bea294d8ee1c9a2578bae649175",
+      "slug": "exhibit-6-3-types-of-compressor-systems",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0073_fig02",
+      "bbox_norm": [
+        0.04,
+        0.33,
+        0.96,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        925,
+        2556,
+        2048
+      ],
+      "caption": "d. Reciprocating Compressor with Electric Motor Drive: Outdoor Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0073_fig02_d-reciprocating-compressor-with-electric.png",
+      "png_sha256": "d2c91c846ec0872b3b096919cba0b252da33b361137a80a5ab5f7d65d667bb71",
+      "slug": "d-reciprocating-compressor-with-electric",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0073_fig03",
+      "bbox_norm": [
+        0.04,
+        0.57,
+        0.96,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1718,
+        2556,
+        3139
+      ],
+      "caption": "e. Reciprocating Compressor with Electric Motor Drive: Indoor Installation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0073_fig03_e-reciprocating-compressor-with-electric.png",
+      "png_sha256": "477f51ccafba19e4f7c38fac6b3f4a1abd8e787305550745ffc937f5bebf6523",
+      "slug": "e-reciprocating-compressor-with-electric",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 73,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0073.png",
+  "page_image_sha256": "84115ddb1537b3d6ff32faee11994445e2d6d082f553a0d0cdf1426de218c214",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0073_assets.json"
+}

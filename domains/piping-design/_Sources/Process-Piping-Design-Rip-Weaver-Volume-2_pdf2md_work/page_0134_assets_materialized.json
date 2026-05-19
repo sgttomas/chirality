@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0134.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0134_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1881
+      ],
+      "caption": "Figure 4-8. Cross section, Type AES exchanger. Courtesy of HaeTran, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0134_fig01_cross-section-type-aes-exchanger.png",
+      "png_sha256": "bcfc6f249595f96c58c9c86dc76dd9565daf917c5f01709f6873bd0d3ff2cd89",
+      "slug": "cross-section-type-aes-exchanger",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 134,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0134.png",
+  "page_image_sha256": "c5189d411a648177c66b11c2115eb10ab38a2a8361855b9b71d17a21ac3639ae",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0134_assets.json"
+}

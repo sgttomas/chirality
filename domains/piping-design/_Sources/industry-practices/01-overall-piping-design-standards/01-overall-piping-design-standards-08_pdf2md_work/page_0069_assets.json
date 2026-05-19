@@ -1,0 +1,114 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 69,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table — Design temperatures for bolting material combinations vs. piping material",
+      "slug": "bolting-material-design-temperatures",
+      "bbox_norm": [0.03, 0.27, 0.97, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. According to ASME B31.3, for externally-installed flange connections the maximum design temperature may be equal to the above maximum temperatures.",
+          "2. According to ASME B31.3, for non-insulated components with fluid temperatures 65 °C and above the bolting temperature shall be taken to be not less than 80% of the fluid temperature.",
+          "3. Stud bolts to ASTM A320-L7M with sizes over 2½ inch can be supplied with guaranteed mechanical properties as referenced in ASME B31.3."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Piping material", "is_header": true },
+              { "value": "Bolt material (ASTM designation)", "is_header": true },
+              { "value": "Nut material (ASTM designation)", "is_header": true },
+              { "value": "Allowable design temperature range [°C]", "is_header": true },
+              { "value": "Diameter range [inch]", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon steel\nLow alloy steel\nStainless steel\nDuplex stain. steel\nNon-ferrous metal\nNon-metal", "type": "text" },
+              { "value": "A193-B7", "type": "text" },
+              { "value": "A194-2H", "type": "text" },
+              { "value": "-40 to 400", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon steel (high sour)", "type": "text" },
+              { "value": "A193-B7M", "type": "text" },
+              { "value": "A194-2HM", "type": "text" },
+              { "value": "-48 to 400", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon steel LT\nStainless steel\nDuplex st. steel\nSuper duplex st. steel\nNon-ferrous metal", "type": "text" },
+              { "value": "A320-L7\nA320-L43", "type": "text" },
+              { "value": "A194-4\nA194-4", "type": "text" },
+              { "value": "-101 to 343\n-101 to 343", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 2½\n> 2½ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon steel LT (high sour)\nStainless steel\nDuplex stainless steel", "type": "text" },
+              { "value": "A320-L7M 1)", "type": "text" },
+              { "value": "A194-7M", "type": "text" },
+              { "value": "-73 to 343", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Low alloy steel", "type": "text" },
+              { "value": "A193-B16", "type": "text" },
+              { "value": "A194-4", "type": "text" },
+              { "value": "-29 to 480", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Low alloy steel", "type": "text" },
+              { "value": "20ChMoVTiB4-10", "type": "text" },
+              { "value": "20ChMoVTiB4-10", "type": "text" },
+              { "value": "-20 to 550", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless steel", "type": "text" },
+              { "value": "A453-660 class C", "type": "text" },
+              { "value": "A453-660 class C", "type": "text" },
+              { "value": "-29 to 538", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 3½", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless steel LT", "type": "text" },
+              { "value": "A193-B8 class 2\nA193-B8M2 class 2B", "type": "text" },
+              { "value": "A194-8\nA194-8M", "type": "text" },
+              { "value": "-200 to 300\n-200 to 300", "type": "text" },
+              { "value": "⅛ ≤ d ≤ 1½\n> 1½ ≤ d ≤ 4", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table listing bolting material combinations with allowable design temperature ranges and diameter ranges for various piping materials. Three footnotes below the table."
+    }
+  ],
+  "issues": []
+}

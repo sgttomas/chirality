@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0153.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0153_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.96,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        717,
+        2304,
+        2020
+      ],
+      "caption": "Table 5.15 \u2014 Flexibility equations with stops at a remote point R (coefficients for equations 1, 2, 3, 5\u2032, 6\u2032)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0153_tbl01_table-5-15-flexibility-equations-stop-re.png",
+      "png_sha256": "a6d031897c04087b6938f31a54e656dae18dca8a04fb01a19fe9c4f666972429",
+      "slug": "table-5-15-flexibility-equations-stop-re",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0153_tbl01_table-5-15-flexibility-equations-stop-re.json",
+      "table_data_json_sha256": "b8cbccebbefe3aa76d242b544288b1d7c572eaa6e7e05457a985bfee675fc5df",
+      "table_data_sha256": "b8cbccebbefe3aa76d242b544288b1d7c572eaa6e7e05457a985bfee675fc5df",
+      "xlsx_path": "tables/MWK_1956_p0153_tbl01_table-5-15-flexibility-equations-stop-re.xlsx",
+      "xlsx_sha256": "aae958091b369201c0ebcf1c761fbe9ff59d6b1f79ab1d5dad49cfbc7384b0f0"
+    },
+    {
+      "asset_id": "MWK_1956_p0153_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1629,
+        2304,
+        3258
+      ],
+      "caption": "Piping flexibility and stress analysis isometric sketch \u2014 The M.W. Kellogg Co. Form A1, with dimensions and angles annotated",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0153_fig01_piping-flexibility-stress-analysis-isome.png",
+      "png_sha256": "a7ba9ef0326ecdbf4dafa59c00396dbb94dfb4231d67673c383e5304b2329b87",
+      "slug": "piping-flexibility-stress-analysis-isome",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 153,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0153.png",
+  "page_image_sha256": "d90cbe3b467ba2b40fbfe6299eda0a1f383bd6aa4e5480cb87d2998aeb208bdd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0153_assets.json"
+}

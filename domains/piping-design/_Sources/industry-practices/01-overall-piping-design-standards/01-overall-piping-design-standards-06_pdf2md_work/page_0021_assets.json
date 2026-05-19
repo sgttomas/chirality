@@ -1,0 +1,63 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 21,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Size vs Operating Temperature — critical lines requiring formal flexibility analysis",
+      "slug": "size-vs-operating-temperature-flexibility",
+      "bbox_norm": [0.08, 0.60, 0.72, 0.80],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Size", "is_header": true },
+              { "value": "Operating Temperature", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Less Than, or", "is_header": true },
+              { "value": "Greater Than", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Less than NPS 4", "type": "text" },
+              { "value": "-94 °F", "type": "text" },
+              { "value": "300 °F", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "NPS 4 up to NPS 18", "type": "text" },
+              { "value": "-76 °F", "type": "text" },
+              { "value": "200 °F", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Greater than NPS 18", "type": "text" },
+              { "value": "-22 °F", "type": "text" },
+              { "value": "160 °F", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table: pipe size vs lower and upper operating temperature thresholds"
+    }
+  ],
+  "issues": []
+}

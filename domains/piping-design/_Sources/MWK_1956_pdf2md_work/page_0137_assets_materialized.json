@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0137.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0137_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1371,
+        2040,
+        2742
+      ],
+      "caption": "Table 5.10 Formulas for Plane Rotating about z-Axis",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0137_tbl01_table-5-10-formulas-for-plane-rotating-a.png",
+      "png_sha256": "0aa5fa70f9937f9fd508b95d5bcec83bf5100a851a071eee8cc9e186325f62a5",
+      "slug": "table-5-10-formulas-for-plane-rotating-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 137,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0137.png",
+  "page_image_sha256": "3b7e16d355b25ffc6bff18a533ee69b199ab04cf257b122e2da3cf0268290577",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0137_assets.json"
+}

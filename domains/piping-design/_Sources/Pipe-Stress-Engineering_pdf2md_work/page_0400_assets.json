@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 400,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 12.5 DYNAMIC LOAD FACTORS FOR IMPULSE LOADS RECTANGULAR SHAPED AND RAMPED CONSTANT LOADS",
+      "slug": "dynamic-load-factors-impulse-loads-rectangular-ramped",
+      "bbox_norm": [0.04, 0.52, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Chart shows Dynamic Load Factor (DLF) on y-axis (0 to 2.2) vs t0/T (Natural Period of Structure) on x-axis (0.05 to 20). Multiple curves for rectangular pulse and ramped constant load configurations including F0 and stepped load variants."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 420,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 12.19 DESIGN DYNAMIC LOAD FACTORS FOR RAMP IMPULSE LOAD",
+      "slug": "design-dynamic-load-factors-ramp-impulse-load",
+      "bbox_norm": [0.05, 0.55, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Chart showing Dynamic Load Factor (DLF) vs s_r/T with Theoretical Curve and Design Curve. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

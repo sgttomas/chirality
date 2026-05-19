@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 41,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-15 Steam Turbine with APS, Piping and Valve Arrangement—Typical for Single-stage Turbine",
+      "slug": "fig-300-15-steam-turbine-aps-piping-valve-arrangement-single-stage",
+      "bbox_norm": [0.05, 0.22, 0.95, 0.58],
+      "confidence": "high",
+      "notes": "Schematic diagram showing steam turbine with APS piping and valve arrangement for a single-stage turbine. Caption visible above diagram."
+    }
+  ],
+  "issues": []
+}

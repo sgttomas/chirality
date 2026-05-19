@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 166,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 8.8. Level controller installation diagrams. Courtesy of Macmillan.",
+      "slug": "level-controller-installation-diagrams",
+      "bbox_norm": [0.03, 0.04, 0.72, 0.97],
+      "confidence": "high",
+      "notes": "Three-panel composite figure showing level controller installation diagrams: (1) control of product level within a fractionating tower reboiler, (2) control and transmission of crude tower level, (3) control of feed rate by pneumatically setting the index of a flow controller. Caption visible at bottom of figure."
+    }
+  ],
+  "issues": []
+}

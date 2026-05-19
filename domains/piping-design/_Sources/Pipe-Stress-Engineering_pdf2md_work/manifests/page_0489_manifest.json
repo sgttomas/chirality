@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0489.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0489_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.97,
+        0.49
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2488,
+        1897
+      ],
+      "caption": "CLASS 400 Valve Weight (lb) \u2014 Warning: Valve weight varies greatly from vendor to vendor",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0489_tbl01_class-400-valve-weight-lb.csv",
+      "csv_sha256": "8d07434bd0b13a3eb5fc4083932f6c9b733103c00835501d7ac101c463888d02",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0489_tbl01_class-400-valve-weight-lb.png",
+      "png_sha256": "54def7e917eb08e96cc91b534e8f3718a5216ec16679f7e6d0f646d239097b08",
+      "slug": "class-400-valve-weight-lb",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0489_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.5,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1581,
+        2488,
+        3513
+      ],
+      "caption": "CLASS 400 Valve Length (in.)",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0489_tbl02_class-400-valve-length-in.csv",
+      "csv_sha256": "1e52f637fb2b8b0c2f3f248132e4e25adc2509d26921a06174b47afa65781364",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 2,
+      "png_path": "tables/Pipe-Stress-Engineering_p0489_tbl02_class-400-valve-length-in.png",
+      "png_sha256": "a25532097dc8f5dc6de2ea912a7140102d1196ead212cd17c38019c3b32d8a22",
+      "slug": "class-400-valve-length-in",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 489,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0489.png",
+  "page_image_sha256": "f733d7dbe28e9bc7b97636c68421a94aff6c56087dbf3a7ed1e137baf7d69758",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0489_assets.json"
+}

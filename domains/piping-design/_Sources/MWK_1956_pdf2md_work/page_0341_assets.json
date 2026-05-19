@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.99,
+        0.99
+      ],
+      "caption": "C-1. Properties and Weights of Pipe \u2014 Continued (Nominal Sizes 18\", 20\", 24\", 30\")",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Continuation table of pipe properties and weights covering nominal sizes 18 in, 20 in, 24 in, and partial 30 in. Columns: Nominal Size/Outside Diameter, Weight Designation/Schedule Number, Average Wall Thickness t, Minimum Wall Thickness t_m (=7/8 t), Inside Diameter d, Cross-Sectional Metal Area A, Moment of Inertia I, Section Modulus Z, Bend Characteristic per Unit Bend Radius k/R, Radius of Gyration r, Weight of Pipe w_p, Weight of Water w_w. Bbox spans full page content area including header, column headings, body, and surrounding whitespace."
+  ],
+  "page": 341,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0129.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0129_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2333
+      ],
+      "caption": "Figure 7-1. Horizontal vessel, reflux accumulator. Courtesy of Fluor Corp.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0129_fig01_horizontal-vessel-reflux-accumulator-fig.png",
+      "png_sha256": "6c3c3a3d9849cadb48c7888bcd083a4adafa9ab5719b216e25964bdb1799988d",
+      "slug": "horizontal-vessel-reflux-accumulator-fig",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0129_tbl01",
+      "bbox_norm": [
+        0.55,
+        0.32,
+        0.97,
+        0.56
+      ],
+      "bbox_px": [
+        1238,
+        940,
+        2477,
+        2124
+      ],
+      "caption": "Nozzle Schedule",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0129_tbl01_nozzle-schedule-fig7-1.png",
+      "png_sha256": "dc0eb7c2578a5c749ed925bcaea91cf291436f3881650bf791980b3df678931e",
+      "slug": "nozzle-schedule-fig7-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0129_tbl01_nozzle-schedule-fig7-1.json",
+      "table_data_json_sha256": "0487f45e3806bb818afedee9269c963247621ad67551a389c519f03a27532969",
+      "table_data_sha256": "0487f45e3806bb818afedee9269c963247621ad67551a389c519f03a27532969",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0129_tbl01_nozzle-schedule-fig7-1.xlsx",
+      "xlsx_sha256": "e2e9bdd77c080d6b32932320de9e5894562286dab9e41e6206161bf926a70e55"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 129,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0129.png",
+  "page_image_sha256": "21c70d1b48c0da4ae9b117719b4a3106b42f64293951f3c1e5a35f844141d550",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0129_assets.json"
+}

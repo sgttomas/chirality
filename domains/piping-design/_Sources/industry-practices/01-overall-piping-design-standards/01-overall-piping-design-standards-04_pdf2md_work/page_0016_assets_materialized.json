@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-04_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-04_p0016_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.38,
+        0.9,
+        0.55
+      ],
+      "bbox_px": [
+        128,
+        1089,
+        2422,
+        1980
+      ],
+      "caption": "Table 2 \u2013 Gear Operator Applications for Gate Valves",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-04_p0016_tbl01_gear-operator-applications-gate-valves.png",
+      "png_sha256": "71cfc177f29ae52d90c6b1e36ab73a2d361ad752edd9b612bc217170c802eb35",
+      "slug": "gear-operator-applications-gate-valves",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-04_p0016_tbl01_gear-operator-applications-gate-valves.json",
+      "table_data_json_sha256": "5d9dbfd144815a222d71ee62bfa68e09f86368d616784edd2452a8cc466b6218",
+      "table_data_sha256": "5d9dbfd144815a222d71ee62bfa68e09f86368d616784edd2452a8cc466b6218",
+      "xlsx_path": "tables/01-overall-piping-design-standards-04_p0016_tbl01_gear-operator-applications-gate-valves.xlsx",
+      "xlsx_sha256": "2eface5b6b2b7efbc908b7e7b123cab4f80aadc9bac8a837aea8abe2023db483"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-04",
+  "doc_stem": "01-overall-piping-design-standards-04",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-04_pdf2md_work/page_0016.png",
+  "page_image_sha256": "d4f1a62c8d72cd4147d7bfd06ff909f212b440fc7429ae2d992c433ac57d2ab2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-04_pdf2md_work/page_0016_assets.json"
+}

@@ -1,0 +1,57 @@
+Code Stress Requirements 113
+
+4.4.5 Pressure Design for Other Components
+
+Besides the straight pipe, bend, and branch connections discussed above, the code also has formu-
+las and procedures for cone, reducer, flange, blank, and others. For components whose design formu-
+las are not given, the code provides the following general guidelines.
+
+Listed components. The pressure containing components manufactured in accordance with the
+code-approved list of standards can be used according to the pressure-temperature rating given by the
+applicable standard.
+
+Unlisted components. The components that do not belong to the code-approved list of standards
+shall be based on theoretical calculation, finite element analysis, experimental stress analysis, proof
+test, or their combinations. Extensive, successful service experience under comparable condition can
+be considered a type of proof test.
+
+4.5 STRESSES OF PIPING COMPONENTS
+
+Because not all stresses are created equal, we have to know what stress to calculate first before we
+proceed to calculate. The ASME piping and pressure vessel codes generally divide the stress into three
+categories: primary, secondary, and peak. However, in non-nuclear piping, we seldom calculate peak
+stress, which is implied in the stress intensification factors derived mainly from fatigue tests. Instead,
+in non-nuclear piping the stresses are divided into three main categories: sustained, displacement,
+and occasional. Each category of stress has its own method of calculation and evaluation. Occasional
+stress is generally evaluated in conjunction with sustained stress. To comply with the code stress re-
+quirements, each category of stress at every component is calculated and compared with the allowable
+stress. Allowable stress is generally expressed in terms of cold and hot basic allowable stresses de-
+noted by S, and S,, respectively. Other than for the pressure design discussed in the previous section,
+the longitudinal joint efficiencies are not applicable in the evaluation of all three categories of stresses.
+If the allowable stress given by the code table includes a longitudinal joint efficiency, the basic allow-
+able stress can be obtained by dividing the code table stress by the longitudinal joint efficiency.
+
+4.5.1 Calculations of Component Stresses
+
+The code stress category is based on the load category. A sustained load creates sustained stress,
+and so forth. Stress calculation procedures are all the same regardless of the load or stress category.
+
+The first step of stress calculation is to apply the corresponding category of loads to the piping sys-
+tem to find out the responding internal forces and moments at each component. This is the so-called
+structural analysis involving finite element or other appropriate methods. The routine piping stress
+analysis involves only straight beam and curved beam elements. The structural analysis deals only
+with the centerline of the piping system. It calculates the total forces and moments acting at the entire
+piping cross-section of each centerline point. These forces and moments are then used to calculate
+the stresses.
+
+Calculations of the forces and moments at each component follow the basic principle of structural
+mechanics, which is unvarying and straightforward. However, the calculation of code stresses differs
+fairly appreciably among the codes. Lately, there have been significant attempts [12] in ASME to keep
+the requirements similar among all codes, especially between B31.1 and B31.3. However, some dif-
+ferences will no doubt remain as they are. These differences are the driving force separating the code
+into different sections in the first place.
+
+The standard stress formulas given by the codes, such as B31.1, include only the moments. In other
+words, the forces, except pressure force, are ignored in stress calculations. This is because the stresses
+due to forces are generally very small. In cases where stresses due to forces are significant, they will be
+reflected in the unusually huge loads generated at the anchors and restraints. Once these huge loads

@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 485,
+  "page_label": "465",
+  "page_label_source": "vlm",
+  "location": "bottom-right",
+  "confidence": "high",
+  "rationale": "Arabic numeral 465 printed in the right margin footer alongside the section label 'Appendix D'."
+}

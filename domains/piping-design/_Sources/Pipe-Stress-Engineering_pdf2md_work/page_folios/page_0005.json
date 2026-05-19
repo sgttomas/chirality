@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 5,
+  "page_label": "iv",
+  "page_label_source": "vlm",
+  "location": "top-left",
+  "confidence": "high",
+  "rationale": "Lowercase Roman numeral iv appears at top-left as a running header alongside the section title 'Contents'."
+}

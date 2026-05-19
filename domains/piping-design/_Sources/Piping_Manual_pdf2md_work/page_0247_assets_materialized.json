@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0247.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0247_fig01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.55,
+        0.58
+      ],
+      "bbox_px": [
+        76,
+        0,
+        1530,
+        2078
+      ],
+      "caption": "EXHIBIT 10-20 Process Vessel Sketch - vertical tower T-100 showing 4'-0\" I.D. top section, 15 trays @ 21\" spacing, 11 trays @ 24\" spacing, 152'-0\" T/T (18,500 mm), 9'-6\" I.D. bottom section, with labeled nozzles A, P1, N1, P2, N2, M1, N3, P3, M2, P4, N4, P5, F, M3 and skirt with base ring.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0247_fig01_exhibit-10-20-process-vessel-sketch-vert.png",
+      "png_sha256": "dc878abef7795a671055f5eaf2209bf9e2cf9c7ff3a492d7108e44d3fb1042b6",
+      "slug": "exhibit-10-20-process-vessel-sketch-vert",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0247_tbl01",
+      "bbox_norm": [
+        0.42,
+        0.07,
+        0.92,
+        0.42
+      ],
+      "bbox_px": [
+        944,
+        66,
+        2474,
+        1551
+      ],
+      "caption": "NOZZLE SUMMARY table (part of Exhibit 10-20) listing SYMBOL / SIZE / SERVICE for nozzles A (18\" 150# RF Vapor), B (8\" Reflux), C (6\" Feed), D (10\" Reboiler Draw Off), E (10\" Reboiler Return), F (6\" Bottoms Outlet), P (1\" Pressure), T (1\" Temperature), L (2\" Level), S (1\" Steam Out), M (24\" Maintenance Access), G (3\" Drain).",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0247_tbl01_nozzle-summary-table-part-of-exhibit-10.png",
+      "png_sha256": "6dd307df479fed3ddae0893fc8739f1cef0b1f6c50bb9a161ec4edfd022115f2",
+      "slug": "nozzle-summary-table-part-of-exhibit-10",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 247,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0247.png",
+  "page_image_sha256": "26ae30a302a003b659ba7be5647feeb2a1ed10ad937ef719ddfc49279a6c6a49",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0247_assets.json"
+}

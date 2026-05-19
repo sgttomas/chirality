@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 300,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.03, 0.96, 0.41],
+      "caption": "EXHIBIT 11-29 Rack Intersection (Cont) — b. Rack Intersection Detail. Hand-drawn plan view comparing two pipe rack intersection arrangements: the left side labeled WRONG shows piping routed directly through the crossing of two perpendicular pipe racks (causing congestion), while the right side labeled RIGHT shows the secondary rack intersection shifted off to the side so the crossing remains clear. Both views show parallel pipes on the rack with vertical drop-offs."
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.50, 0.41, 0.96, 0.94],
+      "caption": "EXHIBIT 11-30 Pipe Rack Additions. Elevation view of a pipe rack showing four stacked future-addition zones labeled A through D. Level A (bottom) is the standard two-level pipe rack with parallel pipes on transverse beams supported by two columns. Level B is an added new piping level. Level C shows a centrally located air cooler unit (horizontal finned-tube bundle) mounted above the rack. Level D (top) shows a row of bonnet-style shell-and-tube exchangers on the uppermost beam. Each level is called out with a circled letter (A-D) on the right side."
+    }
+  ],
+  "issues": []
+}

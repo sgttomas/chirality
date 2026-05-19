@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0358.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0358_fig01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.31
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        1188
+      ],
+      "caption": "EXHIBIT 13-40 Concrete Pipe",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0358_fig01_exhibit-13-40-concrete-pipe.png",
+      "png_sha256": "0f3ac57ad13d353366512be5bb2cc629f55be67dd25adab110a7d36b4b897d12",
+      "slug": "exhibit-13-40-concrete-pipe",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0358_fig02",
+      "bbox_norm": [
+        0.03,
+        0.32,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        891,
+        2550,
+        3233
+      ],
+      "caption": "EXHIBIT 13-41 Trench Piping",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0358_fig02_exhibit-13-41-trench-piping.png",
+      "png_sha256": "11bf5459c31c4c954c1dfcc9f656bb9454d048b36c0b40af268a5fe9e72f4f7f",
+      "slug": "exhibit-13-41-trench-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 358,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0358.png",
+  "page_image_sha256": "c932ac24ab95b74130fc071cdbb6c8294d1a2d1c05dd84227d3d27e51c1edda4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0358_assets.json"
+}

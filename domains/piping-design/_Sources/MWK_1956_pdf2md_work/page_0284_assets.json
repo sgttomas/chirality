@@ -1,0 +1,34 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 284,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Schematic of reservoir-pipe-gate system with flow velocity U over distance L; includes caption.",
+    "asset_note: Plot of Delta_p / (rho*U*C) vs. t/(2L/C); decreasing curve from ~1.0 toward 0."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Hydraulic system susceptible to hammer.",
+      "bbox_norm": [
+        0.06,
+        0.05,
+        0.48,
+        0.2
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Non-dimensional excess pressure vs. non-dimensional closing time.",
+      "bbox_norm": [
+        0.62,
+        0.7,
+        0.97,
+        0.97
+      ]
+    }
+  ]
+}

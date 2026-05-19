@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0027.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-07_p0027_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        3069
+      ],
+      "caption": "Table 6: Typical Layout for a Piping Line List",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-07_p0027_fig01_table-6-typical-layout-piping-line-list.png",
+      "png_sha256": "b83a73a9a91cb2cb86176f0e88c89affde4a4c2a30b4679af9668699133f9e5f",
+      "slug": "table-6-typical-layout-piping-line-list",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-07",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 27,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0027.png",
+  "page_image_sha256": "ed9e28428d8eb2e63f0fb2839292827156d8ca4ad41927ab5d90bec4cbef2aca",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0027_assets.json"
+}

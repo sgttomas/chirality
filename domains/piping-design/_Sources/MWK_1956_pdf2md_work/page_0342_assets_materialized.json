@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0342.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0342_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.99,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2190,
+        2742
+      ],
+      "caption": "C-2. Thermal Expansion, Carbon and Alloy Steels",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0342_fig01_c-2-thermal-expansion-carbon-and-alloy-s.png",
+      "png_sha256": "84d8d4f099d2069023ad2c9120fee5eca5801582d6c49e749abd9d4997630c57",
+      "slug": "c-2-thermal-expansion-carbon-and-alloy-s",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 342,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0342.png",
+  "page_image_sha256": "5d78104b2fe320c5fe6329dca4a647197ebcc47dde9f833dc4674b47b1f100e6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0342_assets.json"
+}

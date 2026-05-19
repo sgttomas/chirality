@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0387.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0387_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.78,
+        0.56
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2116,
+        2012
+      ],
+      "caption": "EXHIBIT 15-14 Tank Buried Above Grade",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0387_fig01_exhibit-15-14-tank-buried-above-grade.png",
+      "png_sha256": "a1592eecc84e629cdc98b5bf09aa97a7b0b811bb98337aa8a5cc39f9685312d1",
+      "slug": "exhibit-15-14-tank-buried-above-grade",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 387,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0387.png",
+  "page_image_sha256": "0f0c98fbdefebd3b801ae81eb22c1527071740cb7f6b61a545998aade3c88806",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0387_assets.json"
+}

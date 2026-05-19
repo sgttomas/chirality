@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0100.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0100_fig01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        77,
+        0,
+        2480,
+        1533
+      ],
+      "caption": "FIG. 3.9 LOCAL COLD SPRING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0100_fig01_local-cold-spring.png",
+      "png_sha256": "7af29dbf0128863a8a8ce247908e888eaa7875d679adf3e2ff11a7504ee5b70d",
+      "slug": "local-cold-spring",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 100,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0100.png",
+  "page_image_sha256": "6c809e418447ea402199bbc65732a8e618d1a9d2c3c0159a8876e7790fe84fb9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0100_assets.json"
+}

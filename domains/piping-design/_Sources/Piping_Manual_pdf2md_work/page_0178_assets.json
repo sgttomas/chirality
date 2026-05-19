@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 178,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p178_fig01",
+      "caption": "EXHIBIT 7-25 Reformer Furnace Platforms",
+      "bbox_norm": [0.06, 0.05, 0.96, 0.49]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p178_fig02",
+      "caption": "EXHIBIT 7-26 Fixed Soot Blower",
+      "bbox_norm": [0.06, 0.50, 0.96, 0.91]
+    }
+  ],
+  "issues": []
+}

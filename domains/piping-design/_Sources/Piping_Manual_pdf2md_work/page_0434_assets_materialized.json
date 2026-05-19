@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0434.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0434_fig01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.82,
+        0.54
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2218,
+        1946
+      ],
+      "caption": "EXHIBIT 16-22 Piperack Loop Sizing",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0434_fig01_exhibit-16-22-piperack-loop-sizing.png",
+      "png_sha256": "4250e99eb7726a6d1891dfc13853d6fc09b59c602ae135c3a32599676cfa5ab5",
+      "slug": "exhibit-16-22-piperack-loop-sizing",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 434,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0434.png",
+  "page_image_sha256": "e9b6e4b2c9b6f0a0e24214927906216a6824049d6af279f2a4a05f98babb86bb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0434_assets.json"
+}

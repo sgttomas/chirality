@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0116.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0116_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2079
+      ],
+      "caption": "Figure 3-26. Symmetrical and nonsymmetrical piping. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0116_fig01_symmetrical-nonsymmetrical-piping-heater.png",
+      "png_sha256": "0592e67ce5c844b95a4e680ff47195e8fd78a0977f43e2781c02c36abc5d149a",
+      "slug": "symmetrical-nonsymmetrical-piping-heater",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 116,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0116.png",
+  "page_image_sha256": "b229c610ff30ab5d57cc5aeda8a4444dee355182733c06231c8bc6b6e726e480",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0116_assets.json"
+}

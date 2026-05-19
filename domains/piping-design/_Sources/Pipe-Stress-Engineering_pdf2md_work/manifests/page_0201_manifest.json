@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0201.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0201_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1405
+      ],
+      "caption": "FIG. 6.19 RING GIRDER EFFECT ON SHELL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0201_fig01_ring-girder-effect-on-shell.png",
+      "png_sha256": "0f7dd88a417cc758a6b36d6d100a8cebf05e5b2aa38cf0de75ebf383fd58ac05",
+      "slug": "ring-girder-effect-on-shell",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 201,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0201.png",
+  "page_image_sha256": "8d2b204fc9a918d7e4ab415e99c1be1e6b3c9c16e0b29baafa158cc11505848c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0201_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0062_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Figure 5.6 Condensing turbine and surface condenser arrangements. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0062_fig01_condensing-turbine-surface-condenser-arr.png",
+      "png_sha256": "505966693dab05767958f3b91e52ef911a7a8f296fed9dd4f4369a43bd43afdb",
+      "slug": "condensing-turbine-surface-condenser-arr",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0062.png",
+  "page_image_sha256": "ee43c29371805ac3cf141208bad0ad38bcf4547fd14f5cec59bb741d92b67850",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0062_assets.json"
+}

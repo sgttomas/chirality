@@ -1,0 +1,608 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 32,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-17. Cast Steel Swing Check Valves. Reprinted courtesy of Crane Co.",
+      "slug": "cast-steel-swing-check-valves-1-17",
+      "bbox_norm": [0.03, 0.06, 0.35, 0.28],
+      "confidence": "high",
+      "notes": "Diagram in upper-left showing screwed/flanged and butt-welding end views with dimension labels N, P, M"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Weights and Dimensions — Cast Steel Swing Check Valves by Pressure Class and Size",
+      "slug": "cast-steel-swing-check-valve-weights-dimensions",
+      "bbox_norm": [0.03, 0.08, 0.97, 0.82],
+      "confidence": "medium",
+      "notes": "Multi-section table grouped by pressure class (150, 300, 400, 600, 900, 1500 lb). Many cells are blank (not applicable). Fractions appear in dimension columns.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [2, 13, 21, 26, 35, 44],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "*",
+            "text": "3-inch Crandall Joints: When 3-inch, 100 and 500-pound flanged valves with ring-joint faces are used with Crandall Joints, orders must specify: A groove of special pitch diameter is required."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pressure Class", "row_span": 2, "is_header": true },
+              { "value": "Size (Inches)", "row_span": 2, "is_header": true },
+              { "value": "Pounds, Each", "col_span": 3, "is_header": true },
+              { "value": "Dimensions, in Inches", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Screwed FD & SF", "is_header": true },
+              { "value": "Flanged Valves", "is_header": true },
+              { "value": "Butt-Welding Valves", "is_header": true },
+              { "value": "Screwed N", "is_header": true },
+              { "value": "Screwed P", "is_header": true },
+              { "value": "Flanged or Butt-Welding M", "is_header": true },
+              { "value": "Flanged or Butt-Welding P", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "150 Pound", "row_span": 11, "is_header": true },
+              { "value": "2", "type": "fraction" },
+              { "value": 27, "type": "number", "unit": "lb" },
+              { "value": 34, "type": "number", "unit": "lb" },
+              { "value": 25, "type": "number", "unit": "lb" },
+              { "value": "8", "type": "fraction", "unit": "in" },
+              { "value": "2", "type": "fraction", "unit": "in" },
+              { "value": "8", "type": "fraction", "unit": "in" },
+              { "value": "2", "type": "fraction", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": 40, "type": "number", "unit": "lb" },
+              { "value": 50, "type": "number", "unit": "lb" },
+              { "value": 30, "type": "number", "unit": "lb" },
+              { "value": "8-1/2", "type": "fraction", "raw": "8½", "unit": "in" },
+              { "value": "8-1/2", "type": "fraction", "raw": "8½", "unit": "in" },
+              { "value": "8-1/2", "type": "fraction", "raw": "8½", "unit": "in" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": 55, "type": "number", "unit": "lb" },
+              { "value": 65, "type": "number", "unit": "lb" },
+              { "value": 45, "type": "number", "unit": "lb" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼", "unit": "in" },
+              { "value": "7", "type": "fraction", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 100, "type": "number", "unit": "lb" },
+              { "value": 100, "type": "number", "unit": "lb" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼", "unit": "in" },
+              { "value": "7", "type": "fraction", "unit": "in" },
+              { "value": "10-1/2", "type": "fraction", "raw": "10½", "unit": "in" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 140, "type": "number", "unit": "lb" },
+              { "value": 120, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "13", "type": "fraction", "unit": "in" },
+              { "value": "8", "type": "fraction", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 200, "type": "number", "unit": "lb" },
+              { "value": 150, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "18", "type": "fraction", "unit": "in" },
+              { "value": "9", "type": "fraction", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 360, "type": "number", "unit": "lb" },
+              { "value": 260, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "19-1/2", "type": "fraction", "raw": "19½", "unit": "in" },
+              { "value": "10-1/2", "type": "fraction", "raw": "10½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "24-1/2", "type": "fraction", "raw": "24½", "unit": "in" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 510, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "27-1/2", "type": "fraction", "raw": "27½", "unit": "in" },
+              { "value": "12-1/2", "type": "fraction", "raw": "12½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 775, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "33", "type": "fraction", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1350, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300 Pound", "row_span": 8, "is_header": true },
+              { "value": "12", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1450, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": 40, "type": "number", "unit": "lb" },
+              { "value": 62, "type": "number", "unit": "lb" },
+              { "value": 47, "type": "number", "unit": "lb" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½", "unit": "in" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½", "unit": "in" },
+              { "value": "10-1/2", "type": "fraction", "raw": "10½", "unit": "in" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": 70, "type": "number", "unit": "lb" },
+              { "value": 85, "type": "number", "unit": "lb" },
+              { "value": 60, "type": "number", "unit": "lb" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼", "unit": "in" },
+              { "value": "8", "type": "fraction", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": 100, "type": "number", "unit": "lb" },
+              { "value": 130, "type": "number", "unit": "lb" },
+              { "value": 80, "type": "number", "unit": "lb" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼", "unit": "in" },
+              { "value": "8-1/2", "type": "fraction", "raw": "8½", "unit": "in" },
+              { "value": "16", "type": "fraction", "unit": "in" },
+              { "value": "8-1/2", "type": "fraction", "raw": "8½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 150, "type": "number", "unit": "lb" },
+              { "value": 240, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "13-1/4", "type": "fraction", "raw": "13¼", "unit": "in" },
+              { "value": "10-1/4", "type": "fraction", "raw": "10¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 390, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "17-1/2", "type": "fraction", "raw": "17½", "unit": "in" },
+              { "value": "13-1/2", "type": "fraction", "raw": "13½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 620, "type": "number", "unit": "lb" },
+              { "value": 510, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "14", "type": "fraction", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 930, "type": "number", "unit": "lb" },
+              { "value": 760, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "24-1/2", "type": "fraction", "raw": "24½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400 Pound", "row_span": 5, "is_header": true },
+              { "value": "12", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1250, "type": "number", "unit": "lb" },
+              { "value": 1150, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "28", "type": "fraction", "unit": "in" },
+              { "value": "16-3/4", "type": "fraction", "raw": "16¾", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 200, "type": "number", "unit": "lb" },
+              { "value": 180, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "16", "type": "fraction", "unit": "in" },
+              { "value": "10", "type": "fraction", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 390, "type": "number", "unit": "lb" },
+              { "value": 310, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "19-1/2", "type": "fraction", "raw": "19½", "unit": "in" },
+              { "value": "12-1/2", "type": "fraction", "raw": "12½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 700, "type": "number", "unit": "lb" },
+              { "value": 565, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "26-1/2", "type": "fraction", "raw": "26½", "unit": "in" },
+              { "value": "14-1/2", "type": "fraction", "raw": "14½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 900, "type": "number", "unit": "lb" },
+              { "value": 820, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "30-1/2", "type": "fraction", "raw": "30½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600 Pound", "row_span": 9, "is_header": true },
+              { "value": "12", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1350, "type": "number", "unit": "lb" },
+              { "value": 1150, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "36-1/2", "type": "fraction", "raw": "36½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 28, "type": "number", "unit": "lb" },
+              { "value": 40, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½", "unit": "in" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 45, "type": "number", "unit": "lb" },
+              { "value": 45, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "11-1/2", "type": "fraction", "raw": "11½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 105, "type": "number", "unit": "lb" },
+              { "value": 70, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "13", "type": "fraction", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 150, "type": "number", "unit": "lb" },
+              { "value": 105, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "14-1/2", "type": "fraction", "raw": "14½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 360, "type": "number", "unit": "lb" },
+              { "value": 170, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "17", "type": "fraction", "unit": "in" },
+              { "value": "10-1/2", "type": "fraction", "raw": "10½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 460, "type": "number", "unit": "lb" },
+              { "value": 300, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "22", "type": "fraction", "unit": "in" },
+              { "value": "13-1/2", "type": "fraction", "raw": "13½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 530, "type": "number", "unit": "lb" },
+              { "value": 420, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1050, "type": "number", "unit": "lb" },
+              { "value": 880, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "31", "type": "fraction", "unit": "in" },
+              { "value": "18-1/2", "type": "fraction", "raw": "18½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900 Pound", "row_span": 4, "is_header": true },
+              { "value": "12", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1440, "type": "number", "unit": "lb" },
+              { "value": 1200, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "37", "type": "fraction", "unit": "in" },
+              { "value": "21-1/2", "type": "fraction", "raw": "21½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 100, "type": "number", "unit": "lb" },
+              { "value": 140, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "13", "type": "fraction", "unit": "in" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 140, "type": "number", "unit": "lb" },
+              { "value": 240, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "16-1/2", "type": "fraction", "raw": "16½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 430, "type": "number", "unit": "lb" },
+              { "value": 400, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "19", "type": "fraction", "unit": "in" },
+              { "value": "14-1/4", "type": "fraction", "raw": "14¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 Pound", "row_span": 7, "is_header": true },
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1180, "type": "number", "unit": "lb" },
+              { "value": 690, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "29", "type": "fraction", "unit": "in" },
+              { "value": "16-1/2", "type": "fraction", "raw": "16½", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 75, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "13-1/2", "type": "fraction", "raw": "13½", "unit": "in" },
+              { "value": "9-3/4", "type": "fraction", "raw": "9¾", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 100, "type": "number", "unit": "lb" },
+              { "value": 120, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "14-1/2", "type": "fraction", "raw": "14½", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 280, "type": "number", "unit": "lb" },
+              { "value": 210, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "18-1/2", "type": "fraction", "raw": "18½", "unit": "in" },
+              { "value": "13-1/4", "type": "fraction", "raw": "13¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 350, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "21-1/2", "type": "fraction", "raw": "21½", "unit": "in" },
+              { "value": "15-1/4", "type": "fraction", "raw": "15¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 660, "type": "number", "unit": "lb" },
+              { "value": 480, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "26", "type": "fraction", "unit": "in" },
+              { "value": "18-1/4", "type": "fraction", "raw": "18¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 1850, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "35-1/4", "type": "fraction", "raw": "35¼", "unit": "in" },
+              { "value": "25-1/4", "type": "fraction", "raw": "25¼", "unit": "in" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "fraction" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": 2100, "type": "number", "unit": "lb" },
+              { "value": 1370, "type": "number", "unit": "lb" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": "43-1/4", "type": "fraction", "raw": "43¼", "unit": "in" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

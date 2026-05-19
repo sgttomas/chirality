@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0083.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0083_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 4-24 Seal Oil Console Piping and Instrumentation Diagram",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0083_fig01_exhibit-4-24-seal-oil-console-piping-and.png",
+      "png_sha256": "12918a722673edecb1540e066165bc16896e29c697fa7fe5d97bf98e0412dbbf",
+      "slug": "exhibit-4-24-seal-oil-console-piping-and",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0083_fig02",
+      "bbox_norm": [
+        0.1,
+        0.59,
+        0.95,
+        0.94
+      ],
+      "bbox_px": [
+        128,
+        1781,
+        2550,
+        3266
+      ],
+      "caption": "EXHIBIT 4-25 Basic Condenser Operation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0083_fig02_exhibit-4-25-basic-condenser-operation.png",
+      "png_sha256": "fcccd07b102f5d4041bbc6d5498405dfe3d0c457763819d40e03b304345abce9",
+      "slug": "exhibit-4-25-basic-condenser-operation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 83,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0083.png",
+  "page_image_sha256": "38b83c6b875ce11595eec602a5bc97bfb19bc75e9d972925f96d42b75d52e620",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0083_assets.json"
+}

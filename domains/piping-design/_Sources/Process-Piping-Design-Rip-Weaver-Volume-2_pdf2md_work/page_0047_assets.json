@@ -1,0 +1,218 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 47,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-31. Vertical pump parts. Courtesy of Byron Jackson Pump Division.",
+      "slug": "vertical-pump-parts-kx-rx-sectional",
+      "bbox_norm": [0.02, 0.06, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Full-page sectional drawing of Vertical Circulating Pump Type KX & RX with multiple detail callouts and labeled part numbers. Caption appears at bottom of page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Parts list for Vertical Circulating Pumps Type KX & RX",
+      "slug": "vertical-pump-parts-list-kx-rx",
+      "bbox_norm": [0.58, 0.34, 0.98, 0.91],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "NAME OF PART", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "TOP CASE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "72", "type": "text" },
+              { "value": "SERIES CASE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100", "type": "text" },
+              { "value": "BOTTOM CASE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "103", "type": "text" },
+              { "value": "BEARING - BOTTOM CASE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "108", "type": "text" },
+              { "value": "IMPELLER", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "119", "type": "text" },
+              { "value": "IMPELLER - AS STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "220", "type": "text" },
+              { "value": "IMPELLER - 2ND STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "225", "type": "text" },
+              { "value": "IMPELLER COLLAR-IMPELLER - AS STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "243", "type": "text" },
+              { "value": "BEARING - SERIES CASE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "305", "type": "text" },
+              { "value": "COLUMN", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "306", "type": "text" },
+              { "value": "COLUMN RING - IMPELLER - 2ND STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "308", "type": "text" },
+              { "value": "COLUMN BEARING TEE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "309", "type": "text" },
+              { "value": "COLUMN BEARING", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": "COLUMN SHAFT - BOTTOM", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "404", "type": "text" },
+              { "value": "SHAFT COUPLING - CONNECTING PUMP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "414", "type": "text" },
+              { "value": "INNER COLUMN - UPPER", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "419", "type": "text" },
+              { "value": "OUTER COLUMN - UPPER/MIDDLE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "420", "type": "text" },
+              { "value": "OUTER COLUMN - INTERMEDIATE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "421", "type": "text" },
+              { "value": "COLUMN ELBOW", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "131", "type": "text" },
+              { "value": "TENSION NUT", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "132", "type": "text" },
+              { "value": "TENSION BOLT", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "133", "type": "text" },
+              { "value": "TENSION PLATE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "140", "type": "text" },
+              { "value": "INDUCTOR PLATE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "141", "type": "text" },
+              { "value": "INDUCTOR PLATE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "170", "type": "text" },
+              { "value": "BEARING - IMPELLER 2ND STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "174", "type": "text" },
+              { "value": "BEARING", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "175", "type": "text" },
+              { "value": "COLUMN - PACKING RING", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "230", "type": "text" },
+              { "value": "THRUST COLLAR - IMPELLER - 2ND STG", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "232", "type": "text" },
+              { "value": "COLUMN SHAFT - INTERMEDIATE", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column parts list table with ITEM numbers and NAME OF PART. Located in the lower-right portion of the page alongside the sectional drawing."
+    }
+  ],
+  "issues": []
+}

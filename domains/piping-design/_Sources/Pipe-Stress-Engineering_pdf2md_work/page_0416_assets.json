@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 416,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 12.14 FORCES THAT CAUSE THE SYSTEM TO SHAKE",
+      "slug": "forces-that-cause-system-to-shake",
+      "bbox_norm": [0.05, 0.02, 0.92, 0.22],
+      "confidence": "high",
+      "notes": "Diagram of a piping system with shaking forces labeled, showing numbered nodes and coordinate axes"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 12.15 FORCES ON PIPING ELEMENT",
+      "slug": "forces-on-piping-element",
+      "bbox_norm": [0.05, 0.75, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Diagram of a pipe leg element showing forces M_f, K, pressure P_o, temperature T, velocity V, and coordinate axes x, y, z"
+    }
+  ],
+  "issues": []
+}

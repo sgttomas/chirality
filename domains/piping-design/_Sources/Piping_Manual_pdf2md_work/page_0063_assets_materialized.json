@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0063.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0063_fig01",
+      "bbox_norm": [
+        0.07,
+        0.12,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        51,
+        231,
+        2556,
+        1982
+      ],
+      "caption": "EXHIBIT 3-24 Building Locations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0063_fig01_exhibit-3-24-building-locations.png",
+      "png_sha256": "0e7456dcef8188d899b6870466cf220a828ebd3c777fec5b5f8345683b960c1f",
+      "slug": "exhibit-3-24-building-locations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0063.png",
+  "page_image_sha256": "120893854acbb929ce7f16857d89382ec2e193cf3c5e15fe71ee70e727640e57",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0063_assets.json"
+}

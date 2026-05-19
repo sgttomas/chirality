@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 71,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 2.13 MOHR'S STRESS CIRCLE FOR TWO-DIMENSIONAL STRESSES",
+      "slug": "mohrs-stress-circle-two-dimensional",
+      "bbox_norm": [0.05, 0.62, 0.95, 0.98],
+      "confidence": "high",
+      "notes": "Two side-by-side Mohr's circle diagrams: (a) Sx and Sy have same signs, (b) Sx and Sy have different signs. Caption visible below figures."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 258,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 7.22 BRAID COVER OF CORRUGATED HOSE",
+      "slug": "braid-cover-corrugated-hose",
+      "bbox_norm": [0.05, 0.03, 0.75, 0.35],
+      "confidence": "high",
+      "notes": "Two sub-figures: (a) Unbraided and (b) Wire Braid Cover, with caption below"
+    }
+  ],
+  "issues": []
+}

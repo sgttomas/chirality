@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0138.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0138_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1487
+      ],
+      "caption": "EXHIBIT 6-21 Control and Operator Access in a Plate Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0138_fig01_exhibit-6-21-control-and-operator-access.png",
+      "png_sha256": "0734c92dfb4a6eccc42599d607f99625701c80ffeb93f2e946e3396136477f45",
+      "slug": "exhibit-6-21-control-and-operator-access",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0138_fig02",
+      "bbox_norm": [
+        0.03,
+        0.42,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1222,
+        2556,
+        3238
+      ],
+      "caption": "EXHIBIT 6-22 Typical Column-Supported Air Cooler Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0138_fig02_exhibit-6-22-typical-column-supported-ai.png",
+      "png_sha256": "ffd22fa415a6b5d6add45a4fbef433299d8c990d0f57bcaf765ac418789fc771",
+      "slug": "exhibit-6-22-typical-column-supported-ai",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 138,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0138.png",
+  "page_image_sha256": "6926c6897b1cd198d8ff8e074dd9c10882bf0057859c20ecbe210ee1bd9bd3c1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0138_assets.json"
+}

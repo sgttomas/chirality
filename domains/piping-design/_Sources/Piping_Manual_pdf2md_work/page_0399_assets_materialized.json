@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0399.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0399_fig01",
+      "bbox_norm": [
+        0.04,
+        0.17,
+        0.96,
+        0.37
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2550,
+        1386
+      ],
+      "caption": "EXHIBIT 15-55 Pumps Inside Concrete Diked Area",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0399_fig01_exhibit-15-55-pumps-inside-concrete-dike.png",
+      "png_sha256": "e8d0c69d30697bcaaa6f58a7b1aeab880faa8ba3c2ea2d300e3b9a0ca35d2198",
+      "slug": "exhibit-15-55-pumps-inside-concrete-dike",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0399_fig02",
+      "bbox_norm": [
+        0.04,
+        0.36,
+        0.96,
+        0.53
+      ],
+      "bbox_px": [
+        0,
+        1023,
+        2550,
+        1913
+      ],
+      "caption": "EXHIBIT 15-56 Buried Product-Transfer Piping",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0399_fig02_exhibit-15-56-buried-product-transfer-pi.png",
+      "png_sha256": "388c25cce25cc921077bbd2f8978ae263b07362e6377d8ba0810ec6f8383a993",
+      "slug": "exhibit-15-56-buried-product-transfer-pi",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0399_fig03",
+      "bbox_norm": [
+        0.04,
+        0.53,
+        0.52,
+        0.81
+      ],
+      "bbox_px": [
+        0,
+        1584,
+        1454,
+        2837
+      ],
+      "caption": "EXHIBIT 15-57 Dike-Penetration Seal",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0399_fig03_exhibit-15-57-dike-penetration-seal.png",
+      "png_sha256": "78d037f970ad4857dc5976822bd8d288858d06412673debe6d0d34d50cf0db7e",
+      "slug": "exhibit-15-57-dike-penetration-seal",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 399,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0399.png",
+  "page_image_sha256": "0d96898fc887e094d67d0a6ceb74db6040f85fea62ade64cc1e359fb26d968d4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0399_assets.json"
+}

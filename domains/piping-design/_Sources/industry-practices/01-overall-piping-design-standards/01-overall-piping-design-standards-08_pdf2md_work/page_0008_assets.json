@@ -1,0 +1,197 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 8,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Equivalent lengths L_e(m) for valves and fittings by type",
+      "slug": "equivalent-lengths-valves-fittings",
+      "bbox_norm": [0.04, 0.22, 0.96, 0.67],
+      "confidence": "high",
+      "notes": "Table of valve/fitting types with equivalent pipe lengths in D units. Footnote: In critical situations the Manufacturer's data shall be obtained.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "* In critical situations the Manufacturer's data shall be obtained."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Type of valve/fitting", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "L_e(m)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text", "rowspan": 5 },
+              { "value": "Ball valve", "type": "text" },
+              { "value": "Reduced bore DN 40 and smaller", "type": "text" },
+              { "value": "65 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ball valve", "type": "text" },
+              { "value": "Reduced bore DN 50 and larger", "type": "text" },
+              { "value": "45 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gate valve", "type": "text" },
+              { "value": "Standard bore", "type": "text" },
+              { "value": "13 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gate valve", "type": "text" },
+              { "value": "Reduced bore DN 40 and smaller", "type": "text" },
+              { "value": "65 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Valves (fully open)", "type": "text", "rowspan": 7 },
+              { "value": "", "type": "text" },
+              { "value": "Straight pattern", "type": "text" },
+              { "value": "340 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Y pattern", "type": "text" },
+              { "value": "160 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Angle pattern", "type": "text" },
+              { "value": "145 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Check valve", "type": "text" },
+              { "value": "Swing type", "type": "text" },
+              { "value": "135 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Check valve", "type": "text" },
+              { "value": "Ball or piston type, DN 40 and smaller", "type": "text" },
+              { "value": "340 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Plug valve", "type": "text" },
+              { "value": "Regular pattern", "type": "text" },
+              { "value": "45 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Butterfly valve", "type": "text" },
+              { "value": "DN 150 and larger", "type": "text" },
+              { "value": "200 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fittings", "type": "text", "rowspan": 8 },
+              { "value": "Tee-equal", "type": "text" },
+              { "value": "Flow straight through", "type": "text" },
+              { "value": "20 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tee-equal", "type": "text" },
+              { "value": "Flow through side outlet", "type": "text" },
+              { "value": "65 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Elbow", "type": "text" },
+              { "value": "90°, R = 1 ½ D", "type": "text" },
+              { "value": "20 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Elbow", "type": "text" },
+              { "value": "45°, R = 1 ½ D", "type": "text" },
+              { "value": "16 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bend", "type": "text" },
+              { "value": "90°, R = 4 D", "type": "text" },
+              { "value": "14 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bend", "type": "text" },
+              { "value": "180°, R = 5 D", "type": "text" },
+              { "value": "16 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bend", "type": "text" },
+              { "value": "90°, R = 4 D", "type": "text" },
+              { "value": "14 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bend", "type": "text" },
+              { "value": "180°, R = 5 D", "type": "text" },
+              { "value": "28 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Miscel-laneous", "type": "text", "rowspan": 3 },
+              { "value": "Strainer", "type": "text" },
+              { "value": "Pump suction Y-type and bucket type", "type": "text" },
+              { "value": "250 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nozzle", "type": "text" },
+              { "value": "Product outlet nozzle vessel/tank", "type": "text" },
+              { "value": "32 D", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nozzle", "type": "text" },
+              { "value": "Product inlet nozzle vessel/tank", "type": "text" },
+              { "value": "64 D", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0124.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0124_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3244
+      ],
+      "caption": "Table 6-14 Cutback at 90\u00b0 or, ID of Nozzle to OD of Header \u2014 Standard fittings in \u00bc\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0124_tbl01_table-6-14-cutback-90deg-nozzle-header.png",
+      "png_sha256": "7ba84ef83cbc47386ed0977c178469ee7a83ebbcb416bb5e1df033536fd9f4dd",
+      "slug": "table-6-14-cutback-90deg-nozzle-header",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0124_tbl01_table-6-14-cutback-90deg-nozzle-header.json",
+      "table_data_json_sha256": "69a3ef09c5f2cfd68ff41dbf9f8b97eaa2bd565f8ebd2b4963b0568dc88647f3",
+      "table_data_sha256": "69a3ef09c5f2cfd68ff41dbf9f8b97eaa2bd565f8ebd2b4963b0568dc88647f3",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0124_tbl01_table-6-14-cutback-90deg-nozzle-header.xlsx",
+      "xlsx_sha256": "8456d4eead9b1d2ac7c16033b7023dc66c9f8970073b47ed7b784f9f5f3346b9"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0124_fig01",
+      "bbox_norm": [
+        0.38,
+        0.45,
+        0.8,
+        0.85
+      ],
+      "bbox_px": [
+        817,
+        1395,
+        2105,
+        3139
+      ],
+      "caption": "Fig. 6-14 Diagram showing cutback geometry at 90\u00b0 nozzle-to-header intersection with CUTBACK label",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0124_fig01_fig-6-14-cutback-geometry-90-nozzle-head.png",
+      "png_sha256": "17c7e0ab42ce6fb3ec59d4c966f0abb988e91d9fc1aad468b50149bcdc32624a",
+      "slug": "fig-6-14-cutback-geometry-90-nozzle-head",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 124,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0124.png",
+  "page_image_sha256": "1f4a841d442df64a583a4475569e176216c6b90c5a5b349601884c074552a47f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0124_assets.json"
+}

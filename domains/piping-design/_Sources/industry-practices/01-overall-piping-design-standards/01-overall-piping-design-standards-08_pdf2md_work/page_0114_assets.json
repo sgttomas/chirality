@@ -1,0 +1,672 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 114,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 8.4 DN 400 to DN 450",
+      "slug": "table-8-4-dn-400-to-dn-450",
+      "bbox_norm": [0.03, 0.07, 0.97, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Column A gives ASME B36.10 steel pipe schedule numbers. Column B gives ASME B36.10 steel pipe nominal wall designations. Column C gives ASME B36.19 stainless steel pipe schedule numbers (SS is not an approved standard).",
+          "Specified weights are based on weight for carbon steel pipes. For ferritic stainless steel pipes, the values are 5% lower. For austenitic stainless steel pipes the values are 5% greater."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "DN", "is_header": true },
+              { "value": "Outside diameter", "is_header": true },
+              { "value": "Schedule numbers", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "Wall thickness", "is_header": true },
+              { "value": "Inside diameter", "is_header": true },
+              { "value": "Metal area", "is_header": true },
+              { "value": "Outside surface", "is_header": true },
+              { "value": "Inside surface", "is_header": true },
+              { "value": "Inside fluid", "is_header": true },
+              { "value": "Mass/Meter steel", "is_header": true },
+              { "value": "Mass/Meter water", "is_header": true },
+              { "value": "Moment of inertia", "is_header": true },
+              { "value": "Section modulus", "is_header": true },
+              { "value": "Radius of gyration", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "mm", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "mm", "is_header": true },
+              { "value": "cm²", "is_header": true },
+              { "value": "m²/m", "is_header": true },
+              { "value": "m²/m", "is_header": true },
+              { "value": "kg/m", "is_header": true },
+              { "value": "kg/m", "is_header": true },
+              { "value": "kg/m", "is_header": true },
+              { "value": "cm⁴", "is_header": true },
+              { "value": "cm³", "is_header": true },
+              { "value": "cm", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": "40.640", "type": "number" },
+              { "value": "10", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.635", "type": "number" },
+              { "value": "39.37", "type": "number" },
+              { "value": "7.917", "type": "number" },
+              { "value": "79.16", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.221", "type": "number" },
+              { "value": "42.67", "type": "number" },
+              { "value": "184", "type": "number" },
+              { "value": "19843", "type": "number" },
+              { "value": "767", "type": "number" },
+              { "value": "13.148", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "20", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.762", "type": "number" },
+              { "value": "39.116", "type": "number" },
+              { "value": "9.490", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.220", "type": "number" },
+              { "value": "77.91", "type": "number" },
+              { "value": "198", "type": "number" },
+              { "value": "19638", "type": "number" },
+              { "value": "768", "type": "number" },
+              { "value": "13.079", "type": "number" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "30", "type": "text" },
+              { "value": "Std", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.953", "type": "number" },
+              { "value": "38.74", "type": "number" },
+              { "value": "11777", "type": "number" },
+              { "value": "118.74", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.216", "type": "number" },
+              { "value": "80.13", "type": "number" },
+              { "value": "211", "type": "number" },
+              { "value": "23592", "type": "number" },
+              { "value": "1152", "type": "number" },
+              { "value": "14.046", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.110", "type": "number" },
+              { "value": "38.42", "type": "number" },
+              { "value": "1108", "type": "number" },
+              { "value": "137.63", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.207", "type": "number" },
+              { "value": "106.06", "type": "number" },
+              { "value": "224", "type": "number" },
+              { "value": "28072", "type": "number" },
+              { "value": "1375", "type": "number" },
+              { "value": "13.373", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "40", "type": "text" },
+              { "value": "XS", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.270", "type": "number" },
+              { "value": "38.10", "type": "number" },
+              { "value": "1139", "type": "number" },
+              { "value": "157.05", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.198", "type": "number" },
+              { "value": "123.16", "type": "number" },
+              { "value": "237", "type": "number" },
+              { "value": "30488", "type": "number" },
+              { "value": "1492", "type": "number" },
+              { "value": "13.919", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.427", "type": "number" },
+              { "value": "37.79", "type": "number" },
+              { "value": "1121", "type": "number" },
+              { "value": "175.82", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.186", "type": "number" },
+              { "value": "137.88", "type": "number" },
+              { "value": "250", "type": "number" },
+              { "value": "33639", "type": "number" },
+              { "value": "1749", "type": "number" },
+              { "value": "13.868", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.588", "type": "number" },
+              { "value": "37.47", "type": "number" },
+              { "value": "1102", "type": "number" },
+              { "value": "194.79", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.176", "type": "number" },
+              { "value": "152.71", "type": "number" },
+              { "value": "263", "type": "number" },
+              { "value": "37011", "type": "number" },
+              { "value": "1814", "type": "number" },
+              { "value": "13.818", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.746", "type": "number" },
+              { "value": "37.15", "type": "number" },
+              { "value": "1083", "type": "number" },
+              { "value": "212.65", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.167", "type": "number" },
+              { "value": "167.19", "type": "number" },
+              { "value": "275", "type": "number" },
+              { "value": "40419", "type": "number" },
+              { "value": "1989", "type": "number" },
+              { "value": "13.787", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.905", "type": "number" },
+              { "value": "36.83", "type": "number" },
+              { "value": "1064", "type": "number" },
+              { "value": "231.55", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.157", "type": "number" },
+              { "value": "181.78", "type": "number" },
+              { "value": "288", "type": "number" },
+              { "value": "43578", "type": "number" },
+              { "value": "2145", "type": "number" },
+              { "value": "13.716", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "80", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "2.141", "type": "number" },
+              { "value": "36.36", "type": "number" },
+              { "value": "1037", "type": "number" },
+              { "value": "258.64", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.143", "type": "number" },
+              { "value": "203.05", "type": "number" },
+              { "value": "307", "type": "number" },
+              { "value": "48166", "type": "number" },
+              { "value": "2370", "type": "number" },
+              { "value": "13.641", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "100", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "2.223", "type": "number" },
+              { "value": "36.20", "type": "number" },
+              { "value": "1028", "type": "number" },
+              { "value": "268.32", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.137", "type": "number" },
+              { "value": "212.33", "type": "number" },
+              { "value": "313", "type": "number" },
+              { "value": "49836", "type": "number" },
+              { "value": "2413", "type": "number" },
+              { "value": "13.614", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "120", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "2.619", "type": "number" },
+              { "value": "35.40", "type": "number" },
+              { "value": "984", "type": "number" },
+              { "value": "303.62", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.112", "type": "number" },
+              { "value": "240.27", "type": "number" },
+              { "value": "344", "type": "number" },
+              { "value": "56810", "type": "number" },
+              { "value": "2794", "type": "number" },
+              { "value": "13.462", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "140", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "3.094", "type": "number" },
+              { "value": "34.45", "type": "number" },
+              { "value": "932", "type": "number" },
+              { "value": "365.07", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.082", "type": "number" },
+              { "value": "286.13", "type": "number" },
+              { "value": "397", "type": "number" },
+              { "value": "64765", "type": "number" },
+              { "value": "3187", "type": "number" },
+              { "value": "13.313", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "3.650", "type": "number" },
+              { "value": "33.34", "type": "number" },
+              { "value": "873", "type": "number" },
+              { "value": "428.76", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.049", "type": "number" },
+              { "value": "338.04", "type": "number" },
+              { "value": "449", "type": "number" },
+              { "value": "73259", "type": "number" },
+              { "value": "3605", "type": "number" },
+              { "value": "13.112", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "4.046", "type": "number" },
+              { "value": "32.55", "type": "number" },
+              { "value": "832", "type": "number" },
+              { "value": "464.39", "type": "number" },
+              { "value": "1.277", "type": "number" },
+              { "value": "1.021", "type": "number" },
+              { "value": "364.72", "type": "number" },
+              { "value": "449", "type": "number" },
+              { "value": "78534", "type": "number" },
+              { "value": "3879", "type": "number" },
+              { "value": "13.005", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "450", "type": "text" },
+              { "value": "45.720", "type": "number" },
+              { "value": "10", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.635", "type": "number" },
+              { "value": "44.45", "type": "number" },
+              { "value": "1551", "type": "number" },
+              { "value": "89.91", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.396", "type": "number" },
+              { "value": "70.52", "type": "number" },
+              { "value": "226", "type": "number" },
+              { "value": "22851", "type": "number" },
+              { "value": "1000", "type": "number" },
+              { "value": "15.561", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "20", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.762", "type": "number" },
+              { "value": "44.20", "type": "number" },
+              { "value": "1828", "type": "number" },
+              { "value": "107.84", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.389", "type": "number" },
+              { "value": "84.61", "type": "number" },
+              { "value": "241", "type": "number" },
+              { "value": "28320", "type": "number" },
+              { "value": "1237", "type": "number" },
+              { "value": "15.875", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Std", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "0.953", "type": "number" },
+              { "value": "43.81", "type": "number" },
+              { "value": "1037", "type": "number" },
+              { "value": "133.56", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.377", "type": "number" },
+              { "value": "104.87", "type": "number" },
+              { "value": "256", "type": "number" },
+              { "value": "33590", "type": "number" },
+              { "value": "1469", "type": "number" },
+              { "value": "15.924", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "30", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.110", "type": "number" },
+              { "value": "43.50", "type": "number" },
+              { "value": "1486", "type": "number" },
+              { "value": "155.01", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.366", "type": "number" },
+              { "value": "122.11", "type": "number" },
+              { "value": "271", "type": "number" },
+              { "value": "38751", "type": "number" },
+              { "value": "1694", "type": "number" },
+              { "value": "15.773", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "XS", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.270", "type": "number" },
+              { "value": "43.18", "type": "number" },
+              { "value": "1404", "type": "number" },
+              { "value": "177.31", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.357", "type": "number" },
+              { "value": "139.34", "type": "number" },
+              { "value": "286", "type": "number" },
+              { "value": "44001", "type": "number" },
+              { "value": "1925", "type": "number" },
+              { "value": "15.723", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "40", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.588", "type": "number" },
+              { "value": "42.54", "type": "number" },
+              { "value": "1337", "type": "number" },
+              { "value": "220.49", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.336", "type": "number" },
+              { "value": "173.41", "type": "number" },
+              { "value": "313", "type": "number" },
+              { "value": "54196", "type": "number" },
+              { "value": "2371", "type": "number" },
+              { "value": "15.673", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.588", "type": "number" },
+              { "value": "42.54", "type": "number" },
+              { "value": "1422", "type": "number" },
+              { "value": "219.84", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.336", "type": "number" },
+              { "value": "172.66", "type": "number" },
+              { "value": "315", "type": "number" },
+              { "value": "53632", "type": "number" },
+              { "value": "2345", "type": "number" },
+              { "value": "15.631", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "60", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.746", "type": "number" },
+              { "value": "42.23", "type": "number" },
+              { "value": "1309", "type": "number" },
+              { "value": "241.71", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.326", "type": "number" },
+              { "value": "189.93", "type": "number" },
+              { "value": "327", "type": "number" },
+              { "value": "58866", "type": "number" },
+              { "value": "2574", "type": "number" },
+              { "value": "15.582", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "80", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "1.905", "type": "number" },
+              { "value": "41.91", "type": "number" },
+              { "value": "1379", "type": "number" },
+              { "value": "263.57", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.317", "type": "number" },
+              { "value": "207.19", "type": "number" },
+              { "value": "340", "type": "number" },
+              { "value": "63959", "type": "number" },
+              { "value": "2798", "type": "number" },
+              { "value": "15.494", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "2.381", "type": "number" },
+              { "value": "40.96", "type": "number" },
+              { "value": "1281", "type": "number" },
+              { "value": "329.23", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.286", "type": "number" },
+              { "value": "258.66", "type": "number" },
+              { "value": "380", "type": "number" },
+              { "value": "78872", "type": "number" },
+              { "value": "3449", "type": "number" },
+              { "value": "15.342", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "100", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "2.936", "type": "number" },
+              { "value": "39.85", "type": "number" },
+              { "value": "1189", "type": "number" },
+              { "value": "395.44", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.253", "type": "number" },
+              { "value": "313.44", "type": "number" },
+              { "value": "434", "type": "number" },
+              { "value": "90738", "type": "number" },
+              { "value": "3969", "type": "number" },
+              { "value": "15.164", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "120", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "3.493", "type": "number" },
+              { "value": "38.74", "type": "number" },
+              { "value": "1094", "type": "number" },
+              { "value": "458.11", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.218", "type": "number" },
+              { "value": "363.11", "type": "number" },
+              { "value": "488", "type": "number" },
+              { "value": "104518", "type": "number" },
+              { "value": "4576", "type": "number" },
+              { "value": "14.886", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "140", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "3.810", "type": "number" },
+              { "value": "38.10", "type": "number" },
+              { "value": "1024", "type": "number" },
+              { "value": "483.21", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.197", "type": "number" },
+              { "value": "385.01", "type": "number" },
+              { "value": "521", "type": "number" },
+              { "value": "114463", "type": "number" },
+              { "value": "5014", "type": "number" },
+              { "value": "14.834", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "4.524", "type": "number" },
+              { "value": "36.67", "type": "number" },
+              { "value": "1053", "type": "number" },
+              { "value": "585.01", "type": "number" },
+              { "value": "1.436", "type": "number" },
+              { "value": "1.152", "type": "number" },
+              { "value": "459.06", "type": "number" },
+              { "value": "565", "type": "number" },
+              { "value": "125701", "type": "number" },
+              { "value": "5506", "type": "number" },
+              { "value": "14.656", "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Large multi-row table spanning DN 400 and DN 450 pipe sizes with dimensional and structural properties. Some cells may have minor OCR ambiguity due to image resolution."
+    }
+  ],
+  "issues": []
+}

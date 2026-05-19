@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 354,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0354_fig01",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.66],
+      "caption": "EXHIBIT 13-36 Typical Deluge and Spray Systems"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 2,
+  "total_pages": 95,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Document header metadata (Department, Number, Subject, Revision)",
+      "slug": "document-header-metadata",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.18
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Department:",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "PROJECT SERVICES",
+                "type": "text"
+              },
+              {
+                "value": "Number:",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "0201",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Subject:",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Piping Design and Plant Layout",
+                "type": "text"
+              },
+              {
+                "value": "Revision:",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "9",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Standard document metadata header table appearing at the top of the page"
+    }
+  ],
+  "issues": []
+}

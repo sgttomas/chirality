@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0153.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0153_fig01",
+      "bbox_norm": [
+        0.06,
+        0.3,
+        0.94,
+        0.56
+      ],
+      "bbox_px": [
+        26,
+        827,
+        2536,
+        2018
+      ],
+      "caption": "EXHIBIT 6-45 Bundle Pulling Post",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0153_fig01_exhibit-6-45-bundle-pulling-post.png",
+      "png_sha256": "37aebf39b240e33ffb5f98a0c1018147bf0eb9b02f5f913bdde238df464cfda1",
+      "slug": "exhibit-6-45-bundle-pulling-post",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0153_fig02",
+      "bbox_norm": [
+        0.06,
+        0.56,
+        0.94,
+        0.89
+      ],
+      "bbox_px": [
+        26,
+        1688,
+        2536,
+        3110
+      ],
+      "caption": "EXHIBIT 6-46 Fixed Structure with a Trolley Beam",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0153_fig02_exhibit-6-46-fixed-structure-with-a-trol.png",
+      "png_sha256": "178b152399cb2e8dfdf8e98b2168803b93f875f9687cd654a1e17e99f91ed862",
+      "slug": "exhibit-6-46-fixed-structure-with-a-trol",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 153,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0153.png",
+  "page_image_sha256": "9a7999efbb759839eb7673feddfe549a3574800a46907e9649dc8b7e03ce65e0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0153_assets.json"
+}

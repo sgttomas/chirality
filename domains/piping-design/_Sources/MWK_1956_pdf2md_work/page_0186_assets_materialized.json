@@ -1,0 +1,114 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0186.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0186_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2424,
+        1538
+      ],
+      "caption": "Table 5.32 Shape Coefficients for Uniform Loading: General Formulas for Circular Members \u2014 For x-Wind Acting on Members in the y-Plane or z-Wind Acting on Members in the z-Plane",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0186_tbl01_table-5-32-shape-coefficients-circular-m.png",
+      "png_sha256": "3562f2b9d08778a412931bbce8f3561a2a43c5c6e2097c669ea999084b5f2bc8",
+      "slug": "table-5-32-shape-coefficients-circular-m",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0186_fig01",
+      "bbox_norm": [
+        0.72,
+        0.07,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        1624,
+        56,
+        2424,
+        895
+      ],
+      "caption": "Quadrant diagram for Table 5.32 showing four quadrants (I\u2013IV) \u2014 reference for arc \u03a6 sign conventions used in x-Wind / y-Plane formulas",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0186_fig01_table-5-32-quadrant-diagram.png",
+      "png_sha256": "76a7d4a932e351af64301bdf539ae20802155169b49d3b48a3670eca188c3720",
+      "slug": "table-5-32-quadrant-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0186_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.5,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1258,
+        2424,
+        2796
+      ],
+      "caption": "Table 5.33 Shape Coefficients for Uniform Loading: General Formulas for Circular Members \u2014 For z-Wind Acting on Members in the x-Plane or x-Wind Acting on Members in the y-Plane",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0186_tbl02_table-5-33-shape-coefficients-circular-m.png",
+      "png_sha256": "8ce3355e562c5870a5038a3b9128e47ad961a497736d99ddf2eb2a235ab383d5",
+      "slug": "table-5-33-shape-coefficients-circular-m",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0186_fig02",
+      "bbox_norm": [
+        0.72,
+        0.54,
+        0.97,
+        0.73
+      ],
+      "bbox_px": [
+        1624,
+        1370,
+        2424,
+        2181
+      ],
+      "caption": "Quadrant diagram for Table 5.33 showing four quadrants (I\u2013IV) \u2014 reference for arc \u03a6 sign conventions used in z-Wind / x-Plane formulas",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0186_fig02_table-5-33-quadrant-diagram.png",
+      "png_sha256": "1fc6e14556037e543549b738cbfc4466ffa2b976f5192bd1e834d00317db9269",
+      "slug": "table-5-33-quadrant-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 186,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0186.png",
+  "page_image_sha256": "1070a9a466fdf94f72197aa2da28a57df9a4cf96191dd00c0fa591e43d86bee1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0186_assets.json"
+}

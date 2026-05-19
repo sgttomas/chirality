@@ -1,0 +1,78 @@
+232 Chapter 7
+
+the data on the overall assembly cannot be used readily in the analysis of the piping system. Informa-
+tion regarding each bellow is required for the analysis. This sometimes calls for the reverse conversion
+of the overall bellow data into individual bellow data. The universal expansion joint utilizes mainly the
+rotational flexibility of the bellow to accommodate the lateral movement. Axial flexibility is needed
+only to absorb the axial expansion of the assembly located inside the tie-rod boundary. As the pipe
+moves laterally a A distance, both bellows rotate an angle 0, which is equal to A/L. The lateral move-
+ment produces the lateral force F and a bending moment M, which is equal to
+
+M = KO = Kee (7.28)
+
+where Kg is the rotational spring constant of the individual bellow. By taking the moment around the
+center of one of the bellows, we have the relation between the force and moment as 2M = FL. That is,
+
+2M _ 2KpA (7.29)
+
+YTB
+
+From Eq. (7.29) and the definition of the overall lateral spring rate as Ky, = F/A, we have
+
+PF PL
+Ke= = 5h (7.30)
+
+This Kg can be used for piping analysis. This is just an approximate method. To be more precise, the
+manufacturer should be consulted for the individual bellow data, which should include axial, lateral,
+and rotational spring rates. The allowable movements for the individual bellow may also be obtained
+
+for reference.
+In most constructions, the movement of the spool pipe in between the bellows is controlled by the
+
+lugs located at the center of the spool. These lugs are connected to tie-rods to support the spool and
+also to help distribute the movement evenly to both bellows. In the analysis, the bellows at points 2
+and 4 in Fig. 7.15 can be modeled either as bellow elements or as generic flexible joints located at the
+center of the bellows. An elaborate analysis would have modeled all the tie-rods in the locations as
+constructed. However, because in actual operations not all rods are active and only one of the mid
+lugs is active due to differential rotation between the rod and the pipe, this elaborate modeling is not
+as precise as one might expect. In a simplified but realistic approach, the tie-rods are grouped as one
+rod located at the centerline of the pipe. It is connected to the lug locations with generic flexible joints
+with very small rotational spring rates. It should be noted that for most universal joints, the overall
+lateral spring rate is very small. The magnitude of the rotational spring rate used at tie-rod connections
+can have a significant effect on the overall lateral resistance.
+
+Pressure balanced universal expansion joint. Axially, the universal expansion joint can absorb axial
+deformation only from the expansion of the pipe assembly located inside the tie-rod boundary. It is
+unable to absorb the axial movement from the expansion of the piping outside the expansion joint
+assembly. When the system has both large lateral as well as axial movements, a pressure balanced
+universal joint can be used. Figure 7.16 shows a typical arrangement.
+
+The pressure-balanced universal joint is a combination of the pressure-balanced joint shown in Fig.
+7.13 and the universal joint shown in Fig. 7.15. It is generally analyzed with a simplified model that
+combines all the tie-rods into one large rod located at the centerline of the pipe. The necessary data
+
+points, needed for the analysis, are also shown in the figure.
+
+7.3.3 Hinges and Gimbals
+
+To eliminate the bellow pressure thrust force, a bellow expansion joint is often tied with tie-rods.
+However, the tied expansion joint does not work very well for absorbing rotational movement. The
+
+wear
+rece:
+
+prearerorr
+west ut
+
+™
+sath
+
+Co
+
+fe
+
+a
+
+bees
+
+lesen

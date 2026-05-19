@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0407.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0407_fig01",
+      "bbox_norm": [
+        0.05,
+        0.2,
+        0.96,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        495,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 15-49 Foam Injection into Tanks",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0407_fig01_exhibit-15-49-foam-injection-into-tanks.png",
+      "png_sha256": "5bd4152bef5cab74f11c04957e7f5525ae5f1da244f2366df3d4a36f537ad9f9",
+      "slug": "exhibit-15-49-foam-injection-into-tanks",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 407,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0407.png",
+  "page_image_sha256": "a452dcf51d251694da37711a60812aa407784b08957cb568ae26fc58137c75b6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0407_assets.json"
+}

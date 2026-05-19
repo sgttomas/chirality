@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0389.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0389_fig01",
+      "bbox_norm": [
+        0.04,
+        0.17,
+        0.46,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        396,
+        1300,
+        2078
+      ],
+      "caption": "EXHIBIT 15-17 Building Dikes Around Obstructions",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0389_fig01_exhibit-15-17-building-dikes-around-obst.png",
+      "png_sha256": "f0991161008045b653df4b4e64f3a77bf003a62a91065fd9fe9a6704e0f41204",
+      "slug": "exhibit-15-17-building-dikes-around-obst",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 389,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0389.png",
+  "page_image_sha256": "57ac32f0540ef2da5f9b2924867d128093693b3f8cee36053a13b8ce26197a96",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0389_assets.json"
+}

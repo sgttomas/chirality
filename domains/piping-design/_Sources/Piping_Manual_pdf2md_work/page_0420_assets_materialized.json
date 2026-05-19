@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0420.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0420_fig01",
+      "bbox_norm": [
+        0.04,
+        0.16,
+        0.5,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        363,
+        1406,
+        2214
+      ],
+      "caption": "EXHIBIT 16-8 Simple Supported Span",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0420_fig01_exhibit-16-8-simple-supported-span.png",
+      "png_sha256": "f2934eb5b9b139ea781231cb2dcf7b5c1365e2569d4ba759ed10ee5541bbc2c7",
+      "slug": "exhibit-16-8-simple-supported-span",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 420,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0420.png",
+  "page_image_sha256": "d1a503667538aca7b60900b62b1b1df31fd559b175ae0ae11a8a1dc7e9da8f26",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0420_assets.json"
+}

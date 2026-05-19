@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0054.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0054_fig01",
+      "bbox_norm": [
+        0.01,
+        0.59,
+        0.46,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1481,
+        1206,
+        2742
+      ],
+      "caption": "Fig. 3.1 Ovalization (flattening) of pipe bends under external bending moments. Exaggerated.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0054_fig01_ovalization-pipe-bends-external-bending.png",
+      "png_sha256": "098e5ec5bce8d0bcf7325daa117869a1df2ebca69eec9e1ff3bef5f85a4ed6b4",
+      "slug": "ovalization-pipe-bends-external-bending",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0054_fig02",
+      "bbox_norm": [
+        0.52,
+        0.02,
+        0.99,
+        0.34
+      ],
+      "bbox_px": [
+        1111,
+        0,
+        2364,
+        1069
+      ],
+      "caption": "Fig. 3.2 Distribution of longitudinal stresses in curved pipes.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0054_fig02_distribution-longitudinal-stresses-curve.png",
+      "png_sha256": "e665e16409f1c153a8586c7b2b4f8068d0c6c2f17dd68526512beb9e15ec7340",
+      "slug": "distribution-longitudinal-stresses-curve",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 54,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0054.png",
+  "page_image_sha256": "689a3c234acc9046a2eac7491cd8071248ab97bbeaf5a95cf0bb0924c8ad3b1c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0054_assets.json"
+}

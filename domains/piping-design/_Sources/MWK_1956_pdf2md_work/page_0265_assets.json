@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 265,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Schematic of pipe bend.",
+      "bbox_norm": [
+        0.04,
+        0.66,
+        0.46,
+        0.83
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Idealized configuration for Fig. 9.9.",
+      "bbox_norm": [
+        0.04,
+        0.83,
+        0.46,
+        0.96
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Two members \u2014 angle theta between legs.",
+      "bbox_norm": [
+        0.55,
+        0.04,
+        0.97,
+        0.2
+      ]
+    }
+  ]
+}

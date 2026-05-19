@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0176.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0176_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.96,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1491
+      ],
+      "caption": "EXHIBIT 7-22 Circular Furnace Platform Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0176_fig01_exhibit-7-22-circular-furnace-platform-r.png",
+      "png_sha256": "45ce1e6f3700a0fa955f97ff47acb1b022bbadccd5773fc5dbd4ea490fd7bdc3",
+      "slug": "exhibit-7-22-circular-furnace-platform-r",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0176_fig02",
+      "bbox_norm": [
+        0.05,
+        0.42,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1226,
+        2569,
+        2751
+      ],
+      "caption": "EXHIBIT 7-23 Miscellaneous Platform Requirements for a Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0176_fig02_exhibit-7-23-miscellaneous-platform-requ.png",
+      "png_sha256": "8766166558266046f2b13399be3d8bbae1010f51027f2d14819337d233930836",
+      "slug": "exhibit-7-23-miscellaneous-platform-requ",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 176,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0176.png",
+  "page_image_sha256": "a6b7a1a98bfae7c9bbab3f273cba53c92ecc07caecfee8bad656dd504fa3ff15",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0176_assets.json"
+}

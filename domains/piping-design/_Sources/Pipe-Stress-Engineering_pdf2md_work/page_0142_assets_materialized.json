@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0142.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0142_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.88,
+        0.88
+      ],
+      "bbox_px": [
+        25,
+        461,
+        2352,
+        3296
+      ],
+      "caption": "FIG. 4.14 TYPICAL PROCEDURE FOR EVALUATING DISPLACEMENT STRESS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0142_fig01_typical-procedure-evaluating-displacemen.png",
+      "png_sha256": "f96add43a29d7746b15844bfa5ef81092a24d6f2b6cb31db725164149c1d9e23",
+      "slug": "typical-procedure-evaluating-displacemen",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 142,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0142.png",
+  "page_image_sha256": "075481d7a42271f2f2aa95089e8e6bf751f72ba33dde029a04539e128655cd40",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0142_assets.json"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 211,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "FIG. 7.1 Classification of piping systems.",
+      "bbox_norm": [
+        0.49,
+        0.04,
+        1.0,
+        0.34
+      ]
+    }
+  ]
+}

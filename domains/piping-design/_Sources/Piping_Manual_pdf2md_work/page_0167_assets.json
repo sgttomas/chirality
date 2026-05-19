@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 167,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0167_fig_01",
+      "caption": "EXHIBIT 7-11 Sample Burner Locations",
+      "bbox_norm": [0.05, 0.16, 0.74, 0.55]
+    }
+  ],
+  "issues": []
+}

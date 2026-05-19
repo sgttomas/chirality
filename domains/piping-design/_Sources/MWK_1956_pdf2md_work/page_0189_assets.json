@@ -1,0 +1,33 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.46
+      ],
+      "caption": "Member No. 1-2 \u2014 Piping Flexibility and Stress Analysis, Load Constants for X-Wind (Form W, Calc. No. ___). The M.W. Kellogg Co.",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.49,
+        0.97,
+        0.92
+      ],
+      "caption": "Member No. 3-4 \u2014 Piping Flexibility and Stress Analysis, Load Constants for X-Wind (Form W, Calc. No. ___). The M.W. Kellogg Co.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 189,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

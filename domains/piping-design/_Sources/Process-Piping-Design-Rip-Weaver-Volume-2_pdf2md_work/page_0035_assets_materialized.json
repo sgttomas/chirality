@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0035.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0035_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2541
+      ],
+      "caption": "Figure 1-19. Sectional drawing of end suction pump. Courtesy of Byron Jackson Pump Division.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0035_fig01_fig-1-19-sectional-drawing-end-suction-p.png",
+      "png_sha256": "96c19c0a538297f0a24ed9f5ec60ad6a0cd28ecc31e42551fed5e1a3f3b96dc1",
+      "slug": "fig-1-19-sectional-drawing-end-suction-p",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0035_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.7,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2145,
+        2560,
+        3300
+      ],
+      "caption": "Parts list \u2014 end suction pump item numbers and names of parts",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0035_tbl01_parts-list-end-suction-pump.png",
+      "png_sha256": "b8be20d6ad1b5d32253816f92a49d0fe5089dd4057af9de4f657f3a122faa78e",
+      "slug": "parts-list-end-suction-pump",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0035_tbl01_parts-list-end-suction-pump.json",
+      "table_data_json_sha256": "7d201fb3db2df6a3f74f710b62b736d07bdb4c8cc988e298f15565f4976fcbde",
+      "table_data_sha256": "7d201fb3db2df6a3f74f710b62b736d07bdb4c8cc988e298f15565f4976fcbde",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0035_tbl01_parts-list-end-suction-pump.xlsx",
+      "xlsx_sha256": "2d244457c36e86be061db3512e589ae99d74606524e34c571610b6178282b5d8"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 35,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0035.png",
+  "page_image_sha256": "78215bfcf06f60151081b241f1336076e0d11e2d7232af57a253b2f4a3a8c7a1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0035_assets.json"
+}

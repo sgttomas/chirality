@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 419,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 12.18 TIME HISTORY OF SAFETY VALVE RELIEVING FORCE",
+      "slug": "time-history-safety-valve-relieving-force",
+      "bbox_norm": [0.08, 0.60, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Plot showing specified valve opening time, actual force history, and idealized force history versus time. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

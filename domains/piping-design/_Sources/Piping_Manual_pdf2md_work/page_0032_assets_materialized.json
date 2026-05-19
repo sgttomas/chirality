@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0032.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0032_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1985
+      ],
+      "caption": "EXHIBIT 1-16 Typical Pipe Supports",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0032_fig01_exhibit-1-16-typical-pipe-supports.png",
+      "png_sha256": "302a180598c65a99682b64dcef08b63d6192d6534a977c07a729f4b9558591b1",
+      "slug": "exhibit-1-16-typical-pipe-supports",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0032.png",
+  "page_image_sha256": "7abfd42d8c48b9a98732dc75e49b959aa282da518b89e71a9b224b394e99c097",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0032_assets.json"
+}

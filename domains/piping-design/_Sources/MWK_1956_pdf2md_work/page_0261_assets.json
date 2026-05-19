@@ -1,0 +1,34 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 261,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Schematic of a triangular/X-braced frame structure supporting a concentrated weight W=mg at top point O; bbox includes figure and caption with whitespace margin.",
+    "asset_note: Schematic of a horizontal cantilever beam of length L with concentrated end weight W at point O; bbox includes figure and caption with whitespace margin."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Structure supporting a weight.",
+      "bbox_norm": [
+        0.06,
+        0.09,
+        0.49,
+        0.29
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "End weight on a cantilever.",
+      "bbox_norm": [
+        0.06,
+        0.395,
+        0.49,
+        0.52
+      ]
+    }
+  ]
+}

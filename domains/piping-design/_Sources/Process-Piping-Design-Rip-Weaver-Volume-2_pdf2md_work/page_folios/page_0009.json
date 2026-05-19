@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "SUCCESS",
+  "page": 9,
+  "page_label": "vii",
+  "page_label_source": "vlm",
+  "location": "bottom-center",
+  "confidence": "high",
+  "rationale": "Lowercase Roman numeral vii centered in footer of Preface page."
+}

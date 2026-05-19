@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 157,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p157_fig01",
+      "caption": "EXHIBIT 6-53 Tower-Mounted Air Cooler",
+      "bbox_norm": [0.06, 0.16, 0.49, 0.58]
+    },
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p157_fig02",
+      "caption": "EXHIBIT 6-54 Stub-In Reboiler",
+      "bbox_norm": [0.49, 0.16, 0.95, 0.55]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,91 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0079.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0079_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        1419
+      ],
+      "caption": "Figure 2-23. Phase 2 of pipe support spacing. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0079_fig01_phase-2-pipe-support-spacing.png",
+      "png_sha256": "8252f9317b23bc0183ded56ac20de2db7953d90c46bb2d3d862951a5506c5caf",
+      "slug": "phase-2-pipe-support-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0079_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.54,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1155,
+        1510,
+        2871
+      ],
+      "caption": "Table 2-1. Pipe with Hold-Down at One End (Corners and Intersections) Cantilevered. To Be Used for Calculating the Maximum Span at Corners and Intersections",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0079_tbl01_pipe-span-corners-intersections.png",
+      "png_sha256": "243231c7ef7154fd6e9a49f4dc9ad07356b211834c08cda082fa8bd8102ec2c5",
+      "slug": "pipe-span-corners-intersections",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0079_tbl01_pipe-span-corners-intersections.json",
+      "table_data_json_sha256": "9b8ad79645de91ee0b099a325bed53a40f49fa66dc1765cb723ce0092fefb81b",
+      "table_data_sha256": "9b8ad79645de91ee0b099a325bed53a40f49fa66dc1765cb723ce0092fefb81b",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0079_tbl01_pipe-span-corners-intersections.xlsx",
+      "xlsx_sha256": "fac3f31c9c5ec5e30c0bf149276c05ce070b89fd5192418978af21ba83cdf968"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0079_fig02",
+      "bbox_norm": [
+        0.52,
+        0.48,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        1203,
+        1419,
+        2560,
+        3069
+      ],
+      "caption": "Figure 2-24. Maximum pipe span at corners and intersections.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0079_fig02_max-pipe-span-corners-intersections.png",
+      "png_sha256": "6407577db6605af8cfab9397089ff81084131a27c5cee6ab30f64ae34b2b7e6e",
+      "slug": "max-pipe-span-corners-intersections",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 79,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0079.png",
+  "page_image_sha256": "5219aca91129d0a45bccd196c801b868c94d2a31eeb41efa40b966868c0d4a0e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0079_assets.json"
+}

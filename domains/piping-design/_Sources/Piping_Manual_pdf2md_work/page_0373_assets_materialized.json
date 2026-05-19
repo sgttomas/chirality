@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0373.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0373_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        1057
+      ],
+      "caption": "EXHIBIT 14-13 Side-Mounted Internal Level Switch and Transmitter (a. Switch; b. Transmitter)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0373_fig01_exhibit-14-13-side-mounted-internal-leve.png",
+      "png_sha256": "2f4c53e840b47ed1c4445eb34d72210e71b90ea8ceeeb04ad4f97bfcf833f484",
+      "slug": "exhibit-14-13-side-mounted-internal-leve",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0373_fig02",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.52,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        727,
+        1457,
+        2544
+      ],
+      "caption": "EXHIBIT 14-14 Top-Mounted Internal Level Switch and Transmitter (a. Switch; b. Transmitter)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0373_fig02_exhibit-14-14-top-mounted-internal-level.png",
+      "png_sha256": "252be84e5ff6628897e4212ad867821b13b77c0031574f9101b2679e61d18d20",
+      "slug": "exhibit-14-14-top-mounted-internal-level",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 373,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0373.png",
+  "page_image_sha256": "c6fd3661174398d0299eaebbf96c759c20974d25e01ba67ea417e744fdd8afb8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0373_assets.json"
+}

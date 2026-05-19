@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0057.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0057_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        2093
+      ],
+      "caption": "Table 3-7 Tank Spacing Table\u2014Condition 3",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0057_tbl01_tank-spacing-table-condition-3.png",
+      "png_sha256": "9266285d7c3d467a5d2a57f6363558e86f2c7fb607355024a1797956029a3e45",
+      "slug": "tank-spacing-table-condition-3",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0057_tbl01_tank-spacing-table-condition-3.json",
+      "table_data_json_sha256": "d5414fb46b804463f3232003a69677aa6882d1e42abaf336ed1bcf7caa30e258",
+      "table_data_sha256": "d5414fb46b804463f3232003a69677aa6882d1e42abaf336ed1bcf7caa30e258",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0057_tbl01_tank-spacing-table-condition-3.xlsx",
+      "xlsx_sha256": "4c1272c066f1efc2ee0a8bd6972931f50b80c09f90a764635534b93be924584f"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 57,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0057.png",
+  "page_image_sha256": "55ccbf071d97b0f21742ba49d1bca72a315967761cde84b8fba0f8e8bd656476",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0057_assets.json"
+}

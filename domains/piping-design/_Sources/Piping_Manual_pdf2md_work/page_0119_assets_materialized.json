@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0119.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0119_fig01",
+      "bbox_norm": [
+        0.06,
+        0.1,
+        0.52,
+        0.55
+      ],
+      "bbox_px": [
+        26,
+        166,
+        1464,
+        1988
+      ],
+      "caption": "EXHIBIT 5-22 Vertical Drum Platform Floor Space Area Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0119_fig01_exhibit-5-22-vertical-drum-platform-floo.png",
+      "png_sha256": "297c06bee3b3b7cf9bc64621c1a93b963d57a09015096b2882b265c11f815b62",
+      "slug": "exhibit-5-22-vertical-drum-platform-floo",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0119_fig02",
+      "bbox_norm": [
+        0.52,
+        0.1,
+        0.96,
+        0.36
+      ],
+      "bbox_px": [
+        1207,
+        166,
+        2569,
+        1359
+      ],
+      "caption": "EXHIBIT 5-23 Horizontal Drum Platform Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0119_fig02_exhibit-5-23-horizontal-drum-platform-ar.png",
+      "png_sha256": "fc5500f85ffbb0c8787f569d0608b1194fe54825ae47a0149b1840c821399aa6",
+      "slug": "exhibit-5-23-horizontal-drum-platform-ar",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0119_fig03",
+      "bbox_norm": [
+        0.1,
+        0.56,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        128,
+        1690,
+        2569,
+        3248
+      ],
+      "caption": "EXHIBIT 5-24 Horizontal Drum Pipe Supports",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0119_fig03_exhibit-5-24-horizontal-drum-pipe-suppor.png",
+      "png_sha256": "024a125abe4a6a17d5aceaf01533c786ef8aee4779fc00ef1f69b280ffb37151",
+      "slug": "exhibit-5-24-horizontal-drum-pipe-suppor",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 119,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0119.png",
+  "page_image_sha256": "1ba597c419155ea99fbc7e2a3dc87f20029e7f1c98ccca2bb4c29b843cd37b50",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0119_assets.json"
+}

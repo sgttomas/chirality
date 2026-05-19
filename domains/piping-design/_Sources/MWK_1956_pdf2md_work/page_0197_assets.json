@@ -1,0 +1,22 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.58
+      ],
+      "caption": "M.W. Kellogg Co. Form F-1 \u2014 Piping Flexibility and Stress Analysis: Moments and Stresses (Hot / Cold / Equiv.). Worksheet showing conversion to coordinate rules and calculated reactions for points 1-8, including SigmaFx, SigmaFy, moments (SigmaMx, SigmaMy), and stresses (Sx, Sy, Sz) based on hot modulus E_h.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 197,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

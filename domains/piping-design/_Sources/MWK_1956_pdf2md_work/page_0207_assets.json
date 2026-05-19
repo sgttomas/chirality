@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 207,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure containing five photographic sub-images arranged in three rows (two top, one center, two bottom) showing scale models of power plant piping used for flexibility analysis. Caption below bottom row."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 6.8 Models of power plant piping.",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.92
+      ]
+    }
+  ]
+}

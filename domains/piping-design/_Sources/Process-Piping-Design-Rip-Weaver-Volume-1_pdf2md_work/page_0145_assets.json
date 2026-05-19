@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 145,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 7-10. Typical ladder and platform details.",
+      "slug": "typical-ladder-platform-details",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing elevation of side approach ladder, plan of typical monorail platform, collared opening detail, section A, and bracket details (A, B, C) with dimensions and annotations. Caption visible at bottom of page."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,427 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 485,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "MODULUS OF ELASTICITY (1.E6 PSI) NOTE: 1 PSI = 6.895 KPA",
+      "slug": "modulus-of-elasticity-1e6-psi",
+      "bbox_norm": [0.14, 0.14, 0.95, 0.75],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [4, 8, 12],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "****", "text": "**** means data not available. (Check the code book for the most updated values.)" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "MATL", "row_span": 2, "is_header": true },
+              { "value": "Temperature (°F)", "col_span": 18, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "-325", "is_header": true },
+              { "value": "-200", "is_header": true },
+              { "value": "-100", "is_header": true },
+              { "value": "70", "is_header": true },
+              { "value": "200", "is_header": true },
+              { "value": "300", "is_header": true },
+              { "value": "400", "is_header": true },
+              { "value": "500", "is_header": true },
+              { "value": "600", "is_header": true },
+              { "value": "700", "is_header": true },
+              { "value": "800", "is_header": true },
+              { "value": "900", "is_header": true },
+              { "value": "1000", "is_header": true },
+              { "value": "1100", "is_header": true },
+              { "value": "1200", "is_header": true },
+              { "value": "1300", "is_header": true },
+              { "value": "1400", "is_header": true },
+              { "value": "1500", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CS", "type": "text" },
+              { "value": 31.4, "type": "number" },
+              { "value": 30.8, "type": "number" },
+              { "value": 30.2, "type": "number" },
+              { "value": 29.5, "type": "number" },
+              { "value": 28.8, "type": "number" },
+              { "value": 28.3, "type": "number" },
+              { "value": 27.7, "type": "number" },
+              { "value": 27.3, "type": "number" },
+              { "value": 26.7, "type": "number" },
+              { "value": 25.5, "type": "number" },
+              { "value": 24.2, "type": "number" },
+              { "value": 22.4, "type": "number" },
+              { "value": 20.4, "type": "number" },
+              { "value": 18.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HS", "type": "text" },
+              { "value": 31.2, "type": "number" },
+              { "value": 30.6, "type": "number" },
+              { "value": 30.0, "type": "number" },
+              { "value": 29.3, "type": "number" },
+              { "value": 28.6, "type": "number" },
+              { "value": 28.1, "type": "number" },
+              { "value": 27.5, "type": "number" },
+              { "value": 27.1, "type": "number" },
+              { "value": 26.5, "type": "number" },
+              { "value": 25.3, "type": "number" },
+              { "value": 24.0, "type": "number" },
+              { "value": 22.3, "type": "number" },
+              { "value": 20.2, "type": "number" },
+              { "value": 17.9, "type": "number" },
+              { "value": 15.4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CM", "type": "text" },
+              { "value": 31.1, "type": "number" },
+              { "value": 30.5, "type": "number" },
+              { "value": 29.9, "type": "number" },
+              { "value": 29.2, "type": "number" },
+              { "value": 28.5, "type": "number" },
+              { "value": 28.0, "type": "number" },
+              { "value": 27.4, "type": "number" },
+              { "value": 27.0, "type": "number" },
+              { "value": 26.4, "type": "number" },
+              { "value": 25.3, "type": "number" },
+              { "value": 23.9, "type": "number" },
+              { "value": 22.2, "type": "number" },
+              { "value": 20.1, "type": "number" },
+              { "value": 17.8, "type": "number" },
+              { "value": 15.3, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "LC", "type": "text" },
+              { "value": 31.6, "type": "number" },
+              { "value": 31.0, "type": "number" },
+              { "value": 30.4, "type": "number" },
+              { "value": 29.7, "type": "number" },
+              { "value": 29.0, "type": "number" },
+              { "value": 28.5, "type": "number" },
+              { "value": 27.9, "type": "number" },
+              { "value": 27.5, "type": "number" },
+              { "value": 26.9, "type": "number" },
+              { "value": 26.3, "type": "number" },
+              { "value": 25.5, "type": "number" },
+              { "value": 24.8, "type": "number" },
+              { "value": 23.9, "type": "number" },
+              { "value": 23.0, "type": "number" },
+              { "value": 21.8, "type": "number" },
+              { "value": 20.5, "type": "number" },
+              { "value": 18.9, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "IC", "type": "text" },
+              { "value": 32.9, "type": "number" },
+              { "value": 32.3, "type": "number" },
+              { "value": 31.7, "type": "number" },
+              { "value": 30.9, "type": "number" },
+              { "value": 30.1, "type": "number" },
+              { "value": 29.7, "type": "number" },
+              { "value": 29.0, "type": "number" },
+              { "value": 28.6, "type": "number" },
+              { "value": 28.0, "type": "number" },
+              { "value": 27.3, "type": "number" },
+              { "value": 26.1, "type": "number" },
+              { "value": 24.7, "type": "number" },
+              { "value": 22.7, "type": "number" },
+              { "value": 20.4, "type": "number" },
+              { "value": 18.2, "type": "number" },
+              { "value": 15.5, "type": "number" },
+              { "value": 12.7, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HC", "type": "text" },
+              { "value": 31.2, "type": "number" },
+              { "value": 30.7, "type": "number" },
+              { "value": 30.1, "type": "number" },
+              { "value": 29.2, "type": "number" },
+              { "value": 28.5, "type": "number" },
+              { "value": 27.9, "type": "number" },
+              { "value": 27.3, "type": "number" },
+              { "value": 26.7, "type": "number" },
+              { "value": 26.1, "type": "number" },
+              { "value": 25.6, "type": "number" },
+              { "value": 24.7, "type": "number" },
+              { "value": 22.2, "type": "number" },
+              { "value": 21.5, "type": "number" },
+              { "value": 19.1, "type": "number" },
+              { "value": 16.6, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SS", "type": "text" },
+              { "value": 30.3, "type": "number" },
+              { "value": 29.7, "type": "number" },
+              { "value": 29.1, "type": "number" },
+              { "value": 28.3, "type": "number" },
+              { "value": 27.6, "type": "number" },
+              { "value": 27.0, "type": "number" },
+              { "value": 26.5, "type": "number" },
+              { "value": 25.8, "type": "number" },
+              { "value": 25.3, "type": "number" },
+              { "value": 24.8, "type": "number" },
+              { "value": 24.1, "type": "number" },
+              { "value": 23.5, "type": "number" },
+              { "value": 22.8, "type": "number" },
+              { "value": 22.1, "type": "number" },
+              { "value": 21.2, "type": "number" },
+              { "value": 20.2, "type": "number" },
+              { "value": 19.2, "type": "number" },
+              { "value": 18.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3T", "type": "text" },
+              { "value": 30.3, "type": "number" },
+              { "value": 29.7, "type": "number" },
+              { "value": 29.1, "type": "number" },
+              { "value": 28.3, "type": "number" },
+              { "value": 27.6, "type": "number" },
+              { "value": 27.0, "type": "number" },
+              { "value": 26.5, "type": "number" },
+              { "value": 25.8, "type": "number" },
+              { "value": 25.3, "type": "number" },
+              { "value": 24.8, "type": "number" },
+              { "value": 24.1, "type": "number" },
+              { "value": 23.5, "type": "number" },
+              { "value": 22.8, "type": "number" },
+              { "value": 22.1, "type": "number" },
+              { "value": 21.2, "type": "number" },
+              { "value": 20.2, "type": "number" },
+              { "value": 19.2, "type": "number" },
+              { "value": 18.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "MO", "type": "text" },
+              { "value": 27.8, "type": "number" },
+              { "value": 27.3, "type": "number" },
+              { "value": 26.8, "type": "number" },
+              { "value": 26.0, "type": "number" },
+              { "value": 25.4, "type": "number" },
+              { "value": 25.0, "type": "number" },
+              { "value": 24.7, "type": "number" },
+              { "value": 24.3, "type": "number" },
+              { "value": 24.1, "type": "number" },
+              { "value": 23.7, "type": "number" },
+              { "value": 23.1, "type": "number" },
+              { "value": 22.6, "type": "number" },
+              { "value": 22.1, "type": "number" },
+              { "value": 21.7, "type": "number" },
+              { "value": 21.2, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "NS", "type": "text" },
+              { "value": 29.6, "type": "number" },
+              { "value": 29.1, "type": "number" },
+              { "value": 28.5, "type": "number" },
+              { "value": 27.8, "type": "number" },
+              { "value": 27.1, "type": "number" },
+              { "value": 26.7, "type": "number" },
+              { "value": 26.1, "type": "number" },
+              { "value": 25.7, "type": "number" },
+              { "value": 25.2, "type": "number" },
+              { "value": 24.6, "type": "number" },
+              { "value": 23.9, "type": "number" },
+              { "value": 23.2, "type": "number" },
+              { "value": 22.4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "AL", "type": "text" },
+              { "value": 11.3, "type": "number" },
+              { "value": 10.9, "type": "number" },
+              { "value": 10.7, "type": "number" },
+              { "value": 10.2, "type": "number" },
+              { "value": 9.7, "type": "number" },
+              { "value": 9.4, "type": "number" },
+              { "value": 8.9, "type": "number" },
+              { "value": 8.3, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CI", "type": "text" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": 13.4, "type": "number" },
+              { "value": 13.2, "type": "number" },
+              { "value": 12.9, "type": "number" },
+              { "value": 12.6, "type": "number" },
+              { "value": 12.2, "type": "number" },
+              { "value": 11.7, "type": "number" },
+              { "value": 11.0, "type": "number" },
+              { "value": 10.2, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BZ", "type": "text" },
+              { "value": 14.8, "type": "number" },
+              { "value": 14.6, "type": "number" },
+              { "value": 14.4, "type": "number" },
+              { "value": 14.0, "type": "number" },
+              { "value": 13.7, "type": "number" },
+              { "value": 13.4, "type": "number" },
+              { "value": 13.2, "type": "number" },
+              { "value": 12.9, "type": "number" },
+              { "value": 12.5, "type": "number" },
+              { "value": 12.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BS", "type": "text" },
+              { "value": 15.9, "type": "number" },
+              { "value": 15.6, "type": "number" },
+              { "value": 15.4, "type": "number" },
+              { "value": 15.0, "type": "number" },
+              { "value": 14.6, "type": "number" },
+              { "value": 14.4, "type": "number" },
+              { "value": 14.1, "type": "number" },
+              { "value": 13.8, "type": "number" },
+              { "value": 13.4, "type": "number" },
+              { "value": 12.8, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CN", "type": "text" },
+              { "value": 23.3, "type": "number" },
+              { "value": 22.9, "type": "number" },
+              { "value": 22.7, "type": "number" },
+              { "value": 22.0, "type": "number" },
+              { "value": 21.5, "type": "number" },
+              { "value": 21.1, "type": "number" },
+              { "value": 20.7, "type": "number" },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] },
+              { "value": null, "type": "missing", "raw": "****", "footnote_markers": ["****"] }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "NC", "type": "text" },
+              { "value": 30.5, "type": "number" },
+              { "value": 29.9, "type": "number" },
+              { "value": 29.4, "type": "number" },
+              { "value": 28.5, "type": "number" },
+              { "value": 27.8, "type": "number" },
+              { "value": 27.4, "type": "number" },
+              { "value": 27.1, "type": "number" },
+              { "value": 26.6, "type": "number" },
+              { "value": 26.4, "type": "number" },
+              { "value": 25.9, "type": "number" },
+              { "value": 25.4, "type": "number" },
+              { "value": 24.8, "type": "number" },
+              { "value": 24.2, "type": "number" },
+              { "value": 23.8, "type": "number" },
+              { "value": 23.2, "type": "number" },
+              { "value": 22.6, "type": "number" },
+              { "value": 22.0, "type": "number" },
+              { "value": 21.4, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row header: first row has 'MATL' spanning both header rows and 'Temperature (°F)' spanning all 18 value columns; second header row lists individual temperature values (-325 through 1500 °F). Four visible material groups separated by blank rows in the source (CS/HS/CM/LC, IC/HC/SS/3T, MO/NS/AL/CI, BZ/BS/CN/NC). **** denotes data not available."
+    }
+  ],
+  "issues": []
+}

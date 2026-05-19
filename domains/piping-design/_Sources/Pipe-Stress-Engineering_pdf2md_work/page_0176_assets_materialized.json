@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0176.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0176_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2543,
+        2026
+      ],
+      "caption": "FIG. 6.5 PRE-COMPRESSED SPRING SWAY BRACE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0176_fig01_pre-compressed-spring-sway-brace.png",
+      "png_sha256": "b1d032524a75a37f49257407a58cc4d4c8d98fd045eaf89187cf1e949cd27eb3",
+      "slug": "pre-compressed-spring-sway-brace",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 176,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0176.png",
+  "page_image_sha256": "243125db41dec00a71fa6a8094a73ca43e6fc9f92e636cda8b191ffc5194bf9c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0176_assets.json"
+}

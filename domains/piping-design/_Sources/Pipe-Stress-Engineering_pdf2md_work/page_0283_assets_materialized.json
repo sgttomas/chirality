@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0283.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0283_fig01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1509
+      ],
+      "caption": "FIG. 8.14 NOZZLE AXIAL DISPLACEMENT AT SPHERICAL SHELL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0283_fig01_nozzle-axial-displacement-spherical-shel.png",
+      "png_sha256": "734a69a78cc3209342ff6bc469f92a02864cb8fb16e10fd31b6e958e5f124380",
+      "slug": "nozzle-axial-displacement-spherical-shel",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0283_fig02",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2000,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 8.15 NOZZLE ROTATIONAL DISPLACEMENT AT SPHERICAL SHELL",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0283_fig02_nozzle-rotational-displacement-spherical.png",
+      "png_sha256": "a15ef5e38d069f31f647ffc812bf4a721464a13a8da7691d6f99dffabb40e3db",
+      "slug": "nozzle-rotational-displacement-spherical",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 283,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0283.png",
+  "page_image_sha256": "fdbe4443c55430a4655d3b724d674a56f015dc98cf5fab71c0214f58449914e9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0283_assets.json"
+}

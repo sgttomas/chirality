@@ -1,0 +1,215 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 15,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-1. Forged steel socketwelding fittings (2000, 3000, 4000 and 6000 pound W.O.G.). Reprinted courtesy of Crane Co.",
+      "slug": "forged-steel-socketwelding-fittings-crane",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.38],
+      "confidence": "high",
+      "notes": "Illustrations of 90° Elbow, Tee, 45° Elbow, Cross, 90° Street Elbow, Coupling, Reducer, Half Coupling, Cap, 45° Y-Band, Round Head Plug, Square Head Plug, Hexagon Head Plug, Face Bushing, and Hexagon Bushing with part numbers and pound ratings. Caption appears at bottom of page."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Working Pressures — Steam, Water, Oil, Oil Vapor, Gas, or Air",
+      "slug": "working-pressures-steam-water-oil-gas-air",
+      "bbox_norm": [0.03, 0.37, 0.53, 0.76],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "a",
+            "text": "Product used within the jurisdiction of Section 1, Power Boilers, of the ASA Code for Pressure Piping B31.1 is subject to the same maximum temperature limitations placed upon the material in Table P2, 1955 edition thereof."
+          },
+          {
+            "marker": "b",
+            "text": "Product used within the jurisdiction of Section 1, Power Piping, of the ASA Code for Pressure Piping B31.1 is subject to the same maximum temperature limitations placed upon the material in Table P2, 1955 edition thereof."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Temp.", "is_header": true },
+              { "value": "Carbon Steel ASTM A105, Grade II", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "", "is_header": true },
+              { "value": "2000-Pound Psi, Non-Shock W.O.G.", "is_header": true },
+              { "value": "3000-Pound W.O.G.", "is_header": true },
+              { "value": "4000-Pound W.O.G.", "is_header": true },
+              { "value": "6000-Pound W.O.G.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Deg. Fahr.", "is_header": true },
+              { "value": null, "type": "missing", "raw": "", "is_header": true },
+              { "value": null, "type": "missing", "raw": "", "is_header": true },
+              { "value": null, "type": "missing", "raw": "", "is_header": true },
+              { "value": null, "type": "missing", "raw": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100°", "type": "text" },
+              { "value": 2000, "type": "number", "unit": "psi" },
+              { "value": 3000, "type": "number", "unit": "psi" },
+              { "value": 4000, "type": "number", "unit": "psi" },
+              { "value": 6000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "200", "type": "text" },
+              { "value": 1965, "type": "number", "unit": "psi" },
+              { "value": 2910, "type": "number", "unit": "psi" },
+              { "value": 3910, "type": "number", "unit": "psi" },
+              { "value": 5910, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": 1940, "type": "number", "unit": "psi" },
+              { "value": 2915, "type": "number", "unit": "psi" },
+              { "value": 3830, "type": "number", "unit": "psi" },
+              { "value": 5830, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": 1900, "type": "number", "unit": "psi" },
+              { "value": 2700, "type": "number", "unit": "psi" },
+              { "value": 3700, "type": "number", "unit": "psi" },
+              { "value": 5700, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500", "type": "text" },
+              { "value": 1715, "type": "number", "unit": "psi" },
+              { "value": 2645, "type": "number", "unit": "psi" },
+              { "value": 3510, "type": "number", "unit": "psi" },
+              { "value": 5510, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": 1430, "type": "number", "unit": "psi" },
+              { "value": 2150, "type": "number", "unit": "psi" },
+              { "value": 4300, "type": "number", "unit": "psi" },
+              { "value": 4300, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "650", "type": "text" },
+              { "value": 1430, "type": "number", "unit": "psi" },
+              { "value": 2150, "type": "number", "unit": "psi" },
+              { "value": 4300, "type": "number", "unit": "psi" },
+              { "value": 4300, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "700", "type": "text" },
+              { "value": 1190, "type": "number", "unit": "psi" },
+              { "value": 1775, "type": "number", "unit": "psi" },
+              { "value": 3500, "type": "number", "unit": "psi" },
+              { "value": 3500, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "750", "type": "text" },
+              { "value": 1190, "type": "number", "unit": "psi" },
+              { "value": 1775, "type": "number", "unit": "psi" },
+              { "value": 3500, "type": "number", "unit": "psi" },
+              { "value": 3500, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "800", "type": "text" },
+              { "value": 630, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2500, "type": "number", "unit": "psi" },
+              { "value": 2500, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "850", "type": "text" },
+              { "value": 630, "type": "number", "unit": "psi" },
+              { "value": 1350, "type": "number", "unit": "psi" },
+              { "value": 2500, "type": "number", "unit": "psi" },
+              { "value": 2500, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900", "type": "text" },
+              { "value": 280, "type": "number", "unit": "psi" },
+              { "value": 570, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "950", "type": "text" },
+              { "value": 280, "type": "number", "unit": "psi" },
+              { "value": 570, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1000", "type": "text" },
+              { "value": 130, "type": "number", "unit": "psi" },
+              { "value": 360, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "975±1", "type": "text", "raw": "975±1" },
+              { "value": 130, "type": "number", "unit": "psi" },
+              { "value": 360, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1000", "type": "text" },
+              { "value": 130, "type": "number", "unit": "psi" },
+              { "value": 360, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" },
+              { "value": 1000, "type": "number", "unit": "psi" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "5-column table with 3 header rows: material/grade spanning 4 cols, then pound-rating sub-headers, then Deg. Fahr. label row. Temperature in degrees Fahrenheit; pressure values in psi. Two ASA code footnotes apply to the whole table. The 975±1 and duplicate 1000 rows near the bottom reflect the original source layout."
+    }
+  ],
+  "issues": []
+}

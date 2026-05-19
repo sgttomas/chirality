@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 16,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-2. P-100A suction piping. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "p-100a-suction-piping",
+      "bbox_norm": [0.03, 0.50, 0.52, 0.95],
+      "confidence": "high",
+      "notes": "Plan and elevation diagram of P-100A suction piping with caption visible below"
+    }
+  ],
+  "issues": []
+}

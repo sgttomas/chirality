@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0251.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0251_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2509,
+        1235
+      ],
+      "caption": "FIG. 7.14 USING BELLOW LATERAL MOVEMENT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0251_fig01_using-bellow-lateral-movement.png",
+      "png_sha256": "9664fa4b1d43ff1b3afa0bb73263ce56481fadf54ba039ff45a450b60078d325",
+      "slug": "using-bellow-lateral-movement",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0251_fig02",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1940,
+        2509,
+        3528
+      ],
+      "caption": "FIG. 7.15 UNIVERSAL EXPANSION JOINT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0251_fig02_universal-expansion-joint.png",
+      "png_sha256": "1beace8891c95617647c71cae155d41e25ffa240cf1338c6bffba64136bdf36f",
+      "slug": "universal-expansion-joint",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 251,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0251.png",
+  "page_image_sha256": "ee0c80c4218a04f2f8cd93fbf05b001f2783c608fee7a7d28f9965f0b1edc942",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0251_assets.json"
+}

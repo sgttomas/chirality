@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0106.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0106_fig01",
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        25,
+        35,
+        2480,
+        3439
+      ],
+      "caption": "Figure 5.2  Density 5 kg/m\u00b3 down to 0.1 kg/m\u00b3",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0106_fig01_figure-5-2-density-5-kg-m3-down-to-0-1-k.png",
+      "png_sha256": "bb0de449cf38a721aa669296b7f565ee75669f4b65a228e559f20b68f9e9b7ee",
+      "slug": "figure-5-2-density-5-kg-m3-down-to-0-1-k",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 106,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0106.png",
+  "page_image_sha256": "65cca1f2a95bcb322d249ad9203a5a0259a60ec39b241ebce0f898929e35b024",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0106_assets.json"
+}

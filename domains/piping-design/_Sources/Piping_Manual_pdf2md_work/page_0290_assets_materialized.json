@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0290.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0290_fig01",
+      "bbox_norm": [
+        0.48,
+        0.14,
+        1.0,
+        0.74
+      ],
+      "bbox_px": [
+        1102,
+        298,
+        2562,
+        2614
+      ],
+      "caption": "EXHIBIT 11-15 Battery Limit Valving: Single-Level Rack (Process/Off-Site Common Elevation)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0290_fig01_exhibit-11-15-battery-limit-valving-sing.png",
+      "png_sha256": "653b3442dbf6a27a870f034bcf9ff74c5ae98fa35a8a6713dcc85bbe12071b42",
+      "slug": "exhibit-11-15-battery-limit-valving-sing",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 290,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0290.png",
+  "page_image_sha256": "74b9e7ef45bc138747f29f64b066d0fa92cc67b206a9889063a76e703e9c9c7e",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0290_assets.json"
+}

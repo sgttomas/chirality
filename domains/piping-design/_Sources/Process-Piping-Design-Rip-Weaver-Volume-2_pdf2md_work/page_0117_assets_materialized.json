@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0117.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0117_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2211
+      ],
+      "caption": "Figure 3-27. Symmetrical flow at four-pass heater. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0117_fig01_symmetrical-flow-four-pass-heater.png",
+      "png_sha256": "8eddc124b428d18cc80a717d92771973361ae189bc024f4ade9ab115c2741c27",
+      "slug": "symmetrical-flow-four-pass-heater",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 117,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0117.png",
+  "page_image_sha256": "ae7dc3fe3aef99c43c38874f90cac733eb0ebcb1c18fc2e840c9d1c243f41df2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0117_assets.json"
+}

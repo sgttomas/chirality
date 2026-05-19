@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0210.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0210_fig01",
+      "bbox_norm": [
+        0.02,
+        0.03,
+        0.48,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1355,
+        1156
+      ],
+      "caption": "EXHIBIT 8-19 Maintenance and Operational Access Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0210_fig01_exhibit-8-19-maintenance-and-operational.png",
+      "png_sha256": "dbcf020ff217667ad3e7b8efc38d5c974cad15214281d5af0097e1816805ec86",
+      "slug": "exhibit-8-19-maintenance-and-operational",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0210_fig02",
+      "bbox_norm": [
+        0.46,
+        0.03,
+        0.98,
+        0.3
+      ],
+      "bbox_px": [
+        1048,
+        0,
+        2556,
+        1156
+      ],
+      "caption": "EXHIBIT 8-18 Block Valve Handwheel Elevations. a. Preferred Arrangement b. Alternative Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0210_fig02_exhibit-8-18-block-valve-handwheel-eleva.png",
+      "png_sha256": "d6f40eff964c3e3bcf3fcffa199251304001d35c3fc86048d541b5b8cd0f4055",
+      "slug": "exhibit-8-18-block-valve-handwheel-eleva",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0210_fig03",
+      "bbox_norm": [
+        0.02,
+        0.3,
+        0.5,
+        0.64
+      ],
+      "bbox_px": [
+        0,
+        826,
+        1406,
+        2280
+      ],
+      "caption": "EXHIBIT 8-20 Primary and Standby Pump Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0210_fig03_exhibit-8-20-primary-and-standby-pump-ar.png",
+      "png_sha256": "5bb61ae31e93fa42fe529792dfb7edb2371326cd958093e3b788cf9ebe01e30b",
+      "slug": "exhibit-8-20-primary-and-standby-pump-ar",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 210,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0210.png",
+  "page_image_sha256": "3b7e1a2acebd1b0fef5a4491c42f8e0dd50ad007c7c54cc4eac66fa76d757b36",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0210_assets.json"
+}

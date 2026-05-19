@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0102.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0102_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.27,
+        0.5,
+        0.49
+      ],
+      "bbox_px": [
+        24,
+        722,
+        1340,
+        1772
+      ],
+      "caption": "Table 4.3 Comparison of maximum stresses and locations - Modified Mitchell vs General Analytical Method",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0102_tbl01_table-4-3-comparison-of-maximum-stresses.png",
+      "png_sha256": "1b7433c64570b49eba3b787ee5dfc8880f00072b1ca26d3dcc8e7eee180adb76",
+      "slug": "table-4-3-comparison-of-maximum-stresses",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 102,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0102.png",
+  "page_image_sha256": "daa96b9c49861158b50283e287c6b162da6f5e9441b795ff6e0c21c6d651344e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0102_assets.json"
+}

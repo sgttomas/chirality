@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0451.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0451_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3304,
+        2556
+      ],
+      "caption": "Figure 17-17. Computer-generated piping isometric drawing with shop material list, cut pipe length table, and dimensioned isometric sketch (drawings 1D-CWR-094-03 and 1D-CWR-094-1 R/0, sheet 206).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0451_fig01_figure-17-17-computer-generated-piping-i.png",
+      "png_sha256": "dbe38382551f25f84a281603517e6fa4d6a74448e0d721851fd6b65c9282a200",
+      "slug": "figure-17-17-computer-generated-piping-i",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 451,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0451.png",
+  "page_image_sha256": "a193762d36dd5982c3f5a1a72af9e333650bde2094736dc1bb956db4e638be20",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0451_assets.json"
+}

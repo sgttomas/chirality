@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0191.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0191_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2514,
+        1832
+      ],
+      "caption": "Form No. K-7 \u2014 Pipe Flexibility and Stress Analysis Load Constants for X-Wind, Member K-7 (The M.W. Kellogg Co.)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0191_tbl01_form-k7-load-constants-x-wind-member-k7.png",
+      "png_sha256": "7b108e058ffb253f7614c538e8cb95eec8f8768cc26002a8f9cb2a8657cfc48c",
+      "slug": "form-k7-load-constants-x-wind-member-k7",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0191_tbl01_form-k7-load-constants-x-wind-member-k7.json",
+      "table_data_json_sha256": "cbc5d0a85f62c775b4dba44a0e45ac001d36e00a6605ba8b16bce25d900aed4d",
+      "table_data_sha256": "cbc5d0a85f62c775b4dba44a0e45ac001d36e00a6605ba8b16bce25d900aed4d",
+      "xlsx_path": "tables/MWK_1956_p0191_tbl01_form-k7-load-constants-x-wind-member-k7.xlsx",
+      "xlsx_sha256": "8387f7e5308c25a4e7a49fa3ed673cb55a9e6ed7a3050abb76de28abf1ae669d"
+    },
+    {
+      "asset_id": "MWK_1956_p0191_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.5,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1555,
+        2514,
+        3456
+      ],
+      "caption": "Form No. K-8 \u2014 Pipe Flexibility and Stress Analysis Load Constants for X-Wind, Member K-8 (The M.W. Kellogg Co.)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0191_tbl02_form-k8-load-constants-x-wind-member-k8.png",
+      "png_sha256": "6c0f0716c727ba0c7664c5e1d5f625b0eda2a3e672a5e4cae6ab0ae7a49830f5",
+      "slug": "form-k8-load-constants-x-wind-member-k8",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0191_tbl02_form-k8-load-constants-x-wind-member-k8.json",
+      "table_data_json_sha256": "bfd54c04933ae3d6b4c0f7c0e32328053b2d751a685a30786d5e633d1ae2a8a7",
+      "table_data_sha256": "bfd54c04933ae3d6b4c0f7c0e32328053b2d751a685a30786d5e633d1ae2a8a7",
+      "xlsx_path": "tables/MWK_1956_p0191_tbl02_form-k8-load-constants-x-wind-member-k8.xlsx",
+      "xlsx_sha256": "2368d0d699ec688d913bd3369a4c3e457a24f226bf1f3aead9f819f54e0f9c2e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 191,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0191.png",
+  "page_image_sha256": "cce407c0de75c33b34c10827fd1eea29959093320c5ec23c42c8967df3879d84",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0191_assets.json"
+}

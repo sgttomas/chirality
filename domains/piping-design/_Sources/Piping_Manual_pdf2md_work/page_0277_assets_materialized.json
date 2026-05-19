@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0277.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0277_fig01",
+      "bbox_norm": [
+        0.06,
+        0.2,
+        0.5,
+        0.45
+      ],
+      "bbox_px": [
+        26,
+        497,
+        1413,
+        1657
+      ],
+      "caption": "EXHIBIT 10-66 Stiffening Rings",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0277_fig01_exhibit-10-66-stiffening-rings.png",
+      "png_sha256": "1b87b4c9ca29fe906340c9873a8329b3aa7aa067f6ebdd5d4ba5b580d5583770",
+      "slug": "exhibit-10-66-stiffening-rings",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0277_fig02",
+      "bbox_norm": [
+        0.06,
+        0.45,
+        0.45,
+        0.74
+      ],
+      "bbox_px": [
+        26,
+        1326,
+        1284,
+        2618
+      ],
+      "caption": "EXHIBIT 10-67 Tower Weld Seams",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0277_fig02_exhibit-10-67-tower-weld-seams.png",
+      "png_sha256": "d5b7eb7abd46200bb8d33192923aeb06a155f7994a3e65b1037e055b48ce17e6",
+      "slug": "exhibit-10-67-tower-weld-seams",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0277_fig03",
+      "bbox_norm": [
+        0.48,
+        0.2,
+        0.94,
+        0.45
+      ],
+      "bbox_px": [
+        1105,
+        497,
+        2543,
+        1657
+      ],
+      "caption": "EXHIBIT 10-68 Utility Station Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0277_fig03_exhibit-10-68-utility-station-requiremen.png",
+      "png_sha256": "2fd87c1828d64236ee021dd18281a5c8d7b1171958c9c2a571e61025ec08bdad",
+      "slug": "exhibit-10-68-utility-station-requiremen",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 277,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0277.png",
+  "page_image_sha256": "780fef84e0638ee006afbcbea3fab636a15f39df09c95169204625e98fd544b1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0277_assets.json"
+}

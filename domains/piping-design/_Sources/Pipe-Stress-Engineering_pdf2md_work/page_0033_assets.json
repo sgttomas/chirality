@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 33,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 1.5 IMPACT TEST REQUIREMENT OF MILD CARBON STEEL PIPE (A-53, A-106, A-135, ETC.) [7]",
+      "slug": "impact-test-requirement-mild-carbon-steel-pipe",
+      "bbox_norm": [0.04, 0.54, 0.96, 0.98],
+      "confidence": "high",
+      "notes": "Chart showing temperature (°F and °C) vs. nominal wall thickness (in. and mm) with Curve B and an 'Impact Test Required' region below the curve. Caption visible below the chart."
+    }
+  ],
+  "issues": []
+}

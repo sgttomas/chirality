@@ -1,0 +1,57 @@
+Special Thermal Problems 369
+
+A large tensile stress is created at the crotch area of the miter bend junction. The above rough
+estimate shows that the stress generated from the quench of the rain shower is enough to cause the
+failure.
+
+In addition to the thermal stress created by a temperature gradient, the cold spot also produces a
+bowing effect, which has a tendency to bend the pipe into the shape shown by the dotted line. The free
+bowing shape, however, is suppressed by the stiffness of the system generating a large beam bending
+stress, again with tensile stress at the crotch area of the miter bend junction. The combination of this
+beam bending and thermal gradient stress, together with a dissimilar material weld, makes this type of
+failure almost a certainty. The calculation of the stress is superficial and is not required. The situation
+has to be avoided by all means.
+
+11.3. UN-INSULATED FLANGE CONNECTIONS
+
+The process piping code ASME B31.3 [12] paragraph 301.3.2 stipulates that the design temperature
+of un-insulated flanges, including those on fittings and valves, shall not exceed 90% of the fluid tem-
+perature. In other words, the design temperature of the un-insulated flange can be taken as 10% less
+than that of an insulated flange. This is a reasonable rule considering the large exposed surface of the
+flange. The rule provides some relief for high-temperature flanges operating at the higher end of the
+allowable stress table. A 100°F degree difference in temperature at that range may result in a substan-
+tial increase in the allowable stress. This rule has tempted engineers to adopt un-insulated designs for
+some high-temperature flanges.
+
+The un-insulated flange construction is fine when the piping is properly sheltered from environmen-
+tal effects. However, because most piping systems are installed outdoors in modern plants, the lack of
+insulation creates serious problems. The rain shower effect as discussed in the previous section is also
+applicable to un-insulated flanges. Nagging leakages have been experienced in many of the un-insulated
+high-temperature flange connections. It is preferred that the flanges be designed with insulation or at
+least with a rain hood installed.
+
+Lately, due to energy conservation issues, some plants have covered up bare flanges with insulation.
+This is good, but may have violated code rules and jeopardized structural integrity if the original un-
+insulated flanges were designed with the reduced design temperature allowed by un-insulated flanges.
+
+11.4 UNMATCHED SMALL BRANCH CONNECTIONS
+
+In a process plant, there are occasions when a small line carrying secondary fluid is tied or dumped
+to a main process line. The temperature of the fluid from the small inserted line can be quite different
+from that of the main process fluid. This temperature difference can create problems at the connec-
+tion and the area nearby. Because the small line is not the main process line, its importance is often
+overlooked.
+
+The problems associated with small off-temperature connections occur in two areas. One is the
+connection itself that might generate a high thermal stress, and the other is the cold spot created by
+the wetting or the impingement of the colder fluid on the main process pipe wall. The cold spot, as
+discussed in previous sections, can create both high thermal stress and thermal bowing. The discus-
+sion assumes that the branch flow is colder than the main process flow.
+
+Figure 11.11 shows some of the construction details used in small branch connections. Normally,
+the connection is constructed as shown in Fig. 11.11(a), if no special instruction is given. This simple
+direct connection will generate a high thermal stress at the junction due to the temperature gradient.
+This type of construction is not suitable for 300°F (170°C) or higher temperature differences between
+the branch flow and main flow. When the temperature difference is greater, a nozzle sleeve is generally
+used as shown in Fig. 11.11(b) to reduce the thermal stress. However, the cold fluid can wet the top
+portion of the pipe wall nearby if the branch flow rate is small, and it will impinge the bottom portion

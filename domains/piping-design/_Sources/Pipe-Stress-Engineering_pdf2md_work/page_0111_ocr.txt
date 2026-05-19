@@ -1,0 +1,57 @@
+\
+
+CHAPTER
+
+4
+
+CODE STRESS REQUIREMENTS
+
+The main purposes of piping stress analysis are: (1) to ensure structural integrity and (2) to maintain
+system operability. The first part is the main objective of the industrial piping codes. To ensure the
+structural integrity of the piping systems, the piping codes have assembled a set of procedures and
+specifications covering the minimum requirements for material, design, fabrication, erection, inspec-
+tion, and testing. The piping is ensured of proper safety factor on structural integrity when all code
+requirements are followed and satisfied. This chapter covers the stress requirements of the codes.
+
+This chapter will try to look at the code from a slightly different angle to help the reader better un-
+derstand its requirements. Some rationales of the requirements may be presented to help the reader
+understand and comply with the code. However, these rationales should not be interpreted as the
+intent of the code. They are just the personal interpretations of the authors. The exact intent of the
+code can be obtained through the code committee. The code book has detailed information of the of-
+ficial channels for submitting questions, comments, and requests for interpretation. Furthermore, this
+chapter contains only the general requirements related to piping stress. The reader should consult the
+most recent edition of the applicable code for the complete and updated requirements of the code.
+
+4.1 “DESIGN” CHAPTER OF THE PIPING CODES
+
+The code stress requirements are given in the chapter or part dealing with designs. Because there
+are many different sections of the codes, it is not possible to discuss the requirements of all the codes
+in detail. We will only discuss some of the key requirements. In this section, we will list some of
+the applicable codes and briefly explain their background. Currently, there are two main systems of
+standards covering the design of piping systems: the American National Standards published by the
+American Society of Mechanical Engineers (ASME) and European Standards published by Comité
+Européen de Normalisation (CEN). The following is the list of piping codes:
+
+(a) ASME Code for Pressure Piping, B31 [1]
+
+B31.1 Power Piping
+
+B31.3 Process Piping
+
+B31.4 Pipeline Transportation System for Liquid Hydrocarbons and Other Liquids
+B31.5 Refrigeration Piping and Heat Exchanger Components
+
+B31.8 Gas Transmission and Distribution Piping Systems
+
+B31.9 Building Services Piping
+
+B31.11 Slurry Transportation Piping Systems
+
+(b) ASME Boiler and Pressure Vessel Codes, Section-III Rules for Construction of Nuclear Facil-
+ity Components (B&PV Section-IID) [2]
+
+Subsection NB, Class 1 Components, NB-3600 Piping Design
+Subsection NC, Class 2 Components, NC-3600 Piping Design
+Subsection ND, Class 3 Components, ND-3600 Piping Design
+
+91

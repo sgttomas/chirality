@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0418.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0418_fig01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.52,
+        0.83
+      ],
+      "bbox_px": [
+        0,
+        827,
+        1460,
+        2912
+      ],
+      "caption": "EXHIBIT 16-6  Continuously Supported Spans",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0418_fig01_exhibit-16-6-continuously-supported-span.png",
+      "png_sha256": "fc223eaffe4b4af3db463e3f92ebd3923403e63c8b0d5d26193ac6581729e7fc",
+      "slug": "exhibit-16-6-continuously-supported-span",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 418,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0418.png",
+  "page_image_sha256": "fd412ed6d41a2e18edf966745ba2850d9df593c88f4da5be2e0ff2ece99afb0d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0418_assets.json"
+}

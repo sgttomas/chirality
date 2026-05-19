@@ -1,0 +1,134 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 180,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factor A (continued on following page)",
+      "slug": "conversion-factor-a",
+      "bbox_norm": [0.04, 0.38, 0.96, 0.94],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Acre", "type": "text" },
+            { "value": "x 10", "type": "text" },
+            { "value": "Square chain (Gunters)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acre", "type": "text" },
+            { "value": "x 160", "type": "text" },
+            { "value": "Rods", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acre", "type": "text" },
+            { "value": "x 1 x 10⁵", "type": "text" },
+            { "value": "Square links (Gunters)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acre", "type": "text" },
+            { "value": "x 0.4047", "type": "text" },
+            { "value": "Hectare or square hectometer", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acres", "type": "text" },
+            { "value": "x 43,560", "type": "text" },
+            { "value": "Square feet", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acres", "type": "text" },
+            { "value": "x 4,047", "type": "text" },
+            { "value": "Square meters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acres", "type": "text" },
+            { "value": "x 1.562 x 10⁻³", "type": "text" },
+            { "value": "Square miles", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acres", "type": "text" },
+            { "value": "x 4,840", "type": "text" },
+            { "value": "Square yards", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acres", "type": "text" },
+            { "value": "x 43,560", "type": "text" },
+            { "value": "Cubic feet", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acre-feet", "type": "text" },
+            { "value": "x 3.259 x 10⁵", "type": "text" },
+            { "value": "Gallons", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Acre-feet", "type": "text" },
+            { "value": "x 6.452", "type": "text" },
+            { "value": "Amperes/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square centimeters", "type": "text" },
+            { "value": "x 10⁴", "type": "text" },
+            { "value": "Amperes/square meter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square centimeters", "type": "text" },
+            { "value": "x 0.1550", "type": "text" },
+            { "value": "Amperes/square centimeters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square inch", "type": "text" },
+            { "value": "x 1,550", "type": "text" },
+            { "value": "Amperes/square meter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square inches", "type": "text" },
+            { "value": "x 10⁻⁴", "type": "text" },
+            { "value": "Amperes/square centimeter", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square meter", "type": "text" },
+            { "value": "x 6.452 x 10⁻⁴", "type": "text" },
+            { "value": "Amperes/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Amperes/square meter", "type": "text" },
+            { "value": "x 0.02471", "type": "text" },
+            { "value": "Acre (USA)", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Arc", "type": "text" },
+            { "value": "x 119.60", "type": "text" },
+            { "value": "Square yards", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Ares", "type": "text" },
+            { "value": "x 100", "type": "text" },
+            { "value": "Square meters", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Atmospheres", "type": "text" },
+            { "value": "x 14.7", "type": "text" },
+            { "value": "Pounds/square inch", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Atmospheres", "type": "text" },
+            { "value": "x 1.058", "type": "text" },
+            { "value": "Tons/square-foot", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column conversion table for letter A entries. No explicit column headers rendered in the source layout; columns are From / Multiply by / To. Caption appears as italic note at the bottom of the table area."
+    }
+  ],
+  "issues": []
+}

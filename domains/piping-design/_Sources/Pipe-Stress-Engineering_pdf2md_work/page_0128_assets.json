@@ -1,0 +1,138 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 128,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.3 Values of A for Miter Bend",
+      "slug": "values-of-a-for-miter-bend",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.25],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "*",
+            "text": "(tc − c) is the net thickness excluding corrosion and other allowances."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "TABLE 4.3\nVALUES OF A FOR MITER BEND",
+                "col_span": 4,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "(1) For U.S. customary units",
+                "col_span": 2,
+                "is_header": true
+              },
+              {
+                "value": "(2) For SI metric units",
+                "col_span": 2,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "(tc − c), in.",
+                "is_header": true
+              },
+              {
+                "value": "A, in.",
+                "is_header": true
+              },
+              {
+                "value": "(tc − c), mm",
+                "is_header": true
+              },
+              {
+                "value": "A, mm",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "≤ 0.5",
+                "type": "text"
+              },
+              {
+                "value": "1.0",
+                "type": "number"
+              },
+              {
+                "value": "≤ 13",
+                "type": "text"
+              },
+              {
+                "value": "25",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0.5 < (tc − c) < 0.88",
+                "type": "text"
+              },
+              {
+                "value": "2(tc − c)",
+                "type": "text"
+              },
+              {
+                "value": "13 < (tc − c) < 22",
+                "type": "text"
+              },
+              {
+                "value": "2(tc − c)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "≥ 0.88",
+                "type": "text",
+                "footnote_markers": ["*"]
+              },
+              {
+                "value": "[2(tc − c)] + 1.17",
+                "type": "text"
+              },
+              {
+                "value": "≥ 22",
+                "type": "text"
+              },
+              {
+                "value": "[2(tc − c)] + 30",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-section table with US customary and SI metric columns for miter bend thickness parameter A. Title row (row 1) spans all 4 columns. Section headers (row 2) each span 2 columns. Footnote clarifies that (tc - c) is net thickness excluding corrosion allowances. Footnote marker attached to the last data row first cell."
+    }
+  ],
+  "issues": []
+}

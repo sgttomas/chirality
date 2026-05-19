@@ -1,0 +1,350 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 213,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 6.6 TENTATIVE SUPPORT TYPES BASED ON EXTENDED ROARK'S FORMULA (INCLUDING 0.05 IN. CORROSION ALLOWANCE)",
+      "slug": "tentative-support-types-extended-roarks-formula",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pipe Dia. (in)", "is_header": true },
+              { "value": "Nominal Thick (in)", "is_header": true },
+              { "value": "t²", "is_header": true },
+              { "value": "Weight with Water lbs / ft of pipe", "is_header": true },
+              { "value": "Bending Stress due to Weight psi / ft of pipe", "is_header": true },
+              { "value": "Allowable Span (ft)", "is_header": true },
+              { "value": "Support Attachment Type", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 32, "type": "number" },
+              { "value": 123, "type": "number", "unit": "lbs/ft" },
+              { "value": 767, "type": "number", "unit": "psi/ft" },
+              { "value": 39, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 21, "type": "number" },
+              { "value": 141, "type": "number", "unit": "lbs/ft" },
+              { "value": 293, "type": "number", "unit": "psi/ft" },
+              { "value": 103, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 18, "type": "number" },
+              { "value": 161, "type": "number", "unit": "lbs/ft" },
+              { "value": 149, "type": "number", "unit": "psi/ft" },
+              { "value": 202, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 40, "type": "number" },
+              { "value": 178, "type": "number", "unit": "lbs/ft" },
+              { "value": 1182, "type": "number", "unit": "psi/ft" },
+              { "value": 28, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 27, "type": "number" },
+              { "value": 204, "type": "number", "unit": "lbs/ft" },
+              { "value": 458, "type": "number", "unit": "psi/ft" },
+              { "value": 65, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 22, "type": "number" },
+              { "value": 225, "type": "number", "unit": "lbs/ft" },
+              { "value": 240, "type": "number", "unit": "psi/ft" },
+              { "value": 123, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 45, "type": "number" },
+              { "value": 245, "type": "number", "unit": "lbs/ft" },
+              { "value": 1707, "type": "number", "unit": "psi/ft" },
+              { "value": 18, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 32, "type": "number" },
+              { "value": 277, "type": "number", "unit": "lbs/ft" },
+              { "value": 654, "type": "number", "unit": "psi/ft" },
+              { "value": 46, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 24, "type": "number" },
+              { "value": 308, "type": "number", "unit": "lbs/ft" },
+              { "value": 348, "type": "number", "unit": "psi/ft" },
+              { "value": 86, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 30, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number" },
+              { "value": 370, "type": "number", "unit": "lbs/ft" },
+              { "value": 2727, "type": "number", "unit": "psi/ft" },
+              { "value": 11, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 40, "type": "number" },
+              { "value": 408, "type": "number", "unit": "lbs/ft" },
+              { "value": 1026, "type": "number", "unit": "psi/ft" },
+              { "value": 29, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 30, "type": "number" },
+              { "value": 341, "type": "number", "unit": "lbs/ft" },
+              { "value": 541, "type": "number", "unit": "psi/ft" },
+              { "value": 55, "type": "number", "unit": "ft" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 36, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 72, "type": "number" },
+              { "value": 517, "type": "number", "unit": "lbs/ft" },
+              { "value": 3980, "type": "number", "unit": "psi/ft" },
+              { "value": 8, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number" },
+              { "value": 564, "type": "number", "unit": "lbs/ft" },
+              { "value": 1488, "type": "number", "unit": "psi/ft" },
+              { "value": 20, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 36, "type": "number" },
+              { "value": 610, "type": "number", "unit": "lbs/ft" },
+              { "value": 777, "type": "number", "unit": "psi/ft" },
+              { "value": 39, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 42, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 84, "type": "number" },
+              { "value": 689, "type": "number", "unit": "lbs/ft" },
+              { "value": 5495, "type": "number", "unit": "psi/ft" },
+              { "value": 5, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 56, "type": "number" },
+              { "value": 744, "type": "number", "unit": "lbs/ft" },
+              { "value": 2041, "type": "number", "unit": "psi/ft" },
+              { "value": 13, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 42, "type": "number" },
+              { "value": 798, "type": "number", "unit": "lbs/ft" },
+              { "value": 1061, "type": "number", "unit": "psi/ft" },
+              { "value": 28, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 48, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 99, "type": "number" },
+              { "value": 886, "type": "number", "unit": "lbs/ft" },
+              { "value": 7279, "type": "number", "unit": "psi/ft" },
+              { "value": 4, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 64, "type": "number" },
+              { "value": 948, "type": "number", "unit": "lbs/ft" },
+              { "value": 2688, "type": "number", "unit": "psi/ft" },
+              { "value": 11, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 48, "type": "number" },
+              { "value": 1010, "type": "number", "unit": "lbs/ft" },
+              { "value": 1390, "type": "number", "unit": "psi/ft" },
+              { "value": 22, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 54, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 108, "type": "number" },
+              { "value": 1107, "type": "number", "unit": "lbs/ft" },
+              { "value": 9330, "type": "number", "unit": "psi/ft" },
+              { "value": 3, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 72, "type": "number" },
+              { "value": 1177, "type": "number", "unit": "lbs/ft" },
+              { "value": 3431, "type": "number", "unit": "psi/ft" },
+              { "value": 9, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 54, "type": "number" },
+              { "value": 1247, "type": "number", "unit": "lbs/ft" },
+              { "value": 1769, "type": "number", "unit": "psi/ft" },
+              { "value": 17, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 60, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 120, "type": "number" },
+              { "value": 1352, "type": "number", "unit": "lbs/ft" },
+              { "value": 11651, "type": "number", "unit": "psi/ft" },
+              { "value": 3, "type": "number", "unit": "ft" },
+              { "value": "Pad", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 80, "type": "number" },
+              { "value": 1431, "type": "number", "unit": "lbs/ft" },
+              { "value": 4274, "type": "number", "unit": "psi/ft" },
+              { "value": 7, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 60, "type": "number" },
+              { "value": 1509, "type": "number", "unit": "lbs/ft" },
+              { "value": 2197, "type": "number", "unit": "psi/ft" },
+              { "value": 14, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 70, "type": "number", "row_span": 3 },
+              { "value": 0.25, "type": "number", "unit": "in" },
+              { "value": 140, "type": "number" },
+              { "value": 1816, "type": "number", "unit": "lbs/ft" },
+              { "value": 16153, "type": "number", "unit": "psi/ft" },
+              { "value": 2, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.375, "type": "number", "unit": "in" },
+              { "value": 93, "type": "number" },
+              { "value": 1908, "type": "number", "unit": "lbs/ft" },
+              { "value": 5895, "type": "number", "unit": "psi/ft" },
+              { "value": 5, "type": "number", "unit": "ft" },
+              { "value": "Ring", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0.50, "type": "number", "unit": "in" },
+              { "value": 70, "type": "number" },
+              { "value": 1999, "type": "number", "unit": "lbs/ft" },
+              { "value": 3020, "type": "number", "unit": "psi/ft" },
+              { "value": 10, "type": "number", "unit": "ft" },
+              { "value": "Saddle", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table with 7 columns and 30 data rows covering pipe diameters 16-70 in. Pipe diameter column uses row_span=3 across three wall-thickness variants per size. Paragraph footnotes below the table describe the 20,000 psi basis and support-type selection thresholds; not encoded as structured cell-level footnotes."
+    }
+  ],
+  "issues": []
+}

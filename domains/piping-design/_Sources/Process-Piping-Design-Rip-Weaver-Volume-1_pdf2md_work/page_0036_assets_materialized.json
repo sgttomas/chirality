@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0036.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0036_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.48,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1313,
+        1639
+      ],
+      "caption": "Table 2-1 Nomenclature of Hydrocarbons",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0036_tbl01_nomenclature-of-hydrocarbons.png",
+      "png_sha256": "e2e181b502937785e47a94a128729b8cb1cd0ef57c5e009009911db078164497",
+      "slug": "nomenclature-of-hydrocarbons",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0036_tbl01_nomenclature-of-hydrocarbons.json",
+      "table_data_json_sha256": "1218c46429f7868d54fe8c7dd3c8059ff381719827bed9942df0beeaa389b75d",
+      "table_data_sha256": "1218c46429f7868d54fe8c7dd3c8059ff381719827bed9942df0beeaa389b75d",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0036_tbl01_nomenclature-of-hydrocarbons.xlsx",
+      "xlsx_sha256": "92a2252fa6391874d663201afdfac82f96b42bb39a33299f2d52fc1018bc00fe"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0036_fig01",
+      "bbox_norm": [
+        0.49,
+        0.03,
+        0.98,
+        0.6
+      ],
+      "bbox_px": [
+        1090,
+        0,
+        2477,
+        2267
+      ],
+      "caption": "Figure 2-1. Composition of the hydrocarbon molecules.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0036_fig01_composition-hydrocarbon-molecules.png",
+      "png_sha256": "26c73ba28aea87073f205a05bbd23e195ce08ad0998e62d049cfd74300de1ba3",
+      "slug": "composition-hydrocarbon-molecules",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0036.png",
+  "page_image_sha256": "8e9cd06370cdfc438b4c3b382ad4688aabced2de118c96875c5d633d6c6ddac4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0036_assets.json"
+}

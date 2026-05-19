@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0115.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0115_fig01",
+      "bbox_norm": [
+        0.1,
+        0.16,
+        0.95,
+        0.46
+      ],
+      "bbox_px": [
+        129,
+        366,
+        2582,
+        1695
+      ],
+      "caption": "Exhibit 5-17 Platform Arrangement at a Horizontal Drum",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0115_fig01_exhibit-5-17-platform-arrangement-at-a-h.png",
+      "png_sha256": "fb0d24736c5606ee8c0bdb57f62996b64f48a7c66bb76445e60f1cc35d0483e1",
+      "slug": "exhibit-5-17-platform-arrangement-at-a-h",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0115_fig02",
+      "bbox_norm": [
+        0.06,
+        0.46,
+        0.52,
+        0.72
+      ],
+      "bbox_px": [
+        26,
+        1363,
+        1472,
+        2559
+      ],
+      "caption": "Exhibit 5-18 Platform Arrangement at a Vertical Drum",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0115_fig02_exhibit-5-18-platform-arrangement-at-a-v.png",
+      "png_sha256": "2658f5204cf1d7d38e8966f049782dab689b52f54a4da70ac7ff52ba9b1bee1a",
+      "slug": "exhibit-5-18-platform-arrangement-at-a-v",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 115,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0115.png",
+  "page_image_sha256": "d4409b54fc7f221e2807f81593ca699f46978852093a707388b8ab0800fcc198",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0115_assets.json"
+}

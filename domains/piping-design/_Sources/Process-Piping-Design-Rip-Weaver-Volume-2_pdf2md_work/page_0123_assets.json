@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 123,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3-34. Decoking piping arrangement. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "decoking-piping-arrangement",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.92],
+      "confidence": "high",
+      "notes": "Full-page isometric diagram of decoking piping arrangement with labeled components and a decoking procedure list below the diagram. Caption visible at bottom of page."
+    }
+  ],
+  "issues": []
+}

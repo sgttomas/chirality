@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0065.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0065_fig01",
+      "bbox_norm": [
+        0.52,
+        0.03,
+        0.985,
+        0.235
+      ],
+      "bbox_px": [
+        1105,
+        0,
+        2352,
+        937
+      ],
+      "caption": "Fig. 3.12 Edge reinforcement of circular cut-outs in flat plates.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0065_fig01_fig-3-12-edge-reinforcement-of-circular.png",
+      "png_sha256": "e7f46490f0c913276401031c6ded85cd94807519e84129a93f725d7480292cdb",
+      "slug": "fig-3-12-edge-reinforcement-of-circular",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0065_tbl01",
+      "bbox_norm": [
+        0.025,
+        0.44,
+        0.555,
+        0.985
+      ],
+      "bbox_px": [
+        0,
+        1282,
+        1423,
+        3288
+      ],
+      "caption": "Table 3.2 \"Effective Stress\" Concentrations around Circular Holes in Flat Plates, Reinforced by Various Methods",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0065_tbl01_table-3-2-effective-stress-concentration.png",
+      "png_sha256": "11924f900d6ec0eb8d8596a7e95829816b3c4393ffc1d58a53928e4db8eb936b",
+      "slug": "table-3-2-effective-stress-concentration",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 65,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0065.png",
+  "page_image_sha256": "c1f9f1eeacca79ef08c0483e4d528998e073bd5e91eeef656a012693eda4d70e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0065_assets.json"
+}

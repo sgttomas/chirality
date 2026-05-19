@@ -1,0 +1,57 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-01",
+  "page": 15,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Flange Rating (Class) vs Joint and Pipe Size for maintenance slip blinds",
+      "slug": "flange-rating-joint-pipe-size-slip-blinds",
+      "bbox_norm": [0.07, 0.54, 0.93, 0.71],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Flange Rating (Class)", "is_header": true },
+              { "value": "Joint", "is_header": true },
+              { "value": "Pipe Size", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 150, "type": "number" },
+              { "value": "F.F./R.F.", "type": "text" },
+              { "value": "Up thru 6\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 300, "type": "number" },
+              { "value": "F.F./R.F.", "type": "text" },
+              { "value": "Up thru 4\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 600, "type": "number" },
+              { "value": "R.F.", "type": "text" },
+              { "value": "Up thru 4\"", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with flange class ratings for maintenance slip blind insertion requirements"
+    }
+  ],
+  "issues": []
+}

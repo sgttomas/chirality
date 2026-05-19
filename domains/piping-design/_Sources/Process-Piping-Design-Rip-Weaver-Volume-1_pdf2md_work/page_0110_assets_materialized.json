@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0110.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0110_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.5,
+        0.33
+      ],
+      "bbox_px": [
+        0,
+        174,
+        1362,
+        1324
+      ],
+      "caption": "Fig. 6-2 Diagram showing CE, B/CE, and Arc dimensions on a 30\u00b0 pipe bend",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0110_fig01_fig-6-2-30deg-bend-ce-bce-arc-diagram.png",
+      "png_sha256": "d1f303c017863bfa9141f874c111ad519324e5f7ccbc9290dd4b29c626d75227",
+      "slug": "fig-6-2-30deg-bend-ce-bce-arc-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0110_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.3,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        871,
+        2477,
+        3485
+      ],
+      "caption": "Table 6-2 Center-to-end (CE), Back Center-to-end (B/CE) and Arc Length for 30\u00b0 Bends of Varying Radii and Pipe Sizes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0110_tbl01_table-6-2-ce-bce-arc-30deg-bends.png",
+      "png_sha256": "9cb85d6f4322b93e22501ae81ab01e7ccc315d31d1bb23edc66204a5a522d22a",
+      "slug": "table-6-2-ce-bce-arc-30deg-bends",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0110_tbl01_table-6-2-ce-bce-arc-30deg-bends.json",
+      "table_data_json_sha256": "e2ea6bfc02852161d6bfd4ae475dc439086ae220de1da83d7a5f751f9d174dfa",
+      "table_data_sha256": "e2ea6bfc02852161d6bfd4ae475dc439086ae220de1da83d7a5f751f9d174dfa",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0110_tbl01_table-6-2-ce-bce-arc-30deg-bends.xlsx",
+      "xlsx_sha256": "ece2d162a541c4e321953ad5997d6c935585bb71038ed226943497a919d8096e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 110,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0110.png",
+  "page_image_sha256": "c970c6c7c56c6d6e3dc3c85afa5c18c354a8c4c4619e846dbef14b6f70aa4685",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0110_assets.json"
+}

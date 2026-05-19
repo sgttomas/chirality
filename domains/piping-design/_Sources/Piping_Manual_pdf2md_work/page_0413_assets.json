@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 413,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "Piping_Manual_p0413_fig_01",
+      "bbox_norm": [0.05, 0.13, 0.95, 0.50],
+      "caption": "EXHIBIT 16-2 Pipe Stress Review Criteria Rotating Equipment Piping"
+    }
+  ],
+  "issues": []
+}

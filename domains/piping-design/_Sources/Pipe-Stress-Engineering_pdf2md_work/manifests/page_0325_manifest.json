@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0325.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0325_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.56,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        1790,
+        2482,
+        3158
+      ],
+      "caption": "Table 9.3 Stiffness Test Acceptance Criteria",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0325_tbl01_stiffness-test-acceptance-criteria.csv",
+      "csv_sha256": "bedfad856c1bd16bd887ed14dc775ab34ce7218c0dbdc561726625c6e9bc55e6",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0325_tbl01_stiffness-test-acceptance-criteria.png",
+      "png_sha256": "81974b82921957d701c4e82980a4e53dbcc90403d46f231950c60c5feed04374",
+      "slug": "stiffness-test-acceptance-criteria",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 325,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0325.png",
+  "page_image_sha256": "871a1a417bf14bf823fb4d849afe7f108c2ae04182b80c0af28689d5c55a7ec4",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0325_assets.json"
+}

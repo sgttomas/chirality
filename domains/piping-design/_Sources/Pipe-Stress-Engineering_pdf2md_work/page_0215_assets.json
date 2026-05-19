@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 215,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.24 CIRCUMFERENTIAL STRESSES AT LUG ATTACHMENT",
+      "slug": "circumferential-stresses-lug-attachment",
+      "bbox_norm": [0.05, 0.70, 0.95, 1.00],
+      "confidence": "high",
+      "notes": "Diagram showing cross-section of pipe with lug, illustrating stress due to bending and stress due to pressure at inside and outside surfaces. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

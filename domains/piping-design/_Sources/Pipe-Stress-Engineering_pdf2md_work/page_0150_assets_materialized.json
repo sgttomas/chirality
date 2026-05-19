@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0150.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0150_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.78,
+        0.62,
+        0.97
+      ],
+      "bbox_px": [
+        76,
+        2594,
+        1704,
+        3554
+      ],
+      "caption": "Table 4.4 Values of m and n",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0150_tbl01_values-of-m-and-n.png",
+      "png_sha256": "fb2f92047cc4aec4864a68e4631ed8e1407f2ca525b9b9cca21fcc9314da5e85",
+      "slug": "values-of-m-and-n",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0150_tbl01_values-of-m-and-n.json",
+      "table_data_json_sha256": "62e3bd17aa496d6dbc9bfaef067f9219b40d6fb6326ab366a999203d55791edf",
+      "table_data_sha256": "62e3bd17aa496d6dbc9bfaef067f9219b40d6fb6326ab366a999203d55791edf",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0150_tbl01_values-of-m-and-n.xlsx",
+      "xlsx_sha256": "726d38b7bf1d3773dba8e625d6030495aa5933fbcaea6848eb1da3ffda359ef2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 150,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0150.png",
+  "page_image_sha256": "11ee3aeb0fdd1dd93639a0bc260ddd2ca354326cb3d41e957629acda9aca0084",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0150_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0232.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0232_fig01",
+      "bbox_norm": [
+        0.08,
+        0.02,
+        0.92,
+        0.28
+      ],
+      "bbox_px": [
+        76,
+        0,
+        2474,
+        1174
+      ],
+      "caption": "FIG. 7.2 GENERAL FLEXIBLE JOINT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0232_fig01_general-flexible-joint.png",
+      "png_sha256": "006f98fb75998799d2cba9591958a016144be0f0a4a3a7a8ea8b9dcf85be199e",
+      "slug": "general-flexible-joint",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 232,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0232.png",
+  "page_image_sha256": "279e7ac630918062a96ca599761b6bc9aaf849c2011b6d4447800f3499d216e2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0232_assets.json"
+}

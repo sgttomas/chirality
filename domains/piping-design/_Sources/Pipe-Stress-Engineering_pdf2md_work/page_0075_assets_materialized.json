@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0075.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0075_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1509
+      ],
+      "caption": "Fig. 2.14 Different Types of Cantilever Beams",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0075_fig01_different-types-cantilever-beams.png",
+      "png_sha256": "9904f58d28902bbc4a72e8d5321118a7c0884a18c2927ced0832dc74cabdde03",
+      "slug": "different-types-cantilever-beams",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 75,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0075.png",
+  "page_image_sha256": "d5b2c40c23f18713ad98dae942c4154d9deb875f599005965dd3736bfe7cf75a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0075_assets.json"
+}

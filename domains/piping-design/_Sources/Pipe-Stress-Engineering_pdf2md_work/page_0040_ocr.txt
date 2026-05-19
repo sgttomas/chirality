@@ -1,0 +1,59 @@
+3 Is
+
+Introduction 19
+
+a protective coating against erosion in some cases. Erosion failure is static rupture due to insufficient
+wall thickness at a certain portion of the system.
+
+The pipe may also encounter some stress corrosion failures. As the term implies, it is the combina-
+tion of corrosion and stress. However, the stress can be due to manufacturing process such as forming
+and welding or from service loads. This corrosion is an inter-granular chemical reaction at some grain
+boundaries. The cases that are most often mentioned are the cracks of certain austenitic stainless steel
+pipes in contact with fluid containing traces of chlorine. The fluid can be the internal process fluid,
+hydrostatic test fluid, external environment fluid, or incidental fluid such as sweat and cleaning agents.
+Failure usually occurs very suddenly and involves little plastic deformation.
+
+Failure due to hydrogen brittleness occurs often enough in the power and process industries that
+it merits a mention here. Due to their small size, hydrogen atoms can easily diffuse from outside into
+or through the steel. This diffusion occurs in pipe carrying hydrogen or hydrogen-laden fluids with a
+diffusion rate generally higher at a higher temperature or pressure. Steel may also contain hydrogen
+through the decomposition of water during welding, electroplating, corrosion, or other manufacturing
+processes. Once inside the steel, hydrogen can weaken the steel by changing the alloying structure of
+
+the steel and increasing the internal stress. When hydrogen atoms accumulate in the voids of the pipe
+
+material, they form hydrogen molecules and become trapped. If diffusion from the outside continues,
+high internal pressure is developed against the wall of the voids. This localized stress intensification
+may not be very harmful if the steel is ductile and readily yields locally. However, this localized stress
+intensification can produce brittle failure in less ductile high-strength materials. Under favorable con-
+ditions, the trapped hydrogen may grab the carbon atom from iron carbide (Fe;C) to form methane
+(CH,). The de-carbonized steel generally becomes weaker than the original alloyed steel. The most
+damaging effect is the production of methane. Because methane cannot readily diffuse out, the in-
+creased gas volume increases the internal pressure and generates fissures along the grain boundaries.
+The fissures can eventually lead to cracks and failure. Ductile steels alloyed with carbide stabilizing
+elements such as chromium, molybdenum, vanadium, tungsten, and titanium are generally used to
+prevent failure from hydrogen attack.
+
+There are many other modes of failure involving materials and operations. The book by Thielsch
+[24] is an excellent source of reference.
+
+1.4 PIPING CODES
+
+A piping system is designed and constructed based on codes and standards. Therefore, it is impor-
+tant that we have a good understanding of the applicable codes and standards.
+
+Engineers have always strived to build the safest plant at the lowest cost. Because it is impossible
+for them to build an absolutely safe plant at any cost, they have to settle for a reasonably safe plant at
+a reasonable cost. The question then remained — what is reasonable? Economists and statisticians
+were able to come up with some formulas to achieve the optimal median cost by assessing the cost of
+safety problems involved throughout the life of a plant. To find the cost, all factors involved in a safety
+problem, such as loss of human life, intoxication of the environment, and so forth, were given a price.
+The problem is that the assessments of these prices were highly debatable. For instance, we just do
+not have any way of assessing the cost of the damage caused by discharging pollutants to the public
+atmosphere or water body. Furthermore, putting a price on human life is considered reprehensible
+in a modem society. At the very least, all these cost assessments are very controversial. Therefore, a
+strict cost analysis on the requirements is not practical. A sufficient level of protection for both the
+investor and the general public shall be achieved by a consensual opinion from all related parties. On
+behalf of the piping industry in the United States, the ASME took the lead in forming action commit-
+tees, consisting of experts from engineering companies, academic institutions, government agencies,
+equipment manufacturers, plant owners, insurance companies, and independent consultants. These

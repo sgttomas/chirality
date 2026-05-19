@@ -1,0 +1,27 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 296,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0296_a01",
+      "kind": "fig",
+      "label": "Exhibit 11-23",
+      "caption": "Pipe Rack Spandrel Location",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.27],
+      "notes": "Isometric sketch showing parallel horizontal beams across a pipe rack at two heights labeled ELEVATION A and ELEVATION B; hatched rectangular structural members on vertical columns. Caption block 'EXHIBIT 11-23 / Pipe Rack Spandrel Location' is at upper right."
+    },
+    {
+      "asset_id": "Piping_Manual_p0296_a02",
+      "kind": "fig",
+      "label": "Exhibit 11-24",
+      "caption": "Pipe Rack Spandrel Variations",
+      "bbox_norm": [0.04, 0.27, 0.97, 0.55],
+      "notes": "Isometric sketch of three spandrel-to-column connection variations: 'I BEAM ON COLUMN' (left), 'CONCRETE ON COLUMN' (center), and 'CHANNEL ON THE OUTSIDE OF COLUMN' (right). Caption block 'EXHIBIT 11-24 / Pipe Rack Spandrel Variations' is at upper right of the figure."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0201.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0201_fig01",
+      "bbox_norm": [
+        0.49,
+        0.07,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        987,
+        61,
+        2244,
+        1667
+      ],
+      "caption": "Fig. 6.1 The model test laboratory.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0201_fig01_fig-6-1-the-model-test-laboratory.png",
+      "png_sha256": "0e110912c200163450e941aa431cbf1f1af01934cccf00158acb4c2a57d161eb",
+      "slug": "fig-6-1-the-model-test-laboratory",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 201,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0201.png",
+  "page_image_sha256": "99e9665db2cf74d5904eefc9a6da5b7e593da7cfe723e8a15fedfca834a81be7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0201_assets.json"
+}

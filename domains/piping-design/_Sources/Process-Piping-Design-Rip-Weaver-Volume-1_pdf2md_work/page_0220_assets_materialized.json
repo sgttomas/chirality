@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0220.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0220_img01",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.22,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        2688,
+        669,
+        3491
+      ],
+      "caption": "Gulf Publishing Company logo",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/Process-Piping-Design-Rip-Weaver-Volume-1_p0220_img01_gulf-publishing-logo.png",
+      "png_sha256": "8465169e9ec484f8f84083b08b03a3a969d2b9cbc5512c7722e306472fc56596",
+      "slug": "gulf-publishing-logo",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0220_img02",
+      "bbox_norm": [
+        0.6,
+        0.82,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        1362,
+        2688,
+        2477,
+        3491
+      ],
+      "caption": "ISBN barcode \u2014 Product #1903, ISBN 0-87201-913-4, Series ISBN 0-87201-915-0",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 2,
+      "png_path": "images/Process-Piping-Design-Rip-Weaver-Volume-1_p0220_img02_isbn-barcode.png",
+      "png_sha256": "36dcf8c5638e6edad2c16f500088844bb22a094b54fbf3ae075dc66c8ad8bab1",
+      "slug": "isbn-barcode",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 220,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0220.png",
+  "page_image_sha256": "00f42298e5d3a23bfe6cff66098b438fa0bf5fb5323807f6b11011524511f2f9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0220_assets.json"
+}

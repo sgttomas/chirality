@@ -1,0 +1,42 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 162,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "A-O Branch — Piping Flexibility and Stress Analysis, Inversion of Six Equations (M.W. Kellogg Co., Form E-4, Calc. No. 5.6)",
+      "slug": "ao-branch-inversion-six-equations",
+      "bbox_norm": [0.04, 0.03, 0.99, 0.51],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Column headers (Mx, My, Mz, Fx, Fy, Fz, 1000θx, 1000θy, 1000θz, 1000δx, 1000δy, 1000δz) and unity-diagonal structure are identifiable, but the numeric cell values across the dense matrix body are largely illegible at the available image resolution. Safe transcription of the actual inversion results is not possible; higher-resolution scan or re-OCR is required."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "O’-O Branch — Piping Flexibility and Stress Analysis, Inversion of Six Equations (M.W. Kellogg Co., Form E-4, Calc. No. 5.6)",
+      "slug": "oo-branch-inversion-six-equations",
+      "bbox_norm": [0.04, 0.52, 0.99, 0.99],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Column headers (Mx, My, Mz, Fx, Fy, Fz, 1000θx, 1000θy, 1000θz, 1000δx, 1000δy, 1000δz) and unity-diagonal structure are identifiable, but the numeric cell values across the dense matrix body are largely illegible at the available image resolution. Safe transcription of the actual inversion results is not possible; higher-resolution scan or re-OCR is required."
+    }
+  ],
+  "issues": [
+    {
+      "kind": "table_unreadable",
+      "asset_ordinal": 1,
+      "message": "A-O Branch Form E-4 (tbl ordinal 1): numeric cell values in the inversion matrix body are illegible at the available raster resolution. Only the unity diagonal entries and a few adjacent zeros are reliably visible. Re-OCR at higher DPI is required for safe extraction."
+    },
+    {
+      "kind": "table_unreadable",
+      "asset_ordinal": 2,
+      "message": "O’-O Branch Form E-4 (tbl ordinal 2): numeric cell values in the inversion matrix body are illegible at the available raster resolution. Only the unity diagonal entries and a few adjacent zeros are reliably visible. Re-OCR at higher DPI is required for safe extraction."
+    }
+  ]
+}

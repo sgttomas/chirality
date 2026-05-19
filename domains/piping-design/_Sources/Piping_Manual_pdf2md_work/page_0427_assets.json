@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 427,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0427_fig_01",
+      "caption": "EXHIBIT 16-17 — Nomograph for Absorbing Leg on Pump Piping (Chart for Determining the Absorbing Leg on Pump Piping). Five-scale nomograph (Total Thermal Expansion in inches; Pivot Line; Force in pounds; Force Pipe Length in feet; Nominal Pipe Diameter / Standard Weight in inches; Moment of Inertia in inches^4) with a dashed construction line and reference points 4.1, 4.2, 4.3, 4.4, 4.5.",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.95]
+    }
+  ],
+  "issues": []
+}

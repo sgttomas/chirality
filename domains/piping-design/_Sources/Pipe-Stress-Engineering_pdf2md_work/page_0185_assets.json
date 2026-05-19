@@ -1,0 +1,76 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 185,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 6.3 COMPUTER GENERATED SPRING HANGER SELECTION TABLE",
+      "slug": "computer-generated-spring-hanger-selection-table",
+      "bbox_norm": [0.04, 0.60, 0.97, 0.98],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 4,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "FOR TRAPEZE SPRINGS, THE LOAD SHOWN IS FOR EACH SPRING" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "SIMFLEX-PIPE STRESS ANALYSIS (7.0) (ASME B31.3) - PENG ENGINEERING, HOUSTON", "col_span": 10, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RESTING SUPPORT EXAMPLE", "col_span": 8, "is_header": true },
+              { "value": "17 SEP 05", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12 INCH SCH-40, 750F (400C), WITH 3.2-IN (80-MM) TOWER MOVEMENT", "col_span": 8, "is_header": true },
+              { "value": "RestSpt.Da", "col_span": 2, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "POINT NO.", "is_header": true },
+              { "value": "OPERATN LOAD (N)", "is_header": true },
+              { "value": "COLD-SET LOAD (N)", "is_header": true },
+              { "value": "VERTICAL-DISPL NOR (MM)", "is_header": true },
+              { "value": "VERTICAL-DISPL MAX (MM)", "is_header": true },
+              { "value": "VERTICAL-DISPL MIN (MM)", "is_header": true },
+              { "value": "SPRING RATE (N/MM)", "is_header": true },
+              { "value": "LOAD VAR (%)", "is_header": true },
+              { "value": "GRINNELL-SPRG NUMBER FIGURE", "is_header": true },
+              { "value": "GRINNELL-SPRG NUMBER SIZE", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "30", "type": "number" },
+              { "value": 11557, "type": "number", "unit": "N" },
+              { "value": 13457, "type": "number", "unit": "N" },
+              { "value": 53.7, "type": "number", "unit": "MM" },
+              { "value": 53.7, "type": "number", "unit": "MM" },
+              { "value": 0.0, "type": "number", "unit": "MM" },
+              { "value": 35.0, "type": "number", "unit": "N/MM" },
+              { "value": 16.3, "type": "number", "unit": "%" },
+              { "value": "TRIPLE 13", "type": "text" },
+              { "value": 1, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Computer-generated SIMFLEX spring hanger selection table. Multi-row header includes software identification line, project description with date, file reference, and column labels. One data row visible for support point 30 using GRINNELL variable springs. The GRINNELL-SPRG NUMBER column spans FIGURE (TRIPLE 13) and SIZE (1)."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0034.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0034_fig01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1759,
+        2495,
+        3518
+      ],
+      "caption": "FIG. 1.6 LOW-CYCLE AND HIGH-CYCLE FATIGUE CURVES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0034_fig01_low-cycle-high-cycle-fatigue-curves.png",
+      "png_sha256": "462738ff015d6fc2e995ad7467af37ccf724de0ac5b6eeb79f9eb8d2b52fee11",
+      "slug": "low-cycle-high-cycle-fatigue-curves",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 34,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0034.png",
+  "page_image_sha256": "151c73a3080ed65cb152a985c56f947d92e74d440ac40e5013ab7a1a952041c8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0034_assets.json"
+}

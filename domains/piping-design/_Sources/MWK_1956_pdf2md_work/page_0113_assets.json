@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.99,
+        0.97
+      ],
+      "caption": "Comparison of Various Corner Solutions Applied to a Square Corner Solution in Order to Approximate the Effect of Curved Members",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Full-page landscape table comparing General Analytical Method, Modified Square-corner Solution, Stress intensification factor, and Distributed properties (rough) approaches across varying L_a, L_b, R, h. Footnote defines percentage deviation = 100*(X_e - X_a)/X_a."
+  ],
+  "page": 113,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

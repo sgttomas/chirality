@@ -1,0 +1,89 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0111.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0111_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2280,
+        1737
+      ],
+      "caption": "STEP 7 \u2014 Simplified Method for Flexibility Analysis calculation worksheet (Form A-15, Piping Flexibility and Stress Analysis \u2014 Multi-Plane Systems, The M.W. Kellogg Company)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0111_tbl01_step-7-simplified-method-for-flexibility.png",
+      "png_sha256": "7333a070e7737e0f190723ae988327c34af75cce3780eabc9e17afd0c959adee",
+      "slug": "step-7-simplified-method-for-flexibility",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0111_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.46,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1424,
+        2280,
+        3474
+      ],
+      "caption": "Conversion to Code Rules and Reactions/Stresses summary table \u2014 Points I-VII (Form A-15, Piping Flexibility and Stress Analysis \u2014 Reactions and Stresses, The M.W. Kellogg Company)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/MWK_1956_p0111_tbl02_conversion-to-code-rules-and-reactions-s.png",
+      "png_sha256": "6b1aa8014dbe22212c444461063d3781e2df245b1ceeffc691aacb08203800fa",
+      "slug": "conversion-to-code-rules-and-reactions-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0111_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2280,
+        3474
+      ],
+      "caption": "Full-page facsimile of M.W. Kellogg Company Form A-15 calculation worksheet \u2014 Piping Flexibility and Stress Analysis (Multi-Plane Systems / Reactions and Stresses)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0111_fig01_full-page-facsimile-of-m-w-kellogg-compa.png",
+      "png_sha256": "2936556497a91d0859fdc4a524433495081f5b0828dfab5f6644db5f510d089a",
+      "slug": "full-page-facsimile-of-m-w-kellogg-compa",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 111,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0111.png",
+  "page_image_sha256": "bfa21aa51cb1d14079540a8fc836721c63ea3cb0905b36eb84464029c903b0c3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0111_assets.json"
+}

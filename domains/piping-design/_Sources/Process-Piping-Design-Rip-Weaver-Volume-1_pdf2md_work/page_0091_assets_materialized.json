@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0091.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0091_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.62,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1660,
+        1220
+      ],
+      "caption": "Figure 5-6. Typical clean-out detail.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0091_fig01_typical-clean-out-detail.png",
+      "png_sha256": "9dea92a14102cb90e4ebe5d3f7c9eccc449022ed560e835949a54b416acd848d",
+      "slug": "typical-clean-out-detail",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 91,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0091.png",
+  "page_image_sha256": "c5085064958ecc7d9318a6b144e9cc6e2b22c3806a10239e1f41df77180f756f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0091_assets.json"
+}

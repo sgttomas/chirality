@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0332.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0332_fig01",
+      "bbox_norm": [
+        0.05,
+        0.14,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        297,
+        2556,
+        2214
+      ],
+      "caption": "EXHIBIT 13-6 Plot Subdivided into Drainage Areas",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0332_fig01_exhibit-13-6-plot-subdivided-into-draina.png",
+      "png_sha256": "c1f03e756296b9caf88a385e83a881c6bf72de2bcaadc5628e365ff4a87ffa30",
+      "slug": "exhibit-13-6-plot-subdivided-into-draina",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 332,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0332.png",
+  "page_image_sha256": "6acd2b4c4f76890e7a8dc0ed7d06d6e170610838515dbb9fd47d2c00c7894577",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0332_assets.json"
+}

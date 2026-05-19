@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0092.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0092_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2144
+      ],
+      "caption": "EXHIBIT 4-34 Reciprocating Compressor: Open Installation/Enclosed Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0092_fig01_exhibit-4-34-reciprocating-compressor-op.png",
+      "png_sha256": "8ffbeeb0410123b082f9337eddb3279f66344a3c2c1bb93f2c7d829af75fb2f8",
+      "slug": "exhibit-4-34-reciprocating-compressor-op",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0092_fig02",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1814,
+        2550,
+        3134
+      ],
+      "caption": "EXHIBIT 4-35 Planning for Cylinder Removal",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0092_fig02_exhibit-4-35-planning-for-cylinder-remov.png",
+      "png_sha256": "52bac6b243be2fbe7b738728d575b42279d4c768a01f5aaa706de61a31d45342",
+      "slug": "exhibit-4-35-planning-for-cylinder-remov",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 92,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0092.png",
+  "page_image_sha256": "2d7b4b31da44375bd76a917a59b7936757c0c94873df26e86fc3e3815a4b37f2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0092_assets.json"
+}

@@ -1,0 +1,76 @@
+1
+
+Pipe Supports and Restraints 201
+
+By conservatively assuming that the sustained longitudinal stress takes up 1.0.5, the allowable second-
+ary stress becomes 1.25, + 0.25S,, where S, is the allowable stress at ambient temperature (cold) and
+S, is the allowable stress at operating temperature (hot). In this secondary stress evaluation, the load
+range is calculated using the cold modulus of elasticity.
+
+It may be necessary to use separate edge forces to calculate membrane and bending stresses. For
+membrane, only the loads that have a sustained nature need to be included. These include weight,
+pressure, and possibly hot thermal reaction, but not the thermal reaction range. Thermal reaction has
+some sustained nature when dealing with areas of concentrated strain. On the other hand, secondary
+stress requires the inclusion of the thermal reaction range plus the stresses due to pressure and, pos-
+sibly, the live weight variation.
+
+When stresses at the connection are excessive, a pad can be used to reduce the stress. With a suf-
+ficient pad width to spread the load, the effective thickness for stress calculations is the sum of the
+pipe thickness and the pad thickness. As discussed in Section 5.5, the required width of the pad to
+spread the load is 2.0VRmf , where R,, is the mean radius of the pipe, not of the trunnion, and ¢ is the
+effective thickness.
+
+The trunnion connection can also be evaluated by treating the trunnion as a branch pipe with a
+fabricated branch connection in a routine piping stress analysis. This is conservative for the moment
+loading because the trunnion connection is stronger than an actual branch connection due to the
+un-perforated pipe shell. However, it becomes non-conservative for the radial load, because the code
+does not have an SIF for the radial load. In fact, most piping codes completely ignore the radial load,
+which is considered as a local axial force. Because axial load is often’ the main load of a support trun-
+nion, the use of a fabricated branch connection approach is not recommended.
+
+Example
+
+A 10-in. trunnion (10.75 in., 273 mm OD), on a 24-in. (610 mm OD) standard weight pipe (0.375
+in., 9.53 mm thick), has an internal pressure of 400 psi (2.76 MPa), axial load of 3000 Ib (13,344 N),
+longitudinal moment of 12,000 Ib-in (1,355,811 N mm), circumferential bending moment of 8000
+tb-in. (903,874 N mm). Design temperature is 700°F (371°C). The allowable stress, S,, is 15,000 psi
+(103.4 MPa) and S, is 14,400 psi (99.29 MPa). A corrosion allowance of 0.05 in. (1.27 mm) is included
+in the primary stress calculation. _
+
+The maximum edge reaction is calculated by Eq. (6.48) as
+
+1
+~ 90(5.375)2
+
+1.5
+
+f 2n(5.375)
+
+V 12,0002 + (1.5x8000)2 + 3000 = 320 Ib/in. (56.0 N/mm)
+
+The pressure hoop stress is
+
+12x 400
+
+Sp = 9375—0.05
+
+= 12,973 psi (89.4 MPa)
+
+The circumferential membrane stress due to the trunnion load is
+
+V2
+
+Sem = 0.643 Faas 9 py
+
+320 = 3847 psi (26.52 MPa)
+
+which is within the allowable value of 1.55, — S,. Note that subscript m is added besides subscript c to
+distinguish this stress from the cold allowable stress S,.
+The secondary bending stress is
+
+V12
+(0.375)'5
+
+which is within the allowable value of (1.255, + 0.25S}).
+
+Sp = 1.167 320 = 5633 psi (38.84 MPa)

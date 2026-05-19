@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0072.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0072_fig01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2477,
+        3488
+      ],
+      "caption": "Figure 4-4. Rough layout for light ends plot plan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0072_fig01_rough-layout-light-ends-plot-plan.png",
+      "png_sha256": "a3991aec35e3c010fea78a1e41ee979a0d248b851499d145756c88407536cc59",
+      "slug": "rough-layout-light-ends-plot-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 72,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0072.png",
+  "page_image_sha256": "4c76888b3e78e3bac74d7f9699d721ad5ce38169a6ea9b68400c7a2abfc57d5b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0072_assets.json"
+}

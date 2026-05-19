@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0171.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0171_fig01",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        454,
+        2477,
+        3249
+      ],
+      "caption": "Figure 8-13. Liquid level gage types. Courtesy of Penberthy.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0171_fig01_liquid-level-gage-types-penberthy.png",
+      "png_sha256": "104f6357ecd47e52163b2aba375d4998bf41363a0bd1b83a74bb6a76a87c11ec",
+      "slug": "liquid-level-gage-types-penberthy",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 171,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0171.png",
+  "page_image_sha256": "0ede00d7412b15072505c57c1a50ad85fb208fc5b634215d52cfeae0047e6932",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0171_assets.json"
+}

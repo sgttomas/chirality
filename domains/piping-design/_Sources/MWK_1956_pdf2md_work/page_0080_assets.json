@@ -1,0 +1,36 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 80,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Top-left diagram showing austenitic steel, weld, and ferritic steel with 15\u00b0 inclined interface; caption visible directly below.",
+    "asset_note: Bottom-right diagram showing two Kelcaloy transition piece configurations with ferritic and austenitic steel sections labeled; caption visible at bottom."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 3.17 Dissimilar weld joint, 15\u00b0 interface.",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.55,
+        0.22
+      ]
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 3.18 Kelcaloy transition pieces.",
+      "bbox_norm": [
+        0.5,
+        0.74,
+        1.0,
+        0.99
+      ]
+    }
+  ]
+}

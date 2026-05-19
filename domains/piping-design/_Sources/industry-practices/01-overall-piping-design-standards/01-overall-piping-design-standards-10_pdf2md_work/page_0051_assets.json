@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 51,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 300-22  Level Instrument Mounting—Horizontal Vessels Exceeding Six Feet in Diameter",
+      "slug": "fig-300-22-level-instrument-mounting-horizontal-vessels",
+      "bbox_norm": [0.07, 0.10, 0.93, 0.55],
+      "confidence": "high",
+      "notes": "Technical schematic showing horizontal vessel with level instrument mounting arrangement including pipe spool (bridle), vent, and valve annotations"
+    }
+  ],
+  "issues": []
+}

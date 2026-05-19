@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0069.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0069_fig01",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        2360,
+        2502,
+        3523
+      ],
+      "caption": "FIG. 2.11 ELEMENTS SUBJECT TO THREE-DIMENSIONAL STRESSES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0069_fig01_elements-subject-three-dimensional-stres.png",
+      "png_sha256": "55c806b4fc256cec9e1db1ed9b877c430cd56fe32d281e6bd1918991364a1e2c",
+      "slug": "elements-subject-three-dimensional-stres",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 69,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0069.png",
+  "page_image_sha256": "e08634c093338927a636c0e8e284e17b748d14554470e6472e677d2fafabf750",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0069_assets.json"
+}

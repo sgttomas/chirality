@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0356.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0356_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2298,
+        3222
+      ],
+      "caption": "C-15. Design Data: Trigonometric Constants for Circular Members \u2014 Continued",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0356_tbl01_c-15-design-data-trigonometric-constants.png",
+      "png_sha256": "3a5aef3ee41edc53522d08976d3c6f8d9037806ddc7380773916e0c2f77ed5a2",
+      "slug": "c-15-design-data-trigonometric-constants",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 356,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0356.png",
+  "page_image_sha256": "004a7dbac4f1a0ba7cc3b67d459c928fc3d69f5254193325c948b1d67d726dbb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0356_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 244,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Line drawing showing pipe with self-lubricating plates and trunnion pipe attachment forming a guide/stop fixture; bbox covers drawing, figure label, caption, and ~3-5% whitespace margin."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 8.9 A device which serves as a guide against axial rotation and as a two-axis double-acting stop against lateral translation.",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.52,
+        0.32
+      ]
+    }
+  ]
+}

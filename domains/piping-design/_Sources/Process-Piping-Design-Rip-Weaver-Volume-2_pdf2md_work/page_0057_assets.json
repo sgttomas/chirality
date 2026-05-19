@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 57,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-3. Mezzanine foundation. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "mezzanine-foundation",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.52],
+      "confidence": "high",
+      "notes": "Technical engineering drawing showing mezzanine foundation details with labeled components including sole plate, concrete foundation, base plate, and mezzanine mounted foundation. Caption appears below the figure."
+    }
+  ],
+  "issues": []
+}

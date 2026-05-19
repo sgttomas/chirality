@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 67,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6.1 Plot plan for process unit.",
+      "slug": "plot-plan-process-unit",
+      "bbox_norm": [0.04, 0.04, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Full-page plot plan diagram showing battery limits, existing control building, existing pipe rack, and existing plant facilities with equipment symbols. Caption appears vertically along right margin."
+    }
+  ],
+  "issues": []
+}

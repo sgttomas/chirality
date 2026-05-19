@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 249,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Composite figure showing four non-integral pipe attachment types: pipe clamps (with shear lugs welded to pipe), cradle or saddle, sling, and clevis. Referenced from page body text discussing non-integral attachments."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Typical non-integral attachments.",
+      "bbox_norm": [
+        0.48,
+        0.04,
+        0.98,
+        0.66
+      ]
+    }
+  ]
+}

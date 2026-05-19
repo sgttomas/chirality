@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0269.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0269_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.98,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3309,
+        2562
+      ],
+      "caption": "EXHIBIT 10-56 Preliminary Piping and Instrumentation Diagram",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0269_fig01_exhibit-10-56-preliminary-piping-and-ins.png",
+      "png_sha256": "13d9066ad68882a85cb8d4bf1a857ef8982ee27d850c3372430af70a023c7471",
+      "slug": "exhibit-10-56-preliminary-piping-and-ins",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 269,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0269.png",
+  "page_image_sha256": "03e6c128efc18e30605de5c67ea5fd2a928e322d1254da34491812bda17e1367",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0269_assets.json"
+}

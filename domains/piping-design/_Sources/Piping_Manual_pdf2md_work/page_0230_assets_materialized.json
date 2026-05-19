@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0230.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0230_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.5,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        66,
+        1402,
+        1979
+      ],
+      "caption": "EXHIBIT 9-17 Vessel-Supported Platform Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0230_fig01_exhibit-9-17-vessel-supported-platform-a.png",
+      "png_sha256": "8d3099da4c021d2cb63c4de7978f1b299d91f5ccee1cdb4618429a11ce5c670d",
+      "slug": "exhibit-9-17-vessel-supported-platform-a",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0230_fig02",
+      "bbox_norm": [
+        0.5,
+        0.07,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1148,
+        66,
+        2550,
+        1979
+      ],
+      "caption": "EXHIBIT 9-19 Structure-Supported Platform Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0230_fig02_exhibit-9-19-structure-supported-platfor.png",
+      "png_sha256": "2a1b312883d727501ecbef85507da9c61b76cf3253913c8c9010a5f04c5a18ea",
+      "slug": "exhibit-9-19-structure-supported-platfor",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0230_fig03",
+      "bbox_norm": [
+        0.09,
+        0.55,
+        0.56,
+        0.9
+      ],
+      "bbox_px": [
+        102,
+        1650,
+        1556,
+        3134
+      ],
+      "caption": "EXHIBIT 9-18 Single Platform Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0230_fig03_exhibit-9-18-single-platform-arrangement.png",
+      "png_sha256": "a9c209f52d268c3cb114d5c87d33bb6ddd2931cb924e53ac05fe2b2c27578799",
+      "slug": "exhibit-9-18-single-platform-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 230,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0230.png",
+  "page_image_sha256": "774843964818bc0f0a1d5623494dda4471a3b0c8b7782adb20a1e4db1b837309",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0230_assets.json"
+}

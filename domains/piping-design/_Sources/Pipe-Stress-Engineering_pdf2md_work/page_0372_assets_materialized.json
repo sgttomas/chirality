@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0372.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0372_fig01",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        1784,
+        2564,
+        3569
+      ],
+      "caption": "FIG. 10.13 METHODS FOR ANALYZING PIG LAUNCH STATION PIPING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0372_fig01_methods-analyzing-pig-launch-station-pip.png",
+      "png_sha256": "0f3eadb4f2d271995ae464c1bf46cfa7e28dd91d77db8967e801860cd0e2f1bf",
+      "slug": "methods-analyzing-pig-launch-station-pip",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 372,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0372.png",
+  "page_image_sha256": "58716a2b4755f52e90e6e20fd30402ffb41739cbd47027f456fbad3b5f0d7eb6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0372_assets.json"
+}

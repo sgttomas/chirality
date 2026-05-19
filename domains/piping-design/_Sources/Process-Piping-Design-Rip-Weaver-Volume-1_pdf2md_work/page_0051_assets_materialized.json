@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0051.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0051_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2477,
+        1644
+      ],
+      "caption": "Figure 3-4. Cone roof \"pancake\" tank. Courtesy of Chicago Bridge and Iron Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0051_fig01_cone-roof-pancake-tank.png",
+      "png_sha256": "9c363b84da8f9c4238aefcf4a2a03a19cbb1f0753738ae0fb5ef04fb71a73e83",
+      "slug": "cone-roof-pancake-tank",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0051_fig02",
+      "bbox_norm": [
+        0.04,
+        0.44,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1364,
+        2477,
+        3497
+      ],
+      "caption": "Figure 3-5. Floating versus cone roof design. The floating roof, by minimizing vapor space, eliminates filling loss (a), reduces breathing loss (b), and provides effective fire protection and lightning safety (c). It also inhibits roof and shell corrosion. Courtesy of Chicago Bridge and Iron Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0051_fig02_floating-versus-cone-roof-design.png",
+      "png_sha256": "986a97a89356c898fb1c6c5b794b3dae001ad360495bd9b89bf7e84f0737e369",
+      "slug": "floating-versus-cone-roof-design",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 51,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0051.png",
+  "page_image_sha256": "c23b6e20444d03fd8f3ea317a3b5b606d52b0b1743d0c4952fdec5f7ed6bc0a3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0051_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 351,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0351_fig_01",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.45],
+      "caption": "EXHIBIT 13-30 Monitor Range Chart - Effective Fire Monitor Range; trajectory curves for various nozzle elevation angles, vertical distance (0-100 ft) vs horizontal distance (0-180 ft)."
+    },
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p0351_fig_02",
+      "bbox_norm": [0.04, 0.46, 0.96, 0.95],
+      "caption": "EXHIBIT 13-31 Typical Grade-Mounted Fire Monitor - sketch with nozzle, handle, vendor contractor body, drain valve, block valve, pipe risers, underground piping, concrete supports/foundations, and alternative support."
+    }
+  ],
+  "issues": []
+}

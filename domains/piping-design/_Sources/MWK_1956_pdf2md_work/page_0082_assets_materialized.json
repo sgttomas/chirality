@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0082.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0082_fig01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.46,
+        0.32
+      ],
+      "bbox_px": [
+        78,
+        0,
+        1325,
+        1214
+      ],
+      "caption": "Fig. 3.19 Conical transition.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0082_fig01_fig-3-19-conical-transition.png",
+      "png_sha256": "e9ca886e128c28d82066ab7a2338ab0083a46773133699505897f4d1d8dc9ce5",
+      "slug": "fig-3-19-conical-transition",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 82,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0082.png",
+  "page_image_sha256": "8617eeed74555a3df8f5c55a4eda92f946007c6c1366a6d91ec77af6c0a6396a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0082_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0265.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0265_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2488,
+        1756
+      ],
+      "caption": "Fig. 7.28 A SITUATION WHEN ANCHOR IS THE PROBLEM",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0265_fig01_anchor-is-the-problem.png",
+      "png_sha256": "5f05ebfec60028c8707a4dea8580a16dd17fd6899485011487f6c114554540a3",
+      "slug": "anchor-is-the-problem",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 265,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0265.png",
+  "page_image_sha256": "5474092e62d3cb4299c496a28e3c86355d65b81b09ae546be02532cb8448e4db",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0265_assets.json"
+}

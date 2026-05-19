@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0111.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0111_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.07,
+        0.98,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3439
+      ],
+      "caption": "Table 8.1 Dimensions and properties of pipe, DN 6 to DN 40",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0111_tbl01_table-8-1-pipe-dimensions-properties-dn6.png",
+      "png_sha256": "7fe0484566b6e97d71947325eea1d7eddb3c8c8c32471ffca8b4e4c857c7b742",
+      "slug": "table-8-1-pipe-dimensions-properties-dn6",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 111,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0111.png",
+  "page_image_sha256": "7ff4c977bf493179408f5565d17a2bc933a4e476312689d47074650080ed14e5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0111_assets.json"
+}

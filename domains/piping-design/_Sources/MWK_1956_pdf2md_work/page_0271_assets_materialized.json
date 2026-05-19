@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0271.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0271_fig01",
+      "bbox_norm": [
+        0.59,
+        0.04,
+        0.99,
+        0.21
+      ],
+      "bbox_px": [
+        1225,
+        0,
+        2268,
+        768
+      ],
+      "caption": "Rotating machinery on elastic foundation.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0271_fig01_rotating-machinery-on-elastic-foundation.png",
+      "png_sha256": "417efafc10c7445ea6fb8b98ba830909a63cc5e321cb782590900edc56939793",
+      "slug": "rotating-machinery-on-elastic-foundation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 271,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0271.png",
+  "page_image_sha256": "2c7241d7064aa967f99b387ecda3d041beedd39a09e461da5eb5295358adba29",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0271_assets.json"
+}

@@ -1,0 +1,141 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0074.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0074_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        36,
+        2557,
+        2210
+      ],
+      "caption": "TABLE 2.1 BASIC BEAM FORMULAS",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0074_tbl01_basic-beam-formulas.png",
+      "png_sha256": "406de1d1a44aefb77ea6cfe925213e13bcf5d896d295c5bfb65c0edaad04d41d",
+      "slug": "basic-beam-formulas",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0074_tbl01_basic-beam-formulas.json",
+      "table_data_json_sha256": "b79870233f9bfba60444a18512a348efb3557ee4178327bfc1ab3aefcd6c46a4",
+      "table_data_sha256": "b79870233f9bfba60444a18512a348efb3557ee4178327bfc1ab3aefcd6c46a4",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0074_tbl01_basic-beam-formulas.xlsx",
+      "xlsx_sha256": "f17b1fe1a95ab7c3dc7d0cf6248206b25718f79c126cc39e78368b6b36f7dc89"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0074_fig01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.55,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        178,
+        1534,
+        962
+      ],
+      "caption": "(a) Simple Beam \u2013 Uniform Load",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0074_fig01_simple-beam-uniform-load.png",
+      "png_sha256": "05136a5d4b80934e9534e425c66d55ab3d0700718bb947c33527b7a355cf1c86",
+      "slug": "simple-beam-uniform-load",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0074_fig02",
+      "bbox_norm": [
+        0.04,
+        0.23,
+        0.55,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        642,
+        1534,
+        1390
+      ],
+      "caption": "(b) Simple Beam \u2013 Concentrated Load",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0074_fig02_simple-beam-concentrated-load.png",
+      "png_sha256": "8385a046ce63e26d334b8ae59e84a77dff1023ab2c250cfa8c66901f2f5dd5ac",
+      "slug": "simple-beam-concentrated-load",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0074_fig03",
+      "bbox_norm": [
+        0.04,
+        0.34,
+        0.55,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        1034,
+        1534,
+        1782
+      ],
+      "caption": "(c) Fixed Beam \u2013 Uniform Load",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Pipe-Stress-Engineering_p0074_fig03_fixed-beam-uniform-load.png",
+      "png_sha256": "cfc22d2e9801261bd422df04d82830c2ab30486c7058dcd06d6779a7e4b3af16",
+      "slug": "fixed-beam-uniform-load",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0074_fig04",
+      "bbox_norm": [
+        0.04,
+        0.44,
+        0.55,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        1390,
+        1534,
+        2210
+      ],
+      "caption": "(d) Fixed Beam \u2013 Concentrated Load",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Pipe-Stress-Engineering_p0074_fig04_fixed-beam-concentrated-load.png",
+      "png_sha256": "e32cffe3e24fcdac5de62eb5775b51c00fcb74dfd07aa6e2be19a4999f6479ac",
+      "slug": "fixed-beam-concentrated-load",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 74,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0074.png",
+  "page_image_sha256": "8f045d74ee39cb356eb0706503292d6a4b2edd6cb8e1d9284eff9844458437f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0074_assets.json"
+}

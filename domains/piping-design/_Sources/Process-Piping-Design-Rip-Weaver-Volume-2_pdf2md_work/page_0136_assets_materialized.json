@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0136.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0136_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2079
+      ],
+      "caption": "Figure 4-10. Brine heater outline drawing. Courtesy of HeaTran, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_fig01_brine-heater-outline-drawing.png",
+      "png_sha256": "47285337c29c5cdbc14592ca175d031212cc86623821d332a66f30623614f8b0",
+      "slug": "brine-heater-outline-drawing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.58,
+        0.96,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        1749,
+        2560,
+        2640
+      ],
+      "caption": "Nozzle Connections \u2014 Tube Side and Shell Side",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl01_nozzle-connections-tube-shell-side.png",
+      "png_sha256": "cf635f26e245c63f65884f854d13f9c215c62bd40e352efad2c5aa4189f4baf8",
+      "slug": "nozzle-connections-tube-shell-side",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl01_nozzle-connections-tube-shell-side.json",
+      "table_data_json_sha256": "870534e66a085e87a99dfb455bc180aefd65ffbd9c9fea2293b156dde61af9c0",
+      "table_data_sha256": "870534e66a085e87a99dfb455bc180aefd65ffbd9c9fea2293b156dde61af9c0",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl01_nozzle-connections-tube-shell-side.xlsx",
+      "xlsx_sha256": "1f66744efc7c8f0bbdbfbb291750ae1af6016c771c3c9cf5ce60ecf8d1549344"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.88,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2739,
+        2560,
+        3300
+      ],
+      "caption": "Revision Block",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl02_revision-block.png",
+      "png_sha256": "e66fee5148a305e5538da536b21c861339707563d4e61bacb28401493558e79b",
+      "slug": "revision-block",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl02_revision-block.json",
+      "table_data_json_sha256": "231a622e32bd9f57cef9938e73f18d45ee0e0e761669643c287339a962af9fcc",
+      "table_data_sha256": "231a622e32bd9f57cef9938e73f18d45ee0e0e761669643c287339a962af9fcc",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0136_tbl02_revision-block.xlsx",
+      "xlsx_sha256": "a042c13178e2c15d474ec1988aae2972653075e8382a1f17c663582b00ce7f1e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 136,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0136.png",
+  "page_image_sha256": "a500213e74e6caac653461fd248dbbf459d335e03de8979e8ae8ee725415bc6e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0136_assets.json"
+}

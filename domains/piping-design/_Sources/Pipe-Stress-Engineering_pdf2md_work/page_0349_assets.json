@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 349,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 10.1 Transporting Crude Oil and Refined Products",
+      "slug": "transporting-crude-oil-refined-products",
+      "bbox_norm": [0.04, 0.60, 0.96, 0.95],
+      "confidence": "high",
+      "notes": "Pipeline flow diagram showing oil field, refinery, petrochemical plant, shipping terminal, and refined products to markets. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

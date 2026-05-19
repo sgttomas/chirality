@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0411.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0411_fig01",
+      "bbox_norm": [
+        0.08,
+        0.03,
+        0.72,
+        0.18
+      ],
+      "bbox_px": [
+        75,
+        0,
+        1916,
+        808
+      ],
+      "caption": "FIG. 12.11 HEATING THE GAS \u2014 (a) Constant Volume (b) Constant Pressure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0411_fig01_heating-the-gas-constant-volume-constant.png",
+      "png_sha256": "cb001e196c6588c4077888738dff0d2eff622b3362b01d1ab515285b34623ff5",
+      "slug": "heating-the-gas-constant-volume-constant",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 411,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0411.png",
+  "page_image_sha256": "518f0da81b2efb18dca349cbcd96ce5fcbf6ea099d6210d5ddf2b0f0a9422f88",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0411_assets.json"
+}

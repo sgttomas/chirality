@@ -1,0 +1,37 @@
+re
+
+Thermal Expansion and Piping Flexibility 77
+
+hot reheat, and cold reheat lines. On the other hand, cold spring is seldom used in petrochemical
+process piping. The petrochemical industry shies away from cold spring mainly due to the belief that
+the intended benefits of cold spring may not be realized due to inadequate specifications and poor
+supervision of field erection procedures. This has become the culture of the two industries partly due
+to the much larger amount of piping involved in a petrochemical plant than in a power plant. Without
+proper specifications and installation procedures, no cold spring should be attempted. In some cases,
+even the self-sprung gap is closed by cutting-and-pasting the piping rather than cold springing it back
+for connection. Nevertheless, even in the petrochemical industry, a one-dimensional cut-short on
+yard piping to control the corner movement is occasionally performed. This cut-short on yard piping
+requires no special procedure due to the small force involved in a very flexible system.
+
+The cold spring process involves laying out the piping somewhat shorter than the installing space
+to create a gap at the final weld or final bolting location, as the system is erected without straining.
+The system is then pulled or pushed according to a predetermined procedure to close the gap and to
+finish the final joint.
+
+3.6.1 Cold Spring Gap
+
+The size of the cold spring gap depends on the cold spring factor desired. The size of the gap for
+a 100% cold sprung system is the total amount of system expansion modified with the differential
+anchor movement. For example, take the simple system shown in Fig. 3.8, where a three-dimensional
+gap is generally required to achieve a uniform cold spring. Gap size can be calculated form the overall
+dimensions, L,, L,, and L,, plus the differential effect of the anchor displacements. The procedure
+can be quite confusing in a general thee-dimensional system. Therefore, it is recommended to use a
+systematic procedure that does not require visual interpretation. Before calculating the gap, we need
+to define the gap orientation first. This gap orientation is required for entering the cold spring gap
+data into a computer program. Generally, the gap is considered as running in the same direction as
+the sequence of node points. In this sample piping system, we are describing the system from point A
+to point B; therefore, the gap is running from point G, to point Gg. A minus gap means running from
+G4 to Gz in the negative coordinate direction. For the x direction, the gap is calculated by
+
+FIG. 3.8
+COLD SPRING GAP

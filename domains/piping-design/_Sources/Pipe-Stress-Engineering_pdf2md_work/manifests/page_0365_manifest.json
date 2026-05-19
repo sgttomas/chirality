@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0365.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0365_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1228
+      ],
+      "caption": "FIG. 10.9 IDEALIZED ELASTIC-PLASTIC SHAPE OF SOIL RESISTANCE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0365_fig01_idealized-elastic-plastic-soil-resistanc.png",
+      "png_sha256": "623360b6471ec3d3db25a06e6ba6c8f2b82a1e764507da5484e05817936c2f04",
+      "slug": "idealized-elastic-plastic-soil-resistanc",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 365,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0365.png",
+  "page_image_sha256": "2b68dda3f59848d633f6b0ded977689a4a06df9b674fa3e55d050f502798cbc9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0365_assets.json"
+}

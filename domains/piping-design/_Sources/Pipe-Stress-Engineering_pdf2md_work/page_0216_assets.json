@@ -1,0 +1,129 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 216,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 6.7 K VALUES (ADJUSTMENT FOR LUG THICKNESS)",
+      "slug": "table-6-7-k-values-lug-thickness",
+      "bbox_norm": [0.22, 0.04, 0.85, 0.35],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Angle (i) deg.", "is_header": true },
+              { "value": "Edge moment M₀/Fr", "is_header": true },
+              { "value": "K value 0.2393(M₀/Fr)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 0, "type": "number" },
+              { "value": 0.03673, "type": "number" },
+              { "value": 1.000, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": 0.03902, "type": "number" },
+              { "value": 1.021, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": 0.03936, "type": "number" },
+              { "value": 1.041, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": 0.22476, "type": "number" },
+              { "value": 1.062, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": 0.35022, "type": "number" },
+              { "value": 1.084, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 0.21574, "type": "number" },
+              { "value": 1.107, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 0.21132, "type": "number" },
+              { "value": 1.130, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": 0.20696, "type": "number" },
+              { "value": 1.154, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number" },
+              { "value": 0.20266, "type": "number" },
+              { "value": 1.178, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number" },
+              { "value": 0.19434, "type": "number" },
+              { "value": 1.229, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 30, "type": "number" },
+              { "value": 0.17421, "type": "number" },
+              { "value": 1.370, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 40, "type": "number" },
+              { "value": 0.15561, "type": "number" },
+              { "value": 1.534, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with angle in degrees, edge moment M0/Fr, and K value. 12 data rows. Title appears above table. All cells clearly legible."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.25 LOADS AT LUG",
+      "slug": "fig-6-25-loads-at-lug",
+      "bbox_norm": [0.05, 0.62, 0.92, 0.98],
+      "confidence": "high",
+      "notes": "Three sub-diagrams (a), (b), (c) showing lug load configurations and decomposition. Sub-diagram (a) shows lug geometry with dimensions h, b, and angle a. Sub-diagram (b) shows load decomposition with M=We and W=W Sin(a). Sub-diagram (c) shows shell attachment view. Caption 'FIG. 6.25 LOADS AT LUG' appears below the figure."
+    }
+  ],
+  "issues": []
+}

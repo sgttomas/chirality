@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0285.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0285_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.96,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1650
+      ],
+      "caption": "EXHIBIT 11-6 Line Spacing Chart",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0285_tbl01_exhibit-11-6-line-spacing-chart.png",
+      "png_sha256": "7320e7733620338db45ab65f037ad3ef2ca9beac6969d1f48bcd3975bf12fd99",
+      "slug": "exhibit-11-6-line-spacing-chart",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0285_fig01",
+      "bbox_norm": [
+        0.08,
+        0.6,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        76,
+        1814,
+        2550,
+        3200
+      ],
+      "caption": "EXHIBIT 11-7 Line Spacing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0285_fig01_exhibit-11-7-line-spacing.png",
+      "png_sha256": "818db7c808ddada31bead566ce0d9f79ae3f32316330cfca3d83efae26d1fbef",
+      "slug": "exhibit-11-7-line-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 285,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0285.png",
+  "page_image_sha256": "457e97b8d8e86116c3078c71ae275f994f8c00c433891d43ffbb3b42ba06b199",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0285_assets.json"
+}

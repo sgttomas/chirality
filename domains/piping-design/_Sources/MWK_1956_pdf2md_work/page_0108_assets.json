@@ -1,0 +1,53 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.66,
+        0.04,
+        1.0,
+        0.4
+      ],
+      "caption": "Isometric sketch of multi-plane piping system showing Steps 1-10 with member dimensions 15'-0\", 5'-0\", and 28'-0\" (Form A reference figure).",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.66,
+        0.46
+      ],
+      "caption": "Form A \u2014 Piping Flexibility and Stress Analysis, Original Data and Results (Calc. No. 214). Members ALL data (D, t, I, Z, R), Pipe Expansion Data, Cold/Hot Condition, and Moments/Forces acting on Restraints.",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.02,
+        0.48,
+        0.18,
+        0.66
+      ],
+      "caption": "STEP 6 isometric sketch of multi-plane piping system (Form 6 reference figure).",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.02,
+        0.48,
+        1.0,
+        1.0
+      ],
+      "caption": "Form 6 \u2014 Piping Flexibility & Stress Analysis, Multi-Plane Systems (Calc. No. 214, dated 9/22/53). Formulas for members parallel to X/Y/Z axes with member-by-member shape coefficient sums across columns 0-1, 1-2, 2-0, 0-3, 3-A and Sum of Shape Coefficients.",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 108,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

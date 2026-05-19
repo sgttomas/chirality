@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0332.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0332_fig01",
+      "bbox_norm": [
+        0.5,
+        0.09,
+        0.97,
+        0.27
+      ],
+      "bbox_px": [
+        1029,
+        119,
+        2286,
+        952
+      ],
+      "caption": "Fig. B.2 Tuned resonator",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0332_fig01_fig-b-2-tuned-resonator.png",
+      "png_sha256": "16b575f4f33b613c582f4aad06607228759a70f5d726f3bfea8b7c31f045c402",
+      "slug": "fig-b-2-tuned-resonator",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 332,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0332.png",
+  "page_image_sha256": "046badca82d622e606d64195aa4ed5c4ed6be30f55a8cb1f015fa489f890dd54",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0332_assets.json"
+}

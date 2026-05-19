@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0483_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3518,
+        2495
+      ],
+      "caption": "Thermal Expansion Rate \u2014 From Ambient (70\u00b0F) to Temperature, (IN./100 FT) (1 IN./100 FT = 0.833 MM/M)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0483_tbl01_thermal-expansion-rate-ambient-70f.png",
+      "png_sha256": "703627ac31f8755c9053af359ca923ec075fbf23176eaf5d10ff40e607644841",
+      "slug": "thermal-expansion-rate-ambient-70f",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0483_tbl01_thermal-expansion-rate-ambient-70f.json",
+      "table_data_json_sha256": "56fc449f3da75bac232c1e2d75b88e8b148662213e78829fe3dc60729765fbbe",
+      "table_data_sha256": "56fc449f3da75bac232c1e2d75b88e8b148662213e78829fe3dc60729765fbbe",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0483_tbl01_thermal-expansion-rate-ambient-70f.xlsx",
+      "xlsx_sha256": "3d06406bd568edc2ed8d0b1e99ad20d978c96b9f19af47ccbebef81157158552"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 483,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483.png",
+  "page_image_sha256": "eafd8bd6db31e5dad4bf975c5bc07765a3fc6271601e1278775e311631c472fc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0483_assets.json"
+}

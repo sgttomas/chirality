@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0314.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0314_fig01",
+      "bbox_norm": [
+        0.1,
+        0.05,
+        0.95,
+        0.49
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2550,
+        1781
+      ],
+      "caption": "EXHIBIT 12-17 Alternative Small-Structure Design",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0314_fig01_exhibit-12-17-alternative-small-structur.png",
+      "png_sha256": "9813766a573941090d1a36499eedb4545e35a2207c707f397674d72f4dbdc28e",
+      "slug": "exhibit-12-17-alternative-small-structur",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0314_fig02",
+      "bbox_norm": [
+        0.07,
+        0.49,
+        0.95,
+        0.95
+      ],
+      "bbox_px": [
+        51,
+        1452,
+        2550,
+        3299
+      ],
+      "caption": "EXHIBIT 12-18 Single-Level, One-Bay Small Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0314_fig02_exhibit-12-18-single-level-one-bay-small.png",
+      "png_sha256": "037a4517b4f238f309b33ed51b7a581a5b36a58617c8b8f51ecc8450c42d3981",
+      "slug": "exhibit-12-18-single-level-one-bay-small",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 314,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0314.png",
+  "page_image_sha256": "6f7fbad09f364f284c542c0c8f85ad4141150f5e01debacb015af901df3200de",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0314_assets.json"
+}

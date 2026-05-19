@@ -1,0 +1,182 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 17,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Working Pressures* — Steam, Water, Oil, Vapor, Gas, or Air",
+      "slug": "working-pressures-steam-water-oil-vapor-gas-air",
+      "bbox_norm": [0.03, 0.42, 0.58, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "When pipe is rated in accordance with the Code for Pressure Piping or any other Code, these fittings may be used for the same pressures and temperatures as the pipe, even though such ratings exceed those in the table above." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material", "row_span": 2, "is_header": true },
+              { "value": "Temp", "row_span": 2, "is_header": true },
+              { "value": "Pounds, Non-Shock", "col_span": 4, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2000 Pound WOG", "is_header": true },
+              { "value": "3000 Pound WOG", "is_header": true },
+              { "value": "4000 Pound WOG", "is_header": true },
+              { "value": "6000 Pound WOG", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel ASTM A 105 Grade II", "row_span": 14, "type": "text" },
+              { "value": 100, "type": "number", "unit": "°F" },
+              { "value": 2000, "type": "number", "unit": "psig" },
+              { "value": 3000, "type": "number", "unit": "psig" },
+              { "value": 4000, "type": "number", "unit": "psig" },
+              { "value": 6000, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 200, "type": "number", "unit": "°F" },
+              { "value": 1990, "type": "number", "unit": "psig" },
+              { "value": 2910, "type": "number", "unit": "psig" },
+              { "value": 3865, "type": "number", "unit": "psig" },
+              { "value": 5830, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 300, "type": "number", "unit": "°F" },
+              { "value": 1940, "type": "number", "unit": "psig" },
+              { "value": 2915, "type": "number", "unit": "psig" },
+              { "value": 3885, "type": "number", "unit": "psig" },
+              { "value": 5830, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 400, "type": "number", "unit": "°F" },
+              { "value": 1895, "type": "number", "unit": "psig" },
+              { "value": 2845, "type": "number", "unit": "psig" },
+              { "value": 3790, "type": "number", "unit": "psig" },
+              { "value": 5680, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 500, "type": "number", "unit": "°F" },
+              { "value": 1810, "type": "number", "unit": "psig" },
+              { "value": 2715, "type": "number", "unit": "psig" },
+              { "value": 3620, "type": "number", "unit": "psig" },
+              { "value": 5430, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 600, "type": "number", "unit": "°F" },
+              { "value": 1640, "type": "number", "unit": "psig" },
+              { "value": 2460, "type": "number", "unit": "psig" },
+              { "value": 3280, "type": "number", "unit": "psig" },
+              { "value": 4925, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 650, "type": "number", "unit": "°F" },
+              { "value": 1540, "type": "number", "unit": "psig" },
+              { "value": 2310, "type": "number", "unit": "psig" },
+              { "value": 3080, "type": "number", "unit": "psig" },
+              { "value": 4615, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 700, "type": "number", "unit": "°F" },
+              { "value": 1390, "type": "number", "unit": "psig" },
+              { "value": 2085, "type": "number", "unit": "psig" },
+              { "value": 2780, "type": "number", "unit": "psig" },
+              { "value": 4165, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 750, "type": "number", "unit": "°F" },
+              { "value": 1200, "type": "number", "unit": "psig" },
+              { "value": 1800, "type": "number", "unit": "psig" },
+              { "value": 2400, "type": "number", "unit": "psig" },
+              { "value": 3600, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 800, "type": "number", "unit": "°F" },
+              { "value": 1015, "type": "number", "unit": "psig" },
+              { "value": 1525, "type": "number", "unit": "psig" },
+              { "value": 2030, "type": "number", "unit": "psig" },
+              { "value": 3050, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 850, "type": "number", "unit": "°F" },
+              { "value": 815, "type": "number", "unit": "psig" },
+              { "value": 1220, "type": "number", "unit": "psig" },
+              { "value": 1625, "type": "number", "unit": "psig" },
+              { "value": 2440, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 900, "type": "number", "unit": "°F" },
+              { "value": 615, "type": "number", "unit": "psig" },
+              { "value": 920, "type": "number", "unit": "psig" },
+              { "value": 1225, "type": "number", "unit": "psig" },
+              { "value": 1840, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 950, "type": "number", "unit": "°F" },
+              { "value": 430, "type": "number", "unit": "psig" },
+              { "value": 645, "type": "number", "unit": "psig" },
+              { "value": 860, "type": "number", "unit": "psig" },
+              { "value": 1290, "type": "number", "unit": "psig" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1000, "type": "number", "unit": "°F" },
+              { "value": 270, "type": "number", "unit": "psig" },
+              { "value": 405, "type": "number", "unit": "psig" },
+              { "value": 540, "type": "number", "unit": "psig" },
+              { "value": 810, "type": "number", "unit": "psig" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row header: row 1 has Material and Temp (each row_span=2) and Pounds Non-Shock (col_span=4); row 2 has the four WOG sub-headers. Material cell spans all 14 data rows. Footnote marker * references note about Code for Pressure Piping ratings."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-3. Forged steel socketwelding fittings (2000, 3000, 4000 and 6000 pound W.O.G.).",
+      "slug": "forged-steel-socketwelding-fittings",
+      "bbox_norm": [0.42, 0.02, 0.97, 0.98],
+      "confidence": "high",
+      "notes": "Photographs and illustrations of forged steel socket-welding fittings (Tee, 45-degree Elbow, Cross, 90-degree Elbow, Y-Bend, Coupling, Reducer, Cap) arranged in a right-side column with catalog numbers and WOG ratings listed alongside each fitting. Figure caption spans the bottom of the page."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 208,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 6.21 Circumferential Bending Moment and Direct Force, Ring in Plane of Saddle",
+      "slug": "circumferential-bending-moment-direct-force-ring-saddle",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.32],
+      "confidence": "high",
+      "notes": "Circular ring diagram showing Q, sinφ, R, β, Max Moment M₀, and Pβ labels; caption visible below diagram"
+    }
+  ],
+  "issues": []
+}

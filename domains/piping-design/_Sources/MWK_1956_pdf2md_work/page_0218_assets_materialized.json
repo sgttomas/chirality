@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0218.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0218_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.5,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1320,
+        1215
+      ],
+      "caption": "Fig. 7.7 Bellows attachment details.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0218_fig01_fig-7-7-bellows-attachment-details.png",
+      "png_sha256": "4082899db6ae237060db2ff94f216055d6961f49590ca96f746bc63ded69b056",
+      "slug": "fig-7-7-bellows-attachment-details",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 218,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0218.png",
+  "page_image_sha256": "7317d5f75e5df9ee12341854cfad621d31d6040ea2e4eb71769411a30fa8e94d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0218_assets.json"
+}

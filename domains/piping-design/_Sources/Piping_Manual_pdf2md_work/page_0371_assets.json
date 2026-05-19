@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 371,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig-p371-01",
+      "bbox_norm": [0.09, 0.23, 0.96, 0.87],
+      "caption": "EXHIBIT 14-11 External-Cage Level Controller and Transmitter"
+    }
+  ],
+  "issues": []
+}

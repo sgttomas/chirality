@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 24,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0024_fig_01",
+      "caption": "EXHIBIT 1-7 Valve Manifolds — LAYOUT \"A\" (Inadvertent Design, Excessive Fittings) with 10\"x6\" reducer, 6\"x4\" reducer and multiple elbows; LAYOUT \"B\" (Preferred Design, Minimum Fittings) with 10\"x6\" reducer, weld cap, and branch connection",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.45]
+    }
+  ],
+  "issues": []
+}

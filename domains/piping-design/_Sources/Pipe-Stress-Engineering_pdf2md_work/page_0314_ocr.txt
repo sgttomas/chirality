@@ -1,0 +1,67 @@
+294 Chapter 9
+
+~ :
+rn
+“ee
+
+hey,
+
+| ~
+
+Pump-A
+(a) Direct Take-off (b) Looped Take-off
+
+FIG. 9.7
+ANALYSIS OF MULTI-UNIT INSTALLATION
+
+matter how flexible the rest of the piping is. Inexperienced engineers often overlook this basic require-
+ment. The flexibility between the two pumps is provided by the take-off piping. Figure 9.7(a) shows di-
+rect take-off, which is acceptable for small or low-temperature systems. For large or high-temperature
+piping systems, a looped take-off as shown in Fig. 9.7(b) is required.
+
+One question often asked concerns the allowable piping load at idling equipment. Because the ma-
+chine is not operating, it can take a somewhat higher deformation and shaft misalignment. One option
+that is often used is to increase the allowable by 50% for idling equipment. However, this practice is
+not universal and needs to be put into the design specification if one wants to use it.
+
+9.2.6 Fit-up the Connection
+
+The final fit-up of piping at a rotating equipment is an act of precise manipulation. It involves the
+correct dimension and face orientation of the piping together with a proper pull-up procedure so the
+fit-up load is maintained to a minimum. In some cases, this also involves a cold spring designed to
+reduce the piping thermal expansion load at operating condition (see also Section 3.6).
+
+To provide the correct dimension and face orientation, a common practice is to make the final piece
+of pipe slightly longer so it can be trimmed to the exact dimension in the field. Some organizations also
+have a standard field practice of using localized heating and quenching [6] to bring the piping system
+into position for bolting up. However, this type of thermal bending is only for very experienced install-
+ers. Besides the bending effect, the potentially damaging effects of heating and quenching should also
+be studied before using this approach.
+
+When a multi-unit installation is operating at near-ambient temperatures, a very tight assembly with
+a common header is generally used. Under this situation, for both fit-up and maintenance purposes,
+short bellow expansion joints or flexible couplings are used for the fit-up. In this case, the joints are
+generally required to be solidified with tie-rods to resist the pressure thrust force. If the joint is not
+solidly locked, the machine could face operational problems, such as excessive machine vibration. See
+Section 7.6 and Fig. 7.27(c) for examples of improper installation of expansion joints.
+
+To ensure that no dead weight from the piping and piping components is imposed on the equip-
+ment, field engineers from the equipment manufacturer and the operating company will try to use
+
+Meas Saad
+
+prey
+al
+
+in
+
+phe se
+4 4
+
+ee
+
+a
+
+amy
+i
+Nee

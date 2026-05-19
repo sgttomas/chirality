@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0358.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0358_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.83
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2076,
+        2624
+      ],
+      "caption": "C-17. Span vs. Natural Frequency and vs. Deflection - Horizontal Pipe Lines, Uniform Load",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0358_fig01_c-17-span-vs-natural-frequency-and-vs-de.png",
+      "png_sha256": "c402e8cbaa1b8e43c225d753e945747ad8fc8bab7ca060018fcc453eacd779ce",
+      "slug": "c-17-span-vs-natural-frequency-and-vs-de",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 358,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0358.png",
+  "page_image_sha256": "d2399b9a6d17d77586bcb4f4466d50056eaf21746e0c22b77c98bff43f33cd9d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0358_assets.json"
+}

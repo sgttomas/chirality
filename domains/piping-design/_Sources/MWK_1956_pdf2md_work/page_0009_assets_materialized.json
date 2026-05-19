@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0009_fig01",
+      "bbox_norm": [
+        0.08,
+        0.06,
+        0.49,
+        0.27
+      ],
+      "bbox_px": [
+        78,
+        35,
+        1403,
+        1121
+      ],
+      "caption": "Fig. 1.8 Uniform extension (strain outside region of neck) for different types of materials.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0009_fig01_fig-1-8-uniform-extension-strain-outside.png",
+      "png_sha256": "a2d52b5d8612245c4adff763c383aa9c8f8935cf4b5b2ec822ea6b5e383d744d",
+      "slug": "fig-1-8-uniform-extension-strain-outside",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0009.png",
+  "page_image_sha256": "d8cbf69ffcf22a8f336c68bad1e6a55d7e4ee8c2eb322e52a1c09ff0b39a90a3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0009_assets.json"
+}

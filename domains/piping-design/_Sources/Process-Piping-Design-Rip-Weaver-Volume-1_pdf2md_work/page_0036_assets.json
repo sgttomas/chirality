@@ -1,0 +1,126 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 36,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2-1 Nomenclature of Hydrocarbons",
+      "slug": "nomenclature-of-hydrocarbons",
+      "bbox_norm": [0.03, 0.04, 0.48, 0.42],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "No. of C Atoms", "is_header": true },
+              { "value": "Paraffin Name", "is_header": true },
+              { "value": "No. of C Atoms", "is_header": true },
+              { "value": "Paraffin Name", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": "Methane", "type": "text" },
+              { "value": 11, "type": "number" },
+              { "value": "Undecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": "Ethane", "type": "text" },
+              { "value": 12, "type": "number" },
+              { "value": "Duodecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": "Propane", "type": "text" },
+              { "value": 13, "type": "number" },
+              { "value": "Tridecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": "Butane", "type": "text" },
+              { "value": 14, "type": "number" },
+              { "value": "Tetradecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 5, "type": "number" },
+              { "value": "Pentane", "type": "text" },
+              { "value": 15, "type": "number" },
+              { "value": "Pentadecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": "Hexane", "type": "text" },
+              { "value": 16, "type": "number" },
+              { "value": "Hexadecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 7, "type": "number" },
+              { "value": "Heptane", "type": "text" },
+              { "value": 17, "type": "number" },
+              { "value": "Heptadecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": "Octane", "type": "text" },
+              { "value": 18, "type": "number" },
+              { "value": "Octadecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 9, "type": "number" },
+              { "value": "Nonane", "type": "text" },
+              { "value": 19, "type": "number" },
+              { "value": "Nonadecane", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": "Decane", "type": "text" },
+              { "value": 20, "type": "number" },
+              { "value": "Eicosane", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column-pair table listing paraffin hydrocarbons by carbon atom count and name; table title appears above."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-1. Composition of the hydrocarbon molecules.",
+      "slug": "composition-hydrocarbon-molecules",
+      "bbox_norm": [0.49, 0.03, 0.98, 0.60],
+      "confidence": "high",
+      "notes": "Structural diagrams showing carbon atom (4 bonds), hydrogen atom (1 bond), methane (CH4), ethane (C2H6), and propane (C3H8). Caption appears below the diagrams."
+    }
+  ],
+  "issues": []
+}

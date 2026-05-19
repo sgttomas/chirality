@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0173.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0173_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.52,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1412,
+        1992
+      ],
+      "caption": "Figure 8-15. Multiple level gage installation. Courtesy of Fluor Corp.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0173_fig01_multiple-level-gage-installation.png",
+      "png_sha256": "325ff579f5224b0cbeaf8e30b36b735433a9e8a459ad9fb7f7ae9ebe1cee1af8",
+      "slug": "multiple-level-gage-installation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 173,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0173.png",
+  "page_image_sha256": "7332d8fad2cfe93508a5b825d9577df7a309c6c320169e6a19c3c23c4f5c148d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0173_assets.json"
+}

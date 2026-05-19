@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0098.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0098_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Figure 3-7. Box heater typical elevation. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0098_fig01_box-heater-typical-elevation.png",
+      "png_sha256": "79cf4d033d1108894d93ab4b291d50e0237caeee0ca542976308b1e16f49bddd",
+      "slug": "box-heater-typical-elevation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 98,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0098.png",
+  "page_image_sha256": "d125f646487eba3ba94af1ab2209153513cfa34f27afa5f8a52ac85bdaae724c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0098_assets.json"
+}

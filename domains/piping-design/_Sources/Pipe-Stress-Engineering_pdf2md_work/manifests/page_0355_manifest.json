@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0355_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.72,
+        0.21
+      ],
+      "bbox_px": [
+        75,
+        0,
+        1937,
+        919
+      ],
+      "caption": "TABLE 10.3 TEMPERATURE DERATING FACTOR, T",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0355_tbl01_temperature-derating-factor-t.csv",
+      "csv_sha256": "e6d8913f544a02771f72e3be81ad42f00300565141f33b1a570286d75c6ad23a",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0355_tbl01_temperature-derating-factor-t.png",
+      "png_sha256": "dc34eb5dd5fd3cfcae91e6c3ba379e770d076188cf5a9cd85f633e795de253c9",
+      "slug": "temperature-derating-factor-t",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 355,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355.png",
+  "page_image_sha256": "d471ef327dd687abd5fcf06009998073d57a9d9bed340772cacbcd9ffb8565fe",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0355_assets.json"
+}

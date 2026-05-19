@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0367.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0367_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.39
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2582,
+        1463
+      ],
+      "caption": "EXHIBIT 14-3 Distributed Control System",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0367_fig01_exhibit-14-3-distributed-control-system.png",
+      "png_sha256": "dc529dbee28f793193418dc816c09c9aadd23efa68a1b4f72b1317689cd581cd",
+      "slug": "exhibit-14-3-distributed-control-system",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0367_fig02",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.96,
+        0.94
+      ],
+      "bbox_px": [
+        0,
+        1230,
+        2582,
+        3291
+      ],
+      "caption": "EXHIBIT 14-4 Control Valves and Accessories (a. Typical Diaphragm Control Valve; b. Butterfly Control Valve; c. Control Valve with Valve Positioner; d. Double-Acting Piston Actuator; e. Side-Mounted Handwheel)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0367_fig02_exhibit-14-4-control-valves-and-accessor.png",
+      "png_sha256": "bf792cea8f5c0c5b0d77b8fa3e218f0626dd3b362bebfc8facd50bfbd22a0b06",
+      "slug": "exhibit-14-4-control-valves-and-accessor",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 367,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0367.png",
+  "page_image_sha256": "0df8ff675829e4c7dbf5bccc52ef9ca7fef3d1ca9f150227a17f4e1e2a58c98d",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0367_assets.json"
+}

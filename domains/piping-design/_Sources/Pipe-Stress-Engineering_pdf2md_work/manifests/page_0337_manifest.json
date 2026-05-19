@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0337.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0337_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1304
+      ],
+      "caption": "Fig. 9.21 Surge Dampener for Reciprocating Pumps \u2014 (a) Gas filled Surge Chamber, (b) Bladder Type Dampener, (c) Suction Standpipe",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0337_fig01_surge-dampener-reciprocating-pumps.png",
+      "png_sha256": "72f36f9f4e674c7620b3662637553345ceae606903e0a57e6b15f5d5187bcebf",
+      "slug": "surge-dampener-reciprocating-pumps",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0337_fig02",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1762,
+        2502,
+        3523
+      ],
+      "caption": "Fig. 9.22 Effect of Surge Chamber Gas Volume on Reciprocating Pump Pressure Pulsation [13]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0337_fig02_surge-chamber-gas-volume-pulsation.png",
+      "png_sha256": "cf8fbd70b20457bdd3006778df665fcf5f0d9ccee62a432b8df00fc26fb7f697",
+      "slug": "surge-chamber-gas-volume-pulsation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 337,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0337.png",
+  "page_image_sha256": "7a8a4da92fdc5493d5e51ccccdfba2a169f5b64618a5263e01c34a8e286c7bb5",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0337_assets.json"
+}

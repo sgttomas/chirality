@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 179,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "Piping_Manual_p0179_a01",
+      "kind": "fig",
+      "caption": "Exhibit 7-27 Retractable Soot Blower",
+      "bbox_norm": [0.04, 0.04, 0.97, 0.34]
+    },
+    {
+      "id": "Piping_Manual_p0179_a02",
+      "kind": "fig",
+      "caption": "Exhibit 7-28 Soot Blower in Operation",
+      "bbox_norm": [0.04, 0.34, 0.97, 0.55]
+    }
+  ],
+  "issues": []
+}

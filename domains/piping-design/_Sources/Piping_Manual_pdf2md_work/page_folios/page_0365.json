@@ -1,0 +1,10 @@
+{
+  "schema_version": "pdf2md-folio-extract/v1",
+  "run_status": "NO_FOLIO",
+  "page": 365,
+  "page_label": null,
+  "page_label_source": "vlm",
+  "location": null,
+  "confidence": "high",
+  "rationale": "Page is entirely blank with no printed content, text, or folio visible."
+}

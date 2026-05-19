@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0203.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0203_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2477,
+        1639
+      ],
+      "caption": "Unit conversion table \u2014 Y (Yard, Year)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0203_tbl01_unit-conversion-y.png",
+      "png_sha256": "b91b313a5c31bf653957b46f4e618cebd2aa7f35241e780a8b7508f4e174a435",
+      "slug": "unit-conversion-y",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0203_tbl01_unit-conversion-y.json",
+      "table_data_json_sha256": "289b0923a3df7c4f6e26f54bc06367090c38f53a044a3de46b530f1900122801",
+      "table_data_sha256": "289b0923a3df7c4f6e26f54bc06367090c38f53a044a3de46b530f1900122801",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0203_tbl01_unit-conversion-y.xlsx",
+      "xlsx_sha256": "34c908319aab45800f0e9a42edcd17ec48f0974992ca45621d474e915f12160f"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 203,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0203.png",
+  "page_image_sha256": "5f3c6be37c477ffe0e13b8f6bbd1b7347c1258efc1c87a244f09e50ae383fc9e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0203_assets.json"
+}

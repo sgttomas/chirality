@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0172.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0172_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.96,
+        0.9
+      ],
+      "bbox_px": [
+        26,
+        430,
+        2556,
+        3139
+      ],
+      "caption": "EXHIBIT 7-16 Radiant Tube Removal in a Circular Furnace",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0172_fig01_exhibit-7-16-radiant-tube-removal-in-a-c.png",
+      "png_sha256": "f155b5e8e142af7b44eb75eb9c4d2ba3cdcad8638098b4a36700d5d95ba733a7",
+      "slug": "exhibit-7-16-radiant-tube-removal-in-a-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 172,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0172.png",
+  "page_image_sha256": "363f2cb697de72b98180926468f9a7e01d2d0b48426ef9d3eba1a681890a0254",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0172_assets.json"
+}

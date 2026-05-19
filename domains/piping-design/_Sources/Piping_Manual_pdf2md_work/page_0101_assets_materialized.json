@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0101.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0101_fig01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.99,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1359
+      ],
+      "caption": "EXHIBIT 4-45  Compressor Shelter: Siting Criteria",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0101_fig01_exhibit-4-45-compressor-shelter-siting-c.png",
+      "png_sha256": "143e6c1540d95eb48d00ba8733f72ee3bf25d3d2d6ec8ed9b3e82eab3312ebe6",
+      "slug": "exhibit-4-45-compressor-shelter-siting-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0101.png",
+  "page_image_sha256": "bbeefd5cc592963f4881fe407cb4a1e5e7219b1cdb105ba43695e3fecb167850",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0101_assets.json"
+}

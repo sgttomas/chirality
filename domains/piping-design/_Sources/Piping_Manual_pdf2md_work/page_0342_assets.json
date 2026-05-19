@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 342,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0342_fig_01",
+      "caption": "EXHIBIT 13-18 Plan for a Closed Drain System",
+      "bbox_norm": [0.03, 0.21, 0.97, 0.70],
+      "notes": "Plan view drawing of a closed drain system showing equipment layout bounded by North/South/East/West Battery Limits. Includes equipment tags (102-DA, 104-DA, 117-DA, 112-B, 113-B, 118-C, 102-D, 101-D, 104-L, 103-L, 102-J, 101-J, 105-L, 106-L, etc.), working point references (WP A EL.50'-2\", WP B EL.30'-2\", WP C EL.21'-2\"), pipe rack reference D-200-3-GA1, and a north arrow."
+    }
+  ],
+  "issues": []
+}

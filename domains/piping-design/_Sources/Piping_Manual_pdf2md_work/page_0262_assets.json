@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 262,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "Piping_Manual_p262_a01",
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.16, 0.96, 0.46],
+      "caption": "EXHIBIT 10-44 Typical Top Head Platform Arrangements (a. Minimum Top Head Platform; b. Multinozzle Top Head Platform)"
+    },
+    {
+      "id": "Piping_Manual_p262_a02",
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.49, 0.48, 0.66],
+      "caption": "EXHIBIT 10-45 Common Platforms"
+    }
+  ],
+  "issues": []
+}

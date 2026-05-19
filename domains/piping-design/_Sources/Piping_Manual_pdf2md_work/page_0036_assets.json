@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 36,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0036_fig_01",
+      "caption": "EXHIBIT 2-1 Equipment Spacing — triangular spacing matrix showing minimum distances (in feet) between numbered equipment/facility categories 1 through 30, with split label 'Off-Site Facilities | Process Unit' and adjoining Key (A, B, C, D, E, F, G, H, J, M, NA).",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.55]
+    }
+  ],
+  "issues": []
+}

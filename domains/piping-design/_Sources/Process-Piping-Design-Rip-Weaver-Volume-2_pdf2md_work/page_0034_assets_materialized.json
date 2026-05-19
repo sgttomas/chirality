@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0034.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0034_fig01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.94,
+        0.96
+      ],
+      "bbox_px": [
+        77,
+        0,
+        2534,
+        3300
+      ],
+      "caption": "Figure 1-16. Pump selection chart. Courtesy of Byron Jackson Pump Division.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0034_fig01_pump-selection-chart-byron-jackson.png",
+      "png_sha256": "b69d2f26d2871b656dd4a3f762663b46fb843926a1c499d1a98338237d461d2c",
+      "slug": "pump-selection-chart-byron-jackson",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 34,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0034.png",
+  "page_image_sha256": "e331f8e996aa0687ae3ede40e05c9d564812b1c4df033f761ba714cba93ff190",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0034_assets.json"
+}

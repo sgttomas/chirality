@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0128.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0128_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        2541
+      ],
+      "caption": "Figure 4-2. Brown Type 40-3\" fintube parts. Courtesy of Brown Fintube Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0128_fig01_brown-type-40-3-fintube-parts.png",
+      "png_sha256": "6a75ad30e638e09e4c4f1b3b17fd0875a597debd2250592c9c3ae2fc1b7ecc5f",
+      "slug": "brown-type-40-3-fintube-parts",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 128,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0128.png",
+  "page_image_sha256": "60ed6a86e6d0f922530619fa0f4de7f24af568e9a54b07b2c90984b068548ea6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0128_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0126.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0126_fig01",
+      "bbox_norm": [
+        0.05,
+        0.46,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1353,
+        2550,
+        3200
+      ],
+      "caption": "EXHIBIT 6-1 Exchanger Applications Shown on a Process Flow Diagram",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0126_fig01_exhibit-6-1-exchanger-applications-shown.png",
+      "png_sha256": "975714228bd4ec485ced79229ca9d4aea5c173b79b3278b66123a097b1deb2a1",
+      "slug": "exhibit-6-1-exchanger-applications-shown",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 126,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0126.png",
+  "page_image_sha256": "a1e96a001600ae40f09a268d8c39277d3042f923232510331c95cc74b16037ae",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0126_assets.json"
+}

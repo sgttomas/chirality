@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0313.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0313_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        1513
+      ],
+      "caption": "FIG. 9.6 TAKING CARE OF WEIGHT LOAD",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0313_fig01_taking-care-of-weight-load.png",
+      "png_sha256": "161932dd26be52a160c0eed2276b8788183d43a866198e1573cc4ac5717d2e54",
+      "slug": "taking-care-of-weight-load",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 313,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0313.png",
+  "page_image_sha256": "5a4d1f04c141fce3d8770b37b6a1179897c2ea843904dd0ca0f5c35ad83a2025",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0313_assets.json"
+}

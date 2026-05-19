@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0110.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0110_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1760
+      ],
+      "caption": "Form A, CALC No. 8.0 \u2014 Piping Flexibility and Stress Analysis, Multi-Plane Systems: Original Data and Results. Includes MEMBERS length table, isometric configuration sketch (Step 2 and Step 10) with members 0-1, 1-2, 2-10, 10-3, 3-A and branch data; materials properties (E, alpha) and branch coefficients block; Moments (FT-LB) and Forces on Restraints tabulation at Point A for COLD CONDITION and HOT CONDITION; stress summary box (S_H, S_E, S_A). The M.W. Kellogg Company, dated 7-22-53.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0110_fig01_form-a-calc-no-8-0-piping-flexibility-an.png",
+      "png_sha256": "98664e1c87fc1b85b1e1d7382e60a3f7668ea3c7e35f050523a9d410794b5e65",
+      "slug": "form-a-calc-no-8-0-piping-flexibility-an",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "MWK_1956_p0110_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.46,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1414,
+        2502,
+        3450
+      ],
+      "caption": "Form A, CALC No. 4.15 \u2014 Piping Flexibility and Stress Analysis, Multi-Plane Systems. Step 9 \u2014 Couples for members parallel to coordinate axes. Member columns: 0-1, 1-2, 2-10, 10-3, 3-A with summation column. The M.W. Kellogg Company, dated 7-22-53.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0110_tbl01_form-a-calc-no-4-15-piping-flexibility-a.png",
+      "png_sha256": "b7d98befaf37f3c946422025f08aaa8f4967be1f78514bcb2bc86da84420cc8f",
+      "slug": "form-a-calc-no-4-15-piping-flexibility-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 110,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0110.png",
+  "page_image_sha256": "808367131bdf74b1f22c0f3886219c61e9e5203212abfe3b7b372866ee08f206",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0110_assets.json"
+}

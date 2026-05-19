@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0031_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.45,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1238,
+        3383
+      ],
+      "caption": "Figure 1-16. Cast steel swing check valves. Reprinted courtesy of Crane Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0031_fig01_cast-steel-swing-check-valves.png",
+      "png_sha256": "07cf5fe698205f53d121a5a5f4e5b9f477d216a55c72a903db431cfdcf2ce77a",
+      "slug": "cast-steel-swing-check-valves",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0031.png",
+  "page_image_sha256": "2d762a14113ec64927db9bb4a2d47c5d1338eac30ade697b1556c9f26a387e22",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0031_assets.json"
+}

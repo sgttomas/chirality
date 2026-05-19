@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0132.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0132_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1992
+      ],
+      "caption": "Figure 7-3. Horizontal accumulator, elevation below 15'-0\". Courtesy of Fluor Corp.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0132_fig01_horizontal-accumulator-elevation-below-1.png",
+      "png_sha256": "c765c5f516b42c852220e4ba6843109b018ee5c57e03b79a4670f9092126e87d",
+      "slug": "horizontal-accumulator-elevation-below-1",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 132,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0132.png",
+  "page_image_sha256": "781a16a09f17101b45b2d7b72345432b2518f2bbdd8bcd31d34eb67798c497a6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0132_assets.json"
+}

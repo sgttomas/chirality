@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0177.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0177_fig01",
+      "bbox_norm": [
+        0.18,
+        0.32,
+        0.34,
+        0.95
+      ],
+      "bbox_px": [
+        268,
+        787,
+        803,
+        2916
+      ],
+      "caption": "Table 5.27 shape symbol column: pictograms of circular member configurations (90 deg, 180 deg, and full-loop arcs in various orientations) corresponding to each row of shape coefficients.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0177_fig01_table-5-27-shape-symbol-column-pictogram.png",
+      "png_sha256": "5111457f0e75597cb612f51ae3461c11da36a04ac57807953dfff90a498de8a5",
+      "slug": "table-5-27-shape-symbol-column-pictogram",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 177,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0177.png",
+  "page_image_sha256": "30c965ddd09556f529c45d9d4d1bc2ec41cf95942ccffabe6f7ba7a588eb442f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0177_assets.json"
+}

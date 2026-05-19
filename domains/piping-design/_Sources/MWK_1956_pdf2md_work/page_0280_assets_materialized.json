@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0280.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0280_fig01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.5,
+        0.55
+      ],
+      "bbox_px": [
+        25,
+        0,
+        1363,
+        1926
+      ],
+      "caption": "Attenuation factor vs. volume ratio with actual % pressure drop as parameter.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0280_fig01_attenuation-factor-vs-volume-ratio-with.png",
+      "png_sha256": "1796f74fff86efeed7a0c2abd8ed119c1dd550a41345e5d9c86a74510d37d8ed",
+      "slug": "attenuation-factor-vs-volume-ratio-with",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 280,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0280.png",
+  "page_image_sha256": "f075442d160ec75fcac9daeaacb2b45ddc9e195ffac98210ebd55fd7bb0747ab",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0280_assets.json"
+}

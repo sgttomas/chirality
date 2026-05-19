@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0281.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0281_fig01",
+      "bbox_norm": [
+        0.55,
+        0.05,
+        0.98,
+        0.23
+      ],
+      "bbox_px": [
+        1170,
+        0,
+        2340,
+        835
+      ],
+      "caption": "Typical snubbing device.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0281_fig01_typical-snubbing-device.png",
+      "png_sha256": "c06a86e3ca3bdc262c81e25ed307de8c5a255fe9d5cbc7f7f220812e8e069992",
+      "slug": "typical-snubbing-device",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 281,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0281.png",
+  "page_image_sha256": "a35ef1be1f3c8fe9c8fd909d0a936f3984facb2784b09b901a87c41b889ea9c0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0281_assets.json"
+}

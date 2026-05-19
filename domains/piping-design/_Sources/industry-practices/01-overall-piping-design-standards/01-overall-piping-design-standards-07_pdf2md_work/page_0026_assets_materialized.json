@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-07_p0026_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.09,
+        0.94,
+        0.4
+      ],
+      "bbox_px": [
+        25,
+        132,
+        2524,
+        1485
+      ],
+      "caption": "Table 4: Line Sizing Criteria for Fluid Solids Lines",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-07_p0026_tbl01_table-4-line-sizing-criteria-fluid-solid.png",
+      "png_sha256": "15f4ef2ab953fc1958036d3a768ab0f057c05b8e28f99cb2ac6dc9482cf0d1c3",
+      "slug": "table-4-line-sizing-criteria-fluid-solid",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-07_p0026_tbl01_table-4-line-sizing-criteria-fluid-solid.json",
+      "table_data_json_sha256": "24ca40f12eceb4b926895d7c94c44d2ff92cea0cd824bccefa8910a38207dbd9",
+      "table_data_sha256": "24ca40f12eceb4b926895d7c94c44d2ff92cea0cd824bccefa8910a38207dbd9",
+      "xlsx_path": "tables/01-overall-piping-design-standards-07_p0026_tbl01_table-4-line-sizing-criteria-fluid-solid.xlsx",
+      "xlsx_sha256": "872276c3af2e4b2372089637f6656d4fecd051ed42f080b58a4154fa3dbd8aec"
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-07_p0026_tbl02",
+      "bbox_norm": [
+        0.06,
+        0.48,
+        0.94,
+        0.76
+      ],
+      "bbox_px": [
+        25,
+        1419,
+        2524,
+        2673
+      ],
+      "caption": "Table 5: Line Sizing Criteria for Mixed Phase Flow",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/01-overall-piping-design-standards-07_p0026_tbl02_table-5-line-sizing-criteria-mixed-phase.png",
+      "png_sha256": "fe57d594a7f3f6ed2918331dc32358141a5f766e06ebda2bff936b393cbfa6f5",
+      "slug": "table-5-line-sizing-criteria-mixed-phase",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-07_p0026_tbl02_table-5-line-sizing-criteria-mixed-phase.json",
+      "table_data_json_sha256": "d9add928db23d4afaabbbf83fcfa858f4e2fc720d1b0cd5d475c0cf6bffc2631",
+      "table_data_sha256": "d9add928db23d4afaabbbf83fcfa858f4e2fc720d1b0cd5d475c0cf6bffc2631",
+      "xlsx_path": "tables/01-overall-piping-design-standards-07_p0026_tbl02_table-5-line-sizing-criteria-mixed-phase.xlsx",
+      "xlsx_sha256": "5f3e53eeb1ee4a02fc0704b9a9e6521987bcdd49ccd0a4d8078645c84a204233"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-07",
+  "doc_stem": "01-overall-piping-design-standards-07",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0026.png",
+  "page_image_sha256": "1dcb28f07f9c036aeba0c8b6381170a801efe16d4dbe4c36cb40dfc58d7f2ae4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-07_pdf2md_work/page_0026_assets.json"
+}

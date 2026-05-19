@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0165.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0165_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2560,
+        3300
+      ],
+      "caption": "Table 5-5 Coefficients of Expansion \u2014 Linear Thermal Expansion between 70F and Indicated Temperature, inches/100 feet",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0165_tbl01_table-5-5-coefficients-of-expansion.png",
+      "png_sha256": "bc0edf9110df3cb946e7eafc556ec8ee1c791f12237604b0eab32b810241e9e0",
+      "slug": "table-5-5-coefficients-of-expansion",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0165_tbl01_table-5-5-coefficients-of-expansion.json",
+      "table_data_json_sha256": "ba5c59d4adba94c444dfdff827a4108fb43de326c98280024843c4ea8f086bcf",
+      "table_data_sha256": "ba5c59d4adba94c444dfdff827a4108fb43de326c98280024843c4ea8f086bcf",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0165_tbl01_table-5-5-coefficients-of-expansion.xlsx",
+      "xlsx_sha256": "45e352d343c40ace0dbc8256b19999caf730e8497d416df5247c777413501851"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 165,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0165.png",
+  "page_image_sha256": "efb6d983489e16675e15701d945216a23ddd9d24b9c4c27e57bfbb9d3682f5aa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0165_assets.json"
+}

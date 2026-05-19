@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0131.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0131_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        3509
+      ],
+      "caption": "Table 2  ASME B16.47, series A, all sizes, all ratings",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0131_tbl01_table-2-asme-b1647-series-a-all-sizes-al.png",
+      "png_sha256": "43bbe49655b888b3e0e979db3ecc34b69c6de1ebe5afcf375c67a546c52cb998",
+      "slug": "table-2-asme-b1647-series-a-all-sizes-al",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 131,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0131.png",
+  "page_image_sha256": "38cf9375461a62f77eb280ccc736fa31a0d780e172f13da22ba4312d74db8ed4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0131_assets.json"
+}

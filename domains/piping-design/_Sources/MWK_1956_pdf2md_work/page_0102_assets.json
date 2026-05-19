@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.06,
+        0.27,
+        0.5,
+        0.49
+      ],
+      "caption": "Table 4.3 Comparison of maximum stresses and locations - Modified Mitchell vs General Analytical Method",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Table is fully captured as a clean Markdown table in page_0102.md (lines 7-16); CSV reflects the same content with merged header tiers flattened."
+  ],
+  "page": 102,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

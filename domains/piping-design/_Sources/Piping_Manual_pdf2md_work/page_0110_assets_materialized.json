@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0110.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0110_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        26,
+        266,
+        2575,
+        2224
+      ],
+      "caption": "EXHIBIT 5-6 \u2014 Drum Locations in an Enclosed Chemical Plant Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0110_fig01_exhibit-5-6-drum-locations-in-an-enclose.png",
+      "png_sha256": "5a95af36773d6e97075388e86b65a3b3ff51c9c13982596e4ff273762539259c",
+      "slug": "exhibit-5-6-drum-locations-in-an-enclose",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 110,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0110.png",
+  "page_image_sha256": "b8f1f28d6c9f3efac6ad4903e847f02cb21d31526a84f2dc43a3850310543bc2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0110_assets.json"
+}

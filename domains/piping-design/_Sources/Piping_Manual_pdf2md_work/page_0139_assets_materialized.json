@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0139.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0139_fig01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2556,
+        2214
+      ],
+      "caption": "EXHIBIT 6-23 Typical Leg-Supported Air Cooler Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0139_fig01_exhibit-6-23-typical-leg-supported-air-c.png",
+      "png_sha256": "888430ee5a802b09570511e031faa290f2927b563c766a51dee5501e298b11fc",
+      "slug": "exhibit-6-23-typical-leg-supported-air-c",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 139,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0139.png",
+  "page_image_sha256": "7adc4bd20583027dccad612ba6d7cde613fbd598b543c43d0511d25077d82c0f",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0139_assets.json"
+}

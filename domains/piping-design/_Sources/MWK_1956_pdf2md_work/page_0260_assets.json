@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 260,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Simple line drawing of a one-degree-of-freedom spring-mass oscillator: a coiled spring attached on the left to a fixed wall and on the right to a rectangular mass resting on a horizontal surface. Labels 'Spring' and 'Mass' annotate the elements. Caption 'FIG. 9.1 Spring-mass system.' appears immediately below the drawing."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Spring-mass system.",
+      "bbox_norm": [
+        0.49,
+        0.18,
+        0.97,
+        0.34
+      ]
+    }
+  ]
+}

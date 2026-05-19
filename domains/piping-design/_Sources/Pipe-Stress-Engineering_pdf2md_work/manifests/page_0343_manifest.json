@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0343.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0343_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2495,
+        1653
+      ],
+      "caption": "FIG. 9.26 PROBLEMS ASSOCIATED WITH THEORETICAL RESTRAINTS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0343_fig01_problems-associated-with-theoretical-res.png",
+      "png_sha256": "967ae3eac01e501824d745e5fc9c474f806299b597282010a82b9de327e9d88a",
+      "slug": "problems-associated-with-theoretical-res",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 343,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0343.png",
+  "page_image_sha256": "03a3407b1c8b45e0a62b4bd8e482d7abca374341e32d8fbc8f53bad4feac044a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0343_assets.json"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 177,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: The page markdown represents these pictograms only as '[shape symbol]' placeholders; the actual images are required to disambiguate the shape/orientation associated with each (alpha, w_b, w'_ba, w'_bb) row in Table 5.27."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Table 5.27 shape symbol column: pictograms of circular member configurations (90 deg, 180 deg, and full-loop arcs in various orientations) corresponding to each row of shape coefficients.",
+      "bbox_norm": [
+        0.18,
+        0.32,
+        0.34,
+        0.95
+      ]
+    }
+  ]
+}

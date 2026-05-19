@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 174,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 6.3 LATERAL FORCE CREATED BY DISPLACEMENT",
+      "slug": "lateral-force-created-by-displacement",
+      "bbox_norm": [0.18, 0.04, 0.82, 0.33],
+      "confidence": "high",
+      "notes": "Engineering diagram showing pipe lateral displacement with force values 1000, 1000 and dimensions 70, 4 degrees. Caption below figure."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIG. 6.4 DIRECTIONAL RESTRAINTS",
+      "slug": "directional-restraints",
+      "bbox_norm": [0.08, 0.62, 0.88, 0.96],
+      "confidence": "high",
+      "notes": "Multi-part diagram showing five types of directional restraints: (a) Strut, (b) Line Stop, (c) Guide, (d) One-way Stop, (e) Two-way Stop. Caption below figure."
+    }
+  ],
+  "issues": []
+}

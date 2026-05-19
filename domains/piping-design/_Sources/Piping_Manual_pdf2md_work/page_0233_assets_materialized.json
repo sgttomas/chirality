@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0233.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0233_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1224
+      ],
+      "caption": "EXHIBIT 9-23 \u2014 Reactors in Series: Manually Operated Valve Manifold. PLAN view of two cylindrical reactor vessels with associated piping manifold, and ELEVATION view of a vertical cylindrical reactor vessel with attached piping and valves; ELEVATION annotated with OPERATOR ACCESS.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0233_fig01_exhibit-9-23-reactors-in-series-manually.png",
+      "png_sha256": "593be99b72aa9c537fd97a9dc1a158d153d60576fcec8226448b9e58b90b7183",
+      "slug": "exhibit-9-23-reactors-in-series-manually",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0233_fig02",
+      "bbox_norm": [
+        0.04,
+        0.31,
+        0.96,
+        0.61
+      ],
+      "bbox_px": [
+        0,
+        860,
+        2562,
+        2184
+      ],
+      "caption": "EXHIBIT 9-24 \u2014 Reactors in Series: Remotely Operated Valve Manifold. PLAN view of two cylindrical reactor vessels with associated piping manifold, and ELEVATION view of a vertical cylindrical reactor vessel with attached piping and remotely operated valves.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0233_fig02_exhibit-9-24-reactors-in-series-remotely.png",
+      "png_sha256": "269f9eabd312698bd574d692c2638d43574fe027931e26796823a8cf5a40fea5",
+      "slug": "exhibit-9-24-reactors-in-series-remotely",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 233,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0233.png",
+  "page_image_sha256": "0fc23d85d7aae3463481f926360927fae9991f77472e8ac05e8f76cc71946e05",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0233_assets.json"
+}

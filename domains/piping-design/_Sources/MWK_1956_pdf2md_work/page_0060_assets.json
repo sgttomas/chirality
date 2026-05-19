@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 60,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "Fig. 2.9 Distribution of circumferential stresses in pipe bend subjected to internal pressure.",
+      "bbox_norm": [
+        0.07,
+        0.05,
+        0.55,
+        0.31
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Fig. 3.10 Geometry of miter bends.",
+      "bbox_norm": [
+        0.52,
+        0.62,
+        0.97,
+        0.97
+      ]
+    }
+  ]
+}

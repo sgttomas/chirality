@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0255.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0255_fig01",
+      "bbox_norm": [
+        0.05,
+        0.32,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        896,
+        2575,
+        2224
+      ],
+      "caption": "EXHIBIT 10-32 Top Head Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0255_fig01_exhibit-10-32-top-head-arrangement.png",
+      "png_sha256": "023627de7ac48e245d4b3454412fecab8181d3ef6fcacf534e25a2e114217454",
+      "slug": "exhibit-10-32-top-head-arrangement",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0255_fig02",
+      "bbox_norm": [
+        0.05,
+        0.63,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1925,
+        2575,
+        3219
+      ],
+      "caption": "EXHIBIT 10-33 Bottom Head Arrangement",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0255_fig02_exhibit-10-33-bottom-head-arrangement.png",
+      "png_sha256": "94a74098b4cd66c214db78c6cb47e2225acad946cc17210ac7d00be83b97b81f",
+      "slug": "exhibit-10-33-bottom-head-arrangement",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 255,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0255.png",
+  "page_image_sha256": "9c6eaaa9925d41fa69b51f1e7a35cefb14d214dd3d7f7e07187b738a005a1868",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0255_assets.json"
+}

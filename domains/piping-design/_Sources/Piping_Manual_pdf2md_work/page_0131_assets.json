@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 131,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0131_fig_01",
+      "caption": "EXHIBIT 6-8 Double Pipe Exchanger Construction",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.27]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0131_fig_02",
+      "caption": "EXHIBIT 6-9 Air Cooler Exchanger Construction",
+      "bbox_norm": [0.04, 0.27, 0.96, 0.58]
+    }
+  ],
+  "issues": []
+}

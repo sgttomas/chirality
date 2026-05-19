@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0281.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0281_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2556,
+        3238
+      ],
+      "caption": "EXHIBIT 11-1 Line-Routing Diagram",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0281_fig01_exhibit-11-1-line-routing-diagram.png",
+      "png_sha256": "f9e159c6e8b65504cd96bbf1ef37a6fd81113b9f89476aa29bd3cfa110f5e7f0",
+      "slug": "exhibit-11-1-line-routing-diagram",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 281,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0281.png",
+  "page_image_sha256": "46f060f190268bbe2f66b37e9129beaec13d2c777a040000ebee4060cf792f54",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0281_assets.json"
+}

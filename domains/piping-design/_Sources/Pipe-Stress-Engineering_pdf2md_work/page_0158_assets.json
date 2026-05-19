@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 158,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 5.4 SEMI-INFINITE BEAM",
+      "slug": "semi-infinite-beam",
+      "bbox_norm": [0.05, 0.72, 0.70, 0.97],
+      "confidence": "high",
+      "notes": "Diagram showing semi-infinite beam with shear force P and bending moment M0 applied at left edge, extending along x-axis with hatched elastic foundation below. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

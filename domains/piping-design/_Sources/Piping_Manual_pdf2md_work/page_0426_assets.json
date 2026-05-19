@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 426,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0426_fig01",
+      "kind": "fig",
+      "caption": "EXHIBIT 16-16 — Example Thermal Calculation for Pump Piping. Isometric sketch of pump piping arrangement with two pumps (P-1A, P-1B), suction piping from vessel V-1, dimensions in feet/meters, 12\" x 10\" reducer, 300# RF nozzle, and notes (Material = A53 GR B; Design Temperature = 600 F; Coefficient of Expansion = 0.046 inches per foot).",
+      "bbox_norm": [0.12, 0.34, 0.82, 0.80]
+    }
+  ],
+  "issues": []
+}

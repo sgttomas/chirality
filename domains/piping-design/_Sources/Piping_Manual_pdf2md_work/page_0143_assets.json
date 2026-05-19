@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 143,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0143_fig01",
+      "kind": "fig",
+      "caption": "EXHIBIT 6-27 Alternative Arrangements for Locating Exchanger Nozzles",
+      "bbox_norm": [0.06, 0.06, 0.96, 0.42]
+    },
+    {
+      "asset_id": "Piping_Manual_p0143_fig02",
+      "kind": "fig",
+      "caption": "EXHIBIT 6-28 Allowable Nozzle Configurations",
+      "bbox_norm": [0.06, 0.43, 0.96, 0.95]
+    }
+  ],
+  "issues": []
+}

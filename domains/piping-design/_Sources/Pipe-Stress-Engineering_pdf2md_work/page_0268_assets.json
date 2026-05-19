@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 268,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 8.1 IDEALIZED FLANGE ANALYTICAL MODEL",
+      "slug": "idealized-flange-analytical-model",
+      "bbox_norm": [0.08, 0.62, 0.72, 0.97],
+      "confidence": "high",
+      "notes": "Diagram showing idealized flange model with Pipe, Hub, and Flange ring sections, with internal forces/moments and total external flange moment labels. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

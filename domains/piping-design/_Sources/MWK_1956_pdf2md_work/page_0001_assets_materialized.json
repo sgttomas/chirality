@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0001.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0001_img01",
+      "bbox_norm": [
+        0.34,
+        0.22,
+        0.66,
+        0.32
+      ],
+      "bbox_px": [
+        736,
+        539,
+        1802,
+        1172
+      ],
+      "caption": "Kellogg company logo (M. W. Kellogg Company emblem)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/MWK_1956_p0001_img01_kellogg-company-logo-m-w-kellogg-company.png",
+      "png_sha256": "5607d58aca1c0518205b0d44e18704853449360de2029d109189fd2015ec600c",
+      "slug": "kellogg-company-logo-m-w-kellogg-company",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 1,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0001.png",
+  "page_image_sha256": "e1edc76696d513ad4e5c7b5c0d62435d2a2e8c4ccb47234322e10a657e258514",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0001_assets.json"
+}

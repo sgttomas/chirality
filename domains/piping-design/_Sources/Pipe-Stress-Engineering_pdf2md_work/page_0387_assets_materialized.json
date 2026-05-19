@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0387.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0387_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2502,
+        1515
+      ],
+      "caption": "FIG. 11.8 INTERNALLY INSULATED AMMONIA PLANT REFORMER PIPING",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0387_fig01_internally-insulated-ammonia-plant-refor.png",
+      "png_sha256": "99fa427a3bc7a60d70a1ca9c0b42755bfc7fed7b32811b83a8df68b024199962",
+      "slug": "internally-insulated-ammonia-plant-refor",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0387_fig02",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1938,
+        2502,
+        3523
+      ],
+      "caption": "FIG. 11.9 COLD PIPE AND HOT PIPE JUNCTION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Pipe-Stress-Engineering_p0387_fig02_cold-pipe-and-hot-pipe-junction.png",
+      "png_sha256": "695c51cd0ba7f1e3046bda26c4a72baa72bb27a7cd17afb2d43e474dc258ee33",
+      "slug": "cold-pipe-and-hot-pipe-junction",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 387,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0387.png",
+  "page_image_sha256": "c29802e79f8af547447f931fa9fa6366d2af9b2de94933eea4fdc9383cb41639",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0387_assets.json"
+}

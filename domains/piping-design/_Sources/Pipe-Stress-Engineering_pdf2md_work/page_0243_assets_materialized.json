@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0243.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0243_fig01",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        2367,
+        2516,
+        3533
+      ],
+      "caption": "Fig. 7.7 BELLOW DEFORMATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0243_fig01_bellow-deformation.png",
+      "png_sha256": "340fd6a6fb87aced76c7f08ab723bfa8d2559661a54c8966faef66f43f5052f4",
+      "slug": "bellow-deformation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 243,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0243.png",
+  "page_image_sha256": "f29b8ec52a108c899dabdf026d56dbaea899837d3aad4a1919b05d23ab2f1202",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0243_assets.json"
+}

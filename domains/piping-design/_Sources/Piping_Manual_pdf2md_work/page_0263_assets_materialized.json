@@ -1,0 +1,138 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0263.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0263_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.5,
+        0.31
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1406,
+        1189
+      ],
+      "caption": "EXHIBIT 10-46 Bracket Spacing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0263_fig01_exhibit-10-46-bracket-spacing.png",
+      "png_sha256": "77ae959c51699fc06fa9ed65c69789eb20baa7f887395f00722c89ec4887dd46",
+      "slug": "exhibit-10-46-bracket-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0263_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.31,
+        0.48,
+        0.49
+      ],
+      "bbox_px": [
+        128,
+        859,
+        1355,
+        1784
+      ],
+      "caption": "Vessel Internal Diameter vs X and Y angular dimensions (associated with EXHIBIT 10-46 Bracket Spacing)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0263_tbl01_vessel-internal-diameter-vs-x-and-y-angu.png",
+      "png_sha256": "3559dda0b8ccea4aef46eeecdc592298a376ffd3ab652aa22aded94a59582be6",
+      "slug": "vessel-internal-diameter-vs-x-and-y-angu",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0263_fig02",
+      "bbox_norm": [
+        0.03,
+        0.52,
+        0.52,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        1553,
+        1457,
+        2941
+      ],
+      "caption": "EXHIBIT 10-47 Ladder Rung Spacing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0263_fig02_exhibit-10-47-ladder-rung-spacing.png",
+      "png_sha256": "02c39e8b66208b0e0d4aebd2e5ee5ee5c9464901ea202794c9fca71d4e67cf63",
+      "slug": "exhibit-10-47-ladder-rung-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0263_fig03",
+      "bbox_norm": [
+        0.5,
+        0.05,
+        0.97,
+        0.36
+      ],
+      "bbox_px": [
+        1150,
+        0,
+        2556,
+        1355
+      ],
+      "caption": "EXHIBIT 10-48 Sloping Ladder",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0263_fig03_exhibit-10-48-sloping-ladder.png",
+      "png_sha256": "ce8cfc32f642fc5ddf4f472a2148510dec2d07d8d9e46e47764ef532d9a005ec",
+      "slug": "exhibit-10-48-sloping-ladder",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "Piping_Manual_p0263_fig04",
+      "bbox_norm": [
+        0.5,
+        0.37,
+        0.97,
+        0.84
+      ],
+      "bbox_px": [
+        1150,
+        1057,
+        2556,
+        2941
+      ],
+      "caption": "EXHIBIT 10-49 Platform Knee Brace",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/Piping_Manual_p0263_fig04_exhibit-10-49-platform-knee-brace.png",
+      "png_sha256": "28f8ebe954f2b7323b8176b997d10315d3653db2d4a4f5b177b8366fe034ffcc",
+      "slug": "exhibit-10-49-platform-knee-brace",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 263,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0263.png",
+  "page_image_sha256": "41ae34876d28be8272ad6ca087e15d47a27d1a74047768bc9d9a62591e00756f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0263_assets.json"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 161,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.18, 0.50, 0.65],
+      "caption": "EXHIBIT 7-2 Typical Box-Type Furnace"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.50, 0.18, 0.96, 0.65],
+      "caption": "EXHIBIT 7-3 Typical Circular Furnace"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0125.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0125_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3037
+      ],
+      "caption": "Table 8-15 Cutback at 90\u00b0 for Pipe OD of Header \u2014 Extra Heavy Pipe",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0125_tbl01_table-8-15-cutback-90deg-extra-heavy-pip.png",
+      "png_sha256": "3f1ef8c86020b21ce6a1c6c46e46e34fa50ed0117530197feb1d9f210ac2b106",
+      "slug": "table-8-15-cutback-90deg-extra-heavy-pip",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0125_tbl01_table-8-15-cutback-90deg-extra-heavy-pip.json",
+      "table_data_json_sha256": "32d275299272bcb922c425079cc944335796e5a95def17c88ef17a9ba04a879d",
+      "table_data_sha256": "32d275299272bcb922c425079cc944335796e5a95def17c88ef17a9ba04a879d",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0125_tbl01_table-8-15-cutback-90deg-extra-heavy-pip.xlsx",
+      "xlsx_sha256": "ea6bd925b1a9192d85069e764df6f427398fb3ca91083e29e34d259bbb80f84d"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0125_fig01",
+      "bbox_norm": [
+        0.53,
+        0.55,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        1189,
+        1746,
+        2477,
+        3037
+      ],
+      "caption": "Fig. 8-15 Cutback diagram showing CUTBACK dimension on pipe header intersection at 90\u00b0",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0125_fig01_fig-8-15-cutback-diagram-90deg.png",
+      "png_sha256": "9c63ec0450505f89432f91eb1f41a25017b6fb0cbf7fb2031dc2521979e6c10c",
+      "slug": "fig-8-15-cutback-diagram-90deg",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 125,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0125.png",
+  "page_image_sha256": "2d64fb79d52e1a15c28e26dc05a207427063ec02fa9081937413f82e469ab3ce",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0125_assets.json"
+}

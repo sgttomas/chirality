@@ -1,0 +1,24 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 248,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Labeled line drawing of a hydraulic shock absorber installation showing pipe, pipe attachment, link, action line of restraining effort, level of oil in reservoir, and connecting structure. Caption appears below the diagram in the upper-left quadrant of the page."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 8.16 Commercial railroad car type shock absorber utilized as a damping device.",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.51,
+        0.38
+      ]
+    }
+  ]
+}

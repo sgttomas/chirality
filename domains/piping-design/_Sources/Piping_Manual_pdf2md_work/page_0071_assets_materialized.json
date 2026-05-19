@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0071.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0071_fig01",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1820,
+        2562,
+        3309
+      ],
+      "caption": "EXHIBIT 4-1 Elevated Centrifugal Compressor with a Single Condensing Steam Turbine Drive",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0071_fig01_exhibit-4-1-elevated-centrifugal-compres.png",
+      "png_sha256": "9e58e61d5a7e2a15e9abcf489fba4abaf487ccfaf8cb0a3fe337342deb68de65",
+      "slug": "exhibit-4-1-elevated-centrifugal-compres",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 71,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0071.png",
+  "page_image_sha256": "429cb790bd82d8ccfda7e645694526000e2dc6922eefc5165046a4f825825bcc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0071_assets.json"
+}

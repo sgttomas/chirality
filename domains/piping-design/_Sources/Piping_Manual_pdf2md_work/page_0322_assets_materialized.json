@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0322.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0322_fig01",
+      "bbox_norm": [
+        0.07,
+        0.16,
+        0.93,
+        0.78
+      ],
+      "bbox_px": [
+        51,
+        363,
+        2499,
+        2738
+      ],
+      "caption": "EXHIBIT 12-27 Structures in a Coker Unit",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0322_fig01_exhibit-12-27-structures-in-a-coker-unit.png",
+      "png_sha256": "11902ace020889948d6f4a7017a3a73c5978e8bce01c765596645754b668c591",
+      "slug": "exhibit-12-27-structures-in-a-coker-unit",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 322,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0322.png",
+  "page_image_sha256": "231917190c35409cd94f478026780ff4083d17d90c49f31afd9da1496aebddb1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0322_assets.json"
+}

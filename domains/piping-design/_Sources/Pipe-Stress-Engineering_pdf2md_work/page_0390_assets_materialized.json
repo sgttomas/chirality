@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0390.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0390_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.75,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2040,
+        1174
+      ],
+      "caption": "FIG. 11.11 SMALL INSERTS TO HOT PROCESS LINE",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0390_fig01_small-inserts-hot-process-line.png",
+      "png_sha256": "04290a6368ad4edaec72c828170422e9dd3b7586f41c764d7d72ef4f45b1e9a1",
+      "slug": "small-inserts-hot-process-line",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 390,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0390.png",
+  "page_image_sha256": "8e64db34ff9c2503e0de20a30d72b593c9e86678b532441a03fc53d2cf5a4f33",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0390_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 138,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 4.12 SUSTAINED STRESSES",
+      "slug": "sustained-stresses-pipe-cross-section",
+      "bbox_norm": [0.18, 0.03, 0.82, 0.24],
+      "confidence": "high",
+      "notes": "Diagram of pipe cross-section showing sustained stress components (S_HP, S_LP, S_B, S_W) with caption below"
+    }
+  ],
+  "issues": []
+}

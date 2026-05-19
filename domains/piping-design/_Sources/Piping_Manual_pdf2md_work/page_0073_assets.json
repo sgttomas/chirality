@@ -1,0 +1,26 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 73,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.33],
+      "caption": "EXHIBIT 6-3 Types of Compressor Systems (Cont) c. Elevated Centrifugal Compressor with Gas Turbine Drive and Waste Heat Recovery System"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.33, 0.96, 0.57],
+      "caption": "d. Reciprocating Compressor with Electric Motor Drive: Outdoor Installation"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.57, 0.96, 0.90],
+      "caption": "e. Reciprocating Compressor with Electric Motor Drive: Indoor Installation"
+    }
+  ],
+  "issues": []
+}

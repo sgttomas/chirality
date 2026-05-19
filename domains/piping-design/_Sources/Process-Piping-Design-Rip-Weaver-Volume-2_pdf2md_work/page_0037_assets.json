@@ -1,0 +1,45 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.72,
+        0.95
+      ],
+      "caption": "Figure 1-21. Pump outline dimensions, Type St. Courtesy of Byron Jackson Pump Division.",
+      "confidence": "high",
+      "kind": "fig",
+      "notes": "Multi-view engineering drawing showing pump outline dimensions from multiple angles with dimensional annotations and equipment schedule table in upper left. Caption visible at bottom.",
+      "ordinal": 1,
+      "slug": "pump-outline-dimensions-type-st"
+    },
+    {
+      "bbox_norm": [
+        0.68,
+        0.03,
+        0.98,
+        0.93
+      ],
+      "caption": "Pump outline dimensions, Type St \u2014 dimensional data table with frame sizes and letter dimensions",
+      "confidence": "medium",
+      "issues": [
+        "table_unreadable"
+      ],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "notes": "Dimensional data table on right side of page with pipe sizes (1.5, 2, 2.5, 3, 4, 5, 6) and frame designations (M, W). Individual cell values are not legible at this resolution.",
+      "ordinal": 1,
+      "slug": "pump-outline-dimensions-type-st-table"
+    }
+  ],
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "issues": [
+    "Right-side dimensional table values not legible at scan resolution; csv_text left empty."
+  ],
+  "page": 37,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 175
+}

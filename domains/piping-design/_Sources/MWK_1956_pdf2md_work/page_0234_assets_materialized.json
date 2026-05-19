@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0234.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0234_fig01",
+      "bbox_norm": [
+        0.29,
+        0.19,
+        0.81,
+        0.91
+      ],
+      "bbox_px": [
+        564,
+        387,
+        2023,
+        2655
+      ],
+      "caption": "Fig. 8.1 A pipe bank in a large unit of an oil refinery.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0234_fig01_fig-8-1-a-pipe-bank-in-a-large-unit-of-a.png",
+      "png_sha256": "0a181bb5d73706b8b86226655a3998a15416bcce82232e6baf32ef7ad54df08b",
+      "slug": "fig-8-1-a-pipe-bank-in-a-large-unit-of-a",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 234,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0234.png",
+  "page_image_sha256": "b43cf4cea92215dbbf7581fb465163888a87370f69469ae0e7d2af5b272a1bb6",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0234_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 31,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 1-14. Performance Curve for Type 1½ x 2 x 8½L IN-INI pump. Courtesy of Byron Jackson Pump Division.",
+      "slug": "performance-curve-type-1-5x2x8-5L-IN-INI-pump",
+      "bbox_norm": [0.30, 0.38, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Performance curve chart occupying right half and lower portion of page; caption visible below chart"
+    }
+  ],
+  "issues": []
+}

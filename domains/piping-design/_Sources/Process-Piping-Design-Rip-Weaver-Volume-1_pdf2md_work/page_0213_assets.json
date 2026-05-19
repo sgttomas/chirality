@@ -1,0 +1,603 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 213,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table A-6 Specific Gravity and Weights of Various Liquids",
+      "slug": "table-a6-specific-gravity-weights-liquids",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "src", "text": "Source: Chicago Bridge and Iron Company." }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Table A-6", "col_span": 5, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Liquid", "is_header": true },
+              { "value": "At Temp. of °F", "is_header": true },
+              { "value": "Specific Gravity", "is_header": true },
+              { "value": "Weight in Lbs. per U.S. Gal.", "is_header": true },
+              { "value": "Weight in Lbs. per Cu. Ft.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Acetaldehyde", "type": "text" },
+              { "value": 64.0, "type": "number", "unit": "°F" },
+              { "value": 0.783, "type": "number" },
+              { "value": 6.52, "type": "number", "unit": "lbs/gal" },
+              { "value": 49, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Acetic Acid", "type": "text" },
+              { "value": 64.0, "type": "number", "unit": "°F" },
+              { "value": 1.049, "type": "number" },
+              { "value": 8.74, "type": "number", "unit": "lbs/gal" },
+              { "value": 65, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Acetic Anhydride", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.083, "type": "number" },
+              { "value": 9.02, "type": "number", "unit": "lbs/gal" },
+              { "value": 68, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Acetone", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.792, "type": "number" },
+              { "value": 6.60, "type": "number", "unit": "lbs/gal" },
+              { "value": 49, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Aniline", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.022, "type": "number" },
+              { "value": 8.51, "type": "number", "unit": "lbs/gal" },
+              { "value": 64, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Asphaltum", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "1.1–1.5", "type": "text", "raw": "1.1–1.5" },
+              { "value": "9.2–12.5", "type": "text", "raw": "9.2–12.5" },
+              { "value": "69–94", "type": "text", "raw": "69–94" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Benzene", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 3.119, "type": "number" },
+              { "value": 25.98, "type": "number", "unit": "lbs/gal" },
+              { "value": 195, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Disulfide", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.293, "type": "number" },
+              { "value": 10.52, "type": "number", "unit": "lbs/gal" },
+              { "value": 100, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Tetrachloride", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.595, "type": "number" },
+              { "value": 13.28, "type": "number", "unit": "lbs/gal" },
+              { "value": 100, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Castor Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 0.960, "type": "number" },
+              { "value": 8.07, "type": "number", "unit": "lbs/gal" },
+              { "value": 60, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Caustic Soda, 66% Solution", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.70, "type": "number" },
+              { "value": 14.16, "type": "number", "unit": "lbs/gal" },
+              { "value": 106, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Chloroform", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.480, "type": "number" },
+              { "value": 12.33, "type": "number", "unit": "lbs/gal" },
+              { "value": 92, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Citric Acid", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.542, "type": "number" },
+              { "value": 12.84, "type": "number", "unit": "lbs/gal" },
+              { "value": 96, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Coconut Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 0.926, "type": "number" },
+              { "value": 7.71, "type": "number", "unit": "lbs/gal" },
+              { "value": 58, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Colza Oil (Rape Seed Oil)", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.915, "type": "number" },
+              { "value": 7.62, "type": "number", "unit": "lbs/gal" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Corn Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.921–0.928", "type": "text", "raw": "0.921–0.928" },
+              { "value": "7.68–7.73", "type": "text", "raw": "7.68–7.73" },
+              { "value": "57–58", "type": "text", "raw": "57–58" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cottonseed Oil", "type": "text" },
+              { "value": 60.8, "type": "number", "unit": "°F" },
+              { "value": 0.926, "type": "number" },
+              { "value": 7.71, "type": "number", "unit": "lbs/gal" },
+              { "value": 58, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Creosote", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "1.040–1.100", "type": "text", "raw": "1.040–1.100" },
+              { "value": "8.66–9.16", "type": "text", "raw": "8.66–9.16" },
+              { "value": "65–69", "type": "text", "raw": "65–69" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Dimethyl Aniline", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.956, "type": "number" },
+              { "value": 7.96, "type": "number", "unit": "lbs/gal" },
+              { "value": 60, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ether", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.708, "type": "number" },
+              { "value": 5.90, "type": "number", "unit": "lbs/gal" },
+              { "value": 44, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ethyl Acetate", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.901, "type": "number" },
+              { "value": 7.50, "type": "number", "unit": "lbs/gal" },
+              { "value": 56, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ethyl Chloride", "type": "text" },
+              { "value": 42.8, "type": "number", "unit": "°F" },
+              { "value": 0.921, "type": "number" },
+              { "value": 7.67, "type": "number", "unit": "lbs/gal" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ethyl Ether", "type": "text" },
+              { "value": 77.0, "type": "number", "unit": "°F" },
+              { "value": "0.712–0.714", "type": "text", "raw": "0.712–0.714" },
+              { "value": "5.93–5.95", "type": "text", "raw": "5.93–5.95" },
+              { "value": "44–45", "type": "text", "raw": "44–45" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Formaldehyde", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.139, "type": "number" },
+              { "value": 1.16, "type": "number", "unit": "lbs/gal" },
+              { "value": 11, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "#1 Fuel Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.80–0.85", "type": "text", "raw": "0.80–0.85" },
+              { "value": "6.7–7.1", "type": "text", "raw": "6.7–7.1" },
+              { "value": "50–53", "type": "text", "raw": "50–53" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "#2 Fuel Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.81–0.91", "type": "text", "raw": "0.81–0.91" },
+              { "value": "6.7–7.6", "type": "text", "raw": "6.7–7.6" },
+              { "value": "51–55", "type": "text", "raw": "51–55" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "#4 Fuel Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.84–1.00", "type": "text", "raw": "0.84–1.00" },
+              { "value": "7.0–8.3", "type": "text", "raw": "7.0–8.3" },
+              { "value": "52–62", "type": "text", "raw": "52–62" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "#5 Fuel Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.91–1.06", "type": "text", "raw": "0.91–1.06" },
+              { "value": "7.6–8.8", "type": "text", "raw": "7.6–8.8" },
+              { "value": "57–66", "type": "text", "raw": "57–66" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "#6 Fuel Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.92–1.08", "type": "text", "raw": "0.92–1.08" },
+              { "value": "7.7–9.0", "type": "text", "raw": "7.7–9.0" },
+              { "value": "57–67", "type": "text", "raw": "57–67" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Furfural", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.159, "type": "number" },
+              { "value": 9.65, "type": "number", "unit": "lbs/gal" },
+              { "value": 72, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gasoline (Motor Fuel)", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.69–0.76", "type": "text", "raw": "0.69–0.76" },
+              { "value": "5.8–6.3", "type": "text", "raw": "5.8–6.3" },
+              { "value": "43–47", "type": "text", "raw": "43–47" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Glucose", "type": "text" },
+              { "value": 77.0, "type": "number", "unit": "°F" },
+              { "value": 1.544, "type": "number" },
+              { "value": 12.86, "type": "number", "unit": "lbs/gal" },
+              { "value": 96, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Glycerin", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.261, "type": "number" },
+              { "value": 10.49, "type": "number", "unit": "lbs/gal" },
+              { "value": 79, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hydrochloric Acid, 41.6° Sol.", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": 1.213, "type": "number" },
+              { "value": 10.10, "type": "number", "unit": "lbs/gal" },
+              { "value": 76, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kerosene", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.82, "type": "number" },
+              { "value": 6.82, "type": "number", "unit": "lbs/gal" },
+              { "value": 51, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Lactic Acid", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 1.249, "type": "number" },
+              { "value": 10.40, "type": "number", "unit": "lbs/gal" },
+              { "value": 78, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Lard Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.913–0.915", "type": "text", "raw": "0.913–0.915" },
+              { "value": "7.60–7.62", "type": "text", "raw": "7.60–7.62" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Linseed Oil — Raw", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.93, "type": "number" },
+              { "value": 7.8, "type": "number", "unit": "lbs/gal" },
+              { "value": 58, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Linseed Oil — Boiled", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.942, "type": "number" },
+              { "value": 7.85, "type": "number", "unit": "lbs/gal" },
+              { "value": 59, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mercury", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 13.595, "type": "number" },
+              { "value": 113.23, "type": "number", "unit": "lbs/gal" },
+              { "value": 849, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Molasses", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.49, "type": "number" },
+              { "value": 12.2, "type": "number", "unit": "lbs/gal" },
+              { "value": 93, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Naphthalene", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.145, "type": "number" },
+              { "value": 9.54, "type": "number", "unit": "lbs/gal" },
+              { "value": 71, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Neatsfoot Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.913–0.918", "type": "text", "raw": "0.913–0.918" },
+              { "value": "7.60–7.65", "type": "text", "raw": "7.60–7.65" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nitric Acid, 91% Solution", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.502, "type": "number" },
+              { "value": 12.51, "type": "number", "unit": "lbs/gal" },
+              { "value": 94, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Olive Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.910–0.920", "type": "text", "raw": "0.910–0.920" },
+              { "value": "7.60–7.66", "type": "text", "raw": "7.60–7.66" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Peanut Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.917–0.926", "type": "text", "raw": "0.917–0.926" },
+              { "value": "7.64–7.71", "type": "text", "raw": "7.64–7.71" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Phenol", "type": "text" },
+              { "value": 104.0, "type": "number", "unit": "°F" },
+              { "value": 1.071, "type": "number" },
+              { "value": 8.93, "type": "number", "unit": "lbs/gal" },
+              { "value": 67, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pitch", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": "1.07–1.15", "type": "text", "raw": "1.07–1.15" },
+              { "value": "8.91–9.58", "type": "text", "raw": "8.91–9.58" },
+              { "value": "67–72", "type": "text", "raw": "67–72" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rosin Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 0.980, "type": "number" },
+              { "value": 8.16, "type": "number", "unit": "lbs/gal" },
+              { "value": 61, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Soy Bean Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.924–0.927", "type": "text", "raw": "0.924–0.927" },
+              { "value": "7.70–7.72", "type": "text", "raw": "7.70–7.72" },
+              { "value": 58, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sperm Oil", "type": "text" },
+              { "value": 60.0, "type": "number", "unit": "°F" },
+              { "value": "0.870–0.884", "type": "text", "raw": "0.870–0.884" },
+              { "value": "7.31–7.36", "type": "text", "raw": "7.31–7.36" },
+              { "value": 55, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sulfur Dioxide", "type": "text" },
+              { "value": 80.0, "type": "number", "unit": "°F" },
+              { "value": 1.363, "type": "number" },
+              { "value": 11.363, "type": "number", "unit": "lbs/gal" },
+              { "value": 85, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sulfuric Acid, 87% Solution", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 1.804, "type": "number" },
+              { "value": 15.27, "type": "number", "unit": "lbs/gal" },
+              { "value": 115, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tar", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.20, "type": "number" },
+              { "value": 10.0, "type": "number", "unit": "lbs/gal" },
+              { "value": 75, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tetrachloroethane", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.595, "type": "number" },
+              { "value": 13.28, "type": "number", "unit": "lbs/gal" },
+              { "value": 100, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Trichloroethylene", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 1.455, "type": "number" },
+              { "value": 12.13, "type": "number", "unit": "lbs/gal" },
+              { "value": 91, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tung Oil", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.939–0.949", "type": "text", "raw": "0.939–0.949" },
+              { "value": "7.83–7.90", "type": "text", "raw": "7.83–7.90" },
+              { "value": 59, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Turpentine", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.862, "type": "number" },
+              { "value": 7.25, "type": "number", "unit": "lbs/gal" },
+              { "value": 54, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Sea)", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": 1.025, "type": "number" },
+              { "value": 8.54, "type": "number", "unit": "lbs/gal" },
+              { "value": 64, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (0° C)", "type": "text" },
+              { "value": 32.0, "type": "number", "unit": "°F" },
+              { "value": 0.9998, "type": "number" },
+              { "value": 8.32, "type": "number", "unit": "lbs/gal" },
+              { "value": 62.4, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (20° C)", "type": "text" },
+              { "value": 68.0, "type": "number", "unit": "°F" },
+              { "value": 0.998, "type": "number" },
+              { "value": 8.32, "type": "number", "unit": "lbs/gal" },
+              { "value": 62.3, "type": "number", "unit": "lbs/ft³" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Xylene", "type": "text" },
+              { "value": 59.0, "type": "number", "unit": "°F" },
+              { "value": "0.917–0.924", "type": "text", "raw": "0.917–0.924" },
+              { "value": "7.64–7.70", "type": "text", "raw": "7.64–7.70" },
+              { "value": 57, "type": "number", "unit": "lbs/ft³" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page reference table. 5-column layout: Liquid, At Temp. °F, Specific Gravity, Weight lbs/US Gal, Weight lbs/Cu Ft. Range values recorded as text type with raw field. Source: Chicago Bridge and Iron Company."
+    }
+  ],
+  "issues": []
+}

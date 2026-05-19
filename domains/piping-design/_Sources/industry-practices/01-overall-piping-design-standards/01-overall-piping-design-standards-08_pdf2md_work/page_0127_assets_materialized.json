@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0127.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0127_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.58
+      ],
+      "bbox_px": [
+        74,
+        246,
+        2406,
+        2211
+      ],
+      "caption": "Maximum Span (mm) (NOTES 1, 2 and 3)",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-08_p0127_tbl01_maximum-span-stainless-steel-schedule-10.png",
+      "png_sha256": "ac5113fa7f5e7c0b005465dcb0f402341cab04c41bc09b4d78634cd3e5438298",
+      "slug": "maximum-span-stainless-steel-schedule-10",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "01-overall-piping-design-standards-08_p0127_fig01",
+      "bbox_norm": [
+        0.08,
+        0.78,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        74,
+        2562,
+        2406,
+        3509
+      ],
+      "caption": "Shape factor sketch for pipe span configurations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-08_p0127_fig01_shape-factor-sketch-pipe-span.png",
+      "png_sha256": "269c300496d96f5aa44f34bc8f1a143cde46b413c103c65f53ecf40c3f93cbd2",
+      "slug": "shape-factor-sketch-pipe-span",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-08",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 127,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0127.png",
+  "page_image_sha256": "1052bc7a6ae092797be4e04505da375f105ba59a71196aca93bf266bf3be1343",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-08_pdf2md_work/page_0127_assets.json"
+}

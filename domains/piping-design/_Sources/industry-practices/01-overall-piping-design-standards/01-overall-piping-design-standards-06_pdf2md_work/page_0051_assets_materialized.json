@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0051.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-06_p0051_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.58,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1749,
+        2550,
+        2739
+      ],
+      "caption": "Table 7: Valve Sizes for Gear Operators",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/01-overall-piping-design-standards-06_p0051_tbl01_valve-sizes-for-gear-operators.png",
+      "png_sha256": "7a91a87864ec886574597d92269da078bf0282ad4f714af44c1069804c592ff4",
+      "slug": "valve-sizes-for-gear-operators",
+      "status": "materialized",
+      "table_data_json_path": "tables/01-overall-piping-design-standards-06_p0051_tbl01_valve-sizes-for-gear-operators.json",
+      "table_data_json_sha256": "fc42975fe9d91a28992da5bd4b503da1db25ab2d39c92b66b05d65568d5a5c28",
+      "table_data_sha256": "fc42975fe9d91a28992da5bd4b503da1db25ab2d39c92b66b05d65568d5a5c28",
+      "xlsx_path": "tables/01-overall-piping-design-standards-06_p0051_tbl01_valve-sizes-for-gear-operators.xlsx",
+      "xlsx_sha256": "47d5e9b531f0c7486df280396350e826f0bdb582fa25f81848e3936864d44841"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-06",
+  "doc_stem": "01-overall-piping-design-standards-06",
+  "page": 51,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0051.png",
+  "page_image_sha256": "7788e03f95a9f0b41ba291580461d057ca292b84b4fba26e848e58afcf0557c0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-06_pdf2md_work/page_0051_assets.json"
+}

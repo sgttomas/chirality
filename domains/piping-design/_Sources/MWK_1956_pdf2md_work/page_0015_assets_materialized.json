@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0015_fig01",
+      "bbox_norm": [
+        0.07,
+        0.05,
+        0.49,
+        0.3
+      ],
+      "bbox_px": [
+        51,
+        0,
+        1377,
+        1149
+      ],
+      "caption": "Fig. 1.13 The dependence of the intermolecular forces upon the molecular spacing.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0015_fig01_fig-1-13-the-dependence-of-the-intermole.png",
+      "png_sha256": "c00e800cacb18857315a9be876eacdc7e2fa0be4316122d43d3aa1fff2c0fddd",
+      "slug": "fig-1-13-the-dependence-of-the-intermole",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0015_fig02",
+      "bbox_norm": [
+        0.52,
+        0.62,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        1198,
+        1871,
+        2550,
+        3184
+      ],
+      "caption": "Fig. 1.14 Plate with a flat elliptical hole (= crack).",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0015_fig02_fig-1-14-plate-with-a-flat-elliptical-ho.png",
+      "png_sha256": "e91a4eea7a6ad0ee37494f37b9d68d3a491e9822cd0eadc9cba42e1f72c9df0f",
+      "slug": "fig-1-14-plate-with-a-flat-elliptical-ho",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0015.png",
+  "page_image_sha256": "ddfebb04958fed2bd3e8d482dcf269f2515ec2a0be84f2f85fdc3162cff37fd9",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0015_assets.json"
+}

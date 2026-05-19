@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0049.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0049_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.48,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1357,
+        1551
+      ],
+      "caption": "General Specifications \u2014 Type AYR",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0049_tbl01_general-specifications-type-ayr.png",
+      "png_sha256": "967e6c4aec4ca59afdd82ff21d452a34fb8a771f164eec95dde8794e38e1c006",
+      "slug": "general-specifications-type-ayr",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0049_tbl01_general-specifications-type-ayr.json",
+      "table_data_json_sha256": "017874d060439a9bed9c49f71240c5f73b1b95ce428ffde1abe8b3b08e203bca",
+      "table_data_sha256": "017874d060439a9bed9c49f71240c5f73b1b95ce428ffde1abe8b3b08e203bca",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0049_tbl01_general-specifications-type-ayr.xlsx",
+      "xlsx_sha256": "483d13bd5e764e70de5c6d85ccd8f0ad460c54911b560fa00a736e79157540ad"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0049_fig01",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.48,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1254,
+        1357,
+        3300
+      ],
+      "caption": "Figure 1-34. Approximate dimensions, Type AYR turbine. Courtesy of Elliot Company.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0049_fig01_fig-1-34-approximate-dimensions-type-ayr.png",
+      "png_sha256": "5205dc881369e49a14ee678549665cb9fa72dd350de58a33e071e4c1640196c1",
+      "slug": "fig-1-34-approximate-dimensions-type-ayr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 49,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0049.png",
+  "page_image_sha256": "7df93009b233962d5f80076bd62a1b662e70db47199cacf2c087f2b940791bed",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0049_assets.json"
+}

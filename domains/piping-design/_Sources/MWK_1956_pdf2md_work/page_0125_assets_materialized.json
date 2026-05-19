@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0125.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0125_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.97,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1746,
+        2322,
+        3492
+      ],
+      "caption": "Table 5.3 Shape Coefficients for Straight Members",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0125_tbl01_table-5-3-shape-coefficients-for-straigh.png",
+      "png_sha256": "f72544715d373c18eeaae26ff2823bd578efbd8d9a7da5d6f081fab7c658dc07",
+      "slug": "table-5-3-shape-coefficients-for-straigh",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 125,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0125.png",
+  "page_image_sha256": "b2f5bf8d69decbcf5ecff26f88b8cb1255c7117cf4c364d0436103c6f3ced0e2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0125_assets.json"
+}

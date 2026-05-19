@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0418.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0418_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.75,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2029,
+        1313
+      ],
+      "caption": "FIG. 12.17 SAFETY VALVE RELIEVING FORCES",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0418_fig01_safety-valve-relieving-forces.png",
+      "png_sha256": "dd2195697643f18f5d16831f25c7494250e18075b5696c18f628e7288b1861be",
+      "slug": "safety-valve-relieving-forces",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 418,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0418.png",
+  "page_image_sha256": "0f12d370aca2c1b4f29ace0d7f23a9bf8e130d875c176a4de903a3ccfba03ded",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0418_assets.json"
+}

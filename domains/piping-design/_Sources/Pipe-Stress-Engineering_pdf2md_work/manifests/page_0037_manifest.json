@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0037.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0037_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1774,
+        2536,
+        3549
+      ],
+      "caption": "FIG. 1.8 ALLOWABLE STRESS AT HIGH TEMPERATURE [17]",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0037_fig01_allowable-stress-high-temperature.png",
+      "png_sha256": "871b0e19448adfa62e0cadb2616f18099a1a516d5657421a89318581b62857f6",
+      "slug": "allowable-stress-high-temperature",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 37,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0037.png",
+  "page_image_sha256": "2ea67e10a25c5ead4bb01da9154f76ffb5e7185d55f071e76a4aa934beb0585c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0037_assets.json"
+}

@@ -1,0 +1,44 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.27
+      ],
+      "caption": "Table A.5. General Equations of Pipe Line Subject to Thermal Expansion",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.5,
+        0.27,
+        0.97,
+        0.55
+      ],
+      "caption": "Table A.6. Constant Terms for Deformation of any Point of the Pipe Line",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.5,
+        0.78,
+        0.97,
+        1.0
+      ],
+      "caption": "Table A.7. Constant Terms for Deformation of Any Point of the Pipe Line with Respect to Free End",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [],
+  "page": 325,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

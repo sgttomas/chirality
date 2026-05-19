@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 107,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6.1  Flow rate 1 m³/h to 10 m³/h",
+      "slug": "figure-6-1-flow-rate-1-to-10-m3-h",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Full-page nomograph chart for pressure drop in carbon steel water pipes at 2°C. Left y-axis: pressure drop (Pa/m); right y-axis: pipe diameter (DN); x-axis: flow rate (m³/h). Diagonal lines indicate pipe sizes and flow velocities."
+    }
+  ],
+  "issues": []
+}

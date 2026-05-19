@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0121.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1918
+      ],
+      "caption": "Table 6-12A 45\u00b0 Offsets",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl01_table-6-12a-45-deg-offsets.png",
+      "png_sha256": "ac20c9c969058ccdb8b032675b1e476c42f14b01d81a5bbb36391402e5e5554d",
+      "slug": "table-6-12a-45-deg-offsets",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl01_table-6-12a-45-deg-offsets.json",
+      "table_data_json_sha256": "1215a63343fc54dc99d712cebb421fdb6e195a6d4e6e9cfca6f83ae0d4d0fc14",
+      "table_data_sha256": "1215a63343fc54dc99d712cebb421fdb6e195a6d4e6e9cfca6f83ae0d4d0fc14",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl01_table-6-12a-45-deg-offsets.xlsx",
+      "xlsx_sha256": "e7907226071048b750de11b48131bdd604baeccb2288164673d83d33603a2904"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.51,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1604,
+        2477,
+        3488
+      ],
+      "caption": "Table 6-12B 45\u00b0 Triangles \u2014 Base to Hypotenuse",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl02_table-6-12b-45-deg-triangles-base-to-hyp.png",
+      "png_sha256": "08ea4517665a9fcfed7c98928307be368218de311cb1b9bc3ec38e90295a494c",
+      "slug": "table-6-12b-45-deg-triangles-base-to-hyp",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl02_table-6-12b-45-deg-triangles-base-to-hyp.json",
+      "table_data_json_sha256": "e0580a13c971c01d85d24815c23a4f241fed9f75a6a7bc090529e69e3184dbd4",
+      "table_data_sha256": "e0580a13c971c01d85d24815c23a4f241fed9f75a6a7bc090529e69e3184dbd4",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0121_tbl02_table-6-12b-45-deg-triangles-base-to-hyp.xlsx",
+      "xlsx_sha256": "13b5f415714d20add741084912225a6f7825b1637cf126464afdd15c88ee9119"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 121,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0121.png",
+  "page_image_sha256": "69af6e5f3e8eafc4d45230d1f404164bee45ff2c2b4fb8e939b3b5ccbfcaa9ae",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0121_assets.json"
+}

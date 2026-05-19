@@ -1,0 +1,53 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 5,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Summary of changes since previous edition",
+      "slug": "summary-of-changes-since-previous-edition",
+      "bbox_norm": [0.08, 0.21, 0.92, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Section", "is_header": true },
+              { "value": "Subject", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3.17", "type": "text" },
+              { "value": "Reference to S 38.132 changed to DEP 61.38.10.10-Gen.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8.3.1.4", "type": "text" },
+              { "value": "New bolting table", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10.1.1", "type": "text" },
+              { "value": "Amended table for sodium hydroxide service", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing section numbers and their change descriptions"
+    }
+  ],
+  "issues": []
+}

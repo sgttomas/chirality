@@ -1,0 +1,24 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        0.99
+      ],
+      "caption": "Table 5.10 Formulas for Plane Rotating about z-Axis",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "asset_note: Wide formula table spanning full page width at the bottom of the page. Contains symbolic mathematical expressions (trigonometric functions of alpha) for moments (M_x, M_y, M_z) and forces (F_x, F_y, F_z), plus rotation transform formulas (M'_x, F'_x, F'_y, F'_z, M'_x, M'_y) at the lower-left. Best preserved as image due to dense math/symbol content."
+  ],
+  "page": 137,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

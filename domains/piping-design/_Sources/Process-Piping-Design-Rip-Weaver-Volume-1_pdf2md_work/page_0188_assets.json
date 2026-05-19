@@ -1,0 +1,369 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 188,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factor G (continued) — unit conversion table for Gallon through Grain",
+      "slug": "conversion-factor-g-continued",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.96],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": {
+          "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+          "page": 187,
+          "tbl_ordinal": 1
+        },
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "From", "is_header": true },
+              { "value": "Multiply by", "is_header": true },
+              { "value": "To", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.0238, "type": "number" },
+              { "value": "Barrel, oil" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 3785.434, "type": "number" },
+              { "value": "Cubic centimeter" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 3.785434, "type": "number" },
+              { "value": "Cubic decimeter" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.13368, "type": "number" },
+              { "value": "Cubic foot" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 231, "type": "number" },
+              { "value": "Cubic inch, water, 62°F" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.0037854, "type": "number", "raw": "3.7854 × 10⁻³" },
+              { "value": "Cubic meter" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.003951, "type": "number", "raw": "3.951 × 10⁻³" },
+              { "value": "Cubic yard" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.839365, "type": "number" },
+              { "value": "Gallon, dry, USA" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.832673, "type": "number" },
+              { "value": "Gallon, liquid, British" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 3.7853, "type": "number" },
+              { "value": "Liter" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 8, "type": "number" },
+              { "value": "Pint, liquid, USA" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 4, "type": "number" },
+              { "value": "Quart, liquid, USA" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 8.3453, "type": "number" },
+              { "value": "Pounds, water" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallon, liquid, USA" },
+              { "value": 0.1337, "type": "number" },
+              { "value": "Cubic feet/hour" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/hour, USA" },
+              { "value": 0.002228, "type": "number", "raw": "2.228 × 10⁻³" },
+              { "value": "Cubic feet/minute" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/hour, USA" },
+              { "value": 0.01666, "type": "number" },
+              { "value": "Gallons/minute" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/hour, USA" },
+              { "value": 0.0002777, "type": "number", "raw": "2.777 × 10⁻⁴" },
+              { "value": "Gallons/second" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 34.2857, "type": "number" },
+              { "value": "Barrels/day, oil" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 1.42857, "type": "number" },
+              { "value": "Barrels/hour, oil" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 0.023809, "type": "number" },
+              { "value": "Barrels/minute, oil" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 192.499999, "type": "number" },
+              { "value": "Cubic feet/day" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 8.021, "type": "number" },
+              { "value": "Cubic feet/hour" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 0.13368, "type": "number" },
+              { "value": "Cubic feet/minute" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 0.002228, "type": "number", "raw": "2.228 × 10⁻³" },
+              { "value": "Cubic feet/second" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 0.2271, "type": "number" },
+              { "value": "Cubic meters/hour" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 1440, "type": "number" },
+              { "value": "Gallons/day" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 60, "type": "number" },
+              { "value": "Gallons/hour" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 0.01666, "type": "number" },
+              { "value": "Gallons/second" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 5.35565, "type": "number" },
+              { "value": "Tons, long, water, 62°F/day" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/minute, USA" },
+              { "value": 5.99839, "type": "number" },
+              { "value": "Tons, short, water, 62°F/day" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/second, USA" },
+              { "value": 0.06308, "type": "number" },
+              { "value": "Liters/second" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/second, USA" },
+              { "value": 481, "type": "number" },
+              { "value": "Cubic feet/hour" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/second, USA" },
+              { "value": 8.02, "type": "number" },
+              { "value": "Cubic feet/minute" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/second, USA" },
+              { "value": 0.1337, "type": "number" },
+              { "value": "Cubic feet/second" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gallons/second, USA" },
+              { "value": 60, "type": "number" },
+              { "value": "Gallons/minute, USA" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gills, British" },
+              { "value": 142.07, "type": "number" },
+              { "value": "Cubic centimeter" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gills, British" },
+              { "value": 0.1183, "type": "number" },
+              { "value": "Liters" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gills, British" },
+              { "value": 0.25, "type": "number" },
+              { "value": "Pints, liquid" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grade" },
+              { "value": 0.0025, "type": "number" },
+              { "value": "Circle" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grade" },
+              { "value": 0.9000, "type": "number" },
+              { "value": "Degree" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grade" },
+              { "value": 54, "type": "number" },
+              { "value": "Minute" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grade" },
+              { "value": 0.01571, "type": "number" },
+              { "value": "Radian" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grain" },
+              { "value": 0.01666, "type": "number" },
+              { "value": "Dram, apothecary" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grain" },
+              { "value": 0.03657, "type": "number" },
+              { "value": "Dram, avoirdupois" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grain" },
+              { "value": 1, "type": "number" },
+              { "value": "Grain, troy" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grain" },
+              { "value": 0.10648, "type": "number" },
+              { "value": "Grams" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grain" },
+              { "value": 0.0020833, "type": "number", "raw": "2.0833 × 10⁻³" },
+              { "value": "Ounces" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page unit conversion table; header row and 47 data rows transcribed. Continuation from prior page; continues on following page per footer note. Scientific notation values stored as JSON numbers with raw field preserving original notation."
+    }
+  ],
+  "issues": []
+}

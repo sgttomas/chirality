@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0086.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0086_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.42,
+        0.19
+      ],
+      "bbox_px": [
+        0,
+        66,
+        1203,
+        792
+      ],
+      "caption": "Pipe size to dimension A \u2014 Type HD-4",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0086_tbl01_pipe-size-dimension-a-hd4.png",
+      "png_sha256": "54f948263fb5156350510c4ffdcf6a847eb35d0b2050ba883e32ddcb2e0974b9",
+      "slug": "pipe-size-dimension-a-hd4",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0086_tbl01_pipe-size-dimension-a-hd4.json",
+      "table_data_json_sha256": "668ddc17ffdf734c7a7e5de7dced82640f321fc03dbd01cbf965d8010adb03cd",
+      "table_data_sha256": "668ddc17ffdf734c7a7e5de7dced82640f321fc03dbd01cbf965d8010adb03cd",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-2_p0086_tbl01_pipe-size-dimension-a-hd4.xlsx",
+      "xlsx_sha256": "a651eb586c085fb0438a3e8d827e33d986d503bee514b5660b88eebdabd7493f"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0086_fig01",
+      "bbox_norm": [
+        0.04,
+        0.16,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        363,
+        2560,
+        3201
+      ],
+      "caption": "Figure 2-32. Type HD-4 hold-down. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0086_fig01_type-hd4-hold-down-elevation.png",
+      "png_sha256": "a8a719cf2091683431e22a44755be2588d2b4f401c98910e7fec2e296ab51e5e",
+      "slug": "type-hd4-hold-down-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 86,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0086.png",
+  "page_image_sha256": "63abeaba8f8660676621a9f15ed53f66e39a4f01ffa88b32ef3fa40a93e8f5aa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0086_assets.json"
+}

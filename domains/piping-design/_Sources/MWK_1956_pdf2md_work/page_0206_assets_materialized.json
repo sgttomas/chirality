@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0206.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0206_fig01",
+      "bbox_norm": [
+        0.1,
+        0.06,
+        0.95,
+        0.95
+      ],
+      "bbox_px": [
+        125,
+        34,
+        2502,
+        3450
+      ],
+      "caption": "Fig. 6.7 Models of marine piping.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0206_fig01_fig-6-7-models-of-marine-piping.png",
+      "png_sha256": "cc1860f123b68e4f5230a747c7f428c6eaf2e1dae7d189283f771662fe5a8eb6",
+      "slug": "fig-6-7-models-of-marine-piping",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 206,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0206.png",
+  "page_image_sha256": "833e36117f8e40ed69f14dd2a7af21dc7743df95bba58c9eef15eaaf764d8b02",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0206_assets.json"
+}

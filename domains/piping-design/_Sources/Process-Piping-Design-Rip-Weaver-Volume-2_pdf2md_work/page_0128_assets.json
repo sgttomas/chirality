@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 128,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 4-2. Brown Type 40-3\" fintube parts. Courtesy of Brown Fintube Co.",
+      "slug": "brown-type-40-3-fintube-parts",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.72],
+      "confidence": "high",
+      "notes": "Full-page figure showing multiple views of fintube assembly including shell-to-tube closure, tubeside joint, return bend housing construction, and exploded parts diagram with numbered callouts. Caption appears at bottom of figure."
+    }
+  ],
+  "issues": []
+}

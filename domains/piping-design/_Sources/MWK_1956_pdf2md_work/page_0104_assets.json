@@ -1,0 +1,13 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "MWK_1956",
+  "page": 104,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "Page is full-text prose (DESIGN OF PIPING SYSTEMS, Ch. 4 procedure narrative, Steps 6c-10 plus Sample Calculations 4.12-4.13 intro). No figures, photographs, diagrams, or raster-extractable tables present.",
+    "A small inline 2-column sign-convention table (Cold Condition / Hot Condition for Fixed End O' and Free End A) appears mid-page, but it is plain typographic text already captured in the page Markdown and does not warrant image-asset extraction under prose-document-assets-v1."
+  ]
+}

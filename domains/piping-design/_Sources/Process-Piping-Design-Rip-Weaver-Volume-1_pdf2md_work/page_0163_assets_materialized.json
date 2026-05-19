@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0163.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0163_fig01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.52,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        35,
+        1412,
+        1398
+      ],
+      "caption": "Figure 8-4. Theory of displacement type controller. Courtesy of Masoneilan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0163_fig01_theory-displacement-type-controller.png",
+      "png_sha256": "034c56bcdec1be05e635be4a943e7b08b4a4fb3e602ff2fcce07d2eac97a0a6f",
+      "slug": "theory-displacement-type-controller",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0163_fig02",
+      "bbox_norm": [
+        0.48,
+        0.06,
+        0.97,
+        0.35
+      ],
+      "bbox_px": [
+        1065,
+        35,
+        2477,
+        1398
+      ],
+      "caption": "Figure 8-5. Torque type picture. Courtesy of Masoneilan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0163_fig02_torque-type-picture.png",
+      "png_sha256": "d02e30fba65e52b2ea69d227085f0a3e22ab1c3c9e362fc4aba42b9d332daffe",
+      "slug": "torque-type-picture",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 163,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0163.png",
+  "page_image_sha256": "ffd731e28b45ee313ec90dcbcfc1748f5a860f86a6306ba29f45e57bf7678300",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0163_assets.json"
+}

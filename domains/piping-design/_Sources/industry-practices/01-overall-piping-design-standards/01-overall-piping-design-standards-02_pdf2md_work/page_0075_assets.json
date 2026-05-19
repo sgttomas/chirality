@@ -1,0 +1,424 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-02",
+  "page": 75,
+  "total_pages": 95,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3, Instrument Access Requirements",
+      "slug": "table-3-instrument-access-requirements",
+      "bbox_norm": [
+        0.03,
+        0.16,
+        0.97,
+        0.6
+      ],
+      "confidence": "high",
+      "notes": "Multi-column table with instrument types and access requirements. Footnotes: * and ** clarified below table.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "*",
+            "text": "But must be able to read from platform or fixed ladder."
+          },
+          {
+            "marker": "**",
+            "text": "To be used if available."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Type of Instrument",
+                "row_span": 2,
+                "is_header": true
+              },
+              {
+                "value": "Access For Operation Required",
+                "row_span": 2,
+                "is_header": true
+              },
+              {
+                "value": "Access From Grade And/Or",
+                "col_span": 3,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Portable Required",
+                "is_header": true
+              },
+              {
+                "value": "Fixed Ladder",
+                "is_header": true
+              },
+              {
+                "value": "Fixed Platform",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1. Thermocouples",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2. Test Thermowells",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3. Dial Thermometers",
+                "type": "text"
+              },
+              {
+                "value": "No*",
+                "type": "text",
+                "footnote_markers": [
+                  "*"
+                ]
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4. Pressure Gage",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5. Level Gages",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6. Direct Mounted Temperature Transmitter, RTD's and Switches (blind/non-indicating)",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "7. Remote Mounted Transmitters and Switches",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8. Remote Mounted Transmitters and Switches (indicating)",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "**",
+                "type": "text",
+                "footnote_markers": [
+                  "**"
+                ]
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "9. Recorders and Controllers",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10. Control Valves and Other Finite Control Elements",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "11. Pressure Relief Valves",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12. Auto Samplers",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "13. Density / Flow Meters",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "No",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,33 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.42
+      ],
+      "caption": "Exhibit 2-5 Roads, Paving, and Railroads",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.5,
+        0.46,
+        0.97,
+        0.93
+      ],
+      "caption": "Exhibit 2-6 Platforms, Ladders, and Stairs",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 39,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

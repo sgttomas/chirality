@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0175.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0175_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2477,
+        3119
+      ],
+      "caption": "Figure 8-17. Control valve body. Courtesy of J.E. Lonergan Co.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0175_fig01_control-valve-body-8-17.png",
+      "png_sha256": "7e1367ca606b035f3ba41b41864edfd75fba6cf41c39347d6f70127700ad6083",
+      "slug": "control-valve-body-8-17",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 175,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0175.png",
+  "page_image_sha256": "1c5556551d59d6f2908aa9efdfadabb65feea0459cf694c2f45224fded96692a",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0175_assets.json"
+}

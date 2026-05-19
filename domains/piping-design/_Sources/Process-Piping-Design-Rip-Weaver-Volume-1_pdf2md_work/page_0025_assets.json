@@ -1,0 +1,947 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 25,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Figure 1-10 (continued) — Dimensions in Inches for Flange Classes 600, 900, 1500, and 2500 Pound",
+      "slug": "figure-1-10-continued-flange-dimensions-600-900-1500-2500",
+      "bbox_norm": [0.03, 0.28, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Continuation of flange dimension table from prior page. Four pressure classes: 600, 900, 1500, 2500 Pound. Columns: Class, Pipe Size, A, B, C, D, E, Bolts No., Bolts Dia., F, G, H. Missing values (G, H columns for higher classes) shown as dashes.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": {
+          "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+          "page": 24,
+          "tbl_ordinal": 1
+        },
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Class", "is_header": true },
+              { "value": "Pipe Size", "is_header": true },
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "D", "is_header": true },
+              { "value": "E", "is_header": true },
+              { "value": "Bolts No.", "is_header": true },
+              { "value": "Bolts Dia.", "is_header": true },
+              { "value": "F", "is_header": true },
+              { "value": "G", "is_header": true },
+              { "value": "H", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600 Pound", "row_span": 18, "is_header": false },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "3-3/8", "type": "fraction", "raw": "3⅜" },
+              { "value": "7/8", "type": "fraction", "raw": "⅞" },
+              { "value": "1-5/8", "type": "fraction", "raw": "1⅝" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": 4, "type": "number" },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "2-1/16", "type": "fraction", "raw": "2¹⁄₁₆" },
+              { "value": 0.84, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": "1-1/16", "type": "fraction", "raw": "1¹⁄₁₆" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": 4, "type": "number" },
+              { "value": "5/8", "type": "fraction", "raw": "⅝" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "11/16", "type": "fraction", "raw": "11⁄₁₆" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": 1.05, "type": "number" },
+              { "value": 1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": "1-3/16", "type": "fraction", "raw": "1³⁄₁₆" },
+              { "value": 2, "type": "number" },
+              { "value": "3-5/8", "type": "fraction", "raw": "3⅝" },
+              { "value": 4, "type": "number" },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "11/16", "type": "fraction", "raw": "11⁄₁₆" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": 1.32, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "4-5/8", "type": "fraction", "raw": "4⅝" },
+              { "value": "1-3/8", "type": "fraction", "raw": "1⅜" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": 4, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": "5/8", "type": "fraction", "raw": "⅝" },
+              { "value": "15/16", "type": "fraction", "raw": "15⁄₁₆" },
+              { "value": 3, "type": "number" },
+              { "value": 1.66, "type": "number" },
+              { "value": "1-5/8", "type": "fraction", "raw": "1⅝" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "5-1/8", "type": "fraction", "raw": "5⅛" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "2-5/8", "type": "fraction", "raw": "2⅝" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": 4, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/16", "type": "fraction", "raw": "1¹⁄₁₆" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": 1.90, "type": "number" },
+              { "value": "1-7/8", "type": "fraction", "raw": "1⅞" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": 6, "type": "number" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": 3, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": "5/8", "type": "fraction", "raw": "⅝" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": 4, "type": "number" },
+              { "value": 2.38, "type": "number" },
+              { "value": "2-3/8", "type": "fraction", "raw": "2⅜" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "7-1/8", "type": "fraction", "raw": "7⅛" },
+              { "value": "3-1/8", "type": "fraction", "raw": "3⅛" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-3/8", "type": "fraction", "raw": "1⅜" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": 2.88, "type": "number" },
+              { "value": "2-7/8", "type": "fraction", "raw": "2⅞" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": "8-1/4", "type": "fraction", "raw": "8¼" },
+              { "value": "2-5/8", "type": "fraction", "raw": "2⅝" },
+              { "value": 4, "type": "number" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": 3.50, "type": "number" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": "10-1/8", "type": "fraction", "raw": "10⅛" },
+              { "value": 3, "type": "number" },
+              { "value": "4-7/8", "type": "fraction", "raw": "4⅞" },
+              { "value": "8-1/8", "type": "fraction", "raw": "8⅛" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "6-5/8", "type": "fraction", "raw": "6⅝" },
+              { "value": 4.50, "type": "number" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": 14, "type": "number" },
+              { "value": "3-7/8", "type": "fraction", "raw": "3⅞" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼" },
+              { "value": "10-3/4", "type": "fraction", "raw": "10¾" },
+              { "value": 12, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": 2, "type": "number" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": 6.63, "type": "number" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": "16-1/2", "type": "fraction", "raw": "16½" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": "7-3/8", "type": "fraction", "raw": "7⅜" },
+              { "value": 13, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": "10-1/4", "type": "fraction", "raw": "10¼" },
+              { "value": 8.63, "type": "number" },
+              { "value": "8-7/8", "type": "fraction", "raw": "8⅞" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 20, "type": "number" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": "9-1/4", "type": "fraction", "raw": "9¼" },
+              { "value": "15-1/2", "type": "fraction", "raw": "15½" },
+              { "value": 16, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "12-3/4", "type": "fraction", "raw": "12¾" },
+              { "value": 10.75, "type": "number" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 22, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": "10-3/4", "type": "fraction", "raw": "10¾" },
+              { "value": "17-1/2", "type": "fraction", "raw": "17½" },
+              { "value": 20, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": 15, "type": "number" },
+              { "value": 12.75, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": "23-3/4", "type": "fraction", "raw": "23¾" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": "11-3/4", "type": "fraction", "raw": "11¾" },
+              { "value": "19-1/4", "type": "fraction", "raw": "19¼" },
+              { "value": 20, "type": "number" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": 3, "type": "number" },
+              { "value": "16-1/2", "type": "fraction", "raw": "16½" },
+              { "value": "(14.00)", "type": "text" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number" },
+              { "value": 27, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": "13-1/2", "type": "fraction", "raw": "13½" },
+              { "value": 22, "type": "number" },
+              { "value": 20, "type": "number" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": "4-9/16", "type": "fraction", "raw": "49⁄₁₆" },
+              { "value": 7, "type": "number" },
+              { "value": 16.00, "type": "number" },
+              { "value": "5-1/2", "type": "fraction", "raw": "5½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 18, "type": "number" },
+              { "value": "29-1/2", "type": "fraction", "raw": "29½" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": 15, "type": "number" },
+              { "value": "24-3/4", "type": "fraction", "raw": "24¾" },
+              { "value": 20, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-3/8", "type": "fraction", "raw": "3⅜" },
+              { "value": "19-3/4", "type": "fraction", "raw": "19¾" },
+              { "value": 18.00, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number" },
+              { "value": 32, "type": "number" },
+              { "value": "5-1/2", "type": "fraction", "raw": "5½" },
+              { "value": "16-3/4", "type": "fraction", "raw": "16¾" },
+              { "value": 28, "type": "number" },
+              { "value": 24, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": 22, "type": "number" },
+              { "value": 20.00, "type": "number" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24, "type": "number" },
+              { "value": 37, "type": "number" },
+              { "value": "5-7/8", "type": "fraction", "raw": "5⅞" },
+              { "value": "19-3/4", "type": "fraction", "raw": "19¾" },
+              { "value": "32-1/2", "type": "fraction", "raw": "32½" },
+              { "value": 24, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": 26, "type": "number" },
+              { "value": 24.00, "type": "number" },
+              { "value": "10-1/4", "type": "fraction", "raw": "10¼" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "900 Pound", "row_span": 9, "is_header": false },
+              { "value": 3, "type": "number" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½" },
+              { "value": "11-5/8", "type": "fraction", "raw": "11⅝" },
+              { "value": 5, "type": "number" },
+              { "value": "7-1/2", "type": "fraction", "raw": "7½" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼" },
+              { "value": 3.50, "type": "number" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": "11-1/8", "type": "fraction", "raw": "11⅛" },
+              { "value": 4, "type": "number" },
+              { "value": "5-1/2", "type": "fraction", "raw": "5½" },
+              { "value": "8-5/8", "type": "fraction", "raw": "8⅝" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": 7, "type": "number" },
+              { "value": 4.50, "type": "number" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": "15-1/8", "type": "fraction", "raw": "15⅛" },
+              { "value": "3-7/8", "type": "fraction", "raw": "3⅞" },
+              { "value": "6-7/8", "type": "fraction", "raw": "6⅞" },
+              { "value": "11-5/8", "type": "fraction", "raw": "11⅝" },
+              { "value": 12, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½" },
+              { "value": 6.63, "type": "number" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": "18-3/8", "type": "fraction", "raw": "18⅜" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": "8-1/4", "type": "fraction", "raw": "8¼" },
+              { "value": "13-3/4", "type": "fraction", "raw": "13¾" },
+              { "value": 12, "type": "number" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼" },
+              { "value": 8.63, "type": "number" },
+              { "value": 9, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": "21-3/4", "type": "fraction", "raw": "21¾" },
+              { "value": "5-3/8", "type": "fraction", "raw": "5⅜" },
+              { "value": 10, "type": "number" },
+              { "value": 17, "type": "number" },
+              { "value": 16, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": "13-3/4", "type": "fraction", "raw": "13¾" },
+              { "value": 10.75, "type": "number" },
+              { "value": "11-1/4", "type": "fraction", "raw": "11¼" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": "24-3/4", "type": "fraction", "raw": "24¾" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": "11-1/2", "type": "fraction", "raw": "11½" },
+              { "value": "19-5/8", "type": "fraction", "raw": "19⅝" },
+              { "value": 20, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": 16, "type": "number" },
+              { "value": 12.75, "type": "number" },
+              { "value": "13-1/4", "type": "fraction", "raw": "13¼" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": "27-3/4", "type": "fraction", "raw": "27¾" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼" },
+              { "value": "12-3/4", "type": "fraction", "raw": "12¾" },
+              { "value": "22-1/4", "type": "fraction", "raw": "22¼" },
+              { "value": 20, "type": "number" },
+              { "value": "1-3/8", "type": "fraction", "raw": "1⅜" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": "18-1/4", "type": "fraction", "raw": "18¼" },
+              { "value": "(14.00)", "type": "text" },
+              { "value": "15-1/2", "type": "fraction", "raw": "15½" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 16, "type": "number" },
+              { "value": "30-3/4", "type": "fraction", "raw": "30¾" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": "14-1/4", "type": "fraction", "raw": "14¼" },
+              { "value": "24-3/4", "type": "fraction", "raw": "24¾" },
+              { "value": 20, "type": "number" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": 21, "type": "number" },
+              { "value": 16.00, "type": "number" },
+              { "value": "17-3/4", "type": "fraction", "raw": "17¾" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 18, "type": "number" },
+              { "value": "33-3/4", "type": "fraction", "raw": "33¾" },
+              { "value": 7, "type": "number" },
+              { "value": 16, "type": "number" },
+              { "value": "27-3/4", "type": "fraction", "raw": "27¾" },
+              { "value": 20, "type": "number" },
+              { "value": "1-5/8", "type": "fraction", "raw": "1⅝" },
+              { "value": 6, "type": "number" },
+              { "value": "23-1/4", "type": "fraction", "raw": "23¼" },
+              { "value": 18.00, "type": "number" },
+              { "value": 20, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 20, "type": "number" },
+              { "value": 36, "type": "number" },
+              { "value": "7-1/2", "type": "fraction", "raw": "7½" },
+              { "value": "17-3/8", "type": "fraction", "raw": "17⅜" },
+              { "value": "30-3/4", "type": "fraction", "raw": "30¾" },
+              { "value": 20, "type": "number" },
+              { "value": "1-5/8", "type": "fraction", "raw": "1⅝" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½" },
+              { "value": "25-1/2", "type": "fraction", "raw": "25½" },
+              { "value": 20.00, "type": "number" },
+              { "value": "21-3/4", "type": "fraction", "raw": "21¾" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 24, "type": "number" },
+              { "value": 41, "type": "number" },
+              { "value": "8-3/8", "type": "fraction", "raw": "8⅜" },
+              { "value": "20-3/4", "type": "fraction", "raw": "20¾" },
+              { "value": 36, "type": "number" },
+              { "value": 20, "type": "number" },
+              { "value": "1-7/8", "type": "fraction", "raw": "1⅞" },
+              { "value": "7-3/4", "type": "fraction", "raw": "7¾" },
+              { "value": 30, "type": "number" },
+              { "value": 24.00, "type": "number" },
+              { "value": 26, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1500 Pound", "row_span": 14, "is_header": false },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "3-7/8", "type": "fraction", "raw": "3⅞" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": 2, "type": "number" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": 4, "type": "number" },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "7/8", "type": "fraction", "raw": "⅞" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": 4, "type": "number" },
+              { "value": "5/8", "type": "fraction", "raw": "⅝" },
+              { "value": 1, "type": "number" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": "4-7/8", "type": "fraction", "raw": "4⅞" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": 4, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "5-5/8", "type": "fraction", "raw": "5⅝" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": 4, "type": "number" },
+              { "value": "7/8", "type": "fraction", "raw": "⅞" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "6-1/8", "type": "fraction", "raw": "6⅛" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": 3, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": 4, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "1-3/8", "type": "fraction", "raw": "1⅜" },
+              { "value": 4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": "6-7/8", "type": "fraction", "raw": "6⅞" },
+              { "value": 2, "type": "number" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": "5-1/2", "type": "fraction", "raw": "5½" },
+              { "value": 8, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "7-3/4", "type": "fraction", "raw": "7¾" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": 4, "type": "number" },
+              { "value": "6-1/4", "type": "fraction", "raw": "6¼" },
+              { "value": 8, "type": "number" },
+              { "value": "7/8", "type": "fraction", "raw": "⅞" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": "8-7/8", "type": "fraction", "raw": "8⅞" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": "7-1/4", "type": "fraction", "raw": "7¼" },
+              { "value": 8, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": 6, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": "11-3/4", "type": "fraction", "raw": "11¾" },
+              { "value": 3, "type": "number" },
+              { "value": "5-5/8", "type": "fraction", "raw": "5⅝" },
+              { "value": "9-1/2", "type": "fraction", "raw": "9½" },
+              { "value": 8, "type": "number" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "7-3/4", "type": "fraction", "raw": "7¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": "15-3/4", "type": "fraction", "raw": "15¾" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": "7-5/8", "type": "fraction", "raw": "7⅝" },
+              { "value": "12-3/4", "type": "fraction", "raw": "12¾" },
+              { "value": 12, "type": "number" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": "10-1/4", "type": "fraction", "raw": "10¼" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": 19, "type": "number" },
+              { "value": 5, "type": "number" },
+              { "value": "9-1/4", "type": "fraction", "raw": "9¼" },
+              { "value": "15-1/2", "type": "fraction", "raw": "15½" },
+              { "value": 12, "type": "number" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": 4, "type": "number" },
+              { "value": "12-3/4", "type": "fraction", "raw": "12¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": 23, "type": "number" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": 11, "type": "number" },
+              { "value": "18-3/4", "type": "fraction", "raw": "18¾" },
+              { "value": 16, "type": "number" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": "15-3/4", "type": "fraction", "raw": "15¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": "26-1/2", "type": "fraction", "raw": "26½" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½" },
+              { "value": 13, "type": "number" },
+              { "value": "21-3/4", "type": "fraction", "raw": "21¾" },
+              { "value": 16, "type": "number" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "5-5/8", "type": "fraction", "raw": "5⅝" },
+              { "value": "18-1/4", "type": "fraction", "raw": "18¼" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 14, "type": "number" },
+              { "value": "29-1/2", "type": "fraction", "raw": "29½" },
+              { "value": 7, "type": "number" },
+              { "value": "14-1/2", "type": "fraction", "raw": "14½" },
+              { "value": 24, "type": "number" },
+              { "value": 16, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": "6-1/2", "type": "fraction", "raw": "6½" },
+              { "value": 20, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2500 Pound", "row_span": 13, "is_header": false },
+              { "value": "1/2", "type": "fraction", "raw": "½" },
+              { "value": "4-1/8", "type": "fraction", "raw": "4⅛" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": 2, "type": "number" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": 4, "type": "number" },
+              { "value": "5/8", "type": "fraction", "raw": "⅝" },
+              { "value": 1, "type": "number" },
+              { "value": "2-3/4", "type": "fraction", "raw": "2¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": "3-3/4", "type": "fraction", "raw": "3¾" },
+              { "value": 4, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": 3, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 1, "type": "number" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "2-5/8", "type": "fraction", "raw": "2⅝" },
+              { "value": "4-1/4", "type": "fraction", "raw": "4¼" },
+              { "value": 4, "type": "number" },
+              { "value": "3/4", "type": "fraction", "raw": "¾" },
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/4", "type": "fraction", "raw": "1¼" },
+              { "value": 6, "type": "number" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": "3-1/4", "type": "fraction", "raw": "3¼" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": 4, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": 4, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": 2, "type": "number" },
+              { "value": "3-5/8", "type": "fraction", "raw": "3⅝" },
+              { "value": "5-1/4", "type": "fraction", "raw": "5¼" },
+              { "value": 4, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": "1-5/8", "type": "fraction", "raw": "1⅝" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2, "type": "number" },
+              { "value": "7-3/4", "type": "fraction", "raw": "7¾" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": 4, "type": "number" },
+              { "value": 6, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": "7/8", "type": "fraction", "raw": "⅞" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": 5, "type": "number" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "8-3/4", "type": "fraction", "raw": "8¾" },
+              { "value": "2-1/2", "type": "fraction", "raw": "2½" },
+              { "value": "4-1/2", "type": "fraction", "raw": "4½" },
+              { "value": 7, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": 1, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 3, "type": "number" },
+              { "value": 10, "type": "number" },
+              { "value": 3, "type": "number" },
+              { "value": "5-1/2", "type": "fraction", "raw": "5½" },
+              { "value": 8, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": "1-1/8", "type": "fraction", "raw": "1⅛" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 4, "type": "number" },
+              { "value": "13-3/4", "type": "fraction", "raw": "13¾" },
+              { "value": "3-1/2", "type": "fraction", "raw": "3½" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": 11, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": "1-1/2", "type": "fraction", "raw": "1½" },
+              { "value": 3, "type": "number" },
+              { "value": "9-1/4", "type": "fraction", "raw": "9¼" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 6, "type": "number" },
+              { "value": "17-3/4", "type": "fraction", "raw": "17¾" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": "8-3/8", "type": "fraction", "raw": "8⅜" },
+              { "value": 14, "type": "number" },
+              { "value": 8, "type": "number" },
+              { "value": "1-3/4", "type": "fraction", "raw": "1¾" },
+              { "value": 4, "type": "number" },
+              { "value": "11-3/4", "type": "fraction", "raw": "11¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 8, "type": "number" },
+              { "value": "21-3/4", "type": "fraction", "raw": "21¾" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": "10-1/2", "type": "fraction", "raw": "10½" },
+              { "value": "17-1/4", "type": "fraction", "raw": "17¼" },
+              { "value": 12, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": "4-3/4", "type": "fraction", "raw": "4¾" },
+              { "value": "14-1/2", "type": "fraction", "raw": "14½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 10, "type": "number" },
+              { "value": "26-1/2", "type": "fraction", "raw": "26½" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": "12-1/2", "type": "fraction", "raw": "12½" },
+              { "value": 21, "type": "number" },
+              { "value": 12, "type": "number" },
+              { "value": 2, "type": "number" },
+              { "value": "5-3/4", "type": "fraction", "raw": "5¾" },
+              { "value": "17-3/4", "type": "fraction", "raw": "17¾" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 12, "type": "number" },
+              { "value": 30, "type": "number" },
+              { "value": "7-1/2", "type": "fraction", "raw": "7½" },
+              { "value": 15, "type": "number" },
+              { "value": "24-1/2", "type": "fraction", "raw": "24½" },
+              { "value": 12, "type": "number" },
+              { "value": "2-1/4", "type": "fraction", "raw": "2¼" },
+              { "value": "6-3/4", "type": "fraction", "raw": "6¾" },
+              { "value": "20-1/2", "type": "fraction", "raw": "20½" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" },
+              { "value": null, "type": "missing", "raw": "—" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

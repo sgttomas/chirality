@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0171.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0171_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.96,
+        0.6
+      ],
+      "bbox_px": [
+        25,
+        264,
+        2550,
+        2144
+      ],
+      "caption": "EXHIBIT 7-15 Setting a Furnace Elevation",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0171_fig01_exhibit-7-15-setting-a-furnace-elevation.png",
+      "png_sha256": "929094e2337355b2ac58d4064e2d386222fd4bf5d2e4f486385108358ef2cd3c",
+      "slug": "exhibit-7-15-setting-a-furnace-elevation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 171,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0171.png",
+  "page_image_sha256": "39f5b94544dbd6521663d064898f4408fc7ae4b317dbe46f5164054baaa7d542",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0171_assets.json"
+}

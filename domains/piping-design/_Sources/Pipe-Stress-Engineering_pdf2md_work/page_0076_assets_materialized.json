@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0076.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0076_fig01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1675,
+        2557,
+        3564
+      ],
+      "caption": "FIG. 2.15 COORDINATE SYSTEMS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0076_fig01_coordinate-systems-local-global.png",
+      "png_sha256": "20df9792ce0090039f71280a16bcb81d181e629bf73ccbf3e8b18cc6a770bd8b",
+      "slug": "coordinate-systems-local-global",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 76,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0076.png",
+  "page_image_sha256": "9e2f9bd0070278d411e2d5372b1aee66f5663ccbb08255b6950b7b756b92aff2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0076_assets.json"
+}

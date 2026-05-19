@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0249.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0249_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        1649
+      ],
+      "caption": "FIG. 7.12 IN-LINE PRESSURE BALANCED EXPANSION JOINT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0249_fig01_in-line-pressure-balanced-expansion-join.png",
+      "png_sha256": "677b7d5ab089fe09c3a094dcf451927bdc3fba59adf562dbf26733cb516d98d4",
+      "slug": "in-line-pressure-balanced-expansion-join",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 249,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0249.png",
+  "page_image_sha256": "c6eeea203f4423bee9b533b5dff5c92316d5e2de394206bef66cc45f0a01eb34",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0249_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0187.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0187_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.97,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        992,
+        2034,
+        3006
+      ],
+      "caption": "Table 5.34 Shape Coefficients for Uniform Loading: Formulas for 90\u00b0 and 180\u00b0 Circular Members For z-Wind Acting on Members in the y-Plane or x-Wind Acting on Members in the z-Plane",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/MWK_1956_p0187_tbl01_table-5-34-shape-coefficients-uniform-lo.png",
+      "png_sha256": "a101c602f9848d0777a8cf6e4e2d8eb608dc031bc7ab5835be6d9b4fa57ad195",
+      "slug": "table-5-34-shape-coefficients-uniform-lo",
+      "status": "materialized",
+      "table_data_json_path": "tables/MWK_1956_p0187_tbl01_table-5-34-shape-coefficients-uniform-lo.json",
+      "table_data_json_sha256": "39a8bc70131ada09f0fdedeea3cf17579e09faf4198a7e92eae8d04685dde2b0",
+      "table_data_sha256": "39a8bc70131ada09f0fdedeea3cf17579e09faf4198a7e92eae8d04685dde2b0",
+      "xlsx_path": "tables/MWK_1956_p0187_tbl01_table-5-34-shape-coefficients-uniform-lo.xlsx",
+      "xlsx_sha256": "a61a02dbef1fd37a621ffdee668e04aa2823ce23b8a2d4d3c2762e70e4eee5bc"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956",
+  "doc_stem": "MWK_1956",
+  "page": 187,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0187.png",
+  "page_image_sha256": "09e9360fdc8de1a3a1243dbd6c53b1972fea76999915707bdfd614e11d12cca2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/MWK_1956_pdf2md_work/page_0187_assets.json"
+}

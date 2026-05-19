@@ -1,0 +1,159 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 49,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "EXHIBIT 3-6 Floor Space Sizes — Exchangers",
+      "slug": "exhibit-3-6-floor-space-sizes-exchangers",
+      "bbox_norm": [0.03, 0.04, 0.58, 0.34],
+      "confidence": "high",
+      "notes": "Exchanger sub-table of EXHIBIT 3-6; Bundle Diameter and Length columns.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Item", "is_header": true },
+              { "value": "Bundle Diameter", "is_header": true },
+              { "value": "Length", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "101-E", "type": "text" },
+              { "value": "36 in (915 mm)", "type": "text" },
+              { "value": "20 ft (6,000 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "102-E", "type": "text" },
+              { "value": "30 in (750 mm)", "type": "text" },
+              { "value": "20 ft (6,100 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "103-E", "type": "text" },
+              { "value": "30 in (750 mm)", "type": "text" },
+              { "value": "20 ft (6,100 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "104-E", "type": "text" },
+              { "value": "24 in (610 mm)", "type": "text" },
+              { "value": "20 ft (6,100 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "105-E (A/C)", "type": "text" },
+              { "value": "30 ft (9,150 mm)", "type": "text" },
+              { "value": "40 ft (12,200 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "106-E (A/C)", "type": "text" },
+              { "value": "30 ft (9,150 mm)", "type": "text" },
+              { "value": "20 ft (6,100 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "107-E (8 shells)", "type": "text" },
+              { "value": "36 in (915 mm)", "type": "text" },
+              { "value": "24 ft (7,300 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "108-E", "type": "text" },
+              { "value": "60 in (1,500 mm)", "type": "text" },
+              { "value": "15 ft (4,600 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "109-E", "type": "text" },
+              { "value": "30 in (750 mm)", "type": "text" },
+              { "value": "20 ft (6,100 mm)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "EXHIBIT 3-6 Floor Space Sizes — Pumps",
+      "slug": "exhibit-3-6-floor-space-sizes-pumps",
+      "bbox_norm": [0.03, 0.34, 0.58, 0.56],
+      "confidence": "high",
+      "notes": "Pump sub-table of EXHIBIT 3-6; Length and Width columns.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Item", "is_header": true },
+              { "value": "Length", "is_header": true },
+              { "value": "Width", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "101-Pa/b", "type": "text" },
+              { "value": "5 ft (1,500 mm)", "type": "text" },
+              { "value": "2 ft 6 in (750 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "102-P", "type": "text" },
+              { "value": "2 ft 6 in (750 mm)", "type": "text" },
+              { "value": "1 ft 3 in (380 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "103-Pa/b", "type": "text" },
+              { "value": "4 ft 6 in (1,370 mm)", "type": "text" },
+              { "value": "2 ft (610 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "104-Pa/b", "type": "text" },
+              { "value": "4 ft (1,220 mm)", "type": "text" },
+              { "value": "1 ft 6 in (450 mm)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "105-Pa/b (vertical)", "type": "text" },
+              { "value": "1 ft 6 in (450 mm)", "type": "text" },
+              { "value": "1 ft 6 in (450 mm)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

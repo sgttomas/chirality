@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0064.anchored.md",
+  "assets": [
+    {
+      "asset_id": "01-overall-piping-design-standards-10_p0064_fig01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1549,
+        2550,
+        2868
+      ],
+      "caption": "Fig. 300-25 Insulating Gasket Set Courtesy of The Flexitallic Group",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/01-overall-piping-design-standards-10_p0064_fig01_insulating-gasket-set-fig-300-25.png",
+      "png_sha256": "735b45c3df07441f6a81d974c6c227c83bd961723410397db12032ece8aa02d8",
+      "slug": "insulating-gasket-set-fig-300-25",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/_assets/01-overall-piping-design-standards-10",
+  "doc_stem": "01-overall-piping-design-standards-10",
+  "page": 64,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0064.png",
+  "page_image_sha256": "bc20bd9972902ce1b1cae951d815b21db3342bd11207cd59eabad0c5c534ec59",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/industry-practices/01-overall-piping-design-standards/01-overall-piping-design-standards-10_pdf2md_work/page_0064_assets.json"
+}

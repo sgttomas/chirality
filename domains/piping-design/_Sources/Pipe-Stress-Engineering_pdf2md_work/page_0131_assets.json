@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 131,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 4.8 REINFORCEMENT OF BRANCH CONNECTION",
+      "slug": "reinforcement-branch-connection",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.40],
+      "confidence": "high",
+      "notes": "Technical diagram showing branch connection reinforcement areas A1, A2, A3 with labeled dimensions. Caption visible below diagram."
+    }
+  ],
+  "issues": []
+}

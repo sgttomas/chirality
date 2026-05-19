@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0178.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0178_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1656,
+        2502,
+        3523
+      ],
+      "caption": "TABLE 6.1 SUGGESTED PIPE SUPPORT SPACING FOR POWER PIPING [2]",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0178_tbl01_suggested-pipe-support-spacing-power-pip.png",
+      "png_sha256": "17ac7172303d306ea38e185885113c30d1bb1a76efca26b838f981c7aaf2b621",
+      "slug": "suggested-pipe-support-spacing-power-pip",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0178_tbl01_suggested-pipe-support-spacing-power-pip.json",
+      "table_data_json_sha256": "26f7f7317489c4054ee6fa4261300d60fc9ed9624002e5894918b908b2919527",
+      "table_data_sha256": "26f7f7317489c4054ee6fa4261300d60fc9ed9624002e5894918b908b2919527",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0178_tbl01_suggested-pipe-support-spacing-power-pip.xlsx",
+      "xlsx_sha256": "242d18aadba2e97ef8c72471064f623ff67c15ccf2b2fb7f1ad67ecc7135dcc0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 178,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0178.png",
+  "page_image_sha256": "0f16efe1c5929c4c8b489972fc78d2f913b3fff480317db8b508c23fbb7d0086",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0178_assets.json"
+}

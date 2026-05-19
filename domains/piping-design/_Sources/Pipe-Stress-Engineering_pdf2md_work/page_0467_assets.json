@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 467,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 13.18 DAMPING IN DIRECT INTEGRATION WITH 3% SPECIFIED DAMPING",
+      "slug": "damping-direct-integration-3pct-specified",
+      "bbox_norm": [0.05, 0.58, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Plot of damping ratio (%) vs. natural frequency showing applicable frequency range, actual analysis damping curve, and design damping (zeta_1 = zeta_2) horizontal line. Caption visible below figure."
+    }
+  ],
+  "issues": []
+}

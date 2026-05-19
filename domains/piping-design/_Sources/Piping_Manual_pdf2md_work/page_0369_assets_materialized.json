@@ -1,0 +1,84 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0369.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0369_fig01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.62,
+        0.27
+      ],
+      "bbox_px": [
+        26,
+        0,
+        1713,
+        1057
+      ],
+      "caption": "EXHIBIT 14-7 Temperature Measurement Instruments. a. Gauge Indicator. b. Thermocouple.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0369_fig01_exhibit-14-7-temperature-measurement-ins.png",
+      "png_sha256": "f6c7d899fa98a96a505f6cc98913b28e2393c85deae55f269dc50e81d2291976",
+      "slug": "exhibit-14-7-temperature-measurement-ins",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0369_fig02",
+      "bbox_norm": [
+        0.06,
+        0.27,
+        0.5,
+        0.51
+      ],
+      "bbox_px": [
+        26,
+        727,
+        1406,
+        1850
+      ],
+      "caption": "EXHIBIT 14-8 Skin Temperature Attachment (Note on diagram: \"NO OPENING IN VESSEL WALL\").",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0369_fig02_exhibit-14-8-skin-temperature-attachment.png",
+      "png_sha256": "07ff527a2fe7c2e185d4e7f4de0f21597f7a4f5703d8d796c5666bdca20d4adf",
+      "slug": "exhibit-14-8-skin-temperature-attachment",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0369_fig03",
+      "bbox_norm": [
+        0.06,
+        0.51,
+        0.5,
+        0.84
+      ],
+      "bbox_px": [
+        26,
+        1520,
+        1406,
+        2941
+      ],
+      "caption": "EXHIBIT 14-9 Pressure Measurement Instruments. a. Pressure Gauge. b. Dual Pressure System (Note on diagram: \"GAUGE\", \"TO MAN-IFOLD\").",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/Piping_Manual_p0369_fig03_exhibit-14-9-pressure-measurement-instru.png",
+      "png_sha256": "9a3a17e9c95a9aafd276e60656140a6f99e9f7f35964bee8dffaf777c1483852",
+      "slug": "exhibit-14-9-pressure-measurement-instru",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 369,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0369.png",
+  "page_image_sha256": "7eaa168549ef47e63faf2248b189b0047644aa0942f3b0dcfaf100c31a090b52",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0369_assets.json"
+}

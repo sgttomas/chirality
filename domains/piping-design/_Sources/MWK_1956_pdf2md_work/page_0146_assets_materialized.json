@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0146.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0146_fig01",
+      "bbox_norm": [
+        0.08,
+        0.06,
+        0.46,
+        0.22
+      ],
+      "bbox_px": [
+        78,
+        35,
+        1319,
+        946
+      ],
+      "caption": "Fig. 5.11a Three-branch system.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0146_fig01_fig-5-11a-three-branch-system.png",
+      "png_sha256": "e1fe4a6e8ad8dc2ead23b4f97b2e86c585217e74159450a2a19af7ce5cb2d667",
+      "slug": "fig-5-11a-three-branch-system",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "MWK_1956_p0146_fig02",
+      "bbox_norm": [
+        0.58,
+        0.74,
+        0.94,
+        0.93
+      ],
+      "bbox_px": [
+        1371,
+        2418,
+        2560,
+        3434
+      ],
+      "caption": "Fig. 5.11b Intermediate restraints.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/MWK_1956_p0146_fig02_fig-5-11b-intermediate-restraints.png",
+      "png_sha256": "a99ff091213cd5b75ec3728ed60229fb2c0dbacd6499f1654755f832e2e6a420",
+      "slug": "fig-5-11b-intermediate-restraints",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 146,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0146.png",
+  "page_image_sha256": "d53ed41f2fb611fd0912cd47d95018a9bf107dd54103696afd3d32f0cd5071bc",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0146_assets.json"
+}

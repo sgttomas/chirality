@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0167.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0167_fig01",
+      "bbox_norm": [
+        0.05,
+        0.16,
+        0.74,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        364,
+        2024,
+        1985
+      ],
+      "caption": "EXHIBIT 7-11 Sample Burner Locations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0167_fig01_exhibit-7-11-sample-burner-locations.png",
+      "png_sha256": "6b419b0fbb56e1c75387bf4ee92081de4749608c64e232d3d3a9a41db3adc12b",
+      "slug": "exhibit-7-11-sample-burner-locations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 167,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0167.png",
+  "page_image_sha256": "a5c6ed0736293cdc48b6ccab681b528540883e1fa55e649eeab02b9bb5237195",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0167_assets.json"
+}

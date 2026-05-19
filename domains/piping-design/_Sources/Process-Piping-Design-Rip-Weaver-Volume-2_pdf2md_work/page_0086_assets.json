@@ -1,0 +1,58 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 86,
+  "total_pages": 175,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pipe size to dimension A — Type HD-4",
+      "slug": "pipe-size-dimension-a-hd4",
+      "bbox_norm": [0.04, 0.07, 0.42, 0.19],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          { "marker": "*", "text": "Wear plate for thin wall pipe — see installation & fabrication details" }
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PIPE SIZE", "is_header": true },
+              { "value": "20\"", "is_header": true },
+              { "value": "24\"", "is_header": true },
+              { "value": "30\"", "is_header": true },
+              { "value": "36\"", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A", "is_header": true },
+              { "value": "26\"", "type": "fraction", "raw": "26\"" },
+              { "value": "30\"", "type": "fraction", "raw": "30\"" },
+              { "value": "36\"", "type": "fraction", "raw": "36\"" },
+              { "value": "42\"", "type": "fraction", "raw": "42\"" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Small 2-row dimension lookup table in upper-left corner. Footnote marker (*) appears near the table and references wear plate note."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 2-32. Type HD-4 hold-down. Courtesy of Fluor Engineers and Constructors, Inc.",
+      "slug": "type-hd4-hold-down-elevation",
+      "bbox_norm": [0.04, 0.16, 0.96, 0.92],
+      "confidence": "high",
+      "notes": "Engineering drawing showing front elevation and end elevation of Type HD-4 pipe hold-down support for 20\" to 36\" pipe. Includes dimension A, ST 5WF30 structural member, compression washers, field weld callouts, pier detail, and temperature range annotation (40°F to 650°F). Caption appears below the drawing."
+    }
+  ],
+  "issues": []
+}

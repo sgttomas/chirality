@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0208.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0208_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2557,
+        1319
+      ],
+      "caption": "Fig. 6.21 Circumferential Bending Moment and Direct Force, Ring in Plane of Saddle",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0208_fig01_circumferential-bending-moment-direct-fo.png",
+      "png_sha256": "7069e9ef0aa4e2955d320a059bc11dd2a5d0b06c9799e1261216bb013f5bfde5",
+      "slug": "circumferential-bending-moment-direct-fo",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 208,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0208.png",
+  "page_image_sha256": "f408d84f0222da89a605fd56558732dae53d6f32f65c57dd767977c15a8f87a7",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0208_assets.json"
+}

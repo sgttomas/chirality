@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 411,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 12.11 HEATING THE GAS — (a) Constant Volume (b) Constant Pressure",
+      "slug": "heating-the-gas-constant-volume-constant-pressure",
+      "bbox_norm": [0.08, 0.03, 0.72, 0.18],
+      "confidence": "high",
+      "notes": "Two side-by-side schematic diagrams showing gas heating under constant volume and constant pressure conditions. Caption appears below the diagrams."
+    }
+  ],
+  "issues": []
+}

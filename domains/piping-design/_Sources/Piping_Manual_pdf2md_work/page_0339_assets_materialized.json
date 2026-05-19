@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0339.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0339_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.5,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        726,
+        1402,
+        2210
+      ],
+      "caption": "EXHIBIT 13-14 Calculation Chart - SEWER WATER/RAINFALL CALCULATIONS (handwritten table with AREA, SQ FT, GPM/CFS, REMARKS columns and rainfall data K=.017889, f=5/HR, A=AREA)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/Piping_Manual_p0339_tbl01_exhibit-13-14-calculation-chart-sewer-wa.png",
+      "png_sha256": "9b0898a5ceeb497572faa9a6a68f2c6f8e4a7be8e334383378e6040500ad5e80",
+      "slug": "exhibit-13-14-calculation-chart-sewer-wa",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 339,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0339.png",
+  "page_image_sha256": "e43a92920958943c5f4e7ee724d607cdbc880fe8951dbd9d03dcb720e31ae86a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0339_assets.json"
+}

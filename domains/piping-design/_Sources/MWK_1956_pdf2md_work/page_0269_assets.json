@@ -1,0 +1,36 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 269,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [
+    "asset_note: Top-right plot showing magnification factor regions of relatively high vs. low natural frequency around resonance; caption visible directly below plot.",
+    "asset_note: Bottom-left plot of (M.F.)max vs damping ratio \u03b6 with embedded equation box; caption visible directly below plot."
+  ],
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 9.17 M.F. as a function of \u03c9/\u03c9n.",
+      "bbox_norm": [
+        0.48,
+        0.03,
+        0.99,
+        0.34
+      ]
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 9.16 Maxima of magnification factor vs. damping ratio.",
+      "bbox_norm": [
+        0.03,
+        0.53,
+        0.52,
+        0.99
+      ]
+    }
+  ]
+}

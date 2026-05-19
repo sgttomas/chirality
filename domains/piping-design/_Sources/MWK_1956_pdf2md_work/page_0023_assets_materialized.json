@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0023.anchored.md",
+  "assets": [
+    {
+      "asset_id": "MWK_1956_p0023_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.49,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1105,
+        1137
+      ],
+      "caption": "Fig. 1.21 Effect of high-amplitude fatigue on silver chloride sheet.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/MWK_1956_p0023_fig01_fig-1-21-effect-of-high-amplitude-fatigu.png",
+      "png_sha256": "ca0a55e158c3389e19dae975ddc502bd5b997cb649a4c5fb437d34abcd3c0f1d",
+      "slug": "fig-1-21-effect-of-high-amplitude-fatigu",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources",
+  "doc_stem": "MWK_1956",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0023.png",
+  "page_image_sha256": "915a7e15dcd3504d715cfe05a133a5e8643aa5b72d885ff5b6568418f8527928",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/MWK_1956_pdf2md_work/page_0023_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 54,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 2.1 BASIC STRESS STRAIN RELATIONS",
+      "slug": "fig-2-1-basic-stress-strain-relations",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.38],
+      "confidence": "high",
+      "notes": "Figure shows tensile specimen diagram on left and two stress-strain curves: (a) Curve with Yield Point showing pronounced yield, and (b) Round House Curve (austenitic stainless steel type). Caption 'FIG. 2.1 BASIC STRESS STRAIN RELATIONS' appears centered below the plots."
+    }
+  ],
+  "issues": []
+}

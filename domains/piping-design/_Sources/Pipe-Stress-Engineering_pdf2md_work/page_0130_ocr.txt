@@ -1,0 +1,99 @@
+110 Chapter 4
+
+Welding tees and integrally reinforced fittings are normally used without special calculations. They
+are implemented in the design by selecting the ones with pressure rating at the corresponding design
+temperature, equal to or higher than the design pressure. Fabricated tees and extruded outlets, on
+the other hand, require calculations to ensure that they are suitable for the design pressure. Calcula-
+tions are based on the age-old rule-of-thumb approach called the “area replacement” method. In
+this method, the area of the pipe wall removed by the opening has to be compensated with an equal
+amount of surplus area located near the opening. This is a very low-technology approach that prob-
+ably would not pass a strict scrutiny based on modern technology. However, this approach, which has
+been used very successfully for close to a century, can be considered one of the most important rules
+invented by the piping and pressure vessel community.
+
+This section mainly discusses the pressure design of the components. However, it should be noted
+that even though a connection is designed to withstand the same full pressure as the connecting pipe,
+there are still stress intensifications associated with the connection when stresses due to bending and
+
+twisting moments are being calculated.
+
+(a) Reinforcement of Fabricated Branch Connections
+
+Fabricated branch connections are not very easy to make for full-size outlets, but are very popular
+for reduced outlet connections. They are less expensive than welding tees and are also readily avail-
+able in the field and at fabrication shops. This availability is very important especially for a remotely
+located project. The main task in designing the fabricated branch connection is ensuring that the
+connection is good enough to resist the design pressure. This is achieved by providing proper rein-
+forcement.
+
+Based on the area replacement rule, the reinforcement requirement of the fabricated branch con-
+nection is checked by calculating the area removed by the opening and the surplus areas available. The
+surplus areas include the inherent surplus pipe wall and the added reinforcement from the pads and
+the welds. When calculating the areas, all the corrosion, erosion, and manufacturing under-tolerance
+have to be considered. Figure 4.8 shows a general outline of a fabricated branch connection. The fol-
+
+lowing are the definitions of the key areas:
+
+A, * td; (2 — sin B), is the reinforcement area required. It is the opening multiplied with the
+(2 — sin B) factor to compensate for the higher stress intensification due to oblique junction
+of a non-perpendicular connection. This factor is 1.0 for perpendicular connections
+
+[D, - 2(F, — &)|/sin B, is the longitudinal length of the opening
+
+half-width of the effective reinforcement zone
+
+dy or (Ty — &) + (Ty - cy) + 4/2, whichever is greater, but no more than D,, the nominal
+diameter of the header
+
+required net thickness as calculated by Eq. (4.5) for header and branch, respectively
+
+= altitude of the effective reinforcement zone outside of the header
+
+= 2.5(T, — c)+T, or 2.5( Ty — ch), whichever is smaller
+
+minimum thickness of the reinforcing pad
+
+Subtracts the under-tolerance if made from pipe; uses nominal wall thickness if made from
+
+plate
+Allowances for corrosion, erosion, and under-tolerance of the header and branch thick-
+
+ness, respectively
+available reinforcement area from excess wall in header
+
+(2d) — di)( Th - th — Cn)
+available reinforcement area from excess wall in branch
+Tf the allowable stress of the branch pipe is smaller than that of the header, then A; has to
+
+be reduced proportionally
+area of the reinforcement pad, if any, plus the welds inside the effective reinforcing zone
+
+defined by d, and Ly.
+
+d,
+d,
+
+MW
+
+Wel
+
+ih >
+a &
+e
+fol
+
+SS
+Ul
+
+a
+S
+M
+
+oil
+
+=
+Wu
+
+Py
+ay
+li

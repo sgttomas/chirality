@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 175,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "page_0175_fig_01",
+      "caption": "EXHIBIT 7-20 Burner Management Skid",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.34]
+    },
+    {
+      "kind": "fig",
+      "id": "page_0175_fig_02",
+      "caption": "EXHIBIT 7-21 Burner Management Control Panel",
+      "bbox_norm": [0.04, 0.36, 0.50, 0.66]
+    }
+  ],
+  "issues": []
+}

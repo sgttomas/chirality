@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 149,
+  "total_pages": 220,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 7-12. Instrumentation on vertical vessels. Courtesy of Fluor Corp.",
+      "slug": "instrumentation-vertical-vessels",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Full-page figure comprising three sub-diagrams: Typical Flow Diagram Call Out (top), Plan view (middle), and Elevation view (bottom). Caption appears at the very bottom of the page."
+    }
+  ],
+  "issues": []
+}

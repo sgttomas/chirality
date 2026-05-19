@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0268.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0268_fig01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.82,
+        0.94
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2218,
+        3266
+      ],
+      "caption": "EXHIBIT 10-55 Relief Valve Systems",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0268_fig01_exhibit-10-55-relief-valve-systems.png",
+      "png_sha256": "ad8d1b26576d4957b8c5ffb3eda4cf653b273904c605f6c271a90d917054587d",
+      "slug": "exhibit-10-55-relief-valve-systems",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 268,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0268.png",
+  "page_image_sha256": "c898d33abd7f977512d6c0d249462e298e7c538667afebc4d5b3bd94a97db120",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0268_assets.json"
+}

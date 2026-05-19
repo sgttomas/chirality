@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0353_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1161,
+        2495,
+        3412
+      ],
+      "caption": "Table 10.1 GAS PIPELINE LOCATION CLASSES",
+      "csv_path": "tables/Pipe-Stress-Engineering_p0353_tbl01_gas-pipeline-location-classes.csv",
+      "csv_sha256": "57d3f11ad503ac101b3b98feceed71af7e27011bd589c35639bd391701753d5b",
+      "issues": [],
+      "kind": "tbl",
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0353_tbl01_gas-pipeline-location-classes.png",
+      "png_sha256": "a943ea76e69bb5177e41fdac47fed56361194828f90fc50f89af218c328b0383",
+      "slug": "gas-pipeline-location-classes",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 353,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353.png",
+  "page_image_sha256": "9fbca88e64c9329ed2ace1ccaaaad394a79496fff61e8c3ccb208b8eb15065f8",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0353_assets.json"
+}

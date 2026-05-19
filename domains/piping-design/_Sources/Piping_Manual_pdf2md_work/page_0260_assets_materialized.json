@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0260.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0260_fig01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.96,
+        0.83
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2903
+      ],
+      "caption": "EXHIBIT 10-41 Tower Platform and Ladder Elevation Requirements",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0260_fig01_exhibit-10-41-tower-platform-and-ladder.png",
+      "png_sha256": "5fe1c78fd3e2792f1645b0872984fa8ffe3cfed310890ef994cc0e7265e99c31",
+      "slug": "exhibit-10-41-tower-platform-and-ladder",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 260,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0260.png",
+  "page_image_sha256": "93d15c4277858bee72f9cc673f0c8b7905c15d3412c13cfc4c8a8d3567e443df",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0260_assets.json"
+}

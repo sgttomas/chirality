@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0354.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0354_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        886,
+        2529,
+        3438
+      ],
+      "caption": "TABLE 10.2 DESIGN FACTORS (F) FOR STEEL GAS PIPE CONSTRUCTION",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0354_tbl01_design-factors-steel-gas-pipe.png",
+      "png_sha256": "0a4b6c039c429c2fccc06ebe5de30475dc53b3e65146d49785e8ed427296e8ee",
+      "slug": "design-factors-steel-gas-pipe",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0354_tbl01_design-factors-steel-gas-pipe.json",
+      "table_data_json_sha256": "1439affb6de11f4b7463f1de7ade1213997a1e8deda42ba9c4bbc45639bc3cb3",
+      "table_data_sha256": "1439affb6de11f4b7463f1de7ade1213997a1e8deda42ba9c4bbc45639bc3cb3",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0354_tbl01_design-factors-steel-gas-pipe.xlsx",
+      "xlsx_sha256": "c6bda8b4dfa16bf9ff77c5384ba05830faab5a7016d241869b123d3afe3229d2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 354,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0354.png",
+  "page_image_sha256": "0c1f55d31b9586e66d62b6e71637c730f62b308b084676a607791bc00943e651",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0354_assets.json"
+}

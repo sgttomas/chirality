@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0382.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0382_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.72,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1964,
+        1174
+      ],
+      "caption": "FIG. 11.4 STRATIFICATION DUE TO STAGNATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0382_fig01_stratification-due-to-stagnation.png",
+      "png_sha256": "b6ab70233440e657d6b6ee2797cd5816f63bffb664c162a36e60433fc503ba0a",
+      "slug": "stratification-due-to-stagnation",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 382,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0382.png",
+  "page_image_sha256": "1e07649e16988c04dc1084fe21ccb74e339aa323ba25db689a298992df55d6c2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0382_assets.json"
+}

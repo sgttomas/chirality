@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "01-overall-piping-design-standards-08",
+  "page": 109,
+  "total_pages": 141,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 6.3  Flow rate 300 m³/h to 10 000 m³/h",
+      "slug": "figure-6-3-flow-rate-300-to-10000",
+      "bbox_norm": [0.03, 0.07, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Log-log pressure drop chart for carbon steel water pipes at 20°C, flow rate range 300–10 000 m³/h. Left y-axis: pressure drop (Pa/m length), right y-axis: pressure drop (bar/100 m), x-axis: flow rate (m³/h). Diagonal lines represent pipe nominal diameters. Caption is the figure title line immediately above the chart body."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0203.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0203_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2569,
+        1160
+      ],
+      "caption": "Exhibit 8-4 Examples of Positive Displacement Pumps. a. Single-Acting Plunger Pump (for very high pressure with moderate flows and high efficiency); b. Double-Acting Piston Pump (for viscous liquids and slurry service)",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0203_fig01_exhibit-8-4-examples-of-positive-displac.png",
+      "png_sha256": "f168294c88ef81a79cbdd75dc8f94a8b341e7988343a08f19f0f7059c36ece95",
+      "slug": "exhibit-8-4-examples-of-positive-displac",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0203_fig02",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        828,
+        2569,
+        2220
+      ],
+      "caption": "Exhibit 8-5 Examples of Rotary Pumps. a. External-Gear Pump; b. Cam and Piston; c. Two-Lobe Pump; d. Three-Lobe Pump; e. Single-Screw Pump; f. Two-Screw Pump",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0203_fig02_exhibit-8-5-examples-of-rotary-pumps-a-e.png",
+      "png_sha256": "5a3a5149bf33bdfc372da14fd3d418a22810f04df450797ab924246b1811cc36",
+      "slug": "exhibit-8-5-examples-of-rotary-pumps-a-e",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 203,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0203.png",
+  "page_image_sha256": "ce1bd0950fa8425e0ce0cc2ddb1095bd52825bedbe72d255983404dc25e3f38b",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0203_assets.json"
+}

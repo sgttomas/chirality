@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 196,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.06, 0.04, 0.94, 0.62],
+      "caption": "EXHIBIT 7-50 Tail Gas Incinerator"
+    }
+  ],
+  "issues": []
+}

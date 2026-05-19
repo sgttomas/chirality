@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 173,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "Piping_Manual_p173_fig01",
+      "bbox_norm": [0.04, 0.18, 0.96, 0.85],
+      "caption": "EXHIBIT 7-17 Convection Section Tube Removal in a Box-Type Furnace"
+    }
+  ],
+  "issues": []
+}

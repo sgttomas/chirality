@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 295,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 8.23 TANK NOZZLE STIFFNESS COEFFICIENTS WITH REINFORCING ON NOZZLE ONLY [32, 34]",
+      "slug": "tank-nozzle-stiffness-coefficients-reinforcing-nozzle-only",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.60],
+      "confidence": "high",
+      "notes": "Four nomogram charts in a 2x2 grid showing stiffness coefficients. Caption appears below the charts."
+    }
+  ],
+  "issues": []
+}

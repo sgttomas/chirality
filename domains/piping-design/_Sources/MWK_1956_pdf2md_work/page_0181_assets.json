@@ -1,0 +1,311 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 181,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Shape Coefficients — Flexibility Analysis — Plane 2 (Form 1-2)",
+      "slug": "shape-coefficients-plane-2",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.46],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PLANE", "is_header": true },
+              { "value": "2", "is_header": true, "col_span": 8 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "MEMBER", "is_header": true },
+              { "value": "1-2", "is_header": true },
+              { "value": "2-3", "is_header": true },
+              { "value": "3-4", "is_header": true },
+              { "value": "4-5", "is_header": true },
+              { "value": "5-6", "is_header": true },
+              { "value": "6-7", "is_header": true },
+              { "value": "7-8", "is_header": true },
+              { "value": "Σ", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SHAPE", "is_header": true },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Σ", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "h", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 2.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -1.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 1.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "k", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 2.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -1.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 1.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": 18.00, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "L", "is_header": true },
+              { "value": 9.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 7.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 9.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 9.00, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "α", "is_header": true },
+              { "value": 18.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 23.94, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 13.86, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 13.86, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "β", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 13.04, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 23.74, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 13.86, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "γ", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "L/r/q", "is_header": true },
+              { "value": 18, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ρ", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 13.71, "type": "number" },
+              { "value": 23.74, "type": "number" },
+              { "value": 16.00, "type": "number" },
+              { "value": 14.00, "type": "number" },
+              { "value": 9.00, "type": "number" },
+              { "value": 100.45, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "σ", "is_header": true },
+              { "value": 81.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 49.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 81.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 81.00, "type": "number" },
+              { "value": 331.00, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "τ", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -54.94, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -54.94, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 23.74, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 14.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 50.74, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cy", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cz", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cyz", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cxx", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 26.00, "type": "number" },
+              { "value": 99.99, "type": "number" },
+              { "value": 100.50, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 14.00, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 240.49, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cyy", "is_header": true },
+              { "value": 81.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 49.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 81.00, "type": "number" },
+              { "value": 13.00, "type": "number" },
+              { "value": 81.00, "type": "number" },
+              { "value": 331.00, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cxy", "is_header": true },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -54.94, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": 0, "type": "number" },
+              { "value": -54.94, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Shape coefficients table for Plane 2, members 1-2 through 7-8. Form 1-2. SHAPE row contains pipe-segment shape diagrams (not text values). L/r/q row has value only for member 1-2. Several Σ cells are blank (no summation applicable for those rows)."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Load Constants for Weight — Curved & Straight Members (Form 1-12)",
+      "slug": "load-constants-weight-form-1-12",
+      "bbox_norm": [0.04, 0.47, 0.97, 0.97],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Complex multi-section table with merged header column groups (Coordinate Data, Straight Member Data, Curved Member Data, Constants for Curved & Straight Members), formula references to external tables (5.25 & 5.28), and densely packed numeric entries across multiple sub-columns. Cell alignment is ambiguous at page raster resolution and cannot be safely transcribed without risk of misalignment."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_unreadable",
+      "asset_ordinal": 2,
+      "message": "Load Constants for Weight (Form 1-12) has a highly complex multi-section layout with merged column groups, formula cross-references, and densely packed numeric entries. Safe structured transcription into pdf2md-table/v1 is not achievable from this raster without unacceptable risk of cell misalignment."
+    }
+  ]
+}

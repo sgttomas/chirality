@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 358,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "C-17. Span vs. Natural Frequency and vs. Deflection - Horizontal Pipe Lines, Uniform Load",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.83
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.98,
+        0.36
+      ],
+      "caption": "EXHIBIT 10-34 Temperature and Pressure Locations",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.98,
+        0.66
+      ],
+      "caption": "EXHIBIT 10-35 Level Instrument Locations",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.04,
+        0.68,
+        0.55,
+        0.93
+      ],
+      "caption": "EXHIBIT 10-36 Tray Support Beam Sizes",
+      "kind": "fig"
+    },
+    {
+      "bbox_norm": [
+        0.55,
+        0.74,
+        0.98,
+        0.92
+      ],
+      "caption": "EXHIBIT 10-36 Tray Support Beam Sizes - Tower Diameter vs Beam Size",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "Piping_Manual",
+  "issues": [],
+  "page": 256,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 465
+}

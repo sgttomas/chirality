@@ -1,0 +1,60 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0134.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0134_fig01",
+      "bbox_norm": [
+        0.04,
+        0.18,
+        0.46,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        430,
+        1304,
+        1718
+      ],
+      "caption": "EXHIBIT 6-15 Stacked Exchanger Installations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0134_fig01_exhibit-6-15-stacked-exchanger-installat.png",
+      "png_sha256": "4c6d590be48fbbe1e5782b7d26338ee9ab42e4122f16842d74c8a5103c51e95b",
+      "slug": "exhibit-6-15-stacked-exchanger-installat",
+      "status": "materialized"
+    },
+    {
+      "asset_id": "Piping_Manual_p0134_fig02",
+      "bbox_norm": [
+        0.04,
+        0.47,
+        0.46,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1388,
+        1304,
+        3073
+      ],
+      "caption": "EXHIBIT 6-16 Typical Horizontal Exchanger Supports",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/Piping_Manual_p0134_fig02_exhibit-6-16-typical-horizontal-exchange.png",
+      "png_sha256": "327e52eea8611b6bd62d092e86b9991335a2324f7435c667acef212e21395fa6",
+      "slug": "exhibit-6-16-typical-horizontal-exchange",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 134,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0134.png",
+  "page_image_sha256": "29d3d7e1427a865ba835d215eac82aa3ea6a7e5a64ae07cb2407ccfd001f83cb",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0134_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 56,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 2.2 Stresses at Skewed Plane",
+      "slug": "stresses-at-skewed-plane",
+      "bbox_norm": [0.08, 0.04, 0.82, 0.32],
+      "confidence": "high",
+      "notes": "Diagram showing a bar under axial force F with a skewed cross-section; force components Fn (normal) and Fs (shear) and inclination angle theta are labeled. Caption 'FIG. 2.2 STRESSES AT SKEWED PLANE' appears directly below the diagram."
+    }
+  ],
+  "issues": []
+}

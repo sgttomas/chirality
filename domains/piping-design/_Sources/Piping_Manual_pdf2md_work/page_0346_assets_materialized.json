@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0346.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0346_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        3243
+      ],
+      "caption": "EXHIBIT 13-25 Miscellaneous Details \u2014 six hand-drawn cast iron drain detail sketches: (1) cast iron boundary drain, (2) cast iron in-line drain, (3) cast iron Y cleanout, (4) cast iron drain at grade, (5) in-line drain pipe box of cast iron drain, (6) cleanout/grating detail.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0346_fig01_exhibit-13-25-miscellaneous-details-six.png",
+      "png_sha256": "00d8593146dc6471dae6bbffef5f55d0faf99bc5a7e9d21ba487a69b46b45891",
+      "slug": "exhibit-13-25-miscellaneous-details-six",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 346,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0346.png",
+  "page_image_sha256": "9e419210f2da1c2e4b39ecf03bae22c81c208dec29b86b0fac31329de4ab0cd1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0346_assets.json"
+}

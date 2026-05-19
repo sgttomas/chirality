@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 48,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. 1.12 DESIGN SPECIFICATION",
+      "slug": "design-specification-flowchart",
+      "bbox_norm": [0.04, 0.02, 0.88, 0.34],
+      "confidence": "high",
+      "notes": "Flowchart showing Owner Specification and Code feeding into Project Specification, which feeds into Standard Support Details, Line List, and Material Specification; labeled By Owner and By Constructor. Caption 'FIG. 1.12 DESIGN SPECIFICATION' appears below the diagram."
+    }
+  ],
+  "issues": []
+}

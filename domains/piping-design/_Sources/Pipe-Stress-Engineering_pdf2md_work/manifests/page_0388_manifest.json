@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0388.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0388_fig01",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1952,
+        2536,
+        3549
+      ],
+      "caption": "FIG. 11.10 FAILURE MECHANISM OF IMPROPERLY ARRANGED INSULATION",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0388_fig01_failure-mechanism-improperly-arranged-in.png",
+      "png_sha256": "418a31377df0b55dd3409b46f568c7d3aefccc42219be1902651fe17f9a1136b",
+      "slug": "failure-mechanism-improperly-arranged-in",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 388,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0388.png",
+  "page_image_sha256": "39023aced6aaa57ff6ad6faef84d4f801feca1f9d2b357b40fe64dfc7d3c3913",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0388_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0320.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0320_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.98,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2562,
+        1820
+      ],
+      "caption": "EXHIBIT 12-25 Setting Heavy Equipment in a Large Structure",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0320_fig01_exhibit-12-25-setting-heavy-equipment-in.png",
+      "png_sha256": "8ace7fe401094dc4686d57b4ccaeb57ae6367eadde26a12a531af8aa60ebb35f",
+      "slug": "exhibit-12-25-setting-heavy-equipment-in",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 320,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0320.png",
+  "page_image_sha256": "b71819d67a70ac1cf4b1cd47162ccd99af8dbc155271dcf983631adfc1bc1def",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0320_assets.json"
+}

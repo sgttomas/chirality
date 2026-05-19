@@ -1,0 +1,31 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "MWK_1956",
+  "page": 323,
+  "total_pages": 386,
+  "asset_policy": "prose-document-assets-v1",
+  "issues": [],
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "System of quadrants for circular members.",
+      "bbox_norm": [
+        0.34,
+        0.04,
+        0.66,
+        0.22
+      ]
+    },
+    {
+      "kind": "fig",
+      "caption": "Counterclockwise integration of shape coefficients for circular members in the x-plane acted upon by x-wind.",
+      "bbox_norm": [
+        0.13,
+        0.32,
+        0.88,
+        0.49
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 67,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.04, 0.05, 0.97, 0.62],
+      "caption": "EXHIBIT 3-29 Subsystems Within the Process Flow Diagram - Naphtha Hydrotreater process flow diagram annotated with subsystem boundaries, showing equipment including 101-D Feed Surge Drum, 101-F Charge Pumps, 101-B Charge Furnace, 101-R Reactor, 101-C Feed Exchangers, 101-E Overhead Condenser, 101-T Stripper, 105-E Skin Condenser, 102-D Suction Drum, 102-CM Trim Cooler, 105-D H2 Suction Drum, 102-CA/CB Make-Up Compressors, 109-D Reflux Drum, 104-F Reflux Pumps, 104-E Reboiler, 105-E Product Cooler, 106-F Product Pumps, with stream temperatures noted (105F naphtha feed, 600F, 175F, 134F, 100F, 175F naphtha product) and labeled NAPHTHA HYDROTREATER subsystem"
+    }
+  ],
+  "issues": []
+}

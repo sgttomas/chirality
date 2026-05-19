@@ -1,0 +1,71 @@
+52 Chapter 2 i.
+
+2.6.3 Theories of Failure
+
+There are several different theories of failure that have been proposed and used [7]. These theories :
+include: (1) maximum Stress theory, which predicts that the material will yield when the absolute mag- ,
+nitude of any of the principal stresses reaches the yield strength of the material; (2) maximum strain
+theory, which predicts that the material will yield when the maximum strain reaches the yield point
+
+strain; (3) maximum shear theory, which predicts that the material will yield when the maximum shear ba
+
+stress in the material reaches the maximum shear stress at the yield point in the tension test; (4) maxi-
+
+mum energy theory, which predicts that the material will yield when the strain energy per unit volume fi
+
+in the material reaches the strain energy per unit volume at yielding in the simple tension test; and bi
+
+(5) maximum distortion energy theory, which predicts that the material will yield when the distortion
+
+energy per unit volume in the material reaches the distortion energy per unit volume at yielding in m
+
+simple tension test. 7
+The maximum stress theory fits very well with brittle materials such as concrete and non-ductile 4
+
+cast iron. For the ductile materials that are prevalent in piping, both the maximum shear theory and
+the maximum distortion energy theory agree very well with the experiments. The maximum distortion
+energy theory is slightly more accurate, but the maximum shear theory is simpler and easier to apply. zi
+ASME has adopted the maximum shear failure theory in its piping and pressure vessel codes.
+
+2.6.4 Stress Intensity (Tresca Stress)
+
+{n the maximum shear failure theory, the condition for yielding occurs when the maximum shear 7
+stress in the material equals the maximum shear stress at the yield point in the tension test. From Eq.
+(2.6), the maximum shear stress at the yield point in the tension test is equal to one-half of the tensile
+yield strength. In other words, twice the maximum shear stress at yield in the tension test is the same
+as the tensile yield strength. Therefore, by defining stress intensity as twice the maximum shear stress, it
+can then be directly compared to the tensile yield strength and other data obtained in the tension test.
+In Eq. (2.18), for a two-dimensional stress field, we have
+
+Stress intensity, Sj = 2tmax = S, — Sz ad
+
+The above expression can be extended to a three-dimensional stress field as 5S; = S, — 53, where S| > a
+S, > S;. Compressive stresses are considered negative stresses in the above comparative quantity. This
+provides the basis for the comparative damaging effect of the stress systems shown in Fig. 2.11. 4
+
+In piping stress analysis, we deal mostly with two-dimensional stress fields with the stress at the
+third dimension either zero or insignificant. In this case, it is simpler to calculate the stress intensity
+directly from the general stress field given in Fig. 2.12, without calculating the principal stresses.
+Again, from Eq. (2.18) we have
+
+2
+5) = Minas = 24) (SS) + t = \/(&-S)? + 403, (2.19) i
+
+Assuming that x-axis is in the axial direction of the pipe, then S, is the longitudinal stress resulting
+mainly from bending moments and internal pressure, 5S, is the hoop stress mainly from internal pres-
+sure, and T,, is mainly due to the torsion moment. Stresses due to direct axial and shear forces are
+generally insignificant and are often neglected.
+
+There are a couple of things to note in applying Eq. (2.19). One is the nature of the bending stress,
+which always presents both tension and compression at a given cross-section. The other is the plane
+that includes the diametrical direction (through the thickness direction) also has to be included.
+The normal stress in this diametrical direction is either zero or equal to the acting pressure, which
+is compressive.
+
+‘oom
+
+i
+Wee
+
+Aiceeae esos
+

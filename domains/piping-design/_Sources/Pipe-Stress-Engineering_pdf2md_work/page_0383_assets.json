@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 383,
+  "total_pages": 506,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 11.5 PIPE CRACK DUE TO THERMAL STRATIFICATION",
+      "slug": "pipe-crack-thermal-stratification",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.32],
+      "confidence": "high",
+      "notes": "Diagram showing pipe cross-section with crack location, hot/cold water zones, steam generator wall, feedwater pipe, and low flow rate cold water at 100°F. Caption visible below figure."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 11.6 COMMON BOWING PHENOMENA AT PETROCHEMICAL PLANTS",
+      "slug": "common-bowing-phenomena-petrochemical-plants",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (a) Incomplete Mixing showing liquid feed pipe with temperature gradients, and (b) Coking showing insulated pipe with hot gas from furnace, hot oil quench, and temperature labels. Caption visible below figures."
+    }
+  ],
+  "issues": []
+}

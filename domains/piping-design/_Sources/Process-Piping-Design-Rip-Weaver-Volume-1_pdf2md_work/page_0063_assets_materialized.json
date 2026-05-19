@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0063.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0063_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1500
+      ],
+      "caption": "Figure 3-11. Diked area drainage plan.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0063_fig01_diked-area-drainage-plan.png",
+      "png_sha256": "6c5f215b945a20facce65509863e045701fe8411b80b2b00b80aed0cc7213bdc",
+      "slug": "diked-area-drainage-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0063.png",
+  "page_image_sha256": "6ab4bf14b4d90388b6771cc68692345f3503bba594a6b3240ff0fc3d988429e3",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0063_assets.json"
+}

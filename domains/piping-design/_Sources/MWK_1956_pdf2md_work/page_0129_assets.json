@@ -1,0 +1,38 @@
+{
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "bbox_norm": [
+        0.49,
+        0.05,
+        1.0,
+        0.43
+      ],
+      "caption": "Table 5.5",
+      "kind": "tbl",
+      "needs_extraction": true
+    },
+    {
+      "bbox_norm": [
+        0.0,
+        0.74,
+        1.0,
+        1.0
+      ],
+      "caption": "Table 5.6 General Equations of a Pipe Line Subject to Deformation at Either End",
+      "kind": "tbl",
+      "needs_extraction": true
+    }
+  ],
+  "doc_stem": "MWK_1956",
+  "issues": [
+    "Markdown source page_0129.md lines 40-41 (y-plane M'_b and M_t) and the third equation in the z-plane appear to contain subscript typos relative to the page raster; CSV for Table 5.5 was transcribed from the raster (treated as authoritative).",
+    "All math content rendered with ASCII transliteration (alpha, theta, delta, Delta, EI*, primes as ') for CSV portability.",
+    "asset_note: Small equation/formula table at upper-right of page giving moment relations (M_b, M'_b, M_t) for members lying in the x-, y-, and z-planes. CSV reflects the table content as printed in the page raster; the Markdown body has slight subscript typos (e.g., M'_x cos alpha - M'_x sin alpha) that disagree with the raster \u2014 raster taken as authoritative.",
+    "asset_note: Wide 7-column matrix table at the bottom of the page (Table 5.6). Six rows of summation coefficients with right-hand-side deformation expressions. CSV uses ASCII transliteration of subscripts/Greek letters; bbox spans full width and includes caption + ~3-5% whitespace."
+  ],
+  "page": 129,
+  "run_status": "SUCCESS",
+  "schema_version": "pdf2md-page-assets/v1",
+  "total_pages": 386
+}

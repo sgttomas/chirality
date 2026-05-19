@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0044.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0044_fig01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.97,
+        0.36
+      ],
+      "bbox_px": [
+        26,
+        0,
+        2588,
+        1365
+      ],
+      "caption": "Exhibit 3-1 Sample Proposal Plot Plan",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0044_fig01_exhibit-3-1-sample-proposal-plot-plan.png",
+      "png_sha256": "35820c31f8b5718f44f217980de30e0a3d11fa836a40254accb1c2efeb087a65",
+      "slug": "exhibit-3-1-sample-proposal-plot-plan",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0044.png",
+  "page_image_sha256": "1bd9805cc2284a4c7750a85c85fd75bedead03cc3a269dcc6a732ef03cb5c3bd",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0044_assets.json"
+}

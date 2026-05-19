@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0026_fig01",
+      "bbox_norm": [
+        0.04,
+        0.18,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        457,
+        2495,
+        3518
+      ],
+      "caption": "FIG. 1.2 PIPING COMPONENTS AND INTERFACE EQUIPMENT",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0026_fig01_piping-components-interface-equipment.png",
+      "png_sha256": "f067ed28fc8798836ec6fefbe61d606e477a3a0123004418da40487217b59fde",
+      "slug": "piping-components-interface-equipment",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0026.png",
+  "page_image_sha256": "bbcc612d90986be5738eba97b769cbf87871fa2c74902059ff80e0858719a48c",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0026_assets.json"
+}

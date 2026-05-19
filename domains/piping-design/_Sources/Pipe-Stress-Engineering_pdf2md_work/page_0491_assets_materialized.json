@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0491.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0491_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2482,
+        2000
+      ],
+      "caption": "Class 800 \u2014 (A) WEIGHT (lb) \u2014 Valve weight by size and end type (*Warning: Valve weight varies greatly from vendor to vendor*)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Pipe-Stress-Engineering_p0491_tbl01_class-800-valve-weight-lb.png",
+      "png_sha256": "48cf2ce781c611c058394896eb63f4c42b7387b9b9e0f768e5e59f92964f488a",
+      "slug": "class-800-valve-weight-lb",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0491_tbl01_class-800-valve-weight-lb.json",
+      "table_data_json_sha256": "7cdac13695c05f2ee1fa6d4a4cfe274d3fab64f49f69774c7795b446c7591d19",
+      "table_data_sha256": "7cdac13695c05f2ee1fa6d4a4cfe274d3fab64f49f69774c7795b446c7591d19",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0491_tbl01_class-800-valve-weight-lb.xlsx",
+      "xlsx_sha256": "0296cdced95e384851e7533a9cfcdb1e1a67731197612480b32bce9f3248a19d"
+    },
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0491_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.53,
+        0.97,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        1684,
+        2482,
+        3509
+      ],
+      "caption": "Class 800 \u2014 (B) LENGTH (in.) \u2014 Valve face-to-face/end-to-end length by size and end type",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/Pipe-Stress-Engineering_p0491_tbl02_class-800-valve-length-in.png",
+      "png_sha256": "2dff294a815a390e7f4f140c5e965bf297380a3176d77e5058e5fa81cd9bc517",
+      "slug": "class-800-valve-length-in",
+      "status": "materialized",
+      "table_data_json_path": "tables/Pipe-Stress-Engineering_p0491_tbl02_class-800-valve-length-in.json",
+      "table_data_json_sha256": "c4ab56b98e5981d78d188405ee7379812410e8fe1154c0df521aa8ceac5be440",
+      "table_data_sha256": "c4ab56b98e5981d78d188405ee7379812410e8fe1154c0df521aa8ceac5be440",
+      "xlsx_path": "tables/Pipe-Stress-Engineering_p0491_tbl02_class-800-valve-length-in.xlsx",
+      "xlsx_sha256": "c1ab32628306e25fedaae1da6ebac0cad57073edf64e81c1e8a7e2e0dcfb5ef3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 491,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0491.png",
+  "page_image_sha256": "77837effd56c3880ea1e42419283468d5ff19d4d644816ead85cdc7d742651d3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0491_assets.json"
+}

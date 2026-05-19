@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "Piping_Manual",
+  "page": 203,
+  "total_pages": 465,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.04, 0.97, 0.30],
+      "caption": "Exhibit 8-4 Examples of Positive Displacement Pumps. a. Single-Acting Plunger Pump (for very high pressure with moderate flows and high efficiency); b. Double-Acting Piston Pump (for viscous liquids and slurry service)"
+    },
+    {
+      "kind": "fig",
+      "bbox_norm": [0.05, 0.30, 0.97, 0.62],
+      "caption": "Exhibit 8-5 Examples of Rotary Pumps. a. External-Gear Pump; b. Cam and Piston; c. Two-Lobe Pump; d. Three-Lobe Pump; e. Single-Screw Pump; f. Two-Screw Pump"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0097.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0097_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        1638
+      ],
+      "caption": "Figure 5-10. Detail of directing flow in flare header.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-1_p0097_fig01_directing-flow-flare-header.png",
+      "png_sha256": "df0cb3627acc0399244cc5cdc63888fbdd118e67b4655e3899fcdc991c4f7b7b",
+      "slug": "directing-flow-flare-header",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 97,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0097.png",
+  "page_image_sha256": "e60ce52a0e7945b3f4a2bad23aa6366c99031b4ff657cebf675a4704f294b101",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0097_assets.json"
+}

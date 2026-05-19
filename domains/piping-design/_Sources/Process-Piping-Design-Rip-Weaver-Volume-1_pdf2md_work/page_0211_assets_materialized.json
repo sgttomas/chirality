@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0211.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-1_p0211_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2477,
+        3482
+      ],
+      "caption": "Table A-4 Decimal Equivalents in Inches, Feet and Millimeters",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0211_tbl01_decimal-equivalents-inches-feet-millimet.png",
+      "png_sha256": "0d04922fd8d5d14a3a48fb21aff8630bb40f8ab5724bd7a538006245e36a12e6",
+      "slug": "decimal-equivalents-inches-feet-millimet",
+      "status": "materialized",
+      "table_data_json_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0211_tbl01_decimal-equivalents-inches-feet-millimet.json",
+      "table_data_json_sha256": "698395bb5d9fd505200c44b98176889e0cbc5b801c0e3c43f8177a8d2ebb968a",
+      "table_data_sha256": "698395bb5d9fd505200c44b98176889e0cbc5b801c0e3c43f8177a8d2ebb968a",
+      "xlsx_path": "tables/Process-Piping-Design-Rip-Weaver-Volume-1_p0211_tbl01_decimal-equivalents-inches-feet-millimet.xlsx",
+      "xlsx_sha256": "d42ce73795d747afd95e136f3c690b6a39d70160d6e2f7aeea7f22da50d16b98"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-1",
+  "page": 211,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0211.png",
+  "page_image_sha256": "d5815c7825f6e9ad590fe6219cbdbfc0ad36f66ced9cb73dc808faebe05ad014",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-1_pdf2md_work/page_0211_assets.json"
+}

@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0326.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0326_fig01",
+      "bbox_norm": [
+        0.05,
+        0.16,
+        0.48,
+        0.34
+      ],
+      "bbox_px": [
+        0,
+        364,
+        1358,
+        1291
+      ],
+      "caption": "EXHIBIT 13-1 Pipe Elevations",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0326_fig01_exhibit-13-1-pipe-elevations.png",
+      "png_sha256": "80d9af6b9ee97be5f462db1a0b301d67770411789274e982bda70a7a34862d97",
+      "slug": "exhibit-13-1-pipe-elevations",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 326,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0326.png",
+  "page_image_sha256": "fb3b61d7e8eb566fc12197ac4c99240ac189cd7ab44f74897ab70649e269c6f2",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0326_assets.json"
+}

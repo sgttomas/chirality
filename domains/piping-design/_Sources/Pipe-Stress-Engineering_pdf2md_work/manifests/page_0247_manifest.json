@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0247.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Pipe-Stress-Engineering_p0247_fig01",
+      "bbox_norm": [
+        0.04,
+        0.55,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2482,
+        3509
+      ],
+      "caption": "FIG. 7.10 INTERMEDIATE ANCHOR DESIGN LOADS",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Pipe-Stress-Engineering_p0247_fig01_intermediate-anchor-design-loads.png",
+      "png_sha256": "de96822d1cd964ea1ad91632610b93479d28854107710939827afcdef486e74e",
+      "slug": "intermediate-anchor-design-loads",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering",
+  "doc_stem": "Pipe-Stress-Engineering",
+  "page": 247,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0247.png",
+  "page_image_sha256": "91ed68d48885f84f6c039db73a0a9dc5463b1f9b7638f937f3ad12c84f689f64",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Pipe-Stress-Engineering_pdf2md_work/page_0247_assets.json"
+}

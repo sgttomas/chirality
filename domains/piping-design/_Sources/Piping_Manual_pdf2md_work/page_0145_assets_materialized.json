@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0145.intermediate.md",
+  "assets": [
+    {
+      "asset_id": "Piping_Manual_p0145_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.97,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2582,
+        2626
+      ],
+      "caption": "EXHIBIT 6-31 Piping Arrangement for Horizontal Shell and Tube Exchangers",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Piping_Manual_p0145_fig01_exhibit-6-31-piping-arrangement-for-hori.png",
+      "png_sha256": "b23e304acb32053a5b0b2943b13979320be9e3d6f8cc0e17074cc38884fbac0c",
+      "slug": "exhibit-6-31-piping-arrangement-for-hori",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual",
+  "doc_stem": "Piping_Manual",
+  "page": 145,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0145.png",
+  "page_image_sha256": "ad291e5afc13f9b0d2e1899cfd3d98c4264c62b867f6a8b8a49a7d1c1723b6f1",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Piping_Manual_pdf2md_work/page_0145_assets.json"
+}

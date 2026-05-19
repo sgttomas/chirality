@@ -1,0 +1,36 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0082.anchored.md",
+  "assets": [
+    {
+      "asset_id": "Process-Piping-Design-Rip-Weaver-Volume-2_p0082_fig01",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1221,
+        2560,
+        3300
+      ],
+      "caption": "Figure 2-28. How natural frequency should match supports. Courtesy of Fluor Engineers and Constructors.",
+      "csv_path": "",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/Process-Piping-Design-Rip-Weaver-Volume-2_p0082_fig01_location-of-supports-natural-frequency-v.png",
+      "png_sha256": "fcc8a3b58aaf7fe075fad168de6310289aa46f47e76e42e50eea236e1aa883b1",
+      "slug": "location-of-supports-natural-frequency-v",
+      "status": "materialized"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2",
+  "doc_stem": "Process-Piping-Design-Rip-Weaver-Volume-2",
+  "page": 82,
+  "page_image": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0082.png",
+  "page_image_sha256": "33767010fb372b0041f91d4dc94db275a9adb4341f7a73b2f029f6cabc5747c0",
+  "schema_version": "pdf2md-assets-materialized/v1",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality-app-test/domain-test/domains/piping-design/_Sources/Process-Piping-Design-Rip-Weaver-Volume-2_pdf2md_work/page_0082_assets.json"
+}
