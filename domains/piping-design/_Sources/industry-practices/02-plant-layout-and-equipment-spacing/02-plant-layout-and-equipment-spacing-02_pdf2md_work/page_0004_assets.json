@@ -1,0 +1,82 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-02",
+  "page": 4,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1-1: Terms and Definition Table",
+      "slug": "table-1-1-terms-and-definition",
+      "bbox_norm": [
+        0.04,
+        0.11,
+        0.96,
+        0.28
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Term",
+                "is_header": true
+              },
+              {
+                "value": "Definition",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Company",
+                "type": "text"
+              },
+              {
+                "value": "Oil Search Alaska (OSA)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Project",
+                "type": "text"
+              },
+              {
+                "value": "Any Project operated by OSA on the North Slope of Alaska",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Contractor",
+                "type": "text"
+              },
+              {
+                "value": "Parties whom carries/manages all or part of the design, engineering, permitting, procurement, construction and/or commissioning of the project.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-row definition table with Term and Definition columns"
+    }
+  ],
+  "issues": []
+}

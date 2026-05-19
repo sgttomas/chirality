@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 55,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 14-1: Fire and Explosion Hazard Classification",
+      "slug": "table-14-1-fire-explosion-hazard-classification",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.97,
+        0.93
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Not part of processing.",
+          "(**) are part of plant process."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Moderate",
+                "is_header": true,
+                "type": "text"
+              },
+              {
+                "value": "Typical Examples",
+                "is_header": true,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "This category includes processes, operations or materials having a limited explosion hazard and a moderate fire hazard. This class generally involves endothermic reactions and non-reactive operations, such as distillation, absorption, mixing and blending of flammable liquids. Exothermic reactions with no flammable liquids or gases also fit in this hazard group.",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "Acetic anhydride (carbonylation of methyl acetate)\nAcetone (dehydrogenation of alcohol)\nAdiponitrile\nAmmonia\nCrude distillation**\nDimethyl formamide\nChloromethanes\nEthanol (from methanol)**\nEthylene glycol**\nFormaldehyde (methanol oxidation)\nMethyl amines\nMethyl ethyl ketone (dehydrogenation of alcohol)\nSolvent extraction\nStyrene\nUrea\nVisbreaking",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Two-column table with hazard category description on left and typical examples list on right"
+    }
+  ],
+  "issues": []
+}

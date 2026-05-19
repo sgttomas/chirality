@@ -1,0 +1,101 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 24,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 8-1: Hazardous Areas",
+      "slug": "table-8-1-hazardous-areas",
+      "bbox_norm": [0.04, 0.48, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [8],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Items and systems located in Hazardous Areas", "is_header": true },
+              { "value": "Notes", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Process areas", "type": "text" },
+              { "value": "To be located centrally", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Control Room", "type": "text" },
+              { "value": "Away from the process area", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Heat exchangers", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rotating equipment/compressors", "type": "text" },
+              { "value": "Away from power island", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Vessels", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Chemical storage", "type": "text" },
+              { "value": "Adequate natural ventilation warranted", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Utility units", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Items and systems located in Hazardous Areas", "is_header": true },
+              { "value": "Notes", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Power Island", "type": "text" },
+              { "value": "Safe distance from hazardous areas.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Storage Area", "type": "text" },
+              { "value": "Open, well ventilated areas away from process area", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Loading/receiving areas", "type": "text" },
+              { "value": "Locate away from Process area and power island where possible, high risk process equipment, ignition sources. Locate in naturally ventilated area. Openings to face away from buildings or roadways", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-section table with repeated header row for hazardous and safe area items. Section divider at row index 8 (second header row)."
+    }
+  ],
+  "issues": []
+}

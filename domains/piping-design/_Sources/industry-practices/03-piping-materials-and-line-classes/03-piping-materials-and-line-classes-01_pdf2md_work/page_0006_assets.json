@@ -1,0 +1,255 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 6,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "First letter piping class codes",
+      "slug": "first-letter-piping-class-codes",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.52],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Code", "is_header": true },
+              { "value": "—", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "sulphuric acid", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "hydrochloric acid", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "caustic", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "glycol (see Note 1)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "hydrogen (see Note 2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "J", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "process and catalyst slurry", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "P", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "process-general (see Note 3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "low temperature service, below -29 C (-20 F)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "steam and condensate", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "solids transport", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "air and water", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "chlorine", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "piping with jurisdiction of ASME Boiler Code", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Letter code table for first letter of piping class designation; 13 codes listed"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Second letter piping class codes",
+      "slug": "second-letter-piping-class-codes",
+      "bbox_norm": [0.05, 0.72, 0.95, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Code", "is_header": true },
+              { "value": "—", "is_header": true },
+              { "value": "Description", "is_header": true },
+              { "value": "Code", "is_header": true },
+              { "value": "—", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Carbon Steel", "type": "text" },
+              { "value": "L", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "3-1/2 Ni", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "1-1/4 Cr - 1/2 Mo", "type": "text" },
+              { "value": "M", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Monel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "D", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "2-1/4 Cr - 1 Mo", "type": "text" },
+              { "value": "N", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Nickel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "5 Cr - 1/2 Mo", "type": "text" },
+              { "value": "P", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "C.S. PP Lined", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "9 Cr - 1 Mo", "type": "text" },
+              { "value": "Q", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Aluminum", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "12 Cr", "type": "text" },
+              { "value": "R", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "321H SS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Hastelloy B", "type": "text" },
+              { "value": "T", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "347 SS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "I", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Inoxydа", "type": "text" },
+              { "value": "U", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Inconel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "J", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "304 SS", "type": "text" },
+              { "value": "V", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "Incoloy 800H", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "K", "type": "text" },
+              { "value": "–", "type": "text" },
+              { "value": "316 SS", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column letter code table for second letter of piping class designation; material codes A through V"
+    }
+  ],
+  "issues": []
+}

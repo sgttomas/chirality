@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-04_p0036_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3197
+      ],
+      "caption": "Project Phase checklist \u2014 Appendix E (continued): J. Instruments, K. Compressors, L. Piping, M. Structures",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-04_p0036_tbl01_project-phase-checklist-appendix-e-conti.png",
+      "png_sha256": "5498e144c797e2132b00997a2448f2956d5ae3fadcde4559dba34c1b9787d627",
+      "slug": "project-phase-checklist-appendix-e-conti",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-04",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0036.png",
+  "page_image_sha256": "fd59a202ebb896b0fa62c23e6a6516515ac5622cee64d517cad6de67b87dea58",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0036_assets.json"
+}

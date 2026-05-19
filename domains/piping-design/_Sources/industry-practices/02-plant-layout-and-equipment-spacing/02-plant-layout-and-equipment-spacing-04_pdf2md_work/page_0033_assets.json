@@ -1,0 +1,173 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 33,
+  "total_pages": 38,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Project Planning Chart — Layout Considerations by Project Phase",
+      "slug": "project-planning-chart-layout-considerations",
+      "bbox_norm": [0.05, 0.28, 0.97, 0.92],
+      "confidence": "high",
+      "notes": "Table with project phase columns (1, 2, 3) and layout consideration rows; X marks indicate applicable project phase.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Project Phase Key: 1 = Planning  2 = Engineering Development  3 = Drafting Development"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Project Phase", "is_header": true, "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "1", "is_header": true },
+              { "value": "2", "is_header": true },
+              { "value": "3", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A. General", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Layout Considerations", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1. Establish plant size requirements, site boundaries and grade.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2. Establish location of aboveground off-plot tie-ins (process, utility, relief, chemical lines, etc.), underground off-plot tie-ins (sewers, cooling water lines, etc.), and source of electric power.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3. Establish construction and maintenance requirements as they affect plot layout.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4. Establish air cooler location restrictions.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5. Establish provisions required for future expansion.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6. Establish main process and auxiliary equipment locations.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "7. Establish on-plot storage requirements for chemicals, catalyst, lube-oil, etc.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8. Decide how catalyst and chemicals will be loaded.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "9. Establish need for special maintenance facilities (e.g., monorails, catalyst conveyors, etc. — see also E. Exchangers, Item 1).", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10. Establish underground interferences.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "11. Establish any special access requirements.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12. Determine effect of local noise restrictions on equipment locations.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "13. Determine need for routing process lines underground.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "14. Develop plot plan alternatives, including equipment spacing and location requirements. Obtain client approval.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

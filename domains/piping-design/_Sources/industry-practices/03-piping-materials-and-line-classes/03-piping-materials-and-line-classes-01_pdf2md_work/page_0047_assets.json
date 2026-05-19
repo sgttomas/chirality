@@ -1,0 +1,75 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 47,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.7 Class PAB — Line Class Header and Specifications",
+      "slug": "table-4-7-class-pab-line-class-header-specifications",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.20],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE: 4.7", "is_header": true, "type": "text" },
+              { "value": "CLASS: PAB", "is_header": true, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "is_header": true, "type": "text" },
+              { "value": "ANSI Class 150 Except 260 C (500 F) Max.", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "is_header": true, "type": "text" },
+              { "value": "Process", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "is_header": true, "type": "text" },
+              { "value": "Carbon Steel", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "is_header": true, "type": "text" },
+              { "value": "1, 2, 3", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CORROSION ALLOWANCE:", "is_header": true, "type": "text" },
+              { "value": "1.6 mm (0.063\")", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true, "type": "text" },
+              { "value": "SIZE", "is_header": true, "type": "text" },
+              { "value": "RATING", "is_header": true, "type": "text" },
+              { "value": "TYPE", "is_header": true, "type": "text" },
+              { "value": "SPECIFICATIONS", "is_header": true, "type": "text" },
+              { "value": "NOTES", "is_header": true, "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header block for PAB class including pressure-temperature rating, service, material, construction class, corrosion allowance, and column headers. The component data rows appear on subsequent pages."
+    }
+  ],
+  "issues": []
+}

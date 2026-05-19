@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0012_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        25,
+        3300,
+        2474
+      ],
+      "caption": "Table 2 - Recommended Process Unit Equipment Spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0012_tbl01_recommended-process-unit-equipment-spaci.png",
+      "png_sha256": "30ee48ff5f3cc1230615ed8d028d19619aafeabb0adab8021e4c605f41dc4b12",
+      "slug": "recommended-process-unit-equipment-spaci",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-01",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-01",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0012.png",
+  "page_image_sha256": "fefe79e077919840ad8056d32eb417166311448b9a4b853fcdd2edb06326138a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0012_assets.json"
+}

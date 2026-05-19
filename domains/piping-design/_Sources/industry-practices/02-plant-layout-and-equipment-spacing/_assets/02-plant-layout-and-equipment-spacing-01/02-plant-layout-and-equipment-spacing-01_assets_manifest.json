@@ -1,0 +1,268 @@
+{
+  "asset_count": 5,
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0002_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.43,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1254,
+        2550,
+        3201
+      ],
+      "caption": "Table of Contents",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 2,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0002_tbl01_table-of-contents.png",
+      "png_sha256": "48a843fcde7949e03f36df2899c6fa2f57a095faa19c2ca2926252b84ab589ab",
+      "slug": "table-of-contents",
+      "status": "materialized",
+      "table_data_json_path": "tables/02-plant-layout-and-equipment-spacing-01_p0002_tbl01_table-of-contents.json",
+      "table_data_json_sha256": "2cce83f7cd1a59743a5a67870c69958013f01f028e5b727dc6b83095e27f7ee4",
+      "table_data_sha256": "2cce83f7cd1a59743a5a67870c69958013f01f028e5b727dc6b83095e27f7ee4",
+      "xlsx_path": "tables/02-plant-layout-and-equipment-spacing-01_p0002_tbl01_table-of-contents.xlsx",
+      "xlsx_sha256": "86f3a9e28b51fa720094ee3ad0c7342a0b35579fcc67cf13189f88349df77027"
+    },
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0011_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        25,
+        3300,
+        2474
+      ],
+      "caption": "Table 1 - Recommended Offsites Equipment Spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0011_tbl01_recommended-offsites-equipment-spacing.png",
+      "png_sha256": "f0b50f26eb68f881ebc4463562ff43ff26a853ee378a57bb5f450304e4a6b39f",
+      "slug": "recommended-offsites-equipment-spacing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0012_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        25,
+        3300,
+        2474
+      ],
+      "caption": "Table 2 - Recommended Process Unit Equipment Spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0012_tbl01_recommended-process-unit-equipment-spaci.png",
+      "png_sha256": "30ee48ff5f3cc1230615ed8d028d19619aafeabb0adab8021e4c605f41dc4b12",
+      "slug": "recommended-process-unit-equipment-spaci",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0013_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3300
+      ],
+      "caption": "Table 3 - Minimum Access Provisions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0013_tbl01_table-3-minimum-access-provisions.png",
+      "png_sha256": "3755548f3de796c9e8bca72bd99ce06f03123169bcec7830cd38043729fd9346",
+      "slug": "table-3-minimum-access-provisions",
+      "status": "materialized",
+      "table_data_json_path": "tables/02-plant-layout-and-equipment-spacing-01_p0013_tbl01_table-3-minimum-access-provisions.json",
+      "table_data_json_sha256": "31cdf883cbb9478178ba2b16a9f2d81884dee40719b087a3f940e75a83fb0999",
+      "table_data_sha256": "31cdf883cbb9478178ba2b16a9f2d81884dee40719b087a3f940e75a83fb0999",
+      "xlsx_path": "tables/02-plant-layout-and-equipment-spacing-01_p0013_tbl01_table-3-minimum-access-provisions.xlsx",
+      "xlsx_sha256": "5088b91e92b72e436128e99d54c3ea053cc0411485c2df9c3f753b55567103db"
+    },
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-01_p0014_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        3300
+      ],
+      "caption": "Table 4 - Minimum Clearance Dimensions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-01_p0014_tbl01_table-4-minimum-clearance-dimensions.png",
+      "png_sha256": "0ebab2deb32a9e19f80addf831ee41fd88796462d0db52306a9b8205c703b6c5",
+      "slug": "table-4-minimum-clearance-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/02-plant-layout-and-equipment-spacing-01_p0014_tbl01_table-4-minimum-clearance-dimensions.json",
+      "table_data_json_sha256": "9d647b0d537f522b1b9ae6aa31883da589d1971de0b1c77b5c5d9ab85a1a6173",
+      "table_data_sha256": "9d647b0d537f522b1b9ae6aa31883da589d1971de0b1c77b5c5d9ab85a1a6173",
+      "xlsx_path": "tables/02-plant-layout-and-equipment-spacing-01_p0014_tbl01_table-4-minimum-clearance-dimensions.xlsx",
+      "xlsx_sha256": "0c836261df32f3bb1e4c44d4c3a6253176f3f8c07e2bef783d58b592c46fce69"
+    }
+  ],
+  "doc_stem": "02-plant-layout-and-equipment-spacing-01",
+  "issues": [],
+  "page_manifest_count": 14,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-01_pdf2md_work"
+}

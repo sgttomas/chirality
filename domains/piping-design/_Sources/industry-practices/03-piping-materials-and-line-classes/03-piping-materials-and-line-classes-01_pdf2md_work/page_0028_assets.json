@@ -1,0 +1,206 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 28,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE: 4.2 CLASS: UAZ",
+      "slug": "table-4-2-class-uaz",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.93],
+      "confidence": "high",
+      "notes": "Full-page line class table for Underground Firewater (UAZ), Carbon Steel, ANSI Class 150.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) See Notes",
+          "(2) Flgd, FF",
+          "(3) Heat Treated",
+          "(8)(9) SO or WN, RF or FF flanges",
+          "(10) Yellow Jacketed pipe",
+          "(11)(12) Gauge valve specifications"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"value": "ITEM", "is_header": true},
+              {"value": "SIZE", "is_header": true},
+              {"value": "RATING", "is_header": true},
+              {"value": "TYPE", "is_header": true},
+              {"value": "SPECIFICATIONS", "is_header": true},
+              {"value": "NOTES", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "PIPE", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "3 to 8", "type": "text"},
+              {"value": "Sched. 40", "type": "text"},
+              {"value": "Seamless", "type": "text"},
+              {"value": "ASTM A-53 GR.B or API-5L GR.B Electric Furnace or Basic Oxygen ASTM A-106 GR.B also acceptable. Yellow Jacketed", "type": "text"},
+              {"value": "(10)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "8 to 10", "type": "text"},
+              {"value": "Sched. 40", "type": "text"},
+              {"value": "Seamless", "type": "text"},
+              {"value": "ASTM A-53 GR.B or API-5L GR.B Electric Furnace or Basic Oxygen ASTM A-106 GR.B also acceptable. Yellow Jacketed", "type": "text"},
+              {"value": "(10)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "12 to 24", "type": "text"},
+              {"value": "Std. Wt.", "type": "text"},
+              {"value": "Seamless", "type": "text"},
+              {"value": "ASTM A-53 GR.B or API-5L GR.B Electric Furnace or Basic Oxygen ASTM A-106 GR.B also acceptable. Yellow Jacketed", "type": "text"},
+              {"value": "(10)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "FITTINGS — Ells, Tees Reducers, Cross, etc.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "3 & over", "type": "text"},
+              {"value": "See Notes", "type": "text"},
+              {"value": "Buttweld", "type": "text"},
+              {"value": "ASTM A-234, GR.WPB Seamless, Normalized", "type": "text"},
+              {"value": "(1)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Weldolets", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "3 & over", "type": "text"},
+              {"value": "See Notes", "type": "text"},
+              {"value": "Buttweld", "type": "text"},
+              {"value": "ASTM A-105, Heat Treated", "type": "text"},
+              {"value": "(1)(3)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "FLANGES", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "3 & over", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "SO or WN, RF or FF", "type": "text"},
+              {"value": "ASTM A-105, Heat Treated", "type": "text"},
+              {"value": "(1)(2)(3)(8)(9)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "BOLTING — Stud Bolts: ASTM A-193, GR.B7 with ASTM A-194 GR.2H Nuts", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "GASKETS — Compressed Asbestos Composition 1/16\" Thick. Use full-face gaskets with flat-face flanges.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "VALVES: Gate", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "6 & over", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "Flgd, FF", "type": "text"},
+              {"value": "CS Body, OS&Y, 3/8\" Ring Gland, Solid CS Wedge, Rubber Seals Wlindicator Post, \"Segate\" or approved equal", "type": "text"},
+              {"value": "(2)", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Gauge", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "3/4", "type": "text"},
+              {"value": "10 MPa @ 455 C (1500 psi @ 850 F)", "type": "text"},
+              {"value": "Threaded or Socketweld Inlet", "type": "text"},
+              {"value": "ASTM A-105, Normalized Body for Socketweld only, 316 SS Steam & Ball, Hard Seat, OS&Y Bonnets, Asbestos Packing, 3 x 1/2 FNPT Outlets, for Socketweld Body Hardness 187 HB Max.", "type": "text"},
+              {"value": "(11)(12)", "type": "text"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

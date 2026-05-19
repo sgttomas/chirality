@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 88,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.21 PDH line class — item listing (ITEM / SIZE / RATING / TYPE / SPECIFICATIONS / NOTES)",
+      "slug": "table-4-21-pdh-item-listing",
+      "bbox_norm": [0.03, 0.22, 0.97, 0.32],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Header-only table; no data rows visible on this page. Likely continues on subsequent pages."
+    }
+  ],
+  "issues": []
+}

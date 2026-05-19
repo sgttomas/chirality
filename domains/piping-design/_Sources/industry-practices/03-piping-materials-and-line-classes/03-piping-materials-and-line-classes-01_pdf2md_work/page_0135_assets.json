@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 135,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.37 CLASS: PKH — Pressure-Temperature Rating, Service, Basic Material, Construction Class, Corrosion Allowance",
+      "slug": "table-4-37-class-pkh",
+      "bbox_norm": [0.04, 0.02, 0.96, 0.30],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table header row only visible; no data rows present on this page. Metadata rows (pressure-temperature rating, service, basic material, construction class, corrosion allowance) appear above the column headers."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 124,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.33 Class PJH — Line Class Specification Header",
+      "slug": "table-4-33-pjh-spec-header",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.25],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE: 4.33", "type": "text", "is_header": true },
+              { "value": "CLASS: PJH", "type": "text", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "type": "text", "is_header": true },
+              { "value": "ANSI Class 900 Except 455 C (850 F) Max.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "type": "text", "is_header": true },
+              { "value": "Process", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "type": "text", "is_header": true },
+              { "value": "304 Stainless Steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "type": "text", "is_header": true },
+              { "value": "1, 2", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CORROSION ALLOWANCE:", "type": "text", "is_header": true },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class specification block at top of page"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 4.33 Class PJH — Component Schedule (ITEM / SIZE / RATING / TYPE / SPECIFICATIONS / NOTES)",
+      "slug": "table-4-33-pjh-component-schedule",
+      "bbox_norm": [0.04, 0.27, 0.96, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "type": "text", "is_header": true },
+              { "value": "SIZE", "type": "text", "is_header": true },
+              { "value": "RATING", "type": "text", "is_header": true },
+              { "value": "TYPE", "type": "text", "is_header": true },
+              { "value": "SPECIFICATIONS", "type": "text", "is_header": true },
+              { "value": "NOTES", "type": "text", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Component schedule table — header row only visible, no data rows on this page"
+    }
+  ],
+  "issues": []
+}

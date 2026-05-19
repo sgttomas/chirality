@@ -1,0 +1,73 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 59,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 4.11 CLASS: PAD (SR)",
+      "slug": "table-4-11-class-pad-sr",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.30],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE:", "is_header": true },
+              { "value": "4.11", "type": "text" },
+              { "value": "CLASS:", "is_header": true },
+              { "value": "PAD (SR)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "is_header": true },
+              { "value": "ANSI Class 300 Except 260 C (500 F) Max. (15)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "is_header": true },
+              { "value": "Process - Amine, Wet H2S (6)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "is_header": true },
+              { "value": "Carbon Steel (15)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "is_header": true },
+              { "value": "1, 2", "type": "text" },
+              { "value": "CORROSION ALLOWANCE:", "is_header": true },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header table for PAD (SR). The item rows below the column headers are empty on this page (no piping components listed)."
+    }
+  ],
+  "issues": []
+}

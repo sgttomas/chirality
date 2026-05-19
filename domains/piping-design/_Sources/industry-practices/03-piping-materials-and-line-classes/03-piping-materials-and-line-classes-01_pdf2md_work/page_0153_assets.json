@@ -1,0 +1,159 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 153,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.44 CLASS: RAD",
+      "slug": "table-4-44-class-rad",
+      "bbox_norm": [0.04, 0.03, 0.97, 0.85],
+      "confidence": "high",
+      "notes": "Valve specifications table for low temperature process service, ANSI Class 300, Carbon Steel (Impact Tested). Covers Check, Gate, Gauge, and Globe valves.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VALVES", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Check", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "13 CR Trim, ASTM A-350 GR.LF2 Heat-treated Body, BC, Horiz. or Vert. \"Y\" Pattern Piston or Swing Check, to Manuf. STD", "type": "text" },
+              { "value": "(7) (9) (13) (15)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gate", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flg'd, RF", "type": "text" },
+              { "value": "13 CR Trim, ASTM A-352 GR.LCB Body, BB, OS&Y, BG, Solid Wedge, to API 600", "type": "text" },
+              { "value": "(5) (7) (10)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "13 CR Trim, ASTM A-350 GR.LF2 Heat-treated Body, WB, OS&Y, BG, Solid Wedge, to API 602", "type": "text" },
+              { "value": "(7) (8) (9) (10) (13) (15)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Male SW/ Female Thd", "type": "text" },
+              { "value": "13 CR Trim, ASTM A-350 GR.LF2 Heat-treated Body, WB, OS&Y, BG, Solid Wedge, to API 606", "type": "text" },
+              { "value": "(6) (7) (13) (14) (15)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gauge", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4", "type": "text" },
+              { "value": "10 MPa @ 455 C (1500 psi @ 850 F)", "type": "text" },
+              { "value": "Socketweld Inlet", "type": "text" },
+              { "value": "ASTM A-105, Normalized Body, 316 SS Stem & Ball, Hard Seat, OS&Y Bonnet, Asbestos Packing, 3 x 1/2 FNPT Orifices, Body Hardness 187 HB Max.", "type": "text" },
+              { "value": "(16) (17)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Globe", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flg'd, RF", "type": "text" },
+              { "value": "13 CR IFS Trim, ASTM A-352 GR.LCB Body, BB, OS&Y, BG, Plug Disc, to Manuf. STD.", "type": "text" },
+              { "value": "(5)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "13 CR IFS Trim, ASTM A-350 GR.LF2 Heat-treated Body, WB, OS&Y, BG, Plug Disc, to Manuf. STD.", "type": "text" },
+              { "value": "(8) (9) (13) (15)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

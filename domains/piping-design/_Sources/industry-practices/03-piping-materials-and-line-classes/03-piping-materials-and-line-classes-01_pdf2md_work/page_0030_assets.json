@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 30,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.2 CLASS: UAZ — Pressure-Temperature Rating, Service, Basic Material, Construction Class, Corrosion Allowance, and Line Class Specifications",
+      "slug": "table-4-2-class-uaz",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Refer to ANSI B16.5 - Latest Edition for Pressure-Temperature Limits"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table 4.2 for line class UAZ. Header metadata rows contain PRESSURE-TEMPERATURE RATING (ANSI Class 150 Except 100 C / 212 F Max.), SERVICE (Underground Firewater), BASIC MATERIAL (Carbon Steel (10)), CONSTRUCTION CLASS (3), CORROSION ALLOWANCE (1.6 mm / 0.063 inch). The item/specification data rows are blank on this page — content columns (ITEM, SIZE, RATING, TYPE, SPECIFICATIONS, NOTES) have no populated rows. The page is primarily the NOTES section with 13 numbered notes."
+    }
+  ],
+  "issues": []
+}

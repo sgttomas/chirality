@@ -1,0 +1,149 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 117,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.31 Class PJE — Valve specifications by item, size, rating, type, and notes",
+      "slug": "table-4-31-class-pje-valve-specifications",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VALVES", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ball", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "304 SS or 316 SS Body, Ball & Stem, Reinforced PTFE Seats, Reinforced PTFE Stem Seal, Anti-blow out Stem, Secondary Steel Seats, Fire Tested to BS5146, Anti-static Design, to API 608", "type": "text" },
+              { "value": "(5) (9)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "304 SS or 316 SS Body, Ball & Stem, Reinforced PTFE Seats, Reinforced PTFE Stem Seal, Anti-blow out Stem, Secondary Steel Seats, Fire Tested to BS5146, Anti-static Design, Socketweld Ends with Swing-out Body or SW Ends Fitted with 150 mm (6\") Long Plain End Nipples Welded in by Manuf. Pipe Nipples to be Seamless to ASTM A-312 GR.304, Sched. 80S Min., Wrench Operated, to Manuf. STD.", "type": "text" },
+              { "value": "(7) (9)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Check", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "304 SS Trim, ASTM A-351 GR CF8 or CF8M Body, BC, Swing Check, to Manuf. STD.", "type": "text" },
+              { "value": "(5) (12)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "304 SS Trim, ASTM A-182 GR F304 or F316 or A-351 GR CF8 or CF8M Body, BC, Horiz. or Vert. \"Y\" Pattern Piston or Swing Check, to Manuf. STD.", "type": "text" },
+              { "value": "(7) (12)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gate", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "304 SS Trim, ASTM A-351 GR CF8 or CF8M Body, BB, OS&Y, BG, Solid Wedge, to API 600", "type": "text" },
+              { "value": "(5) (8) (12)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "800", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "304 SS Trim, ASTM A-182 GR F304 or F316 or A-351 GR CF8 or CF8M Body, BB, OS&Y, BG, Solid Wedge, to API 602", "type": "text" },
+              { "value": "(6) (7) (8) (12) (13)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gauge", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4", "type": "text" },
+              { "value": "10 MPa @ 540 C (1500 psi @ 1000 F)", "type": "text" },
+              { "value": "Socketweld Inlet", "type": "text" },
+              { "value": "ASTM A-479, 316 SS Body, 316 SS Stem & Ball, Hard Seat, OS&Y Bonnet, Asbestos Packing up to 455 C (850 F), Grafoid Packing above 455 C (850 F), 3 x 1/2 FNPT Outlets", "type": "text" },
+              { "value": "(14)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Globe", "type": "text", "colspan": 6 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "304 SS HFS Trim, ASTM A-351 GR CF8 or CF8M Body, BB, OS&Y, BG, Plug Disc, to Manuf. STD.", "type": "text" },
+              { "value": "(5)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page valve specification table for Line Class PJE (304 SS, ANSI Class 300). Covers Ball, Check, Gate, Gauge, and Globe valve types."
+    }
+  ],
+  "issues": []
+}

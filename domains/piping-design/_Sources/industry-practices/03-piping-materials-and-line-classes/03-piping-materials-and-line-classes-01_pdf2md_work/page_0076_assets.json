@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 76,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.17 Class PCE — Line Class Specification Header",
+      "slug": "table-4-17-class-pce-line-class-specification-header",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class spec header block. The body rows of this table appear on subsequent pages. Only the header row with column labels is visible on this page along with the metadata fields (Pressure-Temperature Rating, Service, Basic Material, Construction Class, Corrosion Allowance)."
+    }
+  ],
+  "issues": []
+}

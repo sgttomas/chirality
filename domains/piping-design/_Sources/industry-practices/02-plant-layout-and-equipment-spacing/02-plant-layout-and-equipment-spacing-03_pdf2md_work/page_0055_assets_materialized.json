@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0055.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-03_p0055_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2550,
+        3234
+      ],
+      "caption": "Table 14-1: Fire and Explosion Hazard Classification",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-03_p0055_tbl01_table-14-1-fire-explosion-hazard-classif.png",
+      "png_sha256": "86ac9f2f90c60701c8c62ae74b3934108b6e18471119c1c1e2a669b97d641f4c",
+      "slug": "table-14-1-fire-explosion-hazard-classif",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-03",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 55,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0055.png",
+  "page_image_sha256": "e3c4c44e4145bcfdf1913aacb2b8a8220a5c0e23d56a03c566fd58327340e277",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0055_assets.json"
+}

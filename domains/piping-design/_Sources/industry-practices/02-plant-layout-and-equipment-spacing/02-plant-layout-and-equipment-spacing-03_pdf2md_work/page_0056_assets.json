@@ -1,0 +1,68 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 56,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Hazard category descriptions and typical examples \u2014 Intermediate and High categories",
+      "slug": "hazard-category-intermediate-high",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.95
+      ],
+      "confidence": "high",
+      "notes": "Two-row table covering Intermediate and High hazard categories with descriptions and typical process examples",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Intermediate",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "This category includes processes, operations or materials having an appreciable explosion hazard and a moderate fire hazard. This class generally involves mildly exothermic reactions.\n\nNote:\nThis category is not part of processing.",
+                "type": "text"
+              },
+              {
+                "value": "Typical Examples\n- Acetic anhydride (from acetic acid)\n- Alkylation (Refinery)\n- Benzene (from toluene-xylene)\n- Benzene-Toluene-Xylene (BTX)\n- Cumene\n- Cyclohexane\n- Ethyl benzene\n- Methanol (Reforming)\n- Polyethylene HD (small units)\n- Polypropylene\n- Polystyrene",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "High",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "This category includes processes, operations or materials having a high explosion hazard and moderate to heavy fire hazard. This class involves highly exothermic or potential runaway reactions and high hazard products handling.\n\nNote:\nThis category is not part of processing.",
+                "type": "text"
+              },
+              {
+                "value": "Typical Examples\n- Acetic acid\n- Acetaldehyde (oxidation)\n- Acetone (cumene oxidation)\n- Acrolein\n- Acrylic acid\n- Acrylonitrile\n- Butadiene (oxidation)\n- Caprolactam\n- Cumene hydroperoxide\n- Dimethyl terephthalate\n- Ethylene\n- Ethylene oxide\n- Hydrocracking (Refinery)\n- Maleic anhydride (butane oxidation)\n- Methyl methacrylates\n- Phenol (cumene oxidation)\n- Phthalic anhydride\n- Polyethylene LD (high pressure)\n- Polyethylene HD (large units)\n- Propylene oxide\n- Vinyl acetate\n- Vinyl chloride (VCM-EDC)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

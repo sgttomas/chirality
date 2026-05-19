@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0017.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-03_p0017_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        3300
+      ],
+      "caption": "Table 6-1: Layout Design Development Stages",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: {'after_row': 2, 'label': 'Level of Layout Definition'}"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-03_p0017_tbl01_table-6-1-layout-design-development-stag.png",
+      "png_sha256": "6e3f1b2f215f30e0d6498250526a16bce770f07b4047ae931a79c7a059318458",
+      "slug": "table-6-1-layout-design-development-stag",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-03",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0017.png",
+  "page_image_sha256": "38363667d383006ce6461dd3d11b912f97326473e762fd39b250a1344eb87c24",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-03_pdf2md_work/page_0017_assets.json"
+}

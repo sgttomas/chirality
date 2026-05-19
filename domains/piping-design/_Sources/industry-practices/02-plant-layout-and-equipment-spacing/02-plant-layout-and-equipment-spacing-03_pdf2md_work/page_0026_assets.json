@@ -1,0 +1,95 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-03",
+  "page": 26,
+  "total_pages": 56,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 8-2: Safe Areas",
+      "slug": "table-8-2-safe-areas",
+      "bbox_norm": [0.04, 0.11, 0.96, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Items and Facilities located in Safe Areas", "is_header": true },
+              { "value": "Notes", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Accommodation\nDining, recreation and allied rooms\nOffices, admin centers, communication rooms\nControl room(s) Laboratories\nTelecommunications center\nPower back up facilities", "type": "text" },
+              { "value": "Expected to be located away from the process area. Expected to be enclosed and have HVAC systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HVAC Equipment modules", "type": "text" },
+              { "value": "Incorporate appropriate gas detection, alarm and shutdown systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Electrical motor control centers\nElectrical Contactor facilities", "type": "text" },
+              { "value": "May have positive clean air purging, drawn from a Safe Area.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fire water pumps", "type": "text" },
+              { "value": "Expected to be located in non-classified areas and outside hazard areas", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Workshops general storage", "type": "text" },
+              { "value": "Located in Safe Areas where ever possible", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Lay-down areas", "type": "text" },
+              { "value": "May warrant barriers to protect other equipment", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Safety equipment", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fresh air intakes", "type": "text" },
+              { "value": "Outside hazardous areas", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Emergency equipment", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Access routes from Emergency Assembly Area / evacuation area", "type": "text" },
+              { "value": "Fully protected from fire hazard areas", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing items/facilities in Safe Areas and associated notes"
+    }
+  ],
+  "issues": []
+}

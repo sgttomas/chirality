@@ -1,0 +1,246 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-01",
+  "page": 14,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4 - Minimum Clearance Dimensions",
+      "slug": "table-4-minimum-clearance-dimensions",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Item", "is_header": true },
+              { "value": "Description", "is_header": true },
+              { "value": "Dimension", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Roads", "type": "text" },
+              { "value": "Clearance over primary access roads where major maintenance vehicles are expected to pass", "type": "text" },
+              { "value": "5486 mm (18'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Clearance over electrical transmission and distribution lines", "type": "text" },
+              { "value": "6706 mm (22'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Width of primary access roads", "type": "text" },
+              { "value": "6096 mm (20'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Clearance over secondary access roads and pump access roads", "type": "text" },
+              { "value": "3048 mm (10'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Width of secondary access roads and pump access roads", "type": "text" },
+              { "value": "3048 mm (10'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Railroads", "type": "text" },
+              { "value": "Clearance over through-railroads (from top of rail)", "type": "text" },
+              { "value": "6706 mm (22'-0\") (check local regulations)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Clearance over dead ends and sidings (from top of rail)", "type": "text" },
+              { "value": "(check local regulations)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Horizontal clearance from track centerline to obstructions", "type": "text" },
+              { "value": "4877 mm (16'-0\") (check local regulations)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Clearance under electrical lines", "type": "text" },
+              { "value": "2591 mm (8'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Check applicable regulations", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Access Walkways", "type": "text" },
+              { "value": "Clearance height for projections over platforms, working areas, walkways", "type": "text" },
+              { "value": "2286 mm (7'-6\") 2033 mm (6'-8\") (for bottom of valve handwheels)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Increased width of stairways, walkways, and landings should be considered for rescue purposes.", "type": "text" },
+              { "value": "Width of stairways (unobstructed width)", "type": "text" },
+              { "value": "914 mm (3'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Width of landings (in direction of stairways)", "type": "text" },
+              { "value": "914 mm (3'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Width of walkways", "type": "text" },
+              { "value": "914 mm (3'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Maximum vertical rise of one flight of stairway", "type": "text" },
+              { "value": "5486 mm (18'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Maximum horizontal distance from any point on platform to an emergency exit", "type": "text" },
+              { "value": "22 m (75'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Maximum length of dead-end platforms", "type": "text" },
+              { "value": "6096 mm (20'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ladders", "type": "text" },
+              { "value": "Maximum vertical rise of ladders in a single run", "type": "text" },
+              { "value": "9 m (30'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Maximum allowable slope of ladders from vertical", "type": "text" },
+              { "value": "15 degrees", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum toe clearance from centerline of rung to obstruction", "type": "text" },
+              { "value": "180 mm (7\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Platforms", "type": "text" },
+              { "value": "Maximum variance in platform elevations without an intermediate step", "type": "text" },
+              { "value": "305 mm (1'-0\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum unobstructed width of platforms", "type": "text" },
+              { "value": "762 mm (2'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Occasional obstructions (level glass, transmitter, etc.)", "type": "text" },
+              { "value": "457 mm (1'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum width of manhole platforms on vertical vessels", "type": "text" },
+              { "value": "1067 mm (3'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum platform extension beyond centerline of manhole flange on vertical vessels", "type": "text" },
+              { "value": "762 mm (2'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum width of platform from three sides of manhole on vessel top-head platforms", "type": "text" },
+              { "value": "762 mm (2'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum width of platforms at ends of horizontal tube furnaces", "type": "text" },
+              { "value": "1067 mm (3'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Operation & Maintenance", "type": "text" },
+              { "value": "Minimum clearance in front of channel end of horizontal exchanger for tube removal or cleaning", "type": "text" },
+              { "value": "Tube bundle length plus 1524 mm (5 ft.)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Minimum clearance around exchanger body flanges", "type": "text" },
+              { "value": "457 mm (1'-6\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Vertical exchangers", "type": "text" },
+              { "value": "Unobstructed vertical access", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table of minimum clearance dimensions for roads, railroads, access walkways, ladders, platforms, and operation/maintenance. Both metric (mm) and imperial (ft-in) values provided."
+    }
+  ],
+  "issues": []
+}

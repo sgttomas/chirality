@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-04_p0033_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        758,
+        2550,
+        3197
+      ],
+      "caption": "Project Planning Chart \u2014 Layout Considerations by Project Phase",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-04_p0033_tbl01_project-planning-chart-layout-considerat.png",
+      "png_sha256": "782dd559babbd2eac9baeb5f70de0834a142d42ceebde7536ddcc611c1c02d4d",
+      "slug": "project-planning-chart-layout-considerat",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-04",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0033.png",
+  "page_image_sha256": "2c7cca3d972fa212c4200e8bc4074c3e028fe5c2a44e09c2de837816ae2c35bd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0033_assets.json"
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 38,
+  "total_pages": 38,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Appendix E checklist continuation — W. Waste Disposal and Z. Noise, Project Phase assignments",
+      "slug": "appendix-e-checklist-waste-disposal-noise",
+      "bbox_norm": [0.05, 0.10, 0.95, 0.42],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Project Phase Key: 1 = Planning   2 = Engineering Development   3 = Drafting Development"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Project Phase", "is_header": true, "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "1", "is_header": true },
+              { "value": "2", "is_header": true },
+              { "value": "3", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "W. Waste Disposal", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1. Establish general waste (including chemicals) disposal scheme and whether systems are separate or combined, and how combined.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2. Establish relief load, method of disposal, and location of relief drums.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Z. Noise", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1. Determine proper noise specification for the plant locale and client's willingness to make extra expenditures to attain goal.", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Final page of Appendix E checklist. Table contains W. Waste Disposal and Z. Noise sections with Project Phase (1/2/3) X markers. Footnote gives phase key legend."
+    }
+  ],
+  "issues": []
+}

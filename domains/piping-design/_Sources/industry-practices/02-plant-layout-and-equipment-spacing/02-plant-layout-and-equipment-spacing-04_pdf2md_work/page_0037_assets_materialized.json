@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0037.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-04_p0037_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3065
+      ],
+      "caption": "Appendix E Project Phase Checklist (continued) \u2014 Insulation, Electrical, Foundations, Buildings, Miscellaneous, Catalyst and Chemicals",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-04_p0037_tbl01_appendix-e-project-phase-checklist-conti.png",
+      "png_sha256": "fbd1b6e06c5da33d3fd7c664c82ddeae51176a6d0874ec5a4438fd1107e6ae6a",
+      "slug": "appendix-e-project-phase-checklist-conti",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-04",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 37,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0037.png",
+  "page_image_sha256": "a562bf1592b7c2c3663b2c9a4fc50e406e7e3e0218d410f244d8051d3c630206",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-04_pdf2md_work/page_0037_assets.json"
+}

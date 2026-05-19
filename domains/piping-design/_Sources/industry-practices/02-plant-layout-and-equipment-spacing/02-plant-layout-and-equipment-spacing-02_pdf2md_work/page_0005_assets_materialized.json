@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-02_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "02-plant-layout-and-equipment-spacing-02_p0005_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.29,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        792,
+        2550,
+        3300
+      ],
+      "caption": "Table 2-1: Codes and Standards Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/02-plant-layout-and-equipment-spacing-02_p0005_tbl01_table-2-1-codes-and-standards.png",
+      "png_sha256": "068eaa7fb423fdbb9b5d0c74a8dc630a464760eb964e953c32d19330ce6a62fa",
+      "slug": "table-2-1-codes-and-standards",
+      "status": "materialized",
+      "table_data_json_path": "tables/02-plant-layout-and-equipment-spacing-02_p0005_tbl01_table-2-1-codes-and-standards.json",
+      "table_data_json_sha256": "16cd75dd84a50a3a7196e6cd5e42769f602958e4806594120988818f0bbd1d40",
+      "table_data_sha256": "16cd75dd84a50a3a7196e6cd5e42769f602958e4806594120988818f0bbd1d40",
+      "xlsx_path": "tables/02-plant-layout-and-equipment-spacing-02_p0005_tbl01_table-2-1-codes-and-standards.xlsx",
+      "xlsx_sha256": "44d84ad8036550d25ebd532c12de53991ef5b3793111f6c7b3462d82f8a3f68e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/_assets/02-plant-layout-and-equipment-spacing-02",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-02",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-02_pdf2md_work/page_0005.png",
+  "page_image_sha256": "5658a5418c52b90d5f493072266c92e52ea882d60759012480f4f517048ddc51",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/02-plant-layout-and-equipment-spacing-02_pdf2md_work/page_0005_assets.json"
+}

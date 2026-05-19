@@ -1,0 +1,218 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "02-plant-layout-and-equipment-spacing-04",
+  "page": 34,
+  "total_pages": 38,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Appendix E — Project Phase checklist (continued), items 15–30 and B. Utilities 1–2",
+      "slug": "appendix-e-project-phase-checklist-continued",
+      "bbox_norm": [0.04, 0.05, 0.96, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [
+          {"after_row": 1, "label": "Systems Development"},
+          {"after_row": 7, "label": "Procurement Considerations"},
+          {"after_row": 12, "label": "Miscellaneous"},
+          {"after_row": 17, "label": "B. Utilities"}
+        ],
+        "continuation_of": null,
+        "footnotes": [
+          "Project Phase Key: 1 = Planning  2 = Engineering Development  3 = Drafting Development"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"value": "", "is_header": true},
+              {"value": "Project Phase", "is_header": true, "colspan": 3}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "is_header": true},
+              {"value": "1", "is_header": true},
+              {"value": "2", "is_header": true},
+              {"value": "3", "is_header": true}
+            ]
+          },
+          {
+            "is_section_header": true,
+            "cells": [
+              {"value": "Systems Development", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "15. Review preliminary process designs for possible savings from mechanical standpoint. Resolve differences with process engineers.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "16. Establish degree of reliability required for plant and various subsystems.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "17. Establish equipment sparing concepts, including types of drivers to be used.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "18. Establish plant operating requirements during power failure, including need for emergency power system.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "19. Establish plant cleanup requirements and need for special systems and connections.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "20. Develop preliminary plant startup and shutdown procedures.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "21. Establish plant turndown requirements.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "22. Develop P&IDs and obtain client approval.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "is_section_header": true,
+            "cells": [
+              {"value": "Procurement Considerations", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "23. Establish availability of surplus equipment.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "24. Determine preferences for equipment make (manufacturer).", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "25. Establish needs for spare parts that should be ordered at same time as equipment.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "26. Determine extent of inspection required.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "is_section_header": true,
+            "cells": [
+              {"value": "Miscellaneous", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "27. Develop materials of construction, including determination of need for special work such as lab tests, development of fabrication techniques, etc.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "28. Start preparation of Safety Instruction Sheets.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "29. Review governmental regulations that affect design (including proposed regulations) and establish applicable design criteria. Initiate contacts with official agencies and determine procedures and required schedules for obtaining permits.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "30. Prepare Basic Design Data Sheets.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "is_section_header": true,
+            "cells": [
+              {"value": "B. Utilities", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1. Select utility levels and determine source of supply.", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2. Prepare utility balance in sufficient detail to permit selection of types of drivers for all significant equipment.", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page checklist table with project phase columns (1=Planning, 2=Engineering Development, 3=Drafting Development). Section headers embedded in table rows. Footnote key at bottom of table."
+    }
+  ],
+  "issues": []
+}

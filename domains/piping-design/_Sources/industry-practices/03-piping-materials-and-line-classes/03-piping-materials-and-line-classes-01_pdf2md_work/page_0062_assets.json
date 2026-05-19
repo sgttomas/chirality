@@ -1,0 +1,89 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 62,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.12 Class PAE — Pressure-Temperature Rating, Service, Material, Construction Class, Corrosion Allowance",
+      "slug": "table-4-12-pae-header",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE: 4.12", "is_header": true, "type": "text" },
+              { "value": "CLASS: PAE", "is_header": true, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "is_header": true, "type": "text" },
+              { "value": "ANSI Class 300 Except 425 C (800 F) Max.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "is_header": true, "type": "text" },
+              { "value": "Process", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "is_header": true, "type": "text" },
+              { "value": "Carbon Steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "is_header": true, "type": "text" },
+              { "value": "1, 2", "type": "text" },
+              { "value": "CORROSION ALLOWANCE:", "is_header": true, "type": "text" },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Header specification block for line class PAE"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 4.12 Class PAE — Line Class Item Specifications",
+      "slug": "table-4-12-pae-items",
+      "bbox_norm": [0.03, 0.27, 0.97, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true, "type": "text" },
+              { "value": "SIZE", "is_header": true, "type": "text" },
+              { "value": "RATING", "is_header": true, "type": "text" },
+              { "value": "TYPE", "is_header": true, "type": "text" },
+              { "value": "SPECIFICATIONS", "is_header": true, "type": "text" },
+              { "value": "NOTES", "is_header": true, "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Item specifications table for line class PAE; data rows not populated on this page — header row only visible"
+    }
+  ],
+  "issues": []
+}
