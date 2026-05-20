@@ -12,56 +12,9 @@
 
 ## 1. Source Basis
 
-This PRD is derived from the attached `chirality-app-dev` archive and two supplied assessment/planning inputs. It is intended to capture the product direction after reviewing the repository-local documents, the package/deliverable execution plan, and the current frontend implementation.
-
-Primary archive-local inputs reviewed:
-
-- `docs/DIRECTIVE.md`
-- `docs/CONTRACT.md`
-- `docs/SPEC.md`
-- `docs/TYPES.md`
-- `docs/PLAN.md`
-- `docs/DBM_Agent_Instruction_Architecture.md`
-- `docs/SE_Design_Analysis.md`
-- `docs/START_HERE_AGENT_PATHS.md`
-- `docs/CHANGE_PUBLICATION_GUIDANCE_CONSTRAINTS.md`
-- `docs/harness/*`
-- `docs/ui/UI_POLISH_EXECUTION_PLAN.md`
-- `docs/thesis/*`
-- `docs/thesis/bigger-picture/*`
-- `execution/_Decomposition/ChiralityApp_SoftwareDecomposition_2026-02-21_G7-APPROVED.md`
-- `execution/_ScopeChange/*`
-- `execution/PKG-*/1_Working/DEL-*/*`
-- `frontend/`
-
-Additional assessment/planning inputs reviewed:
-
-- `agent-harness-patterns-from-claw-code-assessment.md`
-- `chirality-app-future-development-plan.md`
-- `prd-revisions-claude-agent-sdk.md`
-- `claude-agent-sdk-implementation-followups.md`
-- Owner-supplied boutique-runtime / reliance-boundary steelman review dated 2026-05-20
-
-Additional external implementation reference reviewed:
-
+- Chirality App product descriptions from conversations with the developer.
+- The existing `frontend/` files.
 - Anthropic Claude Agent SDK / Claude Code SDK documentation current as of 2026-05-20, including TypeScript `query()` options, permissions, hooks, MCP, sessions, `SessionStore`, system prompts, subagents, and hosting guidance.
-
-Important archive-local observation:
-
-- The reviewed archive contains `docs/`, `execution/`, and `frontend/` roots.
-- The reviewed archive does **not** include root-level `AGENTS.md`, `README.md`, `agents/`, `WHAT-IS-AN-AGENT.md`, `PROFESSIONAL_ENGINEERING.md`, `tools/REGISTRY.md`, or `examples/` assets, although the frontend instruction-root and packaging code expects several of those resources.
-- Therefore this PRD distinguishes between (a) product requirements for the full Chirality source tree and (b) implementation gaps visible in the reviewed archive snapshot.
-
-Authority rule:
-
-- This PRD states product direction and implementation sequence.
-- It does not supersede `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `AGENTS.md` when present, accepted execution deliverables, or approved scope-change records.
-- If this PRD conflicts with a higher-authority governance source, the higher-authority source controls until a governed product change updates the record.
-- The vNext development source should remain the app-development workspace. The public application snapshot is synchronized only through an explicit release operation.
-
-Where documents, execution records, and implementation disagree, this PRD states the product requirement and records the implementation note under **Known Gaps and Risks**. Advisory assessment material is adopted only where it aligns with Chirality's local-first, professional-work, filesystem-native governance model.
-
----
 
 ## 2. Product Summary
 
@@ -222,7 +175,7 @@ Current product scope:
 
 - Desktop shell built with Next.js and Electron.
 - Working-root selection, validation, file tree browsing, and deliverable scanning.
-- Matrix navigation across PORTAL, WORKBENCH, and PIPELINE.
+- GUI for working with agents.
 - Session lifecycle APIs and turn execution via SSE.
 - Anthropic provider path with local UI key storage and environment fallback.
 - Stub provider mode for deterministic local tests.
@@ -278,7 +231,6 @@ The current concrete release target remains:
 - Unsigned, unnotarized local-builder DMG
 - Node.js `>=20` for development/build
 
-README references to Windows packaging, if present in a complete source tree, are not current release commitments unless separately scoped.
 
 ### 6.3 Current Implementation Baseline
 
@@ -306,7 +258,6 @@ The reviewed frontend implementation already includes:
 - Automated merge gates beyond documented/human CHANGE constraints.
 - Windows release packaging unless separately scoped.
 - Runtime enforcement monitor that intercepts every non-harness file write.
-- Reimplementing SDK-provided primitives when the SDK satisfies Chirality requirements.
 - Making Claude Code or any SDK default the authoritative product runtime, canonical transcript store, permission authority, tool authority, human-gate authority, or product identity.
 - Loading ambient `~/.claude/settings.json` or `.claude/settings.local.json` in shipped builds.
 - Shipped `bypassPermissions` operation.

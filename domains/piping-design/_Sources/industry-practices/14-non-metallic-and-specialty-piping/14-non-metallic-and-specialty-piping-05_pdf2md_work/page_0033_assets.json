@@ -1,0 +1,57 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 33,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Temperature and Pressure Limitations, PVC and CPVC",
+      "slug": "temperature-pressure-limitations-pvc-cpvc",
+      "bbox_norm": [0.08, 0.63, 0.75, 0.76],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "", "is_header": true},
+              {"value": "PVC", "is_header": true},
+              {"value": "CPVC", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Max. recommended temp., pressure applications", "type": "text"},
+              {"value": "140°F", "type": "text"},
+              {"value": "200°F", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Max. recommended temp., nonpressure applications", "type": "text"},
+              {"value": "150°F", "type": "text"},
+              {"value": "210°F", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Min. recommended temp.", "type": "text"},
+              {"value": "0°F", "type": "text"},
+              {"value": "0°F", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table listing PVC and CPVC temperature limits"
+    }
+  ],
+  "issues": []
+}
