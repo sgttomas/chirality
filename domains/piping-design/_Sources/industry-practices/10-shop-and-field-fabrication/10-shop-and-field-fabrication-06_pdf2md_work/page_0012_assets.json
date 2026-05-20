@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 12,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 600-4 Decision Tree for Stress Relief of 300 Series Stainless Steel Piping",
+      "slug": "fig-600-4-decision-tree-stress-relief-300-series-ss-piping",
+      "bbox_norm": [0.05, 0.06, 0.97, 0.93],
+      "confidence": "high",
+      "notes": "Full-page flowchart/decision tree with caption above the bordered diagram area"
+    }
+  ],
+  "issues": []
+}

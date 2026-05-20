@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 47,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 600-11 Hot Tap Checklist (4 of 4) — approval signature block",
+      "slug": "hot-tap-checklist-4of4-approval",
+      "bbox_norm": [0.06, 0.06, 0.94, 0.18],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Approved by________________________", "type": "text" },
+              { "value": "Postweld Inspection________________________", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Accepted by Operations________________________", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Signature/approval block at top of page, part of Fig. 600-11 checklist continuation"
+    }
+  ],
+  "issues": []
+}

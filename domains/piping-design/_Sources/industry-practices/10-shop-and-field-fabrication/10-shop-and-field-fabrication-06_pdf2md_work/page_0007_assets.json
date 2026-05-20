@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 7,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 600-1 Seal Weld",
+      "slug": "fig-600-1-seal-weld",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.50],
+      "confidence": "high",
+      "notes": "Diagram showing seal weld detail with annotated cross-section and good practices callout for socket welding or threaded valve configurations."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 600-2 Bridge Weld",
+      "slug": "fig-600-2-bridge-weld",
+      "bbox_norm": [0.04, 0.51, 0.96, 0.94],
+      "confidence": "high",
+      "notes": "Diagram showing bridge weld configurations including boss/threadolet/sockolet with socket welding or threaded valve, and valve with male end variants."
+    }
+  ],
+  "issues": []
+}

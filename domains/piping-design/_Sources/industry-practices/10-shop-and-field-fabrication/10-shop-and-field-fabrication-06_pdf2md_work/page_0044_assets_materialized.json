@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-06_p0044_fig01",
+      "bbox_norm": [
+        0.05,
+        0.47,
+        0.95,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1384,
+        2550,
+        3230
+      ],
+      "caption": "Fig. 600-11 Hot Tap Checklist (1 of 4)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/10-shop-and-field-fabrication-06_p0044_fig01_hot-tap-checklist-1-of-4.png",
+      "png_sha256": "1f107ee739f1d7e0255bc4d2029a310720fba9fb9daca928a0c5e8c611286e72",
+      "slug": "hot-tap-checklist-1-of-4",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-06",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0044.png",
+  "page_image_sha256": "0690cd7a0a2cd9899db7edf7a5e382bb8aa8a245fbb2fb53e2f1093b21f15fc0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0044_assets.json"
+}

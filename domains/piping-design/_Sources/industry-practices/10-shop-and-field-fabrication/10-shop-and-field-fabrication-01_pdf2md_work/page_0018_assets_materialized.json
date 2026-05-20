@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0018.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0018_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1485,
+        2550,
+        2739
+      ],
+      "caption": "Minimum examination requirements by material group showing Random RT or UT, Visual (VT), Magnetic Particle (MT), and Liquid Penetrant (PT) percentages",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-01_p0018_tbl01_minimum-examination-requirements-by-mate.png",
+      "png_sha256": "67c324f1cd300291b80cb4e2a9a69ea150832ec72817d06da30bb02de644e751",
+      "slug": "minimum-examination-requirements-by-mate",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-01",
+  "doc_stem": "10-shop-and-field-fabrication-01",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0018.png",
+  "page_image_sha256": "efa915657f61eb3ede442f7ca4416b8cac3cab46447800b85143b9b904a92f99",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0018_assets.json"
+}

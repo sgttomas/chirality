@@ -1,0 +1,185 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 10,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 600-3 Postweld Heat Treatment Requirements(1)",
+      "slug": "fig-600-3-postweld-heat-treatment-requirements",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.83],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Postweld heat treat on-plot vessels. On tanks, postweld heat treat the coils only.",
+          "(2) \"Large piping\" is butt-welded 2\" & larger. \"Small piping\" is socket or seal welded 1½\" & smaller.",
+          "(3) \"Hot caustic\" is over 140°F for concentrations below 30% (wt.), and over 120°F for concentrations above 30%.",
+          "(4) PWHT all main fractionator overhead piping at 1150°F – 1250°F. Furnace PWHT is preferred. Consult M&E Engineering if local PWHT is being considered.",
+          "(5) For other services, such as HP or nitrate, see the Corrosion Prevention Manual for specific recommendations regarding PWHT.",
+          "(6) Carbon steel pipe in wall thicknesses over ¾ inch shall be postweld heat treated.",
+          "(7) The Company's EG specifications are more restrictive than codes.",
+          "(8) For more information, see Figure 600-4."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material/Service", "is_header": true },
+              { "value": "Large Piping(2)", "is_header": true },
+              { "value": "Small Piping(2)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hot Caustic(3)", "type": "text" },
+              { "value": "Yes", "type": "text" },
+              { "value": "Yes", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cold Caustic(3)", "type": "text" },
+              { "value": "Only if traced", "type": "text" },
+              { "value": "Only if traced", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "MEA Over 100°F", "type": "text" },
+              { "value": "Yes", "type": "text" },
+              { "value": "Yes", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "MEA Below 100°F", "type": "text" },
+              { "value": "Only if traced", "type": "text" },
+              { "value": "Only if traced", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DEA & MDEA Over 100°F", "type": "text" },
+              { "value": "Yes", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DEA & MDEA Below 100°F", "type": "text" },
+              { "value": "Only if traced", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbonate Over 150°F", "type": "text" },
+              { "value": "Yes", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbonate Below 150°F", "type": "text" },
+              { "value": "Only if traced", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbonate in FCC Plants", "type": "text" },
+              { "value": "Yes(4)", "type": "text" },
+              { "value": "Yes(4)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Anhydrous Ammonia", "type": "text" },
+              { "value": "Consult M&E Engineering", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sour Services", "type": "text" },
+              { "value": "Consult M&E Engineering", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Other Services", "type": "text" },
+              { "value": "Per B31.3 or B31.1(5) (6)", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon-½ Moly Steel", "type": "text" },
+              { "value": "Same as Carbon Steel", "type": "text" },
+              { "value": "Same as Carbon Steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Chrome-Moly Steels(7)", "type": "text" },
+              { "value": "Per B31.3/31.1 and PIM-EG-4772", "type": "text" },
+              { "value": "Yes, Per B31.3/31.1 and PIM-EG-4772", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels(8)", "type": "text", "is_header": true },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Types 304 & 316", "type": "text" },
+              { "value": "No", "type": "text" },
+              { "value": "No", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Types 304L, 316L, 321", "type": "text" },
+              { "value": "Generally yes, but not for services below 150°F, and not for chemical plants where sensitization is a greater concern.", "type": "text" },
+              { "value": "Only in known chloride cracking services, except PWHT is generally performed to first block valve.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Type 347", "type": "text" },
+              { "value": "Consult M&E Engineering if over ¾\" thick. Otherwise same as 304L & 321.", "type": "text" },
+              { "value": "Only in known chloride cracking services, except PWHT is generally performed to first block valve.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 20, Incoloy & Inconel Alloys", "type": "text" },
+              { "value": "Consult M&E Engineering.", "type": "text" },
+              { "value": "Consult M&E Engineering.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table listing postweld heat treatment requirements by material/service and piping size. Eight footnotes at bottom of page."
+    }
+  ],
+  "issues": []
+}

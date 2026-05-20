@@ -1,0 +1,309 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 26,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 600-6 Approximate Loads on Lubricated Bolts when Torques are Applied",
+      "slug": "fig-600-6-approximate-loads-lubricated-bolts-torques",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page table with 22 data rows; columns for stud diameter, thread count, root diameter, root area, and bolt load/torque at 15,000, 30,000, and 45,000 psi stress levels. Note at bottom about stress value variability.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Stress values for lubricated bolts may vary by 50 to 150%. Torques for nonlubricated bolts may be 3 to 4 times those for lubricated bolts."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Nominal Diameter of Stud (in.)", "is_header": true },
+              { "value": "Number of Threads (per in.)", "is_header": true },
+              { "value": "Diameter at Root of Thread (in.)", "is_header": true },
+              { "value": "Area at Root of Thread (in.²)", "is_header": true },
+              { "value": "15,000 psi Torque (ft-lb)", "is_header": true },
+              { "value": "15,000 psi Bolt Load (lb)", "is_header": true },
+              { "value": "30,000 psi Torque (ft-lb)", "is_header": true },
+              { "value": "30,000 psi Bolt Load (lb)", "is_header": true },
+              { "value": "45,000 psi Torque (ft-lb)", "is_header": true },
+              { "value": "45,000 psi Bolt Load (lb)", "is_header": true }
+            ]
+          },
+          { "cells": [
+            { "value": "1/4", "type": "text" },
+            { "value": 20, "type": "number" },
+            { "value": 0.185, "type": "number" },
+            { "value": 0.027, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 405, "type": "number" },
+            { "value": 4, "type": "number" },
+            { "value": 810, "type": "number" },
+            { "value": 6, "type": "number" },
+            { "value": 1215, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "5/16", "type": "text" },
+            { "value": 18, "type": "number" },
+            { "value": 0.240, "type": "number" },
+            { "value": 0.045, "type": "number" },
+            { "value": 4, "type": "number" },
+            { "value": 675, "type": "number" },
+            { "value": 8, "type": "number" },
+            { "value": 1350, "type": "number" },
+            { "value": 12, "type": "number" },
+            { "value": 2025, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "3/8", "type": "text" },
+            { "value": 16, "type": "number" },
+            { "value": 0.294, "type": "number" },
+            { "value": 0.068, "type": "number" },
+            { "value": 6, "type": "number" },
+            { "value": 1020, "type": "number" },
+            { "value": 12, "type": "number" },
+            { "value": 2040, "type": "number" },
+            { "value": 18, "type": "number" },
+            { "value": 3060, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "7/16", "type": "text" },
+            { "value": 14, "type": "number" },
+            { "value": 0.345, "type": "number" },
+            { "value": 0.093, "type": "number" },
+            { "value": 10, "type": "number" },
+            { "value": 1395, "type": "number" },
+            { "value": 20, "type": "number" },
+            { "value": 2790, "type": "number" },
+            { "value": 30, "type": "number" },
+            { "value": 4185, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1/2", "type": "text" },
+            { "value": 13, "type": "number" },
+            { "value": 0.400, "type": "number" },
+            { "value": 0.126, "type": "number" },
+            { "value": 15, "type": "number" },
+            { "value": 1890, "type": "number" },
+            { "value": 30, "type": "number" },
+            { "value": 3780, "type": "number" },
+            { "value": 45, "type": "number" },
+            { "value": 5670, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "9/16", "type": "text" },
+            { "value": 12, "type": "number" },
+            { "value": 0.454, "type": "number" },
+            { "value": 0.162, "type": "number" },
+            { "value": 23, "type": "number" },
+            { "value": 2430, "type": "number" },
+            { "value": 45, "type": "number" },
+            { "value": 4860, "type": "number" },
+            { "value": 68, "type": "number" },
+            { "value": 7290, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "5/8", "type": "text" },
+            { "value": 11, "type": "number" },
+            { "value": 0.507, "type": "number" },
+            { "value": 0.202, "type": "number" },
+            { "value": 30, "type": "number" },
+            { "value": 3030, "type": "number" },
+            { "value": 60, "type": "number" },
+            { "value": 6060, "type": "number" },
+            { "value": 90, "type": "number" },
+            { "value": 9090, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "3/4", "type": "text" },
+            { "value": 10, "type": "number" },
+            { "value": 0.620, "type": "number" },
+            { "value": 0.302, "type": "number" },
+            { "value": 50, "type": "number" },
+            { "value": 4530, "type": "number" },
+            { "value": 100, "type": "number" },
+            { "value": 9060, "type": "number" },
+            { "value": 150, "type": "number" },
+            { "value": 13590, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "7/8", "type": "text" },
+            { "value": 9, "type": "number" },
+            { "value": 0.731, "type": "number" },
+            { "value": 0.419, "type": "number" },
+            { "value": 80, "type": "number" },
+            { "value": 6285, "type": "number" },
+            { "value": 160, "type": "number" },
+            { "value": 12570, "type": "number" },
+            { "value": 240, "type": "number" },
+            { "value": 18855, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 0.838, "type": "number" },
+            { "value": 0.551, "type": "number" },
+            { "value": 123, "type": "number" },
+            { "value": 8265, "type": "number" },
+            { "value": 245, "type": "number" },
+            { "value": 16530, "type": "number" },
+            { "value": 368, "type": "number" },
+            { "value": 24795, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-1/8", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 0.963, "type": "number" },
+            { "value": 0.728, "type": "number" },
+            { "value": 178, "type": "number" },
+            { "value": 10920, "type": "number" },
+            { "value": 355, "type": "number" },
+            { "value": 21840, "type": "number" },
+            { "value": 533, "type": "number" },
+            { "value": 32760, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-1/4", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.088, "type": "number" },
+            { "value": 0.929, "type": "number" },
+            { "value": 250, "type": "number" },
+            { "value": 13935, "type": "number" },
+            { "value": 500, "type": "number" },
+            { "value": 27870, "type": "number" },
+            { "value": 750, "type": "number" },
+            { "value": 41805, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-3/8", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.213, "type": "number" },
+            { "value": 1.155, "type": "number" },
+            { "value": 340, "type": "number" },
+            { "value": 17325, "type": "number" },
+            { "value": 680, "type": "number" },
+            { "value": 34650, "type": "number" },
+            { "value": 1020, "type": "number" },
+            { "value": 51975, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-1/2", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.338, "type": "number" },
+            { "value": 1.405, "type": "number" },
+            { "value": 400, "type": "number" },
+            { "value": 21075, "type": "number" },
+            { "value": 800, "type": "number" },
+            { "value": 42150, "type": "number" },
+            { "value": 1200, "type": "number" },
+            { "value": 63225, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-5/8", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.463, "type": "number" },
+            { "value": 1.680, "type": "number" },
+            { "value": 550, "type": "number" },
+            { "value": 25200, "type": "number" },
+            { "value": 1100, "type": "number" },
+            { "value": 50400, "type": "number" },
+            { "value": 1650, "type": "number" },
+            { "value": 75600, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-3/4", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.588, "type": "number" },
+            { "value": 1.980, "type": "number" },
+            { "value": 750, "type": "number" },
+            { "value": 29700, "type": "number" },
+            { "value": 1500, "type": "number" },
+            { "value": 59400, "type": "number" },
+            { "value": 2250, "type": "number" },
+            { "value": 89100, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "1-7/8", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.713, "type": "number" },
+            { "value": 2.304, "type": "number" },
+            { "value": 1000, "type": "number" },
+            { "value": 34560, "type": "number" },
+            { "value": 2000, "type": "number" },
+            { "value": 69120, "type": "number" },
+            { "value": 3000, "type": "number" },
+            { "value": 103680, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "2", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 1.838, "type": "number" },
+            { "value": 2.652, "type": "number" },
+            { "value": 1100, "type": "number" },
+            { "value": 39780, "type": "number" },
+            { "value": 2200, "type": "number" },
+            { "value": 79560, "type": "number" },
+            { "value": 3300, "type": "number" },
+            { "value": 119340, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "2-1/4", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 2.088, "type": "number" },
+            { "value": 3.423, "type": "number" },
+            { "value": 1590, "type": "number" },
+            { "value": 51345, "type": "number" },
+            { "value": 3180, "type": "number" },
+            { "value": 102690, "type": "number" },
+            { "value": 4770, "type": "number" },
+            { "value": 154035, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "2-1/2", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 2.338, "type": "number" },
+            { "value": 4.292, "type": "number" },
+            { "value": 2200, "type": "number" },
+            { "value": 64380, "type": "number" },
+            { "value": 4400, "type": "number" },
+            { "value": 128760, "type": "number" },
+            { "value": 6600, "type": "number" },
+            { "value": 193140, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "2-3/4", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 2.588, "type": "number" },
+            { "value": 5.259, "type": "number" },
+            { "value": 2960, "type": "number" },
+            { "value": 78885, "type": "number" },
+            { "value": 5920, "type": "number" },
+            { "value": 157770, "type": "number" },
+            { "value": 8800, "type": "number" },
+            { "value": 236655, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "3", "type": "text" },
+            { "value": 8, "type": "number" },
+            { "value": 2.838, "type": "number" },
+            { "value": 6.324, "type": "number" },
+            { "value": 3860, "type": "number" },
+            { "value": 94860, "type": "number" },
+            { "value": 7720, "type": "number" },
+            { "value": 189720, "type": "number" },
+            { "value": 11580, "type": "number" },
+            { "value": 284580, "type": "number" }
+          ] }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

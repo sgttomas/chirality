@@ -5,13 +5,6 @@
   "page": 3,
   "total_pages": 9,
   "asset_policy": "prose-document-assets-v1",
-  "assets": [
-    {
-      "id": "img-0003-01",
-      "kind": "img",
-      "caption": "Plains Midstream Canada logo",
-      "bbox_norm": [0.03, 0.02, 0.22, 0.09]
-    }
-  ],
+  "assets": [],
   "issues": []
 }

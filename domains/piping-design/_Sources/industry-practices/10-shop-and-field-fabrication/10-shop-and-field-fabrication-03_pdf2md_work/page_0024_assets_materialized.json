@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-03_p0024_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        175,
+        2480,
+        2702
+      ],
+      "caption": "Inspection classes for piping \u2014 material, service, ASME rating class, visual/RT/UT/MT/PT/hardness/FN requirements",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,13], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-03_p0024_tbl01_inspection-classes-for-piping-material-s.png",
+      "png_sha256": "fa78fd54ecb38c665823d97db6c864af005c247441d3f46457ac427fdaa878ee",
+      "slug": "inspection-classes-for-piping-material-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-03",
+  "doc_stem": "10-shop-and-field-fabrication-03",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0024.png",
+  "page_image_sha256": "230cb7e3aa7b8e9af4eef6d0222b1e9130050139ca83a7f9288506daea79fcb2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0024_assets.json"
+}

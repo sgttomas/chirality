@@ -1,0 +1,119 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 25,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 600-5 Recommended Bolting Stresses for Standard Pipe Flanges",
+      "slug": "fig-600-5-recommended-bolting-stresses-standard-pipe-flanges",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.58],
+      "confidence": "high",
+      "notes": "Multi-row table with merged cells spanning multiple rows; includes footnote references",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) The pipefitter or boilermaker should be alert to flange distortion and bolting elongation.",
+          "(2) For flange materials not listed (excluding cast iron), initial bolt stress should be equal to 30,000 psi times the ratio of the pressure rating at 100°F to the pressure rating for carbon steel at 100°F.",
+          "(3) For conversion of bolting stress to torque, see Figure 600-6.",
+          "(4) ASME/ANSI B16.5 includes cast or forged steel flanges from preceding standard ASA-B16.e.",
+          "(5) For Class 150 flanges of Types 304, 304L, or 316L stainless steel: the flange should be carefully observed for evidence of distortion.",
+          "(6) If bolting is other than A193, engineering review is recommended unless suitable loadings are known from previous experience.",
+          "(7) If leaks develop, these stresses should be increased by up to 1/3 (without engineering review) if there is not evidence of flange distortion.",
+          "(8) Some Class 150 piping classifications permit mild steel bolts for flange diameters through 16\" with up to 1\" bolts with minimum yield strength of 30,000 psi.",
+          "(9) Cast iron flanges require full face gaskets and mild steel bolts."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Standard", "is_header": true },
+              { "value": "Flange Class", "is_header": true },
+              { "value": "Flange Size, in.", "is_header": true },
+              { "value": "Flange Material(2)", "is_header": true },
+              { "value": "Bolting Material", "is_header": true },
+              { "value": "Initial Bolting Stress(6) psi(3)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ASME/ANSI B16.5(4)/API Std 600/or API Std 605", "type": "text" },
+              { "value": "150", "type": "text" },
+              { "value": "All listed", "type": "text" },
+              { "value": "Forged or cast carbon steel; carbon-moly steel; chrome-moly steel; Types 310, 316, 321 or 347 stainless steel; or(5) Types 304, 304L, or 316L stainless steel", "type": "text" },
+              { "value": "A193 Grade B7 studs(6)", "type": "text" },
+              { "value": "30,000(3)(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "As above", "type": "text" },
+              { "value": "150", "type": "text" },
+              { "value": "All listed", "type": "text" },
+              { "value": "As above", "type": "text" },
+              { "value": "A307 Grade B Mild steel bolts(6)", "type": "text" },
+              { "value": "24,000(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "As above", "type": "text" },
+              { "value": "All others listed", "type": "text" },
+              { "value": "All listed", "type": "text" },
+              { "value": "Forged or cast carbon steel; carbon-moly steel; chrom-moly steel; or Types 310, 316, 321 or 347 stainless steel", "type": "text" },
+              { "value": "A-193 studs(6)", "type": "text" },
+              { "value": "30,000(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "For Types 304L and 316L stainless steel", "type": "text" },
+              { "value": "A-193 studs(6)", "type": "text" },
+              { "value": "25,000(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "For Type 304 stainless steel", "type": "text" },
+              { "value": "A-193 studs(6)", "type": "text" },
+              { "value": "21,000(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ANSI B16.1", "type": "text" },
+              { "value": "125", "type": "text" },
+              { "value": "Thru 12\"", "type": "text" },
+              { "value": "Cast iron(8)", "type": "text" },
+              { "value": "Mild steel bolts", "type": "text" },
+              { "value": "19,000(9)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "14\" thru 24\"", "type": "text" },
+              { "value": "Cast iron(8)", "type": "text" },
+              { "value": "Mild steel bolts", "type": "text" },
+              { "value": "18,000(9)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

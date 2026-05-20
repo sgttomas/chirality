@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-03_p0013_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1158,
+        2480,
+        2912
+      ],
+      "caption": "Material traceability steps (Steps 1\u20135)",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-03_p0013_tbl01_material-traceability-steps-steps-15.png",
+      "png_sha256": "90d55eb947de52d7fc1ae1f9dd24d5b9ef44f4872c4a07d04887a41b991d2ffd",
+      "slug": "material-traceability-steps-steps-15",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-03",
+  "doc_stem": "10-shop-and-field-fabrication-03",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0013.png",
+  "page_image_sha256": "f08ba651ff8d818605156cb91c12291af4fb40892e38f80b7a8179612923d17d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0013_assets.json"
+}

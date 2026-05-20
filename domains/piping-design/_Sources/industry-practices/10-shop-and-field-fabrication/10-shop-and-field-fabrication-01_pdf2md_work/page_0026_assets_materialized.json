@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0026_fig01",
+      "bbox_norm": [
+        0.08,
+        0.44,
+        0.65,
+        0.6
+      ],
+      "bbox_px": [
+        76,
+        1287,
+        1785,
+        2145
+      ],
+      "caption": "Spool piece identification marking diagram showing unit number, piping class, line number, piece mark number, insulation code (if required), and example label '45 CAW 0522 2A IH'",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/10-shop-and-field-fabrication-01_p0026_fig01_spool-piece-identification-marking-diagr.png",
+      "png_sha256": "265fe1d17d93846923ae66240453e0074e81a7c951d3f61298f6d911c796cdd2",
+      "slug": "spool-piece-identification-marking-diagr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-01",
+  "doc_stem": "10-shop-and-field-fabrication-01",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0026.png",
+  "page_image_sha256": "812f179f6ad6a2108504d15ec0e51d565f26729cca02d7a3a1b6c006ccd0d212",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0026_assets.json"
+}

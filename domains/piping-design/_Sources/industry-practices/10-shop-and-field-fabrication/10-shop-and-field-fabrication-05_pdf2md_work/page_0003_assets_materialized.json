@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-05_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-05_p0003_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.22,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        25,
+        597,
+        2480,
+        3509
+      ],
+      "caption": "Summary of changes since previous edition",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-05_p0003_tbl01_summary-of-changes-since-previous-editio.png",
+      "png_sha256": "50b4b70e10a4da06fac87b0109093364f062419249a5d0b577fcda760fa25134",
+      "slug": "summary-of-changes-since-previous-editio",
+      "status": "materialized",
+      "table_data_json_path": "tables/10-shop-and-field-fabrication-05_p0003_tbl01_summary-of-changes-since-previous-editio.json",
+      "table_data_json_sha256": "85ab43f4f65adf74bbd0ee58718c61dadbc6cd206e391a8a8dbec543b4e3c77e",
+      "table_data_sha256": "85ab43f4f65adf74bbd0ee58718c61dadbc6cd206e391a8a8dbec543b4e3c77e",
+      "xlsx_path": "tables/10-shop-and-field-fabrication-05_p0003_tbl01_summary-of-changes-since-previous-editio.xlsx",
+      "xlsx_sha256": "05e324e82768df7ab234f46047ecf7838a45ef861e2a4eb5941c9878fdaeb694"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-05",
+  "doc_stem": "10-shop-and-field-fabrication-05",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-05_pdf2md_work/page_0003.png",
+  "page_image_sha256": "bf4b2ecb66db86722f3201161ddff8452db675d4d745af06d6a4587945e3bac1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-05_pdf2md_work/page_0003_assets.json"
+}

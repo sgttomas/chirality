@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-06_p0012_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3230
+      ],
+      "caption": "Fig. 600-4 Decision Tree for Stress Relief of 300 Series Stainless Steel Piping",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/10-shop-and-field-fabrication-06_p0012_fig01_fig-600-4-decision-tree-stress-relief-30.png",
+      "png_sha256": "a1a2bf5a96270c88c3dfbeed4fcf6ca6d427b784b93c963ad7225d0390bf6888",
+      "slug": "fig-600-4-decision-tree-stress-relief-30",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-06",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0012.png",
+  "page_image_sha256": "195b613c7d332dd88225d585826b8531f0507b79d146ea44d7a052210a38f022",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0012_assets.json"
+}

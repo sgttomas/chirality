@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 52,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 600-13 Sample Lockout Safety Tag",
+      "slug": "fig-600-13-sample-lockout-safety-tag",
+      "bbox_norm": [0.08, 0.04, 0.92, 0.38],
+      "confidence": "high",
+      "notes": "Two DANGER tags shown side by side — left tag: Do Not Start Equipment Controlled By This Valve/Switch, Utility Section; right tag: Do Not Remove This Tag, This Tag to Be Removed Only By Authorized Utility Section Personnel, See Other Side"
+    }
+  ],
+  "issues": []
+}

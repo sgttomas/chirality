@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0042.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-06_p0042_fig01",
+      "bbox_norm": [
+        0.07,
+        0.6,
+        0.93,
+        0.92
+      ],
+      "bbox_px": [
+        51,
+        1813,
+        2499,
+        3197
+      ],
+      "caption": "Fig. 600-10 Bypass Using Two STOPPLE\u00ae Plugging Machines Courtesy of T.D. Williamson",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/10-shop-and-field-fabrication-06_p0042_fig01_fig-600-10-bypass-stopple-plugging-machi.png",
+      "png_sha256": "a7ac988284d0083cd5aae81aa295c99d414df31132ebb4fc10a8519b21cbd2b2",
+      "slug": "fig-600-10-bypass-stopple-plugging-machi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-06",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 42,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0042.png",
+  "page_image_sha256": "2dea51e71cf5abc1d1a61b55088481c2ea2831961e8eed79e001f6228e0d9ab2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0042_assets.json"
+}

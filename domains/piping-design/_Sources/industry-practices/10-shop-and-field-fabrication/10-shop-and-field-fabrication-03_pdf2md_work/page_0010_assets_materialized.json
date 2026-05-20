@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0010.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-03_p0010_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.1,
+        0.72,
+        0.24
+      ],
+      "bbox_px": [
+        74,
+        175,
+        1910,
+        1018
+      ],
+      "caption": "Length tolerances by dimension",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-03_p0010_tbl01_length-tolerances-by-dimension.png",
+      "png_sha256": "4956ffc59bc3ed2562f4a1838731b4195b88723026d5b1bbb5e77400bf2239b4",
+      "slug": "length-tolerances-by-dimension",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-03",
+  "doc_stem": "10-shop-and-field-fabrication-03",
+  "page": 10,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0010.png",
+  "page_image_sha256": "bf84f6e6c3eb49c62f80515e78c7b82b15a7f4cde2aa86880937cdabec205c9e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0010_assets.json"
+}

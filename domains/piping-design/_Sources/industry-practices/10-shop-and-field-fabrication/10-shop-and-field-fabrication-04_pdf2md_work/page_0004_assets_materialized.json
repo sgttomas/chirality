@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-04_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-04_p0004_fig01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1649,
+        2480,
+        3404
+      ],
+      "caption": "Figure 2.1 Upstream and downstream lengths of shop/field fabricated orifice meter runs DN 50 to 600.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/10-shop-and-field-fabrication-04_p0004_fig01_upstream-downstream-lengths-orifice-mete.png",
+      "png_sha256": "75107436e7c2b02198bb8df5cd80920b4dcdad5174cb8ad3f2906b1b172c65f1",
+      "slug": "upstream-downstream-lengths-orifice-mete",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-04",
+  "doc_stem": "10-shop-and-field-fabrication-04",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-04_pdf2md_work/page_0004.png",
+  "page_image_sha256": "009caeed6088f96f35db651c6101948937e4638d527344fbd38264c8dcb55a45",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-04_pdf2md_work/page_0004_assets.json"
+}

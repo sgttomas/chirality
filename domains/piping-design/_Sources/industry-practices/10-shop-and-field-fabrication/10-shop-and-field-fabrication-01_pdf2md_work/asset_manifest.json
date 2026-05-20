@@ -1,0 +1,415 @@
+{
+  "asset_count": 4,
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0018_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1485,
+        2550,
+        2739
+      ],
+      "caption": "Minimum examination requirements by material group showing Random RT or UT, Visual (VT), Magnetic Particle (MT), and Liquid Penetrant (PT) percentages",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 18,
+      "png_path": "tables/10-shop-and-field-fabrication-01_p0018_tbl01_minimum-examination-requirements-by-mate.png",
+      "png_sha256": "67c324f1cd300291b80cb4e2a9a69ea150832ec72817d06da30bb02de644e751",
+      "slug": "minimum-examination-requirements-by-mate",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0026_fig01",
+      "bbox_norm": [
+        0.08,
+        0.44,
+        0.65,
+        0.6
+      ],
+      "bbox_px": [
+        76,
+        1287,
+        1785,
+        2145
+      ],
+      "caption": "Spool piece identification marking diagram showing unit number, piping class, line number, piece mark number, insulation code (if required), and example label '45 CAW 0522 2A IH'",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 26,
+      "png_path": "figures/10-shop-and-field-fabrication-01_p0026_fig01_spool-piece-identification-marking-diagr.png",
+      "png_sha256": "265fe1d17d93846923ae66240453e0074e81a7c951d3f61298f6d911c796cdd2",
+      "slug": "spool-piece-identification-marking-diagr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0031_fig01",
+      "bbox_norm": [
+        0.05,
+        0.11,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2550,
+        3069
+      ],
+      "caption": "Figure 211-1 \u2014 Preheat and interpass measurement locations diagram showing a valve body with labeled measurement points: BONNET INTERPASS, BODY JOINT PREHEAT AND INTERPASS, and BODY PREHEAT AND INTERPASS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 31,
+      "png_path": "figures/10-shop-and-field-fabrication-01_p0031_fig01_figure-211-1-preheat-and-interpass-measu.png",
+      "png_sha256": "ff45ed2e96d1baa1affcbcee1bc6222758e1d7e3e236228823899d8da69aada2",
+      "slug": "figure-211-1-preheat-and-interpass-measu",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p0033_fig01",
+      "bbox_norm": [
+        0.06,
+        0.1,
+        0.94,
+        0.88
+      ],
+      "bbox_px": [
+        25,
+        165,
+        2524,
+        3069
+      ],
+      "caption": "FIGURE 211-2 \u2014 Stress Relief Insulation Requirements",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 33,
+      "png_path": "figures/10-shop-and-field-fabrication-01_p0033_fig01_figure-211-2-stress-relief-insulation-re.png",
+      "png_sha256": "3f58c8768a7b1785321623bee0f0df41b4580f83d163e0f00aecf8e813bb91d7",
+      "slug": "figure-211-2-stress-relief-insulation-re",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "10-shop-and-field-fabrication-01",
+  "issues": [],
+  "page_manifest_count": 37,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0015.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0016.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0017.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0018.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0019.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0020.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0021.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0022.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0023.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0024.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0025.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0026.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0027.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0028.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0029.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0030.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0030_assets_materialized.json",
+      "page": 30,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0031.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0031_assets_materialized.json",
+      "page": 31,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0032.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0032_assets_materialized.json",
+      "page": 32,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0033.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0033_assets_materialized.json",
+      "page": 33,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0034.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0034_assets_materialized.json",
+      "page": 34,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0035.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0035_assets_materialized.json",
+      "page": 35,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0036.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0036_assets_materialized.json",
+      "page": 36,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0037.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work/page_0037_assets_materialized.json",
+      "page": 37,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-01_pdf2md_work"
+}

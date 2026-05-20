@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-03_p0012_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        140,
+        2480,
+        1860
+      ],
+      "caption": "Colour codes for Bulk Piping Materials \u2014 material, colour, and BS 381C reference",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.schema_version must be 'pdf2md-table/v1', got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-03_p0012_tbl01_colour-codes-for-bulk-piping-materials-m.png",
+      "png_sha256": "640deedf6ce64492ede12f068a1c57f943a363a95b90db51614728dce16aa9ac",
+      "slug": "colour-codes-for-bulk-piping-materials-m",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-03",
+  "doc_stem": "10-shop-and-field-fabrication-03",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0012.png",
+  "page_image_sha256": "866a9fe076309de0a4b01ed7b96b4e65d6a81c9402070bf10d7016940b62bafb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-03_pdf2md_work/page_0012_assets.json"
+}

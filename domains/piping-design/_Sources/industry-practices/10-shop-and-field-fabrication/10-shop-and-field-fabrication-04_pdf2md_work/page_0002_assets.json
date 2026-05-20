@@ -1,0 +1,9 @@
+{
+  "schema": "pdf2md-page-assets/v1",
+  "run_status": "DEGRADED",
+  "page": 2,
+  "assets": [],
+  "issues": [
+    "multimodal_vision_blocked_by_content_filter; pdftotext fallback used"
+  ]
+}

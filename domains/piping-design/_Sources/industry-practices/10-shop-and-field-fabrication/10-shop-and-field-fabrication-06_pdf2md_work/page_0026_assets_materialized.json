@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-06_p0026_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3300,
+        2550
+      ],
+      "caption": "Fig. 600-6 Approximate Loads on Lubricated Bolts when Torques are Applied",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-06_p0026_tbl01_fig-600-6-approximate-loads-lubricated-b.png",
+      "png_sha256": "7b0510a1182735ee48b90742d395df650c99ee37e9cdf9cdb5b262f5b88c05d2",
+      "slug": "fig-600-6-approximate-loads-lubricated-b",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-06",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0026.png",
+  "page_image_sha256": "7143769844e9a3b73b7757967dd02aa4443281d1816d987cca5b1fbaff876d6e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0026_assets.json"
+}

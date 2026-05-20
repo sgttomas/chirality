@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0025.anchored.md",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-06_p0025_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2076
+      ],
+      "caption": "Fig. 600-5 Recommended Bolting Stresses for Standard Pipe Flanges",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/10-shop-and-field-fabrication-06_p0025_tbl01_fig-600-5-recommended-bolting-stresses-s.png",
+      "png_sha256": "459e2845a1d7d381a2db910c9d86378467edde36a1a800622d7fbc8e12c17cb7",
+      "slug": "fig-600-5-recommended-bolting-stresses-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/_assets/10-shop-and-field-fabrication-06",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 25,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0025.png",
+  "page_image_sha256": "eb7b3ff9cd88c68e7e18d3943edac4efff579705c3291092c3355f9ed286d397",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/10-shop-and-field-fabrication/10-shop-and-field-fabrication-06_pdf2md_work/page_0025_assets.json"
+}

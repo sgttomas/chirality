@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 49,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 600-12 Staggered Stacking Arrangement for Pipe Storage",
+      "slug": "fig-600-12-staggered-stacking-arrangement-pipe-storage",
+      "bbox_norm": [0.08, 0.27, 0.92, 0.58],
+      "confidence": "high",
+      "notes": "Diagram showing staggered pipe stacking with timber base and chocks labeled; 4\" MIN dimension shown"
+    }
+  ],
+  "issues": []
+}

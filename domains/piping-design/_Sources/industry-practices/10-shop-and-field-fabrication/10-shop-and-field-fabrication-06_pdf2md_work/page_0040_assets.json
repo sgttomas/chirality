@@ -1,0 +1,75 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-06",
+  "page": 40,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 600-9 Recommended Welding Details for Hot Tap Connections",
+      "slug": "fig-600-9-recommended-welding-details-hot-tap",
+      "bbox_norm": [0.04, 0.34, 0.96, 0.80],
+      "confidence": "high",
+      "notes": "Table with detail types listed below; includes footnotes and cross-references",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Detail Type 1: Full encirclement type — Encirclement sleeve (API 1107 Figure 14), Encirclement tee or split tee (API 1107 Figure 15), Encirclement sleeve and saddle (API 1107 Figure 16), Encirclement saddle (API 1107 Figure 17).",
+          "Detail Type 2: Partial encirclement type — Nozzle and padding pad (API 1107 Figure 12), Nozzle and reinforcing saddle (API 1107 Figure 13).",
+          "Detail Type 3: Self-reinforcing type — Weldolet, threadolet—Std. Dwg. GC-L3H9B.",
+          "Note: The saddle or reinforcing pad should be equipped with a vent hole to provide venting during welding operations. After welding, the vent hole should be plugged with grease.",
+          "See the following: Corporation Piping Specification, Branch Reinforcement Tables. Standard Drawing GC-L3H9B—Standard Piping Details and Construction Notes."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Run Size(D)", "is_header": true },
+              { "value": "Branch Size(d)", "is_header": true },
+              { "value": "Highly Stressed", "is_header": true },
+              { "value": "Recommended Weld Details", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≤ 1½\"", "type": "text" },
+              { "value": "≤ 1½\"", "type": "text" },
+              { "value": "—", "type": "text" },
+              { "value": "1", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "≥ 2\"", "type": "text" },
+              { "value": "≤ 1½\"", "type": "text" },
+              { "value": "—", "type": "text" },
+              { "value": "3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": ">1½\"", "type": "text" },
+              { "value": "no", "type": "text" },
+              { "value": "1, 2, or 3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "yes", "type": "text" },
+              { "value": "1 for d/D > 0.5", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}
