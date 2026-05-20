@@ -1,0 +1,283 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 2,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Refining Engineering Practices (REPs)",
+      "slug": "refining-engineering-practices-reps",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.97
+      ],
+      "confidence": "high",
+      "notes": "Two-column table listing REP document codes and their titles",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Refining Engineering Practices (REPs)",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 1\u20131\u20133",
+                "type": "text"
+              },
+              {
+                "value": "Deviations to the Refining Engineering Practices",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 3\u20131\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Environmental Design",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20131\u20131",
+                "type": "text"
+              },
+              {
+                "value": "General Piping Design",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20132\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Flanges, Gaskets and Bolting",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20132\u20133",
+                "type": "text"
+              },
+              {
+                "value": "Piping Standards",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20132\u20134",
+                "type": "text"
+              },
+              {
+                "value": "Supplemental Requirements for Pipe and Piping Components",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20133\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Valve Design and Selection Criteria",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20133\u201321",
+                "type": "text"
+              },
+              {
+                "value": "Supplemental Requirements for Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20134\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Metal Expansion Joints",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20134\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Fabric Expansion Joints",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20135\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Piping Fabrication",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Welding Requirements for Piping",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20135\u20133",
+                "type": "text"
+              },
+              {
+                "value": "Piping Erection and Testing",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20136\u20138",
+                "type": "text"
+              },
+              {
+                "value": "Steam Tracing",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20139\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Design and Installation of Non-Metallic Piping",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20139\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Plastic-Lined Metallic Pipe",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u20139\u20133",
+                "type": "text"
+              },
+              {
+                "value": "Cement-Lined Metallic Pipe",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5\u201310\u20131",
+                "type": "text"
+              },
+              {
+                "value": "Supplemental Requirements for Piping in HF-Service (COP Licensed)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 6\u20139\u20133",
+                "type": "text"
+              },
+              {
+                "value": "Oil Mist Lubrication Systems \u2013 Design",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 7\u20131\u20131D",
+                "type": "text"
+              },
+              {
+                "value": "Pressure Vessels \u2013 Design \u2013 Overlay to PIP VECV1001",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 10,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Definitions \u2014 Term and Definition (continued)",
+      "slug": "definitions-term-definition-continued",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.97
+      ],
+      "confidence": "high",
+      "notes": "Two-column definitions table listing Pipe Mill, Quality Assurance (QA), Quality Management System (QMS), Quality Manual, Quality Plan, Seamless Pipe, Steel Maker, and Supplier",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Term",
+                "is_header": true,
+                "type": "text"
+              },
+              {
+                "value": "Definition",
+                "is_header": true,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pipe Mill",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "The Supplier's manufacturing, testing, finishing, and supplying line pipe to Company and the facilities at which these activities are conducted.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quality Assurance (QA)",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "The planned and systematic actions that is necessary to ensure quality and provide confidence that a product or service is fit for its intended purpose.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quality Management System (QMS)",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "The organizations structure, responsibilities, activities, resources, and events that together provide organized procedures and methods of implementation to ensure the capability of an organization to comply with quality requirements.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quality Manual",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "A document set out general quality policies, procedures, and practices of an organization.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quality Plan",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "A document prepared by the manufacturer or Supplier that sets out the specific quality practices, resources, and activities relevant to a particular contract or order.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Seamless Pipe",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "Pipes without a welded seam that was produced by a hot forming process without the application of any cold finishing or cold sizing unless approved otherwise by the Company.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Steel Maker",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "The Vendor manufacturing, refining and casting steel to slab for subsequent plate manufacture and the premises where these activities are carried out.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Supplier",
+                "is_header": false,
+                "type": "text"
+              },
+              {
+                "value": "A trading house or steel merchant acting on behalf of the manufacturer or pipe mill, to which an enquiry has been issued or to which a Purchase Order or contract to supply line pipe has been awarded.",
+                "is_header": false,
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

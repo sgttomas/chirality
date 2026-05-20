@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 120,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "OR-04 Orifice Flange Tap Connection — Flanged Valves detail drawing showing socket weld taps, flange valve (typ), raised face weld neck flange (typ), nipple (typ), orifice flange set, plug, and 45° ell (typ) with associated callouts and notes.",
+      "slug": "or-04-orifice-flange-tap-connection",
+      "bbox_norm": [0.05, 0.13, 0.95, 0.62],
+      "confidence": "high",
+      "notes": "Engineering detail drawing for OR-04 Orifice Flange Tap Connection with multiple labeled components and leader lines."
+    }
+  ],
+  "issues": []
+}

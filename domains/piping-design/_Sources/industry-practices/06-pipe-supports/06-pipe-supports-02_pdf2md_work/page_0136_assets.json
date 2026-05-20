@@ -1,0 +1,206 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 136,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p136_tbl1",
+      "kind": "tbl",
+      "caption": "Parts list table: ITEM No., QTY., DESCRIPTION, MATERIAL for Vessel Support Clip VCB components",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.72,
+        0.13
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "13mm THK. PLATE"
+              },
+              {
+                "type": "text",
+                "value": "BY VESSEL FABRICATOR"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "12mm THK. PLATE"
+              },
+              {
+                "type": "text",
+                "value": "BY VESSEL FABRICATOR"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "PL PAD BY VESSEL FABRICATOR (IF REQUIRED)"
+              },
+              {
+                "type": "text",
+                "value": "BY VESSEL FABRICATOR"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p136_fig1",
+      "kind": "fig",
+      "caption": "PLAN view of Vessel Support Clip VCB showing top-down layout with vessel O.D. dimension (11 1/4\"), clip plates, and DIMENSION TO SUIT VESSEL SUPPORT annotation; NOTE 3 reference",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.72,
+        0.5
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p136_fig2",
+      "kind": "fig",
+      "caption": "ELEVATION view of Vessel Support Clip VCB showing side profile with 1\" \u00d8 holes (TYP) 4 PLACES, item callouts 1, 2, 3, and metric dimensions",
+      "bbox_norm": [
+        0.36,
+        0.38,
+        0.97,
+        0.68
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p136_tbl2",
+      "kind": "tbl",
+      "caption": "Revision history table with columns DATE, DESCRIPTION, DOC, VW, TM, APPR",
+      "bbox_norm": [
+        0.03,
+        0.76,
+        0.72,
+        0.88
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "No.",
+          "DATE",
+          "DESCRIPTION",
+          "DOC",
+          "VW",
+          "TM",
+          "APPR"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "A"
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "VW"
+              },
+              {
+                "type": "text",
+                "value": "TM"
+              },
+              {
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "GENERAL ISSUE"
+              },
+              {
+                "type": "text",
+                "value": "DS"
+              },
+              {
+                "type": "text",
+                "value": "JD"
+              },
+              {
+                "type": "text",
+                "value": "AP"
+              },
+              {
+                "type": "text",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

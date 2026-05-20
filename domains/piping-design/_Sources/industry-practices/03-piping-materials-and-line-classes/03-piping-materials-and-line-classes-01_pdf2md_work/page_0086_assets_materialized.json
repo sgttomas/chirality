@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0086.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0086_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3201
+      ],
+      "caption": "Table 4.21 Class PDH \u2014 Pipe, Fittings, Flanges, Bolting, Gaskets specifications",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0086_tbl01_table-4-21-class-pdh-specifications.png",
+      "png_sha256": "bb317f62193d30fa21f5160fa122890ad583804ded5f37dc1a6b9df21615bb7d",
+      "slug": "table-4-21-class-pdh-specifications",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 86,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0086.png",
+  "page_image_sha256": "c42707de2bb8a3bebd192d14fee139eaf686052a8f7c20b029dacad000ec7968",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0086_assets.json"
+}

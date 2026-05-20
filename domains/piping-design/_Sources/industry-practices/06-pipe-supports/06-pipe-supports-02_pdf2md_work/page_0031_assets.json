@@ -1,0 +1,219 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 31,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p031_fig1",
+      "kind": "fig",
+      "caption": "Engineering detail drawing of base anchor assembly: elevation/side view showing stanchion pipe (Item 1), CS pipe (Item 2), base plate (Item 3), Hilti expansion bolts (Item 4), weep hole (1/4\"\u00d8), 4'-0\" MAX height, 3/4\" clearances, and SHIP WITH SUPPORT notation; plan view of BASE PLATE showing 18\"\u00d718\" plate with 4-1/8\"\u00d8 holes, 9\" bolt spacing, and 2\" (TYP) edge distances",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.72,
+        0.6
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p031_tbl2",
+      "kind": "tbl",
+      "caption": "Revision history table",
+      "bbox_norm": [
+        0.03,
+        0.78,
+        0.52,
+        0.9
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "rev",
+            "header": "REV."
+          },
+          {
+            "id": "date",
+            "header": "DATE"
+          },
+          {
+            "id": "revisions",
+            "header": "REVISIONS"
+          },
+          {
+            "id": "by",
+            "header": "BY"
+          },
+          {
+            "id": "chk",
+            "header": "CHK"
+          },
+          {
+            "id": "app",
+            "header": "APP"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "rev",
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "col": "date",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "revisions",
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col": "by",
+                "type": "text",
+                "value": "VN"
+              },
+              {
+                "col": "chk",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "app",
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "rev",
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col": "date",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "revisions",
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col": "by",
+                "type": "text",
+                "value": "NS"
+              },
+              {
+                "col": "chk",
+                "type": "text",
+                "value": "UD"
+              },
+              {
+                "col": "app",
+                "type": "text",
+                "value": "AP"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "rev",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "date",
+                "type": "text",
+                "value": "8/10/06"
+              },
+              {
+                "col": "revisions",
+                "type": "text",
+                "value": "NOTE 5 DELETED"
+              },
+              {
+                "col": "by",
+                "type": "text",
+                "value": "NR"
+              },
+              {
+                "col": "chk",
+                "type": "text",
+                "value": "AR"
+              },
+              {
+                "col": "app",
+                "type": "text",
+                "value": "NR"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p031_tbl3",
+      "kind": "tbl",
+      "caption": "Coding example table for base anchor mark numbering: BA3 - 1 - 10\" example showing P/S STD No., MARK No., and RUN PIPE SIZE fields",
+      "bbox_norm": [
+        0.54,
+        0.6,
+        0.97,
+        0.78
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "ps_std_no",
+            "header": "P/S STD No."
+          },
+          {
+            "id": "mark_no",
+            "header": "MARK No."
+          },
+          {
+            "id": "run_pipe_size",
+            "header": "RUN PIPE SIZE"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "ps_std_no",
+                "type": "text",
+                "value": "BA3"
+              },
+              {
+                "col": "mark_no",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "run_pipe_size",
+                "type": "text",
+                "value": "10\""
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "CODING ( EXAMPLE ) shown above table"
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

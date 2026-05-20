@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0095.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0095_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        694
+      ],
+      "caption": "Bill of Materials \u2014 T-Post Support Bolted Attachment",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0095_tbl01_bill-of-materials-t-post-support.png",
+      "png_sha256": "a9dc738197c009c2fad3b7ed4fdc5d5cdfd43f2742ba20f90d1a4ca3aec54f19",
+      "slug": "bill-of-materials-t-post-support",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0095_tbl01_bill-of-materials-t-post-support.json",
+      "table_data_json_sha256": "04674f2359e331d43a8f14b604803d1f10abdee39bf3f9f91513111a7af08435",
+      "table_data_sha256": "04674f2359e331d43a8f14b604803d1f10abdee39bf3f9f91513111a7af08435",
+      "xlsx_path": "tables/06-pipe-supports-02_p0095_tbl01_bill-of-materials-t-post-support.xlsx",
+      "xlsx_sha256": "2e811f9ed62af0428c01476989fdf20f4483265e9a61a0f7cb829f6fcfce2ffe"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0095_fig01",
+      "bbox_norm": [
+        0.03,
+        0.16,
+        0.62,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        363,
+        1712,
+        2313
+      ],
+      "caption": "T-Post Support Bolted Attachment fabrication drawing with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0095_fig01_t-post-support-fabrication-drawing.png",
+      "png_sha256": "defb44c55da211c4e8ef7c1ab74ba5a410d970dd99fe598079fd5a5bc8159cdb",
+      "slug": "t-post-support-fabrication-drawing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0095_fig02",
+      "bbox_norm": [
+        0.6,
+        0.16,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1405,
+        363,
+        2555,
+        1982
+      ],
+      "caption": "BASE PLATE detail",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0095_fig02_base-plate-detail.png",
+      "png_sha256": "0f858dbda9a0cc58aa0ed2b478a8fe3e8eebb828425e9fe14bf122dd8dd882be",
+      "slug": "base-plate-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0095_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.55,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        1278,
+        1652,
+        2555,
+        2676
+      ],
+      "caption": "Mark No. / Fab Length / Max Load",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0095_tbl02_mark-no-fab-length-max-load.png",
+      "png_sha256": "a5120b43c2e9a993eeab221139fa765e4dc1c9ab3f7616ac68cb34bf3554df95",
+      "slug": "mark-no-fab-length-max-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0095_tbl02_mark-no-fab-length-max-load.json",
+      "table_data_json_sha256": "89e71eba546cae2eb31ac6128a0457d3e273b5f42b56e5a0d0d28ba3d3c5b294",
+      "table_data_sha256": "89e71eba546cae2eb31ac6128a0457d3e273b5f42b56e5a0d0d28ba3d3c5b294",
+      "xlsx_path": "tables/06-pipe-supports-02_p0095_tbl02_mark-no-fab-length-max-load.xlsx",
+      "xlsx_sha256": "db2ce93941e23e53e7b71c3ae2d22e7ad9068fe15724a5e5269b20abae812567"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 95,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0095.png",
+  "page_image_sha256": "8fcd4f320559cc6748013b7b91a0c916b4534dba2f229c7b08e7aa367088139d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0095_assets.json"
+}

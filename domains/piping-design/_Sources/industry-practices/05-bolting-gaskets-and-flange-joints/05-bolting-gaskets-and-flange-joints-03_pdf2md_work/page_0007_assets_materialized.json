@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-03_p0007_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.7,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2142,
+        2550,
+        3296
+      ],
+      "caption": "Unit prices for hub and clamp connectors (5000 psi / 34 MPa design pressure), as of November 1987, showing Item, Size, and Unit Price Range ($Cdn)",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,9], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-03_p0007_tbl01_unit-prices-for-hub-and-clamp-connectors.png",
+      "png_sha256": "120e0d0d6f0db5532c9f8047a45393ea426c00643e182b5b049da604fff67ef6",
+      "slug": "unit-prices-for-hub-and-clamp-connectors",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-03",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-03",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0007.png",
+  "page_image_sha256": "709493ba417144c41d7101ef100553b8f7ecf42bdb1e8e884e120a038af7b50a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0007_assets.json"
+}

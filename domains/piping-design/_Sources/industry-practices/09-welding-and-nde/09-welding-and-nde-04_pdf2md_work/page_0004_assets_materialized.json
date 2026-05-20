@@ -1,0 +1,68 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-04_p0004_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.67
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        2376
+      ],
+      "caption": "Document History",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-04_p0004_tbl01_document-history.png",
+      "png_sha256": "8fdb6920afb740029a03d0f085bbc36610f8d743ffd88ad82d0b572e4a8b1bc5",
+      "slug": "document-history",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "09-welding-and-nde-04_p0004_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.75,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2310,
+        2550,
+        3234
+      ],
+      "caption": "Document Review/Approvals",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/09-welding-and-nde-04_p0004_tbl02_document-review-approvals.png",
+      "png_sha256": "279649095fff1a34531af17296f549808ad22960fa8a8adca2913db9480c3d63",
+      "slug": "document-review-approvals",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-04",
+  "doc_stem": "09-welding-and-nde-04",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0004.png",
+  "page_image_sha256": "54649681dfd36933d62f215f60140e6e4800ca51b34f95ea118026036f021197",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0004_assets.json"
+}

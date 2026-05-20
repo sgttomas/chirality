@@ -1,0 +1,149 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0023.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0023_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.17
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        727
+      ],
+      "caption": "Bill of Materials \u2014 Item descriptions and materials for Braced Cantilever Support Bolted Attachment",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0023_tbl01_bill-of-materials-braced-cantilever.png",
+      "png_sha256": "40578629563d229c244350f8931bcb9032f242483932ebe73658ae1328588a7a",
+      "slug": "bill-of-materials-braced-cantilever",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0023_tbl01_bill-of-materials-braced-cantilever.json",
+      "table_data_json_sha256": "08ed95aaedf9a663518afcf2de4b5380e278d8b0b5e908411ce2d9fb176f39b8",
+      "table_data_sha256": "08ed95aaedf9a663518afcf2de4b5380e278d8b0b5e908411ce2d9fb176f39b8",
+      "xlsx_path": "tables/06-pipe-supports-02_p0023_tbl01_bill-of-materials-braced-cantilever.xlsx",
+      "xlsx_sha256": "71baca60e3e72939bc5bc12f5a5505edfe5f40aa406ad8d42c86a47963d3d31d"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0023_fig01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.52,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        396,
+        1456,
+        2313
+      ],
+      "caption": "ELEVATION \u2014 Braced Cantilever Support Bolted Attachment detail with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0023_fig01_elevation-braced-cantilever-support.png",
+      "png_sha256": "04f07c547c9b1d4fd2bc7c1b42a5fc05a3b91ab84efe5646f170285905cbbdbe",
+      "slug": "elevation-braced-cantilever-support",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0023_fig02",
+      "bbox_norm": [
+        0.52,
+        0.17,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1201,
+        396,
+        2555,
+        1982
+      ],
+      "caption": "SECT. 'X-X' \u2014 Cross-section detail of braced cantilever support bolted attachment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0023_fig02_sect-x-x-braced-cantilever.png",
+      "png_sha256": "44aefa6ed5365ab0b38580a42e89a2df68514e270466153908fafbe9ecfe236f",
+      "slug": "sect-x-x-braced-cantilever",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0023_tbl02",
+      "bbox_norm": [
+        0.52,
+        0.55,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1201,
+        1652,
+        2555,
+        2544
+      ],
+      "caption": "Mark No. / Fab Length / Size 'A' Max Load (lb.) table for Braced Cantilever Support",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0023_tbl02_mark-fab-length-max-load.png",
+      "png_sha256": "aa7b5559822b384c259603b7555379eb1fb18612923ed38d24a65a498d94ee20",
+      "slug": "mark-fab-length-max-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0023_tbl02_mark-fab-length-max-load.json",
+      "table_data_json_sha256": "4004e0c96fb2df724de2fc6a92dc35354c34cea695c2eafc2fa5481714536022",
+      "table_data_sha256": "4004e0c96fb2df724de2fc6a92dc35354c34cea695c2eafc2fa5481714536022",
+      "xlsx_path": "tables/06-pipe-supports-02_p0023_tbl02_mark-fab-length-max-load.xlsx",
+      "xlsx_sha256": "51a3fa0ab2de1e49fa014caab73c8a7bfb9c7352fa975c4c49a8ea1b61583fdd"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0023_tbl03",
+      "bbox_norm": [
+        0.52,
+        0.68,
+        0.97,
+        0.78
+      ],
+      "bbox_px": [
+        1201,
+        2082,
+        2555,
+        2742
+      ],
+      "caption": "Coding example for Braced Cantilever Support Bolted Attachment",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0023_tbl03_coding-example.png",
+      "png_sha256": "48d99894ff43d89ade5f69cd85c7680d9fcadc0d7677d50e27132ba3753b52dc",
+      "slug": "coding-example",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0023_tbl03_coding-example.json",
+      "table_data_json_sha256": "2af9c46df20dcf43c163be38ce9d6cf81bcd1d78737a966f8fd5d1052e17c756",
+      "table_data_sha256": "2af9c46df20dcf43c163be38ce9d6cf81bcd1d78737a966f8fd5d1052e17c756",
+      "xlsx_path": "tables/06-pipe-supports-02_p0023_tbl03_coding-example.xlsx",
+      "xlsx_sha256": "6f327cac31520099e2f4cd37a20cf3b7f3367c20143e4eaf99255e48ad46b5dc"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0023.png",
+  "page_image_sha256": "b673ef01b27bac2a7b57986da5e15468ac5240c67deb4dfcf5acb06448bfd375",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0023_assets.json"
+}

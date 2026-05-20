@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0097.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0097_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Item schedule \u2014 L102\u00d7102\u00d79.5 Size A, L78\u00d778\u00d77.9 Size B, L64\u00d764\u00d76.4 Size C, 10mm thick plate",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0097_tbl01_item-schedule-sizes-a-b-c-plate.png",
+      "png_sha256": "916444830ffefaa7674efe5c882068d2acadbf739bbe6114fe5510c1d51c7690",
+      "slug": "item-schedule-sizes-a-b-c-plate",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0097_tbl01_item-schedule-sizes-a-b-c-plate.json",
+      "table_data_json_sha256": "617fe9be710d5e3c7abf7afe42946a1476e58286edf1a3f370115982ff7b1b19",
+      "table_data_sha256": "617fe9be710d5e3c7abf7afe42946a1476e58286edf1a3f370115982ff7b1b19",
+      "xlsx_path": "tables/06-pipe-supports-02_p0097_tbl01_item-schedule-sizes-a-b-c-plate.xlsx",
+      "xlsx_sha256": "0b2d9956cd04218c1d67bb14c81ce8b9076a7c0f05e5ffcb6d2d666b40fad3c5"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0097_fig01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.7,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1916,
+        2214
+      ],
+      "caption": "T-Post Support Welded Attachment \u2014 plan and elevation detail with FAB. LENGTH and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0097_fig01_t-post-support-welded-attachment-detail.png",
+      "png_sha256": "19d7afc79fef038b4f9438066e002758e7a8b7dfc30c147996605a98353550fc",
+      "slug": "t-post-support-welded-attachment-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0097_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.55,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        1278,
+        1652,
+        2555,
+        2676
+      ],
+      "caption": "Mark No. / Fab. Length / Max. Load(lb) schedule",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0097_tbl02_mark-fab-length-max-load-schedule.png",
+      "png_sha256": "ad8023d2b21ca101ac000a0e184068960209e3be1004226330703c8e8129c52c",
+      "slug": "mark-fab-length-max-load-schedule",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0097_tbl02_mark-fab-length-max-load-schedule.json",
+      "table_data_json_sha256": "7b211cd6ddfd9d6c34db489bc3420560d0ea913863fc6217759de1fd8d640f6d",
+      "table_data_sha256": "7b211cd6ddfd9d6c34db489bc3420560d0ea913863fc6217759de1fd8d640f6d",
+      "xlsx_path": "tables/06-pipe-supports-02_p0097_tbl02_mark-fab-length-max-load-schedule.xlsx",
+      "xlsx_sha256": "2bc786991dd148333e9223070cd924fa130cd20c0311688aac83d2ed0ee0cb8f"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0097_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.93,
+        0.97,
+        1.0
+      ],
+      "bbox_px": [
+        0,
+        2908,
+        2555,
+        3304
+      ],
+      "caption": "Title block \u2014 Drawing number L3, Sheet 1 of 1, Revision 1",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0097_tbl03_title-block-drawing-l3.png",
+      "png_sha256": "e55bb00d6b66d4856a4627bcb473b729e8e0450b3173e5d2e329f0ed40aa57e3",
+      "slug": "title-block-drawing-l3",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0097_tbl03_title-block-drawing-l3.json",
+      "table_data_json_sha256": "92a80f228931a7bfd77584100e14aeeae4a4cc8e4a199caa0d7afeef8b8fb9a0",
+      "table_data_sha256": "92a80f228931a7bfd77584100e14aeeae4a4cc8e4a199caa0d7afeef8b8fb9a0",
+      "xlsx_path": "tables/06-pipe-supports-02_p0097_tbl03_title-block-drawing-l3.xlsx",
+      "xlsx_sha256": "c7051532a584e6a27054fe18e0f845c60e5fa8c77e20a0954d8bf266f01f0ad3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 97,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0097.png",
+  "page_image_sha256": "5bc02d32eceeed47b38ed58e6d60757a8f6b65661b0b2312ee05b1b3455dc259",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0097_assets.json"
+}

@@ -1,0 +1,334 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 37,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Parts and Materials List \u2014 Base Support BS2B",
+      "slug": "parts-materials-list-bs2b",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.14
+      ],
+      "confidence": "high",
+      "notes": "Three-column parts list at top of drawing: Item No., Qty, Description, Material",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "4\" NPS SCH 40 PIPE, SAME MATERIAL AS PARENT PIPE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "4\" NPS SCH 40 CS PIPE (UNO)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PL",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Base Support assembly drawing \u2014 BS2B Pipe Size 6\" & 8\", with weep hole, slide plate, stanchion, and structural member details",
+      "slug": "base-support-assembly-bs2b",
+      "bbox_norm": [
+        0.04,
+        0.14,
+        0.78,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing base support assembly with pipe, stanchion, slide plate (SPL MARK 3), weep hole (1/4\" dia), structural member base, and dimensional annotations. Labels include NOTE 3-5, BY PIPE FABRICATOR, BY SUPPORT FABRICATOR, ELL TEE OR PIPE (NOTE 4), PIPE, FREE TO SLIDE, 10\" SQ., STRUCTURAL MEMBER, SLIDE PLATE SEE DETAIL SPL MARK 3."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Coding Example \u2014 Base Support Designation",
+      "slug": "coding-example-bs2b",
+      "bbox_norm": [
+        0.62,
+        0.6,
+        0.96,
+        0.73
+      ],
+      "confidence": "medium",
+      "notes": "Small coding table in lower right showing example designation: BS2B - 6\" with dimension 30\"",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "( EXAMPLE )",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "BS2B \u2014 6\"",
+                "type": "text"
+              },
+              {
+                "value": "30\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "No. STD.",
+                "type": "text"
+              },
+              {
+                "value": "SIZE",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "BS2B",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Revisions \u2014 BS2B Drawing",
+      "slug": "revisions-bs2b",
+      "bbox_norm": [
+        0.03,
+        0.77,
+        0.6,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Revision history table with columns: No., Date, Revisions, By, Chk, App. Three revision entries.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "BY",
+                "is_header": true
+              },
+              {
+                "value": "CHK",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "RD",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "HR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "HD",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "NS",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AL",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

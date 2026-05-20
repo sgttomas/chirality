@@ -1,0 +1,87 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0031_fig01",
+      "bbox_norm": [
+        0.02,
+        0.05,
+        0.5,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1402,
+        1815
+      ],
+      "caption": "Bolt circle diagram showing 54 bolts arranged in a circular pattern",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0031_fig01_bolt-circle-diagram-showing-54-bolts-arr.png",
+      "png_sha256": "5872f6224ebe265b3e506318b0965294c3962a32e5169171d7d061333781f2cf",
+      "slug": "bolt-circle-diagram-showing-54-bolts-arr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0031_fig02",
+      "bbox_norm": [
+        0.5,
+        0.05,
+        0.98,
+        0.5
+      ],
+      "bbox_px": [
+        1148,
+        0,
+        2550,
+        1815
+      ],
+      "caption": "Bolt circle diagram showing 56 bolts arranged in a circular pattern",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0031_fig02_bolt-circle-diagram-showing-56-bolts-arr.png",
+      "png_sha256": "1824b846b224161523d67927f20c5af7b1a18515d99d8bb7ed41f17ed7162573",
+      "slug": "bolt-circle-diagram-showing-56-bolts-arr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0031_fig03",
+      "bbox_norm": [
+        0.02,
+        0.5,
+        0.55,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1485,
+        1530,
+        3201
+      ],
+      "caption": "Bolt circle diagram showing 58 bolts arranged in a circular pattern",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0031_fig03_bolt-circle-diagram-showing-58-bolts-arr.png",
+      "png_sha256": "ef8da111a782c392a78a8174756c90a9fa559f5f218e0d70d9bbdb98925d1c8a",
+      "slug": "bolt-circle-diagram-showing-58-bolts-arr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0031.png",
+  "page_image_sha256": "e3cbe026fd917a6516d3e201a3d552b9bb7265a24f341752f91829a064830472",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0031_assets.json"
+}

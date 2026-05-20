@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 14,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig-0014-1",
+      "caption": "Figure 6: Sketch of Assembled Isolation Flange",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.45]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0107.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0107_fig01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.92,
+        0.62
+      ],
+      "bbox_px": [
+        76,
+        396,
+        2474,
+        2211
+      ],
+      "caption": "Engineering drawing of flanged thermowell connection for plastic lined piping T-16, NPS 1 and up. Shows plan view of instrument piping connection with thermowell (T-16) installed in a line-size instrument tee. Labels indicate: INSTR (instrument connection above), PIPING (below), NPS 1 LINE SIZE & UP (left callout), LINE SIZE INSTRUMENT TEE (right callout).",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0107_fig01_engineering-drawing-of-flanged-thermowel.png",
+      "png_sha256": "ce3570595c3811682df094ab5c3d9f48fa51f892c2860d420eca97e1e0ba9d79",
+      "slug": "engineering-drawing-of-flanged-thermowel",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 107,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0107.png",
+  "page_image_sha256": "1f72121a1f0166037932e7f4047416c76a36c23e7825f282d5633c0e0091fc0f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0107_assets.json"
+}

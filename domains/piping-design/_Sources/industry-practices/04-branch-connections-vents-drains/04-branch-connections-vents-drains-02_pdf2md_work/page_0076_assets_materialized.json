@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0076.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0076_fig01",
+      "bbox_norm": [
+        0.05,
+        0.16,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        363,
+        2550,
+        1881
+      ],
+      "caption": "P-07 Pressure Connection detail for NPS 3/4 THRU NPS 1-1/2 LINE SIZE, showing instrument and piping connections with socket weld valves, nipples, and tee or reducing tee",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0076_fig01_p-07-pressure-connection-detail-for-nps.png",
+      "png_sha256": "d72d17a4475d334f039cafd432329e3f21a0e777bf150be39e43d59ce55155e4",
+      "slug": "p-07-pressure-connection-detail-for-nps",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0076_fig02",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        2970
+      ],
+      "caption": "P-07 Pressure Connection detail for NPS 2 LINE SIZE & UP, showing instrument and piping connections with socket weld valves, nipples, and sockolet",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0076_fig02_p-07-pressure-connection-detail-for-nps.png",
+      "png_sha256": "ba262cc6ae9dead725987b8b81b0185fe660b497f00681eeebd5051be7c0eed8",
+      "slug": "p-07-pressure-connection-detail-for-nps",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 76,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0076.png",
+  "page_image_sha256": "ab0c6f37d3f357f62cbe677f60d8196943da9b1a8057791318af5652fb136f66",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0076_assets.json"
+}

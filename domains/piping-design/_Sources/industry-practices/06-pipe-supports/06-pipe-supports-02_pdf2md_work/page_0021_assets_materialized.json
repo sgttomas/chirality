@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0021.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0021_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Items and materials list",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0021_tbl01_items-and-materials-list.png",
+      "png_sha256": "8cd795017032668a31169e66c0309fb7574619507c7f4982ed71f8aae01fbe82",
+      "slug": "items-and-materials-list",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0021_fig01",
+      "bbox_norm": [
+        0.02,
+        0.12,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2555,
+        2214
+      ],
+      "caption": "Elevation view and Sect 'X-X' cross-section detail drawing of cantilever support bolted attachment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0021_fig01_elevation-view-and-sect-x-x-cross-sectio.png",
+      "png_sha256": "81e8ab31e2399ec6dc0d0168f6ddfad9499884f8c887e27fc91368f9dbce1584",
+      "slug": "elevation-view-and-sect-x-x-cross-sectio",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0021_tbl02",
+      "bbox_norm": [
+        0.52,
+        0.58,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1201,
+        1751,
+        2555,
+        2544
+      ],
+      "caption": "Mark number, fabrication length, and maximum load capacity table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0021_tbl02_mark-number-fabrication-length-and-maxim.png",
+      "png_sha256": "b5922e80f1d3ba815409e99b437e321412e3ef9b4d487a0371b761b58aabb519",
+      "slug": "mark-number-fabrication-length-and-maxim",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0021_tbl03",
+      "bbox_norm": [
+        0.02,
+        0.75,
+        0.52,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        2313,
+        1456,
+        3040
+      ],
+      "caption": "Revisions table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0021_tbl03_revisions-table.png",
+      "png_sha256": "6485438d0e9cf2aed2883e380c7a4adecfaa104211a87ad3a53de99246465e46",
+      "slug": "revisions-table",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0021.png",
+  "page_image_sha256": "7241b23a28e58969d792939c16998e9e9e6fbdb2daa01eaf0b715cafb34a2a60",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0021_assets.json"
+}

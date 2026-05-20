@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 117,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0117-01",
+      "kind": "fig",
+      "caption": "Pipe shoe (carbon steel) engineering drawing for pipe sizes 1/2\" to 1-1/2\". ELEVATION view (left) shows pipe on plate shoe with insulation band slots and thermal movement dimensions. VIEW 'A' (right) shows end profile. Drawing No. S12, 1 OF 1, Rev. 2.",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.55
+      ]
+    }
+  ],
+  "issues": []
+}

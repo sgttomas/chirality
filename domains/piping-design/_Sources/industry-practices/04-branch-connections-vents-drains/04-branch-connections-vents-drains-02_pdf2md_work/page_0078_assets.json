@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 78,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "PNF0509-P09-pressure-connection",
+      "kind": "fig",
+      "caption": "P-09 pressure connection detail for NPS 1-1/2 & UP welded piping, showing NPS 3/4 socket weld x threaded valve, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld valve, NPS 3/4 x 90(3-1/2) plain end nipolet, and NPS 1-1/2 line size & up header connection.",
+      "bbox_norm": [0.05, 0.17, 0.95, 0.72]
+    }
+  ],
+  "issues": []
+}

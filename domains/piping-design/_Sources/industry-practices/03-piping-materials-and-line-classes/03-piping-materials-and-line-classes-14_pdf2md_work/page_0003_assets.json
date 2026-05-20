@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-14",
+  "page": 3,
+  "total_pages": 9,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "PFI Standards",
+      "slug": "pfi-standards",
+      "bbox_norm": [0.07, 0.12, 0.93, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ES-31", "type": "text" },
+              { "value": "Standard for Protection of Ends of Fabricated Piping Assemblies", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single-row table listing PFI standard ES-31"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "MSS Standard",
+      "slug": "mss-standard",
+      "bbox_norm": [0.07, 0.22, 0.93, 0.32],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "SP25", "type": "text" },
+              { "value": "Standard Marking System for Valves, Fittings, Flanges and Unions", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single-row table listing MSS standard SP25"
+    }
+  ],
+  "issues": []
+}

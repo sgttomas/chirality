@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 56,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "p0056-fig-001",
+      "kind": "fig",
+      "caption": "V-29 Vent and D-29 Drain assembly diagram for plastic lined piping NPS 1 and up",
+      "bbox_norm": [
+        0.08,
+        0.14,
+        0.92,
+        0.78
+      ]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0105.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0105_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2871
+      ],
+      "caption": "T-14 Thermowell \u2014 Flanged Thermowell Connection, NPS 3/4 & UP, showing two installation configurations with labeled components including NPS 1-1/2 Raised Face Weld Neck Flange, NPS 1-1/2 Butt Weld Latrolet, NPS 1-1/2 Butt Weld Reducer, Line Size x NPS 6 Swage/Reducer, NPS 3/4 Thru NPS 4 Line Size, and NPS 6 Line Size & Up installations. Dimensions shown: 300 (12) MIN.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0105_fig01_t14-thermowell-flanged-connection-nps-3.png",
+      "png_sha256": "3c47778995596bc82628b2fe9d093f2ceb64f703112213ac0a0d5810d738a95a",
+      "slug": "t14-thermowell-flanged-connection-nps-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 105,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0105.png",
+  "page_image_sha256": "8c04d9c720653d325c7b6a68ba97167cd9efacffe7b8f6abd7b6d9c9dc82561d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0105_assets.json"
+}

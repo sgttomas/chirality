@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 26,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "05-bolting-gaskets-and-flange-joints-01_p026_f1",
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.93],
+      "caption": "Bolt tightening sequence diagrams for 16, 18, 20, and 22 bolt flange configurations, showing numbered bolt positions arranged in a circle with cross-pattern tightening order"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 28,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 14: Pipe Nipple (≤ NPS 2) Minimum Wall Thickness",
+      "slug": "pipe-nipple-nps2-min-wall-thickness",
+      "bbox_norm": [0.06, 0.48, 0.94, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Includes stainless steel if supplied to ASME B36.10M.",
+          "(2) Nominal thickness must be reduced by 12-1/2% for mill tolerance."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material", "is_header": true },
+              { "value": "Plain Ends", "is_header": true },
+              { "value": "Plain End Between Pipe or Vessel and First Block Valve", "is_header": true },
+              { "value": "Threaded Ends", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon and Low Alloy Steel (1)", "type": "text" },
+              { "value": "Sch 80", "type": "text" },
+              { "value": "Sch 160", "type": "text" },
+              { "value": "Sch 160", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steel", "type": "text" },
+              { "value": "Sch 80S", "type": "text" },
+              { "value": "Sch 80S", "type": "text" },
+              { "value": "Sch 80S", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "All other materials (2)", "type": "text" },
+              { "value": "Sch 80", "type": "text" },
+              { "value": "Sch 80", "type": "text" },
+              { "value": "Sch 80", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Four-column table with caption above and two footnotes below."
+    }
+  ],
+  "issues": []
+}

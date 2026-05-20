@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-17_p0007_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3230
+      ],
+      "caption": "TABLE NO. 1 (Cont'd) DESIGN PROPERTIES of PIPE",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-17_p0007_tbl01_table-no-1-contd-design-properties-of-pi.png",
+      "png_sha256": "4ad9728f13a4ef9a3cc4696e3099a9e0d40369d93ce2fe5d91beecead6f3f193",
+      "slug": "table-no-1-contd-design-properties-of-pi",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-17",
+  "doc_stem": "03-piping-materials-and-line-classes-17",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0007.png",
+  "page_image_sha256": "ec724c208b273fa85ad13654a7fc7bb43878040297900254906a4f7fbfc8de3e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0007_assets.json"
+}

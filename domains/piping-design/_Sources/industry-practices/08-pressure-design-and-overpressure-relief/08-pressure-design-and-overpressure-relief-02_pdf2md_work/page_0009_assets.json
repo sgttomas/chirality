@@ -1,0 +1,44 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 9,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "caption": "Set pressure requirements for pressure controller, alarm and pressure safety relief valve",
+      "bbox_norm": [0.06, 0.38, 0.94, 0.70],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "component", "label": "Component"},
+          {"id": "requirements", "label": "Requirements"}
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"col": "component", "type": "text", "value": "pressure control"},
+              {"col": "requirements", "type": "text", "value": "• set pressure shall not exceed MOP\n• the upper value of the pressure control range shall not exceed MAOP, and shall be below the reseat pressure of the PSV(s)\n• the margin between the set pressures of the controller and the PSV(s) shall be sufficient to avoid relief in case of incidental pressures during normal operations"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "component", "type": "text", "value": "pressure alarm"},
+              {"col": "requirements", "type": "text", "value": "• set pressure shall not exceed 1.02 x MOP"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "component", "type": "text", "value": "pressure relief"},
+              {"col": "requirements", "type": "text", "value": "• full flow relief shall be reached before the pressure exceeds MAIP"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

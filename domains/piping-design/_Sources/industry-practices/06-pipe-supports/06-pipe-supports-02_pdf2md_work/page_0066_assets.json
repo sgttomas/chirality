@@ -1,0 +1,336 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 66,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item No., Qty., Type, Description, Material",
+      "slug": "bill-of-materials-trunnion-support",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.18
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "NOTE 4: A tee of equivalent dimensions may be fabricated from 1/4\" thk plate of the same nominal chemical composition as pipe."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "TYPE",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "A",
+                "type": "text"
+              },
+              {
+                "value": "WT 50 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "B",
+                "type": "text"
+              },
+              {
+                "value": "L 51 \u00d7 51 \u00d7 4.8",
+                "type": "text"
+              },
+              {
+                "value": "304 (NOTE 4)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "C",
+                "type": "text"
+              },
+              {
+                "value": "L 51 \u00d7 51 \u00d7 4.8",
+                "type": "text"
+              },
+              {
+                "value": "317L (NOTE 4)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "D",
+                "type": "text"
+              },
+              {
+                "value": "L 51 \u00d7 51 \u00d7 4.8",
+                "type": "text"
+              },
+              {
+                "value": "316/316L (NOTE 4)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Single Trunnion Support \u2014 Plan and Elevation views",
+      "slug": "single-trunnion-support-plan-elevation",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.65,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing PLAN view (top) and ELEVATION view (bottom) of single trunnion support for stainless steel types B, C & D"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Mark and Dimension Table \u2014 NPS 3/4 to 1 1/2 trunnion support dimensions",
+      "slug": "mark-dimension-table-trunnion",
+      "bbox_norm": [
+        0.63,
+        0.32,
+        0.97,
+        0.58
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "DIM. 'L'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "8\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "10\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "12\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "14\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Mark numbers 1-5 with corresponding 'L' dimension values in inches"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Pipe Size and Dimension Table",
+      "slug": "pipe-size-dimension-table",
+      "bbox_norm": [
+        0.63,
+        0.56,
+        0.97,
+        0.68
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM. 'A'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3/4\"",
+                "type": "text"
+              },
+              {
+                "value": "3/4\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1 1/2\"",
+                "type": "text"
+              },
+              {
+                "value": "1 1/2\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Pipe size to dimension 'A' mapping for NPS 3/4, 1, and 1 1/2"
+    }
+  ],
+  "issues": []
+}

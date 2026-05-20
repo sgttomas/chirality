@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 57,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig-0057-01",
+      "caption": "V-34 Vent and D-34 Drain assembly diagram for NPS 3/4 Thru 1-1/2 socketweld piping showing vent and drain configurations with labeled components",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.90],
+      "page": 57
+    }
+  ],
+  "issues": []
+}

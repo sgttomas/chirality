@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0014.anchored.md",
+  "assets": [
+    {
+      "asset_id": "11-pressure-testing-examination-and-cleaning-01_p0014_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        3069
+      ],
+      "caption": "Pressure Test Certificate form with header fields, line-item grid, notes section, and approvals table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,6], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/11-pressure-testing-examination-and-cleaning-01_p0014_tbl01_pressure-test-certificate-form-with-head.png",
+      "png_sha256": "4e84119cd62457ba23b40c0120cf5fa0b8fcad6c2fe452aefcd826ae1294e3e8",
+      "slug": "pressure-test-certificate-form-with-head",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/_assets/11-pressure-testing-examination-and-cleaning-01",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-01",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0014.png",
+  "page_image_sha256": "a3d526c1a37b94f5b519ea14441db8a40737e0aded13cb92df4920fc6035f869",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0014_assets.json"
+}

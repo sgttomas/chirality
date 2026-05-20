@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 58,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-18 TruSeal® Double Block and Bleed Plug Valve Courtesy of Orbit Valve Company",
+      "slug": "fig-200-18-truseal-double-block-bleed-plug-valve",
+      "bbox_norm": [0.08, 0.07, 0.92, 0.47],
+      "confidence": "high",
+      "notes": "Photograph of TruSeal plug valve with caption below image"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 56,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-15 Gate Valve, Typical Courtesy of Velan Valve",
+      "slug": "fig-200-15-gate-valve-typical",
+      "bbox_norm": [0.08, 0.04, 0.92, 0.42],
+      "confidence": "high",
+      "notes": "Single detailed cross-section illustration of a gate valve. Caption and courtesy line appear above the figure."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 200-16 Gate Valve, Stem and Wedge Types",
+      "slug": "fig-200-16-gate-valve-stem-and-wedge-types",
+      "bbox_norm": [0.08, 0.44, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Composite illustration showing six gate valve variants: Rising stem/outside screw and yoke (Courtesy of Velan), Non-rising stem/inside screw (Courtesy of Walworth), Rising stem/inside screw (Courtesy of Walworth), Solid Wedge, Split Wedge, Flex Wedge (Courtesy of Pacific Valves). Caption appears above the composite."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,93 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0125.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0125_fig01",
+      "bbox_norm": [
+        0.28,
+        0.05,
+        0.97,
+        0.45
+      ],
+      "bbox_px": [
+        588,
+        0,
+        2555,
+        1652
+      ],
+      "caption": "Elevation and View 'A' engineering drawings of pipe shoe (high temperature stainless steel and alloy piping), showing dimensions including 1\" slot (typ.) for insulation bands, 6\" width, 'L' length, 1/4\" plate details, NOTE 2 and NOTE 3 callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0125_fig01_elevation-and-view-a-engineering-drawing.png",
+      "png_sha256": "02f68500e5de813932073e315552fdb33d0ceb085053ec676e7cf9993e61977c",
+      "slug": "elevation-and-view-a-engineering-drawing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0125_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.01,
+        0.98,
+        0.09
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        463
+      ],
+      "caption": "Bill of Materials \u2014 Item numbers, quantities, descriptions, and materials",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0125_tbl01_bill-of-materials-item-numbers-quantitie.png",
+      "png_sha256": "58bede37bf4139f910e567ad783b5262aaab64b351425252b0590609fb61dae8",
+      "slug": "bill-of-materials-item-numbers-quantitie",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0125_tbl02",
+      "bbox_norm": [
+        0.0,
+        0.46,
+        0.55,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1355,
+        1533,
+        2544
+      ],
+      "caption": "Materials table mapping MAT. CODE to PIPE MATERIAL and ITEM NO.1 PLATE MATERIAL",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,7], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0125_tbl02_materials-table-mapping-mat-code-to-pipe.png",
+      "png_sha256": "67be3c3dbdb8bfe66e5d631c92c247859d3b379cf0bb0b6ec2b01a38a291974b",
+      "slug": "materials-table-mapping-mat-code-to-pipe",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 125,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0125.png",
+  "page_image_sha256": "e716006b0181df27b2c8f93ce51b7b57ff8a62284ed3a04af210de9377980ab7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0125_assets.json"
+}

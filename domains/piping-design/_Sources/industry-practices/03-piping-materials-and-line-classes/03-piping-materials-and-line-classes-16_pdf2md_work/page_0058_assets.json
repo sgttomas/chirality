@@ -1,0 +1,79 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 58,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-27 Guidelines for Control Valve Packings (1 of 2)",
+      "slug": "fig-1400-27-control-valve-packings-1-of-2",
+      "bbox_norm": [0.04, 0.72, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Table continues on next page. Superscript footnote references (1)-(4) visible in column headers and cells.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Service", "is_header": true },
+              { "value": "Temperature", "is_header": true },
+              { "value": "Packing(1)", "is_header": true },
+              { "value": "Lubricant", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Non-hydrocarbon Services", "type": "text", "colspan": 4, "is_section_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hydrochloric Acid, HF Acid, HCl Acid+ Hydrocarbons", "type": "text" },
+              { "value": "Up to 400°F", "type": "text" },
+              { "value": "Graphitic(2)", "type": "text" },
+              { "value": "None(3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "All Others", "type": "text" },
+              { "value": "Up to 400°F", "type": "text" },
+              { "value": "Teflon®(3)", "type": "text" },
+              { "value": "None(3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Over 400°F", "type": "text" },
+              { "value": "Graphitic(4)", "type": "text" },
+              { "value": "None(3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hydrocarbon Services (Non-VOC)", "type": "text", "colspan": 4, "is_section_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "All", "type": "text" },
+              { "value": "All", "type": "text" },
+              { "value": "Graphitic(2)", "type": "text" },
+              { "value": "None(3)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0094.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0094_fig01",
+      "bbox_norm": [
+        0.07,
+        0.12,
+        0.93,
+        0.52
+      ],
+      "bbox_px": [
+        51,
+        231,
+        2499,
+        1881
+      ],
+      "caption": "T-03 Thermowell connection detail \u2014 NPS 3/4 & UP, showing LINE SIZE x NPS 3 CONCENTRIC SWAGE (BEVEL LARGE END x THREAD SMALL END), LINE SIZE x NPS 3 ECCENTRIC SWAGE (BEVEL LARGE END x THREAD SMALL END), NPS 3/4 THRU NPS 2 LINE SIZE, NPS 1 THREADED ELBOLET, and PREFERRED DIRECTION OF FLOW with PIPING / INSTR labels",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0094_fig01_t03-thermowell-nps-34-up.png",
+      "png_sha256": "f7cdfa73699c7d3736396211d411a8ead8bfc9f3287e9bdfac90b1bb60b289ee",
+      "slug": "t03-thermowell-nps-34-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0094_fig02",
+      "bbox_norm": [
+        0.07,
+        0.52,
+        0.93,
+        0.82
+      ],
+      "bbox_px": [
+        51,
+        1551,
+        2499,
+        2871
+      ],
+      "caption": "T-03 Thermowell connection detail \u2014 NPS 3 LINE SIZE & UP, showing NPS 1 THREADED ELBOLET and PREFERRED DIRECTION OF FLOW with PIPING / INSTR labels",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0094_fig02_t03-thermowell-nps-3-up.png",
+      "png_sha256": "6854f886ca761bc5dc4ccd2025567ed9fa1111a6c31be95594e19469e22e1b2f",
+      "slug": "t03-thermowell-nps-3-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 94,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0094.png",
+  "page_image_sha256": "82e45637e037412edfadccef7e5e13da5a07a92c04c37b46fa5bc9ffad798bf0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0094_assets.json"
+}

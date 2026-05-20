@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "08-pressure-design-and-overpressure-relief-02_p0009_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.38,
+        0.94,
+        0.7
+      ],
+      "bbox_px": [
+        25,
+        1158,
+        2455,
+        2632
+      ],
+      "caption": "Set pressure requirements for pressure controller, alarm and pressure safety relief valve",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/08-pressure-design-and-overpressure-relief-02_p0009_tbl01_set-pressure-requirements-for-pressure-c.png",
+      "png_sha256": "c4dc80d73d14596b06a2652884e0a4f26c3d91a9a23bf2a3890015ac61185522",
+      "slug": "set-pressure-requirements-for-pressure-c",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/_assets/08-pressure-design-and-overpressure-relief-02",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0009.png",
+  "page_image_sha256": "cc8cb95590488d9c990aa058f737c2cc7bba2ae52b471186bacb9f2bc368838d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0009_assets.json"
+}

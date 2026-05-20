@@ -1,0 +1,184 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 55,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p055_fig1",
+      "kind": "fig",
+      "caption": "Engineering drawing showing directional anchor assembly for insulated lines (pipe sizes 12\" to 24\"). Includes Elevation View, Section, and View \"A\" with W150\u00d730 structural members and pipe support shoes.",
+      "bbox_norm": [
+        0.02,
+        0.06,
+        0.98,
+        0.8
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p055_tbl2",
+      "kind": "tbl",
+      "caption": "Revision block",
+      "bbox_norm": [
+        0.02,
+        0.79,
+        0.65,
+        0.92
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "No.",
+          "DATE",
+          "REVISIONS",
+          "",
+          "",
+          "CHK",
+          "ENG",
+          "APP"
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 2,
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col_index": 3,
+                "type": "text",
+                "value": "VV"
+              },
+              {
+                "col_index": 4,
+                "type": "text",
+                "value": "NR"
+              },
+              {
+                "col_index": 5,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 6,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 7,
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 2,
+                "type": "text",
+                "value": "REV. DIM."
+              },
+              {
+                "col_index": 3,
+                "type": "text",
+                "value": "HD"
+              },
+              {
+                "col_index": 4,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 5,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 6,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 7,
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 2,
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col_index": 3,
+                "type": "text",
+                "value": "HD"
+              },
+              {
+                "col_index": 4,
+                "type": "text",
+                "value": "JD"
+              },
+              {
+                "col_index": 5,
+                "type": "text",
+                "value": "AP"
+              },
+              {
+                "col_index": 6,
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col_index": 7,
+                "type": "text",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

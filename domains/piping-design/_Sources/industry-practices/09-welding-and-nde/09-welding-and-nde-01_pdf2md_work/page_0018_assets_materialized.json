@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0018.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-01_p0018_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.46,
+        0.75,
+        0.62
+      ],
+      "bbox_px": [
+        128,
+        1353,
+        2040,
+        2211
+      ],
+      "caption": "Minimum preheat temperature for alloy steel groups",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-01_p0018_tbl01_minimum-preheat-temperature-alloy-steel.png",
+      "png_sha256": "87893d88fa65547743e3fe33a9ca5ac3d82da1c5274ac8c1aaed394e482269a9",
+      "slug": "minimum-preheat-temperature-alloy-steel",
+      "status": "materialized",
+      "table_data_json_path": "tables/09-welding-and-nde-01_p0018_tbl01_minimum-preheat-temperature-alloy-steel.json",
+      "table_data_json_sha256": "7995ec1b1f40862565d9cb01c779a313b2ee1ee20db7c28bcead7e475295a554",
+      "table_data_sha256": "7995ec1b1f40862565d9cb01c779a313b2ee1ee20db7c28bcead7e475295a554",
+      "xlsx_path": "tables/09-welding-and-nde-01_p0018_tbl01_minimum-preheat-temperature-alloy-steel.xlsx",
+      "xlsx_sha256": "bbfde033f83f1d8996e7c37f798e847e0bc5dd5cd2c60d5e38ce1f961749de0d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-01",
+  "doc_stem": "09-welding-and-nde-01",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0018.png",
+  "page_image_sha256": "ee5fe48b58b8f2224547e40359fcec44076fa0d2b9cdd479e02244a0be2aa668",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0018_assets.json"
+}

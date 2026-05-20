@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0036_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.92,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3201,
+        2474
+      ],
+      "caption": "Fig. 1400-17 PERF 91-17\u2014Packing Type Emissions Summary",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0036_fig01_fig-1400-17-perf-91-17-packing-type-emis.png",
+      "png_sha256": "4105df8451cfe3af0d9c69b50a5e6d6c30b01cd6102a08a2be3521f15236f0be",
+      "slug": "fig-1400-17-perf-91-17-packing-type-emis",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0036.png",
+  "page_image_sha256": "c26c99894b719981e4d367dc4e3228fc4a1f8cbeeb360266a0205f415537460f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0036_assets.json"
+}

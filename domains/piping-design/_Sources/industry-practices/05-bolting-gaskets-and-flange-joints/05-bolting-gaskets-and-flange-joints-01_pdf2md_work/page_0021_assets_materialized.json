@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0021.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0021_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2079
+      ],
+      "caption": "Bolt torque values by bolt diameter and torque class (continued)",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,17], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-01_p0021_tbl01_bolt-torque-values-by-bolt-diameter-and.png",
+      "png_sha256": "356cd82b286d20345f2d3eba45061f716a96f276545f5ae1298aef9990173756",
+      "slug": "bolt-torque-values-by-bolt-diameter-and",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0021.png",
+  "page_image_sha256": "fd09fc17c9403f11786644bb6b05ed085c6681315ceed64b5c865f2e596909a6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0021_assets.json"
+}

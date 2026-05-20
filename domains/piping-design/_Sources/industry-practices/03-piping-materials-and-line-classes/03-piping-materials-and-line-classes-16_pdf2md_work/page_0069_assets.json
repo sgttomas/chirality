@@ -1,0 +1,71 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 69,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-31 Alternative Packing Systems for Use in Strong Oxidizing Service (2 of 2) — Characteristics vs. Packing Arrangement",
+      "slug": "fig-1400-31-packing-systems-strong-oxidizing-2of2-characteristics",
+      "bbox_norm": [0.05, 0.18, 0.95, 0.42],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Characteristics", "is_header": true },
+              { "value": "Packing Arrangement (Top to Bottom)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pressure to 1,000 PSI", "type": "text" },
+              { "value": "Flexible graphite top ring, solid, square x-section", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Temperature to 450°F", "type": "text" },
+              { "value": "Teflon / Filled Teflon / Zymaxx (solid fem. adapter)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Teflon · 120 lbs/ft²", "type": "text" },
+              { "value": "Kalrez (V-ring, solid)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kalrez ≈ 125.5 lbs/ft²", "type": "text" },
+              { "value": "Teflon / Filled Teflon / Zymaxx (V-ring, solid)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6.0 ft·lb Bolt torque", "type": "text" },
+              { "value": "Kalrez (V-ring, solid)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3.8 ft·lb Stem torque", "type": "text" },
+              { "value": "Teflon / Filled Teflon / Zymaxx (solid male adapter)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table: Characteristics vs. Packing Arrangement (Top to Bottom). Part of Fig. 1400-31 caption block, continuation from previous page."
+    }
+  ],
+  "issues": []
+}

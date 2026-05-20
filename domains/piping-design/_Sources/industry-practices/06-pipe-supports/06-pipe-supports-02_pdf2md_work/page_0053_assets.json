@@ -1,0 +1,419 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 53,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item No. / Qty. / Description / Material \u2014 Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.72,
+        0.11
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "W200 \u00d7 52",
+                "type": "text"
+              },
+              {
+                "value": "SEE MATERIAL SELECTION",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "DIRECTIONAL ANCHOR FOR UNINSULATED LINES PIPE SIZES 1/2\" TO 24\" \u2014 Engineering drawing showing elevation view, section view, and View A details",
+      "slug": "directional-anchor-uninsulated-lines",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.75,
+        0.75
+      ],
+      "confidence": "high",
+      "notes": "Main engineering drawing with ELEVATION VIEW, SECTION, and VIEW 'A' callouts. Shows W-section beam clamp around pipe with poison pad (wear plate) and dimensions."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Type / Material selection table",
+      "slug": "material-selection-type",
+      "bbox_norm": [
+        0.72,
+        0.45,
+        0.98,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "TYPE",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "304L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "317L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "316/316L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "1.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6",
+                "type": "text"
+              },
+              {
+                "value": "2.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "7",
+                "type": "text"
+              },
+              {
+                "value": "5 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8",
+                "type": "text"
+              },
+              {
+                "value": "9 CHROME",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Material type selection table on right side of drawing"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding example table",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.72,
+        0.72,
+        0.98,
+        0.82
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "D/S STD. No. / PIPE SIZE / TYPE"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "( EXAMPLE )",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "DA3",
+                "type": "text"
+              },
+              {
+                "value": "1/2    1",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Coding convention example showing designation system: D/S STD. No. / PIPE SIZE / TYPE"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Revisions table",
+      "slug": "revisions",
+      "bbox_norm": [
+        0.03,
+        0.8,
+        0.6,
+        0.93
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "BY",
+                "is_header": true
+              },
+              {
+                "value": "CHK",
+                "is_header": true
+              },
+              {
+                "value": "ENG",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "HS",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "8/8/04",
+                "type": "text"
+              },
+              {
+                "value": "S8 WEAR PAD & NOTE ADDED",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "AR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Revisions history table at bottom of drawing"
+    }
+  ],
+  "issues": []
+}

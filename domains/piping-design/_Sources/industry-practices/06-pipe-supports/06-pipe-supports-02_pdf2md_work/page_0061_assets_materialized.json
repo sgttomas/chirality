@@ -1,0 +1,216 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0061.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0061_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.02,
+        0.3,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1788,
+        628
+      ],
+      "caption": "Schedule table listing item numbers, quantities, and descriptions (Pipe Clamp, Pipe Filler Plate, Clamp Bolt) with approval column",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0061_tbl01_schedule-table-listing-item-numbers-quan.png",
+      "png_sha256": "e03a2fff83ada56b8d45bca73acdfb928c7e92431fc60739a36de9037bfbad93",
+      "slug": "schedule-table-listing-item-numbers-quan",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_tbl02",
+      "bbox_norm": [
+        0.01,
+        0.14,
+        0.3,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        298,
+        1788,
+        1025
+      ],
+      "caption": "Dimensional table showing dimensions A, B, C for pipe sizes NPS 3/4 through 12 inches",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0061_tbl02_dimensional-table-showing-dimensions-a-b.png",
+      "png_sha256": "b469504c75c666568f64a5fb75606630556cf0174808791d9d4988fc3e3f73c3",
+      "slug": "dimensional-table-showing-dimensions-a-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig01",
+      "bbox_norm": [
+        0.6,
+        0.02,
+        0.88,
+        0.3
+      ],
+      "bbox_px": [
+        2809,
+        0,
+        4750,
+        1157
+      ],
+      "caption": "DETAIL 'A' \u2014 cross-section detail of pipe clamp showing 3/16\" dimension and clamp geometry around pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig01_detail-a-cross-section-detail-of-pipe-cl.png",
+      "png_sha256": "a9c8fc6ce02ad8d63e1195d6d92e014d80efad66e09fd187f2b8cf468c2064e0",
+      "slug": "detail-a-cross-section-detail-of-pipe-cl",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig02",
+      "bbox_norm": [
+        0.01,
+        0.27,
+        0.32,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        727,
+        1890,
+        2083
+      ],
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, Low Pipe (Guided/Restrained), showing clamp support assembly with principal axis, guide dimension A, and SEE DETAIL 'A' callout",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig02_elevation-type-11-clamp-support-low-pipe.png",
+      "png_sha256": "801e2aefb33f15ec259ed98914559a22155c7825d011142946de80b2f5d8e56c",
+      "slug": "elevation-type-11-clamp-support-low-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig03",
+      "bbox_norm": [
+        0.32,
+        0.27,
+        0.6,
+        0.58
+      ],
+      "bbox_px": [
+        1379,
+        727,
+        3320,
+        2083
+      ],
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, Low Pipe (Free/Sliding), showing clamp support assembly with principal axis, dimension A, pipe filler plate, and SEE DETAIL 'A' callout",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig03_elevation-type-11-clamp-support-low-pipe.png",
+      "png_sha256": "3197dff22ad52e026e88c848e913806fcc749372260165d6a1858636b15ac47b",
+      "slug": "elevation-type-11-clamp-support-low-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig04",
+      "bbox_norm": [
+        0.01,
+        0.58,
+        0.32,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1752,
+        1890,
+        3075
+      ],
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, High Pipe (Guided/Restrained), showing elevated pipe clamp assembly with principal axis and dimension annotations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig04_elevation-type-11-clamp-support-high-pip.png",
+      "png_sha256": "0f14fbf93c91c4b622a51d15a475b919cf96cdbf0971e6bd9cd05289d853b5ed",
+      "slug": "elevation-type-11-clamp-support-high-pip",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig05",
+      "bbox_norm": [
+        0.32,
+        0.58,
+        0.6,
+        0.88
+      ],
+      "bbox_px": [
+        1379,
+        1752,
+        3320,
+        3075
+      ],
+      "caption": "PLAN \u2014 Type 11 Clamp Support, High Pipe (Free/Sliding), plan view showing pipe clamp support from above with dimension B width annotation",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 5,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig05_plan-type-11-clamp-support-high-pipe-fre.png",
+      "png_sha256": "d943dbd0ebeab823e8d59a6ecf3fb9852a3524f39d65d2c17a8d27cf4c826ea8",
+      "slug": "plan-type-11-clamp-support-high-pipe-fre",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0061_fig06",
+      "bbox_norm": [
+        0.6,
+        0.3,
+        0.88,
+        0.58
+      ],
+      "bbox_px": [
+        2809,
+        826,
+        4750,
+        2083
+      ],
+      "caption": "DETAIL 'B' \u2014 side elevation detail of pipe clamp attachment to structure with dimension B and weld symbol annotations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 6,
+      "png_path": "figures/06-pipe-supports-02_p0061_fig06_detail-b-side-elevation-detail-of-pipe-c.png",
+      "png_sha256": "9238c7415d769668e5b082469326821d43bf8c94802286c8dcf83cb4c182c091",
+      "slug": "detail-b-side-elevation-detail-of-pipe-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 61,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0061.png",
+  "page_image_sha256": "3955a1cb775885e8e4f92b1cd4b52b7ae53a0890fdf97d4dff3b9650553d7644",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0061_assets.json"
+}

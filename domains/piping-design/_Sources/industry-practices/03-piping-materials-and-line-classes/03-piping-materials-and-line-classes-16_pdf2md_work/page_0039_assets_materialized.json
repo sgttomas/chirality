@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0039.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0039_fig01",
+      "bbox_norm": [
+        0.07,
+        0.08,
+        0.93,
+        0.72
+      ],
+      "bbox_px": [
+        66,
+        76,
+        3234,
+        1964
+      ],
+      "caption": "Fig. 1400-19 Percent of Block Valves Operating Below 100 ppm (number of readings shown on columns)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0039_fig01_fig-1400-19-percent-block-valves-below-1.png",
+      "png_sha256": "d4d74dc08349dca5e9a3dd8ee3eb34d659f3adabd27b1bf0f3648095cb1d0501",
+      "slug": "fig-1400-19-percent-block-valves-below-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 39,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0039.png",
+  "page_image_sha256": "b7f47193e43326bd4520e5239e234fdb83a52d893bd0e8c6620131a98150d212",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0039_assets.json"
+}

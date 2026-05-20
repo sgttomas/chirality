@@ -1,0 +1,269 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 256,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 4.79 CLASS: HVE — Pressure-Temperature Rating: ANSI Class 300 Except 705 C (1300 F) Max. (13)",
+      "slug": "table-4-79-class-hve",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) See Notes",
+          "(2) See Notes",
+          "(3) Unions Not Allowed",
+          "(4) See Notes",
+          "(6) See Notes",
+          "(7) See Notes",
+          "(8) See Notes",
+          "(10) See Notes",
+          "(13) ANSI Class 300 Except 705 C (1300 F) Max."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PIPE", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "Calculate Sched. 80 Min.", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-407, Annealed", "type": "text" },
+              { "value": "(1)(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3 to 6", "type": "text" },
+              { "value": "Calculate", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-407, Annealed", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "8 & over", "type": "text" },
+              { "value": "Calculate", "type": "text" },
+              { "value": "Electric Fusion Welded", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-409, Annealed (100% Radiographed)", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FITTINGS", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ells, Tees, Reducers, etc.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "(1)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "3000#", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-366 GR.WPNIC, Seamless", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3 to 6", "type": "text" },
+              { "value": "See Notes", "type": "text" },
+              { "value": "Buttweld", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-366 GR.WPNIC, Seamless or GR.WPNIW EFW", "type": "text" },
+              { "value": "(2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "8 & over", "type": "text" },
+              { "value": "See Notes", "type": "text" },
+              { "value": "Buttweld", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-366 GR.WPNIC, WX EFW", "type": "text" },
+              { "value": "(2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nipples & Swages", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1-1/2 & under", "type": "text" },
+              { "value": "See Notes", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-407, Annealed", "type": "text" },
+              { "value": "(1)(7)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Socketolets", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "3000#", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-366 GR.WPNIC, Seamless", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Unions", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Not Allowed", "type": "text" },
+              { "value": "(3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Weldolets", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "See Notes", "type": "text" },
+              { "value": "Buttweld", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-366 GR.WPNIC, Seamless", "type": "text" },
+              { "value": "(2)(8)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FLANGES", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "WN, RF", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-564", "type": "text" },
+              { "value": "(2)(4)(6)(13)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "SW, RF", "type": "text" },
+              { "value": "Incoloy 800H ASTM B-564", "type": "text" },
+              { "value": "(4)(13)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BOLTING", "type": "text" },
+              { "value": "Stud Bolts: ASTM A-193 GR.B8 Class 1 with ASTM A-194 GR.8 Nuts, for service up to 595 C (1100 F). ASTM A-453 GR.660 Class A with ASTM A-194 GR.8 Nuts, for service up to 705 C (1300 F)", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "GASKETS", "type": "text" },
+              { "value": "Spiral Wound to API 601, Incoloy 800H, Flexible Graphite Filler, with 1/8\" Thick 304 SS Centering Ring", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "(10)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page piping materials line class table for Class HVE, ANSI 300, Incoloy 800H, Process-Hydrogen service."
+    }
+  ],
+  "issues": []
+}

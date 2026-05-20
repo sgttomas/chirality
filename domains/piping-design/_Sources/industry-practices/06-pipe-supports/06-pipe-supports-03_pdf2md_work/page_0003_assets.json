@@ -1,0 +1,108 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 3,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "asset_id": "tbl-0003-01",
+      "caption": "Pipe support specific definitions — term, description, and reference for Anchor through Pipe stop",
+      "bbox_norm": [0.03, 0.14, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["Term", "Description", "Reference"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "Anchor"},
+              {"type": "text", "value": "a device which restrains the pipe from movement and rotation in all directions. The member to which an anchor is fixed, however, may be subjected to displacements and/or rotations, e.g. connections to equipment"},
+              {"type": "text", "value": "Appendices 3a, 3b and 4"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Base support or pipe stanchion"},
+              {"type": "text", "value": "a dummy pipe with base plate welded to the pipe. The pipe dummy will rest on the supporting structure and so support the pipe. When considerable site adjustment is required, the pipe stanchion may be of the 2-piece type, welded together after adjustment"},
+              {"type": "text", "value": "Appendix 4"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Clamp or clip"},
+              {"type": "text", "value": "a device bolted around a pipe or, for cold insulation, around the insulation. Clamps form an integral part of hangers and clamped cradles or pipe shoes"},
+              {"type": "text", "value": "BS 3974 and standard drawing S 44,643"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Constant load support"},
+              {"type": "text", "value": "a spring loaded support assembly or device designed such that the supporting effort is constant over the total travel of the support. Constant load supports are mainly used in pipes connected to strain sensitive equipment or for critical systems with large movements."},
+              {"type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Dummy leg"},
+              {"type": "text", "value": "a dummy pipe welded to the pipe. The pipe dummy will rest on the supporting structure and so support the pipe."},
+              {"type": "text", "value": "Appendix 7"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Goal post support"},
+              {"type": "text", "value": "frame type support for situations where heavy loads may be expected"},
+              {"type": "text", "value": "BS 3974-2"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Guide"},
+              {"type": "text", "value": "a device controlling the direction of movement of piping/supports"},
+              {"type": "text", "value": "Appendix 2"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Guided support"},
+              {"type": "text", "value": "a support allowed to move along a predetermined axis, controlled by guides"},
+              {"type": "text", "value": "Appendix 2"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Hanger"},
+              {"type": "text", "value": "a support suspended from concrete floors, beams etc"},
+              {"type": "text", "value": "BS 3974-1"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Inserts"},
+              {"type": "text", "value": "poured-in fixtures, in concrete floors or columns, allowing supports and/or hangers to be bolted"},
+              {"type": "text", "value": "Appendix 8"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Pipe shoe or cradle"},
+              {"type": "text", "value": "a pipe support welded or clamped to a pipe"},
+              {"type": "text", "value": "Appendix 1"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Pipe stop"},
+              {"type": "text", "value": "a device preventing the pipe from displacement in one direction may be applied in combination with a guide in an other direction"},
+              {"type": "text", "value": "Appendix 2 and Appendix 3"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

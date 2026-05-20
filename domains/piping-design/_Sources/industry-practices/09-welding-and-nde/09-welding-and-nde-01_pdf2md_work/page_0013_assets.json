@@ -1,0 +1,50 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-01",
+  "page": 13,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "id": "tbl-0013-01",
+      "caption": "Production hardness limits by P-number material category",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "col0", "label": ""},
+          {"id": "col1", "label": "P-1 Materials (Carbon Steel)"},
+          {"id": "col2", "label": "P-3 & P-4 Materials (C-0.5Mo, 1.25Cr)"},
+          {"id": "col3", "label": "P-5A Materials (2.25Cr)"},
+          {"id": "col4", "label": "P-5B Materials (5Cr, 9Cr)"}
+        ],
+        "rows": [
+          {
+            "id": "row0",
+            "cells": [
+              {"col": "col0", "type": "text", "value": "Non-heat-treated constructions"},
+              {"col": "col1", "type": "text", "value": "200HB (See 7.4.2)"},
+              {"col": "col2", "type": "text", "value": "N/A"},
+              {"col": "col3", "type": "text", "value": "N/A"},
+              {"col": "col4", "type": "text", "value": "N/A"}
+            ]
+          },
+          {
+            "id": "row1",
+            "cells": [
+              {"col": "col0", "type": "text", "value": "Heat-treated constructions"},
+              {"col": "col1", "type": "text", "value": "200HB (See 7.4.2)"},
+              {"col": "col2", "type": "text", "value": "215HB"},
+              {"col": "col3", "type": "text", "value": "225HB"},
+              {"col": "col4", "type": "text", "value": "235HB"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

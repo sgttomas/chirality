@@ -1,0 +1,91 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 29,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p029_fig001",
+      "kind": "fig",
+      "caption": "BASE ANCHOR assembly drawing showing plan and elevation views with item callouts, weep hole, base plate detail with 4-7/8\"\u00f8 hole pattern, grout reference, and ship-with-support notation. Pipe sizes 2\" to 4\".",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.67,
+        0.55
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p029_tbl001",
+      "kind": "tbl",
+      "caption": "MARK No. and ITEM No. 2 LENGTH table for BASE ANCHOR coding (BASE PLATE section)",
+      "bbox_norm": [
+        0.62,
+        0.46,
+        0.97,
+        0.7
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "MARK No.",
+          "ITEM No. 2 LENGTH"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "10\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "20\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "30\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "40\""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

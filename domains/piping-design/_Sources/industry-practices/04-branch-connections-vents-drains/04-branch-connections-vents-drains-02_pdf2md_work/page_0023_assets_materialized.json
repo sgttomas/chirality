@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0023.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0023_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        264,
+        2422,
+        2541
+      ],
+      "caption": "V-08 Vent \u2014 NPS 3/4 THRU 1-1/2 welded piping hydrostatic test vent detail showing NPS 3/4 blind flange, NPS 3/4 raised face weld neck flange, NPS 3/4 tee or line size reducing tee, NPS 3/4 thru NPS 1-1/2 line size, and NPS 3/4 line size with NPS 3/4 tee callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0023_fig01_v-08-vent-nps-3-4-thru-1-1-2.png",
+      "png_sha256": "69ea5c262533f742f49a957cb499e6cf13af0bf212ab37d093fc6bf65e2b0c42",
+      "slug": "v-08-vent-nps-3-4-thru-1-1-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0023.png",
+  "page_image_sha256": "0a60d9927e03945bd0118a5999e28003d53e15f647e13e7d10e11c8a4059eddd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0023_assets.json"
+}

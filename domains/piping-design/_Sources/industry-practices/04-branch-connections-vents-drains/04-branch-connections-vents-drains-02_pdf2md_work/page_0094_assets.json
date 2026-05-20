@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 94,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-03 Thermowell connection detail — NPS 3/4 & UP, showing LINE SIZE x NPS 3 CONCENTRIC SWAGE (BEVEL LARGE END x THREAD SMALL END), LINE SIZE x NPS 3 ECCENTRIC SWAGE (BEVEL LARGE END x THREAD SMALL END), NPS 3/4 THRU NPS 2 LINE SIZE, NPS 1 THREADED ELBOLET, and PREFERRED DIRECTION OF FLOW with PIPING / INSTR labels",
+      "slug": "t03-thermowell-nps-34-up",
+      "bbox_norm": [0.07, 0.12, 0.93, 0.52],
+      "confidence": "high",
+      "notes": "Upper thermowell connection schematic for NPS 3/4 through NPS 2 line sizes"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "T-03 Thermowell connection detail — NPS 3 LINE SIZE & UP, showing NPS 1 THREADED ELBOLET and PREFERRED DIRECTION OF FLOW with PIPING / INSTR labels",
+      "slug": "t03-thermowell-nps-3-up",
+      "bbox_norm": [0.07, 0.52, 0.93, 0.82],
+      "confidence": "high",
+      "notes": "Lower thermowell connection schematic for NPS 3 line size and up"
+    }
+  ],
+  "issues": []
+}

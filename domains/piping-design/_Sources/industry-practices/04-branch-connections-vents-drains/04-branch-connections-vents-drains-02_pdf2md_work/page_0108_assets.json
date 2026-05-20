@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 108,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0108-01",
+      "kind": "fig",
+      "caption": "T-17 THERMOWELL — Flanged thermowell connection configurations for plastic lined piping, NPS 1 & UP. Four detail drawings: (top-left) LINE SIZE x NPS 1-1/2 INSTRUMENT TEE with NPS 2 x LINE SIZE REDUCER; (top-right) NPS 2 x NPS 1-1/2 REDUCING FLANGE with NPS 2 x LINE SIZE REDUCING TEE and NPS 2 x LINE SIZE REDUCER; (bottom-left) LINE SIZE x NPS 1-1/2 INSTRUMENT TEE, NPS 2 LINE SIZE & UP; (bottom-right) LINE SIZE x NPS 1-1/2 REDUCING FLANGE.",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.84]
+    }
+  ],
+  "issues": []
+}

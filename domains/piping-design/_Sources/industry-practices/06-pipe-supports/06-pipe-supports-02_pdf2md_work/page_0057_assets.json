@@ -1,0 +1,156 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 57,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Directional Anchor for Uninsulated Lines, Pipe Sizes 26\" to 36\" \u2014 Elevation, Section, and View 'A' engineering drawings with wear plate detail",
+      "slug": "directional-anchor-uninsulated-lines-26-36-elevation-section",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.57
+      ],
+      "confidence": "high",
+      "notes": "Full engineering drawing including ELEVATION, SECTION, and VIEW 'A' with dimensions and annotations. Item schedule table at top included in bbox."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TYPE and MATERIAL selection table for pipe support types 1 through 8",
+      "slug": "type-material-selection-table",
+      "bbox_norm": [
+        0.6,
+        0.33,
+        0.97,
+        0.57
+      ],
+      "confidence": "high",
+      "notes": "Two-column table listing TYPE numbers 1-8 with corresponding MATERIAL specifications. Located in upper right of drawing area.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "TYPE",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "DA7",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "CSA-G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": "304L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 4,
+                "type": "number"
+              },
+              {
+                "value": "316/316L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 5,
+                "type": "number"
+              },
+              {
+                "value": "1.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 6,
+                "type": "number"
+              },
+              {
+                "value": "2.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 7,
+                "type": "number"
+              },
+              {
+                "value": "5 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 8,
+                "type": "number"
+              },
+              {
+                "value": "9 CHROME",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

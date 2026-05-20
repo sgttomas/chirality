@@ -1,0 +1,215 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 18,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item No., QTY, Description, Material",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.14
+      ],
+      "confidence": "high",
+      "notes": "Two-row parts list with item number, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "W150 x 30",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "51mm x 9.5mm THK FB x 6\" LG",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Elevation and Section \"X-X\" \u2014 Cantilever Support Welded Attachment detail drawing",
+      "slug": "cantilever-support-elevation-section",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.6
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing elevation view with FAB. LENGTH (NOTE 2) annotation, weld sizes (3/8\", 1/4\"), 2\" dimension, flat bar item callout, existing steel label, and SECT X-X cross-section detail; ELEVATION label below"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Mark No., Fab. Length, Max. Load (lb.) schedule",
+      "slug": "mark-fab-length-max-load",
+      "bbox_norm": [
+        0.46,
+        0.59,
+        0.97,
+        0.74
+      ],
+      "confidence": "high",
+      "notes": "Four-row schedule correlating mark number to fabrication length and maximum allowable load",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAX. LOAD (lb.)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 2830,
+                "type": "number",
+                "unit": "lb."
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 1930,
+                "type": "number",
+                "unit": "lb."
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 1380,
+                "type": "number",
+                "unit": "lb."
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 900,
+                "type": "number",
+                "unit": "lb."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 98,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0098-01",
+      "kind": "fig",
+      "caption": "PNF0607-T07-thermowell — Three detail drawings showing flanged thermowell connection configurations for NPS 3/4 & UP T-07 thermowell. Upper-left: NPS 3/4 THRU NPS 4 LINE SIZE with LINE SIZE x NPS 6 SWAGE/REDUCER, NPS 1-1/2 SOCKOLET, NPS 1-1/2 PIPE, NPS 1-1/2 SOCKET WELD FLANGE; dimensions 150 (6) and 300 (12) MIN. Upper-right: similar with dimensions 150 (6) and 200 (8). Lower: NPS 6 LINE SIZE & UP configuration with dimension 150 (6).",
+      "bbox_norm": [0.03, 0.09, 0.97, 0.82]
+    }
+  ],
+  "issues": []
+}

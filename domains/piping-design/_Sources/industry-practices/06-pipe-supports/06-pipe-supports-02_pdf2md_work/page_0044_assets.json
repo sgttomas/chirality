@@ -1,0 +1,156 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 44,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p44_tbl1",
+      "kind": "tbl",
+      "caption": "Bill of materials for base support adjustable for pipe sizes 2\" to 4\"",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "t": "d",
+                "v": "1"
+              },
+              {
+                "t": "d",
+                "v": "1"
+              },
+              {
+                "t": "d",
+                "v": "M36e \u00d7 200 M/C BOLT c/w 2 HEX NUTS"
+              },
+              {
+                "t": "d",
+                "v": "ASTM A325"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "t": "d",
+                "v": "2"
+              },
+              {
+                "t": "d",
+                "v": "1"
+              },
+              {
+                "t": "d",
+                "v": "12mm THK PLATE 5\" \u00d7 5\" SQ."
+              },
+              {
+                "t": "d",
+                "v": "CSA G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "t": "d",
+                "v": "3"
+              },
+              {
+                "t": "d",
+                "v": "1"
+              },
+              {
+                "t": "d",
+                "v": "L102 \u00d7 102 \u00d7 9.5"
+              },
+              {
+                "t": "d",
+                "v": "CSA G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "t": "d",
+                "v": "4"
+              },
+              {
+                "t": "d",
+                "v": "4"
+              },
+              {
+                "t": "d",
+                "v": "HSL-M 12/50 HILTI EXPANSION BOLT"
+              },
+              {
+                "t": "d",
+                "v": "ASTM F568 CL 5.8 GALVANIZED"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "t": "d",
+                "v": "5"
+              },
+              {
+                "t": "d",
+                "v": "1"
+              },
+              {
+                "t": "d",
+                "v": "12mm THK PLATE 10\" \u00d7 10\" SQ."
+              },
+              {
+                "t": "d",
+                "v": "CSA G40.21-300W"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p44_fig1",
+      "kind": "fig",
+      "caption": "Engineering drawing showing SIDE VIEW, ELEVATION VIEW, BASE PLATE, and TOP PLATE details for an adjustable base support for pipe sizes 2\" to 4\"",
+      "bbox_norm": [
+        0.01,
+        0.12,
+        0.99,
+        0.75
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p44_fig2",
+      "kind": "fig",
+      "caption": "CODING example box showing pipe support standard number and dimension format: BSA1 \u2014 20\" / P/S STD. No. \u2014 DIM.",
+      "bbox_norm": [
+        0.6,
+        0.75,
+        0.85,
+        0.86
+      ]
+    }
+  ],
+  "issues": []
+}

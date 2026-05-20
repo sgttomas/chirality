@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0077.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0077_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3234
+      ],
+      "caption": "Table 4.18 Class PCG \u2014 Pressure-Temperature Rating, Materials, and Specifications",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0077_tbl01_table-4-18-class-pcg.png",
+      "png_sha256": "544c0635ad6b8d5e91f31807a28967e4b5e4b6e7467e598c58dc0b25631477c3",
+      "slug": "table-4-18-class-pcg",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 77,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0077.png",
+  "page_image_sha256": "01b2be9048579d0b5115bf3b5d5130c01d8359f63a8074604dd8d7a4fde2173f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0077_assets.json"
+}

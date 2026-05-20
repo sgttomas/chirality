@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 113,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0113_01",
+      "caption": "Flanged thermowell connection for PVC/CPVC piping T-023, NPS 3/4 and up. Upper detail: NPS 3/4 through NPS 2 line size with NPS 1-1/2 socket weld flange, NPS 1-1/2 pipe, reducer bushing(s), and NPS 3\" socket weld tee or reducing tee, 150 mm (6 in.) dimension. Lower detail: NPS 3 line size and up with NPS 1-1/2 socket weld flange, NPS 1-1/2 pipe, reducer bushing(s), and line size tee or reducing tee, 250 mm (10 in.) dimension.",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.82]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 26,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 12: Minimum Corrosion and Thread Depth Allowances (6) (7)",
+      "slug": "table-12-minimum-corrosion-thread-depth-allowances",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Table with merged row cells for Type of Pipe and Pipe Material columns; threaded end rows span two NPS ranges",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Includes all steels with an alloy content not exceeding 2-1/4 Cr-1 Mo.",
+          "(2) Includes all steels with an alloy content of 2-1/2 to 9 Cr, and 3-1/2 to 9 Ni steels.",
+          "(3) Includes all steels with an alloy content of 12Cr and greater.",
+          "(4) Includes materials such as Alloy 600, Alloy 625, Alloy 800, Alloy 800H, Alloy C-276, and Alloy C-22.",
+          "(5) When a corrosion allowance of 1/16 inch is specified, a minimum value of 0.050 is acceptable.",
+          "(6) Equals a maximum depth of ASME B1.20.1 threads.",
+          "(7) (*) The above corrosion allowances are minimum only; corrosion allowances for each line must be obtained from Owner's Engineer."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Type of Pipe",
+                "is_header": true
+              },
+              {
+                "value": "Pipe Material",
+                "is_header": true
+              },
+              {
+                "value": "NPS",
+                "is_header": true
+              },
+              {
+                "value": "Minimum Corrosion Allowance (inches)",
+                "is_header": true
+              },
+              {
+                "value": "Thread Depth Allowance (inches)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Cast",
+                "type": "text"
+              },
+              {
+                "value": "All metals",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": 0.0625,
+                "type": "number"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Welded or Seamless",
+                "type": "text"
+              },
+              {
+                "value": "Carbon and Low Alloy Steels (1)",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": 0.0625,
+                "type": "number"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Welded or Seamless",
+                "type": "text"
+              },
+              {
+                "value": "Intermediate Alloy Steels (2)",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": 0.03,
+                "type": "number"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Welded or Seamless",
+                "type": "text"
+              },
+              {
+                "value": "High Alloy Steels (3)",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": 0.03,
+                "type": "number"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Welded or Seamless",
+                "type": "text"
+              },
+              {
+                "value": "Nickel Copper Alloys (Alloy 400), Nickel, and Nickel Alloys (4)",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": 0.02,
+                "type": "number"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Threaded end",
+                "type": "text"
+              },
+              {
+                "value": "All Metallic Materials",
+                "type": "text"
+              },
+              {
+                "value": "1/2 and 3/4",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              },
+              {
+                "value": "0.0571 (6)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Threaded end",
+                "type": "text"
+              },
+              {
+                "value": "All Metallic Materials",
+                "type": "text"
+              },
+              {
+                "value": "1 thru 2",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              },
+              {
+                "value": "0.0696 (6)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

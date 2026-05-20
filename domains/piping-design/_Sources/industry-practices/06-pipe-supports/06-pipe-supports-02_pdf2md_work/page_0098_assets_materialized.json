@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0098.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0098_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Parts list: Item number, quantity, description, and material specification for T-Post Support Welded Attachment components",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0098_tbl01_parts-list-item-number-quantity-descript.png",
+      "png_sha256": "984592271763ca4b4e81ad9dd18a566824727736976688e8d8266720d4789920",
+      "slug": "parts-list-item-number-quantity-descript",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0098_fig01",
+      "bbox_norm": [
+        0.02,
+        0.12,
+        0.65,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1789,
+        2214
+      ],
+      "caption": "Fabrication drawing of T-Post Support Welded Attachment showing plan and section views with dimensions, stiffener plates, and existing steel connection detail. Includes SECTION 'A' detail view showing 5 7/16\" and 2 5/8\" cross-section dimensions. Note indicates beam to be checked for torsion.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0098_fig01_fabrication-drawing-of-t-post-support-we.png",
+      "png_sha256": "b07e16426a71ad9a46a6ea0a1f827fb29e9af71b274fd0372fb560e5746eb77e",
+      "slug": "fabrication-drawing-of-t-post-support-we",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0098_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.47,
+        0.98,
+        0.75
+      ],
+      "bbox_px": [
+        1278,
+        1388,
+        2555,
+        2643
+      ],
+      "caption": "Maximum load table by mark number, fabrication length, and dimension L for T-Post Support Welded Attachment",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,6], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0098_tbl02_maximum-load-table-by-mark-number-fabric.png",
+      "png_sha256": "a8b3794b9d635c524500d60a91cc88e9f9d03bad7cb3a17c4d3f7b06e1bd4df1",
+      "slug": "maximum-load-table-by-mark-number-fabric",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0098_tbl03",
+      "bbox_norm": [
+        0.55,
+        0.74,
+        0.98,
+        0.85
+      ],
+      "bbox_px": [
+        1278,
+        2280,
+        2555,
+        2974
+      ],
+      "caption": "Coding example table showing suffix letters and corresponding 'L' DIM values",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0098_tbl03_coding-example-table-showing-suffix-lett.png",
+      "png_sha256": "0ba499ada11b97e0f76027a5bb99070148ecb09929d92bd6ae5c4a4bbbf40634",
+      "slug": "coding-example-table-showing-suffix-lett",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 98,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0098.png",
+  "page_image_sha256": "63ca0778944c7e77d5e3a10e76197cad3ab1dfd09d23ba070bd884462bb564e9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0098_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 64,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-24 Globe Valves",
+      "slug": "fig-200-24-globe-valves",
+      "bbox_norm": [0.08, 0.20, 0.92, 0.52],
+      "confidence": "high",
+      "notes": "Two side-by-side photographs: a. Plug Type (Courtesy of Pacific Valves) and b. Y-Pattern (Courtesy of Edward Valves, Inc.)"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,1012 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 66,
+  "total_pages": 73,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Piping Class E5 \u2014 Service and General Specification",
+      "slug": "piping-class-e5-service-general-spec",
+      "bbox_norm": [
+        0.02,
+        0.1,
+        0.98,
+        0.26
+      ],
+      "confidence": "high",
+      "notes": "Header specification table with service, pressure rating, temperature, corrosion allowance, radiography, and PWHT fields",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODE CSA Z662",
+                "is_header": true
+              },
+              {
+                "value": "CLASS E5",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "type": "text"
+              },
+              {
+                "value": "Sour - Hydrocarbon Liquids (Pipelines CSA Z662, Surface Piping)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Maximum Pressure Rating",
+                "type": "text"
+              },
+              {
+                "value": "Lower of ANSI B16.5 Class 1500 Material Group 1.1 or Z245.12 PN 250",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Temperature Range",
+                "type": "text"
+              },
+              {
+                "value": "-45\u00b0C to 120\u00b0C",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Minimum Corrosion Allowance",
+                "type": "text"
+              },
+              {
+                "value": "3.0 mm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radiography",
+                "type": "text"
+              },
+              {
+                "value": "100%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Post Weld Heat Treatment",
+                "type": "text"
+              },
+              {
+                "value": "All Welds (Note 12)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Piping Class E5 \u2014 Item Specifications",
+      "slug": "piping-class-e5-item-specifications",
+      "bbox_norm": [
+        0.02,
+        0.26,
+        0.98,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Main piping class specification table with columns: Item, Sizes (NPS), General Description, Material/Code, Notes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM",
+                "is_header": true
+              },
+              {
+                "value": "Sizes (NPS)",
+                "is_header": true
+              },
+              {
+                "value": "General Description",
+                "is_header": true
+              },
+              {
+                "value": "Material/Code",
+                "is_header": true
+              },
+              {
+                "value": "Notes",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pipe",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "Z245.1 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 15, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 \u2013 24",
+                "type": "text"
+              },
+              {
+                "value": "Seamless, BE",
+                "type": "text"
+              },
+              {
+                "value": "Z245.1 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 SW",
+                "type": "text"
+              },
+              {
+                "value": "Z245.11 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 15, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 \u2013 24",
+                "type": "text"
+              },
+              {
+                "value": "Butt Weld, WT to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "Z245.11 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nipples",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Seamless xxH Minimum",
+                "type": "text"
+              },
+              {
+                "value": "Z245.1 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 15, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Swages",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 2",
+                "type": "text"
+              },
+              {
+                "value": "Bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "Z245.11 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 15, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 RF/SW, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "Z245.12 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 22, 24",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 4",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 RF/WN, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "Z245.12 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 9, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "6 \u2013 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 RF/WN or RTJ/WN, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "Z245.12 Gr. 241 Cat I SS",
+                "type": "text"
+              },
+              {
+                "value": "1, 5, 9, 22",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Bolting",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Bolts",
+                "type": "text"
+              },
+              {
+                "value": "A193 Gr. B7M",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Nuts",
+                "type": "text"
+              },
+              {
+                "value": "A194 Gr. 2HM",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Gaskets",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 \u2013 3 mm (1/8\") THK \"Flexitallic\" Style CG ASME B16.20 or Owner approved equivalent",
+                "type": "text"
+              },
+              {
+                "value": "316 SS",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Valves",
+                "type": "text"
+              },
+              {
+                "value": "GATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "GA-1546/1547/1548",
+                "type": "text"
+              },
+              {
+                "value": "15, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GA-1540",
+                "type": "text"
+              },
+              {
+                "value": "10, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3 \u2013 6, 8 \u2013 18",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GA-1540/1541/1543",
+                "type": "text"
+              },
+              {
+                "value": "32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GLOBE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "GL-1546/1547/1548",
+                "type": "text"
+              },
+              {
+                "value": "15, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GL-1540",
+                "type": "text"
+              },
+              {
+                "value": "32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "CHECK",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "CH-1546/1547/1548/1549",
+                "type": "text"
+              },
+              {
+                "value": "15, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "CH-1540",
+                "type": "text"
+              },
+              {
+                "value": "10, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 6",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged Swing type",
+                "type": "text"
+              },
+              {
+                "value": "CH-1540/1543",
+                "type": "text"
+              },
+              {
+                "value": "6, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 \u2013 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Wafer type",
+                "type": "text"
+              },
+              {
+                "value": "CH-154X",
+                "type": "text"
+              },
+              {
+                "value": "32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "BALL",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 THD",
+                "type": "text"
+              },
+              {
+                "value": "BA-1548",
+                "type": "text"
+              },
+              {
+                "value": "15, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "BA-1540",
+                "type": "text"
+              },
+              {
+                "value": "10, 32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3 \u2013 6, 8 \u2013 18",
+                "type": "text"
+              },
+              {
+                "value": "Class 1500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "BA-1540/1541/1543",
+                "type": "text"
+              },
+              {
+                "value": "32",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Piping Class E5 \u2014 Size and Wall Thickness",
+      "slug": "piping-class-e5-size-wall-thickness",
+      "bbox_norm": [
+        0.02,
+        0.72,
+        0.98,
+        0.8
+      ],
+      "confidence": "high",
+      "notes": "Size and wall thickness table at bottom of page; WT row shows xxH for size 2, and 'Calculate' spanning larger sizes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Size",
+                "is_header": true
+              },
+              {
+                "value": "1/2",
+                "is_header": true
+              },
+              {
+                "value": "3/4",
+                "is_header": true
+              },
+              {
+                "value": "1",
+                "is_header": true
+              },
+              {
+                "value": "1 1/4",
+                "is_header": true
+              },
+              {
+                "value": "2",
+                "is_header": true
+              },
+              {
+                "value": "3",
+                "is_header": true
+              },
+              {
+                "value": "4",
+                "is_header": true
+              },
+              {
+                "value": "6",
+                "is_header": true
+              },
+              {
+                "value": "8",
+                "is_header": true
+              },
+              {
+                "value": "10",
+                "is_header": true
+              },
+              {
+                "value": "12",
+                "is_header": true
+              },
+              {
+                "value": "14",
+                "is_header": true
+              },
+              {
+                "value": "16",
+                "is_header": true
+              },
+              {
+                "value": "18",
+                "is_header": true
+              },
+              {
+                "value": "20",
+                "is_header": true
+              },
+              {
+                "value": "22",
+                "is_header": true
+              },
+              {
+                "value": "24",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "W.T.",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "xxH",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Calculate",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 89,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "PNF0520-1",
+      "kind": "fig",
+      "caption": "P-20 pressure connection detail for NPS 3/4 through NPS 6 line size, showing INSTR piping with NPS 3/4 flange valve, NPS 3/4 lap joint flange, NPS 3/4 lap joint stub end, connected to NPS 3/4 thru NPS 6 line size via NPS 3/4 tee or line size tee with one or multiple reducers",
+      "bbox_norm": [0.08, 0.12, 0.95, 0.52]
+    },
+    {
+      "asset_id": "PNF0520-2",
+      "kind": "fig",
+      "caption": "P-20 pressure connection detail for NPS 8 line size and up, showing INSTR piping with NPS 3/4 flange valve, NPS 3/4 lap joint flange, NPS 3/4 lap joint stub end, connected via NPS 3/4 fabricated branch connection",
+      "bbox_norm": [0.08, 0.52, 0.95, 0.82]
+    }
+  ],
+  "issues": []
+}

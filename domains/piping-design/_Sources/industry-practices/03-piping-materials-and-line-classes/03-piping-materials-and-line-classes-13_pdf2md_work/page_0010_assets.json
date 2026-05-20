@@ -1,0 +1,288 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 10,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 1 – LINE-CLASS DESIGNATOR CODES",
+      "slug": "table-1-line-class-designator-codes",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Rating Service (1st character)", "is_header": true },
+              { "value": "Material (2nd and 3rd characters)", "is_header": true },
+              { "value": "Material (2nd and 3rd characters)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A  Class 150 process", "type": "text" },
+              { "value": "AA  Killed carbon steel", "type": "text" },
+              { "value": "MA  Monel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B  Class 300 process", "type": "text" },
+              { "value": "AB  Carbon steel", "type": "text" },
+              { "value": "NA  3-1/2 nickel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C  Class 400 process", "type": "text" },
+              { "value": "AC  Low temperature carbon steel", "type": "text" },
+              { "value": "NB  Incoloy 800/HT", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "D  Class 600 process", "type": "text" },
+              { "value": "AD  Carbon steel, galvanized", "type": "text" },
+              { "value": "NC  Incoloy 800R/HIT", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E  Class 900 process", "type": "text" },
+              { "value": "BA  Semi-steel", "type": "text" },
+              { "value": "ND  Inconel 625", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F  Class 1500 process", "type": "text" },
+              { "value": "BC  Cast Iron", "type": "text" },
+              { "value": "NE  Incoloy 825", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G  Class 2500 process", "type": "text" },
+              { "value": "BD  Ductile Iron", "type": "text" },
+              { "value": "O?  Not used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H  Class 125 process", "type": "text" },
+              { "value": "BE  Silicon Iron", "type": "text" },
+              { "value": "PA  HDPE (high density polyethylene)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "I  Instrumentation", "type": "text" },
+              { "value": "CA  Carbon - 1/2 moly", "type": "text" },
+              { "value": "PB  Polypropylene", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "J  Class 125/150 firewater", "type": "text" },
+              { "value": "CA  1-1/4 chrome - 1/2 moly", "type": "text" },
+              { "value": "PC  PVC (poly vinyl chloride)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "K  Class 150 utility", "type": "text" },
+              { "value": "CB  2-1/4 chrome - 1 moly", "type": "text" },
+              { "value": "PD  CPVC (chlorinated poly vinyl chloride)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "L  Class 250 utility", "type": "text" },
+              { "value": "CC  5 chrome - 1/2 moly", "type": "text" },
+              { "value": "PE  PVDF (Kynar)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "M  Class 300 utility", "type": "text" },
+              { "value": "CD  9 chrome - 1 moly", "type": "text" },
+              { "value": "QA  Aluminum", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N  Class 400 utility", "type": "text" },
+              { "value": "CE  12 chrome", "type": "text" },
+              { "value": "RA  310 stainless steel alonized", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "O  Not Used", "type": "text" },
+              { "value": "FA  FRP (fiberglass reinforced plastic)", "type": "text" },
+              { "value": "RS  310 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "P  Class 600 utility", "type": "text" },
+              { "value": "GA  Copper", "type": "text" },
+              { "value": "SA  304 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q  Class 900 utility", "type": "text" },
+              { "value": "HA  Hastelloy", "type": "text" },
+              { "value": "SB  304L stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R  Class 1500 utility", "type": "text" },
+              { "value": "HB  Hastelloy B", "type": "text" },
+              { "value": "SC  316 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S  Class 2500 utility", "type": "text" },
+              { "value": "HC  Hastelloy C", "type": "text" },
+              { "value": "SD  316L stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T  Class 150 RF/FF", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "SE  321 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U  Class 4500 process", "type": "text" },
+              { "value": "KA  Carbon steel lined internally with PP", "type": "text" },
+              { "value": "SF  347 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "V  Tubing Compression Fittings", "type": "text" },
+              { "value": "KB  Carbon steel w/ 317L SS Clad", "type": "text" },
+              { "value": "SG  Alloy 20", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "W  Class 125/150 utility", "type": "text" },
+              { "value": "KC  CS w/ 316 Clad", "type": "text" },
+              { "value": "SH  2205 stainless steel (duplex)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Y  Gravity", "type": "text" },
+              { "value": "KD  CS w/ 321 Clad", "type": "text" },
+              { "value": "SJ  309 stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KE  CS w/ 347 Clad", "type": "text" },
+              { "value": "SK  304H stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KF  CS Inconel 600 Clad", "type": "text" },
+              { "value": "SL  321H stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KG  CS Inconel 625 Clad", "type": "text" },
+              { "value": "SM  347H stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KH  CS Incoloy 800 Clad", "type": "text" },
+              { "value": "SP  316H stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KI  CS Incoloy 825 Clad", "type": "text" },
+              { "value": "SR  316L+2.5% Moly stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "KK  CS w/316 Clad / Incoloy 825", "type": "text" },
+              { "value": "SV  317L stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LA  Carbon steel lined internally with epoxy", "type": "text" },
+              { "value": "SW  304/304L stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LB  Carbon steel lined internally with cement", "type": "text" },
+              { "value": "SX  316 SS / 316L stainless steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LC  Carbon steel lined internally with Teflon", "type": "text" },
+              { "value": "TA  Titanium", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LD  CS Cement Lined/Rein Concrete", "type": "text" },
+              { "value": "N  Not Used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LE  Reinforced Concrete", "type": "text" },
+              { "value": "VA  Not Used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "LF  D.I. / Rein Concrete", "type": "text" },
+              { "value": "VA  Undefined", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table mapping line-class designator codes: rating service (1st character) and material (2nd and 3rd characters). Table spans most of the page."
+    }
+  ],
+  "issues": []
+}

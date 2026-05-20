@@ -1,0 +1,159 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 249,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.76 Class HRH — Valves specifications: Check, Gate, Gauge, Globe by size and rating",
+      "slug": "table-4-76-class-hrh-valves",
+      "bbox_norm": [0.03, 0.18, 0.97, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VALVES", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Check", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "900", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "321 SS Trim, ASTM A-351 GR.CF8C Body, BC, Swing Check, to Manuf. STD.", "type": "text" },
+              { "value": "(5) (9)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "1500", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "321 SS Trim, ASTM A-182 GR.F347H or A-351 GR.CF8C Body, BC, Horiz. or Vert. \"Y\" Pattern Piston or Swing Check, to Manuf. STD.", "type": "text" },
+              { "value": "(7) (9)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gate", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "900", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "321 SS Trim, ASTM A-351 GR.CF8C Body, BB, OS&Y, BG, Solid Wedge, to API 600.", "type": "text" },
+              { "value": "(5) (6) (8) (9) (11)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "1500", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "321 SS Trim, ASTM A-182 GR.F347H or A-351 GR.CF8C Body, BB, OS&Y, BG, Solid Wedge, to API 602.", "type": "text" },
+              { "value": "(6) (7) (8) (9) (11) (12)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gauge", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4", "type": "text" },
+              { "value": "10 MPa @ 540 C (1500 psi @ 1000 F)", "type": "text" },
+              { "value": "Socketweld Inlet", "type": "text" },
+              { "value": "ASTM A-479, 321 SS or 316 SS Body, 321 SS or 316 SS Stem & Ball, Hard Seat, OS&Y Bonnet, Grafoil Packing, 3 x 1/2 FNPT Outlets", "type": "text" },
+              { "value": "(14)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Globe", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & over", "type": "text" },
+              { "value": "900", "type": "text" },
+              { "value": "Flgd, RF", "type": "text" },
+              { "value": "321 SS HFS Trim, ASTM A-351 GR.CF8C Body, BB, OS&Y, BG, Plug Disc, to Manuf. STD.", "type": "text" },
+              { "value": "(5) (9) (11)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 & under", "type": "text" },
+              { "value": "1500", "type": "text" },
+              { "value": "Socketweld", "type": "text" },
+              { "value": "321 SS HFS Trim, ASTM A-182 GR.F347H or A-351 GR.CF8C Body, BB, OS&Y, BG, Plug Disc, to Manuf. STD.", "type": "text" },
+              { "value": "(7) (9) (11)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full valve specification table for Class HRH. Covers Check, Gate, Gauge, and Globe valve types with size, rating, type, specifications, and notes columns."
+    }
+  ],
+  "issues": []
+}

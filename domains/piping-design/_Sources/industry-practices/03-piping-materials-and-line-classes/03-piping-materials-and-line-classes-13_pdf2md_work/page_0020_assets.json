@@ -1,0 +1,257 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 20,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 3 – PIPING STANDARD ABBREVIATIONS (CONTINUED)",
+      "slug": "table-3-piping-standard-abbreviations-continued",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.92],
+      "confidence": "high",
+      "notes": "Two-column abbreviation/description table; continuation of Table 3 from prior pages",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": "Table 3 – Piping Standard Abbreviations",
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Abbreviation", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TW1", "type": "text" },
+              { "value": "Weldolet Alternate Or Insert Weldolet (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U", "type": "text" },
+              { "value": "Union", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U1", "type": "text" },
+              { "value": "Union Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "V_+", "type": "text" },
+              { "value": "Valve + 2 Flgs + Gaskets & Bolts (No Wafer Types) Per Line Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VA", "type": "text" },
+              { "value": "Angle Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VB", "type": "text" },
+              { "value": "Ball Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VB1", "type": "text" },
+              { "value": "Ball Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VBT", "type": "text" },
+              { "value": "3-way Ball Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VC", "type": "text" },
+              { "value": "Check Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VC1", "type": "text" },
+              { "value": "Check Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VD", "type": "text" },
+              { "value": "Diaphragm Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VDS", "type": "text" },
+              { "value": "Valve Data Sheet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VE", "type": "text" },
+              { "value": "Pinch Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VF", "type": "text" },
+              { "value": "Butterfly Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VF1", "type": "text" },
+              { "value": "Butterfly Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VG", "type": "text" },
+              { "value": "Gate Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VG1", "type": "text" },
+              { "value": "Gate Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VH", "type": "text" },
+              { "value": "Slide Gate Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VJ", "type": "text" },
+              { "value": "Jacketed Valve (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VJ1", "type": "text" },
+              { "value": "Jacketed Valve Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VK", "type": "text" },
+              { "value": "Knife Gate Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VL", "type": "text" },
+              { "value": "Globe Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VL1", "type": "text" },
+              { "value": "Globe Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VM", "type": "text" },
+              { "value": "Valve Manifold", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VN", "type": "text" },
+              { "value": "Needle Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VO", "type": "text" },
+              { "value": "Orbit Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VP", "type": "text" },
+              { "value": "Plug Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VP1", "type": "text" },
+              { "value": "Plug Valve Alternate (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VS", "type": "text" },
+              { "value": "Pressure Seal Butterfly Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VT", "type": "text" },
+              { "value": "Tandem Blow/Seal (Inter. Service)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "VY", "type": "text" },
+              { "value": "Ball Valved Wye", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "WO", "type": "text" },
+              { "value": "Wrench Operator", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XS", "type": "text" },
+              { "value": "Extra Strong", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XV", "type": "text" },
+              { "value": "Special Valve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XVZ", "type": "text" },
+              { "value": "Safety Relief Valve (Inlet & Outlet & Orientation Input Separately)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "XZ", "type": "text" },
+              { "value": "Special Item", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X", "type": "text" },
+              { "value": "Special Prefix", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

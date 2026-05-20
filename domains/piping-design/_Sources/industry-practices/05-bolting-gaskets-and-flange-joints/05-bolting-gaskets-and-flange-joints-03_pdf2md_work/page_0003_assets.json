@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-03",
+  "page": 3,
+  "total_pages": 8,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-B-2",
+      "kind": "fig",
+      "caption": "Fig. B-2 Typical Hub Courtesy of Oteco Equipment Company",
+      "bbox_norm": [0.06, 0.05, 0.94, 0.44],
+      "description": "Dimensioned engineering cross-section drawing of a typical hub with labeled dimensions A (outer diameter at top), B (inner bore diameter), C (base width), D (overall height), E (tapered body), and F (step height); 25° taper angle marked at lower left"
+    },
+    {
+      "id": "fig-B-3",
+      "kind": "fig",
+      "caption": "Fig. B-3 Seal Ring Configuration During Makeup Courtesy of Oteco Equipment Company",
+      "bbox_norm": [0.06, 0.47, 0.94, 0.95],
+      "description": "Two-part engineering illustration of seal ring configuration during makeup. Top diagram (FREE POSITION) shows clamp, hub, and seal ring cross-section before makeup. Bottom diagram (MADE-UP POSITION) shows seal ring rib clamped between hub faces with seal ring lip engaged at clamping surface. Descriptive caption: Rib of the seal ring is clamped between hub faces. Lips of the seal ring engage inner hub surface in an interference fit which deflects the lips to achieve a seal."
+    }
+  ],
+  "issues": []
+}

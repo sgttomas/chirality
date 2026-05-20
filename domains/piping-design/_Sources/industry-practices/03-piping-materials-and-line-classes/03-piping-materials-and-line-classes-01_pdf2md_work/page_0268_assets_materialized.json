@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0268.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0268_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        3201
+      ],
+      "caption": "Table 4.84 PQB \u2014 Piping line class specification for Sour Gas and Sour Water Containing H2S, Aluminum, ANSI Class 150",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0268_tbl01_table-4-84-pqb-piping-line-class.png",
+      "png_sha256": "7cb4b7e5ce541a5629fb700db13eb0ca019519f6bf8ecc7443d77ff832f7fda5",
+      "slug": "table-4-84-pqb-piping-line-class",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0268_tbl01_table-4-84-pqb-piping-line-class.json",
+      "table_data_json_sha256": "57b5604d9cfc1b6c167ce92bc0a437eaa3b19ea3a738977ce12b29d493394d3e",
+      "table_data_sha256": "57b5604d9cfc1b6c167ce92bc0a437eaa3b19ea3a738977ce12b29d493394d3e",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0268_tbl01_table-4-84-pqb-piping-line-class.xlsx",
+      "xlsx_sha256": "18f1d466936d64009aa2b2ea9bbeac11c03be4ed00a80c2916bd1827aa00f6ab"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 268,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0268.png",
+  "page_image_sha256": "2a92c9549a6f768d05d3984fb62f8fad0ba6baa6339670972284ebc71f269090",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0268_assets.json"
+}

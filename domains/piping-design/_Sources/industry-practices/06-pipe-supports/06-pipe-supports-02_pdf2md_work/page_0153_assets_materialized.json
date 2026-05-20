@@ -1,0 +1,118 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0153.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0153_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.15
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        661
+      ],
+      "caption": "Bill of Materials \u2014 items 1\u20135 listing channel, wide-flange, plate, and bolts with material designations",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0153_tbl01_bill-of-materials-items-15-listing-chann.png",
+      "png_sha256": "da4e20f4f524cc557c74a33c792e53862b56f97ff3bcb5cff184390a70549e7b",
+      "slug": "bill-of-materials-items-15-listing-chann",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0153_fig01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.7,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1916,
+        1982
+      ],
+      "caption": "PLAN view \u2014 vessel guide for vertical pipe, uninsulated, showing channel and wide-flange assembly with bolt pattern, vessel O.D. reference, lock nuts, and dimensioned layout including 7/8\" hole (typ)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0153_fig01_plan-view-vessel-guide-for-vertical-pipe.png",
+      "png_sha256": "8f678fab0ee0bfa30e3e6edee4101ececa5dd1d939686b6d6211295a219a8d65",
+      "slug": "plan-view-vessel-guide-for-vertical-pipe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0153_fig02",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.65,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        1652,
+        1789,
+        2808
+      ],
+      "caption": "ELEVATION view \u2014 side profile of vessel guide showing T.O.S. W.P. elevation reference, slotted holes (1\" \u00d7 1 3/4\" slots typ), and vertical dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0153_fig02_elevation-view-side-profile-of-vessel-gu.png",
+      "png_sha256": "bbf0f418f71affc1bdba8804136a8e355a0c68b282f46dbb05a040b2fee324dc",
+      "slug": "elevation-view-side-profile-of-vessel-gu",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0153_tbl02",
+      "bbox_norm": [
+        0.65,
+        0.55,
+        0.97,
+        0.8
+      ],
+      "bbox_px": [
+        1533,
+        1652,
+        2555,
+        2808
+      ],
+      "caption": "Pipe size dimension table listing DIM. 'A' and DIM. 'B' values for pipe sizes 14\", 16\", 18\", 20\", and 24\"",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0153_tbl02_pipe-size-dimension-table-listing-dim-a.png",
+      "png_sha256": "3f9dd31227b4fc4e97014e37615125994099199fc98c0c54daf46a478bf475de",
+      "slug": "pipe-size-dimension-table-listing-dim-a",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 153,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0153.png",
+  "page_image_sha256": "fe3135df7dde5787b58fc35e11b8ab89b89d794aac8f0653b7ba3349553b6c5d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0153_assets.json"
+}

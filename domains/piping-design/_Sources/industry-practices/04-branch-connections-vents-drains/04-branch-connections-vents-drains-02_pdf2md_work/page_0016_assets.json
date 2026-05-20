@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 16,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0016-001",
+      "kind": "fig",
+      "caption": "PNF0301 — Hydrostatic Test Vents & Drains, Threaded Piping V/D-01: V-01 vent and D-01 drain configurations for NPS 3/4 through 2",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.88],
+      "description": "Engineering drawing showing V-01 vent and D-01 drain configurations for NPS 3/4 through 2 threaded piping. Left vent diagram shows NPS 3/4 THRU NPS 2 LINE SIZE with NPS 3/4 THREADED PLUG at top and bottom and NPS 3/4 TEE OR LINE SIZE x NPS 3/4 REDUCING TEE connections. Right vent diagram shows NPS 3/4 LINE SIZE with NPS 3/4 THREADED PLUG at top and bottom and NPS 3/4 TEE. Lower section shows corresponding D-01 drain configurations."
+    }
+  ],
+  "issues": []
+}

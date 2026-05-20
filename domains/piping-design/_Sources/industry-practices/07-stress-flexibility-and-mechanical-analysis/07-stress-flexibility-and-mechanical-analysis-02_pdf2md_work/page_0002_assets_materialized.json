@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-02_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-02_p0002_fig01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.75,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        2040,
+        2673
+      ],
+      "caption": "Professional engineer stamp (APEGGA) and PERMIT TO PRACTICE \u2014 SYNCRUDE CANADA LTD. stamp with signature, date, and permit number P 848",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-02_p0002_fig01_professional-engineer-stamp-apegga-and-p.png",
+      "png_sha256": "062ab56281fd9d4e00dcd01cde36800cf7f8407c9f2787bcdd664381f87aba20",
+      "slug": "professional-engineer-stamp-apegga-and-p",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-02_p0002_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.76,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        2343,
+        2550,
+        2970
+      ],
+      "caption": "Revision history table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/07-stress-flexibility-and-mechanical-analysis-02_p0002_tbl01_revision-history-table.png",
+      "png_sha256": "03081b84b044d4506f3aefae80646ce6273a2f34370d8e24443bc54c0116e5fe",
+      "slug": "revision-history-table",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/_assets/07-stress-flexibility-and-mechanical-analysis-02",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-02",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-02_pdf2md_work/page_0002.png",
+  "page_image_sha256": "0eaa6757abff5338b521cc35390d1610c3f6114f2951a9de25f4311f815f40fa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-02_pdf2md_work/page_0002_assets.json"
+}

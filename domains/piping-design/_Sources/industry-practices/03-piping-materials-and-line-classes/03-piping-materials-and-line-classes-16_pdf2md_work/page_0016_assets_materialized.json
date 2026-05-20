@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0016_fig01",
+      "bbox_norm": [
+        0.06,
+        0.05,
+        0.94,
+        0.91
+      ],
+      "bbox_px": [
+        25,
+        0,
+        2524,
+        3164
+      ],
+      "caption": "Fig. 1400-8 Lubricated Plug Valve [1]",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0016_fig01_fig-1400-8-lubricated-plug-valve.png",
+      "png_sha256": "45a44241d5b7cadc0ef89d2f9140f9fa696263ed487d7305ec327f45223e60c0",
+      "slug": "fig-1400-8-lubricated-plug-valve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0016.png",
+  "page_image_sha256": "291b58f0a62c2eb430406f94640405b48e55a85b63dcf8dd2b8d8702119cb7b4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0016_assets.json"
+}

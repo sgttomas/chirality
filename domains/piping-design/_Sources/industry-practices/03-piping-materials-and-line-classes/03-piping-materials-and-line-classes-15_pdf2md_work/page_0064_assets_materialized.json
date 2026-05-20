@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0064.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0064_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.92,
+        0.52
+      ],
+      "bbox_px": [
+        76,
+        494,
+        2474,
+        1879
+      ],
+      "caption": "Fig. 200-24 Globe Valves",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0064_fig01_fig-200-24-globe-valves.png",
+      "png_sha256": "f4a3029b73ea7ca43e654d604091fadab3c89922eec568dad02d0ac962439a53",
+      "slug": "fig-200-24-globe-valves",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 64,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0064.png",
+  "page_image_sha256": "21e6c7f1bcc1cb8ca36ab415c2dd4304147779fa5aaffd9d0c927db84076abe5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0064_assets.json"
+}

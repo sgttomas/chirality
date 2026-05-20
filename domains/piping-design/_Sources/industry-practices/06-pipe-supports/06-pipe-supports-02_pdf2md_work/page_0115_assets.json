@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 115,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0115-001",
+      "kind": "fig",
+      "caption": "PIPE SHOE (CLAMP ON) PIPE SIZES 26\" \u2013 36\" \u2014 Engineering drawing showing ELEVATION and SECTION 'B' views with detailed dimensions, insulation table, thermal movement table, and coding example.",
+      "bbox_norm": [
+        0.02,
+        0.08,
+        0.98,
+        0.8
+      ]
+    }
+  ],
+  "issues": []
+}

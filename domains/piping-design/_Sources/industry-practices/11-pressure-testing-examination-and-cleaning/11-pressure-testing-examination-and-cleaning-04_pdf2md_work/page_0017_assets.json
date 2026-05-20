@@ -1,0 +1,91 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-04",
+  "page": 17,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table showing cleaning scope items A through D",
+      "slug": "cleaning-scope-items-a-d",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.26],
+      "confidence": "high",
+      "notes": "Four-row table with letter-coded cleaning scope items; no explicit table number or caption visible on page",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "A", "type": "text" },
+            { "value": "Removal of all loose non-adherent material together with all adherent material which could break away during operation of the equipment.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "B", "type": "text" },
+            { "value": "Removal of oil, greases, and protective coatings.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "C", "type": "text" },
+            { "value": "Removal of adherent rust and mill scale to leave bare metal.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "D", "type": "text" },
+            { "value": "Protection of surface to prevent rust bloom following cleaning and prior to startup.", "type": "text" }
+          ] }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 2 Acceptable cleaning methods (steps 1–7)",
+      "slug": "acceptable-cleaning-methods",
+      "bbox_norm": [0.04, 0.32, 0.96, 0.72],
+      "confidence": "high",
+      "notes": "Seven-step table of acceptable cleaning methods referenced as Table 2 in the text",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": 1, "type": "number" },
+            { "value": "Clean construction techniques: For compressor and positive displacement pump piping prior to fabrication: Sand or grit blasting for rust and scale removal together with \"clean\" weld techniques (TIG, MIG, etc.) for all closing welds. For steam generators, this includes use of cold drawn tubing and cold bending.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 2, "type": "number" },
+            { "value": "Post fabrication mechanical cleaning: Grinding, pigging, sand or grit blasting (except adjacent to machinery), or high pressure (>5000 psi) water blasting.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 3, "type": "number" },
+            { "value": "Flushing with fresh clean potable water to remove trash and debris.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 4, "type": "number" },
+            { "value": "Alkaline detergent wash for oil and grease removal.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 5, "type": "number" },
+            { "value": "Solvent cleaning with acids or chelants, for rust and mill scale removal.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 6, "type": "number" },
+            { "value": "Post cleaning passivation: Prevention of after-rusting of cleaned surfaces by chemical treatment.", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": 7, "type": "number" },
+            { "value": "Post cleaning protection: Vapor phase inhibitor coating with a lubricant compatible rust preventive except for non-lubricated compressors and those in refrigeration service, or nitrogen blanket. Systems constructed entirely of stainless steel do not require the above. Blind, plug, or cap all piping joints left temporarily disconnected.", "type": "text" }
+          ] }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

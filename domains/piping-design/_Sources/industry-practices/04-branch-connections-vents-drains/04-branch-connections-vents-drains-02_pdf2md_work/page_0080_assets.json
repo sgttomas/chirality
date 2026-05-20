@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 80,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "P-11 Pressure Connection — NPS 3/4 thru NPS 1-1/2 line size (upper detail)",
+      "slug": "p11-pressure-connection-nps-3-4-thru-1-5",
+      "bbox_norm": [0.08, 0.17, 0.92, 0.52],
+      "confidence": "high",
+      "notes": "Upper schematic showing NPS 3/4 flange valve, lap joint flange, lap joint stub end, tee or reducing tee, with INSTR/PIPING callout. NPS 3/4 thru NPS 1-1/2 line size labelled on left."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "P-11 Pressure Connection — NPS 2 line size & up with NPS 3/4 butt weld pipet (lower detail)",
+      "slug": "p11-pressure-connection-nps-2-up-butt-weld",
+      "bbox_norm": [0.08, 0.52, 0.92, 0.82],
+      "confidence": "high",
+      "notes": "Lower schematic showing NPS 3/4 flange valve, lap joint flange, lap joint stub end, NPS 3/4 butt weld pipet, with INSTR/PIPING callout. NPS 2 line size & up labelled on left."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 18,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "APPENDIX 4A Standard Base Support schematic drawing",
+      "slug": "appendix-4a-standard-base-support-schematic",
+      "bbox_norm": [0.04, 0.07, 0.55, 0.38],
+      "confidence": "medium",
+      "notes": "Technical schematic drawing of standard base support with dimensions and notes; caption is the appendix heading. Text within figure is partially legible at this resolution."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "BASE SUPPORTS - SELECTION CHART Standard Base Support BS1 THRU BS8",
+      "slug": "base-supports-selection-chart-bs1-bs8",
+      "bbox_norm": [0.03, 0.36, 0.97, 0.97],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Large multi-column selection chart with X-marks indicating available configurations for support types BS1 through BS8 across various pipe sizes and insulation conditions. Cell text is too small to transcribe reliably at this image resolution."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_unreadable",
+      "asset_ordinal": 1,
+      "asset_kind": "tbl",
+      "detail": "Selection chart table cell text is not legible at the available image resolution. X-marks in selection cells are visible but row/column header text cannot be reliably transcribed. needs_extraction set to true."
+    }
+  ]
+}

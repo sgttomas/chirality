@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 203,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.60 CLASS: HEE — Line Class Header",
+      "slug": "table-4-60-class-hee-line-class-header",
+      "bbox_norm": [0.03, 0.01, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE: 4.60", "type": "text" },
+              { "value": "CLASS: HEE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "type": "text" },
+              { "value": "ANSI Class 300 Except 645 C (1200 F) Max. (10) (17)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "type": "text" },
+              { "value": "Process - Hydrogen", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "type": "text" },
+              { "value": "5 CR – 1/2 Mo (10) (17)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "type": "text" },
+              { "value": "I", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CORROSION ALLOWANCE:", "type": "text" },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header block at top of page with pressure-temperature rating, service, material, construction class, and corrosion allowance"
+    }
+  ],
+  "issues": []
+}

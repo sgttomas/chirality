@@ -1,0 +1,145 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0089.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0089_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Parts list \u2014 Item No., Qty., Description, Material",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0089_tbl01_parts-list-item-qty-description-material.png",
+      "png_sha256": "a09704721dcec4ebd5d5f1c1ce1d38e8ff1f7af1b7fc2d26de1d9dead343886a",
+      "slug": "parts-list-item-qty-description-material",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0089_tbl01_parts-list-item-qty-description-material.json",
+      "table_data_json_sha256": "18137aafd2ea02f5cc5ae57d8d001c0b1bf9d2e8a91bb61f7cc0870c45ed7c6b",
+      "table_data_sha256": "18137aafd2ea02f5cc5ae57d8d001c0b1bf9d2e8a91bb61f7cc0870c45ed7c6b",
+      "xlsx_path": "tables/06-pipe-supports-02_p0089_tbl01_parts-list-item-qty-description-material.xlsx",
+      "xlsx_sha256": "4f1eb18fd870bee42241f0ef5724d0c2ae468d8974459d69e34a1add89db53a4"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0089_fig01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.62,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1712,
+        1883
+      ],
+      "caption": "PLAN view \u2014 vertical pipe guide structural steel detail with gusset plate detail (TYP.2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0089_fig01_plan-view-vertical-pipe-guide.png",
+      "png_sha256": "4b38dcee5cc51d13f4b11182137b612eec7935f337b683ca1e53858bfe31619b",
+      "slug": "plan-view-vertical-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0089_fig02",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.55,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1553,
+        1533,
+        2874
+      ],
+      "caption": "ELEVATION view \u2014 vertical pipe guide showing FAB. LENGTH and TYP. dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0089_fig02_elevation-view-vertical-pipe-guide.png",
+      "png_sha256": "32bcbac994004ae40adb32675bfdcb7c4b41bc4cd8e77e4d8db0afc644a6b556",
+      "slug": "elevation-view-vertical-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0089_fig03",
+      "bbox_norm": [
+        0.57,
+        0.42,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        1329,
+        1222,
+        2555,
+        2214
+      ],
+      "caption": "SECT. 'X\u2013X' \u2014 cross-section of vertical pipe guide showing TOS WORK POINT ELEVATION and 1/4\" dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0089_fig03_sect-x-x-vertical-pipe-guide.png",
+      "png_sha256": "c472988799b7f2bfb299e285c0294da04d82351de7d0dabd862c01e262058e59",
+      "slug": "sect-x-x-vertical-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0089_tbl02",
+      "bbox_norm": [
+        0.57,
+        0.6,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        1329,
+        1817,
+        2555,
+        2874
+      ],
+      "caption": "Pipe size and dimension table \u2014 PIPE SIZE, DIM 'A', DIM 'B' with MARK No. and FAB. LENGTH",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0089_tbl02_pipe-size-dim-a-dim-b-fab-length.png",
+      "png_sha256": "1c85d83e33e670cd5dd7c69b4a1ccd924dde1dbc7f48119b421fc9aa8f68d292",
+      "slug": "pipe-size-dim-a-dim-b-fab-length",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0089_tbl02_pipe-size-dim-a-dim-b-fab-length.json",
+      "table_data_json_sha256": "1e0b33c7a2df07814ec1d41483ff9c619088703a2a72120c2b67f82eb16c8370",
+      "table_data_sha256": "1e0b33c7a2df07814ec1d41483ff9c619088703a2a72120c2b67f82eb16c8370",
+      "xlsx_path": "tables/06-pipe-supports-02_p0089_tbl02_pipe-size-dim-a-dim-b-fab-length.xlsx",
+      "xlsx_sha256": "46e30de81906a76345eed5d4cdae90029adb1428f765cab983144316e4cc583b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 89,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0089.png",
+  "page_image_sha256": "451961016593bed85deda64b5d45bffe8d65bc07687ac2970eaf2545602ed535",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0089_assets.json"
+}

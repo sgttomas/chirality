@@ -1,0 +1,123 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0066.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0066_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.18
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        760
+      ],
+      "caption": "Bill of Materials \u2014 Item No., Qty., Type, Description, Material",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0066_tbl01_bill-of-materials-trunnion-support.png",
+      "png_sha256": "46f8f26494e1ab860c3e8d47dd7f2e106577875d5b7c6436e678482a37040e36",
+      "slug": "bill-of-materials-trunnion-support",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0066_fig01",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.65,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        430,
+        1789,
+        2544
+      ],
+      "caption": "Single Trunnion Support \u2014 Plan and Elevation views",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0066_fig01_single-trunnion-support-plan-elevation.png",
+      "png_sha256": "cb982d201474716efbe62e0fe70aac80870f16e9764a02e17ce00d85912fe36b",
+      "slug": "single-trunnion-support-plan-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0066_tbl02",
+      "bbox_norm": [
+        0.63,
+        0.32,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        1482,
+        892,
+        2555,
+        2082
+      ],
+      "caption": "Mark and Dimension Table \u2014 NPS 3/4 to 1 1/2 trunnion support dimensions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0066_tbl02_mark-dimension-table-trunnion.png",
+      "png_sha256": "054a265734c26633bde7f35ac228c871f94842a1d1286895d34034fe0f728198",
+      "slug": "mark-dimension-table-trunnion",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0066_tbl02_mark-dimension-table-trunnion.json",
+      "table_data_json_sha256": "b58709f2c1dc359be45b1572762acabf6ddce4c532ed9253ed532ca9bb717017",
+      "table_data_sha256": "b58709f2c1dc359be45b1572762acabf6ddce4c532ed9253ed532ca9bb717017",
+      "xlsx_path": "tables/06-pipe-supports-02_p0066_tbl02_mark-dimension-table-trunnion.xlsx",
+      "xlsx_sha256": "4e4e36580725489d27a445aa6a66695c29f5c889afe92b50428e6bfd0b9d0a0c"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0066_tbl03",
+      "bbox_norm": [
+        0.63,
+        0.56,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        1482,
+        1685,
+        2555,
+        2412
+      ],
+      "caption": "Pipe Size and Dimension Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0066_tbl03_pipe-size-dimension-table.png",
+      "png_sha256": "f44ac1b9ed0b8813d36b60368f92e06da95991bf5551bd3839c1988dc69c73a8",
+      "slug": "pipe-size-dimension-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0066_tbl03_pipe-size-dimension-table.json",
+      "table_data_json_sha256": "a02fb932a5a180b9299407661d13f64d9edb8d889966611376596390885d579e",
+      "table_data_sha256": "a02fb932a5a180b9299407661d13f64d9edb8d889966611376596390885d579e",
+      "xlsx_path": "tables/06-pipe-supports-02_p0066_tbl03_pipe-size-dimension-table.xlsx",
+      "xlsx_sha256": "d32553cd20fdaaad13d0ec073e8b361a5fddb70dfccf9bcf4ba7039654221ac7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 66,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0066.png",
+  "page_image_sha256": "e0bae48b371c4dcd4dfa4a6283f041af576990c7bbcddbf096800b91943e276c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0066_assets.json"
+}

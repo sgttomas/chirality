@@ -1,0 +1,57 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 17,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "id": "tbl-0017-01",
+      "caption": "Table 5: Series 150 Flange Reference",
+      "bbox_norm": [0.04, 0.06, 0.96, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          [
+            {"text": "Pipe Size (in.)", "colspan": 1, "rowspan": 2},
+            {"text": "Wrench Size (in.)", "colspan": 1, "rowspan": 2},
+            {"text": "Flange Studs", "colspan": 2, "rowspan": 1},
+            {"text": "Raised Face Stud Length¹ (in.)", "colspan": 1, "rowspan": 2},
+            {"text": "Ring Joint", "colspan": 2, "rowspan": 1}
+          ],
+          [
+            {"text": "Qty", "colspan": 1, "rowspan": 1},
+            {"text": "Size (in.)", "colspan": 1, "rowspan": 1},
+            {"text": "Stud Length (in.)", "colspan": 1, "rowspan": 1},
+            {"text": "Ring #", "colspan": 1, "rowspan": 1}
+          ]
+        ],
+        "rows": [
+          {"cells": [{"text": "1/2"}, {"text": "7/8"}, {"text": "4"}, {"text": "1/2"}, {"text": "2-3/4"}, {"text": "N/A"}, {"text": "N/A"}]},
+          {"cells": [{"text": "3/4"}, {"text": "7/8"}, {"text": "4"}, {"text": "1/2"}, {"text": "3"}, {"text": "N/A"}, {"text": "N/A"}]},
+          {"cells": [{"text": "1"}, {"text": "7/8"}, {"text": "4"}, {"text": "1/2"}, {"text": "3"}, {"text": "3-3/4"}, {"text": "R-15"}]},
+          {"cells": [{"text": "1-1/2"}, {"text": "7/8"}, {"text": "4"}, {"text": "1/2"}, {"text": "3-1/4"}, {"text": "4"}, {"text": "R-19"}]},
+          {"cells": [{"text": "2"}, {"text": "1-1/16"}, {"text": "4"}, {"text": "5/8"}, {"text": "3-3/4"}, {"text": "4-1/2"}, {"text": "R-22"}]},
+          {"cells": [{"text": "3"}, {"text": "1-1/16"}, {"text": "4"}, {"text": "5/8"}, {"text": "4"}, {"text": "4-3/4"}, {"text": "R-29"}]},
+          {"cells": [{"text": "4"}, {"text": "1-1/16"}, {"text": "8"}, {"text": "5/8"}, {"text": "4"}, {"text": "4-3/4"}, {"text": "R-36"}]},
+          {"cells": [{"text": "6"}, {"text": "1-1/4"}, {"text": "8"}, {"text": "3/4"}, {"text": "4-1/2"}, {"text": "5-1/4"}, {"text": "R-43"}]},
+          {"cells": [{"text": "8"}, {"text": "1-1/4"}, {"text": "8"}, {"text": "3/4"}, {"text": "4-3/4"}, {"text": "5-1/2"}, {"text": "R-48"}]},
+          {"cells": [{"text": "10"}, {"text": "1-7/16"}, {"text": "12"}, {"text": "7/8"}, {"text": "5"}, {"text": "6"}, {"text": "R-52"}]},
+          {"cells": [{"text": "12"}, {"text": "1-7/16"}, {"text": "12"}, {"text": "7/8"}, {"text": "51/4"}, {"text": "6"}, {"text": "R-56"}]},
+          {"cells": [{"text": "14"}, {"text": "1-5/8"}, {"text": "12"}, {"text": "1"}, {"text": "6"}, {"text": "6-1/2"}, {"text": "R-59"}]},
+          {"cells": [{"text": "16"}, {"text": "1-5/8"}, {"text": "16"}, {"text": "1"}, {"text": "6"}, {"text": "6-1/2"}, {"text": "R-64"}]},
+          {"cells": [{"text": "18"}, {"text": "1-13/16"}, {"text": "16"}, {"text": "1-1/8"}, {"text": "6-1/2"}, {"text": "7"}, {"text": "R-68"}]},
+          {"cells": [{"text": "20"}, {"text": "1-13/16"}, {"text": "20"}, {"text": "1-1/8"}, {"text": "7"}, {"text": "7-1/2"}, {"text": "R-72"}]},
+          {"cells": [{"text": "22"}, {"text": "2"}, {"text": "20"}, {"text": "1-1/4"}, {"text": "7-1/4"}, {"text": "7-3/4"}, {"text": "R-80"}]},
+          {"cells": [{"text": "24"}, {"text": "2"}, {"text": "20"}, {"text": "1-1/4"}, {"text": "7-1/2"}, {"text": "8"}, {"text": "R-76"}]}
+        ],
+        "footnotes": [
+          {"marker": "1", "text": "¼-inch shall be added for all raised face (RF) flange studs to be torqued."}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

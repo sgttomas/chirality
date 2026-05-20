@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0015_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.06,
+        0.7,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        33,
+        1912,
+        1419
+      ],
+      "caption": "Table 2: Fiberglass Flange Maximum Bolt Torque",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,10], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-01_p0015_tbl01_table-2-fiberglass-flange-maximum-bolt-t.png",
+      "png_sha256": "97a6b654a2a7d56a74149b050557ede5f0fc497cc856b88d413454174631af3b",
+      "slug": "table-2-fiberglass-flange-maximum-bolt-t",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0015.png",
+  "page_image_sha256": "35bc2baead3539f96d1bc99cecf7321573fa91d46554e79258b08cf47c7f59c1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0015_assets.json"
+}

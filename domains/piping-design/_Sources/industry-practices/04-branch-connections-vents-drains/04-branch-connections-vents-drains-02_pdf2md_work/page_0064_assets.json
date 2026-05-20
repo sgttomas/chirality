@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 64,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "p64-fig-001",
+      "kind": "fig",
+      "caption": "V-48 VENT and D-48 DRAIN assembly diagram for NPS 6 & UP polypropylene piping showing fabricated branch connections with NPS 3/4 lap joint flanges, flange valves, lap joint stub ends, and blind flanges.",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.85
+      ]
+    }
+  ],
+  "issues": []
+}

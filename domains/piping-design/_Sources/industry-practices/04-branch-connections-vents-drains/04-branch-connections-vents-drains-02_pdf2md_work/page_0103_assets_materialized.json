@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0103.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0103_fig01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2550,
+        3069
+      ],
+      "caption": "T-12 Thermowell Flanged Connection \u2014 NPS 3/4 & Up, showing preferred direction of flow, concentric and eccentric swage configurations, lap joint flanges, lap joint stub ends, butt weld elbow pipe, and piping/instrument connections",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0103_fig01_t-12-thermowell-flanged-connection-nps-3.png",
+      "png_sha256": "2fc4a990538a4edbbf833d1dfc119f567191df82bee68555b516106a1022dd44",
+      "slug": "t-12-thermowell-flanged-connection-nps-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 103,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0103.png",
+  "page_image_sha256": "1e2b9aa1c1e11f7dd5454f0fdd91d6ff19a93629a0538ecc440949b451c04eb3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0103_assets.json"
+}

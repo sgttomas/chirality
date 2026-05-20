@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0069.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0069_fig01",
+      "bbox_norm": [
+        0.15,
+        0.13,
+        0.85,
+        0.48
+      ],
+      "bbox_px": [
+        255,
+        264,
+        2295,
+        1749
+      ],
+      "caption": "V-58 Vent \u2014 NPS 3 & Up, with CAP OR PLUG \u2013 MJ at top, valve (NOTE 2), and LINE SIZE TEE \u2013 MJ at bottom",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0069_fig01_v-58-vent-nps-3-up.png",
+      "png_sha256": "5c7f8debdf2de0429ec337966feac282ace9122a7940f65fdbdf8b6c49a533ea",
+      "slug": "v-58-vent-nps-3-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0069_fig02",
+      "bbox_norm": [
+        0.15,
+        0.48,
+        0.85,
+        0.82
+      ],
+      "bbox_px": [
+        255,
+        1419,
+        2295,
+        2871
+      ],
+      "caption": "D-58 Drain \u2014 NPS 3 & Up, with LINE SIZE TEE \u2013 MJ at top, valve (NOTE 2), and CAP OR PLUG \u2013 MJ at bottom",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0069_fig02_d-58-drain-nps-3-up.png",
+      "png_sha256": "7624780da9e01cd26b8113b74da86276a67dc58ffde69d31344c941e9303b585",
+      "slug": "d-58-drain-nps-3-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 69,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0069.png",
+  "page_image_sha256": "b5b62d952d4bf9cb371359d5d63f7f7052c29c0ad08803ed19ee0c82068029ad",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0069_assets.json"
+}

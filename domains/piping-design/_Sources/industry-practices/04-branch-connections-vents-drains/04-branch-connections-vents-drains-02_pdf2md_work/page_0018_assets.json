@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 18,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0018_01",
+      "caption": "V-03 Vent assembly diagrams for NPS 3/4 thru 1-1/2 socketweld piping, showing three arrangement variants with labeled components",
+      "bbox_norm": [0.03, 0.22, 0.97, 0.68]
+    }
+  ],
+  "issues": []
+}

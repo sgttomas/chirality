@@ -1,0 +1,23 @@
+{
+  "pdf_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-03.pdf",
+  "pdf_sha256": "b993358c674305da1e5e8023f1d50eafd4c913e30c45f9192ad8e39fd7636010",
+  "page_count": 6,
+  "dpi": 300,
+  "pages_rendered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "files": {
+    "1": "page_0001.png",
+    "2": "page_0002.png",
+    "3": "page_0003.png",
+    "4": "page_0004.png",
+    "5": "page_0005.png",
+    "6": "page_0006.png"
+  },
+  "timestamp": "2026-05-18T22:17:09"
+}

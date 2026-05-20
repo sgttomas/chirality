@@ -1,0 +1,68 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0023.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0023_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.98,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2046
+      ],
+      "caption": "Table 13: Torque for B7 and B16 Bolting Materials at 60% Bolt Yield",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,21], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-01_p0023_tbl01_table-13-torque-for-b7-and-b16-bolting-m.png",
+      "png_sha256": "9dbdad71943d18602bc52e0435c651968bec28fa0054fc2da3bd83c9e1a9a72c",
+      "slug": "table-13-torque-for-b7-and-b16-bolting-m",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0023_tbl02",
+      "bbox_norm": [
+        0.02,
+        0.59,
+        0.98,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1782,
+        2550,
+        3036
+      ],
+      "caption": "Table 14: Torque for B7m (Fine Thread Only) Bolting Materials Used on Exchanger Floating Heads",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-01_p0023_tbl02_table-14-torque-for-b7m-fine-thread-only.png",
+      "png_sha256": "411eabea5f7a119fa64809b673db14bf522a2c7e0b925e4e70e64331f37aceaf",
+      "slug": "table-14-torque-for-b7m-fine-thread-only",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0023.png",
+  "page_image_sha256": "2c096813571661f5970c7a11d9e51e71bd336254eda193fbe613abb6b312877e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0023_assets.json"
+}

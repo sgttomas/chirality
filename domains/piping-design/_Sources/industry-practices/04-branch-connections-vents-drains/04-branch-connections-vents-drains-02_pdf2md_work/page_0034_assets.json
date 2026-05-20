@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 34,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "04-branch-connections-vents-drains-02_p0034_fig1",
+      "kind": "fig",
+      "caption": "V-53 VENT — Engineering drawing of V-53 Vent assembly for NPS 2 & UP welded piping. Shows a sockolet connection on NPS 2 LINE SIZE & UP main pipe with a vertical vent branch consisting of NPS 3/4 SOCKOLET, NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS), NPS 3/4 SOCKET WELD FLANGE, and NPS 3/4 BLIND FLANGE at top.",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.58]
+    },
+    {
+      "id": "04-branch-connections-vents-drains-02_p0034_fig2",
+      "kind": "fig",
+      "caption": "D-53 DRAIN — Engineering drawing of D-53 Drain assembly for NPS 2 & UP welded piping. Shows a sockolet connection on NPS 2 LINE SIZE & UP main pipe with a downward drain branch consisting of NPS 3/4 SOCKOLET, NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS), NPS 3/4 SOCKET WELD FLANGE, and NPS 3/4 BLIND FLANGE at bottom.",
+      "bbox_norm": [0.05, 0.55, 0.95, 0.85]
+    }
+  ],
+  "issues": []
+}

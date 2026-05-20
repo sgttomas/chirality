@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 36,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-57 Vent detail — top orientation with CAP OR PLUG – MJ and LINE SIZE TEE – MJ",
+      "slug": "v57-vent-top-orientation",
+      "bbox_norm": [0.10, 0.20, 0.90, 0.52],
+      "confidence": "high",
+      "notes": "Schematic of V-57 vent, top-mounted cap or plug on MJ tee, labels: CAP OR PLUG – MJ (upper), LINE SIZE TEE – MJ (lower)"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "V-57 Vent detail — bottom orientation with LINE SIZE MJ – TEE and CAP OR PLUG – MJ",
+      "slug": "v57-vent-bottom-orientation",
+      "bbox_norm": [0.10, 0.52, 0.90, 0.80],
+      "confidence": "high",
+      "notes": "Schematic of V-57 vent, bottom-mounted cap or plug on MJ tee, labels: LINE SIZE MJ – TEE (upper), CAP OR PLUG – MJ (lower)"
+    }
+  ],
+  "issues": []
+}

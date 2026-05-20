@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0058.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0058_fig01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.92,
+        0.47
+      ],
+      "bbox_px": [
+        76,
+        66,
+        2474,
+        1714
+      ],
+      "caption": "Fig. 200-18 TruSeal\u00ae Double Block and Bleed Plug Valve Courtesy of Orbit Valve Company",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0058_fig01_fig-200-18-truseal-double-block-bleed-pl.png",
+      "png_sha256": "bf9a8eab43d87a7e1617bd29a16987a55b98f5d4c71562ade84d2ca8bdf041ec",
+      "slug": "fig-200-18-truseal-double-block-bleed-pl",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0058.png",
+  "page_image_sha256": "4f1f6aec4542dba424375068404c95338f7b0fbd4ba09ba414b9d095afe2cdd3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0058_assets.json"
+}

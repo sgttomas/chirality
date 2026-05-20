@@ -1,0 +1,298 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 105,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.18
+      ],
+      "confidence": "high",
+      "notes": "Bill of materials table at top of page; lists two items with descriptions and material specs CSA-G40.21-300W",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM NO.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "row_span": 3,
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "row_span": 3,
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5 - SIZE 'A'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "L76 \u00d7 76 \u00d7 7.9 - SIZE 'B'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "L64 \u00d7 64 \u00d7 6.4 - SIZE 'C'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "10 mm THK. PLATE 2\" \u00d7 LENGTH TO SUIT ITEM 1",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "SECTION 'A' and ELEVATION \u2014 L-Frame Support Welded Attachment detail drawings showing section view and elevation view with dimensions",
+      "slug": "section-a-elevation-l-frame-support",
+      "bbox_norm": [
+        0.04,
+        0.18,
+        0.68,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Two engineering detail drawings: left side shows SECTION 'A' with width of item no. 2 callout; right side shows ELEVATION with existing steel connection, 1/4\" dimensions, 1\" and 10\" dimensions, FAB. LENGTH annotation, and item callouts 1 and 2"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Maximum Loads Table \u2014 Coding (Example) L1A",
+      "slug": "maximum-loads-coding-l1a",
+      "bbox_norm": [
+        0.6,
+        0.56,
+        0.97,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Maximum loads table in lower right of drawing area; shows coding example L1A with P/S STB and mark no. columns; four rows of fab lengths and loads",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING  ( EXAMPLE )",
+                "col_span": 5,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOADS (LBS) 'A'",
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOADS (LBS) 'B'",
+                "is_header": true
+              },
+              {
+                "value": "MARK SIZE NO.",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "1'6\"",
+                "type": "fraction",
+                "raw": "1'6\""
+              },
+              {
+                "value": 2475,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 1250,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 360,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "fraction",
+                "raw": "2'-0\""
+              },
+              {
+                "value": 2325,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 1175,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 350,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "number"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "fraction",
+                "raw": "3'-0\""
+              },
+              {
+                "value": 1250,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 875,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 270,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "number"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "fraction",
+                "raw": "4'-0\""
+              },
+              {
+                "value": 1325,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 650,
+                "type": "number",
+                "unit": "lbs"
+              },
+              {
+                "value": 225,
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 147,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials — Vessel Guide VC5 components",
+      "slug": "bom-vessel-guide-vc5",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.17],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM No.", "is_header": true },
+              { "value": "QTY.", "is_header": true },
+              { "value": "DESCRIPTION", "is_header": true },
+              { "value": "MATERIAL", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "1", "type": "text" },
+              { "value": "C310 × 45", "type": "text" },
+              { "value": "CSA-G40.21-300W", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "text" },
+              { "value": "1", "type": "text" },
+              { "value": "20 mm THK PLATE 6\" × 14\"", "type": "text" },
+              { "value": "CSA-G40.21-300W", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "text" },
+              { "value": "1", "type": "text" },
+              { "value": "32 mm THK PLATE 1 3/8\" × 3\"", "type": "text" },
+              { "value": "CSA-G40.21-300W", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "text" },
+              { "value": "2", "type": "text" },
+              { "value": "M20 × 85 LG BOLTS NUTS AND LOCK NUTS", "type": "text" },
+              { "value": "ASTM A325", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN — Vessel guide plan view showing guide clip, vessel clip VC2 reference, and dimensional details",
+      "slug": "plan-vessel-guide-vc5",
+      "bbox_norm": [0.03, 0.16, 0.65, 0.50],
+      "confidence": "high",
+      "notes": "Plan view engineering diagram with dimensions and annotations including guide clip and vessel clip VC2"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "GUIDE CLIP DETAIL NTS — Guide clip detail (not to scale) showing 9/16\" and L 2 7/16\" dimensions",
+      "slug": "guide-clip-detail-nts",
+      "bbox_norm": [0.63, 0.16, 0.97, 0.50],
+      "confidence": "high",
+      "notes": "Guide clip detail drawing labelled NTS (not to scale) in upper right area"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "ELEVATION — Elevation view of vessel guide showing welded shoe, W.P. EL., and dimensional details",
+      "slug": "elevation-vessel-guide-vc5",
+      "bbox_norm": [0.03, 0.48, 0.97, 0.77],
+      "confidence": "high",
+      "notes": "Elevation view engineering diagram with welded shoe reference to piping drawing, W.P. EL. annotation, and various dimensions"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Coding reference — Pipe size and vertical spacing",
+      "slug": "coding-pipe-size-vertical-spacing",
+      "bbox_norm": [0.60, 0.78, 0.97, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PIPE SIZE", "is_header": true },
+              { "value": "VERTICAL SPACING", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12\" TO 24\"", "type": "text" },
+              { "value": "40\" MAX", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Small pipe size and vertical spacing reference table at lower right, below NOTES section"
+    }
+  ],
+  "issues": []
+}

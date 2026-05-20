@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0014.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0014_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1650
+      ],
+      "caption": "Figure 6: Sketch of Assembled Isolation Flange",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0014_fig01_figure-6-sketch-of-assembled-isolation-f.png",
+      "png_sha256": "6acbc20b38811b5cb335dfe635435464344e35632d07c032b62cedc028579016",
+      "slug": "figure-6-sketch-of-assembled-isolation-f",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0014.png",
+  "page_image_sha256": "6767711199f65916417e72183a491fbd741e87abf2b17b85753a9fe01edc7485",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0014_assets.json"
+}

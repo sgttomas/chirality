@@ -1,0 +1,176 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 24,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 10: Acceptable Piping Materials for Carbon Steel Clad Piping",
+      "slug": "table-10-acceptable-piping-materials-carbon-steel-clad",
+      "bbox_norm": [
+        0.04,
+        0.11,
+        0.96,
+        0.4
+      ],
+      "confidence": "high",
+      "notes": "Complex table with merged cells; Service, Pipe, Flanges and Fittings, and Valves columns. Includes sub-headers for Flanges/Fittings and Forged/Cast Valves. NOTE footnote (1) included in bbox.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) For wet H\u2082S service, the welding procedures should ensure that the hardness in the weld area is less than 200 BHN and the Ferrite content is 35 vol. % to 60 vol. %."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Pipe",
+                "is_header": true
+              },
+              {
+                "value": "Flanges and Fittings (1)",
+                "is_header": true
+              },
+              {
+                "value": "Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "is_header": true
+              },
+              {
+                "value": "All Sizes",
+                "is_header": true
+              },
+              {
+                "value": "Flanges",
+                "is_header": true
+              },
+              {
+                "value": "Forged Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "All Fluid Services",
+                "type": "text"
+              },
+              {
+                "value": "A672 Gr. C70, Class 22 (CS Clad 317L)",
+                "type": "text"
+              },
+              {
+                "value": "A105 (CS Clad 317L)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A105 (CS Clad 625)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A672 Gr. C70, Class 22 (CS Clad 625)",
+                "type": "text"
+              },
+              {
+                "value": "Fittings",
+                "is_header": true
+              },
+              {
+                "value": "Cast Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A234 WPB (CS Clad 317L)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A234 WPB (CS Clad 625)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

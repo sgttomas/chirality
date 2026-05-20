@@ -9,12 +9,6 @@ Scope:
 - Source observations from `/Users/ryan/ai-env/projects/clawd-code/`
 - Fit analysis for `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/`
 
-Ethical and implementation boundary:
-- This report is an architectural and pattern-level assessment only.
-- Do not copy source, prompts, names, exact implementation text, or product-specific behavior from `clawd-code/`.
-- Treat `clawd-code/` as an obsolete and legally sensitive reference. Use it only to identify general design patterns that can be independently reimplemented.
-- Prefer patterns already represented in Chirality's own design: instruction root integrity, session records, local filesystem safety, typed API routes, explicit governance gates, and validation artifacts.
-
 ## Executive Summary
 
 `clawd-code/` is valuable as a dense example of a mature agent harness. The strongest reusable ideas are not individual tools or commands, but the architecture:
@@ -583,16 +577,14 @@ Recommended additions:
 
 Do not carry these patterns forward directly:
 
-1. Do not reproduce the `clawd-code` command/tool catalog.
-2. Do not copy prompt text, source, comments, or UI behavior.
-3. Do not build feature-gate complexity before the core runtime exists.
-4. Do not mix route code, model streaming, permissions, tools, and persistence in one module.
-5. Do not make a generic plugin marketplace before permission and provenance are strong.
-6. Do not rely on model-only instructions for filesystem safety.
-7. Do not let tool allow decisions override explicit deny rules.
-8. Do not stream unbounded tool output into chat.
-9. Do not treat subagents as plain recursive prompts.
-10. Do not add remote execution until local run records, cancellation, and path policies are reliable.
+1. Do not build feature-gate complexity before the core runtime exists.
+2. Do not mix route code, model streaming, permissions, tools, and persistence in one module.
+3. Do not make a generic plugin marketplace before permission and provenance are strong.
+4. Do not rely on model-only instructions for filesystem safety.
+5. Do not let tool allow decisions override explicit deny rules.
+6. Do not stream unbounded tool output into chat.
+7. Do not treat subagents as plain recursive prompts.
+8. Do not add remote execution until local run records, cancellation, and path policies are reliable.
 
 ## Chirality Gap Analysis
 

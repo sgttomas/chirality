@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0037.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0037_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3197
+      ],
+      "caption": "Fig. 200-11 Straight Connection Fittings Courtesy of Taylor Forge and Bonney Forge (3 of 3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0037_fig01_fig-200-11-straight-connection-fittings.png",
+      "png_sha256": "8b7b10c023436122288cb5a0c42bfc7d06769f54eeaa979e50fd9d8f5debad59",
+      "slug": "fig-200-11-straight-connection-fittings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 37,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0037.png",
+  "page_image_sha256": "c2a727262eb4e82dbaa4e18964bb8a5b4121d870dce472c1f3897cb6caad9c34",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0037_assets.json"
+}

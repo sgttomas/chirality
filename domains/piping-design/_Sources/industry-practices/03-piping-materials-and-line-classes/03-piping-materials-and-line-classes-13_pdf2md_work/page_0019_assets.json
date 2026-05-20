@@ -1,0 +1,299 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 19,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 3 – PIPING STANDARD ABBREVIATIONS (CONTINUED)",
+      "slug": "table-3-piping-standard-abbreviations-continued",
+      "bbox_norm": [0.04, 0.10, 0.96, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": "TABLE 3 – PIPING STANDARD ABBREVIATIONS",
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Abbreviation", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RFSF", "type": "text" },
+              { "value": "Raised Face, Smooth Finish (125-250 Aarh) Flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RG", "type": "text" },
+              { "value": "Concentric Swage Nipple, Threaded Both Ends (Tbe)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RH", "type": "text" },
+              { "value": "Concentric Swage Nipple, Beveled Small End (Ble/Tse)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RI", "type": "text" },
+              { "value": "Reducing Insert", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RJ", "type": "text" },
+              { "value": "Concentric Swage Nipple, Threaded Large End (Tle/Bse)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RK", "type": "text" },
+              { "value": "Concentric Swage Nipple, Beveled Both Ends (Bbe)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RM", "type": "text" },
+              { "value": "Eccentric Swage Nipple, Threaded Both Ends (Tbe)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RN", "type": "text" },
+              { "value": "Eccentric Swage Nipple, Threaded Small End (Ble/Tse)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RP", "type": "text" },
+              { "value": "Eccentric Swage Nipple, Threaded Large End (Tle/Bse)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RR", "type": "text" },
+              { "value": "Eccentric Swage Nipple, Beveled Both Ends (Bbe)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "RTJ", "type": "text" },
+              { "value": "Ring Joint", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SB", "type": "text" },
+              { "value": "Saddle (Branch)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SC", "type": "text" },
+              { "value": "Sleeve Coupling", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SE", "type": "text" },
+              { "value": "Lap Joint Stub End (Standard Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SE1", "type": "text" },
+              { "value": "Lap Joint Stub End Variation", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SI", "type": "text" },
+              { "value": "Soft Iron (Ring Joint Gaskets)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SP", "type": "text" },
+              { "value": "Specialty Item", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SS", "type": "text" },
+              { "value": "Stainless Steel", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SDL", "type": "text" },
+              { "value": "Saddle Support", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SW", "type": "text" },
+              { "value": "Socket Weld", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SWE", "type": "text" },
+              { "value": "Socket Weld End (Plastic Pipe)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T", "type": "text" },
+              { "value": "90 Degree Tee (Full Strength Branch, Full Or Reducing - Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T1", "type": "text" },
+              { "value": "90 Degree Tee Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T2", "type": "text" },
+              { "value": "90 Degree Tee Var. (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T&C", "type": "text" },
+              { "value": "Threaded & Coupled", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TB", "type": "text" },
+              { "value": "Boss", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TB1", "type": "text" },
+              { "value": "Boss Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TBE", "type": "text" },
+              { "value": "Threaded Both Ends", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TC", "type": "text" },
+              { "value": "Cross", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TC1", "type": "text" },
+              { "value": "Cross Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TE", "type": "text" },
+              { "value": "Elbolet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TF", "type": "text" },
+              { "value": "45 Degree Lateral Fitting", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TG", "type": "text" },
+              { "value": "Sweepolet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TH", "type": "text" },
+              { "value": "Half Coupling Used As A 90 Degree Branch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "THRD", "type": "text" },
+              { "value": "Threaded", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TJ", "type": "text" },
+              { "value": "Coupling Used As A 90 Degree Branch (Other Than Line Class Branch)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TL", "type": "text" },
+              { "value": "Latrolet, 45 Degree Latrolet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TN", "type": "text" },
+              { "value": "Nipolet, Threaded One", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TOE", "type": "text" },
+              { "value": "Threaded One End", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TP", "type": "text" },
+              { "value": "Nipolet, Plain End", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TS", "type": "text" },
+              { "value": "Sockolet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TT", "type": "text" },
+              { "value": "Threadolet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TV", "type": "text" },
+              { "value": "Vesselet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TW", "type": "text" },
+              { "value": "Weldolet (Per Line Class)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Continuation of Table 3 piping standard abbreviations; two-column table with abbreviation and description; entries RFSF through TW"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0018.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-06_p0018_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        332,
+        3300,
+        1964
+      ],
+      "caption": "Closure Weld Procedure checklist items 18\u201326 with Y/N, Date, and Remarks columns",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,9], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-06_p0018_tbl01_closure-weld-procedure-checklist-items-1.png",
+      "png_sha256": "d6afd14bde5cee578f4211a2d8ac8c69309634efc6579996020507f9b632ec4c",
+      "slug": "closure-weld-procedure-checklist-items-1",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-06",
+  "doc_stem": "09-welding-and-nde-06",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0018.png",
+  "page_image_sha256": "024022de54f197f16dfc37ed20acfea02196ccc800bd7ccfaebcbffa55b6e780",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0018_assets.json"
+}

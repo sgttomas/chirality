@@ -1,0 +1,108 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 133,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Vessel Clip for Insulated Vessel",
+      "slug": "bom-vessel-clip-insulated",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.1
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "C250 \u00d7 37",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W (NOTE 1)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "REPAD BY VESSEL FABRICATOR (IF REQUIRED)",
+                "type": "text"
+              },
+              {
+                "value": "SAME MATERIAL AS VESSEL",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. VCS \u2014 Type 'A' \u2013 Vertical Vessel (Plan and Elevation) and Type 'B' \u2013 Horizontal Vessel (Plan and Elevation)",
+      "slug": "vessel-clip-type-a-b-plan-elevation",
+      "bbox_norm": [
+        0.02,
+        0.1,
+        0.97,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing showing Plan and Elevation views for both Type A (vertical vessel) and Type B (horizontal vessel) vessel clips. Includes dimensions: 2 7/8\" width, 7/8\" holes (typ.), 1-1/2\" edge distance, 10\" height, 1/4\" weld, 8\" O.D. reference, T.O.S. W.P. elevation marker."
+    }
+  ],
+  "issues": []
+}

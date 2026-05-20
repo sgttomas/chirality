@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 91,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "P-22 Pressure Connection — NPS 3 & Up schematic showing INSTR PIPING connection to LINE SIZE TEE – MJ",
+      "slug": "p-22-pressure-connection-nps-3-up",
+      "bbox_norm": [0.25, 0.22, 0.80, 0.55],
+      "confidence": "high",
+      "notes": "Engineering schematic diagram showing pressure connection with instrument piping, valve symbol, and line size tee MJ callout"
+    }
+  ],
+  "issues": []
+}

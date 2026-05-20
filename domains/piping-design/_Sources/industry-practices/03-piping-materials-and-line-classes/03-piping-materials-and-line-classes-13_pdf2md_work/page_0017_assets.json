@@ -1,0 +1,281 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 17,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 3 – PIPING STANDARD ABBREVIATIONS",
+      "slug": "table-3-piping-standard-abbreviations",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.94],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Abbreviation", "is_header": true },
+              { "value": "Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B", "type": "text" },
+              { "value": "Bolting (Standard Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B1", "type": "text" },
+              { "value": "Bolting Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B2", "type": "text" },
+              { "value": "Bolting Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BBE", "type": "text" },
+              { "value": "Beveled Both Ends", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BE", "type": "text" },
+              { "value": "Beveled End", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BLE/TSE", "type": "text" },
+              { "value": "Beveled Large End/Threaded Small End", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BO", "type": "text" },
+              { "value": "Bolting For Orifice Flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BO1", "type": "text" },
+              { "value": "Bolting Variation For Orifice Flange (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BS", "type": "text" },
+              { "value": "Bosset", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BU", "type": "text" },
+              { "value": "Bushing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BV", "type": "text" },
+              { "value": "Psv Bolting", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BW", "type": "text" },
+              { "value": "Butt Weld", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C", "type": "text" },
+              { "value": "Cap", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C1", "type": "text" },
+              { "value": "Cap Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C2", "type": "text" },
+              { "value": "Cap Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C&W", "type": "text" },
+              { "value": "Coated And Wrapped", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CO", "type": "text" },
+              { "value": "Clean Out", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CP", "type": "text" },
+              { "value": "Plug", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CP1", "type": "text" },
+              { "value": "Plug Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CS", "type": "text" },
+              { "value": "Cap Screw", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CV", "type": "text" },
+              { "value": "Victaulic Coupling", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "DSAW", "type": "text" },
+              { "value": "Double Seam Arc Welded", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E", "type": "text" },
+              { "value": "Elbow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E1", "type": "text" },
+              { "value": "Elbow Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "EF", "type": "text" },
+              { "value": "45 Degree Elbow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "EF1", "type": "text" },
+              { "value": "45 Degree Elbow Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ER", "type": "text" },
+              { "value": "180 Degree Elbow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ES", "type": "text" },
+              { "value": "90 Degree Short Radius Elbow", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ES1", "type": "text" },
+              { "value": "90 Degree Short Radius Elbow Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F", "type": "text" },
+              { "value": "Flange (Standard Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F+", "type": "text" },
+              { "value": "Flange Set-up (W/Gasket & Bolts)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F1", "type": "text" },
+              { "value": "Flange Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F1+", "type": "text" },
+              { "value": "Flange Set-up Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F2", "type": "text" },
+              { "value": "Flange Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FB", "type": "text" },
+              { "value": "Blind Flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FB1", "type": "text" },
+              { "value": "Blind Flange Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FF", "type": "text" },
+              { "value": "Flat Face Flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FO", "type": "text" },
+              { "value": "Orifice Flange", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FO1", "type": "text" },
+              { "value": "Orifice Flange Variation (Per Line Class)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FPT", "type": "text" },
+              { "value": "Female Pipe Thread", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FR", "type": "text" },
+              { "value": "Reducing Flange", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column abbreviation table spanning the full page body. Caption is the bold centered heading above the table."
+    }
+  ],
+  "issues": []
+}

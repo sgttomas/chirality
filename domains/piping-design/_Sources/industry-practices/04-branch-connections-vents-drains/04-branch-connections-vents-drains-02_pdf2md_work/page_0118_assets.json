@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 118,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "fig-0118-01",
+      "kind": "fig",
+      "caption": "OR-02 orifice flange tap connection detail showing socket weld x threaded valve, piping connections (INSTR and PIPING labels on both sides), nipples with dimensional callouts, socket weld taps, orifice flange set, and plug",
+      "bbox_norm": [0.03, 0.18, 0.97, 0.68]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-05",
+  "page": 3,
+  "total_pages": 10,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Summary of changes since previous edition",
+      "slug": "summary-of-changes-since-previous-edition",
+      "bbox_norm": [0.06, 0.22, 0.96, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Old section", "is_header": true},
+              {"value": "New section", "is_header": true},
+              {"value": "Change", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1.1", "type": "text"},
+              {"value": "1.1", "type": "text"},
+              {"value": "Fired steam boilers excluded from scope.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1.3.2", "type": "text"},
+              {"value": "1.3.2", "type": "text"},
+              {"value": "- Design code choice left to Principal to decide;\n- Definitions added for \"very toxic\" and \"hydrogen service\".", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2.", "type": "text"},
+              {"value": "2.2", "type": "text"},
+              {"value": "Documentation requirements slightly changed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.1.2", "type": "text"},
+              {"value": "3.2", "type": "text"},
+              {"value": "Requirement for 3.1C certificates removed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.2.1", "type": "text"},
+              {"value": "4.2", "type": "text"},
+              {"value": "- Requirement for dressing back after thermal cutting or bevelling of carbon steel;\n- Thermal cutting and bevelling now only permitted on low alloy steel;\n- Water cutting now permitted for stainless steels. Grinding now required after plasma cutting.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.2.2", "type": "text"},
+              {"value": "4.2", "type": "text"},
+              {"value": "Requirement for square cutting removed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.3", "type": "text"},
+              {"value": "4.3", "type": "text"},
+              {"value": "Completely changed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.7.1", "type": "text"},
+              {"value": "4.4.1", "type": "text"},
+              {"value": "Completely changed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "4.4.2", "type": "text"},
+              {"value": "New section.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "4.4.3", "type": "text"},
+              {"value": "New section.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.7.3", "type": "text"},
+              {"value": "4.4.4", "type": "text"},
+              {"value": "Completely changed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.7.4", "type": "text"},
+              {"value": "4.4.5", "type": "text"},
+              {"value": "Hot correction now only permitted and maximum temperature increased to 500 °C.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.8.2", "type": "text"},
+              {"value": "4.5.2", "type": "text"},
+              {"value": "Flange alignment now refers to DEP 31.38.01.11-Gen. (which now includes more detailed requirements).", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3.8.3", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "Section deleted (now covered by 4.5.2).", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4.1", "type": "text"},
+              {"value": "4.3", "type": "text"},
+              {"value": "Reference to DEP 30.10.60.18-Gen. removed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4.1.2", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "Section deleted. Requirement for consumable approval removed.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4.2", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "Section deleted. Requirements for preheat now covered by design code.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4.3", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "Section deleted. Requirements for PWHT now covered by design code.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "5.2", "type": "text"},
+              {"value": "5.2", "type": "text"},
+              {"value": "Reference to DEP 61.10.08.11-Gen. added.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "5.3", "type": "text"},
+              {"value": "5.3", "type": "text"},
+              {"value": "Reference to DEP 31.38.01.31-Gen. removed and requirements added.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "5.4", "type": "text"},
+              {"value": "5.4", "type": "text"},
+              {"value": "PMI requirements now required for all materials other than carbon steel.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Appendix 1", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "Deleted (covered by design code).", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Appendix 2", "type": "text"},
+              {"value": "Appendix 1", "type": "text"},
+              {"value": "Inspection classes changed substantially.", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table mapping old sections to new sections with change descriptions"
+    }
+  ],
+  "issues": []
+}

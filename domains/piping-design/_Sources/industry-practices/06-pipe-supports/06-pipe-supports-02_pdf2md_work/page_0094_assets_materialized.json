@@ -1,0 +1,116 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0094.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0094_fig01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.47,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2656,
+        2876
+      ],
+      "caption": "Engineering drawing of CNG Nose Elbow pipe support standard, showing dimensioned views with weld and notch details, reference notes, and a NOTCH DETAIL inset. Annotations include 90\u00b0 ELBOW, SNIP TO NOTCH USE AS INDICATED IN DETAIL, AAIL FIG. NO. (OR DUPLICATE), NOTE 9, and dimensional callouts F, G, H.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0094_fig01_engineering-drawing-of-cng-nose-elbow-pi.png",
+      "png_sha256": "befe3cd3fd5f85d5a42cd97ee18d67ba0dbbe55a498acc9ea95840cc3e9a8a32",
+      "slug": "engineering-drawing-of-cng-nose-elbow-pi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0094_tbl01",
+      "bbox_norm": [
+        0.47,
+        0.03,
+        0.87,
+        0.72
+      ],
+      "bbox_px": [
+        2145,
+        0,
+        4699,
+        2546
+      ],
+      "caption": "DIMENSIONS IN INCHES \u2014 CNG Nose Elbow dimensional schedule by nominal pipe size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0094_tbl01_dimensions-in-inches-cng-nose-elbow-dime.png",
+      "png_sha256": "d1284502ec4173c3a8cda6b07b7e44eb114eaf2e7101329d86a38beaa64fe054",
+      "slug": "dimensions-in-inches-cng-nose-elbow-dime",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0094_tbl02",
+      "bbox_norm": [
+        0.47,
+        0.73,
+        0.65,
+        0.86
+      ],
+      "bbox_px": [
+        2145,
+        2248,
+        3576,
+        3008
+      ],
+      "caption": "PIPE SIZE / NO. OF NOTCHES",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0094_tbl02_pipe-size-no-of-notches.png",
+      "png_sha256": "1a8faf8935a7af81e1b87d731f217805e4cfa40ce82957108f44fd69d8d53f48",
+      "slug": "pipe-size-no-of-notches",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0094_fig02",
+      "bbox_norm": [
+        0.47,
+        0.86,
+        0.7,
+        0.97
+      ],
+      "bbox_px": [
+        2145,
+        2678,
+        3831,
+        3306
+      ],
+      "caption": "LEGEND/SYMBOL box \u2014 drawing identification, revision tracking, and standard note references for CNG Nose Elbow detail",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0094_fig02_legend-symbol-box-drawing-identification.png",
+      "png_sha256": "f59a747a430cb60e8dbdce60fffe6ea30797b0621ce028121cd776e212119a77",
+      "slug": "legend-symbol-box-drawing-identification",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 94,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0094.png",
+  "page_image_sha256": "d00a749dc0349389e2d69349e9628928e59eb827c77cb9727cc422e4d4fa58cc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0094_assets.json"
+}

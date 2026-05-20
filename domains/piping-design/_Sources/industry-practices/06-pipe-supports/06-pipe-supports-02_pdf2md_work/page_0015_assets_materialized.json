@@ -1,0 +1,168 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0015_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Parts and materials table \u2014 pipe sizes 2\" to 8\", listing plate dimensions, U-bolt specs, carbon steel specs, U-bolt diameter, and torque values",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,6], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0015_tbl01_parts-and-materials-table-pipe-sizes-2-t.png",
+      "png_sha256": "ffd332297e19a7bb3cc53cffde7a945f3f9271db7de4e7fbb1d0cc171a818066",
+      "slug": "parts-and-materials-table-pipe-sizes-2-t",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0015_fig01",
+      "bbox_norm": [
+        0.01,
+        0.14,
+        0.52,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1456,
+        1883
+      ],
+      "caption": "Detail 'A' \u2014 axial stop clamped support for 2\" to 4\" pipe; elevation and plan showing anchor beam or sleeper, plate arrangement, and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0015_fig01_detail-a-axial-stop-clamped-support-for.png",
+      "png_sha256": "a38aea18f0adb8e71c4b6b416393a796a6bf7a76df20c4b377a29082cfa30b67",
+      "slug": "detail-a-axial-stop-clamped-support-for",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0015_fig02",
+      "bbox_norm": [
+        0.5,
+        0.14,
+        0.99,
+        0.52
+      ],
+      "bbox_px": [
+        1150,
+        297,
+        2555,
+        1883
+      ],
+      "caption": "Detail 'B' \u2014 axial stop clamped support for 6\" and 8\" pipe; elevation and plan showing anchor beam or sleeper, plate arrangement, and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0015_fig02_detail-b-axial-stop-clamped-support-for.png",
+      "png_sha256": "ce16510bc84556afb651c7565d4384c86e07ad4f719b4b7f62e9104836a46b08",
+      "slug": "detail-b-axial-stop-clamped-support-for",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0015_fig03",
+      "bbox_norm": [
+        0.22,
+        0.51,
+        0.78,
+        0.7
+      ],
+      "bbox_px": [
+        434,
+        1520,
+        2121,
+        2478
+      ],
+      "caption": "Section 'A-A' \u2014 cross-section view of clamped axial stop showing rod with drilled hole, U-bolt arrangement, and dimensional callouts for 2\"\u20134\" and 6\"\u20138\" pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0015_fig03_section-a-a-cross-section-view-of-clampe.png",
+      "png_sha256": "b5bd7066fe4ac225c0fab57c6c85bf47b612828f7752150469cef78cc19ff8c9",
+      "slug": "section-a-a-cross-section-view-of-clampe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0015_tbl02",
+      "bbox_norm": [
+        0.01,
+        0.83,
+        0.56,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2577,
+        1559,
+        3238
+      ],
+      "caption": "Revision block \u2014 two general update entries",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0015_tbl02_revision-block-two-general-update-entrie.png",
+      "png_sha256": "7b504a204dabd011b51f56753d5cb5c0cbb93dffefd89a8f16f1baeb8fdccab2",
+      "slug": "revision-block-two-general-update-entrie",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0015_fig04",
+      "bbox_norm": [
+        0.57,
+        0.72,
+        0.88,
+        0.83
+      ],
+      "bbox_px": [
+        1329,
+        2214,
+        2376,
+        2908
+      ],
+      "caption": "Coding example \u2014 AC \u2013 A \u2013 4\" notation diagram with labels for No., Detail, Size, and Pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0015_fig04_coding-example-ac-a-4-notation-diagram-w.png",
+      "png_sha256": "d2939b91a26d44d4ebb2c879d5974c2ae19c1c472b1cfbb751516acea0e90e40",
+      "slug": "coding-example-ac-a-4-notation-diagram-w",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0015.png",
+  "page_image_sha256": "556a9d3318f8ae399d5a5997a07836f24776782ccc19379ef6da026f1d3bb0dc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0015_assets.json"
+}

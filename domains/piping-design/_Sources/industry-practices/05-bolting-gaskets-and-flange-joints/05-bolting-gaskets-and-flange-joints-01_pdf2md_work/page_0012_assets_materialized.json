@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0012_fig01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.95,
+        0.57
+      ],
+      "bbox_px": [
+        76,
+        66,
+        2550,
+        2046
+      ],
+      "caption": "Figure 5: Sketch of Assembled Joint to be Torqued",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0012_fig01_figure-5-sketch-of-assembled-joint-to-be.png",
+      "png_sha256": "b895c224f80aa94db4b6e48e7198a105c494d0dae14f7529e144918db1c5a249",
+      "slug": "figure-5-sketch-of-assembled-joint-to-be",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0012.png",
+  "page_image_sha256": "70cf1578096ab670e171bb215ccd9ef081f9873ef32d813a1428a48c44365d32",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0012_assets.json"
+}

@@ -1,0 +1,96 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0003_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.25
+      ],
+      "bbox_px": [
+        0,
+        132,
+        2550,
+        990
+      ],
+      "caption": "American Society of Mechanical Engineers (ASME) standards",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0003_tbl01_american-society-of-mechanical-engineers.png",
+      "png_sha256": "e572df18c0287fccb9f70c42543c1d85082011c2e2513e599b4a33a5469d1e20",
+      "slug": "american-society-of-mechanical-engineers",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0003_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.25,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        660,
+        2550,
+        2145
+      ],
+      "caption": "ASTM International (ASTM) standards",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,8], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0003_tbl02_astm-international-astm-standards.png",
+      "png_sha256": "0cf5a45f4593b24a7fff17681fda2367a8ddc2d981e6db3a7b03d003fea6fa22",
+      "slug": "astm-international-astm-standards",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0003_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2550,
+        2409
+      ],
+      "caption": "Manufacturers Standardization Society of the Valve and Fittings Industry (MSS) standards",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0003_tbl03_manufacturers-standardization-society-of.png",
+      "png_sha256": "7bbcbf81552387e2bba3901e35b69ea10aa1a135745034a24b3a9a482d2d381f",
+      "slug": "manufacturers-standardization-society-of",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-02",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0003.png",
+  "page_image_sha256": "01fe6135a3ad2bda7711f7d69c301359c73338db63497fde4e30fe51b3680d95",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0003_assets.json"
+}

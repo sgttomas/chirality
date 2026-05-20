@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-11_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-11_p0009_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.26
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        1023
+      ],
+      "caption": "Chemical composition limits (continued)",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-11_p0009_tbl01_chemical-composition-limits-continued.png",
+      "png_sha256": "00176e127a70fa956d0f185ea80882c37a4993ae96183fbfb7c4d74a1ec8ae51",
+      "slug": "chemical-composition-limits-continued",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-11",
+  "doc_stem": "03-piping-materials-and-line-classes-11",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-11_pdf2md_work/page_0009.png",
+  "page_image_sha256": "36613071513a96d0f13fbd60ffc19930a70b3b597b11cbec5929fa0b14daccee",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-11_pdf2md_work/page_0009_assets.json"
+}

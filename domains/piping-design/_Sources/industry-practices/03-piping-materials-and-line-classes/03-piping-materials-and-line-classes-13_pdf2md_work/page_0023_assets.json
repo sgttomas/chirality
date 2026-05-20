@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 23,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 2 \u2013 PHILLIPS 66 PIPING STANDARDS SERVICE INDEX EXTERNAL WEB APPLICATION",
+      "slug": "figure-2-phillips-66-piping-standards-service-index-external-web-application",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.96,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Screenshot of the Phillips 66 Piping Standards Service Index web application showing a Service Index table with class codes, ratings, corrosion allowances, temperature ranges, pipe materials, and valve trim specifications"
+    }
+  ],
+  "issues": []
+}

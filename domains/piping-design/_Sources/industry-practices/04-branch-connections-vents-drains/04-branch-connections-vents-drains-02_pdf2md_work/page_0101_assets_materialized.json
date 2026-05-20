@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0101.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0101_fig01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2805
+      ],
+      "caption": "T-10 Thermowell flanged thermowell connection detail \u2014 NPS 3/4 & UP, three installation configurations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0101_fig01_t-10-thermowell-flanged-connection-nps-3.png",
+      "png_sha256": "ddf7bb4c5e7dea3f6ff6296c2d287e8f3069eaa8ade4f0fdf90997cabe59f91e",
+      "slug": "t-10-thermowell-flanged-connection-nps-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0101.png",
+  "page_image_sha256": "8ba364b097bf984cbdd75625a999aa9147aa9d6e8c4f3bb7860fae77584ee135",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0101_assets.json"
+}

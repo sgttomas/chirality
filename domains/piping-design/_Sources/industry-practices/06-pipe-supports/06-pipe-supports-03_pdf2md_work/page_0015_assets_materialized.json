@@ -1,0 +1,99 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.06,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        99,
+        35,
+        2480,
+        1298
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:033 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S1 through S6)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.png",
+      "png_sha256": "b6337877fd39cf370a526701200f9b48aa53a35c3951d28dda9a5a6a0af4c98f",
+      "slug": "pipe-shoes-selection-chart-s-44-033-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.json",
+      "table_data_json_sha256": "ba68c3890dcf36f639d872e913800cc8c5aced73385d5031a95d55577ec77a4b",
+      "table_data_sha256": "ba68c3890dcf36f639d872e913800cc8c5aced73385d5031a95d55577ec77a4b",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.xlsx",
+      "xlsx_sha256": "abd628c410dac552fb98dcfa1d1cf7f9fd523d104ec4301b29335a00a3949099"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl02",
+      "bbox_norm": [
+        0.09,
+        0.33,
+        0.95,
+        0.6
+      ],
+      "bbox_px": [
+        99,
+        983,
+        2480,
+        2281
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:034 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S7 through S12)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.png",
+      "png_sha256": "aeedb0f14081b2f0562e0ef33eaddfc8c65a739517d6493267edc3f75a3ce075",
+      "slug": "pipe-shoes-selection-chart-s-44-034-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.json",
+      "table_data_json_sha256": "5f912d8a127d9ba7a1ecd00cf4efa500f4ebca873aca3a6b49bf64e5f7c91dc0",
+      "table_data_sha256": "5f912d8a127d9ba7a1ecd00cf4efa500f4ebca873aca3a6b49bf64e5f7c91dc0",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.xlsx",
+      "xlsx_sha256": "c689e2d6c58e8a7e3c038b15374860b3f8f8ccf5a22b767011a7782213d5b44c"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl03",
+      "bbox_norm": [
+        0.09,
+        0.61,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        99,
+        1965,
+        2480,
+        3263
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:035 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S29 through S34)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.png",
+      "png_sha256": "a63735e2e5777245974c55f18257057e01609cc880e2f8e696e7c65f2bca47cd",
+      "slug": "pipe-shoes-selection-chart-s-44-035-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.json",
+      "table_data_json_sha256": "2d913503c5869539c2c9e1ff0a2ec48fe79d070164f5b2665ea6b2e5421d1b2e",
+      "table_data_sha256": "2d913503c5869539c2c9e1ff0a2ec48fe79d070164f5b2665ea6b2e5421d1b2e",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.xlsx",
+      "xlsx_sha256": "4d9cb5064b9817009acb79ffc80e5baf0fcf685dcd17c440d625a8e88756a68a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0015.png",
+  "page_image_sha256": "b5379cbf9b4a9828ee19ca232dbe000ff18dc486b23611f9e8a983cfd7ff30c5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0015_assets.json"
+}

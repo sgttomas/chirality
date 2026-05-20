@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-13_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-13_p0003_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        1749
+      ],
+      "caption": "Refining Engineering Practices and ASME Codes and Standards",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-13_p0003_tbl01_refining-engineering-practices-asme-code.png",
+      "png_sha256": "10f0bd531437e8341c7e9b116e3a2a2033df6c96ca77b449eb7649cc179cdd46",
+      "slug": "refining-engineering-practices-asme-code",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-13_p0003_tbl01_refining-engineering-practices-asme-code.json",
+      "table_data_json_sha256": "a1fec0fdbf043c008642a1f454a1fe02d235f9e130af88ef9089035ca142defb",
+      "table_data_sha256": "a1fec0fdbf043c008642a1f454a1fe02d235f9e130af88ef9089035ca142defb",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-13_p0003_tbl01_refining-engineering-practices-asme-code.xlsx",
+      "xlsx_sha256": "b8d341665659e07958c016ec2a4d659bb8ed4b03f46d2df901e983248bd17ee7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-13",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-13_pdf2md_work/page_0003.png",
+  "page_image_sha256": "286e56ea7e3299f81d08fd5a4de69c7160e6202ef0edb9d4bd5d0cb12e038deb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-13_pdf2md_work/page_0003_assets.json"
+}

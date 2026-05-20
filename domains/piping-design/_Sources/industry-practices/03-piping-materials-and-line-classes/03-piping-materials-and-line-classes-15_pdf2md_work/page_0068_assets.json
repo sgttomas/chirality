@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 68,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-27 Check Valve Types Courtesy of Edward Valves, Inc.",
+      "slug": "fig-200-27-check-valve-types",
+      "bbox_norm": [0.10, 0.06, 0.92, 0.88],
+      "confidence": "high",
+      "notes": "Multi-part figure showing five check valve types: a. Swing, b. Lift Disc, c. Lift Ball, d. Tilting Disc, e. Stop Check. Each sub-figure is a labeled cross-section illustration with component callouts."
+    }
+  ],
+  "issues": []
+}

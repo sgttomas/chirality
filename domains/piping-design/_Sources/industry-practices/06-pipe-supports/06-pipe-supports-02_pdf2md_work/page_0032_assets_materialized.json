@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0032.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0032_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        694
+      ],
+      "caption": "Bill of Materials \u2014 Base Anchor Pipe Sizes 18\" to 24\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0032_tbl01_bom-base-anchor-18-24.png",
+      "png_sha256": "ec3d5e3e1048c79e06c7203018d73ab7fbde8289a4b3a40f40711fb7f882e7b4",
+      "slug": "bom-base-anchor-18-24",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0032_tbl01_bom-base-anchor-18-24.json",
+      "table_data_json_sha256": "dac93894ad2bb35cf4b1afb19be84ffd28b515da87bce67cfcb27570fd0f8793",
+      "table_data_sha256": "dac93894ad2bb35cf4b1afb19be84ffd28b515da87bce67cfcb27570fd0f8793",
+      "xlsx_path": "tables/06-pipe-supports-02_p0032_tbl01_bom-base-anchor-18-24.xlsx",
+      "xlsx_sha256": "cdf2849a2471fecddbf46ca6353a30242230542c710241caaea27ad21f30856b"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0032_fig01",
+      "bbox_norm": [
+        0.03,
+        0.16,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        363,
+        2555,
+        2676
+      ],
+      "caption": "Base Anchor assembly drawing \u2014 Pipe Sizes 18\" to 24\", showing plan and elevation views with dimensioned details, weep hole, base plate, and 4-1 1/8\" holes",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0032_fig01_base-anchor-assembly-18-24.png",
+      "png_sha256": "7483069200b6aef7eaea0d00dd4821dec6284f6e424a99a500718cd913b891ad",
+      "slug": "base-anchor-assembly-18-24",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0032_tbl02",
+      "bbox_norm": [
+        0.53,
+        0.76,
+        0.85,
+        0.9
+      ],
+      "bbox_px": [
+        1226,
+        2346,
+        2300,
+        3139
+      ],
+      "caption": "CODING \u2014 Base Anchor Mark Number and Item No. 2 Length by Pipe Size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0032_tbl02_coding-base-anchor-mark-length.png",
+      "png_sha256": "2c060f5fd466d047528fa287331cb927766247eb38221ac4bdd2d2809b5cf397",
+      "slug": "coding-base-anchor-mark-length",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0032_tbl02_coding-base-anchor-mark-length.json",
+      "table_data_json_sha256": "13254c4910a6d48078ed2eed238db9a1e7f086c4254f8f8d74eda0100e38aea6",
+      "table_data_sha256": "13254c4910a6d48078ed2eed238db9a1e7f086c4254f8f8d74eda0100e38aea6",
+      "xlsx_path": "tables/06-pipe-supports-02_p0032_tbl02_coding-base-anchor-mark-length.xlsx",
+      "xlsx_sha256": "4836642b669a582eb898204fbf0dc323019e7a218fdd5d52a63596bd1775c65b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0032.png",
+  "page_image_sha256": "f1aa20eaa42cb12c2b954c7074b37343a8f56b280d4fe738247d3ffe5d81a968",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0032_assets.json"
+}

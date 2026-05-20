@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 97,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0097-01",
+      "kind": "fig",
+      "caption": "T-06 THERMOWELL socketweld thermowell connection detail drawings for NPS 3/4 & UP, showing two configurations: (top) NPS 3/4 THRU NPS 1-1/2 LINE SIZE with concentric and eccentric swages and NPS 1 socket weld elbolet; (bottom) NPS 3 LINE SIZE & UP with concentric and eccentric reducers and NPS 1 socket weld elbolet.",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.80]
+    }
+  ],
+  "issues": []
+}

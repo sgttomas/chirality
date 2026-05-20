@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0087.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0087_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Item No. / QTY. / Description / Material \u2014 Bill of Materials",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0087_tbl01_bill-of-materials.png",
+      "png_sha256": "2f07d08db2fd6d83b53dc1266fc9237e7b74b10eb8924e35fc62d03dfa37a39f",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0087_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "8b089f6d328d9acaea572997b692fc000e1ab2d8d6ec99bdf1d291ef4ec21d1b",
+      "table_data_sha256": "8b089f6d328d9acaea572997b692fc000e1ab2d8d6ec99bdf1d291ef4ec21d1b",
+      "xlsx_path": "tables/06-pipe-supports-02_p0087_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "2e3e601996880193bfe4159c9181f80dc5223b185f75da59b50290d6a33776fe"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0087_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.68,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        264,
+        1865,
+        2544
+      ],
+      "caption": "PLAN, ELEVATION, and SECT. 'X-X' views \u2014 Vertical Pipe Guide, Uninsulated, Pipe Sizes 14\" to 24\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0087_fig01_plan-elevation-section-vertical-pipe-gui.png",
+      "png_sha256": "8c4df32101e670bb32ef390caa4efdc9f90bc8b9068e4bd3d531eada76a40253",
+      "slug": "plan-elevation-section-vertical-pipe-gui",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0087_tbl02",
+      "bbox_norm": [
+        0.62,
+        0.52,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1456,
+        1553,
+        2555,
+        2544
+      ],
+      "caption": "PIPE SIZE / DIM 'A' / DIM 'B' dimension table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0087_tbl02_pipe-size-dim-a-dim-b.png",
+      "png_sha256": "51d6b7765d22b141cec4366d6423252c517c541398c02e1534191862eda85568",
+      "slug": "pipe-size-dim-a-dim-b",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0087_tbl02_pipe-size-dim-a-dim-b.json",
+      "table_data_json_sha256": "43ea7bed7c5d5a48ff348ca7c308940c104b615fae4f718097357951aeb68fc8",
+      "table_data_sha256": "43ea7bed7c5d5a48ff348ca7c308940c104b615fae4f718097357951aeb68fc8",
+      "xlsx_path": "tables/06-pipe-supports-02_p0087_tbl02_pipe-size-dim-a-dim-b.xlsx",
+      "xlsx_sha256": "f16a5514e03650432607614f2f51d7a1803c737dd95b2b43bd49e29e25c99f1e"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0087_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.72,
+        0.4,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        2214,
+        1150,
+        2941
+      ],
+      "caption": "MARK No. / FAB LENGTH table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0087_tbl03_mark-no-fab-length.png",
+      "png_sha256": "4fff7da1a15a707260d4a28c6636ad59fd023912c47717c66d04e77ed5727b12",
+      "slug": "mark-no-fab-length",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0087_tbl03_mark-no-fab-length.json",
+      "table_data_json_sha256": "330a5d09fb5e2b0a257aa2309b47fffbd70d14ab593d82b7bd44d4ab0a65f3f9",
+      "table_data_sha256": "330a5d09fb5e2b0a257aa2309b47fffbd70d14ab593d82b7bd44d4ab0a65f3f9",
+      "xlsx_path": "tables/06-pipe-supports-02_p0087_tbl03_mark-no-fab-length.xlsx",
+      "xlsx_sha256": "130bc1debf7e40ac2a8ac543cec2bd697ea4e51e35c366a536cf2241bd725d3d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 87,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0087.png",
+  "page_image_sha256": "e85da45e5a69d56cc8c85dc9496fa42c3b223da88acc05fc08c9cae1b13fffc1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0087_assets.json"
+}

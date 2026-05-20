@@ -1,0 +1,106 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 21,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE 4 – STANDARD AVAILABLE PIPE SCHEDULES",
+      "slug": "standard-available-pipe-schedules",
+      "bbox_norm": [0.06, 0.11, 0.94, 0.52],
+      "confidence": "high",
+      "notes": "Three-column table with merged row groups for Carbon Steel and Alloys, and Stainless Steels. Rows contain calculated pipe wall thickness ranges and the corresponding listed standard available schedule.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material", "is_header": true },
+              { "value": "Calculated Pipe Wall Thickness", "is_header": true },
+              { "value": "Listed Standard Available Schedule", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel and Alloys", "type": "text" },
+              { "value": "≥0.5 inch", "type": "text" },
+              { "value": "Remains the same thickness regardless of schedule designation.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel and Alloys", "type": "text" },
+              { "value": "≤STD", "type": "text" },
+              { "value": "STD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel and Alloys", "type": "text" },
+              { "value": "≤ XS and > STD", "type": "text" },
+              { "value": "XS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel and Alloys", "type": "text" },
+              { "value": "≤ S160 and > XS", "type": "text" },
+              { "value": "S160", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel and Alloys", "type": "text" },
+              { "value": "≤ XXS and > S160", "type": "text" },
+              { "value": "XXS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels", "type": "text" },
+              { "value": "≥0.5 inch", "type": "text" },
+              { "value": "Remains the same thickness regardless of schedule designation.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels", "type": "text" },
+              { "value": "≤S10S", "type": "text" },
+              { "value": "S10S", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels", "type": "text" },
+              { "value": "≤ S40S and > S10S", "type": "text" },
+              { "value": "S40S", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels", "type": "text" },
+              { "value": "≤ S80S and > S40S", "type": "text" },
+              { "value": "S80S", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steels", "type": "text" },
+              { "value": "> S80S", "type": "text" },
+              { "value": "Remains the same thickness.", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

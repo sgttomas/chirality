@@ -1,0 +1,149 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0090.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0090_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Item No. / QTY / Description / Material \u2014 parts list header",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0090_tbl01_parts-list-header.png",
+      "png_sha256": "1d501b6cbc62593f7ba8b4c8d849002254b22f85cc471bf4d90099d925a253f8",
+      "slug": "parts-list-header",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0090_tbl01_parts-list-header.json",
+      "table_data_json_sha256": "ff04ffa707da511b7b816440af80f54cefb6db36bb1a7372c3a49a543904948a",
+      "table_data_sha256": "ff04ffa707da511b7b816440af80f54cefb6db36bb1a7372c3a49a543904948a",
+      "xlsx_path": "tables/06-pipe-supports-02_p0090_tbl01_parts-list-header.xlsx",
+      "xlsx_sha256": "66c27bf861dcad185c4bc5f445c60fba31336572f00849d820881b247d52d213"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0090_fig01",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2555,
+        1421
+      ],
+      "caption": "CUTTING DETAIL FOR ITEM No. 1 \u2014 TWO REQUIRED AS SHOWN, with VIEW 'A' detail showing 1 1/4\" THK. PLATE dimensions (2 7/16\", 3/8\", 3\")",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0090_fig01_cutting-detail-item-1-view-a.png",
+      "png_sha256": "67a6d3f5b9dfbc6585cdc0d2e602fa7b9922547319fd54fcf0d6c3ce847c387d",
+      "slug": "cutting-detail-item-1-view-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0090_fig02",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.62,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1090,
+        1712,
+        2544
+      ],
+      "caption": "ELEVATION VIEW \u2014 Hold down type pipe guide assembly showing 1/8\" CAP (TYP), 1/4\" TYP, and pipe guide components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0090_fig02_elevation-view-pipe-guide.png",
+      "png_sha256": "0f052f790d06ab1ee9a8294676105dab40a4b5649b16069c6f6c5ad3bcc6b932",
+      "slug": "elevation-view-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0090_tbl02",
+      "bbox_norm": [
+        0.6,
+        0.38,
+        0.97,
+        0.65
+      ],
+      "bbox_px": [
+        1405,
+        1090,
+        2555,
+        2313
+      ],
+      "caption": "Pipe Size vs Max. Guide Spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0090_tbl02_pipe-size-max-guide-spacing.png",
+      "png_sha256": "7c1ece0d7e58a1c14d98a8bc4051bdfd2aa4a0dea097f3a5adcf4fd136b886fe",
+      "slug": "pipe-size-max-guide-spacing",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0090_tbl02_pipe-size-max-guide-spacing.json",
+      "table_data_json_sha256": "6d024ffd11d9c296f02017eecdfe9f01ad1f3a3bb11eb098b4d8f7d74d589b89",
+      "table_data_sha256": "6d024ffd11d9c296f02017eecdfe9f01ad1f3a3bb11eb098b4d8f7d74d589b89",
+      "xlsx_path": "tables/06-pipe-supports-02_p0090_tbl02_pipe-size-max-guide-spacing.xlsx",
+      "xlsx_sha256": "57c9e0206e38a37d50e93c2bf33d541a37ca608b38360d76cd64bde9452b507e"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0090_tbl03",
+      "bbox_norm": [
+        0.6,
+        0.64,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        1405,
+        1949,
+        2555,
+        2643
+      ],
+      "caption": "Mark No. / Pipe Size / DIM 'A' table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0090_tbl03_mark-no-pipe-size-dim-a.png",
+      "png_sha256": "0930f539b7a1476e0bc246034330841f0d2ab270c6eb1a0ff6c78f36b19028c7",
+      "slug": "mark-no-pipe-size-dim-a",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0090_tbl03_mark-no-pipe-size-dim-a.json",
+      "table_data_json_sha256": "c88763597eb6c443bdca356dbf4991c2dbe035e7a4d92c7699700fb5a10dbe2f",
+      "table_data_sha256": "c88763597eb6c443bdca356dbf4991c2dbe035e7a4d92c7699700fb5a10dbe2f",
+      "xlsx_path": "tables/06-pipe-supports-02_p0090_tbl03_mark-no-pipe-size-dim-a.xlsx",
+      "xlsx_sha256": "a98db8e048abce2e0ea0c4fd502f7ea084de929ef13fa5be752b0615d315a4a2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 90,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0090.png",
+  "page_image_sha256": "63cb85c69361dc1ab50d43ef354aeac5015be8daec6969d0e448b14b3e5150ff",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0090_assets.json"
+}

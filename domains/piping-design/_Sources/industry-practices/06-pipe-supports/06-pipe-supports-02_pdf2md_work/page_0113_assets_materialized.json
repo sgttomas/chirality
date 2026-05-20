@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0113.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0113_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.11
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        529
+      ],
+      "caption": "Bill of Materials \u2014 Item 1, Qty 1, Description SEE NOTE 2, Material SAME MATERIAL AS PARENT PIPE",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0113_tbl01_bill-of-materials-s8.png",
+      "png_sha256": "718f1bc088b93e9e23662bf250e8a5e46174375977e3f41fdd54eb368106971a",
+      "slug": "bill-of-materials-s8",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0113_tbl01_bill-of-materials-s8.json",
+      "table_data_json_sha256": "cffeecee16b673e0a92c90503e86076ef9302f0732ebe49a482307bddc55a929",
+      "table_data_sha256": "cffeecee16b673e0a92c90503e86076ef9302f0732ebe49a482307bddc55a929",
+      "xlsx_path": "tables/06-pipe-supports-02_p0113_tbl01_bill-of-materials-s8.xlsx",
+      "xlsx_sha256": "9ed769f38c6051862664ef28bd94e0164d7efa36de10eb997f36750503e495da"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0113_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2555,
+        2313
+      ],
+      "caption": "ELEVATION VIEW and SECTION VIEW \u2014 Wear Pad, Drawing S8, Pipe Size 3\" to 48\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0113_fig01_elevation-section-s8-wear-pad.png",
+      "png_sha256": "df059349fddb1b45e65359117f4f62661c3c318a6bd20a10a275e0200407483a",
+      "slug": "elevation-section-s8-wear-pad",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0113_tbl02",
+      "bbox_norm": [
+        0.6,
+        0.56,
+        0.97,
+        0.78
+      ],
+      "bbox_px": [
+        1405,
+        1685,
+        2555,
+        2742
+      ],
+      "caption": "Mark/Dimension table \u2014 MARK NO. 1\u20138 with corresponding DIM. \"L\" values",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0113_tbl02_mark-dimension-table-s8.png",
+      "png_sha256": "aa5668527c625900a05a29f6d13d14e9671d97e379cc3d2fac156044d62670c5",
+      "slug": "mark-dimension-table-s8",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0113_tbl02_mark-dimension-table-s8.json",
+      "table_data_json_sha256": "87997c312f15a79ea5722e418af3d5ea3db9b618a40e763c12d553dd8cc06962",
+      "table_data_sha256": "87997c312f15a79ea5722e418af3d5ea3db9b618a40e763c12d553dd8cc06962",
+      "xlsx_path": "tables/06-pipe-supports-02_p0113_tbl02_mark-dimension-table-s8.xlsx",
+      "xlsx_sha256": "59b492bd20b007cbc3b6b0d324d98ba229a62b0d9e4a73f9717afa78962fb0ca"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0113_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.6,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2544,
+        1661,
+        3304
+      ],
+      "caption": "Revision history table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0113_tbl03_revision-history-s8.png",
+      "png_sha256": "9af17689dd13c3cdb2c6af2816dbfc19cb5eff35862216a7909dfd67cffeb668",
+      "slug": "revision-history-s8",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0113_tbl03_revision-history-s8.json",
+      "table_data_json_sha256": "91db4900418152b5c1a6de9ff8f7cb648e02fa3870bd86c385406086ac30efc2",
+      "table_data_sha256": "91db4900418152b5c1a6de9ff8f7cb648e02fa3870bd86c385406086ac30efc2",
+      "xlsx_path": "tables/06-pipe-supports-02_p0113_tbl03_revision-history-s8.xlsx",
+      "xlsx_sha256": "d9c14e7a23ca283a70718a6e98701db9a8c514a98b3b3f0724bde06a86a0827d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 113,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0113.png",
+  "page_image_sha256": "45090f983ef0906ba69898505e13cf2f85f7b39a115f51d466faf9fba71cd721",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0113_assets.json"
+}

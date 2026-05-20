@@ -1,0 +1,242 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0063.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0063_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.3,
+        0.1
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1788,
+        496
+      ],
+      "caption": "Line type legend - symbol descriptions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0063_tbl01_line-type-legend.png",
+      "png_sha256": "642cb313d4ab24b98d58311e8711a1e1bc528134c5a45fc3a4fd1e649cf07d56",
+      "slug": "line-type-legend",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0063_tbl01_line-type-legend.json",
+      "table_data_json_sha256": "2cb8529354d2a730fa2b070362673eed2ac0d432c96c0ca40d4a72bb55bfa5b2",
+      "table_data_sha256": "2cb8529354d2a730fa2b070362673eed2ac0d432c96c0ca40d4a72bb55bfa5b2",
+      "xlsx_path": "tables/06-pipe-supports-02_p0063_tbl01_line-type-legend.xlsx",
+      "xlsx_sha256": "c73c9dabd6e657888536cdb6c6f44ce51fac83c50b8174869fd0cc33c7f0a0c7"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_tbl02",
+      "bbox_norm": [
+        0.01,
+        0.09,
+        0.52,
+        0.19
+      ],
+      "bbox_px": [
+        0,
+        132,
+        2912,
+        793
+      ],
+      "caption": "Pipe support sizing table - pipe size vs. dimensions A through J",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0063_tbl02_pipe-support-sizing-table.png",
+      "png_sha256": "59cca55d5c04c9323d3886f64f0da65cbf52d503e1107356c69b8ac56fc5e81d",
+      "slug": "pipe-support-sizing-table",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig01",
+      "bbox_norm": [
+        0.01,
+        0.19,
+        0.28,
+        0.56
+      ],
+      "bbox_px": [
+        0,
+        463,
+        1686,
+        2017
+      ],
+      "caption": "TYPE \"A\" - VERTICAL PIPE WITHOUT RETPAD",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig01_type-a-vertical-pipe-without-retpad.png",
+      "png_sha256": "2926a87f5c86590abc87dba711b077303a8f54bfb46ffbe99823752e33700c1c",
+      "slug": "type-a-vertical-pipe-without-retpad",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig02",
+      "bbox_norm": [
+        0.27,
+        0.19,
+        0.55,
+        0.56
+      ],
+      "bbox_px": [
+        1124,
+        463,
+        3065,
+        2017
+      ],
+      "caption": "TYPE \"A\" - VERTICAL PIPE WITH RETPAD",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig02_type-a-vertical-pipe-with-retpad.png",
+      "png_sha256": "28e82c1d0b04db69cf32ba272e3bde012be60bd9b14ba9268bfa3a8866803efb",
+      "slug": "type-a-vertical-pipe-with-retpad",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig03",
+      "bbox_norm": [
+        0.01,
+        0.54,
+        0.28,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1620,
+        1686,
+        3075
+      ],
+      "caption": "TYPE \"B\" - HORIZONTAL PIPE WITHOUT RETPAD",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig03_type-b-horizontal-pipe-without-retpad.png",
+      "png_sha256": "5791fb785c85cdcea5d086454f671aa8b5928071fc8d5f4edc430628a5ef3f17",
+      "slug": "type-b-horizontal-pipe-without-retpad",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig04",
+      "bbox_norm": [
+        0.27,
+        0.54,
+        0.55,
+        0.88
+      ],
+      "bbox_px": [
+        1124,
+        1620,
+        3065,
+        3075
+      ],
+      "caption": "TYPE \"B\" - HORIZONTAL PIPE WITH RETPAD",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig04_type-b-horizontal-pipe-with-retpad.png",
+      "png_sha256": "2348416cebd58cef0082e48c92b756c02750db49038c90df948e60e60effb54e",
+      "slug": "type-b-horizontal-pipe-with-retpad",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig05",
+      "bbox_norm": [
+        0.54,
+        0.01,
+        0.78,
+        0.32
+      ],
+      "bbox_px": [
+        2503,
+        0,
+        4240,
+        1223
+      ],
+      "caption": "DETAIL \"A\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 5,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig05_detail-a.png",
+      "png_sha256": "c1f460b141dd35a4b505574c4c8b7112cfe46efedf10b9e79603a65ba64fe9a2",
+      "slug": "detail-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig06",
+      "bbox_norm": [
+        0.54,
+        0.3,
+        0.78,
+        0.58
+      ],
+      "bbox_px": [
+        2503,
+        826,
+        4240,
+        2083
+      ],
+      "caption": "DETAIL \"B\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 6,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig06_detail-b.png",
+      "png_sha256": "f59160e5fc49de6bef03b72e84dd9ed545e71666044227102f320335ce5228dc",
+      "slug": "detail-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0063_fig07",
+      "bbox_norm": [
+        0.54,
+        0.56,
+        0.78,
+        0.82
+      ],
+      "bbox_px": [
+        2503,
+        1686,
+        4240,
+        2876
+      ],
+      "caption": "DETAIL \"C\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 7,
+      "png_path": "figures/06-pipe-supports-02_p0063_fig07_detail-c.png",
+      "png_sha256": "88b11fc2f91e0934f55563f8dc736f3d781484b622cd1a930032b97bf50f6832",
+      "slug": "detail-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0063.png",
+  "page_image_sha256": "7917f49d64a04caa420351a14d1dd1d1775a903ae8e13bbdabf5842b4af2803c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0063_assets.json"
+}

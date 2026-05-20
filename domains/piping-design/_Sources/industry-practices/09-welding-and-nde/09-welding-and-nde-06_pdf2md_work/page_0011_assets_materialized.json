@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0011.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-06_p0011_img01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.22,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        688,
+        561
+      ],
+      "caption": "Suncor Energy wordmark with sunburst graphic",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/09-welding-and-nde-06_p0011_img01_suncor-energy-wordmark-with-sunburst-gra.png",
+      "png_sha256": "84b93156070ed93a09ce83544f23ac869e4d426a577798f3b78aaefe264c3a77",
+      "slug": "suncor-energy-wordmark-with-sunburst-gra",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-06",
+  "doc_stem": "09-welding-and-nde-06",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0011.png",
+  "page_image_sha256": "f9b0db579690a16e9e93c25642d0aca08dd125a43c88c6a1ca889acd6b1b8f1b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-06_pdf2md_work/page_0011_assets.json"
+}

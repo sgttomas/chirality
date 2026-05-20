@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0104.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0104_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.1
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        496
+      ],
+      "caption": "Bill of Materials \u2014 Inverted Coal-Frame Support Welded Attachment",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0104_tbl01_bill-of-materials-l10.png",
+      "png_sha256": "6a2f34f395158fbfc5133638286260c2ffadecd96dbd48df233b2205cd05d9b6",
+      "slug": "bill-of-materials-l10",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0104_tbl01_bill-of-materials-l10.json",
+      "table_data_json_sha256": "8f0525bba701658a52924ea9009c4c85f1efd6b132d124c3ad0e764bebb744b9",
+      "table_data_sha256": "8f0525bba701658a52924ea9009c4c85f1efd6b132d124c3ad0e764bebb744b9",
+      "xlsx_path": "tables/06-pipe-supports-02_p0104_tbl01_bill-of-materials-l10.xlsx",
+      "xlsx_sha256": "5d6980ee9c199cdb2c7b0f88d9a6118de2372970d645d3f096810d3aa84467e0"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0104_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.72,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        165,
+        1967,
+        2214
+      ],
+      "caption": "SECTION 'A' and ELEVATION VIEW \u2014 Inverted Coal-Frame Support Welded Attachment (Drawing L10)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0104_fig01_section-a-elevation-view-l10.png",
+      "png_sha256": "9699e8635ccea6cfeb816e547c5a03f73852ec521c82c1ee0086e8a4780b86e8",
+      "slug": "section-a-elevation-view-l10",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0104_tbl02",
+      "bbox_norm": [
+        0.68,
+        0.4,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        1610,
+        1156,
+        2555,
+        2412
+      ],
+      "caption": "Mark No. / Fab Length / Maximum Load 'W' (LB)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0104_tbl02_mark-fab-length-max-load.png",
+      "png_sha256": "b03d924a7a0aadf580b370f6f62a712b7be8b488052ed0b7c2da6da08ce331f8",
+      "slug": "mark-fab-length-max-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0104_tbl02_mark-fab-length-max-load.json",
+      "table_data_json_sha256": "a2e0172bb41978250847ff1cd5e4477629f964a6b2c81242a274d198a843e661",
+      "table_data_sha256": "a2e0172bb41978250847ff1cd5e4477629f964a6b2c81242a274d198a843e661",
+      "xlsx_path": "tables/06-pipe-supports-02_p0104_tbl02_mark-fab-length-max-load.xlsx",
+      "xlsx_sha256": "f2635fd8e22895ad5dee153882c5a539ec172c1aeda232f98bc0dabfa03950e8"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0104_tbl03",
+      "bbox_norm": [
+        0.68,
+        0.66,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        1610,
+        2015,
+        2555,
+        2676
+      ],
+      "caption": "Suffix Dimensions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0104_tbl03_suffix-dimensions-l10.png",
+      "png_sha256": "e853a01c9de814b096cac368f7f111df87c43408c06af9ab7275feb3e91b9a19",
+      "slug": "suffix-dimensions-l10",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0104_tbl03_suffix-dimensions-l10.json",
+      "table_data_json_sha256": "6ee0508f7622bd57f4fa0fad2d76d778a73234e562d3b060df985b489085133f",
+      "table_data_sha256": "6ee0508f7622bd57f4fa0fad2d76d778a73234e562d3b060df985b489085133f",
+      "xlsx_path": "tables/06-pipe-supports-02_p0104_tbl03_suffix-dimensions-l10.xlsx",
+      "xlsx_sha256": "05bde65a545864ca15ccdad84e0c52021d4fa23e12563e62b7131b5b99a5ebf6"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 104,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0104.png",
+  "page_image_sha256": "f733cc029e95083dde0b717cfa14c174c924cb1bb4685827d81fc7c105a51ce1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0104_assets.json"
+}

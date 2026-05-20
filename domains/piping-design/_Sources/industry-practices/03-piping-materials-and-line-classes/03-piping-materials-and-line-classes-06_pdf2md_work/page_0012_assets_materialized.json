@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-06_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-06_p0012_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        2739
+      ],
+      "caption": "Table 1  Dimensions for ASME Class 2500 Flanges Larger Than NPS 12",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-06_p0012_tbl01_table-1-dimensions-asme-class-2500-flang.png",
+      "png_sha256": "51954814bbc17f063a7d8490ca41d7c19d8230c5f61815518974bd93fcbca0d5",
+      "slug": "table-1-dimensions-asme-class-2500-flang",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-06",
+  "doc_stem": "03-piping-materials-and-line-classes-06",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-06_pdf2md_work/page_0012.png",
+  "page_image_sha256": "e96c81a6f6e3a32be355dd67d2d24a0aad77ad79404ced0d00924d1665c88d72",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-06_pdf2md_work/page_0012_assets.json"
+}

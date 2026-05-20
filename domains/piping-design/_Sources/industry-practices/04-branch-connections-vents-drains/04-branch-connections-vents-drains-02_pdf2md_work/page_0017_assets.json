@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 17,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "fig-0017-001",
+      "kind": "fig",
+      "caption": "PNF0302-V02-VENT — Hydrostatic test vent assemblies for socketweld piping, NPS 3/4 through 1-1/2, showing three configurations with thredolets, reducing tees, and threaded caps",
+      "bbox_norm": [0.03, 0.15, 0.97, 0.80],
+      "md_placeholder": "[FIGURE: PNF0302-V02-VENT — Engineering detail drawing showing hydrostatic test vent assemblies for socketweld piping, NPS 3/4 through 1-1/2. Three configurations are illustrated: (left) NPS 3/4 threaded plug with NPS 3/4 thredolet on NPS 1-1/2 line size, showing NPS 3/4 x 100(4) nipple (plain one end x thread one end) and NPS 3/4 threaded cap; (center) NPS 3/4 & NPS 1 line size using NPS 3/4 TEE or NPS 1 x NPS 3/4 reducing tee; (right) NPS 3/4 line size using NPS 3/4 TEE, with NPS 3/4 x 100(4) nipple (plain one end x thread one end) and NPS 3/4 threaded cap on each branch.]"
+    }
+  ],
+  "issues": []
+}

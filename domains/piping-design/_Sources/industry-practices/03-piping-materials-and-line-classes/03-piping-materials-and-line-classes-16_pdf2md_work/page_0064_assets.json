@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 64,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-28 Success of Repair Methods on Leaks on Block Valves at the Richmond Refinery (3rd and 4th QTR Data)",
+      "slug": "fig-1400-28-success-repair-methods-leaks-block-valves-richmond-refinery",
+      "bbox_norm": [0.06, 0.04, 0.94, 0.72],
+      "confidence": "high",
+      "notes": "Bar chart comparing Reduction in Valves >500ppm (grey bars) vs Reduction in Average Emission Rate (black bars) across six repair method categories: Adjusted Gland & Injected Soft Packing, Injected Soft Packing (Orbits, WKM's etc), Adjust Packing Gland, Leak Sealed (Furmanite, Koppl), Tightened Flange/fitting, and OTHER (NOT OTHERWISE CODED). Y-axis 0-100%. Legend visible below chart."
+    }
+  ],
+  "issues": []
+}

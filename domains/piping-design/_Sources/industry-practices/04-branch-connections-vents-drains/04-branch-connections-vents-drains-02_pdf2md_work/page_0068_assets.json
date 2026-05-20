@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 68,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-56 Vent — tube O.D. 1/4\" thru 3/4\" vent assembly showing Union Tee (Compression) Line Size, Adapter – TCE x FNPT, and Threaded Plug",
+      "slug": "v-56-vent-assembly",
+      "bbox_norm": [0.10, 0.12, 0.90, 0.52],
+      "confidence": "high",
+      "notes": "Schematic of V-56 vent with labeled components: Union Tee (Compression) Line Size, Adapter TCE x FNPT, Threaded Plug"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "D-56 Drain — tube O.D. 1/4\" thru 3/4\" drain assembly showing Union Tee (Compression) Line Size, Adapter – TCE x FNPT, and Threaded Plug",
+      "slug": "d-56-drain-assembly",
+      "bbox_norm": [0.10, 0.52, 0.90, 0.83],
+      "confidence": "high",
+      "notes": "Schematic of D-56 drain with labeled components: Union Tee (Compression) Line Size, Adapter TCE x FNPT, Threaded Plug"
+    }
+  ],
+  "issues": []
+}

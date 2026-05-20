@@ -1,0 +1,242 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 101,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p101_tbl1",
+      "kind": "tbl",
+      "caption": "Bill of Materials \u2014 angle and plate items with material specification",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "L102 x 102 x 9.5 \u2013 SIZE 'A'"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "L76 x 76 x 7.9 \u2013 SIZE 'B'"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "L64 x 64 x 6.4 \u2013 SIZE 'C'"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "10mm THK. PLATE 2\" x LENGTH TO SUIT ITEM 1"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p101_fig1",
+      "kind": "fig",
+      "caption": "Engineering drawing of Coal-Frame Support Welded Attachment showing structural steel frame with two vertical angle members attached to existing steel beam, with dimension 'L' span, 16\" MAX. horizontal clearance, 1\" MIN. spacing, FAB. LENGTH, and 1/4\" typical weld callouts; beam to be checked for torsion",
+      "bbox_norm": [
+        0.01,
+        0.12,
+        0.72,
+        0.62
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p101_tbl2",
+      "kind": "tbl",
+      "caption": "Suffix/dimension table \u2014 DIM. 'L' values for suffixes A, B, C",
+      "bbox_norm": [
+        0.73,
+        0.43,
+        0.99,
+        0.52
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "SUFFIX",
+          "A",
+          "B",
+          "C"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "DIM. 'L'"
+              },
+              {
+                "type": "text",
+                "value": "3'-0\""
+              },
+              {
+                "type": "text",
+                "value": "4'-0\""
+              },
+              {
+                "type": "text",
+                "value": "5'-0\""
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "* SEE NOTE 3"
+        ]
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p101_tbl3",
+      "kind": "tbl",
+      "caption": "Maximum load table \u2014 FAB. LENGTH and MAXIMUM LOAD (L.G.) by MARK NO.",
+      "bbox_norm": [
+        0.73,
+        0.52,
+        0.99,
+        0.67
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "MARK NO.",
+          "FAB. LENGTH",
+          "MAXIMUM LOAD (L.G.)*"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "2'-0\""
+              },
+              {
+                "type": "number",
+                "value": 6400
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "3'-0\""
+              },
+              {
+                "type": "number",
+                "value": 4500
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "4'-0\""
+              },
+              {
+                "type": "number",
+                "value": 3400
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "* Loads are for SIZE 'A'. For other sizes multiply max. loads by the following factor: SIZE 'B': 0.4, SIZE 'C': 0.16"
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,421 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 16,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p16_tbl1",
+      "kind": "tbl",
+      "caption": "Bill of materials \u2014 item list with descriptions and material specifications (CSA G40.21-300W angles and flat bar)",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.18
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col1",
+            "label": "ITEM No."
+          },
+          {
+            "id": "col2",
+            "label": "QTY."
+          },
+          {
+            "id": "col3",
+            "label": "DESCRIPTION"
+          },
+          {
+            "id": "col4",
+            "label": "MATERIAL"
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "L102 \u00d7 102 \u00d7 9.5 \u2013 SIZE 'A'"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "CSA G40.21-300W"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "L76 \u00d7 76 \u00d7 7.9 \u2013 SIZE 'B'"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "CSA G40.21-300W"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "L64 \u00d7 64 \u00d7 6.4 \u2013 SIZE 'C'"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "CSA G40.21-300W"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "51mm \u00d7 9.5mm THK FB \u00d7 LENGTH SUIT ITEM 1"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "CSA G40.21-300W"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p16_fig1",
+      "kind": "fig",
+      "caption": "Elevation and section view drawing of cantilever support welded attachment, showing FAB LENGTH, flat bar cross-section detail, and SECT \"X-X\" with dimensional annotations",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.97,
+        0.52
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p16_tbl2",
+      "kind": "tbl",
+      "caption": "Mark number vs. fabrication length vs. maximum load table with coding example",
+      "bbox_norm": [
+        0.52,
+        0.52,
+        0.97,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col1",
+            "label": "MARK NO."
+          },
+          {
+            "id": "col2",
+            "label": "FAB. LENGTH"
+          },
+          {
+            "id": "col3",
+            "label": "MAX. LOAD (lb.) (NOTE 3)"
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "1'-0\""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "850"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "2'-0\""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "430"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "3'-0\""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "300"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "4'-0\""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "200"
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          {
+            "marker": "NOTE 3",
+            "text": "Loads are for Size 'A'. For other sizes multiply max loading by: Size 'B' \u00d7 0.5, Size 'C' \u00d7 0.25."
+          }
+        ]
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p16_tbl3",
+      "kind": "tbl",
+      "caption": "Revision block \u2014 general update and general issue entries with date, description, and initials",
+      "bbox_norm": [
+        0.03,
+        0.72,
+        0.55,
+        0.87
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col1",
+            "label": "No."
+          },
+          {
+            "id": "col2",
+            "label": "DATE"
+          },
+          {
+            "id": "col3",
+            "label": "REVISIONS"
+          },
+          {
+            "id": "col4",
+            "label": "BY"
+          },
+          {
+            "id": "col5",
+            "label": "CHK"
+          },
+          {
+            "id": "col6",
+            "label": "APP"
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "VN"
+              },
+              {
+                "col": "col5",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "col6",
+                "type": "text",
+                "value": "AP"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": ""
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "GENERAL UPDATE"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "NS"
+              },
+              {
+                "col": "col5",
+                "type": "text",
+                "value": "JD"
+              },
+              {
+                "col": "col6",
+                "type": "text",
+                "value": "AP"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "0"
+              },
+              {
+                "col": "col2",
+                "type": "text",
+                "value": "10/10/01"
+              },
+              {
+                "col": "col3",
+                "type": "text",
+                "value": "GENERAL ISSUE"
+              },
+              {
+                "col": "col4",
+                "type": "text",
+                "value": "NR"
+              },
+              {
+                "col": "col5",
+                "type": "text",
+                "value": "AR NR"
+              },
+              {
+                "col": "col6",
+                "type": "text",
+                "value": "NR"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

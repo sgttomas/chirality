@@ -1,0 +1,148 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0079.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0079_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0079_tbl01_bill-of-materials.png",
+      "png_sha256": "247f07c9caa17f147b1794c99ce7020ba03f90157b89bae7e5dd0c399bdfdabf",
+      "slug": "bill-of-materials",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0079_fig01",
+      "bbox_norm": [
+        0.28,
+        0.1,
+        0.75,
+        0.55
+      ],
+      "bbox_px": [
+        588,
+        165,
+        2044,
+        1982
+      ],
+      "caption": "ELEVATION \u2014 Pipe guide for platform penetrations, elevation view showing pipe, repad, and guide bars with dimensioned details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0079_fig01_elevation-pipe-guide-platform-penetratio.png",
+      "png_sha256": "d9fca537fe3fbfe0b6fc03044f62cd3abe6c2afdcd772b04daf69528d4f8a0ba",
+      "slug": "elevation-pipe-guide-platform-penetratio",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0079_fig02",
+      "bbox_norm": [
+        0.28,
+        0.45,
+        0.75,
+        0.72
+      ],
+      "bbox_px": [
+        588,
+        1322,
+        2044,
+        2544
+      ],
+      "caption": "PLAN \u2014 Pipe guide for platform penetrations, plan view showing pipe cross-section, repad, guide bars, and platform arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0079_fig02_plan-pipe-guide-platform-penetrations.png",
+      "png_sha256": "5dd6b196e29757dc8ec099fd2edca9507ad23da8fdf6d48a0fd9dbf0db853505",
+      "slug": "plan-pipe-guide-platform-penetrations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0079_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.78,
+        0.55,
+        0.94
+      ],
+      "bbox_px": [
+        0,
+        2412,
+        1533,
+        3271
+      ],
+      "caption": "Revisions \u2014 No., Date, Revisions, By, Chk, App columns",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0079_tbl02_revisions-table.png",
+      "png_sha256": "ed0281172076ff8f5a2ae05de105f50d64a346541743a0347abdbc43b01879c9",
+      "slug": "revisions-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0079_tbl02_revisions-table.json",
+      "table_data_json_sha256": "8b13ea5e22d491a60dbb99d526b83c21151028cbae505b7b9508ad9877cd65d7",
+      "table_data_sha256": "8b13ea5e22d491a60dbb99d526b83c21151028cbae505b7b9508ad9877cd65d7",
+      "xlsx_path": "tables/06-pipe-supports-02_p0079_tbl02_revisions-table.xlsx",
+      "xlsx_sha256": "a9835f320a289d849713d7691b9d18a446461fb31c1c4c5afe1ab30c39c29a98"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0079_tbl03",
+      "bbox_norm": [
+        0.56,
+        0.78,
+        0.82,
+        0.9
+      ],
+      "bbox_px": [
+        1303,
+        2412,
+        2223,
+        3139
+      ],
+      "caption": "Coding \u2014 CODING (EXAMPLE) with G4IE and No. of Guide Bars fields",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0079_tbl03_coding-table.png",
+      "png_sha256": "715e9d9e310a267b8fb93d426e2fe4eacba87caeb6d89c4048c09ffcbed3d4d9",
+      "slug": "coding-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0079_tbl03_coding-table.json",
+      "table_data_json_sha256": "10d2c051c629c6f2463aeb3054c08b35354b64406c8b6f2d2425fc01369dbbfd",
+      "table_data_sha256": "10d2c051c629c6f2463aeb3054c08b35354b64406c8b6f2d2425fc01369dbbfd",
+      "xlsx_path": "tables/06-pipe-supports-02_p0079_tbl03_coding-table.xlsx",
+      "xlsx_sha256": "3d13265d9e8292d659b44141629e56f50cfdcd43b1abf04c481689d053fd84b6"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 79,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0079.png",
+  "page_image_sha256": "c1e2f3b9a6d8fc02c49d04d7d16b7a7612b5e2346e65ff9bc158d6b29f24b595",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0079_assets.json"
+}

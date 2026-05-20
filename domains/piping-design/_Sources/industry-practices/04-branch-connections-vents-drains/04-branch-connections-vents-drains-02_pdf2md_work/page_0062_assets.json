@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 62,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig-0062-01",
+      "caption": "V-44 Vent and D-44 Drain assembly detail drawing showing socketweld PVC/CPVC piping configuration for NPS 3/4 & Up",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.88]
+    }
+  ],
+  "issues": []
+}

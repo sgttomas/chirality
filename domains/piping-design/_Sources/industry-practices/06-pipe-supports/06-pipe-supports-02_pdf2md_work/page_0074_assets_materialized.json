@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0074.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0074_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.1
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        496
+      ],
+      "caption": "Bill of materials \u2014 Item 1, Qty 2, Description 1ST x 51 x 9.5, Material CSA-G40.21-300W",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0074_tbl01_bill-of-materials.png",
+      "png_sha256": "3d16f11dd234e10de70b44a0b209da6f6df9e177cf249ced43670a7e76e0bc35",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0074_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "b33f795ae30a8bd545aebfc3f8ba63e50db76b7efb4eebea61f884068e4961e5",
+      "table_data_sha256": "b33f795ae30a8bd545aebfc3f8ba63e50db76b7efb4eebea61f884068e4961e5",
+      "xlsx_path": "tables/06-pipe-supports-02_p0074_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "6473d3c4ffc729d8e5cf2818db75dd396d2f17f45b594b198da48ce3311e50af"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0074_fig01",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.54
+      ],
+      "bbox_px": [
+        0,
+        132,
+        2555,
+        1949
+      ],
+      "caption": "ELEVATION and SECTION views of pipe guide support for uninsulated lines, pipe sizes 1/2\" to 4\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0074_fig01_elevation-section-pipe-guide.png",
+      "png_sha256": "7dfcdb6692e4487a415de93b60a5e0624305f154accfa79a3914b969850551a1",
+      "slug": "elevation-section-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0074_tbl02",
+      "bbox_norm": [
+        0.53,
+        0.54,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1226,
+        1619,
+        2555,
+        2544
+      ],
+      "caption": "Pipe size, max guide spacing, and Dim \"A\" for uninsulated lines",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0074_tbl02_pipe-size-guide-spacing-dim-a.png",
+      "png_sha256": "065d8203b85aae7fcdf95103d4ea583c7a527c258a4f2d58c4591ae5a9d10fe2",
+      "slug": "pipe-size-guide-spacing-dim-a",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0074_tbl02_pipe-size-guide-spacing-dim-a.json",
+      "table_data_json_sha256": "3a02bd9f3680b13a7d8b36a06933ee61bf96589bcf65e303290ee325e68886a1",
+      "table_data_sha256": "3a02bd9f3680b13a7d8b36a06933ee61bf96589bcf65e303290ee325e68886a1",
+      "xlsx_path": "tables/06-pipe-supports-02_p0074_tbl02_pipe-size-guide-spacing-dim-a.xlsx",
+      "xlsx_sha256": "297a660e69c8bd5cc158b293e34adce80071a99d74a7611f59d9b17d3199c357"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0074_fig02",
+      "bbox_norm": [
+        0.53,
+        0.72,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        1226,
+        2214,
+        2555,
+        2874
+      ],
+      "caption": "CODING example diagram showing C1 \u2014 2, P/S STD., PIPE SIZE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0074_fig02_coding-example-diagram.png",
+      "png_sha256": "c17e4d3b62d87c9f266f213b29c2b8c839642746255a29c7cd51d182fa2e88d6",
+      "slug": "coding-example-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 74,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0074.png",
+  "page_image_sha256": "432ad16be052397270b453d3f2cc56db71b18591f80baf224dd4c2f57707b0a7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0074_assets.json"
+}

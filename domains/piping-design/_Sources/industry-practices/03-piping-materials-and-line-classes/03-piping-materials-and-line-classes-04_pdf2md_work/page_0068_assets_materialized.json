@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0068.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-04_p0068_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        3069
+      ],
+      "caption": "Piping Class E6 \u2014 Component specifications for CODE CSA Z662, CLASS E6, Sweet Gas and Hydrocarbon Liquids, Fresh Water",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-04_p0068_tbl01_piping-class-e6-component-specifications.png",
+      "png_sha256": "6b2349c520450b926162fd2f419635d8c5f253cd4ac441f2bc77e1680f41d22d",
+      "slug": "piping-class-e6-component-specifications",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-04",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 68,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0068.png",
+  "page_image_sha256": "c0409b3c7a0a37ebff9c0aac98da07fe2c071c79f328ecaba55c251b2b1c8f23",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0068_assets.json"
+}

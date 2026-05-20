@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0114.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0114_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2871
+      ],
+      "caption": "Three engineering detail drawings showing flanged thermowell connection configurations for polypropylene piping T-24. Top-left detail shows NPS 3/4 through NPS 4 line size with eccentric reducer, NPS 1-1/2 fabricated branch connection, NPS 1-1/2 lap joint flange, NPS 1-1/2 lap joint stub end, line size x NPS 6 molded concentric reducer, 300 (12) (MIN) dimension, INSTR piping, and FIELD MAKE UP callouts. Top-right detail shows NPS 1-1/2 fabricated branch connection, NPS 1-1/2 lap joint flange, NPS 1-1/2 lap joint stub end, line size x NPS 6 molded concentric reducer, NPS 3/4 through NPS 4 line size, INSTR piping, and FIELD MAKE UP callouts. Bottom detail shows NPS 6 line size and up with NPS 1-1/2 lap joint flange, NPS 1-1/2 lap joint stub end, NPS 1-1/2 fabricated branch connection, INSTR piping, and FIELD MAKE UP callouts.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0114_fig01_three-engineering-detail-drawings-showin.png",
+      "png_sha256": "44bc0f83daa87ccf619e68d76ffcd34f63b89f7aa7cc83df15aef058dd567f50",
+      "slug": "three-engineering-detail-drawings-showin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 114,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0114.png",
+  "page_image_sha256": "bc35e3f8de576017f7a9906c978bb751a9843219ed2aa76f6be7773fa6a010da",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0114_assets.json"
+}

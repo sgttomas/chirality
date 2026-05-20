@@ -1,0 +1,145 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0147.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0147_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.17
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        727
+      ],
+      "caption": "Bill of Materials \u2014 Vessel Guide VC5 components",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0147_tbl01_bom-vessel-guide-vc5.png",
+      "png_sha256": "12d937dc4a76c5f08efdd6210ea5ff1ee1c8d208239729bf3c92a00e0f46be70",
+      "slug": "bom-vessel-guide-vc5",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0147_tbl01_bom-vessel-guide-vc5.json",
+      "table_data_json_sha256": "9929b2954d82538c0cbeff8f59f6ff64b567db5a47bf3f03477ca64323a55f70",
+      "table_data_sha256": "9929b2954d82538c0cbeff8f59f6ff64b567db5a47bf3f03477ca64323a55f70",
+      "xlsx_path": "tables/06-pipe-supports-02_p0147_tbl01_bom-vessel-guide-vc5.xlsx",
+      "xlsx_sha256": "be4929178872c09fef09915f5759998a4244af81dbad318a27973119f430c446"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0147_fig01",
+      "bbox_norm": [
+        0.03,
+        0.16,
+        0.65,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        363,
+        1789,
+        1817
+      ],
+      "caption": "PLAN \u2014 Vessel guide plan view showing guide clip, vessel clip VC2 reference, and dimensional details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0147_fig01_plan-vessel-guide-vc5.png",
+      "png_sha256": "a5cff93255f8efbccf9d3b974d62e86cafbc3a66a9590c44c1dce980c0c5f0c5",
+      "slug": "plan-vessel-guide-vc5",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0147_fig02",
+      "bbox_norm": [
+        0.63,
+        0.16,
+        0.97,
+        0.5
+      ],
+      "bbox_px": [
+        1482,
+        363,
+        2555,
+        1817
+      ],
+      "caption": "GUIDE CLIP DETAIL NTS \u2014 Guide clip detail (not to scale) showing 9/16\" and L 2 7/16\" dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0147_fig02_guide-clip-detail-nts.png",
+      "png_sha256": "89a20556e2a9b73511037ce70d576da18ea969a500a63cc47c832ae6a095825f",
+      "slug": "guide-clip-detail-nts",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0147_fig03",
+      "bbox_norm": [
+        0.03,
+        0.48,
+        0.97,
+        0.77
+      ],
+      "bbox_px": [
+        0,
+        1421,
+        2555,
+        2709
+      ],
+      "caption": "ELEVATION \u2014 Elevation view of vessel guide showing welded shoe, W.P. EL., and dimensional details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0147_fig03_elevation-vessel-guide-vc5.png",
+      "png_sha256": "915ca6035259e03c32bec64ab7b558c4961e0335a64215c2f75f631fcd4d83a5",
+      "slug": "elevation-vessel-guide-vc5",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0147_tbl02",
+      "bbox_norm": [
+        0.6,
+        0.78,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        1405,
+        2412,
+        2555,
+        3139
+      ],
+      "caption": "Coding reference \u2014 Pipe size and vertical spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0147_tbl02_coding-pipe-size-vertical-spacing.png",
+      "png_sha256": "3a478d648bcd9eecd53dce5ff3503889a36eeea0da007a4a7de7b43da097fd60",
+      "slug": "coding-pipe-size-vertical-spacing",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0147_tbl02_coding-pipe-size-vertical-spacing.json",
+      "table_data_json_sha256": "c7c97281bd8731047f87ddf0cb4dd2da50732b353b8f53b7c2b5d685381751ed",
+      "table_data_sha256": "c7c97281bd8731047f87ddf0cb4dd2da50732b353b8f53b7c2b5d685381751ed",
+      "xlsx_path": "tables/06-pipe-supports-02_p0147_tbl02_coding-pipe-size-vertical-spacing.xlsx",
+      "xlsx_sha256": "edba09cb3cbbe56d8d2f569d374ea9fc556ed4e3e24bf3e014f9d110e78061af"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 147,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0147.png",
+  "page_image_sha256": "b292d32c1cab933e51097c2bdddb18dd1531ce1b89f4ddb138aa68f428b3f6a1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0147_assets.json"
+}

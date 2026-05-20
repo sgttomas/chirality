@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0081.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0081_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        2412
+      ],
+      "caption": "Pipe Guide \u2014 Pipe Sizes 8\" to 48\" \u2014 Plan View, Alternate (Note 2), and Elevation View engineering drawing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0081_fig01_pipe-guide-8-to-48-plan-elevation.png",
+      "png_sha256": "70d7dd6e0a04cc23a7f5ab15bbf88e5ede110d7597137e81f2a8963b47330df7",
+      "slug": "pipe-guide-8-to-48-plan-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0081_tbl01",
+      "bbox_norm": [
+        0.56,
+        0.69,
+        0.82,
+        0.82
+      ],
+      "bbox_px": [
+        1303,
+        2115,
+        2223,
+        2874
+      ],
+      "caption": "Pipe Size / Max Guide Spacing table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0081_tbl01_pipe-size-max-guide-spacing.png",
+      "png_sha256": "03fa5471c5f34893a202cfe4bc6d2ef161376c62e96c28dc8348cbfeb1b563d6",
+      "slug": "pipe-size-max-guide-spacing",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0081_tbl01_pipe-size-max-guide-spacing.json",
+      "table_data_json_sha256": "54e9bd905264ec09ef60d181becf51df697b4c68f0d2c31bb46e0d61ed807261",
+      "table_data_sha256": "54e9bd905264ec09ef60d181becf51df697b4c68f0d2c31bb46e0d61ed807261",
+      "xlsx_path": "tables/06-pipe-supports-02_p0081_tbl01_pipe-size-max-guide-spacing.xlsx",
+      "xlsx_sha256": "149c7dcd0095b6e576dd853d79dd3372478a8b8c646325f36a9606ebb2317872"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 81,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0081.png",
+  "page_image_sha256": "fafeddb3d31e0ab9364d10240c681fdac21799614588d925e8ffe062d0eb07d4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0081_assets.json"
+}

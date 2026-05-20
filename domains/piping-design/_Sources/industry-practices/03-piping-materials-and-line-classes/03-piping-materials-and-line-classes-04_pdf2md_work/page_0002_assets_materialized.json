@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-04_p0002_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.09,
+        0.98,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        132,
+        2550,
+        2871
+      ],
+      "caption": "PIPING CLASS A1 \u2014 Service and material specification table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl01_piping-class-a1-service-material-spec.png",
+      "png_sha256": "3fa8fbe210495b9cc53bc9809a8a8b5995c9ae67a5f8dd3da735a6432177746c",
+      "slug": "piping-class-a1-service-material-spec",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl01_piping-class-a1-service-material-spec.json",
+      "table_data_json_sha256": "ee66617103ae4dd358cafe26909f54397a1ae4bf87bbfebb8d30920af5e7fce0",
+      "table_data_sha256": "ee66617103ae4dd358cafe26909f54397a1ae4bf87bbfebb8d30920af5e7fce0",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl01_piping-class-a1-service-material-spec.xlsx",
+      "xlsx_sha256": "9c60bbc234110f56522efb0e6f694aff8223ba5ef282377ac035811fee8499b1"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-04_p0002_tbl02",
+      "bbox_norm": [
+        0.02,
+        0.82,
+        0.98,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        2541,
+        2550,
+        3069
+      ],
+      "caption": "PIPING CLASS A1 \u2014 Pipe size and wall thickness schedule table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl02_piping-class-a1-size-wt-schedule.png",
+      "png_sha256": "69a8fc6101de6906aca04562ca10f2617fa00cdef40cd7829da73db28fe7c9de",
+      "slug": "piping-class-a1-size-wt-schedule",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl02_piping-class-a1-size-wt-schedule.json",
+      "table_data_json_sha256": "1b7f41bd0a04eba29b2693129f276b19ace80ea27229139ff097ecd1fec8cedd",
+      "table_data_sha256": "1b7f41bd0a04eba29b2693129f276b19ace80ea27229139ff097ecd1fec8cedd",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-04_p0002_tbl02_piping-class-a1-size-wt-schedule.xlsx",
+      "xlsx_sha256": "3c22b8f7e924717707eae057bab76c0edd2e181782905d4b4700d1be71c005a2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-04",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0002.png",
+  "page_image_sha256": "778e1a844da6f44206349542d2589ba5c0eeb2ca293a31a79f6a69eefd0dace5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0002_assets.json"
+}

@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0012.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-17_p0012_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        758,
+        2550,
+        3197
+      ],
+      "caption": "TABLE NO. 2 \u2014 DIMENSIONS of Seamless and Welded STEEL PIPE (A.S.A. B36.10 and B36.19)",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-17_p0012_tbl01_table-no-2-dimensions-seamless-welded-st.png",
+      "png_sha256": "8f2092212b0d0666917c983cac952f8967f851e9228bdccf934bd9e746279fe0",
+      "slug": "table-no-2-dimensions-seamless-welded-st",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-17",
+  "doc_stem": "03-piping-materials-and-line-classes-17",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0012.png",
+  "page_image_sha256": "4d050520300961d90095eca321f9843e889de4ae1ccb7a104daab5436d462cd4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0012_assets.json"
+}

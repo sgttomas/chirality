@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 122,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "04-branch-connections-vents-drains-02_p122_fig1",
+      "kind": "fig",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.65],
+      "caption": "OR-06 Orifice Flange tap connection with double block valves for NPS 2 & UP. Shows socket weld x threaded valve (TYP), socket weld valve (TYP), 45° ell (TYP), socket weld taps, 150(6) nipple (plain both ends), 100(4) nipple (plain both ends)(TYP), orifice flange set, plug, and instrument piping connections."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0073.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0073_fig01",
+      "bbox_norm": [
+        0.12,
+        0.17,
+        0.92,
+        0.73
+      ],
+      "bbox_px": [
+        178,
+        396,
+        2474,
+        2574
+      ],
+      "caption": "P-04 Pressure Connection \u2014 two configurations: NPS 3/4 thru NPS 1-1/2 line size (using NPS 3/4 tee or line size reducing tee) and NPS 2 line size & up (using NPS 3/4 sockolet); both with NPS 3/4 extended body socket weld x threaded valve.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0073_fig01_p-04-pressure-connection-two-configurati.png",
+      "png_sha256": "23a875e495e93132f6cd7addcb02007772e182589ac37650033d146fdf94e5bf",
+      "slug": "p-04-pressure-connection-two-configurati",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 73,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0073.png",
+  "page_image_sha256": "090e19a3bf8a2c637185c15cd21c582f1e688689a6557de9c461b4c67646ec8a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0073_assets.json"
+}

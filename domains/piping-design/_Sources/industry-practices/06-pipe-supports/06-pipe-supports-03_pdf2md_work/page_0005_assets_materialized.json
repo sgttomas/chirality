@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0005_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.93,
+        0.57
+      ],
+      "bbox_px": [
+        74,
+        421,
+        2430,
+        2176
+      ],
+      "caption": "Summary of changes since previous edition",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,12], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0005_tbl01_summary-of-changes-since-previous-editio.png",
+      "png_sha256": "31a5b9fdc9968040d06124c2a6e79bfe4fa38232f223556d2d3d4f9a588a6d71",
+      "slug": "summary-of-changes-since-previous-editio",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0005.png",
+  "page_image_sha256": "cdf1b27f6d7ec300bb2ff3c9cbf1873f25b1e13c2a3dbd16706797d3ba76ec77",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0005_assets.json"
+}

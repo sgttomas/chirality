@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0045_fig01",
+      "bbox_norm": [
+        0.18,
+        0.08,
+        0.92,
+        0.93
+      ],
+      "bbox_px": [
+        332,
+        99,
+        2474,
+        3230
+      ],
+      "caption": "Fig. 200-14 Reducers and End Closure Fittings Courtesy of Bonny Forge, Taylor Forge and Standard Fittings (2 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0045_fig01_fig-200-14-reducers-end-closure-fittings.png",
+      "png_sha256": "6a0c78f183f9e1dc8f3f85f8d796d816ef04e9ec25345f0d5524774afe0c0dc1",
+      "slug": "fig-200-14-reducers-end-closure-fittings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0045.png",
+  "page_image_sha256": "5eca74ba6f240011c502228eb8913b428c0657f53de39efa780c46e6964eab17",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0045_assets.json"
+}

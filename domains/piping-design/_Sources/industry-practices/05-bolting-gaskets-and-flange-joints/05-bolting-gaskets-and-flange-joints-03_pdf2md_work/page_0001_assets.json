@@ -1,0 +1,73 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-03",
+  "page": 1,
+  "total_pages": 8,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "05-bolting-gaskets-and-flange-joints-03_p0001_tbl0001",
+      "kind": "tbl",
+      "bbox_norm": [0.19, 0.25, 0.81, 0.58],
+      "caption": "Contents — Appendix B sections B1.0 through B7.0 with page references",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["Section", "Title", "Page"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "B1.0"},
+              {"type": "text", "value": "Introduction"},
+              {"type": "text", "value": "B-2"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B2.0"},
+              {"type": "text", "value": "Availability"},
+              {"type": "text", "value": "B-4"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B3.0"},
+              {"type": "text", "value": "Archial Relief Grooves"},
+              {"type": "text", "value": "B-4"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B4.0"},
+              {"type": "text", "value": "Service Recommendations"},
+              {"type": "text", "value": "B-4"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B5.0"},
+              {"type": "text", "value": "Field Observations"},
+              {"type": "text", "value": "B-6"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B6.0"},
+              {"type": "text", "value": "Installation Method"},
+              {"type": "text", "value": "B-6"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "B7.0"},
+              {"type": "text", "value": "Relative Costs"},
+              {"type": "text", "value": "B-7"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

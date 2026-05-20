@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 8,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table — Terms and Definitions",
+      "slug": "terms-and-definitions",
+      "bbox_norm": [0.03, 0.72, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Term", "is_header": true },
+              { "value": "Definition", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Contractor", "type": "text" },
+              { "value": "Any individual, company, or organization employed by the Company through direct contract, purchase order, or agreement that that is engaged in the work described in this specification.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table begins near bottom of page; only first data row (Contractor) is visible. Table likely continues on next page."
+    }
+  ],
+  "issues": []
+}

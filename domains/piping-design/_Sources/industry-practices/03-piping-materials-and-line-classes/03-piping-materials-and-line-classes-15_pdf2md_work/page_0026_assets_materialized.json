@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0026_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.96,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2076
+      ],
+      "caption": "Fig. 200-7 ASTM A269 Seamless 316 Stainless Steel Tubing Maximum Allowable Working Pressures, psig at 100 to 300\u00b0F",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-15_p0026_tbl01_fig-200-7-astm-a269-tubing-max-allowable.png",
+      "png_sha256": "cfa229c9d767331b6827e166836dd74a249d51e308de5a01caa8a8492ad524ec",
+      "slug": "fig-200-7-astm-a269-tubing-max-allowable",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0026.png",
+  "page_image_sha256": "9509a549f472d239fd31bd77a05bb0680d9004924f10b2e9dba350e139eafc41",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0026_assets.json"
+}

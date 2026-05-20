@@ -1,0 +1,249 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 20,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "CLAMPED BASE SUPPORT selection chart — CB1 THRU CB9",
+      "slug": "clamped-base-support-cb1-thru-cb9",
+      "bbox_norm": [0.13, 0.09, 0.90, 0.47],
+      "confidence": "high",
+      "notes": "Selection chart box showing clamped base support diagram (footing type, dummy pipe, H MAX dimension) with identification example label CB1 H=400 BB1. See standard drawing S 44.041."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "CLAMPED BASE SUPPORT — Allowable Vertical Load (kN) for CB1 through CB9",
+      "slug": "clamped-base-support-allowable-load",
+      "bbox_norm": [0.14, 0.30, 0.89, 0.46],
+      "confidence": "high",
+      "notes": "Table within CLAMPED BASE SUPPORT selection chart. Columns: TYPE, ON DUMMY, ALLOWABLE VERT. LOAD kN H 300-600, ALLOWABLE VERT. LOAD kN H 601-1300.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true, "row_span": 2 },
+              { "value": "ON DUMMY", "is_header": true, "row_span": 2 },
+              { "value": "ALLOWABLE VERT. LOAD kN", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true },
+              { "value": "ON DUMMY", "is_header": true },
+              { "value": "300–600", "is_header": true },
+              { "value": "601–1300", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB1", "type": "text" },
+              { "value": 40, "type": "number" },
+              { "value": 1.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB2", "type": "text" },
+              { "value": 50, "type": "number" },
+              { "value": 3.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB3", "type": "text" },
+              { "value": 80, "type": "number" },
+              { "value": 6.8, "type": "number" },
+              { "value": 3.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB4", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": 11.0, "type": "number" },
+              { "value": 5.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB5", "type": "text" },
+              { "value": 150, "type": "number" },
+              { "value": 25.0, "type": "number" },
+              { "value": 11.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB6", "type": "text" },
+              { "value": 200, "type": "number" },
+              { "value": 27.5, "type": "number" },
+              { "value": 13.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB7", "type": "text" },
+              { "value": 250, "type": "number" },
+              { "value": 40.0, "type": "number" },
+              { "value": 18.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB8", "type": "text" },
+              { "value": 300, "type": "number" },
+              { "value": 57.5, "type": "number" },
+              { "value": 26.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CB9", "type": "text" },
+              { "value": 400, "type": "number" },
+              { "value": 70.5, "type": "number" },
+              { "value": 32.6, "type": "number" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ADJUSTABLE CLAMPED BASE SUPPORT selection chart — ACB1 THRU ACB9",
+      "slug": "adjustable-clamped-base-support-acb1-thru-acb9",
+      "bbox_norm": [0.13, 0.48, 0.90, 0.87],
+      "confidence": "high",
+      "notes": "Selection chart box showing adjustable clamped base support diagram (footing type, dummy 'A' pipe, H MAX dimension) with identification example label ACB1 H=400 BB1. See standard drawing S 44.042."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "ADJUSTABLE CLAMPED BASE SUPPORT — Allowable Vertical Load (kN) for ACB1 through ACB9",
+      "slug": "adjustable-clamped-base-support-allowable-load",
+      "bbox_norm": [0.14, 0.68, 0.89, 0.86],
+      "confidence": "high",
+      "notes": "Table within ADJUSTABLE CLAMPED BASE SUPPORT selection chart. Columns: TYPE, ON DUMMY A, ALLOWABLE VERT. LOAD kN H 300-600, ALLOWABLE VERT. LOAD kN H 601-1300.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true, "row_span": 2 },
+              { "value": "ON DUMMY A", "is_header": true, "row_span": 2 },
+              { "value": "ALLOWABLE VERT. LOAD kN", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H", "is_header": true, "col_span": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true },
+              { "value": "ON DUMMY A", "is_header": true },
+              { "value": "300–600", "is_header": true },
+              { "value": "601–1300", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB1", "type": "text" },
+              { "value": 65, "type": "number" },
+              { "value": 3.0, "type": "number" },
+              { "value": null, "type": "missing", "raw": "" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB2", "type": "text" },
+              { "value": 80, "type": "number" },
+              { "value": 6.8, "type": "number" },
+              { "value": 1.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB3", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": 25.0, "type": "number" },
+              { "value": 5.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB4", "type": "text" },
+              { "value": 150, "type": "number" },
+              { "value": 25.0, "type": "number" },
+              { "value": 11.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB5", "type": "text" },
+              { "value": 200, "type": "number" },
+              { "value": 27.5, "type": "number" },
+              { "value": 13.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB6", "type": "text" },
+              { "value": 250, "type": "number" },
+              { "value": 40.0, "type": "number" },
+              { "value": 18.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB7", "type": "text" },
+              { "value": 300, "type": "number" },
+              { "value": 57.5, "type": "number" },
+              { "value": 26.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB8", "type": "text" },
+              { "value": 350, "type": "number" },
+              { "value": 66.0, "type": "number" },
+              { "value": 30.5, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ACB9", "type": "text" },
+              { "value": 400, "type": "number" },
+              { "value": 70.5, "type": "number" },
+              { "value": 32.6, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

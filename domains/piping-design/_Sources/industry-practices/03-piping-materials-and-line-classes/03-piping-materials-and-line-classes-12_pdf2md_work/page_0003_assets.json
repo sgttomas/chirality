@@ -1,0 +1,62 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 3,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Standards and Publications — Refining Engineering Practices, ASME, and ASTM International",
+      "slug": "standards-publications-rep-asme-astm",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [
+          {"before_row": 0, "label": "Refining Engineering Practices (Cont.)"},
+          {"before_row": 5, "label": "American Society of Mechanical Engineers (ASME)"},
+          {"before_row": 21, "label": "ASTM International (ASTM)"}
+        ],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {"cells": [{"value": "REP 10–2–1", "type": "text"}, {"value": "Material Requirements for Aggressive Environmental Cracking Services", "type": "text"}]},
+          {"cells": [{"value": "REP 10–2–2", "type": "text"}, {"value": "Supplemental Requirements for Metallic Materials", "type": "text"}]},
+          {"cells": [{"value": "REP 10–2–3", "type": "text"}, {"value": "Material Hardness Requirements", "type": "text"}]},
+          {"cells": [{"value": "REP 15–1–4", "type": "text"}, {"value": "Positive Material Identification for Offsite Fabrication", "type": "text"}]},
+          {"cells": [{"value": "REP 15–4–2A", "type": "text"}, {"value": "Minimum Required Pipe Thickness for Carbon and Alloy Steels", "type": "text"}]},
+          {"cells": [{"value": "B31.1", "type": "text"}, {"value": "Power Piping", "type": "text"}]},
+          {"cells": [{"value": "B31.3", "type": "text"}, {"value": "Process Piping", "type": "text"}]},
+          {"cells": [{"value": "B 1.20.1", "type": "text"}, {"value": "Pipe Threads, General Purpose (Inch)", "type": "text"}]},
+          {"cells": [{"value": "B16.1", "type": "text"}, {"value": "Cast Iron Pipe Flanges and Flanged Fittings, Class 25, 125, 250, and 800", "type": "text"}]},
+          {"cells": [{"value": "B16.3", "type": "text"}, {"value": "Malleable Iron Threaded Fittings, Class 150 and 300", "type": "text"}]},
+          {"cells": [{"value": "B16.5", "type": "text"}, {"value": "Pipe Flanges and Flanged Fittings", "type": "text"}]},
+          {"cells": [{"value": "B16.9", "type": "text"}, {"value": "Factory-Made Wrought Steel Buttwelding Fittings", "type": "text"}]},
+          {"cells": [{"value": "B 16.11", "type": "text"}, {"value": "Forged Steel Fittings, Socket-Welding and Threaded", "type": "text"}]},
+          {"cells": [{"value": "B16.25", "type": "text"}, {"value": "Buttwelding Ends", "type": "text"}]},
+          {"cells": [{"value": "B16.28", "type": "text"}, {"value": "Wrought Steel Buttwelding Short Radius Elbows and Returns", "type": "text"}]},
+          {"cells": [{"value": "B16.34", "type": "text"}, {"value": "Valves, Flanged and Buttwelding End", "type": "text"}]},
+          {"cells": [{"value": "B16.36", "type": "text"}, {"value": "Steel Orifice Flanges, Class 300, 400, 600, 900, 1500, and 2500", "type": "text"}]},
+          {"cells": [{"value": "B16.42", "type": "text"}, {"value": "Ductile Iron Pipe Flanges and Flanged Fittings", "type": "text"}]},
+          {"cells": [{"value": "B16.48", "type": "text"}, {"value": "Steel Line Blanks", "type": "text"}]},
+          {"cells": [{"value": "B38.10", "type": "text"}, {"value": "Welded and Seamless Wrought Steel Pipe", "type": "text"}]},
+          {"cells": [{"value": "B36.19", "type": "text"}, {"value": "Stainless Steel Pipe", "type": "text"}]},
+          {"cells": [{"value": "A53", "type": "text"}, {"value": "Pipe Steel Black and Hot Dipped, Zinc-Coated Welded and Seamless", "type": "text"}]},
+          {"cells": [{"value": "A105", "type": "text"}, {"value": "Specification for Forgings, Carbon Steel, for Piping Components", "type": "text"}]},
+          {"cells": [{"value": "A106", "type": "text"}, {"value": "Seamless Carbon Steel Pipe for High-Temperature Service", "type": "text"}]},
+          {"cells": [{"value": "A139", "type": "text"}, {"value": "Specification for Electric-Fusion (ARC) – Welded Steel Pipe (NPS 4 and Over)", "type": "text"}]},
+          {"cells": [{"value": "A181", "type": "text"}, {"value": "Specification for Forgings, Carbon Steel, for General Purpose Piping", "type": "text"}]},
+          {"cells": [{"value": "A182", "type": "text"}, {"value": "Specification for Forged or Rolled Alloy Steel Pipe Flanges, Forged Fittings, and Valve Parts for High-Temperature Service", "type": "text"}]},
+          {"cells": [{"value": "A216", "type": "text"}, {"value": "Specification for Steel Castings, Carbon, Suitable for Fusion Welding, for High-Temperature Service", "type": "text"}]},
+          {"cells": [{"value": "A217", "type": "text"}, {"value": "Specification for Steel Castings, Martensitic Stainless and Alloy, for Pressure Containing Pans, Suitable for High-Temperature Service", "type": "text"}]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table with three bold section-header rows: Refining Engineering Practices (Cont.), American Society of Mechanical Engineers (ASME), ASTM International (ASTM). Section dividers indicate row boundaries."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 71,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Chevron Experts — Valve Fugitive Emissions contacts by discipline",
+      "slug": "chevron-experts-valve-fugitive-emissions-contacts",
+      "bbox_norm": [0.09, 0.06, 0.91, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Block Valves:", "is_header": true },
+              { "value": "Control Valves:", "is_header": true },
+              { "value": "Environmental Issues:", "is_header": true },
+              { "value": "Fire Protection and Safety:", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Zoltan Romoda", "type": "text" },
+              { "value": "Mark Schulz", "type": "text" },
+              { "value": "Dan VanDerZanden", "type": "text" },
+              { "value": "Bruce Hartman", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CTN 242-7213", "type": "text" },
+              { "value": "CTN 242-2409", "type": "text" },
+              { "value": "CTN 242-3274", "type": "text" },
+              { "value": "CTN 242-4204", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Four-column table listing Chevron CRTC experts on Valve Fugitive Emissions with names and CTN contact numbers"
+    }
+  ],
+  "issues": []
+}

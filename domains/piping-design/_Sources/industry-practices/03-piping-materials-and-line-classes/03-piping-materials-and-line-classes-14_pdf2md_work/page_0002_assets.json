@@ -1,0 +1,280 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-14",
+  "page": 2,
+  "total_pages": 9,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Standards and Publications",
+      "slug": "standards-and-publications",
+      "bbox_norm": [
+        0.05,
+        0.35,
+        0.95,
+        0.9
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [
+          {
+            "after_row": 0,
+            "label": "Refining Engineering Practices"
+          },
+          {
+            "after_row": 10,
+            "label": "ANSI Standard"
+          },
+          {
+            "after_row": 11,
+            "label": "ASME Codes"
+          },
+          {
+            "after_row": 12,
+            "label": "ASME/ANSI Standards"
+          },
+          {
+            "after_row": 14,
+            "label": "ASTM Standards"
+          }
+        ],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Refining Engineering Practices",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 1-1-3",
+                "type": "text"
+              },
+              {
+                "value": "Deviations to the Refining Engineering Practices",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 2-0-2",
+                "type": "text"
+              },
+              {
+                "value": "Documentation Format Requirements",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5-2-1",
+                "type": "text"
+              },
+              {
+                "value": "Selection of Piping Components and Materials",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5-2-2",
+                "type": "text"
+              },
+              {
+                "value": "Flanges, Gaskets and Bolting",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5-2-3",
+                "type": "text"
+              },
+              {
+                "value": "Phillips 66 Piping Standards",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 5-5-1",
+                "type": "text"
+              },
+              {
+                "value": "Piping Fabrication",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 14-1-5",
+                "type": "text"
+              },
+              {
+                "value": "Export Protection and Packaging of Equipment",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 15-1-1",
+                "type": "text"
+              },
+              {
+                "value": "Shop Inspection and Testing of New Refinery Equipment",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 15-1-4",
+                "type": "text"
+              },
+              {
+                "value": "Positive Materials Identification (PMI)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "REP 15-1-5",
+                "type": "text"
+              },
+              {
+                "value": "Color Coding For Material Identification",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "ANSI Standard",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B16.11",
+                "type": "text"
+              },
+              {
+                "value": "Forged Steel Fittings, Socket Welded and Threaded",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "ASME Codes",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B31.3",
+                "type": "text"
+              },
+              {
+                "value": "Process Piping",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "ASME/ANSI Standards",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B1:20.1",
+                "type": "text"
+              },
+              {
+                "value": "Piping Threads, General Purpose (Inch)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B16.25",
+                "type": "text"
+              },
+              {
+                "value": "Buttwelding Ends",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "ASTM Standards",
+                "is_header": true,
+                "colspan": 2
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "D2200",
+                "type": "text"
+              },
+              {
+                "value": "Pictoral Surface Preparation Standards for Painting Steel Structures",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Multi-section reference table listing standards and publications. Sub-sections: Refining Engineering Practices, ANSI Standard, ASME Codes, ASME/ANSI Standards, ASTM Standards."
+    }
+  ],
+  "issues": []
+}

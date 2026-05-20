@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0020.anchored.md",
+  "assets": [
+    {
+      "asset_id": "11-pressure-testing-examination-and-cleaning-01_p0020_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        132,
+        2550,
+        2541
+      ],
+      "caption": "Shop Hydrotest, RT, MT, PT, UT, WI requirements by service and piping specification",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/11-pressure-testing-examination-and-cleaning-01_p0020_tbl01_shop-hydrotest-rt-mt-pt-ut-wi-requiremen.png",
+      "png_sha256": "3e1dea3f40e5a6b290385234035c33dd41d4491d343c1d00db9e233d8867ae9b",
+      "slug": "shop-hydrotest-rt-mt-pt-ut-wi-requiremen",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/_assets/11-pressure-testing-examination-and-cleaning-01",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-01",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0020.png",
+  "page_image_sha256": "ec495ad9b87ebe53eb8ae0d8d4365e4f2325bd63231cc475e4daaf494bfb8b0c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-01_pdf2md_work/page_0020_assets.json"
+}

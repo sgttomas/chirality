@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 46,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "fig-0046-01",
+      "kind": "fig",
+      "caption": "V-19 Vent assembly detail for NPS 2 & UP welded piping, showing NPS 3/4 threaded plug, NPS 3/4 socket weld x threaded valve, NPS 3/4 x 90(3-1/2) plain end nipple pipet, and NPS 2 line size & up connection",
+      "bbox_norm": [0.12, 0.18, 0.92, 0.58]
+    },
+    {
+      "asset_id": "fig-0046-02",
+      "kind": "fig",
+      "caption": "D-19 Drain assembly detail for NPS 2 & UP welded piping, showing NPS 3/4 x 90(3-1/2) plain end nipple pipet, NPS 3/4 socket weld x threaded valve, and NPS 3/4 threaded plug",
+      "bbox_norm": [0.12, 0.56, 0.92, 0.82]
+    }
+  ],
+  "issues": []
+}

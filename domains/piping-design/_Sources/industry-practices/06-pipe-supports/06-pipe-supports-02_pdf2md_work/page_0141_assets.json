@@ -1,0 +1,246 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 141,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item/Qty/Description/Material parts list",
+      "slug": "parts-list",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK PLATE 44\" x 8\"",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "REPAD BY VESSEL FABRICATOR (IF REQUIRED)",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Parts list table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN view of vessel clip showing vessel O.D. and 8 1/2\" dimension",
+      "slug": "vessel-clip-plan-view",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.75,
+        0.48
+      ],
+      "confidence": "high",
+      "notes": "Plan view engineering drawing showing top-down view of vessel clip attachment with VESSEL O.D. label and 8 1/2\" dimension callout"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION view of vessel clip showing 2\" dimension, 1/2\" PLATE, 1 3/8\"\u00d8 HOLES, and 7 SPACES @ 5 7/8\" detail with NOTE 3 reference",
+      "slug": "vessel-clip-elevation-view",
+      "bbox_norm": [
+        0.38,
+        0.42,
+        0.8,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Elevation view engineering drawing showing side view of vessel clip with bolt hole pattern dimensions and plate thickness callout"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Revision history table",
+      "slug": "revision-history",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.65,
+        0.95
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "REV",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "is_header": true
+              },
+              {
+                "value": "DES",
+                "is_header": true
+              },
+              {
+                "value": "DRN",
+                "is_header": true
+              },
+              {
+                "value": "CHK",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "A",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "VN",
+                "type": "text"
+              },
+              {
+                "value": "VN",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "",
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "HD",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Revision block at bottom of drawing sheet"
+    }
+  ],
+  "issues": []
+}

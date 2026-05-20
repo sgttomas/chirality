@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0106.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0106_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        3069
+      ],
+      "caption": "Flanged Thermowell Connection T-15 \u2014 NPS 3/4 & UP, showing two installation configurations with labeled components including concentric and eccentric swages, butt weld elbowlets, and raised face weld neck flanges",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0106_fig01_flanged-thermowell-connection-t15-nps-3.png",
+      "png_sha256": "5ba3ab82cccd0166fabbc6b140a64651137276baa5545c90b2e5e7485a27b2e9",
+      "slug": "flanged-thermowell-connection-t15-nps-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 106,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0106.png",
+  "page_image_sha256": "757f2d90b7bdadca148da319756055d3a673219a7c7dc6dffaac670e0cc28123",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0106_assets.json"
+}

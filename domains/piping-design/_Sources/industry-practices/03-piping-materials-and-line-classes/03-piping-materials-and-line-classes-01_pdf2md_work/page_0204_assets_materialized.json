@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0204.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0204_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        3201
+      ],
+      "caption": "Table 4.61 Line Class HEG \u2014 Piping materials specification for Process-Hydrogen service, 5CR-1/2Mo, ANSI Class 600",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0204_tbl01_table-4-61-line-class-heg.png",
+      "png_sha256": "4bdfc3222b261f6eeae32fc17cccf6edde73545986162886fa77757e64575be6",
+      "slug": "table-4-61-line-class-heg",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 204,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0204.png",
+  "page_image_sha256": "f1a460ca7b1cbe5b32c150c71d9fe07ae630ac19d167bcae8cfd09f398754e2a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0204_assets.json"
+}

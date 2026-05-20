@@ -1,0 +1,244 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 13,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0013-01",
+      "kind": "tbl",
+      "caption": "Table 6: Sheet Gasket Requirements",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.55
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "Fluid Service (1)",
+          "Pressure Class (2)",
+          "Temperature Range (\u00b0F) (3)",
+          "Flange Facing",
+          "Thk. (in.) (9)",
+          "Gasket Specification"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "Hydrocarbon, Steam and Boiler Feed Water",
+                "rowspan": 2
+              },
+              {
+                "type": "data",
+                "value": "150"
+              },
+              {
+                "type": "data",
+                "value": "Note (4)"
+              },
+              {
+                "type": "data",
+                "value": "RF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": "Flexible Graphite (5)(6) or Graphonic (7) Sheet Gaskets"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "",
+                "rowspan_cont": true
+              },
+              {
+                "type": "data",
+                "value": "300"
+              },
+              {
+                "type": "data",
+                "value": "Note (4)"
+              },
+              {
+                "type": "data",
+                "value": "RF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": "Flexible Graphite (5) or Graphonic (7) Sheet Gaskets"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "Sour Water",
+                "rowspan": 2
+              },
+              {
+                "type": "data",
+                "value": "125,150 250"
+              },
+              {
+                "type": "data",
+                "value": "150 & Below"
+              },
+              {
+                "type": "data",
+                "value": "FF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": "Flexible Graphite (5)(6) or Graphonic (7) Sheet Gaskets"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "",
+                "rowspan_cont": true
+              },
+              {
+                "type": "data",
+                "value": "150"
+              },
+              {
+                "type": "data",
+                "value": "300 & Below"
+              },
+              {
+                "type": "data",
+                "value": "RF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "Air and Nitrogen",
+                "rowspan": 1
+              },
+              {
+                "type": "data",
+                "value": "300 & Lower"
+              },
+              {
+                "type": "data",
+                "value": "300 & Below"
+              },
+              {
+                "type": "data",
+                "value": "RF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": "Flexible Graphite (5)(6), Graphonic (7), PTFE, Viton, Aramid (Kevlar), Reinforced Nitrile, Neoprene Bound or Phenolic (8) Sheet Gaskets"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "Water (excluding sour water and boiler feed water, including brine and sour brine)",
+                "rowspan": 2
+              },
+              {
+                "type": "data",
+                "value": "125,150 250"
+              },
+              {
+                "type": "data",
+                "value": "150 & Below"
+              },
+              {
+                "type": "data",
+                "value": "FF"
+              },
+              {
+                "type": "data",
+                "value": "0.125"
+              },
+              {
+                "type": "data",
+                "value": "Flexible Graphite (5)(6), Graphonic (7), PTFE, Viton, Aramid (Kevlar), Reinforced Nitrile, Neoprene Bound or Phenolic (8) Sheet Gaskets"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "data",
+                "value": "",
+                "rowspan_cont": true
+              },
+              {
+                "type": "data",
+                "value": "150"
+              },
+              {
+                "type": "data",
+                "value": "300 & Below"
+              },
+              {
+                "type": "data",
+                "value": "RF"
+              },
+              {
+                "type": "data",
+                "value": ""
+              },
+              {
+                "type": "data",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "(1) See notes below table.",
+          "(2) Pressure class per ASME B16.5 or equivalent.",
+          "(3) See note 3 below table.",
+          "(9) When approved by the Owner's Engineer, 0.0625 inch thick sheet gasket may be used with new or like new flanges."
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

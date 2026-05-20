@@ -1,0 +1,183 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 16,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "G1 THRU G10 — Guides selection chart showing identification example sketch and transverse force table for guide types G1 through G10",
+      "slug": "guides-selection-chart-g1-thru-g10",
+      "bbox_norm": [0.07, 0.07, 0.93, 0.45],
+      "confidence": "high",
+      "notes": "Combined schematic sketch (pipe guide isometric view) and tabular selection data for guide types G1-G10. Caption visible below chart as 'G1 THRU G10'."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "G11 AND G12 — Guides selection chart showing identification example sketch and transverse force table for guide types G11 and G12",
+      "slug": "guides-selection-chart-g11-and-g12",
+      "bbox_norm": [0.07, 0.46, 0.93, 0.83],
+      "confidence": "high",
+      "notes": "Combined schematic sketch (pipe guide isometric view) and tabular selection data for guide types G11 and G12. Caption visible below chart as 'G11 AND G12'."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "G11 AND G12 — Guide types G11 and G12 selection table by DN, usage compatibility, and maximum transverse force",
+      "slug": "g11-g12-selection-table",
+      "bbox_norm": [0.27, 0.52, 0.92, 0.81],
+      "confidence": "medium",
+      "notes": "Table embedded within the G11 AND G12 figure showing DN values, support compatibility (TO BE USED WITH), and MAX TRANSVERSE FORCE kN.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TYPE", "is_header": true },
+              { "value": "DN", "is_header": true },
+              { "value": "TO BE USED WITH", "is_header": true },
+              { "value": "MAX. TRANSVERSE FORCE kN", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "15", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "20", "type": "text" },
+              { "value": "S1, S4, S7, S9, S29, S32", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "25", "type": "text" },
+              { "value": "S1, S4, S7, S9, S29, S32", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "40", "type": "text" },
+              { "value": "S1, S2, S4, S5,", "type": "text" },
+              { "value": 1.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "50", "type": "text" },
+              { "value": "S7, S8, S10,", "type": "text" },
+              { "value": 1.9, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "80", "type": "text" },
+              { "value": "S11, S29, S30,", "type": "text" },
+              { "value": 2.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "100", "type": "text" },
+              { "value": "S32, S33", "type": "text" },
+              { "value": 5.2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "150", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": 5.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "200", "type": "text" },
+              { "value": "S1 THRU S12,", "type": "text" },
+              { "value": 6.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "250", "type": "text" },
+              { "value": "S29 THRU S34", "type": "text" },
+              { "value": 8.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "300", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": 9.75, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G11", "type": "text" },
+              { "value": "350", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": 10.25, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G12", "type": "text" },
+              { "value": "400", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": 12.50, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G12", "type": "text" },
+              { "value": "450", "type": "text" },
+              { "value": "S4 THRU S8", "type": "text" },
+              { "value": 12.50, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G12", "type": "text" },
+              { "value": "500", "type": "text" },
+              { "value": "S10 THRU S12", "type": "text" },
+              { "value": 12.50, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G12", "type": "text" },
+              { "value": "600", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": 15.0, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,501 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 25,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4 - Required Documentation",
+      "slug": "table-4-required-documentation",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Three-column table listing documentation items, descriptions, and when they are due",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "a) Submittal is not required, but these procedures shall be available for on-site review.",
+          "b) Tally is for coating and installation contractors' use."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Item No.",
+                "is_header": true
+              },
+              {
+                "value": "Documentation Required",
+                "is_header": true
+              },
+              {
+                "value": "When Due",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.",
+                "type": "text"
+              },
+              {
+                "value": "Production/Rolling Schedule",
+                "type": "text"
+              },
+              {
+                "value": "With quote",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.",
+                "type": "text"
+              },
+              {
+                "value": "Country of Origin for Mill Supply",
+                "type": "text"
+              },
+              {
+                "value": "With quote",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3.",
+                "type": "text"
+              },
+              {
+                "value": "List of Exceptions/Waivers/Deviations Project Specifications",
+                "type": "text"
+              },
+              {
+                "value": "With quote",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4.",
+                "type": "text"
+              },
+              {
+                "value": "Manufacturer Quality Manual",
+                "type": "text"
+              },
+              {
+                "value": "For review",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5.",
+                "type": "text"
+              },
+              {
+                "value": "Manufacturing Procedure Specification (MPS)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6.",
+                "type": "text"
+              },
+              {
+                "value": "Pipe Manufacturer Procedure Qualification (If Required)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "7.",
+                "type": "text"
+              },
+              {
+                "value": "Quality Control Plan/Inspection & Test Plan (ITP)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8.",
+                "type": "text"
+              },
+              {
+                "value": "Pipe loading/Handling Plan",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "9.",
+                "type": "text"
+              },
+              {
+                "value": "Ultrasonic Inspection Procedures\u1d43",
+                "type": "text"
+              },
+              {
+                "value": "For review",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10.",
+                "type": "text"
+              },
+              {
+                "value": "Electromagnetic Inspection Procedures\u1d43",
+                "type": "text"
+              },
+              {
+                "value": "For review",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "11.",
+                "type": "text"
+              },
+              {
+                "value": "Heat Treatment/Q & T Procedure\u1d43",
+                "type": "text"
+              },
+              {
+                "value": "For review",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12.",
+                "type": "text"
+              },
+              {
+                "value": "Certified Material Test Reports (CMTRs); including a through j below",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "a) Physical Testing Tensile/Yield, etc.",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "b) Chemistry (Heat/Product)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "c) Charpy Impact Test Reports (CVNs) with Shear and lateral expansion",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "d) Hardness Reports(NACE Certifications)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "e) Carbon Equivalent (CE)/PCN",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "f) Hydrotest Reports",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "g) Visual Inspection",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "h) EMI Inspection",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "i) Ultrasonic Inspection",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "j) Special Ends Inspection",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "13.",
+                "type": "text"
+              },
+              {
+                "value": "Certificate of Compliance API-5L and \"Company\" Specifications",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14.",
+                "type": "text"
+              },
+              {
+                "value": "HIC Test Reports (If Required)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "15.",
+                "type": "text"
+              },
+              {
+                "value": "SSC Test Report (If Required)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "16.",
+                "type": "text"
+              },
+              {
+                "value": "DWT Test Reports (If Required)",
+                "type": "text"
+              },
+              {
+                "value": "For approval",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "17.",
+                "type": "text"
+              },
+              {
+                "value": "Pipe Tally Sheet\u1d47",
+                "type": "text"
+              },
+              {
+                "value": "With shipment",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "18.",
+                "type": "text"
+              },
+              {
+                "value": "SQS Inspection Release Note (IRN)",
+                "type": "text"
+              },
+              {
+                "value": "With shipment",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

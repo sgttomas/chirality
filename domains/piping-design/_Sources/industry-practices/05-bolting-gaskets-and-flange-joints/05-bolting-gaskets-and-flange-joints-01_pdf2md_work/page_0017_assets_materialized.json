@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0017.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0017_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        2211
+      ],
+      "caption": "Table 5: Series 150 Flange Reference",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,17], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-01_p0017_tbl01_table-5-series-150-flange-reference.png",
+      "png_sha256": "e464c23f15f4759c283c15a7d67b2c2b785465f5c642858e763608fc872260a0",
+      "slug": "table-5-series-150-flange-reference",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0017.png",
+  "page_image_sha256": "8e0a7a00d2f15257699c509281b18fc636a4f4b62c81b08d86b35b3542d2f348",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0017_assets.json"
+}

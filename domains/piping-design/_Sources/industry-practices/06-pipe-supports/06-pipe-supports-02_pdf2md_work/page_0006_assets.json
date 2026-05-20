@@ -1,0 +1,95 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 6,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Total number of lines at an anchor structure — Percent of lines abnormal conditions to be used in design",
+      "slug": "anchor-structure-lines-abnormal-percent",
+      "bbox_norm": [0.08, 0.14, 0.92, 0.33],
+      "confidence": "high",
+      "notes": "Two-column table embedded within clause 6.23; header spans two columns describing the table criteria",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Total number of lines at an anchor structure that could have abnormal conditions:", "is_header": true},
+              {"value": "Percent of lines abnormal conditions to be used in design:", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1", "type": "text"},
+              {"value": "100%", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2 to 4", "type": "text"},
+              {"value": "50%", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "over 4", "type": "text"},
+              {"value": "25%", "type": "text"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Coefficients of static friction for sliding surfaces",
+      "slug": "static-friction-coefficients-sliding-surfaces",
+      "bbox_norm": [0.08, 0.38, 0.75, 0.55],
+      "confidence": "high",
+      "notes": "Four-row two-column table embedded within clause 6.24; no explicit caption, summarized from context",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "PTFE on PTFE", "type": "text"},
+              {"value": 0.10, "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "PTFE on Stainless Steel", "type": "text"},
+              {"value": 0.10, "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Steel on Steel", "type": "text"},
+              {"value": 0.40, "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Steel on Concrete", "type": "text"},
+              {"value": 0.45, "type": "number"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

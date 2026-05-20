@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0135.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0135_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1155
+      ],
+      "caption": "Table 4.37 CLASS: PKH \u2014 Pressure-Temperature Rating, Service, Basic Material, Construction Class, Corrosion Allowance",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0135_tbl01_table-4-37-class-pkh.png",
+      "png_sha256": "2d2760ed889de5f128f2a51d43f1e6c5d81e32076e7775789645243424ad80b2",
+      "slug": "table-4-37-class-pkh",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0135_tbl01_table-4-37-class-pkh.json",
+      "table_data_json_sha256": "1a17c44c2c8dffa556d18e20b2f7cec4905acf20d15af416126e4b21a524fa85",
+      "table_data_sha256": "1a17c44c2c8dffa556d18e20b2f7cec4905acf20d15af416126e4b21a524fa85",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0135_tbl01_table-4-37-class-pkh.xlsx",
+      "xlsx_sha256": "cdb9e86453afec8c14486f22b7570472324d0fdd962a1f2ff70bc572698deeed"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 135,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0135.png",
+  "page_image_sha256": "2e8f537c75673ae5587c004198142223488c8b505810899269c5b3541c036a52",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0135_assets.json"
+}

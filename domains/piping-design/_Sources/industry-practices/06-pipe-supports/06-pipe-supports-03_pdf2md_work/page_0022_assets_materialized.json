@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0022.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0022_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        1649
+      ],
+      "caption": "DUMMY LEGS \u2014 DL1 THRU DL8 and DL8 THRU DL16 configuration drawings with dimension annotations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-03_p0022_fig01_dummy-legs-dl1-dl16-configuration-drawin.png",
+      "png_sha256": "211fda64b170e762b72304ee1f9ac78f489b2edfe76c15a1b929c51a045733a3",
+      "slug": "dummy-legs-dl1-dl16-configuration-drawin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0022_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1333,
+        2480,
+        3509
+      ],
+      "caption": "Dummy Legs Selection Chart \u2014 pipe size vs. dummy leg type applicability matrix",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0022_tbl01_dummy-legs-selection-chart.png",
+      "png_sha256": "1b89b799c37a3864d2045a0dedebcd2c1133303d1306ad97a10ca75365cd0da9",
+      "slug": "dummy-legs-selection-chart",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0022.png",
+  "page_image_sha256": "43861a5a04bb39ca4ad51050ffe9190e83a57e5cd82302519961051b6e16c480",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0022_assets.json"
+}

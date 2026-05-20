@@ -1,0 +1,48 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-04",
+  "page": 15,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0015-001",
+      "kind": "tbl",
+      "caption": "Table 1: Acceptable Leak Rates",
+      "bbox_norm": [0.04, 0.30, 0.96, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "title": "Table 1: Acceptable Leak Rates",
+        "columns": [
+          {"index": 0, "header": "Service"},
+          {"index": 1, "header": "N2/He Rate Criteria B (scf/yr)/(sM3/yr)"},
+          {"index": 2, "header": "Max System Average A,B (scf/yr)/(sM3/yr)"}
+        ],
+        "rows": [
+          {
+            "index": 0,
+            "cells": [
+              {"col": 0, "type": "text", "value": "Lethal Service"},
+              {"col": 1, "type": "text", "value": "0"},
+              {"col": 2, "type": "text", "value": "0"}
+            ]
+          },
+          {
+            "index": 1,
+            "cells": [
+              {"col": 0, "type": "text", "value": "Regular hydrocarbon service (other than Lethal) including valve stem packing"},
+              {"col": 1, "type": "text", "value": "≤50 / ≤1.416"},
+              {"col": 2, "type": "text", "value": "≤40 / ≤1.133"}
+            ]
+          }
+        ],
+        "footnotes": [
+          {"label": "A", "text": "[combined overall joint leaks] / [total number of joints inspected]. All flanged joints and valve packings are to be included in the maximum system average calculation."},
+          {"label": "B", "text": "scf/yr = standard cubic feet per year; sM3/yr = standard cubic meters per year"}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

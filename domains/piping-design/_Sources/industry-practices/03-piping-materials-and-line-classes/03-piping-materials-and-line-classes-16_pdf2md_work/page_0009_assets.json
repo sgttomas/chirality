@@ -1,0 +1,80 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 9,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-3 Key Factors and Recommendations for Hand Operated Block Valves (3 of 3)",
+      "slug": "fig-1400-3-key-factors-hand-operated-block-valves-3-of-3",
+      "bbox_norm": [0.05, 0.04, 0.95, 0.47],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": "Fig. 1400-3 (3 of 3)",
+        "footnotes": [
+          "(1) See Section 1400 for a discussion of leaking valve repair.",
+          "(2) See Section 1400 for a discussion of emissions data and key players."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Key Factors", "is_header": true },
+              { "value": "Recommendations", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Track the Emission Data(2)", "type": "text" },
+              { "value": "Track valves by leak rate and packing information to determine:\n- whether a valve type or particular packing type has a history of leaking or performs particularly well\n- which plants or services are more prone to high leak rates and should receive more monitoring attention\n- if progress is being made towards upcoming regulatory requirements\n- the amount of maintenance work needed at upcoming shutdowns so manpower and purchasing decisions can be made accordingly", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Involve Key Players(2)", "type": "text" },
+              { "value": "- Establish a team of people from the various groups involved in leak detection, repair, and compliance to periodically discuss emission reduction strategies, results of the data tracking, compliance status, problem areas and next steps, evolving technology, purchasing plans for upcoming shutdowns, etc.\n- Management support up front to help with the manpower resources, costs, and operational issues that might arise.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Continuation table (3 of 3). Two data rows with multi-bullet recommendation cells."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Fig. 1400-4 Recommendations for Automatic Control Valves",
+      "slug": "fig-1400-4-recommendations-automatic-control-valves",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Key Factor", "is_header": true },
+              { "value": "Recommendation", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Automatic Control Valves", "type": "text" },
+              { "value": "- Valves that are not performing well and that have obvious mechanical defects (such as stem corrosion) should be removed and reconditioned.\n- Use the valve manufacturer alliance with Fisher-Rosemont to ensure valve quality.\n- Stem finishes of 4 rms provide the best performance.\n- Avoid lifting valves by their actuators; instead cradle valves with a non-metallic slings.\n- Use live-loaded combination packings for VDC control in service where the temperature is less than 450°F.\n- Use graphite packings and oversized actuators for VDC control for valve in service where the temperature is greater than 450°F.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single data row with six bulleted recommendations."
+    }
+  ],
+  "issues": []
+}

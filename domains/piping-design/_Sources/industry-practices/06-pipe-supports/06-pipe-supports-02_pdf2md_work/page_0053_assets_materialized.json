@@ -1,0 +1,152 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0053.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0053_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.72,
+        0.11
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1967,
+        529
+      ],
+      "caption": "Item No. / Qty. / Description / Material \u2014 Bill of Materials",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0053_tbl01_bill-of-materials.png",
+      "png_sha256": "9fdf666258d6b3c9a24eb4986d63fb2b4fa1fba17f16587bc947cfd51a047a88",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0053_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "cfab2facc64ad6f0b5e4985ec07cafd1cfe928e97179993b2eb7078e26f251b1",
+      "table_data_sha256": "cfab2facc64ad6f0b5e4985ec07cafd1cfe928e97179993b2eb7078e26f251b1",
+      "xlsx_path": "tables/06-pipe-supports-02_p0053_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "34fb09689e8c15a9cfe4920242fb5856c515ba6678f9a5f6c52ed98e142a8673"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0053_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.75,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2044,
+        2643
+      ],
+      "caption": "DIRECTIONAL ANCHOR FOR UNINSULATED LINES PIPE SIZES 1/2\" TO 24\" \u2014 Engineering drawing showing elevation view, section view, and View A details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0053_fig01_directional-anchor-uninsulated-lines.png",
+      "png_sha256": "a9eb77f9ea41be495dd807806135e35a771d588382de9e8524210f9b646937d1",
+      "slug": "directional-anchor-uninsulated-lines",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0053_tbl02",
+      "bbox_norm": [
+        0.72,
+        0.45,
+        0.98,
+        0.72
+      ],
+      "bbox_px": [
+        1712,
+        1322,
+        2555,
+        2544
+      ],
+      "caption": "Type / Material selection table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0053_tbl02_material-selection-type.png",
+      "png_sha256": "22bcf5597e47e093f02bbbc4e713588e93dd12bd352112e451b755f6b6dc6be7",
+      "slug": "material-selection-type",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0053_tbl02_material-selection-type.json",
+      "table_data_json_sha256": "d5b8819e72557d7a01a7c51086c46b589ec6285f6390d7688537c11d106926ad",
+      "table_data_sha256": "d5b8819e72557d7a01a7c51086c46b589ec6285f6390d7688537c11d106926ad",
+      "xlsx_path": "tables/06-pipe-supports-02_p0053_tbl02_material-selection-type.xlsx",
+      "xlsx_sha256": "d297cd272d89a3d8d481b833a0afbf4c1ee500289193ceeb334bdb64bc8ff4f5"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0053_tbl03",
+      "bbox_norm": [
+        0.72,
+        0.72,
+        0.98,
+        0.82
+      ],
+      "bbox_px": [
+        1712,
+        2214,
+        2555,
+        2874
+      ],
+      "caption": "Coding example table",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0053_tbl03_coding-example.png",
+      "png_sha256": "b360931d3b60dab64b6240074582cae043881a05763925ae048ceb07048f7ee2",
+      "slug": "coding-example",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0053_tbl04",
+      "bbox_norm": [
+        0.03,
+        0.8,
+        0.6,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2478,
+        1661,
+        3238
+      ],
+      "caption": "Revisions table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 4,
+      "png_path": "tables/06-pipe-supports-02_p0053_tbl04_revisions.png",
+      "png_sha256": "bc6582f3966cf272c0d5ad2249b8a393cb03748440769b2e669fb4dd0f9afc7c",
+      "slug": "revisions",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0053_tbl04_revisions.json",
+      "table_data_json_sha256": "698f4f0660971f4cb08ba68eb9e9d2951cb418b85ebdf971eb1d7f582978e32a",
+      "table_data_sha256": "698f4f0660971f4cb08ba68eb9e9d2951cb418b85ebdf971eb1d7f582978e32a",
+      "xlsx_path": "tables/06-pipe-supports-02_p0053_tbl04_revisions.xlsx",
+      "xlsx_sha256": "42317ee93dda7024ca045d926996e03f063acb244a130d1aea79a81889e2c184"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 53,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0053.png",
+  "page_image_sha256": "1a0dc420e9004fe28cfb9b6a097c6533310884ac034ba4006cc70e7d3683ccf9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0053_assets.json"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 8,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0008-01",
+      "kind": "fig",
+      "caption": "Figure 1: Radial Alignment",
+      "bbox_norm": [0.03, 0.30, 0.47, 0.52],
+      "description": "Cross-section schematic of two pipe flanges showing radial misalignment with annotation '1/16\" MAX'."
+    },
+    {
+      "id": "fig-0008-02",
+      "kind": "fig",
+      "caption": "Figure 4: Excessive Gap",
+      "bbox_norm": [0.47, 0.30, 0.97, 0.52],
+      "description": "Cross-section schematic of two pipe flanges with a gap between them annotated '1/4\" MAX'."
+    },
+    {
+      "id": "fig-0008-03",
+      "kind": "fig",
+      "caption": "Figure 2: Rotational Alignment",
+      "bbox_norm": [0.03, 0.52, 0.55, 0.73],
+      "description": "Front-view circular diagram showing flange bolt holes with rotational misalignment annotated '1/8\" MAX'."
+    },
+    {
+      "id": "fig-0008-04",
+      "kind": "fig",
+      "caption": "Figure 3: Parallel Alignment",
+      "bbox_norm": [0.03, 0.73, 0.55, 0.95],
+      "description": "Cross-section schematic of two pipe flanges showing angular/parallel gap with annotation 'MAXIMUM 1/32\" DIFFERENCE BETWEEN THE WIDEST AND NARROWEST'."
+    }
+  ],
+  "issues": []
+}

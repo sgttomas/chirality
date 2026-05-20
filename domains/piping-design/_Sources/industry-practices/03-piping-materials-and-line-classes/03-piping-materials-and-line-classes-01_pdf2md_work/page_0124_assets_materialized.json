@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0124.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0124_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.25
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        990
+      ],
+      "caption": "Table 4.33 Class PJH \u2014 Line Class Specification Header",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl01_table-4-33-pjh-spec-header.png",
+      "png_sha256": "138b8696a40b17ab2e1ceebeabc3e3d25b3093e920bd0afc985b8254ccab0a23",
+      "slug": "table-4-33-pjh-spec-header",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl01_table-4-33-pjh-spec-header.json",
+      "table_data_json_sha256": "579253891a1bdb8dd88e0adf96865d062f1502c45b6d894730e558b5a6874f60",
+      "table_data_sha256": "579253891a1bdb8dd88e0adf96865d062f1502c45b6d894730e558b5a6874f60",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl01_table-4-33-pjh-spec-header.xlsx",
+      "xlsx_sha256": "47cba889b19c4e80d6162c4886cf2902b38d0ce12ac4a7c226aa08b17f0deab8"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0124_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2550,
+        1419
+      ],
+      "caption": "Table 4.33 Class PJH \u2014 Component Schedule (ITEM / SIZE / RATING / TYPE / SPECIFICATIONS / NOTES)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl02_table-4-33-pjh-component-schedule.png",
+      "png_sha256": "ebf57b007627c0140e6dcc6de7dcd26d6203570e4d54a44432fda6a14731b566",
+      "slug": "table-4-33-pjh-component-schedule",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl02_table-4-33-pjh-component-schedule.json",
+      "table_data_json_sha256": "8b2fca28958457571ed54c3042df1da24d16d37f0d8731ab1da11ba247270cf0",
+      "table_data_sha256": "8b2fca28958457571ed54c3042df1da24d16d37f0d8731ab1da11ba247270cf0",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0124_tbl02_table-4-33-pjh-component-schedule.xlsx",
+      "xlsx_sha256": "92d9fdede757c7fc772fc1883ebea38a7d7a33d0b4eb0762ce0a31062b475443"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 124,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0124.png",
+  "page_image_sha256": "bb205dfdd4f156a1e74e0b57092ce9929f452ec304847fe03301f3199ac4e4f9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0124_assets.json"
+}

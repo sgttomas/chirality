@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 116,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "T-26 Thermowell connection for DI piping NPS 3 & UP, showing a line size x NPS 3 tee – MJ with labeled components: INSTR PIPING, TAPPED BF FOR TW, MJ x FF CONNECTION, and LINE SIZE X NPS 3 TEE – MJ",
+      "bbox_norm": [0.10, 0.22, 0.90, 0.58]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-14",
+  "page": 9,
+  "total_pages": 9,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 Documentation Requirements for Pipe and Piping Components per REP 5\u20132\u20134",
+      "slug": "table-1-documentation-requirements",
+      "bbox_norm": [
+        0.04,
+        0.17,
+        0.96,
+        0.62
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Item",
+                "is_header": true
+              },
+              {
+                "value": "Description",
+                "is_header": true
+              },
+              {
+                "value": "Format",
+                "is_header": true
+              },
+              {
+                "value": "As\u2013Built",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "Certified material test reports per paragraph 6.4 or certificates of compliance per paragraph 6.5.",
+                "type": "text"
+              },
+              {
+                "value": "See REP 2\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "Welding Procedure Specifications (WPS) and Procedure Qualification Records (PQR) per paragraph 6.6.1.",
+                "type": "text"
+              },
+              {
+                "value": "See REP 2\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "Positive Materials Identification (PMI) Report per paragraph 7.4 and REP 15\u20131\u20134.",
+                "type": "text"
+              },
+              {
+                "value": "See REP 2\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "Quality Control System per paragraph 6.1.",
+                "type": "text"
+              },
+              {
+                "value": "See REP 2\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "Copies of NDE procedures, test results and repairs per paragraphs 6.1 and 6.7.",
+                "type": "text"
+              },
+              {
+                "value": "See REP 2\u20135\u20132",
+                "type": "text"
+              },
+              {
+                "value": "Yes",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "4-column table: Item, Description, Format, As-Built. All 5 rows reference REP 2-5-2 and are marked Yes for As-Built."
+    }
+  ],
+  "issues": []
+}

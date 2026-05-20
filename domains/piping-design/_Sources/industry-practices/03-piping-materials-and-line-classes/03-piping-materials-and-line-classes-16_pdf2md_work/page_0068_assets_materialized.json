@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0068.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0068_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1417
+      ],
+      "caption": "Fig. 1400-30 Chemicals Incompatible with Graphite Packings",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0068_fig01_fig-1400-30-chemicals-incompatible-graph.png",
+      "png_sha256": "9aec970b21bf729d70a3e3b3ec17b430596ab015b1c54d1078f03ecc4cb3b3b6",
+      "slug": "fig-1400-30-chemicals-incompatible-graph",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0068_fig02",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        1154,
+        2550,
+        3296
+      ],
+      "caption": "Fig. 1400-31 Alternative Packing Systems for Use in Strong Oxidizing Service (1 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0068_fig02_fig-1400-31-alternative-packing-systems.png",
+      "png_sha256": "f5809a8fe5e15d323e4955a840e099120ad85a0ab4b405da8a3b92effb9c8627",
+      "slug": "fig-1400-31-alternative-packing-systems",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 68,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0068.png",
+  "page_image_sha256": "6938703185ac1e9311fa602c72e841d0fb8070eaf6932143f7562271b0fb9f52",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0068_assets.json"
+}

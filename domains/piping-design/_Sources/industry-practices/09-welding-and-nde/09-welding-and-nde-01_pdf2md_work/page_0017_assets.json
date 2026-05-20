@@ -1,0 +1,80 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-01",
+  "page": 17,
+  "total_pages": 27,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0017-01",
+      "kind": "tbl",
+      "caption": "Bake-out Holding Times for Prior Service Carbon Steel Equipment & Piping",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "has_header": true,
+        "columns": ["Thickness", "Holding Time"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "Thickness"},
+              {"type": "text", "value": "Holding Time"}
+            ],
+            "is_header": true
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "≤2.25\""},
+              {"type": "text", "value": "5.0 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2.01 – 2.25\""},
+              {"type": "text", "value": "5.0 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2.26 – 2.50\""},
+              {"type": "text", "value": "6.0 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2.51 – 2.75\""},
+              {"type": "text", "value": "7.0 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2.76 – 3.00\""},
+              {"type": "text", "value": "8.0 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "3.01 – 3.25\""},
+              {"type": "text", "value": "10 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "3.26 – 3.50\""},
+              {"type": "text", "value": "12 hrs"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": ">3.50\""},
+              {"type": "text", "value": "Contact BP CHP Metallurgist"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

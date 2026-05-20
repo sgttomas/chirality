@@ -1,0 +1,63 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0018.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0018_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.55,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        70,
+        1488,
+        1509
+      ],
+      "caption": "APPENDIX 4A Standard Base Support schematic drawing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-03_p0018_fig01_appendix-4a-standard-base-support-schema.png",
+      "png_sha256": "fff7b32e3a166868f365a20ccf839b7802d5a9a7c76150c2861eff671ce5b7a2",
+      "slug": "appendix-4a-standard-base-support-schema",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0018_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.36,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1088,
+        2480,
+        3509
+      ],
+      "caption": "BASE SUPPORTS - SELECTION CHART Standard Base Support BS1 THRU BS8",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0018_tbl01_base-supports-selection-chart-bs1-bs8.png",
+      "png_sha256": "56d77528f59a74dc01e3c09085d191b533b5d7b92d295d819bd455d6f338f6c9",
+      "slug": "base-supports-selection-chart-bs1-bs8",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0018.png",
+  "page_image_sha256": "d8e98f3e14838971e9a5288b3c4e07a942b7317ab13192cb6f938794d021f1ba",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0018_assets.json"
+}

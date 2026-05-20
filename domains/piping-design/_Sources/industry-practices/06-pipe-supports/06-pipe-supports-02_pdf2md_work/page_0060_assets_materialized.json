@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0060_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.67,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        165,
+        1840,
+        1982
+      ],
+      "caption": "Elevation view and section view engineering drawing of a directional anchor (clamp on) for stainless and alloy pipe, showing component assembly with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0060_fig01_elevation-view-and-section-view-engineer.png",
+      "png_sha256": "19c810df2a996d5321c424742d9cfde7cd1e5fdce94041c3c6f47e46ff64e13d",
+      "slug": "elevation-view-and-section-view-engineer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0060_tbl01",
+      "bbox_norm": [
+        0.62,
+        0.48,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1456,
+        1421,
+        2555,
+        2544
+      ],
+      "caption": "For Stainless and Alloy Lines \u2014 material selection chart by pipe type",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,7], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0060_tbl01_for-stainless-and-alloy-lines-material-s.png",
+      "png_sha256": "8366d87acf3651963d5c78e1ff8205dd1bb865b9ba5ef1fca4666feb22143f53",
+      "slug": "for-stainless-and-alloy-lines-material-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0060.png",
+  "page_image_sha256": "fa4cc2d7ba356cd10e185c9dfb6ca50f87adf158e121b4deffb0bf18ab510268",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0060_assets.json"
+}

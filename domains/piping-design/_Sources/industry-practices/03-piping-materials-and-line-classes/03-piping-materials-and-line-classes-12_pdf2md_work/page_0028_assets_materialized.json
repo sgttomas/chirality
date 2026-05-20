@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0028.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0028_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.48,
+        0.94,
+        0.82
+      ],
+      "bbox_px": [
+        25,
+        1419,
+        2524,
+        2871
+      ],
+      "caption": "Table 14: Pipe Nipple (\u2264 NPS 2) Minimum Wall Thickness",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0028_tbl01_pipe-nipple-nps2-min-wall-thickness.png",
+      "png_sha256": "56d11ad8acb6aa3d2abdbb103170d299a9c7a03c9d9f3009acd748051f9c7ef0",
+      "slug": "pipe-nipple-nps2-min-wall-thickness",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-12",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 28,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0028.png",
+  "page_image_sha256": "17728d88394cf7f6e5d73606a7d48de2786c67fb9dd9d1e042861307f573154a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0028_assets.json"
+}

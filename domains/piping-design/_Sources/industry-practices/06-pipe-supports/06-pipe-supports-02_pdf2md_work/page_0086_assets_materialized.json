@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0086.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0086_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Bill of Materials \u2014 Vertical Pipe Guide, Uninsulated, Pipe Sizes 2\"-12\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0086_tbl01_bill-of-materials-vertical-pipe-guide.png",
+      "png_sha256": "9ff46f1c7feeb4bda10e7c04f3e010cd0accff5bb8335ed685ceee3693dfc4a2",
+      "slug": "bill-of-materials-vertical-pipe-guide",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0086_tbl01_bill-of-materials-vertical-pipe-guide.json",
+      "table_data_json_sha256": "9a4ec4d5618f2a7309e1ebdee0b036ab6e5aa3a023af940e385c4c76d9b2c72a",
+      "table_data_sha256": "9a4ec4d5618f2a7309e1ebdee0b036ab6e5aa3a023af940e385c4c76d9b2c72a",
+      "xlsx_path": "tables/06-pipe-supports-02_p0086_tbl01_bill-of-materials-vertical-pipe-guide.xlsx",
+      "xlsx_sha256": "788bd855f7c541404c0bb94c43581f0cf19ff982fddfd8db9cd8e129dd04d657"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0086_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.72,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        264,
+        1967,
+        2808
+      ],
+      "caption": "Engineering drawing \u2014 Vertical Pipe Guide, Uninsulated, Pipe Sizes 2\"-12\" (PLAN, ELEVATION, and SECT. 'X-X' views with dimensions)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0086_fig01_vertical-pipe-guide-uninsulated-plan-ele.png",
+      "png_sha256": "aa21461cd1d03a826003b260f49096e9da3d39ec8877a7438c3d3b7297c31149",
+      "slug": "vertical-pipe-guide-uninsulated-plan-ele",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0086_tbl02",
+      "bbox_norm": [
+        0.68,
+        0.35,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1610,
+        991,
+        2555,
+        2544
+      ],
+      "caption": "Fabrication Dimensions \u2014 Pipe Size vs. DIM. 'A' and DIM. 'B'",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0086_tbl02_fabrication-dimensions-pipe-size-dim-a-d.png",
+      "png_sha256": "66d047409abd993ef4d5a3fe86d075dcf9187a23d6b5d3fe9d1ec98c5bb94f09",
+      "slug": "fabrication-dimensions-pipe-size-dim-a-d",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0086_tbl02_fabrication-dimensions-pipe-size-dim-a-d.json",
+      "table_data_json_sha256": "88a03fd13221cb55cf2851f8e7fdfca1fea2bf506e8690ac15d7ffe43a705c87",
+      "table_data_sha256": "88a03fd13221cb55cf2851f8e7fdfca1fea2bf506e8690ac15d7ffe43a705c87",
+      "xlsx_path": "tables/06-pipe-supports-02_p0086_tbl02_fabrication-dimensions-pipe-size-dim-a-d.xlsx",
+      "xlsx_sha256": "5a9c7fd237661df55f575501680f278903ab6a6d9a565b72c42dc43a9623c49c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 86,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0086.png",
+  "page_image_sha256": "a172ec3d81338209c71f4de7af0db8a928dfa74df3d78521fd4bdd6734b5308d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0086_assets.json"
+}

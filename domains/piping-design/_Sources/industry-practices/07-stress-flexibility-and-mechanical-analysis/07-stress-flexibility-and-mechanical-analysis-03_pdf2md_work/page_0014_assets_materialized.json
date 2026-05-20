@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0014.anchored.md",
+  "assets": [
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0014_fig01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.5,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        1088,
+        1402,
+        2208
+      ],
+      "caption": "Fig. C-4 Example of a Stiff Appurtenance",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0014_fig01_fig-c-4-example-of-a-stiff-appurtenance.png",
+      "png_sha256": "639fdc0836097836e77af8871dee8ebff8d0fbc6dbf3135aca2401357a4a3964",
+      "slug": "fig-c-4-example-of-a-stiff-appurtenance",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0014_fig02",
+      "bbox_norm": [
+        0.5,
+        0.38,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        1148,
+        1088,
+        2550,
+        2208
+      ],
+      "caption": "Fig. C-5 Mathematical Model of Figure C-4 Example",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0014_fig02_fig-c-5-mathematical-model-of-figure-c-4.png",
+      "png_sha256": "fac3f8a6909a09d4269bbb0335d9233ac5e9356b7e2ae73325b1211524cc2915",
+      "slug": "fig-c-5-mathematical-model-of-figure-c-4",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/_assets/07-stress-flexibility-and-mechanical-analysis-03",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-03",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0014.png",
+  "page_image_sha256": "8efac9dc8263f6a5694a15e2d69a016acb4c0dbfdd1727fee5a3cbc3f0c8b441",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0014_assets.json"
+}

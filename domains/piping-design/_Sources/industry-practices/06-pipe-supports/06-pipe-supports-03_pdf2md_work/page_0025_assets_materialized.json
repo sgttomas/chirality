@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0025.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0025_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        2000,
+        2480,
+        2983
+      ],
+      "caption": "Table A10-1. Example geometrical data \u2014 DN 150 shoe type anchor support welded to base",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0025_tbl01_table-a10-1-example-geometrical-data-dn.png",
+      "png_sha256": "49446d0107bf0cd5229d87854f81d2ffccd0db0dcfb3f8addc071e3ca7f7693e",
+      "slug": "table-a10-1-example-geometrical-data-dn",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 25,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0025.png",
+  "page_image_sha256": "f0fda1fd8649904e0d3b192f299980c9213c7ef476da98232684706cd053326c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0025_assets.json"
+}

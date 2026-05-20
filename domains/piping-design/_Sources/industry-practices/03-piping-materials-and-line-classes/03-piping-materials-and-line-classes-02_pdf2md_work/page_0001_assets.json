@@ -1,0 +1,12 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "NO_ASSETS",
+  "doc_stem": "03-piping-materials-and-line-classes-02",
+  "page": 1,
+  "total_pages": 4,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [],
+  "issues": [
+    "page rendered via deterministic pdftotext fallback after multimodal vision dispatch was blocked by content-filter policy; text-only front-matter page (purpose/use notice + printing history) reconstructed from the embedded PDF text layer"
+  ]
+}

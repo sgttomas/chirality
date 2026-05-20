@@ -1,0 +1,69 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 185,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.54 Class HCE Specification Header",
+      "slug": "table-4-54-class-hce-specification-header",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE: 4.54", "is_header": true },
+              { "value": "CLASS: HCE", "is_header": true },
+              { "value": "", "is_header": false },
+              { "value": "", "is_header": false }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "is_header": true, "type": "text" },
+              { "value": "ANSI Class 300 Except 595 C (1100 F) Max. (10) (17)", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "is_header": true, "type": "text" },
+              { "value": "Process - Hydrogen", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "is_header": true, "type": "text" },
+              { "value": "1-1/4 CR – 1/2 Mo (10) (17)", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" },
+              { "value": "", "is_header": false, "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "is_header": true, "type": "text" },
+              { "value": "1", "is_header": false, "type": "text" },
+              { "value": "CORROSION ALLOWANCE:", "is_header": true, "type": "text" },
+              { "value": "1.6 mm (0.063\")", "is_header": false, "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Specification header table for piping line class HCE. No item rows visible in the body table below the header."
+    }
+  ],
+  "issues": []
+}

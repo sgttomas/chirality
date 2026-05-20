@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0090.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0090_fig01",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.92,
+        0.93
+      ],
+      "bbox_px": [
+        76,
+        1088,
+        2474,
+        3230
+      ],
+      "caption": "Fig. 200-31 Strainers Courtesy of Mack Iron Works Company",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0090_fig01_fig-200-31-strainers-mack-iron-works.png",
+      "png_sha256": "b6a28e3f3903b9440cd0beab079c765d163a6022ca2d6ac1662fefd1d91bb17d",
+      "slug": "fig-200-31-strainers-mack-iron-works",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 90,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0090.png",
+  "page_image_sha256": "0956067efa47656ff51a34366c7606b2a2603f7f48973d11b0191f361fdacba0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0090_assets.json"
+}

@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0121.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0121_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.2
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        826
+      ],
+      "caption": "Bill of Materials \u2014 Pipe Shoe (Clamp On) for Two-Way Guides",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0121_tbl01_bom-pipe-shoe-clamp-on-two-way-guides.png",
+      "png_sha256": "269dd97aa7513927cd81319ed2f44967e9b633ebb0b9317476b46dc7dc904afa",
+      "slug": "bom-pipe-shoe-clamp-on-two-way-guides",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0121_tbl01_bom-pipe-shoe-clamp-on-two-way-guides.json",
+      "table_data_json_sha256": "2032a90e4372710424908b39f70bbbe812ad9cbd2bc4f2401e814dfaed0d94b0",
+      "table_data_sha256": "2032a90e4372710424908b39f70bbbe812ad9cbd2bc4f2401e814dfaed0d94b0",
+      "xlsx_path": "tables/06-pipe-supports-02_p0121_tbl01_bom-pipe-shoe-clamp-on-two-way-guides.xlsx",
+      "xlsx_sha256": "a85aa5953b368226f16f15726aaff286bab0bc1ee843dd52601bf611a2c469b5"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0121_fig01",
+      "bbox_norm": [
+        0.03,
+        0.2,
+        0.97,
+        0.7
+      ],
+      "bbox_px": [
+        0,
+        496,
+        2555,
+        2478
+      ],
+      "caption": "Elevation and Plan views \u2014 Pipe Shoe (Clamp On) for Two-Way Guides, Pipe Sizes 2\" to 36\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0121_fig01_pipe-shoe-clamp-on-elevation-plan.png",
+      "png_sha256": "525e3ee8c62176fbc7a45ddfc4d8afbe0f40dcf8c3c373f390f189d0a63ea95b",
+      "slug": "pipe-shoe-clamp-on-elevation-plan",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0121_tbl02",
+      "bbox_norm": [
+        0.5,
+        0.7,
+        0.85,
+        0.82
+      ],
+      "bbox_px": [
+        1150,
+        2148,
+        2300,
+        2874
+      ],
+      "caption": "Insulation Dimension Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0121_tbl02_insulation-dimension-table.png",
+      "png_sha256": "a4a9d3d425595b2099dd2c5ad6170c9ddee5c99e49f0401ed86ff2eb32bd1376",
+      "slug": "insulation-dimension-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0121_tbl02_insulation-dimension-table.json",
+      "table_data_json_sha256": "5477b6a1eb4a92c05f3f478e23a6d8ea42a5de6a382e846938ab856d0bc7fc6f",
+      "table_data_sha256": "5477b6a1eb4a92c05f3f478e23a6d8ea42a5de6a382e846938ab856d0bc7fc6f",
+      "xlsx_path": "tables/06-pipe-supports-02_p0121_tbl02_insulation-dimension-table.xlsx",
+      "xlsx_sha256": "1ce5ac7df8e088db4d8841689176d5ae9cdec7f24b1a1875f97fef36795d98d5"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 121,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0121.png",
+  "page_image_sha256": "c413cc9696c98b9f0071c0db0bfca3abb80a64d27b051ab76f0b4c54904f5109",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0121_assets.json"
+}

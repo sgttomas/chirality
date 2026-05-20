@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-01",
+  "page": 8,
+  "total_pages": 8,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "Figure 1. Guide for Analysis of Carbon Steel or Low and Intermediate Alloy Steel",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.42],
+      "description": "Chart showing Temperature (°F) on the y-axis (ranging from approximately -100 to 700) vs Nominal Pipe Size (Inches) on the x-axis (ranging from 2 to 48). Three hatched/shaded zones are labeled: 'VISUAL' ANALYSIS (lower left, lightest shading), 'FORMAL' ANALYSIS (middle zone, medium shading), and 'COMPREHENSIVE' ANALYSIS 3 (upper right, darkest shading with cross-hatching)."
+    },
+    {
+      "kind": "fig",
+      "asset_index": 2,
+      "caption": "Figure 2. Guide for Analysis of Stainless Steel Pipe",
+      "bbox_norm": [0.05, 0.44, 0.95, 0.82],
+      "description": "Chart showing Temperature (°F) on the y-axis (ranging from approximately -300 to 400) vs Nominal Pipe Size (Inches) on the x-axis (ranging from 2 to 48). Three hatched/shaded zones are labeled: 'VISUAL' ANALYSIS (lower left, lightest shading), 'FORMAL' ANALYSIS (middle zone, medium shading), and 'COMPREHENSIVE' ANALYSIS 3 (upper right, darkest shading with cross-hatching)."
+    }
+  ],
+  "issues": []
+}

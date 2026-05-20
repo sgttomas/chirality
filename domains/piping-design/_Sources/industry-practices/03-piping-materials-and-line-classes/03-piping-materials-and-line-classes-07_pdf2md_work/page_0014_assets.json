@@ -1,0 +1,370 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 14,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 - Chemical Composition for PSL 2 Pipes with Wall Thickness t \u2264 1.6 in",
+      "slug": "table-1-chemical-composition-psl2-pipes",
+      "bbox_norm": [
+        0.05,
+        0.09,
+        0.95,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Three-column table listing chemical elements, symbols, and weight percentage limits",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Element",
+                "is_header": true
+              },
+              {
+                "value": "Symbols",
+                "is_header": true
+              },
+              {
+                "value": "Weight Percentage (%max)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Carbon",
+                "type": "text"
+              },
+              {
+                "value": "C",
+                "type": "text"
+              },
+              {
+                "value": "0.12% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Manganese",
+                "type": "text"
+              },
+              {
+                "value": "Mn",
+                "type": "text"
+              },
+              {
+                "value": "0.80% to 1.60%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Silicon",
+                "type": "text"
+              },
+              {
+                "value": "Si",
+                "type": "text"
+              },
+              {
+                "value": "0.05% to 0.30%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Phosphorus",
+                "type": "text"
+              },
+              {
+                "value": "P",
+                "type": "text"
+              },
+              {
+                "value": "0.015% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Sulfur",
+                "type": "text"
+              },
+              {
+                "value": "S",
+                "type": "text"
+              },
+              {
+                "value": "0.006% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Vanadium",
+                "type": "text"
+              },
+              {
+                "value": "V",
+                "type": "text"
+              },
+              {
+                "value": "0.07% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Titanium",
+                "type": "text"
+              },
+              {
+                "value": "Ti",
+                "type": "text"
+              },
+              {
+                "value": "0.03% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Aluminum (total)",
+                "type": "text"
+              },
+              {
+                "value": "Al",
+                "type": "text"
+              },
+              {
+                "value": "0.015% to 0.055%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Aluminum plus niobium",
+                "type": "text"
+              },
+              {
+                "value": "\u2013",
+                "type": "text"
+              },
+              {
+                "value": "0.10%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Copper",
+                "type": "text"
+              },
+              {
+                "value": "Cu",
+                "type": "text"
+              },
+              {
+                "value": "0.25%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nitrogen",
+                "type": "text"
+              },
+              {
+                "value": "N",
+                "type": "text"
+              },
+              {
+                "value": "0.009%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Niobium",
+                "type": "text"
+              },
+              {
+                "value": "Nb",
+                "type": "text"
+              },
+              {
+                "value": "0.015% to 0.05%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Calcium",
+                "type": "text"
+              },
+              {
+                "value": "Ca",
+                "type": "text"
+              },
+              {
+                "value": "0.006% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Boron",
+                "type": "text"
+              },
+              {
+                "value": "B",
+                "type": "text"
+              },
+              {
+                "value": "0.0005% max",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Chromium",
+                "type": "text"
+              },
+              {
+                "value": "Cr",
+                "type": "text"
+              },
+              {
+                "value": "0.30%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Molybdenum",
+                "type": "text"
+              },
+              {
+                "value": "Mo",
+                "type": "text"
+              },
+              {
+                "value": "0.30%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nickel",
+                "type": "text"
+              },
+              {
+                "value": "Ni",
+                "type": "text"
+              },
+              {
+                "value": "0.25%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Chromium + Molybdenum",
+                "type": "text"
+              },
+              {
+                "value": "\u2013",
+                "type": "text"
+              },
+              {
+                "value": "0.55%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Aluminum: Nitrogen",
+                "type": "text"
+              },
+              {
+                "value": "\u2013",
+                "type": "text"
+              },
+              {
+                "value": "2:1 min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Ito-Bessyo Carbon Equivalent",
+                "type": "text"
+              },
+              {
+                "value": "CEpcm",
+                "type": "text"
+              },
+              {
+                "value": "0.19% max",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

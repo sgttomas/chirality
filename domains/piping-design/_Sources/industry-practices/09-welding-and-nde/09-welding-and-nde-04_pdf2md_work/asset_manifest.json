@@ -1,0 +1,131 @@
+{
+  "asset_count": 3,
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-04_p0001_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2550,
+        1155
+      ],
+      "caption": "Document Overview Table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 1,
+      "png_path": "tables/09-welding-and-nde-04_p0001_tbl01_document-overview-table.png",
+      "png_sha256": "5879f189eec4a6da2797b8204e186d1a0f49a5d76a2386f56f578e236dec5061",
+      "slug": "document-overview-table",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "09-welding-and-nde-04_p0004_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.67
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        2376
+      ],
+      "caption": "Document History",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/09-welding-and-nde-04_p0004_tbl01_document-history.png",
+      "png_sha256": "8fdb6920afb740029a03d0f085bbc36610f8d743ffd88ad82d0b572e4a8b1bc5",
+      "slug": "document-history",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "09-welding-and-nde-04_p0004_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.75,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2310,
+        2550,
+        3234
+      ],
+      "caption": "Document Review/Approvals",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 4,
+      "png_path": "tables/09-welding-and-nde-04_p0004_tbl02_document-review-approvals.png",
+      "png_sha256": "279649095fff1a34531af17296f549808ad22960fa8a8adca2913db9480c3d63",
+      "slug": "document-review-approvals",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "09-welding-and-nde-04",
+  "issues": [],
+  "page_manifest_count": 4,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-04_pdf2md_work"
+}

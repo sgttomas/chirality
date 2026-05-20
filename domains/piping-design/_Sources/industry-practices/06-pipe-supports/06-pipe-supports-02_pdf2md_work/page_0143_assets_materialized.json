@@ -1,0 +1,149 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0143.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0143_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.01,
+        0.98,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Items/Materials table \u2014 Item No., QTY., Description, Material for vessel guide components",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0143_tbl01_items-materials-table-item-no-qty-descri.png",
+      "png_sha256": "8388ba07b991dda06e64875d8b32227815c87941463022a601474254a2a7fc67",
+      "slug": "items-materials-table-item-no-qty-descri",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0143_fig01",
+      "bbox_norm": [
+        0.02,
+        0.11,
+        0.98,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2555,
+        2214
+      ],
+      "caption": "Plan and Elevation engineering drawing of Vessel Guide for uninsulated pipe sizes 1\" to 6\", showing pipe clamp, spacer, vessel clip, bolt arrangements, and clearance details with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0143_fig01_plan-and-elevation-engineering-drawing-o.png",
+      "png_sha256": "f86fa70f7bc63cc9ec16cc6a50e83fc521e75c92251f70c6a9534a79062f137d",
+      "slug": "plan-and-elevation-engineering-drawing-o",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0143_tbl02",
+      "bbox_norm": [
+        0.57,
+        0.62,
+        0.98,
+        0.75
+      ],
+      "bbox_px": [
+        1329,
+        1883,
+        2555,
+        2643
+      ],
+      "caption": "Pipe Size vs. Vertical Spacing table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0143_tbl02_pipe-size-vs-vertical-spacing-table.png",
+      "png_sha256": "e32123b7464246bc9120eb9fd27ccbbb66f1949fecad1a7659e9da652496bddf",
+      "slug": "pipe-size-vs-vertical-spacing-table",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0143_tbl03",
+      "bbox_norm": [
+        0.57,
+        0.74,
+        0.98,
+        0.83
+      ],
+      "bbox_px": [
+        1329,
+        2280,
+        2555,
+        2908
+      ],
+      "caption": "Coding example table showing P/S, STD., PIPE No., PIPE SIZE, L-DIM fields",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0143_tbl03_coding-example-table-showing-p-s-std-pip.png",
+      "png_sha256": "7f20f2535819fdc91be204b38fce545e8d9ffb716a84a707fa6af684a7a8096c",
+      "slug": "coding-example-table-showing-p-s-std-pip",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0143_tbl04",
+      "bbox_norm": [
+        0.02,
+        0.83,
+        0.58,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        2577,
+        1610,
+        3205
+      ],
+      "caption": "Revision history table with columns DATE, DESCRIPTION, DRAWN BY, CHECKED, APPROVED",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 4,
+      "png_path": "tables/06-pipe-supports-02_p0143_tbl04_revision-history-table-with-columns-date.png",
+      "png_sha256": "d929ed1ba615795ea9abcaa2c1d47037de9afc47e8d62c702f20b443bda42da6",
+      "slug": "revision-history-table-with-columns-date",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 143,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0143.png",
+  "page_image_sha256": "c3e51c07f97518ecd1d52b1b8dcec8979e5cb067429a47b3d34dc508eaa3e897",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0143_assets.json"
+}

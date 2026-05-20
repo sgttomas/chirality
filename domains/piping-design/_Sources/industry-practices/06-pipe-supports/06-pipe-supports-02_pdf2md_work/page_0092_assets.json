@@ -1,0 +1,271 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 92,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item 1, Qty 2, Description L51 \u00d7 51 \u00d7 9.5, Material CSA-G40.21-300W",
+      "slug": "bill-of-materials-g19",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "L51 \u00d7 51 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "ELEVATION and SECTION views \u2014 Guide for 3/4\" & 1\" Electrically Traced Piping, Drawing G19",
+      "slug": "elevation-section-g19-guide",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing ELEVATION (left) and SECTION (right) views of pipe support guide G19 with TYP 3/16\" dimensions, pipe shoe reference to S14, and 1/8\" GAP detail"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Revision history table",
+      "slug": "revision-history-g19",
+      "bbox_norm": [
+        0.03,
+        0.8,
+        0.6,
+        0.96
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "NO.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "DO",
+                "is_header": true
+              },
+              {
+                "value": "VN",
+                "is_header": true
+              },
+              {
+                "value": "JD",
+                "is_header": true
+              },
+              {
+                "value": "AP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "DO",
+                "type": "text"
+              },
+              {
+                "value": "VN",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "AR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "NO.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "CH",
+                "is_header": true
+              },
+              {
+                "value": "CK",
+                "is_header": true
+              },
+              {
+                "value": "ING",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Drawing revision history table in bottom-left of title block area"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,68 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0015_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.96,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        1815
+      ],
+      "caption": "Table 8: Solid Flat Metal Gasket Materials and Hardness Requirements",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,7], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0015_tbl01_table-8-solid-flat-metal-gasket-material.png",
+      "png_sha256": "645a9addb3e90c35f686f66fd1267ca1410691ead9e1c3c68d3ce66795044036",
+      "slug": "table-8-solid-flat-metal-gasket-material",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0015_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.54,
+        0.96,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1617,
+        2550,
+        2673
+      ],
+      "caption": "Table 9: Required Minimum Thickness for Solid Flat Metal Gaskets",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0015_tbl02_table-9-required-minimum-thickness-for-s.png",
+      "png_sha256": "abc9bb879c38060b287602f579965a824669968ef50e861c62430af4534e4f90",
+      "slug": "table-9-required-minimum-thickness-for-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-02",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0015.png",
+  "page_image_sha256": "4a69cd2df9cad84d404a7a1628a7c2f0b7a9bb77ec4d3bf3294354ae673630e8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0015_assets.json"
+}

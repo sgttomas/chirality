@@ -1,0 +1,90 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0028.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0028_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Bill of Materials \u2014 PSV Support for 3/4\" to 1 1/2\" Carbon Steel Lines",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0028_tbl01_bill-of-materials-psv-support-for-3-4-to.png",
+      "png_sha256": "c3cf436c41a1801d0f89be26bd2f0680e5d014abd893ae268481282634500fe6",
+      "slug": "bill-of-materials-psv-support-for-3-4-to",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0028_fig01",
+      "bbox_norm": [
+        0.01,
+        0.13,
+        0.55,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        264,
+        1533,
+        2412
+      ],
+      "caption": "Elevation view and Angle Detail for PSV support on carbon steel lines, showing structural member geometry, field-to-determine dimensions, and item callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0028_fig01_elevation-view-and-angle-detail-for-psv.png",
+      "png_sha256": "1f0ee7ff5d1b12ac21b5b41a76de64621e16b1db76b4a4482957c503eb174791",
+      "slug": "elevation-view-and-angle-detail-for-psv",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0028_fig02",
+      "bbox_norm": [
+        0.55,
+        0.13,
+        0.99,
+        0.68
+      ],
+      "bbox_px": [
+        1278,
+        264,
+        2555,
+        2412
+      ],
+      "caption": "Section 'A' and Clip Detail showing cross-sectional profile with 3/8\", 1/4\", 5/8\" \u00d8 hole, 1 1/4\" and 2 3/4\" dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0028_fig02_section-a-and-clip-detail-showing-cross.png",
+      "png_sha256": "2b9aa06fc4c9da6defe68746f75c5dd50ecd0cb38827bdb396e3a2df98867d0a",
+      "slug": "section-a-and-clip-detail-showing-cross",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 28,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0028.png",
+  "page_image_sha256": "832037a3954dfbbc2d8c5f6f636ef05685f55b0784028774c4c178ae87bd57ac",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0028_assets.json"
+}

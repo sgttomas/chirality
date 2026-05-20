@@ -1,0 +1,38 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 23,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Pipe stop (see also appendix 2 and 3)",
+      "slug": "pipe-stop",
+      "bbox_norm": [0.08, 0.12, 0.92, 0.38],
+      "confidence": "high",
+      "notes": "Two side-by-side engineering drawings of pipe stop details; caption appears below both drawings"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Inserts — Channel type and Threaded type",
+      "slug": "inserts-channel-threaded",
+      "bbox_norm": [0.08, 0.38, 0.92, 0.64],
+      "confidence": "high",
+      "notes": "Two side-by-side cross-section drawings of concrete insert types: channel type (left) and threaded type (right); group caption 'Inserts' appears below"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "Pivot and Rotating type",
+      "slug": "pivot-rotating-type",
+      "bbox_norm": [0.04, 0.63, 0.96, 0.93],
+      "confidence": "high",
+      "notes": "Left cluster shows Pivot support (two views); right cluster shows Rotating type support (detail view with close-fit annotation and elevation view); captions below each cluster"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,924 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 10,
+  "total_pages": 73,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Piping Class A6 \u2014 Service and General Parameters",
+      "slug": "piping-class-a6-service-general-parameters",
+      "bbox_norm": [
+        0.03,
+        0.09,
+        0.97,
+        0.27
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODE CSA Z662",
+                "is_header": true
+              },
+              {
+                "value": "CLASS A6",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Sweet Gas and Hydrocarbon Liquids, Fresh Water, Produced Water (Note 27) (Pipelines CSA Z662, Surface Piping)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Maximum Pressure Rating",
+                "is_header": true
+              },
+              {
+                "value": "Lower of ANSI B16.5 Class 150 Material Group 1.1 or Z245.12 PN 20",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Temperature Range",
+                "is_header": true
+              },
+              {
+                "value": "-45\u00b0C to 120\u00b0C",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Minimum Corrosion Allowance",
+                "is_header": true
+              },
+              {
+                "value": "0 mm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radiography",
+                "is_header": true
+              },
+              {
+                "value": "15% (Note 4)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Post Weld Heat Treatment",
+                "is_header": true
+              },
+              {
+                "value": "Per Z662",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Service and general parameters table at top of page"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Piping Class A6 \u2014 Component Schedule",
+      "slug": "piping-class-a6-component-schedule",
+      "bbox_norm": [
+        0.03,
+        0.27,
+        0.97,
+        0.82
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM",
+                "is_header": true
+              },
+              {
+                "value": "Sizes (NPS)",
+                "is_header": true
+              },
+              {
+                "value": "General Description",
+                "is_header": true
+              },
+              {
+                "value": "Material/Code",
+                "is_header": true
+              },
+              {
+                "value": "Notes",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pipe",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Seamless, PE",
+                "type": "text"
+              },
+              {
+                "value": "A333 GR. 6",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Seamless, PE",
+                "type": "text"
+              },
+              {
+                "value": "A333 GR. 6",
+                "type": "text"
+              },
+              {
+                "value": "5, 8, 9",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 3000 THD (SW as required)",
+                "type": "text"
+              },
+              {
+                "value": "A350 LF 2 CL1",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Butt Weld, WT to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A420 WPL 6",
+                "type": "text"
+              },
+              {
+                "value": "9",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nipples",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Seamless SR A-333, THD",
+                "type": "text"
+              },
+              {
+                "value": "A333 GR. 6",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Swagers",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 2",
+                "type": "text"
+              },
+              {
+                "value": "Bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A420 WPL 6",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RF THD/SW, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A350 LF 2 CL1",
+                "type": "text"
+              },
+              {
+                "value": "3, 24",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RFWN, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A350 LF 2 CL1",
+                "type": "text"
+              },
+              {
+                "value": "2, 9",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Bolting",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Studs",
+                "type": "text"
+              },
+              {
+                "value": "A193 GR. B7",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Nuts",
+                "type": "text"
+              },
+              {
+                "value": "A194 GR. 2H",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Gaskets",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 \u2013 3 mm (1/8\") THK \u201cFlexitallic\u201d Style CG ASME B16.20 or Owner approved equivalent",
+                "type": "text"
+              },
+              {
+                "value": "316 SS",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Valves",
+                "type": "text"
+              },
+              {
+                "value": "GATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 800 THD/SW",
+                "type": "text"
+              },
+              {
+                "value": "GA-836/837/838",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 6 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RF Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GA-130/131",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GLOBE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 800 THD/SW",
+                "type": "text"
+              },
+              {
+                "value": "GL-836/837/838",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 4",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RF Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GL-130",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "CHECK",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1/2 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 800 THD/SW",
+                "type": "text"
+              },
+              {
+                "value": "CH-836/837/838/839",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RF Flanged Swing type",
+                "type": "text"
+              },
+              {
+                "value": "CH-130",
+                "type": "text"
+              },
+              {
+                "value": "6",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "4 \u2013 24",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "CH-13X",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "BALL",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 600 THD",
+                "type": "text"
+              },
+              {
+                "value": "BA-638",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 6 - 24",
+                "type": "text"
+              },
+              {
+                "value": "Class 150 RF Flanged",
+                "type": "text"
+              },
+              {
+                "value": "BA-130/131",
+                "type": "text"
+              },
+              {
+                "value": "6",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Main component schedule table covering pipe, fittings, nipples, swagers, flanges, bolting, gaskets, and valves"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Piping Class A6 \u2014 Wall Thickness Schedule",
+      "slug": "piping-class-a6-wall-thickness-schedule",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.97,
+        0.89
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Size",
+                "is_header": true
+              },
+              {
+                "value": "1/2",
+                "is_header": true
+              },
+              {
+                "value": "3/4",
+                "is_header": true
+              },
+              {
+                "value": "1",
+                "is_header": true
+              },
+              {
+                "value": "1 1/2",
+                "is_header": true
+              },
+              {
+                "value": "2",
+                "is_header": true
+              },
+              {
+                "value": "2 1/2",
+                "is_header": true
+              },
+              {
+                "value": "3",
+                "is_header": true
+              },
+              {
+                "value": "4",
+                "is_header": true
+              },
+              {
+                "value": "6",
+                "is_header": true
+              },
+              {
+                "value": "8",
+                "is_header": true
+              },
+              {
+                "value": "10",
+                "is_header": true
+              },
+              {
+                "value": "12",
+                "is_header": true
+              },
+              {
+                "value": "14",
+                "is_header": true
+              },
+              {
+                "value": "16",
+                "is_header": true
+              },
+              {
+                "value": "18",
+                "is_header": true
+              },
+              {
+                "value": "20",
+                "is_header": true
+              },
+              {
+                "value": "22",
+                "is_header": true
+              },
+              {
+                "value": "24",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "W.T.",
+                "is_header": true
+              },
+              {
+                "value": "120",
+                "type": "text"
+              },
+              {
+                "value": "160",
+                "type": "text"
+              },
+              {
+                "value": "160",
+                "type": "text"
+              },
+              {
+                "value": "160",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "40/80",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              },
+              {
+                "value": "10",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Wall thickness schedule table at bottom of page showing pipe schedule/wall thickness by NPS size"
+    }
+  ],
+  "issues": []
+}

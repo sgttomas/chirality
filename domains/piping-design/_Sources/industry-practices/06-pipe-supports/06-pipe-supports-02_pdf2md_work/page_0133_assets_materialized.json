@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0133.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0133_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.1
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        496
+      ],
+      "caption": "Bill of Materials \u2014 Vessel Clip for Insulated Vessel",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0133_tbl01_bom-vessel-clip-insulated.png",
+      "png_sha256": "c4e9bb23bbaf950419acc822c75ce9d08549fa8111846c22c9d2cb44ec965212",
+      "slug": "bom-vessel-clip-insulated",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0133_tbl01_bom-vessel-clip-insulated.json",
+      "table_data_json_sha256": "cd64aad1b4a6b6de368e618efa7663bbbd0bbb5410e67039967c2fc42bd6b056",
+      "table_data_sha256": "cd64aad1b4a6b6de368e618efa7663bbbd0bbb5410e67039967c2fc42bd6b056",
+      "xlsx_path": "tables/06-pipe-supports-02_p0133_tbl01_bom-vessel-clip-insulated.xlsx",
+      "xlsx_sha256": "1c86abd4b2f7b536bf4557c52523b70af7eb8dfbfa73a7c1f77d91e7289397aa"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0133_fig01",
+      "bbox_norm": [
+        0.02,
+        0.1,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2555,
+        2412
+      ],
+      "caption": "Fig. VCS \u2014 Type 'A' \u2013 Vertical Vessel (Plan and Elevation) and Type 'B' \u2013 Horizontal Vessel (Plan and Elevation)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0133_fig01_vessel-clip-type-a-b-plan-elevation.png",
+      "png_sha256": "88e31e2000fad0cfefc4c457fb3b51537d30b48f72d6070e6a27157326bbf378",
+      "slug": "vessel-clip-type-a-b-plan-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 133,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0133.png",
+  "page_image_sha256": "7cf012823bef7a5f00c2d97b51da76880c3eb9b008eccfe28e84e0d0f1622bbc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0133_assets.json"
+}

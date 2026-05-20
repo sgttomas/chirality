@@ -1,0 +1,170 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 129,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p129_tbl1",
+      "kind": "tbl",
+      "caption": "Bill of Materials \u2013 Vessel Clip VC1",
+      "bbox_norm": [
+        0.03,
+        0.01,
+        0.97,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "C100 \u00d7 11 \u2013 TYPE 'A'"
+              },
+              {
+                "type": "str",
+                "value": "CSA-G40.21-300W (NOTE 3)"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "C150 \u00d7 19 \u2013 TYPE 'B'"
+              },
+              {
+                "type": "str",
+                "value": "CSA-G40.21-300W (NOTE 3)"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "C200 \u00d7 28 \u2013 TYPE 'C'"
+              },
+              {
+                "type": "str",
+                "value": "CSA-G40.21-300W (NOTE 3)"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "2"
+              },
+              {
+                "type": "str",
+                "value": "1"
+              },
+              {
+                "type": "str",
+                "value": "REPAD BY VESSEL FABRICATOR (IF REQUIRED)"
+              },
+              {
+                "type": "str",
+                "value": "SAME MATERIAL AS VESSEL"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p129_fig1",
+      "kind": "fig",
+      "caption": "Plan and elevation engineering drawings of Vessel Clip VC1 showing PLAN view with key dimensions (12 1/2\", 6 1/2\", 4\") and 7/8\" DIA. HOLES FOR M20 BOLTS, and ELEVATION view showing WORK POINT ELEVATION with structural channel clip welded to vessel shell.",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.62
+      ]
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p129_tbl2",
+      "kind": "tbl",
+      "caption": "Coding example: VC1 type designation",
+      "bbox_norm": [
+        0.6,
+        0.63,
+        0.97,
+        0.76
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "CODING",
+          "( EXAMPLE )"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "VC1 \u2013"
+              },
+              {
+                "type": "str",
+                "value": "A"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "str",
+                "value": "P/S STD. No."
+              },
+              {
+                "type": "str",
+                "value": "TYPE"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

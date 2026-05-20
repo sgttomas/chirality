@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0071.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0071_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.06,
+        0.91,
+        0.22
+      ],
+      "bbox_px": [
+        102,
+        33,
+        2448,
+        890
+      ],
+      "caption": "Chevron Experts \u2014 Valve Fugitive Emissions contacts by discipline",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0071_tbl01_chevron-experts-valve-fugitive-emissions.png",
+      "png_sha256": "4a1ae3e8b602057e0e9ba09d51323a3fd9f367a9900d5118a9396d213ffe7616",
+      "slug": "chevron-experts-valve-fugitive-emissions",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0071_tbl01_chevron-experts-valve-fugitive-emissions.json",
+      "table_data_json_sha256": "a0e44b965209a3eef8b28dd8c4f4aa57d83f31388ee09263b8349c59affc5f31",
+      "table_data_sha256": "a0e44b965209a3eef8b28dd8c4f4aa57d83f31388ee09263b8349c59affc5f31",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0071_tbl01_chevron-experts-valve-fugitive-emissions.xlsx",
+      "xlsx_sha256": "08e08d984ac21476a929dd58c20c02ae38a4e298537ae87649c9a2dc938313a0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 71,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0071.png",
+  "page_image_sha256": "252e7f1f072febf27b2982e33d1d8430465a95a5df80c4d3bd8a3efeb35cff82",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0071_assets.json"
+}

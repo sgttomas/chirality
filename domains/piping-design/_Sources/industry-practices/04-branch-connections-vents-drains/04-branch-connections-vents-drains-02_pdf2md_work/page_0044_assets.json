@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 44,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0044_01",
+      "caption": "V-17 Vent and D-17 Drain assembly drawing for NPS 2 and up welded piping, showing vent connection at top and drain connection at bottom.",
+      "bbox_norm": [0.08, 0.13, 0.92, 0.82]
+    }
+  ],
+  "issues": []
+}

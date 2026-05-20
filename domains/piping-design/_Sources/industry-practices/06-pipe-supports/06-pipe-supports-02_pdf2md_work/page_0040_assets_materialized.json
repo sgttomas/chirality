@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0040.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0040_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0040_tbl01_bill-of-materials.png",
+      "png_sha256": "c17bfc728881b228716e1d21e3e58bf00c9caf1968ceac12ad5275b57b67e6db",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0040_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "b9cb208f640876ab2cc7c16d9d60f09f3835cae6f9dcbbfa01154b4000476cfb",
+      "table_data_sha256": "b9cb208f640876ab2cc7c16d9d60f09f3835cae6f9dcbbfa01154b4000476cfb",
+      "xlsx_path": "tables/06-pipe-supports-02_p0040_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "d52cba77417e808f12fc07f0d9a7ca08649505356035608f58e79becd4d7a022"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0040_fig01",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.78,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2121,
+        2412
+      ],
+      "caption": "Base Support \u2014 Pipe Sizes 18\" to 24\" assembly detail drawing showing stanchion-type base support with weep hole, insert plate, attachment surface, dimensions, and notes",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0040_fig01_base-support-assembly-detail.png",
+      "png_sha256": "3c0a3483751b13423f54944cc330e65f241b399f331344f8e74ad2d37dc1b029",
+      "slug": "base-support-assembly-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0040_tbl02",
+      "bbox_norm": [
+        0.68,
+        0.55,
+        0.97,
+        0.73
+      ],
+      "bbox_px": [
+        1610,
+        1652,
+        2555,
+        2577
+      ],
+      "caption": "Coding (Example) \u2014 BS4A mark and run pipe sizes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0040_tbl02_coding-example-bs4a.png",
+      "png_sha256": "c226d03b6d40fee032d1c99e1f24aaf346dae842f91a1ffd40197adf854958cb",
+      "slug": "coding-example-bs4a",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0040_tbl02_coding-example-bs4a.json",
+      "table_data_json_sha256": "6181e6af574ec88e47b4e98ddc328029efdc27bffccd2ec83964acc95c2ff539",
+      "table_data_sha256": "6181e6af574ec88e47b4e98ddc328029efdc27bffccd2ec83964acc95c2ff539",
+      "xlsx_path": "tables/06-pipe-supports-02_p0040_tbl02_coding-example-bs4a.xlsx",
+      "xlsx_sha256": "4dfc7181426d87d88dc5e719f4e16033e12aa304a0307db4cd21fea849297bd9"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0040_tbl03",
+      "bbox_norm": [
+        0.04,
+        0.73,
+        0.62,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        2247,
+        1712,
+        2974
+      ],
+      "caption": "Revision table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0040_tbl03_revision-table.png",
+      "png_sha256": "1398a2c4ce696f71827fe33a6478c61c6a0c8ac7d5e11a6f7e791cd4890b366d",
+      "slug": "revision-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0040_tbl03_revision-table.json",
+      "table_data_json_sha256": "2cf51f55a5e896c73096306aed8dc6ff0d07de73d6344c0778948c4d8df04100",
+      "table_data_sha256": "2cf51f55a5e896c73096306aed8dc6ff0d07de73d6344c0778948c4d8df04100",
+      "xlsx_path": "tables/06-pipe-supports-02_p0040_tbl03_revision-table.xlsx",
+      "xlsx_sha256": "7f82d81667ea16cbec7b204b3f01ff5cd762358ef4b87c322d28da15bed3f890"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 40,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0040.png",
+  "page_image_sha256": "af517a8c2b6fd044597b6e7f775e20c57a6e0166009b8b0188da315aa055d965",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0040_assets.json"
+}

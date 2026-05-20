@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-05_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-05_p0005_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.76,
+        0.95,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        2343,
+        2550,
+        3135
+      ],
+      "caption": "Minimum Number of Welders by Pipe Outside Diameter Group",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-05_p0005_tbl01_minimum-number-of-welders-by-pipe-outsid.png",
+      "png_sha256": "b3fa2cd1a3759877e2fb45ff612776837f3edc8f867e20474429e55c52b4d23f",
+      "slug": "minimum-number-of-welders-by-pipe-outsid",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-05",
+  "doc_stem": "09-welding-and-nde-05",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-05_pdf2md_work/page_0005.png",
+  "page_image_sha256": "bcf836e5d23e15d9c4b8135063074715eea8982866572706ab4b4641c129c263",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-05_pdf2md_work/page_0005_assets.json"
+}

@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "08-pressure-design-and-overpressure-relief-02_p0013_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.35
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        1404
+      ],
+      "caption": "FIGURE 1    EXAMPLE OF PRESSURE CONTROL AND RELIEF PROTECTION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/08-pressure-design-and-overpressure-relief-02_p0013_fig01_figure-1-example-of-pressure-control-and.png",
+      "png_sha256": "e245fa4b24b04353e179d7eef66841dfeee6a22113c1197a1e41d06db7171b21",
+      "slug": "figure-1-example-of-pressure-control-and",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "08-pressure-design-and-overpressure-relief-02_p0013_fig02",
+      "bbox_norm": [
+        0.05,
+        0.4,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1228,
+        2480,
+        3263
+      ],
+      "caption": "FIGURE 2    EXAMPLE OF PRESSURE CONTROL AND IPF PROTECTION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/08-pressure-design-and-overpressure-relief-02_p0013_fig02_figure-2-example-of-pressure-control-and.png",
+      "png_sha256": "c967bba9d2ba766bcaf02ac129c6663f8d3a21e263fb7c423928a7a7f4ac19cd",
+      "slug": "figure-2-example-of-pressure-control-and",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/_assets/08-pressure-design-and-overpressure-relief-02",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0013.png",
+  "page_image_sha256": "6890f0ca141f08892251df3480a63b45346a75dc531656e44224e1e42a67ddc3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0013_assets.json"
+}

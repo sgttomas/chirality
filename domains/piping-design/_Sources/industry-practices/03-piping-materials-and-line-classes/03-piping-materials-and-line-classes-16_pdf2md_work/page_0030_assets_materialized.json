@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0030.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0030_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3065
+      ],
+      "caption": "Fig. 1400-15 Photographs of Various Packing Types (1 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0030_fig01_fig-1400-15-photographs-various-packing.png",
+      "png_sha256": "0ad24edcbaf99c3b151c49360d260e63c379d4e6a612d72e12954d10e1a68e90",
+      "slug": "fig-1400-15-photographs-various-packing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0030_tbl01",
+      "bbox_norm": [
+        0.33,
+        0.09,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        714,
+        132,
+        2550,
+        1879
+      ],
+      "caption": "Legend for Fig. 1400-15 \u2014 No., Company, Packing Description",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0030_tbl01_legend-fig-1400-15-packing-description.png",
+      "png_sha256": "44a56f4c5228e113b7146ce172c94636436223ce6b556b16a3ec9cb7895f5bd5",
+      "slug": "legend-fig-1400-15-packing-description",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0030_tbl01_legend-fig-1400-15-packing-description.json",
+      "table_data_json_sha256": "a10dbe56ef4d4cb5583c20dedb9fc45f04ccd859404292cf97a78db9cf8c5970",
+      "table_data_sha256": "a10dbe56ef4d4cb5583c20dedb9fc45f04ccd859404292cf97a78db9cf8c5970",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0030_tbl01_legend-fig-1400-15-packing-description.xlsx",
+      "xlsx_sha256": "af2f61cb1f7ed39294fd2d5243105ffb4c717739d32ad29e481edc894100cc31"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0030.png",
+  "page_image_sha256": "b30df62d29013681e9f7a83a1e37f8ca9e539466ec5c2fae4f4f7f38f75eba0c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0030_assets.json"
+}

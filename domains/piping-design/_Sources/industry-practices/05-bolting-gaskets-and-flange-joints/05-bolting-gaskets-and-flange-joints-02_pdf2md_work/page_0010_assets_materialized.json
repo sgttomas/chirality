@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0010.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0010_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        1749
+      ],
+      "caption": "Table 3: Lap Joint Flange Stub End Thickness Requirements",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0010_tbl01_table-3-lap-joint-flange-stub-end-thickn.png",
+      "png_sha256": "b7484690de06df0a4410ddde45c1010fb7b342fde6f2ef28e0f92d77b0519736",
+      "slug": "table-3-lap-joint-flange-stub-end-thickn",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-02",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 10,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0010.png",
+  "page_image_sha256": "d8620b3a4ce6cd4d2fa2c50259dd43e4b4805b91191af83dae9a4e5882dd05ed",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0010_assets.json"
+}

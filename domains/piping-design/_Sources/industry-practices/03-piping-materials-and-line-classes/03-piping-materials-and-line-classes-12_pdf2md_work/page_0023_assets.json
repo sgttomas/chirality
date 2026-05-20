@@ -1,0 +1,341 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 23,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 8: Acceptable Piping Materials for Ni-Cr-Fe Alloys (Alloy 800, 800h & 800HT)",
+      "slug": "table-8-acceptable-piping-materials-ni-cr-fe-alloys",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.48
+      ],
+      "confidence": "high",
+      "notes": "Table with Service, Pipe, Flanges and Fittings, and Valves columns; includes note about butt weld radiography",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Fittings containing butt welds shall be 100% radiographed per REP 5\u20135\u20131."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Pipe",
+                "is_header": true
+              },
+              {
+                "value": "Flanges and Fittings (1)",
+                "is_header": true
+              },
+              {
+                "value": "Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "All Sizes",
+                "type": "text"
+              },
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "Forged Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "All Fluid Services",
+                "type": "text"
+              },
+              {
+                "value": "B407 N08800 (Alloy 800)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08800 (Alloy 800)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08800 Alloy (800)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B407 N08810 (Alloy 800H)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08810 (Alloy 800H)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08810 (Alloy 800H)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B407 N08811 (Alloy 800HT)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08811 (Alloy 800HT)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N08811 (Alloy 800HT)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "Cast Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B407 Class WPNIC (Alloy 800)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 9: Acceptable Piping Materials Duplex Stainless Steels",
+      "slug": "table-9-acceptable-piping-materials-duplex-stainless-steels",
+      "bbox_norm": [
+        0.03,
+        0.51,
+        0.97,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Table with Service, Pipe, Flanges and Fittings, and Valves columns; includes note about wet H2S service welding hardness",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) For wet H2S service, the welding procedures should ensure that the hardness in the weld area is less than 200 BHN and the Ferrite content is 35 vol. % to 60 vol. %."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Pipe",
+                "is_header": true
+              },
+              {
+                "value": "Flanges and Fittings (1)",
+                "is_header": true
+              },
+              {
+                "value": "Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "All Sizes",
+                "type": "text"
+              },
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "Forged Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "All Fluid Services",
+                "type": "text"
+              },
+              {
+                "value": "A790 S31803 (Alloy 2205)",
+                "type": "text"
+              },
+              {
+                "value": "A182 Grade F51 (Alloy 2205)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A790 S32750 (Alloy2705)",
+                "type": "text"
+              },
+              {
+                "value": "A182 Grade F53 (Alloy 2507)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "Cast Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A815 S31803 (Alloy 2205)",
+                "type": "text"
+              },
+              {
+                "value": "\u2014",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A815 S32750 (Alloy2705)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

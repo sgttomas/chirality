@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 68,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-30 Chemicals Incompatible with Graphite Packings",
+      "slug": "fig-1400-30-chemicals-incompatible-graphite-packings",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Multi-column bulleted list of chemicals with footer note. No embedded graphic; the figure is the labeled list block."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 1400-31 Alternative Packing Systems for Use in Strong Oxidizing Service (1 of 2)",
+      "slug": "fig-1400-31-alternative-packing-systems-strong-oxidizing-service-1-of-2",
+      "bbox_norm": [0.04, 0.40, 0.96, 0.96],
+      "confidence": "high",
+      "notes": "Boxed figure containing two subsections: Garlock Teflon Style 5888 (with characteristics/packing-arrangement table) and DuPont Kalrez (bulleted prose). Part 1 of 2."
+    }
+  ],
+  "issues": []
+}

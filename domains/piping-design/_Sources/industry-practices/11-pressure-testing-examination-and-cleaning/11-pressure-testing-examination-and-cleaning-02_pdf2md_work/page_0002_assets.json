@@ -1,0 +1,77 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-02",
+  "page": 2,
+  "total_pages": 8,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Submittal Requirements — Items A, B, C",
+      "slug": "submittal-requirements-items-a-b-c",
+      "bbox_norm": [0.06, 0.72, 0.94, 0.90],
+      "confidence": "high",
+      "notes": "5-row table mapping submittal items A, B, C to required documents",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "A", "is_header": true },
+              { "value": "B", "is_header": true },
+              { "value": "C", "is_header": true },
+              { "value": "Document", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "x", "type": "text" },
+              { "value": "x", "type": "text" },
+              { "value": "x", "type": "text" },
+              { "value": "Chemical cleaning procedure (Paragraph 3.2)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "x", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Documentation that cleaning fluids will not damage piping materials (Paragraph 3.3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "x", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Certified water analysis (Paragraph 3.3)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "x", "type": "text" },
+              { "value": "x", "type": "text" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "Drawings showing in-place cleaning (Paragraph 3.4)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": null, "type": "missing", "raw": "" },
+              { "value": "x", "type": "text" },
+              { "value": "Acceptance record (Paragraph 3.7)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

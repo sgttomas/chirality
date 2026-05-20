@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0003_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        316,
+        2480,
+        3509
+      ],
+      "caption": "Pipe support specific definitions \u2014 term, description, and reference for Anchor through Pipe stop",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,12], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0003_tbl01_pipe-support-specific-definitions-term-d.png",
+      "png_sha256": "b710b39c3484875d02a6739424e6d95869c702f39c15753be63fee263d6d9570",
+      "slug": "pipe-support-specific-definitions-term-d",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0003.png",
+  "page_image_sha256": "861946f0aa3d714023050b77ab12d7fc5351c504e001f13af6a2b17ca64b2eae",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0003_assets.json"
+}

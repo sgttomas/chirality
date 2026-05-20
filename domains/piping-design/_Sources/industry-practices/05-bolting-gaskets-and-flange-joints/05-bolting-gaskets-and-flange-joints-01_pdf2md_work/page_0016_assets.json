@@ -1,0 +1,119 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 16,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0016-01",
+      "kind": "tbl",
+      "caption": "Table 3: Torque Values-CS² Headers & Plugs Used with Soft Iron Gaskets Only",
+      "bbox_norm": [0.03, 0.28, 0.72, 0.52],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          [
+            {"text": "Plug Size² (in.)\n(thread dia. not head dia.)", "colspan": 1, "rowspan": 1},
+            {"text": "Torque (ft-lb)", "colspan": 1, "rowspan": 1}
+          ]
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"text": "1", "type": "data"},
+              {"text": "150", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 1/8", "type": "data"},
+              {"text": "320", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 1/4", "type": "data"},
+              {"text": "355", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 3/8", "type": "data"},
+              {"text": "400", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 1/2", "type": "data"},
+              {"text": "525", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 5/8", "type": "data"},
+              {"text": "675", "type": "data"}
+            ]
+          }
+        ],
+        "footnotes": [
+          "Note 1: CS=carbon steel",
+          "Note 2: Contact Reliability Engineer for other plug sizes and materials."
+        ]
+      }
+    },
+    {
+      "id": "tbl-0016-02",
+      "kind": "tbl",
+      "caption": "Table 4: Torque Values–CS² Headers & Plugs Used with LP1 Karmpro Gaskets & LP1 Integral Plugs Only",
+      "bbox_norm": [0.03, 0.53, 0.72, 0.76],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          [
+            {"text": "Plug Size² (in.)\n(thread dia. not head dia.)", "colspan": 1, "rowspan": 1},
+            {"text": "Torque (ft-lb)", "colspan": 1, "rowspan": 1}
+          ]
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"text": "1 1/8", "type": "data"},
+              {"text": "180", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 1/4", "type": "data"},
+              {"text": "230", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 3/8", "type": "data"},
+              {"text": "280", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 1/2", "type": "data"},
+              {"text": "340", "type": "data"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "1 5/8", "type": "data"},
+              {"text": "410", "type": "data"}
+            ]
+          }
+        ],
+        "footnotes": [
+          "Note 1: CS=carbon steel",
+          "Note 2: Contact Reliability Engineer for other plug sizes and materials."
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

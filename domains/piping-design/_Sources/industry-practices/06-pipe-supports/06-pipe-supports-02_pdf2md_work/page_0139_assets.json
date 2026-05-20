@@ -1,0 +1,122 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 139,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Vessel Clip VC11",
+      "slug": "bill-of-materials-vessel-clip-vc11",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "9.5mm THK. PLATE TO 1/2\" X 3\"",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "REPAD BY VESSEL FABRICATOR (IF REQUIRED)",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN \u2014 Vessel Clip VC11 plan view showing clip plate and repad arrangement with dimensions",
+      "slug": "plan-vessel-clip-vc11",
+      "bbox_norm": [
+        0.25,
+        0.12,
+        0.98,
+        0.48
+      ],
+      "confidence": "high",
+      "notes": "Plan view drawing showing vessel clip with item callouts 1 and 2, dimensions include VESSEL O.D. and 11\" width"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION \u2014 Vessel Clip VC11 elevation view showing 1\u00bc\" holes, 3/8\" THK. PLATE, and dimensional details",
+      "slug": "elevation-vessel-clip-vc11",
+      "bbox_norm": [
+        0.25,
+        0.48,
+        0.98,
+        0.75
+      ],
+      "confidence": "high",
+      "notes": "Elevation view showing 1\u00bc\" holes (TYP.), 3/8\" THK. PLATE, dimensions 3\", 1\u00bd\", 4\u00bd\", and NOM. 1\" annotation"
+    }
+  ],
+  "issues": []
+}

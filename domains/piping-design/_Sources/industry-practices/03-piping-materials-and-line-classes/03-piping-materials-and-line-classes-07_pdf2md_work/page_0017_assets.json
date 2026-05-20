@@ -1,0 +1,185 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 17,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2 - CVN Minimum Energy",
+      "slug": "cvn-minimum-energy",
+      "bbox_norm": [0.04, 0.16, 0.96, 0.58],
+      "confidence": "high",
+      "notes": "Complex table with merged cells for Grade and OD groupings. Two grade groups: X52 thru X65 and X70. Each grade has three OD size ranges, each split by wall thickness ≤ or > 0.75 in.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Grade", "is_header": true, "rowspan": 2 },
+              { "value": "Outside Diameter (O.D.) (inches)", "is_header": true },
+              { "value": "Outside Diameter (O.D.) (mm)", "is_header": true },
+              { "value": "Wall Thickness", "is_header": true, "rowspan": 2 },
+              { "value": "Minimum Energy Value (ft-lbs)", "is_header": true, "rowspan": 2 },
+              { "value": "Minimum Energy Value (J)", "is_header": true, "rowspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "(inches)", "is_header": true },
+              { "value": "(mm)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X52 thru X65", "type": "text", "rowspan": 6 },
+              { "value": "D ≤ 10.75", "type": "text", "rowspan": 2 },
+              { "value": "D ≤ 273.1", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 40, "type": "number" },
+              { "value": 55, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 50, "type": "number" },
+              { "value": 70, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12.75 ≤ D ≤ 16", "type": "text", "rowspan": 2 },
+              { "value": "323.9 ≤ D ≤ 406.4", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 50, "type": "number" },
+              { "value": 70, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 60, "type": "number" },
+              { "value": 80, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "18 ≤ D ≤ 24", "type": "text", "rowspan": 2 },
+              { "value": "457 ≤ D ≤ 610", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 55, "type": "number" },
+              { "value": 75, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 70, "type": "number" },
+              { "value": 95, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X70", "type": "text", "rowspan": 6 },
+              { "value": "D ≤ 10.75", "type": "text", "rowspan": 2 },
+              { "value": "D ≤ 273.1", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 50, "type": "number" },
+              { "value": 70, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 60, "type": "number" },
+              { "value": 80, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12.75 ≤ D ≤ 16", "type": "text", "rowspan": 2 },
+              { "value": "323.9 ≤ D ≤ 406.4", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 55, "type": "number" },
+              { "value": 75, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 70, "type": "number" },
+              { "value": 95, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "18 ≤ D ≤ 24", "type": "text", "rowspan": 2 },
+              { "value": "457 ≤ D ≤ 610", "type": "text", "rowspan": 2 },
+              { "value": "≤ 0.75 (19.1)", "type": "text" },
+              { "value": 65, "type": "number" },
+              { "value": 90, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 0.75 (19.1)", "type": "text" },
+              { "value": 80, "type": "number" },
+              { "value": 110, "type": "number" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 3 - Inspection Frequency for PSL2G SMLS Pipe",
+      "slug": "inspection-frequency-psl2g-smls-pipe",
+      "bbox_norm": [0.04, 0.78, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Two-column table: Type of Inspection vs Minimum Frequency of Inspection. Three rows of data.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Type of Inspection", "is_header": true },
+              { "value": "Minimum Frequency of Inspection", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tensile testing of pipe body", "type": "text" },
+              { "value": "Two tests per heat of steel with the test positions being representative of the manufacturing process conditions.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CVN testing of pipe body", "type": "text" },
+              { "value": "Two tests per heat of steel from the same pipe as that selected for tensile testing.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HV10 hardness survey", "type": "text" },
+              { "value": "One pipe sample per heat.", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

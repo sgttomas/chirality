@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0115.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0115_fig01",
+      "bbox_norm": [
+        0.08,
+        0.22,
+        0.92,
+        0.62
+      ],
+      "bbox_px": [
+        76,
+        561,
+        2474,
+        2211
+      ],
+      "caption": "PNF0624-T25 \u2014 Schematic diagram of T-25 Thermowell tubing connection showing INSTR PIPING labels, ADAPTER TCE x FNPT LINE SIZE on the left, and LINE SIZE UNION TEE COMPRESSION on the right",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0115_fig01_pnf0624-t25-schematic-diagram-of-t-25-th.png",
+      "png_sha256": "7f2c0d37dc52021224a13890a81514947909f4e3b4538f17a7960ed278bcef5e",
+      "slug": "pnf0624-t25-schematic-diagram-of-t-25-th",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 115,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0115.png",
+  "page_image_sha256": "005a98c032ace3832f1543d023ad4b219d737264e00b5a08c90ced3ee361fe1e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0115_assets.json"
+}

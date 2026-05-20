@@ -1,0 +1,37 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 19,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Standard Adjustable Base Support — isometric and elevation view showing pipe, base plate, and adjustable rod components",
+      "slug": "standard-adjustable-base-support-diagram",
+      "bbox_norm": [0.05, 0.06, 0.70, 0.32],
+      "confidence": "medium",
+      "notes": "Diagram at top of page showing isometric sketch (left) and elevation view (right) of the standard adjustable base support assembly"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Base Supports Selection Chart — Standard Adjustable Base Support (BSS THRU BS17)",
+      "slug": "base-supports-selection-chart-bss-bs17",
+      "bbox_norm": [0.04, 0.32, 0.97, 0.88],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Large selection chart grid spanning BSS through BS17 support types. Column and row header text is too small to transcribe with confidence at this resolution. X-marks visible in one row indicating applicable sizes. Structured extraction deferred."
+    }
+  ],
+  "issues": [
+    {
+      "kind": "table_unreadable",
+      "asset_ordinal": 1,
+      "asset_kind": "tbl",
+      "detail": "Selection chart header text and cell labels are below legible resolution at 300 DPI; cell values cannot be safely transcribed. needs_extraction set to true."
+    }
+  ]
+}

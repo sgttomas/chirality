@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-17_p0002_img01",
+      "bbox_norm": [
+        0.06,
+        0.08,
+        0.94,
+        0.82
+      ],
+      "bbox_px": [
+        25,
+        99,
+        2524,
+        2868
+      ],
+      "caption": "Tube Turns cover image",
+      "issues": [],
+      "kind": "img",
+      "ordinal": 1,
+      "png_path": "images/03-piping-materials-and-line-classes-17_p0002_img01_tube-turns-cover-image.png",
+      "png_sha256": "76999ff3b49a2d8c14e47df52a8e3c84202a57e48a75dc92f6095c7c50ca2e79",
+      "slug": "tube-turns-cover-image",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-17",
+  "doc_stem": "03-piping-materials-and-line-classes-17",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0002.png",
+  "page_image_sha256": "419e2e8988cb9cdcac6e2e1c6d8b64e0cfbcdf1e80f5199fe90f569b6381b1c8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0002_assets.json"
+}

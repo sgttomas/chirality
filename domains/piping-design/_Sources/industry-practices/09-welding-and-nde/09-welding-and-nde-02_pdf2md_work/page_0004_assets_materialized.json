@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-02_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-02_p0004_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.9,
+        0.48
+      ],
+      "bbox_px": [
+        128,
+        264,
+        2422,
+        1749
+      ],
+      "caption": "Figure 1 - EWR Form Workflow For Preparer",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/09-welding-and-nde-02_p0004_fig01_ewr-form-workflow-for-preparer.png",
+      "png_sha256": "46cf1140736850e343631b93c924c2d3d9b4e52893657d03490a679bbe19feb0",
+      "slug": "ewr-form-workflow-for-preparer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-02",
+  "doc_stem": "09-welding-and-nde-02",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-02_pdf2md_work/page_0004.png",
+  "page_image_sha256": "ca529b2bc64ae9c36e4850045823c2f48a69ca85e86f31efdff654fa86dc21c5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-02_pdf2md_work/page_0004_assets.json"
+}

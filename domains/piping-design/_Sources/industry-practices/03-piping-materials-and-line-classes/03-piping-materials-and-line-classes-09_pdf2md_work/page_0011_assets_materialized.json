@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-09_pdf2md_work/page_0011.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-09_p0011_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.43,
+        0.96,
+        0.66
+      ],
+      "bbox_px": [
+        0,
+        1254,
+        2550,
+        2343
+      ],
+      "caption": "Table 2 Full Charpy Test Specimens",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl01_table-2-full-charpy-test-specimens.png",
+      "png_sha256": "2df3777c2293c35abcf04d0ab4594408f6336ae6d9874e9486baf5f41630bae7",
+      "slug": "table-2-full-charpy-test-specimens",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl01_table-2-full-charpy-test-specimens.json",
+      "table_data_json_sha256": "a8015f85d5fbce881c71fed04f0006dd8ecff5cb787c340e7a19722165e95777",
+      "table_data_sha256": "a8015f85d5fbce881c71fed04f0006dd8ecff5cb787c340e7a19722165e95777",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl01_table-2-full-charpy-test-specimens.xlsx",
+      "xlsx_sha256": "8b0e539a0470b665265dc4ea894bb99bbe79cace7f8d0356f2806bf43e2ae502"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-09_p0011_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.72,
+        0.65,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        2211,
+        1785,
+        3069
+      ],
+      "caption": "Table 3 Sub-Size Charpy Test Specimens (in ft-lbs)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl02_table-3-sub-size-charpy-test-specimens.png",
+      "png_sha256": "98143cbf5057e2a7c76e99b9f129fd017f3ff9f062b7bfccc28801b62c4aeb61",
+      "slug": "table-3-sub-size-charpy-test-specimens",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl02_table-3-sub-size-charpy-test-specimens.json",
+      "table_data_json_sha256": "fb810ed8aae15070576328e804c8a4a107d971f291a34a59c70fd825788eb2d4",
+      "table_data_sha256": "fb810ed8aae15070576328e804c8a4a107d971f291a34a59c70fd825788eb2d4",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-09_p0011_tbl02_table-3-sub-size-charpy-test-specimens.xlsx",
+      "xlsx_sha256": "2a7fa73673ae474e45eb94b58854a401cc0666b37701f579697a8745155a19a0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-09",
+  "doc_stem": "03-piping-materials-and-line-classes-09",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-09_pdf2md_work/page_0011.png",
+  "page_image_sha256": "01c6734d4e457524a6bc1bc717c9f083ce0f2f854d68f9489c038117db7e9bf9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-09_pdf2md_work/page_0011_assets.json"
+}

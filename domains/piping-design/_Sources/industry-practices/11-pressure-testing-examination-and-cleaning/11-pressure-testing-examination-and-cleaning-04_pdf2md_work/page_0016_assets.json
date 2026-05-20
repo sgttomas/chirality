@@ -1,0 +1,78 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-04",
+  "page": 16,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0016-01",
+      "kind": "tbl",
+      "caption": "Table 2: Cleaning Requirements and Methods",
+      "bbox_norm": [0.03, 0.30, 0.97, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          {"text": "Equipment"},
+          {"text": "Degree of Cleaning and Surface Preparation¹"},
+          {"text": "Acceptable Methods (Step Procedure in Order Given)²"}
+        ],
+        "rows": [
+          {
+            "is_subheader": true,
+            "cells": [
+              {"col": 0, "text": "Piping Systems Carbon and Low Alloy Steels (< 5Cr):", "type": "text"},
+              {"col": 1, "text": "", "type": "text"},
+              {"col": 2, "text": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": 0, "text": "Lube and Seal Oil Systems – Carbon Steel", "type": "text"},
+              {"col": 1, "text": "A, B, C, D", "type": "text"},
+              {"col": 2, "text": "3, 4, 5, 6, 7", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": 0, "text": "Lube and Seal Oil Systems – Stainless Steel ⁶", "type": "text"},
+              {"col": 1, "text": "A, B", "type": "text"},
+              {"col": 2, "text": "1, 2, 5", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": 0, "text": "Centrifugal and Axial Compressor Suction", "type": "text"},
+              {"col": 1, "text": "A, B", "type": "text"},
+              {"col": 2, "text": "2, 7", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": 0, "text": "Reciprocating and Rotary Compressor Suction and Interstage (including vessels, exchangers, and pulsation suppression devices, including Stainless Steel)⁶ Note 5", "type": "text"},
+              {"col": 1, "text": "A, B, C, D", "type": "text"},
+              {"col": 2, "text": "1 or 2, 7\nor\n3, 4, 5, 6, 7", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": 0, "text": "Positive Displacement Pumps Suction", "type": "text"},
+              {"col": 1, "text": "A", "type": "text"},
+              {"col": 2, "text": "1, 2, 7", "type": "text"}
+            ]
+          }
+        ],
+        "footnotes": [
+          {"marker": "(1)", "text": "See Section 9.1.1 for explanation of Degree of Cleaning and Surface Preparation symbols."},
+          {"marker": "(2)", "text": "See Section 9.1.2 for explanation of Acceptable Methods steps."},
+          {"marker": "(3)", "text": "Cleaning steps C and D in Section 9.1.1 should be completed only if specified by the Owner’s Engineer."},
+          {"marker": "(4)", "text": "If the equipment is to remain down for an extended period (>24 hours) after cleaning, steps shall be completed to mitigate the potential for corrosion/oxidation. Such steps shall be described in the cleaning proposal."},
+          {"marker": "(5)", "text": "Do not use hydrochloric acid for stainless steel ⁶"},
+          {"marker": "(6)", "text": "Includes Duplex Stainless Steel"}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

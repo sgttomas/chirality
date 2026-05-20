@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 106,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Flanged Thermowell Connection T-15 — NPS 3/4 & UP, showing two installation configurations with labeled components including concentric and eccentric swages, butt weld elbowlets, and raised face weld neck flanges",
+      "slug": "flanged-thermowell-connection-t15-nps-3-4-up",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.88],
+      "confidence": "high",
+      "notes": "Full-page engineering schematic showing two thermowell installation configurations. Upper configuration shows NPS 3/4 line with concentric swage (bevel large end, bevel small end), NPS 1-1/2 butt weld elbowlet, NPS 1-1/2 raised face weld neck flange, and NPS 3/4 thru NPS 1 line size detail. Lower configuration shows NPS 3 line size & up with NPS 1-1/2 butt weld elbowlet, NPS 1-1/2 raised face weld neck flange, line size x NPS 3 concentric reducer, and eccentric reducer details."
+    }
+  ],
+  "issues": []
+}

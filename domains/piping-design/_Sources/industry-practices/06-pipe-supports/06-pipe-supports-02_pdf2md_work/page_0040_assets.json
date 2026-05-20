@@ -1,0 +1,360 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 40,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.14
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12\" STD W/ PIPE, SAME MATERIAL AS PARENT PIPE",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12\" STD W/ CS PIPE (UNO) (SEE NOTE 2) SPECIFY MARK No. FOR LENGTH",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "25mm THK. PL",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Base Support \u2014 Pipe Sizes 18\" to 24\" assembly detail drawing showing stanchion-type base support with weep hole, insert plate, attachment surface, dimensions, and notes",
+      "slug": "base-support-assembly-detail",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.78,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Main engineering detail drawing with dimensions, item callouts, and structural notes for base support assembly"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Coding (Example) \u2014 BS4A mark and run pipe sizes",
+      "slug": "coding-example-bs4a",
+      "bbox_norm": [
+        0.68,
+        0.55,
+        0.97,
+        0.73
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "col_span": 2,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "BS4A",
+                "col_span": 2,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B/S STD. MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "RUN PIPE SIZE",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "18\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "number"
+              },
+              {
+                "value": "30\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "number"
+              },
+              {
+                "value": "40\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Coding example table showing BS4A mark number to run pipe size correspondence"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Revision table",
+      "slug": "revision-table",
+      "bbox_norm": [
+        0.04,
+        0.73,
+        0.62,
+        0.85
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "HD",
+                "is_header": true
+              },
+              {
+                "value": "JD",
+                "is_header": true
+              },
+              {
+                "value": "AP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "90",
+                "type": "text"
+              },
+              {
+                "value": "VN",
+                "type": "text"
+              },
+              {
+                "value": "PR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "AS SHOWN",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "HD",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Revision history table at bottom left of drawing sheet; date column appears blank for visible rows"
+    }
+  ],
+  "issues": []
+}

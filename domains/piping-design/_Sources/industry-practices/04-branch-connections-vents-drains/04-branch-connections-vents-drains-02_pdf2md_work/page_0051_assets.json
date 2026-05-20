@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 51,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0051_001",
+      "caption": "V-24 Vent and D-24 Drain assembly for NPS 2 & Up welded piping showing double-valved vent and drain configurations with component callouts",
+      "bbox_norm": [
+        0.08,
+        0.1,
+        0.95,
+        0.82
+      ]
+    }
+  ],
+  "issues": []
+}

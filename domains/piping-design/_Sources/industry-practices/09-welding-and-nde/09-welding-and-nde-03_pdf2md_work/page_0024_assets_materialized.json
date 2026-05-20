@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-03_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-03_p0024_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.22,
+        0.97,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        561,
+        2550,
+        1749
+      ],
+      "caption": "ASME Specifications for Steel Castings",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,7], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-03_p0024_tbl01_asme-specifications-for-steel-castings.png",
+      "png_sha256": "e4afb27d5eacb7fed765be758ca3dcf9fdf5afcd7f8f366ee023b9f8f20e67db",
+      "slug": "asme-specifications-for-steel-castings",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-03",
+  "doc_stem": "09-welding-and-nde-03",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-03_pdf2md_work/page_0024.png",
+  "page_image_sha256": "774435bc195189bd50d955e4723a73c2e1360e97fe410559be4a17ef3b6f8957",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-03_pdf2md_work/page_0024_assets.json"
+}

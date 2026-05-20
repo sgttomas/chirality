@@ -1,0 +1,297 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 151,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Vessel Guide (Bi-Directional) for Vertical Pipe, Insulated, Pipe Sizes 14\"\u201324\"",
+      "slug": "bill-of-materials-vessel-guide-vg10",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.18
+      ],
+      "confidence": "high",
+      "notes": "5-row BOM table at top of page with Item No., QTY, Description, Material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "C 250 \u00d7 37",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PLATE 16\" \u00d7 9\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "8",
+                "type": "number"
+              },
+              {
+                "value": "M22 \u00d7 100 LG BOLTS C/W 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M16 \u00d7 70 LG BOLTS C/W 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Vessel Guide (Bi-Directional) for Vertical Pipe \u2014 Insulated \u2014 Pipe Sizes 14\"\u201324\" \u2014 Elevation and detail view with dimensions",
+      "slug": "vessel-guide-bidirectional-elevation-vg10",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.75,
+        0.8
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing elevation view of bi-directional vessel guide assembly with dimensional annotations; includes SEE VESSEL CLIP VC108 reference, TYP dimensions, 3/4\" HOLES (TYP) USE LOCK NUTS note, T.O.S. W.P. ELEV. reference, and 1\" \u00d7 1 3/4\" SLOTS (TYP. 4 PLACES) detail"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Pipe size dimension table \u2014 DIM \"A\" and DIM \"B\" for pipe sizes 14\" to 24\"",
+      "slug": "pipe-size-dim-a-dim-b-vg10",
+      "bbox_norm": [
+        0.68,
+        0.48,
+        0.97,
+        0.75
+      ],
+      "confidence": "high",
+      "notes": "Dimension lookup table for pipe sizes 14\" through 24\" with DIM A and DIM B values",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM. \"A\"",
+                "is_header": true
+              },
+              {
+                "value": "DIM. \"B\"",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "11 1/8\"",
+                "type": "fraction",
+                "raw": "11 1/8\""
+              },
+              {
+                "value": "22 1/4\"",
+                "type": "fraction",
+                "raw": "22 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "16\"",
+                "type": "text"
+              },
+              {
+                "value": "12 1/8\"",
+                "type": "fraction",
+                "raw": "12 1/8\""
+              },
+              {
+                "value": "24 1/4\"",
+                "type": "fraction",
+                "raw": "24 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "18\"",
+                "type": "text"
+              },
+              {
+                "value": "13 1/4\"",
+                "type": "fraction",
+                "raw": "13 1/4\""
+              },
+              {
+                "value": "26 1/2\"",
+                "type": "fraction",
+                "raw": "26 1/2\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "20\"",
+                "type": "text"
+              },
+              {
+                "value": "14 3/8\"",
+                "type": "fraction",
+                "raw": "14 3/8\""
+              },
+              {
+                "value": "28 3/4\"",
+                "type": "fraction",
+                "raw": "28 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "24\"",
+                "type": "text"
+              },
+              {
+                "value": "16 1/8\"",
+                "type": "fraction",
+                "raw": "16 1/8\""
+              },
+              {
+                "value": "2'-8 1/4\"",
+                "type": "fraction",
+                "raw": "2'-8 1/4\""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

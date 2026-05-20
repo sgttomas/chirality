@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0120.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0120_fig01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2211
+      ],
+      "caption": "OR-04 Orifice Flange Tap Connection \u2014 Flanged Valves detail drawing showing socket weld taps, flange valve (typ), raised face weld neck flange (typ), nipple (typ), orifice flange set, plug, and 45\u00b0 ell (typ) with associated callouts and notes.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0120_fig01_or-04-orifice-flange-tap-connection.png",
+      "png_sha256": "dfafc94e9220c652bd44fbf2327f9b0d9d0f0b806c96896f7f89ede5f18983a7",
+      "slug": "or-04-orifice-flange-tap-connection",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 120,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0120.png",
+  "page_image_sha256": "67af0ee79d2733b1af0ad8c8a145a6cdc21ffaea5c68de4f5d2c0448a118c9c0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0120_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0071.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0071_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.92,
+        0.77
+      ],
+      "bbox_px": [
+        128,
+        264,
+        2474,
+        2706
+      ],
+      "caption": "P-02 Pressure Connection \u2014 NPS 3/4 & UP. Top: NPS 3/4 THRU NPS 1-1/2 LINE SIZE using NPS 3/4 TEE or LINE SIZE x NPS 3/4 REDUCING TEE with NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS) and NPS 3/4 SOCKET WELD x THREADED VALVE. Bottom: NPS 2 LINE SIZE & UP using NPS 3/4 SOCKOLET with NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS) and NPS 3/4 SOCKET WELD x THREADED VALVE.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0071_fig01_p-02-pressure-connection-nps-3-4-up-top.png",
+      "png_sha256": "74b0b15ded6fa3a0770f441dc8a391eb78ad45be5e745f2f9d86fb69acc6d062",
+      "slug": "p-02-pressure-connection-nps-3-4-up-top",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 71,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0071.png",
+  "page_image_sha256": "84f1222d49f024ac16d84b24cac705e2ba9065f1529d64189340b03d95b12cc9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0071_assets.json"
+}

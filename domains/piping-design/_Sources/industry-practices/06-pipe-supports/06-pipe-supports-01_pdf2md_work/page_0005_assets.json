@@ -1,0 +1,66 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-01",
+  "page": 5,
+  "total_pages": 10,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 – Clamp Material Selection",
+      "slug": "clamp-material-selection",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.30],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Temperature", "row_span": 2, "is_header": true },
+              { "value": "Pipe Material", "col_span": 3, "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel/ Chrome-Moly", "is_header": true },
+              { "value": "Stainless Steel", "is_header": true },
+              { "value": "Other Alloys", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "-29°C to 260°C (-20°F to 500°F)", "type": "text" },
+              { "value": "Galvanized CS", "type": "text" },
+              { "value": "Galvanized or Coated CS", "type": "text" },
+              { "value": "Galvanized or Coated CS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "261°C to 399°C (501°F to 750°F)", "type": "text" },
+              { "value": "Galvanized or Coated CS", "type": "text" },
+              { "value": "SS or Coated CS (See 5.2)", "type": "text" },
+              { "value": "Coated CS", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "> 399°C (> 750°F)", "type": "text" },
+              { "value": "Compatible Material Suitable for Temp.", "type": "text" },
+              { "value": "SS", "type": "text" },
+              { "value": "Compatible Material Suitable for Temp.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table under merged 'Pipe Material' header; temperature ranges in first column; caption visible above table"
+    }
+  ],
+  "issues": []
+}

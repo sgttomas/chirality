@@ -1,0 +1,231 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 140,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Vessel Clip Items",
+      "slug": "bom-vessel-clip-items",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Two-row bill of materials with ITEM No., QTY., DESCRIPTION, and MATERIAL columns at top of drawing sheet.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "9.5mm THK. PLATE 10 1/2\" \u00d7 9\"",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "REPAD BY VESSEL FABRICATOR (IF REQUIRED)",
+                "type": "text"
+              },
+              {
+                "value": "BY VESSEL FABRICATOR",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN \u2014 Vessel clip plan view showing clip plate attached to vessel O.D. with 11\" dimension and item callouts",
+      "slug": "plan-vessel-clip-plan-view",
+      "bbox_norm": [
+        0.28,
+        0.11,
+        0.97,
+        0.42
+      ],
+      "confidence": "high",
+      "notes": "Plan view of vessel clip showing circular vessel cross-section with clip plate, callout bubbles 1 and 2, VESSEL O.D. label, and 11\" dimension."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION \u2014 Vessel clip elevation view showing 3/4\" # HOLES (TYP.), 3\" and 1-1/2\" horizontal dimensions, 5\" and 2-3/4\" vertical dimensions, 3/8\" THK. PLATE, and NOTE 3 callout",
+      "slug": "elevation-vessel-clip-elevation-view",
+      "bbox_norm": [
+        0.28,
+        0.42,
+        0.97,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Elevation view of vessel clip plate with bolt holes, detailed dimensions, and NOTE 3 callout referencing structural design notes."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Revision Block",
+      "slug": "revision-block",
+      "bbox_norm": [
+        0.03,
+        0.8,
+        0.55,
+        0.9
+      ],
+      "confidence": "medium",
+      "notes": "Revision history table with columns REV., DATE, GENERAL UPDATE, and approval initials HO/JD/AP. Two revision rows: 0 (General Issue) and -1 (General Issue).",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "REV.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "is_header": true
+              },
+              {
+                "value": "HO",
+                "is_header": true
+              },
+              {
+                "value": "JD",
+                "is_header": true
+              },
+              {
+                "value": "AP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "HO",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "-1",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "HO",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

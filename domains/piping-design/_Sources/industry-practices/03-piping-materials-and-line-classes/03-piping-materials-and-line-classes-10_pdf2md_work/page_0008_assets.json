@@ -1,0 +1,65 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-10",
+  "page": 8,
+  "total_pages": 13,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 – Charpy Test Requirement",
+      "slug": "charpy-test-requirement",
+      "bbox_norm": [0.08, 0.56, 0.92, 0.76],
+      "confidence": "high",
+      "notes": "Two-column table: Specimen Size vs Absorbed Energy Requirement (average/min)",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Specimen Size", "is_header": true },
+              { "value": "Absorbed Energy Requirement (average/min)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.394 x 0.394 in", "type": "text" },
+              { "value": "50/40 ft·lbs", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.394 x 0.295 in", "type": "text" },
+              { "value": "38/30 ft·lbs", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.394 x 0.264 in", "type": "text" },
+              { "value": "34/27 ft·lbs", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.394 x 0.197 in", "type": "text" },
+              { "value": "25/20 ft·lbs", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0.394 x 0.098 in", "type": "text" },
+              { "value": "13/10 ft·lbs", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,366 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 102,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Four-column bill of materials table at top of page",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "3",
+                "type": "number"
+              },
+              {
+                "value": "W150 x 30",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "10mm THK. PLATE 2\" x 6\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "20mm THK. PLATE 8\" x 8\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "ELEVATION \u2014 Goal-Frame Support Welded Attachment elevation drawing",
+      "slug": "elevation-goal-frame-support",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.65,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Main engineering elevation drawing showing goal-frame support welded attachment with annotated dimensions, beam labels, and note about beam to be checked for torsion"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Suffix dimension and maximum load table",
+      "slug": "suffix-dimension-max-load",
+      "bbox_norm": [
+        0.63,
+        0.46,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Right-side table with suffix row (A, B, C, S), dimension row, and mark/fab-length/max-load data",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [
+          1
+        ],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "SUFFIX",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "B",
+                "is_header": true
+              },
+              {
+                "value": "C",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "DIM. S",
+                "is_header": true
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6'-8\"",
+                "type": "text"
+              },
+              {
+                "value": "7'-5\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "col_span": 2,
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOAD (LB)",
+                "col_span": 2,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "6'-0\"",
+                "col_span": 2,
+                "type": "text"
+              },
+              {
+                "value": 15150,
+                "col_span": 2,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "6'-8\"",
+                "col_span": 2,
+                "type": "text"
+              },
+              {
+                "value": 14500,
+                "col_span": 2,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "7'-5\"",
+                "col_span": 2,
+                "type": "text"
+              },
+              {
+                "value": 13000,
+                "col_span": 2,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "8'-0\"",
+                "col_span": 2,
+                "type": "text"
+              },
+              {
+                "value": 11800,
+                "col_span": 2,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding example table",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.63,
+        0.72,
+        0.97,
+        0.84
+      ],
+      "confidence": "medium",
+      "notes": "Small coding/example reference box with part number and project number fields",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "[ EXAMPLE ]",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "A",
+                "type": "text"
+              },
+              {
+                "value": "B",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "/ 575 310 /",
+                "type": "text"
+              },
+              {
+                "value": "MARK / SUFFIX",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Part No.",
+                "type": "text"
+              },
+              {
+                "value": "Proj. No.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

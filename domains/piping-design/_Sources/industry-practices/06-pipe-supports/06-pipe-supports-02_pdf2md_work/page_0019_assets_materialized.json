@@ -1,0 +1,198 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0019.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0019_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        694
+      ],
+      "caption": "Item/Material Schedule - Cantilever Support Bolted Attachment components",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0019_tbl01_item-material-schedule-cantilever-bolted.png",
+      "png_sha256": "5b4201e76c303311c0183fd0a3d321a79b1fc51761261d783be72d82ad723f53",
+      "slug": "item-material-schedule-cantilever-bolted",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0019_tbl01_item-material-schedule-cantilever-bolted.json",
+      "table_data_json_sha256": "8b1e596da43c58084dd84de5e2b23e847979814ceb2f0569ac573f57a08e0198",
+      "table_data_sha256": "8b1e596da43c58084dd84de5e2b23e847979814ceb2f0569ac573f57a08e0198",
+      "xlsx_path": "tables/06-pipe-supports-02_p0019_tbl01_item-material-schedule-cantilever-bolted.xlsx",
+      "xlsx_sha256": "d7db5ffc13dbad8502d319b25b129b13ce96fb8b9253e4ac8359ed5a73c01d27"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_fig01",
+      "bbox_norm": [
+        0.03,
+        0.15,
+        0.52,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        330,
+        1456,
+        1982
+      ],
+      "caption": "Elevation view \u2014 Cantilever Support Bolted Attachment showing fab. length, flat bar, and existing concrete attachment with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0019_fig01_elevation-cantilever-support-bolted.png",
+      "png_sha256": "f395f3a13adaa580f7b682f521e5f6f7b7bbc41341962ad943582aad4ddc6b8a",
+      "slug": "elevation-cantilever-support-bolted",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_fig02",
+      "bbox_norm": [
+        0.52,
+        0.15,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        1201,
+        330,
+        2555,
+        1553
+      ],
+      "caption": "Sect \"X-X\" \u2014 Cross-section through cantilever support showing angle and plate detail with hole pattern and dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0019_fig02_sect-x-x-cantilever-support-bolted.png",
+      "png_sha256": "305803112a0c39fbf3af0b4bed37210d9bcca90d42bfd35c81a19503ae7e2abb",
+      "slug": "sect-x-x-cantilever-support-bolted",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_fig03",
+      "bbox_norm": [
+        0.55,
+        0.38,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        1278,
+        1090,
+        2555,
+        2082
+      ],
+      "caption": "Sect \"Y-Y\" \u2014 Longitudinal section through cantilever support showing angle and flat bar profile with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0019_fig03_sect-y-y-cantilever-support-bolted.png",
+      "png_sha256": "aae69e3a1455816f0d864da6d5058cadc876386bd0ec85b2ea5f9552bc476e75",
+      "slug": "sect-y-y-cantilever-support-bolted",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_fig04",
+      "bbox_norm": [
+        0.03,
+        0.53,
+        0.45,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1586,
+        1278,
+        2544
+      ],
+      "caption": "Alternate End Connection detail \u2014 Plan view showing alternate angle end connection configuration",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0019_fig04_alternate-end-connection-cantilever-bolt.png",
+      "png_sha256": "700496a90d1d9d1135aea40046e5519ee0d3b0de14cc0321a2f3019c1721c8bc",
+      "slug": "alternate-end-connection-cantilever-bolt",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_tbl02",
+      "bbox_norm": [
+        0.52,
+        0.57,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1201,
+        1718,
+        2555,
+        2544
+      ],
+      "caption": "Mark/Fab Length/Max Load \u2014 Cantilever Support size schedule",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0019_tbl02_mark-fab-length-max-load.png",
+      "png_sha256": "9516293a96577b6ccb5a1cf2860c9823ae6838266bab948b5399847b331ab1d3",
+      "slug": "mark-fab-length-max-load",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0019_tbl03",
+      "bbox_norm": [
+        0.52,
+        0.72,
+        0.82,
+        0.82
+      ],
+      "bbox_px": [
+        1201,
+        2214,
+        2223,
+        2874
+      ],
+      "caption": "Coding Example \u2014 P/S standard coding format",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0019_tbl03_coding-example-ps-standard.png",
+      "png_sha256": "519a6c7bae819631f839cf3e809fac4eeda46f9963c0cc5e1461f6d0f38306ae",
+      "slug": "coding-example-ps-standard",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0019_tbl03_coding-example-ps-standard.json",
+      "table_data_json_sha256": "c4906166a302df9f1a86c6a334a926a1b3aa4509e69bc172d4f978bf2516c5cc",
+      "table_data_sha256": "c4906166a302df9f1a86c6a334a926a1b3aa4509e69bc172d4f978bf2516c5cc",
+      "xlsx_path": "tables/06-pipe-supports-02_p0019_tbl03_coding-example-ps-standard.xlsx",
+      "xlsx_sha256": "92b3c682fa86442ae8be072dec1e1dc5319461d145a2102dc5b42e609090a934"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 19,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0019.png",
+  "page_image_sha256": "0df8f1bc0e1fa28c0eea45d1c9681171cc9862b121e279551ea5ddeb20e55e38",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0019_assets.json"
+}

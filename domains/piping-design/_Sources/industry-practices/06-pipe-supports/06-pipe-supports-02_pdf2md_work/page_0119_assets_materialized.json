@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0119.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0119_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Bill of Materials \u2014 C channel, saddle, and strap items",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0119_tbl01_bill-of-materials-channel-saddle-strap.png",
+      "png_sha256": "8dd6b6f07a3fb84b1b5821506bdf0fdf222119c67510331a4231155d746bbe10",
+      "slug": "bill-of-materials-channel-saddle-strap",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0119_tbl01_bill-of-materials-channel-saddle-strap.json",
+      "table_data_json_sha256": "51687d172077bdc501ab9a27edb7ae1fa8f2face3727514fd9c38bb771be5795",
+      "table_data_sha256": "51687d172077bdc501ab9a27edb7ae1fa8f2face3727514fd9c38bb771be5795",
+      "xlsx_path": "tables/06-pipe-supports-02_p0119_tbl01_bill-of-materials-channel-saddle-strap.xlsx",
+      "xlsx_sha256": "dccea6ce5305587c1e51a452ef4fec24965ce01b224fc5659aba3415d24a45c9"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0119_fig01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2555,
+        2214
+      ],
+      "caption": "Fig. S14 \u2014 Pipe shoe for electrically traced line, pipe sizes 3/4\" and 1\", elevation and cross-section views with insulation thickness table",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0119_fig01_pipe-shoe-traced-line-elevation-section.png",
+      "png_sha256": "bc3e7945ffa0c370b2b3dc2ff8c10195aff59edfe80e710feb8bd4bd6f031557",
+      "slug": "pipe-shoe-traced-line-elevation-section",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0119_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.65,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        1256,
+        1789,
+        2313
+      ],
+      "caption": "Insulation Thickness \u2014 pipe sizes 3/4\" and 1\" for various insulation thicknesses and spans",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0119_tbl02_insulation-thickness-pipe-sizes-spans.png",
+      "png_sha256": "14340dde7d5df2a5973cb59d766ab79b9f416ba9bce7130b2bc85a5d2488aa4f",
+      "slug": "insulation-thickness-pipe-sizes-spans",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0119_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.62,
+        0.68,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1883,
+        1865,
+        2676
+      ],
+      "caption": "Mark / Insulation Thickness / Table Key",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0119_tbl03_mark-insulation-thickness-table-key.png",
+      "png_sha256": "bef9233b10c805c25851ca73db629b4a293a71b39ad771e6b5a1ccad6aad086e",
+      "slug": "mark-insulation-thickness-table-key",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0119_tbl03_mark-insulation-thickness-table-key.json",
+      "table_data_json_sha256": "7b28d40aa4c01d1c211bf93b95ab78a07ac6d61f5cab2e614d6b941ac4bcb07d",
+      "table_data_sha256": "7b28d40aa4c01d1c211bf93b95ab78a07ac6d61f5cab2e614d6b941ac4bcb07d",
+      "xlsx_path": "tables/06-pipe-supports-02_p0119_tbl03_mark-insulation-thickness-table-key.xlsx",
+      "xlsx_sha256": "19b914fc8298760e46496924f36fb18a527daa0311711b8e88e46301621e67c9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 119,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0119.png",
+  "page_image_sha256": "b76d5d23415029a659e55046d8f0ec7bc9cdc8717c84d4866c7051d11211b8ec",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0119_assets.json"
+}

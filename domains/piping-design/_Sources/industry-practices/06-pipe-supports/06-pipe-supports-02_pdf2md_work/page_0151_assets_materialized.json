@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0151.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0151_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.18
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        760
+      ],
+      "caption": "Bill of Materials \u2014 Vessel Guide (Bi-Directional) for Vertical Pipe, Insulated, Pipe Sizes 14\"\u201324\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0151_tbl01_bill-of-materials-vessel-guide-vg10.png",
+      "png_sha256": "cd4a5215f3cce46fc2ff3335ae843b99fc86bd52b7e54cba0dafdb660f118a84",
+      "slug": "bill-of-materials-vessel-guide-vg10",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0151_tbl01_bill-of-materials-vessel-guide-vg10.json",
+      "table_data_json_sha256": "eb2db8ff7e43bb51d629ef080341dcabe03f613867e92bf65889919152b9b5bf",
+      "table_data_sha256": "eb2db8ff7e43bb51d629ef080341dcabe03f613867e92bf65889919152b9b5bf",
+      "xlsx_path": "tables/06-pipe-supports-02_p0151_tbl01_bill-of-materials-vessel-guide-vg10.xlsx",
+      "xlsx_sha256": "86407e329151ec88b3d6faa055507ae8f80d7f987e823809059e1e68d7977a63"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0151_fig01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.75,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2044,
+        2808
+      ],
+      "caption": "Vessel Guide (Bi-Directional) for Vertical Pipe \u2014 Insulated \u2014 Pipe Sizes 14\"\u201324\" \u2014 Elevation and detail view with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0151_fig01_vessel-guide-bidirectional-elevation-vg1.png",
+      "png_sha256": "88b562540adf8f8e7444f4512a72224af0642086ba57077891edbf9d94e12fbe",
+      "slug": "vessel-guide-bidirectional-elevation-vg1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0151_tbl02",
+      "bbox_norm": [
+        0.68,
+        0.48,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        1610,
+        1421,
+        2555,
+        2643
+      ],
+      "caption": "Pipe size dimension table \u2014 DIM \"A\" and DIM \"B\" for pipe sizes 14\" to 24\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0151_tbl02_pipe-size-dim-a-dim-b-vg10.png",
+      "png_sha256": "25c01698d9a7b62596c041b723197d4058758d86fc0f696889e2321fa3e29c57",
+      "slug": "pipe-size-dim-a-dim-b-vg10",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0151_tbl02_pipe-size-dim-a-dim-b-vg10.json",
+      "table_data_json_sha256": "a900a104538bfeff8e7b37ff3a32654d2eb38bb4bfff0b6cd50851bf885690aa",
+      "table_data_sha256": "a900a104538bfeff8e7b37ff3a32654d2eb38bb4bfff0b6cd50851bf885690aa",
+      "xlsx_path": "tables/06-pipe-supports-02_p0151_tbl02_pipe-size-dim-a-dim-b-vg10.xlsx",
+      "xlsx_sha256": "89f75d736b4c552b60bef29c96ba75ed0bafd34a19bddd738c69e9f16d195230"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 151,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0151.png",
+  "page_image_sha256": "cdbf189d5c6fd2b850b70e87de75d5bf522cca1bf9b302d65ceb701846c05e94",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0151_assets.json"
+}

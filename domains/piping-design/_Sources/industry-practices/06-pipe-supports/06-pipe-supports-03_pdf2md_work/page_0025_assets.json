@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 25,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0025-01",
+      "kind": "tbl",
+      "caption": "Table A10-1. Example geometrical data — DN 150 shoe type anchor support welded to base",
+      "bbox_norm": [0.05, 0.62, 0.95, 0.80],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["Parameter", "Symbol", "Value"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "Shoe length"},
+              {"type": "text", "value": "L"},
+              {"type": "text", "value": "250 mm"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Distance between clamps/stiffeners"},
+              {"type": "text", "value": "Lˉʼclamps"},
+              {"type": "text", "value": "195 mm"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Shoe height"},
+              {"type": "text", "value": "H"},
+              {"type": "text", "value": "100 mm"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Pipe nominal diameter"},
+              {"type": "text", "value": "DN"},
+              {"type": "text", "value": "150"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "Pipe actual outside diameter"},
+              {"type": "text", "value": "D₀"},
+              {"type": "text", "value": "168.2 mm"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

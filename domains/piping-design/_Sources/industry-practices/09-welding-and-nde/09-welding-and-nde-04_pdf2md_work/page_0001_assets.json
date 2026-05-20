@@ -1,0 +1,124 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-04",
+  "page": 1,
+  "total_pages": 4,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0001-01",
+      "kind": "tbl",
+      "caption": "Document Overview Table",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.3
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "has_header_row": true,
+        "columns": [
+          "Field",
+          "Value",
+          "Field2",
+          "Value2"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "th",
+                "value": "Overview",
+                "colspan": 4
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "th",
+                "value": "Document Title"
+              },
+              {
+                "type": "td",
+                "value": "WELDING OF PROCESS PIPING AND PRESSURE EQUIPMENT"
+              },
+              {
+                "type": "th",
+                "value": "Doc. No."
+              },
+              {
+                "type": "td",
+                "value": "000-PES-5008-A"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "th",
+                "value": "Document Category"
+              },
+              {
+                "type": "td",
+                "value": "ENGINEERING SPECIFICATIONS"
+              },
+              {
+                "type": "th",
+                "value": "Doc. Type"
+              },
+              {
+                "type": "td",
+                "value": "Specification"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "th",
+                "value": "Applicable Location(s)"
+              },
+              {
+                "type": "td",
+                "value": "All Plains Midstream Canada (PMC) Companies and Locations"
+              },
+              {
+                "type": "th",
+                "value": "Effective Date"
+              },
+              {
+                "type": "td",
+                "value": "April 16 2010"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "th",
+                "value": "Document Owner"
+              },
+              {
+                "type": "td",
+                "value": "Vice President, Engineering"
+              },
+              {
+                "type": "th",
+                "value": "Version"
+              },
+              {
+                "type": "td",
+                "value": "1.0"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,469 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 88,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item/Material Schedule",
+      "slug": "item-material-schedule",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "C200 \u00d7 17",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PL. 12\u2033 \u00d7 17\u2033",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M16 \u00d7 70 LONG BOLT c/w 2 NUT",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Parts/materials schedule at top of page"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN view of vertical pipe insulated support detail",
+      "slug": "plan-view-vertical-pipe-insulated",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.55,
+        0.45
+      ],
+      "confidence": "high",
+      "notes": "PLAN view engineering drawing with dimensions"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "SECT. 'X-X' view of vertical pipe insulated support detail",
+      "slug": "sect-x-x-vertical-pipe-insulated",
+      "bbox_norm": [
+        0.55,
+        0.12,
+        0.97,
+        0.48
+      ],
+      "confidence": "high",
+      "notes": "Cross-section X-X engineering drawing with gusset plate detail and dimensions"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "ELEVATION view of vertical pipe insulated support detail",
+      "slug": "elevation-vertical-pipe-insulated",
+      "bbox_norm": [
+        0.03,
+        0.45,
+        0.55,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "ELEVATION view engineering drawing with TOS work point and dimensions"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Dimensional Table for Pipe Sizes 2 to 12",
+      "slug": "dimensional-table-pipe-sizes-2-12",
+      "bbox_norm": [
+        0.55,
+        0.48,
+        0.97,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'A'",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2\"",
+                "type": "text"
+              },
+              {
+                "value": "7 3/16\"",
+                "type": "fraction",
+                "raw": "7 3/16\""
+              },
+              {
+                "value": "10 5/8\"",
+                "type": "fraction",
+                "raw": "10 5/8\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3\"",
+                "type": "text"
+              },
+              {
+                "value": "8 3/4\"",
+                "type": "fraction",
+                "raw": "8 3/4\""
+              },
+              {
+                "value": "11 3/4\"",
+                "type": "fraction",
+                "raw": "11 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4\"",
+                "type": "text"
+              },
+              {
+                "value": "8 1/2\"",
+                "type": "fraction",
+                "raw": "8 1/2\""
+              },
+              {
+                "value": "12 3/4\"",
+                "type": "fraction",
+                "raw": "12 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "9 5/16\"",
+                "type": "fraction",
+                "raw": "9 5/16\""
+              },
+              {
+                "value": "14 7/8\"",
+                "type": "fraction",
+                "raw": "14 7/8\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8\"",
+                "type": "text"
+              },
+              {
+                "value": "10 15/16\"",
+                "type": "fraction",
+                "raw": "10 15/16\""
+              },
+              {
+                "value": "16 7/8\"",
+                "type": "fraction",
+                "raw": "16 7/8\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10\"",
+                "type": "text"
+              },
+              {
+                "value": "11 3/8\"",
+                "type": "fraction",
+                "raw": "11 3/8\""
+              },
+              {
+                "value": "19\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "12 3/8\"",
+                "type": "fraction",
+                "raw": "12 3/8\""
+              },
+              {
+                "value": "21\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Pipe size dimensional lookup table in right column"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding / Mark No. Example",
+      "slug": "coding-mark-no-example",
+      "bbox_norm": [
+        0.55,
+        0.72,
+        0.97,
+        0.85
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "EXAMPLE",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "G13",
+                "type": "text"
+              },
+              {
+                "value": "1 - 6\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "P/S STO. No.",
+                "type": "text"
+              },
+              {
+                "value": "MARK No.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Coding and example table with P/S STO No., Mark No., Pipe Size coding scheme"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Mark No. Fab. Length Table",
+      "slug": "mark-no-fab-length",
+      "bbox_norm": [
+        0.03,
+        0.68,
+        0.55,
+        0.82
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "3'",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "4'",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "number"
+              },
+              {
+                "value": "6'",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Mark number to fabrication length lookup table"
+    }
+  ],
+  "issues": []
+}

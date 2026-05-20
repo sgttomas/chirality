@@ -1,0 +1,331 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 150,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item No. \u2014 Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "confidence": "high",
+      "notes": "5-row bill of materials with item number, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "C 200 \u00d7 17",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PLATE 16\" \u00d7 8\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "8",
+                "type": "number"
+              },
+              {
+                "value": "M22 \u00d7 100 LG BOLTS C/W NUTS AND LOCKNUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M16 \u00d7 70 LG BOLTS c/w 2 WASHERS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Plan and Elevation views \u2014 Vessel Guide (Bi-Directional) Vertical Pipe Insulated",
+      "slug": "plan-elevation-vessel-guide-bi-directional",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.72,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing PLAN view (top) and ELEVATION view (bottom) of the vessel guide assembly with dimensioned details, section callouts, and notes"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Pipe Size Dimension Table",
+      "slug": "pipe-size-dimension-table",
+      "bbox_norm": [
+        0.7,
+        0.46,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Pipe sizes 2\" through 12\" with corresponding DIM A and DIM B values in inches (fractional)",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'A'",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2\"",
+                "type": "text"
+              },
+              {
+                "value": "5 5/16",
+                "type": "fraction",
+                "raw": "5 5/16"
+              },
+              {
+                "value": "10 5/8",
+                "type": "fraction",
+                "raw": "10 5/8"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3\"",
+                "type": "text"
+              },
+              {
+                "value": "6 5/16",
+                "type": "fraction",
+                "raw": "6 5/16"
+              },
+              {
+                "value": "11 3/4",
+                "type": "fraction",
+                "raw": "11 3/4"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4\"",
+                "type": "text"
+              },
+              {
+                "value": "6 3/8",
+                "type": "fraction",
+                "raw": "6 3/8"
+              },
+              {
+                "value": "13 3/4",
+                "type": "fraction",
+                "raw": "13 3/4"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "7 7/16",
+                "type": "fraction",
+                "raw": "7 7/16"
+              },
+              {
+                "value": "14 7/8",
+                "type": "fraction",
+                "raw": "14 7/8"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8\"",
+                "type": "text"
+              },
+              {
+                "value": "8 1/2",
+                "type": "fraction",
+                "raw": "8 1/2"
+              },
+              {
+                "value": "16 7/8",
+                "type": "fraction",
+                "raw": "16 7/8"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10\"",
+                "type": "text"
+              },
+              {
+                "value": "9 1/2",
+                "type": "fraction",
+                "raw": "9 1/2"
+              },
+              {
+                "value": "19",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "10 1/2",
+                "type": "fraction",
+                "raw": "10 1/2"
+              },
+              {
+                "value": "21",
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

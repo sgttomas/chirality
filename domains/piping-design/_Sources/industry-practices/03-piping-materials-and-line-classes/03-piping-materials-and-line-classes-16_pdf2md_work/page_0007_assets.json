@@ -1,0 +1,56 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 7,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-3 Key Factors and Recommendations for Hand Operated Block Valves (1 of 3)",
+      "slug": "fig-1400-3-key-factors-recommendations-hand-operated-block-valves-1-of-3",
+      "bbox_norm": [0.05, 0.42, 0.95, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Key Factors", "is_header": true },
+              { "value": "Recommendations", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Make Sure the Valve is in Good Condition", "type": "text", "rowspan": 4 },
+              { "value": "Leaking valves should be examined during repair to assess the valve condition. If the valve is obviously in poor condition, it should be reconditioned or replaced.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Handle valves with care: avoid lifting valves by their handwheel or stem, cradle valves when transporting, do not use cheater bars, and clean an exposed valve stem before operating the valve.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Use Chevron alliance suppliers to reduce the total cost of ownership for valves. The alliance supplier for valve reconditioning is Plant Specialties Inc. An alliance also exists with McJunkin, a valve distributor. Several valve manufacturers have been recommended for alliances (see “Valve Manufacturer & Reconditioner Alliances” on page 1400-22).", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "When using other suppliers, check that manufacturer’s or reconditioner’s valve specifications are similar to the Petroleum Environmental Research Forum (PERF) [2] study recommendations and meet API or ANSI standards for valve design.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table caption uses Fig. numbering per document convention. Left column spans 4 recommendation rows. Footer rows for Chevron Corporation / page number / date omitted per RULE 6."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-08_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-08_p0007_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        891
+      ],
+      "caption": "Dimensions of Flanges Class 2500 Sizes 14\" through 24\" \u2014 top summary table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl01_flanges-class-2500-14-24-summary.png",
+      "png_sha256": "f5db13b36eeaa548dd96729a2cba8b5daea87d3cba45b9857ae37b2869ea9b02",
+      "slug": "flanges-class-2500-14-24-summary",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl01_flanges-class-2500-14-24-summary.json",
+      "table_data_json_sha256": "3a01ce935a878c5f5e824e08bb6535137f7efc7714a63ed874badbb39fe90cfd",
+      "table_data_sha256": "3a01ce935a878c5f5e824e08bb6535137f7efc7714a63ed874badbb39fe90cfd",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl01_flanges-class-2500-14-24-summary.xlsx",
+      "xlsx_sha256": "a2e9dfc66b51ba7fe743635c420e4af545165e6132b39351fa5e6a26d934693a"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-08_p0007_fig01",
+      "bbox_norm": [
+        0.04,
+        0.22,
+        0.96,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        561,
+        2550,
+        2145
+      ],
+      "caption": "Figure 1  Dimensions of Flanges Class 2500 Sizes 14\" through 24\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-08_p0007_fig01_figure-1-dimensions-flanges-class-2500-1.png",
+      "png_sha256": "3f08153b8c343921ad61be60780c3a750b8ee16eb705913dcd7300614c8724d0",
+      "slug": "figure-1-dimensions-flanges-class-2500-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-08_p0007_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.6,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2550,
+        3300
+      ],
+      "caption": "Dimensions of Flanges Class 2500 Sizes 14\" through 24\" \u2014 detailed dimensional data table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl02_flanges-class-2500-14-24-detailed.png",
+      "png_sha256": "ffae73405d59602592256cfe30b4c12135d6932e7c36ed9bec0b66cbbabc7909",
+      "slug": "flanges-class-2500-14-24-detailed",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl02_flanges-class-2500-14-24-detailed.json",
+      "table_data_json_sha256": "9ce07fbf6f5b22695eb1d4ecbebb0c917349e67f66e74d1668a14943b24833b9",
+      "table_data_sha256": "9ce07fbf6f5b22695eb1d4ecbebb0c917349e67f66e74d1668a14943b24833b9",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-08_p0007_tbl02_flanges-class-2500-14-24-detailed.xlsx",
+      "xlsx_sha256": "154d9f27dddac83a7255d3368a9c0f04edf3daea61c174430cca91a45202f19c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-08",
+  "doc_stem": "03-piping-materials-and-line-classes-08",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-08_pdf2md_work/page_0007.png",
+  "page_image_sha256": "41cbc9c53319bbba12a21cdc16059324071d1389d362b757232ad0f1d8ac2fca",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-08_pdf2md_work/page_0007_assets.json"
+}

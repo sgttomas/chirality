@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0082.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0082_fig01",
+      "bbox_norm": [
+        0.18,
+        0.25,
+        0.82,
+        0.6
+      ],
+      "bbox_px": [
+        332,
+        660,
+        2218,
+        2145
+      ],
+      "caption": "P-13 Pressure Connection \u2014 NPS 1 & UP schematic showing INSTR PIPING, NPS 1 FLANGE VALVE, NPS 1 LINE SIZE & UP, and LINE SIZE INSTRUMENT TEE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0082_fig01_p-13-pressure-connection-nps-1-up.png",
+      "png_sha256": "e0f22039222a0616b2b668f46c75d93b03ec9df074b58863d3d657aaf4f4c28b",
+      "slug": "p-13-pressure-connection-nps-1-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 82,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0082.png",
+  "page_image_sha256": "135691f3de9209ceee9cfa0a3f1a5d5e97cb854a2bd92974e1a11af047d74f94",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0082_assets.json"
+}

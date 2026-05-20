@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0055.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0055_fig01",
+      "bbox_norm": [
+        0.02,
+        0.06,
+        0.98,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2555,
+        2808
+      ],
+      "caption": "Engineering drawing showing directional anchor assembly for insulated lines (pipe sizes 12\" to 24\"). Includes Elevation View, Section, and View \"A\" with W150\u00d730 structural members and pipe support shoes.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0055_fig01_engineering-drawing-showing-directional.png",
+      "png_sha256": "1542ba5b180a8cbdc8b8ba3ab2d3f97a16805e722da50d607cb79af970df9cf4",
+      "slug": "engineering-drawing-showing-directional",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0055_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.79,
+        0.65,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        2445,
+        1789,
+        3205
+      ],
+      "caption": "Revision block",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0055_tbl01_revision-block.png",
+      "png_sha256": "0530c56a8b6caa5c8e0406a800d6a96ad56d1c86f9bd596219e81ca879e13797",
+      "slug": "revision-block",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 55,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0055.png",
+  "page_image_sha256": "d1dd2ea0764d2bc42c692c1a710bd53630f3e2789601a1031f3810d91e116348",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0055_assets.json"
+}

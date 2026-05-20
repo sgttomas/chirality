@@ -1,0 +1,100 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 66,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-29 Flexible Graphite Packing Systems for Use in Natural Hydrocarbon Service (1 of 2)",
+      "slug": "fig-1400-29-flexible-graphite-packing-systems-hydrocarbon-service-1of2",
+      "bbox_norm": [0.03, 0.22, 0.97, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [
+          {"after_row": 0, "label": "Garlock 70# (98/GL S-ring set)"},
+          {"after_row": 7, "label": "Slade 3300G"}
+        ],
+        "continuation_of": null,
+        "footnotes": [
+          "Garlock recommends that a packing set composed entirely of Style 98 could be used up to 1200°F and 2500 PSI - above which the combination #98 / Graph-Lock EVSP set should be used."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Characteristics", "is_header": true},
+              {"value": "Packing Arrangement (Top to Bottom)", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Pressure to 10,000 PSI", "type": "text"},
+              {"value": "Garlock Style 98 braided graphite end ring, cut to fit", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Temperature to 1200°F", "type": "text"},
+              {"value": "Graph-Lock 70# flexible graphite ring, split", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Style 98 - 75 lbs/ft²", "type": "text"},
+              {"value": "Graph-Lock 70# flexible graphite ring, split", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "G-L 70# - 88.4 lbs/ft²", "type": "text"},
+              {"value": "Graph-Lock 70# flexible graphite ring, split", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "11.7 ft-lb Bolt torque", "type": "text"},
+              {"value": "Garlock Style 98 braided graphite end ring, cut-to-fit", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "7.5 ft-lb Stem torque", "type": "text"},
+              {"value": "Compression: Style 98 - 25%\nG-L 70# - 25%", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Characteristics", "is_header": true},
+              {"value": "Packing Arrangement (Top to Bottom)", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Pressure to 5,000 PSI", "type": "text"},
+              {"value": "Braided graphite end rings (2) and 3 or 4 identical braided graphite center rings, quantity depends upon depth of packing chamber - all cut-to-fit.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Temperature to 1800°F", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Density 80-84 lbs/ft²", "type": "text"},
+              {"value": "Compression: All rings individually 25%.", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-section table: Garlock 70# (98/GL S-ring set) and Slade 3300G, each with Characteristics and Packing Arrangement columns. Includes descriptive text blocks within each section."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0045_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.18
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        760
+      ],
+      "caption": "Bill of Materials \u2014 BSA2 Base Support Adjustable",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0045_tbl01_bom-bsa2-base-support-adjustable.png",
+      "png_sha256": "a27cfe0e33e99d5b049131faab065edc03eb402d269546ded1cc9e7f94141271",
+      "slug": "bom-bsa2-base-support-adjustable",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0045_tbl01_bom-bsa2-base-support-adjustable.json",
+      "table_data_json_sha256": "a38122fb111c5e8add6044228a891bb90b3536cf78f8b11fbbaf62b167f8388e",
+      "table_data_sha256": "a38122fb111c5e8add6044228a891bb90b3536cf78f8b11fbbaf62b167f8388e",
+      "xlsx_path": "tables/06-pipe-supports-02_p0045_tbl01_bom-bsa2-base-support-adjustable.xlsx",
+      "xlsx_sha256": "15ca6b9bbb5b339ee5b3221cc59ce48ecef77c30eb86038975b94317783e4339"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0045_fig01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2555,
+        2643
+      ],
+      "caption": "BSA2 Base Support Adjustable for Pipe Sizes 2\" to 4\" \u2014 assembly and detail views with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0045_fig01_bsa2-base-support-adjustable-assembly-de.png",
+      "png_sha256": "a144e4a260d5678cdaf2d4c9e57e3de1a4a7bbf3278b61671edeed59b453ddd8",
+      "slug": "bsa2-base-support-adjustable-assembly-de",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0045.png",
+  "page_image_sha256": "7c95f5acaec80778b31cc806a87fbacea59fc7e07433dc7bf561d75ea7c6d664",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0045_assets.json"
+}

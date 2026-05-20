@@ -1,0 +1,240 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0062_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.02,
+        0.28,
+        0.15
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1686,
+        661
+      ],
+      "caption": "Pipe support dimensional table \u2014 TYPE NO. / DESCRIPTION / MATERIAL columns with size rows",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0062_tbl01_pipe-support-dimensional-table-type-no-d.png",
+      "png_sha256": "70db4334597f78380a3d54f42be66d429dfe2c4fec527c41a650652c9ca70e16",
+      "slug": "pipe-support-dimensional-table-type-no-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_tbl02",
+      "bbox_norm": [
+        0.01,
+        0.14,
+        0.5,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        298,
+        2809,
+        1091
+      ],
+      "caption": "Dummy support dimensions table \u2014 SIZE vs. dimensional parameters (A, B, C, D, E, F, G columns) with multiple pipe size rows",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0062_tbl02_dummy-support-dimensions-table-size-vs-d.png",
+      "png_sha256": "78b4521220afe89b7f081bf58a350b4782a442f5867d9423bc77ae8f72fc7f0e",
+      "slug": "dummy-support-dimensions-table-size-vs-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig01",
+      "bbox_norm": [
+        0.01,
+        0.3,
+        0.34,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        826,
+        1992,
+        2083
+      ],
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 LOW STEEL SUPPORT (STANDARD)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig01_elevation-type-c-dummy-support-low-steel.png",
+      "png_sha256": "e5040b57e4a627866dc4316615e70ad79a8a36d8290db9c4d80801ab86aa1bc0",
+      "slug": "elevation-type-c-dummy-support-low-steel",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig02",
+      "bbox_norm": [
+        0.34,
+        0.3,
+        0.65,
+        0.58
+      ],
+      "bbox_px": [
+        1481,
+        826,
+        3576,
+        2083
+      ],
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 HIGH STEEL SUPPORT (STANDARD)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig02_elevation-type-c-dummy-support-high-stee.png",
+      "png_sha256": "a959c0bb7c13f8a1d375326922e4360d7bdfaae03eb357aaca63c79a27866fdd",
+      "slug": "elevation-type-c-dummy-support-high-stee",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig03",
+      "bbox_norm": [
+        0.01,
+        0.58,
+        0.34,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        1752,
+        1992,
+        2942
+      ],
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 LOW STEEL SUPPORT (ALTERNATE)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig03_elevation-type-c-dummy-support-low-steel.png",
+      "png_sha256": "0fc0cff36b7edc370e8a4d5ba5011d4eda350fae727d67199a6cad2d9281f7a2",
+      "slug": "elevation-type-c-dummy-support-low-steel",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig04",
+      "bbox_norm": [
+        0.34,
+        0.58,
+        0.65,
+        0.84
+      ],
+      "bbox_px": [
+        1481,
+        1752,
+        3576,
+        2942
+      ],
+      "caption": "PLAN \u2014 TYPE \"C\" DUMMY SUPPORT",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig04_plan-type-c-dummy-support.png",
+      "png_sha256": "8bea06c09838b066de51028d602c2858ed55ee71a541f9f3a044579f491caf35",
+      "slug": "plan-type-c-dummy-support",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig05",
+      "bbox_norm": [
+        0.62,
+        0.02,
+        0.88,
+        0.38
+      ],
+      "bbox_px": [
+        2912,
+        0,
+        4750,
+        1422
+      ],
+      "caption": "DETAIL \"A\" \u2014 Formed plate / saddle detail showing pipe engagement, weld details, and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 5,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig05_detail-a-formed-plate-saddle-detail-show.png",
+      "png_sha256": "2892c2840b1684c522582dba456d397ce3c90a97a10fb31da3d9b7d69657fb77",
+      "slug": "detail-a-formed-plate-saddle-detail-show",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_fig06",
+      "bbox_norm": [
+        0.62,
+        0.38,
+        0.88,
+        0.68
+      ],
+      "bbox_px": [
+        2912,
+        1091,
+        4750,
+        2413
+      ],
+      "caption": "DETAIL \"B\" \u2014 Weld neck flange and pipe wall connection detail showing weld geometry and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 6,
+      "png_path": "figures/06-pipe-supports-02_p0062_fig06_detail-b-weld-neck-flange-and-pipe-wall.png",
+      "png_sha256": "7b0d2d9ca2e50d781563f82673439ec7a97f28bc202e1a88c7a7fde3ffc419ee",
+      "slug": "detail-b-weld-neck-flange-and-pipe-wall",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0062_tbl03",
+      "bbox_norm": [
+        0.65,
+        0.84,
+        1.0,
+        1.0
+      ],
+      "bbox_px": [
+        3065,
+        2612,
+        5108,
+        3306
+      ],
+      "caption": "Title block table \u2014 Drawing number, revision, date, drawn/checked/approved fields and sheet information",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0062_tbl03_title-block-table-drawing-number-revisio.png",
+      "png_sha256": "74e221f9aaa2fe62ca73804a04fa01f1531dbbe74a986a73ca39500675ba3ce7",
+      "slug": "title-block-table-drawing-number-revisio",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0062.png",
+  "page_image_sha256": "5786ad98025fe3252eb076be64bac63e1937f1689d382e67c282f1e298004b26",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0062_assets.json"
+}

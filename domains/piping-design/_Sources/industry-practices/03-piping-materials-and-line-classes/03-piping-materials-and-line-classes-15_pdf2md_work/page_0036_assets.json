@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 36,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-11 Straight Connection Fittings Courtesy of Taylor Forge and Bonney Forge (2 of 3)",
+      "slug": "fig-200-11-straight-connection-fittings-2-of-3",
+      "bbox_norm": [0.10, 0.06, 0.92, 0.90],
+      "confidence": "high",
+      "notes": "Multi-panel figure showing photographs and technical drawings of Socket Welding Flange, Threaded Union, Full Coupling, and Socket Welding Union. Caption appears above figure box."
+    }
+  ],
+  "issues": []
+}

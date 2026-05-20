@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0007_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.42,
+        0.95,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        1220,
+        2550,
+        3230
+      ],
+      "caption": "Fig. 1400-3 Key Factors and Recommendations for Hand Operated Block Valves (1 of 3)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0007_tbl01_fig-1400-3-key-factors-recommendations-h.png",
+      "png_sha256": "2bb8f2d24de93f55bc0b06531972588e2e0315af28d9e7e88bef93dbc5a1b4a7",
+      "slug": "fig-1400-3-key-factors-recommendations-h",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0007_tbl01_fig-1400-3-key-factors-recommendations-h.json",
+      "table_data_json_sha256": "4125cd5793f02563753005c3329bbd0f663488e57dd52e0ccb5ffdfb9676f2a1",
+      "table_data_sha256": "4125cd5793f02563753005c3329bbd0f663488e57dd52e0ccb5ffdfb9676f2a1",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0007_tbl01_fig-1400-3-key-factors-recommendations-h.xlsx",
+      "xlsx_sha256": "6f53316de9a77b4c8a60bee9f3c86892a02296338825f8353c512c0017a30386"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0007.png",
+  "page_image_sha256": "257872bf776bfdaa15c72562a913ee840cce3d96b7332d28f600c96f086f901c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0007_assets.json"
+}

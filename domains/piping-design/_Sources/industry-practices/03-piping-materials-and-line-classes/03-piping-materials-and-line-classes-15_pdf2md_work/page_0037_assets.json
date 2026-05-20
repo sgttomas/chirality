@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 37,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-11 Straight Connection Fittings Courtesy of Taylor Forge and Bonney Forge (3 of 3)",
+      "slug": "fig-200-11-straight-connection-fittings-3of3",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.92],
+      "confidence": "high",
+      "notes": "Full-page figure showing methods of attachment for standard types of flanges: threaded, welding neck, lap joint, slip-on, and socket welding flanges, each with an illustration and descriptive text."
+    }
+  ],
+  "issues": []
+}

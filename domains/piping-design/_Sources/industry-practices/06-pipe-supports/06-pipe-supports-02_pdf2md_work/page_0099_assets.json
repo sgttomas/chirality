@@ -1,0 +1,110 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 99,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0099-01",
+      "kind": "fig",
+      "caption": "Goal-frame pipe support bolted attachment assembly drawing. Left view shows structural angle frame anchored to grade with weld callouts (1/4\" TYP), 18\" MAX / 1\" MIN top gap, FAB-LENGTH vertical dimension, and 2\"(TYP) horizontal dimension. Right view shows BASE PLATE detail with 12\" width, 2\"(TYP) and 4\" edge distances, and 1-5/16\"\u00d8 holes. SEE NOTE 3.",
+      "bbox_norm": [
+        0.02,
+        0.17,
+        0.98,
+        0.55
+      ]
+    },
+    {
+      "id": "tbl-0099-01",
+      "kind": "tbl",
+      "caption": "Fabrication length and maximum load table for Goal-Frame support mark numbers",
+      "bbox_norm": [
+        0.02,
+        0.56,
+        0.6,
+        0.68
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col0",
+            "header": "MARK NO."
+          },
+          {
+            "id": "col1",
+            "header": "FAB. LENGTH"
+          },
+          {
+            "id": "col2",
+            "header": "MAXIMUM LOAD (LB)"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "col0",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "3'-0\""
+              },
+              {
+                "col": "col2",
+                "type": "number",
+                "value": "8000"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col0",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "3'-6\""
+              },
+              {
+                "col": "col2",
+                "type": "number",
+                "value": "6300"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col0",
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col": "col1",
+                "type": "text",
+                "value": "4'-0\""
+              },
+              {
+                "col": "col2",
+                "type": "number",
+                "value": "4500"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

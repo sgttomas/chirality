@@ -1,0 +1,90 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0044_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Bill of materials for base support adjustable for pipe sizes 2\" to 4\"",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0044_tbl01_bill-of-materials-for-base-support-adjus.png",
+      "png_sha256": "3128f95b2feac9124db6d802640692512f1ceb1436dac09a97509bb4b1e00c93",
+      "slug": "bill-of-materials-for-base-support-adjus",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0044_fig01",
+      "bbox_norm": [
+        0.01,
+        0.12,
+        0.99,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2555,
+        2643
+      ],
+      "caption": "Engineering drawing showing SIDE VIEW, ELEVATION VIEW, BASE PLATE, and TOP PLATE details for an adjustable base support for pipe sizes 2\" to 4\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0044_fig01_engineering-drawing-showing-side-view-el.png",
+      "png_sha256": "dc7ee05b8ede728475acec579c605d01bd747653b989c44dfced80166192bf67",
+      "slug": "engineering-drawing-showing-side-view-el",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0044_fig02",
+      "bbox_norm": [
+        0.6,
+        0.75,
+        0.85,
+        0.86
+      ],
+      "bbox_px": [
+        1405,
+        2313,
+        2300,
+        3007
+      ],
+      "caption": "CODING example box showing pipe support standard number and dimension format: BSA1 \u2014 20\" / P/S STD. No. \u2014 DIM.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0044_fig02_coding-example-box-showing-pipe-support.png",
+      "png_sha256": "88f054b5ad3b4827117c11ecbf2cc297efb74d481e19eadce33999ffb8074de4",
+      "slug": "coding-example-box-showing-pipe-support",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0044.png",
+  "page_image_sha256": "2fc6b050ed7ea99ea0f5fce2731717700192183df927be0d9720fdd568277282",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0044_assets.json"
+}

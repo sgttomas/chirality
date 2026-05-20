@@ -1,0 +1,123 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 3,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Refining Engineering Practices and ASME Codes and Standards",
+      "slug": "refining-engineering-practices-asme-codes-standards",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.48],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [0, 10],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Refining Engineering Practices", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–1", "type": "text" },
+              { "value": "Piping Fabrication", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–5–3", "type": "text" },
+              { "value": "Piping Erection and Testing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–5", "type": "text" },
+              { "value": "Piping for Instruments", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–6–8", "type": "text" },
+              { "value": "Steam Tracing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 10–2–1", "type": "text" },
+              { "value": "Material Requirements for Aggressive Environmental Cracking Services", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 10–3–3", "type": "text" },
+              { "value": "Corrosion Protection for Underground Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 11–2–2", "type": "text" },
+              { "value": "Fire Protection Shields for Wafer Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 13–12–1", "type": "text" },
+              { "value": "Electrical Tracing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 14–1–1", "type": "text" },
+              { "value": "Winterization", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 15–1–5", "type": "text" },
+              { "value": "Color Coding For Material Identification", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ASME Codes and Standards", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B16.5", "type": "text" },
+              { "value": "Pipe Flanges and Flanged Fittings", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B16.11", "type": "text" },
+              { "value": "Forged Steel Fittings, Socket-Welding and Threaded", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.1", "type": "text" },
+              { "value": "Power Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.3", "type": "text" },
+              { "value": "Process Piping", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-section reference table: Refining Engineering Practices (10 entries) and ASME Codes and Standards (4 entries). No caption line; section headers are bold rows within the table border."
+    }
+  ],
+  "issues": []
+}

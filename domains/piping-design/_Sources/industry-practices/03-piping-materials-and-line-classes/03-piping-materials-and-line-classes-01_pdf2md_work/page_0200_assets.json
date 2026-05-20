@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 200,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.59 Class HDJ — Pressure-Temperature Rating, Basic Material, Construction Class, Corrosion Allowance",
+      "slug": "table-4-59-class-hdj",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table header only on this page; data rows appear on adjacent pages. Metadata rows above the column header include: TABLE 4.59 / CLASS HDJ; PRESSURE-TEMPERATURE RATING: ANSI Class 1500 Except 595°C (1100°F) Max. (10)(16); SERVICE: Process - Hydrogen; BASIC MATERIAL: 2-1/4 CR - 1 Mo (10)(16); CONSTRUCTION CLASS: 1; CORROSION ALLOWANCE: 1.3 mm (0.063\")"
+    }
+  ],
+  "issues": []
+}

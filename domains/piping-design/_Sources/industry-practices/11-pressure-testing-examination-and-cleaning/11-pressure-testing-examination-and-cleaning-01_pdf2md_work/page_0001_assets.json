@@ -1,0 +1,253 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-01",
+  "page": 1,
+  "total_pages": 20,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "img-0001-02",
+      "kind": "img",
+      "caption": "Professional Engineer emblem/seal",
+      "bbox_norm": [
+        0.56,
+        0.48,
+        0.8,
+        0.66
+      ]
+    },
+    {
+      "id": "tbl-0001-01",
+      "kind": "tbl",
+      "caption": "Revision history",
+      "bbox_norm": [
+        0.04,
+        0.72,
+        0.96,
+        0.96
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          {
+            "text": "Rev #",
+            "col_index": 0
+          },
+          {
+            "text": "Date",
+            "col_index": 1
+          },
+          {
+            "text": "Revision Notes",
+            "col_index": 2
+          },
+          {
+            "text": "By",
+            "col_index": 3
+          },
+          {
+            "text": "Chk'd",
+            "col_index": 4
+          },
+          {
+            "text": "App'd",
+            "col_index": 5
+          },
+          {
+            "text": "App'd",
+            "col_index": 6
+          },
+          {
+            "text": "App'd",
+            "col_index": 7
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "text": "4",
+                "type": "data"
+              },
+              {
+                "col_index": 1,
+                "text": "10/92",
+                "type": "data"
+              },
+              {
+                "col_index": 2,
+                "text": "Latest Revision in WordPerfect 5.1",
+                "type": "data"
+              },
+              {
+                "col_index": 3,
+                "text": "DM",
+                "type": "data"
+              },
+              {
+                "col_index": 4,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 5,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 6,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 7,
+                "text": "",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "text": "5",
+                "type": "data"
+              },
+              {
+                "col_index": 1,
+                "text": "10/98",
+                "type": "data"
+              },
+              {
+                "col_index": 2,
+                "text": "Issued for Implementation",
+                "type": "data"
+              },
+              {
+                "col_index": 3,
+                "text": "NR",
+                "type": "data"
+              },
+              {
+                "col_index": 4,
+                "text": "NR",
+                "type": "data"
+              },
+              {
+                "col_index": 5,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 6,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 7,
+                "text": "ML",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_index": 0,
+                "text": "6",
+                "type": "data"
+              },
+              {
+                "col_index": 1,
+                "text": "10/03",
+                "type": "data"
+              },
+              {
+                "col_index": 2,
+                "text": "Revised as Noted",
+                "type": "data"
+              },
+              {
+                "col_index": 3,
+                "text": "AP/NR, AR",
+                "type": "data"
+              },
+              {
+                "col_index": 4,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 5,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 6,
+                "text": "",
+                "type": "data"
+              },
+              {
+                "col_index": 7,
+                "text": "",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col_index": 0,
+                "text": "7",
+                "type": "data"
+              },
+              {
+                "col_index": 1,
+                "text": "11/06",
+                "type": "data"
+              },
+              {
+                "col_index": 2,
+                "text": "General Revision",
+                "type": "data"
+              },
+              {
+                "col_index": 3,
+                "text": "NR/SK",
+                "type": "data"
+              },
+              {
+                "col_index": 4,
+                "text": "MN/II",
+                "type": "data"
+              },
+              {
+                "col_index": 5,
+                "text": "NR/G",
+                "type": "data"
+              },
+              {
+                "col_index": 6,
+                "text": "PD TC",
+                "type": "data"
+              },
+              {
+                "col_index": 7,
+                "text": "PC",
+                "type": "data"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

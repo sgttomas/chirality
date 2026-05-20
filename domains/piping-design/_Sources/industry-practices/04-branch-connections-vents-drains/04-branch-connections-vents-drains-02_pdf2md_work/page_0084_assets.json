@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 84,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "NPS 1 P-15 Pressure Connection \u2014 plan view showing NPS 1 Flanged Valve, NPS 1 Weld Neck Flange, NPS 1 Tee (both sides), NPS 1 Line Size, with PIPING/INSTR. labels",
+      "slug": "nps-1-p15-pressure-connection-plan-view",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.96,
+        0.5
+      ],
+      "confidence": "high",
+      "notes": "Upper engineering diagram showing plan/top view of NPS 1 P-15 pressure connection with labeled components"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "NPS 1 P-15 Pressure Connection \u2014 elevation/isometric view showing NPS 1 Tee, NPS 1 Weld Neck Flange, NPS 1 Flanged Valve, INSTR./PIPING labels, NPS 1 Line Size",
+      "slug": "nps-1-p15-pressure-connection-elevation-view",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Lower engineering diagram showing elevation/isometric view of NPS 1 P-15 pressure connection with labeled components"
+    }
+  ],
+  "issues": []
+}

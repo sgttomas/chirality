@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 79,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "P-10 Pressure Connection detail for NPS 1-1/2 and up, showing instrument piping connection to main line. Components labeled: NPS 3/4 Socket Weld x Threaded Valve (top), NPS 3/4 x 100(4) Nipple Plain Both Ends, NPS 3/4 Socket Weld Valve, NPS 3/4 x 90(3-1/2) Plain End Nipple Pipet, and NPS 1-1/2 Line Size & Up (main horizontal pipe).",
+      "bbox_norm": [0.10, 0.18, 0.90, 0.62]
+    }
+  ],
+  "issues": []
+}

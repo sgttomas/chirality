@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0002_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        2550,
+        3201
+      ],
+      "caption": "Standards and Publications \u2014 Refining Engineering Practices and ASME references",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.rows must be a non-empty array"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0002_tbl01_standards-and-publications-refining-engi.png",
+      "png_sha256": "0f1e8e62cdc86300198e96933a418b044eea7f2045414de99e9c9ba6d255a670",
+      "slug": "standards-and-publications-refining-engi",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-02",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0002.png",
+  "page_image_sha256": "b245dede677a0a1a209acda05834a9a75f0e4fdbb03aa77fdece36d086ea400d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0002_assets.json"
+}

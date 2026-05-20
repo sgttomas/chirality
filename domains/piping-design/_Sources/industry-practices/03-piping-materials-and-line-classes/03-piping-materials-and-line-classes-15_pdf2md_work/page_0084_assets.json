@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 84,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-28 Machine Bolt with Hex Nut and Stud Bolt with Hex Nuts Courtesy of Crane Valves",
+      "slug": "fig-200-28-machine-bolt-hex-nut-stud-bolt",
+      "bbox_norm": [0.05, 0.42, 0.95, 0.68],
+      "confidence": "high",
+      "notes": "Photograph of two bolt types side by side; caption immediately above the image box"
+    }
+  ],
+  "issues": []
+}

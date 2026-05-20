@@ -1,0 +1,397 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 120,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.01,
+        0.97,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Four-column bill of materials table at top of drawing sheet",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "W 100 x 13.5 x 18\" LONG \u2013 TYPE \u2018A\u2019",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "W 150 x 19.5 x 18\" LONG \u2013 TYPE \u2018B\u2019",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "NB PIPE CLAMP (NOTE 2)",
+                "type": "text"
+              },
+              {
+                "value": "CARBON STEEL ANVIL FIG. 212",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "3 mm THICK \u201cTHERMOFAB\u201d LINER",
+                "type": "text"
+              },
+              {
+                "value": "(FIBREGLASS CLOTH) OR EQUIVALENT. USE ONLY IF LINE IS STAINLESS STEEL.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "ELEVATION and PLAN views of Pipe Shoe (Clamp On) for Four Way Guide, Drawing No. S15",
+      "slug": "elevation-plan-pipe-shoe-clamp-s15",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing ELEVATION (left) and PLAN (right) views of the pipe shoe clamp-on four way guide assembly with dimensional callouts"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Insulation dimensions by thickness",
+      "slug": "insulation-dimensions",
+      "bbox_norm": [
+        0.55,
+        0.59,
+        0.97,
+        0.7
+      ],
+      "confidence": "high",
+      "notes": "Two-row table giving H and D dimensions and TYPE for insulation thicknesses",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "INSULATION",
+                "is_header": true
+              },
+              {
+                "value": "'H'",
+                "is_header": true
+              },
+              {
+                "value": "'D'",
+                "is_header": true
+              },
+              {
+                "value": "TYPE",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "UP TO 3\" THICK",
+                "type": "text"
+              },
+              {
+                "value": "4\"",
+                "type": "text"
+              },
+              {
+                "value": "3 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "'A'",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3 1/2\"\u20135\" THICK",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "5 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "'B'",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding example",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.55,
+        0.7,
+        0.97,
+        0.8
+      ],
+      "confidence": "high",
+      "notes": "Coding convention example: S15 - A - 2\", showing D/S S10, A-TYPE, PIPE SIZE",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "( EXAMPLE )",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "S15 - A - 2\"",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "D/S S10, A-TYPE, PIPE SIZE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Revision block",
+      "slug": "revision-block",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.55,
+        0.91
+      ],
+      "confidence": "high",
+      "notes": "Revision history table with two rows: row 1 (GENERAL UPDATE) and row 0 (GENERAL ISSUE)",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "BY",
+                "is_header": true
+              },
+              {
+                "value": "CHK'D",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "WIP",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "AM JD",
+                "type": "text"
+              },
+              {
+                "value": "KF",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL ISSUE",
+                "type": "text"
+              },
+              {
+                "value": "AM JD",
+                "type": "text"
+              },
+              {
+                "value": "KF",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

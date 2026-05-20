@@ -1,0 +1,365 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 103,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.12
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5 \u2013 SIZE 'A'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "L76 \u00d7 76 \u00d7 7.9 \u2013 SIZE 'B'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "L64 \u00d7 64 \u00d7 6.4 \u2013 SIZE 'C'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "SECTION \"A\" and ELEVATION VIEW \u2014 Inverted Goal-Frame Support Welded Attachment detail drawing showing existing steel, fab length, dimensions A, B, C, D, and typical connection details",
+      "slug": "section-a-elevation-view-inverted-goal-frame-support",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.55
+      ],
+      "confidence": "high",
+      "notes": "Main engineering drawing showing section A detail on left and elevation view on right, with dimension annotations for A, B, C, D, fab length, and typical connection details"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Suffix Dimensions \u2014 Suffix A, B, C, D with DIM. 'L' values",
+      "slug": "suffix-dimensions",
+      "bbox_norm": [
+        0.49,
+        0.56,
+        0.97,
+        0.65
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "SUFFIX",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "B",
+                "is_header": true
+              },
+              {
+                "value": "C",
+                "is_header": true
+              },
+              {
+                "value": "D",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "DIM. 'L'",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Suffix to dimension lookup table in lower right of drawing"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Mark No. / Fab Length / Maximum Load 'W' (LB)",
+      "slug": "mark-no-fab-length-max-load",
+      "bbox_norm": [
+        0.49,
+        0.64,
+        0.97,
+        0.79
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOAD 'W' (LB)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "5000",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "3300",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "2500",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "2000",
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Mark number to fab length and maximum load table"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Coding \u2014 Example",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.49,
+        0.78,
+        0.97,
+        0.86
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "P/S STD.",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "MARK",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "NO.",
+                "type": "text"
+              },
+              {
+                "value": "C-SIZE",
+                "type": "text"
+              },
+              {
+                "value": "NO.",
+                "type": "text"
+              },
+              {
+                "value": "A-SUFFIX",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Coding example table showing how to decode part numbers"
+    }
+  ],
+  "issues": []
+}

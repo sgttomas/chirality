@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0010.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-05_p0010_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        2541
+      ],
+      "caption": "Figure 1: Branch Connection Selection",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-05_p0010_fig01_figure-1-branch-connection-selection.png",
+      "png_sha256": "378aa4fe3c40c5ba17a16aff603e8eb6af6f7e3faa33012f8851612ceb6119b8",
+      "slug": "figure-1-branch-connection-selection",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-05",
+  "doc_stem": "03-piping-materials-and-line-classes-05",
+  "page": 10,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0010.png",
+  "page_image_sha256": "4c9bded903e73f07ffeecf7181abd7e14b6e3ec488418961810ac3d2528367bd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0010_assets.json"
+}

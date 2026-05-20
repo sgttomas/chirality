@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 119,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "p0119-fig-001",
+      "caption": "OR-03 Orifice Flange tap connection for NPS 2 & UP showing lap joint stub end, NPS 1/2 flange valve, lap joint flange, nipple, orifice flange set, plug, 45\u00b0 ELL, and socket weld taps",
+      "bbox_norm": [
+        0.05,
+        0.2,
+        0.95,
+        0.62
+      ]
+    }
+  ],
+  "issues": []
+}

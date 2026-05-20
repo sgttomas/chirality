@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0096.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0096_fig01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2871
+      ],
+      "caption": "Socketweld Thermowell Connection T-05 \u2014 NPS 3/4 & Up, showing three installation configurations with NPS 1 Socket Weld Latrolet, Line Size x NPS 6 Swage/Reducer, and NPS 3/4 Thru NPS 4 Line Size details including 300 (12) MIN dimension",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0096_fig01_socketweld-thermowell-t05-nps-3-4-up.png",
+      "png_sha256": "621cfbc959a6ed53b9cf62d70edd83674ac708fcf41fe70be4f4a23d6b03054a",
+      "slug": "socketweld-thermowell-t05-nps-3-4-up",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 96,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0096.png",
+  "page_image_sha256": "3ac62b05700cd5637ed12026ced3ed649d5525879287f778251a0b26fd5dfdc5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0096_assets.json"
+}

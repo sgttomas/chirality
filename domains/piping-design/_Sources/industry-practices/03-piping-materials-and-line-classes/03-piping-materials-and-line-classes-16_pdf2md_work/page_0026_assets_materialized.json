@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0026_fig01",
+      "bbox_norm": [
+        0.05,
+        0.35,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        989,
+        2550,
+        3065
+      ],
+      "caption": "Fig. 1400-14 Packing Pressure Required to Achieve a Seal Copyright \u00a9 1988. Electric Power Research Institute. EPRI NP-5697. Valve Stem Packing Improvements. Reprinted with Permission.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0026_fig01_fig-1400-14-packing-pressure-seal.png",
+      "png_sha256": "6d895a2b76088f7492b12ebafa608e6d397f220cd7c4220be82432a09d8008f6",
+      "slug": "fig-1400-14-packing-pressure-seal",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0026.png",
+  "page_image_sha256": "7520c1828a4f572246de8b3fb2887a51d712806da7533b5d1b001a57426af809",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0026_assets.json"
+}

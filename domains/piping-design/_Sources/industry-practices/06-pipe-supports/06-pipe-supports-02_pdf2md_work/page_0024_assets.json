@@ -1,0 +1,437 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 24,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Parts list \u2014 Item No., QTY, Description, Material",
+      "slug": "parts-list-item-qty-description-material",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Three-row parts list at top of drawing",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "W150 x 30",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-350W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "102 x 102 x 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "51mm x 9.5mm THK FB x 6\" LG",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "ELEVATION \u2014 Braced Cantilever Support Welded Attachment elevation view showing existing steel, flat bar, diagonal brace at 45\u00b0, FAB. LENGTH (NOTE 2), and dimensions including 3/8\", 1/4\", 2 3/4\", and applied load direction",
+      "slug": "elevation-braced-cantilever-support-welded-attachment",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.62,
+        0.7
+      ],
+      "confidence": "high",
+      "notes": "Central elevation schematic of braced cantilever support welded attachment; shows existing steel, flat bar, diagonal brace at 45 degrees, FAB. LENGTH callout with NOTE 2, dimensions 3/8\", 1/4\", 2 3/4\", circled part callouts 1/2/3, and applied load arrow"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Mark/Fab Length/Dimension/Max Load table",
+      "slug": "mark-fab-length-dimension-max-load",
+      "bbox_norm": [
+        0.6,
+        0.54,
+        0.97,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Five-row table with Mark No., FAB. LENGTH, A dimension, and MAX. LOAD (lb.)",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "MAX. LOAD (lb.)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "3\"",
+                "type": "text"
+              },
+              {
+                "value": "9000",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "6100",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "4500",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "3\"",
+                "type": "text"
+              },
+              {
+                "value": "2900",
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "6'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "1300",
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding example table",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.6,
+        0.78,
+        0.97,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Small coding example box with SIZE and P/S STD. No. / MARK No. fields",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING. ( EXAMPLE )",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "SIZE",
+                "type": "text"
+              },
+              {
+                "value": "B9",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "P/S STD. No.",
+                "type": "text"
+              },
+              {
+                "value": "MARK No.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Revisions table",
+      "slug": "revisions",
+      "bbox_norm": [
+        0.03,
+        0.82,
+        0.58,
+        0.92
+      ],
+      "confidence": "high",
+      "notes": "Two-row revision history with No., DATE, REVISIONS, and approver initials columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "26/06/06",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "HD",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

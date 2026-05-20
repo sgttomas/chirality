@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 100,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-09 Thermowell flanged thermowell connection detail for NPS 3/4 & Up, showing eccentric swage, socket weld elbolet, NPS 1-1/2 pipe, socket weld flange, and preferred direction of flow configurations.",
+      "slug": "t-09-thermowell-flanged-connection",
+      "bbox_norm": [0.03, 0.08, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Engineering drawing showing multiple thermowell connection configurations. Top diagram shows NPS 3/4 thru NPS 1-1/2 line size with concentric swage. Bottom left shows NPS 3 line size & up with eccentric swage. Bottom right shows NPS 2 line size configuration. All include 150 (6) dimension for preferred direction of flow."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-02",
+  "page": 8,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "METAL TEMPERATURE vs TEMPERATURE DIFFERENTIAL",
+      "slug": "metal-temperature-vs-temperature-differential",
+      "bbox_norm": [0.08, 0.72, 0.92, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "METAL TEMPERATURE", "is_header": true },
+              { "value": "TEMPERATURE DIFFERENTIAL (2)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Above 50°C (120°F) (1)", "type": "text" },
+              { "value": "Metal temperature plus 40°C (72°F)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Below 50°C (120°F) (1), but above -40°C (-40°F)", "type": "text" },
+              { "value": "50°C (120°F) (1) plus 40°C (72°F)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Below -40°C (-40°F)", "type": "text" },
+              { "value": "50°C (120°F) (1) minus metal temperature", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table showing metal temperature ranges and corresponding temperature differentials for flexibility analysis design conditions"
+    }
+  ],
+  "issues": []
+}

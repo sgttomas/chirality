@@ -1,0 +1,156 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-11",
+  "page": 9,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Chemical composition limits (continued)",
+      "slug": "chemical-composition-limits-continued",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.26
+      ],
+      "confidence": "high",
+      "notes": "Continuation of chemical composition table from prior page; includes note with PRE_N formula",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "*1. PRE_N = Cr% + 3.3(Mo% + 0.5W %) + 16 N%."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Carbon",
+                "type": "text"
+              },
+              {
+                "value": "0.030 max.",
+                "type": "text"
+              },
+              {
+                "value": "Manganese",
+                "type": "text"
+              },
+              {
+                "value": "1.0 max.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Silicon",
+                "type": "text"
+              },
+              {
+                "value": "0.8 max.",
+                "type": "text"
+              },
+              {
+                "value": "Sulfur",
+                "type": "text"
+              },
+              {
+                "value": "0.010 max.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Phosphorus",
+                "type": "text"
+              },
+              {
+                "value": "0.030 max.",
+                "type": "text"
+              },
+              {
+                "value": "Nitrogen",
+                "type": "text"
+              },
+              {
+                "value": "0.20/0.32",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Chromium",
+                "type": "text"
+              },
+              {
+                "value": "24.0/26.0",
+                "type": "text"
+              },
+              {
+                "value": "Molybdenum",
+                "type": "text"
+              },
+              {
+                "value": "2.5/3.5",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Copper",
+                "type": "text"
+              },
+              {
+                "value": "0.20/0.80",
+                "type": "text"
+              },
+              {
+                "value": "Tungsten",
+                "type": "text"
+              },
+              {
+                "value": "2.5 max.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "PRE_N",
+                "type": "text"
+              },
+              {
+                "value": "40 min./45 max.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

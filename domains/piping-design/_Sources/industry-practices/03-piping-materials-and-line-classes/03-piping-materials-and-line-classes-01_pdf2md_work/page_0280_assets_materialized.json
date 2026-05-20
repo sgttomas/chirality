@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0280.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0280_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2079
+      ],
+      "caption": "Table 5.8 Addendum to Referenced Piping Classes \u2014 Tubing Class PQB(T)",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0280_tbl01_table-5-8-tubing-class-pqbt.png",
+      "png_sha256": "4c3572da52616ea694ae9ddc263b45c6aa7eff202c3eef67bc8e4fe87808da89",
+      "slug": "table-5-8-tubing-class-pqbt",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 280,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0280.png",
+  "page_image_sha256": "fd89bd52e6f1cba13ffa6d460fc49bafefc47f4912a1d0d58e50e443bc4a22fe",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0280_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0041_fig01",
+      "bbox_norm": [
+        0.18,
+        0.05,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        332,
+        0,
+        2550,
+        3197
+      ],
+      "caption": "Fig. 200-13 Branch Connection Fittings Courtesy of Bonney Forge, Canvil, and Taylor Forge (1 of 3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0041_fig01_fig-200-13-branch-connection-fittings-1.png",
+      "png_sha256": "44f2f74772e2925653c4d8e742dba04aa67efb790bf1be8d9543f7e68b056a8c",
+      "slug": "fig-200-13-branch-connection-fittings-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0041.png",
+  "page_image_sha256": "249ac12ef15ab9e2cb1febfefedc577977e262245993660f819e10bb6309c65f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0041_assets.json"
+}

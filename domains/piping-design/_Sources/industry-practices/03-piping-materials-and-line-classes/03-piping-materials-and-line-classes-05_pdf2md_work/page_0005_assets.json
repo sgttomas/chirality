@@ -1,0 +1,166 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-05",
+  "page": 5,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Definitions table (continued) \u2014 Terms and Definitions",
+      "slug": "definitions-table-continued",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Continuation of definitions table from previous page; two-column table with Term and Definition headers",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Term",
+                "is_header": true
+              },
+              {
+                "value": "Definition",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Supplier",
+                "type": "text"
+              },
+              {
+                "value": "Any individual, company, or organization that supplies parts, equipment, or material for the work described in this specification.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Clean Service Liquids",
+                "type": "text"
+              },
+              {
+                "value": "Liquids that are not generally corrosive, but are piped in corrosion resistant alloys (CRA) to provide a clean environment, such as fine water mist, wet air systems, lube oil and seal oil systems.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Corrosive Liquid",
+                "type": "text"
+              },
+              {
+                "value": "Crude oil, produced water, seawater, methanol, ethanol, triethylene glycol (TEG), and any other liquids with a corrosive or erosive effect on piping components.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Design Factor",
+                "type": "text"
+              },
+              {
+                "value": "A value applied to the specified minimum yield strength to arrive at an allowable design stress.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Dry Gas",
+                "type": "text"
+              },
+              {
+                "value": "Air, nitrogen, miscible injectant, or natural gas with no free water at any operating or upset condition.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Low Temperature",
+                "type": "text"
+              },
+              {
+                "value": "Unless otherwise specified, low temperature is defined as -50\u00b0F (-46\u00b0C).",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Noncorrosive Liquid",
+                "type": "text"
+              },
+              {
+                "value": "Natural Gas Liquids (NGL), Liquid Petroleum Gas (LPG), and other liquids with no free water and no corrosive effect on piping components.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Supplier",
+                "type": "text"
+              },
+              {
+                "value": "The term \"Supplier\" as used in this specification shall include those who have contracted to provide the specified materials.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Utilities",
+                "type": "text"
+              },
+              {
+                "value": "Heating and cooling glycol, heat transfer fluids.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Wet Gas",
+                "type": "text"
+              },
+              {
+                "value": "Natural gas with free water under normal operating conditions; natural gas with CO2 and free water under operating or upset conditions. Wet gas is assumed to be highly corrosive.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

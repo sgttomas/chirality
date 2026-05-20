@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 57,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-17  Nonlubricated Plug Valve Courtesy of Xomox Corporation",
+      "slug": "fig-200-17-nonlubricated-plug-valve",
+      "bbox_norm": [0.08, 0.63, 0.92, 0.97],
+      "confidence": "high",
+      "notes": "Photograph of a nonlubricated plug valve. Caption appears directly above the photograph."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0086.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0086_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        1749
+      ],
+      "caption": "P-17 Pressure Connection \u2014 elevation view showing NPS 1 flanged valve, NPS 1 weld neck flange, and NPS 1 on-line size vesselet connected to NPS 4 & UP line size horizontal run pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0086_fig01_p-17-pressure-connection-elevation-view.png",
+      "png_sha256": "77d6623c43b9fc97b0cb808d62ab95077a84e18706d57f1c10a40ab84b4857d6",
+      "slug": "p-17-pressure-connection-elevation-view",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0086_fig02",
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.95,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1485,
+        2550,
+        3036
+      ],
+      "caption": "D-38 Drain \u2014 plan/elevation view showing NPS 1 on-line size vesselet, NPS 1 weld neck flange, and NPS 1 flanged valve connected to NPS 4 & UP line size vertical run pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0086_fig02_d-38-drain-plan-elevation-view-showing-n.png",
+      "png_sha256": "be93205906851a9bbb0595783b343bf9d049135deec857dfd8e320027fb83b83",
+      "slug": "d-38-drain-plan-elevation-view-showing-n",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 86,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0086.png",
+  "page_image_sha256": "68f589da4cc0f3bdb1dd62a7248d72d0787c681665818fcbef72ef1bb655c9d5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0086_assets.json"
+}

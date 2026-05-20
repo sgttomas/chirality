@@ -1,0 +1,173 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 2,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Refining Engineering Practices — Standards and Publications",
+      "slug": "refining-engineering-practices-standards-and-publications",
+      "bbox_norm": [0.05, 0.48, 0.95, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Refining Engineering Practices", "is_header": true },
+              { "value": "", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 1–1–3", "type": "text" },
+              { "value": "Deviations to the Refining Engineering Practices", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 3–5–4", "type": "text" },
+              { "value": "Foam Fire Protection Systems", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–1–1", "type": "text" },
+              { "value": "General Piping Design", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–2–1", "type": "text" },
+              { "value": "Selection of Piping Components and Materials", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–2–2", "type": "text" },
+              { "value": "Flanges, Gaskets and Bolting", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–2–4", "type": "text" },
+              { "value": "Supplemental Requirements for Pipe and Piping Components", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–2–5", "type": "text" },
+              { "value": "Phillips 66 Piping Database Format", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–1", "type": "text" },
+              { "value": "Valve Design and Selection Criteria", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5-2–3", "type": "text" },
+              { "value": "Valve Data Sheets", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–3", "type": "text" },
+              { "value": "Gate Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–4", "type": "text" },
+              { "value": "Cast Iron and Ductile Iron Gate Valves, Flanged Ends", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–5", "type": "text" },
+              { "value": "Globe Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–6", "type": "text" },
+              { "value": "Compact and Extended Body Steel Gate and Globe Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–7", "type": "text" },
+              { "value": "Bellows Seat Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–8", "type": "text" },
+              { "value": "Check Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–9", "type": "text" },
+              { "value": "Plug Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–10", "type": "text" },
+              { "value": "Ball Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–11", "type": "text" },
+              { "value": "Butterfly Valves for Hydrocarbon Services", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–12", "type": "text" },
+              { "value": "Butterfly Valves for Utility Service", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–21", "type": "text" },
+              { "value": "Supplemental Requirements for Valves", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–23", "type": "text" },
+              { "value": "Valve Packing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–3–24", "type": "text" },
+              { "value": "Valve Inspection and Testing", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "REP 5–4–4", "type": "text" },
+              { "value": "Flexible Metal Hoses", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing Refining Engineering Practices document numbers and titles. Header row spans both columns with section label."
+    }
+  ],
+  "issues": []
+}

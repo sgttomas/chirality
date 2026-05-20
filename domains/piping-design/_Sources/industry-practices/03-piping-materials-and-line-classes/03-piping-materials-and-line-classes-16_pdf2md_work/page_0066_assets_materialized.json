@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0066.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0066_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.22,
+        0.97,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        560,
+        2550,
+        3296
+      ],
+      "caption": "Fig. 1400-29 Flexible Graphite Packing Systems for Use in Natural Hydrocarbon Service (1 of 2)",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: {'after_row': 0, 'label': 'Garlock 70# (98/GL S-ring set)'}"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0066_tbl01_fig-1400-29-flexible-graphite-packing-sy.png",
+      "png_sha256": "cbced981a38a25ac4fbca270a7e4e35abd76ef09daad50ead220c57827b2d7ae",
+      "slug": "fig-1400-29-flexible-graphite-packing-sy",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 66,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0066.png",
+  "page_image_sha256": "703b4ff05fafb1de1f455fa3b4ed69d1706baca56f4558d8f14141dddcc581dd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0066_assets.json"
+}

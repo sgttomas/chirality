@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 58,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-35 Vent and D-35 Drain assembly detail for NPS 2 & UP, Welded Piping",
+      "slug": "v-35-vent-d-35-drain-nps-2-up-welded-piping",
+      "bbox_norm": [0.08, 0.12, 0.92, 0.82],
+      "confidence": "high",
+      "notes": "Engineering schematic showing V-35 vent (top) and D-35 drain (bottom) piping assemblies with annotated component callouts for NPS 3/4 threaded caps, nipples, socket weld valves, and sockolets on NPS 2 line size and up"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,146 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0116.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0116_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Bill of Materials \u2013 Item numbers, quantities, descriptions, and materials for pipe shoe components",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0116_tbl01_bill-of-materials-item-numbers-quantitie.png",
+      "png_sha256": "62732a398adf07dc6398171664459bd9ff13fd854cec6038172bde2243b2a96a",
+      "slug": "bill-of-materials-item-numbers-quantitie",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0116_fig01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.72,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1967,
+        2148
+      ],
+      "caption": "ELEVATION and SECTION 'A' views of pipe shoe (triple clamp on) with cope plates, insulation band slot, pipe clamps, and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0116_fig01_elevation-and-section-a-views-of-pipe-sh.png",
+      "png_sha256": "33b4517348d18fb74d2d3dfb461af9db9ffecff0585014bcc3dad21963c1e206",
+      "slug": "elevation-and-section-a-views-of-pipe-sh",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0116_fig02",
+      "bbox_norm": [
+        0.03,
+        0.58,
+        0.4,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1751,
+        1150,
+        2544
+      ],
+      "caption": "SECTION 'B' view of pipe shoe with dimensional height reference",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0116_fig02_section-b-view-of-pipe-shoe-with-dimensi.png",
+      "png_sha256": "85c60b63d323c1e71e0ef3d9d5b9d01caeea96f8e7bd7a7c9eee5ed32a67423c",
+      "slug": "section-b-view-of-pipe-shoe-with-dimensi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0116_tbl02",
+      "bbox_norm": [
+        0.42,
+        0.53,
+        0.97,
+        0.7
+      ],
+      "bbox_px": [
+        945,
+        1586,
+        2555,
+        2478
+      ],
+      "caption": "Thermal movement dimensions table for stress relieved, stainless and alloy lines",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0116_tbl02_thermal-movement-dimensions-table-for-st.png",
+      "png_sha256": "da02fd651957b89875afa652b8b586ac2910ad03b1964932d823dfc35e6bbfbc",
+      "slug": "thermal-movement-dimensions-table-for-st",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0116_tbl03",
+      "bbox_norm": [
+        0.42,
+        0.67,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        945,
+        2048,
+        2555,
+        2676
+      ],
+      "caption": "Insulation thickness vs. dimension 'A' and type table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0116_tbl03_insulation-thickness-vs-dimension-a-and.png",
+      "png_sha256": "399bc2e2d9bb47c63cd5e8a0c6c4a8f659ae2bb96bcfb737afd94e825a9ca4d3",
+      "slug": "insulation-thickness-vs-dimension-a-and",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 116,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0116.png",
+  "page_image_sha256": "31c1c1e55ca4babce3d931432daa1682085105df734eb27d70d31e0656926c46",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0116_assets.json"
+}

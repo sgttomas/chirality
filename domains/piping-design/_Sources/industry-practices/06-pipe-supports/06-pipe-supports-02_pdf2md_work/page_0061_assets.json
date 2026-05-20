@@ -1,0 +1,179 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 61,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-01",
+      "kind": "tbl",
+      "caption": "Schedule table listing item numbers, quantities, and descriptions (Pipe Clamp, Pipe Filler Plate, Clamp Bolt) with approval column",
+      "bbox_norm": [
+        0.01,
+        0.02,
+        0.3,
+        0.14
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "has_header_row": true,
+        "columns": [
+          "ITEM NO.",
+          "QTY",
+          "DESCRIPTION",
+          "APPROVAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "PIPE CLAMP"
+              },
+              {
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "PIPE FILLER PLATE"
+              },
+              {
+                "type": "text",
+                "value": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": ""
+              },
+              {
+                "type": "text",
+                "value": "CLAMP BOLT"
+              },
+              {
+                "type": "text",
+                "value": ""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "tbl-02",
+      "kind": "tbl",
+      "caption": "Dimensional table showing dimensions A, B, C for pipe sizes NPS 3/4 through 12 inches",
+      "bbox_norm": [
+        0.01,
+        0.14,
+        0.3,
+        0.26
+      ],
+      "needs_extraction": true
+    },
+    {
+      "id": "fig-01",
+      "kind": "fig",
+      "caption": "DETAIL 'A' \u2014 cross-section detail of pipe clamp showing 3/16\" dimension and clamp geometry around pipe",
+      "bbox_norm": [
+        0.6,
+        0.02,
+        0.88,
+        0.3
+      ]
+    },
+    {
+      "id": "fig-02",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, Low Pipe (Guided/Restrained), showing clamp support assembly with principal axis, guide dimension A, and SEE DETAIL 'A' callout",
+      "bbox_norm": [
+        0.01,
+        0.27,
+        0.32,
+        0.58
+      ]
+    },
+    {
+      "id": "fig-03",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, Low Pipe (Free/Sliding), showing clamp support assembly with principal axis, dimension A, pipe filler plate, and SEE DETAIL 'A' callout",
+      "bbox_norm": [
+        0.32,
+        0.27,
+        0.6,
+        0.58
+      ]
+    },
+    {
+      "id": "fig-04",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 Type 11 Clamp Support, High Pipe (Guided/Restrained), showing elevated pipe clamp assembly with principal axis and dimension annotations",
+      "bbox_norm": [
+        0.01,
+        0.58,
+        0.32,
+        0.88
+      ]
+    },
+    {
+      "id": "fig-05",
+      "kind": "fig",
+      "caption": "PLAN \u2014 Type 11 Clamp Support, High Pipe (Free/Sliding), plan view showing pipe clamp support from above with dimension B width annotation",
+      "bbox_norm": [
+        0.32,
+        0.58,
+        0.6,
+        0.88
+      ]
+    },
+    {
+      "id": "fig-06",
+      "kind": "fig",
+      "caption": "DETAIL 'B' \u2014 side elevation detail of pipe clamp attachment to structure with dimension B and weld symbol annotations",
+      "bbox_norm": [
+        0.6,
+        0.3,
+        0.88,
+        0.58
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "tbl-02",
+      "severity": "warn",
+      "message": "Dimensional table (NPS sizes 3/4\u201312, dimensions A/B/C) is too small to safely transcribe individual cell values; needs_extraction set to true."
+    }
+  ]
+}

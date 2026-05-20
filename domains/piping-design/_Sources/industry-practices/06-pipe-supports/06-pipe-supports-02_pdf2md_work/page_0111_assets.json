@@ -1,0 +1,291 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 111,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-111-1",
+      "kind": "tbl",
+      "caption": "Bill of Materials \u2014 Pipe Shoe (Clamp On) components with quantities, descriptions, and materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM NO.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "WT100 \u00d7 29.5 \u00d7 L \u2014 TYPE 'A'"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-350W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "WT105 \u00d7 37 \u00d7 L \u2014 TYPE 'B'"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-350W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "6mm THIK. PLATE"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "NB PIPE CLAMP (NOTE 2)"
+              },
+              {
+                "type": "text",
+                "value": "CARBON STEEL ANVL. FIG. 212"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "5mm THICK \"THERMOFAB\" LINER"
+              },
+              {
+                "type": "text",
+                "value": "(FIBREGLASS CLOTH) OR EQUIVALENT; USE ONLY IF LINE IS STAINLESS STEEL."
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "fig-111-1",
+      "kind": "fig",
+      "caption": "ELEVATION and SECTION A views of pipe shoe (clamp on) assembly for pipe sizes 8\" to 24\", showing cope WT member, pipe clamps, 1\" slot for insulation bands, dimensional callouts, and weld details",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.72,
+        0.62
+      ]
+    },
+    {
+      "id": "tbl-111-2",
+      "kind": "tbl",
+      "caption": "Insulation thickness schedule \u2014 Types A and B with C, D, E dimensions",
+      "bbox_norm": [
+        0.62,
+        0.55,
+        0.97,
+        0.68
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "INSULATION",
+          "C",
+          "D",
+          "E",
+          "TYPE"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "UP TO 3\" THICK"
+              },
+              {
+                "type": "text",
+                "value": "5 1/4\""
+              },
+              {
+                "type": "text",
+                "value": "4\""
+              },
+              {
+                "type": "text",
+                "value": "\u2014"
+              },
+              {
+                "type": "text",
+                "value": "A"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3 1/2\"\u20135\" THICK"
+              },
+              {
+                "type": "text",
+                "value": "5 3/4\""
+              },
+              {
+                "type": "text",
+                "value": "5 3/4\""
+              },
+              {
+                "type": "text",
+                "value": "6\""
+              },
+              {
+                "type": "text",
+                "value": "B"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "tbl-111-3",
+      "kind": "tbl",
+      "caption": "Thermal movement schedule \u2014 Mark numbers with corresponding dimensional thermal movement values",
+      "bbox_norm": [
+        0.62,
+        0.67,
+        0.97,
+        0.78
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "MARK NO.",
+          "DIM. THERMAL MOVEMENT",
+          "MARK NO.",
+          "DIM. THERMAL MOVEMENT"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "12\""
+              },
+              {
+                "type": "text",
+                "value": "0\u20133\""
+              },
+              {
+                "type": "text",
+                "value": "\u2014"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "18\""
+              },
+              {
+                "type": "text",
+                "value": "0\u20133\"\u20136\""
+              },
+              {
+                "type": "text",
+                "value": "4 1/2\""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "fig-111-2",
+      "kind": "fig",
+      "caption": "CODING EXAMPLE diagram showing label format breakdown: Mark No. / Mark No. \u2014 Type \u2014 Pipe Size, with example value 10\" pipe size",
+      "bbox_norm": [
+        0.62,
+        0.78,
+        0.97,
+        0.88
+      ]
+    }
+  ],
+  "issues": []
+}

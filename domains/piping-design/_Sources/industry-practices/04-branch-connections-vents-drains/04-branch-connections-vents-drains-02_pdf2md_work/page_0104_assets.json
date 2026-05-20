@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 104,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-13 Thermowell — Flanged Thermowell Connection detail drawings showing NPS 3/4 & UP configurations with field make-up, weldolet, raised face weld neck flange, swage/reducer, and instrumentation piping callouts",
+      "slug": "t-13-thermowell-flanged-connection",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Two detail drawings on the page showing T-13 thermowell flanged connection configurations. Upper drawing shows plan/elevation with horizontal run and two branch orientations. Lower drawing shows a smaller supplemental detail for NPS 6 line size and up. Annotations include NPS 1-1/2 raised face weld neck flange, NPS 1-1/2 weldolet, line size x NPS 6 swage/reducer, NPS 3/4 thru NPS 4 line size, field make-up, INSTR piping callouts, and dimension 300 (12) MIN."
+    }
+  ],
+  "issues": []
+}

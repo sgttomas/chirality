@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0122.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0122_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        2310
+      ],
+      "caption": "OR-06 Orifice Flange tap connection with double block valves for NPS 2 & UP. Shows socket weld x threaded valve (TYP), socket weld valve (TYP), 45\u00b0 ell (TYP), socket weld taps, 150(6) nipple (plain both ends), 100(4) nipple (plain both ends)(TYP), orifice flange set, plug, and instrument piping connections.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0122_fig01_or-06-orifice-flange-tap-connection-with.png",
+      "png_sha256": "ad900034c63760dfc476c06b5da9e15de45fa0e6467e6f23f18febd238d4596b",
+      "slug": "or-06-orifice-flange-tap-connection-with",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 122,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0122.png",
+  "page_image_sha256": "79e32298e8ef1b65f8acf7f29806829ef3d271fff46661dae960ba6f9ad3ba0c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0122_assets.json"
+}

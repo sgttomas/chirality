@@ -1,0 +1,156 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 78,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "G4A \u2014 Pipe Guide for Platform Penetrations, Elevation View and Plan View",
+      "slug": "g4a-pipe-guide-platform-penetrations",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing elevation view (top) and plan view (bottom center) of pipe guide for platform penetrations. Includes item table at top, dimension callouts, and embedded material table and coding example."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Material selection table for G4A pipe guide types",
+      "slug": "g4a-material-selection",
+      "bbox_norm": [
+        0.6,
+        0.47,
+        0.95,
+        0.65
+      ],
+      "confidence": "high",
+      "notes": "Two-column table listing pipe guide types 1\u20138 and their corresponding material specifications.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "TYPE",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "304L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": "317L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 4,
+                "type": "number"
+              },
+              {
+                "value": "316/316L",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 5,
+                "type": "number"
+              },
+              {
+                "value": "1.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 6,
+                "type": "number"
+              },
+              {
+                "value": "2.25 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 7,
+                "type": "number"
+              },
+              {
+                "value": "5 CHROME",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 8,
+                "type": "number"
+              },
+              {
+                "value": "9 CHROME",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

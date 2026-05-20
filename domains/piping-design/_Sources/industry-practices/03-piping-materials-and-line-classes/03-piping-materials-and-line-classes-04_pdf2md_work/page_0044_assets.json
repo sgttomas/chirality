@@ -1,0 +1,376 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 44,
+  "total_pages": 73,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Piping Class C5G — Service and Design Parameters",
+      "slug": "c5g-service-design-parameters",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.30],
+      "confidence": "high",
+      "notes": "Header parameter block for Piping Class C5G",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "CODE CSA Z662", "is_header": true },
+              { "value": "CLASS: C5G", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Service", "type": "text" },
+              { "value": "Sour Gas - (Pipelines CSA Z662 , Surface Piping)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Maximum Pressure Rating", "type": "text" },
+              { "value": "Lower of ANSI B16.5 Class 600 Material Group 1.1 or Z245.12 PH 100", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Temperature Range", "type": "text" },
+              { "value": "-45°C to 120°C", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Minimum Corrosion Allowance", "type": "text" },
+              { "value": "3.0 mm", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Radiography", "type": "text" },
+              { "value": "100%", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Post Weld Heat Treatment", "type": "text" },
+              { "value": "All Welds (Note 11)", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Piping Class C5G — Item Details",
+      "slug": "c5g-item-details",
+      "bbox_norm": [0.03, 0.30, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Main piping class item table with sizes, descriptions, material codes, and notes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "Sizes (NPS)", "is_header": true },
+              { "value": "General Description", "is_header": true },
+              { "value": "Material Code", "is_header": true },
+              { "value": "Notes", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pipe", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Seamless, PE", "type": "text" },
+              { "value": "Z245.1 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 24", "type": "text" },
+              { "value": "Seamless, BE", "type": "text" },
+              { "value": "Z245.1 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fittings", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 6000 THD/SW", "type": "text" },
+              { "value": "Z245.11 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 24", "type": "text" },
+              { "value": "BW, Weld. WT to match pipe", "type": "text" },
+              { "value": "Z245.11 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nipples", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Seamless SCH 160 Minimum", "type": "text" },
+              { "value": "Z245.1 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Swages", "type": "text" },
+              { "value": "1/2 - 24", "type": "text" },
+              { "value": "Bore to match pipe", "type": "text" },
+              { "value": "Z245.11 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Flanges", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 600 RF THD, bore to match pipe", "type": "text" },
+              { "value": "Z245.12 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 24, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 24", "type": "text" },
+              { "value": "Class 600 RFWN, bore to match pipe", "type": "text" },
+              { "value": "Z245.12 Gr. 241 Cat II (M45C) SS", "type": "text" },
+              { "value": "1, 7, 9, 33", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bolting", "type": "text" },
+              { "value": "All", "type": "text" },
+              { "value": "Studs", "type": "text" },
+              { "value": "A193 GR. B7M", "type": "text" },
+              { "value": "1", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Nuts", "type": "text" },
+              { "value": "A194 GR. 2HM", "type": "text" },
+              { "value": "1", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gaskets", "type": "text" },
+              { "value": "All", "type": "text" },
+              { "value": "Class 600 - 3 mm (1/8\") THK Flexitallic Style CG ASME B16.20 or Owner approved equivalent", "type": "text" },
+              { "value": "316 SS", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Valves", "type": "text" },
+              { "value": "GATE", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 800 THD/SW", "type": "text" },
+              { "value": "GA-846/847/848", "type": "text" },
+              { "value": "7, 32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 8, 2 – 24", "type": "text" },
+              { "value": "Class 600 RF Flanged", "type": "text" },
+              { "value": "GA-640/641", "type": "text" },
+              { "value": "32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "GLOBE", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 800 THD/SW", "type": "text" },
+              { "value": "GL-846/847/848", "type": "text" },
+              { "value": "7, 32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 4", "type": "text" },
+              { "value": "Class 600 RF Flanged", "type": "text" },
+              { "value": "GL 640", "type": "text" },
+              { "value": "32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "CHECK", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 800 THD/SW", "type": "text" },
+              { "value": "CH-846/847/848/849", "type": "text" },
+              { "value": "7, 32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 24", "type": "text" },
+              { "value": "Class 600 RF Flanged Swing type", "type": "text" },
+              { "value": "CH-640", "type": "text" },
+              { "value": "32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 8", "type": "text" },
+              { "value": "Class 600 RF Wafer type", "type": "text" },
+              { "value": "CH-64X", "type": "text" },
+              { "value": "32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "BALL", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 600 THD", "type": "text" },
+              { "value": "BA-648", "type": "text" },
+              { "value": "7, 32", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 – 8, 2 – 24", "type": "text" },
+              { "value": "Class 600 RF Flanged", "type": "text" },
+              { "value": "BA-641", "type": "text" },
+              { "value": "6, 32", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Piping Class C5G — Size and Weight Table",
+      "slug": "c5g-size-weight-table",
+      "bbox_norm": [0.03, 0.82, 0.97, 0.90],
+      "confidence": "high",
+      "notes": "Size and wall thickness schedule table for Piping Class C5G",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Size", "is_header": true },
+              { "value": "3/4", "is_header": true },
+              { "value": "1", "is_header": true },
+              { "value": "1 1/4", "is_header": true },
+              { "value": "1 1/2", "is_header": true },
+              { "value": "2", "is_header": true },
+              { "value": "3", "is_header": true },
+              { "value": "4", "is_header": true },
+              { "value": "6", "is_header": true },
+              { "value": "8", "is_header": true },
+              { "value": "10", "is_header": true },
+              { "value": "12", "is_header": true },
+              { "value": "14", "is_header": true },
+              { "value": "16", "is_header": true },
+              { "value": "18", "is_header": true },
+              { "value": "20", "is_header": true },
+              { "value": "22", "is_header": true },
+              { "value": "24", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "W.T.", "type": "text" },
+              { "value": "xht", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "140", "type": "text" },
+              { "value": "80/H", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Calculate", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

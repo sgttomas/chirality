@@ -1,0 +1,436 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-13",
+  "page": 11,
+  "total_pages": 23,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 – Line-Class Designator Codes (Continued)",
+      "slug": "line-class-designator-codes-continued",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.95],
+      "confidence": "high",
+      "notes": "Multi-column table with Valve Trim (4th character), Corrosion Allowance (5th character), and Supplementary Description (6th and/or 7th character) columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": "Table 1 – Line-Class Designator Codes",
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Valve Trim (4th character)", "is_header": true, "colspan": 2 },
+              { "value": "Corrosion Allowance (5th character)", "is_header": true, "colspan": 2 },
+              { "value": "Supplementary Description (6th and/or 7th character) (not coded if material is ASME B31.3)", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A", "type": "text" },
+              { "value": "13 chrome with Stellite seats (API No. 8)", "type": "text" },
+              { "value": "1", "type": "text" },
+              { "value": "0.065 in.", "type": "text" },
+              { "value": "A", "type": "text" },
+              { "value": "ASME/ANSI B31.1 Code", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B", "type": "text" },
+              { "value": "Alloy 20 (API No. 13)", "type": "text" },
+              { "value": "2", "type": "text" },
+              { "value": "0.125 in.", "type": "text" },
+              { "value": "B", "type": "text" },
+              { "value": "ASME B4FV Code Section 1", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "C", "type": "text" },
+              { "value": "Monel (API No. 9)", "type": "text" },
+              { "value": "3", "type": "text" },
+              { "value": "0.188 in.", "type": "text" },
+              { "value": "C", "type": "text" },
+              { "value": "ASME/ANSI B31.4", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "D", "type": "text" },
+              { "value": "316 stainless steel (API No. 10)", "type": "text" },
+              { "value": "4", "type": "text" },
+              { "value": "0.250 in.", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "Cryogenic Service", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "E", "type": "text" },
+              { "value": "13 chrome (API No. 1)", "type": "text" },
+              { "value": "6", "type": "text" },
+              { "value": "0.500 in.", "type": "text" },
+              { "value": "D", "type": "text" },
+              { "value": "All BW fittings", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "F", "type": "text" },
+              { "value": "Full Stellite / 13 Cr Stem (API No. 5)", "type": "text" },
+              { "value": "8", "type": "text" },
+              { "value": "0.010 in.", "type": "text" },
+              { "value": "F", "type": "text" },
+              { "value": "ASME/ANSI B31.8", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "G", "type": "text" },
+              { "value": "Manufacturer's standard", "type": "text" },
+              { "value": "9", "type": "text" },
+              { "value": "0.020 in.", "type": "text" },
+              { "value": "G", "type": "text" },
+              { "value": "Not used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "H", "type": "text" },
+              { "value": "Bronze", "type": "text" },
+              { "value": "A", "type": "text" },
+              { "value": "0.030 in.", "type": "text" },
+              { "value": "GN", "type": "text" },
+              { "value": "RT.2 & NACE", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "I", "type": "text" },
+              { "value": "Not used", "type": "text" },
+              { "value": "B", "type": "text" },
+              { "value": "0.050 in.", "type": "text" },
+              { "value": "H", "type": "text" },
+              { "value": "200 BHN max", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "J", "type": "text" },
+              { "value": "304 stainless steel (API No. 2)", "type": "text" },
+              { "value": "C", "type": "text" },
+              { "value": "0.100 in.", "type": "text" },
+              { "value": "HL", "type": "text" },
+              { "value": "200 BHN max & PWHT", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "K", "type": "text" },
+              { "value": "347 stainless steel with stellite", "type": "text" },
+              { "value": "I", "type": "text" },
+              { "value": "Not used", "type": "text" },
+              { "value": "I", "type": "text" },
+              { "value": "Not used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "L", "type": "text" },
+              { "value": "321 stainless steel", "type": "text" },
+              { "value": "O", "type": "text" },
+              { "value": "Not used", "type": "text" },
+              { "value": "J", "type": "text" },
+              { "value": "Jacketed Piping", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "M", "type": "text" },
+              { "value": "Inconel", "type": "text" },
+              { "value": "V", "type": "text" },
+              { "value": "Undefined", "type": "text" },
+              { "value": "K", "type": "text" },
+              { "value": "Coated and wrapped", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "N", "type": "text" },
+              { "value": "Incoloy", "type": "text" },
+              { "value": "V", "type": "text" },
+              { "value": "Varies", "type": "text" },
+              { "value": "L", "type": "text" },
+              { "value": "Stress relieved", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "O", "type": "text" },
+              { "value": "Not used", "type": "text" },
+              { "value": "Z", "type": "text" },
+              { "value": "0.0 in.", "type": "text" },
+              { "value": "LN", "type": "text" },
+              { "value": "PWHT & NACE w/ 200 BHN max", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "P", "type": "text" },
+              { "value": "316H stainless steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "M", "type": "text" },
+              { "value": "No copper/copper alloy", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Q", "type": "text" },
+              { "value": "347H stainless steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "N", "type": "text" },
+              { "value": "NACE requirements", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "R", "type": "text" },
+              { "value": "304L stainless steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "O", "type": "text" },
+              { "value": "Not used", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "S", "type": "text" },
+              { "value": "316L stainless steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "P", "type": "text" },
+              { "value": "Phillips HF process", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "T", "type": "text" },
+              { "value": "Hastelloy", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "R", "type": "text" },
+              { "value": "NFPA - wet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "U", "type": "text" },
+              { "value": "317 stainless steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "RA", "type": "text" },
+              { "value": "Special A Firewater: Wet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "V", "type": "text" },
+              { "value": "None", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "RB", "type": "text" },
+              { "value": "Special B Firewater - Wet  Alliance", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "W", "type": "text" },
+              { "value": "316 SS w/ stellite seat (API No. 12)", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "RC", "type": "text" },
+              { "value": "FHR Firewater - Wet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X", "type": "text" },
+              { "value": "Full Stellite / 316 Stem (API No. 16)", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "S", "type": "text" },
+              { "value": "NFPA - dry", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Y", "type": "text" },
+              { "value": "Full Stellite / Hastelloy C stem", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "SA", "type": "text" },
+              { "value": "Special A Firewater - Dry", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "SB", "type": "text" },
+              { "value": "Special B Firewater - Dry", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "SC", "type": "text" },
+              { "value": "Firewater Dry FHR Reserve", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "T", "type": "text" },
+              { "value": "RF - FF", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "TL", "type": "text" },
+              { "value": "Temperature Limited", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U1", "type": "text" },
+              { "value": "UOP HF-1 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U2", "type": "text" },
+              { "value": "UOP HF-2 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U3", "type": "text" },
+              { "value": "UOP HF-3 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U4", "type": "text" },
+              { "value": "UOP HF-4 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U5", "type": "text" },
+              { "value": "UOP HF-5 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U6", "type": "text" },
+              { "value": "UOP HF-6 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "U7", "type": "text" },
+              { "value": "UOP HF-7 Piping Class", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "X", "type": "text" },
+              { "value": "Special Service", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "-", "type": "text" },
+              { "value": "Wet/FW Firewater", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Z1", "type": "text" },
+              { "value": "Salt Water", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Z2", "type": "text" },
+              { "value": "Stabilization Heat Treatment", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

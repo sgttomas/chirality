@@ -1,0 +1,157 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 17,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1: Acceptable Materials for Metallic Piping Components",
+      "slug": "table-1-acceptable-materials-metallic-piping-components",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.96,
+        0.58
+      ],
+      "confidence": "high",
+      "notes": "Two-column table with header row; includes notes section below table body",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Selection of materials not listed shall be subject to the approval of Owner's Engineer.",
+          "(2) Material selection tables are included in this Practice."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Material (1)",
+                "is_header": true
+              },
+              {
+                "value": "Table (2)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Carbon Steel",
+                "type": "text"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Low Alloy",
+                "type": "text"
+              },
+              {
+                "value": 3,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Austenitic (Cr-Ni) Steel",
+                "type": "text"
+              },
+              {
+                "value": 4,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Alloy 20",
+                "type": "text"
+              },
+              {
+                "value": 5,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nickel Copper Alloys (i.e. Alloy 400 / Monel\u2122 400)",
+                "type": "text"
+              },
+              {
+                "value": 6,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nickel Chrome Alloys (i.e. Alloy 625 / Inconel\u2122 625, Alloy 600)",
+                "type": "text"
+              },
+              {
+                "value": 7,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nickel Chrome Iron Alloys (i.e., Alloy 800 / Incoloy\u2122 800)",
+                "type": "text"
+              },
+              {
+                "value": 8,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Duplex Stainless Steel (i.e., Alloy 2205)",
+                "type": "text"
+              },
+              {
+                "value": 9,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Carbon Steel Clad Piping",
+                "type": "text"
+              },
+              {
+                "value": 10,
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

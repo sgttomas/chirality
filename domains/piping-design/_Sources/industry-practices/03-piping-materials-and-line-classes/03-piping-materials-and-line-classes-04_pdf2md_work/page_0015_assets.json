@@ -1,0 +1,311 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 15,
+  "total_pages": 73,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Piping Class A9 component schedule",
+      "slug": "piping-class-a9-component-schedule",
+      "bbox_norm": [0.03, 0.18, 0.97, 0.78],
+      "confidence": "high",
+      "notes": "Main component schedule table for Piping Class A9 covering pipe, fittings, nipples, unions, flanges, bolting, gaskets, and valves",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "Sizes (NPS)", "is_header": true },
+              { "value": "General Description", "is_header": true },
+              { "value": "Material Code", "is_header": true },
+              { "value": "Notes", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Pipe", "type": "text" },
+              { "value": "1/2 - 2", "type": "text" },
+              { "value": "Seamless HS, Galvanized", "type": "text" },
+              { "value": "A106 GR. B", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2", "type": "text" },
+              { "value": "Seamless BE", "type": "text" },
+              { "value": "A106 GR. B", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3 - 10", "type": "text" },
+              { "value": "Seamless BE", "type": "text" },
+              { "value": "A106 GR. B", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fittings", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Class 3000 THD, Galvanized", "type": "text" },
+              { "value": "A105N", "type": "text" },
+              { "value": "30, 49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 10", "type": "text" },
+              { "value": "Butt Weld, SCH 40", "type": "text" },
+              { "value": "A234 WPB", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nipples", "type": "text" },
+              { "value": "1/2 - 1 1/2", "type": "text" },
+              { "value": "Seamless SCH 160 THD Ends, Galvanized", "type": "text" },
+              { "value": "A106 GR. B", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Unions", "type": "text" },
+              { "value": "1/2 - 2", "type": "text" },
+              { "value": "Bore to match pipe, THD, Galvanized", "type": "text" },
+              { "value": "A234 WPB", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Flanges", "type": "text" },
+              { "value": "1/2 - 2", "type": "text" },
+              { "value": "Class 150 RF THD, Galvanized", "type": "text" },
+              { "value": "A105", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 10", "type": "text" },
+              { "value": "Class 150 RFWN", "type": "text" },
+              { "value": "A105N", "type": "text" },
+              { "value": "49", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bolting", "type": "text" },
+              { "value": "All", "type": "text" },
+              { "value": "Studs", "type": "text" },
+              { "value": "A193 GR. B7", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "Nuts", "type": "text" },
+              { "value": "A194 GR. 2H", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Gaskets", "type": "text" },
+              { "value": "All", "type": "text" },
+              { "value": "Class 150 - 3 mm THK Ring Gasket \"Klingrite 1000\", \"Durlon 8600\" or \"Garlock 3100\" or Owner approved equivalent", "type": "text" },
+              { "value": "316 SS", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Valves", "type": "text" },
+              { "value": "GATE", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "1/2 - 2", "type": "text" },
+              { "value": "Class 800 THD", "type": "text" },
+              { "value": "GA-808", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 6, 8 - 10", "type": "text" },
+              { "value": "Class 150 Flanged", "type": "text" },
+              { "value": "GA-100/101", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "GLOBE", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4 - 2", "type": "text" },
+              { "value": "Class 800 THD", "type": "text" },
+              { "value": "GL-808", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3 - 10", "type": "text" },
+              { "value": "Class 150 Flanged", "type": "text" },
+              { "value": "GL-100", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "CHECK", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4 - 2", "type": "text" },
+              { "value": "Class 800 THD Horizontal Lift type", "type": "text" },
+              { "value": "CH-808/809", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 10", "type": "text" },
+              { "value": "Class 150 Flanged Swing type", "type": "text" },
+              { "value": "CH-100", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 10", "type": "text" },
+              { "value": "Class 150 Wafer type", "type": "text" },
+              { "value": "CH-10X", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "BALL", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4 - 1 1/2", "type": "text" },
+              { "value": "Class 600 THD", "type": "text" },
+              { "value": "BA-608", "type": "text" },
+              { "value": "5", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "2 - 6, 8 - 10", "type": "text" },
+              { "value": "Class 150 Flanged", "type": "text" },
+              { "value": "BA-100/101", "type": "text" },
+              { "value": "5", "type": "text" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Piping Class A9 pipe wall thickness schedule",
+      "slug": "piping-class-a9-wall-thickness-schedule",
+      "bbox_norm": [0.03, 0.78, 0.97, 0.88],
+      "confidence": "high",
+      "notes": "Pipe size vs wall thickness schedule table at bottom of page",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Size", "is_header": true },
+              { "value": "1/2", "is_header": true },
+              { "value": "3/4", "is_header": true },
+              { "value": "1", "is_header": true },
+              { "value": "1 1/2", "is_header": true },
+              { "value": "2", "is_header": true },
+              { "value": "3", "is_header": true },
+              { "value": "4", "is_header": true },
+              { "value": "6", "is_header": true },
+              { "value": "8", "is_header": true },
+              { "value": "10", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "W.T.", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "160", "type": "text" },
+              { "value": "40std", "type": "text" },
+              { "value": "40std", "type": "text" },
+              { "value": "40std", "type": "text" },
+              { "value": "40std", "type": "text" },
+              { "value": "40std", "type": "text" },
+              { "value": "20", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

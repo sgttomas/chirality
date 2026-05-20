@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-01",
+  "page": 33,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p33_img1",
+      "kind": "img",
+      "caption": "... bp logo",
+      "bbox_norm": [0.42, 0.03, 0.58, 0.10],
+      "notes": "BP logo emblem in page header"
+    },
+    {
+      "asset_id": "10-shop-and-field-fabrication-01_p33_fig1",
+      "kind": "fig",
+      "caption": "FIGURE 211-2 — Stress Relief Insulation Requirements",
+      "bbox_norm": [0.06, 0.10, 0.94, 0.88],
+      "notes": "Technical drawing showing stress relief insulation assembly with legend (insulation, heating elements) and T/C & External thermocouple callouts"
+    }
+  ],
+  "issues": []
+}

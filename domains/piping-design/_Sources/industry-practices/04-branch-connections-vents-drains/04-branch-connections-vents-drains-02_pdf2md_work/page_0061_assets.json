@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 61,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "page_0061_fig_001",
+      "kind": "fig",
+      "caption": "V-38 Vent assembly for NPS 4 & UP piping with NPS 1 Blind Flange, NPS 1 Flanged Valve, NPS 1 Weld Neck Flange, and NPS 1 On Line Size Vesselet on a vertical branch from NPS 4 & UP line size horizontal run.",
+      "bbox_norm": [0.12, 0.10, 0.92, 0.48]
+    },
+    {
+      "id": "page_0061_fig_002",
+      "kind": "fig",
+      "caption": "D-38 Drain assembly for NPS 4 & UP piping with NPS 1 Blind Flange, NPS 1 Flanged Valve, NPS 1 Weld Neck Flange, and NPS 1 On Line Size Vesselet on a downward branch from NPS 4 & UP line size horizontal run. NOTE 2 applies.",
+      "bbox_norm": [0.10, 0.50, 0.92, 0.85]
+    }
+  ],
+  "issues": []
+}

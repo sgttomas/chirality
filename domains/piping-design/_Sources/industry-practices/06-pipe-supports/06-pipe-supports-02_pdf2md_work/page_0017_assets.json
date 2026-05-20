@@ -1,0 +1,140 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 17,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0017-001",
+      "kind": "tbl",
+      "caption": "Bill of materials — Item No., QTY, Description, Material for cantilever support welded attachment components",
+      "bbox_norm": [0.03, 0.02, 0.72, 0.13],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["ITEM NO.", "QTY", "DESCRIPTION", "MATERIAL"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "C150 x 19"},
+              {"type": "text", "value": "CSA G40.21-300W"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2"},
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "51mm x 9.5mm THK\nFB x 2 1/8\" LG"},
+              {"type": "text", "value": "CSA G40.21-300W"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "fig-0017-001",
+      "kind": "fig",
+      "caption": "Elevation and Section X-X engineering drawing showing cantilever support welded attachment with FAB. LENGTH dimension callout, flat bar (item 2), existing steel (item 1), and cross-section detail",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.57]
+    },
+    {
+      "id": "tbl-0017-002",
+      "kind": "tbl",
+      "caption": "Mark number table — MARK NO., FAB. LENGTH, MAX. LOAD (lb.) for cantilever support sizes 1 through 5",
+      "bbox_norm": [0.50, 0.55, 0.97, 0.74],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["MARK NO.", "FAB. LENGTH", "MAX. LOAD (lb.)"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "1'-0\""},
+              {"type": "number", "value": 2520}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2"},
+              {"type": "text", "value": "2'-0\""},
+              {"type": "number", "value": 1215}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "3"},
+              {"type": "text", "value": "3'-0\""},
+              {"type": "number", "value": 800}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "4"},
+              {"type": "text", "value": "4'-0\""},
+              {"type": "number", "value": 500}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "5"},
+              {"type": "text", "value": "5'-0\""},
+              {"type": "number", "value": 400}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "tbl-0017-003",
+      "kind": "tbl",
+      "caption": "Revision block — DATE, REVISIONS, BY, CHK, ENG, APP columns with entries for Title Revised and General Update",
+      "bbox_norm": [0.03, 0.82, 0.60, 0.94],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["NO.", "DATE", "REVISIONS", "BY", "CHK", "ENG", "APP"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "4"},
+              {"type": "text", "value": ""},
+              {"type": "text", "value": "GENERAL UPDATE"},
+              {"type": "text", "value": ""},
+              {"type": "text", "value": ""},
+              {"type": "text", "value": ""},
+              {"type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "3"},
+              {"type": "text", "value": ""},
+              {"type": "text", "value": "TITLE REVISED"},
+              {"type": "text", "value": "NS"},
+              {"type": "text", "value": "JD"},
+              {"type": "text", "value": "AP"},
+              {"type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "2"},
+              {"type": "text", "value": "30/6/04"},
+              {"type": "text", "value": "GENERAL UPDATE"},
+              {"type": "text", "value": "NS"},
+              {"type": "text", "value": "JD"},
+              {"type": "text", "value": "AP"},
+              {"type": "text", "value": ""}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

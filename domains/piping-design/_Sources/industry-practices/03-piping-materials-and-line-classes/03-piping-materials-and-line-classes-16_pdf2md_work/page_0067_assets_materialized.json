@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0067.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0067_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.7
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2472
+      ],
+      "caption": "Fig. 1400-29 Flexible Graphite Packing Systems for Use in Normal Hydrocarbon Service (2 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0067_fig01_fig-1400-29-flexible-graphite-packing-sy.png",
+      "png_sha256": "2ee4e72b90c64bf8c2fafce406b22eb529cca7813626842db5b360c4bc37f413",
+      "slug": "fig-1400-29-flexible-graphite-packing-sy",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0067_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        1088
+      ],
+      "caption": "ARGO Composite \u2014 Characteristics and Packing Arrangement (Top to Bottom)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl01_argo-composite-characteristics-packing-a.png",
+      "png_sha256": "ac521477b46736e8391732c37d10226180f3d783f80563f62f1d0efdd037713d",
+      "slug": "argo-composite-characteristics-packing-a",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl01_argo-composite-characteristics-packing-a.json",
+      "table_data_json_sha256": "7bb4122bbc9e2103eda90d7d42c55ed6cde696005d2f54ba3681bf71f5a48767",
+      "table_data_sha256": "7bb4122bbc9e2103eda90d7d42c55ed6cde696005d2f54ba3681bf71f5a48767",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl01_argo-composite-characteristics-packing-a.xlsx",
+      "xlsx_sha256": "feaf4cbf9b18bacf6edbd1b7e3e750a0e0dee03f58838cd1a3e0ad10f51ce74c"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0067_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.35,
+        0.96,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        989,
+        2550,
+        1747
+      ],
+      "caption": "RM Graphaseal \u2014 Characteristics and Packing Arrangement (Top to Bottom)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl02_rm-graphaseal-characteristics-packing-ar.png",
+      "png_sha256": "1b9cdcb97b4e3fa3a6886298df43087d4927316413cf47206660ae9998fc737e",
+      "slug": "rm-graphaseal-characteristics-packing-ar",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl02_rm-graphaseal-characteristics-packing-ar.json",
+      "table_data_json_sha256": "71628c5a2582f362b434ebd7bd7db5f36220623521c7201f8c582c9effdc0edd",
+      "table_data_sha256": "71628c5a2582f362b434ebd7bd7db5f36220623521c7201f8c582c9effdc0edd",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl02_rm-graphaseal-characteristics-packing-ar.xlsx",
+      "xlsx_sha256": "aa2d639b341a2d3b8a9bbcae60dba030736b960ced9cbdf4a5a7a4c2198ee29a"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0067_tbl03",
+      "bbox_norm": [
+        0.04,
+        0.54,
+        0.96,
+        0.7
+      ],
+      "bbox_px": [
+        0,
+        1615,
+        2550,
+        2472
+      ],
+      "caption": "Garlock #9000 EVSP Simplified \u2014 Characteristics and Packing Arrangement (Top to Bottom)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl03_garlock-9000-evsp-simplified-characteris.png",
+      "png_sha256": "0ca71c995cea563566a20d4baa1535aea50e24e9eb87789794cf969298283b1d",
+      "slug": "garlock-9000-evsp-simplified-characteris",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl03_garlock-9000-evsp-simplified-characteris.json",
+      "table_data_json_sha256": "7717f743170307a9d94d81cb4df8d723010303b258dce8edf7ce2f6bcf65005e",
+      "table_data_sha256": "7717f743170307a9d94d81cb4df8d723010303b258dce8edf7ce2f6bcf65005e",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-16_p0067_tbl03_garlock-9000-evsp-simplified-characteris.xlsx",
+      "xlsx_sha256": "c33970711d7aba95399068c9480186ea3abfb48ae44c0062dea9d7f0373ca7b7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 67,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0067.png",
+  "page_image_sha256": "e0d80db1fc790fd2af7c129b4c6aa4b58b55dc6b8f0955712ab76da74b7de0ac",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0067_assets.json"
+}

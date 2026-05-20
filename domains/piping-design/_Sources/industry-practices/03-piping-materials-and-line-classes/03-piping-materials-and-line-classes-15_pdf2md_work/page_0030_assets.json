@@ -1,0 +1,69 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 30,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 200-9 Forged Steel Fitting Pressure Classes, per ASME/ANSI B16.11",
+      "slug": "fig-200-9-forged-steel-fitting-pressure-classes",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.35],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Company practice for both threaded and socket welding systems is to use Class 3000 fittings with Schedule 80 pipe and Class 6000 fittings with Schedule 160 pipe."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Class", "is_header": true, "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "2000(1)", "is_header": true },
+              { "value": "3000(1)", "is_header": true },
+              { "value": "6000", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Threaded", "type": "text" },
+              { "value": "2000(1)", "type": "text" },
+              { "value": "3000(1)", "type": "text" },
+              { "value": "6000", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Socket Welding", "type": "text" },
+              { "value": "3000", "type": "text" },
+              { "value": "6000", "type": "text" },
+              { "value": "9000", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Corresponding Pipe Schedules", "type": "text" },
+              { "value": "Sch 80", "type": "text" },
+              { "value": "Sch 160", "type": "text" },
+              { "value": "XXS", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with merged header cell spanning 3 columns for 'Class'; footnote (1) applies to 2000 and 3000 class columns"
+    }
+  ],
+  "issues": []
+}

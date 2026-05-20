@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 29,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-46 Vent assembly diagram for NPS 8 & UP showing NPS 3/4 Lap Joint Flange, NPS 3/4 Blind Flange, NPS 3/4 Fabricated Branch Connection, NPS 3/4 Lap Joint Stub End, NPS 8 Line Size & Up",
+      "slug": "v-46-vent-nps-8-up",
+      "bbox_norm": [0.06, 0.10, 0.94, 0.72],
+      "confidence": "high",
+      "notes": "Schematic diagram of V-46 vent configuration for NPS 8 and up polypropylene piping with labeled components"
+    }
+  ],
+  "issues": []
+}

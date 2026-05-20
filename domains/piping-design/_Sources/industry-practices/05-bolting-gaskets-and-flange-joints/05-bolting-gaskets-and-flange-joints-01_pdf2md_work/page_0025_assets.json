@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 25,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "05-bolting-gaskets-and-flange-joints-01_p0025_f1",
+      "kind": "fig",
+      "caption": "Appendix A: Bolt Patterns — numbered tightening sequences for 8-bolt, 10-bolt, 12-bolt, and 14-bolt flange configurations",
+      "bbox_norm": [0.03, 0.06, 0.97, 0.72]
+    }
+  ],
+  "issues": []
+}

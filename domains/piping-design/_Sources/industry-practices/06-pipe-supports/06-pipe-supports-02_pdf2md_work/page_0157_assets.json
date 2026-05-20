@@ -1,0 +1,393 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 157,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Vessel Piping Supports",
+      "slug": "bill-of-materials-vessel-piping-supports",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.18
+      ],
+      "confidence": "high",
+      "notes": "Five-row bill of materials with item, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM NO.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "C200 \u00d7 17",
+                "type": "text"
+              },
+              {
+                "value": "CSA - G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA - G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "12mm THIK PLATE 15\" \u00d7 3\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA - M - G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M22 \u00d7 100 LG BOLTS c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "AS/M-A325",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M16 \u00d7 70 LG BOLTS c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "AS/M-A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN view \u2014 Vessel piping support, pipe sizes 2\" to 12\"",
+      "slug": "plan-view-vessel-piping-support",
+      "bbox_norm": [
+        0.02,
+        0.16,
+        0.75,
+        0.56
+      ],
+      "confidence": "high",
+      "notes": "Plan view of vessel clip support assembly showing channel, angles, plate, bolts, and dimensional annotations"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION view \u2014 Vessel piping support, pipe sizes 2\" to 12\"",
+      "slug": "elevation-view-vessel-piping-support",
+      "bbox_norm": [
+        0.02,
+        0.54,
+        0.75,
+        0.84
+      ],
+      "confidence": "high",
+      "notes": "Elevation view of vessel clip support assembly with T.O.S. W.P. elevation reference and dimensional callouts"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Line Size vs. Dimensions A and B",
+      "slug": "line-size-dimensions-a-b",
+      "bbox_norm": [
+        0.62,
+        0.49,
+        0.97,
+        0.7
+      ],
+      "confidence": "high",
+      "notes": "Four data rows mapping line size to dimension A and dimension B values",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "LINE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'A'",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2\" TO 6\"",
+                "type": "text"
+              },
+              {
+                "value": "7 3/8\"",
+                "type": "fraction",
+                "raw": "7 3/8\""
+              },
+              {
+                "value": "14 3/4\"",
+                "type": "fraction",
+                "raw": "14 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8\"",
+                "type": "text"
+              },
+              {
+                "value": "8 3/8\"",
+                "type": "fraction",
+                "raw": "8 3/8\""
+              },
+              {
+                "value": "16 3/4\"",
+                "type": "fraction",
+                "raw": "16 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10\"",
+                "type": "text"
+              },
+              {
+                "value": "9 3/8\"",
+                "type": "fraction",
+                "raw": "9 3/8\""
+              },
+              {
+                "value": "18 3/4\"",
+                "type": "fraction",
+                "raw": "18 3/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "10 3/8\"",
+                "type": "fraction",
+                "raw": "10 3/8\""
+              },
+              {
+                "value": "20 3/4\"",
+                "type": "fraction",
+                "raw": "20 3/4\""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding and Maximum Vertical Load",
+      "slug": "coding-max-vertical-load",
+      "bbox_norm": [
+        0.62,
+        0.68,
+        0.97,
+        0.84
+      ],
+      "confidence": "medium",
+      "notes": "Coding example VS2-10\"-36\" with P/S STD NO, pipe, 1\" DIM, and max vertical load columns; cell values partially legible",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING (EXAMPLE)",
+                "col_span": 4,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "P/S STD. NO.",
+                "is_header": true
+              },
+              {
+                "value": "PIPE",
+                "is_header": true
+              },
+              {
+                "value": "1\" DIM",
+                "is_header": true
+              },
+              {
+                "value": "MAX VERT. LOAD (LB)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "3'-5\"",
+                "type": "fraction",
+                "raw": "3'-5\""
+              },
+              {
+                "value": 14360,
+                "type": "number",
+                "unit": "lb"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": 6400,
+                "type": "number",
+                "unit": "lb"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

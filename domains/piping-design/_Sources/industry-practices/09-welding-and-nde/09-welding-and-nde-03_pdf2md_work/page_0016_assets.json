@@ -1,0 +1,131 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-03",
+  "page": 16,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-001",
+      "kind": "tbl",
+      "caption": "Table 2 \u2013 Production Hardness Limits",
+      "bbox_norm": [
+        0.1,
+        0.14,
+        0.75,
+        0.38
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          "Material",
+          "HBW **"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-1"
+              },
+              {
+                "type": "text",
+                "value": "200 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-3"
+              },
+              {
+                "type": "text",
+                "value": "225 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-4"
+              },
+              {
+                "type": "text",
+                "value": "225 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-5A, -5B Group1, -5C"
+              },
+              {
+                "type": "text",
+                "value": "235 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-5B Group2 (Grade 91)"
+              },
+              {
+                "type": "text",
+                "value": "241 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-6 (except CA6NM-B)"
+              },
+              {
+                "type": "text",
+                "value": "235 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-6 Group 4 (CA6NM-B)"
+              },
+              {
+                "type": "text",
+                "value": "255 HBW"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P-7"
+              },
+              {
+                "type": "text",
+                "value": "235 HBW"
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "* compilation of NACE and ASME code values, with more stringent governing",
+          "** HBW represents Brinell hardness scale"
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

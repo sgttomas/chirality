@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 54,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "V-27 Vent schematic for NPS 3/4 THRU 1-1/2, showing welded piping arrangement with NPS 3/4 Blind Flange, NPS 3/4 Flange Valve, NPS 3/4 Raised Face Weld Neck Flange, NPS 3/4 Tee or Line Size Reducing Tee, NPS 3/4 Line Size, and NPS 3/4 Tee components",
+      "bbox_norm": [0.04, 0.12, 0.96, 0.52]
+    },
+    {
+      "kind": "fig",
+      "asset_index": 2,
+      "caption": "D-27 Drain schematic for NPS 3/4 THRU 1-1/2, showing welded piping arrangement with NPS 3/4 Tee or Line Size Reducing Tee, NPS 3/4 Raised Face Weld Neck Flange, NPS 3/4 Flange Valve, and NPS 3/4 Blind Flange components",
+      "bbox_norm": [0.04, 0.52, 0.96, 0.82]
+    }
+  ],
+  "issues": []
+}

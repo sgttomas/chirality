@@ -1,0 +1,144 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 11,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0011-01",
+      "kind": "tbl",
+      "caption": "Table 1: Torque Summary for Joint, Gasket, Equipment, Bolting, or Other",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "has_header": true,
+        "columns": [
+          {"index": 0, "label": "Joint, Gasket, Equipment, or Other"},
+          {"index": 1, "label": "Bolting"},
+          {"index": 2, "label": "Torque Table"}
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "is_header": true,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "UNLESS OTHERWISE DIRECTED BY RELIABILITY ENGINEERING OR AS INSTRUCTED IN THIS STANDARD, USE THE TORQUE VALUES PER THE FOLLOWING:", "colspan": 3}
+            ]
+          },
+          {
+            "row_index": 1,
+            "is_header": true,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Joint, Gasket, Equipment, or Other"},
+              {"col_index": 1, "type": "text", "value": "Bolting"},
+              {"col_index": 2, "type": "text", "value": "Torque Table"}
+            ]
+          },
+          {
+            "row_index": 2,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Ring joint"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "11"}
+            ]
+          },
+          {
+            "row_index": 3,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "CMG, spiral wound, or Kammpro gasket"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "12"}
+            ]
+          },
+          {
+            "row_index": 4,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Isolation kit"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "12"}
+            ]
+          },
+          {
+            "row_index": 5,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Fiberglass flange"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "2"}
+            ]
+          },
+          {
+            "row_index": 6,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Lap joint"},
+              {"col_index": 1, "type": "text", "value": "Any"},
+              {"col_index": 2, "type": "text", "value": "See Reliability Engineer"}
+            ]
+          },
+          {
+            "row_index": 7,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Cap screws for pipe flange connections with tapped holes in valve body materials (material grades CF3M, CF8M, CF8C, CN7M or others) or valve bodies with a yield strength less than 35 ksi"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "See Reliability Engineer"}
+            ]
+          },
+          {
+            "row_index": 8,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Cap screws for pipe flange connections with tapped holes in valve body materials (material grades LC8, WC8, WCC, LCC, WC6, WC9, C5, C12, CW12MW or others) or valve bodies with a yield strength greater than 35 ksi"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "12"}
+            ]
+          },
+          {
+            "row_index": 9,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Exchanger floating head"},
+              {"col_index": 1, "type": "text", "value": "B7 or B16"},
+              {"col_index": 2, "type": "text", "value": "16"}
+            ]
+          },
+          {
+            "row_index": 10,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Exchanger floating head"},
+              {"col_index": 1, "type": "text", "value": "B7M fine thread only"},
+              {"col_index": 2, "type": "text", "value": "14"}
+            ]
+          },
+          {
+            "row_index": 11,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Exchanger floating head"},
+              {"col_index": 1, "type": "text", "value": "B7M coarse thread only"},
+              {"col_index": 2, "type": "text", "value": "15"}
+            ]
+          },
+          {
+            "row_index": 12,
+            "is_header": false,
+            "cells": [
+              {"col_index": 0, "type": "text", "value": "Other"},
+              {"col_index": 1, "type": "text", "value": "Any"},
+              {"col_index": 2, "type": "text", "value": "See Reliability Engineer"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

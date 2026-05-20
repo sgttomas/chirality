@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 24,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "fig_0024_01",
+      "kind": "fig",
+      "caption": "V-09 Vent detail drawing for NPS 2 & Up showing NPS 3/4 weldolet or butt weld pipet per specification connected to NPS 3/4 raised face weld neck flange with NPS 3/4 blind flange, on NPS 2 line size & up",
+      "bbox_norm": [0.05, 0.10, 0.95, 0.57]
+    },
+    {
+      "asset_id": "fig_0024_02",
+      "kind": "fig",
+      "caption": "D-09 Drain detail drawing for NPS 2 & Up showing NPS 3/4 weldolet or butt weld pipet per specification connected to NPS 3/4 raised face weld neck flange with NPS 3/4 blind flange, on NPS 2 line size & up",
+      "bbox_norm": [0.05, 0.57, 0.95, 0.88]
+    }
+  ],
+  "issues": []
+}

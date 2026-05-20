@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0059.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0059_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1714
+      ],
+      "caption": "Fig. 200-19 Floating Ball Valve Configurations Courtesy of Marpac",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0059_fig01_fig-200-19-floating-ball-valve-configura.png",
+      "png_sha256": "482508c19c197e1c538be1a4581e76b7eee98c179343432f0c9b710806e10bfd",
+      "slug": "fig-200-19-floating-ball-valve-configura",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 59,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0059.png",
+  "page_image_sha256": "caab53da183ac8e919bf8d97a40b31e591326b5f31a61cbbc5dac89980c135dc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0059_assets.json"
+}

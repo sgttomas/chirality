@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-01_p0013_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2550,
+        2871
+      ],
+      "caption": "Production hardness limits by P-number material category",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-01_p0013_tbl01_production-hardness-limits-by-p-number-m.png",
+      "png_sha256": "9ac9bbcb2f396b8376aef0e5aa77cf62bad25314de2f48103a701dcc1a2b1dc0",
+      "slug": "production-hardness-limits-by-p-number-m",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-01",
+  "doc_stem": "09-welding-and-nde-01",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0013.png",
+  "page_image_sha256": "7ef8a9a7751b5302fce418ade29af28da4071576d45febe44fb24e89b6e93967",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0013_assets.json"
+}

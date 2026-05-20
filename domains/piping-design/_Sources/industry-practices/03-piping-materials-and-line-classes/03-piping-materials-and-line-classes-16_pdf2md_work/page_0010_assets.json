@@ -1,0 +1,101 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 10,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1400-5 Four Main Types of Fluid Service",
+      "slug": "four-main-types-fluid-service",
+      "bbox_norm": [0.05, 0.20, 0.95, 0.85],
+      "confidence": "high",
+      "notes": "Table with four fluid service categories (Non-hazardous Fluids, Hazardous Fluids, Toxic Fluids, VOCs), each with Examples and Controls sub-rows.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Non-hazardous Fluids", "is_header": true, "type": "text"},
+              {"value": "Generally, these do not present an environmental or health hazard. They are objectionable as an economic loss.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Examples", "type": "text"},
+              {"value": "Compressed air, cooling water, and steam.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Controls", "type": "text"},
+              {"value": "None required.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Hazardous Fluids", "is_header": true, "type": "text"},
+              {"value": "These present a health hazard, and plant operators address any leaks promptly with appropriate maintenance measures.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Examples", "type": "text"},
+              {"value": "Carbon monoxide, chlorine, hydrogen sulfide, hydrofluoric acid, and ammonia.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Controls", "type": "text"},
+              {"value": "Hazardous fluid services have always been treated as services with a zero leak requirement. Continue using the previously engineered solution, either low emission valve packing with inspections or bellows sealed valves. Check packing compatibility with service type. Do not attempt to use bellows sealed valves without an engineering feasibility study.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Toxic Fluids", "is_header": true, "type": "text"},
+              {"value": "A number of organic compounds have been identified as toxic; some may have no noticeable odor. Small leaks are not easily recognized and can go undetected by the plant operator unless a sensory device is used.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Examples", "type": "text"},
+              {"value": "Benzene and other aromatics.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Controls", "type": "text"},
+              {"value": "Use bellows sealed valves for NPS 1/2 to 1-1/2 for benzene service. Use Orbit valves for NPS 2 and larger with a packing injector (subject to temperature limits). For less carcinogenic compounds, low emission graphite valve packings with monitoring are an acceptable alternative.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "VOCs", "is_header": true, "type": "text"},
+              {"value": "Volatile organic compound (VOC) leaks can go unnoticed unless they are specifically tested for. They are considered as objectionable materials that contribute to smog formation. Some of these compounds may also fall into the toxic fluid category.", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Examples", "type": "text"},
+              {"value": "Volatile hydrocarbons (naphtha, motor fuels, etc.).", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Controls", "type": "text"},
+              {"value": "Use flexible graphite packing and inspection and maintenance programs to control the emissions.", "type": "text"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 125,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p125_fig1",
+      "kind": "fig",
+      "caption": "Elevation and View 'A' engineering drawings of pipe shoe (high temperature stainless steel and alloy piping), showing dimensions including 1\" slot (typ.) for insulation bands, 6\" width, 'L' length, 1/4\" plate details, NOTE 2 and NOTE 3 callouts",
+      "bbox_norm": [
+        0.28,
+        0.05,
+        0.97,
+        0.45
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p125_tbl1",
+      "kind": "tbl",
+      "caption": "Bill of Materials \u2014 Item numbers, quantities, descriptions, and materials",
+      "bbox_norm": [
+        0.02,
+        0.01,
+        0.98,
+        0.09
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "6mm THK. PLATE"
+              },
+              {
+                "type": "text",
+                "value": "SEE MATERIAL CODE"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "6mm THK. PLATE"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21 \u2014 300W"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p125_tbl2",
+      "kind": "tbl",
+      "caption": "Materials table mapping MAT. CODE to PIPE MATERIAL and ITEM NO.1 PLATE MATERIAL",
+      "bbox_norm": [
+        0.0,
+        0.46,
+        0.55,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "MAT. CODE",
+          "PIPE MATERIAL",
+          "ITEM NO.1 PLATE MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "304L"
+              },
+              {
+                "type": "text",
+                "value": "A240, Gr.304L"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "317L"
+              },
+              {
+                "type": "text",
+                "value": "A240, Gr.317L"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "316/316L"
+              },
+              {
+                "type": "text",
+                "value": "A240, Gr.316/316L"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "1.25 CHROME"
+              },
+              {
+                "type": "text",
+                "value": "A387, Gr.11"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "2.25 CHROME"
+              },
+              {
+                "type": "text",
+                "value": "A387, Gr.22"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "5 CHROME"
+              },
+              {
+                "type": "text",
+                "value": "A387, Gr.5"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "7"
+              },
+              {
+                "type": "text",
+                "value": "9 CHROME"
+              },
+              {
+                "type": "text",
+                "value": "A387, Gr.9"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

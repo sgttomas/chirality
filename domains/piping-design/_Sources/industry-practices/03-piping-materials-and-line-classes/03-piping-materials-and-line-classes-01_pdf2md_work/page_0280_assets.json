@@ -1,0 +1,75 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 280,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.8 Addendum to Referenced Piping Classes — Tubing Class PQB(T)",
+      "slug": "table-5-8-tubing-class-pqbt",
+      "bbox_norm": [0.05, 0.05, 0.97, 0.58],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1.) Pressure-temperature limits based on Class 150 flange rating at 150 C (300 F) for Aluminum Class PQB.",
+          "(2.) Tubing installation is allowed only downstream of the block valve of the referenced Piping Class.",
+          "(3.) Tubing hardness RB80 or less.",
+          "(4.) Tubing shall be bent to minimize use of fittings.",
+          "(5.) Do not interchange parts from different manufacturers."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TUBE FITTINGS", "type": "text" },
+              { "value": "3/8\" to 3/4\"", "type": "text" },
+              { "value": "27 MPa @ 150 C (4000 psi @ 300 F)", "type": "text" },
+              { "value": "Threaded", "type": "text" },
+              { "value": "ASTM A182 GR.F316 SS, Compression Type, Swagelok or equal", "type": "text" },
+              { "value": "(5)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TUBING", "type": "text" },
+              { "value": "3/8\" & 1/2\" O.D.", "type": "text" },
+              { "value": ".035\" Wall", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "ASTM A269 GR.TP316 SS, Fully Annealed, Scratch Free, suitable for bending and flaring", "type": "text" },
+              { "value": "(2) (3) (4)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4\" O.D.", "type": "text" },
+              { "value": ".049\" Wall", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "ASTM A269 GR.TP316 SS, Fully Annealed, Scratch Free, suitable for bending and flaring", "type": "text" },
+              { "value": "(2) (3) (4)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table 5.8 with header row, three data rows for tube fittings and tubing specifications. Footnotes listed below table."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 62,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0062-001",
+      "kind": "tbl",
+      "caption": "Pipe support dimensional table \u2014 TYPE NO. / DESCRIPTION / MATERIAL columns with size rows",
+      "bbox_norm": [
+        0.01,
+        0.02,
+        0.28,
+        0.15
+      ],
+      "needs_extraction": true
+    },
+    {
+      "id": "tbl-0062-002",
+      "kind": "tbl",
+      "caption": "Dummy support dimensions table \u2014 SIZE vs. dimensional parameters (A, B, C, D, E, F, G columns) with multiple pipe size rows",
+      "bbox_norm": [
+        0.01,
+        0.14,
+        0.5,
+        0.28
+      ],
+      "needs_extraction": true
+    },
+    {
+      "id": "fig-0062-001",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 LOW STEEL SUPPORT (STANDARD)",
+      "bbox_norm": [
+        0.01,
+        0.3,
+        0.34,
+        0.58
+      ]
+    },
+    {
+      "id": "fig-0062-002",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 HIGH STEEL SUPPORT (STANDARD)",
+      "bbox_norm": [
+        0.34,
+        0.3,
+        0.65,
+        0.58
+      ]
+    },
+    {
+      "id": "fig-0062-003",
+      "kind": "fig",
+      "caption": "ELEVATION \u2014 TYPE \"C\" DUMMY SUPPORT \u2014 LOW STEEL SUPPORT (ALTERNATE)",
+      "bbox_norm": [
+        0.01,
+        0.58,
+        0.34,
+        0.84
+      ]
+    },
+    {
+      "id": "fig-0062-004",
+      "kind": "fig",
+      "caption": "PLAN \u2014 TYPE \"C\" DUMMY SUPPORT",
+      "bbox_norm": [
+        0.34,
+        0.58,
+        0.65,
+        0.84
+      ]
+    },
+    {
+      "id": "fig-0062-005",
+      "kind": "fig",
+      "caption": "DETAIL \"A\" \u2014 Formed plate / saddle detail showing pipe engagement, weld details, and dimensional callouts",
+      "bbox_norm": [
+        0.62,
+        0.02,
+        0.88,
+        0.38
+      ]
+    },
+    {
+      "id": "fig-0062-006",
+      "kind": "fig",
+      "caption": "DETAIL \"B\" \u2014 Weld neck flange and pipe wall connection detail showing weld geometry and dimensional callouts",
+      "bbox_norm": [
+        0.62,
+        0.38,
+        0.88,
+        0.68
+      ]
+    },
+    {
+      "id": "tbl-0062-003",
+      "kind": "tbl",
+      "caption": "Title block table \u2014 Drawing number, revision, date, drawn/checked/approved fields and sheet information",
+      "bbox_norm": [
+        0.65,
+        0.84,
+        1.0,
+        1.0
+      ],
+      "needs_extraction": true
+    }
+  ],
+  "issues": [
+    {
+      "asset_id": "tbl-0062-001",
+      "issue": "Table text is too small to safely transcribe individual cell values; needs_extraction set to true."
+    },
+    {
+      "asset_id": "tbl-0062-002",
+      "issue": "Dimensional table with many small numeric cells; individual values not safely legible at image resolution; needs_extraction set to true."
+    },
+    {
+      "asset_id": "tbl-0062-003",
+      "issue": "Title block fields partially legible; needs_extraction set to true for accurate data capture."
+    }
+  ]
+}

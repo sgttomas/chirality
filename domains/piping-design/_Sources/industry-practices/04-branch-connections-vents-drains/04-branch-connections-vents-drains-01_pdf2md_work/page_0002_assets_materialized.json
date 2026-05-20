@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-01_pdf2md_work/page_0002.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-01_p0002_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.22,
+        0.96,
+        0.4
+      ],
+      "bbox_px": [
+        0,
+        561,
+        2550,
+        1485
+      ],
+      "caption": "Document History",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl01_document-history.png",
+      "png_sha256": "1ad5c53b845501aef3ed44ef50f2b3919b2c5b03e6099253982156aae1c271bb",
+      "slug": "document-history",
+      "status": "materialized",
+      "table_data_json_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl01_document-history.json",
+      "table_data_json_sha256": "298f4e5ee5b57793614a695c462b68c2e3d60788c3867cda17a5bed1b87da831",
+      "table_data_sha256": "298f4e5ee5b57793614a695c462b68c2e3d60788c3867cda17a5bed1b87da831",
+      "xlsx_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl01_document-history.xlsx",
+      "xlsx_sha256": "dd0dcbebc4e0b5bbcecb2155a0278851c05a05bdd15b69d537c6b02e5d191054"
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-01_p0002_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.76
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        2673
+      ],
+      "caption": "Document Review/Approvals",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl02_document-review-approvals.png",
+      "png_sha256": "5a3f7747b26547d7dac9cdb57a7934b67e799068602d2d12ab757d6d6aa75294",
+      "slug": "document-review-approvals",
+      "status": "materialized",
+      "table_data_json_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl02_document-review-approvals.json",
+      "table_data_json_sha256": "e3a2b3f3520d867c853a50abfaa1ca901aa93591381d067fcbd8760f949ace55",
+      "table_data_sha256": "e3a2b3f3520d867c853a50abfaa1ca901aa93591381d067fcbd8760f949ace55",
+      "xlsx_path": "tables/04-branch-connections-vents-drains-01_p0002_tbl02_document-review-approvals.xlsx",
+      "xlsx_sha256": "20b51b483c044052ebadc101d5056bb3367e207ba8a2ee260a4b8ed125c8d1c1"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-01",
+  "doc_stem": "04-branch-connections-vents-drains-01",
+  "page": 2,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-01_pdf2md_work/page_0002.png",
+  "page_image_sha256": "35f980e37d99340af58a04853dbf101de5c257c7304edc608a0b692fa2b448ae",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-01_pdf2md_work/page_0002_assets.json"
+}

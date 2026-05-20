@@ -1,0 +1,87 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0023.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        74,
+        246,
+        2406,
+        1509
+      ],
+      "caption": "Pipe stop (see also appendix 2 and 3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig01_pipe-stop.png",
+      "png_sha256": "8fbee2eae7f33bf5ad0672d3fcfd14bcaebb35ac0d25a6a554183d6d95a780d3",
+      "slug": "pipe-stop",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig02",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.92,
+        0.64
+      ],
+      "bbox_px": [
+        74,
+        1158,
+        2406,
+        2421
+      ],
+      "caption": "Inserts \u2014 Channel type and Threaded type",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig02_inserts-channel-threaded.png",
+      "png_sha256": "39f627f4c7f9e248c73ec7c1f6ff217997b67038ded34cf7ca1b9c4b65f9fa64",
+      "slug": "inserts-channel-threaded",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig03",
+      "bbox_norm": [
+        0.04,
+        0.63,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2035,
+        2480,
+        3439
+      ],
+      "caption": "Pivot and Rotating type",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig03_pivot-rotating-type.png",
+      "png_sha256": "cf734535cb4b2a71d44bd3c8f4013f0f4783ae88947469b68b84bf9be4afe10d",
+      "slug": "pivot-rotating-type",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0023.png",
+  "page_image_sha256": "c512a07e2768764d80f3955805372a0d5c241b80c4b405d0c1ccf92154357129",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0023_assets.json"
+}

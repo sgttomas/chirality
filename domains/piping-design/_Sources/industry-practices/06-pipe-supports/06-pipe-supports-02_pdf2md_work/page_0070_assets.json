@@ -1,0 +1,200 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 70,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0070-01",
+      "kind": "tbl",
+      "caption": "Bill of materials \u2014 item numbers, quantities, descriptions, and material specifications for pick-up type support components",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col-1",
+            "label": "ITEM No."
+          },
+          {
+            "id": "col-2",
+            "label": "QTY."
+          },
+          {
+            "id": "col-3",
+            "label": "DESCRIPTION"
+          },
+          {
+            "id": "col-4",
+            "label": "MATERIAL"
+          }
+        ],
+        "rows": [
+          {
+            "row_type": "data",
+            "cells": [
+              {
+                "col": "col-1",
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "col": "col-2",
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "col": "col-3",
+                "value": "L76 x 76 x 7.9 \u2013 TYPE 1",
+                "type": "text"
+              },
+              {
+                "col": "col-4",
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row_type": "data",
+            "cells": [
+              {
+                "col": "col-1",
+                "value": "",
+                "type": "text"
+              },
+              {
+                "col": "col-2",
+                "value": "",
+                "type": "text"
+              },
+              {
+                "col": "col-3",
+                "value": "L102 x 102 x 9.5 \u2013 TYPE 2",
+                "type": "text"
+              },
+              {
+                "col": "col-4",
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row_type": "data",
+            "cells": [
+              {
+                "col": "col-1",
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "col": "col-2",
+                "value": "1 OR 2",
+                "type": "text"
+              },
+              {
+                "col": "col-3",
+                "value": "10mm THK. PLATE 2\" x 3\"",
+                "type": "text"
+              },
+              {
+                "col": "col-4",
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "fig-0070-01",
+      "kind": "fig",
+      "caption": "Elevation Detail 'A' and View 'A' \u2014 welded pipe shoe support with dimensional annotations showing 3\" min, 1/4\" plate, 30\u00b0 max, and supporting pipe P1 dia",
+      "bbox_norm": [
+        0.02,
+        0.12,
+        0.52,
+        0.65
+      ]
+    },
+    {
+      "id": "fig-0070-02",
+      "kind": "fig",
+      "caption": "Elevation Detail 'B' and View 'B' \u2014 welded pipe shoe support with dimensional annotations showing 3\" min, 3/8\", 30\u00b0 max, and supporting pipe P1 dia",
+      "bbox_norm": [
+        0.48,
+        0.12,
+        0.98,
+        0.65
+      ]
+    },
+    {
+      "id": "tbl-0070-02",
+      "kind": "tbl",
+      "caption": "Coding example box showing FSA \u2013 A \u2013 1 \u2013 30 \u2013 B format with legend",
+      "bbox_norm": [
+        0.55,
+        0.66,
+        0.85,
+        0.8
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col-1",
+            "label": "CODING"
+          },
+          {
+            "id": "col-2",
+            "label": "EXAMPLE"
+          }
+        ],
+        "rows": [
+          {
+            "row_type": "data",
+            "cells": [
+              {
+                "col": "col-1",
+                "value": "CODE FORMAT",
+                "type": "text"
+              },
+              {
+                "col": "col-2",
+                "value": "FSA \u2013 A \u2013 1 \u2013 30 \u2013 B",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row_type": "data",
+            "cells": [
+              {
+                "col": "col-1",
+                "value": "LEGEND",
+                "type": "text"
+              },
+              {
+                "col": "col-2",
+                "value": "F/S = STD, D = DET, TYPE 2, 1\" \u2013 DIA P1",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

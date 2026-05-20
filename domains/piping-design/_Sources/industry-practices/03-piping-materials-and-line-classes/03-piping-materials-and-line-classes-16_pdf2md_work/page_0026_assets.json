@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 26,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-14 Packing Pressure Required to Achieve a Seal Copyright © 1988. Electric Power Research Institute. EPRI NP-5697. Valve Stem Packing Improvements. Reprinted with Permission.",
+      "slug": "fig-1400-14-packing-pressure-seal",
+      "bbox_norm": [0.05, 0.35, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Line chart with three curves: Asbestos, Square Graphite, and Wedge Graphite. X-axis is System Pressure (psi), Y-axis is Gland Packing Pressure (psi). Caption and note text appear below the chart."
+    }
+  ],
+  "issues": []
+}

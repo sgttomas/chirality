@@ -1,0 +1,389 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-01",
+  "page": 16,
+  "total_pages": 20,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "img-0016-01",
+      "kind": "img",
+      "caption": "Suncor Energy wordmark",
+      "bbox_norm": [0.02, 0.02, 0.22, 0.10]
+    },
+    {
+      "id": "tbl-0016-01",
+      "kind": "tbl",
+      "caption": "Test Blind Thickness Table — Plate Thickness vs Nominal Pipe Size (inches), pressures in psig, page 2 of 2",
+      "bbox_norm": [0.02, 0.11, 0.98, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          ["Plate Thickness", "1\"", "1-1/2\"", "2\"", "3\"", "4\"", "6\"", "8\"", "10\"", "12\"", "14\"", "16'7", "18\"", "20\"", "24\"", "30\""]
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {"col_index": 0, "value": "1/4\"", "type": "text"},
+              {"col_index": 1, "value": "4325", "type": "number"},
+              {"col_index": 2, "value": "2104", "type": "number"},
+              {"col_index": 3, "value": "1344", "type": "number"},
+              {"col_index": 4, "value": "628", "type": "number"},
+              {"col_index": 5, "value": "382", "type": "number"},
+              {"col_index": 6, "value": "177", "type": "number"},
+              {"col_index": 7, "value": "105", "type": "number"},
+              {"col_index": 8, "value": "68", "type": "number"},
+              {"col_index": 9, "value": "48", "type": "number"},
+              {"col_index": 10, "value": "40", "type": "number"},
+              {"col_index": 11, "value": "31", "type": "number"},
+              {"col_index": 12, "value": "24", "type": "number"},
+              {"col_index": 13, "value": "20", "type": "number"},
+              {"col_index": 14, "value": "", "type": "text"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {"col_index": 0, "value": "5/16\"", "type": "text"},
+              {"col_index": 1, "value": "6761", "type": "number"},
+              {"col_index": 2, "value": "3289", "type": "number"},
+              {"col_index": 3, "value": "2101", "type": "number"},
+              {"col_index": 4, "value": "981", "type": "number"},
+              {"col_index": 5, "value": "599", "type": "number"},
+              {"col_index": 6, "value": "277", "type": "number"},
+              {"col_index": 7, "value": "164", "type": "number"},
+              {"col_index": 8, "value": "106", "type": "number"},
+              {"col_index": 9, "value": "75", "type": "number"},
+              {"col_index": 10, "value": "63", "type": "number"},
+              {"col_index": 11, "value": "48", "type": "number"},
+              {"col_index": 12, "value": "38", "type": "number"},
+              {"col_index": 13, "value": "31", "type": "number"},
+              {"col_index": 14, "value": "21", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {"col_index": 0, "value": "3/8\"", "type": "text"},
+              {"col_index": 1, "value": "9730", "type": "number"},
+              {"col_index": 2, "value": "4733", "type": "number"},
+              {"col_index": 3, "value": "3023", "type": "number"},
+              {"col_index": 4, "value": "1412", "type": "number"},
+              {"col_index": 5, "value": "862", "type": "number"},
+              {"col_index": 6, "value": "398", "type": "number"},
+              {"col_index": 7, "value": "236", "type": "number"},
+              {"col_index": 8, "value": "152", "type": "number"},
+              {"col_index": 9, "value": "108", "type": "number"},
+              {"col_index": 10, "value": "69", "type": "number"},
+              {"col_index": 11, "value": "69", "type": "number"},
+              {"col_index": 12, "value": "54", "type": "number"},
+              {"col_index": 13, "value": "44", "type": "number"},
+              {"col_index": 14, "value": "31", "type": "number"},
+              {"col_index": 15, "value": "20", "type": "number"}
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {"col_index": 0, "value": "7/16\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "6443", "type": "number"},
+              {"col_index": 3, "value": "4115", "type": "number"},
+              {"col_index": 4, "value": "1922", "type": "number"},
+              {"col_index": 5, "value": "1173", "type": "number"},
+              {"col_index": 6, "value": "542", "type": "number"},
+              {"col_index": 7, "value": "322", "type": "number"},
+              {"col_index": 8, "value": "207", "type": "number"},
+              {"col_index": 9, "value": "148", "type": "number"},
+              {"col_index": 10, "value": "122", "type": "number"},
+              {"col_index": 11, "value": "94", "type": "number"},
+              {"col_index": 12, "value": "74", "type": "number"},
+              {"col_index": 13, "value": "60", "type": "number"},
+              {"col_index": 14, "value": "42", "type": "number"},
+              {"col_index": 15, "value": "27", "type": "number"}
+            ]
+          },
+          {
+            "row_index": 4,
+            "cells": [
+              {"col_index": 0, "value": "1/2\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "8415", "type": "number"},
+              {"col_index": 3, "value": "5375", "type": "number"},
+              {"col_index": 4, "value": "2511", "type": "number"},
+              {"col_index": 5, "value": "1532", "type": "number"},
+              {"col_index": 6, "value": "708", "type": "number"},
+              {"col_index": 7, "value": "421", "type": "number"},
+              {"col_index": 8, "value": "270", "type": "number"},
+              {"col_index": 9, "value": "193", "type": "number"},
+              {"col_index": 10, "value": "160", "type": "number"},
+              {"col_index": 11, "value": "123", "type": "number"},
+              {"col_index": 12, "value": "97", "type": "number"},
+              {"col_index": 13, "value": "79", "type": "number"},
+              {"col_index": 14, "value": "55", "type": "number"},
+              {"col_index": 15, "value": "35", "type": "number"}
+            ]
+          },
+          {
+            "row_index": 5,
+            "cells": [
+              {"col_index": 0, "value": "9/16\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "6803", "type": "number"},
+              {"col_index": 4, "value": "3178", "type": "number"},
+              {"col_index": 5, "value": "1939", "type": "number"},
+              {"col_index": 6, "value": "897", "type": "number"},
+              {"col_index": 7, "value": "533", "type": "number"},
+              {"col_index": 8, "value": "342", "type": "number"},
+              {"col_index": 9, "value": "244", "type": "number"},
+              {"col_index": 10, "value": "202", "type": "number"},
+              {"col_index": 11, "value": "155", "type": "number"},
+              {"col_index": 12, "value": "122", "type": "number"},
+              {"col_index": 13, "value": "99", "type": "number"},
+              {"col_index": 14, "value": "69", "type": "number"},
+              {"col_index": 15, "value": "45", "type": "number"}
+            ]
+          },
+          {
+            "row_index": 6,
+            "cells": [
+              {"col_index": 0, "value": "5/8\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "8398", "type": "number"},
+              {"col_index": 4, "value": "3923", "type": "number"},
+              {"col_index": 5, "value": "2394", "type": "number"},
+              {"col_index": 6, "value": "1107", "type": "number"},
+              {"col_index": 7, "value": "657", "type": "number"},
+              {"col_index": 8, "value": "422", "type": "number"},
+              {"col_index": 9, "value": "302", "type": "number"},
+              {"col_index": 10, "value": "250", "type": "number"},
+              {"col_index": 11, "value": "191", "type": "number"},
+              {"col_index": 12, "value": "151", "type": "number"},
+              {"col_index": 13, "value": "123", "type": "number"},
+              {"col_index": 14, "value": "85", "type": "number"},
+              {"col_index": 15, "value": "55", "type": "number"}
+            ]
+          },
+          {
+            "row_index": 7,
+            "cells": [
+              {"col_index": 0, "value": "3/4\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "5649", "type": "number"},
+              {"col_index": 4, "value": "3448", "type": "number"},
+              {"col_index": 5, "value": "1594", "type": "number"},
+              {"col_index": 6, "value": "948", "type": "number"},
+              {"col_index": 7, "value": "608", "type": "number"},
+              {"col_index": 8, "value": "434", "type": "number"},
+              {"col_index": 9, "value": "360", "type": "number"},
+              {"col_index": 10, "value": "276", "type": "number"},
+              {"col_index": 11, "value": "218", "type": "number"},
+              {"col_index": 12, "value": "177", "type": "number"},
+              {"col_index": 13, "value": "123", "type": "number"},
+              {"col_index": 14, "value": "80", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 8,
+            "cells": [
+              {"col_index": 0, "value": "7/8\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "7689", "type": "number"},
+              {"col_index": 4, "value": "4692", "type": "number"},
+              {"col_index": 5, "value": "2170", "type": "number"},
+              {"col_index": 6, "value": "1289", "type": "number"},
+              {"col_index": 7, "value": "823", "type": "number"},
+              {"col_index": 8, "value": "591", "type": "number"},
+              {"col_index": 9, "value": "490", "type": "number"},
+              {"col_index": 10, "value": "375", "type": "number"},
+              {"col_index": 11, "value": "296", "type": "number"},
+              {"col_index": 12, "value": "240", "type": "number"},
+              {"col_index": 13, "value": "167", "type": "number"},
+              {"col_index": 14, "value": "109", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 9,
+            "cells": [
+              {"col_index": 0, "value": "1\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "6129", "type": "number"},
+              {"col_index": 4, "value": "2834", "type": "number"},
+              {"col_index": 5, "value": "1683", "type": "number"},
+              {"col_index": 6, "value": "1081", "type": "number"},
+              {"col_index": 7, "value": "772", "type": "number"},
+              {"col_index": 8, "value": "640", "type": "number"},
+              {"col_index": 9, "value": "490", "type": "number"},
+              {"col_index": 10, "value": "387", "type": "number"},
+              {"col_index": 11, "value": "314", "type": "number"},
+              {"col_index": 12, "value": "218", "type": "number"},
+              {"col_index": 13, "value": "142", "type": "number"},
+              {"col_index": 14, "value": "", "type": "text"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 10,
+            "cells": [
+              {"col_index": 0, "value": "1-1/8\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "7757", "type": "number"},
+              {"col_index": 5, "value": "3587", "type": "number"},
+              {"col_index": 6, "value": "2130", "type": "number"},
+              {"col_index": 7, "value": "1368", "type": "number"},
+              {"col_index": 8, "value": "977", "type": "number"},
+              {"col_index": 9, "value": "810", "type": "number"},
+              {"col_index": 10, "value": "620", "type": "number"},
+              {"col_index": 11, "value": "490", "type": "number"},
+              {"col_index": 12, "value": "397", "type": "number"},
+              {"col_index": 13, "value": "276", "type": "number"},
+              {"col_index": 14, "value": "180", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 11,
+            "cells": [
+              {"col_index": 0, "value": "1-1/4\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "9577", "type": "number"},
+              {"col_index": 5, "value": "4428", "type": "number"},
+              {"col_index": 6, "value": "6230", "type": "number"},
+              {"col_index": 7, "value": "1689", "type": "number"},
+              {"col_index": 8, "value": "1206", "type": "number"},
+              {"col_index": 9, "value": "1000", "type": "number"},
+              {"col_index": 10, "value": "766", "type": "number"},
+              {"col_index": 11, "value": "605", "type": "number"},
+              {"col_index": 12, "value": "491", "type": "number"},
+              {"col_index": 13, "value": "341", "type": "number"},
+              {"col_index": 14, "value": "222", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 12,
+            "cells": [
+              {"col_index": 0, "value": "1-3/8\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "", "type": "text"},
+              {"col_index": 5, "value": "5358", "type": "number"},
+              {"col_index": 6, "value": "3182", "type": "number"},
+              {"col_index": 7, "value": "2042", "type": "number"},
+              {"col_index": 8, "value": "1460", "type": "number"},
+              {"col_index": 9, "value": "1210", "type": "number"},
+              {"col_index": 10, "value": "926", "type": "number"},
+              {"col_index": 11, "value": "732", "type": "number"},
+              {"col_index": 12, "value": "594", "type": "number"},
+              {"col_index": 13, "value": "412", "type": "number"},
+              {"col_index": 14, "value": "269", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 13,
+            "cells": [
+              {"col_index": 0, "value": "1-1/2\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "", "type": "text"},
+              {"col_index": 5, "value": "6377", "type": "number"},
+              {"col_index": 6, "value": "3787", "type": "number"},
+              {"col_index": 7, "value": "2432", "type": "number"},
+              {"col_index": 8, "value": "1737", "type": "number"},
+              {"col_index": 9, "value": "1440", "type": "number"},
+              {"col_index": 10, "value": "1103", "type": "number"},
+              {"col_index": 11, "value": "871", "type": "number"},
+              {"col_index": 12, "value": "707", "type": "number"},
+              {"col_index": 13, "value": "491", "type": "number"},
+              {"col_index": 14, "value": "320", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 14,
+            "cells": [
+              {"col_index": 0, "value": "1-5/8", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "", "type": "text"},
+              {"col_index": 5, "value": "7483", "type": "number"},
+              {"col_index": 6, "value": "4444", "type": "number"},
+              {"col_index": 7, "value": "2854", "type": "number"},
+              {"col_index": 8, "value": "2039", "type": "number"},
+              {"col_index": 9, "value": "1690", "type": "number"},
+              {"col_index": 10, "value": "1294", "type": "number"},
+              {"col_index": 11, "value": "1022", "type": "number"},
+              {"col_index": 12, "value": "829", "type": "number"},
+              {"col_index": 13, "value": "576", "type": "number"},
+              {"col_index": 14, "value": "375", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 15,
+            "cells": [
+              {"col_index": 0, "value": "1-3/4\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "", "type": "text"},
+              {"col_index": 5, "value": "8679", "type": "number"},
+              {"col_index": 6, "value": "5154", "type": "number"},
+              {"col_index": 7, "value": "3312", "type": "number"},
+              {"col_index": 8, "value": "2364", "type": "number"},
+              {"col_index": 9, "value": "1960", "type": "number"},
+              {"col_index": 10, "value": "1501", "type": "number"},
+              {"col_index": 11, "value": "1185", "type": "number"},
+              {"col_index": 12, "value": "962", "type": "number"},
+              {"col_index": 13, "value": "668", "type": "number"},
+              {"col_index": 14, "value": "435", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          },
+          {
+            "row_index": 16,
+            "cells": [
+              {"col_index": 0, "value": "2\"", "type": "text"},
+              {"col_index": 1, "value": "", "type": "text"},
+              {"col_index": 2, "value": "", "type": "text"},
+              {"col_index": 3, "value": "", "type": "text"},
+              {"col_index": 4, "value": "", "type": "text"},
+              {"col_index": 5, "value": "", "type": "text"},
+              {"col_index": 6, "value": "6732", "type": "number"},
+              {"col_index": 7, "value": "4324", "type": "number"},
+              {"col_index": 8, "value": "3088", "type": "number"},
+              {"col_index": 9, "value": "2560", "type": "number"},
+              {"col_index": 10, "value": "1960", "type": "number"},
+              {"col_index": 11, "value": "1548", "type": "number"},
+              {"col_index": 12, "value": "1265", "type": "number"},
+              {"col_index": 13, "value": "872", "type": "number"},
+              {"col_index": 14, "value": "568", "type": "number"},
+              {"col_index": 15, "value": "", "type": "text"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

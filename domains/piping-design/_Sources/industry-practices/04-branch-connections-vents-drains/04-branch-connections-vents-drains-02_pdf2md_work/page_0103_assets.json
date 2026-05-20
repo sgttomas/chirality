@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 103,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-12 Thermowell Flanged Connection \u2014 NPS 3/4 & Up, showing preferred direction of flow, concentric and eccentric swage configurations, lap joint flanges, lap joint stub ends, butt weld elbow pipe, and piping/instrument connections",
+      "slug": "t-12-thermowell-flanged-connection-nps-3-4-up",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Engineering fabrication/installation detail drawing showing multiple configurations of flanged thermowell connection T-12 for NPS 3/4 and up. Includes call-outs for NPS 3/4 thru NPS 1 line size, NPS 1-1/2 lap joint flange, NPS 1-1/2 lap joint stub end, NPS 3 line size & up, concentric and eccentric swage options, preferred direction of flow, and PIPING/INSTR labels."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,732 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 70,
+  "total_pages": 73,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Piping Class F0 \u2014 Class Detail",
+      "slug": "piping-class-f0-class-detail",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.3
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODE B31.3",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "CLASS F0",
+                "type": "text",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Sweet Gas and Hydrocarbon Liquids",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Maximum Pressure",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Per ANSI B16.5 Class 2500 Material Group 1.1",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Temperature Range",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "-29\u00b0C to 204\u00b0C",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Minimum Corrosion Allowance",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "0 mm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radiography",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "100%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Post Weld Heat Treatment",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Per B31.3",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Header summary table for Piping Class F0"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Piping Class F0 \u2014 Component Schedule",
+      "slug": "piping-class-f0-component-schedule",
+      "bbox_norm": [
+        0.03,
+        0.31,
+        0.97,
+        0.82
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "15. No threaded connections allowed as primary process connections."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Item",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Sizes (NPS)",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "General Description",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Material/Code",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Notes",
+                "type": "text",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pipe",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Seamless, BE",
+                "type": "text"
+              },
+              {
+                "value": "A106 GR. B",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 - 8",
+                "type": "text"
+              },
+              {
+                "value": "Seamless, BE",
+                "type": "text"
+              },
+              {
+                "value": "A106 GR. B",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 3000 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "A105",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 - 8",
+                "type": "text"
+              },
+              {
+                "value": "Butt Weld, WT to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A234 WPB",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Nipples",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Seamless SCH xxH TE/PE",
+                "type": "text"
+              },
+              {
+                "value": "A106 GR. B",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Swages",
+                "type": "text"
+              },
+              {
+                "value": "1/2 \u2013 2",
+                "type": "text"
+              },
+              {
+                "value": "Bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A234 WPB",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 RJSW/THD",
+                "type": "text"
+              },
+              {
+                "value": "A105N",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 - 8",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 RJ/WN, bore to match pipe",
+                "type": "text"
+              },
+              {
+                "value": "A105N",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Bolting",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Studs",
+                "type": "text"
+              },
+              {
+                "value": "A193 GR. B7",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Nuts",
+                "type": "text"
+              },
+              {
+                "value": "A194 GR. 2H",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Gaskets",
+                "type": "text"
+              },
+              {
+                "value": "All",
+                "type": "text"
+              },
+              {
+                "value": "Oval Ring ASME B16.20",
+                "type": "text"
+              },
+              {
+                "value": "316 SS",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Valves",
+                "type": "text"
+              },
+              {
+                "value": "GATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 - 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "GA-2506/2507/2508",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 - 2, 3 - 8",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GA-2502/2503",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GLOBE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "GL-2506/2507/2508",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 - 4",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "GL-2502",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "CHECK",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "CH-2506/2507/2508/2509",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "2 - 8",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 Flanged Swing type",
+                "type": "text"
+              },
+              {
+                "value": "CH-2503",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "BALL",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "3/4 \u2013 1 1/2",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 SW/THD",
+                "type": "text"
+              },
+              {
+                "value": "BA-2508",
+                "type": "text"
+              },
+              {
+                "value": "15",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "1 \u2013 2, 3 \u2013 8",
+                "type": "text"
+              },
+              {
+                "value": "Class 2500 Flanged",
+                "type": "text"
+              },
+              {
+                "value": "BA-2502/2503",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Component schedule table with valve sub-types (GATE, GLOBE, CHECK, BALL)"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 110,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "PNF0619-top",
+      "kind": "fig",
+      "caption": "Plan/elevation schematic of NPS 3 x NPS 1-1/2 reducing tee thermowell connection with NPS 1-1/2 weld neck flange and piping instrument callouts; NPS 3 line size indicated.",
+      "bbox_norm": [0.05, 0.16, 0.95, 0.52]
+    },
+    {
+      "id": "PNF0619-bottom",
+      "kind": "fig",
+      "caption": "Plan/elevation schematic of NPS 3 tee with NPS 3 x NPS 1-1/2 concentric reducer, NPS 1-1/2 weld neck flange, and piping instrument callouts; NPS 3 line size indicated.",
+      "bbox_norm": [0.05, 0.53, 0.95, 0.87]
+    }
+  ],
+  "issues": []
+}

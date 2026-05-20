@@ -1,0 +1,1351 @@
+{
+  "asset_count": 40,
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0003_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        316,
+        2480,
+        3509
+      ],
+      "caption": "Pipe support specific definitions \u2014 term, description, and reference for Anchor through Pipe stop",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,12], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 3,
+      "png_path": "tables/06-pipe-supports-03_p0003_tbl01_pipe-support-specific-definitions-term-d.png",
+      "png_sha256": "b710b39c3484875d02a6739424e6d95869c702f39c15753be63fee263d6d9570",
+      "slug": "pipe-support-specific-definitions-term-d",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0004_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        3053
+      ],
+      "caption": "Pipe support definitions (continued) \u2014 Pivot through U-bolt",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/06-pipe-supports-03_p0004_tbl01_pipe-support-definitions-continued.png",
+      "png_sha256": "23e6779f1ae5dc78adb7229727a89b3f4cde53e1808f4b7fcf99ada24dbe152f",
+      "slug": "pipe-support-definitions-continued",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0004_tbl01_pipe-support-definitions-continued.json",
+      "table_data_json_sha256": "b8a132b5f6e41bded9cb49048529a17ce7b6da02383ba4f7ecbe780c948ec2b7",
+      "table_data_sha256": "b8a132b5f6e41bded9cb49048529a17ce7b6da02383ba4f7ecbe780c948ec2b7",
+      "xlsx_path": "tables/06-pipe-supports-03_p0004_tbl01_pipe-support-definitions-continued.xlsx",
+      "xlsx_sha256": "f38835a14f7e9305eeb2ac342e3516e27f4de1f487ad0f4742b8406ca8e66650"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0005_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.93,
+        0.57
+      ],
+      "bbox_px": [
+        74,
+        421,
+        2430,
+        2176
+      ],
+      "caption": "Summary of changes since previous edition",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,12], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 5,
+      "png_path": "tables/06-pipe-supports-03_p0005_tbl01_summary-of-changes-since-previous-editio.png",
+      "png_sha256": "31a5b9fdc9968040d06124c2a6e79bfe4fa38232f223556d2d3d4f9a588a6d71",
+      "slug": "summary-of-changes-since-previous-editio",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.06,
+        0.95,
+        0.32
+      ],
+      "bbox_px": [
+        99,
+        35,
+        2480,
+        1298
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:033 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S1 through S6)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 15,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.png",
+      "png_sha256": "b6337877fd39cf370a526701200f9b48aa53a35c3951d28dda9a5a6a0af4c98f",
+      "slug": "pipe-shoes-selection-chart-s-44-033-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.json",
+      "table_data_json_sha256": "ba68c3890dcf36f639d872e913800cc8c5aced73385d5031a95d55577ec77a4b",
+      "table_data_sha256": "ba68c3890dcf36f639d872e913800cc8c5aced73385d5031a95d55577ec77a4b",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl01_pipe-shoes-selection-chart-s-44-033-dn-1.xlsx",
+      "xlsx_sha256": "abd628c410dac552fb98dcfa1d1cf7f9fd523d104ec4301b29335a00a3949099"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl02",
+      "bbox_norm": [
+        0.09,
+        0.33,
+        0.95,
+        0.6
+      ],
+      "bbox_px": [
+        99,
+        983,
+        2480,
+        2281
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:034 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S7 through S12)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 15,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.png",
+      "png_sha256": "aeedb0f14081b2f0562e0ef33eaddfc8c65a739517d6493267edc3f75a3ce075",
+      "slug": "pipe-shoes-selection-chart-s-44-034-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.json",
+      "table_data_json_sha256": "5f912d8a127d9ba7a1ecd00cf4efa500f4ebca873aca3a6b49bf64e5f7c91dc0",
+      "table_data_sha256": "5f912d8a127d9ba7a1ecd00cf4efa500f4ebca873aca3a6b49bf64e5f7c91dc0",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl02_pipe-shoes-selection-chart-s-44-034-dn-1.xlsx",
+      "xlsx_sha256": "c689e2d6c58e8a7e3c038b15374860b3f8f8ccf5a22b767011a7782213d5b44c"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0015_tbl03",
+      "bbox_norm": [
+        0.09,
+        0.61,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        99,
+        1965,
+        2480,
+        3263
+      ],
+      "caption": "Pipe Shoes Selection Chart \u2014 S 44:035 (DN 15\u2013100 and DN 150\u2013600, Maximum Movement 75 mm and 200 mm, Length 250 mm and 500 mm, Height 100/150/200 \u2014 supports S29 through S34)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "page": 15,
+      "png_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.png",
+      "png_sha256": "a63735e2e5777245974c55f18257057e01609cc880e2f8e696e7c65f2bca47cd",
+      "slug": "pipe-shoes-selection-chart-s-44-035-dn-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.json",
+      "table_data_json_sha256": "2d913503c5869539c2c9e1ff0a2ec48fe79d070164f5b2665ea6b2e5421d1b2e",
+      "table_data_sha256": "2d913503c5869539c2c9e1ff0a2ec48fe79d070164f5b2665ea6b2e5421d1b2e",
+      "xlsx_path": "tables/06-pipe-supports-03_p0015_tbl03_pipe-shoes-selection-chart-s-44-035-dn-1.xlsx",
+      "xlsx_sha256": "4d9cb5064b9817009acb79ffc80e5baf0fcf685dcd17c440d625a8e88756a68a"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0016_fig01",
+      "bbox_norm": [
+        0.07,
+        0.07,
+        0.93,
+        0.45
+      ],
+      "bbox_px": [
+        50,
+        70,
+        2430,
+        1754
+      ],
+      "caption": "G1 THRU G10 \u2014 Guides selection chart showing identification example sketch and transverse force table for guide types G1 through G10",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 16,
+      "png_path": "figures/06-pipe-supports-03_p0016_fig01_guides-selection-chart-g1-thru-g10.png",
+      "png_sha256": "1272845b1958c54739e7a751224cdeee39ee392fa592933f15f05aee9fd1f49c",
+      "slug": "guides-selection-chart-g1-thru-g10",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0016_fig02",
+      "bbox_norm": [
+        0.07,
+        0.46,
+        0.93,
+        0.83
+      ],
+      "bbox_px": [
+        50,
+        1439,
+        2430,
+        3088
+      ],
+      "caption": "G11 AND G12 \u2014 Guides selection chart showing identification example sketch and transverse force table for guide types G11 and G12",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 16,
+      "png_path": "figures/06-pipe-supports-03_p0016_fig02_guides-selection-chart-g11-and-g12.png",
+      "png_sha256": "ef5e5825cac23397683e4fa9ce8e6be2e5a1cf96d939486912837326fe0ec75c",
+      "slug": "guides-selection-chart-g11-and-g12",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0016_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.52,
+        0.92,
+        0.81
+      ],
+      "bbox_px": [
+        546,
+        1649,
+        2406,
+        3018
+      ],
+      "caption": "G11 AND G12 \u2014 Guide types G11 and G12 selection table by DN, usage compatibility, and maximum transverse force",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 16,
+      "png_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.png",
+      "png_sha256": "c4277f5ede9ac5d68202b0b4f74df33cf1971b9d05a9aef8c7ac0fc1561fecc6",
+      "slug": "g11-g12-selection-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.json",
+      "table_data_json_sha256": "7ecad103088b035b8f5124e451fc75a39fab72c6596b072a30f3d5aaf3aa621f",
+      "table_data_sha256": "7ecad103088b035b8f5124e451fc75a39fab72c6596b072a30f3d5aaf3aa621f",
+      "xlsx_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.xlsx",
+      "xlsx_sha256": "977e61f93c9c8a968c4c2dd7d361fd0d5612368cfa49aaafce304cdeeb8d94f3"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0017_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.68,
+        0.47
+      ],
+      "bbox_px": [
+        0,
+        105,
+        1810,
+        1825
+      ],
+      "caption": "DA6 AND DA7",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "figures/06-pipe-supports-03_p0017_fig01_da6-and-da7.png",
+      "png_sha256": "ca8b266feedd4c83ae22d1b7926419bd09fbbd2254e3ea4b77d87027009d7251",
+      "slug": "da6-and-da7",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0017_tbl01",
+      "bbox_norm": [
+        0.13,
+        0.24,
+        0.66,
+        0.46
+      ],
+      "bbox_px": [
+        198,
+        667,
+        1761,
+        1790
+      ],
+      "caption": "DA6 and DA7 \u2014 anchor selection by DN, schedule, and maximum axial force",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,13], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "tables/06-pipe-supports-03_p0017_tbl01_da6-and-da7-anchor-selection-by-dn-sched.png",
+      "png_sha256": "01917e491cfd7263dee4ff017778ce849c583faec76849f17ed00c7d72f08d2c",
+      "slug": "da6-and-da7-anchor-selection-by-dn-sched",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0017_fig02",
+      "bbox_norm": [
+        0.03,
+        0.49,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1544,
+        2480,
+        3509
+      ],
+      "caption": "S1A / S4A THRU S6A / S32A THRU S34A",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 17,
+      "png_path": "figures/06-pipe-supports-03_p0017_fig02_s1a-s4a-thru-s6a-s32a-thru-s34a.png",
+      "png_sha256": "925b0e8d43f7e05aac62c33c3d0b7eec31f3da3cc8ed81533ebd4de51599ae15",
+      "slug": "s1a-s4a-thru-s6a-s32a-thru-s34a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0017_tbl02",
+      "bbox_norm": [
+        0.13,
+        0.68,
+        0.74,
+        0.97
+      ],
+      "bbox_px": [
+        198,
+        2211,
+        1959,
+        3509
+      ],
+      "caption": "S1A / S4A THRU S6A / S32A THRU S34A \u2014 anchor selection by DN, type, and maximum anchor force (3 directions)",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,11], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 17,
+      "png_path": "tables/06-pipe-supports-03_p0017_tbl02_s1a-s4a-thru-s6a-s32a-thru-s34a-anchor-s.png",
+      "png_sha256": "3d568526239879a7772fe6c95ca885e4621687a72474a86f00fb372b864d1fa5",
+      "slug": "s1a-s4a-thru-s6a-s32a-thru-s34a-anchor-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0018_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.55,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        70,
+        1488,
+        1509
+      ],
+      "caption": "APPENDIX 4A Standard Base Support schematic drawing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 18,
+      "png_path": "figures/06-pipe-supports-03_p0018_fig01_appendix-4a-standard-base-support-schema.png",
+      "png_sha256": "fff7b32e3a166868f365a20ccf839b7802d5a9a7c76150c2861eff671ce5b7a2",
+      "slug": "appendix-4a-standard-base-support-schema",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0018_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.36,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1088,
+        2480,
+        3509
+      ],
+      "caption": "BASE SUPPORTS - SELECTION CHART Standard Base Support BS1 THRU BS8",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 18,
+      "png_path": "tables/06-pipe-supports-03_p0018_tbl01_base-supports-selection-chart-bs1-bs8.png",
+      "png_sha256": "56d77528f59a74dc01e3c09085d191b533b5d7b92d295d819bd455d6f338f6c9",
+      "slug": "base-supports-selection-chart-bs1-bs8",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0019_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.7,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        35,
+        1860,
+        1298
+      ],
+      "caption": "Standard Adjustable Base Support \u2014 isometric and elevation view showing pipe, base plate, and adjustable rod components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "figures/06-pipe-supports-03_p0019_fig01_standard-adjustable-base-support-diagram.png",
+      "png_sha256": "dd1c3bf319aa06d28c68a9d9957836f3674e57aed2c3c4f8c8299b485780d083",
+      "slug": "standard-adjustable-base-support-diagram",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0019_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.32,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        947,
+        2480,
+        3263
+      ],
+      "caption": "Base Supports Selection Chart \u2014 Standard Adjustable Base Support (BSS THRU BS17)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "tables/06-pipe-supports-03_p0019_tbl01_base-supports-selection-chart-bss-bs17.png",
+      "png_sha256": "f7008cbc9ef942c307a4c05b3f83749bb573f0da931b96ce615bb9d613bf1341",
+      "slug": "base-supports-selection-chart-bss-bs17",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0020_fig01",
+      "bbox_norm": [
+        0.13,
+        0.09,
+        0.9,
+        0.47
+      ],
+      "bbox_px": [
+        198,
+        140,
+        2356,
+        1825
+      ],
+      "caption": "CLAMPED BASE SUPPORT selection chart \u2014 CB1 THRU CB9",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "figures/06-pipe-supports-03_p0020_fig01_clamped-base-support-cb1-thru-cb9.png",
+      "png_sha256": "8a4e6b9bd46b737b8c389c3401919eed11b7d72c1c1668579ff76cb7d5299d0c",
+      "slug": "clamped-base-support-cb1-thru-cb9",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0020_tbl01",
+      "bbox_norm": [
+        0.14,
+        0.3,
+        0.89,
+        0.46
+      ],
+      "bbox_px": [
+        223,
+        877,
+        2331,
+        1790
+      ],
+      "caption": "CLAMPED BASE SUPPORT \u2014 Allowable Vertical Load (kN) for CB1 through CB9",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "tables/06-pipe-supports-03_p0020_tbl01_clamped-base-support-allowable-load.png",
+      "png_sha256": "6a8e3bcd47ed361edbf2f3c8dd6b7679bcc1f96eedbce3811cdfc92dedab1a89",
+      "slug": "clamped-base-support-allowable-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0020_tbl01_clamped-base-support-allowable-load.json",
+      "table_data_json_sha256": "a94f995eadbf8b6db6e5bfff1a3b6855a0f6e8dd0adfbd228d28c12e86cb37d9",
+      "table_data_sha256": "a94f995eadbf8b6db6e5bfff1a3b6855a0f6e8dd0adfbd228d28c12e86cb37d9",
+      "xlsx_path": "tables/06-pipe-supports-03_p0020_tbl01_clamped-base-support-allowable-load.xlsx",
+      "xlsx_sha256": "a0d92d0572a0927f29309665fc4a3d3c3986fc1a364171ec674644262a5572ab"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0020_fig02",
+      "bbox_norm": [
+        0.13,
+        0.48,
+        0.9,
+        0.87
+      ],
+      "bbox_px": [
+        198,
+        1509,
+        2356,
+        3228
+      ],
+      "caption": "ADJUSTABLE CLAMPED BASE SUPPORT selection chart \u2014 ACB1 THRU ACB9",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 20,
+      "png_path": "figures/06-pipe-supports-03_p0020_fig02_adjustable-clamped-base-support-acb1-thr.png",
+      "png_sha256": "5f4411b3dcfd280b640b06ac18f56b1352e9cb4c80c432bccb49d01afdec2385",
+      "slug": "adjustable-clamped-base-support-acb1-thr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0020_tbl02",
+      "bbox_norm": [
+        0.14,
+        0.68,
+        0.89,
+        0.86
+      ],
+      "bbox_px": [
+        223,
+        2211,
+        2331,
+        3193
+      ],
+      "caption": "ADJUSTABLE CLAMPED BASE SUPPORT \u2014 Allowable Vertical Load (kN) for ACB1 through ACB9",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 20,
+      "png_path": "tables/06-pipe-supports-03_p0020_tbl02_adjustable-clamped-base-support-allowabl.png",
+      "png_sha256": "439f8ad843f694844c154fa3e7e373899d2f7d0afafc64083caefb6f457a53b3",
+      "slug": "adjustable-clamped-base-support-allowabl",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0020_tbl02_adjustable-clamped-base-support-allowabl.json",
+      "table_data_json_sha256": "fb1a56ba9e7faa8aca994a145899dd0282c4d27ebefd509c18bfd67975968986",
+      "table_data_sha256": "fb1a56ba9e7faa8aca994a145899dd0282c4d27ebefd509c18bfd67975968986",
+      "xlsx_path": "tables/06-pipe-supports-03_p0020_tbl02_adjustable-clamped-base-support-allowabl.xlsx",
+      "xlsx_sha256": "8d8b359ed49611e66f010bd320bb0318b22605318bf95641b15b74f040e05f09"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.6,
+        0.46
+      ],
+      "bbox_px": [
+        0,
+        105,
+        1612,
+        1790
+      ],
+      "caption": "DIR. BASE ANCHORS ON PAVING & STEEL \u2014 selection chart with identification example, sketches of anchor on paving and on steel, and type/force table (BA1\u2013BA8)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "figures/06-pipe-supports-03_p0021_fig01_dir-base-anchors-on-paving-steel-selecti.png",
+      "png_sha256": "69d2051f62307795160ad31794254bb2cbdb547c80841442597abe8c22ebc783",
+      "slug": "dir-base-anchors-on-paving-steel-selecti",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.27,
+        0.57,
+        0.46
+      ],
+      "bbox_px": [
+        74,
+        772,
+        1538,
+        1790
+      ],
+      "caption": "DIR. BASE ANCHORS ON PAVING & STEEL \u2013 TYPE, TO BE USED WITH, MAX AXIAL OR TRANSVERSE FORCE kN",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,8], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "tables/06-pipe-supports-03_p0021_tbl01_dir-base-anchors-on-paving-steel-type-to.png",
+      "png_sha256": "f155ae510616115c98faea4072696d49200573e31388fdea262feca042ebc9ec",
+      "slug": "dir-base-anchors-on-paving-steel-type-to",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_fig02",
+      "bbox_norm": [
+        0.58,
+        0.2,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        1314,
+        526,
+        2480,
+        2105
+      ],
+      "caption": "BASE ANCHORS ON STEEL \u2014 selection chart with identification example (BS2A), sketch of anchor on steel beam, and type/force table (BS1A\u2013BS5A)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 21,
+      "png_path": "figures/06-pipe-supports-03_p0021_fig02_base-anchors-on-steel-selection-chart-wi.png",
+      "png_sha256": "0b98cd7fa07ee24ca6bd9b944a4da09cefe98085dc46987444fee7f9461c8229",
+      "slug": "base-anchors-on-steel-selection-chart-wi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_tbl02",
+      "bbox_norm": [
+        0.62,
+        0.38,
+        0.96,
+        0.54
+      ],
+      "bbox_px": [
+        1414,
+        1158,
+        2480,
+        2070
+      ],
+      "caption": "BASE ANCHORS ON STEEL \u2013 TYPE and MAX ANCHOR FORCE kN (3 DIRECTIONS)",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 21,
+      "png_path": "tables/06-pipe-supports-03_p0021_tbl02_base-anchors-on-steel-type-and-max-ancho.png",
+      "png_sha256": "3ae4e8a78e589ce697ea8635ae67b4bfd7d68e5f5a8f69b4b85470ed2c800a0a",
+      "slug": "base-anchors-on-steel-type-and-max-ancho",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_fig03",
+      "bbox_norm": [
+        0.03,
+        0.47,
+        0.6,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1474,
+        1612,
+        3263
+      ],
+      "caption": "BASE PLATES ON PAVING & STEEL \u2014 selection chart with identification example, sketches of base plate on paving and on steel, and type table (BP1\u2013BP7)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "page": 21,
+      "png_path": "figures/06-pipe-supports-03_p0021_fig03_base-plates-on-paving-steel-selection-ch.png",
+      "png_sha256": "247b305844f21fe7281b0f6d8ba7bb25ddf43ef82d157c482312255ecbb6dfb0",
+      "slug": "base-plates-on-paving-steel-selection-ch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0021_tbl03",
+      "bbox_norm": [
+        0.08,
+        0.65,
+        0.57,
+        0.87
+      ],
+      "bbox_px": [
+        74,
+        2105,
+        1538,
+        3228
+      ],
+      "caption": "BASE PLATES ON PAVING & STEEL \u2013 TYPE and TO BE USED WITH",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,7], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "page": 21,
+      "png_path": "tables/06-pipe-supports-03_p0021_tbl03_base-plates-on-paving-steel-type-and-to.png",
+      "png_sha256": "bc2b5cbf9cfd8119c57c5179d8817a801f7bd7084a1fa50ec4102c27b45fb6b1",
+      "slug": "base-plates-on-paving-steel-type-and-to",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0022_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        1649
+      ],
+      "caption": "DUMMY LEGS \u2014 DL1 THRU DL8 and DL8 THRU DL16 configuration drawings with dimension annotations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 22,
+      "png_path": "figures/06-pipe-supports-03_p0022_fig01_dummy-legs-dl1-dl16-configuration-drawin.png",
+      "png_sha256": "211fda64b170e762b72304ee1f9ac78f489b2edfe76c15a1b929c51a045733a3",
+      "slug": "dummy-legs-dl1-dl16-configuration-drawin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0022_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1333,
+        2480,
+        3509
+      ],
+      "caption": "Dummy Legs Selection Chart \u2014 pipe size vs. dummy leg type applicability matrix",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 22,
+      "png_path": "tables/06-pipe-supports-03_p0022_tbl01_dummy-legs-selection-chart.png",
+      "png_sha256": "1b89b799c37a3864d2045a0dedebcd2c1133303d1306ad97a10ca75365cd0da9",
+      "slug": "dummy-legs-selection-chart",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        74,
+        246,
+        2406,
+        1509
+      ],
+      "caption": "Pipe stop (see also appendix 2 and 3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 23,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig01_pipe-stop.png",
+      "png_sha256": "8fbee2eae7f33bf5ad0672d3fcfd14bcaebb35ac0d25a6a554183d6d95a780d3",
+      "slug": "pipe-stop",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig02",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.92,
+        0.64
+      ],
+      "bbox_px": [
+        74,
+        1158,
+        2406,
+        2421
+      ],
+      "caption": "Inserts \u2014 Channel type and Threaded type",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 23,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig02_inserts-channel-threaded.png",
+      "png_sha256": "39f627f4c7f9e248c73ec7c1f6ff217997b67038ded34cf7ca1b9c4b65f9fa64",
+      "slug": "inserts-channel-threaded",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0023_fig03",
+      "bbox_norm": [
+        0.04,
+        0.63,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2035,
+        2480,
+        3439
+      ],
+      "caption": "Pivot and Rotating type",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "page": 23,
+      "png_path": "figures/06-pipe-supports-03_p0023_fig03_pivot-rotating-type.png",
+      "png_sha256": "cf734535cb4b2a71d44bd3c8f4013f0f4783ae88947469b68b84bf9be4afe10d",
+      "slug": "pivot-rotating-type",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0024_fig01",
+      "bbox_norm": [
+        0.05,
+        0.09,
+        0.95,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        99,
+        3509,
+        2158
+      ],
+      "caption": "APPENDIX 9 Pipe Support Selection Flowchart",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 24,
+      "png_path": "figures/06-pipe-supports-03_p0024_fig01_pipe-support-selection-flowchart.png",
+      "png_sha256": "9e76cb2eea8130b5116e206a3935b50aa981052c6b544d13ef0123cadc2a1341",
+      "slug": "pipe-support-selection-flowchart",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0025_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        2000,
+        2480,
+        2983
+      ],
+      "caption": "Table A10-1. Example geometrical data \u2014 DN 150 shoe type anchor support welded to base",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 25,
+      "png_path": "tables/06-pipe-supports-03_p0025_tbl01_table-a10-1-example-geometrical-data-dn.png",
+      "png_sha256": "49446d0107bf0cd5229d87854f81d2ffccd0db0dcfb3f8addc071e3ca7f7693e",
+      "slug": "table-a10-1-example-geometrical-data-dn",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        246,
+        2480,
+        1719
+      ],
+      "caption": "Table A10-2 Actual load data from pipe stress analysis",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 26,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.png",
+      "png_sha256": "0feadb44e181a791a83df10c54b5ddd2072ef904046ffab38b558ab099c73779",
+      "slug": "table-a10-2-actual-load-data-pipe-stress",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.json",
+      "table_data_json_sha256": "68c5a844a191b477d9e06dd83824bb89fe33fb5441f45ec425e9c3324c692e58",
+      "table_data_sha256": "68c5a844a191b477d9e06dd83824bb89fe33fb5441f45ec425e9c3324c692e58",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.xlsx",
+      "xlsx_sha256": "eb547613478e75c9ef61b586398baffce254401ecce00690484bba10a6cb2f39"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2480,
+        2772
+      ],
+      "caption": "Table A10-3 Allowable load data from Appendix 3",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 26,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.png",
+      "png_sha256": "c59c6258ffa64372a33706435e64259e6e5825b21e5f965fc2a695b5d9a2c571",
+      "slug": "table-a10-3-allowable-load-data-appendix",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.json",
+      "table_data_json_sha256": "a63211767cff505833358e24afd470a5db4231f32619f30ab6d00233615452bc",
+      "table_data_sha256": "a63211767cff505833358e24afd470a5db4231f32619f30ab6d00233615452bc",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.xlsx",
+      "xlsx_sha256": "0a1ab6efe58f8651dc27ddbcf22b31ea4fb09819b9027b94c37de9b9e071f881"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl03",
+      "bbox_norm": [
+        0.05,
+        0.82,
+        0.95,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        2702,
+        2480,
+        3509
+      ],
+      "caption": "Table A10-4 Load assessment results",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "page": 26,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.png",
+      "png_sha256": "1d3bc285806e24c1a5cf8fe35c2524adffa61a60b66ec8caf87c550939eee7e6",
+      "slug": "table-a10-4-load-assessment-results",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.json",
+      "table_data_json_sha256": "ebc49d68b393898a954d7e162b9f7404cdf9484fc62ad0ae46701eb0c72e8391",
+      "table_data_sha256": "ebc49d68b393898a954d7e162b9f7404cdf9484fc62ad0ae46701eb0c72e8391",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.xlsx",
+      "xlsx_sha256": "672b903654d90248f95f4b3299f805ada78e418aae24e405f46fce44b55f1feb"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0027_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2480,
+        3263
+      ],
+      "caption": "Table A11-1 Geometrical data and load data for a DN 100 dummy connected to a DN 150 pipe.",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: 'Trunnion welded to base plate'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 27,
+      "png_path": "tables/06-pipe-supports-03_p0027_tbl01_table-a11-1-geometrical-data-load-data-d.png",
+      "png_sha256": "59cd82c9c57458c469ed8434dbde3f71656235ac146daec4411ddb072df11637",
+      "slug": "table-a11-1-geometrical-data-load-data-d",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0027_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.89,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2948,
+        2480,
+        3509
+      ],
+      "caption": "Table A11-2 Allowable loads taken from Appendix 4a",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 2,
+      "page": 27,
+      "png_path": "tables/06-pipe-supports-03_p0027_tbl02_table-a11-2-allowable-loads-appendix-4a.png",
+      "png_sha256": "4b775b72e969528253d874d6bbbb8baf59a0467a820e731656260a6c84e9603a",
+      "slug": "table-a11-2-allowable-loads-appendix-4a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0028_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.38,
+        0.9,
+        0.65
+      ],
+      "bbox_px": [
+        124,
+        1158,
+        2356,
+        2456
+      ],
+      "caption": "Table A11-3  Load assessment results. 2.0",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 28,
+      "png_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.png",
+      "png_sha256": "439077b770c8da39d9d486b989b5666fdea2ffca581e8c571754371cf9c7f648",
+      "slug": "table-a11-3-load-assessment-results",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.json",
+      "table_data_json_sha256": "a5b50608d0b22a39e3f78ad43982ce023f0ee6d04b81236a3900c6fa13702d45",
+      "table_data_sha256": "a5b50608d0b22a39e3f78ad43982ce023f0ee6d04b81236a3900c6fa13702d45",
+      "xlsx_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.xlsx",
+      "xlsx_sha256": "ed37137c951bde064aac82c89f12aab5c6185478c42d26fc2615d2d247945b04"
+    }
+  ],
+  "doc_stem": "06-pipe-supports-03",
+  "issues": [],
+  "page_manifest_count": 28,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0015.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0016.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0017.anchored.md",
+      "asset_count": 4,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0018.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0019.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0020.anchored.md",
+      "asset_count": 4,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0021.anchored.md",
+      "asset_count": 6,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0022.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0023.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0024.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0025.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0026.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0027.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0028.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work"
+}

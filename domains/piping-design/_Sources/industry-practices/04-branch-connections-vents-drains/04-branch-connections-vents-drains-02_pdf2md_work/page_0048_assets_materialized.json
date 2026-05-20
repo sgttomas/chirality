@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0048.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0048_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2550,
+        1881
+      ],
+      "caption": "V-21 VENT \u2014 Isometric detail drawing of V-21 Vent assembly for NPS 3/4 thru 1-1/2 socketweld piping, showing NPS 3/4 threaded plug at top, NPS 3/4 extended body socket weld x threaded valve, NPS 3/4 extended body socket weld valve, NPS 3/4 socket weld tee or line size x NPS 3/4 reducing tee, and NPS 3/4 socket weld tee components on both sides, with line sizes NPS 3/4 thru 1-1/2 line size noted",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0048_fig01_v-21-vent-isometric-detail-drawing-of-v.png",
+      "png_sha256": "56dcaa38c798b20511b7c07b047fd2013d3ae9303843292a07ec1a9a2a106627",
+      "slug": "v-21-vent-isometric-detail-drawing-of-v",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0048_fig02",
+      "bbox_norm": [
+        0.03,
+        0.52,
+        0.97,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        3036
+      ],
+      "caption": "D-21 DRAIN \u2014 Isometric detail drawing of D-21 Drain assembly for NPS 3/4 thru 1-1/2 socketweld piping, showing NPS 3/4 socket weld tee or line size x NPS 3/4 reducing tee, NPS 3/4 extended body socket weld valve, NPS 3/4 extended body socket weld x threaded valve, NPS 3/4 threaded plug at bottom, and NPS 3/4 socket weld tee components, with NPS 3/4 line size noted",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0048_fig02_d-21-drain-isometric-detail-drawing-of-d.png",
+      "png_sha256": "7be8abb85060ef2c2cfbfb4cdcb1c93f98b6c189c43e8c165a08b2c3f430c383",
+      "slug": "d-21-drain-isometric-detail-drawing-of-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 48,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0048.png",
+  "page_image_sha256": "1f0fd9d16ab479f5824aaaf9d0acd0d9e0a73488fe7ccb28d8a62968bad00f8f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0048_assets.json"
+}

@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-05_p0013_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.11,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2550,
+        1749
+      ],
+      "caption": "2nd & 3rd Digits \u2014 Material",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl01_2nd-3rd-digits-material.png",
+      "png_sha256": "7c8ef7a410cae0a7dec74c51a96ed71aebfdbcb9f4d0bcce9b1de7a9b3e6854a",
+      "slug": "2nd-3rd-digits-material",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl01_2nd-3rd-digits-material.json",
+      "table_data_json_sha256": "e727ccec229bb42128029512bdf20df54729c9832a87ffb7fd641d8fd809efa7",
+      "table_data_sha256": "e727ccec229bb42128029512bdf20df54729c9832a87ffb7fd641d8fd809efa7",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl01_2nd-3rd-digits-material.xlsx",
+      "xlsx_sha256": "05c71b2b70df8728d463acad2dea87833a56e7f47072c78f23e6a43fd8c71875"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-05_p0013_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1650,
+        2550,
+        2739
+      ],
+      "caption": "Number \u2014 ASME Design code",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl02_number-asme-design-code.png",
+      "png_sha256": "ac3d95d02c25cd79dcc71b3851f9aa128e2b376905ef2fcb9c2178d3e0448942",
+      "slug": "number-asme-design-code",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl02_number-asme-design-code.json",
+      "table_data_json_sha256": "47f603baad58074075e79cc98181ceeec02c78a759b81474835a0b099a055b59",
+      "table_data_sha256": "47f603baad58074075e79cc98181ceeec02c78a759b81474835a0b099a055b59",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-05_p0013_tbl02_number-asme-design-code.xlsx",
+      "xlsx_sha256": "dbd881c4b6b7f9136891da0a866dee00d67421d996d294445e9c36592e571bf2"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-05",
+  "doc_stem": "03-piping-materials-and-line-classes-05",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0013.png",
+  "page_image_sha256": "3650c865cfbbb904bde9bf460a984d632cf911e6710d2377117e879e36b5e09f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-05_pdf2md_work/page_0013_assets.json"
+}

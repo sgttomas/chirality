@@ -25,7 +25,7 @@ This repo is upstream of the public `chirality-app` export. It is maintained as 
 | Public export | `exports/chirality-app/`, export-allowed root files/directories | Treat the export profile as the public boundary contract |
 | App development | `projects/chirality-app-dev/`, root `frontend/` | Develop next app work in the private project workspace; keep root `frontend/` as the exported harness snapshot |
 | Domain/project workspaces | `projects/`, `domains/` | Treat as private applied/development workspaces unless a separate export path is created |
-| Archives and historical plans | `.archive/`, `plans/` | Use as historical context only, not live topology or roadmap authority |
+| Archives and planning workspace | `.archive/`, `plans/` | Treat `.archive/` as historical context; treat `plans/` as non-governing planning material unless a file explicitly declares active draft status |
 
 ---
 
@@ -71,7 +71,7 @@ Private maintainer and development roots are separate:
 | `exports/` | Private export profiles, manifests, and reports |
 | `projects/` | Private project-local development workspaces |
 | `domains/` | Private/manual domain packs and local corpus shells |
-| `plans/` | Archival planning imports, not the active roadmap |
+| `plans/` | Planning workspace for archival imports and active draft plans that are not yet governed roadmap authority |
 | `.archive/` | Local archived migration and historical material |
 
 Root-level framing documents provide the theoretical and professional-practice basis for the system:
@@ -220,7 +220,7 @@ python3 exports/chirality-app/export_public.py --apply-target /path/to/chirality
 
 `.archive/` is local archived material. The moved migration records under `.archive/migration/` are useful for understanding how this canonical repo was assembled, but they are not live inventory, not current topology, and not part of the public export.
 
-`plans/` is an archival import area. It is not the active roadmap. The governed roadmap surface is `docs/PLAN.md`.
+`plans/` is a planning workspace. Most material there is archival or draft context, but the directory may also hold active planning seeds, such as the Chirality App future-development plan, before they are promoted into governed roadmap authority. The governed roadmap surface remains `docs/PLAN.md`.
 
 ---
 

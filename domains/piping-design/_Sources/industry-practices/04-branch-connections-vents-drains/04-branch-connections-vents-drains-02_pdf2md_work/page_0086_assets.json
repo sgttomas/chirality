@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 86,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "P-17 Pressure Connection — elevation view showing NPS 1 flanged valve, NPS 1 weld neck flange, and NPS 1 on-line size vesselet connected to NPS 4 & UP line size horizontal run pipe",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.48]
+    },
+    {
+      "kind": "fig",
+      "asset_index": 2,
+      "caption": "D-38 Drain — plan/elevation view showing NPS 1 on-line size vesselet, NPS 1 weld neck flange, and NPS 1 flanged valve connected to NPS 4 & UP line size vertical run pipe",
+      "bbox_norm": [0.05, 0.50, 0.95, 0.87]
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0049.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0049_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        1883
+      ],
+      "caption": "U-Bolt Support \u2014 Pipe Sizes 3/4\" to 4\" engineering drawing with U-bolt assembly, dimensions C and D, zero clearance callout, and Note 2 callout",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0049_fig01_u-bolt-support-assembly-drawing.png",
+      "png_sha256": "822523b5af03bc3b3febbbcedf5217962113fffd5c785c774054f09fc852d617",
+      "slug": "u-bolt-support-assembly-drawing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0049_tbl01",
+      "bbox_norm": [
+        0.52,
+        0.38,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        1201,
+        1090,
+        2555,
+        2214
+      ],
+      "caption": "Pipe size dimensions C and D for U-Bolt Support, pipe sizes 3/4\" to 4\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0049_tbl01_pipe-size-dimensions-c-d.png",
+      "png_sha256": "e4c2d2782263aa0ffabdb69ed60342a0dbd1e66e345fab41f2fe62381cf17ef2",
+      "slug": "pipe-size-dimensions-c-d",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0049_tbl01_pipe-size-dimensions-c-d.json",
+      "table_data_json_sha256": "cd8925e023a700c8a4d64ab0c73a944129a004218d3d7be1d599b3bd2b4c6acd",
+      "table_data_sha256": "cd8925e023a700c8a4d64ab0c73a944129a004218d3d7be1d599b3bd2b4c6acd",
+      "xlsx_path": "tables/06-pipe-supports-02_p0049_tbl01_pipe-size-dimensions-c-d.xlsx",
+      "xlsx_sha256": "b745de1455be4bd10000005956ee8045dcc4b3b1fab90f94fcc5adb0fe5c692b"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0049_tbl02",
+      "bbox_norm": [
+        0.52,
+        0.62,
+        0.97,
+        0.73
+      ],
+      "bbox_px": [
+        1201,
+        1883,
+        2555,
+        2577
+      ],
+      "caption": "Material types for U-Bolt Support",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0049_tbl02_u-bolt-material-types.png",
+      "png_sha256": "ac0dedf466dab66890c28c8e00e4a7ffaabd5272a80a0e1def1e3986b33e10c7",
+      "slug": "u-bolt-material-types",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0049_tbl02_u-bolt-material-types.json",
+      "table_data_json_sha256": "d55bad899271887381ddc2e2409779e7209b22e7f1a3b808dc314ae1c5f5ab50",
+      "table_data_sha256": "d55bad899271887381ddc2e2409779e7209b22e7f1a3b808dc314ae1c5f5ab50",
+      "xlsx_path": "tables/06-pipe-supports-02_p0049_tbl02_u-bolt-material-types.xlsx",
+      "xlsx_sha256": "fea505b2fcb590327a79d056aa134cae9edc51ebb3691a4912cbcc783503a21c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 49,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0049.png",
+  "page_image_sha256": "b0f0a1d20dbad41683021b7b4aadfc92c6987f117ea6749d0c002e80d8732f64",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0049_assets.json"
+}

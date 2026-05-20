@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-03_p0003_fig01",
+      "bbox_norm": [
+        0.06,
+        0.05,
+        0.94,
+        0.44
+      ],
+      "bbox_px": [
+        25,
+        0,
+        2524,
+        1615
+      ],
+      "caption": "Fig. B-2 Typical Hub Courtesy of Oteco Equipment Company",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-03_p0003_fig01_fig-b-2-typical-hub-courtesy-of-oteco-eq.png",
+      "png_sha256": "a44d8f746f564f76ed09861d9f27a81844181f92a1adf687e47805786d6a371e",
+      "slug": "fig-b-2-typical-hub-courtesy-of-oteco-eq",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-03_p0003_fig02",
+      "bbox_norm": [
+        0.06,
+        0.47,
+        0.94,
+        0.95
+      ],
+      "bbox_px": [
+        25,
+        1384,
+        2524,
+        3296
+      ],
+      "caption": "Fig. B-3 Seal Ring Configuration During Makeup Courtesy of Oteco Equipment Company",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-03_p0003_fig02_fig-b-3-seal-ring-configuration-during-m.png",
+      "png_sha256": "15d4d57a481b04f73788a17312cb65a79782d30bb061129aa6930a7a5e26a158",
+      "slug": "fig-b-3-seal-ring-configuration-during-m",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-03",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-03",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0003.png",
+  "page_image_sha256": "c03d661ab565b558876613f5eb45e2ea679f6652924bed92612d06a63eb373b8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-03_pdf2md_work/page_0003_assets.json"
+}

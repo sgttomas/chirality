@@ -1,0 +1,112 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0008.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0008_fig01",
+      "bbox_norm": [
+        0.03,
+        0.3,
+        0.47,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        825,
+        1326,
+        1881
+      ],
+      "caption": "Figure 1: Radial Alignment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0008_fig01_figure-1-radial-alignment.png",
+      "png_sha256": "28ca409fbe2470e831e613fef690f056b6c2750ab5a951932ee607f6fe29bebb",
+      "slug": "figure-1-radial-alignment",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0008_fig02",
+      "bbox_norm": [
+        0.47,
+        0.3,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        1071,
+        825,
+        2550,
+        1881
+      ],
+      "caption": "Figure 4: Excessive Gap",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0008_fig02_figure-4-excessive-gap.png",
+      "png_sha256": "38113f64096631bed5ca79d1126ef3b584b884cea5ff54deef6f15b20787225a",
+      "slug": "figure-4-excessive-gap",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0008_fig03",
+      "bbox_norm": [
+        0.03,
+        0.52,
+        0.55,
+        0.73
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        1530,
+        2574
+      ],
+      "caption": "Figure 2: Rotational Alignment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0008_fig03_figure-2-rotational-alignment.png",
+      "png_sha256": "3a744df3a80305862d3595636342b6887a7e6c6122661b65c7f574aeb6d8d5cf",
+      "slug": "figure-2-rotational-alignment",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0008_fig04",
+      "bbox_norm": [
+        0.03,
+        0.73,
+        0.55,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        2244,
+        1530,
+        3300
+      ],
+      "caption": "Figure 3: Parallel Alignment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0008_fig04_figure-3-parallel-alignment.png",
+      "png_sha256": "4e1b7363d8cabac69be7f7f6b23fde22e077256814bfbec4df500341da9ba248",
+      "slug": "figure-3-parallel-alignment",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 8,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0008.png",
+  "page_image_sha256": "2852819ffba991ef91aa51538334ebd624cacac4f1353e0697ff8c17d2417bad",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0008_assets.json"
+}

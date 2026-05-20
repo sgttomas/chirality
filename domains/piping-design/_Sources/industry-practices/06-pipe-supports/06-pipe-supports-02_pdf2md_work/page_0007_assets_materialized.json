@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0007_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.27,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        727,
+        2555,
+        1982
+      ],
+      "caption": "Metal Temperature vs Temperature Differential",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0007_tbl01_metal-temperature-vs-temperature-differe.png",
+      "png_sha256": "0c728b2a705e3f03d92969116a45e2f33f388b17a4f0002218ead49b421ad82c",
+      "slug": "metal-temperature-vs-temperature-differe",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0007_tbl01_metal-temperature-vs-temperature-differe.json",
+      "table_data_json_sha256": "b3f2a720807faf0a245741d478bfe29775476fe579ea9c73ac00778279d1e4fe",
+      "table_data_sha256": "b3f2a720807faf0a245741d478bfe29775476fe579ea9c73ac00778279d1e4fe",
+      "xlsx_path": "tables/06-pipe-supports-02_p0007_tbl01_metal-temperature-vs-temperature-differe.xlsx",
+      "xlsx_sha256": "54f219fd3af481ebf7d99bf26b2e13db98a1f791408e76ded8b5a904bcb0bf78"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0007.png",
+  "page_image_sha256": "8ba4d876e2de2fb62c5e076a0affd0665d69ac516cd0109b07518b6b5e94a223",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0007_assets.json"
+}

@@ -1,0 +1,120 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0106.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0106_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        694
+      ],
+      "caption": "Parts list \u2014 Item 1 and 2 materials",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0106_tbl01_parts-list-items-1-2-materials.png",
+      "png_sha256": "335475260ef2960406c471f7c05d0cd2bf3c2752bf3d0020b8c13ae21c88e121",
+      "slug": "parts-list-items-1-2-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0106_tbl01_parts-list-items-1-2-materials.json",
+      "table_data_json_sha256": "e1e8bac78cacbe11af820a8c9e483c4ce43da04822d4a506169058aaca5cfa19",
+      "table_data_sha256": "e1e8bac78cacbe11af820a8c9e483c4ce43da04822d4a506169058aaca5cfa19",
+      "xlsx_path": "tables/06-pipe-supports-02_p0106_tbl01_parts-list-items-1-2-materials.xlsx",
+      "xlsx_sha256": "ae3e8f2d63dacdbfbf3e6f4d4f2461fb30bc8cecf1984a32a1aab400e2607c52"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0106_fig01",
+      "bbox_norm": [
+        0.03,
+        0.15,
+        0.65,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        330,
+        1789,
+        2313
+      ],
+      "caption": "ELEVATION \u2014 Inverted L-Frame Support Welded Attachment, Drawing No. L12",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0106_fig01_elevation-inverted-l-frame-support-welde.png",
+      "png_sha256": "fe904585dbafe2f53fe29467eb05dd0e9e9656570b6484c47d2d78d4647f2f59",
+      "slug": "elevation-inverted-l-frame-support-welde",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0106_fig02",
+      "bbox_norm": [
+        0.6,
+        0.55,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        1405,
+        1652,
+        2555,
+        2412
+      ],
+      "caption": "CODING (EXAMPLE) \u2014 Part numbering scheme showing Mark No., F/S STB. No., Size, and Mark No. fields",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0106_fig02_coding-example-part-numbering-scheme.png",
+      "png_sha256": "2535e90c3688cf41b618f1286bc6c3beda4df2956d41cee34b486267ac5f6d0f",
+      "slug": "coding-example-part-numbering-scheme",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0106_tbl02",
+      "bbox_norm": [
+        0.58,
+        0.65,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        1354,
+        1982,
+        2555,
+        2874
+      ],
+      "caption": "Maximum loads by Mark No.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0106_tbl02_maximum-loads-by-mark-no.png",
+      "png_sha256": "208f2ed3665807f1ffef9391aee37a597ba6a1df886152ee73b19c38c4f62a5e",
+      "slug": "maximum-loads-by-mark-no",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0106_tbl02_maximum-loads-by-mark-no.json",
+      "table_data_json_sha256": "5179f7b57f2c31f250ece63bc98339016eb4df877cb148add84c9f34a2607952",
+      "table_data_sha256": "5179f7b57f2c31f250ece63bc98339016eb4df877cb148add84c9f34a2607952",
+      "xlsx_path": "tables/06-pipe-supports-02_p0106_tbl02_maximum-loads-by-mark-no.xlsx",
+      "xlsx_sha256": "a3f44254d54bfdf6023154c8dd9448acf207aa7b7f2d5f33dcd35e10eb2f3e2c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 106,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0106.png",
+  "page_image_sha256": "3b9c3ed588da0846a38968f29fb344e077537d714b5f83b9c4358dfe615301e1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0106_assets.json"
+}

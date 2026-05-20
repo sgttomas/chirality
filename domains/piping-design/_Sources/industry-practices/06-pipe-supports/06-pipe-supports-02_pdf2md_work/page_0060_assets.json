@@ -1,0 +1,149 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 60,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0060-01",
+      "kind": "fig",
+      "caption": "Elevation view and section view engineering drawing of a directional anchor (clamp on) for stainless and alloy pipe, showing component assembly with dimensions",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.67,
+        0.55
+      ]
+    },
+    {
+      "id": "tbl-0060-01",
+      "kind": "tbl",
+      "caption": "For Stainless and Alloy Lines \u2014 material selection chart by pipe type",
+      "bbox_norm": [
+        0.62,
+        0.48,
+        0.97,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "has_header": true,
+        "columns": [
+          "TYPE",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "304L"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "317L"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "316/316L"
+              }
+            ]
+          },
+          {
+            "row_index": 4,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "1.25 CHROME"
+              }
+            ]
+          },
+          {
+            "row_index": 5,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "5"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "2.25 CHROME"
+              }
+            ]
+          },
+          {
+            "row_index": 6,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "6"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "5 CHROME"
+              }
+            ]
+          },
+          {
+            "row_index": 7,
+            "cells": [
+              {
+                "col_index": 0,
+                "type": "text",
+                "value": "7"
+              },
+              {
+                "col_index": 1,
+                "type": "text",
+                "value": "9 CHROME"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

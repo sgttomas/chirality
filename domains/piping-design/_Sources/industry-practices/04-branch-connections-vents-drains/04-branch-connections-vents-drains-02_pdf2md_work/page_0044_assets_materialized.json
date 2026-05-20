@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0044_fig01",
+      "bbox_norm": [
+        0.08,
+        0.13,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        76,
+        264,
+        2474,
+        2871
+      ],
+      "caption": "V-17 Vent and D-17 Drain assembly drawing for NPS 2 and up welded piping, showing vent connection at top and drain connection at bottom.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0044_fig01_v-17-vent-and-d-17-drain-assembly-drawin.png",
+      "png_sha256": "8ec3464bda381dbddd8073bdd6e098d75b75a4f23ef6ce02c857e857262f82d2",
+      "slug": "v-17-vent-and-d-17-drain-assembly-drawin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0044.png",
+  "page_image_sha256": "14a7173b0c34dbefa54a87a24e9cac3515a76993923170d78d9d07c65ba149cc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0044_assets.json"
+}

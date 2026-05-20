@@ -1,0 +1,113 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 4,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pipe support definitions (continued) — Pivot through U-bolt",
+      "slug": "pipe-support-definitions-continued",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": {"doc_stem": "06-pipe-supports-03", "page": 3, "tbl_ordinal": 1},
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Pivot", "is_header": true},
+              {"value": "an element similar to a base support, but which allows the pipe to rotate around and to move along the longitudinal axis of that pivot. These supports are usually used as a sort of base support but they allow vertical movement and rotation while preventing lateral movement. Downward movement can be restricted with this type of support", "type": "text"},
+              {"value": "Appendix 8", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Rest support", "is_header": true},
+              {"value": "Location where a pipe is resting with or without the application of a pipe shoe on the supporting structure", "type": "text"},
+              {"value": null, "type": "missing", "raw": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Reinforcing pad or saddle", "is_header": true},
+              {"value": "a plate welded to the pipe in order to reinforce thin-walled pipe to prevent the pipe from being damaged", "type": "text"},
+              {"value": "Section 3.8", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Rotating support", "is_header": true},
+              {"value": "an anchor which allows the line to rotate around the longitudinal axis of that support but prevents vertical and lateral movement", "type": "text"},
+              {"value": "Appendix 8", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Shear lug", "is_header": true},
+              {"value": "a welded attachment to the pipe at one or both sides of a clamped cradle or pipe shoe, preventing the pipe from slipping through the pipe support", "type": "text"},
+              {"value": "Appendix 3 and standard drawing S 44,038", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Snubber", "is_header": true},
+              {"value": "a shock absorbing device, allowing the pipe to freely and slowly move whilst absorbing sudden shocks (e.g. seismic). It may be of the hydraulic, spring loaded or verge and verge wheel type.", "type": "text"},
+              {"value": null, "type": "missing", "raw": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Sway brace", "is_header": true},
+              {"value": "an adjustable spring or friction loaded device, usually applied for controlling vibration, absorbing shock loading, guiding or restraining the movement of the pipe and bracing against sway", "type": "text"},
+              {"value": "BS 3974-1", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Sway strut", "is_header": true},
+              {"value": "an adjustable device, usually applied for restraining movement of piping in one direction while providing for movement in another direction.", "type": "text"},
+              {"value": null, "type": "missing", "raw": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Spring hanger", "is_header": true},
+              {"value": "a suspended spring loaded support", "type": "text"},
+              {"value": "BS 3974-1", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Spring support", "is_header": true},
+              {"value": "a spring loaded assembly or device, supporting the pipe from underneath", "type": "text"},
+              {"value": "Section 6 and BS 3974-1", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Trunnion", "is_header": true},
+              {"value": "a tubular supporting device, branching-off horizontally from a vertical line, and resting on, or suspended from, the supporting structure.", "type": "text"},
+              {"value": "Appendix 7 and BS 3974-1", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "U-bolt", "is_header": true},
+              {"value": "a light-duty fixture, U-shaped, with both ends threaded and provided with nuts. These supports can be used as guiding points", "type": "text"},
+              {"value": "BS 3974-1", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Continuation of definitions table from previous page. Three-column layout: term, definition, reference."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,314 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 33,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p033_f01",
+      "kind": "fig",
+      "caption": "Elevation and plan detail drawing of a base anchor for carbon steel steam lines. Shows structural angle (item 1) welded to a base plate (item 2) anchored to a grout pad by four expansion bolts (item 3). Coding/mark numbering example box shown: P/S-STD. NO. BAS-1, MARK NO.",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.72,
+        0.68
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p033_t01",
+      "kind": "tbl",
+      "caption": "Fabrication length and nominal pipe size schedule for base anchor marks 1 through 7",
+      "bbox_norm": [
+        0.55,
+        0.55,
+        0.97,
+        0.82
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          [
+            {
+              "text": "MARK",
+              "span": 1
+            },
+            {
+              "text": "FAB.\nLENGTH",
+              "span": 1
+            },
+            {
+              "text": "NOMINAL PIPE SIZE",
+              "span": 4
+            }
+          ],
+          [
+            {
+              "text": "",
+              "span": 1
+            },
+            {
+              "text": "",
+              "span": 1
+            },
+            {
+              "text": "3\"",
+              "span": 1
+            },
+            {
+              "text": "6\"",
+              "span": 1
+            },
+            {
+              "text": "8\"",
+              "span": 1
+            },
+            {
+              "text": "10\"",
+              "span": 1
+            }
+          ]
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "text": "No",
+                "type": "data"
+              },
+              {
+                "text": "LENGTH",
+                "type": "data"
+              },
+              {
+                "text": "3\"",
+                "type": "data"
+              },
+              {
+                "text": "6\"",
+                "type": "data"
+              },
+              {
+                "text": "8\"",
+                "type": "data"
+              },
+              {
+                "text": "10\"",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "1",
+                "type": "data"
+              },
+              {
+                "text": "2'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "440",
+                "type": "data"
+              },
+              {
+                "text": "440",
+                "type": "data"
+              },
+              {
+                "text": "440",
+                "type": "data"
+              },
+              {
+                "text": "440",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "2",
+                "type": "data"
+              },
+              {
+                "text": "3'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "360",
+                "type": "data"
+              },
+              {
+                "text": "360",
+                "type": "data"
+              },
+              {
+                "text": "360",
+                "type": "data"
+              },
+              {
+                "text": "360",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "3",
+                "type": "data"
+              },
+              {
+                "text": "4'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "270",
+                "type": "data"
+              },
+              {
+                "text": "270",
+                "type": "data"
+              },
+              {
+                "text": "270",
+                "type": "data"
+              },
+              {
+                "text": "270",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "4",
+                "type": "data"
+              },
+              {
+                "text": "2'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "880",
+                "type": "data"
+              },
+              {
+                "text": "880",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "5",
+                "type": "data"
+              },
+              {
+                "text": "3'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "800",
+                "type": "data"
+              },
+              {
+                "text": "800",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "6",
+                "type": "data"
+              },
+              {
+                "text": "4'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "700",
+                "type": "data"
+              },
+              {
+                "text": "700",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "7",
+                "type": "data"
+              },
+              {
+                "text": "5'-0\"",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "",
+                "type": "data"
+              },
+              {
+                "text": "640",
+                "type": "data"
+              },
+              {
+                "text": "640",
+                "type": "data"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "text": "MAX. LOAD (LB)",
+                "type": "data",
+                "span": 6
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

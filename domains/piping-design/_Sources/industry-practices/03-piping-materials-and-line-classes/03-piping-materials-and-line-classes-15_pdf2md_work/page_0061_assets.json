@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 61,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-21 Metal Seated Ball Valve Courtesy of Valvtron",
+      "slug": "fig-200-21-metal-seated-ball-valve-valvtron",
+      "bbox_norm": [0.08, 0.09, 0.92, 0.88],
+      "confidence": "high",
+      "notes": "Figure contains a photograph of the metal seated floating ball valve (upper portion) and a schematic diagram showing Ball, Integral seat, and Body components (lower portion), with a caption label 'Ball Valve with Integral Seat and Spring Loaded Washer/Guide' between the two images."
+    }
+  ],
+  "issues": []
+}

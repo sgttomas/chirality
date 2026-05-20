@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 87,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0087_01",
+      "caption": "P-18 Pressure Connection for NPS 3/4 & UP showing instrument piping with NPS 3/4 flange valve, lap joint flange, lap joint stub end, and NPS 3/4 tee on NPS 3/4 line size",
+      "bbox_norm": [0.10, 0.18, 0.92, 0.48]
+    },
+    {
+      "kind": "fig",
+      "asset_id": "fig_0087_02",
+      "caption": "P-18 Pressure Connection for NPS 1 line size & up showing instrument piping with NPS 3/4 flange valve, lap joint flange, lap joint stub end, branch weld, and NPS 3/4x100(4) long pipe",
+      "bbox_norm": [0.10, 0.50, 0.92, 0.80]
+    }
+  ],
+  "issues": []
+}

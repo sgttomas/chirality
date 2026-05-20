@@ -1,0 +1,94 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-11",
+  "page": 6,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Terms and Definition",
+      "slug": "terms-and-definition",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.95,
+        0.97
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Term",
+                "is_header": true
+              },
+              {
+                "value": "Definition",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Contractor",
+                "type": "text"
+              },
+              {
+                "value": "Any individual, company, or organization employed by the Company through direct contract, purchase order, or agreement that that is engaged in the work described in this specification.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Company",
+                "type": "text"
+              },
+              {
+                "value": "Oil Search Alaska, LLC or its designated representative",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Company Representative",
+                "type": "text"
+              },
+              {
+                "value": "An inspector, Supplier, manufacturer, or inspection agency contracted by the Company to represent the Company.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Supplier",
+                "type": "text"
+              },
+              {
+                "value": "Any individual, company, or organization that supplies parts, equipment, or material for the work described in this specification.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Two-column Terms and Definition table at section 1.3"
+    }
+  ],
+  "issues": []
+}

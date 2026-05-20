@@ -1,0 +1,323 @@
+{
+  "asset_count": 7,
+  "assets": [
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0005_fig01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        1747
+      ],
+      "caption": "Fig. C-1 Design Fatigue Curve",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 5,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0005_fig01_fig-c-1-design-fatigue-curve.png",
+      "png_sha256": "dbc6c09bcb8a07d39a6d9a9bfd9976461a83761cae940d0aad5f01d2196ac09f",
+      "slug": "fig-c-1-design-fatigue-curve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0008_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3300,
+        2550
+      ],
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (1 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0008_fig01_fig-c-2-fundamental-natural-frequencies.png",
+      "png_sha256": "c3faf457eec934274b80041b4147945af7f4035c2d9caffbf6d1ee9008909964",
+      "slug": "fig-c-2-fundamental-natural-frequencies",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0008_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3300,
+        2550
+      ],
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (1 of 2)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/07-stress-flexibility-and-mechanical-analysis-03_p0008_tbl01_tbl-c-2-fundamental-natural-frequencies.png",
+      "png_sha256": "c3faf457eec934274b80041b4147945af7f4035c2d9caffbf6d1ee9008909964",
+      "slug": "tbl-c-2-fundamental-natural-frequencies",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0009_fig01",
+      "bbox_norm": [
+        0.07,
+        0.1,
+        0.93,
+        0.9
+      ],
+      "bbox_px": [
+        66,
+        128,
+        3234,
+        2422
+      ],
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (2 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0009_fig01_fig-c-2-fundamental-natural-frequencies.png",
+      "png_sha256": "8318bdc51ad319e5ea28034e1a4019c3ae4ef79409d28deaba49668c02cfeb8d",
+      "slug": "fig-c-2-fundamental-natural-frequencies",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0013_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1549
+      ],
+      "caption": "Fig. C-3 Time to Accumulate One Million Stress Cycles",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0013_fig01_fig-c-3-time-to-accumulate-one-million-s.png",
+      "png_sha256": "66861b11e14121c3749d14e432fa8a0c15bfb62a4e003a0688864dec68bc3208",
+      "slug": "fig-c-3-time-to-accumulate-one-million-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0014_fig01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.5,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        1088,
+        1402,
+        2208
+      ],
+      "caption": "Fig. C-4 Example of a Stiff Appurtenance",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0014_fig01_fig-c-4-example-of-a-stiff-appurtenance.png",
+      "png_sha256": "639fdc0836097836e77af8871dee8ebff8d0fbc6dbf3135aca2401357a4a3964",
+      "slug": "fig-c-4-example-of-a-stiff-appurtenance",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0014_fig02",
+      "bbox_norm": [
+        0.5,
+        0.38,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        1148,
+        1088,
+        2550,
+        2208
+      ],
+      "caption": "Fig. C-5 Mathematical Model of Figure C-4 Example",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 14,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0014_fig02_fig-c-5-mathematical-model-of-figure-c-4.png",
+      "png_sha256": "fac3f8a6909a09d4269bbb0335d9233ac5e9356b7e2ae73325b1211524cc2915",
+      "slug": "fig-c-5-mathematical-model-of-figure-c-4",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-03",
+  "issues": [],
+  "page_manifest_count": 16,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0015.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0016.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work"
+}

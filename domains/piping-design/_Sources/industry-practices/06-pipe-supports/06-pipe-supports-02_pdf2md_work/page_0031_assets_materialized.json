@@ -1,0 +1,93 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0031_fig01",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.72,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        430,
+        1967,
+        2148
+      ],
+      "caption": "Engineering detail drawing of base anchor assembly: elevation/side view showing stanchion pipe (Item 1), CS pipe (Item 2), base plate (Item 3), Hilti expansion bolts (Item 4), weep hole (1/4\"\u00d8), 4'-0\" MAX height, 3/4\" clearances, and SHIP WITH SUPPORT notation; plan view of BASE PLATE showing 18\"\u00d718\" plate with 4-1/8\"\u00d8 holes, 9\" bolt spacing, and 2\" (TYP) edge distances",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0031_fig01_engineering-detail-drawing-of-base-ancho.png",
+      "png_sha256": "0cd14b904579a17715ffdbc6a32331f6fa2ec78cb6d70d7ee71925418aeb5744",
+      "slug": "engineering-detail-drawing-of-base-ancho",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0031_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.78,
+        0.52,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        2412,
+        1456,
+        3139
+      ],
+      "caption": "Revision history table",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0031_tbl01_revision-history-table.png",
+      "png_sha256": "4cc86d3ad5e83c4f09ee1fa8eddbdb657ed68165ea443f578982fde13030a955",
+      "slug": "revision-history-table",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0031_tbl02",
+      "bbox_norm": [
+        0.54,
+        0.6,
+        0.97,
+        0.78
+      ],
+      "bbox_px": [
+        1252,
+        1817,
+        2555,
+        2742
+      ],
+      "caption": "Coding example table for base anchor mark numbering: BA3 - 1 - 10\" example showing P/S STD No., MARK No., and RUN PIPE SIZE fields",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0031_tbl02_coding-example-table-for-base-anchor-mar.png",
+      "png_sha256": "4bb251a6e6a8326ebdcd55bf5646f60810b8dc63e1dfd7d89637553f2f325779",
+      "slug": "coding-example-table-for-base-anchor-mar",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0031.png",
+  "page_image_sha256": "303c4de71c3956d3fb2752aa3859e3a60f4b537667969c777afcbeb18dfcb2cb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0031_assets.json"
+}

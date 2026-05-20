@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 14,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-6 Gate Valve [1]",
+      "slug": "fig-1400-6-gate-valve",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Two gate valve cross-section diagrams: Rising Stem Type (left) and Nonrising Stem Type (right), with labeled components including Stem, Packing Gland, Packing, Packing Nut, Packing Out, Screen Here, and Disk or Wedge."
+    }
+  ],
+  "issues": []
+}

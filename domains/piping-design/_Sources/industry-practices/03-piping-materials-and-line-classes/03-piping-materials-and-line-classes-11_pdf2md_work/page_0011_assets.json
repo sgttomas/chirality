@@ -1,0 +1,83 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-11",
+  "page": 11,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2 – Tensile Test Requirement (ksi)",
+      "slug": "table-2-tensile-test-requirement-ksi",
+      "bbox_norm": [0.06, 0.11, 0.94, 0.42],
+      "confidence": "high",
+      "notes": "Six-row table with Material, Orientation, YS, UTS, and Yield Ratio columns; each material has Longitudinal and Transverse rows",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material", "is_header": true },
+              { "value": "Orientation", "is_header": true },
+              { "value": "YS (R0.1%)", "is_header": true },
+              { "value": "UTS (Rm)", "is_header": true },
+              { "value": "Yield Ratio", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "22% Cr", "type": "text", "rowspan": 2 },
+              { "value": "Longitudinal", "type": "text" },
+              { "value": "65.27 - 94.27", "type": "text" },
+              { "value": "92.82 min.", "type": "text", "rowspan": 2 },
+              { "value": "", "type": "text", "rowspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Transverse", "type": "text" },
+              { "value": "65.27 - 91.37", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "25% Cr Duplex", "type": "text", "rowspan": 2 },
+              { "value": "Longitudinal", "type": "text" },
+              { "value": "75.42 - 104.43", "type": "text" },
+              { "value": "94.27 min.", "type": "text", "rowspan": 2 },
+              { "value": "0.89 max.", "type": "text", "rowspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Transverse", "type": "text" },
+              { "value": "75.42 - 101.53", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "25% Cr Super Duplex", "type": "text", "rowspan": 2 },
+              { "value": "Longitudinal", "type": "text" },
+              { "value": "79.77 - 108.79", "type": "text" },
+              { "value": "116.03 min.", "type": "text", "rowspan": 2 },
+              { "value": "", "type": "text", "rowspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Transverse", "type": "text" },
+              { "value": "79.77 - 105.88", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

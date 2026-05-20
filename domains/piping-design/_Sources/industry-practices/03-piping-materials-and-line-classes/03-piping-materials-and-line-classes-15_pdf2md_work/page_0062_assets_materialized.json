@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0062_fig01",
+      "bbox_norm": [
+        0.08,
+        0.12,
+        0.92,
+        0.68
+      ],
+      "bbox_px": [
+        76,
+        231,
+        2474,
+        2406
+      ],
+      "caption": "Fig. 200-22 Trunnion Mounted Ball Valve Courtesy of Cooper Cameron Valves, a Division of Cooper Cameron Corporation",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0062_fig01_fig-200-22-trunnion-mounted-ball-valve.png",
+      "png_sha256": "0719d40a29eb136aa921493d4c09608728403d0ab22810bdbcea7e41338a034d",
+      "slug": "fig-200-22-trunnion-mounted-ball-valve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0062.png",
+  "page_image_sha256": "b91ed9f21513618e34c89ca8c310937dc7014f955d2047b0676554394942eb36",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0062_assets.json"
+}

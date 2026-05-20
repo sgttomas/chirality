@@ -1,0 +1,54 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-03",
+  "page": 13,
+  "total_pages": 24,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "10-shop-and-field-fabrication-03_p13_t1",
+      "kind": "tbl",
+      "caption": "Material traceability steps (Steps 1–5)",
+      "bbox_norm": [0.04, 0.38, 0.96, 0.78],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": ["Step", "Description"],
+        "rows": [
+          {
+            "cells": [
+              {"type": "th", "value": "Step 1"},
+              {"type": "td", "value": "Material procurement\n\nThe purchase order shall specify that the Vendor shall ship the material certificates together with properly marked materials."}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "th", "value": "Step 2"},
+              {"type": "td", "value": "Material certification and identification\n\nUpon material receipt the Contractor shall verify that materials are properly marked and match the certificates."}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "th", "value": "Step 3"},
+              {"type": "td", "value": "Strict separate material storage based on material grade\n\nFollowing verification, the materials shall be stored by material grade."}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "th", "value": "Step 4"},
+              {"type": "td", "value": "Controlled mterial issue\n\nBulk materials required for construction/fabrication purposes shall be supplied from their storage area by means of a materials issue voucher which clearly identifies the required material grade and for which construction/fabrication item it is required."}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "th", "value": "Step 5"},
+              {"type": "td", "value": "Strict separation of material grades\n\nAt the construction/fabrication site materials grades shall be kept strictly separate and identifiable until such time as the fabricated item is complete and the likelihood of rogue materials being substituted is minimised."}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

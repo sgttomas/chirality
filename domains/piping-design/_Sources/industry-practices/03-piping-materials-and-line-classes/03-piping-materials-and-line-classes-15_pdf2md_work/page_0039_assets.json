@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 39,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-12 Change of Direction Fittings Courtesy of Canvil and Taylor Forge (2 of 2)",
+      "slug": "fig-200-12-change-of-direction-fittings-2-of-2",
+      "bbox_norm": [0.08, 0.03, 0.93, 0.92],
+      "confidence": "high",
+      "notes": "Full-page figure showing Socket Welding Elbows (top, with cross-section diagrams) and Threaded Elbows (bottom). Caption at top of figure box."
+    }
+  ],
+  "issues": []
+}

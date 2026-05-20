@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 179,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE: 4.52 CLASS: HAH",
+      "slug": "table-4-52-class-hah",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.28],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "is_header": true, "type": "text" },
+              { "value": "ANSI Class 900 Except 205 C (400 F) Max. (11) (13)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "is_header": true, "type": "text" },
+              { "value": "Process - Hydrogen", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "is_header": true, "type": "text" },
+              { "value": "Carbon Steel (11) (13)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "is_header": true, "type": "text" },
+              { "value": "1, 2", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CORROSION ALLOWANCE:", "is_header": true, "type": "text" },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header table for HAH class with pressure-temperature rating, service, material, construction class, and corrosion allowance"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,433 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 13,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "id": "tbl-0013-01",
+      "caption": "Table 1. Vent, Drain, and Instrument Connections Cross Reference.",
+      "bbox_norm": [0.01, 0.06, 0.99, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "PIP PIPING MATL SPEC (PIP PN)",
+          "HYDROSTATIC TEST VENTS and DRAINS (NPS) — BRANCH",
+          "HYDROSTATIC TEST VENTS and DRAINS (NPS) — HEADER SIZE",
+          "VALVED VENTS and DRAINS (NPS) — BRANCH",
+          "VALVED VENTS and DRAINS (NPS) — HEADER SIZE",
+          "PRESSURE CONNECTIONS (NPS) — BRANCH",
+          "PRESSURE CONNECTIONS (NPS) — HEADER SIZE",
+          "THERMOWELL CONNECTIONS (NPS) — BRANCH",
+          "THERMOWELL CONNECTIONS (NPS) — HEADER SIZE",
+          "ORIFICE FLANGE TAP CONNECTIONS (NPS) — BRANCH",
+          "ORIFICE FLANGE TAP CONNECTIONS (NPS) — HEADER SIZE"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"type": "text", "value": "02SD0502"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-12"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-03"},
+              {"type": "text", "value": "P-02"},
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "T-02"},
+              {"type": "text", "value": "T-22"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-02"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01MD0901"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "02NB0906"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NC0901"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NC0902"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NM0901"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NM0902"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "30NM0L01"},
+              {"type": "text", "value": "1/4 - 3/4"},
+              {"type": "text", "value": "VO-55"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "1/4 - 3/4"},
+              {"type": "text", "value": "VD-56"},
+              {"type": "text", "value": "VO-56"},
+              {"type": "text", "value": "1/4 - 3/4"},
+              {"type": "text", "value": "P-21"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "1/4 - 3/4"},
+              {"type": "text", "value": "T-25"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "NA"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NM0L02"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-03"},
+              {"type": "text", "value": "VO-05"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-13"},
+              {"type": "text", "value": "VO-16"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-03"},
+              {"type": "text", "value": "P-03"},
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "T-22"},
+              {"type": "text", "value": "T-22"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-02"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "02NM0S21"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-03"},
+              {"type": "text", "value": "VO-05"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-13"},
+              {"type": "text", "value": "VO-16"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-03"},
+              {"type": "text", "value": "P-03"},
+              {"type": "text", "value": "1"},
+              {"type": "text", "value": "T-22"},
+              {"type": "text", "value": "T-22"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-02"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NM0401"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-03"},
+              {"type": "text", "value": "VO-05"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01NX0401"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-03"},
+              {"type": "text", "value": "VO-05"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01PV0C31"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-43"},
+              {"type": "text", "value": "VO-43"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-44"},
+              {"type": "text", "value": "VD-44"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-19"},
+              {"type": "text", "value": "P-19"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-23"},
+              {"type": "text", "value": "T-23"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "NA"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01SA4001"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-08"},
+              {"type": "text", "value": "VO-09"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-27"},
+              {"type": "text", "value": "VO-28"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-04"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "06SA4001"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-08"},
+              {"type": "text", "value": "VO-09"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-27"},
+              {"type": "text", "value": "VO-28"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-04"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "06SA4002"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-08"},
+              {"type": "text", "value": "VO-09"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-27"},
+              {"type": "text", "value": "VO-28"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "T-15"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-04"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "08SA4001"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-08"},
+              {"type": "text", "value": "VO-09"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-27"},
+              {"type": "text", "value": "VO-28"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "P-12"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01SA4005"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "01SA4005"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          },
+          {
+            "cells": [
+              {"type": "text", "value": "06SA0005"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VO-06"},
+              {"type": "text", "value": "VO-07"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "VD-25"},
+              {"type": "text", "value": "VO-26"},
+              {"type": "text", "value": "3/4"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "P-11"},
+              {"type": "text", "value": "1-1/2"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "T-12"},
+              {"type": "text", "value": "1/2"},
+              {"type": "text", "value": "NA"},
+              {"type": "text", "value": "OR-03"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

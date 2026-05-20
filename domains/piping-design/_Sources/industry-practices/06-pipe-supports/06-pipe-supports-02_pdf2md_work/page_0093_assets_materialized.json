@@ -1,0 +1,138 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0093.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0093_fig01",
+      "bbox_norm": [
+        0.05,
+        0.33,
+        0.55,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        926,
+        3065,
+        2215
+      ],
+      "caption": "Top Connections \u2014 lug stem pipe support connection types A, B, C (top connection configurations)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0093_fig01_top-connections-lug-stem-abc.png",
+      "png_sha256": "e879931cbff79bc96940d75e52e8b1bc6f994bd023340686fc05a83547178f67",
+      "slug": "top-connections-lug-stem-abc",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0093_fig02",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.55,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1884,
+        3065,
+        3075
+      ],
+      "caption": "Bottom Connections \u2014 lug stem pipe support connection types A, B, C (bottom connection configurations)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0093_fig02_bottom-connections-lug-stem-abc.png",
+      "png_sha256": "4040e502d524cb58e93c13482135a119c67aa4fc3ca26212d17a22b702d60b6c",
+      "slug": "bottom-connections-lug-stem-abc",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0093_fig03",
+      "bbox_norm": [
+        0.53,
+        0.33,
+        0.9,
+        0.62
+      ],
+      "bbox_px": [
+        2452,
+        926,
+        4853,
+        2215
+      ],
+      "caption": "LUG STEM NO.21 DETAIL \u2014 dimensional detail drawing with pipe wall thickness and dimension table",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/06-pipe-supports-02_p0093_fig03_lug-stem-no21-detail.png",
+      "png_sha256": "488a0f87b007b661b3a7e0cb3133a3d30b609c9a93dc2ec8ec5f332eaeb344f8",
+      "slug": "lug-stem-no21-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0093_tbl01",
+      "bbox_norm": [
+        0.53,
+        0.55,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        2452,
+        1653,
+        4955,
+        2546
+      ],
+      "caption": "Lug Stem No. 21 dimension table showing pipe sizes and corresponding dimensions",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0093_tbl01_lug-stem-no21-dimension-table.png",
+      "png_sha256": "c466fe0c6349a7e0d7345e869e1ae39dac3d95a8dfe728d9cde9a01fa0401cac",
+      "slug": "lug-stem-no21-dimension-table",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0093_fig04",
+      "bbox_norm": [
+        0.53,
+        0.73,
+        0.9,
+        0.88
+      ],
+      "bbox_px": [
+        2452,
+        2248,
+        4853,
+        3075
+      ],
+      "caption": "Coding example \u2014 sample lug connection designation code showing bottom connection type format",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 4,
+      "png_path": "figures/06-pipe-supports-02_p0093_fig04_coding-example-lug-connection.png",
+      "png_sha256": "e370adb772c79d3077245c57509fd8ea8e38d797c78e479bcacc7d4adfa9225e",
+      "slug": "coding-example-lug-connection",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 93,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0093.png",
+  "page_image_sha256": "3547615485affe987d035db55e54811dd61ad0711318c6b057715c38ba9f5a53",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0093_assets.json"
+}

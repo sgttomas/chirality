@@ -1,0 +1,266 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-02",
+  "page": 4,
+  "total_pages": 4,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 – Piping Service Index",
+      "slug": "piping-service-index",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. The Piping Service Index lists common services and corresponding recommended PIP Piping Material Specifications.",
+          "2. The PIP Piping Material Specifications selection recommendations shown in the Piping Service Index are based on common fluid services. Before making a final selection of a PIP Piping Material Specification, design conditions should be compared with condition shown (if any) in the Remarks column. The effects of other associated variables should also be evaluated.",
+          "3. Verification that \"soft goods\" (e.g., seals, seats, gaskets, packing, etc.) in valves specified in recommended PIP Piping Material Specifications are appropriate for the actual service is recommended.",
+          "4. An \"*\" shown in the Index indicates a PIP Piping Material Specification selection for a special or critical application."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Service", "is_header": true },
+              { "value": "Piping Material", "is_header": true },
+              { "value": "Recommended PIP Line Class (PN-)", "is_header": true },
+              { "value": "Remarks", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Air (Instrument)", "type": "text" },
+              { "value": "CS, SS 304*", "type": "text" },
+              { "value": "12CG0T01, 12CS1G01, 12CS1T01, 1CS1S01, 1SA0S03*", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Air (Plant)", "type": "text" },
+              { "value": "CS, SS 304*", "type": "text" },
+              { "value": "12CG0T01, 12CS1G01, 12CS1T01, 1CS1S01, 1SA0S03*", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Ammonia (anhydrous liquid)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "No copper alloys", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Butane (liquid)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Dioxide (dry)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Dioxide (wet)", "type": "text" },
+              { "value": "SS 304", "type": "text" },
+              { "value": "SA series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Crude Oil (Sour)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series", "type": "text" },
+              { "value": "Specify NACE. Standards as applicable", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Crude Oil (Sweet)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fuel Gas", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CS1 & CS2 series, CB1 & CB2 series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fuel Oil", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Glycol", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "Refer also to manufacturer's recommendations", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hydrochloric Acid", "type": "text" },
+              { "value": "CS/Lined, CPVC", "type": "text" },
+              { "value": "1LP0F01, 1LTF01, 1PU0C01", "type": "text" },
+              { "value": "(a) Conc 0-38%; (b) Safeguards required for 1PU0C01", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Lube Oil", "type": "text" },
+              { "value": "SS 304", "type": "text" },
+              { "value": "1SA0B01, 3SA0B01, 6SA0B01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nitrogen", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Nitric Acid", "type": "text" },
+              { "value": "SS 304", "type": "text" },
+              { "value": "1SA0S01, 3SA0S01, 1SA0S03", "type": "text" },
+              { "value": "Dilute", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "LNG", "type": "text" },
+              { "value": "SS 304", "type": "text" },
+              { "value": "1SA0S04, 3SA0S04, 6SA0S04", "type": "text" },
+              { "value": "Cryogenic", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Oxygen", "type": "text" },
+              { "value": "Alloy 400, SS 304", "type": "text" },
+              { "value": "1NM0B02, 3NM0B02, 4NM0B02, 1SA0B05, 3SA0B05, 6SA0B05", "type": "text" },
+              { "value": "Refer also to CGA recommendations", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Propane", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CA series, CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sewer Sanitary (Forced & Gravity)", "type": "text" },
+              { "value": "Non-metallic", "type": "text" },
+              { "value": "12PD0H01, 1PD0H02, 1PU0C01, 1PV0C01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam, condensate", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "6CJ1S02, 8CJ1S02, 15CJ1S02, 1CS1S02, 3CS1S02, 6CS1S01, 9CS1S01, 15CS1S01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sulphur (liquid)", "type": "text" },
+              { "value": "CS (Jacketed), SS 304 (Jacketed)", "type": "text" },
+              { "value": "1CS1J01, 3CS1J01, 1SA0J01, 3SA0J01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Boiler Feed)", "type": "text" },
+              { "value": "CS", "type": "text" },
+              { "value": "CB series, CS series", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Fresh, Cooling Tower)", "type": "text" },
+              { "value": "CS, RTRP, PVC", "type": "text" },
+              { "value": "1CS1S01, 12CS1T01, 12CG0T01, 1FE0A01, 1FV1A01, 1PV0C01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Demin)", "type": "text" },
+              { "value": "PVC, SS 304", "type": "text" },
+              { "value": "1PV0C01, 1SA0B03", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Fire – AG)", "type": "text" },
+              { "value": "CS, CS (Galv.)", "type": "text" },
+              { "value": "12CG0T01, 12CS1G01, 12CS1T01, 1CS1S01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Fire – BG)", "type": "text" },
+              { "value": "CS, DI, HDPE", "type": "text" },
+              { "value": "12CS1B01, 12LB0M01, 12PD0H01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Potable)", "type": "text" },
+              { "value": "CS, CS (Galv.), CPVC, PVC", "type": "text" },
+              { "value": "12CS1G01, 12CG0T01, 1PU0C01, 1PV0C01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Water (Sea)", "type": "text" },
+              { "value": "254 SMO, RTRP, CPVC, PVC", "type": "text" },
+              { "value": "1SV0S01, 3SV0S01, 1FE0A01, 1FV0A01, 1PU0C01, 1PV0C01", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full-page table with 4 columns: Service, Piping Material, Recommended PIP Line Class (PN-), Remarks. Followed by 4 footnotes."
+    }
+  ],
+  "issues": []
+}

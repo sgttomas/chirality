@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0069.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0069_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.78,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2121,
+        2412
+      ],
+      "caption": "Pick-Up Type Support \u2014 Pipe to Pipe-Clamped, Elevation Details A through F with U-bolt configurations",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0069_fig01_pick-up-type-support-pipe-to-pipe-clampe.png",
+      "png_sha256": "22a277d09612960558630589e324efed67b17287bc61a15a1b223bbaf17b396b",
+      "slug": "pick-up-type-support-pipe-to-pipe-clampe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0069_tbl01",
+      "bbox_norm": [
+        0.78,
+        0.56,
+        0.98,
+        0.7
+      ],
+      "bbox_px": [
+        1865,
+        1685,
+        2555,
+        2478
+      ],
+      "caption": "Coding Example \u2014 FS3 designation with size parameters",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0069_tbl01_coding-example-fs3.png",
+      "png_sha256": "199d45ef4ed4bb534274ad96a501a6533f13276cd8a4970143a52a9642e2deca",
+      "slug": "coding-example-fs3",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0069_tbl01_coding-example-fs3.json",
+      "table_data_json_sha256": "cd79a4fff968bdf1ccc51f3d9ba538433b2f067e6aa6ba158d8719a8cef873ba",
+      "table_data_sha256": "cd79a4fff968bdf1ccc51f3d9ba538433b2f067e6aa6ba158d8719a8cef873ba",
+      "xlsx_path": "tables/06-pipe-supports-02_p0069_tbl01_coding-example-fs3.xlsx",
+      "xlsx_sha256": "169ce06ca898aa5d4e0cd4587c928183d360dc26bdd6bfc9ef2f264979064e6b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 69,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0069.png",
+  "page_image_sha256": "73d24849ee9028008f4a5d439cefa280960bc1ebb2925a0764bfa331bc633cf6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0069_assets.json"
+}

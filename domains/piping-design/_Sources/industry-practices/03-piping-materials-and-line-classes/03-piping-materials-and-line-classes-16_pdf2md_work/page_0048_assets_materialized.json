@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0048.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0048_fig01",
+      "bbox_norm": [
+        0.1,
+        0.05,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2474,
+        1417
+      ],
+      "caption": "Fig. 1400-23 Packing Guide for Compact Stuffing Box and Quarter Turn Valves",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0048_fig01_fig-1400-23-packing-guide-compact-stuffi.png",
+      "png_sha256": "98c6db07a9ddfe2319e096a19920aaa70cbed4eddb584a93508f988fcf77aa09",
+      "slug": "fig-1400-23-packing-guide-compact-stuffi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-16_p0048_fig02",
+      "bbox_norm": [
+        0.1,
+        0.4,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        128,
+        1154,
+        2474,
+        2868
+      ],
+      "caption": "Fig. 1400-24 Packing Guide for Deep Stuffing Boxes",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/03-piping-materials-and-line-classes-16_p0048_fig02_fig-1400-24-packing-guide-deep-stuffing.png",
+      "png_sha256": "b8b98e54416962c3f4396c9abb55e401c3bbf5b5240bb23e317c7d836a0c02a8",
+      "slug": "fig-1400-24-packing-guide-deep-stuffing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-16",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 48,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0048.png",
+  "page_image_sha256": "5b3321a233cb996757f23cdf7d9194216d7a8ad6f3f27c7be5907177313931a6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-16_pdf2md_work/page_0048_assets.json"
+}

@@ -1,0 +1,399 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 19,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item/Material Schedule - Cantilever Support Bolted Attachment components",
+      "slug": "item-material-schedule-cantilever-bolted",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "confidence": "high",
+      "notes": "6-row material schedule with item number, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5 \u2013 SIZE 'A'",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "L89 \u00d7 89 \u00d7 7.9 \u2013 SIZE 'B'",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "L64 \u00d7 64 \u00d7 6.4 \u2013 SIZE 'C'",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK PLATE",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "4",
+                "type": "number"
+              },
+              {
+                "value": "HSL-M 12/25 HILTI EXPANSION BOLT",
+                "type": "text"
+              },
+              {
+                "value": "ASTM F588 CLASS 5.8 GALVANIZED",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "51mm \u00d7 9.5mm THK FB \u00d7 LENGTH TO SUIT ITEM 1",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Elevation view \u2014 Cantilever Support Bolted Attachment showing fab. length, flat bar, and existing concrete attachment with dimensions",
+      "slug": "elevation-cantilever-support-bolted",
+      "bbox_norm": [
+        0.03,
+        0.15,
+        0.52,
+        0.55
+      ],
+      "confidence": "high",
+      "notes": "Elevation drawing of cantilever support with callout items 1-4, fab. length dimension, flat bar (item 4), and existing concrete with expansion bolt detail"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Sect \"X-X\" \u2014 Cross-section through cantilever support showing angle and plate detail with hole pattern and dimensions",
+      "slug": "sect-x-x-cantilever-support-bolted",
+      "bbox_norm": [
+        0.52,
+        0.15,
+        0.97,
+        0.42
+      ],
+      "confidence": "high",
+      "notes": "Section X-X cut view showing 4-7/8\" hole pattern, 1-1/2\" spacing dimensions, and angle cross-section profile"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "Sect \"Y-Y\" \u2014 Longitudinal section through cantilever support showing angle and flat bar profile with dimensions",
+      "slug": "sect-y-y-cantilever-support-bolted",
+      "bbox_norm": [
+        0.55,
+        0.38,
+        0.97,
+        0.58
+      ],
+      "confidence": "high",
+      "notes": "Section Y-Y showing longitudinal cut through the angle and flat bar with 2-1/2\" dimension"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 4,
+      "caption": "Alternate End Connection detail \u2014 Plan view showing alternate angle end connection configuration",
+      "slug": "alternate-end-connection-cantilever-bolted",
+      "bbox_norm": [
+        0.03,
+        0.53,
+        0.45,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Detail showing alternate end connection with 3/4\" dimension, labelled ALTERNATE END CONNECTION"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Mark/Fab Length/Max Load \u2014 Cantilever Support size schedule",
+      "slug": "mark-fab-length-max-load",
+      "bbox_norm": [
+        0.52,
+        0.57,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "4-row table listing mark number, fabrication length, and maximum load with note reference",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "Note 3: Loads are for Size 'A'. For other sizes multiply by: Size 'B' \u00d7 0.5, Size 'C' \u00d7 0.25"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAX. LOAD (lb.) (NOTE 3)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 850,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 430,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 300,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 200,
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Coding Example \u2014 P/S standard coding format",
+      "slug": "coding-example-ps-standard",
+      "bbox_norm": [
+        0.52,
+        0.72,
+        0.82,
+        0.82
+      ],
+      "confidence": "medium",
+      "notes": "Small coding example table showing B4 mark with size and P/S STD coding format",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING ( EXAMPLE )",
+                "is_header": true,
+                "colspan": 3
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B4",
+                "type": "text"
+              },
+              {
+                "value": "\u2013",
+                "type": "text"
+              },
+              {
+                "value": "MARK No.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "P/S STD.",
+                "type": "text"
+              },
+              {
+                "value": "SIZE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

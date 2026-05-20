@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 26,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-31 Vent — NPS 1 assembly detail showing NPS 1 Blind Flange, NPS 1 Weld Neck Flange, NPS 1 Tee, and NPS 1 Line Size callouts",
+      "slug": "v-31-vent-nps-1",
+      "bbox_norm": [0.06, 0.11, 0.94, 0.47],
+      "confidence": "high",
+      "notes": "Engineering drawing of V-31 Vent assembly with labeled components"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "D-31 Drain — NPS 1 assembly detail showing NPS 1 Line Size, NPS 1 Tee, NPS 1 Weld Neck Flange, NPS 1 Blind Flange callouts, with NOTE 2 references",
+      "slug": "d-31-drain-nps-1",
+      "bbox_norm": [0.06, 0.47, 0.94, 0.80],
+      "confidence": "high",
+      "notes": "Engineering drawing of D-31 Drain assembly with labeled components and NOTE 2 callouts"
+    }
+  ],
+  "issues": []
+}

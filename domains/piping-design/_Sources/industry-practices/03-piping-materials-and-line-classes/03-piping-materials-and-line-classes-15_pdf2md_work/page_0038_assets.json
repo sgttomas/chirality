@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 38,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-12 Change of Direction Fittings Courtesy of Canvil and Taylor Forge (1 of 2)",
+      "slug": "fig-200-12-change-of-direction-fittings-1-of-2",
+      "bbox_norm": [0.13, 0.05, 0.92, 0.92],
+      "confidence": "high",
+      "notes": "Composite figure showing seven change-of-direction fittings: 90-degree Long-Radius Elbow, 90-degree Reducing Elbow, 45-degree Long-Radius Elbow, 90-degree Short-Radius Elbow, 180-degree Long-Radius Return, 180-degree Short-Radius Return, and 90-degree Three Piece Miter Elbow. Sub-labels and bold section title 'Elbows and Returns' included within bbox."
+    }
+  ],
+  "issues": []
+}

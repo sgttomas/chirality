@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "08-pressure-design-and-overpressure-relief-02_p0016_fig01",
+      "bbox_norm": [
+        0.08,
+        0.08,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        74,
+        105,
+        2406,
+        2702
+      ],
+      "caption": "FIGURE 5 \u2014 COMPARISON OF TYPICAL PIPELINE PRESSURE FOR RELIEF AND IPF (GAS LINE)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/08-pressure-design-and-overpressure-relief-02_p0016_fig01_figure-5-comparison-of-typical-pipeline.png",
+      "png_sha256": "0a30becd622681e00dcaa49b85108a6f4c8760b8f171dcffc7ac9dd1787e0bd5",
+      "slug": "figure-5-comparison-of-typical-pipeline",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/_assets/08-pressure-design-and-overpressure-relief-02",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0016.png",
+  "page_image_sha256": "e107705bfc7a0f08d534cca34e09b4bce3ac5f08c7b366b5fdaf13399d0f6105",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0016_assets.json"
+}

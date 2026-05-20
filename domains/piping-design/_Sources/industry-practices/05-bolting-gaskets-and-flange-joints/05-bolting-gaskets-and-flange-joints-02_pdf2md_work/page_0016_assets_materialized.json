@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-02_p0016_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2541
+      ],
+      "caption": "Table 10: Bolt Selection for General Service",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/05-bolting-gaskets-and-flange-joints-02_p0016_tbl01_bolt-selection-general-service.png",
+      "png_sha256": "4fa75fec0e188446bad37981e53d9cc896ba626c347f57d4d99163362e1ef416",
+      "slug": "bolt-selection-general-service",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-02",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0016.png",
+  "page_image_sha256": "18094e73592c2ce0b9761ef4cde67b8eb506f5530661d2134e44b329b971ed83",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-02_pdf2md_work/page_0016_assets.json"
+}

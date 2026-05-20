@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0030.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0030_fig01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2550,
+        2541
+      ],
+      "caption": "V-45 Vent assembly diagram for NPS 3/4 thru 6 polypropylene piping, showing a symmetrical diamond-shaped arrangement with labeled components including NPS 3/4 blind flange, NPS 3/4 lap joint flange, NPS 3/4 lap joint stub end, NPS 3/4 tee or line size tee with one or multiple reducers, NPS 3/4 thru NPS 6 line size, and NPS 3/4 tee on both sides.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0030_fig01_v-45-vent-assembly-diagram-for-nps-3-4-t.png",
+      "png_sha256": "941735d1a1b2cf3c4ec18d2a45f04c9fc3fbbafd71220c80d572b988bdbc4192",
+      "slug": "v-45-vent-assembly-diagram-for-nps-3-4-t",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0030.png",
+  "page_image_sha256": "1e2899df47993aa12f9d14455fceccdcbd528cc518bf6aa786ce67c5efcfe7ff",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0030_assets.json"
+}

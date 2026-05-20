@@ -1,0 +1,79 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 247,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE: 4.75  CLASS: HRG — Process-Hydrogen, 321H Stainless-Steel, ANSI Class 600 line class header",
+      "slug": "table-4-75-class-hrg-line-class-header",
+      "bbox_norm": [0.04, 0.02, 0.96, 0.30],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE:", "is_header": true },
+              { "value": "4.75", "is_header": true },
+              { "value": "CLASS:", "is_header": true },
+              { "value": "HRG", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "type": "text" },
+              { "value": "ANSI Class 600 Except 705 C (1300 F) Max.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "type": "text" },
+              { "value": "Process - Hydrogen", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "type": "text" },
+              { "value": "321H Stainless-Steel", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "type": "text" },
+              { "value": "1", "type": "text" },
+              { "value": "CORROSION ALLOWANCE:", "type": "text" },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header table with service/material/construction parameters and empty item grid header row. Item rows not populated on this page."
+    }
+  ],
+  "issues": []
+}

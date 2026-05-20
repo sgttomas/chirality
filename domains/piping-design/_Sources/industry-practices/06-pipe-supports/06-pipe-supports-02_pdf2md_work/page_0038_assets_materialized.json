@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0038_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Parts list \u2014 Item No., Qty, Description, Material for items 1\u20133",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0038_tbl01_parts-list-item-no-qty-description-mater.png",
+      "png_sha256": "0804e5be8b5e556c85c1db73eec4f8a8216b045045c5f5abf27d515e5c8bcf12",
+      "slug": "parts-list-item-no-qty-description-mater",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0038_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2555,
+        2412
+      ],
+      "caption": "Elevation view of base support for 10\"\u201316\" pipe with pipe, elbow/tee/pipe fitting, weep hole, insert plate, free-to-slide base, and attachment surface detail views with dimension callouts and item balloon references",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0038_fig01_elevation-view-of-base-support-for-10-16.png",
+      "png_sha256": "07d946fad48480300e933e9afa96dce6965fc0f99c80ff1fee3b54b1d8c1aae4",
+      "slug": "elevation-view-of-base-support-for-10-16",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0038_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.6,
+        0.97,
+        0.73
+      ],
+      "bbox_px": [
+        1278,
+        1817,
+        2555,
+        2577
+      ],
+      "caption": "Mark/Item No. 2 dimensions \u2014 Mark No. and P/S STD. Length for marks 1\u20134",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,5], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0038_tbl02_mark-item-no-2-dimensions-mark-no-and-p.png",
+      "png_sha256": "f8b2b4e9f0727fb5ba9b96fd9bd78c3d016688f37cc36d5e4a17a224bebbdddd",
+      "slug": "mark-item-no-2-dimensions-mark-no-and-p",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0038_tbl03",
+      "bbox_norm": [
+        0.03,
+        0.75,
+        0.62,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        2313,
+        1712,
+        3040
+      ],
+      "caption": "Revision block \u2014 No., Date, Revisions, By/Chk/Eng/App columns with entries for revisions 4 and 5",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0038_tbl03_revision-block-no-date-revisions-by-chk.png",
+      "png_sha256": "d53e838c3584d63c78f5105c6ffa0da3af8d245b501a123d415444c21c54172d",
+      "slug": "revision-block-no-date-revisions-by-chk",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0038.png",
+  "page_image_sha256": "a58457eae2ee383ef2bfe7097192d22a40c11fded2f857603006e59ab2d2bbaa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0038_assets.json"
+}

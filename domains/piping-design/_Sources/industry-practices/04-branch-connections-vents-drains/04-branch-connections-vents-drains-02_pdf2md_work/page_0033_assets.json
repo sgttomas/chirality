@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 33,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-50 Vent detail for NPS 2 & UP, Welded Piping, showing NPS 3/4 blind flange, NPS 3/4 socket weld flange, NPS 3/4 x 100(4) nipple (plain both ends), and NPS 3/4 socket weld pipet connected to NPS 2 line size & up",
+      "slug": "v-50-vent-nps-2-up",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.57
+      ],
+      "confidence": "high",
+      "notes": "Engineering schematic of V-50 vent assembly with call-out labels; V-50 VENT title and NPS 2 & UP heading above"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "D-50 Drain detail for NPS 2 & UP, Welded Piping, showing NPS 3/4 socket weld pipet, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld flange, and NPS 3/4 blind flange connected to NPS 2 line size & up",
+      "slug": "d-50-drain-nps-2-up",
+      "bbox_norm": [
+        0.05,
+        0.57,
+        0.95,
+        0.84
+      ],
+      "confidence": "high",
+      "notes": "Engineering schematic of D-50 drain assembly with call-out labels; D-50 DRAIN title below"
+    }
+  ],
+  "issues": []
+}

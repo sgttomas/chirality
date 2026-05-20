@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 50,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-06-pipe-supports-02-p0050-001",
+      "kind": "fig",
+      "caption": "Elevation and Plan views of U-Bolt Support with Shear Lug for pipe sizes 3/4\" to 3\". Elevation view shows U-bolt around pipe with flat bar shear lug at base; Plan view shows top-down view with key dimensions.",
+      "bbox_norm": [
+        0.01,
+        0.06,
+        0.72,
+        0.42
+      ]
+    }
+  ],
+  "issues": []
+}

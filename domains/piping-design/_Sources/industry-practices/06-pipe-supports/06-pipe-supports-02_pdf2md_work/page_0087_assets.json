@@ -1,0 +1,343 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 87,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item No. / QTY. / Description / Material \u2014 Bill of Materials",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Four-column bill of materials table at top of page",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "C250 x 37",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "L102 x 102 x 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PL. 12\" x 17\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 4,
+                "type": "number"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "M16 x 70 LONG BOLT c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN, ELEVATION, and SECT. 'X-X' views \u2014 Vertical Pipe Guide, Uninsulated, Pipe Sizes 14\" to 24\"",
+      "slug": "plan-elevation-section-vertical-pipe-guide",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.68,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing PLAN view (top), ELEVATION view (bottom-left), and SECT. 'X-X' (bottom-right) with gusset plate detail and structural steel annotations"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "PIPE SIZE / DIM 'A' / DIM 'B' dimension table",
+      "slug": "pipe-size-dim-a-dim-b",
+      "bbox_norm": [
+        0.62,
+        0.52,
+        0.97,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Five rows of pipe size vs. Dim A and Dim B values on right side of page",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'A'",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "10\"",
+                "type": "text"
+              },
+              {
+                "value": "14 1/4\"",
+                "type": "fraction",
+                "raw": "14 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "16\"",
+                "type": "text"
+              },
+              {
+                "value": "11\"",
+                "type": "text"
+              },
+              {
+                "value": "16 1/4\"",
+                "type": "fraction",
+                "raw": "16 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "18\"",
+                "type": "text"
+              },
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "18 1/4\"",
+                "type": "fraction",
+                "raw": "18 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "20\"",
+                "type": "text"
+              },
+              {
+                "value": "13\"",
+                "type": "text"
+              },
+              {
+                "value": "20 1/4\"",
+                "type": "fraction",
+                "raw": "20 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "24\"",
+                "type": "text"
+              },
+              {
+                "value": "15\"",
+                "type": "text"
+              },
+              {
+                "value": "24 3/4\"",
+                "type": "fraction",
+                "raw": "24 3/4\""
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "MARK No. / FAB LENGTH table",
+      "slug": "mark-no-fab-length",
+      "bbox_norm": [
+        0.03,
+        0.72,
+        0.4,
+        0.84
+      ],
+      "confidence": "high",
+      "notes": "Small two-column table listing mark numbers and fabrication lengths",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "FAB LENGTH",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "3'",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "4'",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": "6'",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

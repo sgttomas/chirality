@@ -1,0 +1,123 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 94,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p094_fig001",
+      "kind": "fig",
+      "caption": "Engineering drawing of CNG Nose Elbow pipe support standard, showing dimensioned views with weld and notch details, reference notes, and a NOTCH DETAIL inset. Annotations include 90\u00b0 ELBOW, SNIP TO NOTCH USE AS INDICATED IN DETAIL, AAIL FIG. NO. (OR DUPLICATE), NOTE 9, and dimensional callouts F, G, H.",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.47,
+        0.82
+      ]
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p094_tbl001",
+      "kind": "tbl",
+      "caption": "DIMENSIONS IN INCHES \u2014 CNG Nose Elbow dimensional schedule by nominal pipe size",
+      "bbox_norm": [
+        0.47,
+        0.03,
+        0.87,
+        0.72
+      ],
+      "needs_extraction": true
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p094_tbl002",
+      "kind": "tbl",
+      "caption": "PIPE SIZE / NO. OF NOTCHES",
+      "bbox_norm": [
+        0.47,
+        0.73,
+        0.65,
+        0.86
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "pipe_size",
+            "label": "PIPE SIZE"
+          },
+          {
+            "id": "no_of_notches",
+            "label": "NO. OF NOTCHES"
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_id": "pipe_size",
+                "type": "text",
+                "value": "3/4\" \u2013 3/4\""
+              },
+              {
+                "col_id": "no_of_notches",
+                "type": "number",
+                "value": "2"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_id": "pipe_size",
+                "type": "text",
+                "value": "1\" \u2013 1-1/4\""
+              },
+              {
+                "col_id": "no_of_notches",
+                "type": "number",
+                "value": "3"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_id": "pipe_size",
+                "type": "text",
+                "value": "1-1/2\" \u2013 3\""
+              },
+              {
+                "col_id": "no_of_notches",
+                "type": "number",
+                "value": "4"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p094_fig002",
+      "kind": "fig",
+      "caption": "LEGEND/SYMBOL box \u2014 drawing identification, revision tracking, and standard note references for CNG Nose Elbow detail",
+      "bbox_norm": [
+        0.47,
+        0.86,
+        0.7,
+        0.97
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "asset_id": "06-pipe-supports-02_p094_tbl001",
+      "severity": "warning",
+      "message": "Main dimensions table (DIMENSIONS IN INCHES) contains dense small-print values across many columns and rows; cell-level values cannot be safely transcribed at this image resolution. needs_extraction set to true."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 75,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "P-06 pressure connection detail showing NPS 1-1/2 line size and up, with NPS 3/4 x 90(3-1/2) plain end nipplet pipet, INSTR piping, and NPS 3/4 socket weld x threaded valve",
+      "bbox_norm": [0.12, 0.28, 0.88, 0.58]
+    }
+  ],
+  "issues": []
+}

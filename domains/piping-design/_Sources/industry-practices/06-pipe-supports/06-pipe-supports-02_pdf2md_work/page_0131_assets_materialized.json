@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0131.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0131_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.8,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2172,
+        562
+      ],
+      "caption": "Bill of materials \u2014 item list for vessel clip",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0131_tbl01_vessel-clip-bom.png",
+      "png_sha256": "d4169ed10309a316061350d9882b587140aceb35e1e8363dd1167ddb5951ceb1",
+      "slug": "vessel-clip-bom",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0131_tbl01_vessel-clip-bom.json",
+      "table_data_json_sha256": "fb6fec54871ef27b08a7b180b9948e4938e7ed7093c11ca4aab464e400deddb0",
+      "table_data_sha256": "fb6fec54871ef27b08a7b180b9948e4938e7ed7093c11ca4aab464e400deddb0",
+      "xlsx_path": "tables/06-pipe-supports-02_p0131_tbl01_vessel-clip-bom.xlsx",
+      "xlsx_sha256": "486822b3fd2fd578789b34a88722dfd0d42684aecc965d77a6a3d6c8d4fc9feb"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0131_fig01",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2555,
+        2214
+      ],
+      "caption": "PLAN and ELEVATION views \u2014 Vessel Clip for Insulated Vessel (Drawing VC3, Sheet 10F1)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0131_fig01_vessel-clip-plan-elevation.png",
+      "png_sha256": "28d676659d8844ff00363b14795e7fb6c6af6876d377573216351dea3bf80b12",
+      "slug": "vessel-clip-plan-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 131,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0131.png",
+  "page_image_sha256": "6c478668a1e91ed150a0788fe7fcb315e2c693ae4b22b0757f82b691070dd9e9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0131_assets.json"
+}

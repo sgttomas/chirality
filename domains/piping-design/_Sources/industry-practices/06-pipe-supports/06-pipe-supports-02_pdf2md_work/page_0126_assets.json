@@ -1,0 +1,266 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 126,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 item list for Steel Plate SPL",
+      "slug": "bill-of-materials-steel-plate-spl",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.7,
+        0.1
+      ],
+      "confidence": "high",
+      "notes": "Two-row BOM table at top of drawing with item number, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm THK. PLATE 'A' x 'A'",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "4",
+                "type": "number"
+              },
+              {
+                "value": "#4 REBAR (TYPE 'A' ONLY)",
+                "type": "text"
+              },
+              {
+                "value": "CARBON STEEL",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN TYPE 'A' \u2014 plan view of steel plate with rebar, and ELEVATION TYPE 'A', 'B', and 'C' views of pipe support base plate detail",
+      "slug": "plan-elevation-steel-plate-spl",
+      "bbox_norm": [
+        0.02,
+        0.09,
+        0.72,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Multi-view engineering drawing: PLAN TYPE 'A' (top-down), ELEVATION TYPE 'A' (section), ELEVATION TYPE 'B' (side with size base support annotation), ELEVATION TYPE 'C' (floor slab with shear lugs). Includes #4 rebar detail, 1/4\" fillet weld call-outs, and 1\" GROUT dimension."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Plate and pipe sizing \u2014 MARK table for Steel Plate SPL",
+      "slug": "plate-pipe-sizing-mark-table",
+      "bbox_norm": [
+        0.55,
+        0.52,
+        0.97,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Five-row table correlating MARK number to plate dimensions, pipe stub size, and supported pipe size range",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "PLATE DIM. 'A' x 'A'",
+                "is_header": true
+              },
+              {
+                "value": "PIPE STUB SIZE",
+                "is_header": true
+              },
+              {
+                "value": "SUPPORTED PIPE SIZE",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "8\" x 8\"",
+                "type": "text",
+                "raw": "8\" x 8\""
+              },
+              {
+                "value": "2\"",
+                "type": "text",
+                "raw": "2\""
+              },
+              {
+                "value": "3/4\" x 1 1/2\"",
+                "type": "fraction",
+                "raw": "3/4\" x 1 1/2\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "12\" x 12\"",
+                "type": "text",
+                "raw": "12\" x 12\""
+              },
+              {
+                "value": "3\"",
+                "type": "text",
+                "raw": "3\""
+              },
+              {
+                "value": "2\" TO 4\"",
+                "type": "text",
+                "raw": "2\" TO 4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "14\" x 14\"",
+                "type": "text",
+                "raw": "14\" x 14\""
+              },
+              {
+                "value": "4\"",
+                "type": "text",
+                "raw": "4\""
+              },
+              {
+                "value": "6\" TO 8\"",
+                "type": "text",
+                "raw": "6\" TO 8\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "18\" x 18\"",
+                "type": "text",
+                "raw": "18\" x 18\""
+              },
+              {
+                "value": "8\"",
+                "type": "text",
+                "raw": "8\""
+              },
+              {
+                "value": "10\" TO 16\"",
+                "type": "text",
+                "raw": "10\" TO 16\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "22\" x 22\"",
+                "type": "text",
+                "raw": "22\" x 22\""
+              },
+              {
+                "value": "12\"",
+                "type": "text",
+                "raw": "12\""
+              },
+              {
+                "value": "18\" TO 24\"",
+                "type": "text",
+                "raw": "18\" TO 24\""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

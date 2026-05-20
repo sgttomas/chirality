@@ -1,0 +1,99 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        246,
+        2480,
+        1719
+      ],
+      "caption": "Table A10-2 Actual load data from pipe stress analysis",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.png",
+      "png_sha256": "0feadb44e181a791a83df10c54b5ddd2072ef904046ffab38b558ab099c73779",
+      "slug": "table-a10-2-actual-load-data-pipe-stress",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.json",
+      "table_data_json_sha256": "68c5a844a191b477d9e06dd83824bb89fe33fb5441f45ec425e9c3324c692e58",
+      "table_data_sha256": "68c5a844a191b477d9e06dd83824bb89fe33fb5441f45ec425e9c3324c692e58",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl01_table-a10-2-actual-load-data-pipe-stress.xlsx",
+      "xlsx_sha256": "eb547613478e75c9ef61b586398baffce254401ecce00690484bba10a6cb2f39"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.55,
+        0.95,
+        0.74
+      ],
+      "bbox_px": [
+        0,
+        1754,
+        2480,
+        2772
+      ],
+      "caption": "Table A10-3 Allowable load data from Appendix 3",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.png",
+      "png_sha256": "c59c6258ffa64372a33706435e64259e6e5825b21e5f965fc2a695b5d9a2c571",
+      "slug": "table-a10-3-allowable-load-data-appendix",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.json",
+      "table_data_json_sha256": "a63211767cff505833358e24afd470a5db4231f32619f30ab6d00233615452bc",
+      "table_data_sha256": "a63211767cff505833358e24afd470a5db4231f32619f30ab6d00233615452bc",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl02_table-a10-3-allowable-load-data-appendix.xlsx",
+      "xlsx_sha256": "0a1ab6efe58f8651dc27ddbcf22b31ea4fb09819b9027b94c37de9b9e071f881"
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0026_tbl03",
+      "bbox_norm": [
+        0.05,
+        0.82,
+        0.95,
+        0.99
+      ],
+      "bbox_px": [
+        0,
+        2702,
+        2480,
+        3509
+      ],
+      "caption": "Table A10-4 Load assessment results",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.png",
+      "png_sha256": "1d3bc285806e24c1a5cf8fe35c2524adffa61a60b66ec8caf87c550939eee7e6",
+      "slug": "table-a10-4-load-assessment-results",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.json",
+      "table_data_json_sha256": "ebc49d68b393898a954d7e162b9f7404cdf9484fc62ad0ae46701eb0c72e8391",
+      "table_data_sha256": "ebc49d68b393898a954d7e162b9f7404cdf9484fc62ad0ae46701eb0c72e8391",
+      "xlsx_path": "tables/06-pipe-supports-03_p0026_tbl03_table-a10-4-load-assessment-results.xlsx",
+      "xlsx_sha256": "672b903654d90248f95f4b3299f805ada78e418aae24e405f46fce44b55f1feb"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0026.png",
+  "page_image_sha256": "4a19e3febea5aec6e3daa4f27c7e5fe540db18a1365d107a78defe9e82ecec96",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0026_assets.json"
+}

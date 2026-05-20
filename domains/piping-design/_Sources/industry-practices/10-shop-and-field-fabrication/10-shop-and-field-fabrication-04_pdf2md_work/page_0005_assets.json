@@ -1,0 +1,57 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-04",
+  "page": 5,
+  "total_pages": 7,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Maximum difference between two ID measurements for upstream and downstream pipe ends",
+      "slug": "id-measurement-max-difference",
+      "bbox_norm": [0.28, 0.42, 0.92, 0.65],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "", "is_header": true},
+              {"value": "Size", "is_header": true},
+              {"value": "Maximum difference between two ID measurements taken perpendicular to each other", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Upstream pipe", "type": "text"},
+              {"value": "DN ≤ 100", "type": "text"},
+              {"value": "2%", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Upstream pipe", "type": "text"},
+              {"value": "DN ≥ 150", "type": "text"},
+              {"value": "1% or 2 mm, whichever is less", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Downstream pipe", "type": "text"},
+              {"value": "DN ≥ 50", "type": "text"},
+              {"value": "2% or 4 mm, whichever is less", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table specifying maximum inside diameter measurement differences for pipe ends at orifice flanges"
+    }
+  ],
+  "issues": []
+}

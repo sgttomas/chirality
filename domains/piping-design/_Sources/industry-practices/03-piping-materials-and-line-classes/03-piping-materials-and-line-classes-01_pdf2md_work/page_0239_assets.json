@@ -1,0 +1,73 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 239,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.72 Class HKH — Pressure-Temperature Rating and Line Class Header",
+      "slug": "table-4-72-class-hkh-header",
+      "bbox_norm": [0.04, 0.02, 0.96, 0.38],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "TABLE:", "is_header": true },
+              { "value": "4.72", "is_header": true },
+              { "value": "CLASS:", "is_header": true },
+              { "value": "HKH", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PRESSURE-TEMPERATURE RATING:", "type": "text" },
+              { "value": "ANSI Class 900 Except 455 C (850 F) Max.", "type": "text", "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "SERVICE:", "type": "text" },
+              { "value": "Process - Hydrogen", "type": "text", "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "BASIC MATERIAL:", "type": "text" },
+              { "value": "316 Stainless Steel", "type": "text", "colspan": 3 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "CONSTRUCTION CLASS:", "type": "text" },
+              { "value": "1, 2", "type": "text" },
+              { "value": "CORROSION ALLOWANCE:", "type": "text" },
+              { "value": "1.6 mm (0.063\")", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class table header with pressure-temperature rating, service, material, construction class, and corrosion allowance. The body rows of the line class table are not shown on this page (only notes appear below the header)."
+    }
+  ],
+  "issues": []
+}

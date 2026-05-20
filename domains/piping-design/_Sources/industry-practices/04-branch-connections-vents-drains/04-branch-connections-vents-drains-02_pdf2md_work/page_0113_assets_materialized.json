@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0113.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0113_fig01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2871
+      ],
+      "caption": "Flanged thermowell connection for PVC/CPVC piping T-023, NPS 3/4 and up. Upper detail: NPS 3/4 through NPS 2 line size with NPS 1-1/2 socket weld flange, NPS 1-1/2 pipe, reducer bushing(s), and NPS 3\" socket weld tee or reducing tee, 150 mm (6 in.) dimension. Lower detail: NPS 3 line size and up with NPS 1-1/2 socket weld flange, NPS 1-1/2 pipe, reducer bushing(s), and line size tee or reducing tee, 250 mm (10 in.) dimension.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0113_fig01_flanged-thermowell-connection-for-pvc-cp.png",
+      "png_sha256": "1b89847d3f91382f078c1e4f188b996a80cdba06cbfd2064d67ff825b9280f39",
+      "slug": "flanged-thermowell-connection-for-pvc-cp",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 113,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0113.png",
+  "page_image_sha256": "1740699eddeef366dea1ff2329cd97ae4eb44e848ca8b38cd02148b11edc3f40",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0113_assets.json"
+}

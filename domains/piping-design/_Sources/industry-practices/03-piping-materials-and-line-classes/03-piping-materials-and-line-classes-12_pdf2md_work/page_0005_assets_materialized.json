@@ -1,0 +1,99 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0005_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        1617
+      ],
+      "caption": "ASTM International (Cont.)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl01_astm-international-cont.png",
+      "png_sha256": "e35cb7c53c99f3c4ec3c1eb4d9761e27db4c0a6aaa2a7f84e87a756c0af507d0",
+      "slug": "astm-international-cont",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl01_astm-international-cont.json",
+      "table_data_json_sha256": "55c0b4ad3a68055d3e1257615b467f0200e6906d480413c35da8194ae95c3d6b",
+      "table_data_sha256": "55c0b4ad3a68055d3e1257615b467f0200e6906d480413c35da8194ae95c3d6b",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl01_astm-international-cont.xlsx",
+      "xlsx_sha256": "26acdec92f8f18758f07c867a99114a471870036ec6cd88da348ae38c3779cdd"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0005_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.44,
+        0.96,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        1287,
+        2550,
+        2409
+      ],
+      "caption": "American Water Works Association (AWWA)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl02_american-water-works-association-awwa.png",
+      "png_sha256": "adfaf33375582f15582e69e6c0845efd771ed8ebfd4e2b20c85878b8f1db19e4",
+      "slug": "american-water-works-association-awwa",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl02_american-water-works-association-awwa.json",
+      "table_data_json_sha256": "d9916294538782c71cf2140c9f7678cea32181b1ec5a5fae1e6ec87f41788786",
+      "table_data_sha256": "d9916294538782c71cf2140c9f7678cea32181b1ec5a5fae1e6ec87f41788786",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl02_american-water-works-association-awwa.xlsx",
+      "xlsx_sha256": "b7235f316b1ce7fae1df5d4f2d1da59551aa2915916f05c8f7bf3636875a06ee"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0005_tbl03",
+      "bbox_norm": [
+        0.04,
+        0.68,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        2079,
+        2550,
+        3069
+      ],
+      "caption": "Manufacturers Standardization Society (MSS)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl03_manufacturers-standardization-society-ms.png",
+      "png_sha256": "0077f4f9603831e91479e32433a44083b67f51db46f9daee15f0a9a80576cfe8",
+      "slug": "manufacturers-standardization-society-ms",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl03_manufacturers-standardization-society-ms.json",
+      "table_data_json_sha256": "4784342e3ca81d31bb4cc6aa987544171463a109f6ec61d0b7945d5eafc4010c",
+      "table_data_sha256": "4784342e3ca81d31bb4cc6aa987544171463a109f6ec61d0b7945d5eafc4010c",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-12_p0005_tbl03_manufacturers-standardization-society-ms.xlsx",
+      "xlsx_sha256": "215b7f0d8f2124875f158a882be37fb98a2afc296b9cc1c3491ca36d935d3c8b"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-12",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0005.png",
+  "page_image_sha256": "7781cabfb4e4bf97581848c06fd2e84182d6cecaf6bc7184432559a192c33c80",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0005_assets.json"
+}

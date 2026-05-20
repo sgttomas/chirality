@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 101,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-10 Thermowell flanged thermowell connection detail \u2014 NPS 3/4 & UP, three installation configurations",
+      "slug": "t-10-thermowell-flanged-connection-nps-3-4-up",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.8
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing three configurations of T-10 thermowell flanged connection: top-left (horizontal with reducer, 300 mm / (12) MIN dimension), top-right (vertical with butt weld pipe), and bottom (horizontal stub end configuration for NPS 6 line size & up). Labels include NPS 1-1/2 lap joint flange, NPS 1-1/2 lap joint stub end, NPS 1-1/2 butt weld pipet, NPS 3/4 thru NPS 4 line size, line size x NPS 6 swage/reducer, instr piping, field make up."
+    }
+  ],
+  "issues": []
+}

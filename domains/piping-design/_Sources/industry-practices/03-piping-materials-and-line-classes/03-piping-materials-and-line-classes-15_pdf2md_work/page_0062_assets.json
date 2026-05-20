@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 62,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-22 Trunnion Mounted Ball Valve Courtesy of Cooper Cameron Valves, a Division of Cooper Cameron Corporation",
+      "slug": "fig-200-22-trunnion-mounted-ball-valve",
+      "bbox_norm": [0.08, 0.12, 0.92, 0.68],
+      "confidence": "high",
+      "notes": "Photograph/illustration of a trunnion mounted ball valve with flanged ends. Caption appears above the image."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 30,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-15 Photographs of Various Packing Types (1 of 2)",
+      "slug": "fig-1400-15-photographs-various-packing-types-1-of-2",
+      "bbox_norm": [0.04, 0.06, 0.96, 0.88],
+      "confidence": "high",
+      "notes": "Full-page figure containing photographs of packing samples labeled 0, 1, 2, 3, X2 with embedded legend table"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Legend for Fig. 1400-15 — No., Company, Packing Description",
+      "slug": "legend-fig-1400-15-packing-description",
+      "bbox_norm": [0.33, 0.09, 0.96, 0.52],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "No", "is_header": true },
+              { "value": "Company", "is_header": true },
+              { "value": "Packing Description", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "0", "type": "text" },
+              { "value": "ARGO", "type": "text" },
+              { "value": "Grafoil (2 rings) & Composite Ends (3-rings)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "EVSP Simplified (7-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "GRAPH-LOCK 704 & Style 98 (5-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "GRAPH-LOCK 9TF & Style 98 (5-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "Style 5000, Teflon (5-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5", "type": "text" },
+              { "value": "J. Crane", "type": "text" },
+              { "value": "Style 2871 (6-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6", "type": "text" },
+              { "value": "ESC Co", "type": "text" },
+              { "value": "THERMOBRAID (3-rings) & Garlock (2-rings)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "7", "type": "text" },
+              { "value": "DUPONT", "type": "text" },
+              { "value": "KALREZ (MI) (5-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "GRAPHPAK® 4m, 1/4\" sq. (4-ring set)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "9", "type": "text" },
+              { "value": "Chesterton", "type": "text" },
+              { "value": "GTP (1-rings) & Style 1 (2-rings)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "X2", "type": "text" },
+              { "value": "Garlock", "type": "text" },
+              { "value": "Style 327 AFP (5-ring set)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Legend table embedded within the figure box, three columns: No, Company, Packing Description; 11 data rows plus header"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 63,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-23 Orbit Ball Valve and Seat Selection Courtesy of Orbit Valve Company",
+      "slug": "fig-200-23-orbit-ball-valve-seat-selection",
+      "bbox_norm": [0.08, 0.05, 0.94, 0.92],
+      "confidence": "high",
+      "notes": "Cross-sectional labeled diagram of an Orbit Ball Valve with component callouts (stem protector, handwheel, bearing race, bearing, drive nut, stem guide, stem, bonnet, packing fitting, nut, stud, gasket, body, core, trunnion overlay on left side; open/close position indicator, bonnet nut, set screw, packing chamber bushing, packing rings, injectable packing, bonnet bushing, support pin, core pin, seat body, seat insert, core face, trunnion bushing on right side), plus two seat images below labeled 'Teflon TFE Type H Seat' and 'All Metal Type H8 Seat'."
+    }
+  ],
+  "issues": []
+}

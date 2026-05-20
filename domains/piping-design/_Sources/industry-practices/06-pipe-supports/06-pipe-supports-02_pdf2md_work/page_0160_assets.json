@@ -1,0 +1,184 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 160,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Supports for Vessel Bridles Pipe Sizes 3\" to 10\"",
+      "slug": "bill-of-materials-vessel-bridles",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.18
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "row_span": 2,
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "row_span": 2,
+                "type": "number"
+              },
+              {
+                "value": "C180 \u00d7 22 \u00d7 36\" LG (CUT TO SUIT) \u2014 SIZE 'A'",
+                "type": "text"
+              },
+              {
+                "value": "CSA \u2013 G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "C250 \u00d7 37 \u00d7 38\" LG (CUT TO SUIT) \u2014 SIZE 'B'",
+                "type": "text"
+              },
+              {
+                "value": "CSA \u2013 G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "REINFORCING PAD (IF REQUIRED) MADE FROM PIPE OF SAME SIZE, MAT'L, AND SCH. AS PIPE TO WHICH IT IS WELDED",
+                "type": "text"
+              },
+              {
+                "value": "SAME AS PARENT PIPE",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2 or 5",
+                "type": "text"
+              },
+              {
+                "value": "M20 \u00d7 85 LG BOLTS C/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM-A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing sheet with item numbers, quantities, descriptions, and materials"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN \u2014 Supports for Vessel Bridles showing vessel clip, channel section, and bolt arrangement with dimension references",
+      "slug": "plan-vessel-bridles-support",
+      "bbox_norm": [
+        0.03,
+        0.18,
+        0.6,
+        0.52
+      ],
+      "confidence": "high",
+      "notes": "PLAN view showing top-down view of channel support on vessel with vessel clip VC4, bolt holes, and dimension annotations"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION \u2014 Supports for Vessel Bridles showing T.O.S. W.P. elevation, vessel clip VC5, and reinforcing pad details",
+      "slug": "elevation-vessel-bridles-support",
+      "bbox_norm": [
+        0.03,
+        0.49,
+        0.6,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "ELEVATION view showing side view of channel support on pipe with dimensions, vessel clip VC5 reference, and repad notes"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "DETAIL \"A\" \u2014 Trim channel flanges as required to fit on smaller bridle pipes",
+      "slug": "detail-a-trim-channel-flanges",
+      "bbox_norm": [
+        0.6,
+        0.18,
+        0.97,
+        0.42
+      ],
+      "confidence": "high",
+      "notes": "Small detail view showing 45-degree trimming of channel flanges for smaller bridle pipes"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 4,
+      "caption": "DETAIL \"B\" \u2014 Connection for Size B showing 1/4\" vent hole in repad",
+      "slug": "detail-b-connection-size-b",
+      "bbox_norm": [
+        0.6,
+        0.52,
+        0.97,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Detail view for Size B connection showing vent hole placement in reinforcing pad"
+    }
+  ],
+  "issues": []
+}

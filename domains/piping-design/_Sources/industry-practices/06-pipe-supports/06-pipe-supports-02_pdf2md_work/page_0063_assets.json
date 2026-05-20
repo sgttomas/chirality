@@ -1,0 +1,218 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 63,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Line type legend - symbol descriptions",
+      "slug": "line-type-legend",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.3,
+        0.1
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "LINE",
+                "is_header": true
+              },
+              {
+                "value": "TYPE",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "\u2014\u2014\u2014",
+                "type": "text"
+              },
+              {
+                "value": "PIPE OR LINE PIPE",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "- - -",
+                "type": "text"
+              },
+              {
+                "value": "SAME AS SUPPORT PIPE",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "-\u00b7-\u00b7-",
+                "type": "text"
+              },
+              {
+                "value": "MATERIAL, TO MATCH PIPE",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Small legend table at top-left of drawing sheet"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Pipe support sizing table - pipe size vs. dimensions A through J",
+      "slug": "pipe-support-sizing-table",
+      "bbox_norm": [
+        0.01,
+        0.09,
+        0.52,
+        0.19
+      ],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Sizing table with many columns; cell values not legible at this resolution - needs extraction"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "TYPE \"A\" - VERTICAL PIPE WITHOUT RETPAD",
+      "slug": "type-a-vertical-pipe-without-retpad",
+      "bbox_norm": [
+        0.01,
+        0.19,
+        0.28,
+        0.56
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing - lower-left quadrant, first of four main support type drawings"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "TYPE \"A\" - VERTICAL PIPE WITH RETPAD",
+      "slug": "type-a-vertical-pipe-with-retpad",
+      "bbox_norm": [
+        0.27,
+        0.19,
+        0.55,
+        0.56
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing - second of four main support type drawings"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "TYPE \"B\" - HORIZONTAL PIPE WITHOUT RETPAD",
+      "slug": "type-b-horizontal-pipe-without-retpad",
+      "bbox_norm": [
+        0.01,
+        0.54,
+        0.28,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing - third of four main support type drawings"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 4,
+      "caption": "TYPE \"B\" - HORIZONTAL PIPE WITH RETPAD",
+      "slug": "type-b-horizontal-pipe-with-retpad",
+      "bbox_norm": [
+        0.27,
+        0.54,
+        0.55,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing - fourth of four main support type drawings"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 5,
+      "caption": "DETAIL \"A\"",
+      "slug": "detail-a",
+      "bbox_norm": [
+        0.54,
+        0.01,
+        0.78,
+        0.32
+      ],
+      "confidence": "high",
+      "notes": "Close-up detail callout A on right side of sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 6,
+      "caption": "DETAIL \"B\"",
+      "slug": "detail-b",
+      "bbox_norm": [
+        0.54,
+        0.3,
+        0.78,
+        0.58
+      ],
+      "confidence": "high",
+      "notes": "Close-up detail callout B on right side of sheet"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 7,
+      "caption": "DETAIL \"C\"",
+      "slug": "detail-c",
+      "bbox_norm": [
+        0.54,
+        0.56,
+        0.78,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Close-up detail callout C on right side of sheet"
+    }
+  ],
+  "issues": [
+    {
+      "asset_ordinal": 2,
+      "kind": "tbl",
+      "issue": "table_unreadable",
+      "detail": "Pipe support sizing table has many numeric columns; individual cell values are not reliably legible at the available image resolution. needs_extraction set to true."
+    }
+  ]
+}

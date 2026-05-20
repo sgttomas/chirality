@@ -1,0 +1,27 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 11,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1. Vent, Drain, and Instrument Connections Cross Reference.",
+      "slug": "vent-drain-instrument-connections-cross-reference",
+      "bbox_norm": [0.02, 0.04, 0.98, 0.97],
+      "needs_extraction": true,
+      "confidence": "high",
+      "notes": "Multi-level spanning header (3 header rows with colspan/rowspan). Table data is legible but the merged-cell header structure cannot be safely represented in pdf2md-table/v1 flat row format without ambiguity. HTML transcription provided in Markdown."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_complex_header",
+      "asset_ordinal": 1,
+      "message": "Table has multi-level merged headers (colspan/rowspan) that cannot be safely flattened to pdf2md-table/v1 row/cell schema. needs_extraction set to true."
+    }
+  ]
+}

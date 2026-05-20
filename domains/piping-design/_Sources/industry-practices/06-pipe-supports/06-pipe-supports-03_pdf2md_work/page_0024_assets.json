@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 24,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "APPENDIX 9 Pipe Support Selection Flowchart",
+      "slug": "pipe-support-selection-flowchart",
+      "bbox_norm": [0.05, 0.09, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Full-page decision flowchart for pipe support selection. Decision nodes include: PIPE INSULATED, SOLID INSULATION, CORROSIVE ENVIRONMENT, PIPE CARBON STEEL, PAINT NEEDED, HIGH FORCES/MOMENTS, TEMP >400 DEGREE C, FLUID TEMP BELOW AMBIENT, PIPE SLOPING, PIPE SIZE ABOVE DN650, >=CS SCHED 20 > SC SCHED 100. Terminal boxes: SEE DEP 30.48.00.31-Gen., SPECIAL DESIGNED CLAMPED SUPPORT, CLAMPED SUPPORT, SPECIAL DESIGNED WELDED SUPPORT, WELDED SUPPORT, DIRECT ON SUPPORTING BEAM."
+    }
+  ],
+  "issues": []
+}

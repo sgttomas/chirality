@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 73,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig_0073_01",
+      "caption": "P-04 Pressure Connection — two configurations: NPS 3/4 thru NPS 1-1/2 line size (using NPS 3/4 tee or line size reducing tee) and NPS 2 line size & up (using NPS 3/4 sockolet); both with NPS 3/4 extended body socket weld x threaded valve.",
+      "bbox_norm": [0.12, 0.17, 0.92, 0.73]
+    }
+  ],
+  "issues": []
+}

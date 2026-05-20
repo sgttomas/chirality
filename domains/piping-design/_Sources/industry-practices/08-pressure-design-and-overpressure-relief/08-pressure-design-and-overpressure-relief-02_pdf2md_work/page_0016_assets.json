@@ -1,0 +1,18 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 16,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "id": "fig-0016-01",
+      "caption": "FIGURE 5 — COMPARISON OF TYPICAL PIPELINE PRESSURE FOR RELIEF AND IPF (GAS LINE)",
+      "bbox_norm": [0.08, 0.08, 0.92, 0.72],
+      "description": "Bar chart comparing typical pipeline pressure levels as a percentage of MAOP for Relief and IPF (gas line) systems. Relief column: hatched Accumulation zone from 100–110% MAOP, grey Incidental due to normal operation zone from 91–100% MAOP, hatched Operating zone below 91%. IPF column: hatched Accumulation zone from 100–110% MAOP, grey Incidental due to normal operation zone from 98–110% MAOP, hatched Operating zone below 98%. Legend identifies three fill patterns: Accumulation (hatched), Incidental due to normal operation (grey solid), Operating (hatched)."
+    }
+  ],
+  "issues": []
+}

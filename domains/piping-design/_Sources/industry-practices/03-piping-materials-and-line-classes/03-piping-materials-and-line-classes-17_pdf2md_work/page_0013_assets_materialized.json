@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-17_p0013_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.07,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        3230
+      ],
+      "caption": "TABLE No. 1 CONVERSION FACTORS",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-17_p0013_tbl01_table-no-1-conversion-factors.png",
+      "png_sha256": "db5ccb6153d9d0acbb0399a04c630b787394bbf628bc4a60d33b5fd309663b49",
+      "slug": "table-no-1-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-17",
+  "doc_stem": "03-piping-materials-and-line-classes-17",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0013.png",
+  "page_image_sha256": "54157cd31f271dbb49bc71a83fccc09910639ea4959eb07d18cdc6d0b4ca8002",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-17_pdf2md_work/page_0013_assets.json"
+}

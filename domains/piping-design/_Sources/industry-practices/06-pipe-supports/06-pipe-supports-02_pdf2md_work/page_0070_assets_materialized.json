@@ -1,0 +1,118 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0070.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0070_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Bill of materials \u2014 item numbers, quantities, descriptions, and material specifications for pick-up type support components",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0070_tbl01_bill-of-materials-item-numbers-quantitie.png",
+      "png_sha256": "b706576acd0565ffda65236d6a42b8f447f4e0248c6b274ee934c4b512bd1200",
+      "slug": "bill-of-materials-item-numbers-quantitie",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0070_fig01",
+      "bbox_norm": [
+        0.02,
+        0.12,
+        0.52,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1456,
+        2313
+      ],
+      "caption": "Elevation Detail 'A' and View 'A' \u2014 welded pipe shoe support with dimensional annotations showing 3\" min, 1/4\" plate, 30\u00b0 max, and supporting pipe P1 dia",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0070_fig01_elevation-detail-a-and-view-a-welded-pip.png",
+      "png_sha256": "b83f6408c70c3e29cafa10b2b1153d4f5c7a3a00230e46dde6ca552d46d9e242",
+      "slug": "elevation-detail-a-and-view-a-welded-pip",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0070_fig02",
+      "bbox_norm": [
+        0.48,
+        0.12,
+        0.98,
+        0.65
+      ],
+      "bbox_px": [
+        1099,
+        231,
+        2555,
+        2313
+      ],
+      "caption": "Elevation Detail 'B' and View 'B' \u2014 welded pipe shoe support with dimensional annotations showing 3\" min, 3/8\", 30\u00b0 max, and supporting pipe P1 dia",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0070_fig02_elevation-detail-b-and-view-b-welded-pip.png",
+      "png_sha256": "5889776ca1b8dee0e3217eeb2c830ef209f8ef7e1470fd3645cd3c9309df06fd",
+      "slug": "elevation-detail-b-and-view-b-welded-pip",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0070_tbl02",
+      "bbox_norm": [
+        0.55,
+        0.66,
+        0.85,
+        0.8
+      ],
+      "bbox_px": [
+        1278,
+        2015,
+        2300,
+        2808
+      ],
+      "caption": "Coding example box showing FSA \u2013 A \u2013 1 \u2013 30 \u2013 B format with legend",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0070_tbl02_coding-example-box-showing-fsa-a-1-30-b.png",
+      "png_sha256": "43c230eb11a46aac6808f7f25298a5fcfe26f1634a5c6c54977229694fb99f51",
+      "slug": "coding-example-box-showing-fsa-a-1-30-b",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 70,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0070.png",
+  "page_image_sha256": "f3b406ed4ca009c10f4239a1775861ee9800290c2c1253809bbf3d2148b2dee7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0070_assets.json"
+}

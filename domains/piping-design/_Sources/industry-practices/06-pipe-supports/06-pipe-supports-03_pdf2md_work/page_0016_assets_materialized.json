@@ -1,0 +1,91 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0016_fig01",
+      "bbox_norm": [
+        0.07,
+        0.07,
+        0.93,
+        0.45
+      ],
+      "bbox_px": [
+        50,
+        70,
+        2430,
+        1754
+      ],
+      "caption": "G1 THRU G10 \u2014 Guides selection chart showing identification example sketch and transverse force table for guide types G1 through G10",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-03_p0016_fig01_guides-selection-chart-g1-thru-g10.png",
+      "png_sha256": "1272845b1958c54739e7a751224cdeee39ee392fa592933f15f05aee9fd1f49c",
+      "slug": "guides-selection-chart-g1-thru-g10",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0016_fig02",
+      "bbox_norm": [
+        0.07,
+        0.46,
+        0.93,
+        0.83
+      ],
+      "bbox_px": [
+        50,
+        1439,
+        2430,
+        3088
+      ],
+      "caption": "G11 AND G12 \u2014 Guides selection chart showing identification example sketch and transverse force table for guide types G11 and G12",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-03_p0016_fig02_guides-selection-chart-g11-and-g12.png",
+      "png_sha256": "ef5e5825cac23397683e4fa9ce8e6be2e5a1cf96d939486912837326fe0ec75c",
+      "slug": "guides-selection-chart-g11-and-g12",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-03_p0016_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.52,
+        0.92,
+        0.81
+      ],
+      "bbox_px": [
+        546,
+        1649,
+        2406,
+        3018
+      ],
+      "caption": "G11 AND G12 \u2014 Guide types G11 and G12 selection table by DN, usage compatibility, and maximum transverse force",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.png",
+      "png_sha256": "c4277f5ede9ac5d68202b0b4f74df33cf1971b9d05a9aef8c7ac0fc1561fecc6",
+      "slug": "g11-g12-selection-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.json",
+      "table_data_json_sha256": "7ecad103088b035b8f5124e451fc75a39fab72c6596b072a30f3d5aaf3aa621f",
+      "table_data_sha256": "7ecad103088b035b8f5124e451fc75a39fab72c6596b072a30f3d5aaf3aa621f",
+      "xlsx_path": "tables/06-pipe-supports-03_p0016_tbl01_g11-g12-selection-table.xlsx",
+      "xlsx_sha256": "977e61f93c9c8a968c4c2dd7d361fd0d5612368cfa49aaafce304cdeeb8d94f3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0016.png",
+  "page_image_sha256": "612a4261a5cbb448f9745f211b0ff5f37566fd5ff2f34810f5d73fb392d06618",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0016_assets.json"
+}

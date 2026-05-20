@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0112.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0112_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Bill of materials \u2014 item numbers, quantities, descriptions, and material specifications for the triple clamp-on pipe shoe assembly",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0112_tbl01_bill-of-materials-item-numbers-quantitie.png",
+      "png_sha256": "40e85fb30263faf17d466bfa767e668df57f001aa96f2d8ff0abbe50fbcdb514",
+      "slug": "bill-of-materials-item-numbers-quantitie",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0112_fig01",
+      "bbox_norm": [
+        0.01,
+        0.13,
+        0.99,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2555,
+        2148
+      ],
+      "caption": "Elevation and Section \"A\" detail drawings of the triple clamp-on pipe shoe, showing structural steel members, pipe clamps, thermofoam liner, insulation bands, dimensions labelled A, B, L, and typical slot and weld details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0112_fig01_elevation-and-section-a-detail-drawings.png",
+      "png_sha256": "f9826565d5da2817d9d7a10afcdc1e9c5a79de84c55a136b1705858bcae2a1c3",
+      "slug": "elevation-and-section-a-detail-drawings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0112_tbl02",
+      "bbox_norm": [
+        0.48,
+        0.6,
+        0.99,
+        0.82
+      ],
+      "bbox_px": [
+        1099,
+        1817,
+        2555,
+        2874
+      ],
+      "caption": "Dimensions and insulation data \u2014 MARK NO., DIM. \"L\", THERMAL MOVEMENT, dimensions A and B for various pipe sizes, plus insulation thickness variants",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0112_tbl02_dimensions-and-insulation-data-mark-no-d.png",
+      "png_sha256": "7e1b22ecf7811b7acf075069a1c6a34810c56b2ca6140708a590e72619d244c2",
+      "slug": "dimensions-and-insulation-data-mark-no-d",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0112_tbl03",
+      "bbox_norm": [
+        0.48,
+        0.82,
+        0.99,
+        0.92
+      ],
+      "bbox_px": [
+        1099,
+        2544,
+        2555,
+        3205
+      ],
+      "caption": "Coding table \u2014 S7 coding format with fields for P/S STD. NO., MARK NO., TYPE, PIPE SIZE",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0112_tbl03_coding-table-s7-coding-format-with-field.png",
+      "png_sha256": "0886f873c11df41d79d9d296a86b2d4a9fcd8c22253ebcd178649a82b31a4334",
+      "slug": "coding-table-s7-coding-format-with-field",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 112,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0112.png",
+  "page_image_sha256": "de0ed1da1f7f29dc45b9713f5b965038944bd5cf3099a67a4a52a287a7b1c256",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0112_assets.json"
+}

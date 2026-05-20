@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0017.anchored.md",
+  "assets": [
+    {
+      "asset_id": "09-welding-and-nde-01_p0017_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.6,
+        0.95,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        1815,
+        2550,
+        2871
+      ],
+      "caption": "Bake-out Holding Times for Prior Service Carbon Steel Equipment & Piping",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,9], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/09-welding-and-nde-01_p0017_tbl01_bake-out-holding-times-for-prior-service.png",
+      "png_sha256": "83af0389ab61f979f000ccb813c05d3758caee6fe04829cb768624b97cf86a95",
+      "slug": "bake-out-holding-times-for-prior-service",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/_assets/09-welding-and-nde-01",
+  "doc_stem": "09-welding-and-nde-01",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0017.png",
+  "page_image_sha256": "b78a0b167cce7faab45d49828250b394a0157f538fd5d7f2a849ed4d96251b91",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/09-welding-and-nde/09-welding-and-nde-01_pdf2md_work/page_0017_assets.json"
+}

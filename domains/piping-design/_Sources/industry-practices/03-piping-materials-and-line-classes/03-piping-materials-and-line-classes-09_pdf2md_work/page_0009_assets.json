@@ -1,0 +1,71 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-09",
+  "page": 9,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 Chemical Composition Limits",
+      "slug": "table-1-chemical-composition-limits",
+      "bbox_norm": [0.08, 0.72, 0.72, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Elements", "is_header": true },
+              { "value": "Symbol", "is_header": true },
+              { "value": "Maximum %", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon", "type": "text" },
+              { "value": "C", "type": "text" },
+              { "value": 0.20, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Manganese", "type": "text" },
+              { "value": "Mn", "type": "text" },
+              { "value": 1.60, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Sulfur", "type": "text" },
+              { "value": "S", "type": "text" },
+              { "value": 0.010, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Phosphorus", "type": "text" },
+              { "value": "P", "type": "text" },
+              { "value": 0.020, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "IIW Carbon", "type": "text" },
+              { "value": "CE", "type": "text" },
+              { "value": 0.42, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Five-row chemical composition table with Elements, Symbol, and Maximum % columns"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0033_fig01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.72,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1967,
+        2412
+      ],
+      "caption": "Elevation and plan detail drawing of a base anchor for carbon steel steam lines. Shows structural angle (item 1) welded to a base plate (item 2) anchored to a grout pad by four expansion bolts (item 3). Coding/mark numbering example box shown: P/S-STD. NO. BAS-1, MARK NO.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0033_fig01_elevation-and-plan-detail-drawing-of-a-b.png",
+      "png_sha256": "88fbc607b27c9c2bbf73d94a0c734b2e8425f8d271f055b5a9cc1de718e4e951",
+      "slug": "elevation-and-plan-detail-drawing-of-a-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0033_tbl01",
+      "bbox_norm": [
+        0.55,
+        0.55,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        1278,
+        1652,
+        2555,
+        2874
+      ],
+      "caption": "Fabrication length and nominal pipe size schedule for base anchor marks 1 through 7",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,9], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0033_tbl01_fabrication-length-and-nominal-pipe-size.png",
+      "png_sha256": "21581b0a85cd64bfdc1e7320f8430474581637fd79e18b6e42c1c23e78a96097",
+      "slug": "fabrication-length-and-nominal-pipe-size",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0033.png",
+  "page_image_sha256": "613ad670a089c65436db36d1ec4128b758eb8dfdfe8a2500e302f60304ca929f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0033_assets.json"
+}

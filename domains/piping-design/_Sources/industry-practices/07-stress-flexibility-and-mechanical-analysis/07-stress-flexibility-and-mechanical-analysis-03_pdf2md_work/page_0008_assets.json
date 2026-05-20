@@ -1,0 +1,32 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-03",
+  "page": 8,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (1 of 2)",
+      "slug": "fig-c-2-fundamental-natural-frequencies-piping-spans-1",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page figure containing a combined table of span types, frequency coefficients, pipe properties, and a notes column with the general equation and a frequency chart. The figure includes hand-drawn span diagrams in the left column."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (1 of 2)",
+      "slug": "tbl-c-2-fundamental-natural-frequencies-piping-spans-1",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.97],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Complex multi-column table with merged header rows, span diagrams embedded in cells, and a notes column containing formulas and a chart. Cannot be safely transcribed to table_data with full fidelity due to nested structure, merged cells, and embedded graphics."
+    }
+  ],
+  "issues": [
+    "table_unreadable: Table Fig. C-2 is too complex for safe table_data extraction — merged header rows, embedded span diagrams in cells, formula and chart in notes column. needs_extraction set to true."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-01",
+  "page": 31,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "img-001",
+      "kind": "img",
+      "caption": "BP logo",
+      "bbox_norm": [0.42, 0.04, 0.58, 0.10]
+    },
+    {
+      "id": "fig-001",
+      "kind": "fig",
+      "caption": "Figure 211-1 — Preheat and interpass measurement locations diagram showing a valve body with labeled measurement points: BONNET INTERPASS, BODY JOINT PREHEAT AND INTERPASS, and BODY PREHEAT AND INTERPASS",
+      "bbox_norm": [0.05, 0.11, 0.95, 0.88]
+    }
+  ],
+  "issues": []
+}

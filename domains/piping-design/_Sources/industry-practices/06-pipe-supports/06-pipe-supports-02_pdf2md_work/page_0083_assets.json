@@ -1,0 +1,320 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 83,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p083_tbl_001",
+      "kind": "tbl",
+      "caption": "Bill of Materials \u2014 items 1\u20133 with QTY, DESCRIPTION, and MATERIAL columns",
+      "bbox_norm": [
+        0.03,
+        0.01,
+        0.97,
+        0.13
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "ITEM No.",
+          "QTY.",
+          "DESCRIPTION",
+          "MATERIAL"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "C 250 \u00d7 37."
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "L102 \u00d7 102 \u00d7 9.5"
+              },
+              {
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "M16 \u00d7 70 LG BOLTS c/w 2 NUTS"
+              },
+              {
+                "type": "text",
+                "value": "ASTM A325"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p083_fig_001",
+      "kind": "fig",
+      "caption": "PLAN view of guide (bi-directional) vertical pipe support, uninsulated, showing structural steel channel, pipe clamp assembly with dimensions A, B, bolt holes, and fab length callouts",
+      "bbox_norm": [
+        0.02,
+        0.12,
+        0.62,
+        0.52
+      ]
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p083_fig_002",
+      "kind": "fig",
+      "caption": "ELEVATION view of guide (bi-directional) vertical pipe support, uninsulated, showing structural steel, TOS W.P. ELEV., clamp halves, and 1/8\" gap (typ.)",
+      "bbox_norm": [
+        0.02,
+        0.5,
+        0.6,
+        0.8
+      ]
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p083_tbl_002",
+      "kind": "tbl",
+      "caption": "FAB LENGTH table \u2014 Mark Nos. 1\u20133 with corresponding fab length dimensions",
+      "bbox_norm": [
+        0.58,
+        0.36,
+        0.97,
+        0.53
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "MARK No.",
+          "FAB LENGTH"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "3\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "8\""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p083_tbl_003",
+      "kind": "tbl",
+      "caption": "Pipe size dimension table \u2014 pipe sizes 14\"\u201324\" with DIM \"A\" and DIM \"B\" values",
+      "bbox_norm": [
+        0.58,
+        0.52,
+        0.97,
+        0.75
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "PIPE SIZE",
+          "DIM. \"A\"",
+          "DIM. \"B\""
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "14\""
+              },
+              {
+                "type": "text",
+                "value": "7 1/8\""
+              },
+              {
+                "type": "text",
+                "value": "14 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "16\""
+              },
+              {
+                "type": "text",
+                "value": "8 1/8\""
+              },
+              {
+                "type": "text",
+                "value": "16 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "18\""
+              },
+              {
+                "type": "text",
+                "value": "9 1/8\""
+              },
+              {
+                "type": "text",
+                "value": "18 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "20\""
+              },
+              {
+                "type": "text",
+                "value": "10 1/8\""
+              },
+              {
+                "type": "text",
+                "value": "20 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "24\""
+              },
+              {
+                "type": "text",
+                "value": "12 1/8\""
+              },
+              {
+                "type": "text",
+                "value": "24 1/4\""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p083_tbl_004",
+      "kind": "tbl",
+      "caption": "Coding example box showing CB - 1 - 14\" with P/S STD., MARK, PIPE SIZE fields",
+      "bbox_norm": [
+        0.58,
+        0.74,
+        0.97,
+        0.84
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          "CODING",
+          "( EXAMPLE )"
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "CB"
+              },
+              {
+                "type": "text",
+                "value": "1 - 14\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "type": "text",
+                "value": "P/S STD."
+              },
+              {
+                "type": "text",
+                "value": "MARK \u2014 PIPE SIZE"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

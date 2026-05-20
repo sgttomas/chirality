@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0059.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0059_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.1
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        496
+      ],
+      "caption": "Bill of Materials",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0059_tbl01_bill-of-materials.png",
+      "png_sha256": "e2719320e2874e319a2f5bd0392d51b5a9b37228f6eb45b515850c97eb8ad4e5",
+      "slug": "bill-of-materials",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0059_fig01",
+      "bbox_norm": [
+        0.01,
+        0.1,
+        0.99,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2555,
+        2874
+      ],
+      "caption": "Directional Anchor \u2014 Elevation View, Section, and View 'A' detail for Insulated Carbon Steel Lines, Pipe Sizes 3/4\" to 1 1/2\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0059_fig01_directional-anchor-elevation-view-sectio.png",
+      "png_sha256": "76ab7f77f7c67d5a9e9988f2ac053177eccae84e4d1bca2011c40feaeb8d1674",
+      "slug": "directional-anchor-elevation-view-sectio",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 59,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0059.png",
+  "page_image_sha256": "2cdec9b4b9b55fd37c6ebc63b0a3dc7fdf83c50813b2d5308e27c7a84b472872",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0059_assets.json"
+}

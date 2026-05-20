@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 66,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-26 Metal-Seated Triple Offset Butterfly Valve Courtesy of Orbit Valve International Incorporated",
+      "slug": "fig-200-26-metal-seated-triple-offset-butterfly-valve",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.93],
+      "confidence": "high",
+      "notes": "Full-page composite figure showing Triple Axis Design and Friction Free Sealing diagrams with descriptive annotations. Caption appears at top of figure."
+    }
+  ],
+  "issues": []
+}

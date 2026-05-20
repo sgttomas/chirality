@@ -1,0 +1,149 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0154.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0154_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Bill of Materials \u2014 VG13 components",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0154_tbl01_bom-vg13-components.png",
+      "png_sha256": "542316492c52f1d9e55b6170387c705048c40cb5d123763ceec9363a437f226f",
+      "slug": "bom-vg13-components",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0154_tbl01_bom-vg13-components.json",
+      "table_data_json_sha256": "04fed849d2dd465b380d94284f78b96812a26608029a6f1ab74df9dad87914cc",
+      "table_data_sha256": "04fed849d2dd465b380d94284f78b96812a26608029a6f1ab74df9dad87914cc",
+      "xlsx_path": "tables/06-pipe-supports-02_p0154_tbl01_bom-vg13-components.xlsx",
+      "xlsx_sha256": "4079e98be4e836987d9deecb04bd0d44d4bdfbbd3c552c1e2a042f826b615455"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0154_fig01",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.65,
+        0.48
+      ],
+      "bbox_px": [
+        0,
+        297,
+        1789,
+        1751
+      ],
+      "caption": "VG13 Plan view \u2014 vessel guide for vertical insulated pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0154_fig01_vg13-plan-view.png",
+      "png_sha256": "c58559c3652f34e2828251bf92209c799a0ff128272c75c860be70195464f90f",
+      "slug": "vg13-plan-view",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0154_fig02",
+      "bbox_norm": [
+        0.03,
+        0.48,
+        0.65,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1421,
+        1789,
+        2742
+      ],
+      "caption": "VG13 Elevation view \u2014 vessel guide for vertical insulated pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0154_fig02_vg13-elevation-view.png",
+      "png_sha256": "40f438355f7b31bda2683c87a26b01187ef7008aabbb8f1eb8bea16638a42500",
+      "slug": "vg13-elevation-view",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0154_tbl02",
+      "bbox_norm": [
+        0.62,
+        0.46,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1456,
+        1355,
+        2555,
+        2544
+      ],
+      "caption": "VG13 pipe size dimensions table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0154_tbl02_vg13-pipe-size-dimensions.png",
+      "png_sha256": "2afe3ee63ebf6b83ca0f4b472696b2b5924e10a0d179fc6c27fc4f16456d9750",
+      "slug": "vg13-pipe-size-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0154_tbl02_vg13-pipe-size-dimensions.json",
+      "table_data_json_sha256": "fa99b3a05a785ce72c7c2ed9efcbf993d3b3405568bb347629e43a4508bc8fa6",
+      "table_data_sha256": "fa99b3a05a785ce72c7c2ed9efcbf993d3b3405568bb347629e43a4508bc8fa6",
+      "xlsx_path": "tables/06-pipe-supports-02_p0154_tbl02_vg13-pipe-size-dimensions.xlsx",
+      "xlsx_sha256": "8f6f56203eac107270713367ac4e7f4818850c9b2e1998ea150be39e8694cf06"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0154_tbl03",
+      "bbox_norm": [
+        0.62,
+        0.72,
+        0.97,
+        0.84
+      ],
+      "bbox_px": [
+        1456,
+        2214,
+        2555,
+        2941
+      ],
+      "caption": "VG13 coding/example table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0154_tbl03_vg13-coding-example.png",
+      "png_sha256": "8ae8327afb88720c5065d6d08771cd5b1a35d4a19929fe06ae4dd4f91c8122e7",
+      "slug": "vg13-coding-example",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0154_tbl03_vg13-coding-example.json",
+      "table_data_json_sha256": "d283a0faf48c4fae06f986078655cb0744fb3c1a640784892d75ff32db1dc147",
+      "table_data_sha256": "d283a0faf48c4fae06f986078655cb0744fb3c1a640784892d75ff32db1dc147",
+      "xlsx_path": "tables/06-pipe-supports-02_p0154_tbl03_vg13-coding-example.xlsx",
+      "xlsx_sha256": "a97f30c752647fea2ebe667454e12e7db155ef9cdcb450403bce46532ec107c0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 154,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0154.png",
+  "page_image_sha256": "6cd437bcbaf5e96ae33d1038f0c2e0a64327a811ee7022fce4ad0246a9de91e8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0154_assets.json"
+}

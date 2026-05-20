@@ -1,0 +1,22 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 85,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "asset_id": "fig-0085-01",
+      "kind": "fig",
+      "caption": "Plan and Elevation engineering drawings for Guide G10 (Bi-Directional Vertical Pipe - Insulated), showing structural steel channel and angle assembly with dimensions. Plan view details 3/8\" and 1/2\" gaps, 1/8\" CAP (TYP), 3/4\"\u00f8 holes (TYP) with lock nuts, and fabrication length reference. Elevation view shows TOS W.P. ELEV. and shoe mid-point on pipe with 1/8\" GAP (TYP) notation. Item callout bubbles reference items 1, 2, and 3 from the bill of materials.",
+      "bbox_norm": [
+        0.02,
+        0.1,
+        0.65,
+        0.65
+      ]
+    }
+  ],
+  "issues": []
+}

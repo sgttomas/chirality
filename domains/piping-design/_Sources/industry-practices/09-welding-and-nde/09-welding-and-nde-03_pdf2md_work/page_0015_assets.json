@@ -1,0 +1,194 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-03",
+  "page": 15,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0015-001",
+      "kind": "tbl",
+      "caption": "Table 1 \u2014 Welding consumables, stabilization heat treatment by component, thickness, and welding process",
+      "bbox_norm": [
+        0.03,
+        0.28,
+        0.97,
+        0.6
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "column_headers": [
+          {
+            "col": 0,
+            "text": "component"
+          },
+          {
+            "col": 1,
+            "text": "thickness"
+          },
+          {
+            "col": 2,
+            "text": "root welding process"
+          },
+          {
+            "col": 3,
+            "text": "fill welding process"
+          },
+          {
+            "col": 4,
+            "text": "welding consumables (root / fill)"
+          },
+          {
+            "col": 5,
+            "text": "stabilization heat treatment"
+          }
+        ],
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "col": 0,
+                "text": "piping & control systems:",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "< 1\" (25 mm)",
+                "type": "text"
+              },
+              {
+                "col": 2,
+                "text": "GTAW / MWSC",
+                "type": "text"
+              },
+              {
+                "col": 3,
+                "text": "all",
+                "type": "text"
+              },
+              {
+                "col": 4,
+                "text": "347 / 347",
+                "type": "text"
+              },
+              {
+                "col": 5,
+                "text": "yes, if operating temp >750\u00b0F (399\u00b0C)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "col": 0,
+                "text": "piping & control systems:",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "\u2265 1\" (25 mm)",
+                "type": "text"
+              },
+              {
+                "col": 2,
+                "text": "GTAW / MWSC",
+                "type": "text"
+              },
+              {
+                "col": 3,
+                "text": "all",
+                "type": "text"
+              },
+              {
+                "col": 4,
+                "text": "347 / 16-8-2",
+                "type": "text"
+              },
+              {
+                "col": 5,
+                "text": "none",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "col": 0,
+                "text": "Fired heater tubes:",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "< 1\" (25 mm)",
+                "type": "text"
+              },
+              {
+                "col": 2,
+                "text": "GTAW c/w back purge",
+                "type": "text"
+              },
+              {
+                "col": 3,
+                "text": "all",
+                "type": "text"
+              },
+              {
+                "col": 4,
+                "text": "347 / 347",
+                "type": "text"
+              },
+              {
+                "col": 5,
+                "text": "yes, if tube metal temp >750\u00b0F (399\u00b0C)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "col": 0,
+                "text": "Fired heater tubes:",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "\u2265 1\" (25 mm)",
+                "type": "text"
+              },
+              {
+                "col": 2,
+                "text": "GTAW c/w back purge",
+                "type": "text"
+              },
+              {
+                "col": 3,
+                "text": "all",
+                "type": "text"
+              },
+              {
+                "col": 4,
+                "text": "347 / 16-8-2",
+                "type": "text"
+              },
+              {
+                "col": 5,
+                "text": "none",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

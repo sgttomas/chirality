@@ -1,0 +1,39 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 221,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4.66 Line Class HJB — Pressure-Temperature Rating, Basic Material, Construction Class, Corrosion Allowance, and Item Specifications",
+      "slug": "table-4-66-line-class-hjb",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.22],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Line class header table for HJB. Column header row visible; item rows are not present on this page (continued on adjacent pages). Metadata fields (pressure-temperature rating, service, basic material, construction class, corrosion allowance) captured above the column headers."
+    }
+  ],
+  "issues": []
+}

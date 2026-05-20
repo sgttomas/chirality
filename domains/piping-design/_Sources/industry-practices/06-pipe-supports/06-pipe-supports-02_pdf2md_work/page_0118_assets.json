@@ -1,0 +1,128 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 118,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Pipe Shoe (Clamp On), Pipe Sizes 1/2\" to 1-1/2\"",
+      "slug": "bom-pipe-shoe-clamp-on",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.18
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "6mm THK. PLATE",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "NB PIPE CLAMP (NOTE 2)",
+                "type": "text"
+              },
+              {
+                "value": "CARBON STEEL ANVIL FIG. 212",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "3mm THICK \"THERMOFAB\" LINER",
+                "type": "text"
+              },
+              {
+                "value": "(FIBERGLASS CLOTH) OR EQUIVALENT. USE ONLY IF THE LINE IS STAINLESS STEEL.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "ELEVATION and VIEW 'A' \u2014 Pipe Shoe (Clamp On), Pipe Sizes 1/2\" to 1-1/2\"",
+      "slug": "elevation-view-a-pipe-shoe-clamp-on",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing ELEVATION view on left and VIEW A cross-section on right, with dimensions including 1\" slot for insulation bands, 6\" spacing, and 45-degree cut detail"
+    }
+  ],
+  "issues": []
+}

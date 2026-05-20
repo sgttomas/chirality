@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0137.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0137_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2211
+      ],
+      "caption": "Table 4.38 Line Class PKJ \u2014 Valve and fitting specifications with pressure-temperature rating",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0137_tbl01_table-4-38-class-pkj-valve-fitting-speci.png",
+      "png_sha256": "9d8320fbd2a8d36e0927348e0942b5b5eba5da2d217e376141aec473df1e07e9",
+      "slug": "table-4-38-class-pkj-valve-fitting-speci",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0137_tbl01_table-4-38-class-pkj-valve-fitting-speci.json",
+      "table_data_json_sha256": "c279364e61a474263d7fc5b4d88a088a972965ecdb9b97a9071adeb691975cd4",
+      "table_data_sha256": "c279364e61a474263d7fc5b4d88a088a972965ecdb9b97a9071adeb691975cd4",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0137_tbl01_table-4-38-class-pkj-valve-fitting-speci.xlsx",
+      "xlsx_sha256": "2439718479b7a87c07f88b260f7ee0bbb1b14157abc76a2803e57526323b79f1"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 137,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0137.png",
+  "page_image_sha256": "45734079672d1fd1f3f38b446eab1f2fbe57e00dc04e0001b34ae4c49dbf478d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0137_assets.json"
+}

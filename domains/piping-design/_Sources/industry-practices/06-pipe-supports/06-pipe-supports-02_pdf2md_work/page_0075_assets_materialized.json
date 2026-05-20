@@ -1,0 +1,182 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0075.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0075_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.05,
+        0.92,
+        0.12
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2478,
+        562
+      ],
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0075_tbl01_bill-of-materials.png",
+      "png_sha256": "d87876e4305f024ed78faaa97d3dbd7d9635304d7b66e62d43e803bab1f5ba63",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0075_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "58f802b8cbde9f5b480a38bf8b3d7f6ce142a546998bb8f82f678eef48554911",
+      "table_data_sha256": "58f802b8cbde9f5b480a38bf8b3d7f6ce142a546998bb8f82f678eef48554911",
+      "xlsx_path": "tables/06-pipe-supports-02_p0075_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "ec636d0f8f3e3481ee0b96ef9b583196ca9a83e2f30b8bcc96553a8657f7a7c6"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0075_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.92,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2478,
+        1817
+      ],
+      "caption": "GUIDES FOR UNINSULATED LINES PIPE SIZES 6\" TO 36\" \u2014 Elevation and Section views of pipe guide support",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0075_fig01_pipe-guide-elevation-section.png",
+      "png_sha256": "7a7464842e26563f5a11d4ba37aca6b0931135ad4c061f115b9740224899c1ad",
+      "slug": "pipe-guide-elevation-section",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0075_tbl02",
+      "bbox_norm": [
+        0.32,
+        0.52,
+        0.6,
+        0.65
+      ],
+      "bbox_px": [
+        690,
+        1553,
+        1661,
+        2313
+      ],
+      "caption": "Max Guide Spacing by Pipe Size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0075_tbl02_max-guide-spacing.png",
+      "png_sha256": "d474584c1002c242ba85c1a86b8912917fc30995cc9460e40cab100581f967cd",
+      "slug": "max-guide-spacing",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0075_tbl02_max-guide-spacing.json",
+      "table_data_json_sha256": "b9bda0937e583241e86b6f64de2cb6dc6fde0ad03618937b29e5f4911ab864f6",
+      "table_data_sha256": "b9bda0937e583241e86b6f64de2cb6dc6fde0ad03618937b29e5f4911ab864f6",
+      "xlsx_path": "tables/06-pipe-supports-02_p0075_tbl02_max-guide-spacing.xlsx",
+      "xlsx_sha256": "23ff4ccce5084102eac54d66d4d3273d6b0958f3229b2b53b1909a35a85096a0"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0075_tbl03",
+      "bbox_norm": [
+        0.6,
+        0.52,
+        0.92,
+        0.75
+      ],
+      "bbox_px": [
+        1405,
+        1553,
+        2478,
+        2643
+      ],
+      "caption": "Pipe Dimensions A and B by Pipe Size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0075_tbl03_pipe-dimensions-a-b.png",
+      "png_sha256": "65d536169394113c042efe9d6d0dbd8b07539370c4a4bf880750e4e094618367",
+      "slug": "pipe-dimensions-a-b",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0075_tbl03_pipe-dimensions-a-b.json",
+      "table_data_json_sha256": "570598fb2d50a2d24952d1d0f71945ba5e30f59519699a035ae277f4205f7826",
+      "table_data_sha256": "570598fb2d50a2d24952d1d0f71945ba5e30f59519699a035ae277f4205f7826",
+      "xlsx_path": "tables/06-pipe-supports-02_p0075_tbl03_pipe-dimensions-a-b.xlsx",
+      "xlsx_sha256": "d9daf71909a67e713459a0d87824d4c860f9977e6e19e4864aebdce3edbc4211"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0075_tbl04",
+      "bbox_norm": [
+        0.32,
+        0.65,
+        0.6,
+        0.76
+      ],
+      "bbox_px": [
+        690,
+        1982,
+        1661,
+        2676
+      ],
+      "caption": "Coding Example \u2014 P/S Standard No. and Pipe Size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 4,
+      "png_path": "tables/06-pipe-supports-02_p0075_tbl04_coding-example.png",
+      "png_sha256": "1605aa4fd235e7512621df3515a1b2758b95c59039b8c7638a5fb0f025920568",
+      "slug": "coding-example",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0075_tbl04_coding-example.json",
+      "table_data_json_sha256": "1ae6753d83f25239fb67c2ae6c4d08ffeab453cfdfb980db5508e310e8330b5a",
+      "table_data_sha256": "1ae6753d83f25239fb67c2ae6c4d08ffeab453cfdfb980db5508e310e8330b5a",
+      "xlsx_path": "tables/06-pipe-supports-02_p0075_tbl04_coding-example.xlsx",
+      "xlsx_sha256": "6e9a956c7a2c26ec96b0dc908df64e5abf9614bc0a100dd375aac1bc12b1f469"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0075_tbl05",
+      "bbox_norm": [
+        0.05,
+        0.76,
+        0.65,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        2346,
+        1789,
+        3073
+      ],
+      "caption": "Revision History",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 5,
+      "png_path": "tables/06-pipe-supports-02_p0075_tbl05_revision-history.png",
+      "png_sha256": "3623e49f048ce9e358ab083eca7a443871eaf7372b9887213320398ae2cf7fd3",
+      "slug": "revision-history",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0075_tbl05_revision-history.json",
+      "table_data_json_sha256": "6fc206056933cbfb4252e8b44194936c2f3514ba4c488bcd84c16dc8e8488e46",
+      "table_data_sha256": "6fc206056933cbfb4252e8b44194936c2f3514ba4c488bcd84c16dc8e8488e46",
+      "xlsx_path": "tables/06-pipe-supports-02_p0075_tbl05_revision-history.xlsx",
+      "xlsx_sha256": "bcc0b5814c0a0ec8a118636995e24d4aef7bc132f8e588c9f9480b6dc09020c8"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 75,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0075.png",
+  "page_image_sha256": "7e7187d498cd2ad8ae2faaeb9ca6632468ccf82dca87c0b0051d39aff3a9f0fb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0075_assets.json"
+}

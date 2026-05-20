@@ -3,8 +3,8 @@
 **Persona:** PDF2MD (`agents/AGENT_PDF2MD.md`)
 **Corpus:** `domains/piping-design/_Sources/industry-practices/` — 108 PDFs across 19 chapter folders, 3,423 total pages
 **Origin plan:** `/Users/ryan/.claude/plans/read-init-md-and-agents-md-noble-dolphin.md` (in-conversation plan from the prior session)
-**Paused:** 2026-05-18 after Chapter 01 complete (T1 done)
-**Resume point:** T2 — Chapter 02
+**Last updated:** 2026-05-19 — Chapters 01–04 complete (T1–T4 done)
+**Resume point:** T5 — Chapter 05
 
 ---
 
@@ -37,10 +37,10 @@ Convert 108 PDFs to per-PDF Markdown via the merged `pdf2md-page-full` skill (si
 |---|---|---|---|
 | T0 | Phase A — Pre-flight (tooling smoke test, residue archive, dry-run gate) | **completed** | |
 | T1 | Chapter 01 — overall-piping-design-standards (10 PDFs / 480 pages) | **completed** | All 10 PDFs PASS. See per-PDF status below. |
-| T2 | Chapter 02 — plant-layout-and-equipment-spacing (4 PDFs / 125 pages) | **pending** ← RESUME HERE | |
-| T3 | Chapter 03 — piping-materials-and-line-classes (17 PDFs / 745 pages) | pending | Largest chapter. Existing residue (`_assets/`, `*_pdf2md_work/`, stray `.md`) was archived in T0; folder is clean. |
-| T4 | Chapter 04 — branch-connections-vents-drains (2 PDFs / 124 pages) | pending | |
-| T5 | Chapter 05 — bolting-gaskets-and-flange-joints (3 PDFs / 56 pages) | pending | |
+| T2 | Chapter 02 — plant-layout-and-equipment-spacing (4 PDFs / 125 pages) | **completed** | All 4 PDFs PASS. |
+| T3 | Chapter 03 — piping-materials-and-line-classes (17 PDFs / 745 pages) | **completed** | Largest chapter. All 17 PDFs PASS across Chunks A–F. |
+| T4 | Chapter 04 — branch-connections-vents-drains (2 PDFs / 124 pages) | **completed** | 04-01 (2p, 3 assets) PASS; 04-02 (122p, 145 assets) PASS. One content-filter retry on 04-02 p1. |
+| T5 | Chapter 05 — bolting-gaskets-and-flange-joints (3 PDFs / 56 pages) | **pending** ← RESUME HERE | |
 | T6 | Chapter 06 — pipe-supports (3 PDFs / 198 pages) | pending | |
 | T7 | Chapter 07 — stress-flexibility-and-mechanical-analysis (3 PDFs / 38 pages) | pending | |
 | T8 | Chapter 08 — pressure-design-and-overpressure-relief (3 PDFs / 40 pages) | pending | T0 archived prior residue. |
@@ -84,6 +84,18 @@ All 10 PDFs in `domains/piping-design/_Sources/industry-practices/01-overall-pip
 
 ---
 
+## T2–T4 — chapter outcomes (summary)
+
+| Chapter | PDFs | Pages | Outcome |
+|---|---|---|---|
+| T2 — Chapter 02 (plant-layout-and-equipment-spacing) | 4 | 125 | All PDFs `asset_validation=PASS`. |
+| T3 — Chapter 03 (piping-materials-and-line-classes) | 17 | 745 | All 17 PDFs PASS across Chunks A–F. Largest single PDF: 03-15 (96p), 03-16 (71p). |
+| T4 — Chapter 04 (branch-connections-vents-drains) | 2 | 124 | 04-01: 2p / 3 assets / PASS. 04-02: 122p / 145 assets / 146 links / 147 disk paths / PASS. One content-filter rejection (04-02 p1) retried successfully. |
+
+**Cumulative through T4:** 33/108 PDFs (30.6%), 1,474/3,423 pages (43.1%). Zero validation failures across completed chapters.
+
+---
+
 ## Files changed this session (audit)
 
 **Instruction files modified:**
@@ -101,8 +113,8 @@ All 10 PDFs in `domains/piping-design/_Sources/industry-practices/01-overall-pip
 1. **Read `tools/pdf2md/PILOT_ORCHESTRATOR_BRIEF.md`** — that is the authoritative per-PDF runbook. It has been updated this session.
 2. **Read `agents/AGENT_PDF2MD.md`** — the agent operating contract.
 3. **Spot-check `domains/piping-design/_Sources/industry-practices/NOTE.md` and `00-MASTER-INDEX.csv`** — corpus provenance and master file inventory.
-4. **Mark T1 completed and T2 in_progress** in TaskUpdate at session start.
-5. **Begin Chapter 02:** 4 PDFs / 125 pages in `domains/piping-design/_Sources/industry-practices/02-plant-layout-and-equipment-spacing/`. Run the per-PDF runbook against each sequentially within the chapter. The per-PDF flow is: rasterize → build merged page-full briefs → dispatch up to 40 Sonnet workers per wave with on-disk audit between waves → postprocess+clean → filter_logo → materialize+rewrite → aggregate manifest → assemble → validate. Expected final line of validate: `asset_validation=PASS`.
+4. **Mark T4 completed and T5 in_progress** in TaskUpdate at session start.
+5. **Begin Chapter 05:** 3 PDFs / 56 pages in `domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/`. Run the per-PDF runbook against each sequentially within the chapter. The per-PDF flow is: rasterize → build merged page-full briefs → dispatch up to 40 Sonnet workers per wave with on-disk audit between waves → postprocess → filter_logo → materialize+rewrite → aggregate manifest → assemble → validate. Expected final line of validate: `asset_validation=PASS`. Note: `clean_anchored_pages.py` does NOT exist; that step in the original runbook is a no-op.
 6. **Per-PDF resume safety:** the `manifest.json` written by `rasterize_pdf.py` includes `pdf_sha256` + `dpi`. If a per-PDF `.md` already exists with a matching SHA + DPI, the PDF is done; skip it.
 7. **Chapter gate:** after all PDFs in the chapter complete, pause for compaction opportunity, then mark the chapter task completed and continue.
 8. **Phase C (T20)** requires writing two new tools — see origin plan ("New tool — campaign concatenator" and "New tool — campaign asset manifest aggregator"). Don't start these until all 19 chapter tasks are completed; the relative-path conventions of `validate_assets.py` should be inspected once before authoring.

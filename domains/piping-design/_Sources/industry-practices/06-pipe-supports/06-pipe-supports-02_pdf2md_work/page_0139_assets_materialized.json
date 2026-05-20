@@ -1,0 +1,91 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0139.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0139_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Bill of Materials \u2014 Vessel Clip VC11",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0139_tbl01_bill-of-materials-vessel-clip-vc11.png",
+      "png_sha256": "585ab789a95ceb5c599230263afafe6ff0d0ea8d04b3193874a78ba6b93a6c08",
+      "slug": "bill-of-materials-vessel-clip-vc11",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0139_tbl01_bill-of-materials-vessel-clip-vc11.json",
+      "table_data_json_sha256": "2bb07dea7cba5304d12c40320b52c81f81ad966d664b35146826151a46c8607d",
+      "table_data_sha256": "2bb07dea7cba5304d12c40320b52c81f81ad966d664b35146826151a46c8607d",
+      "xlsx_path": "tables/06-pipe-supports-02_p0139_tbl01_bill-of-materials-vessel-clip-vc11.xlsx",
+      "xlsx_sha256": "7d4d032ee73dea1c5e27771a8087eb1b0109ffab92c9900047f860bc59c65fb8"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0139_fig01",
+      "bbox_norm": [
+        0.25,
+        0.12,
+        0.98,
+        0.48
+      ],
+      "bbox_px": [
+        511,
+        231,
+        2555,
+        1751
+      ],
+      "caption": "PLAN \u2014 Vessel Clip VC11 plan view showing clip plate and repad arrangement with dimensions",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0139_fig01_plan-vessel-clip-vc11.png",
+      "png_sha256": "7e8b99668ef0b158c168fd5edd88d3955196cfeafc1834328b5ac195afe4bf53",
+      "slug": "plan-vessel-clip-vc11",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0139_fig02",
+      "bbox_norm": [
+        0.25,
+        0.48,
+        0.98,
+        0.75
+      ],
+      "bbox_px": [
+        511,
+        1421,
+        2555,
+        2643
+      ],
+      "caption": "ELEVATION \u2014 Vessel Clip VC11 elevation view showing 1\u00bc\" holes, 3/8\" THK. PLATE, and dimensional details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/06-pipe-supports-02_p0139_fig02_elevation-vessel-clip-vc11.png",
+      "png_sha256": "ab11909d05704a88819ea558ccebc5bc751fe70b0ab4520dd5774d7b0577eb40",
+      "slug": "elevation-vessel-clip-vc11",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 139,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0139.png",
+  "page_image_sha256": "26d1773ced22c0f176588d3cb049da97ea3e7e4bef53abee4ebd09d5e4b155f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0139_assets.json"
+}

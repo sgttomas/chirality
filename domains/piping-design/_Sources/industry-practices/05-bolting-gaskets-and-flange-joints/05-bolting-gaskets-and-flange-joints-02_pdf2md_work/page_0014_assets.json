@@ -1,0 +1,46 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 14,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "caption": "Table 7: Metal Jacketed Gasket Requirements",
+      "bbox_norm": [0.03, 0.12, 0.97, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "service", "label": "Service"},
+          {"id": "gasket_spec", "label": "Gasket Specification"}
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"col": "service", "type": "text", "value": "Air and water service below 300°F"},
+              {"col": "gasket_spec", "type": "text", "value": "1/8-inch thick double metal jacketed gasket per ASME B16.20 with elastomeric-bound filler material and 0.015 inch minimum thick jacket. Metal jacketing material should be as follows:\n- Fresh & salt water: Copper or brass\n- Sour water: AISI Type 316L SS"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "service", "type": "text", "value": "All services, except chemical oxidizers, -20°F to 1500°F"},
+              {"col": "gasket_spec", "type": "text", "value": "3/32 inch thick double metal jacketed gasket per ASME B16.20 with flexible graphite filler material and 0.015 inch minimum thick jacket. Flexible graphite filler specifications shall be as follows:\n- Density (nominal): 70 lbs/ft² ± 10 lbs/ft²\n- Carbon content: 95 wt% min.\n- Leachable chlorides: 100 ppm max.\n- Total sulfur: 1000 ppm max.\n- Fillers or binders: none\nMetal jacketing material shall be as follows:\n- Hydrofluoric acid: Monel 400\n- Hydrochloric acid: Hastelloy C\n- Clad and/or weld overlay vessels: Same material as cladding and/or overlay\n- Hydrogen with H₂S at 450–700°F: AISI Types 304L, 316L, 321 or 347 SS\n- Hydrogen with naphthenic acid at all temperatures: AISI Type 316L, 317L SS\n- Remaining general services exceeding 700°F: AISI Types 304L, 316L, 321, 347 SS\n- Remaining general services up to and including 700°F: AISI Type 410S or 304L, 316L, 321, 347 SS\nNote: Carbon steel can be used if the expected corrosion allowance is less than or equal to 0.010 inch over the gasket's expected life."}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "service", "type": "text", "value": "Chemical oxidizers (e.g. sulfuric, nitric, phosphoric acids)"},
+              {"col": "gasket_spec", "type": "text", "value": "3/32 inch thick double metal jacketed gasket per API 601 with PTFE (Teflon) filler material and 0.015 inch minimum thick jacket. Metal jacketing shall be as follows:\n- Sulfuric acid: Alloy 20\n- Nitric acid: AISI Type 304 SS, use Type 304L SS for welded construction\n- Phosphoric acid: AISI Type 316 SS, use Type 31 6L SS for welded construction"}
+            ]
+          }
+        ],
+        "footnotes": [
+          "This document may not be used or reproduced without the permission of Phillips 66."
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

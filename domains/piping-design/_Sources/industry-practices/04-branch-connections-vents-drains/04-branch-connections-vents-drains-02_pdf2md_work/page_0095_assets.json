@@ -1,0 +1,21 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 95,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "PNF0604 T-04 Thermowell \u2014 three detail views showing socketweld thermowell connection for NPS 3/4 and up",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.97,
+        0.78
+      ]
+    }
+  ],
+  "issues": []
+}

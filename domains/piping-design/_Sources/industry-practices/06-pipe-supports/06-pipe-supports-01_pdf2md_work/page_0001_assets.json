@@ -1,0 +1,11 @@
+{
+  "schema": "pdf2md-page-assets/v1",
+  "doc_stem": "06-pipe-supports-01",
+  "page": 1,
+  "page_image": "page_0001.png",
+  "run_status": "NO_ASSETS",
+  "assets": [],
+  "issues": [
+    "vision-skill blocked by content-filter on PIP 'Purpose and Use' boilerplate cover page; used pdftotext deterministic fallback"
+  ]
+}

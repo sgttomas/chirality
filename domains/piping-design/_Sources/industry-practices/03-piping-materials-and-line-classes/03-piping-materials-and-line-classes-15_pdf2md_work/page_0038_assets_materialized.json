@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0038_fig01",
+      "bbox_norm": [
+        0.13,
+        0.05,
+        0.92,
+        0.92
+      ],
+      "bbox_px": [
+        204,
+        0,
+        2474,
+        3197
+      ],
+      "caption": "Fig. 200-12 Change of Direction Fittings Courtesy of Canvil and Taylor Forge (1 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0038_fig01_fig-200-12-change-of-direction-fittings.png",
+      "png_sha256": "36024b79578106d8c90253846d17edaf0e9646478a7513a917b3345e2f841b69",
+      "slug": "fig-200-12-change-of-direction-fittings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0038.png",
+  "page_image_sha256": "bbbb8f397da065c24457e30b5f2031d8129ac42ad90b933e7343119830f19b30",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0038_assets.json"
+}

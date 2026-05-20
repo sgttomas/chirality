@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-01_p0015_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.08,
+        0.93,
+        0.38
+      ],
+      "bbox_px": [
+        51,
+        99,
+        2499,
+        1419
+      ],
+      "caption": "Table 3.1 Minimum Allowable Wall Thickness for Carbon Steel Piping (See Sub-Section 3.10.3)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-01_p0015_tbl01_table-3-1-min-allowable-wall-thickness-c.png",
+      "png_sha256": "308b6df6b1dde56e2cc833dadea21411d647fcb9fdc746aa45d90f1c41ca4932",
+      "slug": "table-3-1-min-allowable-wall-thickness-c",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-01_p0015_tbl01_table-3-1-min-allowable-wall-thickness-c.json",
+      "table_data_json_sha256": "1a6ef52ea4b6b800efdf7699bbf5cd33392e8a08159355adbb9ea0dc3bd12bdb",
+      "table_data_sha256": "1a6ef52ea4b6b800efdf7699bbf5cd33392e8a08159355adbb9ea0dc3bd12bdb",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-01_p0015_tbl01_table-3-1-min-allowable-wall-thickness-c.xlsx",
+      "xlsx_sha256": "77fcccdfbb72eda8d50c80130d48700410c4334ede141d9c48935cd3af2f15b0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-01",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0015.png",
+  "page_image_sha256": "bd314776fcef0324640c33fbc5b9344fe0f971d118bc307d0cc70f5921681e6c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-01_pdf2md_work/page_0015_assets.json"
+}

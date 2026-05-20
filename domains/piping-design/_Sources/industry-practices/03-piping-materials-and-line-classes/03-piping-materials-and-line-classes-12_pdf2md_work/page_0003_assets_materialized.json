@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0003_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        3234
+      ],
+      "caption": "Standards and Publications \u2014 Refining Engineering Practices, ASME, and ASTM International",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: {'before_row': 0, 'label': 'Refining Engineering Practices (Cont.)'}"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0003_tbl01_standards-publications-rep-asme-astm.png",
+      "png_sha256": "58a2cc16f275afd50366c4702132a30f67b6ad4b3b38b43c5062314f6954fdef",
+      "slug": "standards-publications-rep-asme-astm",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-12",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0003.png",
+  "page_image_sha256": "b753d1a714af9c9eed13225549802721aedba98f1ef73d4791d624ddfae9b4df",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0003_assets.json"
+}

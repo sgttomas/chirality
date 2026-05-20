@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0027.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0027_fig01",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3069
+      ],
+      "caption": "Bolt tightening sequence diagrams for 24-bolt, 26-bolt, 28-bolt, and 30-bolt flange configurations, showing numbered bolt positions arranged in a circle with cross-pattern tightening order",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0027_fig01_bolt-tightening-sequence-diagrams-for-24.png",
+      "png_sha256": "0d64b7e0cd9d8f97fdea8bbe968a48491065eddebb3cdc1a33c9c0020f990ee6",
+      "slug": "bolt-tightening-sequence-diagrams-for-24",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 27,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0027.png",
+  "page_image_sha256": "4102c5cb43f0c732657871e007e99cbf30e173872e28d40807c522eb98a0b948",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0027_assets.json"
+}

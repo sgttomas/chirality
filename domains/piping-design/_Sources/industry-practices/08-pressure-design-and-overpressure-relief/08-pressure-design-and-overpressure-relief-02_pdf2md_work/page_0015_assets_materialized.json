@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "08-pressure-design-and-overpressure-relief-02_p0015_fig01",
+      "bbox_norm": [
+        0.13,
+        0.08,
+        0.88,
+        0.62
+      ],
+      "bbox_px": [
+        198,
+        105,
+        2306,
+        2351
+      ],
+      "caption": "FIGURE 4   TYPICAL SET PRESSURES FOR IPF (GAS LINE)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/08-pressure-design-and-overpressure-relief-02_p0015_fig01_figure-4-typical-set-pressures-for-ipf-g.png",
+      "png_sha256": "55355ff5fae4d444a8dc6ee7dd354136b7ed3b9e7cc829ae52f6667190ef002f",
+      "slug": "figure-4-typical-set-pressures-for-ipf-g",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/_assets/08-pressure-design-and-overpressure-relief-02",
+  "doc_stem": "08-pressure-design-and-overpressure-relief-02",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0015.png",
+  "page_image_sha256": "1c1a379db2967804fc7becf11d4ce8c3a1856d8dcd8ca4013b91a3a534c4c3f2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/08-pressure-design-and-overpressure-relief/08-pressure-design-and-overpressure-relief-02_pdf2md_work/page_0015_assets.json"
+}

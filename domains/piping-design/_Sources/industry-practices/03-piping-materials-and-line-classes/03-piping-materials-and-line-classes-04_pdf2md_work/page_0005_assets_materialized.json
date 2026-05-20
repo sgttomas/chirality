@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-04_p0005_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.1,
+        0.99,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        3069
+      ],
+      "caption": "Piping Class A2 \u2014 Service, Pressure, Temperature, Corrosion, Radiography, Post Weld Heat Treatment, and Itemized Materials",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-04_p0005_tbl01_piping-class-a2-materials.png",
+      "png_sha256": "5dc7fadcea8bb9acc80ce9d4b762eac40521f69de7df455bffb34e708c60ed83",
+      "slug": "piping-class-a2-materials",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-04",
+  "doc_stem": "03-piping-materials-and-line-classes-04",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0005.png",
+  "page_image_sha256": "60d12be78d4b8885cbadc07085ce14c7e1c36499a23463b96cee64a896f132ea",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-04_pdf2md_work/page_0005_assets.json"
+}

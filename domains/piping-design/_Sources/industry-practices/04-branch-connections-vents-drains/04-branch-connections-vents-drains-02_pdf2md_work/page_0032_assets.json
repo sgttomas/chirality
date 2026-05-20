@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 32,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "caption": "V-49 Vent and D-49 Drain — Hydrostatic Test Vents & Drains, Socketweld Piping, NPS 3/4 Thru 1-1/2",
+      "bbox_norm": [0.04, 0.13, 0.96, 0.85],
+      "description": "Engineering detail drawing showing V-49 Vent assembly (top) and D-49 Drain assembly (bottom) for socketweld piping. Vent components include NPS 3/4 Blind Flange, NPS 3/4 Socket Weld Flange, NPS 3/4 x 100(4) Nipple (Plain Both End), NPS 3/4 Tee or Line Size x NPS 3/4 Reducing Tee, and NPS 3/4 Tee. Drain components mirror the vent configuration. Line size range is NPS 3/4 Thru 1-1/2."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,290 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 21,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5: Acceptable Piping Materials for Alloy 20",
+      "slug": "table-5-acceptable-piping-materials-alloy-20",
+      "bbox_norm": [
+        0.03,
+        0.11,
+        0.97,
+        0.45
+      ],
+      "confidence": "high",
+      "notes": "Four-column table with Service, Pipe, Flanges and Fittings, and Valves columns; includes footnotes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) (*) Consult with Owner's Engineer for selection of weld filler metals.",
+          "(2) Fittings containing butt welds shall be 100% radiographed per REP 5\u20135\u20131.",
+          "(3) This casting material is preferred for all concentrations of sulfuric acid service."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Pipe (1)",
+                "is_header": true
+              },
+              {
+                "value": "Flanges and Fittings (1)",
+                "is_header": true
+              },
+              {
+                "value": "Valves (1)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "All Fluid Services",
+                "type": "text",
+                "rowspan": 4
+              },
+              {
+                "value": "All Sizes",
+                "type": "text"
+              },
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "Forged Valves (1)(2)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "A358/A358M",
+                "type": "text"
+              },
+              {
+                "value": "B462 N08020",
+                "type": "text"
+              },
+              {
+                "value": "B462 N08020",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B464/B729 N08020",
+                "type": "text"
+              },
+              {
+                "value": "Fittings (1)(2)",
+                "type": "text"
+              },
+              {
+                "value": "Cast Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B462 N08020",
+                "type": "text"
+              },
+              {
+                "value": "A744 CN-7M",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "A990 CN3MCu (3)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 6: Acceptable Piping Materials for Nickel Copper Alloys (Alloy 400)",
+      "slug": "table-6-acceptable-piping-materials-nickel-copper-alloys-alloy-400",
+      "bbox_norm": [
+        0.03,
+        0.55,
+        0.97,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Four-column table with Service, Pipe, Flanges and Fittings, and Valves columns; includes footnotes",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Fittings containing butt welds shall be 100% radiographed per REP 5\u20135\u20131.",
+          "(2) The supplemental weldability test S-2 per ASTM A494/A494M shall be specified."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Service",
+                "is_header": true
+              },
+              {
+                "value": "Pipe",
+                "is_header": true
+              },
+              {
+                "value": "Flanges and Fittings (1)",
+                "is_header": true
+              },
+              {
+                "value": "Valves",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "All Fluid Services",
+                "type": "text",
+                "rowspan": 4
+              },
+              {
+                "value": "All Sizes",
+                "type": "text"
+              },
+              {
+                "value": "Flanges",
+                "type": "text"
+              },
+              {
+                "value": "Forged Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "B165 N04400 (Alloy 400)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N04400 (Alloy 400)",
+                "type": "text"
+              },
+              {
+                "value": "B564 N04400 (Alloy 400)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B164 N04405",
+                "type": "text"
+              },
+              {
+                "value": "B164 N04405",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Fittings",
+                "type": "text"
+              },
+              {
+                "value": "Cast Valves",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "B366 Class WPNC",
+                "type": "text"
+              },
+              {
+                "value": "A494/A494M Class S",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "M-35-1 or M-30C (2)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

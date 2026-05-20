@@ -1,0 +1,98 @@
+{
+  "asset_count": 1,
+  "assets": [
+    {
+      "asset_id": "11-pressure-testing-examination-and-cleaning-03_p0007_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.72,
+        0.92,
+        0.93
+      ],
+      "bbox_px": [
+        76,
+        2211,
+        2474,
+        3234
+      ],
+      "caption": "Test Pressure symbols",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/11-pressure-testing-examination-and-cleaning-03_p0007_tbl01_test-pressure-symbols.png",
+      "png_sha256": "dd415bf19ed3892752cfdc179e7777bb8566edf938a51481658224224f5ea35d",
+      "slug": "test-pressure-symbols",
+      "status": "materialized",
+      "table_data_json_path": "tables/11-pressure-testing-examination-and-cleaning-03_p0007_tbl01_test-pressure-symbols.json",
+      "table_data_json_sha256": "a659d854972e715f911151750adb3f64b4c6b0cf7f76661483771f773818077e",
+      "table_data_sha256": "a659d854972e715f911151750adb3f64b4c6b0cf7f76661483771f773818077e",
+      "xlsx_path": "tables/11-pressure-testing-examination-and-cleaning-03_p0007_tbl01_test-pressure-symbols.xlsx",
+      "xlsx_sha256": "a2610828e695e1a5e2a176cf607c8adce30c48da96ace63b31e85860a1ad9a01"
+    }
+  ],
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-03",
+  "issues": [],
+  "page_manifest_count": 7,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/11-pressure-testing-examination-and-cleaning/11-pressure-testing-examination-and-cleaning-03_pdf2md_work"
+}

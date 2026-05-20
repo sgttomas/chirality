@@ -1,0 +1,242 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 72,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Support at Tracing Manifolds and Misc. Drains",
+      "slug": "bill-of-materials-tracing-manifolds",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM NO.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "10mm THK. PLATE 6\" x 6\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M12 x 65 LG. BOLTS C/W 2 HEX NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM-A325",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "NB PIPE CLAMP (NOTE 3) - TYPE 'B' ONLY",
+                "type": "text"
+              },
+              {
+                "value": "CARBON STEEL ANVI FIG. 212",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing with 3 line items"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Elevation and Plan views \u2014 Type \"A\" CS Pipe and Type \"B\" Alloy/SS Pipe support details",
+      "slug": "elevation-plan-type-a-cs-type-b-alloy-ss-pipe",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.72,
+        0.75
+      ],
+      "confidence": "high",
+      "notes": "Two sets of elevation and plan view engineering drawings showing pipe clamp support configurations. Left side is Type A (CS Pipe), right side is Type B (Alloy/SS Pipe). Each set shows elevation view with 1/2\" hole (TYP.) and plan view. Dimensions annotated in inches."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Revisions",
+      "slug": "revisions",
+      "bbox_norm": [
+        0.03,
+        0.79,
+        0.47,
+        0.91
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "NO.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "HD",
+                "is_header": true
+              },
+              {
+                "value": "JD",
+                "is_header": true
+              },
+              {
+                "value": "AP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL REVISION",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "HD",
+                "type": "text"
+              },
+              {
+                "value": "JD",
+                "type": "text"
+              },
+              {
+                "value": "AP",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Revision block at bottom left of drawing; NO. and DATE columns are blank/illegible for both rows"
+    }
+  ],
+  "issues": []
+}

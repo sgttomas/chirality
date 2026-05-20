@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 20,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4: Acceptable Piping Materials for Austenitic (Fe-Cr-Ni) Alloys",
+      "slug": "table-4-acceptable-piping-materials-austenitic-fe-cr-ni",
+      "bbox_norm": [0.04, 0.10, 0.97, 0.82],
+      "needs_extraction": true,
+      "confidence": "low",
+      "notes": "Complex multi-column table with merged cells, sub-headers within columns, and superscript footnote references; safe structured extraction not possible without risk of misalignment"
+    }
+  ],
+  "issues": [
+    "table_unreadable: Table 4 has a complex layout with intra-column sub-headings, merged cells, and multi-level column groupings that cannot be safely transcribed into a flat row/cell structure without significant risk of data misalignment."
+  ]
+}

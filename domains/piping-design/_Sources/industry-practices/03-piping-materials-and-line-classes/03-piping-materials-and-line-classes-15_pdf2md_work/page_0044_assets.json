@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 44,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-14 Reducers and End Closure Fittings Courtesy of Bonny Forge, Taylor Forge and Standard Fittings (1 of 2)",
+      "slug": "fig-200-14-reducers-end-closure-fittings",
+      "bbox_norm": [0.05, 0.14, 0.95, 0.92],
+      "confidence": "high",
+      "notes": "Figure shows Butt Welding Reducers (concentric and eccentric), Butt Welding Cap, and Swaged Nipples (concentric and eccentric) with both engineering drawings and photographs."
+    }
+  ],
+  "issues": []
+}

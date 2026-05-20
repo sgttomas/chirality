@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0078.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0078_fig01",
+      "bbox_norm": [
+        0.05,
+        0.17,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        396,
+        2550,
+        2541
+      ],
+      "caption": "P-09 pressure connection detail for NPS 1-1/2 & UP welded piping, showing NPS 3/4 socket weld x threaded valve, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld valve, NPS 3/4 x 90(3-1/2) plain end nipolet, and NPS 1-1/2 line size & up header connection.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0078_fig01_p-09-pressure-connection-detail-for-nps.png",
+      "png_sha256": "680f8cbcfba50e2fe30d4932cc0c0e912fe075d30139b9bf7b1f8056db7a7a59",
+      "slug": "p-09-pressure-connection-detail-for-nps",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 78,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0078.png",
+  "page_image_sha256": "bdfcc11d74a26fdf2ce7734adb14ff61d26668b3d23173955b36a6675c8a915b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0078_assets.json"
+}

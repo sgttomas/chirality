@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-03",
+  "page": 14,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-c4",
+      "kind": "fig",
+      "caption": "Fig. C-4 Example of a Stiff Appurtenance",
+      "bbox_norm": [0.04, 0.38, 0.50, 0.62]
+    },
+    {
+      "id": "fig-c5",
+      "kind": "fig",
+      "caption": "Fig. C-5 Mathematical Model of Figure C-4 Example",
+      "bbox_norm": [0.50, 0.38, 0.96, 0.62]
+    }
+  ],
+  "issues": []
+}

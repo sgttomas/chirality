@@ -1,0 +1,23 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 49,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "V-22 Vent assembly diagram showing vertical double-valve vent configuration for NPS 2 and up welded piping, with labeled components including NPS 3/4 threaded plug, NPS 3/4 socket weld x threaded valve, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld valve, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 sockolet, connected to NPS 2 line size and up",
+      "bbox_norm": [0.05, 0.10, 0.95, 0.52]
+    },
+    {
+      "kind": "fig",
+      "asset_index": 2,
+      "caption": "D-22 Drain assembly diagram showing vertical double-valve drain configuration for NPS 2 and up welded piping, with labeled components including NPS 3/4 sockolet, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld valve, NPS 3/4 x 100(4) nipple (plain both ends), NPS 3/4 socket weld x threaded valve, NPS 53/4 threaded plug",
+      "bbox_norm": [0.05, 0.52, 0.95, 0.88]
+    }
+  ],
+  "issues": []
+}

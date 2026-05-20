@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 36,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-17 PERF 91-17—Packing Type Emissions Summary",
+      "slug": "fig-1400-17-perf-91-17-packing-type-emissions-summary",
+      "bbox_norm": [0.05, 0.04, 0.92, 0.92],
+      "confidence": "high",
+      "notes": "Box-and-whisker chart showing leak minus background (ppm) for eight packing types: Braid/Dieform LD, EVSP SIM, ARGO COMP, Braid/Dieform HD, Graphite Ribbon, Braided Spool, EVSP STAN, Die-Form/Braid. Percentage of readings <1000 ppm annotated above each type. Legend shows Highest Value, Lowest 75%, Median Value, Lowest 25%, Lowest Value."
+    }
+  ],
+  "issues": []
+}

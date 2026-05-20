@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0070.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0070_fig01",
+      "bbox_norm": [
+        0.1,
+        0.14,
+        0.92,
+        0.78
+      ],
+      "bbox_px": [
+        128,
+        297,
+        2474,
+        2739
+      ],
+      "caption": "P-01 PRESSURE CONNECTION \u2014 NPS 3/4 & UP (two assembly details: upper for NPS 3/4 thru NPS 2 line size using tee/reducing tee; lower for NPS 3 line size & up using thredolet)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0070_fig01_p-01-pressure-connection-nps-3-4-up-two.png",
+      "png_sha256": "33543c43401fa0d9467a97ba777f1ee91f79a5eede5b803c3482f24519fb7510",
+      "slug": "p-01-pressure-connection-nps-3-4-up-two",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 70,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0070.png",
+  "page_image_sha256": "5ce292bd6e110205d3b58a0217e40b98bb45aa44d26debb7c5b096546d8f00c4",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0070_assets.json"
+}

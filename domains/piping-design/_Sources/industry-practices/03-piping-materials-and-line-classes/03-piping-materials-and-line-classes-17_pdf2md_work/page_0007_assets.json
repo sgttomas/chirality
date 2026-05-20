@@ -1,0 +1,2428 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-17",
+  "page": 7,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE NO. 1 (Cont'd) DESIGN PROPERTIES of PIPE",
+      "slug": "table-no-1-contd-design-properties-of-pipe",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.93
+      ],
+      "confidence": "high",
+      "notes": "Large multi-column pipe design properties table covering nominal pipe sizes 10\", 12\", and 14\" with schedule numbers, wall thickness, inside diameter, weights, surface areas, cross-sectional areas, and section properties.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": "page_0006",
+        "footnotes": [
+          "* If in sizes 10\" thru 60\", this is also known as light gauge and light weight."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "NOMINAL PIPE SIZE AND OUTSIDE DIAMETER inches",
+                "is_header": true
+              },
+              {
+                "value": "SCHEDULE NUMBER and/or WEIGHT",
+                "is_header": true
+              },
+              {
+                "value": "WALL THICK-NESS inches",
+                "is_header": true
+              },
+              {
+                "value": "INSIDE DIAM-ETER inches",
+                "is_header": true
+              },
+              {
+                "value": "PIPE WEIGHT lb per ft",
+                "is_header": true
+              },
+              {
+                "value": "OUTSIDE SURFACE AREA sq ft per ft",
+                "is_header": true
+              },
+              {
+                "value": "INSIDE SURFACE AREA sq ft per ft",
+                "is_header": true
+              },
+              {
+                "value": "CROSS-SECTIONAL AREA OF PIPE sq in",
+                "is_header": true
+              },
+              {
+                "value": "WEIGHT OF WATER lb per ft",
+                "is_header": true
+              },
+              {
+                "value": "RADIUS OF GYRATION inches",
+                "is_header": true
+              },
+              {
+                "value": "MOMENT OF INERTIA in\u2074",
+                "is_header": true
+              },
+              {
+                "value": "SECTION MODULUS in\u00b3",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10 / D=10.750",
+                "type": "text"
+              },
+              {
+                "value": "60 XH 80B",
+                "type": "text"
+              },
+              {
+                "value": 0.5,
+                "type": "number"
+              },
+              {
+                "value": 9.0,
+                "type": "number"
+              },
+              {
+                "value": 98.0,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 11.85,
+                "type": "number"
+              },
+              {
+                "value": 77.8,
+                "type": "number"
+              },
+              {
+                "value": 43.7,
+                "type": "number"
+              },
+              {
+                "value": 25.3,
+                "type": "number"
+              },
+              {
+                "value": 2.6,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.531,
+                "type": "number"
+              },
+              {
+                "value": 9.007,
+                "type": "number"
+              },
+              {
+                "value": 80.5,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.54,
+                "type": "number"
+              },
+              {
+                "value": 17.06,
+                "type": "number"
+              },
+              {
+                "value": 73.7,
+                "type": "number"
+              },
+              {
+                "value": 39.0,
+                "type": "number"
+              },
+              {
+                "value": 31.9,
+                "type": "number"
+              },
+              {
+                "value": 3.69,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.365,
+                "type": "number"
+              },
+              {
+                "value": 9.27,
+                "type": "number"
+              },
+              {
+                "value": 34.2,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.43,
+                "type": "number"
+              },
+              {
+                "value": 10.07,
+                "type": "number"
+              },
+              {
+                "value": 65.8,
+                "type": "number"
+              },
+              {
+                "value": 34.9,
+                "type": "number"
+              },
+              {
+                "value": 35.8,
+                "type": "number"
+              },
+              {
+                "value": 3.9,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "value": 0.438,
+                "type": "number"
+              },
+              {
+                "value": 9.124,
+                "type": "number"
+              },
+              {
+                "value": 10.1,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.46,
+                "type": "number"
+              },
+              {
+                "value": 12.83,
+                "type": "number"
+              },
+              {
+                "value": 91.1,
+                "type": "number"
+              },
+              {
+                "value": 70.6,
+                "type": "number"
+              },
+              {
+                "value": 38.5,
+                "type": "number"
+              },
+              {
+                "value": 3.88,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.719,
+                "type": "number"
+              },
+              {
+                "value": 8.562,
+                "type": "number"
+              },
+              {
+                "value": 47.1,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.24,
+                "type": "number"
+              },
+              {
+                "value": 23.85,
+                "type": "number"
+              },
+              {
+                "value": 67.0,
+                "type": "number"
+              },
+              {
+                "value": 89.2,
+                "type": "number"
+              },
+              {
+                "value": 37.5,
+                "type": "number"
+              },
+              {
+                "value": 3.32,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "140",
+                "type": "text"
+              },
+              {
+                "value": 0.843,
+                "type": "number"
+              },
+              {
+                "value": 9.064,
+                "type": "number"
+              },
+              {
+                "value": 61.2,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.37,
+                "type": "number"
+              },
+              {
+                "value": 30.24,
+                "type": "number"
+              },
+              {
+                "value": 64.9,
+                "type": "number"
+              },
+              {
+                "value": 89.2,
+                "type": "number"
+              },
+              {
+                "value": 39.3,
+                "type": "number"
+              },
+              {
+                "value": 3.43,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 1.0,
+                "type": "number"
+              },
+              {
+                "value": 8.75,
+                "type": "number"
+              },
+              {
+                "value": 71.2,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.29,
+                "type": "number"
+              },
+              {
+                "value": 20.03,
+                "type": "number"
+              },
+              {
+                "value": 51.4,
+                "type": "number"
+              },
+              {
+                "value": 110.0,
+                "type": "number"
+              },
+              {
+                "value": 32.5,
+                "type": "number"
+              },
+              {
+                "value": 3.45,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "160",
+                "type": "text"
+              },
+              {
+                "value": 1.125,
+                "type": "number"
+              },
+              {
+                "value": 8.5,
+                "type": "number"
+              },
+              {
+                "value": 44.4,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 2.23,
+                "type": "number"
+              },
+              {
+                "value": 34.02,
+                "type": "number"
+              },
+              {
+                "value": 56.7,
+                "type": "number"
+              },
+              {
+                "value": 115.7,
+                "type": "number"
+              },
+              {
+                "value": 34.6,
+                "type": "number"
+              },
+              {
+                "value": 3.43,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12 / D=12.750",
+                "type": "text"
+              },
+              {
+                "value": "5S",
+                "type": "text"
+              },
+              {
+                "value": 0.156,
+                "type": "number"
+              },
+              {
+                "value": 12.438,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.26,
+                "type": "number"
+              },
+              {
+                "value": 6.17,
+                "type": "number"
+              },
+              {
+                "value": 121.5,
+                "type": "number"
+              },
+              {
+                "value": 52.5,
+                "type": "number"
+              },
+              {
+                "value": 57.6,
+                "type": "number"
+              },
+              {
+                "value": 4.44,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "10S 10B",
+                "type": "text"
+              },
+              {
+                "value": 0.18,
+                "type": "number"
+              },
+              {
+                "value": 12.39,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.24,
+                "type": "number"
+              },
+              {
+                "value": 7.11,
+                "type": "number"
+              },
+              {
+                "value": 120.6,
+                "type": "number"
+              },
+              {
+                "value": 68.5,
+                "type": "number"
+              },
+              {
+                "value": 60.0,
+                "type": "number"
+              },
+              {
+                "value": 4.44,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.25,
+                "type": "number"
+              },
+              {
+                "value": 12.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.21,
+                "type": "number"
+              },
+              {
+                "value": 9.82,
+                "type": "number"
+              },
+              {
+                "value": 117.9,
+                "type": "number"
+              },
+              {
+                "value": 82.8,
+                "type": "number"
+              },
+              {
+                "value": 51.2,
+                "type": "number"
+              },
+              {
+                "value": 4.44,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.319,
+                "type": "number"
+              },
+              {
+                "value": 12.312,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.22,
+                "type": "number"
+              },
+              {
+                "value": 8.62,
+                "type": "number"
+              },
+              {
+                "value": 119.1,
+                "type": "number"
+              },
+              {
+                "value": 20.3,
+                "type": "number"
+              },
+              {
+                "value": 61.6,
+                "type": "number"
+              },
+              {
+                "value": 4.43,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "20",
+                "type": "text"
+              },
+              {
+                "value": 0.33,
+                "type": "number"
+              },
+              {
+                "value": 12.21,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.2,
+                "type": "number"
+              },
+              {
+                "value": 13.7,
+                "type": "number"
+              },
+              {
+                "value": 113.1,
+                "type": "number"
+              },
+              {
+                "value": 61.9,
+                "type": "number"
+              },
+              {
+                "value": 50.5,
+                "type": "number"
+              },
+              {
+                "value": 4.42,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "20 LW",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 12.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.21,
+                "type": "number"
+              },
+              {
+                "value": 9.86,
+                "type": "number"
+              },
+              {
+                "value": 117.9,
+                "type": "number"
+              },
+              {
+                "value": 43.1,
+                "type": "number"
+              },
+              {
+                "value": 61.4,
+                "type": "number"
+              },
+              {
+                "value": 4.42,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 12.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.21,
+                "type": "number"
+              },
+              {
+                "value": 9.82,
+                "type": "number"
+              },
+              {
+                "value": 117.9,
+                "type": "number"
+              },
+              {
+                "value": 47.5,
+                "type": "number"
+              },
+              {
+                "value": 59.9,
+                "type": "number"
+              },
+              {
+                "value": 4.43,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "30",
+                "type": "text"
+              },
+              {
+                "value": 0.33,
+                "type": "number"
+              },
+              {
+                "value": 12.19,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.19,
+                "type": "number"
+              },
+              {
+                "value": 13.51,
+                "type": "number"
+              },
+              {
+                "value": 116.8,
+                "type": "number"
+              },
+              {
+                "value": 53.5,
+                "type": "number"
+              },
+              {
+                "value": 62.8,
+                "type": "number"
+              },
+              {
+                "value": 4.38,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.406,
+                "type": "number"
+              },
+              {
+                "value": 12.188,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.19,
+                "type": "number"
+              },
+              {
+                "value": 11.78,
+                "type": "number"
+              },
+              {
+                "value": 116.7,
+                "type": "number"
+              },
+              {
+                "value": 53.5,
+                "type": "number"
+              },
+              {
+                "value": 67.1,
+                "type": "number"
+              },
+              {
+                "value": 4.38,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.344,
+                "type": "number"
+              },
+              {
+                "value": 12.062,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.16,
+                "type": "number"
+              },
+              {
+                "value": 13.16,
+                "type": "number"
+              },
+              {
+                "value": 114.3,
+                "type": "number"
+              },
+              {
+                "value": 56.8,
+                "type": "number"
+              },
+              {
+                "value": 65.5,
+                "type": "number"
+              },
+              {
+                "value": 4.37,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 12.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.14,
+                "type": "number"
+              },
+              {
+                "value": 14.58,
+                "type": "number"
+              },
+              {
+                "value": 113.1,
+                "type": "number"
+              },
+              {
+                "value": 62.0,
+                "type": "number"
+              },
+              {
+                "value": 67.2,
+                "type": "number"
+              },
+              {
+                "value": 4.38,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "XH 40B",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 12.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.14,
+                "type": "number"
+              },
+              {
+                "value": 11.09,
+                "type": "number"
+              },
+              {
+                "value": 113.1,
+                "type": "number"
+              },
+              {
+                "value": 53.5,
+                "type": "number"
+              },
+              {
+                "value": 65.0,
+                "type": "number"
+              },
+              {
+                "value": 4.39,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.406,
+                "type": "number"
+              },
+              {
+                "value": 11.938,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.13,
+                "type": "number"
+              },
+              {
+                "value": 14.58,
+                "type": "number"
+              },
+              {
+                "value": 111.9,
+                "type": "number"
+              },
+              {
+                "value": 62.2,
+                "type": "number"
+              },
+              {
+                "value": 70.5,
+                "type": "number"
+              },
+              {
+                "value": 4.36,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "60",
+                "type": "text"
+              },
+              {
+                "value": 0.562,
+                "type": "number"
+              },
+              {
+                "value": 11.626,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 3.04,
+                "type": "number"
+              },
+              {
+                "value": 13.42,
+                "type": "number"
+              },
+              {
+                "value": 106.2,
+                "type": "number"
+              },
+              {
+                "value": 57.2,
+                "type": "number"
+              },
+              {
+                "value": 88.5,
+                "type": "number"
+              },
+              {
+                "value": 4.33,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.688,
+                "type": "number"
+              },
+              {
+                "value": 11.374,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.98,
+                "type": "number"
+              },
+              {
+                "value": 24.98,
+                "type": "number"
+              },
+              {
+                "value": 101.6,
+                "type": "number"
+              },
+              {
+                "value": 134.2,
+                "type": "number"
+              },
+              {
+                "value": 89.0,
+                "type": "number"
+              },
+              {
+                "value": 4.31,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.75,
+                "type": "number"
+              },
+              {
+                "value": 11.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.95,
+                "type": "number"
+              },
+              {
+                "value": 21.32,
+                "type": "number"
+              },
+              {
+                "value": 99.4,
+                "type": "number"
+              },
+              {
+                "value": 90.7,
+                "type": "number"
+              },
+              {
+                "value": 89.0,
+                "type": "number"
+              },
+              {
+                "value": 4.33,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "80",
+                "type": "text"
+              },
+              {
+                "value": 0.843,
+                "type": "number"
+              },
+              {
+                "value": 11.064,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.9,
+                "type": "number"
+              },
+              {
+                "value": 18.75,
+                "type": "number"
+              },
+              {
+                "value": 96.1,
+                "type": "number"
+              },
+              {
+                "value": 80.2,
+                "type": "number"
+              },
+              {
+                "value": 88.6,
+                "type": "number"
+              },
+              {
+                "value": 4.27,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.875,
+                "type": "number"
+              },
+              {
+                "value": 11.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.88,
+                "type": "number"
+              },
+              {
+                "value": 10.64,
+                "type": "number"
+              },
+              {
+                "value": 95.0,
+                "type": "number"
+              },
+              {
+                "value": 45.5,
+                "type": "number"
+              },
+              {
+                "value": 111.6,
+                "type": "number"
+              },
+              {
+                "value": 4.31,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "100",
+                "type": "text"
+              },
+              {
+                "value": 1.0,
+                "type": "number"
+              },
+              {
+                "value": 10.75,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.81,
+                "type": "number"
+              },
+              {
+                "value": 24.35,
+                "type": "number"
+              },
+              {
+                "value": 90.8,
+                "type": "number"
+              },
+              {
+                "value": 104.1,
+                "type": "number"
+              },
+              {
+                "value": 91.4,
+                "type": "number"
+              },
+              {
+                "value": 4.35,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 1.125,
+                "type": "number"
+              },
+              {
+                "value": 10.5,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.75,
+                "type": "number"
+              },
+              {
+                "value": 33.31,
+                "type": "number"
+              },
+              {
+                "value": 86.6,
+                "type": "number"
+              },
+              {
+                "value": 142.4,
+                "type": "number"
+              },
+              {
+                "value": 107.0,
+                "type": "number"
+              },
+              {
+                "value": 4.26,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "120",
+                "type": "text"
+              },
+              {
+                "value": 1.312,
+                "type": "number"
+              },
+              {
+                "value": 10.126,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.65,
+                "type": "number"
+              },
+              {
+                "value": 41.08,
+                "type": "number"
+              },
+              {
+                "value": 80.5,
+                "type": "number"
+              },
+              {
+                "value": 175.2,
+                "type": "number"
+              },
+              {
+                "value": 119.7,
+                "type": "number"
+              },
+              {
+                "value": 4.19,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 1.312,
+                "type": "number"
+              },
+              {
+                "value": 10.126,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.34,
+                "type": "number"
+              },
+              {
+                "value": 2.65,
+                "type": "number"
+              },
+              {
+                "value": 47.14,
+                "type": "number"
+              },
+              {
+                "value": 80.5,
+                "type": "number"
+              },
+              {
+                "value": 100.3,
+                "type": "number"
+              },
+              {
+                "value": 54.9,
+                "type": "number"
+              },
+              {
+                "value": 4.07,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14 / D=14.000",
+                "type": "text"
+              },
+              {
+                "value": "5S",
+                "type": "text"
+              },
+              {
+                "value": 0.156,
+                "type": "number"
+              },
+              {
+                "value": 13.688,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.58,
+                "type": "number"
+              },
+              {
+                "value": 6.78,
+                "type": "number"
+              },
+              {
+                "value": 147.2,
+                "type": "number"
+              },
+              {
+                "value": 64.2,
+                "type": "number"
+              },
+              {
+                "value": 61.4,
+                "type": "number"
+              },
+              {
+                "value": 4.88,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "10S",
+                "type": "text"
+              },
+              {
+                "value": 0.25,
+                "type": "number"
+              },
+              {
+                "value": 13.5,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.53,
+                "type": "number"
+              },
+              {
+                "value": 10.8,
+                "type": "number"
+              },
+              {
+                "value": 143.1,
+                "type": "number"
+              },
+              {
+                "value": 81.5,
+                "type": "number"
+              },
+              {
+                "value": 63.0,
+                "type": "number"
+              },
+              {
+                "value": 4.86,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.312,
+                "type": "number"
+              },
+              {
+                "value": 13.376,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.5,
+                "type": "number"
+              },
+              {
+                "value": 13.43,
+                "type": "number"
+              },
+              {
+                "value": 140.5,
+                "type": "number"
+              },
+              {
+                "value": 80.0,
+                "type": "number"
+              },
+              {
+                "value": 63.1,
+                "type": "number"
+              },
+              {
+                "value": 4.87,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "10*",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 13.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.47,
+                "type": "number"
+              },
+              {
+                "value": 15.73,
+                "type": "number"
+              },
+              {
+                "value": 137.9,
+                "type": "number"
+              },
+              {
+                "value": 60.2,
+                "type": "number"
+              },
+              {
+                "value": 64.4,
+                "type": "number"
+              },
+              {
+                "value": 4.85,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.375,
+                "type": "number"
+              },
+              {
+                "value": 13.25,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.47,
+                "type": "number"
+              },
+              {
+                "value": 15.73,
+                "type": "number"
+              },
+              {
+                "value": 137.9,
+                "type": "number"
+              },
+              {
+                "value": 60.3,
+                "type": "number"
+              },
+              {
+                "value": 64.4,
+                "type": "number"
+              },
+              {
+                "value": 4.84,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "20",
+                "type": "text"
+              },
+              {
+                "value": 0.437,
+                "type": "number"
+              },
+              {
+                "value": 13.126,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.44,
+                "type": "number"
+              },
+              {
+                "value": 18.41,
+                "type": "number"
+              },
+              {
+                "value": 135.3,
+                "type": "number"
+              },
+              {
+                "value": 78.4,
+                "type": "number"
+              },
+              {
+                "value": 63.1,
+                "type": "number"
+              },
+              {
+                "value": 4.84,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "30",
+                "type": "text"
+              },
+              {
+                "value": 0.5,
+                "type": "number"
+              },
+              {
+                "value": 13.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.4,
+                "type": "number"
+              },
+              {
+                "value": 20.27,
+                "type": "number"
+              },
+              {
+                "value": 132.7,
+                "type": "number"
+              },
+              {
+                "value": 86.3,
+                "type": "number"
+              },
+              {
+                "value": 72.0,
+                "type": "number"
+              },
+              {
+                "value": 4.83,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.469,
+                "type": "number"
+              },
+              {
+                "value": 13.062,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.42,
+                "type": "number"
+              },
+              {
+                "value": 11.43,
+                "type": "number"
+              },
+              {
+                "value": 134.0,
+                "type": "number"
+              },
+              {
+                "value": 48.7,
+                "type": "number"
+              },
+              {
+                "value": 80.0,
+                "type": "number"
+              },
+              {
+                "value": 4.88,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.5,
+                "type": "number"
+              },
+              {
+                "value": 13.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.4,
+                "type": "number"
+              },
+              {
+                "value": 12.35,
+                "type": "number"
+              },
+              {
+                "value": 132.7,
+                "type": "number"
+              },
+              {
+                "value": 52.6,
+                "type": "number"
+              },
+              {
+                "value": 80.9,
+                "type": "number"
+              },
+              {
+                "value": 4.88,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "40",
+                "type": "text"
+              },
+              {
+                "value": 0.594,
+                "type": "number"
+              },
+              {
+                "value": 12.812,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.35,
+                "type": "number"
+              },
+              {
+                "value": 14.58,
+                "type": "number"
+              },
+              {
+                "value": 128.9,
+                "type": "number"
+              },
+              {
+                "value": 62.1,
+                "type": "number"
+              },
+              {
+                "value": 80.8,
+                "type": "number"
+              },
+              {
+                "value": 4.81,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.5,
+                "type": "number"
+              },
+              {
+                "value": 13.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.4,
+                "type": "number"
+              },
+              {
+                "value": 20.27,
+                "type": "number"
+              },
+              {
+                "value": 132.7,
+                "type": "number"
+              },
+              {
+                "value": 86.3,
+                "type": "number"
+              },
+              {
+                "value": 80.9,
+                "type": "number"
+              },
+              {
+                "value": 4.85,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "XH",
+                "type": "text"
+              },
+              {
+                "value": 0.5,
+                "type": "number"
+              },
+              {
+                "value": 13.0,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.4,
+                "type": "number"
+              },
+              {
+                "value": 20.27,
+                "type": "number"
+              },
+              {
+                "value": 132.7,
+                "type": "number"
+              },
+              {
+                "value": 86.3,
+                "type": "number"
+              },
+              {
+                "value": 80.9,
+                "type": "number"
+              },
+              {
+                "value": 4.85,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.594,
+                "type": "number"
+              },
+              {
+                "value": 12.812,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.35,
+                "type": "number"
+              },
+              {
+                "value": 18.34,
+                "type": "number"
+              },
+              {
+                "value": 128.9,
+                "type": "number"
+              },
+              {
+                "value": 78.1,
+                "type": "number"
+              },
+              {
+                "value": 81.0,
+                "type": "number"
+              },
+              {
+                "value": 4.84,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.75,
+                "type": "number"
+              },
+              {
+                "value": 12.5,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.27,
+                "type": "number"
+              },
+              {
+                "value": 17.06,
+                "type": "number"
+              },
+              {
+                "value": 122.7,
+                "type": "number"
+              },
+              {
+                "value": 72.7,
+                "type": "number"
+              },
+              {
+                "value": 79.1,
+                "type": "number"
+              },
+              {
+                "value": 4.81,
+                "type": "number"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": 0.938,
+                "type": "number"
+              },
+              {
+                "value": 12.124,
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "text"
+              },
+              {
+                "value": 3.67,
+                "type": "number"
+              },
+              {
+                "value": 3.17,
+                "type": "number"
+              },
+              {
+                "value": 22.2,
+                "type": "number"
+              },
+              {
+                "value": 115.4,
+                "type": "number"
+              },
+              {
+                "value": 94.5,
+                "type": "number"
+              },
+              {
+                "value": 82.0,
+                "type": "number"
+              },
+              {
+                "value": 4.81,
+                "type": "number"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

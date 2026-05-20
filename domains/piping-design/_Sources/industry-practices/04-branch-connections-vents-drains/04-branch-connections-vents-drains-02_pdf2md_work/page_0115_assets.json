@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 115,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_id": "fig-0115-01",
+      "caption": "PNF0624-T25 — Schematic diagram of T-25 Thermowell tubing connection showing INSTR PIPING labels, ADAPTER TCE x FNPT LINE SIZE on the left, and LINE SIZE UNION TEE COMPRESSION on the right",
+      "bbox_norm": [0.08, 0.22, 0.92, 0.62]
+    }
+  ],
+  "issues": []
+}

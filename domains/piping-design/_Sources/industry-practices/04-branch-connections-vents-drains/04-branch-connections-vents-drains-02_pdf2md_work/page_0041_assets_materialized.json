@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0041_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2937
+      ],
+      "caption": "V-14 Vent and D-14 Drain assembly diagram for socketweld piping NPS 3/4 through 1-1/2, showing V-14 Vent configuration (top) and D-14 Drain configuration (bottom) with labeled components including NPS 3/4 THREADED PLUG, NPS 3/4 EXTENDED BODY SOCKET WELD x THREADED VALVE, NPS 3/4 TEE OR LINE SIZE x NPS 3/4 REDUCING TEE, NPS 3/4 THRU NPS 1-1/2 LINE SIZE, NPS 3/4 LINE SIZE, and NPS 3/4 TEE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0041_fig01_v-14-vent-and-d-14-drain-assembly-diagra.png",
+      "png_sha256": "4d3b34a6a8344cf7ca6772a156357e62d90a21cb47f1d52b1440ac49b590c55c",
+      "slug": "v-14-vent-and-d-14-drain-assembly-diagra",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0041.png",
+  "page_image_sha256": "7beabae564f3e759d2cae0ce9375272bc7e9e991fc523d2430fca2a74e6a3728",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0041_assets.json"
+}

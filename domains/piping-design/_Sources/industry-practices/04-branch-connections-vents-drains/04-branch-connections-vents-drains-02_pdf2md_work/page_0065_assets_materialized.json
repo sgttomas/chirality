@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0065.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0065_fig01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2871
+      ],
+      "caption": "V-51 Vent and D-51 Drain \u2014 NPS 3/4 Thru 1-1/2, Socketweld Piping fabrication/installation detail diagram",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0065_fig01_v51-vent-d51-drain-nps-3-4-thru-1-1-2-so.png",
+      "png_sha256": "7a4ea4571f72f36c54a829d5a75862393d496c800b55443e5b3369569846ff63",
+      "slug": "v51-vent-d51-drain-nps-3-4-thru-1-1-2-so",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 65,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0065.png",
+  "page_image_sha256": "585c30a7e9351c3bf0f9d5d23421d69a7eae840f9e84f48a6576fd5a1b50de6d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0065_assets.json"
+}

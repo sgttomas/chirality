@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0030.anchored.md",
+  "assets": [
+    {
+      "asset_id": "05-bolting-gaskets-and-flange-joints-01_p0030_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3201
+      ],
+      "caption": "Bolt pattern diagrams showing three flange bolt hole arrangements: 48 BOLTS (large circle, top), 50 BOLTS (large circle, bottom-left), and 52 BOLTS (large circle, bottom-right). Each circle depicts evenly spaced bolt holes around the circumference.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/05-bolting-gaskets-and-flange-joints-01_p0030_fig01_bolt-pattern-diagrams-showing-three-flan.png",
+      "png_sha256": "23bda75244343a0a5e88c02cfb7c3359f0308c9cdfe60793bfdc537d05f488e0",
+      "slug": "bolt-pattern-diagrams-showing-three-flan",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/_assets/05-bolting-gaskets-and-flange-joints-01",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-01",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0030.png",
+  "page_image_sha256": "526e6aea173cde1781b4192ad13506aa4903ad4cc7092e1c8f7cc1adbc5621da",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/05-bolting-gaskets-and-flange-joints/05-bolting-gaskets-and-flange-joints-01_pdf2md_work/page_0030_assets.json"
+}

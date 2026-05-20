@@ -1,0 +1,188 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 43,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-02_p043_tbl_001",
+      "kind": "tbl",
+      "caption": "Bill of materials \u2014 Item No., QTY, Description, Material for base support components",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.1
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col_item",
+            "label": "ITEM No."
+          },
+          {
+            "id": "col_qty",
+            "label": "QTY"
+          },
+          {
+            "id": "col_desc",
+            "label": "DESCRIPTION"
+          },
+          {
+            "id": "col_mat",
+            "label": "MATERIAL"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "col_item",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col_qty",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col_desc",
+                "type": "text",
+                "value": "WT 75 x 11"
+              },
+              {
+                "col": "col_mat",
+                "type": "text",
+                "value": "CSA-G40.21-350W"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col_item",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col_qty",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col_desc",
+                "type": "text",
+                "value": "10mm THK. PL. 6\" x 6\""
+              },
+              {
+                "col": "col_mat",
+                "type": "text",
+                "value": "CSA-G40.21-300W"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-02_p043_fig_001",
+      "kind": "fig",
+      "caption": "Engineering assembly drawing \u2014 Base Support for Carbon Steel Pipe Sizes 3/4\" to 1 1/2\", showing pipe attachment plate, structural member (existing), insert plate detail, slide features, dimensions (MAX 40\", 6\" SQ., 1/4\", 3/8\", 1 1/2\", 1/4\"), and notes referencing ELL, TEE, or pipe connections and slide plate detail",
+      "bbox_norm": [
+        0.01,
+        0.1,
+        0.82,
+        0.75
+      ]
+    },
+    {
+      "id": "06-pipe-supports-02_p043_tbl_002",
+      "kind": "tbl",
+      "caption": "Mark number table \u2014 Mark No. with corresponding Item No. 1 Length values",
+      "bbox_norm": [
+        0.69,
+        0.55,
+        0.99,
+        0.76
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "col_mark",
+            "label": "MARK No."
+          },
+          {
+            "id": "col_len",
+            "label": "ITEM No. 1 LENGTH"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "col_mark",
+                "type": "text",
+                "value": "1"
+              },
+              {
+                "col": "col_len",
+                "type": "text",
+                "value": "10\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col_mark",
+                "type": "text",
+                "value": "2"
+              },
+              {
+                "col": "col_len",
+                "type": "text",
+                "value": "20\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col_mark",
+                "type": "text",
+                "value": "3"
+              },
+              {
+                "col": "col_len",
+                "type": "text",
+                "value": "30\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "col_mark",
+                "type": "text",
+                "value": "4"
+              },
+              {
+                "col": "col_len",
+                "type": "text",
+                "value": "40\""
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

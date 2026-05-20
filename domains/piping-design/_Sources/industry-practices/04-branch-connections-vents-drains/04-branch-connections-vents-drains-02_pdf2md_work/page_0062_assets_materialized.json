@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0062.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0062_fig01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        3069
+      ],
+      "caption": "V-44 Vent and D-44 Drain assembly detail drawing showing socketweld PVC/CPVC piping configuration for NPS 3/4 & Up",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0062_fig01_v-44-vent-and-d-44-drain-assembly-detail.png",
+      "png_sha256": "927607239794cb8f17734ab750254005ffbe44f5e1f247e467517e99d2edd70b",
+      "slug": "v-44-vent-and-d-44-drain-assembly-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 62,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0062.png",
+  "page_image_sha256": "5038e706a2fd41b3ac5a5938a05e85ca67e5ec68ebdaee8089597b8bed32c39e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0062_assets.json"
+}

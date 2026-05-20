@@ -1,0 +1,320 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 104,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Inverted Coal-Frame Support Welded Attachment",
+      "slug": "bill-of-materials-l10",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.1
+      ],
+      "confidence": "high",
+      "notes": "Two-row bill of materials with item number, quantity, description, and material columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21 \u2013 300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "C200 \u00d7 17",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21 \u2013 300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "SECTION 'A' and ELEVATION VIEW \u2014 Inverted Coal-Frame Support Welded Attachment (Drawing L10)",
+      "slug": "section-a-elevation-view-l10",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.72,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing Section A (left) and Elevation View (right) of the inverted coal-frame support welded attachment. Dimensions shown include FAB. LENGTH, W, L, TYP angles, and detail callout labels."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Mark No. / Fab Length / Maximum Load 'W' (LB)",
+      "slug": "mark-fab-length-max-load",
+      "bbox_norm": [
+        0.68,
+        0.4,
+        0.97,
+        0.68
+      ],
+      "confidence": "high",
+      "notes": "Six-row table giving maximum load W in pounds for mark numbers 1-6 with corresponding fabrication lengths",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOAD 'W' (LB)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 4600,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 3400,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 3100,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 2500,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "6'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 2300,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6",
+                "type": "text"
+              },
+              {
+                "value": "7'-0\"",
+                "type": "text"
+              },
+              {
+                "value": 2200,
+                "type": "number",
+                "unit": "LB"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Suffix Dimensions",
+      "slug": "suffix-dimensions-l10",
+      "bbox_norm": [
+        0.68,
+        0.66,
+        0.97,
+        0.76
+      ],
+      "confidence": "high",
+      "notes": "Single data row mapping suffix letters A-D to dimensional lengths",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "SUFFIX",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "B",
+                "is_header": true
+              },
+              {
+                "value": "C",
+                "is_header": true
+              },
+              {
+                "value": "D",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "DIM.",
+                "type": "text"
+              },
+              {
+                "value": "3'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "4'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "5'-0\"",
+                "type": "text"
+              },
+              {
+                "value": "6'-0\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

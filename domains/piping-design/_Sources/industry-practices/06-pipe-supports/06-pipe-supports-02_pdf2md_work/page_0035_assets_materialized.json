@@ -1,0 +1,93 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0035.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0035_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Bill of Materials \u2014 Base Support BS1B",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0035_tbl01_bill-of-materials-base-support-bs1b.png",
+      "png_sha256": "7627441f502f5be1d67da00e5d4c839ad3f0cf1bc37fdf07d523aa3e5ab0f602",
+      "slug": "bill-of-materials-base-support-bs1b",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0035_fig01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.8,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2172,
+        2412
+      ],
+      "caption": "Engineering detail drawing \u2014 Base Support, Pipe Sizes 2\" to 4\", Drawing BS1B, Sheet 1 of 1, Rev. 2",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0035_fig01_engineering-detail-drawing-base-support.png",
+      "png_sha256": "4ab4f0e0080ccb0163622633b3d6d381a6fbd95c015ff8e1f788d7e45fbfdfd6",
+      "slug": "engineering-detail-drawing-base-support",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0035_tbl02",
+      "bbox_norm": [
+        0.62,
+        0.62,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        1456,
+        1883,
+        2555,
+        2643
+      ],
+      "caption": "Coding Example \u2014 BS1B",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0035_tbl02_coding-example-bs1b.png",
+      "png_sha256": "caee95df062fa2144e88e5a7cafae09b962cec35d46af709a0e506fc116ea57e",
+      "slug": "coding-example-bs1b",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 35,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0035.png",
+  "page_image_sha256": "fd5979df9928449f9bd25cff28996da26d14b7ab009d3ebf15c5e5337ec39185",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0035_assets.json"
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-01",
+  "page": 2,
+  "total_pages": 2,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Document History",
+      "slug": "document-history",
+      "bbox_norm": [0.04, 0.22, 0.96, 0.40],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Version", "is_header": true },
+              { "value": "Description", "is_header": true },
+              { "value": "Author(s)", "is_header": true },
+              { "value": "Effective Date", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.0", "type": "text" },
+              { "value": "Issued for Implementation", "type": "text" },
+              { "value": "Sayda Lysachok", "type": "text" },
+              { "value": "Apr. 16, 2010", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.0", "type": "text" },
+              { "value": "Upload to eStream OpsLibrary", "type": "text" },
+              { "value": "Deb Redmond", "type": "text" },
+              { "value": "Apr. 28, 2010", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Document history table with version, description, author, and effective date columns"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Document Review/Approvals",
+      "slug": "document-review-approvals",
+      "bbox_norm": [0.04, 0.52, 0.96, 0.76],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Version", "is_header": true },
+              { "value": "Approver Name(s)", "is_header": true },
+              { "value": "Signature", "is_header": true },
+              { "value": "Approval Format", "is_header": true },
+              { "value": "Approval Date", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1.0", "type": "text" },
+              { "value": "Stephen Bart\nVice President Operations", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "e-mail", "type": "text" },
+              { "value": "Apr. 16, 2010", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "Trevor Buckley\nDirector, Engineering", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "e-mail", "type": "text" },
+              { "value": "Apr. 16, 2010", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Document review and approvals table with version, approver names, signature, approval format, and approval date columns"
+    }
+  ],
+  "issues": []
+}

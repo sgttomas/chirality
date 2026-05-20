@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0152.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0152_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.15
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        661
+      ],
+      "caption": "Bill of Materials \u2014 Vessel Guide for Vertical Pipe Uninsulated, Pipe Sizes 6\"\u201312\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0152_tbl01_bill-of-materials-vg11.png",
+      "png_sha256": "f7423f1b3085e470f50b928961fc803f1e70ebb7f92359471853372c2e453e23",
+      "slug": "bill-of-materials-vg11",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0152_tbl01_bill-of-materials-vg11.json",
+      "table_data_json_sha256": "95ebadb3500afd79725e5ddf8655d3ed75e189bbc1cbf734f65c91676930a8c3",
+      "table_data_sha256": "95ebadb3500afd79725e5ddf8655d3ed75e189bbc1cbf734f65c91676930a8c3",
+      "xlsx_path": "tables/06-pipe-supports-02_p0152_tbl01_bill-of-materials-vg11.xlsx",
+      "xlsx_sha256": "29c21a53d523379fe87f502ba14de566bac54b419af5c79f1090ea690cb47546"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0152_fig01",
+      "bbox_norm": [
+        0.03,
+        0.15,
+        0.72,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        330,
+        1967,
+        2544
+      ],
+      "caption": "VG11 \u2014 Vessel Guide for Vertical Pipe Uninsulated, Pipe Sizes 6\"\u201312\" (Plan and Elevation views)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0152_fig01_vg11-plan-elevation.png",
+      "png_sha256": "7628e16abff9c6cb514f31286f417fdd4364cc484d732ab0663863a371c01ea4",
+      "slug": "vg11-plan-elevation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0152_tbl02",
+      "bbox_norm": [
+        0.68,
+        0.52,
+        0.97,
+        0.7
+      ],
+      "bbox_px": [
+        1610,
+        1553,
+        2555,
+        2478
+      ],
+      "caption": "Pipe Size Dimension Table for VG11",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0152_tbl02_pipe-size-dimension-table-vg11.png",
+      "png_sha256": "6adcba58a7cb424f48ea3b746c2398c1c566c5ee0aed6b4a67e80d8ee76adb91",
+      "slug": "pipe-size-dimension-table-vg11",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0152_tbl02_pipe-size-dimension-table-vg11.json",
+      "table_data_json_sha256": "4e6d3dd0c5159cd84c2ebcaadd11d12257d86749b1c7f11c19cc5d52b53c52de",
+      "table_data_sha256": "4e6d3dd0c5159cd84c2ebcaadd11d12257d86749b1c7f11c19cc5d52b53c52de",
+      "xlsx_path": "tables/06-pipe-supports-02_p0152_tbl02_pipe-size-dimension-table-vg11.xlsx",
+      "xlsx_sha256": "e8352e184010e312b6ec9589d3f42a15c31a2ae2bb45697a26bfd6ec1cb312d9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 152,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0152.png",
+  "page_image_sha256": "2ceebd405574694ba77ef8eb6d5fb74616a0e2afd15171b5283f0ee3c99ac55c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0152_assets.json"
+}

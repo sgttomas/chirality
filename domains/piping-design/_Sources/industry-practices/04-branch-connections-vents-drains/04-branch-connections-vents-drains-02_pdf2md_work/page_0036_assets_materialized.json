@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0036_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.9,
+        0.52
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2422,
+        1881
+      ],
+      "caption": "V-57 Vent detail \u2014 top orientation with CAP OR PLUG \u2013 MJ and LINE SIZE TEE \u2013 MJ",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0036_fig01_v57-vent-top-orientation.png",
+      "png_sha256": "be963a259d701c3d421d3e11b1308092092395f5d061eecd2beb41a9055f452e",
+      "slug": "v57-vent-top-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0036_fig02",
+      "bbox_norm": [
+        0.1,
+        0.52,
+        0.9,
+        0.8
+      ],
+      "bbox_px": [
+        128,
+        1551,
+        2422,
+        2805
+      ],
+      "caption": "V-57 Vent detail \u2014 bottom orientation with LINE SIZE MJ \u2013 TEE and CAP OR PLUG \u2013 MJ",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0036_fig02_v57-vent-bottom-orientation.png",
+      "png_sha256": "3f3d9dd8c82f40a6b41a7e10f5de0c6f442831120c624573fcc535d9531bfe77",
+      "slug": "v57-vent-bottom-orientation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0036.png",
+  "page_image_sha256": "eb9c94d74cde6bb10402be20bcf71964ea31c6a9466fe4e001377a5b4eecdf4a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0036_assets.json"
+}

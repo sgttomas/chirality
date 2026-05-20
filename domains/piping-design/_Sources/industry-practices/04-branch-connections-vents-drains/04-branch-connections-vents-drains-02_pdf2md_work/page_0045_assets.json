@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 45,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "fig-0045-001",
+      "kind": "fig",
+      "caption": "PNF0409-V-18-VENT — Isometric detail of V-18 Vent assembly for NPS 2 and up welded piping, showing NPS 3/4 Threaded Plug at top, NPS 3/4 Socket Weld x Threaded Valve, NPS 3/4 x 90(3-1/2) Plain End Nipolet connecting to NPS 2 Line Size & Up main pipe, with mirrored D-18 Drain assembly below: NPS 3/4 x 90(3-1/2) Plain End Nipolet, NPS 3/4 Socket Weld x Threaded Valve, and NPS 3/4 Threaded Plug at bottom.",
+      "bbox_norm": [0.12, 0.13, 0.92, 0.82]
+    }
+  ],
+  "issues": []
+}

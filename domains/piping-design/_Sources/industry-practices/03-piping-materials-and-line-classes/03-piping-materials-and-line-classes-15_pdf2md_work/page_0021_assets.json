@@ -1,0 +1,79 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 21,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 200-6 Example Pressure Ratings(1) of NPS 6 SCH 40 ASTM A53 GR.B Seamless and ERW Pipe According to Different Code Sections",
+      "slug": "fig-200-6-example-pressure-ratings-nps6-sch40",
+      "bbox_norm": [0.05, 0.60, 0.95, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) These ratings apply to all fittings that have no specific pressure rating and to all that are rated by comparison to equivalent pipe.",
+          "(2) Joint efficiency for ERW pipe: B31.1 and B31.3 E = 0.85; B31.4 and B31.8 E = 1.0"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Code Section", "is_header": true },
+              { "value": "Seamless Pipe", "is_header": true, "colspan": 2 },
+              { "value": "ERW Pipe(2)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Allowable Stress at 100°F, psi", "is_header": true },
+              { "value": "Maximum Design Pressure, psig", "is_header": true },
+              { "value": "Maximum Design Pressure, psig", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.1", "type": "text" },
+              { "value": "15,000", "type": "text" },
+              { "value": "1143", "type": "text" },
+              { "value": "975", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.3", "type": "text" },
+              { "value": "20,000", "type": "text" },
+              { "value": "1524", "type": "text" },
+              { "value": "1295", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.4", "type": "text" },
+              { "value": "S = (0.72)(35,000)", "type": "text" },
+              { "value": "2130", "type": "text" },
+              { "value": "2130", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "B31.8", "type": "text" },
+              { "value": "S = 35,000\nF = 0.72\nT = 1", "type": "text" },
+              { "value": "2130", "type": "text" },
+              { "value": "2130", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with merged header row spanning Seamless Pipe columns; ERW Pipe header with footnote marker (2). Footnotes (1) and (2) appear below the table."
+    }
+  ],
+  "issues": []
+}

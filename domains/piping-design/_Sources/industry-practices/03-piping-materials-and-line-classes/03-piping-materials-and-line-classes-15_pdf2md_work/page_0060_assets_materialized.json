@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0060_fig01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3065
+      ],
+      "caption": "Fig. 200-20 Ball Valve Body Styles Courtesy of Marpac Valve and Cooper Cameron",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0060_fig01_fig-200-20-ball-valve-body-styles.png",
+      "png_sha256": "25c72ebb3eea0881c99d97bf01e0bfcddc9e0c31bd993aa4fa4f77605fee783d",
+      "slug": "fig-200-20-ball-valve-body-styles",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0060.png",
+  "page_image_sha256": "3a50d48f8bc67e43b11f1b65e71c0a920deab7ba5cf4335e3f957b5748ee35be",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0060_assets.json"
+}

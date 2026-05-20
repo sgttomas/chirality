@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0028.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-03_p0028_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.38,
+        0.9,
+        0.65
+      ],
+      "bbox_px": [
+        124,
+        1158,
+        2356,
+        2456
+      ],
+      "caption": "Table A11-3  Load assessment results. 2.0",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.png",
+      "png_sha256": "439077b770c8da39d9d486b989b5666fdea2ffca581e8c571754371cf9c7f648",
+      "slug": "table-a11-3-load-assessment-results",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.json",
+      "table_data_json_sha256": "a5b50608d0b22a39e3f78ad43982ce023f0ee6d04b81236a3900c6fa13702d45",
+      "table_data_sha256": "a5b50608d0b22a39e3f78ad43982ce023f0ee6d04b81236a3900c6fa13702d45",
+      "xlsx_path": "tables/06-pipe-supports-03_p0028_tbl01_table-a11-3-load-assessment-results.xlsx",
+      "xlsx_sha256": "ed37137c951bde064aac82c89f12aab5c6185478c42d26fc2615d2d247945b04"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-03",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 28,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0028.png",
+  "page_image_sha256": "4a51c1a00b9012d9b8849bda1f99dfc9f14598835eb864862fe701e3f3ad948d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-03_pdf2md_work/page_0028_assets.json"
+}

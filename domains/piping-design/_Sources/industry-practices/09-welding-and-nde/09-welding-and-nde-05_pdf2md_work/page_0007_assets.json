@@ -1,0 +1,94 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "09-welding-and-nde-05",
+  "page": 7,
+  "total_pages": 8,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0007-001",
+      "kind": "tbl",
+      "caption": "B6.6 \u2014 Maximum Number of Cutouts by Length of Pipeline",
+      "bbox_norm": [
+        0.08,
+        0.75,
+        0.72,
+        0.88
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "headers": [
+          {
+            "text": "Length of Pipeline",
+            "col": 0
+          },
+          {
+            "text": "Maximum Number of Cutouts",
+            "col": 1
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": 0,
+                "text": "up to 1000 meters",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "two",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": 0,
+                "text": "1000 to 4000 meters",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "three",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": 0,
+                "text": "4000 to 7000 meters",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "four",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": 0,
+                "text": "over 7000 meters",
+                "type": "text"
+              },
+              {
+                "col": 1,
+                "text": "six",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

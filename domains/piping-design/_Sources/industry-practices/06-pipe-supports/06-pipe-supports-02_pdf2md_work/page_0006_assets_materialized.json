@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0006.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0006_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.14,
+        0.92,
+        0.33
+      ],
+      "bbox_px": [
+        77,
+        297,
+        2478,
+        1256
+      ],
+      "caption": "Total number of lines at an anchor structure \u2014 Percent of lines abnormal conditions to be used in design",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0006_tbl01_anchor-structure-lines-abnormal-percent.png",
+      "png_sha256": "46477fe308ff9a2e79d33a4c74cf6f66f1f2998de2a90380d7f66e3f1925b924",
+      "slug": "anchor-structure-lines-abnormal-percent",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0006_tbl01_anchor-structure-lines-abnormal-percent.json",
+      "table_data_json_sha256": "7bf69d78ed458d912a2c481c09371f0332484a6ddf644d892ccbcf805fd51d4c",
+      "table_data_sha256": "7bf69d78ed458d912a2c481c09371f0332484a6ddf644d892ccbcf805fd51d4c",
+      "xlsx_path": "tables/06-pipe-supports-02_p0006_tbl01_anchor-structure-lines-abnormal-percent.xlsx",
+      "xlsx_sha256": "9fa3dbb20707770f6900e71a906ee1c32b794e407e7686f54a2a991c5384e286"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0006_tbl02",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.75,
+        0.55
+      ],
+      "bbox_px": [
+        77,
+        1090,
+        2044,
+        1982
+      ],
+      "caption": "Coefficients of static friction for sliding surfaces",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0006_tbl02_static-friction-coefficients-sliding-sur.png",
+      "png_sha256": "325a5d5d292a5479e4b819f67ca928a32ffa7345d57ac5b2ff75d34607be4685",
+      "slug": "static-friction-coefficients-sliding-sur",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0006_tbl02_static-friction-coefficients-sliding-sur.json",
+      "table_data_json_sha256": "8d444835812155d9339dc080923d00de527994285e3a0591617d9e51cf220894",
+      "table_data_sha256": "8d444835812155d9339dc080923d00de527994285e3a0591617d9e51cf220894",
+      "xlsx_path": "tables/06-pipe-supports-02_p0006_tbl02_static-friction-coefficients-sliding-sur.xlsx",
+      "xlsx_sha256": "5979b5b55c3249bfef997b4c2a3d3210a5fbab8cab61668301c304cdb8c668b5"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 6,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0006.png",
+  "page_image_sha256": "31a7a5354d69d3fe6b306d4fcee932dc078c300b8827b72cf259e5f368bf8d97",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0006_assets.json"
+}

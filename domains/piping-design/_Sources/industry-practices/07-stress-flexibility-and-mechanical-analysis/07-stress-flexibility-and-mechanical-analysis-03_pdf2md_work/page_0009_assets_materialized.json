@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "07-stress-flexibility-and-mechanical-analysis-03_p0009_fig01",
+      "bbox_norm": [
+        0.07,
+        0.1,
+        0.93,
+        0.9
+      ],
+      "bbox_px": [
+        66,
+        128,
+        3234,
+        2422
+      ],
+      "caption": "Fig. C-2 Fundamental Natural Frequencies of Common Piping Spans (2 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/07-stress-flexibility-and-mechanical-analysis-03_p0009_fig01_fig-c-2-fundamental-natural-frequencies.png",
+      "png_sha256": "8318bdc51ad319e5ea28034e1a4019c3ae4ef79409d28deaba49668c02cfeb8d",
+      "slug": "fig-c-2-fundamental-natural-frequencies",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/_assets/07-stress-flexibility-and-mechanical-analysis-03",
+  "doc_stem": "07-stress-flexibility-and-mechanical-analysis-03",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0009.png",
+  "page_image_sha256": "2ef5790d12700084afae2751a22f36a6c4ac3353459b5f823483305282ec3399",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/07-stress-flexibility-and-mechanical-analysis/07-stress-flexibility-and-mechanical-analysis-03_pdf2md_work/page_0009_assets.json"
+}

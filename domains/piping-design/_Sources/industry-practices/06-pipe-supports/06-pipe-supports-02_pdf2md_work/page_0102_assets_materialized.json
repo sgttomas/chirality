@@ -1,0 +1,124 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0102.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0102_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.13
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        595
+      ],
+      "caption": "Bill of Materials",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0102_tbl01_bill-of-materials.png",
+      "png_sha256": "390748c2bfe2cf3ba9a2071c8c366346c0e026f715740c4068d18c41720d46ed",
+      "slug": "bill-of-materials",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0102_tbl01_bill-of-materials.json",
+      "table_data_json_sha256": "e83cfd312dfe9ae3012e7ec906950547f888c396e21a2ac08efbec858f2ec2b6",
+      "table_data_sha256": "e83cfd312dfe9ae3012e7ec906950547f888c396e21a2ac08efbec858f2ec2b6",
+      "xlsx_path": "tables/06-pipe-supports-02_p0102_tbl01_bill-of-materials.xlsx",
+      "xlsx_sha256": "622dd63c383824660ccbd55f91d98785517ac52d0022f210d7d5ad197b7171ee"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0102_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.65,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        264,
+        1789,
+        2412
+      ],
+      "caption": "ELEVATION \u2014 Goal-Frame Support Welded Attachment elevation drawing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0102_fig01_elevation-goal-frame-support.png",
+      "png_sha256": "01dc5d5e699ce9e5068f9c32c102d1458232551554d459f5f33f9a9758b71b68",
+      "slug": "elevation-goal-frame-support",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0102_tbl02",
+      "bbox_norm": [
+        0.63,
+        0.46,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        1482,
+        1355,
+        2555,
+        2544
+      ],
+      "caption": "Suffix dimension and maximum load table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0102_tbl02_suffix-dimension-max-load.png",
+      "png_sha256": "a641264cad849f8c57047a344b6e420eb6c1324ee766fe02a2bf4a507eb76aec",
+      "slug": "suffix-dimension-max-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0102_tbl02_suffix-dimension-max-load.json",
+      "table_data_json_sha256": "cb41a1b6b51b30d72b832743274ca8b0b62eb48923123480e6e8b2b972ac1783",
+      "table_data_sha256": "cb41a1b6b51b30d72b832743274ca8b0b62eb48923123480e6e8b2b972ac1783",
+      "xlsx_path": "tables/06-pipe-supports-02_p0102_tbl02_suffix-dimension-max-load.xlsx",
+      "xlsx_sha256": "50543753349a88c821d9ddd26d0432003e748f256a02edf51d2d26e070cc8e17"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0102_tbl03",
+      "bbox_norm": [
+        0.63,
+        0.72,
+        0.97,
+        0.84
+      ],
+      "bbox_px": [
+        1482,
+        2214,
+        2555,
+        2941
+      ],
+      "caption": "Coding example table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0102_tbl03_coding-example.png",
+      "png_sha256": "07222284f982a006f9a74cedfdda9def1afd1019cd5ec8dae33931f8a4d9d5d2",
+      "slug": "coding-example",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0102_tbl03_coding-example.json",
+      "table_data_json_sha256": "7880c07f2099a4ba52ca38d9a1d144fe0ee5e52e66c84f81a0ff6d250b4dd0b1",
+      "table_data_sha256": "7880c07f2099a4ba52ca38d9a1d144fe0ee5e52e66c84f81a0ff6d250b4dd0b1",
+      "xlsx_path": "tables/06-pipe-supports-02_p0102_tbl03_coding-example.xlsx",
+      "xlsx_sha256": "1a3dc66cfb5cc8d4c28c94db1a6e36fbfe888d5531af0a8cc9bf86ebf5b44bbb"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 102,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0102.png",
+  "page_image_sha256": "18e7b67929f50b0ef1d1ca4c2f45e27fbeed9d13d9df5a72446646f36f9953d0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0102_assets.json"
+}

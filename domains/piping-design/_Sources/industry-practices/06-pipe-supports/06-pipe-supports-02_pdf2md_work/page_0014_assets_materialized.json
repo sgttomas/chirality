@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0014.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0014_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        2874
+      ],
+      "caption": "Pipe Support Index \u2014 VC (Vessel Clip), VG (Vessel Guide), VS (Vessel Support) series",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0014_tbl01_pipe-support-index-vc-vg-vs.png",
+      "png_sha256": "6f2d2f45dc4fb010989da9a9f1e4101e0584d53e597ddce2726d5e1b134014dd",
+      "slug": "pipe-support-index-vc-vg-vs",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0014_tbl01_pipe-support-index-vc-vg-vs.json",
+      "table_data_json_sha256": "57c4a1bf4a0875b245ff7bb5dd8de4f5a6aab333889a4eb3643f8d9319e4520b",
+      "table_data_sha256": "57c4a1bf4a0875b245ff7bb5dd8de4f5a6aab333889a4eb3643f8d9319e4520b",
+      "xlsx_path": "tables/06-pipe-supports-02_p0014_tbl01_pipe-support-index-vc-vg-vs.xlsx",
+      "xlsx_sha256": "90d761ea928c5b8d77b5e6cd6567eab39c218d3e594645d71f4a0bbf8e66e7e7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0014.png",
+  "page_image_sha256": "07c2ac86ee226bf18c69645b947bf47332c91d79e27fc5b669f579a4e8818bf5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0014_assets.json"
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-03",
+  "page": 21,
+  "total_pages": 28,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "06-pipe-supports-03_p021_fig1",
+      "kind": "fig",
+      "caption": "DIR. BASE ANCHORS ON PAVING & STEEL — selection chart with identification example, sketches of anchor on paving and on steel, and type/force table (BA1–BA8)",
+      "bbox_norm": [0.03, 0.08, 0.60, 0.46]
+    },
+    {
+      "id": "06-pipe-supports-03_p021_tbl1",
+      "kind": "tbl",
+      "caption": "DIR. BASE ANCHORS ON PAVING & STEEL – TYPE, TO BE USED WITH, MAX AXIAL OR TRANSVERSE FORCE kN",
+      "bbox_norm": [0.08, 0.27, 0.57, 0.46],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "col_type", "header": "TYPE"},
+          {"id": "col_used_with", "header": "TO BE USED WITH"},
+          {"id": "col_force", "header": "MAX AXIAL OR TRANSVERSE FORCE kN"}
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA1"},
+              {"col": "col_used_with", "type": "text", "value": ""},
+              {"col": "col_force", "type": "number", "value": "7.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA2"},
+              {"col": "col_used_with", "type": "text", "value": ""},
+              {"col": "col_force", "type": "number", "value": "7.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA3"},
+              {"col": "col_used_with", "type": "text", "value": "BS1 THRU BS17"},
+              {"col": "col_force", "type": "number", "value": "7.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA4"},
+              {"col": "col_used_with", "type": "text", "value": "ACB1 THRU ACB9"},
+              {"col": "col_force", "type": "number", "value": "7.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA5"},
+              {"col": "col_used_with", "type": "text", "value": "CB1 THRU CB9"},
+              {"col": "col_force", "type": "number", "value": "12.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA6"},
+              {"col": "col_used_with", "type": "text", "value": ""},
+              {"col": "col_force", "type": "number", "value": "12.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA7"},
+              {"col": "col_used_with", "type": "text", "value": ""},
+              {"col": "col_force", "type": "number", "value": "12.5"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BA8"},
+              {"col": "col_used_with", "type": "text", "value": ""},
+              {"col": "col_force", "type": "number", "value": "12.5"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-03_p021_fig2",
+      "kind": "fig",
+      "caption": "BASE ANCHORS ON STEEL — selection chart with identification example (BS2A), sketch of anchor on steel beam, and type/force table (BS1A–BS5A)",
+      "bbox_norm": [0.58, 0.20, 0.97, 0.55]
+    },
+    {
+      "id": "06-pipe-supports-03_p021_tbl2",
+      "kind": "tbl",
+      "caption": "BASE ANCHORS ON STEEL – TYPE and MAX ANCHOR FORCE kN (3 DIRECTIONS)",
+      "bbox_norm": [0.62, 0.38, 0.96, 0.54],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "col_type", "header": "TYPE"},
+          {"id": "col_force", "header": "MAX ANCHOR FORCE kN (3 DIRECTIONS)"}
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BS1A"},
+              {"col": "col_force", "type": "number", "value": "3.0"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BS2A"},
+              {"col": "col_force", "type": "number", "value": "6.8"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BS3A"},
+              {"col": "col_force", "type": "number", "value": "11.0"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BS4A"},
+              {"col": "col_force", "type": "number", "value": "25.0"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BS5A"},
+              {"col": "col_force", "type": "number", "value": "27.5"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    },
+    {
+      "id": "06-pipe-supports-03_p021_fig3",
+      "kind": "fig",
+      "caption": "BASE PLATES ON PAVING & STEEL — selection chart with identification example, sketches of base plate on paving and on steel, and type table (BP1–BP7)",
+      "bbox_norm": [0.03, 0.47, 0.60, 0.88]
+    },
+    {
+      "id": "06-pipe-supports-03_p021_tbl3",
+      "kind": "tbl",
+      "caption": "BASE PLATES ON PAVING & STEEL – TYPE and TO BE USED WITH",
+      "bbox_norm": [0.08, 0.65, 0.57, 0.87],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {"id": "col_type", "header": "TYPE"},
+          {"id": "col_used_with", "header": "TO BE USED WITH"}
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP1"},
+              {"col": "col_used_with", "type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP2"},
+              {"col": "col_used_with", "type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP3"},
+              {"col": "col_used_with", "type": "text", "value": "BS1 THRU BS17"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP4"},
+              {"col": "col_used_with", "type": "text", "value": "ACB1 THRU ACB9"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP5"},
+              {"col": "col_used_with", "type": "text", "value": "CB1 THRU CB9"}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP6"},
+              {"col": "col_used_with", "type": "text", "value": ""}
+            ]
+          },
+          {
+            "cells": [
+              {"col": "col_type", "type": "text", "value": "BP7"},
+              {"col": "col_used_with", "type": "text", "value": ""}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

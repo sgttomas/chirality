@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-16",
+  "page": 16,
+  "total_pages": 71,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1400-8 Lubricated Plug Valve [1]",
+      "slug": "fig-1400-8-lubricated-plug-valve",
+      "bbox_norm": [0.06, 0.05, 0.94, 0.91],
+      "confidence": "high",
+      "notes": "Cross-section diagram of a lubricated plug valve with callouts: 'Screen Here' (top) and 'Plug' (center). Caption appears above the figure border."
+    }
+  ],
+  "issues": []
+}

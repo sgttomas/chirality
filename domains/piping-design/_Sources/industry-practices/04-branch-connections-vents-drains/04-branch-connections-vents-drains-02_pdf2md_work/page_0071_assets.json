@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 71,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "asset_index": 1,
+      "caption": "P-02 Pressure Connection — NPS 3/4 & UP. Top: NPS 3/4 THRU NPS 1-1/2 LINE SIZE using NPS 3/4 TEE or LINE SIZE x NPS 3/4 REDUCING TEE with NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS) and NPS 3/4 SOCKET WELD x THREADED VALVE. Bottom: NPS 2 LINE SIZE & UP using NPS 3/4 SOCKOLET with NPS 3/4 x 100(4) NIPPLE (PLAIN BOTH ENDS) and NPS 3/4 SOCKET WELD x THREADED VALVE.",
+      "bbox_norm": [0.10, 0.13, 0.92, 0.77]
+    }
+  ],
+  "issues": []
+}

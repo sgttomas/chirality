@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 65,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "V-51 Vent and D-51 Drain — NPS 3/4 Thru 1-1/2, Socketweld Piping fabrication/installation detail diagram",
+      "slug": "v51-vent-d51-drain-nps-3-4-thru-1-1-2-socketweld",
+      "bbox_norm": [0.04, 0.12, 0.96, 0.82],
+      "confidence": "high",
+      "notes": "Full-page schematic showing V-51 vent assembly (top) and D-51 drain assembly (bottom) with component callouts. Includes NPS 3/4 blind flange, socketweld flange, nipples, socket weld valve, and tee connections."
+    }
+  ],
+  "issues": []
+}

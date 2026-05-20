@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0145.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0145_tbl01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Bill of Materials \u2014 vessel guide components for pipe sizes 12\" to 24\"",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0145_tbl01_bill-of-materials-vessel-guide-component.png",
+      "png_sha256": "3ffc0f12622316dee28634dba87e6f6d30c5796425ea57c406964ba8790b4b53",
+      "slug": "bill-of-materials-vessel-guide-component",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0145_fig01",
+      "bbox_norm": [
+        0.02,
+        0.13,
+        0.98,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        264,
+        2555,
+        2214
+      ],
+      "caption": "Plan and elevation engineering drawings of a vessel guide for uninsulated pipe sizes 12\" to 24\". The PLAN view shows the vessel clip assembly with spacer, vessel O.D. 6-1/2\" (REF), slot dimensions (4-7/8\" \u00d7 5/8\" TYP), and 1/4\" clearance detail. The ELEVATION view shows the pipe clamp assembly with 2-1/2\" and 5\" dimensions, W.P. EL. reference, 1/8\" clearance to allow sliding note, and NOTE 2 callout.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0145_fig01_plan-and-elevation-engineering-drawings.png",
+      "png_sha256": "b9680b9d81ad91c92b296a0dedcf1fc572bbe1cc35b4cb9411b78a722a4f1af0",
+      "slug": "plan-and-elevation-engineering-drawings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0145_tbl02",
+      "bbox_norm": [
+        0.02,
+        0.74,
+        0.55,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        2280,
+        1533,
+        2941
+      ],
+      "caption": "Revision block",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,2], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0145_tbl02_revision-block.png",
+      "png_sha256": "12ac9b67c9c3ecc2654ef623f0038f0086ce8995e509e8ae7c5284e79b6c588f",
+      "slug": "revision-block",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0145_tbl03",
+      "bbox_norm": [
+        0.56,
+        0.6,
+        0.82,
+        0.72
+      ],
+      "bbox_px": [
+        1303,
+        1817,
+        2223,
+        2544
+      ],
+      "caption": "Pipe size to vertical spacing schedule",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0145_tbl03_pipe-size-to-vertical-spacing-schedule.png",
+      "png_sha256": "e3d3db6475e1722d6340ab8b7bd1b1fd1eb25f5cb43eb3ffb8abf5991bc24b9a",
+      "slug": "pipe-size-to-vertical-spacing-schedule",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 145,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0145.png",
+  "page_image_sha256": "b039da2cc968ea68f1b0316f8ea4be261dd160137d08dc1849a925ae6fa036c0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0145_assets.json"
+}

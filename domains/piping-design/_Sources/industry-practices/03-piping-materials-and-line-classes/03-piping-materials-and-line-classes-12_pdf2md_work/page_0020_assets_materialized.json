@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0020.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0020_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2871
+      ],
+      "caption": "Table 4: Acceptable Piping Materials for Austenitic (Fe-Cr-Ni) Alloys",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0020_tbl01_table-4-acceptable-piping-materials-aust.png",
+      "png_sha256": "9e404cb78e71b345d8c4786646ab96c779abd58aa713aecaa96f96145cc8721d",
+      "slug": "table-4-acceptable-piping-materials-aust",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-12",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0020.png",
+  "page_image_sha256": "e1ac80b7ff39ad2fb0d0f7d7e3e7e8599fe0014360e3765005d5a6fe17b2b54b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0020_assets.json"
+}

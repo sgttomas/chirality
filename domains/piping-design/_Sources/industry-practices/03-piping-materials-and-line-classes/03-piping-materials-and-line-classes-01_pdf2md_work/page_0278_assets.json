@@ -1,0 +1,75 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-01",
+  "page": 278,
+  "total_pages": 280,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5.6 Addendum to Referenced Piping Classes — Tubing Classes CAB(T), CAB(SR)(T), CAD(T), CAD(SR)(T)",
+      "slug": "table-5-6-tubing-classes-cab-cad",
+      "bbox_norm": [0.05, 0.08, 0.97, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1.) Pressure-temperature limits based on Class 300 flange rating at 105 C (200 F) for CAD in the referenced Piping Classes.",
+          "(2.) Tubing installation is allowed only downstream of the block valve of the referenced Piping Classes.",
+          "(3.) Tubing hardness RB75 maximum.",
+          "(4.) Tubing shall be bent to minimize use of fittings.",
+          "(5.) Do not interchange parts from different manufacturers."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ITEM", "is_header": true },
+              { "value": "SIZE", "is_header": true },
+              { "value": "RATING", "is_header": true },
+              { "value": "TYPE", "is_header": true },
+              { "value": "SPECIFICATIONS", "is_header": true },
+              { "value": "NOTES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TUBE FITTINGS", "type": "text" },
+              { "value": "3/8\" to 3/4\"", "type": "text" },
+              { "value": "29 MPa @ 105 C (4300 psi @ 200 F)", "type": "text" },
+              { "value": "Threaded", "type": "text" },
+              { "value": "ASTM B164 Monel 400, Compression Type, Swagelok or equal", "type": "text" },
+              { "value": "(5)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "TUBING", "type": "text" },
+              { "value": "3/8\" to 1/2\" O.D.", "type": "text" },
+              { "value": ".035\" Wall", "type": "text" },
+              { "value": "Seamless", "type": "text" },
+              { "value": "ASTM B165 Monel 400, Fully Annealed, Scratch Free, suitable for bending and flaring", "type": "text" },
+              { "value": "(2) (3) (4)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "type": "text" },
+              { "value": "3/4\" O.D.", "type": "text" },
+              { "value": ".49\" Wall", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "ASTM B165 Monel 400, Fully Annealed, Scratch Free, suitable for bending and flaring", "type": "text" },
+              { "value": "(2) (3) (4)", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with header row and 3 data rows; Tubing item spans two size rows"
+    }
+  ],
+  "issues": []
+}

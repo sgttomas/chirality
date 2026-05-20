@@ -1,0 +1,346 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 15,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "caption": "Table 1. Vent, Drain, and Instrument Connections Cross Reference.",
+      "bbox_norm": [0.02, 0.05, 0.98, 0.90],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "col_headers": [
+          [
+            {"text": "PIP PIPING MATL SPEC (PIP PN)", "colspan": 2, "rowspan": 1},
+            {"text": "HYDROSTATIC TEST VENTS and DRAINS (NPS)", "colspan": 2, "rowspan": 1},
+            {"text": "VALVED VENTS and DRAINS (NPS)", "colspan": 2, "rowspan": 1},
+            {"text": "PRESSURE CONNECTIONS (NPS)", "colspan": 2, "rowspan": 1},
+            {"text": "THERMOWELL CONNECTIONS (NPS)", "colspan": 2, "rowspan": 1},
+            {"text": "ORIFICE FLANGE TAP CONNECTIONS (NPS)", "colspan": 2, "rowspan": 1}
+          ],
+          [
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1},
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1},
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1},
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1},
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1},
+            {"text": "BRANCH", "colspan": 1, "rowspan": 1},
+            {"text": "HEADER SIZE", "colspan": 1, "rowspan": 1}
+          ]
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"text": "02SD1001", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-06", "type": "str"},
+              {"text": "V0-07", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-26", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-11", "type": "str"},
+              {"text": "P-11", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-12", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-03", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "02SD1802", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-06", "type": "str"},
+              {"text": "V0-07", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-26", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-11", "type": "str"},
+              {"text": "P-11", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-12", "type": "str"},
+              {"text": "T-12", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-03", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "04SJ0501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "15SJ0501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "05SJ1501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "09SJ0501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "13S5K0201", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "09SK0201", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-00", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "13SK1001", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-20", "type": "str"},
+              {"text": "V0-22", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "P-07", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-06", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "13SK1501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-15", "type": "str"},
+              {"text": "V0-16", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-03", "type": "str"},
+              {"text": "P-03", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-22", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-02", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "21SP1021", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-13", "type": "str"},
+              {"text": "V0-16", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-22", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-05", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "38SP1021", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-13", "type": "str"},
+              {"text": "V0-15", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-05", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "10P1021", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-04", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-13", "type": "str"},
+              {"text": "V0-15", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "P-02", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "T-09", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-05", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "01SV0501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-02", "type": "str"},
+              {"text": "V0-05", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-13", "type": "str"},
+              {"text": "V0-15", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-03", "type": "str"},
+              {"text": "P-05", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-11", "type": "str"},
+              {"text": "T-12", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-05", "type": "str"}
+            ]
+          },
+          {
+            "cells": [
+              {"text": "03SV0501", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-03", "type": "str"},
+              {"text": "V0-05", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "V0-16", "type": "str"},
+              {"text": "V0-16", "type": "str"},
+              {"text": "3/4", "type": "str"},
+              {"text": "P-03", "type": "str"},
+              {"text": "P-03", "type": "str"},
+              {"text": "1-1/2", "type": "str"},
+              {"text": "T-22", "type": "str"},
+              {"text": "T-22", "type": "str"},
+              {"text": "1/2", "type": "str"},
+              {"text": "NA", "type": "str"},
+              {"text": "OR-02", "type": "str"}
+            ]
+          }
+        ],
+        "footnotes": []
+      }
+    }
+  ],
+  "issues": []
+}

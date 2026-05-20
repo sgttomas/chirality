@@ -1,0 +1,353 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 89,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Parts list \u2014 Item No., Qty., Description, Material",
+      "slug": "parts-list-item-qty-description-material",
+      "bbox_norm": [
+        0.04,
+        0.02,
+        0.96,
+        0.13
+      ],
+      "confidence": "high",
+      "notes": "Four-column parts list at top of drawing",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "C250 \u00d7 37",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21\u2013300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "L102 \u00d7 102 \u00d7 9.5",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21\u2013300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "12mm Thk. Pl. 12\" \u00d7 17\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA G40.21\u2013300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "M16 \u00d7 70 LONG BOLTS c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLAN view \u2014 vertical pipe guide structural steel detail with gusset plate detail (TYP.2)",
+      "slug": "plan-view-vertical-pipe-guide",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.62,
+        0.52
+      ],
+      "confidence": "high",
+      "notes": "Plan view drawing showing structural steel arrangement, gusset plate detail, and dimensions including 2 1/2\", 3/4\", 1/2\" and bolt holes"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "ELEVATION view \u2014 vertical pipe guide showing FAB. LENGTH and TYP. dimensions",
+      "slug": "elevation-view-vertical-pipe-guide",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.55,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Elevation view showing vertical pipe guide with FAB LENGTH annotation and typical dimension callouts"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "SECT. 'X\u2013X' \u2014 cross-section of vertical pipe guide showing TOS WORK POINT ELEVATION and 1/4\" dimensions",
+      "slug": "sect-x-x-vertical-pipe-guide",
+      "bbox_norm": [
+        0.57,
+        0.42,
+        0.96,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Section X-X cut showing channel cross-section with 1/4\" typical weld dimensions and TOS work point elevation label"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Pipe size and dimension table \u2014 PIPE SIZE, DIM 'A', DIM 'B' with MARK No. and FAB. LENGTH",
+      "slug": "pipe-size-dim-a-dim-b-fab-length",
+      "bbox_norm": [
+        0.57,
+        0.6,
+        0.96,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Two related sub-tables: pipe size with DIM A and DIM B columns, and MARK No. with FAB LENGTH columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [
+          5
+        ],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'A'",
+                "is_header": true
+              },
+              {
+                "value": "DIM 'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "13\"",
+                "type": "text"
+              },
+              {
+                "value": "22 1/4\"",
+                "type": "fraction",
+                "raw": "22 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "16\"",
+                "type": "text"
+              },
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "24 1/4\"",
+                "type": "fraction",
+                "raw": "24 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "20\"",
+                "type": "text"
+              },
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "24 1/4\"",
+                "type": "fraction",
+                "raw": "24 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "24\"",
+                "type": "text"
+              },
+              {
+                "value": "14\"",
+                "type": "text"
+              },
+              {
+                "value": "32 1/4\"",
+                "type": "fraction",
+                "raw": "32 1/4\""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "MARK No.",
+                "is_header": true
+              },
+              {
+                "value": "FAB LENGTH",
+                "is_header": true
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "4",
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "number"
+              },
+              {
+                "value": "6",
+                "type": "number"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

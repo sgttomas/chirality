@@ -1,0 +1,17 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "10-shop-and-field-fabrication-02",
+  "page": 5,
+  "total_pages": 9,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "img-001",
+      "kind": "img",
+      "caption": "Plains Midstream Canada company logo",
+      "bbox_norm": [0.02, 0.01, 0.22, 0.09]
+    }
+  ],
+  "issues": []
+}

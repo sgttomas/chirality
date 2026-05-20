@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 105,
+  "total_pages": 122,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "T-14 Thermowell — Flanged Thermowell Connection, NPS 3/4 & UP, showing two installation configurations with labeled components including NPS 1-1/2 Raised Face Weld Neck Flange, NPS 1-1/2 Butt Weld Latrolet, NPS 1-1/2 Butt Weld Reducer, Line Size x NPS 6 Swage/Reducer, NPS 3/4 Thru NPS 4 Line Size, and NPS 6 Line Size & Up installations. Dimensions shown: 300 (12) MIN.",
+      "slug": "t14-thermowell-flanged-connection-nps-3-4-up",
+      "bbox_norm": [0.03, 0.13, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing two thermowell installation configurations with call-outs and dimension annotations"
+    }
+  ],
+  "issues": []
+}

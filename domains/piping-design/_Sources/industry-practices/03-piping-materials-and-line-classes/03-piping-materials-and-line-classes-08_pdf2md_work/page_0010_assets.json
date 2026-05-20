@@ -1,0 +1,47 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-08",
+  "page": 10,
+  "total_pages": 11,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3 Full Size Toughness Test Specimen",
+      "slug": "table-3-full-size-toughness-test-specimen",
+      "bbox_norm": [0.20, 0.60, 0.80, 0.73],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "SMYS (ksi)", "is_header": true },
+              { "value": "Absorbed Energy (Ft-lbs.)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "less than 60", "type": "text" },
+              { "value": "40 avg / 32 min", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "60 or greater", "type": "text" },
+              { "value": "50 avg / 40 min", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table with SMYS ranges and corresponding absorbed energy requirements"
+    }
+  ],
+  "issues": []
+}

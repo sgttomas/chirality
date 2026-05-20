@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0063.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-15_p0063_fig01",
+      "bbox_norm": [
+        0.08,
+        0.05,
+        0.94,
+        0.92
+      ],
+      "bbox_px": [
+        76,
+        0,
+        2524,
+        3197
+      ],
+      "caption": "Fig. 200-23 Orbit Ball Valve and Seat Selection Courtesy of Orbit Valve Company",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/03-piping-materials-and-line-classes-15_p0063_fig01_fig-200-23-orbit-ball-valve-seat-selecti.png",
+      "png_sha256": "695dc82a61b65fb6551f54b6035c584711fedeca742298d7670586854a071c96",
+      "slug": "fig-200-23-orbit-ball-valve-seat-selecti",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-15",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0063.png",
+  "page_image_sha256": "56d5daa35d3f950485076cc1a97857d00ca487848de890abeb143b9bcd20b44e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-15_pdf2md_work/page_0063_assets.json"
+}

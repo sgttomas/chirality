@@ -1,0 +1,121 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0101.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0101_tbl01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.99,
+        0.12
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        562
+      ],
+      "caption": "Bill of Materials \u2014 angle and plate items with material specification",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,4], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0101_tbl01_bill-of-materials-angle-and-plate-items.png",
+      "png_sha256": "42ea36f232ccd72e1bf6b0704094e0b0e0f3c1d00b4ac6e8315dbf720c5dab02",
+      "slug": "bill-of-materials-angle-and-plate-items",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0101_fig01",
+      "bbox_norm": [
+        0.01,
+        0.12,
+        0.72,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        231,
+        1967,
+        2214
+      ],
+      "caption": "Engineering drawing of Coal-Frame Support Welded Attachment showing structural steel frame with two vertical angle members attached to existing steel beam, with dimension 'L' span, 16\" MAX. horizontal clearance, 1\" MIN. spacing, FAB. LENGTH, and 1/4\" typical weld callouts; beam to be checked for torsion",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0101_fig01_engineering-drawing-of-coal-frame-suppor.png",
+      "png_sha256": "090073e88c9a1f82cc24aed1d15adcd53128613d3e445ec1b62543ad2d5acbc9",
+      "slug": "engineering-drawing-of-coal-frame-suppor",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0101_tbl02",
+      "bbox_norm": [
+        0.73,
+        0.43,
+        0.99,
+        0.52
+      ],
+      "bbox_px": [
+        1737,
+        1256,
+        2555,
+        1883
+      ],
+      "caption": "Suffix/dimension table \u2014 DIM. 'L' values for suffixes A, B, C",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,1], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0101_tbl02_suffix-dimension-table-dim-l-values-for.png",
+      "png_sha256": "4c32eb4db9dbf62566d15aad8fa4450327e84d60a1374042acb4ad874d20c637",
+      "slug": "suffix-dimension-table-dim-l-values-for",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0101_tbl03",
+      "bbox_norm": [
+        0.73,
+        0.52,
+        0.99,
+        0.67
+      ],
+      "bbox_px": [
+        1737,
+        1553,
+        2555,
+        2379
+      ],
+      "caption": "Maximum load table \u2014 FAB. LENGTH and MAXIMUM LOAD (L.G.) by MARK NO.",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.header_rows must be int in [0,3], got None"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0101_tbl03_maximum-load-table-fab-length-and-maximu.png",
+      "png_sha256": "a52b5c3a4e6532e094531ab729d1f2f9565dd3576868adf76fb8c3ea8fdf7661",
+      "slug": "maximum-load-table-fab-length-and-maximu",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 101,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0101.png",
+  "page_image_sha256": "6799c1eb08cde98936ead9b73d6e890fea5cd86df21dd441cb380f81bbd02bac",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0101_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "04-branch-connections-vents-drains-02_p0045_fig01",
+      "bbox_norm": [
+        0.12,
+        0.13,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        178,
+        264,
+        2474,
+        2871
+      ],
+      "caption": "PNF0409-V-18-VENT \u2014 Isometric detail of V-18 Vent assembly for NPS 2 and up welded piping, showing NPS 3/4 Threaded Plug at top, NPS 3/4 Socket Weld x Threaded Valve, NPS 3/4 x 90(3-1/2) Plain End Nipolet connecting to NPS 2 Line Size & Up main pipe, with mirrored D-18 Drain assembly below: NPS 3/4 x 90(3-1/2) Plain End Nipolet, NPS 3/4 Socket Weld x Threaded Valve, and NPS 3/4 Threaded Plug at bottom.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/04-branch-connections-vents-drains-02_p0045_fig01_pnf0409-v-18-vent-isometric-detail-of-v.png",
+      "png_sha256": "198638baa955b3c8485b7b82a9c7eb89913ee9bd090ae4248175238281f48871",
+      "slug": "pnf0409-v-18-vent-isometric-detail-of-v",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/_assets/04-branch-connections-vents-drains-02",
+  "doc_stem": "04-branch-connections-vents-drains-02",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0045.png",
+  "page_image_sha256": "86f2d0779f5d2076197e88a360944db0edc3023fd82db6a281cafa54424b62fa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/04-branch-connections-vents-drains/04-branch-connections-vents-drains-02_pdf2md_work/page_0045_assets.json"
+}

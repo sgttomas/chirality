@@ -1,0 +1,546 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 122,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "S17 Pipe Shoe (High Temperature Stainless Steel and Alloy Piping) Pipe Size 2\" to 6\" \u2014 Elevation and Section \"A\" views",
+      "slug": "s17-pipe-shoe-elevation-section-a",
+      "bbox_norm": [
+        0.03,
+        0.05,
+        0.97,
+        0.42
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing ELEVATION view (left) and SECTION 'A' view (right) of pipe shoe support for high temperature stainless steel and alloy piping. Includes dimension annotations: 'A', 'B', 'L', 1\" SLOT (TYP), NOTE 2 & 3, and 1/4\" dimensions in section view."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item No. 1 and 2 \u2014 Plate Material Bill of Materials",
+      "slug": "plate-material-bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.43,
+        0.6,
+        0.54
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "6mm THK. PLATE",
+                "type": "text"
+              },
+              {
+                "value": "SEE MATERIAL CODE",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "number"
+              },
+              {
+                "value": "9.5mm THK. PLATE",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Bill of materials for plate items 1 and 2"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Material Code / Pipe Material / Plate Material / Mark / Dimensions Table",
+      "slug": "material-code-pipe-material-dimensions",
+      "bbox_norm": [
+        0.03,
+        0.54,
+        0.72,
+        0.78
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MAT. CODE",
+                "is_header": true
+              },
+              {
+                "value": "PIPE MATERIAL",
+                "is_header": true
+              },
+              {
+                "value": "ITEM No.1 PLATE MATERIAL",
+                "is_header": true
+              },
+              {
+                "value": "MARK",
+                "is_header": true
+              },
+              {
+                "value": "DIM. 'L'",
+                "is_header": true
+              },
+              {
+                "value": "THERMAL MOVEMENT",
+                "is_header": true
+              },
+              {
+                "value": "SLOTS 'A'",
+                "is_header": true
+              },
+              {
+                "value": "'A'",
+                "is_header": true
+              },
+              {
+                "value": "'B'",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "304L",
+                "type": "text"
+              },
+              {
+                "value": "A 240, Gr.304L",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "0\u20133\"",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "317L",
+                "type": "text"
+              },
+              {
+                "value": "A 240, Gr.317L",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "18\"",
+                "type": "text"
+              },
+              {
+                "value": "3\"\u20136\"",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "9\"",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "316/316L",
+                "type": "text"
+              },
+              {
+                "value": "A 240, Gr.316/316L",
+                "type": "text"
+              },
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "24\"",
+                "type": "text"
+              },
+              {
+                "value": "6\"\u20139\"",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "4 1/2\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "1.25 CHROME",
+                "type": "text"
+              },
+              {
+                "value": "A 387, Gr.11",
+                "type": "text"
+              },
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "30\"",
+                "type": "text"
+              },
+              {
+                "value": "9\"\u201312\"",
+                "type": "text"
+              },
+              {
+                "value": "2",
+                "type": "number"
+              },
+              {
+                "value": "15\"",
+                "type": "text"
+              },
+              {
+                "value": "7 1/2\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "2.25 CHROME",
+                "type": "text"
+              },
+              {
+                "value": "A 387, Gr.22",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6",
+                "type": "text"
+              },
+              {
+                "value": "5 CHROME",
+                "type": "text"
+              },
+              {
+                "value": "A 387, Gr.5",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "7",
+                "type": "text"
+              },
+              {
+                "value": "9 CHROME",
+                "type": "text"
+              },
+              {
+                "value": "A 387, Gr.9",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Combined material code lookup and mark/dimension table. Material codes 1-7 map to pipe materials and plate materials. Mark numbers 1-4 provide L dimension, thermal movement range, slot count, and A and B dimensions."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Insulation Dimensions \u2014 C, H, D, TYPE",
+      "slug": "insulation-dimensions-c-h-d-type",
+      "bbox_norm": [
+        0.55,
+        0.64,
+        0.97,
+        0.76
+      ],
+      "confidence": "high",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "INSULATION",
+                "is_header": true
+              },
+              {
+                "value": "'C'",
+                "is_header": true
+              },
+              {
+                "value": "'H'",
+                "is_header": true
+              },
+              {
+                "value": "'D'",
+                "is_header": true
+              },
+              {
+                "value": "TYPE",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "UP TO 3\" THICK",
+                "type": "text"
+              },
+              {
+                "value": "5 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "4\"",
+                "type": "text"
+              },
+              {
+                "value": "3 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "A",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3 1/2\"\u20135\" THICK",
+                "type": "text"
+              },
+              {
+                "value": "6 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "4 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "B",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "notes": "Insulation thickness ranges and corresponding C, H, D dimensions with type designation A or B"
+    }
+  ],
+  "issues": []
+}

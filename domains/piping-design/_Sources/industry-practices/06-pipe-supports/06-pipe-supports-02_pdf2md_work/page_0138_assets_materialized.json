@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0138.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0138_fig01",
+      "bbox_norm": [
+        0.01,
+        0.01,
+        0.73,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        3984,
+        3306
+      ],
+      "caption": "VESSEL CLIP PIPING SUPPORT DETAIL VC10A/B \u2014 engineering drawing sheet showing Plan View VC10A/B, Side View 'A' Clip Bolt Hole Locations for VC10A/B, Elevation VC10A/B, and Vessel Support Detail with notes and specifications table",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0138_fig01_vessel-clip-piping-support-detail-vc10a.png",
+      "png_sha256": "3d56d1f58f31a93afd631d73cc27281495a69d701abe4b9a6cfe3047cff68bc9",
+      "slug": "vessel-clip-piping-support-detail-vc10a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0138_tbl01",
+      "bbox_norm": [
+        0.73,
+        0.01,
+        0.99,
+        0.22
+      ],
+      "bbox_px": [
+        3473,
+        0,
+        5108,
+        893
+      ],
+      "caption": "NOTES AND SPECIFICATIONS \u2014 pipe size, description, and material columns",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0138_tbl01_notes-and-specifications.png",
+      "png_sha256": "70289a5143749f65c2f5286efb1540fdbfc338ac831c7d3046fd268c76c9110f",
+      "slug": "notes-and-specifications",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0138_tbl01_notes-and-specifications.json",
+      "table_data_json_sha256": "a83f6913896fe7b8efd9ee28b985f3882715bc5502c351046c96125c035547a2",
+      "table_data_sha256": "a83f6913896fe7b8efd9ee28b985f3882715bc5502c351046c96125c035547a2",
+      "xlsx_path": "tables/06-pipe-supports-02_p0138_tbl01_notes-and-specifications.xlsx",
+      "xlsx_sha256": "af9ced286e2114958dd621527d7fdcd1daed801ade0669fc9d64b25489e7d79d"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 138,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0138.png",
+  "page_image_sha256": "aacee08c2cefb27f148d75e5903579eeb182e33f2a49dd763b31db5022c0b2e7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0138_assets.json"
+}

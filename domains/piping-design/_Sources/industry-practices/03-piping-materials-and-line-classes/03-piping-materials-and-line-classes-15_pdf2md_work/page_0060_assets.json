@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-15",
+  "page": 60,
+  "total_pages": 96,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 200-20 Ball Valve Body Styles Courtesy of Marpac Valve and Cooper Cameron",
+      "slug": "fig-200-20-ball-valve-body-styles",
+      "bbox_norm": [0.04, 0.06, 0.96, 0.88],
+      "confidence": "high",
+      "notes": "Four-part figure: a. Three Piece (photograph), b. End Entry (cross-section diagram), c. Top Entry (labeled cross-section diagram), d. Welded body ball valve (cutaway photograph). All four sub-images share one caption."
+    }
+  ],
+  "issues": []
+}

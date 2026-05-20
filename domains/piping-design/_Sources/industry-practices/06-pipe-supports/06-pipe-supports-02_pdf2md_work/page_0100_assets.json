@@ -1,0 +1,538 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 100,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 Item No., Qty., Description, Material",
+      "slug": "bill-of-materials",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.16
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": "W150 \u00d7 30",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "24mm THK. PLATE 13\" \u00d7 13\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "value": "HSE \u2013 M20/60 HILTI EXPANSION BOLT ANCHOR SYSTEM",
+                "type": "text"
+              },
+              {
+                "value": "ASTM F568 CLASS 5.8 GALVANIZED",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "10mm THK. PLATE 2\" \u00d7 6\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": 2,
+                "type": "number"
+              },
+              {
+                "value": "20mm THK. PLATE 8\" \u00d7 8\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Goal-Frame Support Bolted Attachment \u2014 fabrication detail with dimensions showing W-section columns, base plates, and anchor bolt arrangement",
+      "slug": "goal-frame-support-fab-detail",
+      "bbox_norm": [
+        0.03,
+        0.15,
+        0.6,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Main fabrication drawing showing goal-frame support elevation view with W-section columns, connecting plate, base plates, and dimensioned details including 16\" MAX, FAB LENGTH, and typical connection details"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "BASE PLATE detail showing 4\u20131-3/16\" holes arrangement",
+      "slug": "base-plate-detail",
+      "bbox_norm": [
+        0.6,
+        0.28,
+        0.97,
+        0.58
+      ],
+      "confidence": "high",
+      "notes": "Base plate detail view showing bolt hole pattern with 4\u20131-3/16\" holes, labeled BASE PLATE"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Suffix Dimension Table \u2014 Suffix A, B, C, D with corresponding dimensions",
+      "slug": "suffix-dimension-table",
+      "bbox_norm": [
+        0.57,
+        0.55,
+        0.97,
+        0.65
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "SUFFIX",
+                "is_header": true
+              },
+              {
+                "value": "A",
+                "is_header": true
+              },
+              {
+                "value": "B",
+                "is_header": true
+              },
+              {
+                "value": "C",
+                "is_header": true
+              },
+              {
+                "value": "D",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "DIM.",
+                "type": "text"
+              },
+              {
+                "value": "5\u2032\u20130\u2033",
+                "type": "text"
+              },
+              {
+                "value": "6\u2032\u20130\u2033",
+                "type": "text"
+              },
+              {
+                "value": "6\u2032\u20136\u2033",
+                "type": "text"
+              },
+              {
+                "value": "7\u2032\u20135\u2033",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Suffix letter to dimension lookup table"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "Mark / Fab Length / Maximum Load Table",
+      "slug": "mark-fab-length-max-load",
+      "bbox_norm": [
+        0.57,
+        0.63,
+        0.97,
+        0.78
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "MARK NO.",
+                "is_header": true
+              },
+              {
+                "value": "FAB. LENGTH",
+                "is_header": true
+              },
+              {
+                "value": "MAXIMUM LOAD (Lb)",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "6\u2032\u20130\u2033",
+                "type": "text"
+              },
+              {
+                "value": 11000,
+                "type": "number",
+                "unit": "Lb"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "6\u2032\u20136\u2033",
+                "type": "text"
+              },
+              {
+                "value": 10000,
+                "type": "number",
+                "unit": "Lb"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "7\u2032\u20135\u2033",
+                "type": "text"
+              },
+              {
+                "value": 9100,
+                "type": "number",
+                "unit": "Lb"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "8\u2032\u20130\u2033",
+                "type": "text"
+              },
+              {
+                "value": 8200,
+                "type": "number",
+                "unit": "Lb"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Load capacity table indexed by mark number"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 4,
+      "caption": "Coding Example \u2014 L6 / S/S STD No. / MARK No. / SUFFIX",
+      "slug": "coding-example",
+      "bbox_norm": [
+        0.57,
+        0.76,
+        0.97,
+        0.84
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "( EXAMPLE )",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "L6",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "S/S STD No.",
+                "type": "text"
+              },
+              {
+                "value": "MARK No. \u2014 SUFFIX",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Coding convention example box showing how to form the full part identifier"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 5,
+      "caption": "Revision Block \u2014 No., Date, Revisions, BY/CHK/ENG/APP",
+      "slug": "revision-block",
+      "bbox_norm": [
+        0.03,
+        0.87,
+        0.57,
+        0.96
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "NO.",
+                "is_header": true
+              },
+              {
+                "value": "DATE",
+                "is_header": true
+              },
+              {
+                "value": "REVISIONS",
+                "is_header": true
+              },
+              {
+                "value": "BY",
+                "is_header": true
+              },
+              {
+                "value": "CHK",
+                "is_header": true
+              },
+              {
+                "value": "ENG",
+                "is_header": true
+              },
+              {
+                "value": "APP",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "GENERAL UPDATE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "10/10/09",
+                "type": "text"
+              },
+              {
+                "value": "MAX.LOADS REVISED",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "AR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              },
+              {
+                "value": "NR",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Drawing revision history table"
+    }
+  ],
+  "issues": []
+}

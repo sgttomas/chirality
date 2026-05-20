@@ -1,0 +1,128 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "05-bolting-gaskets-and-flange-joints-02",
+  "page": 10,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "caption": "Table 3: Lap Joint Flange Stub End Thickness Requirements",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.48
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "columns": [
+          {
+            "id": "material",
+            "label": "Material (1)"
+          },
+          {
+            "id": "size",
+            "label": "Size"
+          },
+          {
+            "id": "min_thickness",
+            "label": "Minimum Thickness"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "col": "material",
+                "type": "str",
+                "value": "Carbon Steel",
+                "rowspan": 3
+              },
+              {
+                "col": "size",
+                "type": "str",
+                "value": "NPS 2 to 4"
+              },
+              {
+                "col": "min_thickness",
+                "type": "str",
+                "value": "Sch 160"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "size",
+                "type": "str",
+                "value": "NPS 6 to 8"
+              },
+              {
+                "col": "min_thickness",
+                "type": "str",
+                "value": "Sch 80"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "size",
+                "type": "str",
+                "value": "NPS 10 or Larger"
+              },
+              {
+                "col": "min_thickness",
+                "type": "str",
+                "value": "1/2 Inch"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "material",
+                "type": "str",
+                "value": "Stainless Steel",
+                "rowspan": 2
+              },
+              {
+                "col": "size",
+                "type": "str",
+                "value": "NPS 2 or smaller"
+              },
+              {
+                "col": "min_thickness",
+                "type": "str",
+                "value": "Sch 80S"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "col": "size",
+                "type": "str",
+                "value": "Larger than NPS 2"
+              },
+              {
+                "col": "min_thickness",
+                "type": "str",
+                "value": "Sch 40S"
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          {
+            "marker": "1",
+            "text": "For materials not listed, subject to the approval of the Owner's Engineer."
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

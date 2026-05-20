@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-07",
+  "page": 18,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Pipe inspection requirements (continued)",
+      "slug": "pipe-inspection-requirements-continued",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.19],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Pipe diameter and out-of-roundness", "type": "text" },
+              { "value": "Check each pipe, and measure and record for a minimum of three pipes per operating shift.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Other dimensional testing", "type": "text" },
+              { "value": "Random testing to a scope and frequency to be agreed upon.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-row continuation table; no header row visible on this page"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,65 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0114.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0114_fig01",
+      "bbox_norm": [
+        0.01,
+        0.12,
+        0.78,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2121,
+        2214
+      ],
+      "caption": "Elevation and Section A and Section B engineering drawings of a pipe shoe (carbon steel) for pipe sizes 54\" to 72\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0114_fig01_elevation-and-section-a-and-section-b-en.png",
+      "png_sha256": "19e307811a6647d539163bb8399b52deda94448a894258154c8ef7f07e309426",
+      "slug": "elevation-and-section-a-and-section-b-en",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0114_tbl01",
+      "bbox_norm": [
+        0.61,
+        0.38,
+        0.98,
+        0.72
+      ],
+      "bbox_px": [
+        1431,
+        1090,
+        2555,
+        2544
+      ],
+      "caption": "Mark/Dimension/Thermal Movement and Insulation/H/G/Type selection table for pipe shoe",
+      "issues": [
+        "invalid_table_data:ERROR: table_data.rows must be a non-empty array"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0114_tbl01_mark-dimension-thermal-movement-and-insu.png",
+      "png_sha256": "2fd487c0ad03ca890c3b681ef33cffa4ade9b9f8ebc909ec8887ed300d553802",
+      "slug": "mark-dimension-thermal-movement-and-insu",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 114,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0114.png",
+  "page_image_sha256": "41a6f8d7263b4006703842c5a2479912d603e906d441278f0a1f0595163311a5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0114_assets.json"
+}

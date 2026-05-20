@@ -1,0 +1,69 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0029.anchored.md",
+  "assets": [
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0029_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        1551
+      ],
+      "caption": "Table 15: Minimum Tube Wall Thickness Criteria",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0029_tbl01_table-15-minimum-tube-wall-thickness-cri.png",
+      "png_sha256": "476f8768544445bfb0a7573891f09d463e63d6aaa1e3ee72fad0043866931788",
+      "slug": "table-15-minimum-tube-wall-thickness-cri",
+      "status": "materialized",
+      "table_data_json_path": "tables/03-piping-materials-and-line-classes-12_p0029_tbl01_table-15-minimum-tube-wall-thickness-cri.json",
+      "table_data_json_sha256": "cd453c869eb1aa764c44aa7da1b2638b287746f47d3ed984d1f31ea82b2b2226",
+      "table_data_sha256": "cd453c869eb1aa764c44aa7da1b2638b287746f47d3ed984d1f31ea82b2b2226",
+      "xlsx_path": "tables/03-piping-materials-and-line-classes-12_p0029_tbl01_table-15-minimum-tube-wall-thickness-cri.xlsx",
+      "xlsx_sha256": "d780acb09e76f94a47e117c76a5617c5e859d3b7cce199e7414d04af8c0714fa"
+    },
+    {
+      "asset_id": "03-piping-materials-and-line-classes-12_p0029_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.46,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1353,
+        2550,
+        2739
+      ],
+      "caption": "Table 16: Acceptable Compression Fittings for Tubing",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/03-piping-materials-and-line-classes-12_p0029_tbl02_table-16-acceptable-compression-fittings.png",
+      "png_sha256": "b8930328e53e33ef28d59de748936f4893fc50f6f6af335f5dacf0c6b4b5276c",
+      "slug": "table-16-acceptable-compression-fittings",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/_assets/03-piping-materials-and-line-classes-12",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 29,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0029.png",
+  "page_image_sha256": "028e0f7870ee3d858559e3fc0e94693667a5e38d4197d4d970ff0f604c59c980",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/03-piping-materials-and-line-classes/03-piping-materials-and-line-classes-12_pdf2md_work/page_0029_assets.json"
+}

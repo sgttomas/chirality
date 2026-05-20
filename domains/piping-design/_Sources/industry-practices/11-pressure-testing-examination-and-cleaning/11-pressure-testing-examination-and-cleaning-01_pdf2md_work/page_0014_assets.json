@@ -1,0 +1,584 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "11-pressure-testing-examination-and-cleaning-01",
+  "page": 14,
+  "total_pages": 20,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "id": "tbl-0014-001",
+      "kind": "tbl",
+      "caption": "Pressure Test Certificate form with header fields, line-item grid, notes section, and approvals table",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.97,
+        0.88
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "title": "OIL SANDS PRESSURE TEST CERTIFICATE",
+        "columns": [
+          {
+            "id": "col-a",
+            "header": "Issued By:"
+          },
+          {
+            "id": "col-b",
+            "header": "Work Order #"
+          }
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Issued By:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "Work Order #"
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Location:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "EWR#:"
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Test Pressure Required:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "Actual Test Pressure:"
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Test Hold Time Required:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "Actual Hold Time:"
+              }
+            ]
+          },
+          {
+            "row_index": 4,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Test Medium:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "Actual Temperature of Test Medium:"
+              }
+            ]
+          },
+          {
+            "row_index": 5,
+            "cells": [
+              {
+                "col_id": "col-a",
+                "type": "label",
+                "value": "Pressure Increase Not to Exceed:"
+              },
+              {
+                "col_id": "col-b",
+                "type": "label",
+                "value": "Gauge Calibration Date:"
+              },
+              {
+                "col_id": "col-c",
+                "type": "label",
+                "value": "Date:"
+              }
+            ]
+          }
+        ],
+        "sub_tables": [
+          {
+            "title": "Line Items Grid",
+            "columns": [
+              {
+                "id": "col-line",
+                "header": "Line #\nEquip. #"
+              },
+              {
+                "id": "col-loc-from",
+                "header": "Location\nFrom"
+              },
+              {
+                "id": "col-loc-to",
+                "header": "Location\nTo"
+              },
+              {
+                "id": "col-hydro",
+                "header": "Hydro-Test Pressure"
+              },
+              {
+                "id": "col-design",
+                "header": "Design Pressure"
+              },
+              {
+                "id": "col-repairs",
+                "header": "Description of Repairs"
+              }
+            ],
+            "rows": [
+              {
+                "row_index": 0,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 1,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 2,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 3,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 4,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 5,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 6,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 7,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 8,
+                "cells": [
+                  {
+                    "col_id": "col-line",
+                    "type": "data",
+                    "value": "Notes:"
+                  },
+                  {
+                    "col_id": "col-loc-from",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-loc-to",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-hydro",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-design",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-repairs",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Approvals",
+            "columns": [
+              {
+                "id": "col-approval",
+                "header": "Approvals:"
+              },
+              {
+                "id": "col-date",
+                "header": "Date"
+              },
+              {
+                "id": "col-contractor",
+                "header": "Contractor"
+              },
+              {
+                "id": "col-inspector",
+                "header": "Owner's Inspector"
+              }
+            ],
+            "rows": [
+              {
+                "row_index": 0,
+                "cells": [
+                  {
+                    "col_id": "col-approval",
+                    "type": "label",
+                    "value": "Released for Testing"
+                  },
+                  {
+                    "col_id": "col-date",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-contractor",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-inspector",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 1,
+                "cells": [
+                  {
+                    "col_id": "col-approval",
+                    "type": "label",
+                    "value": "Tested and Accepted"
+                  },
+                  {
+                    "col_id": "col-date",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-contractor",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-inspector",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "row_index": 2,
+                "cells": [
+                  {
+                    "col_id": "col-approval",
+                    "type": "label",
+                    "value": "Reinstated after Test"
+                  },
+                  {
+                    "col_id": "col-date",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-contractor",
+                    "type": "data",
+                    "value": ""
+                  },
+                  {
+                    "col_id": "col-inspector",
+                    "type": "data",
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "footnotes": [
+          "print name / initial",
+          "Local Authorities Approval:",
+          "(Only when required)"
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

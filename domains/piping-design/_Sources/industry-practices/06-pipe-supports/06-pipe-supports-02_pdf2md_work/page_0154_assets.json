@@ -1,0 +1,404 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 154,
+  "total_pages": 160,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bill of Materials \u2014 VG13 components",
+      "slug": "bom-vg13-components",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM No.",
+                "is_header": true
+              },
+              {
+                "value": "QTY.",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "MATERIAL",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "C 200 \u00d7 17",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "L127 \u00d7 127 \u00d7 13",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "12mm THK. PLATE 16\" \u00d7 9\"",
+                "type": "text"
+              },
+              {
+                "value": "CSA-G40.21-300W",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "8",
+                "type": "text"
+              },
+              {
+                "value": "M22 \u00d7 100 LG BOLTS c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "M20 \u00d7 80 LG BOLTS c/w 2 NUTS",
+                "type": "text"
+              },
+              {
+                "value": "ASTM A325",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Bill of materials table at top of drawing"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "VG13 Plan view \u2014 vessel guide for vertical insulated pipe",
+      "slug": "vg13-plan-view",
+      "bbox_norm": [
+        0.03,
+        0.14,
+        0.65,
+        0.48
+      ],
+      "confidence": "high",
+      "notes": "Plan view showing vessel clip, bolt holes, and plate dimensions with annotations"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "VG13 Elevation view \u2014 vessel guide for vertical insulated pipe",
+      "slug": "vg13-elevation-view",
+      "bbox_norm": [
+        0.03,
+        0.48,
+        0.65,
+        0.78
+      ],
+      "confidence": "high",
+      "notes": "Elevation view showing T.O.S. W.P. elevation, slots, and structural member arrangement"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "VG13 pipe size dimensions table",
+      "slug": "vg13-pipe-size-dimensions",
+      "bbox_norm": [
+        0.62,
+        0.46,
+        0.97,
+        0.72
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "PIPE SIZE",
+                "is_header": true
+              },
+              {
+                "value": "DIM. \"A\"",
+                "is_header": true
+              },
+              {
+                "value": "DIM. \"B\"",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2\"",
+                "type": "text"
+              },
+              {
+                "value": "7 3/16\"",
+                "type": "text"
+              },
+              {
+                "value": "10 5/8\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3\"",
+                "type": "text"
+              },
+              {
+                "value": "8\"",
+                "type": "text"
+              },
+              {
+                "value": "11 3/4\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4\"",
+                "type": "text"
+              },
+              {
+                "value": "8 1/4\"",
+                "type": "text"
+              },
+              {
+                "value": "12 3/4\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6\"",
+                "type": "text"
+              },
+              {
+                "value": "9 5/16\"",
+                "type": "text"
+              },
+              {
+                "value": "14 7/8\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8\"",
+                "type": "text"
+              },
+              {
+                "value": "10 5/16\"",
+                "type": "text"
+              },
+              {
+                "value": "16 7/8\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "10\"",
+                "type": "text"
+              },
+              {
+                "value": "11 3/8\"",
+                "type": "text"
+              },
+              {
+                "value": "19\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "12\"",
+                "type": "text"
+              },
+              {
+                "value": "12 3/8\"",
+                "type": "text"
+              },
+              {
+                "value": "21\"",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Pipe size dimension lookup table in lower right of drawing"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 3,
+      "caption": "VG13 coding/example table",
+      "slug": "vg13-coding-example",
+      "bbox_norm": [
+        0.62,
+        0.72,
+        0.97,
+        0.84
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "CODING",
+                "is_header": true
+              },
+              {
+                "value": "( EXAMPLE )",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "VG13 \u2014",
+                "type": "text"
+              },
+              {
+                "value": "36\"",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "\u2191/S STD./PIPE",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "No.",
+                "type": "text"
+              },
+              {
+                "value": "SIZE \u2014 \"L\"-DIM.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Coding example table showing how to specify the VG13 support"
+    }
+  ],
+  "issues": []
+}

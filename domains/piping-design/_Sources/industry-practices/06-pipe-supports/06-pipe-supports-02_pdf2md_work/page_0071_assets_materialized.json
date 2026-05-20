@@ -1,0 +1,182 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0071.anchored.md",
+  "assets": [
+    {
+      "asset_id": "06-pipe-supports-02_p0071_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.14
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        628
+      ],
+      "caption": "Item list \u2014 Heavy Duty Riser Clamp components",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/06-pipe-supports-02_p0071_tbl01_item-list-riser-clamp-components.png",
+      "png_sha256": "1a8a2da67314c6bd5896d9c63147c331de8dccc9b69f90575043104e68b9d952",
+      "slug": "item-list-riser-clamp-components",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0071_tbl01_item-list-riser-clamp-components.json",
+      "table_data_json_sha256": "20e21000183d250ab7b872d3db04bf1f7ed7e5ba4fb757f0a2f213529a672788",
+      "table_data_sha256": "20e21000183d250ab7b872d3db04bf1f7ed7e5ba4fb757f0a2f213529a672788",
+      "xlsx_path": "tables/06-pipe-supports-02_p0071_tbl01_item-list-riser-clamp-components.xlsx",
+      "xlsx_sha256": "d19f315c5873b74801a4cd76136c41d42bd275a20172ddea67d41de71041bd34"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0071_fig01",
+      "bbox_norm": [
+        0.03,
+        0.13,
+        0.65,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        264,
+        1789,
+        2874
+      ],
+      "caption": "Plan and Elevation views \u2014 Heavy Duty Riser Clamp",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/06-pipe-supports-02_p0071_fig01_plan-elevation-heavy-duty-riser-clamp.png",
+      "png_sha256": "40dad1163037854eb0808a539998bf25530f2e570fcee0d351381fa2b762bad3",
+      "slug": "plan-elevation-heavy-duty-riser-clamp",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0071_tbl02",
+      "bbox_norm": [
+        0.65,
+        0.3,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        1533,
+        826,
+        2555,
+        2082
+      ],
+      "caption": "Type chart \u2014 clamp material by type number",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/06-pipe-supports-02_p0071_tbl02_type-chart-clamp-material.png",
+      "png_sha256": "a1a7df5968696b4b83fadc94caf681c3342319393bb659e6e47704f70ef9ba3b",
+      "slug": "type-chart-clamp-material",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0071_tbl02_type-chart-clamp-material.json",
+      "table_data_json_sha256": "aaccbfc3f6c2d38a33c9e9036d071583a4a931dcec82f05a7a8d397bab028244",
+      "table_data_sha256": "aaccbfc3f6c2d38a33c9e9036d071583a4a931dcec82f05a7a8d397bab028244",
+      "xlsx_path": "tables/06-pipe-supports-02_p0071_tbl02_type-chart-clamp-material.xlsx",
+      "xlsx_sha256": "34a58fe3d3ecbc95a66e8af47c35c2b30c6c6c0932f94237d3776ab74914ca74"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0071_tbl03",
+      "bbox_norm": [
+        0.65,
+        0.55,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        1533,
+        1652,
+        2555,
+        2643
+      ],
+      "caption": "Pipe size dimensions and maximum load",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 3,
+      "png_path": "tables/06-pipe-supports-02_p0071_tbl03_pipe-size-dimensions-max-load.png",
+      "png_sha256": "3a5736c45decbbf92069b1edc6fa9f5b7271c41be1695247076c95467ace3f64",
+      "slug": "pipe-size-dimensions-max-load",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0071_tbl03_pipe-size-dimensions-max-load.json",
+      "table_data_json_sha256": "3d6d8a4bd26e7af4377b16c57f621685039e97eb57c7085459961613b29007c2",
+      "table_data_sha256": "3d6d8a4bd26e7af4377b16c57f621685039e97eb57c7085459961613b29007c2",
+      "xlsx_path": "tables/06-pipe-supports-02_p0071_tbl03_pipe-size-dimensions-max-load.xlsx",
+      "xlsx_sha256": "c23dbb92d4fd5d0799fc65a220ed39fe7b7ff4e1b1e61e2b16833a9db7c5ad12"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0071_tbl04",
+      "bbox_norm": [
+        0.65,
+        0.73,
+        0.97,
+        0.83
+      ],
+      "bbox_px": [
+        1533,
+        2247,
+        2555,
+        2908
+      ],
+      "caption": "Coding example",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 4,
+      "png_path": "tables/06-pipe-supports-02_p0071_tbl04_coding-example.png",
+      "png_sha256": "c9c07bd948c519cee42efc29aef5d31706e480e97db8f2d2d73d1b5c2b730438",
+      "slug": "coding-example",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0071_tbl04_coding-example.json",
+      "table_data_json_sha256": "8b02a21e8ead07170ea4702c0eff93d42479a42cb50e899227ce6af3208d2dd8",
+      "table_data_sha256": "8b02a21e8ead07170ea4702c0eff93d42479a42cb50e899227ce6af3208d2dd8",
+      "xlsx_path": "tables/06-pipe-supports-02_p0071_tbl04_coding-example.xlsx",
+      "xlsx_sha256": "4cf9c2580ae908416a445319541192c3c26fe1a73e328f9ac5f9f0345e9c2f90"
+    },
+    {
+      "asset_id": "06-pipe-supports-02_p0071_tbl05",
+      "bbox_norm": [
+        0.03,
+        0.83,
+        0.65,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2577,
+        1789,
+        3238
+      ],
+      "caption": "Revision block",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 5,
+      "png_path": "tables/06-pipe-supports-02_p0071_tbl05_revision-block.png",
+      "png_sha256": "12737b4a0ab94a590c3fd4201d716b8ec60f28672e238ea0e5d7020293d6387b",
+      "slug": "revision-block",
+      "status": "materialized",
+      "table_data_json_path": "tables/06-pipe-supports-02_p0071_tbl05_revision-block.json",
+      "table_data_json_sha256": "52965220975f03b12086baaaecfeb973584820c4f02f1d4a232b8c432fee903f",
+      "table_data_sha256": "52965220975f03b12086baaaecfeb973584820c4f02f1d4a232b8c432fee903f",
+      "xlsx_path": "tables/06-pipe-supports-02_p0071_tbl05_revision-block.xlsx",
+      "xlsx_sha256": "99c2169c99c47848dfb937d2941b10671e7660651629f29fb8b006ed2f8514da"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/_assets/06-pipe-supports-02",
+  "doc_stem": "06-pipe-supports-02",
+  "page": 71,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0071.png",
+  "page_image_sha256": "823fa046c14932a8d214a84e224b3a017431f7388097440e95b96c46c970a304",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/06-pipe-supports/06-pipe-supports-02_pdf2md_work/page_0071_assets.json"
+}

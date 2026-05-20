@@ -1,0 +1,98 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "03-piping-materials-and-line-classes-12",
+  "page": 25,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 11: Tubing Materials",
+      "slug": "table-11-tubing-materials",
+      "bbox_norm": [0.05, 0.10, 0.95, 0.55],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) Tubing shall be seamless",
+          "(2) To be used for steam tracing only, see REP 5–6–8."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Material", "is_header": true },
+              { "value": "Specification", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Stainless Steel (1)", "type": "text" },
+              { "value": "ASTM A269, ASTM A632: Grades 304, 304L, 316, 316L, 317L, 321, 347", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 20", "type": "text" },
+              { "value": "ASTM B729: Grade Alloy 20 (N08020)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 400", "type": "text" },
+              { "value": "ASTM B165", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Copper", "type": "text" },
+              { "value": "ASTM B68", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 600", "type": "text" },
+              { "value": "ASTM B167: Grade Alloy 600 (N06600)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 625", "type": "text" },
+              { "value": "ASTM B444: Grade Alloy 625 (N06625)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 800", "type": "text" },
+              { "value": "ASTM B407: Grade Alloy 800 (N08800)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 800H", "type": "text" },
+              { "value": "ASTM B407: Grade Alloy 800H (N08810)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Alloy 800HT", "type": "text" },
+              { "value": "ASTM B407: Grade Alloy 800HT (N08811)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Carbon Steel (2)", "type": "text" },
+              { "value": "ASTM A179", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing tubing materials and their ASTM specifications. Footnotes at bottom of table."
+    }
+  ],
+  "issues": []
+}
