@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0045_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0045_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.72,
+        0.6
+      ],
+      "bbox_px": [
+        128,
+        759,
+        1964,
+        2145
+      ],
+      "caption": "RD-1 Rupture Disc/Pressure Transducer Saddled onto Core",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0045_fig01_rd-1-rupture-disc-pressure-transducer-sa.png",
+      "png_sha256": "a1631ada9b533c1a466fd062db8db38ec27a95e874abdfd0ff79d54aa1b9950e",
+      "slug": "rd-1-rupture-disc-pressure-transducer-sa",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0045.png",
+  "page_image_sha256": "4469de828f64478c3c32dc9f376b2d75a166d3759a217925104339c767ab0527",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0045_assets.json"
+}

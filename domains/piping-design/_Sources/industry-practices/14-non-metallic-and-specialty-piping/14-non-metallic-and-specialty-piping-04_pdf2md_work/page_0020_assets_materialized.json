@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0020_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0020_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2422,
+        2541
+      ],
+      "caption": "FJT-3 Jacket Size Slip-On Flange \u2014 full jacket termination cross-section detail showing CORE and JACKET components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0020_fig01_fjt-3-jacket-size-slip-on-flange.png",
+      "png_sha256": "d0b431c112fb1d59b61187cf165a79efe62ae3d987beab8ba193f70c656ad399",
+      "slug": "fjt-3-jacket-size-slip-on-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0020.png",
+  "page_image_sha256": "bff7c2aff666be647277e9fe4deee4befc0c9c30d25565aa13a3ec6383640207",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0020_assets.json"
+}

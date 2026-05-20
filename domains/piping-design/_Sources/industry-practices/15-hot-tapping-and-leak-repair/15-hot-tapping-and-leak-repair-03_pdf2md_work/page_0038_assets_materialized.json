@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-03_pdf2md_work/page_0038_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-03_p0038_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        70,
+        1653,
+        2035
+      ],
+      "caption": "Appendix 3 \u2014 Welding temperature of pipewall chart: maximum prevailing temperature at the inner side of carbon or carbon-manganese steel pipe when welding with covered electrode, starting from an initial pipe wall temperature of 150\u00b0C",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/15-hot-tapping-and-leak-repair-03_p0038_fig01_welding-temp-pipewall-150c.png",
+      "png_sha256": "9d0691d93b21372e84f7ab9c7f11e45ff8de9a642064653e22d71c606f4c0625",
+      "slug": "welding-temp-pipewall-150c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-03_assets",
+  "doc_stem": "15-hot-tapping-and-leak-repair-03",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-03_pdf2md_work/page_0038.png",
+  "page_image_sha256": "22131e18d87df2fb52f21046a825b1306628614456bd16aaebf254dd762679ee",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-03_pdf2md_work/page_0038_assets.json"
+}

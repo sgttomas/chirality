@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0029_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-02_p0029_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        50,
+        2345,
+        1586
+      ],
+      "caption": "Appendix V \u2014 Suggested Hot Tap Work Flow Chart",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/15-hot-tapping-and-leak-repair-02_p0029_fig01_appendix-v-suggested-hot-tap-work-flow-c.png",
+      "png_sha256": "ba7c6e4965c300629942dc1d311fad97c6b470ae8ed1e661de3aed99157266de",
+      "slug": "appendix-v-suggested-hot-tap-work-flow-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_assets",
+  "doc_stem": "15-hot-tapping-and-leak-repair-02",
+  "page": 29,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0029.png",
+  "page_image_sha256": "8670aa75c480f387f464cc3e9d558d543f013fd47f8a3f4f0394b6aa6d7dcdba",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0029_assets.json"
+}

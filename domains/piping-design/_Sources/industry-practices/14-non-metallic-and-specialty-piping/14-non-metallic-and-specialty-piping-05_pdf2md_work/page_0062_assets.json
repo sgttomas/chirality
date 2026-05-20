@@ -1,0 +1,99 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 62,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-21 Typical Pressure Ratings for PVDF and PP Flanges",
+      "slug": "fig-400-21-typical-pressure-ratings-pvdf-pp-flanges",
+      "bbox_norm": [0.07, 0.58, 0.93, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Temperature, °F", "is_header": true },
+            { "value": "PP, psi", "is_header": true },
+            { "value": "PVDF, psi", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "100", "type": "number" },
+            { "value": 150, "type": "number" },
+            { "value": 150, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "110", "type": "number" },
+            { "value": 140, "type": "number" },
+            { "value": 150, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "120", "type": "number" },
+            { "value": 130, "type": "number" },
+            { "value": 150, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "130", "type": "number" },
+            { "value": 118, "type": "number" },
+            { "value": 150, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "140", "type": "number" },
+            { "value": 105, "type": "number" },
+            { "value": 150, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "150", "type": "number" },
+            { "value": 93, "type": "number" },
+            { "value": 140, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "160", "type": "number" },
+            { "value": 80, "type": "number" },
+            { "value": 133, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "170", "type": "number" },
+            { "value": 70, "type": "number" },
+            { "value": 125, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "180", "type": "number" },
+            { "value": 50, "type": "number" },
+            { "value": 115, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "190", "type": "number" },
+            { "value": "N/R", "type": "text" },
+            { "value": 106, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "200", "type": "number" },
+            { "value": "N/R", "type": "text" },
+            { "value": 97, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "250", "type": "number" },
+            { "value": "N/R", "type": "text" },
+            { "value": 50, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "280", "type": "number" },
+            { "value": "N/R", "type": "text" },
+            { "value": 25, "type": "number" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with temperature in °F and pressure ratings in psi for PP and PVDF flanges. N/R indicates Not Rated."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0011_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0011_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2555,
+        3040
+      ],
+      "caption": "A1.1 HDPE Pipe Shallow Bury Trench Detail\u2014Type I",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0011_fig01_hdpe-pipe-shallow-bury-trench-detail-typ.png",
+      "png_sha256": "b40fc4409441ad9cf8380aeb37adf89be32bf010c7aa07302eb632c8aa8430d2",
+      "slug": "hdpe-pipe-shallow-bury-trench-detail-typ",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0011.png",
+  "page_image_sha256": "cc4ef4e4404445442964db514de287c9b3214fdf33a56134b521b95bdbb00581",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0011_assets.json"
+}

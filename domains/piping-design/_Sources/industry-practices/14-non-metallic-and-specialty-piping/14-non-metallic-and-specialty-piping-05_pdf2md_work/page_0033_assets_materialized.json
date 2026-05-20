@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0033_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0033_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.63,
+        0.75,
+        0.76
+      ],
+      "bbox_px": [
+        76,
+        1912,
+        2040,
+        2670
+      ],
+      "caption": "Temperature and Pressure Limitations, PVC and CPVC",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0033_tbl01_temperature-pressure-limitations-pvc-cpv.png",
+      "png_sha256": "12eb93558120cba5c8fbaea68075b573d164f5e39995433882b55164463afca5",
+      "slug": "temperature-pressure-limitations-pvc-cpv",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0033_tbl01_temperature-pressure-limitations-pvc-cpv.json",
+      "table_data_json_sha256": "cedcf8016b5c1e1e8a8d36c4daa11551135e8d80539f337bc0985ac1362433a4",
+      "table_data_sha256": "cedcf8016b5c1e1e8a8d36c4daa11551135e8d80539f337bc0985ac1362433a4",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0033_tbl01_temperature-pressure-limitations-pvc-cpv.xlsx",
+      "xlsx_sha256": "87654ef8fc149294aa7d0aa41ca2e3c3b705aec00306b58d565ce95b5ce0fa65"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0033.png",
+  "page_image_sha256": "0d20727ff7236e45d867b45e546552eec9626dd1af8723f3d0c2022354ec6e0b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0033_assets.json"
+}

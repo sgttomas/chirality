@@ -1,0 +1,87 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0016_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.92,
+        0.35
+      ],
+      "bbox_px": [
+        77,
+        66,
+        2478,
+        1322
+      ],
+      "caption": "WATER MAIN ROUTING AROUND SEWER & GRAVITY DRAINAGE PIPES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig01_water-main-routing-around-sewer-gravity.png",
+      "png_sha256": "1485ce312d2d192789c8b7490b5c2ce138372c1d45b95719344b48c576a6061d",
+      "slug": "water-main-routing-around-sewer-gravity",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig02",
+      "bbox_norm": [
+        0.08,
+        0.36,
+        0.92,
+        0.63
+      ],
+      "bbox_px": [
+        77,
+        1024,
+        2478,
+        2247
+      ],
+      "caption": "NON-METALLIC LINE CROSSING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig02_non-metallic-line-crossing.png",
+      "png_sha256": "9400d8a00cf10e4367fb9b978778a67632ae383610b2d91f4dedd513bfab65dc",
+      "slug": "non-metallic-line-crossing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig03",
+      "bbox_norm": [
+        0.08,
+        0.63,
+        0.92,
+        0.85
+      ],
+      "bbox_px": [
+        77,
+        1916,
+        2478,
+        2974
+      ],
+      "caption": "METALLIC LINE CROSSING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig03_metallic-line-crossing.png",
+      "png_sha256": "64b54315cf2645e40a6559b274e462708980cc7693ad605c1d9dbf8fcf9dfd4f",
+      "slug": "metallic-line-crossing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0016.png",
+  "page_image_sha256": "8289bba0d0c3b9b9bbf0a35170ca36a6b176440b7ab8e3597a15768d99120750",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0016_assets.json"
+}

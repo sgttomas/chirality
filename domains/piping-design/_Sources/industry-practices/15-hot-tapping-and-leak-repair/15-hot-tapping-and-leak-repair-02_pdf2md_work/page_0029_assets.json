@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-02",
+  "page": 29,
+  "total_pages": 29,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Appendix V — Suggested Hot Tap Work Flow Chart",
+      "slug": "appendix-v-suggested-hot-tap-work-flow-chart",
+      "bbox_norm": [0.03, 0.08, 0.97, 0.90],
+      "confidence": "high",
+      "notes": "Full-page flow chart with two swim lanes: Engineering (top) and Operations, Maintenance & Construction (bottom). Covers hot tap authorization and execution sequence from task list through close-out."
+    }
+  ],
+  "issues": []
+}

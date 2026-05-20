@@ -7,22 +7,18 @@
   "asset_policy": "prose-document-assets-v1",
   "assets": [
     {
-      "kind": "img",
-      "ordinal": 1,
-      "caption": "PIP logo",
-      "slug": "pip-logo",
-      "bbox_norm": [0.05, 0.02, 0.22, 0.12],
-      "confidence": "high",
-      "notes": "PIP (Process Industry Practices) logo in title block, top-left"
-    },
-    {
       "kind": "fig",
       "ordinal": 1,
-      "caption": "SPACER, TYPE C — plan and section detail showing core, jacket, equal spacing (EQ), and 1/16\" clearance callouts; 120° typical spacing shown in end view",
+      "caption": "SPACER, TYPE C \u2014 plan and section detail showing core, jacket, equal spacing (EQ), and 1/16\" clearance callouts; 120\u00b0 typical spacing shown in end view",
       "slug": "spacer-type-c-detail",
-      "bbox_norm": [0.08, 0.18, 0.92, 0.72],
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.72
+      ],
       "confidence": "high",
-      "notes": "Engineering drawing showing side cross-section of jacket annulus spacer (Type C), end-view with 120° typical spacing, and detail view showing 1/16\" clearance. Labels include CORE, JACKET, ELIMINATE ALL SHARP EDGES, EQ, EQ."
+      "notes": "Engineering drawing showing side cross-section of jacket annulus spacer (Type C), end-view with 120\u00b0 typical spacing, and detail view showing 1/16\" clearance. Labels include CORE, JACKET, ELIMINATE ALL SHARP EDGES, EQ, EQ."
     }
   ],
   "issues": []

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0046_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0046_fig01",
+      "bbox_norm": [
+        0.1,
+        0.18,
+        0.85,
+        0.7
+      ],
+      "bbox_px": [
+        128,
+        429,
+        2295,
+        2475
+      ],
+      "caption": "CT-1 Core Tap detail showing pressure/temperature boss, core, and jacket cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0046_fig01_ct-1-core-tap-detail.png",
+      "png_sha256": "736816149d3972987b59088b5279baf0cf964c06691c0e016ee5e3297bbe32f6",
+      "slug": "ct-1-core-tap-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 46,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0046.png",
+  "page_image_sha256": "6fb876133c4583288e37acc98e47f17b053acbc4ca2e4c6d19bf8cd24f0ffbbf",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0046_assets.json"
+}

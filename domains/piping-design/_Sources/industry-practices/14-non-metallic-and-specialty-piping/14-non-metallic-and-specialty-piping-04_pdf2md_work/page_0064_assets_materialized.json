@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0064_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0064_fig01",
+      "bbox_norm": [
+        0.1,
+        0.22,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        561,
+        2422,
+        2541
+      ],
+      "caption": "SIPHON TUBE ASSEMBLY \u2014 ST-1 detail showing core, jacket, steam condensate drain, and siphon tube",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0064_fig01_siphon-tube-assembly-st-1.png",
+      "png_sha256": "5286342ff24a929cdf9bbc5590f6e45f8c81f15af86ba550dfd5db7ad8687738",
+      "slug": "siphon-tube-assembly-st-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 64,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0064.png",
+  "page_image_sha256": "c007a3d1f3a878321d70360dfa7eb1b71b396d874582f8678e1b9c02d1c4846f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0064_assets.json"
+}

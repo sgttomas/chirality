@@ -9,20 +9,16 @@
     {
       "kind": "fig",
       "ordinal": 1,
-      "caption": "HDPE Pipe Shallow Bury Trench Detail — Type II",
+      "caption": "HDPE Pipe Shallow Bury Trench Detail \u2014 Type II",
       "slug": "hdpe-pipe-shallow-bury-trench-detail-type-ii",
-      "bbox_norm": [0.06, 0.08, 0.94, 0.82],
+      "bbox_norm": [
+        0.06,
+        0.08,
+        0.94,
+        0.82
+      ],
       "confidence": "high",
       "notes": "Engineering drawing showing trench cross-section for shallow bury of HDPE pipe, with labeled layers including gravel/asphalt finish, warning ribbon, compacted backfill, sand material, and HDPE main. Drawing number A1.2."
-    },
-    {
-      "kind": "img",
-      "ordinal": 1,
-      "caption": "Suncor logo",
-      "slug": "suncor-logo",
-      "bbox_norm": [0.06, 0.84, 0.22, 0.95],
-      "confidence": "high",
-      "notes": "Suncor Energy corporate logo in title block"
     }
   ],
   "issues": []

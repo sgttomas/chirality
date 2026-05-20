@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0063_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0063_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.9,
+        0.68
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2422,
+        2409
+      ],
+      "caption": "Impingement Plate detail \u2014 jacket annulus cross-section showing steam inlet, impingement plate, core, and jacket",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0063_fig01_impingement-plate-jacket-annulus.png",
+      "png_sha256": "2e9ffeb5ed7785a817749325ba3178a43e9220ea0c4aa8bf0786675a6e8b97b6",
+      "slug": "impingement-plate-jacket-annulus",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0063.png",
+  "page_image_sha256": "8ea2d6b187ba616468a159b6bdfc9407fb8b58b3d9bf99ff4dd5ba99f8c2b9c9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0063_assets.json"
+}

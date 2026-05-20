@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0030_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0030_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.88,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2372,
+        2541
+      ],
+      "caption": "PNFJ8430 Jacketed Elbows 45 Degree JE-7 \u2014 Mitered Construction detail showing core pipe and jacket modified 45\u00b0 elbow",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0030_fig01_pnfj8430-jacketed-elbow-45-je7-mitered-c.png",
+      "png_sha256": "da2d3e1efe08d36a0f97aab4a3c5b6bcc6e2aea982aade63f0f7d3a4138161d7",
+      "slug": "pnfj8430-jacketed-elbow-45-je7-mitered-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0030.png",
+  "page_image_sha256": "d27c041e1ca8ae9916fec4f74b8b98fc8cadf5106691b9b36b623517802e698f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0030_assets.json"
+}

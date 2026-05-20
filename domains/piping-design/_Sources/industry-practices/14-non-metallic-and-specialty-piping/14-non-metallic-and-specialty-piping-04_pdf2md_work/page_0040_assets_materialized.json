@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0040_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0040_fig01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        396,
+        2474,
+        2541
+      ],
+      "caption": "CORE AND JACKET PIPING SADDLE-ON \u2014 SDL-1 detail showing core and jacket piping saddle-on connection with callouts for CORE and JACKET",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0040_fig01_core-jacket-piping-saddle-on.png",
+      "png_sha256": "abf7275c69b7601aa6796e8c77c25dcb5f203904cbca74c4e5da8252f9d85399",
+      "slug": "core-jacket-piping-saddle-on",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 40,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0040.png",
+  "page_image_sha256": "8a5bfd33031f7c48559f25056906e257b2f6415b4c7548f9cb80de4d2996552b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0040_assets.json"
+}

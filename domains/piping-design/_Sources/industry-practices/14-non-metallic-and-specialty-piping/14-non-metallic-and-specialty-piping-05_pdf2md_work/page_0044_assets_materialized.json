@@ -1,0 +1,38 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0044_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0044_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        2538
+      ],
+      "caption": "Fig. 400-17 Basic Requirements and Ordering Suggestions for FRP Pipe (2 of 2)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0044_tbl01_fig-400-17-frp-pipe-basic-requirements-2.png",
+      "png_sha256": "3cd5f122e5dcb46ed3580e5cae4e73d3dec0e795f6221530ad2d4fcd344802b7",
+      "slug": "fig-400-17-frp-pipe-basic-requirements-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0044.png",
+  "page_image_sha256": "1e5f1bd43242887d079b248aed562e9b3ab37e172c268f4691d750b523741071",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0044_assets.json"
+}

@@ -1,0 +1,90 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0011_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0011_fig01",
+      "bbox_norm": [
+        0.5,
+        0.03,
+        0.98,
+        0.38
+      ],
+      "bbox_px": [
+        1148,
+        0,
+        2550,
+        1417
+      ],
+      "caption": "Fig. 400-5 Nonmetallic Pipe Joints Courtesy of Central Plastics Company, Shawnee, OK; Fibercast (4 of 7)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0011_fig01_fig-400-5-nonmetallic-pipe-joints-4-of-7.png",
+      "png_sha256": "da893f989c601c5ef41673301b20584be27d639f68114cfcbdb60faef615959e",
+      "slug": "fig-400-5-nonmetallic-pipe-joints-4-of-7",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0011_tbl01",
+      "bbox_norm": [
+        0.5,
+        0.55,
+        0.98,
+        0.78
+      ],
+      "bbox_px": [
+        1148,
+        1648,
+        2550,
+        2736
+      ],
+      "caption": "Recommended tightening torque for flange bolts by flange size",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0011_tbl01_flange-bolt-torque.png",
+      "png_sha256": "113411c6cff05ba6968198338ef2844608e3a03da1f125f0795efb277884d16d",
+      "slug": "flange-bolt-torque",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0011_fig02",
+      "bbox_norm": [
+        0.5,
+        0.78,
+        0.85,
+        0.93
+      ],
+      "bbox_px": [
+        1148,
+        2406,
+        2295,
+        3230
+      ],
+      "caption": "The following tightening pattern should be used for the flange bolts.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0011_fig02_flange-bolt-tightening-pattern.png",
+      "png_sha256": "bc2312f50bb50c034697cb91b9eac4a0188696a54a284f3e7670060610ab8480",
+      "slug": "flange-bolt-tightening-pattern",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0011.png",
+  "page_image_sha256": "3a59d4465526a58ff37a5007bdbda85436352035d7fb326a41c29f16721b7f64",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0011_assets.json"
+}

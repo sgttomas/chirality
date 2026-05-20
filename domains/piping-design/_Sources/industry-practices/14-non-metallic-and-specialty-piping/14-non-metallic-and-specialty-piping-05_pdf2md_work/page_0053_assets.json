@@ -1,0 +1,71 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 53,
+  "total_pages": 53,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-20 Physical Properties, Filament-wound Epoxy or Vinyl Ester FRP Pipe",
+      "slug": "fig-400-20-physical-properties-frp-pipe",
+      "bbox_norm": [0.06, 0.16, 0.94, 0.36],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Property", "is_header": true},
+              {"value": "Hoop Direction", "is_header": true},
+              {"value": "Axial Direction", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Coefficient of linear expansion, in/in/°F × 10⁻⁶", "type": "text"},
+              {"value": "0.5 - 0.8", "type": "text"},
+              {"value": "1.0 - 1.8", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Tensile strength, ksi", "type": "text"},
+              {"value": "20 - 50", "type": "text"},
+              {"value": "2 - 10", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Tensile Modulus, psi × 10⁶", "type": "text"},
+              {"value": "1.5 - 40", "type": "text"},
+              {"value": "0.8 - 2.0", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Density, g/cm³", "type": "text"},
+              {"value": "1.9", "type": "number"},
+              {"value": "1.9", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Thermal Conductivity, (Btu)(in)/(hr)(ft²)(°F)", "type": "text"},
+              {"value": "1.5 - 4.2", "type": "text"},
+              {"value": "1.5 - 4.2", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Five-row data table with property, hoop direction, and axial direction columns"
+    }
+  ],
+  "issues": []
+}

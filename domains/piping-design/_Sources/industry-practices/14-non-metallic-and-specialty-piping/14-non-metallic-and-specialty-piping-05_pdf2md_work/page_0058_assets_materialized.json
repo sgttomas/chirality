@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0058_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0058_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.04,
+        0.92,
+        0.22
+      ],
+      "bbox_px": [
+        76,
+        0,
+        2474,
+        890
+      ],
+      "caption": "ABS property values table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0058_tbl01_abs-property-values.png",
+      "png_sha256": "9b3689a55366a8c6f6478d2453e44833891b9859e45f9c711d677a3c3f30b0b3",
+      "slug": "abs-property-values",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0058_tbl01_abs-property-values.json",
+      "table_data_json_sha256": "7be60176b2ecc2c07f2253f4512da139a1cba75a8ffd378e2c38b7bd1a2ae238",
+      "table_data_sha256": "7be60176b2ecc2c07f2253f4512da139a1cba75a8ffd378e2c38b7bd1a2ae238",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0058_tbl01_abs-property-values.xlsx",
+      "xlsx_sha256": "9d9db9d3060d5ca5c71516852499eb1621ccb124e1f8e31be6cd0b7bdd6a36d9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0058.png",
+  "page_image_sha256": "028be45cb1437dc56bb6ca1ab23c6ae8ffb8a77892a1d3302a765fd7cfb62cc9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0058_assets.json"
+}

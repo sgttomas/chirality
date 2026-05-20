@@ -1,0 +1,143 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 61,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Temperature derating factor (TF) for PVDF, PB, PP",
+      "slug": "temperature-derating-factor-tf-pvdf-pb-pp",
+      "bbox_norm": [0.20, 0.07, 0.82, 0.42],
+      "confidence": "high",
+      "notes": "12-row table of TF values by temperature for PVDF, PB, PP materials",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Temp. (°F)", "is_header": true },
+            { "value": "PVDF", "is_header": true },
+            { "value": "PB", "is_header": true },
+            { "value": "PP", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "73.4", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "1.0", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "80", "type": "text" },
+            { "value": "0.96", "type": "text" },
+            { "value": "0.96", "type": "text" },
+            { "value": "0.93", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "90", "type": "text" },
+            { "value": "0.87", "type": "text" },
+            { "value": "0.89", "type": "text" },
+            { "value": "0.83", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "100", "type": "text" },
+            { "value": "0.80", "type": "text" },
+            { "value": "0.82", "type": "text" },
+            { "value": "0.74", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "120", "type": "text" },
+            { "value": "0.68", "type": "text" },
+            { "value": "0.75", "type": "text" },
+            { "value": "0.58", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "140", "type": "text" },
+            { "value": "0.58", "type": "text" },
+            { "value": "0.65", "type": "text" },
+            { "value": "0.40", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "160", "type": "text" },
+            { "value": "0.49", "type": "text" },
+            { "value": "0.57", "type": "text" },
+            { "value": "0.35", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "180", "type": "text" },
+            { "value": "0.42", "type": "text" },
+            { "value": "0.50", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "200", "type": "text" },
+            { "value": "0.36", "type": "text" },
+            { "value": "0.37", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "220", "type": "text" },
+            { "value": "0.30", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "240", "type": "text" },
+            { "value": "0.25", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "280", "type": "text" },
+            { "value": "0.18", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]}
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Environment factor (EF) for PVDF, PB, PP",
+      "slug": "environment-factor-ef-pvdf-pb-pp",
+      "bbox_norm": [0.20, 0.46, 0.82, 0.60],
+      "confidence": "high",
+      "notes": "Two-row table of EF values for nonhydrocarbon and hydrocarbon service",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "", "is_header": true },
+            { "value": "PVDF", "is_header": true },
+            { "value": "PB", "is_header": true },
+            { "value": "PP", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "Nonhydrocarbon service", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "1.0", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Hydrocarbon service (even dilute quantities)", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "0.5", "type": "text" },
+            { "value": "0.5", "type": "text" }
+          ]}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

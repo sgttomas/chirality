@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-03",
+  "page": 25,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 1 TYPES OF HOT-TAP CONNECTION",
+      "slug": "figure-1-types-of-hot-tap-connection",
+      "bbox_norm": [0.04, 0.05, 0.96, 0.97],
+      "confidence": "high",
+      "notes": "Full-page figure showing three types of hot-tap connection: (1) reduced branch fitting, (2) reinforced set-on branch, (3) preformed split tee. All with callout labels."
+    }
+  ],
+  "issues": []
+}

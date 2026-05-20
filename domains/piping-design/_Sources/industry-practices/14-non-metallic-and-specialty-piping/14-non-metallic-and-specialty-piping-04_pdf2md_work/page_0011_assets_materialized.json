@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0011_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0011_fig01",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.75,
+        0.65
+      ],
+      "bbox_px": [
+        76,
+        1089,
+        2040,
+        2310
+      ],
+      "caption": "PNFJ8050 SW-1 Jacket Closure \u2014 Swage detail showing CORE and JACKET components in cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0011_fig01_pnfj8050-sw1-jacket-closure-swage.png",
+      "png_sha256": "87c72c93b1361b217bd90585b67f540f98352e3ec956f8b35c339592d5fe6a56",
+      "slug": "pnfj8050-sw1-jacket-closure-swage",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0011.png",
+  "page_image_sha256": "93cb0ef25122a28f1a59470c9d924bba913e8209f6a97b9d5bc9752ce8152a59",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0011_assets.json"
+}

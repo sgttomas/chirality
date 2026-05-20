@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0034_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0034_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2422,
+        2541
+      ],
+      "caption": "CONCENTRIC REDUCER \u2014 Jacketed concentric reducer fabrication/installation detail showing CORE pipe and JACKET pipe with weld symbols (RED-1)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0034_fig01_concentric-reducer-red-1.png",
+      "png_sha256": "f99ba7aab193b7c4c80dde846529a58b728e7d50d19bd2b0cf5385b24ab5271d",
+      "slug": "concentric-reducer-red-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 34,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0034.png",
+  "page_image_sha256": "e22e765b1daf81baa3f5cd0fc677af6270ac0f0e6b13115afb3a1d41702c1a7a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0034_assets.json"
+}

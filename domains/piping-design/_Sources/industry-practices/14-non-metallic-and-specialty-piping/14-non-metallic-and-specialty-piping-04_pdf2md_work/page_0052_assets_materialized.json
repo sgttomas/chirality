@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0052_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0052_fig01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.7
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2475
+      ],
+      "caption": "Typical Socket Weld or Butt Weld Valve with Steam Jacket \u2014 SJV-1 fabrication/installation detail showing inlet, outlet, drain, detail 1 callout, and E-E section reference",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0052_fig01_socket-weld-butt-weld-valve-steam-jacket.png",
+      "png_sha256": "5b49ed694c9b803a60e5bac15623130374306959a9181e635d890166a0f85f1f",
+      "slug": "socket-weld-butt-weld-valve-steam-jacket",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 52,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0052.png",
+  "page_image_sha256": "fd2179acac2dd6d39e97105fdb5558efcd292257e1d3d6d2ded1e725666b0d45",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0052_assets.json"
+}

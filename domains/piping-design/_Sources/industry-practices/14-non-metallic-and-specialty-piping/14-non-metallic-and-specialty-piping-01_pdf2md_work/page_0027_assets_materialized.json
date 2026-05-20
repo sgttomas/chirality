@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0027_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0027_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.4,
+        0.97,
+        0.67
+      ],
+      "bbox_px": [
+        0,
+        1156,
+        2555,
+        2379
+      ],
+      "caption": "HDPE HOT PLATE FUSION BONDING PARAMETERS FOR SDR-17",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0027_tbl01_hdpe-hot-plate-fusion-bonding-parameters.png",
+      "png_sha256": "d0f6aedbc3f67317b2777299cff955bb4d8f480f87ab3e17b3222fe76f0b0d47",
+      "slug": "hdpe-hot-plate-fusion-bonding-parameters",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 27,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0027.png",
+  "page_image_sha256": "e922aaed04c993470918406df5179180688d63eecb5f9c6dde7a49fa0dcf3565",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0027_assets.json"
+}

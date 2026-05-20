@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0021_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0021_fig01",
+      "bbox_norm": [
+        0.12,
+        0.17,
+        0.88,
+        0.68
+      ],
+      "bbox_px": [
+        178,
+        396,
+        2372,
+        2409
+      ],
+      "caption": "REDUCING (JACKET SIZE) WELD NECK FLANGE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0021_fig01_reducing-jacket-size-weld-neck-flange.png",
+      "png_sha256": "399ef216c34838e62bcf88b0b80092e285c537544a53570a164a6aa16dbe34ab",
+      "slug": "reducing-jacket-size-weld-neck-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0021.png",
+  "page_image_sha256": "a4c6fb0a7fe72ca2653b760489b06650c8a970aeede05810e85b2f77d11abbb6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0021_assets.json"
+}

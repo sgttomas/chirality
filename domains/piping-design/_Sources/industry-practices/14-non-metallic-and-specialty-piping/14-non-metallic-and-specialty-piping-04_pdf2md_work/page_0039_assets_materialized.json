@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0039_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0039_fig01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2541
+      ],
+      "caption": "Core Piping with Integrally Reinforced Branch Connection and Jacket with Concentric Reducer \u2014 detail drawing showing (A) With Reinforcing Pad and (B) Without Reinforcing Pad, with CORE and JACKET labels and SEE NOTE 4 callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0039_fig01_core-piping-integrally-reinforced-branch.png",
+      "png_sha256": "981ed19a2ca3d2a2625a4473492dbf4f7e258cbebb6801a774f067800fd2d0e7",
+      "slug": "core-piping-integrally-reinforced-branch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 39,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0039.png",
+  "page_image_sha256": "6e0f2400044c01b198628c851d45ff00d895ea60448fb69b5e7279a2c1d599ff",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0039_assets.json"
+}

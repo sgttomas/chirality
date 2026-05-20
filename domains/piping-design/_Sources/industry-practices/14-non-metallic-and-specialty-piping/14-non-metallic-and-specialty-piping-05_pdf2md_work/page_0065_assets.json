@@ -1,0 +1,127 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 65,
+  "total_pages": 65,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-23 Concrete Nonpressure Pipe and Concrete Pressure Pipe",
+      "slug": "fig-400-23-concrete-nonpressure-pressure-pipe",
+      "bbox_norm": [0.05, 0.20, 0.95, 0.58],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": ["Concrete Nonpressure Pipe", "Concrete Pressure Pipe"],
+        "continuation_of": null,
+        "footnotes": ["(1) Five classes to cover 25 to 125 feet of head."],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Type of Pipe", "is_header": true},
+              {"value": "Spec.", "is_header": true},
+              {"value": "Steel Cyl.", "is_header": true},
+              {"value": "Non-cyl.", "is_header": true},
+              {"value": "Mild Reinforcing Bar", "is_header": true},
+              {"value": "High Strength Wire", "is_header": true},
+              {"value": "Typical Allowable Pressure, Psig", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Concrete Nonpressure Pipe", "is_header": true, "colspan": 7}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Nonreinforcement concrete non-cyl.", "type": "text"},
+              {"value": "ASTM C14", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "gravity flow", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Reinforced concrete non-cyl.", "type": "text"},
+              {"value": "ASTM C76", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "gravity flow", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Concrete Pressure Pipe", "is_header": true, "colspan": 7}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Reinforced concrete non-cyl.", "type": "text"},
+              {"value": "ASTM C361(1)", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "10 to 50", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Reinforced concrete non-cyl.", "type": "text"},
+              {"value": "AWWA C302", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "55", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Reinforced concrete cylinder", "type": "text"},
+              {"value": "AWWA C300", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "250", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Prestressed concrete cylinder", "type": "text"},
+              {"value": "AWWA C301", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "400", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Pretensioned concrete cylinder", "type": "text"},
+              {"value": "AWWA C303", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "400", "type": "number"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with section dividers for Nonpressure and Pressure pipe categories. Footnote (1) applies to ASTM C361 row."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,326 @@
+{
+  "asset_count": 3,
+  "assets": [
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-02_p0020_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.43,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        889,
+        1666,
+        1474
+      ],
+      "caption": "Operating conditions \u2014 PRESSURE, TEMPERATURE, FLOW RATE",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.png",
+      "png_sha256": "031ef40a46f5a5c86e62f9b95a136332586d9da661a851967b317db09b1a747e",
+      "slug": "operating-conditions-pressure-temperatur",
+      "status": "materialized",
+      "table_data_json_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.json",
+      "table_data_json_sha256": "64f11a76202265785323c2ffcf8a7a59b11ed636598e0717bc7c952f71fd83d6",
+      "table_data_sha256": "64f11a76202265785323c2ffcf8a7a59b11ed636598e0717bc7c952f71fd83d6",
+      "xlsx_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.xlsx",
+      "xlsx_sha256": "89add87a2b8b074dde8f3f26503da0006234fdf7da6fb0e536f2ff94d66926da"
+    },
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-02_p0028_fig01",
+      "bbox_norm": [
+        0.08,
+        0.22,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        50,
+        398,
+        1618,
+        1804
+      ],
+      "caption": "Sketch: Ultrasonic Thickness Survey Requirements",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 28,
+      "png_path": "figures/15-hot-tapping-and-leak-repair-02_p0028_fig01_ultrasonic-thickness-survey-requirements.png",
+      "png_sha256": "d37d7bd8e7bf7ce61b2589ff811c68818db0ce4d1333827b51410512d2580d3e",
+      "slug": "ultrasonic-thickness-survey-requirements",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-02_p0029_fig01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        50,
+        2345,
+        1586
+      ],
+      "caption": "Appendix V \u2014 Suggested Hot Tap Work Flow Chart",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 29,
+      "png_path": "figures/15-hot-tapping-and-leak-repair-02_p0029_fig01_appendix-v-suggested-hot-tap-work-flow-c.png",
+      "png_sha256": "ba7c6e4965c300629942dc1d311fad97c6b470ae8ed1e661de3aed99157266de",
+      "slug": "appendix-v-suggested-hot-tap-work-flow-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "15-hot-tapping-and-leak-repair-02",
+  "issues": [],
+  "page_manifest_count": 29,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0001_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0002_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0003_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0004_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0005_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0006_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0007_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0008_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0009_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0010_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0011_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0012_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0013_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0014_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0015_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0016_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0017_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0018_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0019_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0020_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0021_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0022_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0023_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0024_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0025_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0026_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0027_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0028_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0029_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work"
+}

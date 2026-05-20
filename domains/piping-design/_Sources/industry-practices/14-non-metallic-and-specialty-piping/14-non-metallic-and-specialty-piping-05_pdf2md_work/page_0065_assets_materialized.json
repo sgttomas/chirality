@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0065_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0065_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.2,
+        0.95,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        494,
+        2550,
+        2076
+      ],
+      "caption": "Fig. 400-23 Concrete Nonpressure Pipe and Concrete Pressure Pipe",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: 'Concrete Nonpressure Pipe'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0065_tbl01_fig-400-23-concrete-nonpressure-pressure.png",
+      "png_sha256": "fe5906dafad973e433d7005cb579b19ebb2d5ec6326b2a51c31441200c137724",
+      "slug": "fig-400-23-concrete-nonpressure-pressure",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 65,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0065.png",
+  "page_image_sha256": "1cd6c8f00c28d08f48b4a11082b1da9c8f355d76528d9ea7bb5e44582a49ad54",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0065_assets.json"
+}

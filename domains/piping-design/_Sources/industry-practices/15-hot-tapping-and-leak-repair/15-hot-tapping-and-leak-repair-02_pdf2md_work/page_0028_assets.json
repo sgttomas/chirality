@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-02",
+  "page": 28,
+  "total_pages": 29,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Sketch: Ultrasonic Thickness Survey Requirements",
+      "slug": "ultrasonic-thickness-survey-requirements",
+      "bbox_norm": [0.08, 0.22, 0.92, 0.72],
+      "confidence": "high",
+      "notes": "Schematic diagram of pipe with weldolet showing UT measurement grid; caption appears below the figure"
+    }
+  ],
+  "issues": []
+}

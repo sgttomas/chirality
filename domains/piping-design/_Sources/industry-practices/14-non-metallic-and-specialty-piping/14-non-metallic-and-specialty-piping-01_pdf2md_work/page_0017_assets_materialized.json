@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0017_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0017_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2575,
+        2887
+      ],
+      "caption": "A1.7 HDPE Pipe Cathodic Protection \u2014 CADWELD, Weld Metal Capsule, and Finished Weld installation details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0017_fig01_a1-7-hdpe-pipe-cathodic-protection-cadwe.png",
+      "png_sha256": "fbfc09cfe97f0c718404e8a0403f8e0e1883a2c51ceae6696650b185d7139e34",
+      "slug": "a1-7-hdpe-pipe-cathodic-protection-cadwe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0017.png",
+  "page_image_sha256": "92140cd1771e75b5d7f9ddbfd7ded0c9b317855b7a47d54a35d4758e5efff111",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0017_assets.json"
+}

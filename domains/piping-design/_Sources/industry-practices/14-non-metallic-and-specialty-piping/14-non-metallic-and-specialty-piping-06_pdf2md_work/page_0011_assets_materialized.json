@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0011_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-06_p0011_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.36,
+        0.6,
+        0.5
+      ],
+      "bbox_px": [
+        25,
+        1022,
+        1658,
+        1813
+      ],
+      "caption": "Recommended maximum temperatures by service",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-06_p0011_tbl01_recommended-max-temperatures-by-service.png",
+      "png_sha256": "65a2a202673262f2fa804d32d609c9dac87b9c1a326a47b770a470149e0ceedd",
+      "slug": "recommended-max-temperatures-by-service",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-06_p0011_tbl01_recommended-max-temperatures-by-service.json",
+      "table_data_json_sha256": "c78c9e63416580d338116fca8221fad0ae8f0ae212745f5edafc29c1f52beecb",
+      "table_data_sha256": "c78c9e63416580d338116fca8221fad0ae8f0ae212745f5edafc29c1f52beecb",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-06_p0011_tbl01_recommended-max-temperatures-by-service.xlsx",
+      "xlsx_sha256": "ae65fbf5cd5f688c5002ea989a5860ae22da1c9819c02d5bb1b8e5375a340a1f"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-06",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0011.png",
+  "page_image_sha256": "2355027554e33a2fd8edeab7cd4b9d21f47f3f9a80af6c151aafee6ecd19d991",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0011_assets.json"
+}

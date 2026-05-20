@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0023_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0023_fig01",
+      "bbox_norm": [
+        0.08,
+        0.46,
+        0.72,
+        0.72
+      ],
+      "bbox_px": [
+        77,
+        1356,
+        1974,
+        2547
+      ],
+      "caption": "Figure 1 Typical Pipe Cross Section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0023_fig01_figure-1-typical-pipe-cross-section.png",
+      "png_sha256": "5cd995d399c6b629a0d7ff025197a228396e1eb74108da619531d006e2fe8c67",
+      "slug": "figure-1-typical-pipe-cross-section",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0023.png",
+  "page_image_sha256": "c67e4b071ae6a2038fcbdf3719d98404e30474fc790caa26b8e080a4d1d5a317",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0023_assets.json"
+}

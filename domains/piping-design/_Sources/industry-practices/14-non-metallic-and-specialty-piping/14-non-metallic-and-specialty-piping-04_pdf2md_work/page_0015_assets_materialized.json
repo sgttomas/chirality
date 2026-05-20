@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0015_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0015_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.75,
+        0.65
+      ],
+      "bbox_px": [
+        76,
+        495,
+        2040,
+        2310
+      ],
+      "caption": "SJFA-4 Slip-on flange face fillet weld detail showing swaged jacket flange attachment with core label",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0015_fig01_sjfa-4-slip-on-flange-face-fillet-weld.png",
+      "png_sha256": "bdfac5a18efd0375bfb7bd282788072688a71653761c8dc4b3e16ae383faf19c",
+      "slug": "sjfa-4-slip-on-flange-face-fillet-weld",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0015.png",
+  "page_image_sha256": "1bcce6749e5d9c3abdfd08bd5ec80187e56f904bbc77f2d51870107c5922dcee",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0015_assets.json"
+}

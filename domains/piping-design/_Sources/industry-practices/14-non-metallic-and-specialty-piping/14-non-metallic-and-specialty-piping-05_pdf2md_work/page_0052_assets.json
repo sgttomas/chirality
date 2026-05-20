@@ -1,0 +1,165 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 52,
+  "total_pages": 52,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-19 Visible Defects, FRP Pipe",
+      "slug": "fig-400-19-visible-defects-frp-pipe",
+      "bbox_norm": [0.04, 0.05, 0.96, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": ["Pipe Body and Collar", "Threads"],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Defect", "is_header": true},
+              {"value": "Description", "is_header": true},
+              {"value": "Maximum Size", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Pipe Body and Collar", "is_header": true, "colspan": 3}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Burn", "type": "text"},
+              {"value": "Thermal decomposition evidenced by distortion or discoloration of the surface", "type": "text"},
+              {"value": "20% area if lightly blemished; 5% area if moderate burn of outer resin layer structural roving", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Chip", "type": "text"},
+              {"value": "Small piece broken from edge or surface", "type": "text"},
+              {"value": "Permitted if laminate has not been fractured", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Crazing", "type": "text"},
+              {"value": "Fine cracks at or under the surface seen by the unaided eye", "type": "text"},
+              {"value": "None permitted", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Cut Roving", "type": "text"},
+              {"value": "Outer rovings broken or cut owing to scraping or scuffing, or manufacturing process", "type": "text"},
+              {"value": "Maximum 3 per pipe with maximum size of 1 in², such that the wall thickness is not reduced below minimum", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Dry Spot", "type": "text"},
+              {"value": "Area where reinforcement was not thoroughly wet with resin", "type": "text"},
+              {"value": "None permitted", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fracture", "type": "text"},
+              {"value": "Rupture of laminate without complete penetration. Visible as lighter-colored area of interlaminar separation", "type": "text"},
+              {"value": "None permitted", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Pits(pinholes)", "type": "text"},
+              {"value": "Small craters in the surface", "type": "text"},
+              {"value": "Maximum 1/16 in. deep, no limit on number", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Resin Drip", "type": "text"},
+              {"value": "Resin protrusion", "type": "text"},
+              {"value": "Maximum 1/8 in. high, no limit on number", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Restriction", "type": "text"},
+              {"value": "Any restriction in I.D. of pipe: paste, epoxy or wax, lump, foreign matter", "type": "text"},
+              {"value": "None permitted", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Scratch", "type": "text"},
+              {"value": "Shallow mark caused by improper handling", "type": "text"},
+              {"value": "No limit on number if reinforcement is not exposed", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Threads", "is_header": true, "colspan": 3}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Air Bubbles", "type": "text"},
+              {"value": "Small bubbles at crest of threads", "type": "text"},
+              {"value": "Maximum size 1/8 in.: One allowed. Maximum size 1/16 in.: 10 allowed", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Broken", "type": "text"},
+              {"value": "Light patch at the root of the thread", "type": "text"},
+              {"value": "Maximum size 1/8 in. in any direction and one allowed per pin", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Chips", "type": "text"},
+              {"value": "Areas where over 10% of thread height is removed", "type": "text"},
+              {"value": "Maximum 3/8 in. long in one thread per connection, none permitted in LC area", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Cracks", "type": "text"},
+              {"value": "In direction of thread axis", "type": "text"},
+              {"value": "None permitted", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Flat Thread", "type": "text"},
+              {"value": "Area where top of thread is broken or ground off", "type": "text"},
+              {"value": "Maximum 3/8 in. long in one thread per connection, not to exceed 10% of the thread height. None permitted in LC area", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Squareness", "type": "text"},
+              {"value": "Cut end angle perpendicular to pipe axis", "type": "text"},
+              {"value": "Maximum 1/16 in. variation in end", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Finish", "type": "text"},
+              {"value": "Finish of cut end", "type": "text"},
+              {"value": "No sharp edges. No exposed loose fiber. No protrusions. No impact areas", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with two section groups: Pipe Body and Collar, and Threads"
+    }
+  ],
+  "issues": []
+}

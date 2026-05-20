@@ -1,12 +1,13 @@
-# SPEC - Physical Structures, Runtime Contracts, and Mechanics
+# SPEC — Physical Structures, Runtime Mechanics, and File Contracts
 
-Status: Active specification derived from `docs/PRD.md`
-Date: 2026-05-20
-Applies to: Chirality App vNext filesystem, APIs, runtime, packaged app, and validation
+**Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
+**Date:** 2026-05-20
+**Product:** Chirality desktop harness and bundled agent operating system
+**Applies to:** Chirality App vNext filesystem, APIs, runtime, packaged app, and validation
 
-This document specifies the concrete structures and mechanics required by Chirality App. It is the "how it is shaped" document. `DIRECTIVE.md` states intent. `CONTRACT.md` states invariants. `TYPES.md` defines vocabulary. `PLAN.md` sequences work.
+This document is the authoritative specification for Chirality App physical structures, file formats, schemas, runtime mechanics, session storage, validation surfaces, and layout conventions.
 
-Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are used with their usual standards-track meanings.
+Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are used in their ordinary specification sense.
 
 ---
 
@@ -14,7 +15,9 @@ Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are use
 
 ### 1.1 Instruction Root
 
-The instruction root is release-managed app content. A complete source tree or packaged app SHOULD include:
+The instruction root is the release-managed resource set bundled with the desktop app or supplied through `CHIRALITY_INSTRUCTION_ROOT` during development.
+
+Required entries for a complete source tree / packaged app include:
 
 - `AGENTS.md`
 - `README.md`
@@ -28,53 +31,418 @@ The instruction root is release-managed app content. A complete source tree or p
 - `WHAT-IS-AN-AGENT.md` where required by packaging/integrity policy
 - `PROFESSIONAL_ENGINEERING.md` where required by packaging/integrity policy
 
-`CHIRALITY_INSTRUCTION_ROOT` MAY override the instruction root in development. Packaged builds use the packaged resource root.
+Rules:
 
-### 1.2 Working Root
+- The instruction root is read-only during ordinary project execution.
+- Writes to the instruction root MUST be blocked by runtime hooks and path policy.
+- Packaged builds MUST verify instruction-root integrity.
+- Missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.
 
-The working root MUST be:
+### 1.2 Working Root / `projectRoot`
 
-- absolute;
-- existing;
-- a directory;
-- readable and writable;
-- not inside the instruction root.
+The working root is the user-selected local project folder.
 
-The working root contains mutable project execution state. Agents and runtime tools MUST NOT treat the instruction root as a working root.
+Rules:
+
+- MUST be an absolute existing directory.
+- MUST be readable and writable by the app.
+- MUST NOT be inside the instruction root.
+- Contains project execution state, deliverables, tool roots, sessions, and local artifacts.
+- Is the ordinary location where agents and tools write project truth.
+
+### 1.3 Runtime Configuration State
+
+Runtime configuration state such as UI presets, API keys, SDK linkage, SDK transcript cross-references, session metadata, and window layout is non-authoritative convenience state unless imported into a governed project file.
 
 ---
 
-## 2. Session Store
+## 2. Execution Root Layout
 
-### 2.1 Current Layout
-
-Current legacy session records may exist as:
+An execution instance is rooted at `{EXECUTION_ROOT}/` and contains package folders plus tool roots.
 
 ```text
-.chirality/sessions/<sessionId>.json
+{EXECUTION_ROOT}/
+├── INIT.md
+├── PKG-XX_{PkgLabel}/
+│   ├── 0_References/
+│   │   └── _Archive/
+│   ├── 1_Working/
+│   │   ├── DEL-XX-YY_{DelLabel}/
+│   │   └── _Archive/
+│   ├── 2_Checking/
+│   │   ├── From/
+│   │   └── To/
+│   └── 3_Issued/
+│       └── _Archive/
+├── _Aggregation/
+├── _Change/
+├── _Coordination/
+│   └── _COORDINATION.md
+├── _Decomposition/
+├── _Estimates/
+├── _Reconciliation/
+├── _Archive/
+├── _Scripts/
+└── _Sources/
 ```
 
-or under `CHIRALITY_SESSION_ROOT`.
+### 2.1 Package Folders
 
-Legacy records MUST remain readable until migration is explicitly completed.
-
-### 2.2 Canonical Future Layout
+Naming:
 
 ```text
-.chirality/
-  sessions/
-    <sessionId>/
-      session.json
-      events.jsonl
-      turns/
-        <turnId>.json
-      artifacts/
-      sdk/
+{PKG-ID}_{Sanitize(PackageName)}/
 ```
 
-### 2.3 `session.json`
+Required or expected subfolders:
 
-Required or expected fields:
+| Subfolder | Requirement | Purpose |
+|---|---|---|
+| `0_References/` | SHOULD | Package-level references. |
+| `0_References/_Archive/` | SHOULD | Archived references. |
+| `1_Working/` | MUST | Active deliverables. |
+| `1_Working/_Archive/` | SHOULD | Archived drafts. |
+| `2_Checking/` | SHOULD | Review staging. |
+| `2_Checking/From/` | SHOULD | Incoming review items. |
+| `2_Checking/To/` | SHOULD | Outgoing review items. |
+| `3_Issued/` | SHOULD | Released deliverables. |
+| `3_Issued/_Archive/` | SHOULD | Archived issued versions. |
+
+### 2.2 Tool Roots
+
+| Tool Root | Purpose |
+|---|---|
+| `_Aggregation/` | Aggregation snapshots and templates. |
+| `_Change/` | Change-management records. |
+| `_Coordination/` | Coordination representation. |
+| `_Decomposition/` | Project decomposition documents. |
+| `_Estimates/` | Cost estimate snapshots. |
+| `_Reconciliation/` | Reconciliation reports and closure analysis. |
+| `_Archive/` | Baseline snapshots with checksums. |
+| `_Scripts/` | Deployment and analysis scripts. |
+| `_Sources/` | Shared sources and reference documents. |
+
+Snapshot-producing workflows SHOULD write timestamped immutable folders and MAY update `_LATEST.md` pointer files.
+
+---
+
+## 3. Deliverable Folder Layout
+
+Each deliverable occupies:
+
+```text
+{EXECUTION_ROOT}/{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/
+```
+
+### 3.1 File Inventory
+
+| File | Presence | Purpose |
+|---|---|---|
+| `_STATUS.md` | MUST | Lifecycle state and history. |
+| `_CONTEXT.md` | MUST | Identity, package, decomposition reference, traceability. |
+| `_DEPENDENCIES.md` | MUST | Dependency summary and run history. |
+| `_REFERENCES.md` | MUST | Source references and hash notes. |
+| `_SEMANTIC.md` | SHOULD for PREPARATION baseline | Semantic placeholder or lens. |
+| `Datasheet.md` | SHOULD when initialized | Key parameters and structured metadata. |
+| `Specification.md` | SHOULD when initialized | Requirements and scope definition. |
+| `Guidance.md` | SHOULD when initialized | Rationale and design guidance. |
+| `Procedure.md` | SHOULD when initialized | Step-by-step workflow. |
+| `Dependencies.csv` | SHOULD when tracked | Structured dependency register v3.1. |
+| `MEMORY.md` | SHOULD | Canonical deliverable-local working memory. |
+| `_SEMANTIC_LENSING.md` | MAY | Semantic analysis narrative. |
+| `HASH_VERIFICATION_BYPASS.jsonl` | MAY | Durable record of approved reference-hash bypasses. |
+| `_MEMORY.md` | MUST NOT in this project profile | Disabled noncanonical memory file. |
+
+Minimum PREPARATION fileset:
+
+- `_STATUS.md`
+- `_CONTEXT.md`
+- `_DEPENDENCIES.md`
+- `_REFERENCES.md`
+- `_SEMANTIC.md` placeholder
+
+Document kit:
+
+- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`
+
+---
+
+## 4. Lifecycle File Contract: `_STATUS.md`
+
+### 4.1 Format
+
+```markdown
+# Status: {DEL-ID} {DeliverableName}
+
+**Current State:** {STATE}
+**Last Updated:** {YYYY-MM-DD}
+
+## History
+- {YYYY-MM-DD} — State set to {STATE} ({AGENT_OR_ACTOR})
+```
+
+### 4.2 Valid States
+
+```text
+OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
+```
+
+| State | Meaning |
+|---|---|
+| `OPEN` | Folder exists with minimum viable fileset. |
+| `INITIALIZED` | Draft documents or document kit initialized. |
+| `SEMANTIC_READY` | Semantic lens or placeholder generated. |
+| `IN_PROGRESS` | Human/agent work underway. |
+| `CHECKING` | Under human review. |
+| `ISSUED` | Released/issued by a human. |
+
+### 4.3 Transition Rules
+
+| Transition | Authorized Actor |
+|---|---|
+| `→ OPEN` | PREPARATION / scaffold |
+| `OPEN → INITIALIZED` | 4_DOCUMENTS / human |
+| `INITIALIZED → SEMANTIC_READY` | CHIRALITY_FRAMEWORK / human |
+| `INITIALIZED → IN_PROGRESS` | Human, WORKING_ITEMS |
+| `SEMANTIC_READY → IN_PROGRESS` | Human, WORKING_ITEMS |
+| `IN_PROGRESS → CHECKING` | Human |
+| `CHECKING → ISSUED` | Human |
+
+Rules:
+
+- `_STATUS.md` is the canonical lifecycle file.
+- Transitions are forward-only unless a human explicitly amends the record.
+- Transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
+- SDK/MCP status-transition tools MUST enforce these rules.
+
+---
+
+## 5. Context, Dependency Summary, References, and Memory
+
+### 5.1 `_CONTEXT.md`
+
+Required structure:
+
+```markdown
+# Context: {DEL-ID}
+
+**Name:** {DeliverableName}
+**Package:** {PKG-ID} {PackageName}
+**Discipline:** {Discipline}
+**Type:** {ArtifactType}
+**Responsible:** {Role}
+
+## Description
+{Exact description from decomposition document}
+
+## Acceptance Criteria
+{Pass/fail conditions from decomposition}
+
+## Anticipated Artifacts
+- {List from decomposition; may be empty}
+
+## Scope Traceability
+- Scope items: {SOW-IDs}
+- Objectives: {OBJ-IDs}
+
+## Decomposition Reference
+- **Decomposition file:** {path}
+- **Deliverable ID:** {DEL-ID}
+```
+
+Rules:
+
+- Header fields SHOULD match the accepted decomposition.
+- `_CONTEXT.md` is created by PREPARATION/scaffold and is human-maintained thereafter.
+
+### 5.2 `_DEPENDENCIES.md`
+
+Hybrid container with human-owned and agent/tool-owned sections:
+
+- Dependency Tracking Mode
+- Declared Upstream
+- Declared Downstream
+- Extracted Dependency Register
+- Lifecycle Summary
+- Run Notes
+- Run History
+
+Tracking modes:
+
+| Mode | Meaning |
+|---|---|
+| `NOT_TRACKED` | Dependencies coordinated externally by humans. |
+| `DECLARED` | Human-declared upstream/downstream only. |
+| `TRACKED` | Full extraction via dependency workflow and `Dependencies.csv`. |
+
+### 5.3 `_REFERENCES.md`
+
+Required structure:
+
+```markdown
+# References: {DEL-ID} {DeliverableName}
+
+## Applicable References
+- {RefName/ID} — {Location} — {Relevance}
+  - ContentHash: {64-char lowercase SHA-256 | TBD | ERROR: <reason>}
+
+## Notes
+- {Notes or placeholder}
+```
+
+Rules:
+
+- Reference paths SHOULD be relative where practical.
+- Out-of-folder references SHOULD include `ContentHash` when tooling is available.
+- Hash bypasses require human approval and durable bypass records.
+
+### 5.4 `MEMORY.md`
+
+Canonical deliverable-local working memory file:
+
+```markdown
+# Memory — {DEL-ID}
+
+> Organize by semantic topic, then chronologically within each topic.
+
+## Key Decisions & Human Rulings
+
+## Domain Context
+
+## Open Items
+
+## Proposal History
+
+## Interface & Dependency Notes
+```
+
+`_MEMORY.md` MUST NOT be created in this project profile.
+
+---
+
+## 6. `Dependencies.csv` v3.1 Schema
+
+Every row MUST include `RegisterSchemaVersion` set to `v3.1`.
+
+### 6.1 Core Columns
+
+| # | Column | Type | Required | Description |
+|---:|---|---|---|---|
+| 1 | `RegisterSchemaVersion` | string | MUST | `v3.1`. |
+| 2 | `DependencyID` | string | MUST | Unique within deliverable register. |
+| 3 | `FromPackageID` | string | MUST | Host package ID. |
+| 4 | `FromDeliverableID` | string | MUST | Host deliverable ID. |
+| 5 | `FromDeliverableName` | string | MUST | Host deliverable name. |
+| 6 | `DependencyClass` | enum | MUST | `ANCHOR` or `EXECUTION`. |
+| 7 | `AnchorType` | enum | MUST | See TYPES. |
+| 8 | `Direction` | enum | MUST | `UPSTREAM` or `DOWNSTREAM`. |
+| 9 | `DependencyType` | enum | MUST | See TYPES. |
+| 10 | `TargetType` | enum | MUST | See TYPES. |
+| 11 | `TargetPackageID` | string | optional | Target package ID. |
+| 12 | `TargetDeliverableID` | string | optional | Target deliverable ID. |
+| 13 | `TargetRefID` | string | optional | Non-deliverable target ref. |
+| 14 | `TargetName` | string | SHOULD | Human-readable target. |
+| 15 | `TargetLocation` | string | optional | Path, URL, or identifier. |
+| 16 | `Statement` | string | SHOULD | Dependency statement. |
+| 17 | `EvidenceFile` | string | MUST* | Source filename or `location TBD`. |
+| 18 | `SourceRef` | string | MUST* | Path + heading/section or `location TBD`. |
+| 19 | `EvidenceQuote` | string | SHOULD | Short quote, <= 30 words. |
+| 20 | `Explicitness` | enum | SHOULD | `EXPLICIT` or `IMPLICIT`. |
+| 21 | `RequiredMaturity` | string | optional | Required maturity. |
+| 22 | `ProposedMaturity` | string | optional | Proposed maturity. |
+| 23 | `SatisfactionStatus` | enum | SHOULD | Closure status. |
+| 24 | `Confidence` | enum | SHOULD | `HIGH`, `MEDIUM`, `LOW`. |
+| 25 | `Origin` | enum | MUST | `DECLARED` or `EXTRACTED`. |
+| 26 | `FirstSeen` | date | MUST | ISO date. |
+| 27 | `LastSeen` | date | MUST | ISO date. |
+| 28 | `Status` | enum | MUST | `ACTIVE` or `RETIRED`. |
+| 29 | `Notes` | string | optional | Notes and epistemic labels. |
+
+Extension columns MAY be present and are non-breaking, including `EstimateImpactClass` and `ConsumerHint`.
+
+### 6.2 Row Rules
+
+- `DependencyID` MUST be unique within a deliverable register.
+- `FromDeliverableID` MUST match the host deliverable ID.
+- `ANCHOR` rows use `IMPLEMENTS_NODE` or `TRACES_TO_REQUIREMENT` and `DependencyType=OTHER`.
+- `EXECUTION` rows use `AnchorType=NOT_APPLICABLE`.
+- Rows are retired, not deleted.
+- Legacy missing `RegisterSchemaVersion` is normalized on write to `v3.1`.
+
+---
+
+## 7. Agent Instruction File Contract
+
+Agent instruction files use `AGENT_*.md` names.
+
+### 7.1 Required Header
+
+```markdown
+[[DOC:AGENT_INSTRUCTIONS]]
+# AGENT INSTRUCTIONS — {AGENT_NAME} ({Brief Descriptor})
+AGENT_TYPE: {0|1|2}
+```
+
+### 7.2 Required Agent Type Table
+
+```markdown
+## Agent Type
+
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE {0|1|2} |
+| **AGENT_CLASS** | {PERSONA|TASK} |
+| **INTERACTION_SURFACE** | {chat|INIT-TASK|spawned|both} |
+| **WRITE_SCOPE** | {scope description} |
+| **BLOCKING** | {never|allowed} |
+| **PRIMARY_OUTPUTS** | {description} |
+```
+
+### 7.3 Required Section Markers
+
+| Section | Marker | Purpose |
+|---|---|---|
+| PROTOCOL | `[[BEGIN:PROTOCOL]]` … `[[END:PROTOCOL]]` | Procedure and sequencing. |
+| SPEC | `[[BEGIN:SPEC]]` … `[[END:SPEC]]` | Validity requirements. |
+| STRUCTURE | `[[BEGIN:STRUCTURE]]` … `[[END:STRUCTURE]]` | Schemas and templates. |
+| RATIONALE | `[[BEGIN:RATIONALE]]` … `[[END:RATIONALE]]` | Non-normative interpretation. |
+
+Precedence:
+
+```text
+PROTOCOL > SPEC > STRUCTURE > RATIONALE
+```
+
+### 7.4 Runtime Metadata Frontmatter
+
+Machine-consumed YAML frontmatter MAY include:
+
+- `description`
+- `subagents`
+- `tools`
+- `model`
+- `max_turns`
+- `disallowed_tools`
+- `auto_approve_tools`
+
+Runtime MUST treat UI visibility of an option as non-authoritative. Governance and permission policy remain authoritative.
+
+---
+
+## 8. Harness Session Store
+
+### 8.1 Current / Legacy Session Record
+
+Legacy sessions may exist as:
+
+```text
+{sessionRoot}/{sessionId}.json
+```
+
+Current fields:
 
 - `sessionId`
 - `projectRoot`
@@ -82,13 +450,43 @@ Required or expected fields:
 - `mode`
 - `createdAt`
 - `updatedAt`
-- `claudeSessionId` (legacy)
+- `claudeSessionId`
 - `bootFingerprint`
 - `bootedAt`
 - `model`
 
-Future SDK linkage fields:
+Legacy records MUST remain readable during migration.
 
+### 8.2 Canonical vNext Layout
+
+```text
+.chirality/sessions/<sessionId>/
+├── session.json
+├── events.jsonl
+├── turns/
+│   └── <turnId>.json
+├── artifacts/
+└── sdk/
+```
+
+Optional override:
+
+```text
+CHIRALITY_SESSION_ROOT
+```
+
+### 8.3 Future Session Metadata
+
+`session.json` SHOULD include:
+
+- `sessionId`
+- `projectRoot`
+- `persona`
+- `mode`
+- `createdAt`
+- `updatedAt`
+- `model`
+- `bootFingerprint`
 - `sdkSessionId`
 - `sdkProjectKey`
 - `sdkTranscriptPath` or `sdkSessionStoreKey`
@@ -98,34 +496,18 @@ Future SDK linkage fields:
 - `sdkClaudeCodeVersion`
 - `sdkResumeMode`
 
-SDK linkage fields are metadata. They MUST NOT become the canonical Chirality session identity.
+### 8.4 Canonicalization Rules
 
-### 2.4 `events.jsonl`
-
-`events.jsonl` is the canonical Chirality runtime audit mirror.
-
-Rules:
-
-- one JSON object per line;
-- append-only during ordinary runtime operation;
-- each event includes `schemaVersion`, `eventId`, `sessionId`, timestamp, `type`, and `data`;
-- payloads avoid secrets;
-- large payloads are stored as artifacts and referenced;
-- replay ignores malformed trailing lines while preserving prior valid events.
-
-### 2.5 SDK Transcript Placement
-
-The product SHOULD prefer SDK transcript placement or mirroring under the working root or a parent project-controlled folder, using `SessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable.
-
-If SDK transcripts must live under `~/.claude/projects/...`, Chirality MUST:
-
-- keep `events.jsonl` canonical;
-- cross-reference the external path or store key in `session.json`;
-- record residual risk in the reliance-boundary register.
+- `events.jsonl` is the product-owned Chirality audit mirror.
+- SDK transcripts are secondary runtime state unless imported into `HarnessEvent` form.
+- The product SHOULD prefer SDK transcript placement or mirroring under the working root or parent project-controlled folder using `SessionStore`, `CLAUDE_CONFIG_DIR`, or both when reliable.
+- If SDK writes under `~/.claude/projects/...`, Chirality MUST cross-reference the path or store key, keep `events.jsonl` canonical, and record residual risk in the reliance-boundary register.
 
 ---
 
-## 3. Harness Event Schema
+## 9. Runtime Event Schema
+
+### 9.1 Shape
 
 ```ts
 type HarnessEvent = {
@@ -140,7 +522,16 @@ type HarnessEvent = {
 };
 ```
 
-Initial event types:
+### 9.2 Rules
+
+- JSONL writes MUST append newline-delimited events in write sequence.
+- Event IDs MUST be unique.
+- Secrets MUST NOT be stored.
+- Large payloads MUST be stored as artifacts and referenced by path.
+- Replay MUST ignore malformed trailing lines and surface diagnostics.
+- Event schema evolution MUST be backward-compatible or explicitly versioned.
+
+### 9.3 Initial Event Categories
 
 - `session.created`
 - `session.resumed`
@@ -154,7 +545,7 @@ Initial event types:
 - `turn.failed`
 - `turn.cancelled`
 
-Later event types:
+### 9.4 Later Event Categories
 
 - `tool.queued`
 - `tool.permission`
@@ -169,15 +560,56 @@ Later event types:
 - `subagent.completed`
 - `sdk.mirror.error`
 
-SDK message names MUST be mapped into Chirality event names. SDK names MUST NOT be required public event types.
+---
+
+## 10. Runtime Engine Contract
+
+### 10.1 Product-Owned Boundary
+
+Chirality MUST define an `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs.
+
+Target responsibilities:
+
+- accept validated turn input;
+- persist `turn.accepted` before SDK/model execution;
+- yield browser `UIEvent`s;
+- persist canonical `HarnessEvent`s;
+- enforce or invoke permission decisions;
+- expose only permitted tools;
+- link SDK session metadata;
+- handle interrupt/cancel behavior;
+- persist terminal outcomes.
+
+### 10.2 Target Type
+
+```ts
+interface AgentEnginePort {
+  runTurn(input: TurnInput): AsyncIterable<UIEvent>;
+  interrupt?(sessionId: string): Promise<void>;
+}
+```
+
+`TurnInput` MUST include the active session, normalized project root, persona, mode, resolved runtime options, content blocks, attachment summaries, and cancellation signal where applicable.
+
+### 10.3 Engine Adapter Rules
+
+- SDK messages are not the browser contract.
+- SDK messages are not the canonical persisted event contract.
+- SDK-specific names and IDs appear only as adapter metadata.
+- `EngineAdapter` MUST translate external message names, external session IDs, external tool names, external permission modes, external transcript paths, and external hook names into Chirality-owned contracts.
+- Provider-specific values MAY be retained under explicit adapter metadata fields.
+- The SDK-backed adapter MUST pass engine conformance tests before production default use.
+- Stub adapter remains available for deterministic tests.
+
+### 10.4 Thin Route Rule
+
+`/api/harness/turn` remains a transport adapter. It validates request shape, obtains session lock, forwards input to `TurnEngine`, writes SSE, and handles cleanup. It does not own runtime policy.
 
 ---
 
-## 4. Browser SSE Contract
+## 11. Browser SSE Event Contract
 
-`POST /api/harness/turn` returns `text/event-stream`.
-
-Valid browser event names:
+Turn streams emit named SSE events with JSON payloads:
 
 - `session:init`
 - `chat:delta`
@@ -187,86 +619,22 @@ Valid browser event names:
 - `turn:error`
 - `process:exit`
 
-The stream MUST terminate with a completion/error signal unless the client disconnects. Client disconnect cleanup MUST record cancellation once session events exist.
+Rules:
 
-SDK messages are not browser events. `SdkMessageMapper` maps SDK stream messages to this UI contract and to `HarnessEvent`.
-
----
-
-## 5. Runtime Engine Contract
-
-### 5.1 Purpose
-
-`AgentEnginePort` / `RuntimeEngineContract` is the product-owned boundary between Chirality and an engine implementation.
-
-The SDK-backed adapter is the preferred implementation, but the contract is not SDK-shaped.
-
-### 5.2 Required Engine Behavior
-
-An engine adapter MUST support:
-
-- accepted-turn persistence before execution;
-- async yield of browser-compatible `UIEvent`s;
-- deterministic mapping to canonical `HarnessEvent`s;
-- terminal success/failure/cancel/interruption outcomes;
-- permission decision reporting;
-- tool exposure reporting;
-- session linkage/resume;
-- interrupt/cancel behavior where the engine supports it;
-- redaction and safe metadata capture.
-
-### 5.3 Provider-Neutral Translation
-
-`EngineAdapter` MUST translate:
-
-- external message names;
-- external session IDs;
-- external tool names;
-- external permission modes;
-- external transcript paths;
-- external hook names;
-
-into Chirality-owned contracts.
-
-Provider-specific values MAY be retained under adapter metadata fields.
-
-### 5.4 Engine Conformance
-
-`EngineConformanceSuite` MUST test at least:
-
-- accepted-turn persistence;
-- terminal event persistence;
-- SSE compatibility;
-- SDK/provider message mapping;
-- permission denial;
-- tool exposure;
-- interrupt/cancel behavior;
-- session resume;
-- redaction;
-- provider-neutral core leakage.
+- Existing event names MUST remain compatible during SDK adoption.
+- Additional tool progress events MAY be introduced only with UI compatibility handling.
+- The stream MUST terminate with a process-level completion/error signal unless the client disconnects.
+- Client disconnect cleanup MUST record cancellation once the event log exists.
 
 ---
 
-## 6. SDK Configuration Mechanics
+## 12. SDK Runtime Configuration
 
-### 6.1 SDK Options
+### 12.1 SDK Position
 
-`SdkOptionsBuilder` constructs SDK options from:
+The Claude Agent SDK is the preferred runtime spine for generic agent-loop behavior, subject to R0/R1 empirical verification and ongoing conformance tests.
 
-- session record;
-- resolved runtime options;
-- content blocks from text/attachments;
-- persona/system prompt;
-- `cwd` / project root;
-- permission mode;
-- allowed/disallowed tool posture;
-- hooks;
-- MCP servers;
-- subagent definitions;
-- session ID / resume;
-- settings isolation policy.
-
-### 6.2 Settings Isolation
+### 12.2 Shipped Settings Isolation
 
 Shipped builds MUST use:
 
@@ -274,332 +642,205 @@ Shipped builds MUST use:
 settingSources: []
 ```
 
-Development MAY enable `['project']` only through explicit environment configuration. Shipped builds MUST NOT use `user` or `local` setting sources.
+Development-only project settings MAY use `['project']` behind explicit environment configuration. `user` and `local` setting sources MUST NOT be used in shipped builds.
 
-### 6.3 API Key Handling
+### 12.3 API Key Handling
 
-API key resolution order:
+- UI safeStorage key takes precedence.
+- Then `ANTHROPIC_API_KEY`.
+- Then `CHIRALITY_ANTHROPIC_API_KEY`.
+- Key material is supplied to SDK environment only as needed for active turns and redacted from logs/events.
 
-1. UI safeStorage key;
-2. `ANTHROPIC_API_KEY`;
-3. `CHIRALITY_ANTHROPIC_API_KEY`.
+### 12.4 SDK Metadata to Record
 
-The active key MAY be supplied to the SDK process for the active turn and SHOULD be restored/cleared afterward where feasible. Keys MUST be redacted from logs, events, and artifacts.
+Safe runtime metadata SHOULD include:
 
----
-
-## 7. Permission And Tool Mechanics
-
-### 7.1 Chirality Modes
-
-| Chirality mode | SDK posture | Required overlay |
-|---|---|---|
-| `readOnly` | Prefer SDK `plan` or `dontAsk` with read tools pre-approved. | Deny write/edit/bash/network-capable tools and unexpected tools. |
-| `workspaceWrite` | SDK `acceptEdits` only after write hooks pass; otherwise `default`. | Enforce root containment, instruction-root block, symlink rejection, provenance. |
-| `dontAsk` | SDK `dontAsk`. | Pre-approve only exact safe tools; deny everything else without prompting. |
-| `ask` | SDK `default` with `canUseTool`. | Use UI approval for governed writes/shell; persist decision. |
-| `bypass` | SDK `bypassPermissions` only in developer-local mode. | Still apply deny rules, path hooks, instruction-root protection, and subagent governance. |
-
-`allowedTools` auto-approval MUST NOT be treated as a restriction boundary.
-
-### 7.2 Tool Sequence
-
-Tool rollout sequence:
-
-1. SDK read tools and Chirality read MCP tools.
-2. Chirality status/dependency/scope/scaffold MCP tools.
-3. SDK `Write`/`Edit` plus Chirality write MCP tools after write hooks and policy pass.
-4. SDK `Bash` only after timeout, result storage, hook, interrupt, and audit validation.
-5. Remote MCP, tool search, and plugins only after local/in-process governance matures.
-
-### 7.3 Chirality MCP Tools
-
-Initial in-process MCP tools:
-
-- status read;
-- status transition;
-- dependency CSV read;
-- dependency CSV write;
-- scope scan;
-- scaffold or scaffold dry-run.
-
-All Chirality MCP tools MUST:
-
-- validate input schemas;
-- enforce path containment;
-- pass through permission overlay;
-- pass through hooks where applicable;
-- emit or mirror `HarnessEvent`s;
-- redact sensitive output.
+- SDK package version;
+- Claude Code subprocess version where knowable;
+- SDK permission mode;
+- visible tool list;
+- MCP server names;
+- settings-source posture;
+- SDK session ID and resume mode;
+- transcript/store linkage.
 
 ---
 
-## 8. Hook Mechanics
+## 13. Runtime Options and Persona Composition
 
-Required hook phases:
+### 13.1 Runtime Option Fallbacks
 
-- `PreToolUse`
-- `PostToolUse`
-- `PostToolUseFailure`
-- `PreCompact`
-- `Stop`
-- `SubagentStart`
-- `SubagentStop`
+| Option | Fallback Chain |
+|---|---|
+| Model | `opts.model` → `CHIRALITY_GLOBAL_MODEL` or instruction-root frontmatter → runtime default |
+| Tools | `opts.tools` → persona frontmatter → runtime default |
+| Max turns | `opts.maxTurns` → persona frontmatter → runtime default |
+| Mode | request/session mode → runtime default |
+| Persona | request/session persona → `HELP_HUMAN` or configured default |
 
-First hook policies:
+Unknown option keys MUST be ignored with warnings rather than silently mutating behavior.
 
-- project-root containment;
-- instruction-root write block;
-- symlink write rejection;
-- write budget;
-- provenance append;
-- compaction boundary mirror;
-- stop/finalization;
-- subagent governance.
+### 13.2 Persona Composer
 
-Pre-tool denials for write, shell, domain, and subagent tools MUST fail closed.
+The persona composer builds system prompt or appended system prompt from:
 
----
-
-## 9. Prompt And Persona Mechanics
-
-Persona names resolve to `agents/AGENT_*.md`.
-
-`PersonaComposer` MUST compose prompt/system context from:
-
-- selected persona instruction content;
-- relevant instruction-root governance context;
-- working-root boundaries;
+- Chirality governance preface;
+- selected `agents/AGENT_<persona>.md` content;
+- working-root summary;
 - mode policy;
-- configured tool surface;
+- permitted tool surface;
 - professional-boundary reminders.
 
-Boot fingerprints SHOULD include:
-
-- persona content hash;
-- governance preface hash;
-- mode;
-- SDK tool names/versions;
-- permission-policy version;
-- settings-source posture;
-- MCP server versions;
-- subagent policy version.
+Boot fingerprints SHOULD include hashes for persona content, governance preface, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version.
 
 ---
 
-## 10. Attachments
+## 14. SDK Tool Surface and Chirality MCP Tools
 
-Server-side attachment resolution is authoritative.
+### 14.1 Tool Naming
+
+SDK built-ins map to SDK names where available:
+
+| Chirality concept | SDK built-in candidate |
+|---|---|
+| Read file | `Read` |
+| List files | `LS`, `Glob` |
+| Search files | `Grep` |
+| Write file | `Write` |
+| Edit file | `Edit` |
+| Shell command | `Bash` |
+
+Chirality-specific deterministic operations use `mcp__chirality__*` names.
+
+### 14.2 Initial Chirality MCP Tools
+
+| Tool | Purpose | Initial mode |
+|---|---|---|
+| `mcp__chirality__status_read` | Read `_STATUS.md`. | Read. |
+| `mcp__chirality__status_transition` | Apply authorized lifecycle transition with approval SHA where required. | Write, gated. |
+| `mcp__chirality__deps_read` | Read and validate `Dependencies.csv`. | Read. |
+| `mcp__chirality__deps_write` | Append/update dependency rows preserving v3.1 schema. | Write, gated. |
+| `mcp__chirality__scope_scan` | Run bounded workspace scope scan. | Read. |
+| `mcp__chirality__scaffold` | Wrap scaffold service or dry-run preview. | Gated. |
+
+### 14.3 Tool Surface Rules
+
+- Unknown `opts.tools` names MUST produce structured validation errors.
+- Tool ordering MUST be deterministic.
+- Denied tools SHOULD be omitted from model context where possible.
+- `allowedTools` MUST NOT be treated as a restriction boundary by itself.
+- `disallowedTools`, `permissionMode`, `canUseTool`, and hooks enforce restrictions.
+
+---
+
+## 15. Permission Modes and Hooks
+
+### 15.1 Provisional Chirality-to-SDK Mapping
+
+| Chirality mode | SDK posture | Chirality overlay |
+|---|---|---|
+| `readOnly` | Prefer SDK `plan` or `dontAsk` with read tools pre-approved. | Deny write/edit/bash/network-capable tools and unexpected tools. |
+| `workspaceWrite` | SDK `acceptEdits` only after write hooks pass; otherwise default with explicit approvals. | Enforce project-root containment, instruction-root block, symlink rejection, and provenance. |
+| `dontAsk` | SDK `dontAsk` if available or equivalent deny-without-prompt overlay. | Pre-approve exact safe tools; everything else denies without prompting. |
+| `ask` | SDK default with `canUseTool`. | Present UI approval for governed writes/shell; persist decision before returning SDK allow/deny. |
+| `bypass` | SDK `bypassPermissions` only in developer-local mode. | Still apply disallowed tools, path hooks, instruction-root protection, and subagent governance. |
+
+### 15.2 Required Hooks
+
+| Hook | Required Behavior |
+|---|---|
+| Path containment | Deny filesystem operations outside active project root. |
+| Instruction-root protection | Deny writes under instruction root. |
+| Symlink write rejection | Deny symlink writes in initial policy. |
+| Write budget | Enforce output/result storage policy. |
+| Provenance append | Record safe provenance/run evidence where policy requires. |
+| PreCompact mirror | Persist compaction boundary when available. |
+| Stop/finalization | Persist terminal outcome. |
+| Subagent governance | Gate `Agent` tool through `evaluateSubagentGovernance`. |
+
+Hook failures fail closed for write, shell, domain, and subagent actions.
+
+---
+
+## 16. Attachments, API Keys, and Network Policy
+
+### 16.1 Attachments
 
 Supported extensions:
 
-- `.png`
-- `.jpg`
-- `.jpeg`
-- `.gif`
-- `.webp`
-- `.pdf`
-- `.txt`
-- `.md`
-- `.csv`
+- `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.pdf`, `.txt`, `.md`, `.csv`
+
+Server-side resolver MUST enforce:
+
+- path validation;
+- regular-file check;
+- symlink rejection;
+- extension allowlist;
+- readability;
+- per-file 10 MB limit;
+- total raw-byte 18 MB per-turn limit.
+
+Partial attachment failure is non-fatal when executable content remains. If all attachments fail and user text is empty, the request fails with `ATTACHMENT_FAILURE`.
+
+### 16.2 API Key Store
+
+Electron storage:
+
+```text
+app.getPath('userData')/credentials/api-key.enc
+```
 
 Rules:
 
-- client metadata is non-authoritative;
-- directories, symlinks, special files, unsupported extensions, unreadable files, files over 10 MB, and total raw bytes over 18 MB are rejected;
-- partial attachment failure is non-fatal when executable content remains;
-- all attachment failure with empty text returns `ATTACHMENT_FAILURE`.
+- Use Electron `safeStorage`.
+- Do not write key material to working root.
+- Do not log key material.
+- Do not persist key material in runtime events.
+- Status may report source: `ui`, `env`, or `none`.
+
+### 16.3 Network Policy
+
+- Renderer outbound traffic is allowlisted for loopback and Anthropic API path.
+- Node/SDK provider calls must not silently broaden network policy.
+- Remote MCP, plugins, and non-Anthropic network tools require governed future scope.
 
 ---
 
-## 11. Execution Root Layout
+## 17. API Requirements
 
-```text
-{EXECUTION_ROOT}/
-  INIT.md
-  PKG-XX_Label/
-    0_References/
-      _Archive/
-    1_Working/
-      DEL-XX-YY_Label/
-      _Archive/
-    2_Checking/
-      From/
-      To/
-    3_Issued/
-      _Archive/
-  _Aggregation/
-  _Change/
-  _Coordination/
-    _COORDINATION.md
-  _Decomposition/
-  _Estimates/
-  _Reconciliation/
-  _Archive/
-  _Scripts/
-  _Sources/
-```
+### 17.1 Harness APIs
 
-Packages do not nest.
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/harness/session/create` | POST | Create session bound to `projectRoot`, persona, and mode. |
+| `/api/harness/session/boot` | POST | Boot session and persist boot metadata. |
+| `/api/harness/session/list` | GET | List sessions for normalized project root. |
+| `/api/harness/session/[id]` | GET/DELETE | Retrieve or delete session. |
+| `/api/harness/turn` | POST | Execute turn and stream UI events over SSE. |
+| `/api/harness/interrupt` | POST | Interrupt active turn. |
+| `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
+
+Existing route shapes remain stable during SDK adoption and TurnEngine extraction.
+
+### 17.2 Workspace APIs
+
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/working-root/validate` | POST | Validate and normalize working root. |
+| `/api/working-root/tree` | GET | Return bounded file tree. |
+| `/api/working-root/scope` | GET | Scan deliverables and knowledge types. |
+| `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
+| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot. |
+| `/api/working-root/deliverable/status/transition` | POST | Apply allowed lifecycle transition. |
+| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv`. |
 
 ---
 
-## 12. Deliverable Folder Layout
+## 18. Domain Engine Future Specification Boundary
 
-Required metadata:
+Domain-engine endpoints and tools are provisional future platform interfaces. They must not be implemented as current-release scope and must not imply automated professional acceptance or direct protected-model writes.
 
-- `_STATUS.md`
-- `_CONTEXT.md`
-- `_DEPENDENCIES.md`
-- `_REFERENCES.md`
-
-Minimum PREPARATION fileset also includes:
-
-- `_SEMANTIC.md`
-
-Document kit:
-
-- `Datasheet.md`
-- `Specification.md`
-- `Guidance.md`
-- `Procedure.md`
-
-Expected/optional:
-
-- `Dependencies.csv`
-- `MEMORY.md`
-- `_SEMANTIC_LENSING.md`
-- `HASH_VERIFICATION_BYPASS.jsonl`
-
-Disabled in this project profile:
-
-- `_MEMORY.md`
-
----
-
-## 13. `_STATUS.md`
-
-Format:
-
-```markdown
-# Status: {DEL-ID} {DeliverableName}
-
-**Current State:** {STATE}
-**Last Updated:** {YYYY-MM-DD}
-
-## History
-- {YYYY-MM-DD} - State set to {STATE} ({AGENT_OR_ACTOR})
-```
-
-Valid lifecycle:
-
-```text
-OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED
-```
-
-Human-gate transitions to `CHECKING` or `ISSUED` require approval SHA evidence.
-
----
-
-## 14. Dependencies.csv v3.1
-
-The `RegisterSchemaVersion` column MUST be present and set to `v3.1`.
-
-Core columns:
-
-1. `RegisterSchemaVersion`
-2. `DependencyID`
-3. `FromPackageID`
-4. `FromDeliverableID`
-5. `FromDeliverableName`
-6. `DependencyClass`
-7. `AnchorType`
-8. `Direction`
-9. `DependencyType`
-10. `TargetType`
-11. `TargetPackageID`
-12. `TargetDeliverableID`
-13. `TargetRefID`
-14. `TargetName`
-15. `TargetLocation`
-16. `Statement`
-17. `EvidenceFile`
-18. `SourceRef`
-19. `EvidenceQuote`
-20. `Explicitness`
-21. `RequiredMaturity`
-22. `ProposedMaturity`
-23. `SatisfactionStatus`
-24. `Confidence`
-25. `Origin`
-26. `FirstSeen`
-27. `LastSeen`
-28. `Status`
-29. `Notes`
-
-Rows are not deleted. Rows no longer observed are marked `RETIRED`.
-
-Active rows require `EvidenceFile` and `SourceRef`, or explicit `location TBD`.
-
----
-
-## 15. Workspace APIs
-
-Required API families:
-
-- `/api/working-root/validate`
-- `/api/working-root/tree`
-- `/api/working-root/scope`
-- `/api/project/deliverables`
-- `/api/working-root/deliverable/status`
-- `/api/working-root/deliverable/status/transition`
-- `/api/working-root/deliverable/dependencies`
-
-Harness APIs:
-
-- `/api/harness/session/create`
-- `/api/harness/session/boot`
-- `/api/harness/session/list`
-- `/api/harness/session/[id]`
-- `/api/harness/turn`
-- `/api/harness/interrupt`
-- `/api/harness/scaffold`
-
-Existing route shapes remain stable during SDK adoption.
-
----
-
-## 16. Release And Packaging
-
-Current target:
-
-- macOS 15+
-- Apple Silicon (`arm64`)
-- unsigned, unnotarized local-builder DMG
-- Node.js `>=20`
-
-Release validation MUST include:
-
-- tests;
-- typecheck;
-- harness validation;
-- instruction-root integrity;
-- desktop packaging;
-- SDK subprocess/binary execution from packaged app after R1;
-- settings isolation check;
-- network policy check.
-
-Expected output:
-
-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
-- `frontend/dist/mac-arm64/Chirality.app`
-- instruction-root integrity summary artifact.
-
----
-
-## 17. Future Domain Interfaces
-
-Domain endpoints are provisional and future-scoped:
+Candidate endpoint families:
 
 - `/api/domain/profiles/list`
 - `/api/domain/profiles/validate`
@@ -608,4 +849,96 @@ Domain endpoints are provisional and future-scoped:
 - `/api/domain/operations/validate`
 - `/api/domain/operations/apply`
 
-No domain endpoint may imply automated professional acceptance or direct protected-model writes by an agent.
+Future profiles MUST define protected paths, proposal paths, operations, artifact types, deterministic adapter manifests, and boundary notices. Applying a domain operation requires explicit human acceptance.
+
+---
+
+## 19. Validation Checklist
+
+### 19.1 Required Local Checks
+
+From `frontend/`:
+
+```bash
+npm run test
+npm run typecheck
+npm run harness:validate:premerge
+npm run instruction-root:integrity
+```
+
+Packaging:
+
+```bash
+npm run desktop:dist
+```
+
+Expected packaging outputs:
+
+- `frontend/dist/Chirality-0.1.0-arm64.dmg`
+- `frontend/dist/mac-arm64/Chirality.app`
+- `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+
+### 19.2 Section 8 Validation
+
+Section 8 validation verifies baseline behavior:
+
+- server reachable;
+- session CRUD;
+- boot error taxonomy;
+- smoke stream ordering;
+- session persistence and resume continuity;
+- permissions behavior under current validation markers;
+- interrupt behavior;
+- SDK-native stream handling with no legacy parser regressions.
+
+### 19.3 Section 9 Runtime Validation IDs
+
+As runtime phases land, add:
+
+- `section9.runtime_engine_contract`
+- `section9.sdk_turn_engine_event_log`
+- `section9.sdk_message_mapper`
+- `section9.session_event_replay`
+- `section9.reliance_boundary_register`
+- `section9.settingsources_isolation`
+- `section9.sdk_session_link_resume`
+- `section9.permission_overlay_deny_first`
+- `section9.tool_runtime_read_file`
+- `section9.chirality_mcp_status_dependencies`
+- `section9.path_containment_hook`
+- `section9.instruction_root_protection_hook`
+- `section9.tool_result_budget`
+- `section9.context_compaction_boundary`
+- `section9.subagent_governance_hook`
+- `section9.domain_profile_validation`
+
+### 19.4 Manual Release Verification
+
+For macOS DMG:
+
+- binary is arm64;
+- `LSMinimumSystemVersion` is `15.0.0` or later;
+- signing posture is unsigned/adhoc as scoped;
+- app resources contain required instruction-root assets;
+- working-root selector is available;
+- Anthropic-only network guardrails remain in force;
+- SDK-backed turn can start in packaged app after R1;
+- SDK subprocess/binary is executable from package layout;
+- SDK transcript storage/mirroring follows accepted R1 decision.
+
+---
+
+## 20. Filesystem-Safe Labels
+
+`Sanitize(name)`:
+
+1. Replace `/`, `\`, `:`, `*`, `?`, `"`, `<`, `>`, `|` with `-`.
+2. Collapse consecutive whitespace to one space.
+3. Trim leading/trailing whitespace.
+
+Folder names:
+
+- Package: `{PKG-ID}_{Sanitize(PackageName)}`
+- Deliverable: `{DEL-ID}_{Sanitize(DeliverableName)}`
+
+Canonical unsanitized names are stored in `_CONTEXT.md` and decomposition records.

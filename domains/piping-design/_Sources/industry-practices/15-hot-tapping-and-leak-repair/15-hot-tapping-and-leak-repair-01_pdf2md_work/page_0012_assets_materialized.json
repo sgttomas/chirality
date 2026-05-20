@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-01_pdf2md_work/page_0012_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-01_p0012_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.13,
+        0.95,
+        0.24
+      ],
+      "bbox_px": [
+        0,
+        176,
+        1700,
+        638
+      ],
+      "caption": "Unit Superintendent Authorization Form",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/15-hot-tapping-and-leak-repair-01_p0012_tbl01_unit-superintendent-authorization-form.png",
+      "png_sha256": "27d18f6c9e96d9d6389720d14041de3522d14c2b186397d701ae66bc70b3a15e",
+      "slug": "unit-superintendent-authorization-form",
+      "status": "materialized",
+      "table_data_json_path": "tables/15-hot-tapping-and-leak-repair-01_p0012_tbl01_unit-superintendent-authorization-form.json",
+      "table_data_json_sha256": "2efecf8a07a3c14198a1a327ad5bfe715b06c670bc9c00cd6e7040cab216e74d",
+      "table_data_sha256": "2efecf8a07a3c14198a1a327ad5bfe715b06c670bc9c00cd6e7040cab216e74d",
+      "xlsx_path": "tables/15-hot-tapping-and-leak-repair-01_p0012_tbl01_unit-superintendent-authorization-form.xlsx",
+      "xlsx_sha256": "d7d209be112b3ab7ece845d16bf754151fe35cbb1d82a5187414f2b567c10ba8"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-01_assets",
+  "doc_stem": "15-hot-tapping-and-leak-repair-01",
+  "page": 12,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-01_pdf2md_work/page_0012.png",
+  "page_image_sha256": "d9b9ce2e959a4a7d7afa24ebb98d0764a99a95c7bd3982b31f293c783810c3c0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-01_pdf2md_work/page_0012_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0020_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "15-hot-tapping-and-leak-repair-02_p0020_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.43,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        889,
+        1666,
+        1474
+      ],
+      "caption": "Operating conditions \u2014 PRESSURE, TEMPERATURE, FLOW RATE",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.png",
+      "png_sha256": "031ef40a46f5a5c86e62f9b95a136332586d9da661a851967b317db09b1a747e",
+      "slug": "operating-conditions-pressure-temperatur",
+      "status": "materialized",
+      "table_data_json_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.json",
+      "table_data_json_sha256": "64f11a76202265785323c2ffcf8a7a59b11ed636598e0717bc7c952f71fd83d6",
+      "table_data_sha256": "64f11a76202265785323c2ffcf8a7a59b11ed636598e0717bc7c952f71fd83d6",
+      "xlsx_path": "tables/15-hot-tapping-and-leak-repair-02_p0020_tbl01_operating-conditions-pressure-temperatur.xlsx",
+      "xlsx_sha256": "89add87a2b8b074dde8f3f26503da0006234fdf7da6fb0e536f2ff94d66926da"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_assets",
+  "doc_stem": "15-hot-tapping-and-leak-repair-02",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0020.png",
+  "page_image_sha256": "3c6e6bf08e49cbea5749435677499724bb083d723002f8b1331a5211dd45f076",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/15-hot-tapping-and-leak-repair/15-hot-tapping-and-leak-repair-02_pdf2md_work/page_0020_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0053_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0053_fig01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        759,
+        2474,
+        2541
+      ],
+      "caption": "(A) FULL COUPLING and (B) HALF COUPLING \u2014 Standard Class 3000 Socket Weld Couplings detail showing core and jacket labeling",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0053_fig01_full-coupling-half-coupling-class-3000-s.png",
+      "png_sha256": "89e490ccc5e14affb3e1ed3191c18c1365342a8a75dc5a7b382ab6b1363372d6",
+      "slug": "full-coupling-half-coupling-class-3000-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 53,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0053.png",
+  "page_image_sha256": "0680ede43d3da481af3d3623838d2be958d228dbb64e2ff0eab74830a6e07ed6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0053_assets.json"
+}

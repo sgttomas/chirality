@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0014_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0014_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2563,
+        3308
+      ],
+      "caption": "A1.4 HDPE PIPE POST INDICATOR ASSEMBLY (APPLICABLE FOR VALVES 16\" OR LARGER) \u2014 STD DWG, Suncor Energy STD 0212, Rev. 5, Sep. 2005",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0014_fig01_a1-4-hdpe-pipe-post-indicator-assembly.png",
+      "png_sha256": "2679a9123a40d9da456a653606837742d3a901e4ffb8ddc6ce591b3948dd29cb",
+      "slug": "a1-4-hdpe-pipe-post-indicator-assembly",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0014.png",
+  "page_image_sha256": "1064175068105a1772003f50bc3faadf67de8bca6f14ee3e517c6a7f3e8f9141",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0014_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0030_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0030_fig01",
+      "bbox_norm": [
+        0.04,
+        0.05,
+        0.96,
+        0.38
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1417
+      ],
+      "caption": "Fig. 400-13 HDPE Ball and Plug Valves Courtesy of Nordstrom Valves, Inc. Ployvalve is \u00ae trademark",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0030_fig01_fig-400-13-hdpe-ball-plug-valves.png",
+      "png_sha256": "963773227e451457148b417834e60d69c1a474b295d3e64142e5e37063da480d",
+      "slug": "fig-400-13-hdpe-ball-plug-valves",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0030.png",
+  "page_image_sha256": "49639eeee56b27f7c3a5e600e0f779ec013900eacd7358fd5601e5208453c675",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0030_assets.json"
+}

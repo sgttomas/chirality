@@ -1,0 +1,93 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0017_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0017_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        25,
+        0,
+        2550,
+        1549
+      ],
+      "caption": "Fig. 400-7 Suggested Maximum Support Spacings, in Feet, for Continuous Spans of Aboveground Thermoplastic Piping at Selected Temperatures, \u00b0F",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0017_tbl01_support-spacings-thermoplastic-abovegrou.png",
+      "png_sha256": "b5762505aea9638c08657f23f84ac25f325de221541f9a8bc13857fcd49ffe59",
+      "slug": "support-spacings-thermoplastic-abovegrou",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0017_tbl02",
+      "bbox_norm": [
+        0.06,
+        0.5,
+        0.35,
+        0.74
+      ],
+      "bbox_px": [
+        25,
+        1483,
+        1020,
+        2604
+      ],
+      "caption": "FRP Support Spacings up to 150\u00b0F",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0017_tbl02_frp-support-spacings-150f.png",
+      "png_sha256": "cb8fa333dd3a195ee4935154f0c355f622ac6c458bdd15a4ab4f53c628010f26",
+      "slug": "frp-support-spacings-150f",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0017_fig01",
+      "bbox_norm": [
+        0.37,
+        0.48,
+        0.97,
+        0.76
+      ],
+      "bbox_px": [
+        816,
+        1417,
+        2550,
+        2670
+      ],
+      "caption": "Fig. 400-7 (continued) Plastic pipe support illustrations showing pipe clamps and guide supports",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0017_fig01_plastic-pipe-support-illustrations.png",
+      "png_sha256": "6db4c13ecc64d3b6b227e40e7ef41f40e9d20870122a5c2b7aaaf7b32a902ac8",
+      "slug": "plastic-pipe-support-illustrations",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0017.png",
+  "page_image_sha256": "421937ac679b89c020e33e8570b91349be0de10b3e2e76ffbdda8bcfe782d8d5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0017_assets.json"
+}

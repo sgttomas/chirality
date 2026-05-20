@@ -7,20 +7,16 @@
   "asset_policy": "prose-document-assets-v1",
   "assets": [
     {
-      "kind": "img",
-      "ordinal": 1,
-      "caption": "PIP logo",
-      "slug": "pip-logo",
-      "bbox_norm": [0.05, 0.03, 0.22, 0.12],
-      "confidence": "high",
-      "notes": "PIP (Process Industry Practices) logo in top-left header block"
-    },
-    {
       "kind": "fig",
       "ordinal": 1,
-      "caption": "JE-1 Jacketed Elbows, 90 Degree — Standard LR/SR Combinations, Sizes 1\"x2\" Through 6\"x8\"",
+      "caption": "JE-1 Jacketed Elbows, 90 Degree \u2014 Standard LR/SR Combinations, Sizes 1\"x2\" Through 6\"x8\"",
       "slug": "je-1-jacketed-elbows-90-degree-lr-sr",
-      "bbox_norm": [0.08, 0.18, 0.92, 0.78],
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.78
+      ],
       "confidence": "high",
       "notes": "Engineering cross-section drawing of jacketed 90-degree elbow; callouts: JACKET SHORT RADIUS and CORE LONG RADIUS"
     }

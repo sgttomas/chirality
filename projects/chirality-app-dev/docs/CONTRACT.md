@@ -1,139 +1,177 @@
-# CONTRACT - Invariant Catalog
+# CONTRACT — Invariant Catalog
 
-Status: Active invariant catalog derived from `docs/PRD.md`
-Date: 2026-05-20
-Applies to: Chirality App vNext runtime, docs, frontend, packaged app, and governed project workspaces
+**Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
+**Date:** 2026-05-20
+**Product:** Chirality desktop harness and bundled agent operating system
+**Applies to:** Chirality App vNext runtime, docs, frontend implementation, packaged app, and governed project workspaces
 
-This document defines binding invariants for Chirality App. Invariant IDs are stable. New invariants may be added. Existing invariant IDs must not be reused for different meanings.
+This document is the authoritative catalog of binding invariants for Chirality App. Invariants listed here are enforceable constraints that agents, tooling, implementation code, governance documents, human processes, and release operations must respect. Enforcement may occur in code, tests, release checks, instructions, human gates, or the reliance-boundary register. Prompt text alone is not sufficient enforcement for P0 safety, audit, filesystem, or human-gate boundaries.
 
-Enforcement may occur in code, tests, release checks, instructions, human gates, or the reliance-boundary register. Prompt text alone is not sufficient enforcement for P0 safety, audit, filesystem, or human-gate boundaries.
+Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §4 with retirement rationale.
 
 ---
 
 ## 1. Invariant Catalog
 
-### 1.1 Product Authority And Identity
+### 1.1 Hierarchy, Identity, and Project State
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| K-PRD-1 | `docs/PRD.md` is the approved product source for vNext direction. | Governance review; traceability in docs |
-| K-ID-1 | Chirality App remains a governed professional-work agent harness, not Claude Code branding or an Anthropic product wrapper. | UI copy review; release review; PRD acceptance checks |
-| K-SDK-1 | The Claude Agent SDK is privileged as implementation substrate, not as product authority. | `AgentEnginePort`; `RuntimeEngineContract`; conformance tests |
-| K-CORE-1 | Core runtime APIs, events, tests, and records use Chirality terms. Provider/SDK-specific terms are translated at adapter boundaries. | `EngineAdapter`; event schema tests; API review |
+| **K-PRD-1** | `docs/PRD.md` is the approved vNext product-direction source for the current runtime posture. The synchronized governance set controls operations once updated. | Governance review; document traceability; change-control review. |
+| **K-HIER-1** | Projects are decomposed as flat **packages containing deliverables**. Packages do not nest; there is no phase or sub-package layer inside the project hierarchy. | PROJECT_DECOMP; scaffold service; deliverable scanner; human review. |
+| **K-ID-1** | Stable identifiers are identity. Package IDs, deliverable IDs, dependency IDs, scope IDs, objective IDs, session IDs, turn IDs, and event IDs persist across renames, path changes, and UI labels. | SPEC/TYPES; scanners; event schema; dependency writer; human review. |
+| **K-PATH-1** | Path is a physical projection of identity, not identity itself. Runtime records and project files must preserve stable IDs when paths change. | Session events; `_CONTEXT.md`; dependency registers; scanners. |
+| **K-FS-1** | Project truth lives in plain files under the working root and accepted git history, not in hidden app state, chats, SDK transcripts, model context, or vendor systems. | DIRECTIVE; SPEC; runtime session store; human review; git workflow. |
+| **K-GIT-1** | Accepted project decisions bind to versioned files. Gate-relevant decisions not represented in git-tracked project artifacts are not reliance evidence. | Human gate review; CHANGE workflow; release discipline. |
+| **K-NOMEM-1** | No hidden memory may become authoritative project state. Runtime convenience state is allowed only when explicitly non-authoritative. | Runtime contracts; UI local-state policy; session storage rules. |
 
-### 1.2 Filesystem Authority
-
-| ID | Invariant | Enforcement |
-|---|---|---|
-| K-FS-1 | Authoritative project execution state lives in plain files under the working root or explicit Chirality-controlled project paths. | Working-root validation; file APIs; human review |
-| K-FS-2 | The instruction root and working root are separate. The working root must not be inside the instruction root. | Working-root validation API |
-| K-FS-3 | Runtime tools must enforce project-root containment before reads/writes. | Permission overlay; hooks; tool tests |
-| K-FS-4 | Runtime tools must block instruction-root writes. | Pre-tool hooks; path policy tests |
-| K-FS-5 | Symlink writes are rejected until a governed policy explicitly permits them. | Pre-tool hooks; filesystem tests |
-
-### 1.3 Session And Audit
+### 1.2 Human Authority, Approval, and Professional Boundaries
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| K-AUDIT-1 | A user turn must be persisted as `turn.accepted` before SDK/model execution begins. | `TurnEngine`; session event tests |
-| K-AUDIT-2 | Every accepted turn must end with a terminal event: completed, failed, cancelled, or interrupted. | `TurnEngine`; conformance tests |
-| K-AUDIT-3 | `.chirality/sessions/<sessionId>/events.jsonl` or configured equivalent is the product-owned runtime audit mirror. | `SessionEvents`; replay tests |
-| K-AUDIT-4 | SDK transcripts are secondary runtime artifacts unless imported into Chirality's event schema. | `SdkSessionLink`; reliance-boundary register |
-| K-AUDIT-5 | Runtime event payloads must avoid secrets and store large payloads as referenced artifacts. | `RunLogger`; redaction tests; artifact policy |
-| K-AUDIT-6 | Event replay must tolerate malformed trailing JSONL without losing valid prior events. | Replay parser tests |
+| **K-AUTH-1** | Only humans author binding approval records. No agent, SDK, tool, runtime event, validator, or domain adapter may claim to certify, approve, sign, seal, issue, transmit, or externally validate work for reliance. | Agent instructions; UI copy; status transition API; human review; release checks. |
+| **K-AUTH-2** | Human approvals bind to specific content evidence, normally a git SHA. Content changes after approval void the approval until re-reviewed. | `_STATUS.md` transition rules; CHANGE workflow; human review. |
+| **K-BIND-1** | Binding and non-binding records must not be conflated. Drafts, proposals, summaries, and runtime transcripts are not approval records. | DIRECTIVE; SPEC; UI language; project file templates. |
+| **K-GATE-1** | Human gates are non-delegable. CHECKING, ISSUED, domain-operation acceptance, and other reliance-affecting states require accountable human evidence. | Status transition API; operation-proposal workflow; human review. |
+| **K-PROF-1** | Chirality must not claim code compliance, external validation, solver truth, or professional adequacy by itself. | PRD acceptance checks; DIRECTIVE; UI/documentation review. |
 
-### 1.4 Runtime Engine Boundary
-
-| ID | Invariant | Enforcement |
-|---|---|---|
-| K-ENGINE-1 | All engine implementations must satisfy `AgentEnginePort` / `RuntimeEngineContract`. | `EngineConformanceSuite` |
-| K-ENGINE-2 | Public harness APIs and browser `UIEvent`s must not depend on SDK message names or transcript shape. | API tests; mapper tests |
-| K-ENGINE-3 | Provider-specific identifiers such as SDK session IDs may appear only as adapter metadata or explicit linkage fields. | Schema review; conformance tests |
-| K-ENGINE-4 | SDK adapter version, settings posture, visible tools, and transcript linkage must be recorded in safe runtime metadata. | Runtime metadata tests |
-| K-ENGINE-5 | If the SDK cannot satisfy a P0 reliance boundary, a governed fallback decision is required before production use. | R0/R1 gate; reliance-boundary register |
-
-### 1.5 SDK Isolation And Network Policy
+### 1.3 Instruction Root and Working Root Separation
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| K-SDK-SET-1 | Shipped builds use `settingSources: []` unless a governed exception is accepted. | SDK options builder tests |
-| K-SDK-SET-2 | Shipped builds must not load `user` or `local` Claude Code settings. | SDK options builder tests; release checks |
-| K-NET-1 | Renderer outbound traffic is limited to loopback and Anthropic API unless amended. | Electron network guardrail tests |
-| K-NET-2 | Tool or MCP network expansion beyond Anthropic requires future scope approval. | Tool registry review; permission policy |
-| K-KEY-1 | API keys are not written to project files, logs, runtime events, SDK transcripts intentionally, or tool artifacts. | Key store; redaction tests |
+| **K-ROOT-1** | Instruction root and working root are separate. The working root must not be inside the instruction root. | `/api/working-root/validate`; instruction-root resolver; packaging tests. |
+| **K-ROOT-2** | Ordinary project execution must not mutate the instruction root. Instruction-root writes require governed release/change operations. | Chirality hooks; path containment; packaging/integrity checks; human review. |
+| **K-ROOT-3** | The working root is the only ordinary location where agents may write project truth. | Tool path policy; MCP wrappers; hook denials; git review. |
+| **K-PACKAGE-1** | Packaged builds must contain the required instruction-root resources and verify integrity before distribution. | `instruction-root:integrity`; `desktop:dist`; manual release verification. |
 
-### 1.6 Permission And Tool Exposure
-
-| ID | Invariant | Enforcement |
-|---|---|---|
-| K-PERM-1 | Deny rules override all allow decisions, including persona, operator, SDK mode, and developer-only bypass. | Permission overlay tests |
-| K-PERM-2 | `allowedTools` alone is not a restriction boundary. Restrictions require deny rules, `disallowedTools`, hooks, `dontAsk`, or `canUseTool`. | SDK options tests; PRD acceptance |
-| K-PERM-3 | Tool implementation availability does not imply model exposure. | Tool-surface resolver tests |
-| K-PERM-4 | `readOnly` exposes or allows read-only tools only. | Permission tests |
-| K-PERM-5 | `dontAsk` denies unapproved write, shell, network, or non-allowlisted actions without prompting. | Permission tests |
-| K-PERM-6 | `bypassPermissions` is not shipped as ordinary operator behavior. | Build/runtime config checks |
-| K-TOOL-1 | Chirality MCP tools pass through the same permission, hook, path, redaction, and event policy as SDK built-ins. | MCP tool tests; hook tests |
-| K-TOOL-2 | Bash remains denied by default until timeout, result storage, interrupt, hook, and audit behavior pass validation. | Runtime phase gates |
-
-### 1.7 Hooks And Reliance Boundaries
+### 1.4 Runtime Engine Boundary and SDK Governance
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| K-HOOK-1 | Write, shell, domain, and subagent pre-tool hook denials fail closed. | Hook tests |
-| K-HOOK-2 | Product-critical boundaries must be mapped in the reliance-boundary register. | R0/R1 deliverables; conformance tests |
-| K-HOOK-3 | P0 reliance boundaries cannot be prompt-only or opaque SDK-default-only. | Reliance-boundary review |
-| K-HOOK-4 | Compaction boundaries must be mirrored when the SDK exposes them. | SDK message mapper tests |
+| **K-CORE-1** | Core runtime APIs, events, tests, and records use Chirality terms. Provider/SDK-specific terms are translated at adapter boundaries. | `EngineAdapter`; event-schema tests; API review. |
+| **K-ENGINE-1** | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`; SDK APIs do not define public harness semantics. | Runtime contract docs; engine conformance tests; adapter boundary. |
+| **K-ENGINE-2** | Any SDK-backed adapter must pass engine conformance tests before becoming the default production path. | `EngineConformanceSuite`; Section 9 validation; CI. |
+| **K-ENGINE-3** | The SDK is privileged as implementation substrate, not as product identity or governance authority. | DIRECTIVE; PRD; product copy review; adapter implementation. |
+| **K-ENGINE-4** | Public APIs, `UIEvent`, `HarnessEvent`, session storage, permission decisions, and governance records must not become SDK-shaped except as adapter metadata. | Type tests; mapper tests; event-schema review. |
+| **K-ENGINE-5** | A governed fallback/custom-runtime path must remain available if a product-critical boundary cannot be satisfied or verified through the SDK. | R0/R1 SDK probe; reliance-boundary register; plan updates. |
+| **K-RELIANCE-1** | Product-critical safety, audit, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundaries must be mapped in the reliance-boundary register. | R0/R1 deliverables; conformance tests; governance review. |
+| **K-RELIANCE-2** | P0 reliance boundaries cannot be prompt-only or opaque SDK-default-only. | Reliance-boundary review; SDK probe; runtime tests. |
+| **K-SDK-1** | Shipped builds must not load ambient user/global Claude Code settings or local `.claude/settings.local.json`. | `settingSources: []`; SDK options builder tests; release verification. |
+| **K-SDK-2** | SDK adapter behavior must be version-pinned and regression-tested on upgrade. | package lock; SDK probe; conformance suite; release notes. |
+| **K-SDK-3** | SDK transcripts are resume/debug artifacts, not canonical Chirality audit records unless explicitly imported into `HarnessEvent` form. | Session store; event mirror; replay code; documentation. |
+| **K-SDK-4** | Product identity remains Chirality. The app must not appear to be Claude Code or an Anthropic product. | UI/copy review; packaging metadata; release checklist. |
 
-### 1.8 Agent And Subagent Governance
-
-| ID | Invariant | Enforcement |
-|---|---|---|
-| K-AGENT-1 | Persona names resolve to `agents/AGENT_*.md` and aliases map to canonical agents. | Persona resolver tests |
-| K-AGENT-2 | Real prompt composition must include agent instruction content and relevant governance context. | Persona composer tests |
-| K-SUB-1 | Type 2 subagent delegation fails closed unless governance metadata is valid. | `evaluateSubagentGovernance`; hook tests |
-| K-SUB-2 | Subagents inherit or reduce parent permissions; they cannot bypass governance. | SDK agents config tests |
-
-### 1.9 Deliverable Governance
-
-| ID | Invariant | Enforcement |
-|---|---|---|
-| K-HIER-1 | Execution roots use flat packages containing deliverables. No nested packages. | Scaffold validation; scope scan |
-| K-STATUS-1 | `_STATUS.md` is the canonical lifecycle state file for each deliverable. | Status APIs; lifecycle tests |
-| K-STATUS-2 | Lifecycle transitions are forward-only and actor-authorized. | Status transition API |
-| K-AUTH-1 | Human gate transitions require approval SHA evidence. | Status transition API; human review |
-| K-DEP-1 | `Dependencies.csv` v3.1 is the structured dependency register when dependencies are tracked. | Dependency API/linter |
-| K-PROV-1 | Active dependency rows require `EvidenceFile` and `SourceRef`, or explicit `location TBD`. | Dependency validation |
-| K-SNAP-1 | Snapshot-producing workflows write immutable snapshot folders; pointer files may move. | Tool conventions; review |
-
-### 1.10 Professional Boundary And Domain Engines
+### 1.5 Runtime Events, Sessions, and Audit Mirror
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| K-PRO-1 | No agent, SDK, endpoint, or tool may approve, certify, sign, seal, issue, or transmit work for reliance. | UI/docs review; human gates |
-| K-PRO-2 | Chirality does not claim code compliance, external validation, or solver ownership. | PRD acceptance; copy review |
-| K-DOM-1 | Generic `DomainEngineProfile` precedes engine-specific domain integration. | Future amendment gate |
-| K-DOM-2 | OpenPipeStress is a fixture profile when adopted, not Chirality core. | Domain profile review |
-| K-DOM-3 | Agents do not write directly into protected domain-engine model paths. | Domain path policy; hooks |
+| **K-EVENT-1** | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts. UI events remain stable and compact; persisted events may be richer and versioned. | `sdk-message-mapper`; event-schema tests; API route tests. |
+| **K-EVENT-2** | Accepted user input must be persisted before model/SDK execution begins. A killed or interrupted process must leave a recoverable accepted-turn event. | `TurnEngine`; `SessionEvents`; integration tests. |
+| **K-EVENT-3** | Every accepted turn must end with a durable success, failure, cancellation, or interruption event. | `TurnEngine`; `Stop`/terminal mapping; replay tests. |
+| **K-EVENT-4** | `.chirality/sessions/<id>/events.jsonl` is the product-owned Chirality runtime audit mirror. | Session store; replay; R0/R1 storage decision. |
+| **K-EVENT-5** | JSONL event replay must tolerate malformed trailing lines and preserve valid prior events. | Session replay tests; reader implementation. |
+| **K-EVENT-6** | Runtime events, run logs, tool artifacts, and provider errors must redact secrets and avoid storing API keys. | `RunLogger`; redaction helper; tests. |
+| **K-EVENT-7** | Large or sensitive tool results must be budgeted, previewed, stored as artifacts, or redacted according to policy. | `ToolResultStore`; hook policy; tool event tests. |
+
+### 1.6 Permission, Tool Exposure, Hooks, and MCP
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-PERM-1** | Deny overrides allow. Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution. | `ChiralityPermissionOverlay`; hooks; MCP wrappers; tests. |
+| **K-PERM-2** | Prompt text is not a safety boundary. Filesystem writes, tool exposure, bash, subagents, and domain operations require runtime enforcement. | Permission overlay; hooks; runtime contract. |
+| **K-PERM-3** | `allowedTools` alone is not a restriction boundary. Restriction requires disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | SDK options builder; validation tests. |
+| **K-PERM-4** | `readOnly` mode must not expose or allow write/edit/bash/network-capable actions. | SDK options; tool exposure tests; hook denials. |
+| **K-PERM-5** | `dontAsk` mode denies unapproved writes, shell, network, and unknown tools without prompting. | Permission overlay; integration tests. |
+| **K-PERM-6** | `bypassPermissions` is developer-local only and never shipped as ordinary operator behavior. Chirality deny hooks still apply. | Options builder; environment guard; release checklist. |
+| **K-TOOL-1** | Tool exposure is deterministic for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | SDK options builder; tool registry/MCP tests. |
+| **K-TOOL-2** | Tool implementation availability does not imply model exposure. A tool must pass tool-surface and permission resolution before exposure. | Tool pool/options builder; tests. |
+| **K-MCP-1** | MCP is a transport, not a bypass. In-process Chirality MCP tools pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | MCP wrappers; hook implementation; Section 9 validation. |
+| **K-HOOK-1** | Hook failures fail closed for write, shell, domain, and subagent actions. | `ChiralityHooks`; integration tests. |
+| **K-PATH-2** | Runtime tools must enforce working-root containment and reject writes outside the active project root. | Path helpers; PreToolUse hooks; MCP tools. |
+| **K-PATH-3** | Symlink writes are rejected in the initial policy. Any relaxation requires governed amendment and tests. | PreToolUse hooks; write tests. |
+| **K-BASH-1** | Bash is denied by default even though the SDK ships the tool. Enabling bash requires timeout, output capture, result storage, interrupt behavior, and audit events. | Options builder; hooks; R4 validation. |
+
+### 1.7 Filesystem Execution, Lifecycle, Dependencies, and Provenance
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-STATUS-1** | `_STATUS.md` is the canonical human-readable lifecycle state file for each deliverable. No other file determines deliverable state. | Status parser; transition API; SPEC. |
+| **K-STATUS-2** | Lifecycle transitions are forward-only and actor-authorized. Transitions to human-gate states require approval SHA evidence. | Status transition API; MCP status tool; tests. |
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative for dependencies. Aggregation is on-demand, not a separate central truth store. | Dependency APIs; MCP dependency tool; DEPENDENCIES agent. |
+| **K-DEP-2** | Dependency references to deliverables must resolve to existing stable deliverable IDs. Unresolvable targets use `TargetType=UNKNOWN`. | Dependency linter; scanner; writer. |
+| **K-PROV-1** | Active extracted dependency rows must cite evidence: `EvidenceFile` plus `SourceRef`, or explicit `location TBD`. | `Dependencies.csv` validation; dependency writer. |
+| **K-INVENT-1** | Unknown values become `TBD`, not guesses. Agents and tools must not invent scope items, dependency targets, parameters, or professional conclusions. | Agent instructions; human review; validation. |
+| **K-CONFLICT-1** | Source conflicts are surfaced, not silently resolved. | Agent instructions; reconciliation workflows; review. |
+| **K-SNAP-1** | Snapshot-producing workflows write immutable timestamped folders. Mutable `_LATEST.md` pointers may move; snapshots must not be overwritten. | Tool-root policy; human review; tests. |
+| **K-REF-1** | Accepted reference hash tooling and dependency-linter tooling remain available; retired hardening scope is not reintroduced by runtime event logging. | PKG-08 status; plan; scope-change records. |
+
+### 1.8 Agent and Subagent Governance
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-WRITE-1** | Every agent instruction file declares explicit write scope. Agents must not write outside their declared scope. | Agent instruction conformance; tool hooks; human diff review. |
+| **K-SEAL-1** | Type 2 task-agent execution requires sealed context and gate approval metadata. | `evaluateSubagentGovernance`; `Agent` tool hook; audit events. |
+| **K-GHOST-1** | Type 2 task-agent context is limited to folder contents and declared references. No ghost inputs. | Agent instructions; sealed context; subagent tool config. |
+| **K-SUBAGENT-1** | Subagent delegation fails closed unless environment enablement, persona allowlist, context sealing, pipeline approval, approval reference, and Type 2 eligibility all pass. | `SubagentGovernanceBridge`; PreToolUse hook; tests. |
+| **K-SUBAGENT-2** | SDK subagents may not inherit or expand capabilities beyond parent governance. Child tool lists and cwd are restricted. | SDK agents config; permission overlay; event records. |
+| **K-SUBAGENT-3** | Subagent runs must produce parent-child runtime records and output artifact references when execution is enabled. | `HarnessEvent`; `ToolResultStore`; Section 9 validation. |
+
+### 1.9 Security, Network, Release, and Packaging
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-NET-1** | Outbound network access is limited to explicit product scope. Current shipped policy is loopback plus Anthropic API path; remote MCP and broader network access require governed future scope. | Electron network guardrails; provider policy; tests. |
+| **K-KEY-1** | API keys are non-project convenience state and must never be written to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts. | SafeStorage; env handling; redaction tests. |
+| **K-ATTACH-1** | Attachments are server-validated; client metadata is non-authoritative. Symlinks, directories, special files, unsupported extensions, and over-budget files are rejected. | Attachment resolver; route tests. |
+| **K-RELEASE-1** | Current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended. | `desktop:dist`; manual release verification. |
+| **K-VALIDATE-1** | Required local checks must pass before release-significant changes are accepted. | `npm run test`; `typecheck`; `harness:validate:premerge`; `instruction-root:integrity`; `desktop:dist`. |
+| **K-RETIRED-1** | Retired execution-scope items, including retired PKG-08 deliverables, remain out of scope unless reactivated by governed amendment. | PLAN; scope-change records; PRD acceptance checks. |
+
+### 1.10 Domain Engine Future Scope
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-DOMAIN-1** | Domain engines own authoritative domain truth. Chirality governs interaction, proposals, records, and human gates; it does not become the solver. | Domain profile spec; adapter policy; UI copy. |
+| **K-DOMAIN-2** | Protected domain paths are write-quarantined. Agents may write proposals and summaries, not protected domain-engine model truth. | Domain profile policy; path hooks; operation workflow. |
+| **K-DOMAIN-3** | Domain operations require `OperationProposal` records and explicit human acceptance before application. | Future domain APIs; human gate; audit events. |
+| **K-DOMAIN-4** | Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | UI/documentation review; boundary notices. |
 
 ---
 
-## 2. Enforcement Map
+## 2. Enforcement Map Summary
 
-| Enforcement Surface | Invariants |
+| Enforcement Point | Invariants Checked |
 |---|---|
-| `AgentEnginePort` / `RuntimeEngineContract` | K-SDK-1, K-CORE-1, K-ENGINE-1 through K-ENGINE-5 |
-| `EngineConformanceSuite` | K-AUDIT-1 through K-AUDIT-6, K-ENGINE-1 through K-ENGINE-4 |
-| SDK options builder | K-SDK-SET-1, K-SDK-SET-2, K-PERM-2, K-PERM-4 through K-PERM-6 |
-| Permission overlay and hooks | K-FS-3 through K-FS-5, K-PERM-1 through K-PERM-6, K-HOOK-1 |
-| Session event store | K-AUDIT-1 through K-AUDIT-6 |
-| Persona composer | K-AGENT-1, K-AGENT-2 |
-| Subagent governance bridge | K-SUB-1, K-SUB-2 |
-| Workspace/status/dependency APIs | K-HIER-1, K-STATUS-1, K-STATUS-2, K-AUTH-1, K-DEP-1, K-PROV-1 |
-| Release checks | K-ID-1, K-NET-1, K-KEY-1, K-SDK-SET-1, K-SDK-SET-2 |
-| Human review | K-PRO-1, K-PRO-2, K-AUTH-1, K-DOM-1 through K-DOM-3 |
+| `DIRECTIVE.md` | K-FS-1, K-GIT-1, K-AUTH-1, K-PROF-1, K-ROOT-1, K-ENGINE-3, K-DOMAIN-1 |
+| `SPEC.md` | K-HIER-1, K-ID-1, K-ROOT-1, K-EVENT-1 through K-EVENT-7, K-STATUS-1, K-DEP-1, K-ATTACH-1 |
+| `TYPES.md` | K-ID-1, K-PATH-1, K-EVENT-1, K-PERM-1, K-TOOL-1, K-DOMAIN-3 |
+| `PLAN.md` | K-VALIDATE-1, K-RETIRED-1, K-ENGINE-5, K-DOMAIN-1 through K-DOMAIN-4 |
+| Working-root validator | K-ROOT-1, K-PATH-2 |
+| `AgentEnginePort` / `RuntimeEngineContract` | K-ENGINE-1 through K-ENGINE-5 |
+| Engine conformance tests | K-ENGINE-2, K-ENGINE-4, K-EVENT-1 through K-EVENT-5, K-PERM-1 |
+| SDK options builder | K-SDK-1, K-SDK-2, K-PERM-3, K-TOOL-1, K-BASH-1 |
+| SDK message mapper | K-EVENT-1, K-EVENT-3, K-ENGINE-4 |
+| Session event store | K-EVENT-2 through K-EVENT-6, K-SDK-3 |
+| Run logger/redaction | K-EVENT-6, K-KEY-1 |
+| Permission overlay | K-PERM-1 through K-PERM-6 |
+| Chirality hooks | K-PATH-2, K-PATH-3, K-HOOK-1, K-ROOT-2, K-BASH-1, K-SUBAGENT-1 |
+| MCP wrappers | K-MCP-1, K-STATUS-2, K-DEP-1, K-PATH-2 |
+| Status/dependency APIs | K-STATUS-1, K-STATUS-2, K-DEP-1, K-DEP-2, K-PROV-1 |
+| Agent instructions | K-WRITE-1, K-SEAL-1, K-GHOST-1, K-INVENT-1, K-CONFLICT-1 |
+| Human review | K-AUTH-1, K-AUTH-2, K-BIND-1, K-GATE-1, K-PROF-1 |
+| Release validation | K-PACKAGE-1, K-RELEASE-1, K-VALIDATE-1, K-NET-1, K-SDK-1 |
+| Future domain profile validator | K-DOMAIN-1 through K-DOMAIN-4 |
 
 ---
 
-## 3. Retired Invariants
+## 3. Change Policy
 
-No vNext invariants have been retired.
+A change that modifies any invariant, introduces an exception, or changes an enforcement point must be treated as a governed product change. It must update the relevant governance documents, tests, validation runbooks, and implementation artifacts before being considered accepted.
+
+New invariants may be added with new IDs. Existing IDs must not be reused for different meanings. If an invariant no longer applies, retire it in §4 rather than deleting it.
+
+---
+
+## 4. Retired Invariants
+
+No invariants are retired in this vNext rewrite.

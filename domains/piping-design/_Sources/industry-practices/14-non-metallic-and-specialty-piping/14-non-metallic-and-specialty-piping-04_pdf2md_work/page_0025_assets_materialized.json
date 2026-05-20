@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0025_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0025_fig01",
+      "bbox_norm": [
+        0.08,
+        0.28,
+        0.92,
+        0.78
+      ],
+      "bbox_px": [
+        76,
+        759,
+        2474,
+        2739
+      ],
+      "caption": "Jacketed Elbow, 90 Degree \u2014 Standard SR/LR Combination, Sizes 8\"x12\" and Larger",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0025_fig01_jacketed-elbow-90-degree-sr-lr-combinati.png",
+      "png_sha256": "b360fc66cadb790fe3df1cb538782b345d7c38f09cfd457a429899c37c93929a",
+      "slug": "jacketed-elbow-90-degree-sr-lr-combinati",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 25,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0025.png",
+  "page_image_sha256": "d8e3d64b1af782224d60581329df15890fe9b70de7e6700aeb846158c63b4d01",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0025_assets.json"
+}

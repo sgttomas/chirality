@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0031_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0031_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2208,
+        2550,
+        3296
+      ],
+      "caption": "Physical and Mechanical Properties of HDPE",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0031_tbl01_physical-mechanical-properties-hdpe.png",
+      "png_sha256": "a17c5b75a5ab94b0f6fc6e007edf533c045a99f3d1e031f340095c859598fbf8",
+      "slug": "physical-mechanical-properties-hdpe",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0031_tbl01_physical-mechanical-properties-hdpe.json",
+      "table_data_json_sha256": "e8b6508decc4d1fb8526784c0b6d10a3dc6aeccc12214c494b05fe3ef4c7ef95",
+      "table_data_sha256": "e8b6508decc4d1fb8526784c0b6d10a3dc6aeccc12214c494b05fe3ef4c7ef95",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0031_tbl01_physical-mechanical-properties-hdpe.xlsx",
+      "xlsx_sha256": "65232cff47eb161f011b1956fef2eee978cb7bd953d1e5d311bf79fef93aeb76"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0031.png",
+  "page_image_sha256": "dc819b9e9a6668e9690285fae454da590b00a11e1aa1d0b46a87a6ff253c2c6e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0031_assets.json"
+}

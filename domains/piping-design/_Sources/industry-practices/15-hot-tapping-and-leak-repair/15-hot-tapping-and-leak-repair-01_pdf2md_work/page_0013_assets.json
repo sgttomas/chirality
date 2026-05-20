@@ -1,0 +1,167 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-01",
+  "page": 13,
+  "total_pages": 15,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Temporary Repair Enclosure Data Sheet and Checklist — Leak Repair entries (three repeated blocks)",
+      "slug": "temporary-repair-enclosure-data-sheet-checklist",
+      "bbox_norm": [0.04, 0.10, 0.97, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [10, 20],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Leak Repair Title", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "Revision", "is_header": true },
+            { "value": "", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "Leak Repair Number", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "What is being done? Select one or both.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "☐ Reinjection", "type": "text" },
+            { "value": "☐ Retightening", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "If retightening, what bolt torque is to be used?", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Prior to any reinjection or retightening, complete an inspection of the enclosure, including bolting, and adjacent components. Date and initial when complete.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "Date and initials:", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Notes:", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Date Reinjection/Retightening completed", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Signature", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Name", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "What is being done? Select one or both.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "☐ Reinjection", "type": "text" },
+            { "value": "☐ Retightening", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "If retightening, what bolt torque is to be used?", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Prior to any reinjection or retightening, complete an inspection of the enclosure, including bolting, and adjacent components. Date and initial when complete.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "Date and initials:", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Notes:", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Date Reinjection/Retightening completed", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Signature", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Name", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "What is being done? Select one or both.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "☐ Reinjection", "type": "text" },
+            { "value": "☐ Retightening", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "If retightening, what bolt torque is to be used?", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Prior to any reinjection or retightening, complete an inspection of the enclosure, including bolting, and adjacent components. Date and initial when complete.", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "Date and initials:", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Notes:", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Date Reinjection/Retightening completed", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Signature", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Fixed Equipment Engineer Name", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" },
+            { "value": "", "type": "text" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three repeated reinjection/retightening tracking blocks on one form page"
+    }
+  ],
+  "issues": []
+}

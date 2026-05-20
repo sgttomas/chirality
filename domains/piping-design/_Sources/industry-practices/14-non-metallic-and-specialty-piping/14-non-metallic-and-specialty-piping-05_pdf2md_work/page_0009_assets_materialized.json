@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0009_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0009_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        3296
+      ],
+      "caption": "Fig. 400-5 Nonmetallic Pipe Joints Courtesy of Central Plastics Company, Shawnee, OK; Fibercast(2 of 7)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0009_fig01_fig-400-5-nonmetallic-pipe-joints-fiberc.png",
+      "png_sha256": "03639c2c814ec278ff234cdc145661ba08dade76fa755e10571d3f49af449b24",
+      "slug": "fig-400-5-nonmetallic-pipe-joints-fiberc",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0009.png",
+  "page_image_sha256": "479aa4135430baf66dd662c78c5fe7d38f688e703c8090e597685e30cc3763a3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0009_assets.json"
+}

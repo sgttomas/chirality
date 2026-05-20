@@ -1,0 +1,107 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-03",
+  "page": 41,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Typical Weights and Dimensions of Hot-Tapping Equipment",
+      "slug": "typical-weights-dimensions-hot-tapping-equipment",
+      "bbox_norm": [0.08, 0.13, 0.92, 0.62],
+      "confidence": "high",
+      "notes": "Three-column table: Tap size (mm), Mass (kg), Max. height (mm). Footnote 1 on 80mm row: air or manually operated machines; other machines are hydraulic. NOTE: applies to conventional hot-tapping machines.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "¹ Indicates air or manually operated machines; other machines are hydraulic.",
+          "NOTE: This table applies to conventional hot-tapping machines."
+        ],
+        "rows": [
+          { "cells": [
+            { "value": "Tap size (mm)", "is_header": true },
+            { "value": "Mass (kg)", "is_header": true },
+            { "value": "Max. height (mm)", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "50", "type": "number" },
+            { "value": "20", "type": "number" },
+            { "value": "-", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "80", "type": "number" },
+            { "value": "75¹", "type": "text" },
+            { "value": "1 270", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "100", "type": "number" },
+            { "value": "308", "type": "number" },
+            { "value": "2 390", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "150", "type": "number" },
+            { "value": "310", "type": "number" },
+            { "value": "2 440", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "200", "type": "number" },
+            { "value": "312", "type": "number" },
+            { "value": "2 440", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "250", "type": "number" },
+            { "value": "320", "type": "number" },
+            { "value": "2 745", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "300", "type": "number" },
+            { "value": "330", "type": "number" },
+            { "value": "2 800", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "350", "type": "number" },
+            { "value": "1 000", "type": "number" },
+            { "value": "3 180", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "400", "type": "number" },
+            { "value": "1 004", "type": "number" },
+            { "value": "3 180", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "450", "type": "number" },
+            { "value": "1 008", "type": "number" },
+            { "value": "3 300", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "500", "type": "number" },
+            { "value": "1 018", "type": "number" },
+            { "value": "3 300", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "600", "type": "number" },
+            { "value": "1 090", "type": "number" },
+            { "value": "3 400", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "750", "type": "number" },
+            { "value": "1 182", "type": "number" },
+            { "value": "3 550", "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "900", "type": "number" },
+            { "value": "1 220", "type": "number" },
+            { "value": "3 800", "type": "number" }
+          ]}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0029_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0029_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.85,
+        0.68
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2295,
+        2409
+      ],
+      "caption": "JE-6 Standard Construction \u2014 Jacketed 45-degree elbow detail showing core and jacket piping arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0029_fig01_je-6-standard-construction-jacketed-45-d.png",
+      "png_sha256": "0c7a73ff5642dfd5dd964511bd4f87a651b54bdade14c5ec3a28769822a20df2",
+      "slug": "je-6-standard-construction-jacketed-45-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 29,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0029.png",
+  "page_image_sha256": "34080dafcdef67ed604e66538456315a739bda574b11046587086fdd7bba7704",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0029_assets.json"
+}

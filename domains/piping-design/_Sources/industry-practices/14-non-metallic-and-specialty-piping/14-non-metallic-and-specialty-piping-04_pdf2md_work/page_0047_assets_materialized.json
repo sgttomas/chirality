@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0047_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0047_fig01",
+      "bbox_norm": [
+        0.12,
+        0.17,
+        0.88,
+        0.72
+      ],
+      "bbox_px": [
+        178,
+        396,
+        2372,
+        2541
+      ],
+      "caption": "THERMOWELL ON CORE ELBOW \u2014 Fabrication/installation detail showing thermowell installed on a jacketed core elbow, with CORE and JACKET labels, weld symbols, and connection details. PIP PNFJ8690, TWE-1.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0047_fig01_thermowell-on-core-elbow.png",
+      "png_sha256": "bf09ad82851e05ed53132e76a472308a608b2b439725c82df7ce0077f2ea659b",
+      "slug": "thermowell-on-core-elbow",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 47,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0047.png",
+  "page_image_sha256": "74eaa8cb9f21427acdebc7f52199ab375f86e780d26a2dee8a21700779f5297e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0047_assets.json"
+}

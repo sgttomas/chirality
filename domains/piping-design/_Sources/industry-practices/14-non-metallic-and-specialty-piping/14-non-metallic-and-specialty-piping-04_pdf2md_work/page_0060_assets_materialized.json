@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0060_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0060_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2046
+      ],
+      "caption": "SP-1 Spacer Type A \u2014 detail drawings showing cross-section (side view with CORE, JACKET, and EQ labels) and end view (120\u00b0 TYPICAL), plus lower detail showing 1/16\" TYP. CLEARANCE and 1/8\" R. MIN. ELIMINATE ALL SHARP EDGES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0060_fig01_sp-1-spacer-type-a.png",
+      "png_sha256": "3e85e15a15ffdfcb176b97c08eac1ed87d6b105547d0ae875ae72bb56040230c",
+      "slug": "sp-1-spacer-type-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0060_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.57,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        1716,
+        2550,
+        2970
+      ],
+      "caption": "SPACER SCHEDULE - INCHES",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.png",
+      "png_sha256": "0938460409736dff4b9cdbb24f8c79f49d364a0fb2b43f88b40f7b4cd9afd102",
+      "slug": "spacer-schedule-inches",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.json",
+      "table_data_json_sha256": "d8c2571dea27a2fdfaf077e346a3fcd15b1f12f19f27b41971214dc75c0e6d76",
+      "table_data_sha256": "d8c2571dea27a2fdfaf077e346a3fcd15b1f12f19f27b41971214dc75c0e6d76",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.xlsx",
+      "xlsx_sha256": "80e72a09b022c0205875c2022bb75d328a2ebb60f5310c05485203a851e4730e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0060.png",
+  "page_image_sha256": "c0403dcdd18cd2878f94108c1d0506ca9d1f408637a97ea2dfb9b8ec500c3422",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0060_assets.json"
+}

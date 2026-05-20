@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0006_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0006_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2550,
+        3065
+      ],
+      "caption": "Fig. 400-2 Approximate Material-Plus-Installation Cost Ratios for Various Piping Materials Using Standard Weight Carbon Steel as the Cost Base (i.e., Ratio = 1.0)",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: 'Metallic'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0006_tbl01_fig-400-2-cost-ratios-piping-materials.png",
+      "png_sha256": "104c853a5e2a455d5fd3ed6c86a7efa131f95479fee34d9a52a08013d74e7561",
+      "slug": "fig-400-2-cost-ratios-piping-materials",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 6,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0006.png",
+  "page_image_sha256": "e4e14254fcce6358ad69cd01afc459b41ed2c4a0ac5fa5d7686ee99aa426a170",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0006_assets.json"
+}

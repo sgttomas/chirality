@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0031_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0031_fig01",
+      "bbox_norm": [
+        0.1,
+        0.18,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        429,
+        2422,
+        2541
+      ],
+      "caption": "JT-1 Straight Tee \u2014 jacketed tee fabrication/installation detail showing core and jacket arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0031_fig01_jt-1-straight-tee-jacketed.png",
+      "png_sha256": "6ae8b7be6945cff9b4f4b048f2360719a9069a9862b10372bb2fe922cb3f020f",
+      "slug": "jt-1-straight-tee-jacketed",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0031.png",
+  "page_image_sha256": "048958101dd6ecf9fe5c2fea8c425650a12770c202089d6353197d0a0d952426",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0031_assets.json"
+}

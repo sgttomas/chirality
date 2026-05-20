@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0054_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0054_fig01",
+      "bbox_norm": [
+        0.07,
+        0.2,
+        0.93,
+        0.72
+      ],
+      "bbox_px": [
+        51,
+        495,
+        2499,
+        2541
+      ],
+      "caption": "JCP-2 Standard Class 3000 Threaded Couplings \u2014 (A) Full Coupling and (B) Half Coupling jacket heating media connection details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0054_fig01_jcp-2-standard-class-3000-threaded-coupl.png",
+      "png_sha256": "ea5687091a3d29cdd2a8643d922ceeafadd45c8636bc10671c711fca59476b18",
+      "slug": "jcp-2-standard-class-3000-threaded-coupl",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 54,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0054.png",
+  "page_image_sha256": "b3b1917d4785a53bcd37d193a16bce1b2fd5c2f55ea0e1cf77f6cc95210d6a42",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0054_assets.json"
+}

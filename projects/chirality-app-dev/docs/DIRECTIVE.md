@@ -1,196 +1,274 @@
-# DIRECTIVE - Founding Intent, Product Boundary, and Operating Constraints
+# DIRECTIVE — Founding Intent, Scope, and Constraints
 
-Status: Active directive derived from `docs/PRD.md`
-Date: 2026-05-20
-Applies to: Chirality App vNext and its bundled governance/runtime documents
+**Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
+**Date:** 2026-05-20
+**Product:** Chirality desktop harness and bundled agent operating system
+**Applies to:** Chirality App vNext, bundled governance/runtime documents, frontend implementation, packaged app, and governed workspaces
+**Audience:** product owner, engineering, agent-instruction maintainers, reviewers, release operators, and future harness-runtime implementers
 
-This document is the "why" document for Chirality App. It states the product intent, authority boundaries, professional responsibility posture, and structural constraints that govern the rest of the documentation set.
+This document captures the founding intent, design philosophy, professional responsibility model, and structural constraints for Chirality App. It is the “why” document. `CONTRACT.md`, `SPEC.md`, `TYPES.md`, `PLAN.md`, agent instructions, implementation code, execution deliverables, and release runbooks must remain consistent with this directive. Where implementation conflicts with this directive, implementation is incomplete or nonconforming until a governed change updates the relevant record.
 
-Where this document conflicts with the approved `docs/PRD.md`, the PRD controls until a governed product change updates both documents. Where implementation conflicts with this document, implementation is incomplete or nonconforming.
+---
+
+## 0. Authority and Reading Order
+
+The governing document set is read as a coherent system:
+
+1. `DIRECTIVE.md` defines intent, values, and structural commitments.
+2. `CONTRACT.md` defines binding invariants.
+3. `SPEC.md` defines physical structures, file formats, runtime mechanics, and validation surfaces.
+4. `TYPES.md` defines vocabulary, identifiers, enums, and type targets.
+5. `PLAN.md` defines the development roadmap and sequencing rationale.
+6. `docs/PRD.md` states current product requirements and the accepted implementation direction.
+7. `AGENTS.md`, `agents/AGENT_*.md`, accepted execution deliverables, scope-change records, and release runbooks constrain concrete operations.
+
+If a lower-authority artifact conflicts with a higher-authority governance source, the higher-authority source controls until a governed change updates the record. The PRD establishes vNext product direction, but it does not erase the authority of the directive, contract, specification, vocabulary, accepted execution scope, or professional-boundary commitments.
 
 ---
 
 ## 1. Founding Intent
 
-Chirality App is a local-first desktop harness for governed AI-agent work over a user-selected filesystem workspace.
+Chirality is a local-first desktop harness for running governed AI agents against a user-selected filesystem workspace. It bundles a release-managed instruction root inside the app, lets the user select a mutable working root, and uses plain files plus git history as the durable substrate for professional work.
 
-The app packages a release-managed instruction root and binds it to a mutable working root selected by the user. The working root holds project execution state as inspectable files. The instruction root holds the agent operating system, governance documents, and release-managed behavior.
+The core insight is:
 
-The app exists to:
+> If the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.
 
-- accelerate deliverable-heavy professional work;
-- keep project truth in plain files under user control;
-- preserve human authority at all reliance gates;
-- make runtime actions auditable and replayable;
-- let agents propose, organize, draft, reconcile, and execute bounded tool work without becoming the authority for professional judgment.
+Chirality exists to:
 
-The runtime direction is:
+- accelerate deliverable-heavy professional work by organizing agent activity around packages, deliverables, dependencies, lifecycle files, and review gates;
+- make AI-assisted work auditable, reviewable, and controllable in settings where provenance, human accountability, and traceability matter;
+- keep humans in charge of every binding decision while agents perform drafting, extraction, reconciliation, scaffolding, summarization, and routine transformation;
+- provide a desktop harness whose product identity is Chirality, not a vendor CLI, SDK, cloud workflow, or hidden database;
+- preserve a path from interactive assistance to governed deliverable production without implying automated professional approval.
 
-> SDK-privileged, contract-owned, and Chirality-governed.
-
-The Claude Agent SDK is the preferred engine for generic agent-loop mechanics. Chirality owns the runtime contract, audit mirror, permission semantics, filesystem boundaries, lifecycle authority, product identity, and professional reliance boundaries.
+Chirality is not just a chat wrapper. It is a governed work harness. Its value is the combination of local filesystem truth, agent instructions, deterministic tools, runtime auditability, human gates, and a professional-responsibility posture.
 
 ---
 
-## 2. Product Thesis
+## 2. Design Philosophy
 
-### 2.1 Filesystem Is The Database
+### 2.1 Filesystem Is the Database
 
-Project execution truth lives in user-controlled files.
+Project state is represented as human-readable files under the working root. The system does not require an external database, hidden server, or vendor-hosted project memory to know what the project is.
 
-- Deliverables, dependencies, status records, context, references, and handoff states are file-backed.
-- Runtime convenience state is permitted only when it is explicitly non-authoritative.
-- Hidden vendor state, chat state, SDK transcripts, caches, or UI settings are not project truth.
+- **Nodes:** package folders, deliverable folders, domain profile folders, proposal folders, tool-root snapshots.
+- **Edges:** `Dependencies.csv` rows, lifecycle references, traceability references, operation proposals, review records.
+- **Properties:** markdown and CSV files such as `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `Dependencies.csv`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, and session event logs.
 
-### 2.2 Git Is The Event Store For Accepted Project State
+Agents and tools may traverse this filesystem state, but they do not replace it. When a fact matters for reliance, it must land in the appropriate versioned project file or approved artifact.
 
-Git-tracked files provide reviewable history, rollback, auditability, and release evidence.
+### 2.2 Git Is the Event Store for Project Truth
 
-If a gate-relevant decision is not in a versioned project file, it does not exist for reliance.
+Git history is the durable event store for accepted project state. It provides reviewable diffs, rollback, traceability, and auditability independent of chat history, vendor transcript formats, runtime caches, or UI convenience state.
 
-Runtime event logs explain what happened during agent sessions. Git records accepted project state.
+If a decision is not in a versioned file, it does not exist for purposes of reliance.
 
-### 2.3 Runtime Events Are Audit Evidence
+Runtime session logs explain what happened during agent work. They are important audit records, but they are not a substitute for accepted project-state files and human approval records.
 
-Chirality runtime events record accepted turns, provider/SDK messages, permission decisions, tool calls, hook outcomes, terminal status, compaction boundaries, and subagent lifecycle events.
+### 2.3 Runtime Events Explain Work; They Do Not Approve Work
 
-The canonical Chirality runtime audit mirror is `.chirality/sessions/<sessionId>/events.jsonl` or an explicitly configured Chirality-controlled session path.
+Chirality runtime events record accepted turns, provider/SDK messages, model deltas, permission decisions, tool calls, hook outcomes, compaction boundaries, subagent lifecycle, failures, interruptions, and terminal outcomes. These records support replay, diagnosis, and review.
 
-External SDK transcripts are secondary runtime artifacts unless imported into Chirality's event schema.
+The canonical Chirality runtime audit mirror is `.chirality/sessions/<sessionId>/events.jsonl` or an explicitly configured Chirality-controlled session path. External SDK transcripts are secondary runtime artifacts unless imported into Chirality’s event schema.
 
-### 2.4 Humans Decide What Can Be Relied Upon
+Runtime events do not make a deliverable approved, issued, code-compliant, externally validated, or safe for reliance. Gate-relevant decisions must still be represented in versioned project files and accepted by an accountable human.
 
-Agents propose. Runtime records. Deterministic tools validate and transform. Humans decide what can be relied upon.
+### 2.4 Human Authority at Every Gate
 
-No agent, SDK, provider, endpoint, tool, or generated artifact may sign, seal, approve, certify, issue, or otherwise release professional work for reliance.
+Agents propose; humans approve. Professional responsibility is personal, non-transferable, and not delegated to a model, tool, SDK, runtime, or deterministic validator.
+
+Only humans may author binding approval records, approve issue/release actions, select governing standards, accept residual risk, adjudicate source conflicts requiring judgment, and decide whether work may be relied upon.
+
+Approvals bind to specific content and must be traceable to a git SHA or equivalent immutable evidence. Content changes after approval void the approval until reviewed again.
+
+### 2.5 Evidence Over Plausibility
+
+Chirality values evidence over fluent output. The system must prefer source-backed statements, explicit assumptions, and visible uncertainty over plausible invention.
+
+Required posture:
+
+- cite or record source paths for extracted dependencies and important claims;
+- label assumptions as `ASSUMPTION`, proposals as `PROPOSAL`, unknowns as `TBD`, and observed facts as `FACT` where practical;
+- surface conflicts rather than silently resolving them;
+- prefer `location TBD` over fabricated provenance;
+- use deterministic tools for validation, parsing, scaffolding, linting, and repeatable transformations when available.
+
+### 2.6 No Hidden Memory for Project Truth
+
+No hidden memory may become authoritative project state. UI drafts, local presets, SDK transcripts, model context, runtime logs, app caches, API keys, and provider transcripts are non-authoritative unless a governed process imports their relevant content into the project filesystem.
+
+Convenience state is permitted when it is explicitly non-authoritative and cannot override governance. Examples include UI pane widths, local runtime presets, API key storage, draft chat text, and SDK resume metadata.
+
+### 2.7 Instruction Root and Working Root Are Separate
+
+Chirality separates the release-managed instruction root from the mutable working root.
+
+| Root | Meaning | Mutation policy |
+|---|---|---|
+| **Instruction root** | Bundled app resources such as `AGENTS.md`, `agents/`, `docs/`, framework guidance, and release-managed instructions. | Read-only during ordinary project execution. Updated only by release/governance changes. |
+| **Working root** / `projectRoot` | User-selected local filesystem path where project execution state, deliverables, sessions, and tool artifacts live. | Mutable under runtime policy and human gates. |
+
+The instruction root defines how agents should behave. The working root contains the project being worked on. These roots must not be conflated.
+
+### 2.8 SDK-Privileged, Contract-Owned, Chirality-Governed
+
+Chirality should privilege the Claude Agent SDK as the preferred hosted runtime engine for generic agent-loop mechanics where it satisfies Chirality requirements. The SDK may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
+
+The SDK does not own Chirality’s product contract. Chirality owns:
+
+- `AgentEnginePort` / `RuntimeEngineContract`;
+- browser `UIEvent` and persisted `HarnessEvent` schemas;
+- session canonicality and the Chirality audit mirror;
+- permission semantics and deny-first policy;
+- working-root and instruction-root policy;
+- persona/system-prompt composition;
+- `_STATUS.md` and `Dependencies.csv` lifecycle rules;
+- subagent governance;
+- path containment, redaction, and provenance;
+- professional-boundary language;
+- user-facing product identity;
+- fallback criteria if SDK behavior cannot be governed.
+
+The preferred architecture is **SDK-privileged, contract-owned, and Chirality-governed**.
+
+### 2.9 Reliance Boundaries Are First-Class
+
+A reliance boundary is a product-critical semantic that determines whether a user can trust the harness to preserve safety, auditability, authority, or professional boundaries. Examples include path containment, instruction-root protection, accepted-turn persistence, human-gate enforcement, transcript canonicality, permission denial, subagent gating, and settings isolation.
+
+Reliance boundaries must be documented, implemented, and tested in Chirality terms. They must not depend on prompt text or opaque SDK defaults alone. When SDK hooks or callbacks enforce a boundary, Chirality must be able to verify the enforcement path and record the result.
+
+### 2.10 Provider-Neutral Core and Replaceable Engine
+
+The runtime engine may be difficult to replace in practice, but it must be replaceable by construction. Public APIs, canonical event schemas, session storage contracts, permission decision records, and governance rules must not become SDK-shaped.
+
+External identifiers, message names, permission modes, tool names, transcript paths, and SDK session IDs are adapter metadata. Chirality contracts remain provider-neutral and product-owned.
+
+### 2.11 Product Identity Stays Chirality
+
+Chirality may use external engines, libraries, and APIs, but it must not become a Claude Code wrapper in identity, copy, behavior, or governance. User-facing text should describe Chirality’s governed-work posture. SDK usage may be disclosed as implementation/provider detail where appropriate, but it must not imply that Chirality is Claude Code, an Anthropic product, or a feature-parity target.
 
 ---
 
-## 3. SDK Boundary Directive
+## 3. Professional Responsibility Model
 
-### 3.1 Privileged Engine, Not Product Authority
+This section applies when Chirality is used for safety-significant, contractually binding, regulated, professional, or high-stakes deliverables.
 
-The Claude Agent SDK is the preferred substrate for:
+### 3.1 AI Outputs Are Drafts
 
-- model/tool loop execution;
-- built-in read/write/edit/bash tool surfaces when enabled;
-- hook dispatch;
-- MCP transport;
-- SDK session mechanics;
-- subagent invocation;
-- compaction messages.
+Agent outputs are drafts and structured assistance. They are not authoritative engineering judgment, professional approval, or certification. Human acceptance is what may turn an output into project work product.
 
-The SDK does not own:
+### 3.2 Engineer-of-Record Principle
 
-- Chirality's public APIs;
-- browser `UIEvent` contract;
-- canonical `HarnessEvent` schema;
-- permission semantics;
-- tool exposure rules;
-- lifecycle transitions;
-- human-gate requirements;
-- product identity;
-- canonical audit storage.
+A licensed or accountable professional retains decision rights for:
 
-### 3.2 Provider-Neutral Core
+- scope and boundary decisions;
+- design basis and governing code/standard selection;
+- assumptions and residual-risk acceptance;
+- conflict adjudication where judgment is required;
+- issuance, signature, seal, transmittal, or release for reliance.
 
-Core runtime records, APIs, and tests use Chirality terms.
+No AI system, agent, tool, SDK, transcript, runtime event, or deterministic validator may claim to certify, approve, sign, seal, issue, or externally validate professional work.
 
-Claude/SDK-specific identifiers, message names, transcript paths, permission modes, and tool names must be translated at the adapter boundary. They may appear only as adapter metadata, not as required public API fields or canonical event identities.
+### 3.3 Competence Includes Tool Competence
 
-### 3.3 Engine Replaceability
+A professional must not use an agent for work they cannot adequately review. Using AI assistance that cannot be checked against professional knowledge, source documents, deterministic validation, or appropriate peer review is a competence failure.
 
-The SDK adapter may be difficult to replace in practice, but it must sit behind an `AgentEnginePort` / `RuntimeEngineContract` and an `EngineConformanceSuite`.
+### 3.4 Hierarchy of Authority
 
-A future provider, local model, or self-hosted runtime may be adopted only if it satisfies the same Chirality-owned contract and reliance-boundary requirements.
+In technical and professional matters, agents and users follow:
 
-### 3.4 Fallback Principle
+1. laws and regulations;
+2. codes and standards;
+3. approved project specifications, design basis, and scope records;
+4. verified analysis and published sources;
+5. professional judgment.
 
-A custom or alternate runtime remains a governed fallback if the SDK cannot satisfy, expose, or be wrapped to satisfy a product-critical Chirality boundary without weakening governance.
+Agent outputs carry no independent professional authority. They are decision support until accepted by an accountable human through a governed process.
 
 ---
 
-## 4. Professional Responsibility Model
+## 4. Scope of the System
 
-### 4.1 AI Outputs Are Drafts
+### 4.1 In Scope
 
-All agent outputs are drafts, proposals, structured assistance, or decision support until accepted by an accountable human.
+Chirality supports:
 
-### 4.2 Non-Delegable Human Authority
+- local desktop operation over a selected working root;
+- matrix navigation across PORTAL, WORKBENCH, and PIPELINE;
+- working-root validation, file-tree browsing, and deliverable scanning;
+- harness sessions, streamed turns, interrupts, runtime options, and attachments;
+- instruction-root packaging and integrity verification;
+- API key handling as non-project convenience state;
+- Anthropic provider access under governed network policy;
+- SDK-hosted runtime integration behind Chirality contracts;
+- append-only Chirality session event logs;
+- persona/system-prompt composition from instruction-root resources;
+- status and dependency contract APIs;
+- execution-root scaffolding;
+- read tools and Chirality MCP tools under deny-first policy;
+- controlled write/edit/bash/subagent capability only after required gates land;
+- validation and packaging runbooks;
+- future Domain Engine Profiles after core harness stability.
 
-Only an accountable human may:
+### 4.2 Out of Scope
 
-- approve a governed state change;
-- issue or transmit work for reliance;
-- sign, seal, certify, or stamp work;
-- accept residual risk;
-- adjudicate conflicts requiring professional judgment;
-- decide code or regulatory compliance.
+Chirality does not:
 
-### 4.3 Tool Competence
-
-Users must not rely on an agent or deterministic tool for work they are not competent to verify at the appropriate level of risk.
-
-### 4.4 Professional Boundary
-
-Chirality may support professional reliance by improving traceability, auditability, evidence handling, and workflow discipline. It does not itself create professional reliability or code compliance.
-
-Domain-engine outputs, including future OpenPipeStress outputs, are not professional approval and are not solver truth owned by Chirality.
+- approve, sign, seal, certify, issue, or transmit professional work autonomously;
+- make safety-critical decisions without human review;
+- conduct financial transactions or binding commitments;
+- require a project database or remote project server;
+- treat SDK transcripts, runtime logs, UI state, API keys, or chat drafts as project truth;
+- load ambient user/global Claude Code settings in shipped builds;
+- use `bypassPermissions` in shipped builds or ordinary operator workflows;
+- expose bash, remote MCP, plugins, marketplace extensions, or remote execution before local SDK governance, hooks, event logging, result storage, and packaging checks are reliable;
+- reactivate retired PKG-08 deliverables without governed amendment;
+- become OpenPipeStress or any domain-specific solver;
+- let agents write directly into protected domain-engine model paths.
 
 ---
 
 ## 5. Structural Constraints
 
-| Constraint | Directive |
+| Constraint | Rationale |
 |---|---|
-| Local-first desktop | The app must not require an external project database or central service. |
-| Instruction root separation | Bundled instructions and governance are release-managed and distinct from the working root. |
-| Working root authority | Mutable project execution state belongs under the selected working root or explicitly configured Chirality-controlled project/session paths. |
-| Canonical audit mirror | Chirality `events.jsonl` is the product-owned runtime audit record. |
-| SDK settings isolation | Shipped builds must not load ambient user/global Claude Code settings. |
-| Deny-first runtime | Deny rules, hook denials, path failures, and human gates override prompt text and convenience settings. |
-| Tool availability is not exposure | Built-in, SDK-backed, MCP-backed, or local tools are exposed only through Chirality policy. |
-| Human gates | Gate-relevant decisions must be explicit, reviewable, and human-owned. |
-| Provider neutrality | External engine details must be translated behind adapters. |
-| Product identity | Chirality must not present itself as Claude Code or an Anthropic product. |
+| Local-first desktop harness | Users retain control of project files and working roots. |
+| No external project database dependency | Project truth stays inspectable, git-trackable, and portable. |
+| Plain-file project state | Humans and tools can inspect, diff, archive, and recover state without the app. |
+| Git-backed reliance record | Accepted project decisions bind to versioned files, not transient chats. |
+| Instruction root separate from working root | Release-managed agent instructions cannot be silently mutated by project execution. |
+| Flat package → deliverable hierarchy | Simplifies decomposition, scanning, coverage checks, and lifecycle contracts. |
+| Deliverable-local dependency registers | Dependencies remain near the work item; aggregation is on-demand. |
+| Append-only runtime event log | Accepted turns and runtime outcomes are recoverable after interruption or failure. |
+| Chirality audit mirror is canonical for runtime governance | SDK transcripts may assist resume/debugging but do not displace product-owned events. |
+| SDK behind product-owned contract | Upstream behavior cannot silently redefine Chirality semantics. |
+| Shipped SDK settings isolation | Ambient `.claude` or user-home settings cannot alter shipped harness behavior. |
+| Deny-first permission semantics | A deny from policy, hook, path check, governance, or human gate overrides any allow. |
+| Runtime code enforces safety | Prompt instructions reinforce policy but are not sufficient enforcement. |
+| MCP is a transport, not a bypass | In-process MCP tools must pass through the same policy as SDK built-ins. |
+| Product identity stays Chirality | The app must not present itself as a vendor CLI or external product. |
+| Domain engines own domain truth | Chirality governs interaction and records; it does not become the solver. |
 
 ---
 
-## 6. Scope Boundary
+## 6. Responsible Use
 
-### 6.1 In Scope
+Users and maintainers must:
 
-- Desktop shell and working-root selection.
-- PORTAL, WORKBENCH, PIPELINE, file tree, toolkit, and chat surfaces.
-- Harness session APIs and SSE turn execution.
-- SDK-backed runtime through a Chirality-owned engine contract.
-- Canonical runtime event logging and replay.
-- Prompt/persona composition from the instruction root.
-- Permission overlay, hooks, path containment, redaction, and result budgeting.
-- In-process Chirality MCP tools for deterministic project operations.
-- Execution-root scaffolding and lifecycle/dependency contracts.
-- macOS 15+ Apple Silicon unsigned DMG release path.
-- Future generic Domain Engine Profile support after harness stability.
-
-### 6.2 Out Of Scope Without Governed Amendment
-
-- Automated professional approval, certification, code compliance, signing, sealing, or issuance.
-- Direct protected domain-engine writes by agents.
-- Treating SDK transcripts, chat drafts, or user settings as project truth.
-- Loading ambient `~/.claude` user/local settings in shipped builds.
-- Shipped `bypassPermissions`.
-- Remote MCP, plugin marketplaces, remote execution, or network expansion beyond scoped policy.
-- Windows/Linux packaging.
-- Reactivation of retired PKG-08 hardening deliverables.
+- treat agent outputs as drafts until reviewed;
+- preserve source paths, evidence, and explicit uncertainty;
+- keep human review and sign-off at decision gates;
+- inspect diffs before accepting project-file changes;
+- understand the configured permission mode and tool surface before enabling writes or bash;
+- keep API keys and secrets out of project files and runtime event payloads;
+- verify packaging, instruction-root integrity, and SDK settings isolation before release;
+- maintain professional-boundary copy in UI and documentation.
 
 ---
 
-## 7. Responsible Use
+## 7. Change Discipline
 
-Use Chirality as a governed harness for producing traceable, inspectable work.
+Changes that alter scope, release target, data contracts, professional-boundary posture, runtime engine semantics, permission behavior, transcript canonicality, or retired/active execution scope must be handled as governed product changes.
 
-Do not use Chirality to bypass professional judgment, human review, or explicit project governance.
-
-Do not rely on prompt text as the safety boundary for filesystem writes, tool execution, lifecycle transitions, or professional decisions.
-
-Do not treat external runtime behavior as authoritative unless Chirality has mapped it into product-owned events, records, and gates.
+A change is not complete until it is reflected in the appropriate combination of PRD, directive, contract, specification, type vocabulary, plan, tests, runbooks, and implementation artifacts.

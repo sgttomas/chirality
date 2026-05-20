@@ -11,18 +11,14 @@
       "ordinal": 1,
       "caption": "A1.0 HDPE Pipe Deep Bury Trench Detail",
       "slug": "hdpe-pipe-deep-bury-trench-detail",
-      "bbox_norm": [0.04, 0.08, 0.96, 0.78],
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.78
+      ],
       "confidence": "high",
       "notes": "Cross-sectional engineering drawing of HDPE pipe deep burial trench, with annotated layers and dimensions. Drawing number A1.0, Suncor STD 0212, Sep. 2005."
-    },
-    {
-      "kind": "img",
-      "ordinal": 1,
-      "caption": "Suncor Energy logo",
-      "slug": "suncor-energy-logo",
-      "bbox_norm": [0.04, 0.79, 0.22, 0.96],
-      "confidence": "high",
-      "notes": "Suncor Energy logo in lower-left of title block."
     }
   ],
   "issues": []

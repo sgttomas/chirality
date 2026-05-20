@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0014_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0014_fig01",
+      "bbox_norm": [
+        0.22,
+        0.35,
+        0.75,
+        0.68
+      ],
+      "bbox_px": [
+        433,
+        990,
+        2040,
+        2409
+      ],
+      "caption": "SJFA-3 Swaged Jacket Flange Attachment \u2014 Welding Neck Flange detail showing core pipe, jacket, and flange cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0014_fig01_sjfa-3-swaged-jacket-flange-attachment-w.png",
+      "png_sha256": "120e058e668d1c0c9a759fa91242a4573374db6690c9b8c343aecc2a123dbdc2",
+      "slug": "sjfa-3-swaged-jacket-flange-attachment-w",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0014.png",
+  "page_image_sha256": "75e83dc24cb44d3af511dd356664bc33397785cfa3c184aaaba52b659566bbd0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0014_assets.json"
+}

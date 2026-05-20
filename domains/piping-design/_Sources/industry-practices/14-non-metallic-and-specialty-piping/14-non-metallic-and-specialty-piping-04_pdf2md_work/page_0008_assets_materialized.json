@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0008_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0008_fig01",
+      "bbox_norm": [
+        0.1,
+        0.25,
+        0.85,
+        0.62
+      ],
+      "bbox_px": [
+        128,
+        660,
+        2295,
+        2211
+      ],
+      "caption": "PIPE CAP \u2014 Jacket Closure PC-1 detail showing butt weld cap, core, and jacket assembly",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0008_fig01_pipe-cap-jacket-closure-pc-1.png",
+      "png_sha256": "a49f97be05951599ffc31d17a5f0ddff2da1fe56792fe596468ba18889e7e7ab",
+      "slug": "pipe-cap-jacket-closure-pc-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 8,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0008.png",
+  "page_image_sha256": "0d2b7a280bc8394437e2ae90946090b8cbce2d49d3a13565581849dc15a6f359",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0008_assets.json"
+}

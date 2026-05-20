@@ -1507,30 +1507,39 @@ Acceptance:
 
 ## 16. Execution Package Traceability Summary
 
+Authoritative decomposition:
+
+- The active software decomposition is `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
+- That decomposition partitions current vNext scope into 78 scope items, 10 objectives, 10 flat work-domain packages, and 51 Type-2-executable deliverables.
+- The previous eight-package / 37-deliverable execution traceability summary is superseded for scaffolding, downstream PREPARATION, TASK execution, REVIEW, and scope-ledger coverage.
+- If this PRD and the active SOFTWARE_DECOMP snapshot disagree about package topology, deliverable IDs, coverage telemetry, or decomposition method, the conflict must be surfaced and resolved through governed PRD/decomposition amendment before scaffold or REVIEW closure.
+
 Source-area traceability:
 
 | Product Area | Primary Source Basis |
 |---|---|
 | Product constraints | `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md` |
-| Agent governance | `AGENTS.md` when present, `docs/TYPES.md`, `docs/DBM_Agent_Instruction_Architecture.md` |
-| Desktop and harness baseline | PKG-01 through PKG-04 execution deliverables and `frontend/` implementation |
-| Filesystem governance | PKG-05 and PKG-06 execution deliverables |
-| Validation and release | PKG-07, accepted PKG-08 hardening deliverables, validation runbooks |
-| Runtime roadmap | `chirality-app-future-development-plan.md`, `agent-harness-patterns-from-claw-code-assessment.md`, `prd-revisions-claude-agent-sdk.md`, `claude-agent-sdk-implementation-followups.md`, and official Claude Agent SDK documentation |
-| Domain-engine future | `docs/thesis/` material, governed future amendment only |
+| Agent governance | `AGENTS.md` when present, `docs/TYPES.md`, `docs/DBM_Agent_Instruction_Architecture.md`, and active `agents/AGENT_*.md` instructions |
+| Desktop and harness baseline | Active SOFTWARE_DECOMP packages `PKG-02`, `PKG-03`, `PKG-04`, `PKG-05`, and current `frontend/` implementation |
+| Filesystem governance | Active SOFTWARE_DECOMP package `PKG-07`, SPEC file contracts, lifecycle/dependency contracts, and validation surfaces |
+| Runtime roadmap | `docs/PLAN.md`, active SOFTWARE_DECOMP packages `PKG-03` through `PKG-06`, R0/R1 SDK probe results, and official Claude Agent SDK documentation |
+| Validation and release | Active SOFTWARE_DECOMP package `PKG-09`, required local checks, Section 8/9 validation, instruction-root integrity, and macOS DMG packaging |
+| Domain-engine future | Active SOFTWARE_DECOMP package `PKG-10`, governed future amendment only |
 
-The accepted decomposition partitions scope into eight flat packages and 37 deliverables:
+The active decomposition partitions scope into these 10 flat work-domain packages:
 
 | Package | Product Area | PRD Coverage |
 |---|---|---|
-| PKG-01 Build & Packaging | macOS build, unsigned DMG, frontend bootstrap | FR-064 through FR-068, NFR-014 through NFR-016, release validation, SDK packaging checks |
-| PKG-02 Desktop UI Workflow | FileTree, Portal/Pipeline, Toolkit, panes, API key UI | FR-001 through FR-013, FR-041 through FR-044 |
-| PKG-03 Harness Runtime Core | Session/turn APIs, SSE, opts, subagent governance, Anthropic, network policy | FR-014 through FR-035, FR-070 through FR-121 |
-| PKG-04 Attachments & Multimodal | Resolver, prompt mode, UI attachment pipeline | FR-036 through FR-040 |
-| PKG-05 Filesystem Execution Model | Instruction/working root, scaffolding, lifecycle, dependencies | FR-045 through FR-057, data requirements, Chirality MCP tools |
-| PKG-06 Agent Suite & Governance | Agent instruction conformance, local/cross-deliverable workflows, change hygiene | FR-058 through FR-063, governance principles, subagent SDK configuration |
-| PKG-07 Validation & Example Assets | Harness validation, examples, runbooks | FR-064 through FR-069, validation plan, Section 9 SDK validations |
-| PKG-08 Optional Integrity Hardening | Hashes/linter active; several hardening items retired | Known gaps KG-011/KG-012; do not reintroduce retired scope without amendment |
+| PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
+| PKG-02 Desktop Shell, Navigation, and Operator State | PORTAL, WORKBENCH, PIPELINE, matrix routing, file tree, toolkit, API key UI, local UI state | FR-001 through FR-013, FR-041 through FR-044, relevant user journeys |
+| PKG-03 Runtime Engine Contract and Turn Lifecycle | Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
+| PKG-04 SDK Adapter, Prompt, Provider, and Settings | SDK adoption probe, SDK options, prompt composition, provider integration, settings isolation | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
+| PKG-05 Session Audit, Replay, and Tool Result Records | Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
+| PKG-06 Permissioned Tools, MCP, and Hooks | Deny-first permission overlay, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks | FR-078 through FR-100, FR-119 through FR-121 |
+| PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
+| PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records | FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
+| PKG-09 Validation, Packaging, Security, and Release | Required checks, CI, Section 8/9 validation, network/key security, macOS DMG packaging | FR-064 through FR-069, validation plan, security/privacy NFRs, release verification |
+| PKG-10 Domain Engine Future Boundary | Generic profiles, protected paths, operation proposals, OpenPipeStress fixture posture | FR-106 through FR-115, KG-016 through KG-020, future amendment scope |
 
 Runtime roadmap traceability:
 

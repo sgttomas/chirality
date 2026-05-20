@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0028_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0028_fig01",
+      "bbox_norm": [
+        0.06,
+        0.52,
+        0.94,
+        0.92
+      ],
+      "bbox_px": [
+        25,
+        1549,
+        2524,
+        3197
+      ],
+      "caption": "Fig. 400-12 External Pressure Rating (Collapse Pressure) for HDPE Pipe \u2014 Buckling Strength (pk, psi) vs. Time (Hours) for SDR 11, SDR 17, SDR 26, SDR 32.5",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0028_fig01_fig-400-12-external-pressure-rating-hdpe.png",
+      "png_sha256": "17f0e04330bd0d3c6777c12d4690779e544afb34887a70544e9687bd4d2db6ee",
+      "slug": "fig-400-12-external-pressure-rating-hdpe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 28,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0028.png",
+  "page_image_sha256": "d5bd14f8543bb83acb694b7b6a7cadd1809e731c872b9e91110491dd9d66b8e6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0028_assets.json"
+}

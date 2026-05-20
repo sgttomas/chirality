@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0022_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0022_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        66,
+        2550,
+        2142
+      ],
+      "caption": "Fig. 400-10 Flow Properties of Various Piping Materials",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0022_tbl01_fig-400-10-flow-properties-various-pipin.png",
+      "png_sha256": "b4b7966026dfbb789703cc3d969e5626235b9e38e74944e9e6901f4a9e41b032",
+      "slug": "fig-400-10-flow-properties-various-pipin",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0022.png",
+  "page_image_sha256": "1122813c6dfc82efae9c0d73b6a489ad230786978c1509d935ab87c2febec291",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0022_assets.json"
+}

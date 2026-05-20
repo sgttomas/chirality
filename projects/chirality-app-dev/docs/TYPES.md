@@ -1,96 +1,126 @@
-# TYPES - Domain Vocabulary, Runtime Types, and Enumerations
+# TYPES — Domain Vocabulary and Runtime Type Targets
 
-Status: Active vocabulary derived from `docs/PRD.md`
-Date: 2026-05-20
-Applies to: Chirality App vNext docs, runtime, frontend, tests, and governed workspaces
+**Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
+**Product:** Chirality desktop harness and bundled agent operating system
 
-This document defines canonical terms and type vocabularies. When another document uses a term differently, this document governs unless the approved PRD says otherwise.
+This document is the authoritative vocabulary reference for Chirality App. It defines canonical entities, stable identifier formats, enumerated values, agent roles, runtime vocabulary, and type targets used by governance documents, agent instructions, implementation code, validation scripts, and release runbooks.
 
----
-
-## 1. Product Entities
-
-### 1.1 Chirality App
-
-The local-first desktop application that hosts governed AI-agent work over a selected filesystem working root.
-
-### 1.2 Instruction Root
-
-Release-managed app-bundled governance and instruction content. Expected entries include `AGENTS.md`, `agents/`, `docs/`, `README.md`, and other package resources required by integrity policy.
-
-### 1.3 Working Root
-
-User-selected filesystem directory containing mutable project execution state. The working root must be absolute, existing, readable/writable, and outside the instruction root.
-
-### 1.4 Project Truth
-
-Gate-relevant project state stored in versioned files. Runtime transcripts, chat drafts, UI state, API keys, and SDK transcripts are not project truth.
-
-### 1.5 Runtime Audit Mirror
-
-The product-owned runtime event log, normally `.chirality/sessions/<sessionId>/events.jsonl`.
+Where a term is used differently elsewhere, this document governs unless a higher-authority source has been explicitly amended.
 
 ---
 
-## 2. Execution Hierarchy
+## 1. Project Hierarchy
 
-The project execution hierarchy is flat:
+The project hierarchy is flat:
 
 ```text
 {EXECUTION_ROOT}/
-  PKG-XX_Label/
-    1_Working/
-      DEL-XX-YY_Label/
+└── PKG-XX_{PkgLabel}/
+    └── 1_Working/
+        └── DEL-XX-YY_{DelLabel}/
 ```
 
-| Entity | Meaning |
-|---|---|
-| Package | Flat partition of scope; packages do not nest. |
-| Deliverable | Unit of production inside a package. |
-| Artifact | File output produced by a deliverable, tool, runtime, or release workflow. |
-| Tool root | Project-level folder for derived or operational outputs. |
+### 1.1 Package
+
+A **Package** is a flat partition of project scope. Packages do not nest. Each package contains references, active working deliverables, checking staging, and issued artifacts.
+
+### 1.2 Deliverable
+
+A **Deliverable** is a unit of production within a package. Each deliverable has a stable ID, lifecycle state, context file, dependency record, reference record, and optional document kit or specialized artifacts.
+
+### 1.3 Artifact
+
+An **Artifact** is a tangible output such as a markdown document, CSV register, tool-root snapshot, domain proposal, runtime event file, or validation summary. Artifacts are authoritative only when placed in the proper project location and accepted by the relevant process.
+
+### 1.4 Tool Root
+
+A **Tool Root** is a project-level directory for derived outputs such as `_Aggregation/`, `_Change/`, `_Coordination/`, `_Decomposition/`, `_Estimates/`, `_Reconciliation/`, `_Archive/`, `_Scripts/`, and `_Sources/`.
+
+### 1.5 Instruction Root
+
+The **Instruction Root** is the release-managed app resource tree containing governance documents, agent instructions, and framework materials. Ordinary project execution must not mutate it.
+
+### 1.6 Working Root / `projectRoot`
+
+The **Working Root** is the user-selected local filesystem location where project execution state, sessions, artifacts, and git history live.
+
+### 1.7 Project Truth
+
+**Project Truth** is gate-relevant project state represented in versioned project files. Runtime transcripts, chat drafts, UI state, API keys, SDK transcripts, and caches are not project truth unless a governed process imports relevant content into project files.
+
+### 1.8 Runtime Audit Mirror
+
+The **Runtime Audit Mirror** is the product-owned runtime event log, normally `.chirality/sessions/<sessionId>/events.jsonl`, used to reconstruct and review accepted turns, model output, permissions, tool activity, hooks, compaction boundaries, and subagent lifecycle.
 
 ---
 
-## 3. Stable Identifiers
+## 2. Stable Identifiers
 
-| Entity | Format | Example |
-|---|---|---|
-| Package | `PKG-XX` or `PKG-XXX` | `PKG-01` |
-| Deliverable | `DEL-XX-YY` or `DEL-XXX-YY` | `DEL-01-03` |
-| Dependency | `DEP-XX-YY-NNN` | `DEP-01-03-001` |
-| Scope item | `SOW-NNN` | `SOW-003` |
-| Objective | `OBJ-NNN` | `OBJ-001` |
-| Harness session | opaque string | `session_...` |
-| Turn | opaque string scoped to session | `turn_...` |
-| Harness event | opaque string scoped to event store | `evt_...` |
+Identifiers are assigned once and persist across renames and path changes.
 
-IDs are identity. Folder paths are physical projections and may change.
+| Entity | Format | Example | Assigned by |
+|---|---|---|---|
+| Package | `PKG-XX` or `PKG-XXX` | `PKG-01` | Decomposition / human approval |
+| Deliverable | `DEL-XX-YY` or `DEL-XXX-YY` | `DEL-01-01` | Decomposition / human approval |
+| Dependency | `DEP-XX-YY-NNN` | `DEP-01-01-001` | DEPENDENCIES workflow/tool |
+| Scope Item | `SOW-NNN` | `SOW-003` | Decomposition |
+| Objective | `OBJ-NNN` | `OBJ-001` | Decomposition |
+| Session | implementation-generated stable ID | `sess_...` | Harness session manager |
+| Turn | implementation-generated stable ID | `turn_...` | `TurnEngine` |
+| Runtime Event | implementation-generated stable ID | `evt_...` | `SessionEvents` |
+| Subagent Run | implementation-generated stable ID | `subrun_...` | `SubagentGovernanceBridge` |
+| Domain Profile | `domain-profile-id` string | `openpipestress` | Future domain profile author |
+| Operation Proposal | implementation-generated stable ID | `op_...` | Future domain operation workflow |
+
+### 2.1 Folder Labels
+
+Folder names combine stable ID and sanitized label:
+
+- Package: `{PKG-ID}_{Sanitize(PackageName)}`
+- Deliverable: `{DEL-ID}_{Sanitize(DeliverableName)}`
+
+The unsanitized canonical name belongs in `_CONTEXT.md` or the governing decomposition document.
+
+### 2.2 ID Rules
+
+- `XX`, `YY`, and `NNN` are zero-padded numeric sequences.
+- Deliverable IDs use hyphen separators, not dots.
+- Stable IDs must not change unless a human explicitly approves renumbering.
+- Runtime event IDs are unique per event and never reused.
 
 ---
 
-## 4. Agent Vocabulary
+## 3. Agent Roles and Authority
 
-### 4.1 Agent Types
+### 3.1 Agent Types
 
-| Type | Name | Role |
+| Type | Name | Role | Scope |
+|---|---|---|---|
+| **Type 0** | Architect | Defines and maintains rules, standards, contracts, and role boundaries. | Project-wide or system-wide. |
+| **Type 1** | Manager | Interprets intent, decomposes work, routes specialists, reconciles outputs. | Project, package, or workflow. |
+| **Type 2** | Specialist | Executes bounded briefs with minimal context and returns outputs plus evidence. | Deliverable-local or narrow task. |
+
+### 3.2 Agent Classification Properties
+
+| Property | Values | Meaning |
 |---|---|---|
-| Type 0 | Standard-setting | Defines governance, rules, and role boundaries. |
-| Type 1 | Orchestrating | Interprets intent, routes work, prepares context, reconciles outputs. |
-| Type 2 | Bounded execution | Executes narrow tasks under sealed context and explicit scope. |
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Persona agents run interactive sessions; task agents run straight-through or delegated work. |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked. |
+| `WRITE_SCOPE` | `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `none` | Permitted write area. |
+| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input. |
 
-### 4.2 Agent Classification Properties
+### 3.3 Authority Model
 
-| Property | Values |
-|---|---|
-| `AGENT_CLASS` | `PERSONA`, `TASK` |
-| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` |
-| `WRITE_SCOPE` | `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `none` |
-| `BLOCKING` | `never`, `allowed` |
+Authority flows downward; escalation flows upward.
 
-### 4.3 Personas And Aliases
+- Type 0 defines what “correct” means.
+- Type 1 prepares, routes, and reconciles work.
+- Type 2 executes bounded work.
+- Humans approve, issue, sign, seal, and accept reliance.
 
-Canonical persona names resolve to `agents/AGENT_*.md`.
+A Type 2 agent cannot modify Type 0 rules. A Type 1 agent cannot issue work for reliance. No agent can approve professional work.
+
+### 3.4 Persona Alias Terms
 
 | UI Alias | Canonical Agent |
 |---|---|
@@ -102,57 +132,163 @@ Canonical persona names resolve to `agents/AGENT_*.md`.
 
 ---
 
-## 5. Runtime Engine Vocabulary
+## 4. UI Navigation Vocabulary
 
-| Term | Definition |
+### 4.1 Matrix Rows
+
+| Value | Meaning | Destination |
+|---|---|---|
+| `NORMATIVE` | Guidance, orchestration, standards, and aggregation support. | WORKBENCH |
+| `OPERATIVE` | Pipeline execution categories. | PIPELINE |
+| `EVALUATIVE` | Review, dependencies, change, and reconciliation support. | WORKBENCH |
+
+### 4.2 Matrix Columns
+
+| Value | Meaning |
 |---|---|
-| Claude Agent SDK | Preferred hosted engine for generic agent-loop mechanics. |
-| AgentEnginePort / RuntimeEngineContract | Product-owned boundary an engine adapter must satisfy. |
-| EngineAdapter | Provider-specific translator from external runtime concepts to Chirality contracts. |
-| TurnEngine | Runtime service that owns accepted-turn lifecycle and delegates engine execution behind the contract. |
-| EngineConformanceSuite | Tests that prove an engine satisfies the Chirality runtime contract. |
-| SdkOptionsBuilder | Adapter module that constructs SDK options from Chirality policy. |
-| SdkMessageMapper | Adapter module that maps SDK messages into `UIEvent` and `HarnessEvent`. |
-| PersonaComposer | Builds system or appended prompt from instruction root, persona, mode, and project policy. |
-| RelianceBoundaryRegister | Record of product-critical boundaries and their enforcement surfaces. |
-| ChiralityPermissionOverlay | Deny-first permission layer over SDK modes, tools, hooks, and approval UI. |
-| ChiralityHooks | Hook callbacks for path, provenance, redaction, compaction, and subagent policy. |
-| ChiralityMcpTools | In-process MCP tools for deterministic Chirality operations. |
-| SdkSessionLink | Metadata connecting Chirality sessions to SDK session IDs/transcripts. |
+| `GUIDING` | Helps orient or define the work. |
+| `APPLYING` | Helps execute or apply the work. |
+| `JUDGING` | Helps inspect, assess, or manage work items. |
+| `REVIEWING` | Helps aggregate, reconcile, or review work. |
+
+### 4.3 Matrix Cells
+
+| Row | Guiding | Applying | Judging | Reviewing |
+|---|---|---|---|---|
+| `NORMATIVE` | `HELP` | `ORCHESTRATE` | `WORKING_ITEMS` | `AGGREGATE` |
+| `OPERATIVE` | `DECOMP*` | `PREP*` | `TASK*` | `AUDIT*` |
+| `EVALUATIVE` | `AGENTS` | `DEPENDENCIES` | `CHANGE` | `RECONCILING` |
+
+### 4.4 Pipeline Terms
+
+| Term | Values | Meaning |
+|---|---|---|
+| `PipelineCategory` | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` | Top-level operative category. |
+| `TaskScopeMode` | `DELIVERABLES`, `KNOWLEDGE_TYPES` | Dynamic scope mode for `TASK*`. |
+| `KnowledgeTypeOption` | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | File-type buckets discovered from deliverable content. |
+| `DisabledOption` | any visible but non-selectable option | A coming-soon or unsupported variant intentionally shown without enabling runtime selection. |
 
 ---
 
-## 6. Session And Event Types
+## 5. Deliverable Lifecycle Vocabulary
 
-### 6.1 Session Record
+Lifecycle states are tracked in `_STATUS.md`.
 
-Canonical session metadata includes:
+```text
+OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED
+```
 
-- `sessionId`
-- `projectRoot`
-- `persona`
-- `mode`
-- `createdAt`
-- `updatedAt`
-- `claudeSessionId` (legacy)
-- `bootFingerprint`
-- `bootedAt`
-- `model`
+| State | Meaning |
+|---|---|
+| `OPEN` | Folder exists with minimum viable fileset; content is not yet initialized. |
+| `INITIALIZED` | Document kit has been drafted or initialized. |
+| `SEMANTIC_READY` | Semantic lens or semantic placeholder has been generated. |
+| `IN_PROGRESS` | Active human and/or agent work is underway. |
+| `CHECKING` | Work is under human review. |
+| `ISSUED` | Work has been released/issued by a human. |
 
-Future SDK metadata includes:
+Stage gates such as 30%, 60%, 90%, or IFC are project milestones, not lifecycle states.
 
-- `sdkSessionId`
-- `sdkProjectKey`
-- `sdkTranscriptPath` or `sdkSessionStoreKey`
-- `sdkConfigDir`
-- `sdkSettingSources`
-- `sdkPackageVersion`
-- `sdkClaudeCodeVersion`
-- `sdkResumeMode`
+The `INITIALIZED → SEMANTIC_READY` transition is optional. If semantic lensing is skipped, deliverables may transition directly from `INITIALIZED → IN_PROGRESS` under the authorized actor rules in `SPEC.md`.
 
-### 6.2 Harness Event
+---
 
-`HarnessEvent` is the canonical persisted runtime event type:
+## 6. Dependency Vocabulary
+
+### 6.1 Dependency Classes
+
+| Class | Meaning | Graph Role |
+|---|---|---|
+| `ANCHOR` | Connects a deliverable to a definition or traceability node. | Tree edge. |
+| `EXECUTION` | Captures information flow, prerequisite, handoff, interface, or constraint. | DAG edge. |
+
+### 6.2 Anchor Types
+
+| Value | Meaning |
+|---|---|
+| `IMPLEMENTS_NODE` | Parent definition node; normally one per deliverable. |
+| `TRACES_TO_REQUIREMENT` | Requirement trace link; zero or more per deliverable. |
+| `NOT_APPLICABLE` | Used for execution rows. |
+
+### 6.3 Direction
+
+| Value | Meaning |
+|---|---|
+| `UPSTREAM` | The host deliverable requires information from the target. |
+| `DOWNSTREAM` | The host deliverable produces information for the target. |
+
+Legacy `INBOUND` normalizes to `UPSTREAM`; legacy `OUTBOUND` normalizes to `DOWNSTREAM`.
+
+### 6.4 Dependency Types
+
+| Value | Meaning |
+|---|---|
+| `PREREQUISITE` | Required input or approval before work can proceed. |
+| `INTERFACE` | Explicit data or artifact exchange. |
+| `HANDOVER` | Output consumed as input by another work item. |
+| `CONSTRAINT` | Explicit constraint or condition. |
+| `ENABLES` | Host deliverable enables downstream work. |
+| `OTHER` | Catch-all; required for anchor rows. |
+
+Legacy `COORDINATION` and `INFORMATION` are not emitted in new extractions.
+
+### 6.5 Target Types
+
+| Value | Meaning |
+|---|---|
+| `DELIVERABLE` | Another deliverable in the project. |
+| `PACKAGE` | A package. |
+| `WBS_NODE` | Work breakdown or scope node. |
+| `REQUIREMENT` | Requirement, SOW item, objective, or acceptance item. |
+| `DOCUMENT` | External or reference document. |
+| `EQUIPMENT` | Physical equipment or asset. |
+| `EXTERNAL` | External entity, organization, code, standard, or interface. |
+| `UNKNOWN` | Target cannot be confidently resolved. |
+
+### 6.6 Provenance and Status Terms
+
+| Dimension | Values | Meaning |
+|---|---|---|
+| `Explicitness` | `EXPLICIT`, `IMPLICIT` | Whether the dependency is directly stated. |
+| `Confidence` | `HIGH`, `MEDIUM`, `LOW` | Strength of evidence. |
+| `Origin` | `DECLARED`, `EXTRACTED` | Human-declared versus agent/tool-extracted. |
+| `SatisfactionStatus` | `TBD`, `PENDING`, `IN_PROGRESS`, `SATISFIED`, `WAIVED`, `NOT_APPLICABLE` | Closure lifecycle. |
+| `Status` | `ACTIVE`, `RETIRED` | Extraction lifecycle. |
+
+---
+
+## 7. Runtime and Session Vocabulary
+
+### 7.1 Runtime Engine Terms
+
+| Term | Meaning |
+|---|---|
+| `AgentEnginePort` | Product-owned boundary for running a turn, yielding UI events, recording canonical events, enforcing permissions, managing session linkage, and terminal outcomes. |
+| `RuntimeEngineContract` | The formal expectations an engine adapter must satisfy before use. |
+| `EngineAdapter` | Provider/SDK-specific implementation behind `AgentEnginePort`. |
+| `EngineConformanceSuite` | Tests proving an adapter satisfies Chirality contracts. |
+| `TurnEngine` | Runtime service that owns a single turn lifecycle and invokes the engine through the product-owned boundary. |
+| `SdkOptionsBuilder` | Deterministic constructor for SDK options from Chirality state and policy. |
+| `SdkMessageMapper` | Mapper from SDK stream messages into browser `UIEvent`s and persisted `HarnessEvent`s. |
+| `PersonaComposer` | Builder for system prompt / appended prompt from instruction root, active persona, mode, and working-root policy. |
+| `RelianceBoundaryRegister` | Record of product-critical semantics and their enforcement surfaces. |
+
+### 7.2 Session Terms
+
+| Term | Meaning |
+|---|---|
+| `SessionRecord` | Metadata record for a harness session. |
+| `sessionId` | Chirality session identifier. |
+| `sdkSessionId` | SDK session identifier used for resume; adapter metadata, not Chirality identity. |
+| `sdkProjectKey` | SDK project key or encoded cwd, if exposed. |
+| `sdkTranscriptPath` | Path to SDK transcript when applicable. Secondary to Chirality audit events. |
+| `sdkSessionStoreKey` | Key used by a configured SDK session store or mirror. |
+| `sdkConfigDir` | Explicit SDK config directory when redirected to project-controlled storage. |
+| `events.jsonl` | Append-only Chirality runtime audit mirror. |
+| `session.json` | Session metadata/index file. |
+| `artifacts/` | Session-local artifact folder for large tool outputs and child-run outputs. |
+
+### 7.3 `HarnessEvent` Type Target
 
 ```ts
 type HarnessEvent = {
@@ -167,7 +303,7 @@ type HarnessEvent = {
 };
 ```
 
-### 6.3 Initial Event Categories
+Initial event categories:
 
 - `session.created`
 - `session.resumed`
@@ -181,7 +317,7 @@ type HarnessEvent = {
 - `turn.failed`
 - `turn.cancelled`
 
-### 6.4 Later Event Categories
+Later event categories:
 
 - `tool.queued`
 - `tool.permission`
@@ -196,9 +332,11 @@ type HarnessEvent = {
 - `subagent.completed`
 - `sdk.mirror.error`
 
-### 6.5 UI Event
+### 7.4 Browser `UIEvent` Terms
 
-Browser-facing stream event. Valid names:
+Browser-facing turn streams use compact UI events. SDK messages are not the UI contract.
+
+SSE event names:
 
 - `session:init`
 - `chat:delta`
@@ -208,112 +346,212 @@ Browser-facing stream event. Valid names:
 - `turn:error`
 - `process:exit`
 
-SDK messages are not UI events. They must be translated.
-
 ---
 
-## 7. Permission Vocabulary
+## 8. Permission and Tool Vocabulary
 
-### 7.1 Chirality Modes
+### 8.1 Chirality Permission Modes
 
 | Mode | Meaning |
 |---|---|
-| `readOnly` | Read-only tool behavior only. |
-| `workspaceWrite` | Controlled workspace writes after hooks and policy. |
-| `dontAsk` | Deny unapproved actions without prompting. |
-| `ask` | Use UI-mediated approval for governed actions. |
-| `bypass` | Developer-only local mode; never shipped as ordinary mode. |
+| `readOnly` | Read-only tools only; write/edit/bash/network-capable tools denied. |
+| `workspaceWrite` | Governed writes inside project root may be allowed after hooks and policy pass. |
+| `dontAsk` | Deny unapproved actions rather than prompting. |
+| `ask` | Application may request interactive approval for governed actions. |
+| `bypass` | Developer-local escape hatch only; never shipped ordinary mode; still subject to Chirality denies. |
 
-### 7.2 Permission Decision
+### 8.2 Permission Decision
 
-| Decision | Meaning |
-|---|---|
-| `allow` | Tool/action may proceed under current policy. |
-| `deny` | Tool/action must not execute. |
-| `ask` | User or explicit policy approval is required before allow/deny is returned. |
-
-### 7.3 SDK Permission Terms
-
-SDK permission modes, SDK tool names, and SDK session IDs are adapter vocabulary. They may be recorded as metadata but must not define Chirality's public or canonical runtime types.
-
----
-
-## 8. Tool Vocabulary
-
-| Term | Meaning |
-|---|---|
-| SDK built-in tool | Tool supplied by Claude Agent SDK, such as read/write/edit/bash surfaces where available. |
-| Chirality MCP tool | In-process deterministic tool exposed through SDK MCP mechanics. |
-| Tool surface | Set of tools visible or available to the model for a turn. |
-| Tool exposure | Policy act of making a tool available; existence does not imply exposure. |
-| Tool result artifact | Stored large or sensitive tool output referenced from events. |
-
-Initial Chirality MCP tool families:
-
-- status read/transition;
-- dependency CSV read/write;
-- scope scan;
-- scaffold.
-
----
-
-## 9. Dependency Vocabulary
-
-| Dimension | Values |
-|---|---|
-| `DependencyClass` | `ANCHOR`, `EXECUTION` |
-| `AnchorType` | `IMPLEMENTS_NODE`, `TRACES_TO_REQUIREMENT`, `NOT_APPLICABLE` |
-| `Direction` | `UPSTREAM`, `DOWNSTREAM` |
-| `DependencyType` | `PREREQUISITE`, `INTERFACE`, `HANDOVER`, `CONSTRAINT`, `ENABLES`, `OTHER` |
-| `TargetType` | `DELIVERABLE`, `PACKAGE`, `WBS_NODE`, `REQUIREMENT`, `DOCUMENT`, `EQUIPMENT`, `EXTERNAL`, `UNKNOWN` |
-| `Explicitness` | `EXPLICIT`, `IMPLICIT` |
-| `Confidence` | `HIGH`, `MEDIUM`, `LOW` |
-| `Origin` | `DECLARED`, `EXTRACTED` |
-| `SatisfactionStatus` | `TBD`, `PENDING`, `IN_PROGRESS`, `SATISFIED`, `WAIVED`, `NOT_APPLICABLE` |
-| `Status` | `ACTIVE`, `RETIRED` |
-
----
-
-## 10. Lifecycle States
-
-```text
-OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED
+```ts
+type HarnessPermissionDecision = {
+  decisionId: string;
+  sessionId: string;
+  turnId?: string;
+  toolName: string;
+  decision: 'allow' | 'deny' | 'ask';
+  reason: string;
+  source: 'sdk-option' | 'sdk-callback' | 'chirality-policy' | 'hook' | 'human' | 'prompt-support';
+  decidedAt: string;
+  safeMetadata?: Record<string, unknown>;
+};
 ```
 
-| State | Meaning |
-|---|---|
-| `OPEN` | Folder exists with minimum metadata. |
-| `INITIALIZED` | Document kit exists. |
-| `SEMANTIC_READY` | Semantic lens exists, where used. |
-| `IN_PROGRESS` | Active work is underway. |
-| `CHECKING` | Under human review. |
-| `ISSUED` | Released by accountable human process. |
+`ask` is an application-level state. SDK callbacks ultimately return an allow or deny decision.
 
-Human gate states require approval SHA evidence where specified by `SPEC.md`.
-
----
-
-## 11. UI Navigation Vocabulary
-
-| Type | Values |
-|---|---|
-| `MatrixRow` | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` |
-| `MatrixColumn` | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` |
-| `PipelineCategory` | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` |
-| `TaskScopeMode` | `DELIVERABLES`, `KNOWLEDGE_TYPES` |
-
-NORMATIVE and EVALUATIVE rows route to WORKBENCH. OPERATIVE row routes to PIPELINE.
-
----
-
-## 12. Domain Engine Vocabulary
+### 8.3 Tool Surface Terms
 
 | Term | Meaning |
 |---|---|
-| DomainEngineProfile | Future contract describing deterministic domain engine boundaries and operations. |
-| OperationProposal | Future record for proposed domain operation requiring checks and human gate. |
-| Protected path | Domain-engine path not directly writable by agents. |
-| Proposal path | Agent-writable path for draft proposals and summaries. |
-| OpenPipeStress | First intended fixture profile if domain-engine scope is later activated. |
+| `SDK built-in tool` | Tool supplied by the SDK, such as `Read`, `Glob`, `Grep`, `LS`, `Write`, `Edit`, or `Bash` where available. |
+| `Chirality MCP tool` | In-process deterministic Chirality operation exposed through SDK MCP tooling with `mcp__chirality__*` naming. |
+| `allowedTools` | SDK option that may auto-approve tools; not by itself a restriction boundary. |
+| `disallowedTools` | SDK option or Chirality wrapper policy used to prevent tool use or remove tools from context. |
+| `canUseTool` | SDK callback or equivalent hook path used by Chirality to mediate permission decisions. |
+| `ToolResultStore` | Chirality artifact and preview policy for tool outputs. |
 
-Domain engines own domain truth. Chirality governs interaction, proposals, records, and human gates.
+### 8.4 Chirality MCP Tool Names
+
+Initial in-process MCP tool names should use this namespace:
+
+- `mcp__chirality__status_read`
+- `mcp__chirality__status_transition`
+- `mcp__chirality__deps_read`
+- `mcp__chirality__deps_write`
+- `mcp__chirality__scope_scan`
+- `mcp__chirality__scaffold`
+
+Future domain tools use `mcp__chirality__domain_*` only after a governed domain-profile amendment.
+
+### 8.5 Hook Terms
+
+| Hook Term | Meaning |
+|---|---|
+| `PreToolUse` | Runs before tool execution; can deny write/shell/domain/subagent actions. |
+| `PostToolUse` | Runs after successful tool execution; may record provenance, budgets, and summaries. |
+| `PostToolUseFailure` | Runs after tool failure; records triage and safe diagnostics. |
+| `PreCompact` | Records compaction boundary before SDK/model context compaction where available. |
+| `Stop` | Finalizes terminal turn event. |
+| `SubagentStart` / `SubagentStop` | Records governed child-run lifecycle where supported. |
+
+---
+
+## 9. SDK Adapter Vocabulary
+
+| Term | Meaning |
+|---|---|
+| Claude Agent SDK | Preferred hosted runtime substrate for generic agent-loop mechanics. |
+| SDK transcript | SDK-managed session transcript, secondary to Chirality audit mirror. |
+| `settingSources` | SDK option controlling filesystem settings load. Shipped builds use `[]`. |
+| `SessionStore` | SDK session mirror/storage mechanism when used. Mirror reliability is not assumed to be canonical. |
+| `CLAUDE_CONFIG_DIR` | Environment mechanism that may redirect SDK local config/transcript behavior if empirically reliable. |
+| `permissionMode` | SDK permission posture translated from Chirality mode plus overlay policy. |
+| `bypassPermissions` | SDK mode not permitted in shipped ordinary workflows. |
+
+SDK terms belong at the adapter boundary. Public Chirality APIs and canonical events use Chirality terms.
+
+---
+
+## 10. Subagent Runtime Vocabulary
+
+```ts
+type HarnessSubagentRun = {
+  runId: string;
+  parentSessionId: string;
+  parentTurnId?: string;
+  persona: string;
+  agentName: string;
+  sdkAgentId?: string;
+  model?: string;
+  projectRoot: string;
+  status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled' | 'denied';
+  startedAt?: string;
+  completedAt?: string;
+  outputArtifactPath?: string;
+};
+```
+
+| Term | Meaning |
+|---|---|
+| `evaluateSubagentGovernance` | Authoritative fail-closed gate for delegation. |
+| Type 2 candidate | Agent instruction with `AGENT_TYPE: 2`; preferred `AGENT_CLASS: TASK`. |
+| Parent session | Session requesting delegation. |
+| Child run | Governed subagent execution record. |
+| Context sealed | Required governance condition confirming bounded context. |
+| Pipeline run approved | Required governance condition for Type 2 task invocation. |
+| Approval reference | Non-empty human/gate evidence string required before delegation. |
+
+---
+
+## 11. Domain Engine Vocabulary — Future Scope
+
+### 11.1 `DomainEngineProfile`
+
+```ts
+interface DomainEngineProfile {
+  profileId: string;
+  engineName: string;
+  engineVersion?: string;
+  protectedPaths: string[];
+  proposalPaths: string[];
+  artifactTypes: string[];
+  operations: DomainEngineOperationDescriptor[];
+  manifestRules: unknown;
+  boundaryNotice: string;
+}
+```
+
+### 11.2 `OperationProposal`
+
+```ts
+interface OperationProposal {
+  proposalId: string;
+  profileId: string;
+  operationName: string;
+  createdAt: string;
+  createdBy: string;
+  inputRefs: string[];
+  intendedChanges: string[];
+  deterministicChecks: string[];
+  expectedOutputRefs: string[];
+  risks: string[];
+  requiredHumanGate: string;
+  status: 'draft' | 'ready_for_review' | 'accepted' | 'rejected' | 'applied';
+}
+```
+
+### 11.3 Domain Terms
+
+| Term | Meaning |
+|---|---|
+| Protected path | Authoritative domain-engine artifact path not directly writable by agents. |
+| Proposal path | Agent-writable folder for proposed changes, summaries, or review aids. |
+| Deterministic adapter | Tool/bridge that validates or applies domain operations under profile rules. |
+| Boundary notice | Required copy explaining that Chirality does not approve, validate, or own solver truth. |
+| OpenPipeStress fixture | Potential first domain profile fixture, not Chirality core. |
+
+---
+
+## 12. Release and Validation Vocabulary
+
+| Term | Meaning |
+|---|---|
+| Section 8 validation | Existing harness validation surface for baseline behavior. |
+| Section 9 validation | New runtime validation IDs added as vNext phases land. |
+| `instruction-root:integrity` | Packaging check verifying required instruction-root resources. |
+| `desktop:dist` | Desktop build target producing macOS arm64 DMG. |
+| `harness:validate:premerge` | Premerge harness validation script producing stable summary artifact. |
+| `settingsources_isolation` | Validation that shipped SDK options do not load ambient user/local settings. |
+| `runtime_engine_contract` | Validation that engine adapter satisfies product-owned contract. |
+| `sdk_session_link_resume` | Validation that SDK session ID/linkage persists and resumes through Chirality metadata. |
+
+### 12.1 Priorities
+
+| Priority | Meaning |
+|---|---|
+| `P0` | Required for current release usefulness, safety, or runtime foundation. |
+| `P1` | Important for quality, governed operation, or runtime maturity. |
+| `P2` | Later hardening, future extension, or desirable capability. |
+
+---
+
+
+## 13. Coordination Representation Vocabulary
+
+The framework separates **how teams coordinate** from **how the system tracks dependencies**. Deliverable-local registers remain the dependency tracking substrate; `_COORDINATION.md` records the project coordination representation.
+
+| Representation | Meaning |
+|---|---|
+| `SCHEDULE_FIRST` | Gantt or schedule logic drives sequencing; dependency tracking remains active for blocker detection and audit. |
+| `DEPENDENCY_TRACKED` | Dependency graph logic drives sequencing and handoff analysis. |
+| `HYBRID` | Schedule-first and dependency-tracked representations are both used. |
+
+## 14. Epistemic Labels
+
+| Label | Meaning |
+|---|---|
+| `FACT` | Directly observed in source text or deterministic output. |
+| `ASSUMPTION` | Reasonable inference that requires validation. |
+| `PROPOSAL` | Agent or tool suggestion requiring human decision. |
+| `TBD` | Unknown value requiring resolution. |
+
+These labels help separate evidence from inference and prevent plausible invention from becoming project truth.

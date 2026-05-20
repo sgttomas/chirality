@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-02_pdf2md_work/page_0011_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-02_p0011_fig01",
+      "bbox_norm": [
+        0.08,
+        0.06,
+        0.92,
+        0.94
+      ],
+      "bbox_px": [
+        76,
+        33,
+        2474,
+        3267
+      ],
+      "caption": "Figure 1 - Bend Strap Test Specimen",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-02_p0011_fig01_figure-1-bend-strap-test-specimen.png",
+      "png_sha256": "d66ece2c2974e2f07372f14902abf1d26442f926f3272b20c01adc5ebe33e7c2",
+      "slug": "figure-1-bend-strap-test-specimen",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-02_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-02",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-02_pdf2md_work/page_0011.png",
+  "page_image_sha256": "35e369d4791119d2b6d8757dd3f455fe4e2b1b9fe5a6bc71180303f617f85c28",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-02_pdf2md_work/page_0011_assets.json"
+}

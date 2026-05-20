@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0065_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0065_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.92,
+        0.75
+      ],
+      "bbox_px": [
+        76,
+        495,
+        2474,
+        2640
+      ],
+      "caption": "Flexible Metal Hose Jumpover \u2014 two views showing flexible hose installation bridging a pipe penetration through a wall or slab, with fittings/couplings labeled",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0065_fig01_flexible-metal-hose-jumpover.png",
+      "png_sha256": "f49cc4c13aeaac9929981541a53218e6d8f23c608f59c859eda965a0e349a982",
+      "slug": "flexible-metal-hose-jumpover",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 65,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0065.png",
+  "page_image_sha256": "049cba1825f7fe29d2edafd7869bcccd4eae1dfbe9fa4b279dc757236bbee01d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0065_assets.json"
+}

@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0015_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-06_p0015_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.08,
+        0.92,
+        0.32
+      ],
+      "bbox_px": [
+        76,
+        99,
+        2474,
+        1220
+      ],
+      "caption": "Fig. 500-1 Maximum Intervals Between Inspections",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-06_p0015_tbl01_fig-500-1-maximum-intervals-between-insp.png",
+      "png_sha256": "0040351ad26c2a814be1f761e454c112f1d28568338b1d519db2ea247516b213",
+      "slug": "fig-500-1-maximum-intervals-between-insp",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-06",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0015.png",
+  "page_image_sha256": "56aa9413ff3831afff31e9ecf7edba796e0dab6e0ba6170146689fd6a6f50744",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-06_pdf2md_work/page_0015_assets.json"
+}

@@ -1,0 +1,95 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0018_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0018_fig01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.94,
+        0.38
+      ],
+      "bbox_px": [
+        25,
+        264,
+        2524,
+        1417
+      ],
+      "caption": "Fig. 400-8 Accommodating Thermal Expansion and Contraction of Plastic Pipe (1 of 3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0018_fig01_fig-400-8-thermal-expansion-contraction.png",
+      "png_sha256": "a4ec9b5f45982f01205a772e461b94a118ab1ac6973e32596cb268d030902748",
+      "slug": "fig-400-8-thermal-expansion-contraction",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0018_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.38,
+        0.94,
+        0.58
+      ],
+      "bbox_px": [
+        25,
+        1088,
+        2524,
+        2076
+      ],
+      "caption": "HDPE and PB Pipe \u2014 Offset for contraction vs Temperature Change and Loop Length",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl01_hdpe-pb-pipe-offset-contraction.png",
+      "png_sha256": "33eb9a6c6c47ccb87b91cbd8a8032202d4870556b4196e1f48817461af4db5f2",
+      "slug": "hdpe-pb-pipe-offset-contraction",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl01_hdpe-pb-pipe-offset-contraction.json",
+      "table_data_json_sha256": "4bdbf03b0717c0d56325d996368aa083427a57d5d8fdd5f6dae7e33d0239be3b",
+      "table_data_sha256": "4bdbf03b0717c0d56325d996368aa083427a57d5d8fdd5f6dae7e33d0239be3b",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl01_hdpe-pb-pipe-offset-contraction.xlsx",
+      "xlsx_sha256": "8c1d29711a1ee9ce7ead3501032a3f61b9993f55368d47f8fb49310b42a12d81"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0018_tbl02",
+      "bbox_norm": [
+        0.06,
+        0.6,
+        0.94,
+        0.8
+      ],
+      "bbox_px": [
+        25,
+        1813,
+        2524,
+        2802
+      ],
+      "caption": "PVC, CPVC, ABS, FRP, PP and PVDF Pipe (small dia. only) \u2014 Offset for contraction vs Temperature Change and Loop Length",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl02_pvc-cpvc-abs-frp-pp-pvdf-pipe-offset-con.png",
+      "png_sha256": "ca6d62b7e56e9d9db5806d2a99fa69bb4a417fff78440692a761d183ed8e1492",
+      "slug": "pvc-cpvc-abs-frp-pp-pvdf-pipe-offset-con",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl02_pvc-cpvc-abs-frp-pp-pvdf-pipe-offset-con.json",
+      "table_data_json_sha256": "535d1a290f654c2bd228755d8857717635ab6c09e101dba7ab9063a65ae14064",
+      "table_data_sha256": "535d1a290f654c2bd228755d8857717635ab6c09e101dba7ab9063a65ae14064",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0018_tbl02_pvc-cpvc-abs-frp-pp-pvdf-pipe-offset-con.xlsx",
+      "xlsx_sha256": "dcfb6737059c429982087158c1d037ead4691abee6f088fca70c54726c86673e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0018.png",
+  "page_image_sha256": "8d0de81d398e11557a74efabd88bd761c1fa73800972eb8bae2937ba4f506619",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0018_assets.json"
+}

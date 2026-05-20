@@ -1,0 +1,92 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-03",
+  "page": 12,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1 Pipe temperature derating factor",
+      "slug": "pipe-temperature-derating-factor",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.32],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "The above data has been compiled from data in ASME B31.8 (Table 841.116A), and Bibliography references 11.1 and 11.5.",
+          "Linear interpolation may be applied for the particular predicted maximum pipe temperature."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Predicted maximum pipe temperature (°C) during welding (from Appendix 2 or Appendix 3 graphs)", "is_header": true },
+              { "value": "Derating factor", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "More than 675", "type": "text" },
+              { "value": 0.00, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "675", "type": "text" },
+              { "value": 0.20, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "600", "type": "text" },
+              { "value": 0.35, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500", "type": "text" },
+              { "value": 0.57, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "400", "type": "text" },
+              { "value": 0.65, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300", "type": "text" },
+              { "value": 0.75, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "200", "type": "text" },
+              { "value": 0.85, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "120", "type": "text" },
+              { "value": 0.91, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Less than 120", "type": "text" },
+              { "value": 1.00, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "9-row data table with header; derating factors for pipe temperature ranges during welding"
+    }
+  ],
+  "issues": []
+}

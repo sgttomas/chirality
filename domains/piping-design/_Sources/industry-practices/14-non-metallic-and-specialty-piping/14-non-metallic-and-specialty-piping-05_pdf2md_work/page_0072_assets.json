@@ -1,0 +1,91 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 72,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-25 Temperature and Pressure Limitations, Nonmetallic Linings",
+      "slug": "fig-400-25-temperature-pressure-limitations-nonmetallic-linings",
+      "bbox_norm": [0.07, 0.62, 0.75, 0.88],
+      "confidence": "high",
+      "notes": "Table with Recommended Temperature columns Max °F and Min °F for liner materials PP, PVDF, Teflon, HDPE, Cement, FRP, PVC",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Liner Material", "is_header": true },
+              { "value": "Recommended Temperature", "is_header": true, "colspan": 2 }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Max., °F", "is_header": true },
+              { "value": "Min., °F", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PP", "type": "text" },
+              { "value": "225", "type": "text" },
+              { "value": "0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PVDF", "type": "text" },
+              { "value": "275", "type": "text" },
+              { "value": "0", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Teflon", "type": "text" },
+              { "value": "300–500", "type": "text" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "HDPE", "type": "text" },
+              { "value": "180", "type": "text" },
+              { "value": "-30", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Cement", "type": "text" },
+              { "value": "200", "type": "text" },
+              { "value": "None", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "FRP", "type": "text" },
+              { "value": "200–250", "type": "text" },
+              { "value": "-20", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "PVC", "type": "text" },
+              { "value": "150", "type": "text" },
+              { "value": "0", "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

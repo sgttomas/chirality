@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0037_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0037_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.03,
+        0.72,
+        0.42
+      ],
+      "bbox_px": [
+        25,
+        0,
+        1964,
+        1549
+      ],
+      "caption": "Fig. 400-15 PVC and CPVC Flanges\u2014Typical Maximum Operating Pressures",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0037_tbl01_pvc-cpvc-flanges-max-operating-pressures.png",
+      "png_sha256": "82e836f320634c1638ac62d1d00b6ba8283bb989eedd246fa4a42cd763daca67",
+      "slug": "pvc-cpvc-flanges-max-operating-pressures",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 37,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0037.png",
+  "page_image_sha256": "63630b26f39f068b3c5cabeec42f4e10ea749126e5e9c9ce0b06e4f4eb91aa1a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0037_assets.json"
+}

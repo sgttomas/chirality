@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0067_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0067_fig01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2409
+      ],
+      "caption": "Steam / Condensate Jumpover Assembly \u2014 Jacketed Valve Assembly and Jacketed Pipe Assembly detail drawing (JMP-3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0067_fig01_steam-condensate-jumpover-assembly-jmp-3.png",
+      "png_sha256": "8c2335b8131886c65a42642ec0a45e568788927c7b46e06f791c770d4b74529e",
+      "slug": "steam-condensate-jumpover-assembly-jmp-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 67,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0067.png",
+  "page_image_sha256": "f44c06d53a5837ba96c26fa16e99694a5735401b69db2138d0384f004fa7236c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0067_assets.json"
+}

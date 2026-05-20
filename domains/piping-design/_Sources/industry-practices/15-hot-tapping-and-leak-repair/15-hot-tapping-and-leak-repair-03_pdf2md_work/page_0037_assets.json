@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "15-hot-tapping-and-leak-repair-03",
+  "page": 37,
+  "total_pages": 42,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Appendix 2 Chart — Welding temperature of pipewall, initial pipe wall temperature of 25°C. Heat input (joules/mm) vs wall thickness (mm) with penetration depth curves.",
+      "slug": "appendix-2-welding-temperature-pipewall-chart",
+      "bbox_norm": [0.04, 0.07, 0.96, 0.68],
+      "confidence": "high",
+      "notes": "Main chart with diagonal penetration depth lines (0.50 to 3.00 mm) plotted against wall thickness (x-axis) and heat input (y-axis). Region labeled 'Welding not permitted' in upper left. Three heat input columns for 1st fillet weld, 2nd fillet weld, bead on plate."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Cross-section diagram showing weld layers: 1st fillet weld, 2nd fillet weld, Bead on plate / Buttering run, Penetration depth.",
+      "slug": "weld-layer-cross-section-diagram",
+      "bbox_norm": [0.20, 0.70, 0.80, 0.88],
+      "confidence": "high",
+      "notes": "Small schematic cross-section of pipe wall showing stacked weld layers with labels and arrows indicating penetration depth."
+    }
+  ],
+  "issues": []
+}

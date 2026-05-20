@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0043_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0043_fig01",
+      "bbox_norm": [
+        0.18,
+        0.22,
+        0.82,
+        0.68
+      ],
+      "bbox_px": [
+        332,
+        561,
+        2218,
+        2409
+      ],
+      "caption": "Socket Weld Elbolett \u2014 fabrication/installation detail showing core and jacket assembly at an elbow connection, with core and jacket labels indicated",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0043_fig01_socket-weld-elbolett-core-jacket-detail.png",
+      "png_sha256": "8a4ff658e9f34f7d1cc7740a0d6dc49a2641723be2a1f54a909064903159b8d6",
+      "slug": "socket-weld-elbolett-core-jacket-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 43,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0043.png",
+  "page_image_sha256": "e7e2fba00da36a26e067a33fd5648d6db4dddce50e5c313a743a9ebf17f9bb24",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0043_assets.json"
+}

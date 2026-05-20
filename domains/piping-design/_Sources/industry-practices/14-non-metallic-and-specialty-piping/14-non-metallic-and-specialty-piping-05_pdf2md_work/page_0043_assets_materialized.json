@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0043_postmaterialize.md",
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0043_fig01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        824,
+        2550,
+        3296
+      ],
+      "caption": "Fig. 400-17 Basic Requirements and Ordering Suggestions for FRP Pipe (1 of 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-05_p0043_fig01_fig-400-17-frp-pipe-ordering-suggestions.png",
+      "png_sha256": "9cbaf51fe7e34a022e76cacfd508b4c0c51c198aea36b66544c63c207e6e464c",
+      "slug": "fig-400-17-frp-pipe-ordering-suggestions",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-05_p0043_tbl01",
+      "bbox_norm": [
+        0.28,
+        0.8,
+        0.72,
+        0.95
+      ],
+      "bbox_px": [
+        587,
+        2472,
+        1964,
+        3296
+      ],
+      "caption": "Nominal Diameter vs. Stiffness at 5% Deflection",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-05_p0043_tbl01_nominal-diameter-stiffness-5pct-deflecti.png",
+      "png_sha256": "d3bb9869bc9d6b9be47b59bd7a440bdf374231901a796987cbf3083a8dc6a861",
+      "slug": "nominal-diameter-stiffness-5pct-deflecti",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-05_p0043_tbl01_nominal-diameter-stiffness-5pct-deflecti.json",
+      "table_data_json_sha256": "0a44c37ce3f71e438cebf187897402a8bd023245bd021c15a66e52434129d980",
+      "table_data_sha256": "0a44c37ce3f71e438cebf187897402a8bd023245bd021c15a66e52434129d980",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-05_p0043_tbl01_nominal-diameter-stiffness-5pct-deflecti.xlsx",
+      "xlsx_sha256": "7f60955101c02b1c88d9c4d20013aa0645a5c3241c8b9d1e88ffc92bec679fda"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_assets",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 43,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0043.png",
+  "page_image_sha256": "a8ece71af90afaa71c094946caba2bccca2bec9e83c6065e4fe2555dc556b454",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-05_pdf2md_work/page_0043_assets.json"
+}
