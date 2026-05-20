@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0078.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-01_p0078_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.17,
+        0.52,
+        0.88
+      ],
+      "bbox_px": [
+        66,
+        306,
+        1881,
+        2372
+      ],
+      "caption": "TABLE 2-FG-9.5: Fiberglass Economic Insulation Thickness (In.) @ $9.50/MBTU \u2014 Pipe sizes and Storage Tanks",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0078_tbl01_table-2-fg-9-5-fiberglass-economic-insul.png",
+      "png_sha256": "19056750257b30e0721809085e8f4a24dcbed3da1a21cbbc34bc5730916a18f4",
+      "slug": "table-2-fg-9-5-fiberglass-economic-insul",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0078_tbl01_table-2-fg-9-5-fiberglass-economic-insul.json",
+      "table_data_json_sha256": "e093d5ff6792d012370714f9d77f06b54fd7ca40c06db639ee696e3698e82fef",
+      "table_data_sha256": "e093d5ff6792d012370714f9d77f06b54fd7ca40c06db639ee696e3698e82fef",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0078_tbl01_table-2-fg-9-5-fiberglass-economic-insul.xlsx",
+      "xlsx_sha256": "12b81a7f8c27f519fead694a1b3bcc8fe8b1fc83f7fa37d0f9860277c0a90756"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-01",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 78,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0078.png",
+  "page_image_sha256": "ff44cddb08636630916e17b707218f274b719571cfaf4224fa2dab3d0a6ab4ee",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0078_assets.json"
+}

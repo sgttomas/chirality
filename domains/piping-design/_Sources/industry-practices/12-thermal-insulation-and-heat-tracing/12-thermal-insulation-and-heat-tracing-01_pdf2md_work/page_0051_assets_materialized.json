@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0051.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-01_p0051_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.13,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        204,
+        3300,
+        2372
+      ],
+      "caption": "TABLE 2-MW-3.5: MINERAL WOOL ECONOMIC INSULATION THICKNESS (IN.) @ $3.50/MBTU",
+      "issues": [
+        "invalid_table_data:ERROR: section_dividers index out of range: 'Storage Tanks'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0051_tbl01_table-2-mw-3-5-mineral-wool-economic-ins.png",
+      "png_sha256": "82e663b8d704f9ccc92dad7071dd83cf072677dd8e9fa64d1dd5892fcb21f603",
+      "slug": "table-2-mw-3-5-mineral-wool-economic-ins",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-01",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 51,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0051.png",
+  "page_image_sha256": "c494b8c87ff364d273df1ce5e2682d0046cced2fe8511ae8fe65151884ae894c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0051_assets.json"
+}

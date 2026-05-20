@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0021.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-06_p0021_fig01",
+      "bbox_norm": [
+        0.08,
+        0.62,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        74,
+        2000,
+        2406,
+        3509
+      ],
+      "caption": "FIGURE 1 ARRANGEMENT FOR THE PEEL STRENGTH TEST, METHOD 1",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/13-painting-coatings-and-corrosion-protection-06_p0021_fig01_arrangement-peel-strength-test-method-1.png",
+      "png_sha256": "215781beeaeea55b73501a09fb6aece07aa2b5b5c872bf8d3a84887676f8d709",
+      "slug": "arrangement-peel-strength-test-method-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-06",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0021.png",
+  "page_image_sha256": "161e9aff3c3989dff3de03ff2baa155160d639f276cdfb6340abaf750c23359a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0021_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 27,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "MITERED ELBOW, DETAIL B — Jacketed 90-degree elbow schematic showing JACKET, MODIFIED SHORT RADIUS and CORE, LONG RADIUS components",
+      "slug": "mitered-elbow-detail-b",
+      "bbox_norm": [0.08, 0.20, 0.92, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing of jacketed 90-degree mitered elbow with callouts for jacket (modified short radius) and core (long radius)"
+    }
+  ],
+  "issues": []
+}

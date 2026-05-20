@@ -1,0 +1,49 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 32,
+  "total_pages": 33,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Appendix B Field Inspection Record — fusion data log",
+      "slug": "appendix-b-field-inspection-record-fusion-data-log",
+      "bbox_norm": [0.03, 0.17, 0.97, 0.75],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Fusion Nr.", "is_header": true},
+              {"value": "Resin Type", "is_header": true},
+              {"value": "Pipe Size", "is_header": true},
+              {"value": "Machine Type", "is_header": true},
+              {"value": "Ambient Temp.", "is_header": true},
+              {"value": "Start Time", "is_header": true},
+              {"value": "Finish Time", "is_header": true},
+              {"value": "Fit-up Checked", "is_header": true},
+              {"value": "Drag Pressure", "is_header": true},
+              {"value": "Heating Pressure", "is_header": true},
+              {"value": "Heating Temperature", "is_header": true},
+              {"value": "Fusion Pressure", "is_header": true},
+              {"value": "Cool Time", "is_header": true},
+              {"value": "Bead Roll", "is_header": true},
+              {"value": "Fabricator Inspector", "is_header": true},
+              {"value": "Suncor Inspector", "is_header": true}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Blank data-entry form table with 12 empty data rows and 16 columns. Only the header row contains content."
+    }
+  ],
+  "issues": []
+}

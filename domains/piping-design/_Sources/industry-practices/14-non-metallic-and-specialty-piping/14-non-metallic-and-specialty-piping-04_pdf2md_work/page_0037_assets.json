@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 37,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "TR-1 Straight Tee and Reducer — Jacketed Tees, Crosses and Reducers fabrication/installation detail showing core and jacket assembly in cross-section",
+      "slug": "tr-1-straight-tee-reducer-jacketed",
+      "bbox_norm": [0.10, 0.14, 0.90, 0.75],
+      "confidence": "high",
+      "notes": "Technical drawing showing cross-sectional view of a straight jacketed tee and reducer with CORE and JACKET callouts. PNF J8580, TR-1, PAGE 1 OF 1."
+    }
+  ],
+  "issues": []
+}

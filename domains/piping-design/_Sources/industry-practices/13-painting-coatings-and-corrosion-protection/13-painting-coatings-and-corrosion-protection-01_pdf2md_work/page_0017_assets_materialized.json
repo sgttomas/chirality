@@ -1,0 +1,42 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0017.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-01_p0017_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.52,
+        0.96,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        1551,
+        2550,
+        2409
+      ],
+      "caption": "Coating system specification for System #1 \u2014 Amine Cured Novolac Epoxy",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0017_tbl01_coating-system-1-amine-cured-novolac-epo.png",
+      "png_sha256": "29e942c72d14882985afdf13d5307a5056ceae8b03957ca0a629bf61578dd8ff",
+      "slug": "coating-system-1-amine-cured-novolac-epo",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0017_tbl01_coating-system-1-amine-cured-novolac-epo.json",
+      "table_data_json_sha256": "acd620a09ae91e65e670ec2f83f26161c03a51f5cdb73b3b26f79b3d28eaddc4",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0017_tbl01_coating-system-1-amine-cured-novolac-epo.xlsx",
+      "xlsx_sha256": "289071685cc3839afc46e51d08e1b864044ab11a23e2dd7b651e45b5ad959ead"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-01",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0017.png",
+  "page_image_sha256": "1c7f486c2e58aa4f671b4d11deab140efc8e7691875b840ca81caf3b54b16d03",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0017_assets.json"
+}

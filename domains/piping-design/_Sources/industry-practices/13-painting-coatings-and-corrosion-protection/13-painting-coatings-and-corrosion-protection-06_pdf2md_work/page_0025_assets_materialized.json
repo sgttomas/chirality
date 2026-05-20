@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0025.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-06_p0025_fig01",
+      "bbox_norm": [
+        0.08,
+        0.05,
+        0.92,
+        0.38
+      ],
+      "bbox_px": [
+        74,
+        0,
+        2406,
+        1509
+      ],
+      "caption": "FIGURE 3 DETERMINATION OF THE RADIUS OF DISBONDING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/13-painting-coatings-and-corrosion-protection-06_p0025_fig01_figure-3-determination-radius-disbonding.png",
+      "png_sha256": "0c6fdf382ebc75500e22eb97c90746db6aead8cdf4c297b2870ec6cce198ac36",
+      "slug": "figure-3-determination-radius-disbonding",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-06",
+  "page": 25,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0025.png",
+  "page_image_sha256": "75864bfd74811d08728a38949048c52b0b45b1e798a0c0197687df30eadf089b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0025_assets.json"
+}

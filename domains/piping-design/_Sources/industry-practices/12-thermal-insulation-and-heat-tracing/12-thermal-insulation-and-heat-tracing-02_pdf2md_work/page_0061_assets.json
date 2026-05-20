@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 61,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Vertical Vessel Metal Weatherproof Jacket Details \u2014 Drawing No. D000-N-15-1, Rev. 2",
+      "slug": "vertical-vessel-metal-weatherproof-jacket-details",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.72
+      ],
+      "confidence": "high",
+      "notes": "Engineering detail drawing showing vertical vessel insulation jacket with expansion joints, standing seam, flange jacket, S-clips, jacket support angles, and Pittsburgh lock alternate detail. Callouts visible throughout."
+    }
+  ],
+  "issues": []
+}

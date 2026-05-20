@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0044_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        224,
+        2469,
+        1920
+      ],
+      "caption": "Typical Tracing of Vessels \u2014 horizontal vessel with steam tube tracing detail",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0044_fig01_typical-tracing-vessels-horizontal.png",
+      "png_sha256": "38326d040e170e88976cc36d386511f66ef6f1406a5ccbe3d815b2c40b2bc27c",
+      "slug": "typical-tracing-vessels-horizontal",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0044_fig02",
+      "bbox_norm": [
+        0.25,
+        0.55,
+        0.75,
+        0.84
+      ],
+      "bbox_px": [
+        494,
+        1600,
+        1975,
+        2848
+      ],
+      "caption": "Typical Tracing of Vessels \u2014 vertical vessel/drum with steam tube tracing detail",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0044_fig02_typical-tracing-vessels-vertical.png",
+      "png_sha256": "f4bdf24275a6dfe21e8336d7dcd9b7db3e739dbfd54e7ba1d8e577144b5d53cb",
+      "slug": "typical-tracing-vessels-vertical",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0044.png",
+  "page_image_sha256": "60c3a1827416d6a68fd341c11789757041930fd8da7502adf6786767f4416c7f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0044_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 47,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "THERMOWELL ON CORE ELBOW — Fabrication/installation detail showing thermowell installed on a jacketed core elbow, with CORE and JACKET labels, weld symbols, and connection details. PIP PNFJ8690, TWE-1.",
+      "slug": "thermowell-on-core-elbow",
+      "bbox_norm": [0.12, 0.17, 0.88, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing; full page drawing below title, above notes section. Labels visible: CORE, JACKET. Title block top-right: PIP PNFJ8690."
+    }
+  ],
+  "issues": []
+}

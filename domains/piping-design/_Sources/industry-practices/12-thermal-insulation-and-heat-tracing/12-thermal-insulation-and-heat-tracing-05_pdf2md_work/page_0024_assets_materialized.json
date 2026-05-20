@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0024_fig01",
+      "bbox_norm": [
+        0.08,
+        0.13,
+        0.92,
+        0.88
+      ],
+      "bbox_px": [
+        70,
+        242,
+        2270,
+        2814
+      ],
+      "caption": "PNSC0035-04 Typical Arrangement for 12 Station 3\"-Class 150 Steam Distribution Manifold",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0024_fig01_pnsc0035-04-12-station-steam-distributio.png",
+      "png_sha256": "8b5fd721cfefd042420fec121296cd6d6b90c4aaa6d7a5d13d1b8357767604cd",
+      "slug": "pnsc0035-04-12-station-steam-distributio",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0024.png",
+  "page_image_sha256": "5b339ad86fdf4e74a314f11f59d010a57079db88226ad1f2a991a274c876273d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0024_assets.json"
+}

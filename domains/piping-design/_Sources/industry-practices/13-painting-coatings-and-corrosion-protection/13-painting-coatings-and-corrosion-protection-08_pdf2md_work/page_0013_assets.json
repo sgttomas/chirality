@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0013.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0013_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        2702
+      ],
+      "caption": "Table 3.5 Impacts of Non-Steady State Operating Conditions on Wet Sour Gas Corrosion",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.png",
+      "png_sha256": "3b6ea66840bdd6e49f2cd1896cc7251ce867768b3b4e160f9b3ca0d84676330b",
+      "slug": "table-3-5-non-steady-state-operating-con",
+      "status": "materialized",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.json",
+      "table_data_json_sha256": "2e20dcaa73cf87e21fe2a3f28bc9e525767bc78d883247b7f190c00bdbf971e7",
+      "table_data_sha256": "2e20dcaa73cf87e21fe2a3f28bc9e525767bc78d883247b7f190c00bdbf971e7",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.xlsx",
+      "xlsx_sha256": "c13ed9dd34755d2d7a0322b5ca92c9c731e08b2e0078187b8d5445569f458c0a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-08",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0013.png",
+  "page_image_sha256": "a0f6905a50b3372336d58fcf7ef978e0f094d50a90746802f6b680bac80d8de6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0013_assets.json"
+}

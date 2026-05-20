@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 65,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Flexible Metal Hose Jumpover — two views showing flexible hose installation bridging a pipe penetration through a wall or slab, with fittings/couplings labeled",
+      "slug": "flexible-metal-hose-jumpover",
+      "bbox_norm": [0.08, 0.20, 0.92, 0.75],
+      "confidence": "high",
+      "notes": "Two-view engineering drawing: left view shows section through wall/slab with flexible hose crossing; right view shows isometric/perspective of the same arrangement. Label 'FLEXIBLE HOSE' visible with leader line."
+    }
+  ],
+  "issues": []
+}

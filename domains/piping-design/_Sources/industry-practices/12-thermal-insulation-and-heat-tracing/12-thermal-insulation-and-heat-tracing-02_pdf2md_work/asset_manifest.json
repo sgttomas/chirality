@@ -1,0 +1,1732 @@
+{
+  "asset_count": 42,
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0007_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        826,
+        2555,
+        3304
+      ],
+      "caption": "Hot Insulation Minimum Thickness Chart \"A\" \u2013 Untraced Pipe",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0007_tbl01_hot-insulation-minimum-thickness-chart-a.png",
+      "png_sha256": "317260eae66ce30aa9e077d02d93dc1f1367eacb6a1ffccc91d769132467654e",
+      "slug": "hot-insulation-minimum-thickness-chart-a",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0007_tbl01_hot-insulation-minimum-thickness-chart-a.json",
+      "table_data_json_sha256": "1f932c13491ccb24c784844ac47bb5bfa4405ce077996f8012875c15fefdf12f",
+      "table_data_sha256": "1f932c13491ccb24c784844ac47bb5bfa4405ce077996f8012875c15fefdf12f",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0007_tbl01_hot-insulation-minimum-thickness-chart-a.xlsx",
+      "xlsx_sha256": "027fad3b8e9bb49b70daa2dde10af04be19847111f3b88a058b4d6ffcdae3de1"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0008_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1090,
+        2555,
+        3304
+      ],
+      "caption": "Hot Insulation Minimum Thickness Chart \"A\" \u2013 Heat Traced Pipe, EHT Insulation Optimization, Calcium Silicate Insulation",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0008_tbl01_hot-insulation-min-thickness-chart-a-hea.png",
+      "png_sha256": "777e41fc34762ed46964a12ebc3a4727713afacc5f5aafbc75971d05532886e6",
+      "slug": "hot-insulation-min-thickness-chart-a-hea",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0008_tbl01_hot-insulation-min-thickness-chart-a-hea.json",
+      "table_data_json_sha256": "e968bcffc8c0e01e88f68a3b9e1bd29bf124ed07b583b1dc512dfef88d0ccb9b",
+      "table_data_sha256": "e968bcffc8c0e01e88f68a3b9e1bd29bf124ed07b583b1dc512dfef88d0ccb9b",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0008_tbl01_hot-insulation-min-thickness-chart-a-hea.xlsx",
+      "xlsx_sha256": "cf7c7ca350f7b102376d9b5ad8bc2441d05e8d0248bf4873dd99f26ba03ccff2"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0009_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.15,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        330,
+        2555,
+        1883
+      ],
+      "caption": "EHT Insulation Optimization \u2013 Mineral Wool Insulation Hold Temperatures",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0009_tbl01_eht-insulation-optimization-mineral-wool.png",
+      "png_sha256": "d46e04d71edf38362c4af8d97af5f7574c7a7d8f2f951da3a5d482551af051a6",
+      "slug": "eht-insulation-optimization-mineral-wool",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0009_tbl01_eht-insulation-optimization-mineral-wool.json",
+      "table_data_json_sha256": "83c506df624faa64b3954c3d3eb39b918692ecc5c3a9ac3318bbad8d2a14db17",
+      "table_data_sha256": "83c506df624faa64b3954c3d3eb39b918692ecc5c3a9ac3318bbad8d2a14db17",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0009_tbl01_eht-insulation-optimization-mineral-wool.xlsx",
+      "xlsx_sha256": "2b44d615f8eeb8611522b1a9a140cca22fa1e578e5e81bb17a64f488496f5dea"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0010_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.43,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1256,
+        2555,
+        3304
+      ],
+      "caption": "Personnel Protection Insulation Minimum Thickness Chart \"B\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0010_tbl01_personnel-protection-insulation-minimum.png",
+      "png_sha256": "d6b0a72ac21ffddafbb207e51323ac541ce7f9da2f83c9ce23e0dab1d51ec41b",
+      "slug": "personnel-protection-insulation-minimum",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0010_tbl01_personnel-protection-insulation-minimum.json",
+      "table_data_json_sha256": "a99e6304eb1ba192c0454a71a76e5f1c1adccf9598d439b9cbcf661359432766",
+      "table_data_sha256": "a99e6304eb1ba192c0454a71a76e5f1c1adccf9598d439b9cbcf661359432766",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0010_tbl01_personnel-protection-insulation-minimum.xlsx",
+      "xlsx_sha256": "d73f90af738d26e2035535d2fe702239b9d4e71fdd059f163e371501f748451b"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0012_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2555,
+        2874
+      ],
+      "caption": "Table 5.3 Cold Insulation Thickness Chart \"C\"",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0012_tbl01_cold-insulation-thickness-chart-c.png",
+      "png_sha256": "1fd1c5c31cf41a7d47b1c6803c1a822bc7d21d713b76dc1f849595440eaaa205",
+      "slug": "cold-insulation-thickness-chart-c",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0013_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2555,
+        2544
+      ],
+      "caption": "Cold Insulation Thickness Chart \"D\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.png",
+      "png_sha256": "164624f3161353f0b99f3319c1333433791f3e8b3825e16c01db478b4fb2bddf",
+      "slug": "cold-insulation-thickness-chart-d",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.json",
+      "table_data_json_sha256": "5d59f66199459f29a549192ce65c3923de96e75a0e9a4563238360e3ef38c267",
+      "table_data_sha256": "5d59f66199459f29a549192ce65c3923de96e75a0e9a4563238360e3ef38c267",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.xlsx",
+      "xlsx_sha256": "454cf26b53a12e50bb6b5830d7a0152ac7dfcfc58b0c4b2cedfe546e739cc746"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0015_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.72,
+        0.9,
+        0.88
+      ],
+      "bbox_px": [
+        128,
+        2214,
+        2427,
+        3073
+      ],
+      "caption": "Wire schedule for insulated outside diameter, gauge, and spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 15,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.png",
+      "png_sha256": "c641f011e412ca326e8b44ce439d2fe94a1dea54ca30c9f5693aaaea24d760d7",
+      "slug": "wire-schedule-insulated-outside-diameter",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.json",
+      "table_data_json_sha256": "148fa1b0e1646c980e31dcd783ac24a8f9b9e70d1f54eb2c7f619d1c640e165b",
+      "table_data_sha256": "148fa1b0e1646c980e31dcd783ac24a8f9b9e70d1f54eb2c7f619d1c640e165b",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.xlsx",
+      "xlsx_sha256": "e21058117b0a263878860fb5da16c92f6d882f7001e1e8ef1d2bb7942bdb4299"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0019_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.68,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        77,
+        2082,
+        2478,
+        2874
+      ],
+      "caption": "Band Schedule for Tanks and Vessels",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.png",
+      "png_sha256": "4e15c3d815aa4be5761eb3c4d547363708fff8932a107873124b71ee19ac328c",
+      "slug": "band-schedule-tanks-vessels",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.json",
+      "table_data_json_sha256": "75b0cf1acc874ff7aa5acb74f6d08c2fff081e4ef8cd4c49be8c05f48c59e155",
+      "table_data_sha256": "75b0cf1acc874ff7aa5acb74f6d08c2fff081e4ef8cd4c49be8c05f48c59e155",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.xlsx",
+      "xlsx_sha256": "0f71d922591c92b909a10cd919d8f682849cd446b191de9be4bf03b71903c1c7"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0020_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.52,
+        0.92,
+        0.68
+      ],
+      "bbox_px": [
+        77,
+        1553,
+        2478,
+        2412
+      ],
+      "caption": "Band Schedule for Tanks and Vessels",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0020_tbl01_band-schedule-tanks-vessels.png",
+      "png_sha256": "fd7dc1c24edbf406efa389048e90a1634b3865cee53ca0bea518139bd073df81",
+      "slug": "band-schedule-tanks-vessels",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0020_tbl01_band-schedule-tanks-vessels.json",
+      "table_data_json_sha256": "2d83da22d265f37999392ab52db0750b19530980484aec557bb1aed9cdc5dea9",
+      "table_data_sha256": "2d83da22d265f37999392ab52db0750b19530980484aec557bb1aed9cdc5dea9",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0020_tbl01_band-schedule-tanks-vessels.xlsx",
+      "xlsx_sha256": "dd9274ce0f733985c2ba3d1cd132d2ecb7206c7c0d533c81c60c12bf1ba98f57"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0021_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.05,
+        0.92,
+        0.28
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2478,
+        1090
+      ],
+      "caption": "NUMBER OF 4\" SPRINGS PER BAND",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0021_tbl01_number-of-4-springs-per-band.png",
+      "png_sha256": "7c973dafd26bf7b06068c72550cffb3b41f3e0f263717494a5b4307242aa2955",
+      "slug": "number-of-4-springs-per-band",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0021_tbl01_number-of-4-springs-per-band.json",
+      "table_data_json_sha256": "116725c963fb52397010827331ca859bc54577e4b6e67f86d7f02790713401d7",
+      "table_data_sha256": "116725c963fb52397010827331ca859bc54577e4b6e67f86d7f02790713401d7",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0021_tbl01_number-of-4-springs-per-band.xlsx",
+      "xlsx_sha256": "65c76f8315162f5f6b7e4229c58d7f3e1d6ce55881a9e5a4ab628bb884c86e46"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0033_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        760,
+        2555,
+        2214
+      ],
+      "caption": "TABLE A-1 Noise Control Material Manufacturers \u2014 Corrosion Inhibiting Protection",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 33,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.png",
+      "png_sha256": "b798c5a4579d7fdddebad5fefadd0d8e8203fce24f440724971ff652e12cdeea",
+      "slug": "table-a1-noise-control-material-manufact",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.json",
+      "table_data_json_sha256": "c5b22f79da6fe88f36b6cdf3bc6100f8c41a34b5c524bcf6647ddb0159dd148e",
+      "table_data_sha256": "c5b22f79da6fe88f36b6cdf3bc6100f8c41a34b5c524bcf6647ddb0159dd148e",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.xlsx",
+      "xlsx_sha256": "3f4873916fe95afe4520b58da6870fec524fcc0ee7de0f7a1b3ac44038470ec3"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0034_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2555,
+        3304
+      ],
+      "caption": "TABLE A-4 Noise Control Material Manufacturers \u2014 Acoustical Pipe Lagging Systems",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 34,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0034_tbl01_table-a4-noise-control-material-manufact.png",
+      "png_sha256": "3043f9e09d2f4e5a87597770f84831d083dc64d02c7c01d4eba67eb829262f63",
+      "slug": "table-a4-noise-control-material-manufact",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0034_tbl01_table-a4-noise-control-material-manufact.json",
+      "table_data_json_sha256": "f1ff1de653ad589e7f9bab5bfe72bed5880f556031cb082fd0a5153d883857a7",
+      "table_data_sha256": "f1ff1de653ad589e7f9bab5bfe72bed5880f556031cb082fd0a5153d883857a7",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0034_tbl01_table-a4-noise-control-material-manufact.xlsx",
+      "xlsx_sha256": "977b7c7e6b353f4e004705989a5904ac3def321f674e178ad506fe185226a6de"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0035_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2555,
+        3205
+      ],
+      "caption": "Thermal Insulation of Piping, Vessels, and Equipment \u2014 Material, Trade Name, Manufacturer, Sales Representative",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 35,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0035_tbl01_thermal-insulation-materials-trade-names.png",
+      "png_sha256": "d9d11970cba98869a639ffa6eab8f9374f6a9567787e9b72bf79685493912cc0",
+      "slug": "thermal-insulation-materials-trade-names",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0037_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1883,
+        2555,
+        3040
+      ],
+      "caption": "Teflon Coated Fabric \u2013 Inner Layer / Teflon Coated Fabric \u2013 Outer Layer",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 37,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0037_tbl01_teflon-coated-fabric-inner-outer-layer.png",
+      "png_sha256": "e4ffd65c136b72f6c45b1611d36ef6b1897e27373b616a8178718dce372c8791",
+      "slug": "teflon-coated-fabric-inner-outer-layer",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0043_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.52,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1553,
+        2555,
+        3304
+      ],
+      "caption": "TABLE B-1 Noise Control Material Manufacturers \u2014 E-Glass Insulation",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 43,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0043_tbl01_table-b-1-noise-control-material-manufac.png",
+      "png_sha256": "3a88f53a01e4f9e468d84a559225dca60e01eac3a64010e48f4df1b035c8f14d",
+      "slug": "table-b-1-noise-control-material-manufac",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0043_tbl01_table-b-1-noise-control-material-manufac.json",
+      "table_data_json_sha256": "62a5ab34c3cb6c2cf710a8235e978f003b0d59e8e32618992c9b83f8360ba1ec",
+      "table_data_sha256": "62a5ab34c3cb6c2cf710a8235e978f003b0d59e8e32618992c9b83f8360ba1ec",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0043_tbl01_table-b-1-noise-control-material-manufac.xlsx",
+      "xlsx_sha256": "f8b74a3b85ab54863b9b9fa13546790d5c915b85b2ff4fe9aaed4b0d5bebe448"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0044_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.06,
+        0.96,
+        0.44
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2555,
+        1619
+      ],
+      "caption": "TABLE B-2 Noise Control Material Manufacturers \u2014 Impregnated Vinyl Septum",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 44,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0044_tbl01_table-b2-noise-control-impregnated-vinyl.png",
+      "png_sha256": "74fce6da93e6b634f15ae3959336794d0aff017c0fb4454f0d698c04543fc8df",
+      "slug": "table-b2-noise-control-impregnated-vinyl",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0044_tbl02",
+      "bbox_norm": [
+        0.04,
+        0.5,
+        0.96,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        1487,
+        2555,
+        3304
+      ],
+      "caption": "TABLE B-3 Noise Control Material Manufacturers \u2014 Corrosion Inhibiting Protection",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 44,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0044_tbl02_table-b3-noise-control-corrosion-inhibit.png",
+      "png_sha256": "4caa985e0a81ccf79a10d0fd805a599b86c693eb28c3a63f5b6d5c0a2bf2893a",
+      "slug": "table-b3-noise-control-corrosion-inhibit",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0044_tbl02_table-b3-noise-control-corrosion-inhibit.json",
+      "table_data_json_sha256": "0ccda330e7c5c5d4fdcb11cf3b5f04199079a5d4356a479758a54e9269764fe4",
+      "table_data_sha256": "0ccda330e7c5c5d4fdcb11cf3b5f04199079a5d4356a479758a54e9269764fe4",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0044_tbl02_table-b3-noise-control-corrosion-inhibit.xlsx",
+      "xlsx_sha256": "35274c75c980a6e8574c7cf5055b60bcf47c2ad6704ad3ae2b76e73c79c94e88"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0045_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.38,
+        0.94,
+        0.82
+      ],
+      "bbox_px": [
+        26,
+        1090,
+        2529,
+        2874
+      ],
+      "caption": "TABLE B-5 Typical Flammability Ratings of Acoustical Blanket Roll Good Products",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 45,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.png",
+      "png_sha256": "6ce93ad4387f8287c48d3f6af12960d1a4e742c40bb74abffb5721f2f1e5ac04",
+      "slug": "table-b-5-flammability-ratings-acoustica",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.json",
+      "table_data_json_sha256": "07cb9ddc94ea45955d4270b2fd1751d913d80993ba5a1525f9b0d2696fb84ef8",
+      "table_data_sha256": "07cb9ddc94ea45955d4270b2fd1751d913d80993ba5a1525f9b0d2696fb84ef8",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.xlsx",
+      "xlsx_sha256": "7c18766c188b37bca6121ef41df29ed868e9b783d070d788fac64a44557a8a6e"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0046_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.8,
+        0.92,
+        0.96
+      ],
+      "bbox_px": [
+        77,
+        2478,
+        2478,
+        3304
+      ],
+      "caption": "Revision table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 46,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0046_tbl01_revision-table.png",
+      "png_sha256": "cbdf1ef8f17cdb94c17385caf426acbc675a21852a074f3191e173d9f44b0944",
+      "slug": "revision-table",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0046_tbl01_revision-table.json",
+      "table_data_json_sha256": "19bb04bf444099507a9a8b63ffdb683875168dcc824e3308cd9215150dca81ec",
+      "table_data_sha256": "19bb04bf444099507a9a8b63ffdb683875168dcc824e3308cd9215150dca81ec",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0046_tbl01_revision-table.xlsx",
+      "xlsx_sha256": "5421e2547c95df1114e457da8d2c76ddb74d0b9cde5c0b8efe65bc583fc923d0"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0052_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        760,
+        2555,
+        3205
+      ],
+      "caption": "BGF Matt Insulation Minimum Thickness Chart - Personnel Protection and hot Insulation, external surface below 140 \u00b0F",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 52,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0052_tbl01_bgf-matt-insulation-min-thickness-chart.png",
+      "png_sha256": "ea6abd29128ddbd172b8862e7a2f34e921d1092f42df4d281e5295953e34057a",
+      "slug": "bgf-matt-insulation-min-thickness-chart",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0052_tbl01_bgf-matt-insulation-min-thickness-chart.json",
+      "table_data_json_sha256": "c17419adbdda1cf32742ac74d4d47b49aaf82d94ef027562af2a9533909a70e6",
+      "table_data_sha256": "c17419adbdda1cf32742ac74d4d47b49aaf82d94ef027562af2a9533909a70e6",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0052_tbl01_bgf-matt-insulation-min-thickness-chart.xlsx",
+      "xlsx_sha256": "50f03569293ff46280d1bc702319e41f517f1f935f95ea7a68cbc90b08ca9e65"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0054_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.97,
+        0.32
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2567,
+        1227
+      ],
+      "caption": "Item descriptions and quantities for insulation details for piping hot services",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 54,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0054_tbl01_insulation-item-descriptions-quantities.png",
+      "png_sha256": "8d1b63be28aec5a0cd1098c4fef5b2e7d0ca1c0e243443d951b103a32ccf14eb",
+      "slug": "insulation-item-descriptions-quantities",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0054_fig01",
+      "bbox_norm": [
+        0.04,
+        0.33,
+        0.72,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        928,
+        1977,
+        2819
+      ],
+      "caption": "Insulation details for piping hot services \u2014 isometric and section views showing numbered component callouts for straight pipe, elbow, and tee insulation assemblies",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 54,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0054_fig01_insulation-details-piping-hot-services.png",
+      "png_sha256": "096337c75e8b502b6f56f4493523d63a0322cb06329725ecc1cddabda0d0f31f",
+      "slug": "insulation-details-piping-hot-services",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0055_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.97,
+        0.22
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2571,
+        896
+      ],
+      "caption": "Item list for insulation details \u2014 valves and flanges, hot services",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 55,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0055_tbl01_item-list-insulation-valves-flanges-hot.png",
+      "png_sha256": "47f97fd9236e8c91d7f7b3c9cc507c1bd40cb9ffd34073f5199c80f58811ddf6",
+      "slug": "item-list-insulation-valves-flanges-hot",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0055_tbl01_item-list-insulation-valves-flanges-hot.json",
+      "table_data_json_sha256": "aec24aca207523c712a56244fe479d42ff874c6d462639ee81311d12fc929745",
+      "table_data_sha256": "aec24aca207523c712a56244fe479d42ff874c6d462639ee81311d12fc929745",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0055_tbl01_item-list-insulation-valves-flanges-hot.xlsx",
+      "xlsx_sha256": "b6b881a7172308a80afa5f0960b588adfcc56fc2d1aa09f9f698d5dcc6550c3f"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0055_fig01",
+      "bbox_norm": [
+        0.04,
+        0.22,
+        0.88,
+        0.8
+      ],
+      "bbox_px": [
+        0,
+        564,
+        2391,
+        2822
+      ],
+      "caption": "Insulation Details for Valves and Flanges \u2014 Hot Services (Drawing No. 0000-N-5-1, Sheet 1, Rev. 2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 55,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0055_fig01_insulation-details-valves-flanges-hot-se.png",
+      "png_sha256": "105e0107ba944dbd606005dfe678910db5d993e06554c794c38a28f2e444a473",
+      "slug": "insulation-details-valves-flanges-hot-se",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0056_fig01",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2579,
+        2228
+      ],
+      "caption": "Insulation Details for Vertical Piping Hot Services \u2014 Elevation and Collar Details, Drawing No. 0000-N-6-1, Rev. 2",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 56,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0056_fig01_insulation-details-vertical-piping-hot-s.png",
+      "png_sha256": "2e75921d7b494dbe471d3ffee63e69fc003ab9a501d2fc46c365ee407e0168d6",
+      "slug": "insulation-details-vertical-piping-hot-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0056_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.82,
+        0.6,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        2561,
+        1676,
+        3259
+      ],
+      "caption": "Title block \u2014 drawing revision history",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 56,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0056_tbl01_title-block-revision-history.png",
+      "png_sha256": "e5299f3f6db3cc6689340513c8add5757499e4ec95799507f4ebe9331e230c77",
+      "slug": "title-block-revision-history",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0057_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        2544
+      ],
+      "caption": "Fig. 0030-N-7-1 Insulation Support for Skirt Support Vertical Vessels \u2014 Hot Services",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 57,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0057_fig01_insulation-support-skirt-support-vertica.png",
+      "png_sha256": "c2f47d1516582df06a6039135c364ee8e2a304d47751c18c149a8f9119b85fd6",
+      "slug": "insulation-support-skirt-support-vertica",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0058_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2587,
+        2897
+      ],
+      "caption": "Insulation Support Rings for Vertical Vessels \u2014 detail drawing showing Type A, Type B, Type C, and Type D support ring configurations with clip and angle assemblies",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 58,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0058_fig01_insulation-support-rings-vertical-vessel.png",
+      "png_sha256": "bac186d645757e17b3d90b28d661e7fbf95146521b6ebc02ec27cc85faffc204",
+      "slug": "insulation-support-rings-vertical-vessel",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0059_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.01,
+        0.97,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2587,
+        1099
+      ],
+      "caption": "Insulation Support Rings for Vertical Vessels \u2014 Clip and Angle dimensions by insulation thickness",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 59,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.png",
+      "png_sha256": "30ba243da97ce77405c2ecae05b6b3259dc6ca70f339f3e5c52c09e293742f14",
+      "slug": "insulation-support-rings-vertical-vessel",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.json",
+      "table_data_json_sha256": "c0f8aaa4795e91be32611aa449bb649a4be831fff4c981b6ba70f0f383eb974a",
+      "table_data_sha256": "c0f8aaa4795e91be32611aa449bb649a4be831fff4c981b6ba70f0f383eb974a",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.xlsx",
+      "xlsx_sha256": "09b7caaec5cb8113c86842f953b832b78a6e3757f5a2ada7fd7b0384358bdb5a"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0060_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.94,
+        0.22
+      ],
+      "bbox_px": [
+        26,
+        0,
+        2573,
+        902
+      ],
+      "caption": "Bill of materials \u2014 insulation banding items",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 60,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.png",
+      "png_sha256": "a5c90188c39325bad71e26bf6af94ab359a954adfe57699370482da04efb9a35",
+      "slug": "bom-insulation-banding-items",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.json",
+      "table_data_json_sha256": "4ac7bcd6f226b0e10fb9ad75fa4928bf4efaa7cc754e447d9e1f72cae9482b30",
+      "table_data_sha256": "4ac7bcd6f226b0e10fb9ad75fa4928bf4efaa7cc754e447d9e1f72cae9482b30",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.xlsx",
+      "xlsx_sha256": "995fb90106c2710fabc83ca1f0a8c8769969b75abd8678048b4017e831913dbc"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0060_fig01",
+      "bbox_norm": [
+        0.06,
+        0.23,
+        0.7,
+        0.74
+      ],
+      "bbox_px": [
+        26,
+        601,
+        1949,
+        2639
+      ],
+      "caption": "Fig. 2 \u2014 Insulation or fireproofing application for vertical vessels, showing headseat, expansion joint, and supporting angle detail with balloon callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 60,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0060_fig01_insulation-fireproofing-vertical-vessels.png",
+      "png_sha256": "f7f9bf969d9f234f1fc35f69953b265a5c34b1b5041d42afb8ca5c03a050f6d9",
+      "slug": "insulation-fireproofing-vertical-vessels",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0061_fig01",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2599,
+        2572
+      ],
+      "caption": "Vertical Vessel Metal Weatherproof Jacket Details \u2014 Drawing No. D000-N-15-1, Rev. 2",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 61,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0061_fig01_vertical-vessel-metal-weatherproof-jacke.png",
+      "png_sha256": "1d985440fded2a6b73aad2c56c91bff02d39511883a0e569955ad68ceeea4489",
+      "slug": "vertical-vessel-metal-weatherproof-jacke",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0062_fig01",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.78,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1228,
+        2134,
+        2556
+      ],
+      "caption": "Fig. 1 (DWG. D000-N-12-1) \u2014 Insulation support details for horizontal vessels, showing vessel with numbered components including longitudinal rods, circumferential rings, straps, and insulation layers",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 62,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0062_fig01_insulation-support-horizontal-vessel-det.png",
+      "png_sha256": "a5217f65dfc4aec9fa18a3ef23884be8919d4c1508ad2b966313a2313adbf0ff",
+      "slug": "insulation-support-horizontal-vessel-det",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.52,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1477,
+        1568
+      ],
+      "caption": "FIGURE 1 UNINSULATED NOZZLE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 63,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig01_figure-1-uninsulated-nozzle.png",
+      "png_sha256": "ccc6278243514bce300ea1d6be302e56e925c3c5107cdc23c4654e5f71fa93d4",
+      "slug": "figure-1-uninsulated-nozzle",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig02",
+      "bbox_norm": [
+        0.48,
+        0.03,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        1114,
+        0,
+        2591,
+        1568
+      ],
+      "caption": "FIGURE 2 TYPICAL SHELL \u2013 HEAD JOINT",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 63,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig02_figure-2-typical-shell-head-joint.png",
+      "png_sha256": "2c055999b21d0f443faba72ed39029ad72d6b31fc8284d19f0f0ee337c335f6e",
+      "slug": "figure-2-typical-shell-head-joint",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig03",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1234,
+        2591,
+        2569
+      ],
+      "caption": "FIGURE 3 INSULATED MANWAY COVERS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "page": 63,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig03_figure-3-insulated-manway-covers.png",
+      "png_sha256": "c00195d9c3da1a323548f0869fa48d18448d136a200158a1a73b714276d69b82",
+      "slug": "figure-3-insulated-manway-covers",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0064_fig01",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.75,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        1096,
+        2057,
+        2656
+      ],
+      "caption": "FIG. A and FIG. B \u2014 U-TUBE REBOILER and SHELL AND TUBE EXCHANGER tubular exchanger insulation and weatherproofing details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 64,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0064_fig01_fig-a-b-tubular-exchanger-insulation-det.png",
+      "png_sha256": "e2a606370b179d13c481a8adeb4c81381088a498de6335b79a1fa4f26b863837",
+      "slug": "fig-a-b-tubular-exchanger-insulation-det",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0065_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        2544
+      ],
+      "caption": "Fig. 65 Pipe Bundle Insulation and Weatherproofing Details \u2014 Section A (One High, Two Wide Max) and Section B (More Than One High)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 65,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0065_fig01_pipe-bundle-insulation-weatherproofing-d.png",
+      "png_sha256": "fc98ce4d48f8e3fc2885eebc6e49e63f126063c28ba54a1020f4b131e3bdec6a",
+      "slug": "pipe-bundle-insulation-weatherproofing-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0066_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2605,
+        1573
+      ],
+      "caption": "Detail A \u2014 Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, insulation support leg by vessel fabricator, insulation packed in void, and stiffener.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 66,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0066_fig01_detail-a-insulation-stiffener-rings.png",
+      "png_sha256": "a0d241306e1f6eaedb1a9fdf238ffc3ddf6c9ca687f315a064a0047ae9090462",
+      "slug": "detail-a-insulation-stiffener-rings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0066_fig02",
+      "bbox_norm": [
+        0.04,
+        0.44,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1305,
+        2605,
+        2777
+      ],
+      "caption": "Detail B \u2014 Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, stiffener, with dimension annotations S\u2080 and S\u2081.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 66,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0066_fig02_detail-b-insulation-stiffener-rings.png",
+      "png_sha256": "8bbbcabefa10f00be379fcd9470895ad57105f7e418f3f54dcd5129ed32a0559",
+      "slug": "detail-b-insulation-stiffener-rings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0067_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.5,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        835,
+        1429,
+        2438
+      ],
+      "caption": "CROSS SECTION RIGID INSULATION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 67,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0067_fig01_cross-section-rigid-insulation.png",
+      "png_sha256": "377b582bb26d0658c8ebcf16f6d0d67dad411ceab1cabbc1f2991eb0fa15b60e",
+      "slug": "cross-section-rigid-insulation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0067_fig02",
+      "bbox_norm": [
+        0.5,
+        0.3,
+        0.95,
+        0.68
+      ],
+      "bbox_px": [
+        1170,
+        835,
+        2599,
+        2438
+      ],
+      "caption": "CROSS SECTION NON-RIGID INSULATION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 67,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0067_fig02_cross-section-non-rigid-insulation.png",
+      "png_sha256": "ec0c1badc9ca04d7b9de2ff5edbfc034b1469175419c2c7d71e6b2df4565f70d",
+      "slug": "cross-section-non-rigid-insulation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "issues": [],
+  "page_manifest_count": 67,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0015.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0016.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0017.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0018.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0019.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0020.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0021.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0022.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0023.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0024.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0025.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0026.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0027.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0028.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0029.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0030.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0030_assets_materialized.json",
+      "page": 30,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0031.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0031_assets_materialized.json",
+      "page": 31,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0032.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0032_assets_materialized.json",
+      "page": 32,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0033.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0033_assets_materialized.json",
+      "page": 33,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0034.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0034_assets_materialized.json",
+      "page": 34,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0035.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0035_assets_materialized.json",
+      "page": 35,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0036.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0036_assets_materialized.json",
+      "page": 36,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0037.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0037_assets_materialized.json",
+      "page": 37,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0038.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0038_assets_materialized.json",
+      "page": 38,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0039.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0039_assets_materialized.json",
+      "page": 39,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0040.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0040_assets_materialized.json",
+      "page": 40,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0041.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0041_assets_materialized.json",
+      "page": 41,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0042.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0042_assets_materialized.json",
+      "page": 42,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0043.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0043_assets_materialized.json",
+      "page": 43,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0044.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0044_assets_materialized.json",
+      "page": 44,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0045.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0045_assets_materialized.json",
+      "page": 45,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0046.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0046_assets_materialized.json",
+      "page": 46,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0047.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0047_assets_materialized.json",
+      "page": 47,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0048.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0048_assets_materialized.json",
+      "page": 48,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0049.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0049_assets_materialized.json",
+      "page": 49,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0050.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0050_assets_materialized.json",
+      "page": 50,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0051.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0051_assets_materialized.json",
+      "page": 51,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0052.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0052_assets_materialized.json",
+      "page": 52,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0053.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0053_assets_materialized.json",
+      "page": 53,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0054.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0054_assets_materialized.json",
+      "page": 54,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0055.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0055_assets_materialized.json",
+      "page": 55,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0056.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0056_assets_materialized.json",
+      "page": 56,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0057.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0057_assets_materialized.json",
+      "page": 57,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0058.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0058_assets_materialized.json",
+      "page": 58,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0059.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0059_assets_materialized.json",
+      "page": 59,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0060.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0060_assets_materialized.json",
+      "page": 60,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0061.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0061_assets_materialized.json",
+      "page": 61,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0062.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0062_assets_materialized.json",
+      "page": 62,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0063.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0063_assets_materialized.json",
+      "page": 63,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0064.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0064_assets_materialized.json",
+      "page": 64,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0065.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0065_assets_materialized.json",
+      "page": 65,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0066.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0066_assets_materialized.json",
+      "page": 66,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0067.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0067_assets_materialized.json",
+      "page": 67,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work"
+}

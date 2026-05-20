@@ -1,0 +1,182 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 7,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-3 Summary of Suggested Temperature Limitations for Plastic Pipe",
+      "slug": "fig-400-3-temperature-limitations-plastic-pipe",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.30],
+      "confidence": "high",
+      "notes": "8-row table listing pipe materials with max/min temperature limits for pressure and nonpressure service",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": ["1. For temperature limits of FRP, consult the manufacturer."],
+        "rows": [
+          { "cells": [
+            { "value": "Pipe Material", "is_header": true },
+            { "value": "Maximum Temperature in Pressure Service, °F", "is_header": true },
+            { "value": "Maximum Temperature in Nonpressure Service, °F", "is_header": true },
+            { "value": "Minimum Temperature, °F", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "HDPE", "type": "text" },
+            { "value": 140, "type": "number" },
+            { "value": 180, "type": "number" },
+            { "value": -40, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "HTPE", "type": "text" },
+            { "value": 170, "type": "number" },
+            { "value": 190, "type": "number" },
+            { "value": -40, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "PVC", "type": "text" },
+            { "value": 140, "type": "number" },
+            { "value": 150, "type": "number" },
+            { "value": 0, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "CPVC", "type": "text" },
+            { "value": 210, "type": "number" },
+            { "value": 200, "type": "number" },
+            { "value": 0, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "ABS", "type": "text" },
+            { "value": 160, "type": "number" },
+            { "value": 180, "type": "number" },
+            { "value": -30, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "PP", "type": "text" },
+            { "value": 150, "type": "number" },
+            { "value": 200, "type": "number" },
+            { "value": 30, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "PVDF", "type": "text" },
+            { "value": 280, "type": "number" },
+            { "value": 300, "type": "number" },
+            { "value": 0, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "PB", "type": "text" },
+            { "value": 200, "type": "number" },
+            { "value": 210, "type": "number" },
+            { "value": -30, "type": "number" }
+          ]}
+        ]
+      }
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Fig. 400-4 Calculating Collapse Pressures for Thermoplastic Pipe Materials — Modulus of elasticity values (× 10⁵ psi) by material and temperature",
+      "slug": "fig-400-4-collapse-pressure-modulus-table",
+      "bbox_norm": [0.03, 0.62, 0.97, 0.90],
+      "confidence": "high",
+      "notes": "Modulus of elasticity table for thermoplastic materials at various temperatures; part of Fig. 400-4 section",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": ["(1) See Plexicos Application Note 2 for both short and long term collapse of HDPE at ambient and elevated temperatures."],
+        "rows": [
+          { "cells": [
+            { "value": "Material", "is_header": true },
+            { "value": "73°F", "is_header": true },
+            { "value": "110°F", "is_header": true },
+            { "value": "140°F", "is_header": true },
+            { "value": "170°F", "is_header": true },
+            { "value": "210°F", "is_header": true },
+            { "value": "250°F", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "Modules (× 10⁵)", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "", "is_header": true },
+            { "value": "", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "HDPE(1)", "type": "text" },
+            { "value": "1.3", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "PVC", "type": "text" },
+            { "value": "4.1", "type": "text" },
+            { "value": "3.4", "type": "text" },
+            { "value": "3.0", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "CPVC", "type": "text" },
+            { "value": "4.2", "type": "text" },
+            { "value": "3.7", "type": "text" },
+            { "value": "3.3", "type": "text" },
+            { "value": "2.9", "type": "text" },
+            { "value": "2.3", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "ABS", "type": "text" },
+            { "value": "3.0", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "NR", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "PP", "type": "text" },
+            { "value": "2.0", "type": "text" },
+            { "value": "1.2", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "0.8", "type": "text" },
+            { "value": "0.5", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "PVDF", "type": "text" },
+            { "value": "2.2", "type": "text" },
+            { "value": "1.4", "type": "text" },
+            { "value": "1.0", "type": "text" },
+            { "value": "0.8", "type": "text" },
+            { "value": "0.6", "type": "text" },
+            { "value": "0.4", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "PB", "type": "text" },
+            { "value": "0.6", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "*", "type": "text" },
+            { "value": "NR", "type": "text" }
+          ]}
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

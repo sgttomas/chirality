@@ -1,0 +1,150 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 22,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-10 Flow Properties of Various Piping Materials",
+      "slug": "fig-400-10-flow-properties-various-piping-materials",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.60],
+      "confidence": "high",
+      "notes": "Table with pipe material, Hazen-Williams coefficient, and Manning N-value columns",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. The higher the Hazen-Williams coefficient or lower the Manning N-value the less fluid flow is restricted. By using pipe materials with improved flow characteristics, energy costs for pumping can be reduced or smaller pipe sizes can be used."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Pipe Material", "is_header": true},
+              {"value": "Hazen-Williams Flow Coefficient", "is_header": true},
+              {"value": "Manning N-value", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "HDPE", "type": "text"},
+              {"value": "155", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "PVC", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "CPVC", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "FRP", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "PP", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "PVDF", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "ABS", "type": "text"},
+              {"value": "150", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Carbon Steel/Cast Iron", "type": "text"},
+              {"value": "100–140 (depending on age and condition of pipe)", "type": "text"},
+              {"value": "0.015", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Plastic-Lined Steel", "type": "text"},
+              {"value": "150–155", "type": "text"},
+              {"value": "0.009", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Internally Coated Steel", "type": "text"},
+              {"value": "120–150 (depending on coating condition)", "type": "text"},
+              {"value": "—", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Cement-Lined Steel", "type": "text"},
+              {"value": "140", "type": "text"},
+              {"value": "0.012", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Galvanized Steel", "type": "text"},
+              {"value": "100–140 (depending on coating condition)", "type": "text"},
+              {"value": "—", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Stainless Steel", "type": "text"},
+              {"value": "140", "type": "text"},
+              {"value": "—", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Aluminum", "type": "text"},
+              {"value": "140", "type": "text"},
+              {"value": "—", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Transite", "type": "text"},
+              {"value": "140", "type": "text"},
+              {"value": "0.012", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Concrete", "type": "text"},
+              {"value": "130", "type": "text"},
+              {"value": "0.012", "type": "text"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

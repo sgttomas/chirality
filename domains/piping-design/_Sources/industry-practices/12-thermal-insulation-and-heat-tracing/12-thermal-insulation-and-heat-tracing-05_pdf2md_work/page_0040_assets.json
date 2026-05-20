@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 40,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PNSC0035-20 Typical Tracing of Control Valve Stations",
+      "slug": "pnsc0035-20-typical-tracing-control-valve-stations",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Engineering schematic showing steam tracer loop around a control valve station with tie wire, tubing unions, insulation, tube-to-pipe connector, and drain to traps."
+    }
+  ],
+  "issues": []
+}

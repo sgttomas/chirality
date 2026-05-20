@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0067.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0067_fig01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.5,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        835,
+        1429,
+        2438
+      ],
+      "caption": "CROSS SECTION RIGID INSULATION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0067_fig01_cross-section-rigid-insulation.png",
+      "png_sha256": "377b582bb26d0658c8ebcf16f6d0d67dad411ceab1cabbc1f2991eb0fa15b60e",
+      "slug": "cross-section-rigid-insulation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0067_fig02",
+      "bbox_norm": [
+        0.5,
+        0.3,
+        0.95,
+        0.68
+      ],
+      "bbox_px": [
+        1170,
+        835,
+        2599,
+        2438
+      ],
+      "caption": "CROSS SECTION NON-RIGID INSULATION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0067_fig02_cross-section-non-rigid-insulation.png",
+      "png_sha256": "ec0c1badc9ca04d7b9de2ff5edbfc034b1469175419c2c7d71e6b2df4565f70d",
+      "slug": "cross-section-non-rigid-insulation",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 67,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0067.png",
+  "page_image_sha256": "405ee9d90963adaad666342f644755b0fe1fddaec6572cd534cd494f7d85ea35",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0067_assets.json"
+}

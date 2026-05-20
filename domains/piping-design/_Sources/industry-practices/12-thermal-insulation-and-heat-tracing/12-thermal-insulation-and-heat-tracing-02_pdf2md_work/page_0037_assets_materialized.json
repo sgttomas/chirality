@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0037.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0037_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.62,
+        0.95,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        1883,
+        2555,
+        3040
+      ],
+      "caption": "Teflon Coated Fabric \u2013 Inner Layer / Teflon Coated Fabric \u2013 Outer Layer",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0037_tbl01_teflon-coated-fabric-inner-outer-layer.png",
+      "png_sha256": "e4ffd65c136b72f6c45b1611d36ef6b1897e27373b616a8178718dce372c8791",
+      "slug": "teflon-coated-fabric-inner-outer-layer",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 37,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0037.png",
+  "page_image_sha256": "224b74a3385f1b167e4f89a3620bcd3a2474db4c238b8c0761ef160fef3ccfd2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0037_assets.json"
+}

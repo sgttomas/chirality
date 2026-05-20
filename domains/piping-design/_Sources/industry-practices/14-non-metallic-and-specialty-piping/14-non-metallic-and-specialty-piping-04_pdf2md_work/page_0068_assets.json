@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 68,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Piping Jumpover detail drawing JMP-4 showing a U-shaped jumpover assembly with flanged connections and butt weld fittings",
+      "slug": "piping-jumpover-jmp-4",
+      "bbox_norm": [0.22, 0.26, 0.78, 0.65],
+      "confidence": "high",
+      "notes": "Engineering detail drawing of a piping jumpover (U-shaped assembly) with flanged end connections. No explicit figure number or caption text on page; title 'PIPING JUMPOVER' appears above the drawing."
+    }
+  ],
+  "issues": []
+}

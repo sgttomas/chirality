@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0007.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-06_p0007_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.48,
+        0.94,
+        0.72
+      ],
+      "bbox_px": [
+        25,
+        1509,
+        2455,
+        2702
+      ],
+      "caption": "Table 1 Minimum total coating system thickness for polyethylene and polypropylene pipeline coating systems",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0007_tbl01_table-1-minimum-total-coating-system-thi.png",
+      "png_sha256": "dd53e367eb9655ce68e1aefa8b0f1141d021ac3cf1343b6d8d3ba1acddcf412b",
+      "slug": "table-1-minimum-total-coating-system-thi",
+      "status": "materialized",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0007_tbl01_table-1-minimum-total-coating-system-thi.json",
+      "table_data_json_sha256": "d6b64e282c635f05732851ee8265c56eb993c0ab48fac295f71c69f5ad3c5bf4",
+      "table_data_sha256": "d6b64e282c635f05732851ee8265c56eb993c0ab48fac295f71c69f5ad3c5bf4",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0007_tbl01_table-1-minimum-total-coating-system-thi.xlsx",
+      "xlsx_sha256": "120830fb31c1125012fa08ff0e05dea50e89fb0cc98d37602a071c5d1eb4ba5a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-06",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0007.png",
+  "page_image_sha256": "55a0c0439240f15bc84586981fa457c8ff51b7b1a5127eb4b0416f746a03fcfc",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0007_assets.json"
+}

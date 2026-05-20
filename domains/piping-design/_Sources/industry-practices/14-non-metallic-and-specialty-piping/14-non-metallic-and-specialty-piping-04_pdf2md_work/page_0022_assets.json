@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 22,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FJT-5 Reducing (Jacket Size) Slip-On Flange, Face Groove Weld",
+      "slug": "fjt-5-reducing-jacket-size-slip-on-flange-face-groove-weld",
+      "bbox_norm": [0.10, 0.22, 0.90, 0.72],
+      "confidence": "high",
+      "notes": "Engineering detail drawing with CORE and JACKET callouts. Labeled FJT-5 in the page header."
+    }
+  ],
+  "issues": []
+}

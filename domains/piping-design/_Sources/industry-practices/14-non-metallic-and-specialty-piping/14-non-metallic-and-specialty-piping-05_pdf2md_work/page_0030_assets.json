@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 30,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 400-13 HDPE Ball and Plug Valves Courtesy of Nordstrom Valves, Inc. Ployvalve is ® trademark",
+      "slug": "fig-400-13-hdpe-ball-plug-valves",
+      "bbox_norm": [0.04, 0.05, 0.96, 0.38],
+      "confidence": "high",
+      "notes": "Dual-diagram illustration showing Polyvalve Ball Valve (left) and Polyvalve Plug Valve (right) with labeled components"
+    }
+  ],
+  "issues": []
+}

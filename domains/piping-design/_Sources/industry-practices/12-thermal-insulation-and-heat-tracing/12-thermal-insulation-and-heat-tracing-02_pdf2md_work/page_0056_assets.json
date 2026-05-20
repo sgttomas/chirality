@@ -1,0 +1,42 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 56,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Insulation Details for Vertical Piping Hot Services \u2014 Elevation and Collar Details, Drawing No. 0000-N-6-1, Rev. 2",
+      "slug": "insulation-details-vertical-piping-hot-services",
+      "bbox_norm": [
+        0.05,
+        0.02,
+        0.95,
+        0.62
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing elevation view of vertical piping insulation support and collar details in plan view"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Title block \u2014 drawing revision history",
+      "slug": "title-block-revision-history",
+      "bbox_norm": [
+        0.04,
+        0.82,
+        0.6,
+        0.93
+      ],
+      "confidence": "medium",
+      "notes": "Revision block partially legible; dates and signatory columns partially obscured",
+      "needs_extraction": true
+    }
+  ],
+  "issues": [
+    "table_unreadable: revision history table partially illegible due to scan quality"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0033_fig01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.95,
+        0.36
+      ],
+      "bbox_px": [
+        0,
+        96,
+        2469,
+        1312
+      ],
+      "caption": "TYPICAL CONVECTION TRACER \u2014 cross-section and pipe-end detail showing METAL SURFACE, S.S. WIRE, TUBULAR TRACER, with 15\" (450) MAXIMUM spacing",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0033_fig01_typical-convection-tracer.png",
+      "png_sha256": "49fc4b6fcc1e57248136f4845c8e417370565c437c51c15c35274b74f5bd2012",
+      "slug": "typical-convection-tracer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0033_fig02",
+      "bbox_norm": [
+        0.05,
+        0.36,
+        0.95,
+        0.63
+      ],
+      "bbox_px": [
+        0,
+        992,
+        2469,
+        2176
+      ],
+      "caption": "TYPICAL ISOLATED TRACER \u2014 cross-section and pipe-end detail showing METAL SURFACE, ISOLATING MEDIUM, S.S. BANDING, TUBULAR TRACER, with 15\" (450) MAXIMUM spacing and 1/2\" x .020\" S.S. BANDING AND SEALS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0033_fig02_typical-isolated-tracer.png",
+      "png_sha256": "aa488ecb91b0d1fd133af0d48f45e58cdee3bb93b4146166f3233acf73dbd969",
+      "slug": "typical-isolated-tracer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0033_fig03",
+      "bbox_norm": [
+        0.05,
+        0.63,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1856,
+        2469,
+        2976
+      ],
+      "caption": "TYPICAL CONDUCTIVE TRACER \u2014 cross-section and pipe-end detail showing METAL SURFACE, HEAT TRANSFER CEMENT, S.S. BANDING, TUBULAR TRACER, with 20 TO 30 degree angle, 15\" (450) MAXIMUM spacing and 1/8\" x .020\" S.S. BANDING AND SEALS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0033_fig03_typical-conductive-tracer.png",
+      "png_sha256": "57828a56b2d1fa28e86424a3679329a5a21181bd1dec55546f1ebb41dcd7da27",
+      "slug": "typical-conductive-tracer",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0033.png",
+  "page_image_sha256": "77667e14a96391f4e8655b5f7973da528a732f20aafdd110ed7f40525d765eeb",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0033_assets.json"
+}

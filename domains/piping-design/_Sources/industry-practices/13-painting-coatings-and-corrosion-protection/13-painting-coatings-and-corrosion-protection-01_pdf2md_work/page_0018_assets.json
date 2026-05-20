@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0018.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-01_p0018_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.32,
+        0.95,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        891,
+        2550,
+        2310
+      ],
+      "caption": "Coating system #2 \u2014 manufacturer, first coat, second coat, third coat, comments",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0018_tbl01_coating-system-2-manufacturer-coats.png",
+      "png_sha256": "7805b94e9d726202be244b1193a90cf654a88d0cf7af06ae29c656ff9e2d1ab4",
+      "slug": "coating-system-2-manufacturer-coats",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-01",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0018.png",
+  "page_image_sha256": "d2c7e805ac9f218d4c26ff97a4b9979a4d2a6a3d2d4ce9bfab0e14241dbcc435",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0018_assets.json"
+}

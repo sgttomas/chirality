@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0015.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-07_p0015_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.28,
+        0.94,
+        0.87
+      ],
+      "bbox_px": [
+        25,
+        807,
+        2455,
+        3228
+      ],
+      "caption": "Shell Standard Colours and Alternative Equivalent Colour (BS 4800 / RAL)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-07_p0015_tbl01_shell-standard-colours-alternative-equiv.png",
+      "png_sha256": "68a8a13531f3ec7a58f109d95f495e887acc0b3801766821fe490fe213d43f22",
+      "slug": "shell-standard-colours-alternative-equiv",
+      "status": "materialized",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-07_p0015_tbl01_shell-standard-colours-alternative-equiv.json",
+      "table_data_json_sha256": "4f34bb23300fb0c55d0c9cfb18a1090ac8586c33457abe91ffb18866565f6e4b",
+      "table_data_sha256": "4f34bb23300fb0c55d0c9cfb18a1090ac8586c33457abe91ffb18866565f6e4b",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-07_p0015_tbl01_shell-standard-colours-alternative-equiv.xlsx",
+      "xlsx_sha256": "4fbfc357b8f53f7c9f184492eeed324df9c6a5151d249443365eaf590d89bcd1"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-07",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0015.png",
+  "page_image_sha256": "8c6167e1d21195439cc30c37e7570d85b153a7a9d98814af98e80f80ae82df25",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0015_assets.json"
+}

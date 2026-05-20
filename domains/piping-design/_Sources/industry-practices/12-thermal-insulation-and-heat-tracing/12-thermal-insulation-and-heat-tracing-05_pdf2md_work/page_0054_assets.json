@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 54,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PRESSURE TRANSMITTER DETAIL — Typical tracing of pressure transmitter showing steam tracer routing, tubing union (typ.), insulating cover, and connection to steam trap",
+      "slug": "pressure-transmitter-detail",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Full-page engineering schematic showing steam tracer routing for a pressure transmitter. Labels include TUBING UNION (TYP.), STEAM TRACER, INSULATING COVER, and TO STEAM TRAP. Caption PRESSURE TRANSMITTER DETAIL appears below the diagram."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0030.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-01_p0030_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.3,
+        0.97,
+        0.58
+      ],
+      "bbox_px": [
+        0,
+        825,
+        2550,
+        2079
+      ],
+      "caption": "System #14 Coating System \u2014 Zinc/Epoxy/Urethane for Steel Plates",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0030_tbl01_system-14-coating-system-zinc-epoxy-uret.png",
+      "png_sha256": "ce14885285948cd2209fae3d1c5725a36d46f68cccbf62bce50b6ffcc3c6bea3",
+      "slug": "system-14-coating-system-zinc-epoxy-uret",
+      "status": "materialized",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0030_tbl01_system-14-coating-system-zinc-epoxy-uret.json",
+      "table_data_json_sha256": "9c8c2d01b8053f8782e4bc1a5af7f39b035969b877922ed1c7d4813f22fbb6e8",
+      "table_data_sha256": "9c8c2d01b8053f8782e4bc1a5af7f39b035969b877922ed1c7d4813f22fbb6e8",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0030_tbl01_system-14-coating-system-zinc-epoxy-uret.xlsx",
+      "xlsx_sha256": "a2f1305e2b715badb606ff46bcbaf4dbef51aa494f1f13fa60533cd3703ac684"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-01",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0030.png",
+  "page_image_sha256": "b5b4d1352af10fee0190484767cb8a8b6475f8c2dd36ab6f0792e155bac50016",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0030_assets.json"
+}

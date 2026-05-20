@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0053.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0053_fig01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        160,
+        2469,
+        3104
+      ],
+      "caption": "PNSC0035\u201333 Typical Tracing of Line Mounted D/P Instrument \u2014 LINE MOUNTED D/P INSTRUMENT",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0053_fig01_pnsc0035-33-typical-tracing-line-mounted.png",
+      "png_sha256": "a156db8f6719bc493ccdee84e9200c6d75c002bbf6375f249cd932ff67afc4ec",
+      "slug": "pnsc0035-33-typical-tracing-line-mounted",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 53,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0053.png",
+  "page_image_sha256": "1129ca73144e06ac5208d37233b7688c550417c5637af296154c0778c4da8ab1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0053_assets.json"
+}

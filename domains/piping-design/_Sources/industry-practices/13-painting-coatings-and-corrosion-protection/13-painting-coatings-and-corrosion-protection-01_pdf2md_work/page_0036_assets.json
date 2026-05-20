@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0036.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-01_p0036_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.97,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        759,
+        2550,
+        2409
+      ],
+      "caption": "System #20 Coating Manufacturer, First Coat, Second Coat, Third Coat, Comments",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0036_tbl01_system-20-coating-manufacturer-first-sec.png",
+      "png_sha256": "59da2020344249f845b31f69d7394c5a40690750686356ab80b8bfd7f2507443",
+      "slug": "system-20-coating-manufacturer-first-sec",
+      "status": "materialized",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0036_tbl01_system-20-coating-manufacturer-first-sec.json",
+      "table_data_json_sha256": "2afbd711325d888802b7793470325c44bb035c6098c8f82a94d3d568a1f8efbd",
+      "table_data_sha256": "2afbd711325d888802b7793470325c44bb035c6098c8f82a94d3d568a1f8efbd",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0036_tbl01_system-20-coating-manufacturer-first-sec.xlsx",
+      "xlsx_sha256": "50c0f7aa6973393d5357ff47d788721ecaa7caaaac669658aa4860c636c43872"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-01",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0036.png",
+  "page_image_sha256": "75a52a2495fffe1514e495fb7854de1f254ffa1f881a20903164fe70267c8f94",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0036_assets.json"
+}

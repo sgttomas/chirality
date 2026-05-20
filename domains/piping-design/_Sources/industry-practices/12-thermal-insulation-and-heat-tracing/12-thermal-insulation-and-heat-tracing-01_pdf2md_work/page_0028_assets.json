@@ -1,0 +1,83 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 28,
+  "total_pages": 87,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Temperature Range vs Materials (351 to 400 through Ambient to 300)",
+      "slug": "temp-range-materials-351-ambient",
+      "bbox_norm": [0.08, 0.06, 0.92, 0.25],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Temperature Range (°F)", "is_header": true },
+            { "value": "Materials", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "351 to 400", "type": "text" },
+            { "value": "Calcium Silicate", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Ambient to 400", "type": "text" },
+            { "value": "Mineral Wool", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Ambient to 325", "type": "text" },
+            { "value": "Fiberglass", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "Ambient to 300", "type": "text" },
+            { "value": "Closed Cell Polyurethane", "type": "text" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table at top of page continuing from previous page"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Temperature Range vs Materials for Low Temperature Service",
+      "slug": "temp-range-materials-low-temp",
+      "bbox_norm": [0.08, 0.46, 0.92, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Temperature Range (°F)", "is_header": true },
+            { "value": "Materials", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "-320 to Ambient", "type": "text" },
+            { "value": "Foam Glass", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "-320 to Ambient", "type": "text" },
+            { "value": "Closed Cell Polyurethane", "type": "text" }
+          ]},
+          { "cells": [
+            { "value": "-50 to Ambient", "type": "text" },
+            { "value": "Fiberglass", "type": "text" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Low temperature service materials table under section 6.5"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 46,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Revision table",
+      "slug": "revision-table",
+      "bbox_norm": [
+        0.08,
+        0.8,
+        0.92,
+        0.96
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Rev. No.",
+                "is_header": true
+              },
+              {
+                "value": "Date",
+                "is_header": true
+              },
+              {
+                "value": "Revision Notes",
+                "is_header": true
+              },
+              {
+                "value": "By",
+                "is_header": true
+              },
+              {
+                "value": "Chk",
+                "is_header": true
+              },
+              {
+                "value": "Eng",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "0",
+                "type": "text"
+              },
+              {
+                "value": "September 203",
+                "type": "text"
+              },
+              {
+                "value": "Issued for Comments",
+                "type": "text"
+              },
+              {
+                "value": "MM",
+                "type": "text"
+              },
+              {
+                "value": "PD",
+                "type": "text"
+              },
+              {
+                "value": "PD",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "September 203",
+                "type": "text"
+              },
+              {
+                "value": "Issued",
+                "type": "text"
+              },
+              {
+                "value": "MM",
+                "type": "text"
+              },
+              {
+                "value": "PD",
+                "type": "text"
+              },
+              {
+                "value": "PD",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Revision history table at bottom of cover page; dates partially illegible"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 64,
+  "total_pages": 64,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIG. A and FIG. B \u2014 U-TUBE REBOILER and SHELL AND TUBE EXCHANGER tubular exchanger insulation and weatherproofing details",
+      "slug": "fig-a-b-tubular-exchanger-insulation-details",
+      "bbox_norm": [
+        0.03,
+        0.38,
+        0.75,
+        0.75
+      ],
+      "confidence": "high",
+      "notes": "Two elevation diagrams showing insulation and metal jacket details for U-tube reboiler (top) and shell and tube exchanger (bottom), with item callout numbers referencing the table above."
+    }
+  ],
+  "issues": []
+}

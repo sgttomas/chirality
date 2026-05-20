@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0006.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0006_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3053
+      ],
+      "caption": "Table 3.2 Relationship between Corrosion and Flow Regimes in Wet, Sour Gas Transport",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0006_tbl01_table-3-2-corrosion-flow-regimes-wet-sou.png",
+      "png_sha256": "1413b5cacfde1f7ac0bfba33b1dfc59e0ce60ddba64b9201dd4bfb5b4e490aaf",
+      "slug": "table-3-2-corrosion-flow-regimes-wet-sou",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-08",
+  "page": 6,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0006.png",
+  "page_image_sha256": "afe12c6ca22bd55f57fe440857f30b980a6172d6fc9d322b2db5d7c6c313e4b8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0006_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 25,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Jacketed Elbow, 90 Degree — Standard SR/LR Combination, Sizes 8\"x12\" and Larger",
+      "slug": "jacketed-elbow-90-degree-sr-lr-combination",
+      "bbox_norm": [0.08, 0.28, 0.92, 0.78],
+      "confidence": "high",
+      "notes": "Engineering drawing of a 90-degree jacketed elbow showing JACKET SHORT RADIUS (nominal size equals core size plus 4\") and CORE LONG RADIUS annotations"
+    }
+  ],
+  "issues": []
+}

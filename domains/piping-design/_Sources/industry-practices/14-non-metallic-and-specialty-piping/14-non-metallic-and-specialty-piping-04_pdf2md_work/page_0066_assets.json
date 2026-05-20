@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 66,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "TUBING JUMPOVER — JMP-2 fabrication/installation detail showing two views of a tubing jumpover assembly. Left view: isometric view with TUBING callout and SEE DETAIL A PNFJ8840 callout. Right view: isometric view of assembled jumpover on pipe.",
+      "slug": "tubing-jumpover-jmp-2",
+      "bbox_norm": [0.07, 0.18, 0.93, 0.78],
+      "confidence": "high",
+      "notes": "Two isometric engineering drawing views of tubing jumpover assembly. Title TUBING JUMPOVER appears above drawing area."
+    }
+  ],
+  "issues": []
+}

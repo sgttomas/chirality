@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0020.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0020_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        246,
+        2480,
+        2281
+      ],
+      "caption": "Table 4.3 Corrosion Mitigation for Steady-State Production",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0020_tbl01_corrosion-mitigation-steady-state-produc.png",
+      "png_sha256": "389dc140d2fc7ec63eba7ae116656f680094698932e9f1f07d2055c01efed319",
+      "slug": "corrosion-mitigation-steady-state-produc",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-08",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0020.png",
+  "page_image_sha256": "977a130c8167e499c0de473832665873a1432ad7dd0e74abbb3c58c335427f2d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0020_assets.json"
+}

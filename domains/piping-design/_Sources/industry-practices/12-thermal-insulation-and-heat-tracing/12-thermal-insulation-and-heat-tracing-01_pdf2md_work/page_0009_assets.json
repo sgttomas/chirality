@@ -1,0 +1,71 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 9,
+  "total_pages": 87,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Expansion Joint Spacing",
+      "slug": "expansion-joint-spacing",
+      "bbox_norm": [0.08, 0.40, 0.92, 0.62],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Temperature of Line (°F)", "is_header": true },
+              { "value": "Approximate Spacing (Feet)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Below 300", "type": "text" },
+              { "value": "None Required", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "300 to 424", "type": "text" },
+              { "value": "50", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "425 to 549", "type": "text" },
+              { "value": "36", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "550 to 674", "type": "text" },
+              { "value": "24", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "675 to 799", "type": "text" },
+              { "value": "18", "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "800 & Over", "type": "text" },
+              { "value": "12", "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing temperature ranges and corresponding expansion joint spacing"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0066.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0066_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2605,
+        1573
+      ],
+      "caption": "Detail A \u2014 Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, insulation support leg by vessel fabricator, insulation packed in void, and stiffener.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0066_fig01_detail-a-insulation-stiffener-rings.png",
+      "png_sha256": "a0d241306e1f6eaedb1a9fdf238ffc3ddf6c9ca687f315a064a0047ae9090462",
+      "slug": "detail-a-insulation-stiffener-rings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0066_fig02",
+      "bbox_norm": [
+        0.04,
+        0.44,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        1305,
+        2605,
+        2777
+      ],
+      "caption": "Detail B \u2014 Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, stiffener, with dimension annotations S\u2080 and S\u2081.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0066_fig02_detail-b-insulation-stiffener-rings.png",
+      "png_sha256": "8bbbcabefa10f00be379fcd9470895ad57105f7e418f3f54dcd5129ed32a0559",
+      "slug": "detail-b-insulation-stiffener-rings",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 66,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0066.png",
+  "page_image_sha256": "45a0ce1fb79e2d3ae9d59837f090467a56f825656a364fc681740deb9ba5d72b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0066_assets.json"
+}

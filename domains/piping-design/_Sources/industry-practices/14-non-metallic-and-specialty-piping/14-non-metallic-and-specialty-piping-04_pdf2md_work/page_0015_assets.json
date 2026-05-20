@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 15,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "SJFA-4 Slip-on flange face fillet weld detail showing swaged jacket flange attachment with core label",
+      "slug": "sjfa-4-slip-on-flange-face-fillet-weld",
+      "bbox_norm": [0.08, 0.20, 0.75, 0.65],
+      "confidence": "high",
+      "notes": "Engineering drawing detail showing slip-on flange face fillet weld for swaged jacket flange attachment. CORE label visible with callout arrow."
+    }
+  ],
+  "issues": []
+}

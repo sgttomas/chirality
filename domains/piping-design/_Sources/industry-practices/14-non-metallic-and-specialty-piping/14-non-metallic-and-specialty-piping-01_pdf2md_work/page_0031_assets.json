@@ -1,0 +1,56 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 31,
+  "total_pages": 33,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 8.2 Bonding Checklist — Inspection Procedure, Acceptance Criteria, Fabricator Inspector, Suncor Inspector",
+      "slug": "bonding-checklist",
+      "bbox_norm": [0.04, 0.27, 0.96, 0.92],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Item", "is_header": true },
+              { "value": "Inspection Procedure", "is_header": true },
+              { "value": "Acceptance Criteria", "is_header": true },
+              { "value": "Fabricator Inspector", "is_header": true },
+              { "value": "Suncor Inspector", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "text" },
+              { "value": "Weather Conditions\n- record amb. temperature\n- above 40°F\n- no wind, rain\n- pipe temperature", "type": "text" },
+              { "value": "- heat & hoard if below 40°F\n- pipe protected against wind & rain\n- pipe protected against high /low temp.", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2", "type": "text" },
+              { "value": "Fusion Bonding\n- record mesh type\n- record start time\n- record fusion number\n- record pipe size\n- check heater plate\n- select heating cycles\n- select heating/fusion pressure\n- check set up clamps\n- check pipe ends\n- check/record drag pressure\n- check pipe ends after facing\n- check/record misalignment\n- check/record heater temperature\n- check/record heating pressure\n- time heater plate removal\n- check/record fusion pressure\n- check bead roll over\n- record cooling time\n- record finish time", "type": "text" },
+              { "value": "- cleaned\n- per procedure chart\n- correct clamps\n- per procedure chart\n- aligned & clean\n- square & clean\n- aligned within 10% of wall thickness\n- (+/-) 10°\n- per procedure chart\n-12 seconds maximum\n- per procedure chart\n- complete roll back, uniform\n- per procedure chart", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Checklist table with two data rows and blank inspector columns for sign-off"
+    }
+  ],
+  "issues": []
+}

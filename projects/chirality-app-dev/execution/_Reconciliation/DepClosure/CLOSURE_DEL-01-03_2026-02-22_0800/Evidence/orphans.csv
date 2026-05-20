@@ -1,2 +1,0 @@
-DependencyID,FromDeliverableID,TargetDeliverableID,TargetPackageID,Direction,DependencyType,OrphanReason
-(none -- all TargetDeliverableIDs resolve to workspace deliverables)

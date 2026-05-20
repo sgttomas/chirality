@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0058.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0058_fig01",
+      "bbox_norm": [
+        0.03,
+        0.02,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2587,
+        2897
+      ],
+      "caption": "Insulation Support Rings for Vertical Vessels \u2014 detail drawing showing Type A, Type B, Type C, and Type D support ring configurations with clip and angle assemblies",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0058_fig01_insulation-support-rings-vertical-vessel.png",
+      "png_sha256": "bac186d645757e17b3d90b28d661e7fbf95146521b6ebc02ec27cc85faffc204",
+      "slug": "insulation-support-rings-vertical-vessel",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 58,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0058.png",
+  "page_image_sha256": "3795f9ed079f1f60f703f59af39b01ddb8ac0b95ed688dc9dcb386c5ec35ec07",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0058_assets.json"
+}

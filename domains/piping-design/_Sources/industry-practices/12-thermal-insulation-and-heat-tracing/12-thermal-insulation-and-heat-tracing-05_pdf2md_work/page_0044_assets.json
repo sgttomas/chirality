@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 44,
+  "total_pages": 44,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Typical Tracing of Vessels — horizontal vessel with steam tube tracing detail",
+      "slug": "typical-tracing-vessels-horizontal",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.55],
+      "confidence": "high",
+      "notes": "Top illustration showing horizontal vessel with banding, steam headers, condensate headers, and flat bar supports"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Typical Tracing of Vessels — vertical vessel/drum with steam tube tracing detail",
+      "slug": "typical-tracing-vessels-vertical",
+      "bbox_norm": [0.25, 0.55, 0.75, 0.84],
+      "confidence": "high",
+      "notes": "Bottom illustration showing vertical vessel/drum with steam inlets, flat bars, threaded studs, and trap connection"
+    }
+  ],
+  "issues": []
+}

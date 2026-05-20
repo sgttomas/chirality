@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 66,
+  "total_pages": 66,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Detail A — Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, insulation support leg by vessel fabricator, insulation packed in void, and stiffener.",
+      "slug": "detail-a-insulation-stiffener-rings",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.42],
+      "confidence": "high",
+      "notes": "Upper engineering drawing on page. Labels: BAND, SCREW, METAL JACKETING, INSULATION TO BE THE SAME THICKNESS AS ON THE SHELL, BAND (x2), VESSEL WALL, INSULATION SUPPORT LEG BY VESSEL FABRICATOR, INSULATION PACKED IN VOID, STIFFENER. Caption label: DETAIL A."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Detail B — Insulation details for stiffener rings, showing metal jacketing, band, screw, vessel wall, stiffener, with dimension annotations S₀ and S₁.",
+      "slug": "detail-b-insulation-stiffener-rings",
+      "bbox_norm": [0.04, 0.44, 0.96, 0.78],
+      "confidence": "high",
+      "notes": "Lower engineering drawing on page. Labels: METAL JACKETING, BAND, SCREW, INSULATION TO BE THE SAME THICKNESS AS ON THE SHELL, BAND (x2), VESSEL WALL, STIFFENER, dimension marks S₀ and S₁. Caption label: DETAIL B."
+    }
+  ],
+  "issues": []
+}

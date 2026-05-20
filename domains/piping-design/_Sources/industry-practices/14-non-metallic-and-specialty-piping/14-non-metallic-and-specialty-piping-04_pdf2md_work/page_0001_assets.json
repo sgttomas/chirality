@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 1,
+  "total_pages": 7,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "PIP logo",
+      "slug": "pip-logo",
+      "bbox_norm": [0.06, 0.07, 0.35, 0.22],
+      "confidence": "high",
+      "notes": "Process Industry Practices (PIP) logo mark, top-left of cover page"
+    }
+  ],
+  "issues": []
+}

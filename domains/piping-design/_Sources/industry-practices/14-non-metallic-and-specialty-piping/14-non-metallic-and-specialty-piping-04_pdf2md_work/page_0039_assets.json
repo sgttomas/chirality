@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 39,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Core Piping with Integrally Reinforced Branch Connection and Jacket with Concentric Reducer — detail drawing showing (A) With Reinforcing Pad and (B) Without Reinforcing Pad, with CORE and JACKET labels and SEE NOTE 4 callouts",
+      "slug": "core-piping-integrally-reinforced-branch-connection-jacket-concentric-reducer",
+      "bbox_norm": [0.05, 0.10, 0.95, 0.72],
+      "confidence": "high",
+      "notes": "Engineering detail drawing showing jacketed tee branch connection in two variants (A) with reinforcing pad and (B) without reinforcing pad. Labels CORE and JACKET visible. SEE NOTE 4 callout arrows present."
+    }
+  ],
+  "issues": []
+}

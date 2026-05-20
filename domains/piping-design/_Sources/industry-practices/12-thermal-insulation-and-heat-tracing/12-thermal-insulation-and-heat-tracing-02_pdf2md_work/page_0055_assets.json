@@ -1,0 +1,192 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 55,
+  "total_pages": 55,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Item list for insulation details \u2014 valves and flanges, hot services",
+      "slug": "item-list-insulation-valves-flanges-hot-services",
+      "bbox_norm": [
+        0.05,
+        0.03,
+        0.97,
+        0.22
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "ITEM",
+                "is_header": true
+              },
+              {
+                "value": "DESCRIPTION",
+                "is_header": true
+              },
+              {
+                "value": "QUANTITY",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1",
+                "type": "text"
+              },
+              {
+                "value": "INSULATION (AS SPECIFIED)",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2",
+                "type": "text"
+              },
+              {
+                "value": "OVERSIZED INSULATION",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "3",
+                "type": "text"
+              },
+              {
+                "value": "METAL JACKET (AS SPECIFIED)",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "4",
+                "type": "text"
+              },
+              {
+                "value": "INSULATION RING",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "5",
+                "type": "text"
+              },
+              {
+                "value": "NON FLAMMABLE HIGH TEMPERATURE ADHESIVE",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "6",
+                "type": "text"
+              },
+              {
+                "value": "METAL VALVE COVER AND CAPS",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "7",
+                "type": "text"
+              },
+              {
+                "value": "HIGH TEMPERATURE FILL INSULATION",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "8",
+                "type": "text"
+              },
+              {
+                "value": "SEAL AROUND BONNET WITH FLEXIBLE HEAT RESISTANT MASTIC OR CAULKING",
+                "type": "text"
+              },
+              {
+                "value": "AS REQ'D",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "8-row item legend for insulation components"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Insulation Details for Valves and Flanges \u2014 Hot Services (Drawing No. 0000-N-5-1, Sheet 1, Rev. 2)",
+      "slug": "insulation-details-valves-flanges-hot-services",
+      "bbox_norm": [
+        0.04,
+        0.22,
+        0.88,
+        0.8
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing showing two 3D views of insulated valve and flanged assemblies with callout numbers referencing item legend"
+    }
+  ],
+  "issues": []
+}

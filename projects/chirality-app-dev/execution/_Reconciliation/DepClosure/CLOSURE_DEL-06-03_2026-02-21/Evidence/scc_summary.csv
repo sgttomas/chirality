@@ -1,2 +1,0 @@
-SCCID,Size,Nodes,RepresentativeCycle,AllEdgeTypesInterface,Severity
-SCC-001,2,"DEL-06-03;DEL-06-02",DEL-06-03 -> DEL-06-02 -> DEL-06-03,YES,WARNING

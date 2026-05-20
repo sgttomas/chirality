@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 44,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Full Coupling (Threaded or Socket Weld) — (A) Threaded Full Coupling and (B) Socket Weld Coupling cross-section detail showing core and jacket arrangement",
+      "slug": "full-coupling-threaded-socket-weld",
+      "bbox_norm": [0.06, 0.18, 0.94, 0.72],
+      "confidence": "high",
+      "notes": "Two sub-diagrams: (A) Threaded Full Coupling and (B) Socket Weld Coupling. Both show cross-sectional engineering details with CORE and JACKET labels."
+    }
+  ],
+  "issues": []
+}

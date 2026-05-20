@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 30,
+  "total_pages": 30,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Tracing Identification Tag detail showing typical tag numbering system and tag construction",
+      "slug": "tracing-identification-tag-detail",
+      "bbox_norm": [0.05, 0.27, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Diagram showing circular aluminum disc tag with wire attachment, callouts for condensate return line number, manifold number, lettering dimensions, and disc specifications"
+    }
+  ],
+  "issues": []
+}

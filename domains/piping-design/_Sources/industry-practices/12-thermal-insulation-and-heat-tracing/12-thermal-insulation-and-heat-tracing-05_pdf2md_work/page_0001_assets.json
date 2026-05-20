@@ -1,0 +1,10 @@
+{
+  "schema": "pdf2md-page-assets/v1",
+  "run_status": "DEGRADED",
+  "page": 1,
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "assets": [],
+  "issues": [
+    "content-filter blocked vision twice; pdftotext fallback"
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 26,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-11 Design Pressure, psi, for Butt Fused HDPE PE3408 Pipe, Nonhydrocarbon Service",
+      "slug": "fig-400-11-design-pressure-hdpe-pe3408",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.42],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) The presence of hydrocarbons, even in small quantities, reduces the above pressure ratings by 50%. Use of joining methods other than butt fusion, like flanged or socket fused joints, may also lower pressure ratings—check with the pipe manufacturer. External temperatures must be taken into account in design. Aboveground pipe may get heated to 130°F by the summertime sun.",
+          "(2) SDR = Pipe O.D./Min. Wall Thickness"
+        ],
+        "rows": [
+          { "cells": [
+            { "value": "Temp °F", "is_header": true },
+            { "value": "32.5", "is_header": true },
+            { "value": "26", "is_header": true },
+            { "value": "21", "is_header": true },
+            { "value": "17", "is_header": true },
+            { "value": "13.5", "is_header": true },
+            { "value": "11", "is_header": true },
+            { "value": "9", "is_header": true },
+            { "value": "7.3", "is_header": true }
+          ] },
+          { "cells": [
+            { "value": "73.4", "type": "number" },
+            { "value": 51, "type": "number" },
+            { "value": 64, "type": "number" },
+            { "value": 80, "type": "number" },
+            { "value": 100, "type": "number" },
+            { "value": 128, "type": "number" },
+            { "value": 160, "type": "number" },
+            { "value": 200, "type": "number" },
+            { "value": 254, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "80", "type": "number" },
+            { "value": 48, "type": "number" },
+            { "value": 60, "type": "number" },
+            { "value": 76, "type": "number" },
+            { "value": 95, "type": "number" },
+            { "value": 122, "type": "number" },
+            { "value": 150, "type": "number" },
+            { "value": 190, "type": "number" },
+            { "value": 241, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "90", "type": "number" },
+            { "value": 44, "type": "number" },
+            { "value": 56, "type": "number" },
+            { "value": 70, "type": "number" },
+            { "value": 87, "type": "number" },
+            { "value": 111, "type": "number" },
+            { "value": 140, "type": "number" },
+            { "value": 174, "type": "number" },
+            { "value": 221, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "100", "type": "number" },
+            { "value": 40, "type": "number" },
+            { "value": 50, "type": "number" },
+            { "value": 63, "type": "number" },
+            { "value": 79, "type": "number" },
+            { "value": 101, "type": "number" },
+            { "value": 125, "type": "number" },
+            { "value": 158, "type": "number" },
+            { "value": 201, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "110", "type": "number" },
+            { "value": 36, "type": "number" },
+            { "value": 45, "type": "number" },
+            { "value": 57, "type": "number" },
+            { "value": 71, "type": "number" },
+            { "value": 90, "type": "number" },
+            { "value": 113, "type": "number" },
+            { "value": 142, "type": "number" },
+            { "value": 180, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "120", "type": "number" },
+            { "value": 32, "type": "number" },
+            { "value": 40, "type": "number" },
+            { "value": 50, "type": "number" },
+            { "value": 63, "type": "number" },
+            { "value": 80, "type": "number" },
+            { "value": 100, "type": "number" },
+            { "value": 125, "type": "number" },
+            { "value": 159, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "130", "type": "number" },
+            { "value": 28, "type": "number" },
+            { "value": 36, "type": "number" },
+            { "value": 45, "type": "number" },
+            { "value": 56, "type": "number" },
+            { "value": 72, "type": "number" },
+            { "value": 90, "type": "number" },
+            { "value": 110, "type": "number" },
+            { "value": 140, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "140", "type": "number" },
+            { "value": 25, "type": "number" },
+            { "value": 32, "type": "number" },
+            { "value": 40, "type": "number" },
+            { "value": 50, "type": "number" },
+            { "value": 64, "type": "number" },
+            { "value": 80, "type": "number" },
+            { "value": 100, "type": "number" },
+            { "value": 127, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "150", "type": "number" },
+            { "value": 21, "type": "number" },
+            { "value": 26, "type": "number" },
+            { "value": 33, "type": "number" },
+            { "value": 41, "type": "number" },
+            { "value": 52, "type": "number" },
+            { "value": 66, "type": "number" },
+            { "value": 82, "type": "number" },
+            { "value": 104, "type": "number" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Design pressure table for HDPE PE3408 pipe across SDR values and temperatures"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Temperature Derating Factor (TF) for HDPE PE3408 Pipe",
+      "slug": "temperature-derating-factor-tf",
+      "bbox_norm": [0.20, 0.63, 0.70, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Temp. (°F)", "is_header": true },
+            { "value": "Derating Factor", "is_header": true }
+          ] },
+          { "cells": [
+            { "value": "73.4", "type": "number" },
+            { "value": 1.00, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "80", "type": "number" },
+            { "value": 0.95, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "90", "type": "number" },
+            { "value": 0.87, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "100", "type": "number" },
+            { "value": 0.79, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "110", "type": "number" },
+            { "value": 0.71, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "120", "type": "number" },
+            { "value": 0.63, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "130", "type": "number" },
+            { "value": 0.55, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "140", "type": "number" },
+            { "value": 0.50, "type": "number" }
+          ] },
+          { "cells": [
+            { "value": "150", "type": "number" },
+            { "value": 0.41, "type": "number" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Temperature derating factor table embedded in definitions section"
+    }
+  ],
+  "issues": []
+}

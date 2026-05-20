@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 19,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "PIP logo",
+      "slug": "pip-logo",
+      "bbox_norm": [0.05, 0.02, 0.22, 0.11],
+      "confidence": "high",
+      "notes": "PIP (Process Industry Practices) logo in upper-left of title block"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "JACKET SIZE INSERT SLIP-ON FLANGE — Full jacket termination FJT-2 detail showing core pipe, jacket, and insert slip-on flange assembly (PNFJ8230)",
+      "slug": "jacket-size-insert-slip-on-flange-fjt-2",
+      "bbox_norm": [0.08, 0.14, 0.92, 0.75],
+      "confidence": "high",
+      "notes": "Engineering drawing detail with CORE and JACKET callout labels; drawing title appears above figure"
+    }
+  ],
+  "issues": []
+}

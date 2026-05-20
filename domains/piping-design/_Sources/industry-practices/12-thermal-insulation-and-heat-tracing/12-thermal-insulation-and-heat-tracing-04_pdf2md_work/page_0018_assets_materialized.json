@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0018.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-04_p0018_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        759,
+        2550,
+        2739
+      ],
+      "caption": "Table 3 Insulation Thickness (Inches) \u2014 Heat Conservation",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0018_tbl01_insulation-thickness-inches-heat-conserv.png",
+      "png_sha256": "b2fbf0385dbf3de36e03c57309a785edbbc369b963dd77bf2cd94a01402e2c16",
+      "slug": "insulation-thickness-inches-heat-conserv",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-04",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-04",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0018.png",
+  "page_image_sha256": "a78380e2d2eca20513acef9f21d408078d2304bfa80e29355b669d3c4bc80675",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0018_assets.json"
+}

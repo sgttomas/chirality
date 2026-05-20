@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 26,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "MITERED ELBOW, DETAIL A — Jacketed 90-degree mitered elbow showing CORE, LONG RADIUS inner pipe and JACKET, MODIFIED LONG RADIUS outer jacket with weld symbols at ends",
+      "slug": "mitered-elbow-detail-a",
+      "bbox_norm": [0.06, 0.20, 0.94, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing of jacketed 90-degree mitered elbow. Labels: CORE, LONG RADIUS and JACKET, MODIFIED LONG RADIUS. Weld symbols at pipe ends."
+    }
+  ],
+  "issues": []
+}

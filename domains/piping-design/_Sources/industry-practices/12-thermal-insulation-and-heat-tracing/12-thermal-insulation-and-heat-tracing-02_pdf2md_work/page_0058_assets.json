@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 58,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Insulation Support Rings for Vertical Vessels — detail drawing showing Type A, Type B, Type C, and Type D support ring configurations with clip and angle assemblies",
+      "slug": "insulation-support-rings-vertical-vessels",
+      "bbox_norm": [0.03, 0.02, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing with multiple detail callouts for Types A, B, C, D insulation support rings. Title block visible in lower right."
+    }
+  ],
+  "issues": []
+}

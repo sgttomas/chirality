@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 8,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PIPE CAP — Jacket Closure PC-1 detail showing butt weld cap, core, and jacket assembly",
+      "slug": "pipe-cap-jacket-closure-pc-1",
+      "bbox_norm": [0.10, 0.25, 0.85, 0.62],
+      "confidence": "high",
+      "notes": "Engineering drawing showing cross-section of jacket closure PC-1 with labeled components: BUTT WELD CAP, CORE, JACKET"
+    }
+  ],
+  "issues": []
+}

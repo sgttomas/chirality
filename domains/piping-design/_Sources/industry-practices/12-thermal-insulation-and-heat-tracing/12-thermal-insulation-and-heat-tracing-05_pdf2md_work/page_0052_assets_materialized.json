@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0052.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0052_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        224,
+        2469,
+        2976
+      ],
+      "caption": "PNSC0035-32 Typical Tracing of Remote Mounted D/P Instrument \u2014 isometric detail showing steam supply, tubing union (typ.), trace & insulate line together, insulating cover, and connection to steam trap",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0052_fig01_pnsc0035-32-typical-tracing-remote-mount.png",
+      "png_sha256": "8b05e7dfddb6643b20fd43b968fbce92f0897f21aaefb199c2b440ffc08f8d23",
+      "slug": "pnsc0035-32-typical-tracing-remote-mount",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 52,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0052.png",
+  "page_image_sha256": "a87abd6806f09f5025abd0d5aa234b8edb15b59ed017a6f596737ee67271e1ce",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0052_assets.json"
+}

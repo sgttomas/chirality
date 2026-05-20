@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 59,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PLATE WINDOW — cross-section and end-view detail showing CORE and JACKET assembly (PW-2)",
+      "slug": "plate-window-pw-2",
+      "bbox_norm": [0.05, 0.25, 0.95, 0.68],
+      "confidence": "high",
+      "notes": "Technical engineering drawing with cross-section view (left) and end-view (right). Labels: CORE and JACKET. Flow direction arrows shown."
+    }
+  ],
+  "issues": []
+}

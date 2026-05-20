@@ -1,0 +1,42 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0009.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-06_p0009_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        1649
+      ],
+      "caption": "Table 4 Indentation resistance for polyethylene and polypropylene pipeline coating systems",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0009_tbl01_table-4-indentation-resistance-polyethyl.png",
+      "png_sha256": "fb55de3a8d2c6d19a0122fe79ea075248e34cb8b60c30ba7f2967d8306294428",
+      "slug": "table-4-indentation-resistance-polyethyl",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0009_tbl01_table-4-indentation-resistance-polyethyl.json",
+      "table_data_json_sha256": "75c647acf39e210d3f9816492a11713ff7cff835836cef1e4cf5cfd36edaf6fa",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-06_p0009_tbl01_table-4-indentation-resistance-polyethyl.xlsx",
+      "xlsx_sha256": "2554046cc5408636dbf23a09f427403cc70707a9cb444c5cf13c9b94e642398c"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-06",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0009.png",
+  "page_image_sha256": "f762bb9b017226a4686d42cca683aaa08aa5f57320b7fc96a194c360232de584",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-06_pdf2md_work/page_0009_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0061.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-01_p0061_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        178,
+        3300,
+        2372
+      ],
+      "caption": "TABLE 2-MW-8.5: MINERAL WOOL ECONOMIC INSULATION THICKNESS (IN.) @ $8.50/MBTU",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0061_tbl01_mineral-wool-economic-insulation-thickne.png",
+      "png_sha256": "d199c0ed1fd076d113b69632ac97ba948e3d1d497339d6476042ff2d79d59c66",
+      "slug": "mineral-wool-economic-insulation-thickne",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0061_tbl01_mineral-wool-economic-insulation-thickne.json",
+      "table_data_json_sha256": "c362ce11bb5a0c38868e229b78a0cd7063bdcd0bd3d73d67a0db9faf2f111e4a",
+      "table_data_sha256": "c362ce11bb5a0c38868e229b78a0cd7063bdcd0bd3d73d67a0db9faf2f111e4a",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0061_tbl01_mineral-wool-economic-insulation-thickne.xlsx",
+      "xlsx_sha256": "dbd9e70528fbd741681c0889b695f9a3c43ef484957028bacbf7f792402b6f84"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-01",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 61,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0061.png",
+  "page_image_sha256": "a8d05a9784a9faae5155f840b59a4a52d7b5e57145abb72a591bbcb1262a3c9b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0061_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0020.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0020_fig01",
+      "bbox_norm": [
+        0.07,
+        0.04,
+        0.93,
+        0.38
+      ],
+      "bbox_px": [
+        50,
+        0,
+        2430,
+        1509
+      ],
+      "caption": "FIGURE 1 Degree of foaming of FBE film",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/13-painting-coatings-and-corrosion-protection-05_p0020_fig01_figure-1-degree-of-foaming-fbe-film.png",
+      "png_sha256": "5c7a56412a53cac9cc74b772e6bf864788c0af2338bb6df177d0a9eb2c56d646",
+      "slug": "figure-1-degree-of-foaming-fbe-film",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-05",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0020.png",
+  "page_image_sha256": "8035bdb75525cd3e78826deb62d570585164c45d46120825d8f0260b90f1b174",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0020_assets.json"
+}

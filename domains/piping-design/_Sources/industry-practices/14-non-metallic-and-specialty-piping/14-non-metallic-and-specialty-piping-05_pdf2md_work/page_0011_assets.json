@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 11,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 400-5 Nonmetallic Pipe Joints Courtesy of Central Plastics Company, Shawnee, OK; Fibercast (4 of 7)",
+      "slug": "fig-400-5-nonmetallic-pipe-joints-4-of-7",
+      "bbox_norm": [0.50, 0.03, 0.98, 0.38],
+      "confidence": "high",
+      "notes": "Three joint diagrams: Butt-and-Strap Joint (a), External Overlay Joint (b), Internal Overlay Joint (c), with labels for layers and adhesive filler"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Recommended tightening torque for flange bolts by flange size",
+      "slug": "flange-bolt-torque",
+      "bbox_norm": [0.50, 0.55, 0.98, 0.78],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": ["*For a well lubricated bolt"],
+        "rows": [
+          {
+            "cells": [
+              {"value": "FLANGE SIZE (IN.)", "is_header": true},
+              {"value": "RECOMMENDED TORQUE (FT. LBS.)*", "is_header": true}
+            ]
+          },
+          {"cells": [{"value": "1/2-1½", "type": "text"}, {"value": "10-15", "type": "text"}]},
+          {"cells": [{"value": "2-4", "type": "text"}, {"value": "20-30", "type": "text"}]},
+          {"cells": [{"value": "6-8", "type": "text"}, {"value": "33-50", "type": "text"}]},
+          {"cells": [{"value": "10", "type": "text"}, {"value": "53-75", "type": "text"}]},
+          {"cells": [{"value": "12", "type": "text"}, {"value": "80-110", "type": "text"}]},
+          {"cells": [{"value": "14-24", "type": "text"}, {"value": "100", "type": "text"}]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "Flange bolt tightening torque table with footnote about lubricated bolts"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "The following tightening pattern should be used for the flange bolts.",
+      "slug": "flange-bolt-tightening-pattern",
+      "bbox_norm": [0.50, 0.78, 0.85, 0.93],
+      "confidence": "high",
+      "notes": "Circular diagram showing numbered bolt tightening sequence (1-8) around flange"
+    }
+  ],
+  "issues": []
+}

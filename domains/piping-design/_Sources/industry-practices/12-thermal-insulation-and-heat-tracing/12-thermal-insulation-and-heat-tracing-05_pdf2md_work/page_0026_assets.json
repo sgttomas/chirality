@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 26,
+  "total_pages": 26,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Typical Detail for Steam/Condensate Manifold Mounting Bracket \u2014 front and side views showing a 4.00\" [101.6] wide by 12.00\" [304.8] tall mounting plate with four 5/8\" DIA x 1 1/2\" LG slots as required by field (TYP. 4 PLACES), and a T-bar base mounting assembly shown below.",
+      "slug": "steam-condensate-manifold-mounting-bracket",
+      "bbox_norm": [
+        0.08,
+        0.13,
+        0.92,
+        0.82
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing with front view (left) and side view (right) of mounting bracket, with dimensional annotations and a T-bar base detail below"
+    }
+  ],
+  "issues": []
+}

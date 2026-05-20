@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 32,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Reducing Tee — jacketed piping fabrication/installation detail RT-1, showing core and jacket arrangement at a reducing tee with weld symbols",
+      "slug": "reducing-tee-rt-1",
+      "bbox_norm": [0.17, 0.17, 0.83, 0.68],
+      "confidence": "high",
+      "notes": "Engineering drawing showing jacketed reducing tee in plan view with CORE and JACKET callout labels and weld symbols"
+    }
+  ],
+  "issues": []
+}

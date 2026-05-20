@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0023.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-01_p0023_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.96,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        759,
+        2550,
+        1881
+      ],
+      "caption": "Coating system table for System #7 \u2014 Temperature Indicating Paint",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-01_p0023_tbl01_system-7-temperature-indicating-paint-co.png",
+      "png_sha256": "508a80a37fc8764f0fc11e6663d5715f411477740785c0d946e4b36774c8d812",
+      "slug": "system-7-temperature-indicating-paint-co",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-01",
+  "page": 23,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0023.png",
+  "page_image_sha256": "5769de96ab1c8945cd7defe95cc2894af35ce58b5430e1ac877970b1dcdec006",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-01_pdf2md_work/page_0023_assets.json"
+}

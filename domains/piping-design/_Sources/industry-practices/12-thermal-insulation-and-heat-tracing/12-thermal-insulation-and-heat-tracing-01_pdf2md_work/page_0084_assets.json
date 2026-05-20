@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 84,
+  "total_pages": 87,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Typical pin locations to support metal shield",
+      "slug": "typical-pin-locations-metal-shield-1",
+      "bbox_norm": [0.04, 0.09, 0.52, 0.42],
+      "confidence": "high",
+      "notes": "Photograph of insulated pipe fitting showing pin locations; caption below image"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Typical pin locations to support metal shield",
+      "slug": "typical-pin-locations-metal-shield-2",
+      "bbox_norm": [0.04, 0.44, 0.52, 0.74],
+      "confidence": "high",
+      "notes": "Photograph of insulated horizontal pipe showing pin locations; caption below image"
+    }
+  ],
+  "issues": []
+}

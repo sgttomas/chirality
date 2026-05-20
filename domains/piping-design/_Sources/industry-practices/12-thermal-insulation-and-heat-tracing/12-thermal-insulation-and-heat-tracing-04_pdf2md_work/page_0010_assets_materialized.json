@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0010.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-04_p0010_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.2,
+        0.88,
+        0.4
+      ],
+      "bbox_px": [
+        178,
+        495,
+        2372,
+        1485
+      ],
+      "caption": "Insulation oversizing requirements by material and pipe size",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0010_tbl01_insulation-oversizing-requirements.png",
+      "png_sha256": "1b0b0692f62f6a60f6ff9317faab8a762383c1478148f03fa5e0f606287d1007",
+      "slug": "insulation-oversizing-requirements",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0010_tbl01_insulation-oversizing-requirements.json",
+      "table_data_json_sha256": "b34a0b3616d59b31e8b1c68d19fd84311f60011383979b26d34b6e37a7f1336b",
+      "table_data_sha256": "b34a0b3616d59b31e8b1c68d19fd84311f60011383979b26d34b6e37a7f1336b",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0010_tbl01_insulation-oversizing-requirements.xlsx",
+      "xlsx_sha256": "96b8b50ba4a9d642c88c3c5d98f9d20834201495b39310106c3c4ffb26913bb8"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-04_p0010_fig01",
+      "bbox_norm": [
+        0.1,
+        0.57,
+        0.9,
+        0.95
+      ],
+      "bbox_px": [
+        128,
+        1716,
+        2422,
+        3300
+      ],
+      "caption": "Cross-section diagram showing 6\" NPS pipe with 3\" INS THK insulation, 1/2\" tracing gap (electric), and Total OD = 13-5/8\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-04_p0010_fig01_insulation-cross-section-6nps-electric-t.png",
+      "png_sha256": "97a554dffc2dca54a713d2252dc0193be39ea03d6ce05c6ac975ffce80c92971",
+      "slug": "insulation-cross-section-6nps-electric-t",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-04",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-04",
+  "page": 10,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0010.png",
+  "page_image_sha256": "19a6709900d5a12c8605a3673f05aec9b4e79d0e4c4be8620126bc8936f523e6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0010_assets.json"
+}

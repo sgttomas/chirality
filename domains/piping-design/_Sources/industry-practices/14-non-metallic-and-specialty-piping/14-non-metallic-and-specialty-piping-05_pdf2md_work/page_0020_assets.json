@@ -1,0 +1,128 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 20,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-9 Quality Control and Testing for Plastic Piping (1 of 2)",
+      "slug": "quality-control-testing-plastic-piping-1of2",
+      "bbox_norm": [0.05, 0.16, 0.97, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. At startup of given size or material, then once every two hours for each extruder (winding or casting machines for FRP).",
+          "2. At startup of a given size, machine or material then once per 24 hours for each material in a plant. If one material is continuously used in several machines or sizes, then sample selection shall be from a different machine each day, and rotated in sequence among all sizes or machines.",
+          "3. Use ASTM D 1599 \"Short Term Hydraulic Failure Pressure\" for sizes to 4\". Above 4\" use ASTM D 2290 \"Apparent Tensile Strength\".",
+          "4. At startup of a new material then once per year.",
+          "5. At startup of given size or material then once per shift for each machine.",
+          "6. All pipe produced. Check for defects and proper marking prior to stacking for shipment or storage.",
+          "7. Test results shall be available showing that proposed joint has thermal, mechanical and chemical performance equivalent to the pipe itself.",
+          "8. PVC only. At startup of new material then once per year."
+        ],
+        "rows": [
+          {
+            "cells": [
+              {"value": "", "is_header": true},
+              {"value": "PVDF PP & ABS", "is_header": true},
+              {"value": "PP PVC & HDPE", "is_header": true},
+              {"value": "CPVC", "is_header": true},
+              {"value": "FRP", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Dimensions(1)", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Short-term Rupture(2), (3)", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Hydrostatic Design Basis(4)", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Flattening(2)", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Stiffness(3)", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Impact(2)", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Visual(6)", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Joints(7)", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Acetone(8)", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "X", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Quality control tests/inspections matrix for plastic piping materials"
+    }
+  ],
+  "issues": []
+}

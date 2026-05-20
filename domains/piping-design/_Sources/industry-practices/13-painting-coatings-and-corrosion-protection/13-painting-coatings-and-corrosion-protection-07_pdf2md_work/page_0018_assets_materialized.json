@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0018.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-07_p0018_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.13,
+        0.94,
+        0.78
+      ],
+      "bbox_px": [
+        25,
+        281,
+        2455,
+        2912
+      ],
+      "caption": "Table 1-1 Piping, Vessels, Columns, Exchangers, Reactors, Structural Steel and Fire-Fighting Systems",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-07_p0018_tbl01_table-1-1-piping-vessels-columns-exchang.png",
+      "png_sha256": "4cfade7a197b821af4c58c0c8aa839bf7c6150bba0e3239b8524c9d736dc9db2",
+      "slug": "table-1-1-piping-vessels-columns-exchang",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-07",
+  "page": 18,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0018.png",
+  "page_image_sha256": "09d56ed514dc2f1fc67f5df2fa3886cc63e02473e4dcc1f3807990d8b0e36efa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0018_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0015_tbl01",
+      "bbox_norm": [
+        0.1,
+        0.72,
+        0.9,
+        0.88
+      ],
+      "bbox_px": [
+        128,
+        2214,
+        2427,
+        3073
+      ],
+      "caption": "Wire schedule for insulated outside diameter, gauge, and spacing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.png",
+      "png_sha256": "c641f011e412ca326e8b44ce439d2fe94a1dea54ca30c9f5693aaaea24d760d7",
+      "slug": "wire-schedule-insulated-outside-diameter",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.json",
+      "table_data_json_sha256": "148fa1b0e1646c980e31dcd783ac24a8f9b9e70d1f54eb2c7f619d1c640e165b",
+      "table_data_sha256": "148fa1b0e1646c980e31dcd783ac24a8f9b9e70d1f54eb2c7f619d1c640e165b",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0015_tbl01_wire-schedule-insulated-outside-diameter.xlsx",
+      "xlsx_sha256": "e21058117b0a263878860fb5da16c92f6d882f7001e1e8ef1d2bb7942bdb4299"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0015.png",
+  "page_image_sha256": "bc07344f61ec1fad3d4095efa8e13e4d529d453df24c5ba341a85f2cf9ebd7a2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0015_assets.json"
+}

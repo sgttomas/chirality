@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0076.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-01_p0076_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.22,
+        0.45,
+        0.76
+      ],
+      "bbox_px": [
+        66,
+        433,
+        1650,
+        2066
+      ],
+      "caption": "TABLE 2-FG-8.5: FIBERGLASS ECONOMIC INSULATION THICKNESS (IN.) @ $8.50/MBTU \u2014 Pipe sizes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl01_table-2-fg-8-5-fiberglass-economic-insul.png",
+      "png_sha256": "dbbfe24bbbb69baf3ed855e86abeecaca4abc08ca3ff23d6a765d2fa42c2aae9",
+      "slug": "table-2-fg-8-5-fiberglass-economic-insul",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl01_table-2-fg-8-5-fiberglass-economic-insul.json",
+      "table_data_json_sha256": "60f62922e35a65750471db93a177f2361a651fe6c4a5d9e2f4d6f58d3abcf357",
+      "table_data_sha256": "60f62922e35a65750471db93a177f2361a651fe6c4a5d9e2f4d6f58d3abcf357",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl01_table-2-fg-8-5-fiberglass-economic-insul.xlsx",
+      "xlsx_sha256": "1e31adae6b814f5bcfdc2294762bf6a681852b5c528d4efdbe5363b49c30a928"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-01_p0076_tbl02",
+      "bbox_norm": [
+        0.07,
+        0.78,
+        0.72,
+        0.9
+      ],
+      "bbox_px": [
+        66,
+        1862,
+        2541,
+        2422
+      ],
+      "caption": "TABLE 2-FG-8.5: FIBERGLASS ECONOMIC INSULATION THICKNESS (IN.) @ $8.50/MBTU \u2014 Storage Tanks",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl02_table-2-fg-8-5-fiberglass-economic-insul.png",
+      "png_sha256": "9f83d9f986b4fecaea1539cfc6d9025daeb9a54672178063e4e68c991a6a1802",
+      "slug": "table-2-fg-8-5-fiberglass-economic-insul",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl02_table-2-fg-8-5-fiberglass-economic-insul.json",
+      "table_data_json_sha256": "36573db7fa451ff4dce3096eb7d9867660f46506a3b2bd74f4cbec1770614f80",
+      "table_data_sha256": "36573db7fa451ff4dce3096eb7d9867660f46506a3b2bd74f4cbec1770614f80",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-01_p0076_tbl02_table-2-fg-8-5-fiberglass-economic-insul.xlsx",
+      "xlsx_sha256": "3e04c5a2ec7067486c237a72c047adb9311e6342ea19beec09dada4f5754dea9"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-01",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 76,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0076.png",
+  "page_image_sha256": "c48ffa11435b51bf2c7ed52c02488c00cdf11c389164f22f424d705eb0b34ca9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-01_pdf2md_work/page_0076_assets.json"
+}

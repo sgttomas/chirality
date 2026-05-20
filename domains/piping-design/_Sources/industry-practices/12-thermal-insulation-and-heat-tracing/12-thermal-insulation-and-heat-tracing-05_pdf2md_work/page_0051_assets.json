@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 51,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PNSC0035-31 Typical Tracing of Liquid Remote Pressure Gauge — schematic diagram showing steam tracer routing with tubing union (TYP.), steam tracer label, gauge, and connection to steam trap",
+      "slug": "pnsc0035-31-typical-tracing-liquid-remote-pressure-gauge",
+      "bbox_norm": [0.05, 0.10, 0.92, 0.72],
+      "confidence": "high",
+      "notes": "Full-page engineering schematic showing steam tracer routing around a liquid remote pressure gauge assembly. Labels include TUBING UNION (TYP.), STEAM TRACER, GAUGE, TO STEAM TRAP."
+    }
+  ],
+  "issues": []
+}

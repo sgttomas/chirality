@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0032.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0032_fig01",
+      "bbox_norm": [
+        0.07,
+        0.08,
+        0.93,
+        0.38
+      ],
+      "bbox_px": [
+        49,
+        96,
+        2420,
+        1376
+      ],
+      "caption": "Typical Tag Numbering System diagram showing traced line number, condensate return tracer number, and condensate return manifold number label hierarchy",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0032_fig01_typical-tag-numbering-system.png",
+      "png_sha256": "394478a0810d0193f39c158e3144ea72f06e28195dadde5ab0890eef85ed0838",
+      "slug": "typical-tag-numbering-system",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0032_fig02",
+      "bbox_norm": [
+        0.07,
+        0.4,
+        0.93,
+        0.82
+      ],
+      "bbox_px": [
+        49,
+        1120,
+        2420,
+        2784
+      ],
+      "caption": "Tracing Identification Tag detail showing a circular aluminum disc with stamped lettering, wire attachment, and dimensional callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0032_fig02_tracing-identification-tag.png",
+      "png_sha256": "06843f7daa9e754339cd926fd1d4c260c5a8d4e6383b0ecf69acb4b186ab097a",
+      "slug": "tracing-identification-tag",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0032.png",
+  "page_image_sha256": "302a9a4f3c98044c1062cf94d94c01c88a909f41655ce9cb95d6cad763077890",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0032_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0055.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0055_fig01",
+      "bbox_norm": [
+        0.1,
+        0.12,
+        0.9,
+        0.65
+      ],
+      "bbox_px": [
+        123,
+        224,
+        2346,
+        2240
+      ],
+      "caption": "PNSC0035-35 Typical Tracing of Pressure Switch or Pressure Gauge in Steam Traced Lines",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0055_fig01_pnsc0035-35-typical-tracing-pressure-swi.png",
+      "png_sha256": "75a54b12ce2d212d9e2587d0793f062976f0eefe2bf8b724c71e82fc8a9755e2",
+      "slug": "pnsc0035-35-typical-tracing-pressure-swi",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 55,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0055.png",
+  "page_image_sha256": "6d342d51b4cbbc9d329fb0c68f5f909255eeac0399ca18d777b552f7525a4d02",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0055_assets.json"
+}

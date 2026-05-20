@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0033.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0033_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.28,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        760,
+        2555,
+        2214
+      ],
+      "caption": "TABLE A-1 Noise Control Material Manufacturers \u2014 Corrosion Inhibiting Protection",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.png",
+      "png_sha256": "b798c5a4579d7fdddebad5fefadd0d8e8203fce24f440724971ff652e12cdeea",
+      "slug": "table-a1-noise-control-material-manufact",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.json",
+      "table_data_json_sha256": "c5b22f79da6fe88f36b6cdf3bc6100f8c41a34b5c524bcf6647ddb0159dd148e",
+      "table_data_sha256": "c5b22f79da6fe88f36b6cdf3bc6100f8c41a34b5c524bcf6647ddb0159dd148e",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0033_tbl01_table-a1-noise-control-material-manufact.xlsx",
+      "xlsx_sha256": "3f4873916fe95afe4520b58da6870fec524fcc0ee7de0f7a1b3ac44038470ec3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 33,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0033.png",
+  "page_image_sha256": "b7a558f3a12180e7820f6714b3e0f007c82de79b18861316fad9fc08ee2b9b12",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0033_assets.json"
+}

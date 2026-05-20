@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 12,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 400-5 Nonmetallic Pipe Joints Courtesy of Central Plastics Company, Shawnee, OK; Fibercast (5 of 7)",
+      "slug": "fig-400-5-nonmetallic-pipe-joints-fibercast-5-of-7",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.92],
+      "confidence": "high",
+      "notes": "Full-page figure containing labeled diagrams of O-ring joints and concrete pipe joints including Spirolite joint, gasket detail, and six concrete pipe joint cross-sections with captions"
+    }
+  ],
+  "issues": []
+}

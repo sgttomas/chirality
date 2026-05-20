@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0011.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0011_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        2105
+      ],
+      "caption": "Mitigation Measures vs Flow Regimes for CO\u2082 and H\u2082S Corrosion",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0011_tbl01_mitigation-measures-flow-regimes-co2-h2s.png",
+      "png_sha256": "3f3ce7218a8c2f5706e231b5fd7ba43ff95e8b60b02217a9adf88343073c5898",
+      "slug": "mitigation-measures-flow-regimes-co2-h2s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-08",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0011.png",
+  "page_image_sha256": "a7c462e9adfa42f0f8ecb0072dec0e8043af0128e1bf1c4223df7b5b389e56e1",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0011_assets.json"
+}

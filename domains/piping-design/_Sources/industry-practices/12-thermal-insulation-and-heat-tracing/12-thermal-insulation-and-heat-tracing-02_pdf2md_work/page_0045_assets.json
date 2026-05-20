@@ -1,0 +1,82 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 45,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE B-5 Typical Flammability Ratings of Acoustical Blanket Roll Good Products",
+      "slug": "table-b-5-flammability-ratings-acoustical-blanket",
+      "bbox_norm": [0.06, 0.38, 0.94, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Flammability Ratings", "is_header": true, "colspan": 2}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Flame spread index", "type": "text"},
+              {"value": "7", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Smoke developed index", "type": "text"},
+              {"value": "5", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Fuel contributed index", "type": "text"},
+              {"value": "20", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Passed the following tests:", "type": "text"},
+              {"value": "UL-94-HFI", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "UL-214", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "FAA-25-853", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "MVA-SS-302", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "Class 1 (ASTM E-84)", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table with flammability ratings for acoustical blanket roll goods"
+    }
+  ],
+  "issues": []
+}

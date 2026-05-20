@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 55,
+  "total_pages": 55,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PNSC0035-35 Typical Tracing of Pressure Switch or Pressure Gauge in Steam Traced Lines",
+      "slug": "pnsc0035-35-typical-tracing-pressure-switch-gauge-steam-traced-lines",
+      "bbox_norm": [0.10, 0.12, 0.90, 0.65],
+      "confidence": "high",
+      "notes": "Engineering schematic showing steam tracer routing around pressure gauge/switch with labels: STEAM TRACER, GAUGE, TO STEAM TRAP. Includes isolation valves."
+    }
+  ],
+  "issues": []
+}

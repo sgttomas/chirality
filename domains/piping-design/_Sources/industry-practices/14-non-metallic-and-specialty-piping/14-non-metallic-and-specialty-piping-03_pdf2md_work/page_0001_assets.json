@@ -1,0 +1,9 @@
+{
+  "schema": "pdf2md-page-assets/v1",
+  "doc_stem": "14-non-metallic-and-specialty-piping-03",
+  "page": 1,
+  "total_pages": null,
+  "run_status": "DEGRADED",
+  "assets": [],
+  "issues": ["vision read blocked by content filter on two attempts; fallback to pdftotext deterministic extraction"]
+}

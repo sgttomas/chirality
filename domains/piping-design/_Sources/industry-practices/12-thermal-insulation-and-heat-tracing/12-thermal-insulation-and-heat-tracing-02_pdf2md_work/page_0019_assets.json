@@ -1,0 +1,69 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 19,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Band Schedule for Tanks and Vessels",
+      "slug": "band-schedule-tanks-vessels",
+      "bbox_norm": [0.08, 0.68, 0.92, 0.82],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Vessel Outside Diameter", "is_header": true },
+              { "value": "Width", "is_header": true },
+              { "value": "Bands Thck.", "is_header": true },
+              { "value": "Spacing", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6'0\" and Under Vertical", "type": "text" },
+              { "value": "¾\"", "type": "text" },
+              { "value": "0.020\"", "type": "text" },
+              { "value": "12\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Over 6'0\" Vertical", "type": "text" },
+              { "value": "¾\"", "type": "text" },
+              { "value": "0.020\"", "type": "text" },
+              { "value": "12\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6'0\" and Under Horizontal", "type": "text" },
+              { "value": "½\"", "type": "text" },
+              { "value": "0.020\"", "type": "text" },
+              { "value": "9\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Over 6'0\" Horizontal", "type": "text" },
+              { "value": "¾\"", "type": "text" },
+              { "value": "0.020\"", "type": "text" },
+              { "value": "9\"", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Four-column table with band schedule data for tanks and vessels"
+    }
+  ],
+  "issues": []
+}

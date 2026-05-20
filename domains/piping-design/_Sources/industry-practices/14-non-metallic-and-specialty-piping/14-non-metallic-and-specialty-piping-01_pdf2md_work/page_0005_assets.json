@@ -1,0 +1,113 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 5,
+  "total_pages": 33,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bedding sand gradation — Sieve size vs Percent Passing (by weight), first table",
+      "slug": "bedding-sand-gradation-first",
+      "bbox_norm": [0.07, 0.60, 0.93, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Sieve Size 10⁻³ m (equivalent)", "is_header": true },
+              { "value": "Percent Passing (by weight)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12,500 (1/2\")", "type": "text" },
+              { "value": "100", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4,750 (No. 4)", "type": "text" },
+              { "value": "95", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "75 (No. 200)", "type": "text" },
+              { "value": "2-10", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-row table of bedding sand gradation requirements"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Crush-rock bedding gradation — Sieve size vs Percent Passing (by weight), second table",
+      "slug": "crush-rock-bedding-gradation-second",
+      "bbox_norm": [0.07, 0.80, 0.93, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Sieve Size 10⁻³ m (equivalent)", "is_header": true },
+              { "value": "Percent Passing (by weight)", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "19,000 (3/4\")", "type": "text" },
+              { "value": "100", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12,500 (1/2\")", "type": "text" },
+              { "value": "64-100", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4,750 (No. 4)", "type": "text" },
+              { "value": "36-72", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1,400 (No. 14)", "type": "text" },
+              { "value": "12-42", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "355 (No. 45)", "type": "text" },
+              { "value": "8-22", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "75 (No. 200)", "type": "text" },
+              { "value": "8-12", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Six-row table of crush-rock bedding gradation requirements"
+    }
+  ],
+  "issues": []
+}

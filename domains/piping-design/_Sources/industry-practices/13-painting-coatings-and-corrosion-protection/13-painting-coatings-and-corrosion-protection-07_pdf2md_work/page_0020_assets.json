@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0020.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-07_p0020_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.08,
+        0.93,
+        0.8
+      ],
+      "bbox_px": [
+        50,
+        105,
+        2430,
+        2983
+      ],
+      "caption": "Table 1-3 FURNACES, STACKS, FLARE STACKS, FLUE DUCTS, OFFSHORE STRUCTURES, TOPSIDE FACILITIES",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-07_p0020_tbl01_table-1-3-furnaces-stacks-flare-stacks-f.png",
+      "png_sha256": "a5de082bae44bfa04c3514348be1e8dc2b22317a5125ffb90e23ea1876af9818",
+      "slug": "table-1-3-furnaces-stacks-flare-stacks-f",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-07",
+  "page": 20,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0020.png",
+  "page_image_sha256": "1cab94072072a92e36680ad4cbe833984348d810943c175779814c96e53efb29",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-07_pdf2md_work/page_0020_assets.json"
+}

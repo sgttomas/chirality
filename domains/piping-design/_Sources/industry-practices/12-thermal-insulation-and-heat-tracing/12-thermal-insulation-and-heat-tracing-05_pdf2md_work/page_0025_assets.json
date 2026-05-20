@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 25,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Typical Detail for 12 Station 3\"-Class 150 Condensate Manifold \u2014 fabrication/installation drawing showing plan view of manifold with 12 branch stations, traps, reducers, plugged NPT connections, and internal siphon tube reference",
+      "slug": "typical-detail-12-station-3in-class-150-condensate-manifold",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.84
+      ],
+      "confidence": "high",
+      "notes": "Engineering drawing with dimensioned plan view of condensate manifold; dimensions given in inches with metric equivalents in parentheses"
+    }
+  ],
+  "issues": []
+}

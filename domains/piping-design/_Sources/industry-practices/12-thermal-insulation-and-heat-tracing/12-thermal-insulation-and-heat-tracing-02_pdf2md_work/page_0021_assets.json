@@ -1,0 +1,90 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 21,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "NUMBER OF 4\" SPRINGS PER BAND",
+      "slug": "number-of-4-springs-per-band",
+      "bbox_norm": [0.10, 0.05, 0.92, 0.28],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Temp. Range, °F", "is_header": true},
+              {"value": "29″ to 3′", "is_header": true},
+              {"value": "3′1″ to 4′", "is_header": true},
+              {"value": "4′1″ to 6′", "is_header": true},
+              {"value": "6′1″ to 8′", "is_header": true},
+              {"value": "8′1″ to 10′", "is_header": true},
+              {"value": "10′1″ to 15′", "is_header": true},
+              {"value": "15′1″ to 20′", "is_header": true},
+              {"value": "20′1″ to 25′", "is_header": true},
+              {"value": "25′1″ to 30′", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "NUMBER OF 4\" SPRINGS PER BAND", "is_header": true, "colspan": 10}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1000 - 1200", "type": "text"},
+              {"value": "1", "type": "number"},
+              {"value": "1", "type": "number"},
+              {"value": "1", "type": "number"},
+              {"value": "2", "type": "number"},
+              {"value": "3", "type": "number"},
+              {"value": "4", "type": "number"},
+              {"value": "5", "type": "number"},
+              {"value": "6", "type": "number"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "801 - 1000", "type": "text"},
+              {"value": "-", "type": "text"},
+              {"value": "1", "type": "number"},
+              {"value": "1", "type": "number"},
+              {"value": "2", "type": "number"},
+              {"value": "2", "type": "number"},
+              {"value": "3", "type": "number"},
+              {"value": "4", "type": "number"},
+              {"value": "5", "type": "number"},
+              {"value": "8", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "600 - 800", "type": "text"},
+              {"value": "-", "type": "text"},
+              {"value": "-", "type": "text"},
+              {"value": "1", "type": "number"},
+              {"value": "1", "type": "number"},
+              {"value": "2", "type": "number"},
+              {"value": "2", "type": "number"},
+              {"value": "3", "type": "number"},
+              {"value": "3", "type": "number"},
+              {"value": "4", "type": "number"}
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Table has merged header row spanning all columns for 'NUMBER OF 4\" SPRINGS PER BAND'. Last row (600-800) appears to have an extra cell visible (value 5) that may be partially cut off."
+    }
+  ],
+  "issues": []
+}

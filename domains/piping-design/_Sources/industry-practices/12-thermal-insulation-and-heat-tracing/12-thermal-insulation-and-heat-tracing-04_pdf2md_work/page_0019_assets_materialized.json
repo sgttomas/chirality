@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0019.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-04_p0019_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.22,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        561,
+        2550,
+        2871
+      ],
+      "caption": "TABLE 4 HEAT CONSERVATION - INSULATION THICKNESS (INCHES)",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0019_tbl01_table-4-heat-conservation-insulation-thi.png",
+      "png_sha256": "c065114cfeb667b3431797885b2a7b02a22594c7fa10c1b1fc81bcf343d36c4e",
+      "slug": "table-4-heat-conservation-insulation-thi",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-04",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-04",
+  "page": 19,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0019.png",
+  "page_image_sha256": "fdfb8ea6c1e0ccb229b9beb1a280e4f3729cba6286183a96b97db1b169d7c0f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0019_assets.json"
+}

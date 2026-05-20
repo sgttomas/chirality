@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-04_pdf2md_work/page_0003.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-04_p0003_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.76,
+        0.97,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        2346,
+        2555,
+        3139
+      ],
+      "caption": "Criteria for holiday testing",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-04_p0003_tbl01_criteria-holiday-testing.png",
+      "png_sha256": "19b811d4572d3d98ff36fc00610d5e45d62eca88e571d231a10f63ec005cc515",
+      "slug": "criteria-holiday-testing",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-04_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-04",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-04_pdf2md_work/page_0003.png",
+  "page_image_sha256": "31486297c34c0017843b0df4132bb92cc519a39024055816edd664e6585c63d7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-04_pdf2md_work/page_0003_assets.json"
+}

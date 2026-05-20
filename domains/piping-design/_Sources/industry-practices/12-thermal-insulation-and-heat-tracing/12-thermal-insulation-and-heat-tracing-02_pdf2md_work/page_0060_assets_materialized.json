@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0060.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0060_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.04,
+        0.94,
+        0.22
+      ],
+      "bbox_px": [
+        26,
+        0,
+        2573,
+        902
+      ],
+      "caption": "Bill of materials \u2014 insulation banding items",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.png",
+      "png_sha256": "a5c90188c39325bad71e26bf6af94ab359a954adfe57699370482da04efb9a35",
+      "slug": "bom-insulation-banding-items",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.json",
+      "table_data_json_sha256": "4ac7bcd6f226b0e10fb9ad75fa4928bf4efaa7cc754e447d9e1f72cae9482b30",
+      "table_data_sha256": "4ac7bcd6f226b0e10fb9ad75fa4928bf4efaa7cc754e447d9e1f72cae9482b30",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0060_tbl01_bom-insulation-banding-items.xlsx",
+      "xlsx_sha256": "995fb90106c2710fabc83ca1f0a8c8769969b75abd8678048b4017e831913dbc"
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0060_fig01",
+      "bbox_norm": [
+        0.06,
+        0.23,
+        0.7,
+        0.74
+      ],
+      "bbox_px": [
+        26,
+        601,
+        1949,
+        2639
+      ],
+      "caption": "Fig. 2 \u2014 Insulation or fireproofing application for vertical vessels, showing headseat, expansion joint, and supporting angle detail with balloon callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0060_fig01_insulation-fireproofing-vertical-vessels.png",
+      "png_sha256": "f7f9bf969d9f234f1fc35f69953b265a5c34b1b5041d42afb8ca5c03a050f6d9",
+      "slug": "insulation-fireproofing-vertical-vessels",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 60,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0060.png",
+  "page_image_sha256": "2f764935a34e4b6a6b19aa027c708ea1472ab90f1ca764b1e5f73fb29f4e0ee9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0060_assets.json"
+}

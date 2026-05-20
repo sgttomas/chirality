@@ -1,3 +1,0 @@
-- Parse method: ID extraction from decomposition markdown table rows.
-- Filesystem scan: execution/PKG-*/1_Working/DEL-*
-- Limit: content-level context fidelity checks not included in this focused baseline run.

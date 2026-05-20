@@ -1,0 +1,134 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 56,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Jacket Extension with Flange — cross-section detail showing JUMPER (B), CORE, JACKET (A), dimension labels D, C, and 7 1/2\"",
+      "slug": "jacket-extension-with-flange-detail",
+      "bbox_norm": [0.22, 0.18, 0.92, 0.62],
+      "confidence": "high",
+      "notes": "Engineering cross-section drawing with dimension callouts D, C, 7 1/2\"; labels JUMPER (B), CORE, JACKET (A)"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Jacket Extension with Flange — dimensional table",
+      "slug": "jacket-extension-flange-dimensions",
+      "bbox_norm": [0.04, 0.63, 0.28, 0.90],
+      "confidence": "high",
+      "notes": "Four-column dimensional table: JACKET A INCH, JUMPER B INCH, C INCH, D INCH; 11 data rows",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "JACKET \"A\" INCH", "is_header": true},
+              {"value": "JUMPER \"B\" INCH", "is_header": true},
+              {"value": "C INCH", "is_header": true},
+              {"value": "D INCH", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1", "type": "text"},
+              {"value": "3/4", "type": "text"},
+              {"value": "8 3/16", "type": "text"},
+              {"value": "6", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1 1/2", "type": "text"},
+              {"value": "1", "type": "text"},
+              {"value": "8 7/16", "type": "text"},
+              {"value": "6", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2", "type": "text"},
+              {"value": "1 1/2", "type": "text"},
+              {"value": "8 11/16", "type": "text"},
+              {"value": "6", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2 1/2", "type": "text"},
+              {"value": "1 1/2", "type": "text"},
+              {"value": "8 15/16", "type": "text"},
+              {"value": "6", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3", "type": "text"},
+              {"value": "2", "type": "text"},
+              {"value": "9 1/4", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4", "type": "text"},
+              {"value": "2", "type": "text"},
+              {"value": "9 3/4", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "6", "type": "text"},
+              {"value": "3", "type": "text"},
+              {"value": "10 13/16", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "8", "type": "text"},
+              {"value": "3", "type": "text"},
+              {"value": "11 13/16", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "10", "type": "text"},
+              {"value": "4", "type": "text"},
+              {"value": "12 7/8", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "12", "type": "text"},
+              {"value": "4", "type": "text"},
+              {"value": "13 7/8", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "14", "type": "text"},
+              {"value": "4", "type": "text"},
+              {"value": "14 1/2", "type": "text"},
+              {"value": "7", "type": "number"}
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

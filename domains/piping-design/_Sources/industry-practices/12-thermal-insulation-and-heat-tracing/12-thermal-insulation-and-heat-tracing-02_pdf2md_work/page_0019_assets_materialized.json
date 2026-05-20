@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0019.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0019_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.68,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        77,
+        2082,
+        2478,
+        2874
+      ],
+      "caption": "Band Schedule for Tanks and Vessels",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.png",
+      "png_sha256": "4e15c3d815aa4be5761eb3c4d547363708fff8932a107873124b71ee19ac328c",
+      "slug": "band-schedule-tanks-vessels",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.json",
+      "table_data_json_sha256": "75b0cf1acc874ff7aa5acb74f6d08c2fff081e4ef8cd4c49be8c05f48c59e155",
+      "table_data_sha256": "75b0cf1acc874ff7aa5acb74f6d08c2fff081e4ef8cd4c49be8c05f48c59e155",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0019_tbl01_band-schedule-tanks-vessels.xlsx",
+      "xlsx_sha256": "0f71d922591c92b909a10cd919d8f682849cd446b191de9be4bf03b71903c1c7"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 19,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0019.png",
+  "page_image_sha256": "b43ede4642e61329ecc5f871b1d951dd2a8657f59d4a700e1c33ae9550c84b5c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0019_assets.json"
+}

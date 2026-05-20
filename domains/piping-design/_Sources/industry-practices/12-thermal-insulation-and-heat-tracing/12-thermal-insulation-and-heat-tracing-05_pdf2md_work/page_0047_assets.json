@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 47,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PNSC0035-27 Typical Tracing of Flanged D/P Level Transmitter",
+      "slug": "pnsc0035-27-typical-tracing-flanged-dp-level-transmitter",
+      "bbox_norm": [0.05, 0.12, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "Isometric engineering drawing showing steam tracing detail for a flanged differential pressure level transmitter. Labels include: TUBING UNION (TYP.), STEAM, TUBING, TO STEAM TRAP. Caption 'FLANGED D/P LEVEL TRANSMITTER' appears below the drawing."
+    }
+  ],
+  "issues": []
+}

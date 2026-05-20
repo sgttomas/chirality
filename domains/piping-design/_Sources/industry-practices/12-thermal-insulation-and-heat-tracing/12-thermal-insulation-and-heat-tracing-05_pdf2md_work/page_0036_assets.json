@@ -1,0 +1,81 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 36,
+  "total_pages": 36,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "TYPICAL CONNECTION ON PROCESS PIPING",
+      "slug": "typical-connection-on-process-piping",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.48,
+        0.38
+      ],
+      "confidence": "high",
+      "notes": "Diagram showing tubular tracer connection on process piping with wire or banding per standard and tubing union or elbow option"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "TYPICAL EXPANSION LOOP",
+      "slug": "typical-expansion-loop",
+      "bbox_norm": [
+        0.5,
+        0.12,
+        0.96,
+        0.38
+      ],
+      "confidence": "high",
+      "notes": "Diagram showing typical tracer expansion loop with wire or banding per standard and tubing union or elbow option"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 3,
+      "caption": "TYPICAL CONNECTION ON PIPE FLANGES",
+      "slug": "typical-connection-on-pipe-flanges",
+      "bbox_norm": [
+        0.04,
+        0.38,
+        0.96,
+        0.63
+      ],
+      "confidence": "high",
+      "notes": "Diagram showing tubular tracer connection on pipe flanges with banding, flange, wire or banding per standard, and tubing union or elbow option"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 4,
+      "caption": "TYPICAL CONNECTION ON PIPE ELBOWS",
+      "slug": "typical-connection-on-pipe-elbows",
+      "bbox_norm": [
+        0.04,
+        0.63,
+        0.5,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Diagram showing tubular tracer connection on pipe elbows; note that larger pipe ells may require additional wire or banding to secure"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 5,
+      "caption": "ELBOW OPTION FOR ALL CONNECTIONS",
+      "slug": "elbow-option-for-all-connections",
+      "bbox_norm": [
+        0.5,
+        0.63,
+        0.96,
+        0.88
+      ],
+      "confidence": "high",
+      "notes": "Diagram showing elbow option detail for all connection types, with flange, wire or banding per standard, and tubing elbow"
+    }
+  ],
+  "issues": []
+}

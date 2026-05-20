@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 24,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "PNSC0035-04 Typical Arrangement for 12 Station 3\"-Class 150 Steam Distribution Manifold",
+      "slug": "pnsc0035-04-12-station-steam-distribution-manifold",
+      "bbox_norm": [0.08, 0.13, 0.92, 0.88],
+      "confidence": "high",
+      "notes": "Engineering drawing showing a vertical steam distribution manifold with 12 outlet stations, dimensions in inches (millimeters in parentheses). Key dimensions: 70.98 [1802.8] overall height, 54.00 [1371.6] station span, 16.83 [428.6] width at top, 9.50 [241.3] typical station spacing, 3/4 NPT plugged outlets (TYP.), trap assembly at bottom, 14.32 [363.62] bottom width."
+    }
+  ],
+  "issues": []
+}

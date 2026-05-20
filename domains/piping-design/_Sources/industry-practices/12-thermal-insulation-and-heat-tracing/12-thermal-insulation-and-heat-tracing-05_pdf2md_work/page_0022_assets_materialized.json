@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0022.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0022_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        224,
+        2469,
+        2464
+      ],
+      "caption": "PNSC0035-02 Typical Arrangement Pressure Gauge or Switch, Liquids & Steam \u2014 Horizontal Line and Vertical Line",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0022_fig01_pnsc0035-02-typical-arrangement-pressure.png",
+      "png_sha256": "7ee3f8044316ee8c80aaed2d6dca66e200c57fbbdd82ff4fe30e6be9ca1d5a0b",
+      "slug": "pnsc0035-02-typical-arrangement-pressure",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0022.png",
+  "page_image_sha256": "20af145db41e6879871a88ac67698f8777bc75f6449d833ba47f543517e3f435",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0022_assets.json"
+}

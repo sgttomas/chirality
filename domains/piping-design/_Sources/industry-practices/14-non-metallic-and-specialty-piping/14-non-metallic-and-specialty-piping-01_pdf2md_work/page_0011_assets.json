@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 11,
+  "total_pages": 33,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "Suncor logo",
+      "slug": "suncor-logo",
+      "bbox_norm": [0.04, 0.88, 0.22, 0.97],
+      "confidence": "high",
+      "notes": "Suncor Energy logo in title block at bottom-left"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "A1.1 HDPE Pipe Shallow Bury Trench Detail—Type I",
+      "slug": "hdpe-pipe-shallow-bury-trench-detail-type-i",
+      "bbox_norm": [0.04, 0.08, 0.96, 0.87],
+      "confidence": "high",
+      "notes": "Cross-sectional engineering drawing of HDPE shallow bury trench with annotations for materials, dimensions, and layers. Title block at bottom."
+    }
+  ],
+  "issues": []
+}

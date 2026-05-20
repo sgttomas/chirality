@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 21,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "REDUCING (JACKET SIZE) WELD NECK FLANGE",
+      "slug": "reducing-jacket-size-weld-neck-flange",
+      "bbox_norm": [0.12, 0.17, 0.88, 0.68],
+      "confidence": "high",
+      "notes": "Engineering cross-section schematic of full jacket termination FJT-4 with CORE and JACKET callouts. No printed figure number; caption is the heading above the drawing."
+    }
+  ],
+  "issues": []
+}

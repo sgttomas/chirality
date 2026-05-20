@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 31,
+  "total_pages": 31,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "JT-1 Straight Tee — jacketed tee fabrication/installation detail showing core and jacket arrangement",
+      "slug": "jt-1-straight-tee-jacketed",
+      "bbox_norm": [0.10, 0.18, 0.90, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing of a jacketed straight tee with core and jacket labels. Two vent/drain connection symbols visible at top. Dashed centerline visible."
+    }
+  ],
+  "issues": []
+}

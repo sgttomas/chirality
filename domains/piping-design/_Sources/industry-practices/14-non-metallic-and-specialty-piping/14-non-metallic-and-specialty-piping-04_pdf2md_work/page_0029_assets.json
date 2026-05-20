@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 29,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "JE-6 Standard Construction — Jacketed 45-degree elbow detail showing core and jacket piping arrangement",
+      "slug": "je-6-standard-construction-jacketed-45-degree-elbow",
+      "bbox_norm": [0.10, 0.28, 0.85, 0.68],
+      "confidence": "high",
+      "notes": "Technical drawing of 45-degree jacketed elbow with CORE and JACKET labels; two open-circle connection symbols visible on pipe ends"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,42 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0014.md",
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0014_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        74,
+        3509,
+        2480
+      ],
+      "caption": "TABLE 3 Minimum quality control requirements and test frequency for FBE pipeline coatings",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.png",
+      "png_sha256": "cb449103a68b9727793a5d8576758cafd56a15d51d42e14b0dd045b2ff3b0341",
+      "slug": "table-3-qc-requirements-fbe-pipeline-coa",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.json",
+      "table_data_json_sha256": "c4e593dc32d484ccf37dc92af70aedb5137f55106a75659290e2c05fbd3ac802",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.xlsx",
+      "xlsx_sha256": "8d850590fb013b28662d865b953b36e9c6d24f8f9418562ecf4b24aadd8239e0"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_assets",
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-05",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0014.png",
+  "page_image_sha256": "50bd7f7cb3e4fc98842e11772a11657c61d41b2a873178208e1595c2a424b4e9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0014_assets.json"
+}

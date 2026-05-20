@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0059.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0059_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.01,
+        0.97,
+        0.28
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2587,
+        1099
+      ],
+      "caption": "Insulation Support Rings for Vertical Vessels \u2014 Clip and Angle dimensions by insulation thickness",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.png",
+      "png_sha256": "30ba243da97ce77405c2ecae05b6b3259dc6ca70f339f3e5c52c09e293742f14",
+      "slug": "insulation-support-rings-vertical-vessel",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.json",
+      "table_data_json_sha256": "c0f8aaa4795e91be32611aa449bb649a4be831fff4c981b6ba70f0f383eb974a",
+      "table_data_sha256": "c0f8aaa4795e91be32611aa449bb649a4be831fff4c981b6ba70f0f383eb974a",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0059_tbl01_insulation-support-rings-vertical-vessel.xlsx",
+      "xlsx_sha256": "09b7caaec5cb8113c86842f953b832b78a6e3757f5a2ada7fd7b0384358bdb5a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 59,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0059.png",
+  "page_image_sha256": "c4b8afeb989515f346c49a013cb8bb3daeaf9b45d6a9277db7c67ea25e756df8",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0059_assets.json"
+}

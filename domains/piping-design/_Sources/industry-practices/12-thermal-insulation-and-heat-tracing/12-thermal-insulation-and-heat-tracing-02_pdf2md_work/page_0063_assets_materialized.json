@@ -1,0 +1,87 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0063.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.52,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        1477,
+        1568
+      ],
+      "caption": "FIGURE 1 UNINSULATED NOZZLE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig01_figure-1-uninsulated-nozzle.png",
+      "png_sha256": "ccc6278243514bce300ea1d6be302e56e925c3c5107cdc23c4654e5f71fa93d4",
+      "slug": "figure-1-uninsulated-nozzle",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig02",
+      "bbox_norm": [
+        0.48,
+        0.03,
+        0.97,
+        0.42
+      ],
+      "bbox_px": [
+        1114,
+        0,
+        2591,
+        1568
+      ],
+      "caption": "FIGURE 2 TYPICAL SHELL \u2013 HEAD JOINT",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig02_figure-2-typical-shell-head-joint.png",
+      "png_sha256": "2c055999b21d0f443faba72ed39029ad72d6b31fc8284d19f0f0ee337c335f6e",
+      "slug": "figure-2-typical-shell-head-joint",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0063_fig03",
+      "bbox_norm": [
+        0.04,
+        0.42,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1234,
+        2591,
+        2569
+      ],
+      "caption": "FIGURE 3 INSULATED MANWAY COVERS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-02_p0063_fig03_figure-3-insulated-manway-covers.png",
+      "png_sha256": "c00195d9c3da1a323548f0869fa48d18448d136a200158a1a73b714276d69b82",
+      "slug": "figure-3-insulated-manway-covers",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 63,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0063.png",
+  "page_image_sha256": "086545774236e1e4950c094c64e58dccca204e61bd430d30ade8ff0c4701d719",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0063_assets.json"
+}

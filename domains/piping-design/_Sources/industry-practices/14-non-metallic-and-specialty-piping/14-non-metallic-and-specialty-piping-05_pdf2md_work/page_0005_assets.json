@@ -1,0 +1,187 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 5,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 400-1 Application Recommendations for Nonmetallic Pipe",
+      "slug": "fig-400-1-application-recommendations-nonmetallic-pipe",
+      "bbox_norm": [0.07, 0.28, 0.93, 0.73],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "(1) HTPE is a specially formulated Plexco proprietary polyethylene compound for elevated temperature service. It is an intermediate choice between HDPE and PP."
+        ],
+        "rows": [
+          { "cells": [
+            { "value": "", "is_header": true },
+            { "value": "HDPE", "is_header": true },
+            { "value": "HTPE(1)", "is_header": true },
+            { "value": "PVC", "is_header": true },
+            { "value": "CPVC", "is_header": true },
+            { "value": "FRP", "is_header": true },
+            { "value": "ABS", "is_header": true },
+            { "value": "PP", "is_header": true },
+            { "value": "PVDF", "is_header": true },
+            { "value": "PB", "is_header": true },
+            { "value": "CONC", "is_header": true }
+          ]},
+          { "cells": [
+            { "value": "Cost", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Availability", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 1, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "High Pressures", "type": "text" },
+            { "value": 3, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "High Temperatures", "type": "text" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Low Temperatures", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Mechanical Damage Resistance", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Joint Reliability", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Repairability", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 3, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Hydrocarbons", "type": "text" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Strong Chemicals", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" }
+          ]},
+          { "cells": [
+            { "value": "Sunlight", "type": "text" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 2, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 3, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" },
+            { "value": 1, "type": "number" }
+          ]}
+        ]
+      },
+      "confidence": "high",
+      "notes": "11-column table with 10 rows of application criteria ratings. Key: 1=good, 2=average, 3=not good. Footnote on HTPE."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 38,
+  "total_pages": 38,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Reducing Tee and Reducer — jacketed piping fabrication detail showing core and jacket arrangement for a reducing tee, with callouts for CORE and JACKET",
+      "slug": "reducing-tee-and-reducer-core-jacket",
+      "bbox_norm": [0.10, 0.13, 0.90, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing showing jacketed reducing tee cross-section with CORE and JACKET callout lines. Title: REDUCING TEE AND REDUCER. From PIP PNFJ8590 TR-2."
+    }
+  ],
+  "issues": []
+}

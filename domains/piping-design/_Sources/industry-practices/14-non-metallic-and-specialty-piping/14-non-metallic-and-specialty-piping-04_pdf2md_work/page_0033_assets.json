@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 33,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "PIP logo",
+      "slug": "pip-logo",
+      "bbox_norm": [0.04, 0.01, 0.18, 0.08],
+      "confidence": "high",
+      "notes": "PIP organization logo in top-left header block"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "CROSS — Jacketed cross fabrication/installation detail showing core pipe and jacket arrangement, with callouts for CORE and JACKET (Drawing CR-1 from PIP PNFJ8540)",
+      "slug": "cross-jacketed-cross-detail-cr-1",
+      "bbox_norm": [0.10, 0.13, 0.90, 0.72],
+      "confidence": "high",
+      "notes": "Engineering drawing of jacketed cross fitting; callouts CORE and JACKET visible; CROSS label above drawing"
+    }
+  ],
+  "issues": []
+}

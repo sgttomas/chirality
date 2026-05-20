@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0013_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2555,
+        2544
+      ],
+      "caption": "Cold Insulation Thickness Chart \"D\"",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.png",
+      "png_sha256": "164624f3161353f0b99f3319c1333433791f3e8b3825e16c01db478b4fb2bddf",
+      "slug": "cold-insulation-thickness-chart-d",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.json",
+      "table_data_json_sha256": "5d59f66199459f29a549192ce65c3923de96e75a0e9a4563238360e3ef38c267",
+      "table_data_sha256": "5d59f66199459f29a549192ce65c3923de96e75a0e9a4563238360e3ef38c267",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0013_tbl01_cold-insulation-thickness-chart-d.xlsx",
+      "xlsx_sha256": "454cf26b53a12e50bb6b5830d7a0152ac7dfcfc58b0c4b2cedfe546e739cc746"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0013.png",
+  "page_image_sha256": "3351cfb691be9e0824495f2961412397df3a4142b5e32d1ffd7a0d5b79ec5c51",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0013_assets.json"
+}

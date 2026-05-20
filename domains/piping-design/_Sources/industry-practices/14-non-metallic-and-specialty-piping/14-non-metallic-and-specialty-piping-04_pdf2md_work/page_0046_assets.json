@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 46,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "PIP logo",
+      "slug": "pip-logo",
+      "bbox_norm": [0.04, 0.02, 0.22, 0.10],
+      "confidence": "high",
+      "notes": "PIP (Process Industry Practices) logo in top-left header block"
+    },
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "CT-1 Core Tap detail showing pressure/temperature boss, core, and jacket cross-section",
+      "slug": "ct-1-core-tap-detail",
+      "bbox_norm": [0.10, 0.18, 0.85, 0.70],
+      "confidence": "high",
+      "notes": "Engineering drawing detail of core tap connection with labeled components: PRESSURE/TEMPERATURE BOSS, CORE, JACKET"
+    }
+  ],
+  "issues": []
+}

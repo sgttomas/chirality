@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0046.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-05_p0046_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        224,
+        2469,
+        2976
+      ],
+      "caption": "PNSC0035-26 Jacketed Transmitter \u2014 Typical Tracing of Pressure Transmitter in Liquid or Steam Service",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/12-thermal-insulation-and-heat-tracing-05_p0046_fig01_pnsc0035-26-jacketed-transmitter.png",
+      "png_sha256": "b905e0494a602f9bb82232b4fbed2053cf7067a9aa6edd2cd9581afd95f26d18",
+      "slug": "pnsc0035-26-jacketed-transmitter",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-05",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 46,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0046.png",
+  "page_image_sha256": "f26cdfba30be096c10c6492ef19659100ab33748b69aacdf6e8bd73440aaae31",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-05_pdf2md_work/page_0046_assets.json"
+}

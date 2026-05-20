@@ -1,2 +1,0 @@
-- Focused post-change coverage baseline for SCA-001.
-- WARNINGS expected until PREPARATION scaffolds newly added frontend baseline deliverables.

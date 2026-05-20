@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0045.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-02_p0045_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.38,
+        0.94,
+        0.82
+      ],
+      "bbox_px": [
+        26,
+        1090,
+        2529,
+        2874
+      ],
+      "caption": "TABLE B-5 Typical Flammability Ratings of Acoustical Blanket Roll Good Products",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.png",
+      "png_sha256": "6ce93ad4387f8287c48d3f6af12960d1a4e742c40bb74abffb5721f2f1e5ac04",
+      "slug": "table-b-5-flammability-ratings-acoustica",
+      "status": "materialized",
+      "table_data_json_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.json",
+      "table_data_json_sha256": "07cb9ddc94ea45955d4270b2fd1751d913d80993ba5a1525f9b0d2696fb84ef8",
+      "table_data_sha256": "07cb9ddc94ea45955d4270b2fd1751d913d80993ba5a1525f9b0d2696fb84ef8",
+      "xlsx_path": "tables/12-thermal-insulation-and-heat-tracing-02_p0045_tbl01_table-b-5-flammability-ratings-acoustica.xlsx",
+      "xlsx_sha256": "7c18766c188b37bca6121ef41df29ed868e9b783d070d788fac64a44557a8a6e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-02",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 45,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0045.png",
+  "page_image_sha256": "da3d748a78ab2a5ff0c004b53d53f50479376cea38b25ed0685ffaa6c5c5ff96",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-02_pdf2md_work/page_0045_assets.json"
+}

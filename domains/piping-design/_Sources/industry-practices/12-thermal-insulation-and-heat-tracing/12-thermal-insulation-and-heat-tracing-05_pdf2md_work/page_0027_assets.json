@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-05",
+  "page": 27,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "TRAP WITH SEPARATE STRAINER",
+      "slug": "trap-with-separate-strainer",
+      "bbox_norm": [0.08, 0.38, 0.92, 0.65],
+      "confidence": "high",
+      "notes": "Schematic diagram of trap with separate strainer assembly, showing FLOW arrow and BLOW DOWN label. Caption appears below the diagram."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-02",
+  "page": 43,
+  "total_pages": 54,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "TABLE B-1 Noise Control Material Manufacturers — E-Glass Insulation",
+      "slug": "table-b-1-noise-control-material-manufacturers-e-glass",
+      "bbox_norm": [0.05, 0.52, 0.97, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Material", "is_header": true},
+              {"value": "Trade Name", "is_header": true},
+              {"value": "Manufacturer", "is_header": true},
+              {"value": "Sales Representative", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "E-Glass Insulation", "type": "text"},
+              {"value": "Techmat Hi-Density (BGF Mat II, Style 121GA); www.bgfindustries.com", "type": "text"},
+              {"value": "BGF Industries, Inc.\n3802 Robert Porcher Way\nGreensboro NC 27410", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "Insulflate-Tempro Glass Fiber Mat (Style #1031); www.ppgtechnicalglass.com", "type": "text"},
+              {"value": "PPG Glass Fabrics\nP.O. Box 269\nSlater SC 29683", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "", "type": "text"},
+              {"value": "PPG Texo HTM Mat; www.ppgtechnicalglass.com / www.ppgfiberglass.com", "type": "text"},
+              {"value": "PPG Industries Inc.\nFiber Glass Products\n21430 Silver Spur Trail\nFair Oaks Ranch, Texas 78015\n940 Washburn Switch Rd.\nShelby NC 28150", "type": "text"},
+              {"value": "Tempro Tec Inc.\n1210C – 3 St. SE\nCalgary AB  T2H 2L9", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table B-1 with E-Glass Insulation noise control material manufacturers"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0021.anchored.md",
+  "assets": [
+    {
+      "asset_id": "12-thermal-insulation-and-heat-tracing-04_p0021_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        726,
+        2550,
+        3069
+      ],
+      "caption": "Table 6 Heat Trace \u2013 Insulation Thickness (Inches) by Nominal Pipe Size and Hold Temperature",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/12-thermal-insulation-and-heat-tracing-04_p0021_tbl01_table-6-heat-trace-insulation-thickness.png",
+      "png_sha256": "4d8069bbfbcb1d654adeab4b6d983161157126a3df78bf2931ad72ab6234c113",
+      "slug": "table-6-heat-trace-insulation-thickness",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/_assets/12-thermal-insulation-and-heat-tracing-04",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-04",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0021.png",
+  "page_image_sha256": "4f24e87bf49a0de4ef888aac07945869cc6dcad088e76231aac2d47c60e3e414",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/12-thermal-insulation-and-heat-tracing/12-thermal-insulation-and-heat-tracing-04_pdf2md_work/page_0021_assets.json"
+}

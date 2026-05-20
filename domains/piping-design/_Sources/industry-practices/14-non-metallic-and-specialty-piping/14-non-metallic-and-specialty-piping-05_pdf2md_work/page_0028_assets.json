@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 28,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 400-12 External Pressure Rating (Collapse Pressure) for HDPE Pipe — Buckling Strength (pk, psi) vs. Time (Hours) for SDR 11, SDR 17, SDR 26, SDR 32.5",
+      "slug": "fig-400-12-external-pressure-rating-hdpe-pipe",
+      "bbox_norm": [0.06, 0.52, 0.94, 0.92],
+      "confidence": "high",
+      "notes": "Log-log plot of Buckling Strength (pk, psi) on y-axis vs Time in Hours on x-axis, showing four SDR curves: SDR 11, SDR 17, SDR 26, SDR 32.5. Note at bottom states experimentally determined curves extrapolated to 50 years."
+    }
+  ],
+  "issues": []
+}

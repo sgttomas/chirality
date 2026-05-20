@@ -1,153 +1,300 @@
-# PLAN — Development Roadmap
+# PLAN - Development Roadmap
 
-This document captures the development roadmap for the Chirality project execution system. It summarizes what has been codified, identifies future hardening candidates, and provides sequencing rationale.
+Status: Active roadmap derived from `docs/PRD.md`
+Date: 2026-05-20
+Applies to: Chirality App vNext development and release planning
 
-## Control-Plane Boundary
-
-- `docs/PLAN.md` is strategic: it explains priorities, rationale, and roadmap direction.
-- Operational sequencing/blocker policy is governed by `execution/_Coordination/_COORDINATION.md`.
-- Current run-state pointers and immediate queue belong in `execution/_Coordination/NEXT_INSTANCE_STATE.md`.
-
-## Local-Only Source Policy
-
-- Development guidance and execution evidence must come from files in this repository.
-- Do not rely on non-local repositories or external clones as authoritative sources.
-- `frontend/` is in-scope and present in this workspace. If any required runtime path is absent, treat deliverable documents under `execution/PKG-*/1_Working/DEL-*/` as the implementation contract and record a local blocker in coordination artifacts.
+This document summarizes the sequencing plan. The PRD defines product scope. The CONTRACT defines invariants. The SPEC defines mechanics. This PLAN defines the order of work and why that order matters.
 
 ---
 
-## 1. Completed: System Hardening
+## 1. Control-Plane Boundary
 
-The working system has been codified into formal governance documents and aligned to the active agent framework.
-
-### Governance Documents Written
-
-| Document | Purpose | Status |
-|----------|---------|--------|
-| `docs/SPEC.md` | Physical structures, file formats, Dependencies.csv v3.1 schema, folder layout, validation checklist | Complete |
-| `docs/TYPES.md` | Domain vocabulary, hierarchy, stable IDs, dependency vocabulary, agent roles, lifecycle states | Complete |
-| `docs/DIRECTIVE.md` | Founding intent, design philosophy, professional responsibility model, scope, constraints | Complete |
-| `docs/CONTRACT.md` | Invariant catalog (20 K-* invariants), change policy, enforcement map | Complete |
-| `docs/PLAN.md` | This document | Complete |
-
-### Governance Alignment
-
-Current governance documents are internally aligned on the core model:
-- Hierarchy is flat `package->deliverable` across `docs/TYPES.md`, `docs/SPEC.md`, and `docs/CONTRACT.md`
-- Authoritative execution state is file-based (`_STATUS.md`, `_DEPENDENCIES.md`, `Dependencies.csv`)
-- Invariant catalog is centralized in `docs/CONTRACT.md`
-- Agent role boundaries and write scopes are defined by the active `AGENT_*.md` instruction suite
-
-### Agent Instruction Hardening
-
-| Change | Agents Affected |
-|--------|-----------------|
-| QA Contract sections added | PREPARATION, 4_DOCUMENTS, CHIRALITY_FRAMEWORK, CHIRALITY_LENS |
-| Output Persistence notes added | ORCHESTRATOR, RECONCILIATION |
-
-Agent instruction consistency: 92% → estimated 95%+ after hardening.
+- `docs/PLAN.md` is strategic and sequencing-oriented.
+- `docs/PRD.md` is the product source of truth.
+- `docs/CONTRACT.md` is the invariant catalog.
+- `docs/SPEC.md` is the physical/API/runtime specification.
+- Execution-package coordination, if present, belongs in execution coordination artifacts, not in this document.
 
 ---
 
-## 2. Existing Tooling
+## 2. Current Baseline
 
-### Validation + Example Assets
+The current baseline includes:
 
-- `examples/` provides concrete execution-root samples with package/deliverable structures and semantic artifacts (`_SEMANTIC.md`) for regression and conformance testing.
-- `docs/harness/` documents SDK runtime validation and CI integration for harness behavior.
-- `frontend/scripts/validate-harness-*.mjs` is now an explicit build target under the frontend baseline scope.
+- Electron/Next desktop shell.
+- PORTAL, WORKBENCH, PIPELINE, file tree, toolkit, and chat surfaces.
+- Working-root validation and selection.
+- Harness session APIs and turn streaming.
+- Anthropic provider path and stub provider path.
+- Attachment resolver.
+- API key UI and local secure storage.
+- Execution-root scaffolding.
+- Deliverable status and dependency APIs.
+- Subagent governance evaluator.
+- Harness validation scripts.
+- macOS Apple Silicon unsigned DMG runbook.
 
-### DEL-03-05 Policy Rulings (2026-02-23)
+The baseline is useful but not yet a governed agent runtime.
 
-- OI-001 key provisioning policy is resolved for current scope as of SCA-003 (2026-02-24): `ENV+UI` (UI key entry/local secure storage precedence; `ANTHROPIC_API_KEY` env fallback).
-- DEL-03-05 provider completion path is explicitly SDK-first (`ADOPT_SDK_NOW`); direct HTTP provider paths are interim-only and not completion evidence.
-- SDK-path implementation pass is now landed in `frontend/` with `@anthropic-ai/sdk` pinned to `0.78.0`; provider runtime preserves typed error taxonomy and streaming event contracts.
+Primary gap:
 
-### Current Delivery Snapshot (2026-02-24)
-
-- Core scope (`PKG-01..07`) is fully issued: 29/29 deliverables in `ISSUED`.
-- Optional hardening (`PKG-08`) is scope-resolved by SCA-002:
-  - `IN` and issued: `DEL-08-01`, `DEL-08-02`
-  - `OUT` and retired: `DEL-08-03`, `DEL-08-04`, `DEL-08-05`, `DEL-08-06`, `DEL-08-07`
-- Dependency closure is acyclic on the full graph (`SCC=0`) with blocker-subset sequencing unchanged and acyclic.
-
-### Desktop Frontend (`frontend/`) — Baseline Completed
-
-Frontend baseline scope added by SCA-001 has been implemented and issued:
-
-1. `DEL-01-03` — workspace bootstrap + packaging baseline (`frontend/`, scripts, bundle resources)
-2. `DEL-03-07` — harness API baseline (`/api/harness/session/*`, `/api/harness/turn`)
-3. `DEL-02-05` — workflow shell baseline (PORTAL/PIPELINE, file tree, chat wiring)
-4. `DEL-07-03` — validation/runbook baseline (deterministic validation artifacts)
-
-Remaining frontend work is now maintenance/hardening under issued deliverables, not baseline creation.
-
-### Matrix Navigation + Pipeline Taxonomy
-
-The desktop UI uses a 3x4 matrix to route operator intent into WORKBENCH or PIPELINE.
-
-- Columns (shared): `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`
-- Rows:
-  - `NORMATIVE` -> opens `WORKBENCH`
-  - `OPERATIVE` -> opens `PIPELINE`
-  - `EVALUATIVE` -> opens `WORKBENCH`
-
-Matrix cells:
-
-| Row | Guiding | Applying | Judging | Reviewing |
-|-----|---------|----------|---------|-----------|
-| `NORMATIVE` | `HELP` | `ORCHESTRATE` | `WORKING_ITEMS` | `AGGREGATE` |
-| `OPERATIVE` | `DECOMP*` | `PREP*` | `TASK*` | `AUDIT*` |
-| `EVALUATIVE` | `AGENTS` | `DEPENDENCIES` | `CHANGE` | `RECONCILING` |
-
-PIPELINE category model:
-
-- `DECOMP*`
-- `PREP*`
-- `TASK*`
-- `AUDIT*`
-
-Option policy:
-
-- Requested but unsupported variants remain visible as disabled entries.
-- Disabled entries are intentionally non-selectable and rendered as "coming soon".
-
-`TASK*` selector model:
-
-- Uses split selectors instead of one mixed list:
-  - `Task Agent` (static options)
-  - `Scope` selectors (dynamic options)
-- Dynamic scope sources:
-  - Deliverables scanned from the selected working root
-  - Knowledge types scanned from canonical deliverable file types
-- Knowledge-type scope is shown only when a knowledge decomposition marker is found in `_Decomposition`.
+- Current turn execution is still mostly a provider streaming adapter, with no complete SDK-hosted governed runtime, no canonical per-turn Chirality event log, no real prompt composer, no permission overlay, and no conformance-tested engine boundary.
 
 ---
 
-## 3. Hardening Scope Status (Post SCA-002)
+## 3. Architectural Direction
 
-SCA-002 (2026-02-24) resolved all PKG-08 TBD scope items.
+The runtime direction is:
 
-| Candidate | Deliverable | Status | Notes |
-|---|---|---|---|
-| `_REFERENCES.md` content hashes + verification | `DEL-08-01` | IN / ISSUED | Implemented under `execution/_Scripts/references_hash_tool.py` with test coverage and control-plane integration. |
-| `Dependencies.csv` v3.1 schema linter | `DEL-08-02` | IN / ISSUED | Implemented under `execution/_Scripts/validate_dependencies.py` with test coverage. |
-| Folder structure validator | `DEL-08-03` | OUT / RETIRED | Removed from active scope by SCA-002. |
-| On-demand dependency graph generator | `DEL-08-04` | OUT / RETIRED | Removed from active scope by SCA-002. |
-| Deliverable-level lock mechanism | `DEL-08-05` | OUT / RETIRED | Removed from active scope by SCA-002. |
-| Unified run record persistence | `DEL-08-06` | OUT / RETIRED | Removed from active scope by SCA-002. |
-| Staleness propagation tooling | `DEL-08-07` | OUT / RETIRED | Removed from active scope by SCA-002. |
+> SDK-privileged, contract-owned, and Chirality-governed.
 
----
+The Claude Agent SDK is the preferred engine for generic runtime mechanics. Chirality owns the product contract:
 
-## 4. Sequencing Rationale
+- `AgentEnginePort` / `RuntimeEngineContract`;
+- browser `UIEvent` mapping;
+- canonical `HarnessEvent` schema;
+- `.chirality/sessions/<id>/events.jsonl` audit mirror;
+- permission semantics;
+- hook policy;
+- path containment;
+- human gates;
+- product identity;
+- fallback criteria.
 
-Current sequencing priority is maintenance and coherence, not new PKG-08 expansion:
-
-1. Keep full-graph closure acyclic while preserving blocker-subset execution semantics.
-2. Keep DEL-08-01/08-02 tooling green in CI/local workflows.
-3. Treat DEL-08-03..08-07 as out-of-scope unless a future scope change explicitly reactivates them.
+The first implementation work must prevent SDK-shaped leakage into product-owned state.
 
 ---
 
-EOF
+## 4. Runtime Roadmap
+
+### R0 - Runtime Scope Confirmation, SDK Probe, And Reliance Boundary Register
+
+Purpose:
+
+- confirm what Chirality owns versus what the SDK owns;
+- empirically validate SDK behavior before deep integration;
+- define reliance boundaries and enforcement surfaces.
+
+Deliverables:
+
+- `docs/harness/runtime_scope.md`
+- `docs/harness/runtime_engine_contract.md`
+- `docs/harness/reliance_boundary_register.md`
+- updated `docs/harness/chirality_harness_graphs_and_sequence.md`
+- SDK probe notes for package version, message sequence, settings, permissions, hooks, MCP, agents, resume, session store, config dir, interrupt, packaging, API key handling, branding, and fallback triggers.
+
+Acceptance:
+
+- SDK confirmed viable for R1 or governed fallback decision made.
+- Engine conformance tests specified.
+- Every P0 reliance boundary has a non-prompt-only enforcement plan.
+- No local tools exposed outside controlled validation.
+
+### R1 - SDK Adoption, Engine Contract, Thin TurnEngine, Prompt Composer, And Audit JSONL
+
+Purpose:
+
+- replace the current direct provider streaming adapter with SDK-hosted runtime behavior while preserving UI/API behavior.
+
+Implementation targets:
+
+- add and pin `@anthropic-ai/claude-agent-sdk`;
+- define `agent-engine-port.ts`;
+- add conformance tests;
+- add reliance-boundary register support;
+- add `turn-engine.ts`;
+- add `sdk-options-builder.ts`;
+- add `sdk-message-mapper.ts`;
+- add `session-events.ts`;
+- add `event-schema.ts`;
+- add `run-logger.ts`;
+- add `persona-composer.ts`;
+- add `sdk-session-link.ts`;
+- wire `CHIRALITY_HARNESS_PROVIDER=anthropic` to the SDK-backed path when ready.
+
+Acceptance:
+
+- existing tests pass;
+- Section 8 validation passes;
+- `turn.accepted` persists before SDK `query()`;
+- engine conformance suite passes;
+- route shape and SSE names unchanged;
+- `settingSources: []` isolation test passes;
+- SDK session linkage persists;
+- no new user-visible local tool capability is enabled.
+
+### R2 - Permission-Gated Read Surface And First Chirality MCP Tools
+
+Purpose:
+
+- make `opts.tools` meaningful without enabling writes or shell.
+
+Implementation targets:
+
+- `ChiralityPermissionOverlay`;
+- mapping for `readOnly`, `dontAsk`, and `ask`;
+- SDK read tools where available;
+- in-process Chirality MCP read tools for status, dependencies, scope scan, and scaffold preview/dry-run.
+
+Acceptance:
+
+- unknown tools produce structured validation errors;
+- denied tools never execute;
+- read tools emit UI and JSONL events;
+- `dontAsk` denies non-approved actions.
+
+### R3 - Write Surface And Chirality Hooks
+
+Purpose:
+
+- enable governed writes only after hooks and deny-first policy are active.
+
+Implementation targets:
+
+- project-root containment hook;
+- instruction-root write block;
+- symlink write rejection;
+- `_STATUS.md` transition MCP tool;
+- `Dependencies.csv` writer;
+- provenance/diff summary;
+- `workspaceWrite` and `ask` mappings.
+
+Acceptance:
+
+- outside-root writes denied;
+- instruction-root writes denied;
+- symlink writes rejected;
+- human-gate transitions require approval SHA;
+- every write attempt records permission events.
+
+### R4 - Bash, Tool Result Budgeting, And Context Mirror
+
+Purpose:
+
+- unlock bash only as a governed capability and add output/compaction discipline.
+
+Implementation targets:
+
+- bash default-denied;
+- bash timeout and command metadata;
+- stdout/stderr capture where available;
+- result size budget;
+- artifact storage;
+- compaction event mirror.
+
+Acceptance:
+
+- denied bash does not spawn;
+- large output does not flood chat;
+- full audit trail is reconstructible;
+- compaction boundaries are visible in replay.
+
+### R5 - Governed Subagent Runtime
+
+Purpose:
+
+- connect Type 2 task agents to SDK `agents` under Chirality governance.
+
+Implementation targets:
+
+- generate SDK agent definitions from `agents/AGENT_*.md`;
+- restrict tools/model/max turns;
+- fail-closed `Agent` tool gate through `evaluateSubagentGovernance`;
+- parent-child session event linkage.
+
+Acceptance:
+
+- ungated delegation denied;
+- non-allowlisted or non-Type-2 delegation denied;
+- parent session records child lifecycle and output paths.
+
+### R6 - Extensibility And MCP Boundaries
+
+Purpose:
+
+- define safe local extension rules without opening a marketplace or remote execution surface.
+
+Implementation targets:
+
+- tool catalog;
+- `mcp__chirality__*` naming convention;
+- collision prevention;
+- documentation for new in-process Chirality MCP tools;
+- deferred tool search only if justified.
+
+Acceptance:
+
+- new tools pass through the same permission overlay and hooks;
+- remote MCP and plugins remain out of scope unless amended.
+
+### R7 - Domain Engine Profiles And Operation Proposals
+
+Purpose:
+
+- add generic domain-engine awareness only after core runtime stability.
+
+Acceptance:
+
+- `DomainEngineProfile` validation deterministic;
+- OpenPipeStress representable as fixture profile;
+- protected paths not agent-writable;
+- `OperationProposal` records precede application;
+- human acceptance required for domain state changes.
+
+---
+
+## 5. Release And Validation Roadmap
+
+Required checks from `frontend/`:
+
+```bash
+npm run test
+npm run typecheck
+npm run harness:validate:premerge
+npm run instruction-root:integrity
+```
+
+Packaging check:
+
+```bash
+npm run desktop:dist
+```
+
+Post-R1 SDK checks:
+
+- SDK version pinned;
+- SDK TypeScript options compile;
+- packaged app locates SDK subprocess/binary;
+- SDK calls do not broaden network policy;
+- SDK stderr/debug output redacted;
+- `settingSources` default is `[]`;
+- `resume` works from persisted SDK linkage.
+
+---
+
+## 6. Optional And Retired Scope
+
+PKG-08 status remains:
+
+- issued/in-scope: reference hashes and dependency linter where already accepted;
+- retired/out-of-scope: execution-root validator, dependency graph generator, deliverable lock, unified pipeline run records, and staleness propagation tooling.
+
+Harness runtime event logging is separate runtime infrastructure and does not reactivate retired pipeline run records.
+
+---
+
+## 7. Sequencing Rationale
+
+Runtime order matters:
+
+1. Define the engine contract before relying on the SDK.
+2. Persist accepted turns before executing the model.
+3. Establish canonical Chirality events before expanding tools.
+4. Add read tools before writes.
+5. Add writes before bash.
+6. Add bash only after timeout, result storage, hooks, and audit logging.
+7. Add subagents only after parent event and permission records are stable.
+8. Add domain profiles only after protected-path policy and operation proposals are ready.
+
+This order preserves the PRD's core bargain: use the SDK where it is strong, but keep Chirality's reliance boundaries product-owned and testable.

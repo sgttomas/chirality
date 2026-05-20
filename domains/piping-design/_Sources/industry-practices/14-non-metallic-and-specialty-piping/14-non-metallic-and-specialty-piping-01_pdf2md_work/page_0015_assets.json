@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "page": 15,
+  "total_pages": 33,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "A1.5 HDPE PIPE SHALLOW BURY VALVE DETAIL",
+      "slug": "hdpe-pipe-shallow-bury-valve-detail",
+      "bbox_norm": [0.05, 0.04, 0.97, 0.82],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing showing cross-section of HDPE pipe shallow bury valve installation with labeled components. Title block at bottom identifies drawing as STD DWG A1.5, dated SEP. 2005, SUNCOR STD 0212."
+    }
+  ],
+  "issues": []
+}

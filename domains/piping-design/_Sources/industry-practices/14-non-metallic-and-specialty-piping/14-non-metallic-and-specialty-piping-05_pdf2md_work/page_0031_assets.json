@@ -1,0 +1,71 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 31,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Physical and Mechanical Properties of HDPE",
+      "slug": "physical-mechanical-properties-hdpe",
+      "bbox_norm": [0.05, 0.72, 0.95, 0.97],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "Property", "is_header": true},
+              {"value": "HDPE", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Coefficient of linear expansion in./in./°F ×10⁻⁵", "type": "text"},
+              {"value": "8 or 9", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Impact strength, Izod notch, ft-lb/in", "type": "text"},
+              {"value": "10+", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Tensile strength, ksi", "type": "text"},
+              {"value": "2.8 to 3.2", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Tensile modulus, psi ×10⁵", "type": "text"},
+              {"value": "0.13", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Specific gravity", "type": "text"},
+              {"value": "0.94 to 0.95", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "Thermal conductivity, (Btu)(in.)/(hr)(ft²)(°F)", "type": "text"},
+              {"value": "2.9 to 3.2", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table of HDPE physical and mechanical properties at bottom of page"
+    }
+  ],
+  "issues": []
+}

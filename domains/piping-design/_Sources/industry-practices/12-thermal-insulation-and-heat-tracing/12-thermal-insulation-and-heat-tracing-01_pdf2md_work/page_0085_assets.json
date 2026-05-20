@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "12-thermal-insulation-and-heat-tracing-01",
+  "page": 85,
+  "total_pages": 87,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "img",
+      "ordinal": 1,
+      "caption": "Example installation at Carson Refinery of perforated metal joining two sheets and detail around small connections. Cherry Point prefers use of expanded metal.",
+      "slug": "carson-refinery-perforated-metal-joining",
+      "bbox_norm": [0.05, 0.06, 0.55, 0.42],
+      "confidence": "high",
+      "notes": "Photograph of insulated pipe with perforated metal cladding at Carson Refinery"
+    },
+    {
+      "kind": "img",
+      "ordinal": 2,
+      "caption": "Example installation at Carson Refinery showing perforated metal over elbow and end cap detail. Cherry Point prefers use of expanded metal.",
+      "slug": "carson-refinery-perforated-metal-elbow-end-cap",
+      "bbox_norm": [0.05, 0.48, 0.55, 0.82],
+      "confidence": "high",
+      "notes": "Photograph of insulated elbow with perforated metal cladding at Carson Refinery"
+    }
+  ],
+  "issues": []
+}

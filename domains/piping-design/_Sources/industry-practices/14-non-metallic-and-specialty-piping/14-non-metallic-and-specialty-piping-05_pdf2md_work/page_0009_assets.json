@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-05",
+  "page": 9,
+  "total_pages": 9,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 400-5 Nonmetallic Pipe Joints Courtesy of Central Plastics Company, Shawnee, OK; Fibercast(2 of 7)",
+      "slug": "fig-400-5-nonmetallic-pipe-joints-fibercast-2-of-7",
+      "bbox_norm": [0.04, 0.04, 0.96, 0.96],
+      "confidence": "high",
+      "notes": "Full page figure containing solvent cementing diagrams (top right) and threading/strap wrench diagram (bottom right) with descriptive text panels on the left side of each section."
+    }
+  ],
+  "issues": []
+}

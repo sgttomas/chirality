@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "page": 17,
+  "total_pages": 69,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "SJFA-6 Socket Weld Flange — Swaged Jacket Flange Attachment detail showing core, socket weld flange cross-section with alternate design",
+      "slug": "sjfa-6-socket-weld-flange-swaged-jacket",
+      "bbox_norm": [0.28, 0.22, 0.72, 0.62],
+      "confidence": "high",
+      "notes": "Engineering cross-section drawing of socket weld flange attachment. Label 'CORE' visible with leader line. Title 'SOCKET WELD FLANGE' above. PNF J8170 SJFA-6 drawing."
+    }
+  ],
+  "issues": []
+}
