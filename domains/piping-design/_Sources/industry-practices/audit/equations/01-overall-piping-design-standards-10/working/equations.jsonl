@@ -1,0 +1,20 @@
+{"page": 5, "index": 1, "latex": "C = \\frac{FD}{r} + 7.85 \\times 10^{-6} \\frac{KSQ^3 f}{D^5}", "hash": "b0463e17d3f1", "png": "page_0005.png"}
+{"page": 5, "index": 2, "latex": "F = (1 + X) L", "hash": "5f4cb022b89d", "png": "page_0005.png"}
+{"page": 5, "index": 3, "latex": "K = \\frac{Yk}{r} + 8760 \\text{ ct}", "hash": "a2a78af60ea1", "png": "page_0005.png"}
+{"page": 6, "index": 1, "latex": "k = 255 \\frac{\\text{Current EDMI}}{720} \\text{ for centrifugal pumps}", "hash": "bfb445374b37", "png": "page_0006.png"}
+{"page": 6, "index": 2, "latex": "k = 495 \\frac{\\text{Current EDMI}}{720} \\text{ for compressors}", "hash": "0290d4e01d16", "png": "page_0006.png"}
+{"page": 16, "index": 1, "latex": "\\frac{P_{c1}}{P_1} = \\left(\\frac{2}{k \\cdot (k+1)}\\right)^{1/2} \\cdot \\frac{G}{P_1} \\left(\\frac{P_1 \\cdot V_1}{g}\\right)^{1/2}", "hash": "6c1fd5154764", "png": "page_0016.png"}
+{"page": 17, "index": 1, "latex": "\\frac{P_{cr}}{P_1} = \\frac{G}{P_1} \\left( \\frac{P_1 \\cdot V_1}{g} \\right)^{1/2}", "hash": "8533413ac3c7", "png": "page_0017.png"}
+{"page": 19, "index": 1, "latex": "\\frac{\\delta \\text{ (Total Annual Valve Cost)}}{\\delta d} = 0", "hash": "3ba671536112", "png": "page_0019.png"}
+{"page": 20, "index": 1, "latex": "= \\frac{\\text{Cost}_v}{r} + \\frac{0.7457}{\\text{eff.}} P_{\\text{Loss}}[b + 8760\\ c\\ t\\ ]", "hash": "1b1de7f67685", "png": "page_0020.png"}
+{"page": 20, "index": 2, "latex": "\\Delta P = \\frac{0.0011SQ^2}{d^4}(K_v + K_e)", "hash": "fa6f4433acbe", "png": "page_0020.png"}
+{"page": 20, "index": 3, "latex": "P_{\\text{Loss}} = \\frac{Q\\Delta P}{1715} = \\frac{6.4 \\cdot 10^{-7}SQ^3}{d^4}(K_v + K_e)", "hash": "3235f6b37076", "png": "page_0020.png"}
+{"page": 20, "index": 4, "latex": "\\Delta P = \\frac{2720}{d^4}(K_v + K_e)\\frac{1}{\\rho}\\left(\\frac{M}{100{,}000}\\right)^2", "hash": "d12548c56835", "png": "page_0020.png"}
+{"page": 20, "index": 5, "latex": "P_{\\text{Loss}} = \\frac{M\\Delta P}{13750\\rho}", "hash": "534877a16e1b", "png": "page_0020.png"}
+{"page": 20, "index": 6, "latex": "= \\frac{19782}{d^4}(K_v + K_e)\\frac{1}{\\rho^2}\\left(\\frac{M}{100{,}000}\\right)^3", "hash": "b9c624b35e0f", "png": "page_0020.png"}
+{"page": 21, "index": 1, "latex": "h = \\left(\\frac{V_1 - V_2}{2g}\\right)^2", "hash": "99ffd62eddee", "png": "page_0021.png"}
+{"page": 22, "index": 1, "latex": "K_E = 1.7 - 2\\frac{d}{D}, \\text{ for } \\frac{d}{D} < 0.8", "hash": "9d30322e87a9", "png": "page_0022.png"}
+{"page": 22, "index": 2, "latex": "= 0.5\\!\\left(1 - \\frac{d}{D}\\right), \\text{ for } \\frac{d}{D} > 0.8", "hash": "aece7f1eaf5e", "png": "page_0022.png"}
+{"page": 53, "index": 1, "latex": "S_A = f (1.25 S_c + 0.25 S_h)", "hash": "819f5103d32d", "png": "page_0053.png"}
+{"page": 53, "index": 2, "latex": "S_A = [1.25 (S_c + S_h) - S_L]", "hash": "5843b7640422", "png": "page_0053.png"}
+{"page": 54, "index": 1, "latex": "DY/(L-U)^2 \\leq 0.03", "hash": "af5efb7eb951", "png": "page_0054.png"}

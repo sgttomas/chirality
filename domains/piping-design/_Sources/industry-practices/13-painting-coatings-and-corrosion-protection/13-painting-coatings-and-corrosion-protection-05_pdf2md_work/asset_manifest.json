@@ -1,0 +1,451 @@
+{
+  "asset_count": 7,
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0004_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.18,
+        0.95,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        456,
+        2480,
+        2912
+      ],
+      "caption": "Changes from the previous edition",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0004_tbl01_changes-from-previous-edition.png",
+      "png_sha256": "ea9a2821ce206fa51562a68d8070ff4bae196d512b9ef582d01e5fc304bec46d",
+      "slug": "changes-from-previous-edition",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0004_tbl01_changes-from-previous-edition.json",
+      "table_data_json_sha256": "67eaf6f63196605c056618a5d5e7d1fb659873bff5424997e1c27f978fa026f6",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0004_tbl01_changes-from-previous-edition.xlsx",
+      "xlsx_sha256": "49b9cf225d980ca169307eade8c2cf047880a99e7c8ae0f519c0fda75a8fe349"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0008_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.38,
+        0.95,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        1158,
+        2480,
+        2176
+      ],
+      "caption": "TABLE 1 Hot water test temperature",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl01_hot-water-test-temperature.png",
+      "png_sha256": "3043be3e3b76b2339fc6b9b1cffb7d7901e58e64c6289c886e63db5f5e55b4ea",
+      "slug": "hot-water-test-temperature",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl01_hot-water-test-temperature.json",
+      "table_data_json_sha256": "84aecac94a70c7dffd948e8af9e07936ba7ff1d3dca8be45b7f47d658d6a3df1",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl01_hot-water-test-temperature.xlsx",
+      "xlsx_sha256": "0736c0f40532f573cc8827daf6e12fb3d23a4571f695e90b5024c1aa5bb667f1"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0008_tbl02",
+      "bbox_norm": [
+        0.05,
+        0.72,
+        0.95,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        2351,
+        2480,
+        3509
+      ],
+      "caption": "TABLE 2 Cathodic disbonding criteria for FBE pipeline coating systems",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 8,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl02_cathodic-disbonding-criteria-fbe-pipelin.png",
+      "png_sha256": "4bf311b76d5b2b09df7848824b26ceb320d32d68ba437a03ca2b557dc8b308b5",
+      "slug": "cathodic-disbonding-criteria-fbe-pipelin",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl02_cathodic-disbonding-criteria-fbe-pipelin.json",
+      "table_data_json_sha256": "e2847cf9c6f5305366030d4e2a385facdac5d44f4ca89fd66c17930141911555",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0008_tbl02_cathodic-disbonding-criteria-fbe-pipelin.xlsx",
+      "xlsx_sha256": "7f5f44f48db57e532b94b156045fef2766abf1929bf6a5334bb92299529ebbc6"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0014_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        74,
+        3509,
+        2480
+      ],
+      "caption": "TABLE 3 Minimum quality control requirements and test frequency for FBE pipeline coatings",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.png",
+      "png_sha256": "cb449103a68b9727793a5d8576758cafd56a15d51d42e14b0dd045b2ff3b0341",
+      "slug": "table-3-qc-requirements-fbe-pipeline-coa",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.json",
+      "table_data_json_sha256": "c4e593dc32d484ccf37dc92af70aedb5137f55106a75659290e2c05fbd3ac802",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0014_tbl01_table-3-qc-requirements-fbe-pipeline-coa.xlsx",
+      "xlsx_sha256": "8d850590fb013b28662d865b953b36e9c6d24f8f9418562ecf4b24aadd8239e0"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0017_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        50,
+        3509,
+        2430
+      ],
+      "caption": "TABLE 4 Minimum qualification requirements and test frequency for FBE pipeline coatings",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0017_tbl01_table-4-minimum-qualification-requiremen.png",
+      "png_sha256": "7037acf5597154f6125e64ae451fae0234baebd01a7b6a3e6e4a5f1c25308467",
+      "slug": "table-4-minimum-qualification-requiremen",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0017_tbl01_table-4-minimum-qualification-requiremen.json",
+      "table_data_json_sha256": "413473c1167cacf667a1c34224dcd134e4add3902d536904ebb77bb4ff3cc573",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-05_p0017_tbl01_table-4-minimum-qualification-requiremen.xlsx",
+      "xlsx_sha256": "59dcfba46b71cd6d1e2daff3a43cc1d709ec506d4f6572856fddefa6dcd64dea"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0020_fig01",
+      "bbox_norm": [
+        0.07,
+        0.04,
+        0.93,
+        0.38
+      ],
+      "bbox_px": [
+        50,
+        0,
+        2430,
+        1509
+      ],
+      "caption": "FIGURE 1 Degree of foaming of FBE film",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "figures/13-painting-coatings-and-corrosion-protection-05_p0020_fig01_figure-1-degree-of-foaming-fbe-film.png",
+      "png_sha256": "5c7a56412a53cac9cc74b772e6bf864788c0af2338bb6df177d0a9eb2c56d646",
+      "slug": "figure-1-degree-of-foaming-fbe-film",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-05_p0024_fig01",
+      "bbox_norm": [
+        0.1,
+        0.07,
+        0.9,
+        0.38
+      ],
+      "bbox_px": [
+        124,
+        70,
+        2356,
+        1509
+      ],
+      "caption": "FIGURE 2 Determination of the radius of disbonding",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 24,
+      "png_path": "figures/13-painting-coatings-and-corrosion-protection-05_p0024_fig01_figure-2-determination-radius-disbonding.png",
+      "png_sha256": "04739e34c4447af54718f61920d80240774e541ec10f27d85f7d97ed46be581b",
+      "slug": "figure-2-determination-radius-disbonding",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-05",
+  "issues": [],
+  "page_manifest_count": 29,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0001.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0002.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0003.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0004.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0005.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0006.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0007.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0008.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0009.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0010.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0011.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0012.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0013.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0014.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0015.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0016.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0017.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0018.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0019.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0020.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0021.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0022.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0023.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0024.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0025.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0026.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0027.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0028.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0029.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-05_pdf2md_work"
+}

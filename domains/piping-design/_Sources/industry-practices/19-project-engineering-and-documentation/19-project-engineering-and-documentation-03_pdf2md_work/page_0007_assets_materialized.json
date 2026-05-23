@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0007_tbl01",
+      "bbox_norm": [
+        0.25,
+        0.68,
+        0.84,
+        0.94
+      ],
+      "bbox_px": [
+        510,
+        2076,
+        2270,
+        3263
+      ],
+      "caption": "Company manual prefixes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.png",
+      "png_sha256": "9e0ce8a799e7797cb5d77aa7c690bfbdf91e4f303451e63bae2d050cc96d5f36",
+      "slug": "company-manual-prefixes",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.json",
+      "table_data_json_sha256": "83dc8036331f3528cef3cd7fe5d05a6928cd2e2843db9d2d900d982698ebf9aa",
+      "table_data_sha256": "83dc8036331f3528cef3cd7fe5d05a6928cd2e2843db9d2d900d982698ebf9aa",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.xlsx",
+      "xlsx_sha256": "6113aae6b15e611f6a61bd620ffc7fd97f391a9e711fdcb160149e0d7d2d9487"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-03",
+  "doc_stem": "19-project-engineering-and-documentation-03",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0007.png",
+  "page_image_sha256": "d517f9e6fddfad805ab6d7c0b4d0b9ebc3954de0ee4a566641cf05669bfcffc3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0007_assets.json"
+}

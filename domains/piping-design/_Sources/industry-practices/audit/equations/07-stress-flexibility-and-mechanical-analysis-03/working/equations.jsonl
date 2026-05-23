@@ -1,0 +1,5 @@
+{"page": 8, "index": 1, "latex": "fn = \\frac{C_k \\cdot k^2}{L^2} \\sqrt{\\frac{EI}{1 + C_p \\cdot \\frac{W}{EI}}}", "hash": "84c014422627", "png": "page_0008.png"}
+{"page": 15, "index": 1, "latex": "M = \\sum_{i=1}^{n} m_i a_i l_i", "hash": "ac6f639323af", "png": "page_0015.png"}
+{"page": 15, "index": 2, "latex": "\\sigma_a = \\frac{SM}{Z} = \\frac{S}{Z} \\sum_{i=1}^{n} m_i a_i l_i", "hash": "02bdf62bb6ee", "png": "page_0015.png"}
+{"page": 15, "index": 3, "latex": "Z = \\frac{\\pi}{32 D_o}(D_o^4 - D_i^4)", "hash": "9b4f0101130b", "png": "page_0015.png"}
+{"page": 15, "index": 4, "latex": "Z = \\frac{\\pi}{32(2 \\text{ in.})}[(2 \\text{ in.})^4 - (0.75 \\text{ in.})^4]", "hash": "049871e8370c", "png": "page_0015.png"}

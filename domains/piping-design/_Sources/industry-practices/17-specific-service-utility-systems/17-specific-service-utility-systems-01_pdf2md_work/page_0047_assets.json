@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-01",
+  "page": 47,
+  "total_pages": 47,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 12    ALTERNATIVE ASPHALT",
+      "slug": "figure-12-alternative-asphalt",
+      "bbox_norm": [0.03, 0.08, 0.97, 0.90],
+      "confidence": "high",
+      "notes": "Full-page P&ID schematic of alternative asphalt circulation system. Caption appears above the diagram. Includes furnace/heat exchanger, surge vessel, circulation pumps, hot filters, return filters, consumer sub-loops, optional filters, and product outlets (asphalt, short residue, long residue)."
+    }
+  ],
+  "issues": []
+}

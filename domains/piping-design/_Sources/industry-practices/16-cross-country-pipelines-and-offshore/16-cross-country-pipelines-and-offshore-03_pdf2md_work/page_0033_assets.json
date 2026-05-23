@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 33,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 13 CONCEPTUAL DESIGN OF EEMSHAVEN DUAL-SLOPE SLUG CATCHER",
+      "slug": "figure-13-eemshaven-dual-slope-slug-catcher",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.48],
+      "confidence": "high",
+      "notes": "Isometric 3D schematic of a 12-bottle dual-slope slug catcher with labeled components and overall dimensions. Legend distinguishes primary and secondary bottles."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIGURE 14 BOTTLE GEOMETRY OF SLUG CATCHER FOR TROLL",
+      "slug": "figure-14-troll-slug-catcher-bottle-geometry",
+      "bbox_norm": [0.05, 0.50, 0.95, 0.93],
+      "confidence": "high",
+      "notes": "2D side-elevation schematic showing bottle geometry with dimensional annotations (L1=11 m, Ls=103 m, total 176 m). Includes two footnotes. Marked NOT TO SCALE."
+    }
+  ],
+  "issues": []
+}

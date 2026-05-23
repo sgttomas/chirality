@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0042.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-01_p0042_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2480,
+        3404
+      ],
+      "caption": "FIGURE 7 FUEL SYSTEM FOR SUPPLYING SYNGAS BLENDED WITH LPG TO A DUAL GAS FIRED GAS TURBINE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-01_p0042_fig01_figure-7-fuel-system-syngas-blended-lpg.png",
+      "png_sha256": "221e73839a05db56f3e1cb88ad59046d985523907562897ff9d6651cab81d8fd",
+      "slug": "figure-7-fuel-system-syngas-blended-lpg",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-01",
+  "doc_stem": "17-specific-service-utility-systems-01",
+  "page": 42,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0042.png",
+  "page_image_sha256": "d8c6a9ed4c627693298c651bbf7f49994f11082828e6001de0be22c4434bfaef",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0042_assets.json"
+}

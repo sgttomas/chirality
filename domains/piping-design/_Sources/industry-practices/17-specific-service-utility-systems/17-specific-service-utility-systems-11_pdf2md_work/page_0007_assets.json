@@ -1,0 +1,73 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-11",
+  "page": 7,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1300-1 Alkali Solution Mixtures Required to Absorb Chlorine",
+      "slug": "alkali-solution-mixtures-absorb-chlorine",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.25],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Chlorine, lb net", "is_header": true },
+              { "value": "NaOH, lb", "is_header": true },
+              { "value": "and", "is_header": true },
+              { "value": "H₂O, gal", "is_header": true },
+              { "value": "Na₂CO₃, lb", "is_header": true },
+              { "value": "and", "is_header": true },
+              { "value": "H₂O, gal", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 100, "type": "number" },
+              { "value": 125, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 40, "type": "number" },
+              { "value": 30, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 100, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 150, "type": "number" },
+              { "value": 188, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 60, "type": "number" },
+              { "value": 430, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 150, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": 2000, "type": "number" },
+              { "value": 2500, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 900, "type": "number" },
+              { "value": 6000, "type": "number" },
+              { "value": "", "type": "text" },
+              { "value": 2000, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Table with two alkali solution options (NaOH and Na2CO3) with corresponding water volumes for absorbing chlorine"
+    }
+  ],
+  "issues": []
+}

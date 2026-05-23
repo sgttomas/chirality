@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-04",
+  "page": 26,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Appendix 5 — Typical drier with energyless regeneration at elevated temperature and operating pressure (process flow diagram including cooling air cooler, after cooler of air compressor, water separator of air compressor, regeneration vessel, after filters, and line-up of air drier legend)",
+      "slug": "appendix-5-typical-drier-energyless-regeneration",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.92],
+      "confidence": "high",
+      "notes": "Full-page process flow diagram with legend. Title appears as page heading. Legend panel in lower-left; line-up schematic in lower-right."
+    }
+  ],
+  "issues": []
+}

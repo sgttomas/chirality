@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0039.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0039_fig01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        3263
+      ],
+      "caption": "FIGURE 2-1 THE TIME REQUIRED TO SETTLE SMALL LIQUID DROPLETS AS A FUNCTION OF THE DROPLET DIAMETER IN THE FIRST PART OF A PRIMARY BOTTLE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0039_fig01_figure-2-1-time-settle-liquid-droplets-d.png",
+      "png_sha256": "20398a75955331461899e43beb93c54f0c3a3a6c139a97fd5a14647a1cac94ba",
+      "slug": "figure-2-1-time-settle-liquid-droplets-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 39,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0039.png",
+  "page_image_sha256": "ee8372f93ef4a7486dd2c1d88c2b354f5067c34091471a14020b0c8838ba9af2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0039_assets.json"
+}

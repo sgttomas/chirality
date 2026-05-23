@@ -1,0 +1,80 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 3,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Unit conversion factors",
+      "slug": "unit-conversion-factors",
+      "bbox_norm": [0.26, 0.11, 0.82, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Multiply", "is_header": true },
+              { "value": "By", "is_header": true },
+              { "value": "To Obtain", "is_header": true }
+            ]
+          },
+          { "cells": [ { "value": "Acres" }, { "value": 43560, "type": "number", "raw": "43,560" }, { "value": "Square feet" } ] },
+          { "cells": [ { "value": "Acres" }, { "value": 4047, "type": "number" }, { "value": "Square meters" } ] },
+          { "cells": [ { "value": "Acres" }, { "value": "1.562 x 10^3", "type": "text" }, { "value": "Square miles" } ] },
+          { "cells": [ { "value": "Acres" }, { "value": 4840, "type": "number" }, { "value": "Square yards" } ] },
+          { "cells": [ { "value": "Acre-feet" }, { "value": 43560, "type": "number", "raw": "43,560" }, { "value": "Cubic feet" } ] },
+          { "cells": [ { "value": "Acre-feet" }, { "value": 325851, "type": "number", "raw": "325,851" }, { "value": "Gallons" } ] },
+          { "cells": [ { "value": "Acre-feet" }, { "value": 1233.48, "type": "number" }, { "value": "Cubic meters" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 76.0, "type": "number" }, { "value": "Cm of mercury" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 29.92, "type": "number" }, { "value": "Inches of mercury" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 33.90, "type": "number" }, { "value": "Feet of water" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 10.332, "type": "number" }, { "value": "Kg/sq meter" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 14.70, "type": "number" }, { "value": "Lb/sq inch" } ] },
+          { "cells": [ { "value": "Atmospheres" }, { "value": 1.058, "type": "number" }, { "value": "Tons/sq ft" } ] },
+          { "cells": [ { "value": "Barrels-oil" }, { "value": 42, "type": "number" }, { "value": "Gallons-oil" } ] },
+          { "cells": [ { "value": "Barrels-Beer" }, { "value": 31, "type": "number" }, { "value": "Gallons-Beer" } ] },
+          { "cells": [ { "value": "Barrels-Whiskey" }, { "value": 45, "type": "number" }, { "value": "Gallons-Whiskey" } ] },
+          { "cells": [ { "value": "Barrels/Day-oil" }, { "value": 0.02917, "type": "number" }, { "value": "Gallons/Min-oil" } ] },
+          { "cells": [ { "value": "Bags or sacks-cement" }, { "value": 94, "type": "number" }, { "value": "Pounds-cement" } ] },
+          { "cells": [ { "value": "Board feet" }, { "value": "144 sq in. x 1 in.", "type": "text", "raw": "144 sq in. / x 1 in." }, { "value": "Cubic inches" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": 0.2520, "type": "number" }, { "value": "Kilogram-calories" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": 777.6, "type": "number" }, { "value": "Foot-lb" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": "3.927 x 10^4", "type": "text" }, { "value": "Horsepower-hr" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": 107.5, "type": "number" }, { "value": "Kilogram-meters" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": "2.928 x 10^4", "type": "text" }, { "value": "Kilowatt-hr" } ] },
+          { "cells": [ { "value": "British thermal units" }, { "value": "1.0551 x 10^3", "type": "text" }, { "value": "Joules" } ] },
+          { "cells": [ { "value": "Btu/min" }, { "value": 12.96, "type": "number" }, { "value": "Foot-lb/sec" } ] },
+          { "cells": [ { "value": "Btu/min" }, { "value": 0.02356, "type": "number" }, { "value": "Horsepower" } ] },
+          { "cells": [ { "value": "Btu/min" }, { "value": 0.01757, "type": "number" }, { "value": "Kilowatts" } ] },
+          { "cells": [ { "value": "Btu/min" }, { "value": 17.57, "type": "number" }, { "value": "Watts" } ] },
+          { "cells": [ { "value": "Centares (Centiares)" }, { "value": 1, "type": "number" }, { "value": "Square meters" } ] },
+          { "cells": [ { "value": "Centigrams" }, { "value": 0.01, "type": "number" }, { "value": "Grams" } ] },
+          { "cells": [ { "value": "Centiliters" }, { "value": 0.01, "type": "number" }, { "value": "Liters" } ] },
+          { "cells": [ { "value": "Centimeters" }, { "value": 0.3937, "type": "number" }, { "value": "Inches" } ] },
+          { "cells": [ { "value": "Centimeters" }, { "value": 0.01, "type": "number" }, { "value": "Meters" } ] },
+          { "cells": [ { "value": "Centimeters" }, { "value": 10, "type": "number" }, { "value": "Millimeters" } ] },
+          { "cells": [ { "value": "Centimeters of Mercury" }, { "value": 0.01316, "type": "number" }, { "value": "Atmospheres" } ] },
+          { "cells": [ { "value": "Centimeters of Mercury" }, { "value": 0.4461, "type": "number" }, { "value": "Feet of water" } ] },
+          { "cells": [ { "value": "Centimeters of Mercury" }, { "value": 136.0, "type": "number" }, { "value": "Kg/sq meter" } ] },
+          { "cells": [ { "value": "Centimeters of Mercury" }, { "value": 27.85, "type": "number" }, { "value": "Lb/sq ft" } ] },
+          { "cells": [ { "value": "Centimeters of Mercury" }, { "value": 0.1934, "type": "number" }, { "value": "Lb/sq inch" } ] },
+          { "cells": [ { "value": "Centimeters/sec" }, { "value": 1.969, "type": "number" }, { "value": "Feet/min" } ] },
+          { "cells": [ { "value": "Centimeters/sec" }, { "value": 0.03281, "type": "number" }, { "value": "Feet/sec" } ] },
+          { "cells": [ { "value": "Centimeters/sec" }, { "value": 0.036, "type": "number" }, { "value": "Kilometers/hr" } ] },
+          { "cells": [ { "value": "Centimeters/sec" }, { "value": 0.6, "type": "number" }, { "value": "Meters/min" } ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single visible three-column conversion table; recurring page header and footer excluded from transcription."
+    }
+  ],
+  "issues": []
+}

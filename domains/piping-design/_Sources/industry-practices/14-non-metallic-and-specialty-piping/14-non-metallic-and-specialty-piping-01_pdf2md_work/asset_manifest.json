@@ -1,0 +1,762 @@
+{
+  "asset_count": 18,
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0005_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.6,
+        0.93,
+        0.72
+      ],
+      "bbox_px": [
+        51,
+        1817,
+        2504,
+        2544
+      ],
+      "caption": "Bedding sand gradation \u2014 Sieve size vs Percent Passing (by weight), first table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 5,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl01_bedding-sand-gradation-first.png",
+      "png_sha256": "23e8a3fed08df4e23bd273473a737089775d7645e2c17a8d3c3cc9738f8d3739",
+      "slug": "bedding-sand-gradation-first",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl01_bedding-sand-gradation-first.json",
+      "table_data_json_sha256": "0fe98ec355be778ff8ed8d0381bb9170ee84f83dd1aee08211e5b6593c1fbf8c",
+      "table_data_sha256": "0fe98ec355be778ff8ed8d0381bb9170ee84f83dd1aee08211e5b6593c1fbf8c",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl01_bedding-sand-gradation-first.xlsx",
+      "xlsx_sha256": "19c54ca60996d015320e706d620dead3f6e5d73b901d7f5517c68477ca944d34"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0005_tbl02",
+      "bbox_norm": [
+        0.07,
+        0.8,
+        0.93,
+        0.97
+      ],
+      "bbox_px": [
+        51,
+        2478,
+        2504,
+        3304
+      ],
+      "caption": "Crush-rock bedding gradation \u2014 Sieve size vs Percent Passing (by weight), second table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 5,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl02_crush-rock-bedding-gradation-second.png",
+      "png_sha256": "c19db3413a8374fe2008131f33a5c63ad539f65ae3b0c56cc7ebebf7ee8bd05d",
+      "slug": "crush-rock-bedding-gradation-second",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl02_crush-rock-bedding-gradation-second.json",
+      "table_data_json_sha256": "f2ce1ac32c1a2e6a1138295821d229ea11f9231d1403517366d433486bc6b81f",
+      "table_data_sha256": "f2ce1ac32c1a2e6a1138295821d229ea11f9231d1403517366d433486bc6b81f",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-01_p0005_tbl02_crush-rock-bedding-gradation-second.xlsx",
+      "xlsx_sha256": "23bb769d5106ab3db3a03a57b495fe9de13da5ee947d874c423f6d14bf03e5fe"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0010_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.78
+      ],
+      "bbox_px": [
+        0,
+        100,
+        2575,
+        2754
+      ],
+      "caption": "A1.0 HDPE Pipe Deep Bury Trench Detail",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0010_fig01_hdpe-pipe-deep-bury-trench-detail.png",
+      "png_sha256": "c010407fa2ba95380176db71180325a31cec0e894b9ebebe305aba143ead22e2",
+      "slug": "hdpe-pipe-deep-bury-trench-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0011_fig01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.87
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2555,
+        3040
+      ],
+      "caption": "A1.1 HDPE Pipe Shallow Bury Trench Detail\u2014Type I",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0011_fig01_hdpe-pipe-shallow-bury-trench-detail-typ.png",
+      "png_sha256": "b40fc4409441ad9cf8380aeb37adf89be32bf010c7aa07302eb632c8aa8430d2",
+      "slug": "hdpe-pipe-shallow-bury-trench-detail-typ",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0012_fig01",
+      "bbox_norm": [
+        0.06,
+        0.08,
+        0.94,
+        0.82
+      ],
+      "bbox_px": [
+        26,
+        100,
+        2583,
+        2909
+      ],
+      "caption": "HDPE Pipe Shallow Bury Trench Detail \u2014 Type II",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0012_fig01_hdpe-pipe-shallow-bury-trench-detail-typ.png",
+      "png_sha256": "c624985e9cff6373438e9b3dcae4dd9ebba2f34ce94c5c510e005a40a511750a",
+      "slug": "hdpe-pipe-shallow-bury-trench-detail-typ",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0013_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        33,
+        2555,
+        2874
+      ],
+      "caption": "HDPE PIPE SHALLOW BURY TRENCH DETAIL \u2013 TYPE III (Drawing A1.3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0013_fig01_hdpe-pipe-shallow-bury-trench-detail-typ.png",
+      "png_sha256": "890e82aea692a9a747511fa6276d5cee1b844aa5fda9a12b0c454b9962ece31c",
+      "slug": "hdpe-pipe-shallow-bury-trench-detail-typ",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0014_fig01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.96
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2563,
+        3308
+      ],
+      "caption": "A1.4 HDPE PIPE POST INDICATOR ASSEMBLY (APPLICABLE FOR VALVES 16\" OR LARGER) \u2014 STD DWG, Suncor Energy STD 0212, Rev. 5, Sep. 2005",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0014_fig01_a1-4-hdpe-pipe-post-indicator-assembly.png",
+      "png_sha256": "2679a9123a40d9da456a653606837742d3a901e4ffb8ddc6ce591b3948dd29cb",
+      "slug": "a1-4-hdpe-pipe-post-indicator-assembly",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0015_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2555,
+        2874
+      ],
+      "caption": "A1.5 HDPE PIPE SHALLOW BURY VALVE DETAIL",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 15,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0015_fig01_hdpe-pipe-shallow-bury-valve-detail.png",
+      "png_sha256": "d7c10c432fe375f04b910bc6e6d22c30e630956aab26dd23fffacd32590f1560",
+      "slug": "hdpe-pipe-shallow-bury-valve-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.92,
+        0.35
+      ],
+      "bbox_px": [
+        77,
+        66,
+        2478,
+        1322
+      ],
+      "caption": "WATER MAIN ROUTING AROUND SEWER & GRAVITY DRAINAGE PIPES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 16,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig01_water-main-routing-around-sewer-gravity.png",
+      "png_sha256": "1485ce312d2d192789c8b7490b5c2ce138372c1d45b95719344b48c576a6061d",
+      "slug": "water-main-routing-around-sewer-gravity",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig02",
+      "bbox_norm": [
+        0.08,
+        0.36,
+        0.92,
+        0.63
+      ],
+      "bbox_px": [
+        77,
+        1024,
+        2478,
+        2247
+      ],
+      "caption": "NON-METALLIC LINE CROSSING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 16,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig02_non-metallic-line-crossing.png",
+      "png_sha256": "9400d8a00cf10e4367fb9b978778a67632ae383610b2d91f4dedd513bfab65dc",
+      "slug": "non-metallic-line-crossing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0016_fig03",
+      "bbox_norm": [
+        0.08,
+        0.63,
+        0.92,
+        0.85
+      ],
+      "bbox_px": [
+        77,
+        1916,
+        2478,
+        2974
+      ],
+      "caption": "METALLIC LINE CROSSING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 3,
+      "page": 16,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0016_fig03_metallic-line-crossing.png",
+      "png_sha256": "64b54315cf2645e40a6559b274e462708980cc7693ad605c1d9dbf8fcf9dfd4f",
+      "slug": "metallic-line-crossing",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0017_fig01",
+      "bbox_norm": [
+        0.03,
+        0.04,
+        0.97,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2575,
+        2887
+      ],
+      "caption": "A1.7 HDPE Pipe Cathodic Protection \u2014 CADWELD, Weld Metal Capsule, and Finished Weld installation details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0017_fig01_a1-7-hdpe-pipe-cathodic-protection-cadwe.png",
+      "png_sha256": "fbfc09cfe97f0c718404e8a0403f8e0e1883a2c51ceae6696650b185d7139e34",
+      "slug": "a1-7-hdpe-pipe-cathodic-protection-cadwe",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0023_fig01",
+      "bbox_norm": [
+        0.08,
+        0.46,
+        0.72,
+        0.72
+      ],
+      "bbox_px": [
+        77,
+        1356,
+        1974,
+        2547
+      ],
+      "caption": "Figure 1 Typical Pipe Cross Section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 23,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-01_p0023_fig01_figure-1-typical-pipe-cross-section.png",
+      "png_sha256": "5cd995d399c6b629a0d7ff025197a228396e1eb74108da619531d006e2fe8c67",
+      "slug": "figure-1-typical-pipe-cross-section",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0027_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.4,
+        0.97,
+        0.67
+      ],
+      "bbox_px": [
+        0,
+        1156,
+        2555,
+        2379
+      ],
+      "caption": "HDPE HOT PLATE FUSION BONDING PARAMETERS FOR SDR-17",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 27,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0027_tbl01_hdpe-hot-plate-fusion-bonding-parameters.png",
+      "png_sha256": "d0f6aedbc3f67317b2777299cff955bb4d8f480f87ab3e17b3222fe76f0b0d47",
+      "slug": "hdpe-hot-plate-fusion-bonding-parameters",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0028_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.97,
+        0.33
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2555,
+        1256
+      ],
+      "caption": "HDPE HOT PLATE FUSION BONDING PARAMETERS FOR SDR-11",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 28,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0028_tbl01_hdpe-hot-plate-fusion-bonding-parameters.png",
+      "png_sha256": "db82a59b170f6d417456ec0a0a72c5fb4041858537075f0355cba287ef869052",
+      "slug": "hdpe-hot-plate-fusion-bonding-parameters",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0030_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.35,
+        0.97,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        991,
+        2555,
+        2544
+      ],
+      "caption": "Pre-Bonding Checklist",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 30,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0030_tbl01_pre-bonding-checklist.png",
+      "png_sha256": "557347b14a718572a40a1d4afec324ee6ec5a5204c9e8769ebb8870eec42b26a",
+      "slug": "pre-bonding-checklist",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-01_p0030_tbl01_pre-bonding-checklist.json",
+      "table_data_json_sha256": "251fb55a9075404535eb25dabed6f016130228178d2b3b1a8bd65c08e15c7746",
+      "table_data_sha256": "251fb55a9075404535eb25dabed6f016130228178d2b3b1a8bd65c08e15c7746",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-01_p0030_tbl01_pre-bonding-checklist.xlsx",
+      "xlsx_sha256": "dc1340a4f16da7df9d4017d5a10334c9b7e4131b6a70646afbc7940e1f397542"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0031_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.27,
+        0.96,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        727,
+        2555,
+        3205
+      ],
+      "caption": "Table 8.2 Bonding Checklist \u2014 Inspection Procedure, Acceptance Criteria, Fabricator Inspector, Suncor Inspector",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 31,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0031_tbl01_bonding-checklist.png",
+      "png_sha256": "ae9837e298a2e1b05ed6d02aba7eae47aaff92fe21c9203e914a6db5b001427e",
+      "slug": "bonding-checklist",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-01_p0031_tbl01_bonding-checklist.json",
+      "table_data_json_sha256": "32afad8eb7ac9281103d94060353121d8982c7308a4330e38d4401e6c6d683ae",
+      "table_data_sha256": "32afad8eb7ac9281103d94060353121d8982c7308a4330e38d4401e6c6d683ae",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-01_p0031_tbl01_bonding-checklist.xlsx",
+      "xlsx_sha256": "a1412ea7841d5f4fa9c68ad485c1d086774868e8a683df7ae5eac40ba0cb9ad9"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-01_p0032_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.17,
+        0.97,
+        0.75
+      ],
+      "bbox_px": [
+        0,
+        307,
+        3304,
+        2044
+      ],
+      "caption": "Appendix B Field Inspection Record \u2014 fusion data log",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 32,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-01_p0032_tbl01_appendix-b-field-inspection-record-fusio.png",
+      "png_sha256": "13965442cc382943efa6f50e21584b0c2137e1b0b776226b2c5328f5b52dc47c",
+      "slug": "appendix-b-field-inspection-record-fusio",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-01_p0032_tbl01_appendix-b-field-inspection-record-fusio.json",
+      "table_data_json_sha256": "69d97917a43ad130c25100e6d708a7774771bd9b7b2e02bf5d6ad633177207d1",
+      "table_data_sha256": "69d97917a43ad130c25100e6d708a7774771bd9b7b2e02bf5d6ad633177207d1",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-01_p0032_tbl01_appendix-b-field-inspection-record-fusio.xlsx",
+      "xlsx_sha256": "5dc0f4491636b8c9969f823a78b715ccb74f71ea91ab0edb98bf3c0953df29aa"
+    }
+  ],
+  "doc_stem": "14-non-metallic-and-specialty-piping-01",
+  "issues": [],
+  "page_manifest_count": 32,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0001_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0002_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0003_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0004_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0005_postmaterialize.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0006_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0007_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0008_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0009_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0010_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0011_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0012_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0013_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0014_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0015_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0016_postmaterialize.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0017_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0018_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0019_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0020_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0021_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0022_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0023_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0024_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0025_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0026_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0027_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0028_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0029_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0030_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0030_assets_materialized.json",
+      "page": 30,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0031_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0031_assets_materialized.json",
+      "page": 31,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0032_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work/page_0032_assets_materialized.json",
+      "page": 32,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-01_pdf2md_work"
+}

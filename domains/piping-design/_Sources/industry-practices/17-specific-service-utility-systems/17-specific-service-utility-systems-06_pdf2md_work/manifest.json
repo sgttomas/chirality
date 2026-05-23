@@ -1,0 +1,27 @@
+{
+  "pdf_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-06.pdf",
+  "pdf_sha256": "0ac0722d6fe8768a40b39e4fa60a0085fe488190f4b3d63b2d5176d74ab9335e",
+  "page_count": 8,
+  "dpi": 300,
+  "pages_rendered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "files": {
+    "1": "page_0001.png",
+    "2": "page_0002.png",
+    "3": "page_0003.png",
+    "4": "page_0004.png",
+    "5": "page_0005.png",
+    "6": "page_0006.png",
+    "7": "page_0007.png",
+    "8": "page_0008.png"
+  },
+  "timestamp": "2026-05-20T20:55:54"
+}

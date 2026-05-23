@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 52,
+  "total_pages": 52,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 2 PIPELINE GROUP STANDARDS",
+      "slug": "figure-2-pipeline-group-standards",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.90],
+      "confidence": "high",
+      "notes": "Full-page organizational hierarchy diagram showing Asset Integrity Management structure broken into Pipeline Engineering, Operations, and Abandonment manuals and technical specifications"
+    }
+  ],
+  "issues": []
+}

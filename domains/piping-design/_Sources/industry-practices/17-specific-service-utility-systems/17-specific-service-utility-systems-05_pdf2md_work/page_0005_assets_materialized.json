@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-05_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-05_p0005_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.06,
+        0.88,
+        0.32
+      ],
+      "bbox_px": [
+        178,
+        33,
+        2372,
+        1221
+      ],
+      "caption": "Table 1. Safety Factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/17-specific-service-utility-systems-05_p0005_tbl01_table-1-safety-factors.png",
+      "png_sha256": "51a743c680f29d8b437cf28ea9695e6e96a6996a89511d9af9e71cfa449796de",
+      "slug": "table-1-safety-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/17-specific-service-utility-systems-05_p0005_tbl01_table-1-safety-factors.json",
+      "table_data_json_sha256": "3ff1411fa6b1ce80e2bc8c00b957c33ba7bf1aa258d8e8cec08658d940c8eda5",
+      "table_data_sha256": "3ff1411fa6b1ce80e2bc8c00b957c33ba7bf1aa258d8e8cec08658d940c8eda5",
+      "xlsx_path": "tables/17-specific-service-utility-systems-05_p0005_tbl01_table-1-safety-factors.xlsx",
+      "xlsx_sha256": "ed94a8edef034237c0d6160a467734b97f8bce181a2ae4420f3ff760873376e6"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-05",
+  "doc_stem": "17-specific-service-utility-systems-05",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-05_pdf2md_work/page_0005.png",
+  "page_image_sha256": "6dc900301086f1c96e1fda63917052355ede46dc5437bef3564aeb48ce9f1daa",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-05_pdf2md_work/page_0005_assets.json"
+}

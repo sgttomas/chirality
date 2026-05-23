@@ -1,0 +1,25 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 12,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Figure 3 Flow scheme of HFE activities during Project Implementation Phase",
+      "slug": "flow-scheme-hfe-activities-project-implementation-phase",
+      "bbox_norm": [
+        0.13,
+        0.13,
+        0.88,
+        0.94
+      ],
+      "confidence": "high",
+      "notes": "Full-page flow scheme with phase labels, process boxes, decisions, and output documents."
+    }
+  ],
+  "issues": []
+}

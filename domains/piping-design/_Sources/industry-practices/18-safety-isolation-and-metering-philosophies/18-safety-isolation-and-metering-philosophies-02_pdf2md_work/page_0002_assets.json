@@ -1,0 +1,46 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-02",
+  "page": 2,
+  "total_pages": 7,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "API standards list",
+      "slug": "api-standards-list",
+      "bbox_norm": [
+        0.155,
+        0.85,
+        0.96,
+        0.93
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "API MPMS 5.1",
+                "type": "text"
+              },
+              {
+                "value": "Metering Section 1 - General Considerations for Measurement by Meters",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single visible two-column table row; no visible column headers."
+    }
+  ],
+  "issues": []
+}

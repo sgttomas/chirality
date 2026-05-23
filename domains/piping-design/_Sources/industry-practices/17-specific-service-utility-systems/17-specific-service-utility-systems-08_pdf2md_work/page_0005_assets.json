@@ -1,0 +1,77 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-08",
+  "page": 5,
+  "total_pages": 26,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. 1000-1 Toxicity of H₂S",
+      "slug": "fig-1000-1-toxicity-h2s",
+      "bbox_norm": [0.05, 0.38, 0.95, 0.72],
+      "confidence": "high",
+      "notes": "Two-column table with ppm H2S in Air (by volume) and Effect columns; 7 data rows",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ppm H₂S in Air (by volume)", "is_header": true },
+              { "value": "Effect", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1", "type": "number" },
+              { "value": "Detectable (API RP 49)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10", "type": "number" },
+              { "value": "OSHA threshold limit value—8 hour time-weighted average (Chevron MSDS #301)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "20", "type": "number" },
+              { "value": "OSHA acceptable ceiling value which may be exceeded for no more than 10 minutes in any 8 hour period provided no other measurable exposures occur (Chevron MSDS #301)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "50–70", "type": "text" },
+              { "value": "Irritation of eyes and respiratory tract mucosa (Chevron MSDS #301)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "500", "type": "number" },
+              { "value": "Respiratory disturbance in 2 to 15 minutes (Chevron Loss Prevention Guide #11)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "700", "type": "number" },
+              { "value": "Loss of consciousness. Death will result if not rescued promptly (Chevron Loss Prevention Guide #11)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1000", "type": "number" },
+              { "value": "Immediate unconsciousness after a single breath", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

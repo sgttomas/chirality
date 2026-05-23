@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0024.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0024_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3439
+      ],
+      "caption": "FIGURE 1    VESSEL SLUG CATCHER WITH SEPARATE SURGE DRUMS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0024_fig01_figure-1-vessel-slug-catcher-separate-su.png",
+      "png_sha256": "48eb9f3d513f28ebadb26b587303a947818a505f458d9c1ee2ae2a9a74c587b7",
+      "slug": "figure-1-vessel-slug-catcher-separate-su",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 24,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0024.png",
+  "page_image_sha256": "1aed3796101b2cfc5652a3149645f86fefa3afdf18d78d5020bc62c2756578a0",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0024_assets.json"
+}

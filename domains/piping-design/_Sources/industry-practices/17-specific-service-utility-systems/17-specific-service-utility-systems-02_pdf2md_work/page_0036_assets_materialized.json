@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-02_p0036_fig01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.97,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        3509
+      ],
+      "caption": "FIGURE 8 TYPICAL FUNCTIONAL LOGIC DIAGRAM FOR OXYGEN MEASURING STATION",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-02_p0036_fig01_figure-8-functional-logic-diagram-oxygen.png",
+      "png_sha256": "c9b0c15bbb91a4d614030bc59fe6f171817032ed72861fe4d2ddb3c9cfcef2ed",
+      "slug": "figure-8-functional-logic-diagram-oxygen",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-02",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0036.png",
+  "page_image_sha256": "2021c7514a5ed6305ec406557d207b9a14281b180202f7d2fd3939f0c7019248",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0036_assets.json"
+}

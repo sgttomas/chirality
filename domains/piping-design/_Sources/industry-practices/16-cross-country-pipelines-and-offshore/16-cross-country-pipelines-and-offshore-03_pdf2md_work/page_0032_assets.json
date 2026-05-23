@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 32,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 12 THE ONSET-OF-CHOKING FOR A 36\" OD BOTTLE AS A FUNCTION OF THE BOTTLE SLOPE",
+      "slug": "figure-12-onset-of-choking-36in-bottle-vs-bottle-slope",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.52],
+      "confidence": "high",
+      "notes": "Line chart showing liquid intake rate (m3/s) vs bottle slope (%) for two conditions: Den Helder slug catcher (70 bar, solid line) and St Fergus slug catcher (110 bar, dashed line). Vertical markers at ~0.5% (St Fergus slug catcher onset-of-choking) and ~1.7% (Den Helder slug catcher onset-of-choking)."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0041_fig01",
+      "bbox_norm": [
+        0.05,
+        0.06,
+        0.95,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        35,
+        2480,
+        3509
+      ],
+      "caption": "FIGURE 2-3 DROPLET SEPARATION EFFICIENCIES IN SLUG CATCHER BOTTLE (\u03c1_G = 40 kg/m\u00b3, \u03c1_L = 600 kg/m\u00b3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0041_fig01_figure-2-3-droplet-separation-efficienci.png",
+      "png_sha256": "1724df7699af1a1a232b71e5825924cd238e4b5199fd36830006c5664fd27374",
+      "slug": "figure-2-3-droplet-separation-efficienci",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0041.png",
+  "page_image_sha256": "e2c53a64080bb40fffbd0aa3d84dfdc83254ea5c8221943d37820ad6b694b2c9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0041_assets.json"
+}

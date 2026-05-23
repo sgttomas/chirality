@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "18-safety-isolation-and-metering-philosophies-02_p0005_tbl01",
+      "bbox_norm": [
+        0.14,
+        0.29,
+        0.86,
+        0.82
+      ],
+      "bbox_px": [
+        230,
+        792,
+        2320,
+        2871
+      ],
+      "caption": "Table 1: Max Meter Inaccuracy",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0005_tbl01_table-1-max-meter-inaccuracy.png",
+      "png_sha256": "4b23674e615a2728435012d61a63fc5e702cb5afb6b51b29c5cdfb35c52129d1",
+      "slug": "table-1-max-meter-inaccuracy",
+      "status": "materialized",
+      "table_data_json_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0005_tbl01_table-1-max-meter-inaccuracy.json",
+      "table_data_json_sha256": "c13490581f9173b581bccebd2b4fa81a6da23c058c7e3538903def1a54d333dd",
+      "table_data_sha256": "c13490581f9173b581bccebd2b4fa81a6da23c058c7e3538903def1a54d333dd",
+      "xlsx_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0005_tbl01_table-1-max-meter-inaccuracy.xlsx",
+      "xlsx_sha256": "c81981a18cae3058048ecb43157cdcd96babde821d22b29072fe33921a343f06"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/_assets/18-safety-isolation-and-metering-philosophies-02",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-02",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0005.png",
+  "page_image_sha256": "1dcb816a6ee4a77d38dfb1fe37f2b3cbed4433c935d30028e9dafc182d9639c2",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0005_assets.json"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-08",
+  "page": 16,
+  "total_pages": 26,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1000-6 Process Utility Connections—Type 2 Connection",
+      "slug": "fig-1000-6-process-utility-connections-type-2",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.19],
+      "confidence": "high",
+      "notes": "Caption and notes appear above the figure area; figure itself is referenced by notes. The figure for Type 2 Connection appears at the top of the page with notes listed below it."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 1000-7 Process Utility Connections—Type 3 Connection",
+      "slug": "fig-1000-7-process-utility-connections-type-3",
+      "bbox_norm": [0.03, 0.22, 0.97, 0.62],
+      "confidence": "high",
+      "notes": "Schematic diagram showing Type 3 connection with Water Supply, Standpipe Note 2, Water Break Tank, Piping Class Change, Note 1, and Process Line labels. Two notes appear below the figure."
+    }
+  ],
+  "issues": []
+}

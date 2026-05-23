@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-09_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-09_p0026_fig01",
+      "bbox_norm": [
+        0.04,
+        0.4,
+        0.96,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1154,
+        2550,
+        3065
+      ],
+      "caption": "Fig. 1100-1 Utility Connection with Turn Spool",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-09_p0026_fig01_fig-1100-1-utility-connection-turn-spool.png",
+      "png_sha256": "ce6690df650195df3667f15365a7457ce5369e1ea84d904d13fecb85c02645fc",
+      "slug": "fig-1100-1-utility-connection-turn-spool",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-09",
+  "doc_stem": "17-specific-service-utility-systems-09",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-09_pdf2md_work/page_0026.png",
+  "page_image_sha256": "9e66afffa79f3b930e876fa74c1e2dd1f1b85d42d7b6bde347f0e365c65a2e8f",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-09_pdf2md_work/page_0026_assets.json"
+}

@@ -1,0 +1,337 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 7,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Unit conversion factors from grams/liter through kilograms-cal/sec",
+      "slug": "unit-conversion-factors-grams-liter-through-kilograms-cal-sec",
+      "bbox_norm": [0.27, 0.10, 0.78, 0.91],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Multiply", "is_header": true },
+              { "value": "By", "is_header": true },
+              { "value": "To Obtain", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grams/liter", "type": "text" },
+              { "value": 0.06242, "type": "number" },
+              { "value": "Pounds/cubic foot", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Grams/liter", "type": "text" },
+              { "value": 1000, "type": "number" },
+              { "value": "Parts/million", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectares", "type": "text" },
+              { "value": 2.471, "type": "number" },
+              { "value": "Acres", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectares", "type": "text" },
+              { "value": "1.076 x 10^5", "type": "formula", "raw": "1.076 x 10⁵" },
+              { "value": "Square feet", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectograms", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": "Grams", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectoliters", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": "Liters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectometers", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": "Meters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hectowatts", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": "Watts", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 42.44, "type": "number" },
+              { "value": "Btu/min", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 33000, "type": "number", "raw": "33,000" },
+              { "value": "Foot-lb/min", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 550, "type": "number" },
+              { "value": "Foot-lb/sec", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 1.014, "type": "number" },
+              { "value": "Horsepower (metric)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 10.547, "type": "number" },
+              { "value": "Kg-calories/min", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 0.7457, "type": "number" },
+              { "value": "Kilowatts", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower", "type": "text" },
+              { "value": 745.7, "type": "number" },
+              { "value": "Watts", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower (boiler)", "type": "text" },
+              { "value": 33493, "type": "number", "raw": "33,493" },
+              { "value": "Btu/hr", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower (boiler)", "type": "text" },
+              { "value": 9.809, "type": "number" },
+              { "value": "Kilowatts", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower-hours", "type": "text" },
+              { "value": 2546, "type": "number" },
+              { "value": "Btu", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower-hours", "type": "text" },
+              { "value": "1.98 x 10^6", "type": "formula", "raw": "1.98 x 10⁶" },
+              { "value": "Foot-lb", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower-hours", "type": "text" },
+              { "value": 641.6, "type": "number" },
+              { "value": "Kilogram-calories", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower-hours", "type": "text" },
+              { "value": "2.737 x 10^5", "type": "formula", "raw": "2.737 x 10⁵" },
+              { "value": "Kilogram-meters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Horsepower-hours", "type": "text" },
+              { "value": 0.7457, "type": "number" },
+              { "value": "Kilowatt-hours", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches", "type": "text" },
+              { "value": 2.540, "type": "number", "raw": "2.540" },
+              { "value": "Centimeters", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of mercury", "type": "text" },
+              { "value": 0.03342, "type": "number" },
+              { "value": "Atmospheres", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of mercury", "type": "text" },
+              { "value": 1.133, "type": "number" },
+              { "value": "Feet of water", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of mercury", "type": "text" },
+              { "value": 345.3, "type": "number" },
+              { "value": "Kg/sq meter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of mercury", "type": "text" },
+              { "value": 70.73, "type": "number" },
+              { "value": "Lb/sq foot", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of mercury (32°F)", "type": "text" },
+              { "value": 0.491, "type": "number" },
+              { "value": "Lb/sq inch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 0.002458, "type": "number" },
+              { "value": "Atmospheres", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 0.07355, "type": "number" },
+              { "value": "Inches of mercury", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 25.40, "type": "number", "raw": "25.40" },
+              { "value": "Kg/sq meter", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 0.578, "type": "number" },
+              { "value": "Ounces/sq inch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 5.202, "type": "number" },
+              { "value": "Lb/sq foot", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Inches of water", "type": "text" },
+              { "value": 0.03613, "type": "number" },
+              { "value": "Lb/sq inch", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Joules", "type": "text" },
+              { "value": "0.9478 x 10^-3", "type": "formula", "raw": "0.9478 x 10⁻³" },
+              { "value": "Btu", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms", "type": "text" },
+              { "value": 980.665, "type": "number" },
+              { "value": "Dynes", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms", "type": "text" },
+              { "value": 2.205, "type": "number" },
+              { "value": "Pounds", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms", "type": "text" },
+              { "value": "1.102 x 10^-3", "type": "formula", "raw": "1.102 x 10⁻³" },
+              { "value": "Tons (short)", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms", "type": "text" },
+              { "value": "10^3", "type": "formula", "raw": "10³" },
+              { "value": "Grams", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms (force)", "type": "text" },
+              { "value": 9.80665, "type": "number" },
+              { "value": "Newtons", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms-cal/sec", "type": "text" },
+              { "value": 3.968, "type": "number" },
+              { "value": "Btu/sec", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms-cal/sec", "type": "text" },
+              { "value": 3086, "type": "number" },
+              { "value": "Foot-lb/sec", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Kilograms-cal/sec", "type": "text" },
+              { "value": 5.6145, "type": "number" },
+              { "value": "Horsepower", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single visible three-column conversion table; no explicit caption on page."
+    }
+  ],
+  "issues": []
+}

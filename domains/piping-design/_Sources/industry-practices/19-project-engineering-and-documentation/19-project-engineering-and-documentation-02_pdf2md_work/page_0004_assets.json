@@ -1,0 +1,53 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 4,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Definition of work system",
+      "slug": "definition-of-work-system",
+      "bbox_norm": [0.16, 0.16, 0.91, 0.31],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Term",
+                "is_header": true
+              },
+              {
+                "value": "Definition",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Work system",
+                "type": "text"
+              },
+              {
+                "value": "System in which one or more workers and equipment act together to perform a task that is relevant to the functioning of the system (examples: process units as shown in PEFS, facilities within an office environment, alternative customer service areas etc.)",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Visible two-column definition table without a caption; caption supplied as a brief summary."
+    }
+  ],
+  "issues": []
+}

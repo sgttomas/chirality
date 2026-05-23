@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 30,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 1 MATERIAL SELECTION CURVES",
+      "slug": "figure-1-material-selection-curves",
+      "bbox_norm": [0.06, 0.06, 0.94, 0.75],
+      "confidence": "high",
+      "notes": "Chart showing gas velocity (m/s) vs pressure bar (ga) with sonic velocity boundary curve and four hatched material-selection zones; legend below chart included in bbox"
+    }
+  ],
+  "issues": []
+}

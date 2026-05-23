@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 42,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 4 TYPICAL CLAMP WITH COMPLETE FREEDOM FOR ADJUSTMENTS",
+      "slug": "figure-4-typical-clamp-complete-freedom-adjustments",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.72],
+      "confidence": "high",
+      "notes": "Isometric engineering diagram of a riser clamp assembly with labeled components: Riser, Adjustable stub piece, Jacket bracing. Arrows indicate degrees of freedom for adjustment."
+    }
+  ],
+  "issues": []
+}

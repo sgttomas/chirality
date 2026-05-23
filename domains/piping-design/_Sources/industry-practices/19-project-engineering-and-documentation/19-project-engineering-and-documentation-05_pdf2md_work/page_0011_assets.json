@@ -1,0 +1,773 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 11,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Conversion factors from customary units to metric and other units",
+      "slug": "conversion-factors-customary-metric-other-units",
+      "bbox_norm": [0.27, 0.10, 0.80, 0.94],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Multiply",
+                "is_header": true
+              },
+              {
+                "value": "By",
+                "is_header": true
+              },
+              {
+                "value": "To Obtain",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic foot",
+                "type": "text"
+              },
+              {
+                "value": 0.01602,
+                "type": "number"
+              },
+              {
+                "value": "Grams/cubic cm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic foot",
+                "type": "text"
+              },
+              {
+                "value": 16.02,
+                "type": "number"
+              },
+              {
+                "value": "Kg/cubic meters",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic foot",
+                "type": "text"
+              },
+              {
+                "value": 0.0005787,
+                "type": "number",
+                "raw": "5.787 x 10^-4"
+              },
+              {
+                "value": "Lb/cubic inch",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic inch",
+                "type": "text"
+              },
+              {
+                "value": 27.68,
+                "type": "number"
+              },
+              {
+                "value": "Grams/cubic cm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic inch",
+                "type": "text"
+              },
+              {
+                "value": 27680,
+                "type": "number",
+                "raw": "2.768 x 10^4"
+              },
+              {
+                "value": "Kg/cubic meter",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/cubic inch",
+                "type": "text"
+              },
+              {
+                "value": 1728,
+                "type": "number"
+              },
+              {
+                "value": "Lb/cubic foot",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/foot",
+                "type": "text"
+              },
+              {
+                "value": 1.488,
+                "type": "number"
+              },
+              {
+                "value": "Kg/meter",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/inch",
+                "type": "text"
+              },
+              {
+                "value": 1152,
+                "type": "number"
+              },
+              {
+                "value": "Grams/cm",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds (force)",
+                "type": "text"
+              },
+              {
+                "value": 4.44822,
+                "type": "number"
+              },
+              {
+                "value": "Newtons",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq foot",
+                "type": "text"
+              },
+              {
+                "value": 0.01602,
+                "type": "number"
+              },
+              {
+                "value": "Feet of water",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq foot",
+                "type": "text"
+              },
+              {
+                "value": 4.882,
+                "type": "number"
+              },
+              {
+                "value": "Kg/sq meter",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq foot",
+                "type": "text"
+              },
+              {
+                "value": 0.006944,
+                "type": "number",
+                "raw": "6.944 x 10^-3"
+              },
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              },
+              {
+                "value": 0.06804,
+                "type": "number"
+              },
+              {
+                "value": "Atmospheres",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              },
+              {
+                "value": 2.307,
+                "type": "number"
+              },
+              {
+                "value": "Feet of water",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              },
+              {
+                "value": 2.036,
+                "type": "number"
+              },
+              {
+                "value": "Inches of mercury",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              },
+              {
+                "value": 703.1,
+                "type": "number"
+              },
+              {
+                "value": "Kg/sq meter",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Pounds/sq inch",
+                "type": "text"
+              },
+              {
+                "value": 0.146,
+                "type": "number"
+              },
+              {
+                "value": "Kilopascals",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quadrants (angle)",
+                "type": "text"
+              },
+              {
+                "value": 90,
+                "type": "number"
+              },
+              {
+                "value": "Degrees",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quadrants (angle)",
+                "type": "text"
+              },
+              {
+                "value": 5400,
+                "type": "number"
+              },
+              {
+                "value": "Minutes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quadrants (angle)",
+                "type": "text"
+              },
+              {
+                "value": 1.571,
+                "type": "number"
+              },
+              {
+                "value": "Radians",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quarts (dry)",
+                "type": "text"
+              },
+              {
+                "value": 67.2,
+                "type": "number",
+                "raw": "67.20"
+              },
+              {
+                "value": "Cubic inches",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quarts (liq)",
+                "type": "text"
+              },
+              {
+                "value": 57.75,
+                "type": "number"
+              },
+              {
+                "value": "Cubic inches",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, Argentine",
+                "type": "text"
+              },
+              {
+                "value": 101.28,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, Brazil",
+                "type": "text"
+              },
+              {
+                "value": 129.54,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, Castile, Peru",
+                "type": "text"
+              },
+              {
+                "value": 101.43,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, Chile",
+                "type": "text"
+              },
+              {
+                "value": 101.41,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, Mexico",
+                "type": "text"
+              },
+              {
+                "value": 101.47,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quintal, metric",
+                "type": "text"
+              },
+              {
+                "value": 220.46,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Quires",
+                "type": "text"
+              },
+              {
+                "value": 25,
+                "type": "number"
+              },
+              {
+                "value": "Sheets",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians",
+                "type": "text"
+              },
+              {
+                "value": 57.3,
+                "type": "number",
+                "raw": "57.30"
+              },
+              {
+                "value": "Degrees",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians",
+                "type": "text"
+              },
+              {
+                "value": 3438,
+                "type": "number"
+              },
+              {
+                "value": "Minutes",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians",
+                "type": "text"
+              },
+              {
+                "value": 0.637,
+                "type": "number"
+              },
+              {
+                "value": "Quadrants",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians/sec",
+                "type": "text"
+              },
+              {
+                "value": 57.3,
+                "type": "number",
+                "raw": "57.30"
+              },
+              {
+                "value": "Degrees/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians/sec",
+                "type": "text"
+              },
+              {
+                "value": 0.1592,
+                "type": "number"
+              },
+              {
+                "value": "Revolutions/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians/sec",
+                "type": "text"
+              },
+              {
+                "value": 9.549,
+                "type": "number"
+              },
+              {
+                "value": "Revolutions/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians/sec/sec",
+                "type": "text"
+              },
+              {
+                "value": 573,
+                "type": "number",
+                "raw": "573.0"
+              },
+              {
+                "value": "Rev/min/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Radians/sec/sec",
+                "type": "text"
+              },
+              {
+                "value": 0.1592,
+                "type": "number"
+              },
+              {
+                "value": "Rev/sec/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Reams",
+                "type": "text"
+              },
+              {
+                "value": 500,
+                "type": "number"
+              },
+              {
+                "value": "Sheets",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions",
+                "type": "text"
+              },
+              {
+                "value": 360,
+                "type": "number"
+              },
+              {
+                "value": "Degrees",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions",
+                "type": "text"
+              },
+              {
+                "value": 4,
+                "type": "number"
+              },
+              {
+                "value": "Quadrants",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions",
+                "type": "text"
+              },
+              {
+                "value": 6.283,
+                "type": "number"
+              },
+              {
+                "value": "Radians",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions/min",
+                "type": "text"
+              },
+              {
+                "value": 6,
+                "type": "number"
+              },
+              {
+                "value": "Degrees/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions/min",
+                "type": "text"
+              },
+              {
+                "value": 0.1047,
+                "type": "number"
+              },
+              {
+                "value": "Radians/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions/min",
+                "type": "text"
+              },
+              {
+                "value": 0.01667,
+                "type": "number"
+              },
+              {
+                "value": "Revolutions/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Revolutions/min/min",
+                "type": "text"
+              },
+              {
+                "value": 0.001745,
+                "type": "number",
+                "raw": "1.745 x 10^-3"
+              },
+              {
+                "value": "Rads/sec/sec",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single visible conversion-factor table; no printed caption, so caption is a concise summary."
+    }
+  ],
+  "issues": []
+}

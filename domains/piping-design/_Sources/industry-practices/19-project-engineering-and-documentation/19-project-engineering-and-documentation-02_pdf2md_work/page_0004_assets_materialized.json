@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0004_tbl01",
+      "bbox_norm": [
+        0.16,
+        0.16,
+        0.91,
+        0.31
+      ],
+      "bbox_px": [
+        273,
+        386,
+        2381,
+        1263
+      ],
+      "caption": "Definition of work system",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.png",
+      "png_sha256": "4211d1a7d34ec7e2a26be1e5e1552867dd11518d75d6a1d91023703fbf7d17a5",
+      "slug": "definition-of-work-system",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.json",
+      "table_data_json_sha256": "39b38e0413d9627ab7d57381bdb4938b40c9cef46a8595d18e2e345a7d489e85",
+      "table_data_sha256": "39b38e0413d9627ab7d57381bdb4938b40c9cef46a8595d18e2e345a7d489e85",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.xlsx",
+      "xlsx_sha256": "1a78ced1cde61e2dd01f1680486cc510c975bc574493f27c748a6ba3e1c8211e"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0004.png",
+  "page_image_sha256": "27e287fa4a1d72ebd16f6127b0ce9281eac7323428b8fa7a9d400f24fcdcc7c9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0004_assets.json"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 43,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 5    J-TUBE BELLMOUTHS",
+      "slug": "figure-5-j-tube-bellmouths",
+      "bbox_norm": [0.10, 0.08, 0.95, 0.58],
+      "confidence": "high",
+      "notes": "Two sub-diagrams labeled A and B showing J-tube bellmouth cross-sections"
+    }
+  ],
+  "issues": []
+}

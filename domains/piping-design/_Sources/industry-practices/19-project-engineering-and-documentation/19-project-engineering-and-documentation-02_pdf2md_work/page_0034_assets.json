@@ -1,0 +1,434 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 34,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "FIGURE 7 EXAMPLES OF REGISTRATION FORM FOR HFE DESIGN ANALYSIS RESULTS",
+      "slug": "figure-7-registration-form-hfe-design-analysis-results",
+      "bbox_norm": [0.09, 0.15, 0.94, 0.75],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 2,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Man-Machine Interface datasheet",
+                "col_span": 13,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Task ->\n↓",
+                "is_header": true
+              },
+              {
+                "value": "Frequency\nper year",
+                "is_header": true
+              },
+              {
+                "value": "No people\ninvolved",
+                "is_header": true
+              },
+              {
+                "value": "Time\nmin",
+                "is_header": true
+              },
+              {
+                "value": "HSE risk\nL/M/H",
+                "is_header": true
+              },
+              {
+                "value": "Operational\nrisk\nL/M/H",
+                "is_header": true
+              },
+              {
+                "value": "Economics",
+                "is_header": true
+              },
+              {
+                "value": "Importance\nL/M/H",
+                "is_header": true
+              },
+              {
+                "value": "Extra\ninvestment\ninvolved\nEUR",
+                "is_header": true
+              },
+              {
+                "value": "Extra\ndesign\neffort\nL/M/H",
+                "is_header": true
+              },
+              {
+                "value": "Cost/benefit\nratio",
+                "is_header": true
+              },
+              {
+                "value": "Valve\ncat.",
+                "is_header": true
+              },
+              {
+                "value": "Design\nrequirement",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Operation",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Maintenance",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Clean-out/up",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Transport/hoisting",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Inspection",
+                "type": "text"
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              },
+              {
+                "value": null,
+                "type": "missing",
+                "raw": ""
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "One visible form table under the Figure 7 caption; body cells are blank."
+    }
+  ],
+  "issues": []
+}

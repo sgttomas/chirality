@@ -1,0 +1,376 @@
+{
+  "asset_count": 10,
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0006_fig01",
+      "bbox_norm": [
+        0.05,
+        0.04,
+        0.95,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2307
+      ],
+      "caption": "Fig. 800-1 Flow Line Supports Type A and B",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 6,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0006_fig01_fig-800-1-flow-line-supports-type-a-and.png",
+      "png_sha256": "8917e412244b3422b42964db7a7c76c77c4a1938bf8d7673490a4317f8659e0a",
+      "slug": "fig-800-1-flow-line-supports-type-a-and",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0007_fig01",
+      "bbox_norm": [
+        0.12,
+        0.07,
+        0.92,
+        0.7
+      ],
+      "bbox_px": [
+        178,
+        66,
+        2474,
+        2472
+      ],
+      "caption": "Fig. 800-2 Flow Line Support Type D",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0007_fig01_fig-800-2-flow-line-support-type-d.png",
+      "png_sha256": "5f37075f341a87497e796525610408c2d9ec500589088f2f1443a39b37adf62e",
+      "slug": "fig-800-2-flow-line-support-type-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0007_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.55,
+        0.92,
+        0.7
+      ],
+      "bbox_px": [
+        178,
+        1648,
+        2474,
+        2472
+      ],
+      "caption": "Flow Line Support Type D \u2014 Doubler Size and Tubing Stand-Off Schedule",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.png",
+      "png_sha256": "18c2789698bddad1a594428763013a5d71ebe7f22d11750ab67786f2fdefb051",
+      "slug": "flow-line-support-type-d-doubler-size-sc",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.json",
+      "table_data_json_sha256": "b99e0c048c46f017ee2edc726754dc565c4e00afc9163e9ac6046435718133ce",
+      "table_data_sha256": "b99e0c048c46f017ee2edc726754dc565c4e00afc9163e9ac6046435718133ce",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.xlsx",
+      "xlsx_sha256": "5989e79caa0f83ef54c7ed5d880e3cf884235b04a71bbd4189b2378d5216418a"
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1154
+      ],
+      "caption": "Fig. 800-3 Flow Line Supports Type J",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0008_fig01_fig-800-3-flow-line-supports-type-j.png",
+      "png_sha256": "6dc15d62f86b232a854bd0dfddfc78fcf1fd8806eeed42daa74d88ddae1544c5",
+      "slug": "fig-800-3-flow-line-supports-type-j",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_fig02",
+      "bbox_norm": [
+        0.04,
+        0.31,
+        0.96,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        857,
+        2550,
+        2307
+      ],
+      "caption": "Fig. 800-4 Flow Line Supports Type C",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 8,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0008_fig02_fig-800-4-flow-line-supports-type-c.png",
+      "png_sha256": "7bc0a6a0f4a8777c59228b934b27c87b2bd20fec71ce30f5906be64391fe0e38",
+      "slug": "fig-800-4-flow-line-supports-type-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.65,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1978,
+        2550,
+        3296
+      ],
+      "caption": "Flow Line Supports Type C \u2014 Dimensions Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.png",
+      "png_sha256": "010d1440986d9ac5f5d36a61eb491d0f53eda0ba50f3137fd2263b5a29a3a60f",
+      "slug": "flow-line-supports-type-c-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.json",
+      "table_data_json_sha256": "ec547926464fff2b59f43546f83387434f10c6275d1ca3a8371c77007c499e3a",
+      "table_data_sha256": "ec547926464fff2b59f43546f83387434f10c6275d1ca3a8371c77007c499e3a",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.xlsx",
+      "xlsx_sha256": "fd75014cbf6bb2c6a257925eb98c66976d21887b2aafc95c00220259b9faa4f5"
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0010_fig01",
+      "bbox_norm": [
+        0.07,
+        0.04,
+        0.93,
+        0.55
+      ],
+      "bbox_px": [
+        51,
+        0,
+        2499,
+        1978
+      ],
+      "caption": "Fig. 800-5 Flow Line Support Type E",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0010_fig01_fig-800-5-flow-line-support-type-e.png",
+      "png_sha256": "3222d0d21b5a2ffc7b03e14f2dadcde661af1c125edb9914fd00ae9a18a9fe73",
+      "slug": "fig-800-5-flow-line-support-type-e",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0010_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.57,
+        0.93,
+        0.88
+      ],
+      "bbox_px": [
+        51,
+        1714,
+        2499,
+        3065
+      ],
+      "caption": "Fig. 800-5 Flow Line Support Type E \u2014 Dimension Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.png",
+      "png_sha256": "5a2eadb85ff4f7fd2672ba5d0b3b82a288f903af02ea5534b71c776270d9c954",
+      "slug": "fig-800-5-flow-line-support-type-e-dimen",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.json",
+      "table_data_json_sha256": "5a9536958b22b376a17ca9226dc0215eab77d1f1b4cbc95158076d8036b183c5",
+      "table_data_sha256": "5a9536958b22b376a17ca9226dc0215eab77d1f1b4cbc95158076d8036b183c5",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.xlsx",
+      "xlsx_sha256": "f3bbd4a10d0072d5238efd5ab39e6da98850abce447dc4fb1c951b3e03417038"
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0011_fig01",
+      "bbox_norm": [
+        0.12,
+        0.04,
+        0.92,
+        0.68
+      ],
+      "bbox_px": [
+        178,
+        0,
+        2474,
+        2406
+      ],
+      "caption": "Fig. 800-6 Deck Penetration Collar",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0011_fig01_fig-800-6-deck-penetration-collar.png",
+      "png_sha256": "84a4b5da5368db1157946e40ee3df020e396e5feedf2d9797c5f0f1b82a13aa9",
+      "slug": "fig-800-6-deck-penetration-collar",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0011_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.47,
+        0.65,
+        0.67
+      ],
+      "bbox_px": [
+        178,
+        1384,
+        1785,
+        2373
+      ],
+      "caption": "Deck Penetration Collar Schedule \u2014 Riser size, Collar dimensions, and Weight",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.png",
+      "png_sha256": "a1c4eed635650f9f1fec3fe3b1c267bea24f763c90c6f122ff117a5c2db07261",
+      "slug": "deck-penetration-collar-schedule",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.json",
+      "table_data_json_sha256": "0aa2c27e74e252c956fd2a83da8096f1117b905e707e41f59e641b5c6cb80ea8",
+      "table_data_sha256": "0aa2c27e74e252c956fd2a83da8096f1117b905e707e41f59e641b5c6cb80ea8",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.xlsx",
+      "xlsx_sha256": "f80759f2fb7215cf9ec9b763a31d0fe12d3064d105bb8117b505bb92fefcbb48"
+    }
+  ],
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "issues": [],
+  "page_manifest_count": 11,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 3,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work"
+}

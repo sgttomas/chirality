@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0041.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-01_p0041_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3509
+      ],
+      "caption": "FIGURE 6 GAS TURBINE COMPRESSED FUEL GAS SUPPLY SYSTEM WITH VAPORISED LPG BACK-UP",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-01_p0041_fig01_figure-6-gas-turbine-compressed-fuel-gas.png",
+      "png_sha256": "62948eda4fa0aac1d0a399a5f97f3dabb52f2cf77a25a5de1cbdf90c29cc08bf",
+      "slug": "figure-6-gas-turbine-compressed-fuel-gas",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-01",
+  "doc_stem": "17-specific-service-utility-systems-01",
+  "page": 41,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0041.png",
+  "page_image_sha256": "d2fc64ac8ae76b110301815c50f5f580d1c13b51fb305d975c096a50b45bcf0a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-01_pdf2md_work/page_0041_assets.json"
+}

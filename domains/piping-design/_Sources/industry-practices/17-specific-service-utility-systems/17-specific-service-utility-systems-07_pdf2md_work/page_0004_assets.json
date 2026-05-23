@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-07",
+  "page": 4,
+  "total_pages": 11,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 500-1 Secondary Containment Details Using Fiberglass Troughs",
+      "slug": "fig-500-1-secondary-containment-fiberglass-troughs",
+      "bbox_norm": [0.05, 0.08, 0.97, 0.92],
+      "confidence": "high",
+      "notes": "Multi-part figure containing Pump Block Detail, Trench Detail (with annotation about 10 mil polypropylene sheet and trench bed), and an isometric view of secondary containment assembly. Caption appears above the figure frame."
+    }
+  ],
+  "issues": []
+}

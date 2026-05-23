@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0032.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0032_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        2000
+      ],
+      "caption": "FIGURE 12 THE ONSET-OF-CHOKING FOR A 36\" OD BOTTLE AS A FUNCTION OF THE BOTTLE SLOPE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0032_fig01_figure-12-onset-of-choking-36in-bottle-v.png",
+      "png_sha256": "cbb4d962592c294a51bfd7921253d58d957e43121a22ad2b616566218299ed42",
+      "slug": "figure-12-onset-of-choking-36in-bottle-v",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 32,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0032.png",
+  "page_image_sha256": "f90c73283aaeef9edef08bef70fceb83a7bd5261fec998bb326dcb08bf1e8fe5",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0032_assets.json"
+}

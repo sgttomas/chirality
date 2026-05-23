@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0007_fig01",
+      "bbox_norm": [
+        0.12,
+        0.07,
+        0.92,
+        0.7
+      ],
+      "bbox_px": [
+        178,
+        66,
+        2474,
+        2472
+      ],
+      "caption": "Fig. 800-2 Flow Line Support Type D",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0007_fig01_fig-800-2-flow-line-support-type-d.png",
+      "png_sha256": "5f37075f341a87497e796525610408c2d9ec500589088f2f1443a39b37adf62e",
+      "slug": "fig-800-2-flow-line-support-type-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0007_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.55,
+        0.92,
+        0.7
+      ],
+      "bbox_px": [
+        178,
+        1648,
+        2474,
+        2472
+      ],
+      "caption": "Flow Line Support Type D \u2014 Doubler Size and Tubing Stand-Off Schedule",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.png",
+      "png_sha256": "18c2789698bddad1a594428763013a5d71ebe7f22d11750ab67786f2fdefb051",
+      "slug": "flow-line-support-type-d-doubler-size-sc",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.json",
+      "table_data_json_sha256": "b99e0c048c46f017ee2edc726754dc565c4e00afc9163e9ac6046435718133ce",
+      "table_data_sha256": "b99e0c048c46f017ee2edc726754dc565c4e00afc9163e9ac6046435718133ce",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0007_tbl01_flow-line-support-type-d-doubler-size-sc.xlsx",
+      "xlsx_sha256": "5989e79caa0f83ef54c7ed5d880e3cf884235b04a71bbd4189b2378d5216418a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0007.png",
+  "page_image_sha256": "a3422dfad0b2281e2174f6eb60d2c0d3ceb5406d040a960319c8af734a1a0739",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0007_assets.json"
+}

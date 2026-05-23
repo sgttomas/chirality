@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-03",
+  "page": 15,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 1A OVERALL LAYOUT OF AN HTF SYSTEM WITH A FURNACE",
+      "slug": "figure-1a-overall-layout-htf-system-furnace",
+      "bbox_norm": [0.05, 0.09, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page process flow schematic of an HTF system with a furnace, showing heat consumers, HTF storage tank, trim cooler, full flow bypass, expansion vessel, pump-out cooler, make-up pump, circulation pumps, filter, heater, fuel supply, flare, and N2 connections."
+    }
+  ],
+  "issues": []
+}

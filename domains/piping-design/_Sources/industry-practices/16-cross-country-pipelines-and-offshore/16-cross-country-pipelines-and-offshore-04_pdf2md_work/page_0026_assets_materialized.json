@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-04_p0026_tbl01",
+      "bbox_norm": [
+        0.55,
+        0.02,
+        0.98,
+        0.16
+      ],
+      "bbox_px": [
+        1240,
+        0,
+        2480,
+        737
+      ],
+      "caption": "Coefficient of friction values for riser and seabed, riser and inside of J-tube wall, pull cable and inside of J-tube wall",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-04_p0026_tbl01_coefficient-of-friction-jtube.png",
+      "png_sha256": "1bffdc993c59c23e980e391d7dd108b8f56045a39bd4890f9c67374d5e73de3f",
+      "slug": "coefficient-of-friction-jtube",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-04_p0026_tbl01_coefficient-of-friction-jtube.json",
+      "table_data_json_sha256": "2f44330788bac1736b8a63a9ecac2203160b670d54be2f4c941e3537263c996e",
+      "table_data_sha256": "2f44330788bac1736b8a63a9ecac2203160b670d54be2f4c941e3537263c996e",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-04_p0026_tbl01_coefficient-of-friction-jtube.xlsx",
+      "xlsx_sha256": "8a7d6435963aed8b5c791acdeb579b68d3dc90786684a590cdbe5e17839a4e21"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0026.png",
+  "page_image_sha256": "3ae9149ed7a001548707cd338a305467f9a9106e68719355cd68f3d342e87bbd",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0026_assets.json"
+}

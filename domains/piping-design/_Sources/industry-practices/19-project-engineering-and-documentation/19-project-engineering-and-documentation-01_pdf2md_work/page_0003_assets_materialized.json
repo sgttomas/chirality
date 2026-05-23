@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-01_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-01_p0003_fig01",
+      "bbox_norm": [
+        0.17,
+        0.34,
+        0.74,
+        0.76
+      ],
+      "bbox_px": [
+        306,
+        957,
+        2014,
+        2673
+      ],
+      "caption": "Ferndale Refinery composite line number example",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/19-project-engineering-and-documentation-01_p0003_fig01_ferndale-refinery-composite-line-number.png",
+      "png_sha256": "657176cfee0d880388f4492945797e4c758ff7518c60e9f85a65dfcd4b3aa2df",
+      "slug": "ferndale-refinery-composite-line-number",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-01_p0003_fig02",
+      "bbox_norm": [
+        0.18,
+        0.73,
+        0.72,
+        0.96
+      ],
+      "bbox_px": [
+        332,
+        2244,
+        1964,
+        3300
+      ],
+      "caption": "Alliance and Trainer Refinery composite line number example",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/19-project-engineering-and-documentation-01_p0003_fig02_alliance-trainer-refinery-composite-line.png",
+      "png_sha256": "1a010694a639d88ef7ef93d34a9b2dae796dd17d92e0bb82d5cf76ae25589066",
+      "slug": "alliance-trainer-refinery-composite-line",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-01",
+  "doc_stem": "19-project-engineering-and-documentation-01",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-01_pdf2md_work/page_0003.png",
+  "page_image_sha256": "a78558d2d15862b29417803d50864d6f25d27343464309360b0d5b598b333d0e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-01_pdf2md_work/page_0003_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 11,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Onshore Pipelines vs Offshore Pipelines — Safety Risk Assessment requirements",
+      "slug": "onshore-offshore-safety-risk-assessment",
+      "bbox_norm": [0.03, 0.52, 0.97, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "ONSHORE PIPELINES", "is_header": true },
+              { "value": "OFFSHORE PIPELINES", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "A formal quantitative risk assessment (QRA) should be carried out in the following situations, for those location classes as defined in (3.3.3):\n• Fluid category B and C in location classes 3 and 4.\n• Fluid category D in all location classes.\nThe assessment should confirm that the selected design factors (3.4.1) and proximity factors (3.4) are adequate.", "type": "text" },
+              { "value": "A formal quantitative risk assessment (QRA) shall be carried out for pipelines connected to permanently manned offshore complexes, except for pipelines transporting category A fluids. The necessary risk protection and safety systems shall be derived from this assessment.", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column comparison table with boxed border; left column covers onshore QRA requirements, right column covers offshore QRA requirements"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 14,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Fig. A-1 Temperature Conversion Table Courtesy of Goulds Pumps, Inc.",
+      "slug": "fig-a-1-temperature-conversion-table",
+      "bbox_norm": [
+        0.075,
+        0.105,
+        0.875,
+        0.907
+      ],
+      "needs_extraction": true,
+      "confidence": "medium",
+      "notes": "Dense scanned conversion table; several small cells are visually ambiguous, so no canonical table_data block is emitted."
+    }
+  ],
+  "issues": [
+    {
+      "code": "table_needs_extraction",
+      "message": "Dense temperature conversion table is visible, but the canonical structured table_data block cannot be safely emitted from the page image without risking cell errors.",
+      "asset_kind": "tbl",
+      "asset_ordinal": 1
+    }
+  ]
+}

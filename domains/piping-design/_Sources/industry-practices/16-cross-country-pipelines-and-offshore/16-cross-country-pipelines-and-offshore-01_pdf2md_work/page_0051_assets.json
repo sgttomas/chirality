@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 51,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 1 DIAGRAMMATIC REPRESENTATION OF PIPELINE SCOPE BOUNDARIES",
+      "slug": "figure-1-diagrammatic-representation-pipeline-scope-boundaries",
+      "bbox_norm": [0.03, 0.05, 0.97, 0.97],
+      "confidence": "high",
+      "notes": "Full-page schematic diagram showing pipeline scope boundaries including facility plots, gathering lines, trunklines, and associated facilities with a key legend. Header text 'DEP 31.40.00.10-Gen. November 1993 Page 53' and figure title visible at top."
+    }
+  ],
+  "issues": []
+}

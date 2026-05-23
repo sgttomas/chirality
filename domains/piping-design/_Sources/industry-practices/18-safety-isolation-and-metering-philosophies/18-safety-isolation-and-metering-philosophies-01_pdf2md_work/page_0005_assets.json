@@ -1,0 +1,474 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-01",
+  "page": 5,
+  "total_pages": 6,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Figure 1- SCE List Template",
+      "slug": "figure-1-sce-list-template",
+      "bbox_norm": [
+        0.09,
+        0.17,
+        0.90,
+        0.64
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Item #",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "HAZOP/LOPA Scenario Ref.",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Instrument/Equipment Tag #",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Service Description - Type",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Service Description - Function",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "P&ID or Document #",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "SIL Requirement",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Notes",
+                "type": "text",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.0 PROTECTIVE SYSTEMS (ISOLATION AND PREVENTION)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.1 Instrumented Systems SIL1 and greater (SIS)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.2 Instrumented Systems SIL 0",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.3 Critical Alarms",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.4 Mechanical Systems",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "1.5 Other IPLs",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.0 MITIGATION SYSTEMS (CONTROL/DETECT/MITIGATE)",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.1 Fire and Gas Detection",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.2 Fire Suppression",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.3 Ventilation Systems",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "2.4 Other Emergency Response/Alarm System Safeguards",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Visible asset is a tabular template captioned as Figure 1; empty template rows are present in the Markdown transcription."
+    }
+  ],
+  "issues": []
+}

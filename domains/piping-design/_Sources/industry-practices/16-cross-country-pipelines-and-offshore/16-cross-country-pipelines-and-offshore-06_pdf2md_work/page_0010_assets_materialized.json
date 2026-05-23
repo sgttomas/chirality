@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0010.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0010_fig01",
+      "bbox_norm": [
+        0.07,
+        0.04,
+        0.93,
+        0.55
+      ],
+      "bbox_px": [
+        51,
+        0,
+        2499,
+        1978
+      ],
+      "caption": "Fig. 800-5 Flow Line Support Type E",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0010_fig01_fig-800-5-flow-line-support-type-e.png",
+      "png_sha256": "3222d0d21b5a2ffc7b03e14f2dadcde661af1c125edb9914fd00ae9a18a9fe73",
+      "slug": "fig-800-5-flow-line-support-type-e",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0010_tbl01",
+      "bbox_norm": [
+        0.07,
+        0.57,
+        0.93,
+        0.88
+      ],
+      "bbox_px": [
+        51,
+        1714,
+        2499,
+        3065
+      ],
+      "caption": "Fig. 800-5 Flow Line Support Type E \u2014 Dimension Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.png",
+      "png_sha256": "5a2eadb85ff4f7fd2672ba5d0b3b82a288f903af02ea5534b71c776270d9c954",
+      "slug": "fig-800-5-flow-line-support-type-e-dimen",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.json",
+      "table_data_json_sha256": "5a9536958b22b376a17ca9226dc0215eab77d1f1b4cbc95158076d8036b183c5",
+      "table_data_sha256": "5a9536958b22b376a17ca9226dc0215eab77d1f1b4cbc95158076d8036b183c5",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0010_tbl01_fig-800-5-flow-line-support-type-e-dimen.xlsx",
+      "xlsx_sha256": "f3bbd4a10d0072d5238efd5ab39e6da98850abce447dc4fb1c951b3e03417038"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 10,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0010.png",
+  "page_image_sha256": "d6e15fa3ec216999e3153be5ae709a61d4a33d068f8c9e8d8daa8e88020eceff",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0010_assets.json"
+}

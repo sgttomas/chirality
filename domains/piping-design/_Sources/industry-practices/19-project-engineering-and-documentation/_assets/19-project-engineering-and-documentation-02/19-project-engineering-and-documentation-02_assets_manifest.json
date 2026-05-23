@@ -1,0 +1,1015 @@
+{
+  "asset_count": 22,
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0003_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.14,
+        0.91,
+        0.96
+      ],
+      "bbox_px": [
+        298,
+        316,
+        2381,
+        3509
+      ],
+      "caption": "Specific definitions and abbreviations",
+      "issues": [
+        "invalid_table_data:ERROR: rows[0].cells[0] missing 'value'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 3,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0003_tbl01_specific-definitions-and-abbreviations.png",
+      "png_sha256": "df890975dfa9f80cfa87b1459ece8c6c8c51481415a11ab3a1b963bfa9a96c4e",
+      "slug": "specific-definitions-and-abbreviations",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0004_tbl01",
+      "bbox_norm": [
+        0.16,
+        0.16,
+        0.91,
+        0.31
+      ],
+      "bbox_px": [
+        273,
+        386,
+        2381,
+        1263
+      ],
+      "caption": "Definition of work system",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.png",
+      "png_sha256": "4211d1a7d34ec7e2a26be1e5e1552867dd11518d75d6a1d91023703fbf7d17a5",
+      "slug": "definition-of-work-system",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.json",
+      "table_data_json_sha256": "39b38e0413d9627ab7d57381bdb4938b40c9cef46a8595d18e2e345a7d489e85",
+      "table_data_sha256": "39b38e0413d9627ab7d57381bdb4938b40c9cef46a8595d18e2e345a7d489e85",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0004_tbl01_definition-of-work-system.xlsx",
+      "xlsx_sha256": "1a78ced1cde61e2dd01f1680486cc510c975bc574493f27c748a6ba3e1c8211e"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0009_fig01",
+      "bbox_norm": [
+        0.18,
+        0.32,
+        0.89,
+        0.78
+      ],
+      "bbox_px": [
+        322,
+        947,
+        2331,
+        2912
+      ],
+      "caption": "Figure 1 Overview of project phases and decision points for different Shell businesses",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0009_fig01_overview-project-phases-decision-points.png",
+      "png_sha256": "360d988cd1e516a6d26ce0bf16cbdcb7a8060ce78a6daead08efd99a504d9e7b",
+      "slug": "overview-project-phases-decision-points",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0011_fig01",
+      "bbox_norm": [
+        0.18,
+        0.12,
+        0.93,
+        0.93
+      ],
+      "bbox_px": [
+        322,
+        246,
+        2430,
+        3439
+      ],
+      "caption": "Figure 2 Flow schemes of HFE activities during Project Development Phase",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0011_fig01_flow-schemes-hfe-activities-project-deve.png",
+      "png_sha256": "d33f3cac249117bf43f3ae1ab727250706f8ad0331cfaa089a88cfd2bfa34735",
+      "slug": "flow-schemes-hfe-activities-project-deve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0012_fig01",
+      "bbox_norm": [
+        0.13,
+        0.13,
+        0.88,
+        0.94
+      ],
+      "bbox_px": [
+        198,
+        281,
+        2306,
+        3474
+      ],
+      "caption": "Figure 3 Flow scheme of HFE activities during Project Implementation Phase",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0012_fig01_flow-scheme-hfe-activities-project-imple.png",
+      "png_sha256": "415d63d6020bc65fe5ec65fbb2f4585ffef0a8c5ce94c11da00552c698453d97",
+      "slug": "flow-scheme-hfe-activities-project-imple",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0017_tbl01",
+      "bbox_norm": [
+        0.16,
+        0.49,
+        0.9,
+        0.95
+      ],
+      "bbox_px": [
+        273,
+        1544,
+        2356,
+        3509
+      ],
+      "caption": "Table 1 Task, Authorities and Responsibilities of Project Members during HFE implementation",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0017_tbl01_task-authorities-and-responsibilities-of.png",
+      "png_sha256": "5c0bc6a62810c74168e533cc6ace0f767fb30e481c998450fb0fc01a60471061",
+      "slug": "task-authorities-and-responsibilities-of",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0017_tbl01_task-authorities-and-responsibilities-of.json",
+      "table_data_json_sha256": "f8454c0edbf676a8fcdfa52ebb8eebc0e22ed40a6171e8f423986177e48b1c61",
+      "table_data_sha256": "f8454c0edbf676a8fcdfa52ebb8eebc0e22ed40a6171e8f423986177e48b1c61",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0017_tbl01_task-authorities-and-responsibilities-of.xlsx",
+      "xlsx_sha256": "369ea7a463bc2b6cef51bf0d9eef26ded6be2d56bd8a9d387a0805ee59bed0d2"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0018_tbl01",
+      "bbox_norm": [
+        0.15,
+        0.12,
+        0.72,
+        0.96
+      ],
+      "bbox_px": [
+        248,
+        246,
+        1910,
+        3509
+      ],
+      "caption": "Parties and Tasks/Authorities/Responsibilities",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 18,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0018_tbl01_parties-tasks-authorities-responsibiliti.png",
+      "png_sha256": "e51a4e823501878c3543f7d001e66e9fd5f770c7a252fe305d8b72ad8c65a807",
+      "slug": "parties-tasks-authorities-responsibiliti",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0018_tbl01_parties-tasks-authorities-responsibiliti.json",
+      "table_data_json_sha256": "bdff359af04f98d4c864cd276d2b0e6a262d75b23c1a00a536341d020966da22",
+      "table_data_sha256": "bdff359af04f98d4c864cd276d2b0e6a262d75b23c1a00a536341d020966da22",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0018_tbl01_parties-tasks-authorities-responsibiliti.xlsx",
+      "xlsx_sha256": "7b9af60b7516755aba881b3e46f40b1a5ef449b87b3086b3bae25cd8c607322d"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0019_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.2,
+        0.91,
+        0.55
+      ],
+      "bbox_px": [
+        298,
+        526,
+        2381,
+        2105
+      ],
+      "caption": "Table 2 Competence Definitions for HFE in New Projects",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.png",
+      "png_sha256": "2f74ee35fb58098cdfb179786fcbf15067c7fd9bc134a92f6f323267511e4008",
+      "slug": "competence-definitions-for-hfe-in-new-pr",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.json",
+      "table_data_json_sha256": "c74ce26510225b66d56bd09eeacf61ae95310ab917b76f7c7647a26f25f7cd00",
+      "table_data_sha256": "c74ce26510225b66d56bd09eeacf61ae95310ab917b76f7c7647a26f25f7cd00",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.xlsx",
+      "xlsx_sha256": "a00cf067cfd46adb2e342079a5aed6e923b557bcb7f67fc3d3dcc2a15f2639ff"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0019_tbl02",
+      "bbox_norm": [
+        0.17,
+        0.59,
+        0.72,
+        0.9
+      ],
+      "bbox_px": [
+        298,
+        1895,
+        1910,
+        3334
+      ],
+      "caption": "Table 3 Competence levels for members of Project Team",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 19,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.png",
+      "png_sha256": "37fb1ea18df111ca35971155dc93d4a704e4f98540b9fe415bd6578b462a5e2a",
+      "slug": "competence-levels-for-members-of-project",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.json",
+      "table_data_json_sha256": "527d6f692d31670272084b319023326ad4368d01146880a6ba2d4ba87502ec63",
+      "table_data_sha256": "527d6f692d31670272084b319023326ad4368d01146880a6ba2d4ba87502ec63",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.xlsx",
+      "xlsx_sha256": "b90f91652b65fc4127d945fbc6de68c00b34a46e2ca5cfef389d4dcd9a690d1a"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0020_tbl01",
+      "bbox_norm": [
+        0.18,
+        0.185,
+        0.77,
+        0.335
+      ],
+      "bbox_px": [
+        322,
+        474,
+        2034,
+        1351
+      ],
+      "caption": "Table 4 Competences required for HFE activities",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0020_tbl01_table-4-competences-required-for-hfe-act.png",
+      "png_sha256": "0b6f012de13c0470d671fce9c818369c17f0689a2e835be6e62ff9438ccf86f1",
+      "slug": "table-4-competences-required-for-hfe-act",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0020_tbl01_table-4-competences-required-for-hfe-act.json",
+      "table_data_json_sha256": "1fa0949a58a20e3eeea612e3fb5a325a1a84686e25098e44bcdabc24e97cdf51",
+      "table_data_sha256": "1fa0949a58a20e3eeea612e3fb5a325a1a84686e25098e44bcdabc24e97cdf51",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0020_tbl01_table-4-competences-required-for-hfe-act.xlsx",
+      "xlsx_sha256": "5fdce87aae85aa8d16a705aa55faeba11933e3133ea2174671138033963df750"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0021_tbl01",
+      "bbox_norm": [
+        0.08,
+        0.39,
+        0.88,
+        0.7
+      ],
+      "bbox_px": [
+        74,
+        1193,
+        2306,
+        2632
+      ],
+      "caption": "Shell Standards publications and DEP references",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0021_tbl01_shell-standards-publications-dep-referen.png",
+      "png_sha256": "4347a530a654d878d52f0150d418420362f53bda213d7ba4dcba99405a342a24",
+      "slug": "shell-standards-publications-dep-referen",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0021_tbl01_shell-standards-publications-dep-referen.json",
+      "table_data_json_sha256": "cde1fadb00cc6767541c262368533ed2b06f8a1d6062cfdd4b9af0d20895e630",
+      "table_data_sha256": "cde1fadb00cc6767541c262368533ed2b06f8a1d6062cfdd4b9af0d20895e630",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0021_tbl01_shell-standards-publications-dep-referen.xlsx",
+      "xlsx_sha256": "e332d60e240a2d7354b07217e05930071652bd6a9ce72411da3c8d889c80f353"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0026_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.14,
+        0.96,
+        0.91
+      ],
+      "bbox_px": [
+        0,
+        223,
+        3509,
+        2381
+      ],
+      "caption": "Table 5 Work Systems Analysis Tool",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 26,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0026_tbl01_table-5-work-systems-analysis-tool.png",
+      "png_sha256": "fc06c043bb5dfa4afeeb4f15ca3b62dc773abd887eb513375c16c3a5648f310b",
+      "slug": "table-5-work-systems-analysis-tool",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0026_tbl01_table-5-work-systems-analysis-tool.json",
+      "table_data_json_sha256": "d4002b5950eae7aee64b2afd634241a41c4218e16a2bb8b060b25e62edb3a029",
+      "table_data_sha256": "d4002b5950eae7aee64b2afd634241a41c4218e16a2bb8b060b25e62edb3a029",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0026_tbl01_table-5-work-systems-analysis-tool.xlsx",
+      "xlsx_sha256": "19c6b939446e5ae61831c90db5378dafb857d98fd6481e554a4c1390d9d5651d"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0027_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.16,
+        0.91,
+        0.84
+      ],
+      "bbox_px": [
+        298,
+        386,
+        2381,
+        3123
+      ],
+      "caption": "Table 6 HFE Activity Level Criteria",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 27,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.png",
+      "png_sha256": "ab255c16a955216e0fa55b6c3b0357ea2e676a758e81eff48a7b5d991477b209",
+      "slug": "hfe-activity-level-criteria",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.json",
+      "table_data_json_sha256": "fef4fa82408f338de1458844f57a2d1290adaefe15a4ff9ca38bc60bacf7a41a",
+      "table_data_sha256": "fef4fa82408f338de1458844f57a2d1290adaefe15a4ff9ca38bc60bacf7a41a",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.xlsx",
+      "xlsx_sha256": "0c6f15042b1ae6affeb50a3ab298a8d5df59bb0f79bcf8a127ba9516759b99db"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0028_fig01",
+      "bbox_norm": [
+        0.17,
+        0.12,
+        0.69,
+        0.72
+      ],
+      "bbox_px": [
+        298,
+        246,
+        1835,
+        2702
+      ],
+      "caption": "Figure 4 HFE Focusing, Work Systems Analysis and further HFE activities",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 28,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0028_fig01_hfe-focusing-work-systems-analysis-and-f.png",
+      "png_sha256": "5b4b6277c3094b24adae396ffdb45af45033745af2ccd42fa4e01fff84a41d1a",
+      "slug": "hfe-focusing-work-systems-analysis-and-f",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0029_tbl01",
+      "bbox_norm": [
+        0.16,
+        0.13,
+        0.98,
+        0.9
+      ],
+      "bbox_px": [
+        273,
+        281,
+        2480,
+        3334
+      ],
+      "caption": "Table 7 Competence Criteria of Human Factors Engineers",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 29,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0029_tbl01_table-7-competence-criteria-human-factor.png",
+      "png_sha256": "ae3713aca407803f751331365bc4a92a22afeaf521f5e2cae0dc3e323934e9f6",
+      "slug": "table-7-competence-criteria-human-factor",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0029_tbl01_table-7-competence-criteria-human-factor.json",
+      "table_data_json_sha256": "27fed4ec0e1c86549ab91e865e9660d046ac23ea5323b2b93be69453e10c3ac2",
+      "table_data_sha256": "27fed4ec0e1c86549ab91e865e9660d046ac23ea5323b2b93be69453e10c3ac2",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0029_tbl01_table-7-competence-criteria-human-factor.xlsx",
+      "xlsx_sha256": "8ba85a97ddecf215c8aee2d5f6b63d1fc4fa2daa0c7858f9d1f7936c5577da3f"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0031_fig01",
+      "bbox_norm": [
+        0.11,
+        0.24,
+        0.95,
+        0.83
+      ],
+      "bbox_px": [
+        149,
+        667,
+        2480,
+        3088
+      ],
+      "caption": "FIGURE 5 Flowscheme",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 31,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0031_fig01_figure-5-flowscheme.png",
+      "png_sha256": "15d140deadf6ed79309971968010a01e78f821489ef03d82ce9c227367fcb5f4",
+      "slug": "figure-5-flowscheme",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0033_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.91,
+        0.84
+      ],
+      "bbox_px": [
+        175,
+        198,
+        3369,
+        2207
+      ],
+      "caption": "FIGURE 6 HFE EVALUATION MATRIX",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 33,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0033_fig01_figure-6-hfe-evaluation-matrix.png",
+      "png_sha256": "127a600ba8ad77787102534aad0feb8b772fa9b43e347618b1c113bf9cee244d",
+      "slug": "figure-6-hfe-evaluation-matrix",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0034_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.15,
+        0.94,
+        0.75
+      ],
+      "bbox_px": [
+        140,
+        248,
+        3474,
+        1984
+      ],
+      "caption": "FIGURE 7 EXAMPLES OF REGISTRATION FORM FOR HFE DESIGN ANALYSIS RESULTS",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 34,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.png",
+      "png_sha256": "0804a28acfe0d85684fe8a15c7a256dd9501d6eafdcc68934a9509551cd7b9b4",
+      "slug": "figure-7-registration-form-hfe-design-an",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.json",
+      "table_data_json_sha256": "657158523df94388f1f134f8c0b2b6e58e94dee5f97a55b5baad36453aef32f1",
+      "table_data_sha256": "657158523df94388f1f134f8c0b2b6e58e94dee5f97a55b5baad36453aef32f1",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.xlsx",
+      "xlsx_sha256": "004726feca022d39392c7c69f64ac828043373c0f53da3e3f8748be97a4c6a48"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0042_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.14,
+        0.91,
+        0.94
+      ],
+      "bbox_px": [
+        298,
+        316,
+        2381,
+        3474
+      ],
+      "caption": "Bottleneck and explanation table for control room issues",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 42,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0042_tbl01_bottleneck-explanation-control-room-issu.png",
+      "png_sha256": "2a4c1c963c9718d275b46439305e3dba98d13e85133b4c3e0d0b368dad1b6fa8",
+      "slug": "bottleneck-explanation-control-room-issu",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0042_tbl01_bottleneck-explanation-control-room-issu.json",
+      "table_data_json_sha256": "9182ebb5135ef569579dd72529ba3daf9044015abc9c4c5e248c07390624c2bc",
+      "table_data_sha256": "9182ebb5135ef569579dd72529ba3daf9044015abc9c4c5e248c07390624c2bc",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0042_tbl01_bottleneck-explanation-control-room-issu.xlsx",
+      "xlsx_sha256": "1308c007018b388e12d821132f31a985b3d22e657ba78cab4117a3f13258b1d4"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0043_tbl01",
+      "bbox_norm": [
+        0.16,
+        0.08,
+        0.93,
+        0.23
+      ],
+      "bbox_px": [
+        273,
+        105,
+        2430,
+        983
+      ],
+      "caption": "Bottleneck and Explanation",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 43,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0043_tbl01_bottleneck-and-explanation.png",
+      "png_sha256": "598b4369fe6bfb91d6f4d32b9524169d327035691b860a93961e5c4ea193ea3e",
+      "slug": "bottleneck-and-explanation",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0043_tbl01_bottleneck-and-explanation.json",
+      "table_data_json_sha256": "b09cb5a15aa95d9b8ba6e6744dcffac7441a23d7e244d78c9964098828ff2750",
+      "table_data_sha256": "b09cb5a15aa95d9b8ba6e6744dcffac7441a23d7e244d78c9964098828ff2750",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0043_tbl01_bottleneck-and-explanation.xlsx",
+      "xlsx_sha256": "eefd663470dcb7541d5a32d9d78a2391a4be147d2444b5bcdee9c638114869cc"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0045_tbl01",
+      "bbox_norm": [
+        0.15,
+        0.2,
+        0.9,
+        0.79
+      ],
+      "bbox_px": [
+        248,
+        526,
+        2356,
+        2948
+      ],
+      "caption": "HFE Activity Level Criteria",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 45,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0045_tbl01_hfe-activity-level-criteria.png",
+      "png_sha256": "12f22bec5c0b457c24b9dd971eb69af69ed0234b8de301646401d66b3288f79a",
+      "slug": "hfe-activity-level-criteria",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0045_tbl01_hfe-activity-level-criteria.json",
+      "table_data_json_sha256": "fc2b02121152bb173aae5c8f13200581953c7be0791c07a30a3e1351fabd6e96",
+      "table_data_sha256": "fc2b02121152bb173aae5c8f13200581953c7be0791c07a30a3e1351fabd6e96",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0045_tbl01_hfe-activity-level-criteria.xlsx",
+      "xlsx_sha256": "eb29328318c24d38eb8dc2e9d47a94fc31d1ba1f6c903e557c2b6c6d23cead02"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0046_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.14,
+        0.96,
+        0.84
+      ],
+      "bbox_px": [
+        0,
+        223,
+        3509,
+        2207
+      ],
+      "caption": "Work Systems Analysis Tool",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 46,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0046_tbl01_work-systems-analysis-tool.png",
+      "png_sha256": "0c7c3d7eb18e96c2a9a9edb86a7a09ee106b3073356d5e89b620a686145cabb8",
+      "slug": "work-systems-analysis-tool",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0046_tbl01_work-systems-analysis-tool.json",
+      "table_data_json_sha256": "155126e5add852421d587263d91ce66eb034c11573bf60d569e01b50eb22894e",
+      "table_data_sha256": "155126e5add852421d587263d91ce66eb034c11573bf60d569e01b50eb22894e",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0046_tbl01_work-systems-analysis-tool.xlsx",
+      "xlsx_sha256": "1592aa4e8ea316ea285d641ecd0a7a7a45a516c51976024a283cc04e9ed433fa"
+    }
+  ],
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "issues": [],
+  "page_manifest_count": 46,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0015.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0016.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0017.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0018.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0019.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0020.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0021.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0022.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0023.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0024.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0025.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0026.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0027.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0028.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0029.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0030.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0030_assets_materialized.json",
+      "page": 30,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0031.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0031_assets_materialized.json",
+      "page": 31,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0032.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0032_assets_materialized.json",
+      "page": 32,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0033.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0033_assets_materialized.json",
+      "page": 33,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0034.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0034_assets_materialized.json",
+      "page": 34,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0035.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0035_assets_materialized.json",
+      "page": 35,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0036.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0036_assets_materialized.json",
+      "page": 36,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0037.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0037_assets_materialized.json",
+      "page": 37,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0038.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0038_assets_materialized.json",
+      "page": 38,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0039.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0039_assets_materialized.json",
+      "page": 39,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0040.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0040_assets_materialized.json",
+      "page": 40,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0041.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0041_assets_materialized.json",
+      "page": 41,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0042.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0042_assets_materialized.json",
+      "page": 42,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0043.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0043_assets_materialized.json",
+      "page": 43,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0044.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0044_assets_materialized.json",
+      "page": 44,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0045.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0045_assets_materialized.json",
+      "page": 45,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0046.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0046_assets_materialized.json",
+      "page": 46,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work"
+}

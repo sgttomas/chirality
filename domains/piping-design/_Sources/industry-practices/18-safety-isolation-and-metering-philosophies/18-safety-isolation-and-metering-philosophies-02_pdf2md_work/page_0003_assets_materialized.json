@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "18-safety-isolation-and-metering-philosophies-02_p0003_tbl01",
+      "bbox_norm": [
+        0.125,
+        0.115,
+        0.975,
+        0.305
+      ],
+      "bbox_px": [
+        191,
+        214,
+        2550,
+        1172
+      ],
+      "caption": "API MPMS and API reference standards",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl01_api-mpms-and-api-reference-standards.png",
+      "png_sha256": "afbe37903a8a096bd2a830dcf5ba43d014b0c22439851930adba2b7db7e355a6",
+      "slug": "api-mpms-and-api-reference-standards",
+      "status": "materialized",
+      "table_data_json_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl01_api-mpms-and-api-reference-standards.json",
+      "table_data_json_sha256": "6d30bf0edbc0bee15a473df2ac26411afd97d5c2830307f1b3ddacc6755a3be7",
+      "table_data_sha256": "6d30bf0edbc0bee15a473df2ac26411afd97d5c2830307f1b3ddacc6755a3be7",
+      "xlsx_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl01_api-mpms-and-api-reference-standards.xlsx",
+      "xlsx_sha256": "e68a6c69fafa1d92cbe36031f0ea7be748d6b63b258c8fbcacb83f45cbe3163e"
+    },
+    {
+      "asset_id": "18-safety-isolation-and-metering-philosophies-02_p0003_tbl02",
+      "bbox_norm": [
+        0.125,
+        0.385,
+        0.975,
+        0.535
+      ],
+      "bbox_px": [
+        191,
+        1106,
+        2550,
+        1931
+      ],
+      "caption": "Alaska regulatory requirements",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl02_alaska-regulatory-requirements.png",
+      "png_sha256": "1efca4ca342d8a39c1529a76a5a22b4234467390afbce8629401893027b9a14c",
+      "slug": "alaska-regulatory-requirements",
+      "status": "materialized",
+      "table_data_json_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl02_alaska-regulatory-requirements.json",
+      "table_data_json_sha256": "bbe5a499160b143bdd2bc253b09cb23303afa4edb9558a287cfa9db86bc200cc",
+      "table_data_sha256": "bbe5a499160b143bdd2bc253b09cb23303afa4edb9558a287cfa9db86bc200cc",
+      "xlsx_path": "tables/18-safety-isolation-and-metering-philosophies-02_p0003_tbl02_alaska-regulatory-requirements.xlsx",
+      "xlsx_sha256": "f037f1d87ba28b6084bd2da1ed141128d5ff904496afc429456219bd2b63b2c3"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/_assets/18-safety-isolation-and-metering-philosophies-02",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-02",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0003.png",
+  "page_image_sha256": "38d7dba763ba3cebc4fcf90f32fa7d6b579573a79270b663c97459ce60a81152",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/18-safety-isolation-and-metering-philosophies/18-safety-isolation-and-metering-philosophies-02_pdf2md_work/page_0003_assets.json"
+}

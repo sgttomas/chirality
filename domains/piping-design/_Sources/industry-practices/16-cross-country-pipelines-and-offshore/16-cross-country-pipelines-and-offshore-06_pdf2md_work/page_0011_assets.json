@@ -1,0 +1,122 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 11,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 800-6 Deck Penetration Collar",
+      "slug": "fig-800-6-deck-penetration-collar",
+      "bbox_norm": [0.12, 0.04, 0.92, 0.68],
+      "confidence": "high",
+      "notes": "Part section and elevation view of deck penetration collar. Contains embedded schedule table within figure boundary."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Deck Penetration Collar Schedule — Riser size, Collar dimensions, and Weight",
+      "slug": "deck-penetration-collar-schedule",
+      "bbox_norm": [0.12, 0.47, 0.65, 0.67],
+      "confidence": "high",
+      "notes": "Schedule table embedded within Fig. 800-6; lists collar size and weight by riser size.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "RISER", "is_header": true },
+              { "value": "COLLAR", "is_header": true },
+              { "value": "WEIGHT LBS.", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1\"", "type": "text" },
+              { "value": "6\" x 0.280\"", "type": "text" },
+              { "value": 7.3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "1½\"", "type": "text" },
+              { "value": "6\" x 0.280\"", "type": "text" },
+              { "value": 7.3, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2\"", "type": "text" },
+              { "value": "8\" x 0.322\"", "type": "text" },
+              { "value": 11.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2½\"", "type": "text" },
+              { "value": "8\" x 0.322\"", "type": "text" },
+              { "value": 11.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3\"", "type": "text" },
+              { "value": "8\" x 0.322\"", "type": "text" },
+              { "value": 11.0, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4\"", "type": "text" },
+              { "value": "10\" x 0.365\"", "type": "text" },
+              { "value": 15.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "5\"", "type": "text" },
+              { "value": "10\" x 0.365\"", "type": "text" },
+              { "value": 15.6, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6\"", "type": "text" },
+              { "value": "12\" x 0.375\"", "type": "text" },
+              { "value": 19.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8\"", "type": "text" },
+              { "value": "14\" x 0.375\"", "type": "text" },
+              { "value": 20.2, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10\"", "type": "text" },
+              { "value": "16\" x 0.500\"", "type": "text" },
+              { "value": 24.1, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "12\"", "type": "text" },
+              { "value": "18\" x 0.562\"", "type": "text" },
+              { "value": 27.2, "type": "number" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

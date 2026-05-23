@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0003.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0003_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.14,
+        0.91,
+        0.96
+      ],
+      "bbox_px": [
+        298,
+        316,
+        2381,
+        3509
+      ],
+      "caption": "Specific definitions and abbreviations",
+      "issues": [
+        "invalid_table_data:ERROR: rows[0].cells[0] missing 'value'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0003_tbl01_specific-definitions-and-abbreviations.png",
+      "png_sha256": "df890975dfa9f80cfa87b1459ece8c6c8c51481415a11ab3a1b963bfa9a96c4e",
+      "slug": "specific-definitions-and-abbreviations",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 3,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0003.png",
+  "page_image_sha256": "e8ce925ad64a48b06a7fbfeff88397cdd375adbfaa8d1be7f7f9aafc44e2c212",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0003_assets.json"
+}

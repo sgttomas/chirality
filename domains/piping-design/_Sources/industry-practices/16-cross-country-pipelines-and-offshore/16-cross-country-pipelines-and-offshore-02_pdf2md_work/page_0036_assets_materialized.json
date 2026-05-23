@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-02_p0036_fig01",
+      "bbox_norm": [
+        0.05,
+        0.07,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3263
+      ],
+      "caption": "Figure 2 Schematic of typical vertical (offshore) pig trap system",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-02_p0036_fig01_figure-2-schematic-vertical-offshore-pig.png",
+      "png_sha256": "608a77a7da4d538f12906eb265e1db29d9e224e0c702d4ebc0a2fa268ec60545",
+      "slug": "figure-2-schematic-vertical-offshore-pig",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-02",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0036.png",
+  "page_image_sha256": "171f1d9106aa3ff1e3c565d365b8b34980612f8fab1e547e3117ab81cf4f6dd7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0036_assets.json"
+}

@@ -1,0 +1,201 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 8,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 800-3 Flow Line Supports Type J",
+      "slug": "fig-800-3-flow-line-supports-type-j",
+      "bbox_norm": [0.04, 0.03, 0.96, 0.30],
+      "confidence": "high",
+      "notes": "Elevation typical detail diagram showing structural member, seal weld vent hole, pipe saddle, and flow line."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "Fig. 800-4 Flow Line Supports Type C",
+      "slug": "fig-800-4-flow-line-supports-type-c",
+      "bbox_norm": [0.04, 0.31, 0.96, 0.65],
+      "confidence": "high",
+      "notes": "Elevation and U-bolt detail diagram showing deck framing, cadmium plated U-bolts, rubber sleeve, flow lines."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Flow Line Supports Type C — Dimensions Table",
+      "slug": "flow-line-supports-type-c-dimensions",
+      "bbox_norm": [0.04, 0.65, 0.96, 0.95],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {"value": "FLOW LINE SIZE", "is_header": true},
+              {"value": "A", "is_header": true},
+              {"value": "B", "is_header": true},
+              {"value": "C", "is_header": true},
+              {"value": "#1 /#2", "is_header": true},
+              {"value": "FLOW LINE SIZE", "is_header": true},
+              {"value": "A", "is_header": true},
+              {"value": "B", "is_header": true},
+              {"value": "C", "is_header": true},
+              {"value": "#1 /#2", "is_header": true}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3/4\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "1-1/8\"", "type": "text"},
+              {"value": "2-5/8\"", "type": "text"},
+              {"value": "17", "type": "text"},
+              {"value": "4\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "7-1/8\"", "type": "text"},
+              {"value": "5-1/2\"", "type": "text"},
+              {"value": "2.50", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "1-3/8\"", "type": "text"},
+              {"value": "2-5/8\"", "type": "text"},
+              {"value": "15", "type": "text"},
+              {"value": "5\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "8-7/8\"", "type": "text"},
+              {"value": "6-1/2\"", "type": "text"},
+              {"value": "4.60", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "1-1/2\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "1-5/8\"", "type": "text"},
+              {"value": "2-5/8\"", "type": "text"},
+              {"value": "13", "type": "text"},
+              {"value": "6\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "10-3/8\"", "type": "text"},
+              {"value": "7-1/2\"", "type": "text"},
+              {"value": "5.70", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "2-1/8\"", "type": "text"},
+              {"value": "3-5/8\"", "type": "text"},
+              {"value": "19", "type": "text"},
+              {"value": "8\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "13-1/8\"", "type": "text"},
+              {"value": "9-1/2\"", "type": "text"},
+              {"value": "7.04", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "2-1/2\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "2-5/8\"", "type": "text"},
+              {"value": "4-5/8\"", "type": "text"},
+              {"value": "38", "type": "text"},
+              {"value": "10\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "16-1/2\"", "type": "text"},
+              {"value": "11-1/2\"", "type": "text"},
+              {"value": "8.90", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "2-3/4\"", "type": "text"},
+              {"value": "5-5/8\"", "type": "text"},
+              {"value": "40", "type": "text"},
+              {"value": "12\"", "type": "text"},
+              {"value": "1\"", "type": "text"},
+              {"value": "19-1/2\"", "type": "text"},
+              {"value": "13-1/2\"", "type": "text"},
+              {"value": "12.30", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3-1/2\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "3-5/8\"", "type": "text"},
+              {"value": "5-5/8\"", "type": "text"},
+              {"value": "45", "type": "text"},
+              {"value": "16\"", "type": "text"},
+              {"value": "1\"", "type": "text"},
+              {"value": "23-1/2\"", "type": "text"},
+              {"value": "16-1/2\"", "type": "text"},
+              {"value": "4.70", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "3-1/2\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "3-1/8\"", "type": "text"},
+              {"value": "6\"", "type": "text"},
+              {"value": "50", "type": "text"},
+              {"value": "20\"", "type": "text"},
+              {"value": "1-1/4\"", "type": "text"},
+              {"value": "29-3/8\"", "type": "text"},
+              {"value": "21-1/2\"", "type": "text"},
+              {"value": "4.80", "type": "number"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "4\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "5-5/8\"", "type": "text"},
+              {"value": "4-1/4\"", "type": "text"},
+              {"value": "1.15", "type": "number"},
+              {"value": "24\"", "type": "text"},
+              {"value": "1-1/4\"", "type": "text"},
+              {"value": "29-3/8\"", "type": "text"},
+              {"value": "25-1/8\"", "type": "text"},
+              {"value": "07-10", "type": "text"}
+            ]
+          },
+          {
+            "cells": [
+              {"value": "5\"", "type": "text"},
+              {"value": "3/4\"", "type": "text"},
+              {"value": "4-3/4\"", "type": "text"},
+              {"value": "5\"", "type": "text"},
+              {"value": ".78", "type": "number"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"},
+              {"value": "", "type": "text"}
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Two-column layout dimension table for Type C flow line supports. Some fractional values may have minor transcription uncertainty due to image resolution."
+    }
+  ],
+  "issues": []
+}

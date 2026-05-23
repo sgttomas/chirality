@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0031_fig01",
+      "bbox_norm": [
+        0.11,
+        0.24,
+        0.95,
+        0.83
+      ],
+      "bbox_px": [
+        149,
+        667,
+        2480,
+        3088
+      ],
+      "caption": "FIGURE 5 Flowscheme",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0031_fig01_figure-5-flowscheme.png",
+      "png_sha256": "15d140deadf6ed79309971968010a01e78f821489ef03d82ce9c227367fcb5f4",
+      "slug": "figure-5-flowscheme",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0031.png",
+  "page_image_sha256": "6407024cdff1334ff36282a0540607e0281f35aa7ffd3c4c18c8eccdacf7416e",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0031_assets.json"
+}

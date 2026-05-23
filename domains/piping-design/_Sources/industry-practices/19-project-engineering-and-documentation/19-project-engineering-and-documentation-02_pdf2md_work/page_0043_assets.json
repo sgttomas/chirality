@@ -1,0 +1,70 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 43,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Bottleneck and Explanation",
+      "slug": "bottleneck-and-explanation",
+      "bbox_norm": [
+        0.16,
+        0.08,
+        0.93,
+        0.23
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Bottleneck",
+                "is_header": true
+              },
+              {
+                "value": "Explanation",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Communication with outside Operators is not reliable",
+                "type": "text"
+              },
+              {
+                "value": "'Blind spots' within Gas Terminal which do not allow for proper communication between outside Operator and CRO.\n\nOperators need to move at certain times so they can be heard but this takes them away from the observation point that they are focusing on.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Furniture",
+                "type": "text"
+              },
+              {
+                "value": "Chair not suitable for Scheduler",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Simple two-column table at top of page; no visible caption, so caption summarizes headers."
+    }
+  ],
+  "issues": []
+}

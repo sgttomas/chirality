@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0044.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-04_p0044_fig01",
+      "bbox_norm": [
+        0.08,
+        0.07,
+        0.92,
+        0.6
+      ],
+      "bbox_px": [
+        74,
+        70,
+        2406,
+        2281
+      ],
+      "caption": "FIGURE 6 J-TUBE SEAL PRESSURE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-04_p0044_fig01_figure-6-j-tube-seal-pressure.png",
+      "png_sha256": "ad4a740049b838b12b412aedfa8d7d4590d069fd7b94450f85c684991602bd0c",
+      "slug": "figure-6-j-tube-seal-pressure",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 44,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0044.png",
+  "page_image_sha256": "6537f2caa5e7837eca262cdd9d6ff5394041f057a7cc1e9dd43081cab1f31cca",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-04_pdf2md_work/page_0044_assets.json"
+}

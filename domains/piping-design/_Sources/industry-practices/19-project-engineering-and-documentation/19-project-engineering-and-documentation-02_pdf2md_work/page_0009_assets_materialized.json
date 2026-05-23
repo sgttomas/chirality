@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0009.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0009_fig01",
+      "bbox_norm": [
+        0.18,
+        0.32,
+        0.89,
+        0.78
+      ],
+      "bbox_px": [
+        322,
+        947,
+        2331,
+        2912
+      ],
+      "caption": "Figure 1 Overview of project phases and decision points for different Shell businesses",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/19-project-engineering-and-documentation-02_p0009_fig01_overview-project-phases-decision-points.png",
+      "png_sha256": "360d988cd1e516a6d26ce0bf16cbdcb7a8060ce78a6daead08efd99a504d9e7b",
+      "slug": "overview-project-phases-decision-points",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 9,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0009.png",
+  "page_image_sha256": "9a7090984ab3ee2d8caf03953227f207f4dc729e45e643e47a09296430d930b9",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0009_assets.json"
+}

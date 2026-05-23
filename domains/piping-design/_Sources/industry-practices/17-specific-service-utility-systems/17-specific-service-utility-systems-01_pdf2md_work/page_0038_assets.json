@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-01",
+  "page": 38,
+  "total_pages": 47,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 3 NATURAL GAS BACK-UP (ALTERNATIVE TO LPG VAPORISER)",
+      "slug": "figure-3-natural-gas-back-up-alternative-lpg-vaporiser",
+      "bbox_norm": [0.07, 0.07, 0.93, 0.62],
+      "confidence": "high",
+      "notes": "Full-page P&ID schematic showing natural gas back-up system with heater, buffer/mixing vessel, collection and distribution headers, TC and PC controllers, and flare connections. Note 1 annotation included within figure bounds."
+    }
+  ],
+  "issues": []
+}

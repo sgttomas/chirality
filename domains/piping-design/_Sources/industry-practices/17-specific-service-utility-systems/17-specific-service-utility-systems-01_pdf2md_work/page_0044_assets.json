@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-01",
+  "page": 44,
+  "total_pages": 47,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 9 REFINERY FUEL OIL SYSTEM (LONG RESIDUE)",
+      "slug": "figure-9-refinery-fuel-oil-system-long-residue",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Full-page schematic P&ID showing ring main, filters, heaters, circulating pumps, and storage tank for a long residue fuel oil system. Labels include: Consumers, Ring main, Filters, MP Steam, TC, Heaters, Circulating pumps, LP Steam, TC, Storage tank, Cocs, Long residue supply, Ring main return, PC, TI, NC."
+    }
+  ],
+  "issues": []
+}

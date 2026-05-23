@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0030.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-02_p0030_fig01",
+      "bbox_norm": [
+        0.06,
+        0.06,
+        0.94,
+        0.75
+      ],
+      "bbox_px": [
+        25,
+        35,
+        2455,
+        2807
+      ],
+      "caption": "FIGURE 1 MATERIAL SELECTION CURVES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-02_p0030_fig01_figure-1-material-selection-curves.png",
+      "png_sha256": "5fa69b09c3d579dc86fef98d5874c1bb2c37caa0ed9f942f5db4c8c2bcb8eacf",
+      "slug": "figure-1-material-selection-curves",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-02",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0030.png",
+  "page_image_sha256": "ac5e31d63823bc284bf2d876a0f8e0666952b6de668f67a9fdcf6cc7da8ea165",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-02_pdf2md_work/page_0030_assets.json"
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 7,
+  "total_pages": 16,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 800-2 Flow Line Support Type D",
+      "slug": "fig-800-2-flow-line-support-type-d",
+      "bbox_norm": [0.12, 0.07, 0.92, 0.70],
+      "confidence": "high",
+      "notes": "Technical engineering drawing with PLAN, ELEVATION, and TYPICAL DETAIL views. Includes an embedded schedule table at the bottom of the figure."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Flow Line Support Type D — Doubler Size and Tubing Stand-Off Schedule",
+      "slug": "flow-line-support-type-d-doubler-size-schedule",
+      "bbox_norm": [0.12, 0.55, 0.92, 0.70],
+      "confidence": "high",
+      "notes": "Table embedded at the bottom of Fig. 800-2. Columns: FLOW LINE, DOUBLER SIZE, DIM. 'A', TUBING STAND-OFF.",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "FLOW LINE", "is_header": true },
+              { "value": "DOUBLER SIZE", "is_header": true },
+              { "value": "DIM. \"A\"", "is_header": true },
+              { "value": "TUBING STAND-OFF", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2\"", "type": "text" },
+              { "value": "3\" SCH. 160", "type": "text" },
+              { "value": "6\"", "type": "text" },
+              { "value": "2\" x 4\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "2½\"", "type": "text" },
+              { "value": "3\" SCH. 40", "type": "text" },
+              { "value": "6\"", "type": "text" },
+              { "value": "2\" x 4\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "3\"", "type": "text" },
+              { "value": "4\" SCH. 120", "type": "text" },
+              { "value": "7\"", "type": "text" },
+              { "value": "3\" x 5\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "4\"", "type": "text" },
+              { "value": "5\" SCH. 120", "type": "text" },
+              { "value": "8\"", "type": "text" },
+              { "value": "4\" x 6\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "6\"", "type": "text" },
+              { "value": "⅜\" ROLLED ¢ 6.675\" I.D.", "type": "text" },
+              { "value": "10\"", "type": "text" },
+              { "value": "6\" x 8\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "8\"", "type": "text" },
+              { "value": "⅜\" ROLLED ¢ 8.675\" I.D.", "type": "text" },
+              { "value": "10\"", "type": "text" },
+              { "value": "8\" x 8\" x ¼\"", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10\"", "type": "text" },
+              { "value": "⅜\" ROLLED ¢ 10.800\" I.D.", "type": "text" },
+              { "value": "12\"", "type": "text" },
+              { "value": "10\" x 10\" x ¼\"", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

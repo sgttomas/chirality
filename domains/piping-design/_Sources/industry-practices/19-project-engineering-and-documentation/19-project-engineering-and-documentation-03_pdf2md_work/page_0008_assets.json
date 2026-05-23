@@ -1,0 +1,358 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-03",
+  "page": 8,
+  "total_pages": 10,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Manual code abbreviations",
+      "slug": "manual-code-abbreviations",
+      "bbox_norm": [0.21, 0.10, 0.53, 0.34],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "MAC", "type": "text" },
+            { "value": "General Machinery", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "NCM", "type": "text" },
+            { "value": "Noise Control", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "PIM", "type": "text" },
+            { "value": "Piping", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "PMP", "type": "text" },
+            { "value": "Pump", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "PPL", "type": "text" },
+            { "value": "Pipeline", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "PVM", "type": "text" },
+            { "value": "Pressure Vessel", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "TAM", "type": "text" },
+            { "value": "Tank", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "UTL", "type": "text" },
+            { "value": "Utilities", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "WEM", "type": "text" },
+            { "value": "Welding", "type": "text" }
+          ] }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column manual abbreviation listing near upper page"
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Fig. 50-2 Manuals Cross Reference Chart (1 of 3)",
+      "slug": "fig-50-2-manuals-cross-reference-chart-1-of-3",
+      "bbox_norm": [0.07, 0.31, 0.87, 0.93],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          { "cells": [
+            { "value": "Topic", "is_header": true },
+            { "value": "PIM", "is_header": true },
+            { "value": "PPL", "is_header": true },
+            { "value": "FFM", "is_header": true },
+            { "value": "COM", "is_header": true },
+            { "value": "CPM", "is_header": true },
+            { "value": "WEM", "is_header": true },
+            { "value": "IRM", "is_header": true },
+            { "value": "ICM", "is_header": true }
+          ] },
+          { "cells": [
+            { "value": "Abandonment", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Anchors", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Coatings", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "External", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Insulation", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Internal", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Selection Chart", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Weight", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Components", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "API 5L Line Pipe", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "ASTM A106 Pipe", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Instruments", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" }
+          ] },
+          { "cells": [
+            { "value": "Insulation", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Valves and Fittings", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Computer Programs", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Construction", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Cathodic Protection", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Coating", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Inspection", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Offshore Methods", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Safety", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Spooling", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Testing", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] },
+          { "cells": [
+            { "value": "Welding", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": "X", "type": "text" },
+            { "value": null, "type": "missing", "raw": "" },
+            { "value": null, "type": "missing", "raw": "" }
+          ] }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Captioned cross-reference chart; visible portion is page 1 of 3"
+    }
+  ],
+  "issues": []
+}

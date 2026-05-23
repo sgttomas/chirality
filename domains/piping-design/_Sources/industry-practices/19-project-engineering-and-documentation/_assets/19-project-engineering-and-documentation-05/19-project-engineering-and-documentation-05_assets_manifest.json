@@ -1,0 +1,481 @@
+{
+  "asset_count": 12,
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0003_tbl01",
+      "bbox_norm": [
+        0.26,
+        0.11,
+        0.82,
+        0.95
+      ],
+      "bbox_px": [
+        536,
+        198,
+        2218,
+        3296
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 3,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0003_tbl01_unit-conversion-factors.png",
+      "png_sha256": "2a5c6f5bc323e07e74cdd42a0bf1505fc9507004edb606c2941fcec2ad9bce98",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0003_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "a6c98f865b4d9747f24e0bca5f5190af068c5007fbe0bf67eda95bccca43b192",
+      "table_data_sha256": "a6c98f865b4d9747f24e0bca5f5190af068c5007fbe0bf67eda95bccca43b192",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0003_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "698813374e35337abe9b710c58cb869abe46fd3664dcdcab854a7f8c83c22485"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0004_tbl01",
+      "bbox_norm": [
+        0.21,
+        0.1,
+        0.88,
+        0.93
+      ],
+      "bbox_px": [
+        408,
+        165,
+        2372,
+        3230
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0004_tbl01_unit-conversion-factors.png",
+      "png_sha256": "051da4c2026d25c98092d89bc2f9c82e540d21c786034f765086b74fd1d81b9a",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0004_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "e6d6ee835b293a536b8d0dd14b01545b172b642c9ee137670ff6243eb7ccb26d",
+      "table_data_sha256": "e6d6ee835b293a536b8d0dd14b01545b172b642c9ee137670ff6243eb7ccb26d",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0004_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "e441bb80f46853e313e729048e86d38664a2925407290046e88d89bda75d3e53"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0005_tbl01",
+      "bbox_norm": [
+        0.25,
+        0.1,
+        0.78,
+        0.93
+      ],
+      "bbox_px": [
+        510,
+        165,
+        2116,
+        3230
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 5,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0005_tbl01_unit-conversion-factors.png",
+      "png_sha256": "91f7b6d7d37a12dbf07de091c5e01d5c841b932dfecdfb102fe0a6b79f96a00e",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0005_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "bc9ea9292870f55039330e73475a0d50886adf4d4a8dd66f709fedfe7737530a",
+      "table_data_sha256": "bc9ea9292870f55039330e73475a0d50886adf4d4a8dd66f709fedfe7737530a",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0005_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "cf58d562d30effaed607e62568f08d9835420e9a56a7f7d4854d53fb27ffd614"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0006_tbl01",
+      "bbox_norm": [
+        0.21,
+        0.12,
+        0.88,
+        0.9
+      ],
+      "bbox_px": [
+        408,
+        231,
+        2372,
+        3131
+      ],
+      "caption": "Unit conversion factors from foot-pounds through grams/liter",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 6,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0006_tbl01_unit-conversion-factors-foot-pounds-gram.png",
+      "png_sha256": "a672cca53e5dd07f1f63909b6d78e702382eb9923bc5da11f3773941b641d38a",
+      "slug": "unit-conversion-factors-foot-pounds-gram",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0006_tbl01_unit-conversion-factors-foot-pounds-gram.json",
+      "table_data_json_sha256": "f18a21a95ea9b55b2265ac751a68bbd5714cafd8cc067ff32d2a94265b3c4933",
+      "table_data_sha256": "f18a21a95ea9b55b2265ac751a68bbd5714cafd8cc067ff32d2a94265b3c4933",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0006_tbl01_unit-conversion-factors-foot-pounds-gram.xlsx",
+      "xlsx_sha256": "a25031a0610a3348413222f864d65fd891d335ddd41eb83d6ad37059a4fbf24a"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0007_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.1,
+        0.78,
+        0.91
+      ],
+      "bbox_px": [
+        561,
+        165,
+        2116,
+        3164
+      ],
+      "caption": "Unit conversion factors from grams/liter through kilograms-cal/sec",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0007_tbl01_unit-conversion-factors-grams-liter-thro.png",
+      "png_sha256": "93ea01c793e84273446bf8c427556860e86079475fdb9296bbce5deb09d55eae",
+      "slug": "unit-conversion-factors-grams-liter-thro",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0007_tbl01_unit-conversion-factors-grams-liter-thro.json",
+      "table_data_json_sha256": "65cc3a02781f0663c11d5a33fe08205e44a171f0d6415272b9de3c848b0cdd69",
+      "table_data_sha256": "65cc3a02781f0663c11d5a33fe08205e44a171f0d6415272b9de3c848b0cdd69",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0007_tbl01_unit-conversion-factors-grams-liter-thro.xlsx",
+      "xlsx_sha256": "12f39489f0e1e8bab9c331962fbb5e8bfca4a04a9a9ecbaa03cf55c9562726f7"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0008_tbl01",
+      "bbox_norm": [
+        0.2,
+        0.1,
+        0.9,
+        0.93
+      ],
+      "bbox_px": [
+        383,
+        165,
+        2422,
+        3230
+      ],
+      "caption": "Conversion factors from metric units to customary and SI units",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0008_tbl01_conversion-factors-metric-units-customar.png",
+      "png_sha256": "b8c4b0433c0e688507d4dbc9c25ac49a7efcb6b74e805147eec12832ba54bc4d",
+      "slug": "conversion-factors-metric-units-customar",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0008_tbl01_conversion-factors-metric-units-customar.json",
+      "table_data_json_sha256": "83cdd1971422358a697401091d1be05cc74792f008be065905f73173c27d16ce",
+      "table_data_sha256": "83cdd1971422358a697401091d1be05cc74792f008be065905f73173c27d16ce",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0008_tbl01_conversion-factors-metric-units-customar.xlsx",
+      "xlsx_sha256": "b4bde991a651d0b824f82a63b9df6feb5bc6ccb0c0ac15e307cc8bf0e14cc8dc"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0009_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.1,
+        0.78,
+        0.91
+      ],
+      "bbox_px": [
+        561,
+        165,
+        2116,
+        3164
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0009_tbl01_unit-conversion-factors.png",
+      "png_sha256": "7f25f5f2209db16e9a4444fe2e9be28a9b38eaa3dfb0a3200fc5b98a07946ce6",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0009_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "47596d011f1742857d133c2ce2cf8df8e99107b19254764161b4791cc2a1e112",
+      "table_data_sha256": "47596d011f1742857d133c2ce2cf8df8e99107b19254764161b4791cc2a1e112",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0009_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "37015b6c4a573c0e1db47aaccc319873c15a8bb23d8dd8ece80bce3ce5bae1b5"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0010_tbl01",
+      "bbox_norm": [
+        0.2,
+        0.11,
+        0.87,
+        0.91
+      ],
+      "bbox_px": [
+        383,
+        198,
+        2346,
+        3164
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0010_tbl01_unit-conversion-factors.png",
+      "png_sha256": "0c45ecb60196ffe74896da89bb55937ec100be132a3a5b0edb373b189a0e3c6b",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0010_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "78f3e79a3642e172b253bb132f553f9778c157825f14a04000339eb60e54c7ce",
+      "table_data_sha256": "78f3e79a3642e172b253bb132f553f9778c157825f14a04000339eb60e54c7ce",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0010_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "0419edede71ffe45425dda081c87166b815e878f15d9363c0e7b2d449cdcb76a"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0011_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.1,
+        0.8,
+        0.94
+      ],
+      "bbox_px": [
+        561,
+        165,
+        2168,
+        3263
+      ],
+      "caption": "Conversion factors from customary units to metric and other units",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0011_tbl01_conversion-factors-customary-metric-othe.png",
+      "png_sha256": "045ba492c9c8d6acc300a718e21d50343851bb08080e5ffbfc2e0d6f084d20ec",
+      "slug": "conversion-factors-customary-metric-othe",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0011_tbl01_conversion-factors-customary-metric-othe.json",
+      "table_data_json_sha256": "23bd786d8a71daa8a77057615569880dff96b9f996ed774867f233f226178813",
+      "table_data_sha256": "23bd786d8a71daa8a77057615569880dff96b9f996ed774867f233f226178813",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0011_tbl01_conversion-factors-customary-metric-othe.xlsx",
+      "xlsx_sha256": "d592189a6b3e9c5c09982f87e14ff137fd3b367d9fe49e3d7e4d86bd73a90d73"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0012_tbl01",
+      "bbox_norm": [
+        0.19,
+        0.1,
+        0.82,
+        0.93
+      ],
+      "bbox_px": [
+        357,
+        165,
+        2218,
+        3230
+      ],
+      "caption": "Unit conversion factors",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0012_tbl01_unit-conversion-factors.png",
+      "png_sha256": "a3c6be880ff003556eccc5fc49eccc6d62ff0d8ef2555df2b57cbaf8c8c71391",
+      "slug": "unit-conversion-factors",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0012_tbl01_unit-conversion-factors.json",
+      "table_data_json_sha256": "f6726c0871694f00338fb056ef29a10ff5f723441243f37cef525303ec05ba2f",
+      "table_data_sha256": "f6726c0871694f00338fb056ef29a10ff5f723441243f37cef525303ec05ba2f",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0012_tbl01_unit-conversion-factors.xlsx",
+      "xlsx_sha256": "d92c140179ca09568d1989f4565dc9adcb2e7a762e86e6b7363622e2597de45b"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0013_tbl01",
+      "bbox_norm": [
+        0.26,
+        0.11,
+        0.8,
+        0.88
+      ],
+      "bbox_px": [
+        536,
+        198,
+        2168,
+        3065
+      ],
+      "caption": "Unit conversion factors for tons, watts, watt-hours, and yards",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.png",
+      "png_sha256": "61745b925cc3f1994fa8392cfb6455d4063327f10bb170f9b8fc0231749bdc7b",
+      "slug": "unit-conversion-factors-tons-watts-watt",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.json",
+      "table_data_json_sha256": "4cc3bc89fcdd3b85c2da7ee6db91c73e2c58aea89bb02fadd4a0a5766fc039f4",
+      "table_data_sha256": "4cc3bc89fcdd3b85c2da7ee6db91c73e2c58aea89bb02fadd4a0a5766fc039f4",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.xlsx",
+      "xlsx_sha256": "a49893a0ba0d907c0f385055211d264f2aa0892ca2353ad129342f183fe03e58"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0014_tbl01",
+      "bbox_norm": [
+        0.075,
+        0.105,
+        0.875,
+        0.907
+      ],
+      "bbox_px": [
+        64,
+        181,
+        2359,
+        3154
+      ],
+      "caption": "Fig. A-1 Temperature Conversion Table Courtesy of Goulds Pumps, Inc.",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": true,
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0014_tbl01_fig-a-1-temperature-conversion-table.png",
+      "png_sha256": "8e9db03c0ef52f88d6ff228ff87679400470245fe944099929160c665c10120e",
+      "slug": "fig-a-1-temperature-conversion-table",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "issues": [],
+  "page_manifest_count": 14,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0011.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0012.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0013.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0014.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work"
+}

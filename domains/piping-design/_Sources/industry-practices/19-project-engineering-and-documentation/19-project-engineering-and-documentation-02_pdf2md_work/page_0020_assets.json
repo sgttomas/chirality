@@ -1,0 +1,77 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 20,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 4 Competences required for HFE activities",
+      "slug": "table-4-competences-required-for-hfe-activities",
+      "bbox_norm": [0.18, 0.185, 0.77, 0.335],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Activity",
+                "is_header": true
+              },
+              {
+                "value": "Competence",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Definition of HFE scope and application of HFE Specifications",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering Review",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering Analysis and assurance",
+                "type": "text"
+              },
+              {
+                "value": "Skilled or Mastery",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Simple two-column table with visible caption and legible cells."
+    }
+  ],
+  "issues": []
+}

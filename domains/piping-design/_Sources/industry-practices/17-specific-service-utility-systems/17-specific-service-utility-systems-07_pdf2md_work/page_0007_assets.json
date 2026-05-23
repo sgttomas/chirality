@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-07",
+  "page": 7,
+  "total_pages": 11,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 900-2 Typical Light Products Loading Rack; Side Elevation",
+      "slug": "fig-900-2-typical-light-products-loading-rack-side-elevation",
+      "bbox_norm": [0.03, 0.04, 0.97, 0.92],
+      "confidence": "high",
+      "notes": "Full-page engineering drawing of a side elevation of a light products loading rack with piping, valves, and structural details. Caption visible above figure."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,272 @@
+{
+  "asset_count": 6,
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0001_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.36,
+        0.94,
+        0.87
+      ],
+      "bbox_px": [
+        561,
+        1022,
+        2524,
+        3032
+      ],
+      "caption": "Fig. 50-1 Quick Reference Guide",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0001_tbl01_fig-50-1-quick-reference-guide.png",
+      "png_sha256": "028c8cb6b0c070364051545b23f47966677fdd0effe62e7c0feaf1ee0b89f078",
+      "slug": "fig-50-1-quick-reference-guide",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0001_tbl01_fig-50-1-quick-reference-guide.json",
+      "table_data_json_sha256": "b6d6565d02c5ed3df2dc16605cc62ecb97b8bf9194ba0b081dcbce37a3192b28",
+      "table_data_sha256": "b6d6565d02c5ed3df2dc16605cc62ecb97b8bf9194ba0b081dcbce37a3192b28",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0001_tbl01_fig-50-1-quick-reference-guide.xlsx",
+      "xlsx_sha256": "f82b911593c9335a0775ada342650eb5bb3dbd28bd97d45cb2c01e01eb911049"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0007_tbl01",
+      "bbox_norm": [
+        0.25,
+        0.68,
+        0.84,
+        0.94
+      ],
+      "bbox_px": [
+        510,
+        2076,
+        2270,
+        3263
+      ],
+      "caption": "Company manual prefixes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.png",
+      "png_sha256": "9e0ce8a799e7797cb5d77aa7c690bfbdf91e4f303451e63bae2d050cc96d5f36",
+      "slug": "company-manual-prefixes",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.json",
+      "table_data_json_sha256": "83dc8036331f3528cef3cd7fe5d05a6928cd2e2843db9d2d900d982698ebf9aa",
+      "table_data_sha256": "83dc8036331f3528cef3cd7fe5d05a6928cd2e2843db9d2d900d982698ebf9aa",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0007_tbl01_company-manual-prefixes.xlsx",
+      "xlsx_sha256": "6113aae6b15e611f6a61bd620ffc7fd97f391a9e711fdcb160149e0d7d2d9487"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0008_tbl01",
+      "bbox_norm": [
+        0.21,
+        0.1,
+        0.53,
+        0.34
+      ],
+      "bbox_px": [
+        408,
+        165,
+        1479,
+        1285
+      ],
+      "caption": "Manual code abbreviations",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl01_manual-code-abbreviations.png",
+      "png_sha256": "61c73f862f54763bcfba4ef50a37b9427d586c85c3946ff31420c2755c9db867",
+      "slug": "manual-code-abbreviations",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl01_manual-code-abbreviations.json",
+      "table_data_json_sha256": "190a6ff4061c367bed0b74459d5f04fbe067a0f1afd4a2681ac3c793f6626a74",
+      "table_data_sha256": "190a6ff4061c367bed0b74459d5f04fbe067a0f1afd4a2681ac3c793f6626a74",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl01_manual-code-abbreviations.xlsx",
+      "xlsx_sha256": "391c9cc21f1ca53fdaaacfda8fde16a95675c6e49949e5a8a08de0967cd30199"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0008_tbl02",
+      "bbox_norm": [
+        0.07,
+        0.31,
+        0.87,
+        0.93
+      ],
+      "bbox_px": [
+        51,
+        857,
+        2346,
+        3230
+      ],
+      "caption": "Fig. 50-2 Manuals Cross Reference Chart (1 of 3)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 8,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl02_fig-50-2-manuals-cross-reference-chart-1.png",
+      "png_sha256": "8e61153b90b1261f260f0ee3066bbfde44036805b6968cbf698deabb9d012a10",
+      "slug": "fig-50-2-manuals-cross-reference-chart-1",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl02_fig-50-2-manuals-cross-reference-chart-1.json",
+      "table_data_json_sha256": "1eeedc6d922f23ab62bab7a46559fe1d8bbd2f2e9df06b99492add5d82c66976",
+      "table_data_sha256": "1eeedc6d922f23ab62bab7a46559fe1d8bbd2f2e9df06b99492add5d82c66976",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0008_tbl02_fig-50-2-manuals-cross-reference-chart-1.xlsx",
+      "xlsx_sha256": "a2c71c8e84892ca7ce8e754c7b53d129965208fa222311cdc51d01e4025b3c16"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0009_tbl01",
+      "bbox_norm": [
+        0.11,
+        0.11,
+        0.94,
+        0.9
+      ],
+      "bbox_px": [
+        153,
+        198,
+        2524,
+        3131
+      ],
+      "caption": "Fig. 50-2 Manuals Cross Reference Chart (2 of 3)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0009_tbl01_fig-50-2-manuals-cross-reference-chart-2.png",
+      "png_sha256": "0c3da5880fbed0eef6c7a54633cf7cd4a5f55954d0550f6a61c6ce61287ee552",
+      "slug": "fig-50-2-manuals-cross-reference-chart-2",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0009_tbl01_fig-50-2-manuals-cross-reference-chart-2.json",
+      "table_data_json_sha256": "1a8115c1f22fa21d6f578ce9c21573f60a7e7c3bc192c794b0c3ff364cee7a2f",
+      "table_data_sha256": "1a8115c1f22fa21d6f578ce9c21573f60a7e7c3bc192c794b0c3ff364cee7a2f",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0009_tbl01_fig-50-2-manuals-cross-reference-chart-2.xlsx",
+      "xlsx_sha256": "6222567fd14d1df1ae9161551d27e99a22a7f292f3f8bba3e26f7b71d1d6980d"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-03_p0010_tbl01",
+      "bbox_norm": [
+        0.06,
+        0.16,
+        0.89,
+        0.41
+      ],
+      "bbox_px": [
+        25,
+        363,
+        2397,
+        1516
+      ],
+      "caption": "Fig. 50-2 Manuals Cross Reference Chart (3 of 3)",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "tables/19-project-engineering-and-documentation-03_p0010_tbl01_manuals-cross-reference-chart-3-of-3.png",
+      "png_sha256": "015bf40c5923da221ec1f092a6a3f22f7c6c78150de60780121fa77f61a042ef",
+      "slug": "manuals-cross-reference-chart-3-of-3",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-03_p0010_tbl01_manuals-cross-reference-chart-3-of-3.json",
+      "table_data_json_sha256": "5332cddb67183f77512eb021a8cb6951c24268a1486b7c5efeb0725e2ca697b5",
+      "table_data_sha256": "5332cddb67183f77512eb021a8cb6951c24268a1486b7c5efeb0725e2ca697b5",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-03_p0010_tbl01_manuals-cross-reference-chart-3-of-3.xlsx",
+      "xlsx_sha256": "4022552de96120d8356a116b7dbaca1a25844d53493e7354b32a0a689ce50da2"
+    }
+  ],
+  "doc_stem": "19-project-engineering-and-documentation-03",
+  "issues": [],
+  "page_manifest_count": 10,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0007.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0008.anchored.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0009.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0010.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-03_pdf2md_work"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0001.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-07_p0001_tbl01",
+      "bbox_norm": [
+        0.23,
+        0.4,
+        0.88,
+        0.82
+      ],
+      "bbox_px": [
+        459,
+        1154,
+        2372,
+        2868
+      ],
+      "caption": "Contents",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/17-specific-service-utility-systems-07_p0001_tbl01_contents.png",
+      "png_sha256": "0b4bafe8ec4cab7a2bb883831c8d413f7d705cdc642678c59bddada58caf1dae",
+      "slug": "contents",
+      "status": "materialized",
+      "table_data_json_path": "tables/17-specific-service-utility-systems-07_p0001_tbl01_contents.json",
+      "table_data_json_sha256": "09c29f4e3aec34dd125bb012efccc735a1557cce9c4ffb28b446f5b613314cbe",
+      "table_data_sha256": "09c29f4e3aec34dd125bb012efccc735a1557cce9c4ffb28b446f5b613314cbe",
+      "xlsx_path": "tables/17-specific-service-utility-systems-07_p0001_tbl01_contents.xlsx",
+      "xlsx_sha256": "20d1e0f94eb17de118fbc001b498f096ea4e461115f1ed13e91492cc3b4bc1d6"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-07",
+  "doc_stem": "17-specific-service-utility-systems-07",
+  "page": 1,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0001.png",
+  "page_image_sha256": "4c04f423a9b5280296d255bf6bb544858242c1fda1975275c5d30a4d78e563ac",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0001_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0031.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-04_p0031_fig01",
+      "bbox_norm": [
+        0.18,
+        0.09,
+        0.9,
+        0.68
+      ],
+      "bbox_px": [
+        322,
+        140,
+        2356,
+        2562
+      ],
+      "caption": "Appendix 10 Instrument air supply in control centre - typical arrangement in basement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-04_p0031_fig01_appendix-10-instrument-air-supply-contro.png",
+      "png_sha256": "009451d2a29605eae7a43a73f01f31a3cf03f3e3a41f4c20a8ece34b758367cd",
+      "slug": "appendix-10-instrument-air-supply-contro",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-04",
+  "doc_stem": "17-specific-service-utility-systems-04",
+  "page": 31,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0031.png",
+  "page_image_sha256": "c9fe323de57ffdeb5d06dbfea157c887593f5e255bb47c819f515cacf9d8c78d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0031_assets.json"
+}

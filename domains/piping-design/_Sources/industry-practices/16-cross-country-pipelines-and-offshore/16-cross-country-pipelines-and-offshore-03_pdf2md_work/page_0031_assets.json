@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 31,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 11 CONSTRICTOR DESIGN",
+      "slug": "figure-11-constrictor-design",
+      "bbox_norm": [0.05, 0.05, 0.95, 0.97],
+      "confidence": "high",
+      "notes": "Full page figure showing three diagrams: Recommended Construction (eccentric T with expander), Centrally Located Splitter Plate (not recommended), and Eccentrically Located Splitter Plate (not recommended). All with inlet headers and downcomers."
+    }
+  ],
+  "issues": []
+}

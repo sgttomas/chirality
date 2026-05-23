@@ -1,0 +1,170 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-05",
+  "page": 9,
+  "total_pages": 10,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2. Steam Trap Selection",
+      "slug": "steam-trap-selection",
+      "bbox_norm": [0.05, 0.03, 0.95, 0.72],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "1. If the back pressure of an application is greater than 50% of the inlet pressure, Thermodynamic steam traps should not be permitted.",
+          "2. If backpressure is greater than 50% of inlet pressure, IB or F&T should be used.",
+          "3. For superheated steam, the steam trap manufacturer should be consulted.",
+          "4. Steam lock release should be provided"
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Application", "is_header": true },
+              { "value": "", "is_header": true },
+              { "value": "1st Choice", "is_header": true },
+              { "value": "2nd Choice", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam Mains", "type": "text" },
+              { "value": "207 kPag (30 psig) or less", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam Mains", "type": "text" },
+              { "value": "207 to 13790 kPag (30 to 2000 psig)", "type": "text" },
+              { "value": "TD (Note 2)", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam Mains", "type": "text" },
+              { "value": "Superheated", "type": "text" },
+              { "value": "Note 3", "type": "text" },
+              { "value": "Note 3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Separators", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam Tracers", "type": "text" },
+              { "value": "Product Temp. < 66°C (150°F)", "type": "text" },
+              { "value": "BP", "type": "text" },
+              { "value": "TD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Steam Tracers", "type": "text" },
+              { "value": "Product Temp. > 66°C (150°F)", "type": "text" },
+              { "value": "TD", "type": "text" },
+              { "value": "BP", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Process Equipment", "type": "text" },
+              { "value": "3.2 MPag (465 psig) or less", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Process Equipment", "type": "text" },
+              { "value": "3.2 to 13.8 MPag (465 to 2,000 psig)", "type": "text" },
+              { "value": "IB", "type": "text" },
+              { "value": "F&T", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Bulk Storage Tanks", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "BP", "type": "text" },
+              { "value": "F&T", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Line Heaters", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Process Vats", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "TD", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Vulcanizers", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "TD", "type": "text" },
+              { "value": "F&T", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Evaporators", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Reboilers", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T", "type": "text" },
+              { "value": "IB", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rotating Cylinders", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "F&T (Note 4)", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Freeze Protection", "type": "text" },
+              { "value": "", "type": "text" },
+              { "value": "LE", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Full steam trap selection table with legend, application rows, 1st and 2nd choice columns, and footnotes"
+    }
+  ],
+  "issues": []
+}

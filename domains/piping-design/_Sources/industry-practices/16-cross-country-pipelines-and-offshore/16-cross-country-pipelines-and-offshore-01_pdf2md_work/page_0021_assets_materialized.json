@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0021.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-01_p0021_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.72,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        2351,
+        2480,
+        3509
+      ],
+      "caption": "TABLE 4 RECOMMENDED MINIMUM COVER FOR ONSHORE PIPELINES",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-01_p0021_tbl01_recommended-minimum-cover-onshore-pipeli.png",
+      "png_sha256": "377dd8a2c612ba4acb941998734f3c758811839e77021d873da5b0b97794eaac",
+      "slug": "recommended-minimum-cover-onshore-pipeli",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 21,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0021.png",
+  "page_image_sha256": "bf784f46d38e610c297cab26802fe9c23caf5be8bf2cab800e71ddf9fe14fdbe",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0021_assets.json"
+}

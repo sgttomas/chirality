@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0011.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-08_p0011_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        2538
+      ],
+      "caption": "Fig. 100-4 Summary of Equipment Requirements for H\u2082S Service",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/17-specific-service-utility-systems-08_p0011_tbl01_fig-100-4-equipment-requirements-h2s-ser.png",
+      "png_sha256": "f7d21e1a8d8b88b12094a3b36ac51156163316c2057608d079d7bdb9da692050",
+      "slug": "fig-100-4-equipment-requirements-h2s-ser",
+      "status": "materialized",
+      "table_data_json_path": "tables/17-specific-service-utility-systems-08_p0011_tbl01_fig-100-4-equipment-requirements-h2s-ser.json",
+      "table_data_json_sha256": "7f44070b997be6760c1e338f0b9389e4294960c511256113626114b105bfe193",
+      "table_data_sha256": "7f44070b997be6760c1e338f0b9389e4294960c511256113626114b105bfe193",
+      "xlsx_path": "tables/17-specific-service-utility-systems-08_p0011_tbl01_fig-100-4-equipment-requirements-h2s-ser.xlsx",
+      "xlsx_sha256": "f6bc9f32b3465f4d70779a852a7d2e9063969f6d9b2b3430f2548d79e5f0f821"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-08",
+  "doc_stem": "17-specific-service-utility-systems-08",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0011.png",
+  "page_image_sha256": "6cbdb9f5bd4a7fc8be4c5559065f8735d009a95a4f60b4805b839f63f5a979e3",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0011_assets.json"
+}

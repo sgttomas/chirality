@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0017.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-11_p0017_fig01",
+      "bbox_norm": [
+        0.02,
+        0.03,
+        0.98,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        0,
+        5100,
+        3201
+      ],
+      "caption": "Fig. 1300-3 Typical P & ID for Cooling Tower Applications \u2013 Dye Tub Containers",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-11_p0017_fig01_fig-1300-3-pid-cooling-tower-dye-tub.png",
+      "png_sha256": "3f81cff22793460eb67ca6e0c37da7427d6ea4ed371e6c27c72d8275d94fd4c2",
+      "slug": "fig-1300-3-pid-cooling-tower-dye-tub",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-11",
+  "doc_stem": "17-specific-service-utility-systems-11",
+  "page": 17,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0017.png",
+  "page_image_sha256": "34ab36d72fc709ccc79b18345e42dd421cb942e4f772be8fc44d46630799133b",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0017_assets.json"
+}

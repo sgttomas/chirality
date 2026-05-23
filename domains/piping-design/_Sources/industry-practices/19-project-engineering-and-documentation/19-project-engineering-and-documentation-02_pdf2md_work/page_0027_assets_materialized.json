@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0027.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0027_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.16,
+        0.91,
+        0.84
+      ],
+      "bbox_px": [
+        298,
+        386,
+        2381,
+        3123
+      ],
+      "caption": "Table 6 HFE Activity Level Criteria",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.png",
+      "png_sha256": "ab255c16a955216e0fa55b6c3b0357ea2e676a758e81eff48a7b5d991477b209",
+      "slug": "hfe-activity-level-criteria",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.json",
+      "table_data_json_sha256": "fef4fa82408f338de1458844f57a2d1290adaefe15a4ff9ca38bc60bacf7a41a",
+      "table_data_sha256": "fef4fa82408f338de1458844f57a2d1290adaefe15a4ff9ca38bc60bacf7a41a",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0027_tbl01_hfe-activity-level-criteria.xlsx",
+      "xlsx_sha256": "0c6f15042b1ae6affeb50a3ab298a8d5df59bb0f79bcf8a127ba9516759b99db"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 27,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0027.png",
+  "page_image_sha256": "d9fee09178aa2162e19f45f95814284883230bb76dd3f86e797c9d45f52bf589",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0027_assets.json"
+}

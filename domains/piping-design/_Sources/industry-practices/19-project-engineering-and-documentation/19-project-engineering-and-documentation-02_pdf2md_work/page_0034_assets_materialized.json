@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0034.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0034_tbl01",
+      "bbox_norm": [
+        0.09,
+        0.15,
+        0.94,
+        0.75
+      ],
+      "bbox_px": [
+        140,
+        248,
+        3474,
+        1984
+      ],
+      "caption": "FIGURE 7 EXAMPLES OF REGISTRATION FORM FOR HFE DESIGN ANALYSIS RESULTS",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.png",
+      "png_sha256": "0804a28acfe0d85684fe8a15c7a256dd9501d6eafdcc68934a9509551cd7b9b4",
+      "slug": "figure-7-registration-form-hfe-design-an",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.json",
+      "table_data_json_sha256": "657158523df94388f1f134f8c0b2b6e58e94dee5f97a55b5baad36453aef32f1",
+      "table_data_sha256": "657158523df94388f1f134f8c0b2b6e58e94dee5f97a55b5baad36453aef32f1",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0034_tbl01_figure-7-registration-form-hfe-design-an.xlsx",
+      "xlsx_sha256": "004726feca022d39392c7c69f64ac828043373c0f53da3e3f8748be97a4c6a48"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 34,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0034.png",
+  "page_image_sha256": "d143957944735f89bfab7495919a1a7f714af801b7d6893bd706f2439687a9f6",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0034_assets.json"
+}

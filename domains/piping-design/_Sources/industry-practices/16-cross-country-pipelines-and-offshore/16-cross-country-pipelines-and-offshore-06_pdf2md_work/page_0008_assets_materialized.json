@@ -1,0 +1,91 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0008.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_fig01",
+      "bbox_norm": [
+        0.04,
+        0.03,
+        0.96,
+        0.3
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1154
+      ],
+      "caption": "Fig. 800-3 Flow Line Supports Type J",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0008_fig01_fig-800-3-flow-line-supports-type-j.png",
+      "png_sha256": "6dc15d62f86b232a854bd0dfddfc78fcf1fd8806eeed42daa74d88ddae1544c5",
+      "slug": "fig-800-3-flow-line-supports-type-j",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_fig02",
+      "bbox_norm": [
+        0.04,
+        0.31,
+        0.96,
+        0.65
+      ],
+      "bbox_px": [
+        0,
+        857,
+        2550,
+        2307
+      ],
+      "caption": "Fig. 800-4 Flow Line Supports Type C",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0008_fig02_fig-800-4-flow-line-supports-type-c.png",
+      "png_sha256": "7bc0a6a0f4a8777c59228b934b27c87b2bd20fec71ce30f5906be64391fe0e38",
+      "slug": "fig-800-4-flow-line-supports-type-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0008_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.65,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        1978,
+        2550,
+        3296
+      ],
+      "caption": "Flow Line Supports Type C \u2014 Dimensions Table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.png",
+      "png_sha256": "010d1440986d9ac5f5d36a61eb491d0f53eda0ba50f3137fd2263b5a29a3a60f",
+      "slug": "flow-line-supports-type-c-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.json",
+      "table_data_json_sha256": "ec547926464fff2b59f43546f83387434f10c6275d1ca3a8371c77007c499e3a",
+      "table_data_sha256": "ec547926464fff2b59f43546f83387434f10c6275d1ca3a8371c77007c499e3a",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0008_tbl01_flow-line-supports-type-c-dimensions.xlsx",
+      "xlsx_sha256": "fd75014cbf6bb2c6a257925eb98c66976d21887b2aafc95c00220259b9faa4f5"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 8,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0008.png",
+  "page_image_sha256": "ed0114e955f0d6658734cc4e4b08485256396c3c01c875a95a49907ebeac8447",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0008_assets.json"
+}

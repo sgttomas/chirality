@@ -1,0 +1,201 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 19,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 2 Competence Definitions for HFE in New Projects",
+      "slug": "competence-definitions-for-hfe-in-new-projects",
+      "bbox_norm": [
+        0.17,
+        0.2,
+        0.91,
+        0.55
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Awareness (A):",
+                "type": "text"
+              },
+              {
+                "value": "(Can discuss) The individual is familiar with the HFE process and understands the principals, concepts and language. The individual knows when and how the HFE design process applies to projects and is familiar with the different project phases and timing.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Working Knowledge (WK):",
+                "type": "text"
+              },
+              {
+                "value": "(Can do) The individual has undergone the Working Knowledge training course. This individual can carry out the Human Factors Engineering tools in this DEP (Focusing and Work Systems Analysis Tools). This individual has a number of years of project experience and is familiar with the principles of Human Factors Engineering.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Skilled (S):",
+                "type": "text"
+              },
+              {
+                "value": "(Can Lead) The individual can apply and adapt Human Factors Engineering principles and tools to a variety of project settings. This person can think analytically and produce new solutions to existing problems, and can lead and coach a design team.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Mastery (M):",
+                "type": "text"
+              },
+              {
+                "value": "(Can Design) The individual can design Human Factors Engineering Tools and teach their use to individuals of other engineering disciplines.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column competence definition table; cells are legible."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Table 3 Competence levels for members of Project Team",
+      "slug": "competence-levels-for-members-of-project-team",
+      "bbox_norm": [
+        0.17,
+        0.59,
+        0.72,
+        0.9
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Team Member",
+                "is_header": true
+              },
+              {
+                "value": "HFE Competence",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Project Manager (PM)",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge/Awareness",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Project engineer (Peng)",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Process Engineer (PE)",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Relevant Discipline Engineer(s)",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Operations/owner of system",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineer",
+                "type": "text"
+              },
+              {
+                "value": "Skilled or Mastery",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "HFE Focal Point",
+                "type": "text"
+              },
+              {
+                "value": "Working Knowledge",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column project team competence table; all visible rows transcribed."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 33,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 5 VENT CONNECTION (carbon steel or stainless steel line)",
+      "slug": "figure-5-vent-connection",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.55],
+      "confidence": "high",
+      "notes": "Schematic diagram showing vent connection piping arrangement with callout annotations indicating bends to avoid, inverted elbows, vent valve location, and stainless steel downstream pipe requirements."
+    }
+  ],
+  "issues": []
+}

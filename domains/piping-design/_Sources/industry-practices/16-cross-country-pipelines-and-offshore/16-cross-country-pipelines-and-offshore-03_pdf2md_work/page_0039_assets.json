@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 39,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 2-1 THE TIME REQUIRED TO SETTLE SMALL LIQUID DROPLETS AS A FUNCTION OF THE DROPLET DIAMETER IN THE FIRST PART OF A PRIMARY BOTTLE",
+      "slug": "figure-2-1-time-settle-liquid-droplets-droplet-diameter-primary-bottle",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Log-log chart: y-axis t_settle (s) from 1 to 30, x-axis d (mm) from 0.1 to 1.0. Three curves for H = 0.2, H = 0.1, H ≈ 0. Conditions noted: D = 0.88 m, η_G = 1.4 × 10⁻⁵ NS m⁻², ρ_L = 590 kg/m³, ρ_G = 65 kg/m³ (Den Helder slug catcher conditions)."
+    }
+  ],
+  "issues": []
+}

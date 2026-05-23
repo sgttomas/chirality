@@ -1,0 +1,407 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 26,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 5 Work Systems Analysis Tool",
+      "slug": "table-5-work-systems-analysis-tool",
+      "bbox_norm": [
+        0.04,
+        0.14,
+        0.96,
+        0.91
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 3,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "",
+                "is_header": true
+              },
+              {
+                "value": "System Performance Factors (Design Principles)",
+                "col_span": 15,
+                "is_header": true
+              },
+              {
+                "value": "Project Performance Factors (User Knowledge)",
+                "col_span": 15,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "is_header": true
+              },
+              {
+                "value": "Operability (1)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Maintainability (2)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Human Reliability (3)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Health and Safety (4)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "IT Usability (5)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Acceptability / Operator input (6)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Product acceptability (7)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Design experience (8)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Quality Assurance (9)",
+                "col_span": 3,
+                "is_header": true
+              },
+              {
+                "value": "Legislation (10)",
+                "col_span": 3,
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Mode of Operation: right arrow; Work Systems (examples): down arrow",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              },
+              {
+                "value": "N",
+                "is_header": true
+              },
+              {
+                "value": "E",
+                "is_header": true
+              },
+              {
+                "value": "S",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Plants and Facilities",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Process Units"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Skid packages"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Loading and Unloading"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Manufacturing plants"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Buildings",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Central Control Room"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Offices"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Retail Stations"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Security / Reception"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "HCI",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "CCR"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Hand-held data input devices"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Other HMI",
+                "is_header": true
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Operation of valves"
+              },
+              {
+                "value": "",
+                "col_span": 30
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "medium",
+      "notes": "Large matrix table; visible cells on this page are blank except row and column labels. Green direction indicators are included as table header text."
+    }
+  ],
+  "issues": []
+}

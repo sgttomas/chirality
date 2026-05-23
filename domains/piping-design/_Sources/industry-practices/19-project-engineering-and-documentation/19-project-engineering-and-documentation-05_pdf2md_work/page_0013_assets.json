@@ -1,0 +1,532 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 13,
+  "total_pages": 14,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Unit conversion factors for tons, watts, watt-hours, and yards",
+      "slug": "unit-conversion-factors-tons-watts-watt-hours-yards",
+      "bbox_norm": [0.26, 0.11, 0.80, 0.88],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Multiply",
+                "is_header": true
+              },
+              {
+                "value": "By",
+                "is_header": true
+              },
+              {
+                "value": "To Obtain",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (long)",
+                "type": "text"
+              },
+              {
+                "value": 2240,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (long)",
+                "type": "text"
+              },
+              {
+                "value": 1.12,
+                "type": "number",
+                "raw": "1.12000"
+              },
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (metric)",
+                "type": "text"
+              },
+              {
+                "value": 1000,
+                "type": "number",
+                "raw": "10^3"
+              },
+              {
+                "value": "Kilograms",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (metric)",
+                "type": "text"
+              },
+              {
+                "value": 2205,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 2000,
+                "type": "number"
+              },
+              {
+                "value": "Pounds",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 32000,
+                "type": "number",
+                "raw": "32,000"
+              },
+              {
+                "value": "Ounces",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 907.1843,
+                "type": "number"
+              },
+              {
+                "value": "Kilograms",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 2430.56,
+                "type": "number"
+              },
+              {
+                "value": "Pounds (troy)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 0.89287,
+                "type": "number"
+              },
+              {
+                "value": "Tons (long)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 29166.66,
+                "type": "number"
+              },
+              {
+                "value": "Ounces (troy)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons (short)",
+                "type": "text"
+              },
+              {
+                "value": 0.90718,
+                "type": "number"
+              },
+              {
+                "value": "Tons (metric)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons of water/24 hrs",
+                "type": "text"
+              },
+              {
+                "value": 83.333,
+                "type": "number"
+              },
+              {
+                "value": "Pounds water/hr",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons of water/24 hrs",
+                "type": "text"
+              },
+              {
+                "value": 0.16643,
+                "type": "number"
+              },
+              {
+                "value": "Gallons/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Tons of water/24 hrs",
+                "type": "text"
+              },
+              {
+                "value": 1.3349,
+                "type": "number"
+              },
+              {
+                "value": "Cu ft/hr",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 0.05686,
+                "type": "number"
+              },
+              {
+                "value": "Btu/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 44.25,
+                "type": "number"
+              },
+              {
+                "value": "Foot-lb/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 0.7376,
+                "type": "number"
+              },
+              {
+                "value": "Foot-lb/sec",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 0.001341,
+                "type": "number",
+                "raw": "1.341 x 10^-3"
+              },
+              {
+                "value": "Horsepower",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 0.01434,
+                "type": "number"
+              },
+              {
+                "value": "Kg-calories/min",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watts",
+                "type": "text"
+              },
+              {
+                "value": 0.001,
+                "type": "number",
+                "raw": "10^-3"
+              },
+              {
+                "value": "Kilowatts",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 3.414,
+                "type": "number"
+              },
+              {
+                "value": "Btu",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 2655,
+                "type": "number"
+              },
+              {
+                "value": "Foot-lb",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 0.001341,
+                "type": "number",
+                "raw": "1.341 x 10^-3"
+              },
+              {
+                "value": "Horsepower-hours",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 0.8604,
+                "type": "number"
+              },
+              {
+                "value": "Kilogram-calories",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 367.1,
+                "type": "number"
+              },
+              {
+                "value": "Kilogram-meters",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Watt-hours",
+                "type": "text"
+              },
+              {
+                "value": 0.001,
+                "type": "number",
+                "raw": "10^-3"
+              },
+              {
+                "value": "Kilowatt-hours",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Yards",
+                "type": "text"
+              },
+              {
+                "value": 91.44,
+                "type": "number"
+              },
+              {
+                "value": "Centimeters",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Yards",
+                "type": "text"
+              },
+              {
+                "value": 3,
+                "type": "number"
+              },
+              {
+                "value": "Feet",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Yards",
+                "type": "text"
+              },
+              {
+                "value": 36,
+                "type": "number"
+              },
+              {
+                "value": "Inches",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Yards",
+                "type": "text"
+              },
+              {
+                "value": 0.9144,
+                "type": "number"
+              },
+              {
+                "value": "Meters",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Single legible three-column conversion table; no visible printed caption, so caption is a concise summary."
+    }
+  ],
+  "issues": []
+}

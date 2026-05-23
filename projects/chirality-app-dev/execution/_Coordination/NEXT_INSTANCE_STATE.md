@@ -18,12 +18,25 @@
 |---|---:|
 | Packages scaffolded | 10 |
 | Deliverables scaffolded | 51 |
-| OPEN | 51 |
-| INITIALIZED | 0 |
+| OPEN | 0 |
+| INITIALIZED | 51 |
 | SEMANTIC_READY | 0 |
 | IN_PROGRESS | 0 |
 | CHECKING | 0 |
 | ISSUED | 0 |
+| Four-document kits complete | 51 |
+| TASK four-documents P1/P2 success records | 51 |
+| Semantic matrices validated | 51 |
+| TASK semantic-matrix-build success records | 51 |
+| Semantic matrices remaining | 0 |
+| Semantic lensing skipped by human ruling | yes |
+| P3 enrichment skipped by human ruling | yes |
+| Dependencies.csv files created | 51 |
+| Dependency register rows extracted | 554 |
+| Dependency schema validation | 51/51 PASS |
+| Concrete deliverable execution edges | 129 |
+| Concrete dependency graph acyclic | NO |
+| Stale interrupted PENDING run records retained as incomplete evidence | 5 |
 
 ## Data-Quality Notes
 
@@ -49,14 +62,15 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - Decomposition authority: v3.2 SOFTWARE_DECOMP.
 - Coordination representation: FULL_GRAPH.
 - Dependency satisfaction threshold: SEMANTIC_READY.
-- Dependency extraction is post-enrichment, not pre-scaffold.
+- Dependency extraction is permitted after four-document authoring by human ruling on 2026-05-20.
+- Existing `_SEMANTIC.md` outputs are invalid evidence and must not be consumed for dependency recording.
 
 ## Immediate Next Actions
 
-1. Run TASK + `four-documents` with `RUN_PASSES=P1_P2` for selected deliverables.
-2. Validate generated four-document kits before semantic matrix generation.
-3. Run TASK + `semantic-matrix-build`, then `lens-register`, then `four-documents` P3.
-4. Run TASK + `dependency-extract` only after enrichment is complete.
+1. Semantic enrichment path skipped by human ruling; do not run `lens-register` or `four-documents` P3.
+2. Dependency extraction is complete: 51 of 51 deliverables have schema-valid `Dependencies.csv` registers.
+3. Review `execution/_Coordination/DEPENDENCY_GRAPH_CHECK.md`; concrete deliverable graph has cycles.
+4. Do not report FULL_GRAPH blockers until cycle reconciliation produces an accepted acyclic graph.
 
 ## Handoff Payload
 

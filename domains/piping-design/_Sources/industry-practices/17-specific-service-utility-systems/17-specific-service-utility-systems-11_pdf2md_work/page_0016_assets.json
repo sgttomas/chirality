@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-11",
+  "page": 16,
+  "total_pages": 17,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1300-2 Typical P & ID for Cooling Tower Applications - 100 lb Cylinders",
+      "slug": "fig-1300-2-pid-cooling-tower-100lb-cylinders",
+      "bbox_norm": [0.02, 0.02, 0.98, 0.98],
+      "confidence": "high",
+      "notes": "Full-page engineering P&ID drawing showing two process flow diagrams for chlorine cylinder systems, with notes panel, legend/symbol table, and Chevron title block. Text at scales too small to fully transcribe at this resolution."
+    }
+  ],
+  "issues": []
+}

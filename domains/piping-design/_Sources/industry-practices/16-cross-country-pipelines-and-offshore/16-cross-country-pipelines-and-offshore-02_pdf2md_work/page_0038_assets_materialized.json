@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0038.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-02_p0038_fig01",
+      "bbox_norm": [
+        0.02,
+        0.06,
+        0.85,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        25,
+        3158,
+        2480
+      ],
+      "caption": "Figure 4 Reducing barred tees",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-02_p0038_fig01_figure-4-reducing-barred-tees.png",
+      "png_sha256": "71767827f6af51816ffbefc3e4e9d3b166008c02e1655324393baa5d7c21287f",
+      "slug": "figure-4-reducing-barred-tees",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-02_p0038_tbl01",
+      "bbox_norm": [
+        0.62,
+        0.06,
+        0.98,
+        0.38
+      ],
+      "bbox_px": [
+        2000,
+        25,
+        3509,
+        1066
+      ],
+      "caption": "REDUCING BARRED TEE \u2014 Nominal branch size, No. of bars, and dimension T",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-02_p0038_tbl01_reducing-barred-tee-dimensions.png",
+      "png_sha256": "1b1c23fe53d3c90a9bfe1aeb80e460cc46fc2e035157b8759158d44a44197a90",
+      "slug": "reducing-barred-tee-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-02_p0038_tbl01_reducing-barred-tee-dimensions.json",
+      "table_data_json_sha256": "72f5bed49bee0883cfcfbf0950566b6fa315c5c24682a25204502831cf8067c4",
+      "table_data_sha256": "72f5bed49bee0883cfcfbf0950566b6fa315c5c24682a25204502831cf8067c4",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-02_p0038_tbl01_reducing-barred-tee-dimensions.xlsx",
+      "xlsx_sha256": "a8830c0f462615255c576c35b26f59136eb8e150c1751d1228a35bd9f60ace78"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-02",
+  "page": 38,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0038.png",
+  "page_image_sha256": "da49440ffc262eac050b2be178c09daec32ff8c42b62ab83bdc0588af9b00407",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0038_assets.json"
+}

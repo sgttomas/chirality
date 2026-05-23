@@ -1,0 +1,8 @@
+{
+  "schema": "pdf2md-page-assets/v1",
+  "doc_stem": "17-specific-service-utility-systems-05",
+  "page": 1,
+  "run_status": "DEGRADED",
+  "assets": [],
+  "issues": ["multimodal vision read blocked 2x by content filter on PIP boilerplate page; fell back to pdftotext deterministic extraction"]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 33,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 6 HFE EVALUATION MATRIX",
+      "slug": "figure-6-hfe-evaluation-matrix",
+      "bbox_norm": [0.1, 0.13, 0.91, 0.84],
+      "confidence": "high",
+      "notes": "Single large flow/matrix figure with visible title and boxed workflow content."
+    }
+  ],
+  "issues": []
+}

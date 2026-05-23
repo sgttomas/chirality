@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 35,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 17    EXAMPLES OF BURIAL DESIGN",
+      "slug": "figure-17-examples-of-burial-design",
+      "bbox_norm": [0.07, 0.07, 0.93, 0.92],
+      "confidence": "high",
+      "notes": "Three sub-diagrams illustrating different pipeline burial design configurations. Top: basic mound burial. Middle: clay mound with paving stones, slope 1:2, steel wall, min 0.6 m depth, remove black earth layer. Bottom: pit design with rubber slab at vertical oval transit, maintain present ground, dimensions min 0.6 m, min 1.5 m, min 0.6 m."
+    }
+  ],
+  "issues": []
+}

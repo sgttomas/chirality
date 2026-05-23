@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 39,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 1 TYPICAL GUIDE CLAMP",
+      "slug": "figure-1-typical-guide-clamp",
+      "bbox_norm": [0.08, 0.10, 0.92, 0.88],
+      "confidence": "high",
+      "notes": "Two-part engineering drawing: top shows elevation/isometric view of jacket leg and riser with riser clamp; bottom shows plan cross-section with jacket sleeve, hinge pin, and bolts labeled."
+    }
+  ],
+  "issues": []
+}

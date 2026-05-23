@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0036.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-01_p0036_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.65,
+        0.63
+      ],
+      "bbox_px": [
+        0,
+        1579,
+        1736,
+        2386
+      ],
+      "caption": "Spare linepipe quantities by route length",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-01_p0036_tbl01_spare-linepipe-quantities-by-route-lengt.png",
+      "png_sha256": "d4aac79d420ba142d39c462467fe908404b534fb8dc6cf3d1ebe027387a1be03",
+      "slug": "spare-linepipe-quantities-by-route-lengt",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-01_p0036_tbl01_spare-linepipe-quantities-by-route-lengt.json",
+      "table_data_json_sha256": "57aa99638c2e02bcbd4b8cd49daadafcc3cba6620198184cae01596c50d2a343",
+      "table_data_sha256": "57aa99638c2e02bcbd4b8cd49daadafcc3cba6620198184cae01596c50d2a343",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-01_p0036_tbl01_spare-linepipe-quantities-by-route-lengt.xlsx",
+      "xlsx_sha256": "6764bbc3808f8fc4166b2e37c87fd9d7a3265b38acc83a5b59cbe5c72690ffcd"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 36,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0036.png",
+  "page_image_sha256": "95788238fdc7309287bdee6461c452487e226512a018ee4ea62a03cc7c1d7992",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0036_assets.json"
+}

@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0013.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-05_p0013_tbl01",
+      "bbox_norm": [
+        0.26,
+        0.11,
+        0.8,
+        0.88
+      ],
+      "bbox_px": [
+        536,
+        198,
+        2168,
+        3065
+      ],
+      "caption": "Unit conversion factors for tons, watts, watt-hours, and yards",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.png",
+      "png_sha256": "61745b925cc3f1994fa8392cfb6455d4063327f10bb170f9b8fc0231749bdc7b",
+      "slug": "unit-conversion-factors-tons-watts-watt",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.json",
+      "table_data_json_sha256": "4cc3bc89fcdd3b85c2da7ee6db91c73e2c58aea89bb02fadd4a0a5766fc039f4",
+      "table_data_sha256": "4cc3bc89fcdd3b85c2da7ee6db91c73e2c58aea89bb02fadd4a0a5766fc039f4",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-05_p0013_tbl01_unit-conversion-factors-tons-watts-watt.xlsx",
+      "xlsx_sha256": "a49893a0ba0d907c0f385055211d264f2aa0892ca2353ad129342f183fe03e58"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-05",
+  "doc_stem": "19-project-engineering-and-documentation-05",
+  "page": 13,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0013.png",
+  "page_image_sha256": "fe43071e7d94985f0c018a32d646b955bf261eb782ea8b43efd96e5f7c349473",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-05_pdf2md_work/page_0013_assets.json"
+}

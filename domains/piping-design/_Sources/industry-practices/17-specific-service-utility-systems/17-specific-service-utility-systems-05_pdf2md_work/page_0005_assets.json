@@ -1,0 +1,92 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-05",
+  "page": 5,
+  "total_pages": 10,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1. Safety Factors",
+      "slug": "table-1-safety-factors",
+      "bbox_norm": [0.12, 0.06, 0.88, 0.32],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Application", "is_header": true },
+              { "value": "General", "is_header": true },
+              { "value": "With Temp. Control", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Mains Drainage", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Tracing Lines", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Heat Exchangers & General Process", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "x3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Space Unit Heaters", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "x3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Air Heating Coils", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "x3", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Submerged Coils", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Submerged Coils with siphon drain", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Rotating Cylinders", "type": "text" },
+              { "value": "x2", "type": "text" },
+              { "value": "", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Three-column table with safety factors by application type"
+    }
+  ],
+  "issues": []
+}

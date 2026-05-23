@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-10_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-10_p0016_fig01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2550,
+        1879
+      ],
+      "caption": "Fig. 1200-2 Ammonia Sample Station\u2014Residue Analysis",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-10_p0016_fig01_fig-1200-2-ammonia-sample-station-residu.png",
+      "png_sha256": "a468e0add869259d1fd810a5953c826b04e8f1dff26504e2dcf1b32c4b496914",
+      "slug": "fig-1200-2-ammonia-sample-station-residu",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-10",
+  "doc_stem": "17-specific-service-utility-systems-10",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-10_pdf2md_work/page_0016.png",
+  "page_image_sha256": "72d0a694459acad039f8cc3672049e8fba60c4c0fea6523d16a227306e318e97",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-10_pdf2md_work/page_0016_assets.json"
+}

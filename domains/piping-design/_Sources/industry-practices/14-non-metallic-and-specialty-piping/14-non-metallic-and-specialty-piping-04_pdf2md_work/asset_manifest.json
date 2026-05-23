@@ -1,0 +1,2322 @@
+{
+  "asset_count": 67,
+  "assets": [
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0006_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        3300
+      ],
+      "caption": "Index of Drawings \u2014 File No., Detail Title, Detail No., Notes",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 6,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-04_p0006_tbl01_index-of-drawings.png",
+      "png_sha256": "dfe7549191853ec0297736b42a5bcdba81f93a0c2a8217001f151b46b8bec2d7",
+      "slug": "index-of-drawings",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-04_p0006_tbl01_index-of-drawings.json",
+      "table_data_json_sha256": "54546db6ccbf42692c368976f2bd63c42ca48de93474b54aaf648b256c5d1508",
+      "table_data_sha256": "54546db6ccbf42692c368976f2bd63c42ca48de93474b54aaf648b256c5d1508",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-04_p0006_tbl01_index-of-drawings.xlsx",
+      "xlsx_sha256": "00b43c7065dc8ba72fb5574fcc80924fdc4cd987b1bb3c249437976abc1deeac"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0007_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.08,
+        0.97,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2550,
+        2211
+      ],
+      "caption": "Drawing index continuation \u2014 Jacketed Piping Fabrication and Installation Details",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 7,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-04_p0007_tbl01_drawing-index-jacketed-piping.png",
+      "png_sha256": "b860b1b4c68fd1b10acb8590030fe92c9188468fb8f3b0b43a02ed3626613c3b",
+      "slug": "drawing-index-jacketed-piping",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-04_p0007_tbl01_drawing-index-jacketed-piping.json",
+      "table_data_json_sha256": "c6c106334b12e44bc683d4a4880c7b58fb8f7f231d393d9f5d10e80f41bddea5",
+      "table_data_sha256": "c6c106334b12e44bc683d4a4880c7b58fb8f7f231d393d9f5d10e80f41bddea5",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-04_p0007_tbl01_drawing-index-jacketed-piping.xlsx",
+      "xlsx_sha256": "f2fe8ff11f725d2b0f2d715b919db78ea72f7357e222c527a90462dc5fbd3d6e"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0008_fig01",
+      "bbox_norm": [
+        0.1,
+        0.25,
+        0.85,
+        0.62
+      ],
+      "bbox_px": [
+        128,
+        660,
+        2295,
+        2211
+      ],
+      "caption": "PIPE CAP \u2014 Jacket Closure PC-1 detail showing butt weld cap, core, and jacket assembly",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0008_fig01_pipe-cap-jacket-closure-pc-1.png",
+      "png_sha256": "a49f97be05951599ffc31d17a5f0ddff2da1fe56792fe596468ba18889e7e7ab",
+      "slug": "pipe-cap-jacket-closure-pc-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0009_fig01",
+      "bbox_norm": [
+        0.18,
+        0.25,
+        0.82,
+        0.62
+      ],
+      "bbox_px": [
+        332,
+        660,
+        2218,
+        2211
+      ],
+      "caption": "JACKET CLOSURE CP-1 \u2014 Cheek Plate detail showing CORE and JACKET piping cross-section with weld symbols, dimension callouts A and B",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 9,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0009_fig01_jacket-closure-cp1-cheek-plate.png",
+      "png_sha256": "af592605dd5f933451fe87f7c4d5e3827caf121c261f1b40171604251f04f7ec",
+      "slug": "jacket-closure-cp1-cheek-plate",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0010_fig01",
+      "bbox_norm": [
+        0.15,
+        0.18,
+        0.88,
+        0.62
+      ],
+      "bbox_px": [
+        255,
+        429,
+        2372,
+        2211
+      ],
+      "caption": "Cheek Plate \u2014 jacketed pipe closure cross-section detail showing CORE and JACKET with dimensions A and B (PNFJ8040)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0010_fig01_cheek-plate-jacketed-pipe-closure-cross.png",
+      "png_sha256": "571988988f302e9565df64f42642cbbde71254d613f63c89f4715175400bbbd6",
+      "slug": "cheek-plate-jacketed-pipe-closure-cross",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0011_fig01",
+      "bbox_norm": [
+        0.08,
+        0.38,
+        0.75,
+        0.65
+      ],
+      "bbox_px": [
+        76,
+        1089,
+        2040,
+        2310
+      ],
+      "caption": "PNFJ8050 SW-1 Jacket Closure \u2014 Swage detail showing CORE and JACKET components in cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0011_fig01_pnfj8050-sw1-jacket-closure-swage.png",
+      "png_sha256": "87c72c93b1361b217bd90585b67f540f98352e3ec956f8b35c339592d5fe6a56",
+      "slug": "pnfj8050-sw1-jacket-closure-swage",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0012_fig01",
+      "bbox_norm": [
+        0.28,
+        0.28,
+        0.75,
+        0.68
+      ],
+      "bbox_px": [
+        587,
+        759,
+        2040,
+        2409
+      ],
+      "caption": "SJFA-1 Stub End with Lap Joint Flange \u2014 Swaged Jacket Flange Attachment detail showing cross-section with CORE label",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 12,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0012_fig01_sjfa-1-stub-end-lap-joint-flange.png",
+      "png_sha256": "9cf96ca116664a30bd9e10de8e2548397a5e233baac53e0f54ce14c43b5265d0",
+      "slug": "sjfa-1-stub-end-lap-joint-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0013_fig01",
+      "bbox_norm": [
+        0.07,
+        0.28,
+        0.75,
+        0.72
+      ],
+      "bbox_px": [
+        51,
+        759,
+        2040,
+        2541
+      ],
+      "caption": "Slip-On Flange, Face Groove Weld \u2014 Swaged Jacket Flange Attachment SJFA-2 detail showing core pipe, flange, and jacket weld configuration",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0013_fig01_slip-on-flange-face-groove-weld-sjfa-2.png",
+      "png_sha256": "bad50489c25c888e97fc76b831d3ee8afa361d0c3eef158c0808b59f851c92c0",
+      "slug": "slip-on-flange-face-groove-weld-sjfa-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0014_fig01",
+      "bbox_norm": [
+        0.22,
+        0.35,
+        0.75,
+        0.68
+      ],
+      "bbox_px": [
+        433,
+        990,
+        2040,
+        2409
+      ],
+      "caption": "SJFA-3 Swaged Jacket Flange Attachment \u2014 Welding Neck Flange detail showing core pipe, jacket, and flange cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 14,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0014_fig01_sjfa-3-swaged-jacket-flange-attachment-w.png",
+      "png_sha256": "120e058e668d1c0c9a759fa91242a4573374db6690c9b8c343aecc2a123dbdc2",
+      "slug": "sjfa-3-swaged-jacket-flange-attachment-w",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0015_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.75,
+        0.65
+      ],
+      "bbox_px": [
+        76,
+        495,
+        2040,
+        2310
+      ],
+      "caption": "SJFA-4 Slip-on flange face fillet weld detail showing swaged jacket flange attachment with core label",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 15,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0015_fig01_sjfa-4-slip-on-flange-face-fillet-weld.png",
+      "png_sha256": "bdfac5a18efd0375bfb7bd282788072688a71653761c8dc4b3e16ae383faf19c",
+      "slug": "sjfa-4-slip-on-flange-face-fillet-weld",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0016_fig01",
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.7
+      ],
+      "bbox_px": [
+        76,
+        429,
+        2474,
+        2475
+      ],
+      "caption": "SJFA-5 Swaged Jacket Flange Attachment \u2014 Plate/Blind Flange detail showing core pipe with jacket flange attachment",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 16,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0016_fig01_sjfa-5-swaged-jacket-flange-plate-blind.png",
+      "png_sha256": "b0e403a8c5081bbb7f8ab2a8c5caa4bcf516da14d1573a358232f02af48d656c",
+      "slug": "sjfa-5-swaged-jacket-flange-plate-blind",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0017_fig01",
+      "bbox_norm": [
+        0.28,
+        0.22,
+        0.72,
+        0.62
+      ],
+      "bbox_px": [
+        587,
+        561,
+        1964,
+        2211
+      ],
+      "caption": "SJFA-6 Socket Weld Flange \u2014 Swaged Jacket Flange Attachment detail showing core, socket weld flange cross-section with alternate design",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0017_fig01_sjfa-6-socket-weld-flange-swaged-jacket.png",
+      "png_sha256": "08a4175b736507493cfa690616e2163f26787cf0447ca20c28b78c90563b3d2c",
+      "slug": "sjfa-6-socket-weld-flange-swaged-jacket",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0018_fig01",
+      "bbox_norm": [
+        0.1,
+        0.22,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        561,
+        2422,
+        2541
+      ],
+      "caption": "FJT-1 Core Size Insert Slip-On Flange \u2014 full jacket termination detail showing CORE and JACKET",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 18,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0018_fig01_fjt-1-core-size-insert-slip-on-flange.png",
+      "png_sha256": "6c8ee459ee9a3984d7fb3db14dcfd68b5b9252193324f7c3e6300d9807097318",
+      "slug": "fjt-1-core-size-insert-slip-on-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0019_fig01",
+      "bbox_norm": [
+        0.08,
+        0.14,
+        0.92,
+        0.75
+      ],
+      "bbox_px": [
+        76,
+        297,
+        2474,
+        2640
+      ],
+      "caption": "JACKET SIZE INSERT SLIP-ON FLANGE \u2014 Full jacket termination FJT-2 detail showing core pipe, jacket, and insert slip-on flange assembly (PNFJ8230)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0019_fig01_jacket-size-insert-slip-on-flange-fjt-2.png",
+      "png_sha256": "06fb82b5847a4fa18ad99ecd565a9c6338a99b7689f52c65311fd9e63413dcc8",
+      "slug": "jacket-size-insert-slip-on-flange-fjt-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0020_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2422,
+        2541
+      ],
+      "caption": "FJT-3 Jacket Size Slip-On Flange \u2014 full jacket termination cross-section detail showing CORE and JACKET components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0020_fig01_fjt-3-jacket-size-slip-on-flange.png",
+      "png_sha256": "d0b431c112fb1d59b61187cf165a79efe62ae3d987beab8ba193f70c656ad399",
+      "slug": "fjt-3-jacket-size-slip-on-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0021_fig01",
+      "bbox_norm": [
+        0.12,
+        0.17,
+        0.88,
+        0.68
+      ],
+      "bbox_px": [
+        178,
+        396,
+        2372,
+        2409
+      ],
+      "caption": "REDUCING (JACKET SIZE) WELD NECK FLANGE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0021_fig01_reducing-jacket-size-weld-neck-flange.png",
+      "png_sha256": "399ef216c34838e62bcf88b0b80092e285c537544a53570a164a6aa16dbe34ab",
+      "slug": "reducing-jacket-size-weld-neck-flange",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0022_fig01",
+      "bbox_norm": [
+        0.1,
+        0.22,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        561,
+        2422,
+        2541
+      ],
+      "caption": "FJT-5 Reducing (Jacket Size) Slip-On Flange, Face Groove Weld",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 22,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0022_fig01_fjt-5-reducing-jacket-size-slip-on-flang.png",
+      "png_sha256": "b8d4601d9e0db64e9b4726d57d38c9ea4f8be7017373a8956b65ffbc4506e35a",
+      "slug": "fjt-5-reducing-jacket-size-slip-on-flang",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0023_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2422,
+        2541
+      ],
+      "caption": "FJT-6 Reducing (Jacket Size) Slip-On Flange, Face Fillet Weld \u2014 Full Jacket Termination detail showing CORE and JACKET labels with section cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 23,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0023_fig01_fjt-6-reducing-jacket-slip-on-flange-fac.png",
+      "png_sha256": "ea40d44db14491244148498abcaa7ae9b7da2f8ee71a9a19b2c795842cb1311e",
+      "slug": "fjt-6-reducing-jacket-slip-on-flange-fac",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0024_fig01",
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.78
+      ],
+      "bbox_px": [
+        76,
+        429,
+        2474,
+        2739
+      ],
+      "caption": "JE-1 Jacketed Elbows, 90 Degree \u2014 Standard LR/SR Combinations, Sizes 1\"x2\" Through 6\"x8\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 24,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0024_fig01_je-1-jacketed-elbows-90-degree-lr-sr.png",
+      "png_sha256": "afc9b7bdad396e158ea7187ca843fcce411a80b38b97984330d4b70ce22c5033",
+      "slug": "je-1-jacketed-elbows-90-degree-lr-sr",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0025_fig01",
+      "bbox_norm": [
+        0.08,
+        0.28,
+        0.92,
+        0.78
+      ],
+      "bbox_px": [
+        76,
+        759,
+        2474,
+        2739
+      ],
+      "caption": "Jacketed Elbow, 90 Degree \u2014 Standard SR/LR Combination, Sizes 8\"x12\" and Larger",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 25,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0025_fig01_jacketed-elbow-90-degree-sr-lr-combinati.png",
+      "png_sha256": "b360fc66cadb790fe3df1cb538782b345d7c38f09cfd457a429899c37c93929a",
+      "slug": "jacketed-elbow-90-degree-sr-lr-combinati",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0026_fig01",
+      "bbox_norm": [
+        0.06,
+        0.2,
+        0.94,
+        0.72
+      ],
+      "bbox_px": [
+        25,
+        495,
+        2524,
+        2541
+      ],
+      "caption": "MITERED ELBOW, DETAIL A \u2014 Jacketed 90-degree mitered elbow showing CORE, LONG RADIUS inner pipe and JACKET, MODIFIED LONG RADIUS outer jacket with weld symbols at ends",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 26,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0026_fig01_mitered-elbow-detail-a.png",
+      "png_sha256": "b9dfdcf63dfaa38e372c97ab6f9b7f5a043d2c48258217261c7fd2fd4826885c",
+      "slug": "mitered-elbow-detail-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0027_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        495,
+        2474,
+        2541
+      ],
+      "caption": "MITERED ELBOW, DETAIL B \u2014 Jacketed 90-degree elbow schematic showing JACKET, MODIFIED SHORT RADIUS and CORE, LONG RADIUS components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 27,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0027_fig01_mitered-elbow-detail-b.png",
+      "png_sha256": "910082aca20903904e16132b7cb484e9a2a999c1094ba93017473f29b06b0052",
+      "slug": "mitered-elbow-detail-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0028_fig01",
+      "bbox_norm": [
+        0.08,
+        0.22,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        561,
+        2474,
+        2541
+      ],
+      "caption": "MITERED ELBOW, DETAIL C \u2014 Sizes 10\"x12\" and Larger \u2014 Jacketed 90-degree mitered elbow schematic showing JACKET, MITERED PIPE and CORE, LONG RADIUS",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 28,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0028_fig01_mitered-elbow-detail-c.png",
+      "png_sha256": "e5c53f7b14e1718f02d3a27c136c3d4a68cf4b1c4e257bde7a9b22f32e9c6f2f",
+      "slug": "mitered-elbow-detail-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0029_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.85,
+        0.68
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2295,
+        2409
+      ],
+      "caption": "JE-6 Standard Construction \u2014 Jacketed 45-degree elbow detail showing core and jacket piping arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 29,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0029_fig01_je-6-standard-construction-jacketed-45-d.png",
+      "png_sha256": "0c7a73ff5642dfd5dd964511bd4f87a651b54bdade14c5ec3a28769822a20df2",
+      "slug": "je-6-standard-construction-jacketed-45-d",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0030_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.88,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2372,
+        2541
+      ],
+      "caption": "PNFJ8430 Jacketed Elbows 45 Degree JE-7 \u2014 Mitered Construction detail showing core pipe and jacket modified 45\u00b0 elbow",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 30,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0030_fig01_pnfj8430-jacketed-elbow-45-je7-mitered-c.png",
+      "png_sha256": "da2d3e1efe08d36a0f97aab4a3c5b6bcc6e2aea982aade63f0f7d3a4138161d7",
+      "slug": "pnfj8430-jacketed-elbow-45-je7-mitered-c",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0031_fig01",
+      "bbox_norm": [
+        0.1,
+        0.18,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        429,
+        2422,
+        2541
+      ],
+      "caption": "JT-1 Straight Tee \u2014 jacketed tee fabrication/installation detail showing core and jacket arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 31,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0031_fig01_jt-1-straight-tee-jacketed.png",
+      "png_sha256": "6ae8b7be6945cff9b4f4b048f2360719a9069a9862b10372bb2fe922cb3f020f",
+      "slug": "jt-1-straight-tee-jacketed",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0032_fig01",
+      "bbox_norm": [
+        0.17,
+        0.17,
+        0.83,
+        0.68
+      ],
+      "bbox_px": [
+        306,
+        396,
+        2244,
+        2409
+      ],
+      "caption": "Reducing Tee \u2014 jacketed piping fabrication/installation detail RT-1, showing core and jacket arrangement at a reducing tee with weld symbols",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 32,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0032_fig01_reducing-tee-rt-1.png",
+      "png_sha256": "58956a01438a32cef3fa254be0f2e30981c36f40133e8b89a0cd6f177f2592ff",
+      "slug": "reducing-tee-rt-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0033_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        264,
+        2422,
+        2541
+      ],
+      "caption": "CROSS \u2014 Jacketed cross fabrication/installation detail showing core pipe and jacket arrangement, with callouts for CORE and JACKET (Drawing CR-1 from PIP PNFJ8540)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 33,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0033_fig01_cross-jacketed-cross-detail-cr-1.png",
+      "png_sha256": "3a2248bed83c033d4fe12246074e40fef5b9db2c72868ca07547084e8dcf94ca",
+      "slug": "cross-jacketed-cross-detail-cr-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0034_fig01",
+      "bbox_norm": [
+        0.1,
+        0.2,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        495,
+        2422,
+        2541
+      ],
+      "caption": "CONCENTRIC REDUCER \u2014 Jacketed concentric reducer fabrication/installation detail showing CORE pipe and JACKET pipe with weld symbols (RED-1)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 34,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0034_fig01_concentric-reducer-red-1.png",
+      "png_sha256": "f99ba7aab193b7c4c80dde846529a58b728e7d50d19bd2b0cf5385b24ab5271d",
+      "slug": "concentric-reducer-red-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0035_fig01",
+      "bbox_norm": [
+        0.1,
+        0.22,
+        0.88,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        561,
+        2372,
+        2541
+      ],
+      "caption": "Eccentric Reducer \u2014 jacketed pipe fabrication/installation detail showing JACKET and CORE with weld connection symbols (RED-2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 35,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0035_fig01_eccentric-reducer-red-2.png",
+      "png_sha256": "d36d5a53ca8f681a925d0cea4d0497d3f0c50926b4bd6839ef7857827dd10600",
+      "slug": "eccentric-reducer-red-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0036_fig01",
+      "bbox_norm": [
+        0.08,
+        0.28,
+        0.88,
+        0.67
+      ],
+      "bbox_px": [
+        76,
+        759,
+        2372,
+        2376
+      ],
+      "caption": "Alternate Design for Eccentric Reducers \u2014 jacketed eccentric reducer assembly showing WELD CAP, CORE, and JACKET components",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 36,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0036_fig01_alternate-design-eccentric-reducers.png",
+      "png_sha256": "3a65f2f1ec07aac08b6c7ad195e3d8fa63bf5b13205802ca6c20a5d4433741fd",
+      "slug": "alternate-design-eccentric-reducers",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0037_fig01",
+      "bbox_norm": [
+        0.1,
+        0.14,
+        0.9,
+        0.75
+      ],
+      "bbox_px": [
+        128,
+        297,
+        2422,
+        2640
+      ],
+      "caption": "TR-1 Straight Tee and Reducer \u2014 Jacketed Tees, Crosses and Reducers fabrication/installation detail showing core and jacket assembly in cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 37,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0037_fig01_tr-1-straight-tee-reducer-jacketed.png",
+      "png_sha256": "5d6a2d4641d4d3c0a673a46d53985fe102f5caef8be9d0db0e3238d5d1a08264",
+      "slug": "tr-1-straight-tee-reducer-jacketed",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0038_fig01",
+      "bbox_norm": [
+        0.1,
+        0.13,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        264,
+        2422,
+        2541
+      ],
+      "caption": "Reducing Tee and Reducer \u2014 jacketed piping fabrication detail showing core and jacket arrangement for a reducing tee, with callouts for CORE and JACKET",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 38,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0038_fig01_reducing-tee-and-reducer-core-jacket.png",
+      "png_sha256": "7fc130612e238592eae0d4806a0c5deef6a3796a755320db672ffe5519b0c5b9",
+      "slug": "reducing-tee-and-reducer-core-jacket",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0039_fig01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2541
+      ],
+      "caption": "Core Piping with Integrally Reinforced Branch Connection and Jacket with Concentric Reducer \u2014 detail drawing showing (A) With Reinforcing Pad and (B) Without Reinforcing Pad, with CORE and JACKET labels and SEE NOTE 4 callouts",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 39,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0039_fig01_core-piping-integrally-reinforced-branch.png",
+      "png_sha256": "981ed19a2ca3d2a2625a4473492dbf4f7e258cbebb6801a774f067800fd2d0e7",
+      "slug": "core-piping-integrally-reinforced-branch",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0040_fig01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        396,
+        2474,
+        2541
+      ],
+      "caption": "CORE AND JACKET PIPING SADDLE-ON \u2014 SDL-1 detail showing core and jacket piping saddle-on connection with callouts for CORE and JACKET",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 40,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0040_fig01_core-jacket-piping-saddle-on.png",
+      "png_sha256": "abf7275c69b7601aa6796e8c77c25dcb5f203904cbca74c4e5da8252f9d85399",
+      "slug": "core-jacket-piping-saddle-on",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0041_fig01",
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        429,
+        2474,
+        2541
+      ],
+      "caption": "PNFJ8630 Core Piping Saddle-On with Standard Tee Jacket \u2014 SDL-2 fabrication/installation detail drawing showing core and jacket piping arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 41,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0041_fig01_pnfj8630-core-piping-saddle-on-standard.png",
+      "png_sha256": "6b6652830951c2956525311731466298fb037b387a9031091a8f617baa26d9a7",
+      "slug": "pnfj8630-core-piping-saddle-on-standard",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0042_fig01",
+      "bbox_norm": [
+        0.08,
+        0.17,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        396,
+        2474,
+        2541
+      ],
+      "caption": "PIPING STAB-IN ON HEEL OF CORE AND JACKET ELBOW",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 42,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0042_fig01_piping-stab-in-heel-core-jacket-elbow.png",
+      "png_sha256": "6d49523dfc893bc0d3d0e4262ef1d64545f4d94cc250eaa4ecec8052b28a3286",
+      "slug": "piping-stab-in-heel-core-jacket-elbow",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0043_fig01",
+      "bbox_norm": [
+        0.18,
+        0.22,
+        0.82,
+        0.68
+      ],
+      "bbox_px": [
+        332,
+        561,
+        2218,
+        2409
+      ],
+      "caption": "Socket Weld Elbolett \u2014 fabrication/installation detail showing core and jacket assembly at an elbow connection, with core and jacket labels indicated",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 43,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0043_fig01_socket-weld-elbolett-core-jacket-detail.png",
+      "png_sha256": "8a4ff658e9f34f7d1cc7740a0d6dc49a2641723be2a1f54a909064903159b8d6",
+      "slug": "socket-weld-elbolett-core-jacket-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0044_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.94,
+        0.72
+      ],
+      "bbox_px": [
+        25,
+        429,
+        2524,
+        2541
+      ],
+      "caption": "Full Coupling (Threaded or Socket Weld) \u2014 (A) Threaded Full Coupling and (B) Socket Weld Coupling cross-section detail showing core and jacket arrangement",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 44,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0044_fig01_full-coupling-threaded-socket-weld.png",
+      "png_sha256": "c02aae3eb8bbbecd5941bc5b0299dd61bd74b4dcb4c5b02d009b84e84dbf3937",
+      "slug": "full-coupling-threaded-socket-weld",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0045_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.72,
+        0.6
+      ],
+      "bbox_px": [
+        128,
+        759,
+        1964,
+        2145
+      ],
+      "caption": "RD-1 Rupture Disc/Pressure Transducer Saddled onto Core",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 45,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0045_fig01_rd-1-rupture-disc-pressure-transducer-sa.png",
+      "png_sha256": "a1631ada9b533c1a466fd062db8db38ec27a95e874abdfd0ff79d54aa1b9950e",
+      "slug": "rd-1-rupture-disc-pressure-transducer-sa",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0046_fig01",
+      "bbox_norm": [
+        0.1,
+        0.18,
+        0.85,
+        0.7
+      ],
+      "bbox_px": [
+        128,
+        429,
+        2295,
+        2475
+      ],
+      "caption": "CT-1 Core Tap detail showing pressure/temperature boss, core, and jacket cross-section",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 46,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0046_fig01_ct-1-core-tap-detail.png",
+      "png_sha256": "736816149d3972987b59088b5279baf0cf964c06691c0e016ee5e3297bbe32f6",
+      "slug": "ct-1-core-tap-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0047_fig01",
+      "bbox_norm": [
+        0.12,
+        0.17,
+        0.88,
+        0.72
+      ],
+      "bbox_px": [
+        178,
+        396,
+        2372,
+        2541
+      ],
+      "caption": "THERMOWELL ON CORE ELBOW \u2014 Fabrication/installation detail showing thermowell installed on a jacketed core elbow, with CORE and JACKET labels, weld symbols, and connection details. PIP PNFJ8690, TWE-1.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 47,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0047_fig01_thermowell-on-core-elbow.png",
+      "png_sha256": "bf09ad82851e05ed53132e76a472308a608b2b439725c82df7ce0077f2ea659b",
+      "slug": "thermowell-on-core-elbow",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0048_fig01",
+      "bbox_norm": [
+        0.1,
+        0.12,
+        0.9,
+        0.55
+      ],
+      "bbox_px": [
+        128,
+        231,
+        2422,
+        1980
+      ],
+      "caption": "PF-1 Pad Flange \u2014 top view and side section view with 125 surface finish callout",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 48,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0048_fig01_pf-1-pad-flange-top-side-section.png",
+      "png_sha256": "c065da36fcd40e9cf15637d51837918c57a79b131a9b79756e428cb5fccf5569",
+      "slug": "pf-1-pad-flange-top-side-section",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0048_fig02",
+      "bbox_norm": [
+        0.08,
+        0.56,
+        0.92,
+        0.82
+      ],
+      "bbox_px": [
+        76,
+        1683,
+        2474,
+        2871
+      ],
+      "caption": "PF-1 Mounting Detail \u2014 cross-section showing pad flange installed on pipe",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "page": 48,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0048_fig02_pf-1-mounting-detail.png",
+      "png_sha256": "8c492d8bc10367dd7deb312ffa76fb368ca5fea90292db42b294cd75b57eadfc",
+      "slug": "pf-1-mounting-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0049_fig01",
+      "bbox_norm": [
+        0.1,
+        0.17,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        396,
+        2422,
+        2541
+      ],
+      "caption": "Flow-Through Drain/Sampling Valve \u2014 cross-sectional detail showing CORE and JACKET components with flow-direction arrows",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 49,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0049_fig01_flow-through-drain-sampling-valve.png",
+      "png_sha256": "1b529937ced392f2f8b9f76cb033443b3aa22a5cbea73f5f083fd694a3ec716e",
+      "slug": "flow-through-drain-sampling-valve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0050_fig01",
+      "bbox_norm": [
+        0.08,
+        0.15,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        330,
+        2474,
+        2541
+      ],
+      "caption": "STAB-IN DRAIN/SAMPLING VALVE \u2014 fabrication/installation detail showing cross-section of weld-in valve assembly with CORE and JACKET labels, DSV-2 detail, PIP PNFJ8730",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 50,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0050_fig01_stab-in-drain-sampling-valve-dsv-2.png",
+      "png_sha256": "fe62ef55fdb68ccb22b2df58dbd2b643016d6dd3c285f562998c543f2a7798d5",
+      "slug": "stab-in-drain-sampling-valve-dsv-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0051_fig01",
+      "bbox_norm": [
+        0.08,
+        0.13,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        264,
+        2474,
+        2541
+      ],
+      "caption": "IN-LINE SOCKET WELD OR BUTT WELD VALVE \u2014 (A) SOCKET WELD and (B) BUTT WELD detail views showing CORE and JACKET construction",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 51,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0051_fig01_inline-socket-weld-butt-weld-valve.png",
+      "png_sha256": "d83a2f0d8c7bea1185cf33231576516aaeb994710b090985a2ae807b41dc9d2a",
+      "slug": "inline-socket-weld-butt-weld-valve",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0052_fig01",
+      "bbox_norm": [
+        0.05,
+        0.1,
+        0.95,
+        0.7
+      ],
+      "bbox_px": [
+        0,
+        165,
+        2550,
+        2475
+      ],
+      "caption": "Typical Socket Weld or Butt Weld Valve with Steam Jacket \u2014 SJV-1 fabrication/installation detail showing inlet, outlet, drain, detail 1 callout, and E-E section reference",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 52,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0052_fig01_socket-weld-butt-weld-valve-steam-jacket.png",
+      "png_sha256": "5b49ed694c9b803a60e5bac15623130374306959a9181e635d890166a0f85f1f",
+      "slug": "socket-weld-butt-weld-valve-steam-jacket",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0053_fig01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        759,
+        2474,
+        2541
+      ],
+      "caption": "(A) FULL COUPLING and (B) HALF COUPLING \u2014 Standard Class 3000 Socket Weld Couplings detail showing core and jacket labeling",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 53,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0053_fig01_full-coupling-half-coupling-class-3000-s.png",
+      "png_sha256": "89e490ccc5e14affb3e1ed3191c18c1365342a8a75dc5a7b382ab6b1363372d6",
+      "slug": "full-coupling-half-coupling-class-3000-s",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0054_fig01",
+      "bbox_norm": [
+        0.07,
+        0.2,
+        0.93,
+        0.72
+      ],
+      "bbox_px": [
+        51,
+        495,
+        2499,
+        2541
+      ],
+      "caption": "JCP-2 Standard Class 3000 Threaded Couplings \u2014 (A) Full Coupling and (B) Half Coupling jacket heating media connection details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 54,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0054_fig01_jcp-2-standard-class-3000-threaded-coupl.png",
+      "png_sha256": "ea5687091a3d29cdd2a8643d922ceeafadd45c8636bc10671c711fca59476b18",
+      "slug": "jcp-2-standard-class-3000-threaded-coupl",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0055_fig01",
+      "bbox_norm": [
+        0.05,
+        0.11,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        198,
+        2550,
+        3069
+      ],
+      "caption": "Fig. JEC-1 Jacket Extension with Half Coupling or Sockolet \u2014 (A) Half Coupling and (B) Sockolet details",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 55,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0055_fig01_jec-1-jacket-extension-half-coupling-soc.png",
+      "png_sha256": "4f8b24b2b4f8bc91f55c7b99230567346153deff03257235a54ff9ea037bc25a",
+      "slug": "jec-1-jacket-extension-half-coupling-soc",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0056_fig01",
+      "bbox_norm": [
+        0.22,
+        0.18,
+        0.92,
+        0.62
+      ],
+      "bbox_px": [
+        433,
+        429,
+        2474,
+        2211
+      ],
+      "caption": "Jacket Extension with Flange \u2014 cross-section detail showing JUMPER (B), CORE, JACKET (A), dimension labels D, C, and 7 1/2\"",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 56,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0056_fig01_jacket-extension-with-flange-detail.png",
+      "png_sha256": "48c40d7e47d86f2e1d6ddecc5c87bd5a2de9f5bc84575707ca8d60a65c0d3340",
+      "slug": "jacket-extension-with-flange-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0056_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.63,
+        0.28,
+        0.9
+      ],
+      "bbox_px": [
+        0,
+        1914,
+        842,
+        3135
+      ],
+      "caption": "Jacket Extension with Flange \u2014 dimensional table",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 56,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-04_p0056_tbl01_jacket-extension-flange-dimensions.png",
+      "png_sha256": "79528201a6df86d4a65210c5f42b1771bdc01894f1ad360f616533e7a920dec9",
+      "slug": "jacket-extension-flange-dimensions",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-04_p0056_tbl01_jacket-extension-flange-dimensions.json",
+      "table_data_json_sha256": "bcd7f8cdcfe1ce5ffd9bf81dd3eed477c9d5d1f150d4396f941376ae8db71e52",
+      "table_data_sha256": "bcd7f8cdcfe1ce5ffd9bf81dd3eed477c9d5d1f150d4396f941376ae8db71e52",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-04_p0056_tbl01_jacket-extension-flange-dimensions.xlsx",
+      "xlsx_sha256": "eb8eb83c619ef6849013a644627f9e162b7c15631e0600772d13fe9e473a7aa0"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0057_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.75,
+        0.65
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2040,
+        2310
+      ],
+      "caption": "PNFJ8860 TN-1 Tangential Nozzles \u2014 fabrication/installation detail showing core pipe with tangential jacket nozzle connection, elbow, and flange; labels: CORE, JACKET",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 57,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0057_fig01_pnfj8860-tn1-tangential-nozzles.png",
+      "png_sha256": "249ceed05c6b9a70a2df2e53960e0e234781a3c04b475048b70d23da76778ed4",
+      "slug": "pnfj8860-tn1-tangential-nozzles",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0058_fig01",
+      "bbox_norm": [
+        0.1,
+        0.18,
+        0.88,
+        0.68
+      ],
+      "bbox_px": [
+        128,
+        429,
+        2372,
+        2409
+      ],
+      "caption": "PIPE WINDOW \u2014 Jacket Window Detail PW-1, showing core pipe and jacket with pipe window cutout and weld detail (PNFJ8920)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 58,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0058_fig01_pipe-window-jacket-detail-pw-1.png",
+      "png_sha256": "a4ecfc42fc0f00a3098e6bac154d63759291cfb5e94916b3ae797e06083a602d",
+      "slug": "pipe-window-jacket-detail-pw-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0059_fig01",
+      "bbox_norm": [
+        0.05,
+        0.25,
+        0.95,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        660,
+        2550,
+        2409
+      ],
+      "caption": "PLATE WINDOW \u2014 cross-section and end-view detail showing CORE and JACKET assembly (PW-2)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 59,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0059_fig01_plate-window-pw-2.png",
+      "png_sha256": "c595ac2d945a0c09fda3c801690e955fd135d28ad409fd4bc51aa13ab2f0bb7c",
+      "slug": "plate-window-pw-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0060_fig01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2046
+      ],
+      "caption": "SP-1 Spacer Type A \u2014 detail drawings showing cross-section (side view with CORE, JACKET, and EQ labels) and end view (120\u00b0 TYPICAL), plus lower detail showing 1/16\" TYP. CLEARANCE and 1/8\" R. MIN. ELIMINATE ALL SHARP EDGES",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 60,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0060_fig01_sp-1-spacer-type-a.png",
+      "png_sha256": "3e85e15a15ffdfcb176b97c08eac1ed87d6b105547d0ae875ae72bb56040230c",
+      "slug": "sp-1-spacer-type-a",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0060_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.57,
+        0.95,
+        0.85
+      ],
+      "bbox_px": [
+        0,
+        1716,
+        2550,
+        2970
+      ],
+      "caption": "SPACER SCHEDULE - INCHES",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 60,
+      "png_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.png",
+      "png_sha256": "0938460409736dff4b9cdbb24f8c79f49d364a0fb2b43f88b40f7b4cd9afd102",
+      "slug": "spacer-schedule-inches",
+      "status": "materialized",
+      "table_data_json_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.json",
+      "table_data_json_sha256": "d8c2571dea27a2fdfaf077e346a3fcd15b1f12f19f27b41971214dc75c0e6d76",
+      "table_data_sha256": "d8c2571dea27a2fdfaf077e346a3fcd15b1f12f19f27b41971214dc75c0e6d76",
+      "xlsx_path": "tables/14-non-metallic-and-specialty-piping-04_p0060_tbl01_spacer-schedule-inches.xlsx",
+      "xlsx_sha256": "80e72a09b022c0205875c2022bb75d328a2ebb60f5310c05485203a851e4730e"
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0061_fig01",
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        429,
+        2474,
+        2541
+      ],
+      "caption": "SP-2 Spacer, Type B \u2014 plan and section views with detail of 1/16\" clearance and sharp edge elimination",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 61,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0061_fig01_sp-2-spacer-type-b.png",
+      "png_sha256": "2bb6e20e48744a5a1fbcdefcd8c35c7fbc4239836dbe90662ef06e1101c13893",
+      "slug": "sp-2-spacer-type-b",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0062_fig01",
+      "bbox_norm": [
+        0.08,
+        0.18,
+        0.92,
+        0.72
+      ],
+      "bbox_px": [
+        76,
+        429,
+        2474,
+        2541
+      ],
+      "caption": "SPACER, TYPE C \u2014 plan and section detail showing core, jacket, equal spacing (EQ), and 1/16\" clearance callouts; 120\u00b0 typical spacing shown in end view",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 62,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0062_fig01_spacer-type-c-detail.png",
+      "png_sha256": "d37c1a1885a72aa8df94ca6a55a0d8a373570eb403275ea35441c33cb44719e7",
+      "slug": "spacer-type-c-detail",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0063_fig01",
+      "bbox_norm": [
+        0.1,
+        0.28,
+        0.9,
+        0.68
+      ],
+      "bbox_px": [
+        128,
+        759,
+        2422,
+        2409
+      ],
+      "caption": "Impingement Plate detail \u2014 jacket annulus cross-section showing steam inlet, impingement plate, core, and jacket",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 63,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0063_fig01_impingement-plate-jacket-annulus.png",
+      "png_sha256": "2e9ffeb5ed7785a817749325ba3178a43e9220ea0c4aa8bf0786675a6e8b97b6",
+      "slug": "impingement-plate-jacket-annulus",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0064_fig01",
+      "bbox_norm": [
+        0.1,
+        0.22,
+        0.9,
+        0.72
+      ],
+      "bbox_px": [
+        128,
+        561,
+        2422,
+        2541
+      ],
+      "caption": "SIPHON TUBE ASSEMBLY \u2014 ST-1 detail showing core, jacket, steam condensate drain, and siphon tube",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 64,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0064_fig01_siphon-tube-assembly-st-1.png",
+      "png_sha256": "5286342ff24a929cdf9bbc5590f6e45f8c81f15af86ba550dfd5db7ad8687738",
+      "slug": "siphon-tube-assembly-st-1",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0065_fig01",
+      "bbox_norm": [
+        0.08,
+        0.2,
+        0.92,
+        0.75
+      ],
+      "bbox_px": [
+        76,
+        495,
+        2474,
+        2640
+      ],
+      "caption": "Flexible Metal Hose Jumpover \u2014 two views showing flexible hose installation bridging a pipe penetration through a wall or slab, with fittings/couplings labeled",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 65,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0065_fig01_flexible-metal-hose-jumpover.png",
+      "png_sha256": "f49cc4c13aeaac9929981541a53218e6d8f23c608f59c859eda965a0e349a982",
+      "slug": "flexible-metal-hose-jumpover",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0066_fig01",
+      "bbox_norm": [
+        0.07,
+        0.18,
+        0.93,
+        0.78
+      ],
+      "bbox_px": [
+        51,
+        429,
+        2499,
+        2739
+      ],
+      "caption": "TUBING JUMPOVER \u2014 JMP-2 fabrication/installation detail showing two views of a tubing jumpover assembly. Left view: isometric view with TUBING callout and SEE DETAIL A PNFJ8840 callout. Right view: isometric view of assembled jumpover on pipe.",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 66,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0066_fig01_tubing-jumpover-jmp-2.png",
+      "png_sha256": "6eb98a0ed57f0108ee88ed29058527acb8f3c6b0d5d3c3032c3b5667dab52607",
+      "slug": "tubing-jumpover-jmp-2",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0067_fig01",
+      "bbox_norm": [
+        0.04,
+        0.12,
+        0.96,
+        0.68
+      ],
+      "bbox_px": [
+        0,
+        231,
+        2550,
+        2409
+      ],
+      "caption": "Steam / Condensate Jumpover Assembly \u2014 Jacketed Valve Assembly and Jacketed Pipe Assembly detail drawing (JMP-3)",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 67,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0067_fig01_steam-condensate-jumpover-assembly-jmp-3.png",
+      "png_sha256": "8c2335b8131886c65a42642ec0a45e568788927c7b46e06f791c770d4b74529e",
+      "slug": "steam-condensate-jumpover-assembly-jmp-3",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0068_fig01",
+      "bbox_norm": [
+        0.22,
+        0.26,
+        0.78,
+        0.65
+      ],
+      "bbox_px": [
+        433,
+        693,
+        2116,
+        2310
+      ],
+      "caption": "Piping Jumpover detail drawing JMP-4 showing a U-shaped jumpover assembly with flanged connections and butt weld fittings",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 68,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0068_fig01_piping-jumpover-jmp-4.png",
+      "png_sha256": "35332f615be7cbd0edd17fdc82648cab85b4b49eea2e1e61cbf6496e4551e265",
+      "slug": "piping-jumpover-jmp-4",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "14-non-metallic-and-specialty-piping-04_p0069_fig01",
+      "bbox_norm": [
+        0.06,
+        0.18,
+        0.94,
+        0.72
+      ],
+      "bbox_px": [
+        25,
+        429,
+        2524,
+        2541
+      ],
+      "caption": "JMP-5 Piping Jumpover Details \u2014 \u00be\" \u2013 1\u00bd\" Socket Weld and 2\" \u2013 4\" Butt Weld",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "page": 69,
+      "png_path": "figures/14-non-metallic-and-specialty-piping-04_p0069_fig01_jmp-5-piping-jumpover-socket-weld-butt-w.png",
+      "png_sha256": "e65be501207773c3fce4a27cb544e304ed25815ff8af2d4a0f41f01fe7768a45",
+      "slug": "jmp-5-piping-jumpover-socket-weld-butt-w",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "14-non-metallic-and-specialty-piping-04",
+  "issues": [],
+  "page_manifest_count": 69,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0001_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0002_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0003_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0004_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0005_postmaterialize.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0006_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0007_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0008_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0009_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0010_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0011_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0012_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0013_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0014_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0015_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0016_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0017_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0018_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0019_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0020_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0021_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0022_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0023_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0024_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0025_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0026_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0026_assets_materialized.json",
+      "page": 26,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0027_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0027_assets_materialized.json",
+      "page": 27,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0028_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0028_assets_materialized.json",
+      "page": 28,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0029_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0029_assets_materialized.json",
+      "page": 29,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0030_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0030_assets_materialized.json",
+      "page": 30,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0031_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0031_assets_materialized.json",
+      "page": 31,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0032_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0032_assets_materialized.json",
+      "page": 32,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0033_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0033_assets_materialized.json",
+      "page": 33,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0034_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0034_assets_materialized.json",
+      "page": 34,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0035_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0035_assets_materialized.json",
+      "page": 35,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0036_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0036_assets_materialized.json",
+      "page": 36,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0037_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0037_assets_materialized.json",
+      "page": 37,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0038_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0038_assets_materialized.json",
+      "page": 38,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0039_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0039_assets_materialized.json",
+      "page": 39,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0040_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0040_assets_materialized.json",
+      "page": 40,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0041_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0041_assets_materialized.json",
+      "page": 41,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0042_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0042_assets_materialized.json",
+      "page": 42,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0043_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0043_assets_materialized.json",
+      "page": 43,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0044_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0044_assets_materialized.json",
+      "page": 44,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0045_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0045_assets_materialized.json",
+      "page": 45,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0046_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0046_assets_materialized.json",
+      "page": 46,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0047_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0047_assets_materialized.json",
+      "page": 47,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0048_postmaterialize.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0048_assets_materialized.json",
+      "page": 48,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0049_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0049_assets_materialized.json",
+      "page": 49,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0050_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0050_assets_materialized.json",
+      "page": 50,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0051_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0051_assets_materialized.json",
+      "page": 51,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0052_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0052_assets_materialized.json",
+      "page": 52,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0053_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0053_assets_materialized.json",
+      "page": 53,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0054_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0054_assets_materialized.json",
+      "page": 54,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0055_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0055_assets_materialized.json",
+      "page": 55,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0056_postmaterialize.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0056_assets_materialized.json",
+      "page": 56,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0057_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0057_assets_materialized.json",
+      "page": 57,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0058_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0058_assets_materialized.json",
+      "page": 58,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0059_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0059_assets_materialized.json",
+      "page": 59,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0060_postmaterialize.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0060_assets_materialized.json",
+      "page": 60,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0061_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0061_assets_materialized.json",
+      "page": 61,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0062_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0062_assets_materialized.json",
+      "page": 62,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0063_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0063_assets_materialized.json",
+      "page": 63,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0064_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0064_assets_materialized.json",
+      "page": 64,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0065_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0065_assets_materialized.json",
+      "page": 65,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0066_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0066_assets_materialized.json",
+      "page": 66,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0067_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0067_assets_materialized.json",
+      "page": 67,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0068_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0068_assets_materialized.json",
+      "page": 68,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0069_postmaterialize.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work/page_0069_assets_materialized.json",
+      "page": 69,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/14-non-metallic-and-specialty-piping/14-non-metallic-and-specialty-piping-04_pdf2md_work"
+}

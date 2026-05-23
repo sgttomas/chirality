@@ -1,0 +1,61 @@
+# Specification: DEL-10-04 Domain Profile Validation and OpenPipeStress Fixture
+
+## Scope
+
+This deliverable specifies the expected future validation posture for generic `DomainEngineProfile` records and an OpenPipeStress fixture profile. It is limited to future-boundary test-suite definition and source-grounded fixture expectations for PKG-10.
+
+The deliverable excludes current-release activation of domain-engine endpoints, domain-operation application, protected-model writes, solver integration, and any claim that Chirality approves or owns domain-engine solver truth. This exclusion is required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 2.2.
+
+ResponsibleParty remains TBD.
+
+## Requirements
+
+| ID | Requirement | Source | Verification |
+|---|---|---|---|
+| DEL-10-04-REQ-001 | The validation posture shall treat `DomainEngineProfile` as a future platform contract, not current core runtime behavior. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` Section 18; `docs/PLAN.md` R7 | Review fixture/test scope for absence of current-release endpoint activation. |
+| DEL-10-04-REQ-002 | A profile validation fixture shall cover the generic profile fields: `profileId`, `engineName`, optional `engineVersion`, `protectedPaths`, `proposalPaths`, `artifactTypes`, `operations`, `manifestRules`, and `boundaryNotice`. | `docs/TYPES.md` Section 11.1; `docs/PRD.md` Section 8.17 FR-108 | Validate required/optional field coverage in the future test suite. |
+| DEL-10-04-REQ-003 | Validation shall be deterministic and shall fail invalid or incomplete profiles before runtime exposure. | `docs/PRD.md` Section 8.17 FR-109 | Future tests include deterministic negative cases for missing or invalid fields. |
+| DEL-10-04-REQ-004 | The OpenPipeStress fixture shall be represented as a fixture profile only, with OpenPipeStress-specific assumptions held in profile and adapter layers rather than Chirality core runtime. | `docs/PRD.md` Section 8.17 FR-114; `docs/TYPES.md` Section 11.3 | Inspect future fixture/test names and assertions for core-runtime coupling. |
+| DEL-10-04-REQ-005 | Profile validation shall preserve separation between protected paths and proposal paths. | `docs/PRD.md` Section 8.17 FR-108 through FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Negative tests reject direct agent-write treatment of protected paths. |
+| DEL-10-04-REQ-006 | Any operation-related fixture data shall align with `OperationProposal` concepts before application: inputs, intended changes, deterministic checks, expected outputs, risks, and required human gate. | `docs/PRD.md` Section 8.17 FR-112 and FR-113; `docs/TYPES.md` Section 11.2 | Review future fixture operation descriptors against proposal fields. |
+| DEL-10-04-REQ-007 | Boundary notices shall state that Chirality does not provide professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `docs/TYPES.md` Section 11.3 | Tests or review checklist require boundary notice presence and wording coverage. |
+| DEL-10-04-REQ-008 | The fixture/test suite shall not rely on prompt-only restrictions for protected paths or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2; `docs/SPEC.md` Section 14.3 | Future implementation tests verify runtime or deterministic enforcement surfaces, not prompt text alone. |
+| DEL-10-04-REQ-009 | The deliverable shall preserve the PRD hash mismatch as a source warning rather than accepted truth drift. | `_REFERENCES.md` REF-006; assignment override | Run records and documents note the warning where source status matters. |
+
+## Standards
+
+| Standard / Contract | Applicability |
+|---|---|
+| `docs/PRD.md` Section 8.17 | Primary product requirements for future Domain Engine compatibility. Source warning applies because REF-006 hash mismatched the expected value. |
+| `docs/TYPES.md` Section 11 | Vocabulary and target shapes for `DomainEngineProfile`, `OperationProposal`, and domain terms. |
+| `docs/CONTRACT.md` Section 1.10 | Binding invariants for domain truth ownership, protected paths, human acceptance, and professional boundaries. |
+| `docs/SPEC.md` Section 18 | Specification boundary for future domain-engine endpoints/tools and non-implementation posture. |
+| `docs/PLAN.md` R7 | Sequencing and acceptance criteria for future amendment work. |
+
+## Verification
+
+Future validation should include, at minimum:
+
+| Check | Expected Result | Source |
+|---|---|---|
+| Required profile fields present | Missing required fields fail deterministically | `docs/PRD.md` Section 8.17 FR-108/FR-109 |
+| Protected/proposal path separation | Protected paths are not accepted as agent-writable proposal paths | `docs/PRD.md` Section 8.17 FR-110/FR-111 |
+| Operation descriptors | Operation fixture data is compatible with `OperationProposal` review and human gate concepts | `docs/TYPES.md` Section 11.2 |
+| Boundary notice | Fixture includes boundary notice text that prevents professional-approval or solver-truth overclaiming | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
+| Core-runtime separation | OpenPipeStress does not appear as core harness behavior | `docs/PRD.md` Section 8.17 FR-114 |
+| Future-scope gate | Tests do not activate domain-engine endpoints/tools as current-release implementation | `docs/SPEC.md` Section 18 |
+
+## Documentation
+
+Required or anticipated artifacts:
+
+- Future fixture profile.
+- Validation tests.
+- Adapter assumptions note.
+- ASSUMPTION: A future amendment will identify concrete file paths, test framework locations, and adapter manifest format before implementation.
+
+## Source Warnings
+
+| Warning | Impact |
+|---|---|
+| REF-006 `docs/PRD.md` has expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as source warning only per assignment; requirements cite PRD sections conservatively and do not treat the mismatch as a blocker. |

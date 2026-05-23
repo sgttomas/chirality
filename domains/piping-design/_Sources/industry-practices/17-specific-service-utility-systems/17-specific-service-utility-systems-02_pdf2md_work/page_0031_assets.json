@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 31,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 2 BENDS, BRANCHES AND REDUCTIONS IN CARBON STEEL AND STAINLESS STEEL FOR OXYGEN SERVICE",
+      "slug": "figure-2-bends-branches-reductions-carbon-stainless-oxygen",
+      "bbox_norm": [0.06, 0.09, 0.94, 0.80],
+      "confidence": "high",
+      "notes": "Multi-part engineering diagram showing long-radius bends (R>=5D), 45-degree welding elbow, reducers with >1000mm straight run, short-radius welding elbow (R=1.5D), and tee fitting. Annotation text below figure states short-radius welding elbows and tees shall be made from nickel base alloy."
+    }
+  ],
+  "issues": []
+}

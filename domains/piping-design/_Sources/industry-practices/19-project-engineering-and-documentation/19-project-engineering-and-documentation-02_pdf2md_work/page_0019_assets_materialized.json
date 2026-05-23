@@ -1,0 +1,70 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0019.anchored.md",
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0019_tbl01",
+      "bbox_norm": [
+        0.17,
+        0.2,
+        0.91,
+        0.55
+      ],
+      "bbox_px": [
+        298,
+        526,
+        2381,
+        2105
+      ],
+      "caption": "Table 2 Competence Definitions for HFE in New Projects",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.png",
+      "png_sha256": "2f74ee35fb58098cdfb179786fcbf15067c7fd9bc134a92f6f323267511e4008",
+      "slug": "competence-definitions-for-hfe-in-new-pr",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.json",
+      "table_data_json_sha256": "c74ce26510225b66d56bd09eeacf61ae95310ab917b76f7c7647a26f25f7cd00",
+      "table_data_sha256": "c74ce26510225b66d56bd09eeacf61ae95310ab917b76f7c7647a26f25f7cd00",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl01_competence-definitions-for-hfe-in-new-pr.xlsx",
+      "xlsx_sha256": "a00cf067cfd46adb2e342079a5aed6e923b557bcb7f67fc3d3dcc2a15f2639ff"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-02_p0019_tbl02",
+      "bbox_norm": [
+        0.17,
+        0.59,
+        0.72,
+        0.9
+      ],
+      "bbox_px": [
+        298,
+        1895,
+        1910,
+        3334
+      ],
+      "caption": "Table 3 Competence levels for members of Project Team",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "png_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.png",
+      "png_sha256": "37fb1ea18df111ca35971155dc93d4a704e4f98540b9fe415bd6578b462a5e2a",
+      "slug": "competence-levels-for-members-of-project",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.json",
+      "table_data_json_sha256": "527d6f692d31670272084b319023326ad4368d01146880a6ba2d4ba87502ec63",
+      "table_data_sha256": "527d6f692d31670272084b319023326ad4368d01146880a6ba2d4ba87502ec63",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-02_p0019_tbl02_competence-levels-for-members-of-project.xlsx",
+      "xlsx_sha256": "b90f91652b65fc4127d945fbc6de68c00b34a46e2ca5cfef389d4dcd9a690d1a"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/_assets/19-project-engineering-and-documentation-02",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 19,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0019.png",
+  "page_image_sha256": "e100e505c22dfadcb2ca5a0ea2f717af235ef6e4ecf655c98fe446488f24b8e7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-02_pdf2md_work/page_0019_assets.json"
+}

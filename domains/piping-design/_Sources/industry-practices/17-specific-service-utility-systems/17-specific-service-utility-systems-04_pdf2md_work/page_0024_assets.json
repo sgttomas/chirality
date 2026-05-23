@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-04",
+  "page": 24,
+  "total_pages": 32,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Appendix 3 Typical drier with regeneration at elevated temperature and atmospheric pressure",
+      "slug": "appendix-3-typical-drier-regeneration-elevated-temperature-atmospheric-pressure",
+      "bbox_norm": [0.05, 0.08, 0.95, 0.82],
+      "confidence": "high",
+      "notes": "P&ID schematic showing two desiccant vessels with heater, blower, after filters, and valve arrangement for drying and regeneration modes. Legend included below diagram."
+    }
+  ],
+  "issues": []
+}

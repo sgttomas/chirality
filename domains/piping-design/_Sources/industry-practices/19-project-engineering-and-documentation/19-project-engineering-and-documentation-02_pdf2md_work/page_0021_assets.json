@@ -1,0 +1,100 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "19-project-engineering-and-documentation-02",
+  "page": 21,
+  "total_pages": 46,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Shell Standards publications and DEP references",
+      "slug": "shell-standards-publications-dep-references",
+      "bbox_norm": [0.08, 0.39, 0.88, 0.70],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          {
+            "marker": "*",
+            "text": "The above-marked documents are in preparation; the titles may change slightly prior to publication."
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Publication",
+                "is_header": true
+              },
+              {
+                "value": "Reference",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering - Quick reference guide to relevant ISO standards",
+                "type": "text",
+                "raw": "Human Factors Engineering - Quick reference guide to relevant ISO standards *",
+                "footnote_markers": ["*"]
+              },
+              {
+                "value": "DEP 30.00.60.11-Gen.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering - Investment justification model",
+                "type": "text"
+              },
+              {
+                "value": "DEP 30.00.60.12-Gen.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering - Valve analysis",
+                "type": "text",
+                "raw": "Human Factors Engineering - Valve analysis *",
+                "footnote_markers": ["*"]
+              },
+              {
+                "value": "DEP 30.00.60.13-Gen.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Human Factors Engineering in construction",
+                "type": "text",
+                "raw": "Human Factors Engineering in construction *",
+                "footnote_markers": ["*"]
+              },
+              {
+                "value": "DEP 30.00.60.14-Gen.",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column Shell Standards reference list with visible footnote."
+    }
+  ],
+  "issues": []
+}

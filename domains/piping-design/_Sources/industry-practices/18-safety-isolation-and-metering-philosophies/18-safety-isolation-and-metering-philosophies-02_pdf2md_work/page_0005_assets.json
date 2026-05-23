@@ -1,0 +1,341 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-02",
+  "page": 5,
+  "total_pages": 7,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 1: Max Meter Inaccuracy",
+      "slug": "table-1-max-meter-inaccuracy",
+      "bbox_norm": [
+        0.14,
+        0.29,
+        0.86,
+        0.82
+      ],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "Application",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Fluid",
+                "type": "text",
+                "is_header": true
+              },
+              {
+                "value": "Recommended Max Metering Inaccuracy",
+                "type": "text",
+                "is_header": true
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Well Production - Multiphase Meter",
+                "type": "text"
+              },
+              {
+                "value": "Oil / Hydrocarbon",
+                "type": "text"
+              },
+              {
+                "value": "±  6-10%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  10-15%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Water",
+                "type": "text"
+              },
+              {
+                "value": "±  8-15%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Welltesting",
+                "type": "text"
+              },
+              {
+                "value": "Live Fluids",
+                "type": "text"
+              },
+              {
+                "value": "±  2-5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Heavy Oil",
+                "type": "text"
+              },
+              {
+                "value": "±  2-7%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  3-5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Produced Water",
+                "type": "text"
+              },
+              {
+                "value": "±  5-10%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Gathering System",
+                "type": "text"
+              },
+              {
+                "value": "Live Fluids",
+                "type": "text"
+              },
+              {
+                "value": "±  1-3%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Heavy Oil",
+                "type": "text"
+              },
+              {
+                "value": "±  1-5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  2-5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Produced Water",
+                "type": "text"
+              },
+              {
+                "value": "±  3-10%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Lease Automatic Custody Transfer (LACT) Units",
+                "type": "text"
+              },
+              {
+                "value": "Sales Oil",
+                "type": "text"
+              },
+              {
+                "value": "±  0.25-0.5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Leak Detection Systems",
+                "type": "text"
+              },
+              {
+                "value": "Any",
+                "type": "text"
+              },
+              {
+                "value": "±  0.25-0.5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Imported Fluids",
+                "type": "text"
+              },
+              {
+                "value": "Import Makeup Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  0.25-0.5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Import Makeup Water",
+                "type": "text"
+              },
+              {
+                "value": "±  0.25-0.5%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "Injection Fluids",
+                "type": "text"
+              },
+              {
+                "value": "Injection Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  2-3%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Lift Gas",
+                "type": "text"
+              },
+              {
+                "value": "±  1.5-2%",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "",
+                "type": "text"
+              },
+              {
+                "value": "Produced Water",
+                "type": "text"
+              },
+              {
+                "value": "±  3-5%",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Simple three-column table with merged Application cells represented as blank continuation cells."
+    }
+  ],
+  "issues": []
+}

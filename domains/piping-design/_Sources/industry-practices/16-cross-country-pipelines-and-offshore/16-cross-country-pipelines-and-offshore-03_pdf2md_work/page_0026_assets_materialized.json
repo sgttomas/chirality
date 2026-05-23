@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0026.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0026_fig01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.95,
+        0.5
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        1930
+      ],
+      "caption": "FIGURE 4 GEOMETRY WGT SLUG CATCHER AT DEN HELDER",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0026_fig01_figure-4-geometry-wgt-slug-catcher-den-h.png",
+      "png_sha256": "e26efb792df33bf58a6bcf0c47282555e6c3448b0d140795158d01782c67484b",
+      "slug": "figure-4-geometry-wgt-slug-catcher-den-h",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0026_fig02",
+      "bbox_norm": [
+        0.05,
+        0.5,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        1579,
+        2480,
+        3263
+      ],
+      "caption": "FIGURE 5 MLNG-2 SLUG CATCHER AT BINTULU",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0026_fig02_figure-5-mlng-2-slug-catcher-bintulu.png",
+      "png_sha256": "09ca9d3c0826daa366933aa3ea4767bd0aa461d2036a688ba015ce2e9f96552b",
+      "slug": "figure-5-mlng-2-slug-catcher-bintulu",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 26,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0026.png",
+  "page_image_sha256": "19f39242d48c19957eeecd8b9e3f61cfddc9ae21e32a56d1ae3204343322f376",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0026_assets.json"
+}

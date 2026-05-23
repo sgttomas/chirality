@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 34,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 6 BLOCK VALVE WITH BY-PASS (carbon steel or stainless steel line)",
+      "slug": "figure-6-block-valve-with-by-pass",
+      "bbox_norm": [0.05, 0.07, 0.95, 0.72],
+      "confidence": "high",
+      "notes": "Two-part figure: top diagram shows block valve with by-pass piping schematic with PI instruments, block valve (gate or ball), throttling valve (globe), and dimension labels (D, 1/4D, 10D); bottom diagram shows acceptable bypass orientations versus unacceptable orientation."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,40 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0007.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-02_p0007_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.04,
+        0.96,
+        0.62
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        2351
+      ],
+      "caption": "Table 1 Typical diameters of major barrel and pipework",
+      "issues": [
+        "invalid_table_data:ERROR: each footnote must be an object with 'marker' and 'text'"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-02_p0007_tbl01_table-1-typical-diameters-major-barrel-p.png",
+      "png_sha256": "787dc55f22364df8af3572ad30037843f68042fe8c8f5ded70b284abdbb87ec9",
+      "slug": "table-1-typical-diameters-major-barrel-p",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-02",
+  "page": 7,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0007.png",
+  "page_image_sha256": "1c554702ebb9ddc0c27aff4f5cdcab74cba3b5f1a102026d47cc77abddfcab74",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-02_pdf2md_work/page_0007_assets.json"
+}

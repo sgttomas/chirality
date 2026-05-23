@@ -1,0 +1,62 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-08_p0015_fig01",
+      "bbox_norm": [
+        0.1,
+        0.05,
+        0.92,
+        0.45
+      ],
+      "bbox_px": [
+        128,
+        0,
+        2474,
+        1648
+      ],
+      "caption": "Fig. 1000-5 Process Utility Connections\u2014Type 1 Connection",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-08_p0015_fig01_fig-1000-5-process-utility-connections-t.png",
+      "png_sha256": "8f44c7a0f4555b5b5788e8cb286dd3acf0abf5abe5138657af1f5be010f3cfbe",
+      "slug": "fig-1000-5-process-utility-connections-t",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "17-specific-service-utility-systems-08_p0015_fig02",
+      "bbox_norm": [
+        0.1,
+        0.52,
+        0.92,
+        0.92
+      ],
+      "bbox_px": [
+        128,
+        1549,
+        2474,
+        3197
+      ],
+      "caption": "Fig. 1000-6 Process Utility Connections\u2014Type 2 Connection",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 2,
+      "png_path": "figures/17-specific-service-utility-systems-08_p0015_fig02_fig-1000-6-process-utility-connections-t.png",
+      "png_sha256": "c41809036cd3cb61db2c4c8809d9fd4349dad312fc62450d383ae1da7f56eeef",
+      "slug": "fig-1000-6-process-utility-connections-t",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-08",
+  "doc_stem": "17-specific-service-utility-systems-08",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0015.png",
+  "page_image_sha256": "727a1fca67e75bc2ebae43524b2d5bb8fa951eb7d46754d519d410cdb27daf74",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0015_assets.json"
+}

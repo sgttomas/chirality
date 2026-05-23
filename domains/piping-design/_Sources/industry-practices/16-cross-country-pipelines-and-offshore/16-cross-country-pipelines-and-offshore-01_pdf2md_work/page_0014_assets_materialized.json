@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0014.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-01_p0014_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.28,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        807,
+        2480,
+        3509
+      ],
+      "caption": "Onshore Pipelines vs Offshore Pipelines \u2014 special routing considerations",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-01_p0014_tbl01_onshore-offshore-special-routing-conside.png",
+      "png_sha256": "98bf100ff72a6d0133d672817753f96e653e05666d48b77691b58c838e5f4c8f",
+      "slug": "onshore-offshore-special-routing-conside",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-01_p0014_tbl01_onshore-offshore-special-routing-conside.json",
+      "table_data_json_sha256": "77d350bedeaf9e79783b02ee233a93078849ecefa667af0bcbb1343fd42850df",
+      "table_data_sha256": "77d350bedeaf9e79783b02ee233a93078849ecefa667af0bcbb1343fd42850df",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-01_p0014_tbl01_onshore-offshore-special-routing-conside.xlsx",
+      "xlsx_sha256": "26fef0a9c7442a500bfbb88813671c021125ef02b237c764dfbc2f65cf62c0da"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 14,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0014.png",
+  "page_image_sha256": "e1fcc01f8fab7d6ea513c1b972ae74216f1098b60ec6c92c2b0a546e4ff68800",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-01_pdf2md_work/page_0014_assets.json"
+}

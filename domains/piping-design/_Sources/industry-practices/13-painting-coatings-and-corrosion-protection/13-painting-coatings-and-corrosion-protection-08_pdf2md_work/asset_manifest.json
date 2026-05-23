@@ -1,0 +1,599 @@
+{
+  "asset_count": 13,
+  "assets": [
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0005_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.96,
+        0.45
+      ],
+      "bbox_px": [
+        0,
+        175,
+        2480,
+        1754
+      ],
+      "caption": "Table 3.1 Generic internal corrosion risks",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 5,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0005_tbl01_generic-internal-corrosion-risks.png",
+      "png_sha256": "35608e4313db3867e7b43272054dc6fe5f1b6275c30d7f4b07b9667a6a270b3c",
+      "slug": "generic-internal-corrosion-risks",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0005_tbl01_generic-internal-corrosion-risks.json",
+      "table_data_json_sha256": "0535318b6dcd32fc36c165f7f340bf37b772830acbcf6d9a74f7223165ed1a0c",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0005_tbl01_generic-internal-corrosion-risks.xlsx",
+      "xlsx_sha256": "4b22e06cf9b21aff5178791f2b7a369e82f99167fa759fb9efb83bb73663314d"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0006_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3053
+      ],
+      "caption": "Table 3.2 Relationship between Corrosion and Flow Regimes in Wet, Sour Gas Transport",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 6,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0006_tbl01_table-3-2-corrosion-flow-regimes-wet-sou.png",
+      "png_sha256": "1413b5cacfde1f7ac0bfba33b1dfc59e0ce60ddba64b9201dd4bfb5b4e490aaf",
+      "slug": "table-3-2-corrosion-flow-regimes-wet-sou",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0008_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.08,
+        0.96,
+        0.95
+      ],
+      "bbox_px": [
+        0,
+        74,
+        3509,
+        2480
+      ],
+      "caption": "Table 3.3 Main Features of CO\u2082 and H\u2082S Corrosion Mechanisms",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 8,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0008_tbl01_table-3-3-co2-h2s-corrosion-mechanisms.png",
+      "png_sha256": "788eb32bd7025415ee065f630f54eb4f48fdc9acbc41771acd5c048252029dfe",
+      "slug": "table-3-3-co2-h2s-corrosion-mechanisms",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0008_tbl01_table-3-3-co2-h2s-corrosion-mechanisms.json",
+      "table_data_json_sha256": "c9181106cd0b15d56db26dd0107331fafbe23d9cb14cfdbfb0d45bc2b2c7c7e5",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0008_tbl01_table-3-3-co2-h2s-corrosion-mechanisms.xlsx",
+      "xlsx_sha256": "db021b885dda89d9ffe1500abcff74310fd59f9ea4d2b5273e89a103c3c54eb4"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0010_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.3,
+        0.96,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        877,
+        2480,
+        3509
+      ],
+      "caption": "Table 3.4 Corrosion Mitigation Measures for Wet Gas Pipelines",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 10,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0010_tbl01_corrosion-mitigation-measures-wet-gas-pi.png",
+      "png_sha256": "5627854cff8c81869e524042229b4e092c04b46d3a56219a53cc452af1197237",
+      "slug": "corrosion-mitigation-measures-wet-gas-pi",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0011_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.03,
+        0.97,
+        0.55
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        2105
+      ],
+      "caption": "Mitigation Measures vs Flow Regimes for CO\u2082 and H\u2082S Corrosion",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 11,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0011_tbl01_mitigation-measures-flow-regimes-co2-h2s.png",
+      "png_sha256": "3f3ce7218a8c2f5706e231b5fd7ba43ff95e8b60b02217a9adf88343073c5898",
+      "slug": "mitigation-measures-flow-regimes-co2-h2s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0013_tbl01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        2702
+      ],
+      "caption": "Table 3.5 Impacts of Non-Steady State Operating Conditions on Wet Sour Gas Corrosion",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 13,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.png",
+      "png_sha256": "3b6ea66840bdd6e49f2cd1896cc7251ce867768b3b4e160f9b3ca0d84676330b",
+      "slug": "table-3-5-non-steady-state-operating-con",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.json",
+      "table_data_json_sha256": "2e20dcaa73cf87e21fe2a3f28bc9e525767bc78d883247b7f190c00bdbf971e7",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0013_tbl01_table-3-5-non-steady-state-operating-con.xlsx",
+      "xlsx_sha256": "c13ed9dd34755d2d7a0322b5ca92c9c731e08b2e0078187b8d5445569f458c0a"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0017_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.1,
+        0.97,
+        0.57
+      ],
+      "bbox_px": [
+        0,
+        175,
+        2480,
+        2176
+      ],
+      "caption": "Table 4.1(a) Sour gas classification if flow regimes are known",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 17,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0017_tbl01_sour-gas-classification-flow-regimes-kno.png",
+      "png_sha256": "336fa8e9fde24d6d50bd0ee1cff061ac7cb9ad9d091594e0b65d1a9ac373d2b8",
+      "slug": "sour-gas-classification-flow-regimes-kno",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0017_tbl02",
+      "bbox_norm": [
+        0.03,
+        0.6,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        1930,
+        2480,
+        3509
+      ],
+      "caption": "Table 4.1(b) Sour gas classification if flow regimes are not known",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 2,
+      "page": 17,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0017_tbl02_sour-gas-classification-flow-regimes-not.png",
+      "png_sha256": "d6aa40d5df4fe8e6e61aa0fadd1c471012d9a663c922a191d3a3495cdfb3e6ae",
+      "slug": "sour-gas-classification-flow-regimes-not",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0017_tbl02_sour-gas-classification-flow-regimes-not.json",
+      "table_data_json_sha256": "10f416aa2059775ef017d2d799665f60a3e208c78d78f21114426d8405658d0b",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0017_tbl02_sour-gas-classification-flow-regimes-not.xlsx",
+      "xlsx_sha256": "af29cb112e2238576892789af6d2d43eb74bc75f8bb81494c6f9820da1846719"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0019_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.05,
+        0.95,
+        0.42
+      ],
+      "bbox_px": [
+        0,
+        0,
+        2480,
+        1649
+      ],
+      "caption": "Table 4.2 Corrosion mitigation for start-up",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 19,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0019_tbl01_corrosion-mitigation-start-up.png",
+      "png_sha256": "c49edc55b477420e2f4282da4c1da7f959cff0534f20f6cd7cfe081fec66b696",
+      "slug": "corrosion-mitigation-start-up",
+      "status": "degraded",
+      "table_data_json_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0019_tbl01_corrosion-mitigation-start-up.json",
+      "table_data_json_sha256": "296831f14dd006f6b9dbca3d85ff58f472acf48e93f0459a73046946b268932d",
+      "xlsx_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0019_tbl01_corrosion-mitigation-start-up.xlsx",
+      "xlsx_sha256": "04715c57dde39d3eeb1734918b02b48555a7ea13ee519633647f7d4a9b53236c"
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0020_tbl01",
+      "bbox_norm": [
+        0.03,
+        0.12,
+        0.97,
+        0.6
+      ],
+      "bbox_px": [
+        0,
+        246,
+        2480,
+        2281
+      ],
+      "caption": "Table 4.3 Corrosion Mitigation for Steady-State Production",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 20,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0020_tbl01_corrosion-mitigation-steady-state-produc.png",
+      "png_sha256": "389dc140d2fc7ec63eba7ae116656f680094698932e9f1f07d2055c01efed319",
+      "slug": "corrosion-mitigation-steady-state-produc",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0021_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.45,
+        0.95,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        1404,
+        2480,
+        3404
+      ],
+      "caption": "Table 4.4 Corrosion Mitigation for planned shut-ins \u2265 24 hours and < 1 month (Turn-Arounds)",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 21,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0021_tbl01_table-4-4-corrosion-mitigation-planned-s.png",
+      "png_sha256": "8af5f452fd39247f9a8b9beeb2290df49a49abf309249270434e2f7c3b824218",
+      "slug": "table-4-4-corrosion-mitigation-planned-s",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0022_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.18,
+        0.95,
+        0.52
+      ],
+      "bbox_px": [
+        0,
+        456,
+        2480,
+        2000
+      ],
+      "caption": "Table 4.5 Corrosion mitigation before planned shut-in (longer than 1 month)",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 22,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0022_tbl01_corrosion-mitigation-planned-shut-in.png",
+      "png_sha256": "f4e2c9c378a53644ac41163158085c925a618b16ca0aebff1ca1b47bcab0c623",
+      "slug": "corrosion-mitigation-planned-shut-in",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "13-painting-coatings-and-corrosion-protection-08_p0024_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.12,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        246,
+        2480,
+        2702
+      ],
+      "caption": "Table 4.6 Additional mitigation recommendations for excessive methanol injection",
+      "issues": [
+        "missing_table_data"
+      ],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 24,
+      "png_path": "tables/13-painting-coatings-and-corrosion-protection-08_p0024_tbl01_table-4-6-additional-mitigation-recommen.png",
+      "png_sha256": "a8a90d13f17ea05d14971040c81000bfd2a1a277583583c096c90d1a479eed8d",
+      "slug": "table-4-6-additional-mitigation-recommen",
+      "status": "degraded",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "doc_stem": "13-painting-coatings-and-corrosion-protection-08",
+  "issues": [],
+  "page_manifest_count": 25,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0001.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0002.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0003.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0004.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0005.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0006.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0007.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0007_assets_materialized.json",
+      "page": 7,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0008.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0008_assets_materialized.json",
+      "page": 8,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0009.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0009_assets_materialized.json",
+      "page": 9,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0010.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0010_assets_materialized.json",
+      "page": 10,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0011.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0011_assets_materialized.json",
+      "page": 11,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0012.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0012_assets_materialized.json",
+      "page": 12,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0013.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0013_assets_materialized.json",
+      "page": 13,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0014.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0014_assets_materialized.json",
+      "page": 14,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0015.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0015_assets_materialized.json",
+      "page": 15,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0016.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0016_assets_materialized.json",
+      "page": 16,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0017.md",
+      "asset_count": 2,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0017_assets_materialized.json",
+      "page": 17,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0018.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0018_assets_materialized.json",
+      "page": 18,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0019.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0019_assets_materialized.json",
+      "page": 19,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0020.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0020_assets_materialized.json",
+      "page": 20,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0021.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0021_assets_materialized.json",
+      "page": 21,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0022.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0022_assets_materialized.json",
+      "page": 22,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0023.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0023_assets_materialized.json",
+      "page": 23,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0024.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0024_assets_materialized.json",
+      "page": 24,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0025.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work/page_0025_assets_materialized.json",
+      "page": 25,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/13-painting-coatings-and-corrosion-protection/13-painting-coatings-and-corrosion-protection-08_pdf2md_work"
+}

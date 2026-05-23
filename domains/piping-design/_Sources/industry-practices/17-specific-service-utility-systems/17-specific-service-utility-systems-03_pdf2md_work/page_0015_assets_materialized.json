@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-03_pdf2md_work/page_0015.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-03_p0015_fig01",
+      "bbox_norm": [
+        0.05,
+        0.09,
+        0.97,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        140,
+        2480,
+        3509
+      ],
+      "caption": "FIGURE 1A OVERALL LAYOUT OF AN HTF SYSTEM WITH A FURNACE",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-03_p0015_fig01_figure-1a-overall-layout-htf-system-furn.png",
+      "png_sha256": "ec8cea05cc58804cfb3c9676e2a65a57e9382ac44d8d913e2cd7fd03856d1314",
+      "slug": "figure-1a-overall-layout-htf-system-furn",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-03",
+  "doc_stem": "17-specific-service-utility-systems-03",
+  "page": 15,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-03_pdf2md_work/page_0015.png",
+  "page_image_sha256": "a413d44b6ea25b60d1f3401a22ee729482a4e73054ee3e0bb7e6d6c0e3625629",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-03_pdf2md_work/page_0015_assets.json"
+}

@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0011.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-07_p0011_fig01",
+      "bbox_norm": [
+        0.01,
+        0.03,
+        0.99,
+        0.97
+      ],
+      "bbox_px": [
+        0,
+        0,
+        5100,
+        3300
+      ],
+      "caption": "Fig. 900-6 Tank and Piping Isometric and Details Phase I & II Vapor Recovery",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-07_p0011_fig01_fig-900-6-tank-piping-isometric-details.png",
+      "png_sha256": "7f62737b887b50c84eae2a0239d2eda863819c255eedbf36b8d522a8fed2843b",
+      "slug": "fig-900-6-tank-piping-isometric-details",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-07",
+  "doc_stem": "17-specific-service-utility-systems-07",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0011.png",
+  "page_image_sha256": "37742ce0dc203762865c12675d56308242d27a259e9b2027382874461b552b28",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0011_assets.json"
+}

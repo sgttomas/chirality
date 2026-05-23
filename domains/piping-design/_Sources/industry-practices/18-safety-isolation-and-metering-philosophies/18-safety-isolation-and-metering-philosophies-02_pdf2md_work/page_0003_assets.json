@@ -1,0 +1,131 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "18-safety-isolation-and-metering-philosophies-02",
+  "page": 3,
+  "total_pages": 7,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "API MPMS and API reference standards",
+      "slug": "api-mpms-and-api-reference-standards",
+      "bbox_norm": [0.125, 0.115, 0.975, 0.305],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "API MPMS 6.1",
+                "type": "text"
+              },
+              {
+                "value": "Metering Assemblies Section 1 - Lease Automatic Custody Transfer (LACT) Systems",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "API MPMS 20.3",
+                "type": "text"
+              },
+              {
+                "value": "Measurement of Multiphase Flow",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "API MPMS 21.2",
+                "type": "text"
+              },
+              {
+                "value": "Flow Measurement using Electronic Metering Systems",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "API 1130",
+                "type": "text"
+              },
+              {
+                "value": "Computational Pipeline Monitoring for Liquids",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column standards reference table with no visible caption or header row."
+    },
+    {
+      "kind": "tbl",
+      "ordinal": 2,
+      "caption": "Alaska regulatory requirements",
+      "slug": "alaska-regulatory-requirements",
+      "bbox_norm": [0.125, 0.385, 0.975, 0.535],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 0,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              {
+                "value": "20 AAC 25.228",
+                "type": "text"
+              },
+              {
+                "value": "Production Measurement Equipment for Custody Transfer",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "20 AAC 25.230",
+                "type": "text"
+              },
+              {
+                "value": "Measurement, Allocation, and Reporting of Well Production",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "value": "20 AAC 25.235",
+                "type": "text"
+              },
+              {
+                "value": "Gas Disposition",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column regulatory reference table with no visible caption or header row."
+    }
+  ],
+  "issues": []
+}

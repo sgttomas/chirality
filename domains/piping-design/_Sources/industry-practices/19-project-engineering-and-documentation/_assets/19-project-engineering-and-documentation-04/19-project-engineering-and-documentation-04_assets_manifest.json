@@ -1,0 +1,150 @@
+{
+  "asset_count": 3,
+  "assets": [
+    {
+      "asset_id": "19-project-engineering-and-documentation-04_p0001_tbl01",
+      "bbox_norm": [
+        0.27,
+        0.79,
+        0.92,
+        0.97
+      ],
+      "bbox_px": [
+        561,
+        2439,
+        2474,
+        3296
+      ],
+      "caption": "Publications--CUSA Western Region Producing Department",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 1,
+      "png_path": "tables/19-project-engineering-and-documentation-04_p0001_tbl01_publications-cusa-western-region-produci.png",
+      "png_sha256": "b5607971f03e1a87be56cd4f215d4e08df09b01b537c11912632c7522214c293",
+      "slug": "publications-cusa-western-region-produci",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-04_p0001_tbl01_publications-cusa-western-region-produci.json",
+      "table_data_json_sha256": "904f704628dc3451da4753e120fbe417ed10408a19b2236c78aa79fdf711e549",
+      "table_data_sha256": "904f704628dc3451da4753e120fbe417ed10408a19b2236c78aa79fdf711e549",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-04_p0001_tbl01_publications-cusa-western-region-produci.xlsx",
+      "xlsx_sha256": "0b7b8081ffe6462d3faddcadf51954898b3595eaaf985dfc8a85b373b258cc9f"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-04_p0003_tbl01",
+      "bbox_norm": [
+        0.26,
+        0.11,
+        0.91,
+        0.92
+      ],
+      "bbox_px": [
+        536,
+        198,
+        2448,
+        3197
+      ],
+      "caption": "References listing",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 3,
+      "png_path": "tables/19-project-engineering-and-documentation-04_p0003_tbl01_references-listing.png",
+      "png_sha256": "9c7aa3744e47aeef1bb43cd460ce4d43918d5ea917bc39b503d56193aee063d7",
+      "slug": "references-listing",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-04_p0003_tbl01_references-listing.json",
+      "table_data_json_sha256": "1dc3919d28ecfc98fa09809fad62fd1ba4a7b7403847b26c925556459ae70e70",
+      "table_data_sha256": "1dc3919d28ecfc98fa09809fad62fd1ba4a7b7403847b26c925556459ae70e70",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-04_p0003_tbl01_references-listing.xlsx",
+      "xlsx_sha256": "5542a93fee5b44018ad99fdea5742aaaf673296110d48bdd3d10c999001b0588"
+    },
+    {
+      "asset_id": "19-project-engineering-and-documentation-04_p0004_tbl01",
+      "bbox_norm": [
+        0.19,
+        0.1,
+        0.88,
+        0.91
+      ],
+      "bbox_px": [
+        357,
+        165,
+        2372,
+        3164
+      ],
+      "caption": "ASTM reference specifications list",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "page": 4,
+      "png_path": "tables/19-project-engineering-and-documentation-04_p0004_tbl01_astm-reference-specifications-list.png",
+      "png_sha256": "58ebc0f891dc886628651228be82134129216006aae0cb829769e7d414f04f1f",
+      "slug": "astm-reference-specifications-list",
+      "status": "materialized",
+      "table_data_json_path": "tables/19-project-engineering-and-documentation-04_p0004_tbl01_astm-reference-specifications-list.json",
+      "table_data_json_sha256": "5c673abaa9f61b25f6268374675285af9afcfd564de3a8b8fd61866d6276840c",
+      "table_data_sha256": "5c673abaa9f61b25f6268374675285af9afcfd564de3a8b8fd61866d6276840c",
+      "xlsx_path": "tables/19-project-engineering-and-documentation-04_p0004_tbl01_astm-reference-specifications-list.xlsx",
+      "xlsx_sha256": "51ce19d502c49f63ee8a27fb6d646dc652bae558830dee6186b52e76c0df033b"
+    }
+  ],
+  "doc_stem": "19-project-engineering-and-documentation-04",
+  "issues": [],
+  "page_manifest_count": 6,
+  "pages": [
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0001.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0001_assets_materialized.json",
+      "page": 1,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0002.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0002_assets_materialized.json",
+      "page": 2,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0003.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0003_assets_materialized.json",
+      "page": 3,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0004.anchored.md",
+      "asset_count": 1,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0004_assets_materialized.json",
+      "page": 4,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0005.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0005_assets_materialized.json",
+      "page": 5,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    },
+    {
+      "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0006.anchored.md",
+      "asset_count": 0,
+      "manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work/page_0006_assets_materialized.json",
+      "page": 6,
+      "page_label": null,
+      "page_label_source": "unreviewed"
+    }
+  ],
+  "schema_version": "pdf2md-assets-document/v3",
+  "work_dir": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/19-project-engineering-and-documentation/19-project-engineering-and-documentation-04_pdf2md_work"
+}

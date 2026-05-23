@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0027.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-04_p0027_fig01",
+      "bbox_norm": [
+        0.04,
+        0.07,
+        0.96,
+        0.82
+      ],
+      "bbox_px": [
+        0,
+        70,
+        2480,
+        3053
+      ],
+      "caption": "Appendix 6 Typical drier with heaterless regeneration at atmospheric pressure \u2014 process flow schematic showing two desiccant vessels, after filters, KS on/off valves activated by sequence controller, RO orifice, PG pressure gauges, Pdt differential pressure transmitter, QI/2O measurement instruments, wet air inlet, dry air outlet, and outlet regeneration air path",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-04_p0027_fig01_appendix-6-heaterless-regeneration-drier.png",
+      "png_sha256": "da25394064f369dedbb090828933550295f6ad55317635b37b75d91eac5ba373",
+      "slug": "appendix-6-heaterless-regeneration-drier",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-04",
+  "doc_stem": "17-specific-service-utility-systems-04",
+  "page": 27,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0027.png",
+  "page_image_sha256": "13cd237ee41e70ca69b6d9209a212cc905792328188c64230156fca56ebf3f0c",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0027_assets.json"
+}

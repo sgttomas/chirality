@@ -1,0 +1,6 @@
+{"page": 7, "index": 1, "latex": "\\text{Re} = \\frac{\\rho v d_i}{\\eta} \\tag{1}", "hash": "715eb46bbd42", "png": "page_0007.png"}
+{"page": 7, "index": 2, "latex": "\\text{Re} = \\frac{4}{\\pi} \\cdot \\frac{q_m}{d_i \\eta} \\tag{1a}", "hash": "0a5780b4cd39", "png": "page_0007.png"}
+{"page": 7, "index": 3, "latex": "\\text{Re} = \\frac{v d_i}{\\upsilon} \\tag{2}", "hash": "67f5533fd445", "png": "page_0007.png"}
+{"page": 9, "index": 1, "latex": "\\Delta p = \\lambda \\left(\\frac{L \\rho v^2}{2 d_i}\\right) \\tag{3}", "hash": "91d8ed93f85f", "png": "page_0009.png"}
+{"page": 9, "index": 2, "latex": "\\Delta p = 0.81 \\frac{\\lambda L q_m^2}{\\rho d_i^5} \\tag{3a}", "hash": "832c0a13b377", "png": "page_0009.png"}
+{"page": 9, "index": 3, "latex": "\\Delta h = \\lambda \\frac{L}{d_i} \\frac{v^2}{2g}", "hash": "c446f5f5ad83", "png": "page_0009.png"}

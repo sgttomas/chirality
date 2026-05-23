@@ -1,0 +1,41 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0005.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-08_p0005_tbl01",
+      "bbox_norm": [
+        0.05,
+        0.38,
+        0.95,
+        0.72
+      ],
+      "bbox_px": [
+        0,
+        1088,
+        2550,
+        2538
+      ],
+      "caption": "Fig. 1000-1 Toxicity of H\u2082S",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/17-specific-service-utility-systems-08_p0005_tbl01_fig-1000-1-toxicity-h2s.png",
+      "png_sha256": "1607d2ddd6e154eb7c85cd265bfce7fc29eeeb4d4c17115ab0f5e13e77c46148",
+      "slug": "fig-1000-1-toxicity-h2s",
+      "status": "materialized",
+      "table_data_json_path": "tables/17-specific-service-utility-systems-08_p0005_tbl01_fig-1000-1-toxicity-h2s.json",
+      "table_data_json_sha256": "f2f684f5aa6ad6728e7bb622e6fe2652f6335b35782b46ece7180e6b38ef4923",
+      "table_data_sha256": "f2f684f5aa6ad6728e7bb622e6fe2652f6335b35782b46ece7180e6b38ef4923",
+      "xlsx_path": "tables/17-specific-service-utility-systems-08_p0005_tbl01_fig-1000-1-toxicity-h2s.xlsx",
+      "xlsx_sha256": "a54422f4754b9012326b4b45dae475f3873cb9df43200c567fff3dc0007b91ac"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-08",
+  "doc_stem": "17-specific-service-utility-systems-08",
+  "page": 5,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0005.png",
+  "page_image_sha256": "ecb9a63da85741130c997c78323f19d55147f6358795961ed50ab3eaec1d3680",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-08_pdf2md_work/page_0005_assets.json"
+}

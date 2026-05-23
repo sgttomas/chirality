@@ -1,0 +1,77 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 31,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 10.1 Coating temperature limits",
+      "slug": "coating-temperature-limits",
+      "bbox_norm": [0.05, 0.52, 0.95, 0.80],
+      "confidence": "high",
+      "notes": "Five-row table with coating systems, max continuous and excursion temperatures, and specification references",
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Coating System", "is_header": true },
+              { "value": "Maximum continuous operating temperature (°C)", "is_header": true },
+              { "value": "Maximum excursion temperature (°C)", "is_header": true },
+              { "value": "Specification", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Asphalt enamel", "type": "text" },
+              { "value": 60, "type": "number" },
+              { "value": 70, "type": "number" },
+              { "value": "To be agreed with Principal", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Fusion bonded epoxy", "type": "text" },
+              { "value": 70, "type": "number" },
+              { "value": 85, "type": "number" },
+              { "value": "DEP 31.40.30.32-Gen.", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Polychloroprene", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": 100, "type": "number" },
+              { "value": "To be agreed with Principal", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "EPDM", "type": "text" },
+              { "value": 105, "type": "number" },
+              { "value": 105, "type": "number" },
+              { "value": "To be agreed with Principal", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Polyethylene and polypropylene", "type": "text" },
+              { "value": 100, "type": "number" },
+              { "value": 120, "type": "number" },
+              { "value": "DEP 31.40.30.31-Gen.", "type": "text" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "issues": []
+}

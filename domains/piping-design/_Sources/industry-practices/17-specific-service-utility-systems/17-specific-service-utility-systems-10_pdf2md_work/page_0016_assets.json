@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-10",
+  "page": 16,
+  "total_pages": 29,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "Fig. 1200-2 Ammonia Sample Station—Residue Analysis",
+      "slug": "fig-1200-2-ammonia-sample-station-residue-analysis",
+      "bbox_norm": [0.03, 0.03, 0.97, 0.52],
+      "confidence": "high",
+      "notes": "Piping schematic diagram with numbered callouts and annotation labels for compression type tubing connector and stainless steel tubing. Caption appears above figure."
+    }
+  ],
+  "issues": []
+}

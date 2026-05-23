@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0030.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-03_p0030_fig01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.95,
+        0.88
+      ],
+      "bbox_px": [
+        0,
+        105,
+        2480,
+        3263
+      ],
+      "caption": "FIGURE 10 EFFECT OF A VERTICAL SIDE ARM ON GAS LIQUID SPLITTING",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-03_p0030_fig01_figure-10-effect-vertical-side-arm-gas-l.png",
+      "png_sha256": "0dfef3d81203e19f9fd1f1aab12726094d5c4ebb650de123ba4ddf6f92558f3c",
+      "slug": "figure-10-effect-vertical-side-arm-gas-l",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-03",
+  "page": 30,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0030.png",
+  "page_image_sha256": "756b851888c85dac68b425ead0b9466e192af2c31da70284a73528119479f03a",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-03_pdf2md_work/page_0030_assets.json"
+}

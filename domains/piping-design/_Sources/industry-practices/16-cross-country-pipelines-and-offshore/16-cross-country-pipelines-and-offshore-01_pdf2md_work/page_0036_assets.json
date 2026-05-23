@@ -1,0 +1,59 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 36,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Spare linepipe quantities by route length",
+      "slug": "spare-linepipe-quantities-by-route-length",
+      "bbox_norm": [0.05, 0.50, 0.65, 0.63],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [],
+        "rows": [
+          {
+            "cells": [
+              { "value": "Route length", "is_header": true },
+              { "value": "Spare linepipe", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "up to 1 km", "type": "text" },
+              { "value": "60 m", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "10 km", "type": "text" },
+              { "value": "250 m", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "100 km", "type": "text" },
+              { "value": "750 m", "type": "text" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "above 200 km", "type": "text" },
+              { "value": "0.5 percent of route length", "type": "text" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table listing spare linepipe quantities for various route lengths"
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "17-specific-service-utility-systems-02",
+  "page": 32,
+  "total_pages": 37,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 3 EXAMPLES OF UNACCEPTABLE AND ACCEPTABLE END CONFIGURATIONS",
+      "slug": "figure-3-unacceptable-acceptable-end-configurations",
+      "bbox_norm": [0.05, 0.06, 0.95, 0.46],
+      "confidence": "high",
+      "notes": "Two-part diagram: (a) Bad configuration showing tee with cap and flange; (b) Good configuration showing elbow end arrangement. Labels include Flange, Tee, Cap, Bad (a), Good (b)."
+    },
+    {
+      "kind": "fig",
+      "ordinal": 2,
+      "caption": "FIGURE 4 EXAMPLES OF UNACCEPTABLE AND ACCEPTABLE INSULATING FLANGE INSTALLATION",
+      "slug": "figure-4-unacceptable-acceptable-insulating-flange-installation",
+      "bbox_norm": [0.05, 0.47, 0.95, 0.88],
+      "confidence": "high",
+      "notes": "Two-part diagram: (a) Bad insulating flange installation with X mark; (b) Good insulating flange installation. Hatched areas indicate insulating gasket/sleeve components."
+    }
+  ],
+  "issues": []
+}

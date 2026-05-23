@@ -115,13 +115,15 @@ The orchestrator must never “fill gaps” by inference. When it proposes candi
 - **Coordination representation is human-owned.** ORCHESTRATOR records the representation the human chooses; it does not impose one.
 - **No forced false precision.** If the human chooses not to track dependencies in-file, do not compute “blocked/available” as if a complete graph exists.
 - **Bounded sub-agents only.** Spawn sub-agents only for clearly bounded work with explicit scope. When a deterministic tool exists for a structural or query operation, route that operation through the tool and reserve language-model work for reading, summarizing, or populating source-grounded text.
+- **Skill execution goes through TASK.** Reusable method work such as `semantic-matrix-build`, `lens-register`, `dependency-extract`, `estimate-snapshot`, and `content-digest` is dispatched as `TASK + TaskSkill`, not by minting a new persona agent. ORCHESTRATOR writes or resolves the bounded brief; TASK normalizes scope, loads the skill and companion files, enforces write boundaries, writes the run record, and returns the auditable report.
 - **No work assignment.** Report context; the human decides what to work on.
 - **Lifecycle state updates are owned by pipeline agents (not ORCHESTRATOR).** ORCHESTRATOR may request/trigger pipelines, but should not directly edit deliverable `_STATUS.md`.
 
 Recommended lifecycle ownership (may vary by project):
 - **PREPARATION** may set `OPEN` when creating deliverable folders.
 - **`four-documents` skill (Pass 1+2)** may set `INITIALIZED` when drafts exist.
-- **Semantic enrichment completion** (commonly `four-documents` skill Pass 3) may set `SEMANTIC_READY` when the semantic artifacts exist and have been applied.
+- **Semantic matrix generation** (`TASK + semantic-matrix-build`, Phase 2.3) produces the `_SEMANTIC.md` lens scaffold and may append `_STATUS.md` history, but must not advance the lifecycle state to `SEMANTIC_READY` unless the human-confirmed project policy explicitly makes semantic-matrix validation the readiness gate.
+- **Semantic enrichment completion** (commonly `four-documents` skill Pass 3 after `_SEMANTIC_LENSING.md`) may set `SEMANTIC_READY` when the semantic artifacts exist and have been applied.
 - Humans decide whether/when to set `IN_PROGRESS`, `CHECKING`, `ISSUED` (or delegate via a dedicated state manager).
 
 ---
@@ -320,21 +322,69 @@ Run this phase only when the human requests a DOMAIN KTY enrichment or verificat
 #### Phase 2.3: Dispatch semantic matrix generation
 
 **Action:**
-- **DOMAIN_DECOMP:** Skip this phase. DOMAIN variants do not use the semantic lensing pipeline; source-fidelity verification is handled by the `domain-documents` skill's Pass 3 (run in Phase 2.2 with `RUN_PASSES: FULL`).
-- If the project uses semantic lensing, dispatch TASK for each deliverable with:
-  - `TaskSkill: semantic-matrix-build`
-  - `ScopePath: {DELIVERABLE_PATH}`
-  - `DECOMP_VARIANT: {variant}`
-  - The skill generates `_SEMANTIC.md` for the deliverable.
+- **DOMAIN_DECOMP:** Skip this phase. DOMAIN variants do not use the semantic lensing pipeline; source-fidelity verification is handled by the `domain-documents` skill's Pass 3 (run in Phase 2.2 with `RUN_PASSES: FULL`). Do not dispatch `semantic-matrix-build` for DOMAIN unless the human explicitly overrides the DOMAIN pipeline routing.
+- **PROJECT_DECOMP / SOFTWARE_DECOMP:** If the project uses semantic lensing, dispatch **TASK + `semantic-matrix-build`** for each deliverable. Do not create or use a dedicated semantic-matrix persona agent for normal execution.
+- Run this phase as a sealed TASK step: one deliverable, one skill, one write scope. The ORCHESTRATOR/parent must not author `_SEMANTIC.md` inline and must not repair or rewrite matrix cells after TASK returns. If a semantic product needs review, dispatch a separate bounded review task after the semantic run has completed.
+- ORCHESTRATOR must write or resolve a complete TASK brief. The brief must include both TASK-normalized scope fields and the skill's semantic brief fields so that `ScopePath`, `DeliverablePath`, `deliverable_folder`, and `decomposition_path` are unambiguous.
+
+**Canonical Phase 2.3 TASK brief template:**
+
+```markdown
+PURPOSE: Generate the deliverable-local semantic lens for one production unit.
+RequestedBy: ORCHESTRATOR
+
+ScopePath: {DELIVERABLE_PATH}
+DeliverablePath: {DELIVERABLE_PATH}
+TaskProfile: DELIVERABLE_TASK
+TaskSkill: semantic-matrix-build
+
+Tasks:
+  - Load `skills/semantic-matrix-build/SKILL.md` and companion files.
+  - Read the deliverable-local truth set before deriving matrices.
+  - Generate or overwrite `{DELIVERABLE_PATH}/_SEMANTIC.md` for this deliverable only.
+  - Audit final matrix cells and return PASS/FAIL with failing cells if any.
+
+ApplyEdits: true
+AllowedWriteTargets:
+  - {DELIVERABLE_PATH}/_SEMANTIC.md
+  - {DELIVERABLE_PATH}/_STATUS.md
+  - {DELIVERABLE_PATH}/_run_records/
+
+RuntimeOverrides:
+  DECOMP_VARIANT: {PROJECT|SOFTWARE}
+  deliverable_folder: {DELIVERABLE_PATH}
+  DeliverablePath: {DELIVERABLE_PATH}
+  decomposition_path: {DECOMPOSITION_PATH}
+  PHASE: ORCHESTRATOR_PHASE_2_3
+  STATUS_POLICY: PRESERVE_CURRENT_STATE_UNTIL_POST_LENSING_P3
+
+CustomInstructions:
+  - Treat `_SEMANTIC.md` as a semantic lens scaffold, not an engineering authority.
+  - Keep production documents read-only.
+  - Use deliverable-conditioned semantic categories; do not restate implementation particulars as matrix cell values.
+  - Preserve the current `_STATUS.md` lifecycle state during Phase 2.3. On audit PASS, append history noting semantic matrix generation/validation and that readiness advancement is reserved for post-lensing/P3. On audit FAIL, append failure history only and do not advance state.
+  - If the active skill's default status-advancement rule conflicts with this Phase 2.3 status policy, follow this explicit ORCHESTRATOR brief policy and record the override in the run report and `_SEMANTIC.md` phase note.
+
+ExpectedOutputs:
+  - `{DELIVERABLE_PATH}/_SEMANTIC.md`
+  - `{DELIVERABLE_PATH}/_run_records/TASK_RUN_*.md`
+```
+
+**Status policy:**
+- Default PROJECT/SOFTWARE setup pipeline policy: Phase 2.3 preserves the current lifecycle state. `_SEMANTIC.md` validation alone does not set `SEMANTIC_READY`; semantic readiness is normally advanced only after Phase 2.4 (`lens-register`) and Phase 2.5 (`four-documents` Pass 3) when semantic lensing has been applied.
+- If a project explicitly chooses semantic-matrix validation as the readiness gate, the TASK brief must say so directly by replacing `STATUS_POLICY` with `SET_SEMANTIC_READY_ON_AUDIT_PASS`, authorizing the exact `_STATUS.md` change, and listing `_STATUS.md` as an allowed write target. Do not silently rely on the skill default when project policy is ambiguous.
+
+**Required post-run review:**
+- Confirm TASK returned a run report with `TaskSkill: semantic-matrix-build`, resolved skill version, companion-file status, tool policy compliance, outputs, missing inputs, and dependency notes.
+- Confirm `_SEMANTIC.md` exists and contains the Phase Note when state advancement was intentionally suppressed.
 - Do not treat `_SEMANTIC.md` as an engineering authority; it is a lens scaffold.
-- Run this phase as a sealed TASK step: one deliverable, one skill, one write scope. The ORCHESTRATOR/parent must not author `_SEMANTIC.md` inline.
 - Before Phase 2.4, validate each deliverable with:
   - `python3 tools/validation/validate_semantic_matrix.py "{DELIVERABLE_PATH}"`
   - `python3 tools/validation/validate_semantic_pipeline_scope.py "{DELIVERABLE_PATH}" --step semantic` when the worktree contains only that semantic TASK's changes, or the equivalent parent review of touched files when multiple workers have fanned in.
 
 See `skills/semantic-matrix-build/SKILL.md` for the method contract.
 
-**Gate question:** “Semantic matrices generated. Ready to run semantic lensing registers?”
+**Gate question:** “Semantic matrices generated and Phase 2.3 status policy verified. Ready to run semantic lensing registers?”
 
 ---
 

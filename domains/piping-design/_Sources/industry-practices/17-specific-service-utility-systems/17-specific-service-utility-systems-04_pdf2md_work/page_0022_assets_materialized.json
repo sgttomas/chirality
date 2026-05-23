@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0022.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-04_p0022_fig01",
+      "bbox_norm": [
+        0.04,
+        0.1,
+        0.97,
+        0.93
+      ],
+      "bbox_px": [
+        0,
+        175,
+        2480,
+        3439
+      ],
+      "caption": "APPENDIX 1 Typical Air Supply Plant with Double Header System",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-04_p0022_fig01_appendix-1-typical-air-supply-plant-doub.png",
+      "png_sha256": "91c2e84a85dddb438f93d11f7a0ad35b617d54d4927a3eeac501ef7940c5f7e7",
+      "slug": "appendix-1-typical-air-supply-plant-doub",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-04",
+  "doc_stem": "17-specific-service-utility-systems-04",
+  "page": 22,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0022.png",
+  "page_image_sha256": "16377c175baaa5de3ef17447065742f6ed72f82341d0e96cadc745f0436ffdc7",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-04_pdf2md_work/page_0022_assets.json"
+}

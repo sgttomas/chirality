@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0016.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-11_p0016_fig01",
+      "bbox_norm": [
+        0.02,
+        0.02,
+        0.98,
+        0.98
+      ],
+      "bbox_px": [
+        0,
+        0,
+        5100,
+        3300
+      ],
+      "caption": "Fig. 1300-2 Typical P & ID for Cooling Tower Applications - 100 lb Cylinders",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-11_p0016_fig01_fig-1300-2-pid-cooling-tower-100lb-cylin.png",
+      "png_sha256": "1eb8da1904d07c7bd3a7736cd3fe715df23ad125ef789909b8bc0ac4586d54b1",
+      "slug": "fig-1300-2-pid-cooling-tower-100lb-cylin",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-11",
+  "doc_stem": "17-specific-service-utility-systems-11",
+  "page": 16,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0016.png",
+  "page_image_sha256": "938c9d7e91b2a935530f165979c20c99258c3544f6cdf156376092ca8a7b1d72",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-11_pdf2md_work/page_0016_assets.json"
+}

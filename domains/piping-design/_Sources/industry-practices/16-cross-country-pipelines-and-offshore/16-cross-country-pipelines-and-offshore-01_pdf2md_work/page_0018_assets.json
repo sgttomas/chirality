@@ -1,0 +1,56 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-01",
+  "page": 18,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "tbl",
+      "ordinal": 1,
+      "caption": "Table 3 allowable equivalent loads",
+      "slug": "table-3-allowable-equivalent-loads",
+      "bbox_norm": [0.05, 0.46, 0.72, 0.65],
+      "table_data": {
+        "schema_version": "pdf2md-table/v1",
+        "header_rows": 1,
+        "section_dividers": [],
+        "continuation_of": null,
+        "footnotes": [
+          "NOTE 1: For the installation and hydrostatic test conditions, the environmental loads may be based on one year return period.",
+          "NOTE 2: Not applicable to installation methods where yielding of the pipewall is an integral part of the method (e.g. reeled pipelines, risers installed in J-tubes)."
+        ],
+        "rows": [
+          {
+            "cells": [
+              { "value": "", "is_header": true },
+              { "value": "Functional plus environmental loads", "is_header": true }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Installation (Note 1, 2)", "type": "text" },
+              { "value": 96, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Hydrostatic test (Note 1)", "type": "text" },
+              { "value": 100, "type": "number" }
+            ]
+          },
+          {
+            "cells": [
+              { "value": "Operation", "type": "text" },
+              { "value": 90, "type": "number" }
+            ]
+          }
+        ]
+      },
+      "confidence": "high",
+      "notes": "Two-column table with percent of SMYS values for three load conditions"
+    }
+  ],
+  "issues": []
+}

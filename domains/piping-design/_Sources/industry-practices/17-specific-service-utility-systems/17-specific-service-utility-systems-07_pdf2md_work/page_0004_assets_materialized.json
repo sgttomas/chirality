@@ -1,0 +1,37 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0004.anchored.md",
+  "assets": [
+    {
+      "asset_id": "17-specific-service-utility-systems-07_p0004_fig01",
+      "bbox_norm": [
+        0.05,
+        0.08,
+        0.97,
+        0.92
+      ],
+      "bbox_px": [
+        0,
+        99,
+        2550,
+        3197
+      ],
+      "caption": "Fig. 500-1 Secondary Containment Details Using Fiberglass Troughs",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/17-specific-service-utility-systems-07_p0004_fig01_fig-500-1-secondary-containment-fibergla.png",
+      "png_sha256": "e66cb4b0826a99717b9a209d9d6afacd4944d980a5a20ec90b238c0cbece0165",
+      "slug": "fig-500-1-secondary-containment-fibergla",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/_assets/17-specific-service-utility-systems-07",
+  "doc_stem": "17-specific-service-utility-systems-07",
+  "page": 4,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0004.png",
+  "page_image_sha256": "5bc1a92e06c6f546f39cc5cc40c2349ebca9b828c9ba5584ecb6f6cd5ac7957d",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/17-specific-service-utility-systems/17-specific-service-utility-systems-07_pdf2md_work/page_0004_assets.json"
+}

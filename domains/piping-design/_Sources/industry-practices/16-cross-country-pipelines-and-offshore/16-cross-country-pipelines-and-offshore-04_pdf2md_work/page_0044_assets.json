@@ -1,0 +1,20 @@
+{
+  "schema_version": "pdf2md-page-assets/v1",
+  "run_status": "SUCCESS",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-04",
+  "page": 44,
+  "total_pages": null,
+  "asset_policy": "prose-document-assets-v1",
+  "assets": [
+    {
+      "kind": "fig",
+      "ordinal": 1,
+      "caption": "FIGURE 6 J-TUBE SEAL PRESSURE",
+      "slug": "figure-6-j-tube-seal-pressure",
+      "bbox_norm": [0.08, 0.07, 0.92, 0.60],
+      "confidence": "high",
+      "notes": "Diagram of J-tube installation showing hanger support, water level, seal, flowline, and bellmouth. Labels include Hj, Hs, Pj, rho_j."
+    }
+  ],
+  "issues": []
+}

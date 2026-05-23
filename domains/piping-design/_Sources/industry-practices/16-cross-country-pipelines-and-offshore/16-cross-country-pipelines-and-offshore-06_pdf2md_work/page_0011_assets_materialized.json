@@ -1,0 +1,66 @@
+{
+  "anchored_markdown": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0011.anchored.md",
+  "assets": [
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0011_fig01",
+      "bbox_norm": [
+        0.12,
+        0.04,
+        0.92,
+        0.68
+      ],
+      "bbox_px": [
+        178,
+        0,
+        2474,
+        2406
+      ],
+      "caption": "Fig. 800-6 Deck Penetration Collar",
+      "issues": [],
+      "kind": "fig",
+      "ordinal": 1,
+      "png_path": "figures/16-cross-country-pipelines-and-offshore-06_p0011_fig01_fig-800-6-deck-penetration-collar.png",
+      "png_sha256": "84a4b5da5368db1157946e40ee3df020e396e5feedf2d9797c5f0f1b82a13aa9",
+      "slug": "fig-800-6-deck-penetration-collar",
+      "status": "materialized",
+      "table_data_json_path": "",
+      "xlsx_path": ""
+    },
+    {
+      "asset_id": "16-cross-country-pipelines-and-offshore-06_p0011_tbl01",
+      "bbox_norm": [
+        0.12,
+        0.47,
+        0.65,
+        0.67
+      ],
+      "bbox_px": [
+        178,
+        1384,
+        1785,
+        2373
+      ],
+      "caption": "Deck Penetration Collar Schedule \u2014 Riser size, Collar dimensions, and Weight",
+      "issues": [],
+      "kind": "tbl",
+      "needs_extraction": false,
+      "ordinal": 1,
+      "png_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.png",
+      "png_sha256": "a1c4eed635650f9f1fec3fe3b1c267bea24f763c90c6f122ff117a5c2db07261",
+      "slug": "deck-penetration-collar-schedule",
+      "status": "materialized",
+      "table_data_json_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.json",
+      "table_data_json_sha256": "0aa2c27e74e252c956fd2a83da8096f1117b905e707e41f59e641b5c6cb80ea8",
+      "table_data_sha256": "0aa2c27e74e252c956fd2a83da8096f1117b905e707e41f59e641b5c6cb80ea8",
+      "xlsx_path": "tables/16-cross-country-pipelines-and-offshore-06_p0011_tbl01_deck-penetration-collar-schedule.xlsx",
+      "xlsx_sha256": "f80759f2fb7215cf9ec9b763a31d0fe12d3064d105bb8117b505bb92fefcbb48"
+    }
+  ],
+  "assets_root": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_assets",
+  "doc_stem": "16-cross-country-pipelines-and-offshore-06",
+  "page": 11,
+  "page_image": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0011.png",
+  "page_image_sha256": "1edf5e7319153301a61ad4b8601e0c3e9e6a68c772222c842ef82bd2f29d7f47",
+  "schema_version": "pdf2md-assets-materialized/v2",
+  "source_asset_json": "/Users/ryan/ai-env/projects/chirality/domains/piping-design/_Sources/industry-practices/16-cross-country-pipelines-and-offshore/16-cross-country-pipelines-and-offshore-06_pdf2md_work/page_0011_assets.json"
+}
