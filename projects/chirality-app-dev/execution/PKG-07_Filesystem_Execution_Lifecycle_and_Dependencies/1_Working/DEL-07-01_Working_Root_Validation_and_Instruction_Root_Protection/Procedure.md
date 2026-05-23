@@ -11,7 +11,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 | Prerequisite | Status | Source |
 |---|---|---|
 | Accepted deliverable scope for DEL-07-01. | Available in `_CONTEXT.md` and decomposition. | `_CONTEXT.md`; decomposition `DEL-07-01` row |
-| Current lifecycle state permits drafting. | `OPEN` at start of this run. | `_STATUS.md` |
+| Current lifecycle state permits P3 enrichment. | `INITIALIZED`; Phase 2.5 is `P3_ONLY` and preserves `_STATUS.md` under `NO_STATUS_TOUCH`. | `_STATUS.md`; `_SEMANTIC_LENSING.md` |
 | Authoritative source corpus is accessible. | Accessible; `docs/PRD.md` has HASH_MISMATCH warning. | `_REFERENCES.md` |
 | Declared upstream dependencies. | TBD - no accepted dependency edges extracted yet. | `_DEPENDENCIES.md` |
 | Code module locations for implementation. | TBD. | Source-grounding gap |
@@ -73,6 +73,8 @@ This procedure may be used by the implementer or reviewer to check that working-
 
 10. Record verification evidence.
     - Store test output or summaries where the project test convention requires.
+    - Record final test command names and evidence locations when implementation identifies them; until then they remain TBD.
+    - Preserve the `docs/PRD.md` `HASH_MISMATCH` warning in review notes or run records for PRD-dependent acceptance.
     - Preserve source citations and any unresolved `TBD` items for later semantic/dependency passes.
 
 ## Verification
@@ -86,6 +88,7 @@ This procedure may be used by the implementer or reviewer to check that working-
 | Symlink write policy | Symlink writes are denied under the initial policy. | Symlink fixture output. |
 | Fail-closed hooks | Hook failure denies governed action and records triage. | Hook failure test output. |
 | PRD hash warning | Evidence notes preserve the `HASH_MISMATCH` source-state warning. | Review note or run record. |
+| Fixture evidence completeness | Relative, missing, non-directory, unreadable, unwritable, instruction-root-contained, outside-root, traversal, instruction-root write, and symlink cases have output or summary records. | Test output, fixture list, or coverage checklist. |
 
 ## Records
 
@@ -102,4 +105,15 @@ Records still TBD:
 
 - Final implementation file paths.
 - Final test command names.
+- Final evidence record locations for root validation, path policy, instruction-root protection, hook failure, symlink fixtures, and PRD source-state review.
 - Responsible party.
+
+## Pass 3 Semantic Lensing Notes
+
+| ItemID | Procedure Disposition | Evidence |
+|---|---|---|
+| B-001 | converted to TBD | Step 10 and Verification require concrete fixture output or summaries; final evidence is not invented before tests exist. |
+| D-001 | converted to TBD | Verification requires API test output for `/api/working-root/validate` and downstream normalized-root reuse; implementation confirmation is still pending. |
+| X-001 | converted to TBD | `Records still TBD` now names final test command names and evidence locations for all fixture families. |
+| E-001 | already covered | Step 8 and Verification preserve initial symlink rejection and require future amendment/test evidence before relaxation. |
+| E-002 | incorporated | Step 10, Verification, and Records require preservation of the PRD hash mismatch warning in review evidence. |

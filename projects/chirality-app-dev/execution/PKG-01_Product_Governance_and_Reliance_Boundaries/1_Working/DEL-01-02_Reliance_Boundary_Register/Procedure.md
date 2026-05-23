@@ -107,6 +107,8 @@ For each boundary row:
 3. Verify Guidance principles do not overstate accepted implementation state.
 4. Verify no source-warning item has been silently converted into accepted truth.
 5. Verify all unsupported details remain `TBD`, `ASSUMPTION`, `PROPOSAL`, or conflict entries.
+6. Verify PRD-cited rows distinguish hash-verified evidence from REF-006 warning-limited evidence.
+7. Verify no candidate Section 9 validation label is represented as an implemented test until the downstream validation deliverable supplies the file or test name.
 
 ### 7. Produce Artifacts
 
@@ -119,6 +121,7 @@ For each boundary row:
    - SDK API drift residual risk;
    - subagent inherited-permission residual risk;
    - implementation-surface `TBD`s.
+5. Record row-level completion criteria for any downstream `TBD`, including the expected source of closure evidence.
 
 ### 8. Review and Close
 
@@ -126,7 +129,8 @@ For each boundary row:
 2. Confirm there are no P0 rows with prompt-only or SDK-default-only enforcement.
 3. Confirm human-gate and professional-boundary rows do not imply automated approval.
 4. Confirm PRD hash mismatch is still visible until human/source reconciliation occurs.
-5. Move the deliverable to the next lifecycle state only through the authorized status workflow.
+5. Confirm the generated register, enforcement matrix, and test index can be traced back to the datasheet fields and specification requirements.
+6. Move the deliverable to the next lifecycle state only through the authorized status workflow.
 
 ## Verification
 
@@ -139,6 +143,8 @@ For each boundary row:
 | Validation mapping | Each row has a validation ID or `TBD` with residual-risk explanation. |
 | Human authority | No row states or implies automated professional approval, certification, issuance, or external validation. |
 | Cross-document consistency | Datasheet, Specification, Guidance, and Procedure use the same boundary IDs and terms. |
+| Source-state handling | REF-006 PRD usage is marked warning-limited until hash reconciliation or human/source-owner acceptance. |
+| Generated-register closure | Downstream register rows are cross-checked against requirements, field schema, and test index before final acceptance. |
 
 ## Records
 

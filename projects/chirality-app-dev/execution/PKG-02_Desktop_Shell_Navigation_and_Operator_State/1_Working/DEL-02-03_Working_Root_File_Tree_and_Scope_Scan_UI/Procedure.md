@@ -69,10 +69,17 @@ Define the working procedure to produce and verify the Working Root File Tree an
 | Project truth boundary | UI state is not treated as authoritative project truth. |
 | Dependency deferral | No `Dependencies.csv` is created by this deliverable procedure. |
 | Unknown discipline | Unsupported facts remain `TBD`, `ASSUMPTION`, conflict, or human-ruling-needed. |
+| Acceptance evidence | Test or acceptance evidence for selector, invalid-root feedback, bounded tree behavior, scope reset, and deliverable routing is required; evidence artifact location is TBD until implementation/test output exists. |
 
 ## Records
 
 - UI implementation artifacts: file tree panel, deliverable summary widgets, scope scan integration.
-- Test or acceptance evidence for root selection, invalid root display, bounded tree behavior, scope reset behavior, and deliverable routing.
+- Test or acceptance evidence for root selection, invalid root display, bounded tree behavior, scope reset behavior, and deliverable routing; artifact location TBD.
 - Conflict/human-ruling record for package-folder label mismatch and PRD hash mismatch.
 - This four-document kit: `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| F-001 | Incorporated as required evidence with `TBD` artifact location: Procedure now preserves acceptance evidence as required without implying it already exists. | `Procedure.md` Verification and Records; `Specification.md` Verification. |

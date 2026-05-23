@@ -31,7 +31,7 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 
 4. Define deterministic checks.
    - Populate `deterministicChecks` with the checks expected before review.
-   - Mark exact check payloads and pass/fail schema as `TBD` until an adapter/profile contract is accepted.
+   - Mark exact check payloads, pass/fail schema, adapter/profile reference, evidence path, and failure reason field as `TBD` until an adapter/profile contract is accepted.
 
 5. Identify expected outputs and risks.
    - Populate `expectedOutputRefs` with proposal/review artifacts or approved future adapter outputs.
@@ -39,6 +39,7 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 
 6. Set the required human gate.
    - Populate `requiredHumanGate` with the required gate name or mark it `TBD`.
+   - Keep the acceptance/rejection artifact format, actor/authority field, timestamp rule, and proposal identifier binding as `TBD` until accepted by human ruling.
    - Do not move to application without explicit human acceptance.
 
 7. Review protected-path and professional-boundary posture.
@@ -47,10 +48,10 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 
 8. Transition proposal status.
    - `draft`: initial incomplete or working proposal.
-   - `ready_for_review`: ASSUMPTION: proposal has required fields populated or explicitly marked `TBD`, and deterministic checks are prepared for review.
-   - `accepted`: ASSUMPTION: explicit human acceptance has been recorded.
-   - `rejected`: ASSUMPTION: human reviewer or policy rejects the proposal.
-   - `applied`: ASSUMPTION: approved future adapter applies the operation after human acceptance.
+   - `ready_for_review`: ASSUMPTION: proposal has required fields populated or explicitly marked `TBD`, deterministic checks are prepared for review, and unresolved blockers are visible in the review checklist.
+   - `accepted`: ASSUMPTION: explicit human acceptance has been recorded in a future acceptance evidence artifact bound to the proposal identifier.
+   - `rejected`: ASSUMPTION: human reviewer or policy rejects the proposal and records the rejection reason in the same evidence family as acceptance.
+   - `applied`: ASSUMPTION: approved future adapter applies the operation after human acceptance and records adapter validation/apply results.
    - Human ruling is needed before these transition semantics become implementation requirements.
 
 ## Verification
@@ -63,12 +64,16 @@ Define the future workflow for producing and reviewing `OperationProposal` recor
 | Protected path safety | No step instructs agents to write protected domain-engine model truth. |
 | Boundary notice | No step or record represents Chirality as professional approver, code-compliance verifier, external validator, or solver truth owner. |
 | Future-boundary posture | Procedure does not activate current-release domain operation execution. |
+| Acceptance/rejection evidence | Future acceptance/rejection artifact format, actor/authority, timestamp, and proposal binding are defined or explicitly marked `TBD`. |
+| Adapter result evidence | Future deterministic validation/apply result payload and storage location are defined or explicitly marked `TBD`. |
+| Review sufficiency evidence | Future review checklist result records field completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved blockers or marks the result artifact as `TBD`. |
 
 ## Records
 
 - Draft `OperationProposal` record.
 - Deterministic check plan or `TBD` placeholder.
-- Human gate acceptance/rejection record: TBD.
-- Review checklist result.
+- Deterministic check result record: TBD future schema including check name, adapter/profile reference, pass/fail result, evidence path, and failure reason.
+- Human gate acceptance/rejection record: TBD future schema including actor/authority, timestamp, proposal identifier binding, accepted/rejected value, and rejection reason when applicable.
+- Review checklist result: TBD future artifact recording schema completeness, protected-path posture, boundary-language review, human-gate readiness, deterministic-check readiness, and unresolved blockers.
 - Boundary notice review result.
-- Adapter validation/apply result: TBD future implementation artifact.
+- Adapter validation/apply result: TBD future implementation artifact including operation identifier, accepted proposal reference, output references, and failure/rollback note.

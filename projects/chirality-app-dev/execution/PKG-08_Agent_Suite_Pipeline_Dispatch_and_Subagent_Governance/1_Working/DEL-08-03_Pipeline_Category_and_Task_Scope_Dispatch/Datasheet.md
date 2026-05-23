@@ -56,6 +56,25 @@
 | Invalid-selection reset | Clears stale or disabled selections after root or scope changes. | Source requires behavior; implementation location TBD |
 | Tests | Cover pipeline selector behavior, knowledge-type discovery, and disabled option handling. | Anticipated artifacts |
 
+## Implementation Slots
+
+| Slot | Required Record | Current Disposition |
+|---|---|---|
+| Category selector component path | Confirmed frontend component or module path for PIPELINE `DECOMP`, `PREP`, `TASK`, and `AUDIT` controls. | TBD - implementation worker must record before closure. |
+| Category option source | Confirmed data source or fixture for category-specific option lists. | TBD - must distinguish documented executable options from visible disabled options. |
+| TASK selector component path | Confirmed component or state module for task-agent selector and scope selector. | TBD - implementation worker must record before closure. |
+| Scope scan integration path | Confirmed API client, hook, or mock boundary for `/api/working-root/scope`. | TBD - must prove active-root scanning, not hard-coded project assumptions. |
+| Knowledge discovery fixture path | Confirmed fixture or test-data path covering document-kit buckets and any exposed metadata buckets. | TBD - must use `KnowledgeTypeOption` labels when metadata buckets are exposed. |
+| Reset test fixture path | Confirmed fixture path for root-change, removed-deliverable, disabled-marker, and stale-target reset cases. | TBD - implementation worker must record before closure. |
+
+## Dependency Edge Snapshot
+
+| Edge Type | Current Evidence | Disposition |
+|---|---|---|
+| Accepted upstream anchors | `_DEPENDENCIES.md` lists active anchors for DEL-08-03, SOW-007, SOW-026, OBJ-001, and OBJ-007. | Use as context; satisfaction remains TBD until dependency closure accepts the register. |
+| Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence with PRD hash warning preserved. |
+| Downstream handoff | `_DEPENDENCIES.md` lists a downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests, with consumer target unresolved. | Consumer deliverable remains TBD. |
+
 ## References
 
 | RefID | Path | Use |
@@ -68,3 +87,10 @@
 | REF-006 | `docs/PRD.md` | Product requirements for matrix, pipeline, scope, and knowledge buckets; hash mismatch recorded as warning |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP method and deliverable sizing context |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted deliverable entry and objective/scope mapping |
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| B-001 | Converted to explicit implementation slots for selector, option-list, scope-scan, knowledge-discovery, reset-fixture, and test-path records. |
+| B-002 | Incorporated as a dependency edge snapshot that preserves accepted extracted rows as context while leaving closure status and downstream consumer target TBD. |

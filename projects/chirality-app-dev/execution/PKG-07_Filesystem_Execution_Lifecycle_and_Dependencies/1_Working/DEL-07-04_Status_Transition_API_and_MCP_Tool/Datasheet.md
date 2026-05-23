@@ -9,6 +9,7 @@
 | PackageID | PKG-07 |
 | PackageName | Filesystem Execution, Lifecycle, and Dependencies |
 | DecompositionVariant | SOFTWARE_DECOMP |
+| RuntimeDispatchVariant | SOFTWARE |
 | DecompositionRevision | v3.2 |
 | Type | BACKEND_FEATURE_SLICE |
 | ResponsibleParty | TBD |
@@ -39,6 +40,7 @@
 | Ownership | Responsible party is `TBD`; `_CONTEXT.md` says to preserve `ResponsibleParty: TBD` until human assignment. |
 | Semantic lensing | `_SEMANTIC.md` is `NOT_GENERATED`; this P1/P2 run does not use semantic lensing. |
 | Existing implementation path | TBD. Source documents define required behavior but do not name the implementation files for this slice. |
+| Variant naming note | `SOFTWARE_DECOMP` names the accepted decomposition family in this deliverable context; `SOFTWARE` is the four-documents runtime dispatch token. |
 
 ## Construction
 
@@ -61,3 +63,9 @@
 | REF-005 | `docs/PLAN.md` | R3 implementation targets | Status transition tool target and approval SHA gate |
 | REF-006 | `docs/PRD.md` | Sections 8.9, 8.13, API inventory | Product requirements; HASH_MISMATCH warning applies |
 | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-07 DEL-07-04; SOW-028 | Scope and anticipated artifacts |
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| E-001 | Incorporated as a normalization note distinguishing the accepted decomposition family from the runtime dispatch token. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header; `skills/four-documents/SKILL.md` runtime override values. |

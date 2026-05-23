@@ -47,6 +47,14 @@
 | Tool result redaction gate | Policy hook ensuring sensitive tool outputs are redacted or withheld before inline event payloads or artifacts are persisted. | TBD: exact policy integration point |
 | Tests | Unit and integration tests proving configured key variants and provider/SDK/tool/run-log paths do not leak secrets. | TBD: final test names; current provider redaction tests exist |
 
+## Pass 3 Implementation Slots
+
+| Slot | Required Record | Current Disposition | Source |
+|---|---|---|---|
+| Shared redaction helper identity | Final module path, exported API name, accepted replacement token, and supported configured-secret schema. | TBD until implementation selects the shared helper contract. | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PRD.md` FR-075 |
+| RunLogger identity | Final module path and public logging surface used by provider errors, SDK diagnostics, event emission, tool-result handling, and run logs. | TBD; PRD R1 names `run-logger.ts` as an implementation target but not an accepted final path. | `docs/PLAN.md` R1; `docs/PRD.md` R1 implementation targets |
+| Boundary inventory | Discovered code paths for provider errors, SDK errors, SDK stderr/debug logs, `HarnessEvent.data`, run logs, and tool-result persistence/display. | TBD until code discovery records the implementation paths. | `docs/SPEC.md` Section 9; `docs/PRD.md` Sections 10.3.1, 10.4, 10.5 |
+
 ## References
 
 | RefID | Source | Notes |

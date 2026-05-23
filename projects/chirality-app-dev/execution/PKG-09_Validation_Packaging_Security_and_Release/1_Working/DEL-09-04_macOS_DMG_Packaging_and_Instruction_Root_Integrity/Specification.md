@@ -26,10 +26,10 @@ Out of scope:
 | DEL-09-04-REQ-002 | The desktop distribution build must be produced through `npm run desktop:dist` from `frontend/`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` FR-067 | Run or review build evidence for `npm run desktop:dist`. |
 | DEL-09-04-REQ-003 | The expected DMG output must include `frontend/dist/Chirality-0.1.0-arm64.dmg`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 7.12 | Confirm file exists after packaging. |
 | DEL-09-04-REQ-004 | The expected app bundle output must include `frontend/dist/mac-arm64/Chirality.app`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm app bundle exists after packaging. |
-| DEL-09-04-REQ-005 | The build/integrity flow must produce or preserve `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm summary JSON exists and records a passing integrity result, or record blocker. |
+| DEL-09-04-REQ-005 | The build/integrity flow must produce or preserve `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`, and release readiness must state either a passing integrity verdict or enumerated blockers. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm summary JSON exists and records a passing integrity result, or record blocker. |
 | DEL-09-04-REQ-006 | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` K-PACKAGE-1; `docs/SPEC.md` Section 1.1 | Run/review `npm run instruction-root:integrity` and bundle resource inspection. |
 | DEL-09-04-REQ-007 | Missing required instruction-root assets are a P0 packaging and runtime-readiness blocker. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` Section 10.1; decomposition OI-004 | Fail packaging readiness if required assets are absent, or document accepted amendment. |
-| DEL-09-04-REQ-008 | The package-readiness evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute SDK subprocess packaging probe in packaged layout; record result. |
+| DEL-09-04-REQ-008 | The package-readiness evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout without secret leakage or broader network policy. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute SDK subprocess packaging probe in packaged layout; record command, package path, expected result, observed result, and blocker state. |
 | DEL-09-04-REQ-009 | The packaged validation must preserve Anthropic-only network guardrails. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
 | DEL-09-04-REQ-010 | Windows/Linux packaging must not be introduced by this deliverable without explicit scope amendment. | Decomposition SOW-078; `docs/PRD.md` KG-014 | Review package scripts/config changes for target creep. |
 
@@ -52,16 +52,20 @@ The verification package should include:
 | Minimum macOS version check | inspected `LSMinimumSystemVersion` value `15.0.0` or later | DEL-09-04-REQ-001 |
 | Architecture check | inspected arm64 binary architecture | DEL-09-04-REQ-001 |
 | Signing posture check | evidence that signing is unsigned/adhoc as scoped | DEL-09-04-REQ-001 |
-| Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` | DEL-09-04-REQ-005, DEL-09-04-REQ-006, DEL-09-04-REQ-007 |
-| SDK subprocess packaging probe | package-layout execution result for SDK subprocess/binary | DEL-09-04-REQ-008 |
+| Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with explicit pass verdict or enumerated blockers | DEL-09-04-REQ-005, DEL-09-04-REQ-006, DEL-09-04-REQ-007 |
+| SDK subprocess packaging probe | package-layout probe command, package path, expected result, observed result, and failure/blocker recording rule for SDK subprocess/binary | DEL-09-04-REQ-008 |
 | Network guardrail check | evidence Anthropic-only network policy remains active | DEL-09-04-REQ-009 |
+
+Readiness does not pass when instruction-root assets are absent, the integrity summary reports failure, or the SDK subprocess package-layout probe fails. Those cases remain blockers unless a governed amendment accepts a different release target or integrity policy.
 
 ## Documentation
 
 Required deliverable artifacts:
 
-- `desktop:dist` evidence.
-- Instruction-root integrity summary.
-- SDK subprocess packaging probe result.
-- `TBD` residual-blocker list for incomplete instruction-root assets or SDK package-layout failures.
+- `desktop:dist` command transcript or equivalent run record.
+- DMG and app bundle artifact listing plus checksum or deterministic artifact identifier for the DMG.
+- Instruction-root integrity summary with pass/blocker verdict.
+- SDK subprocess packaging probe command and result.
+- Audit-ready evidence bundle pointers to command transcript, artifact listing/checksum, summary JSON, SDK probe output, network guardrail evidence, and residual blockers.
+- `TBD` residual-blocker list for incomplete instruction-root assets, SDK package-layout failures, or unresolved packaged-app runtime guardrail scope.
 - `ASSUMPTION` or `PROPOSAL` entries for any packaging config interpretation not directly supported by source evidence.

@@ -12,7 +12,7 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
 |---|---|---|
 | Accepted deliverable scope | Available in `_CONTEXT.md`; ResponsibleParty remains TBD. | `_CONTEXT.md` |
 | Authoritative route/event source slices | Available from SPEC, TYPES, CONTRACT, DIRECTIVE, PLAN, and PRD with PRD hash warning. | `_REFERENCES.md` |
-| Current implementation fixture capture | TBD. Required before exact route payload and SSE payload compatibility can be asserted. | ASSUMPTION from compatibility-test need; `docs/PRD.md` Section 12.6 |
+| Current implementation fixture capture | BLOCKING for exact route payload, SSE payload, event-order, and compatibility-only field assertions. Baseline source SHA and fixture paths remain TBD. | `docs/PRD.md` Sections 12.5 and 12.6; `docs/PLAN.md` R1 acceptance |
 | Upstream dependencies | TBD; no accepted dependency edges extracted yet. | `_DEPENDENCIES.md` |
 | Sibling deliverable boundaries | DEL-03-02 owns thin `TurnEngine` and session locking; DEL-03-04 owns interrupt/cancel terminal handling. | Decomposition PKG-03 table |
 
@@ -27,8 +27,10 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
    - List stable SSE event names from `docs/SPEC.md` Section 11, `docs/TYPES.md` Section 7.4, and `docs/PRD.md` Section 9.3.
 
 3. Capture current behavior fixtures.
+   - Record the implementation baseline commit/SHA before capture; if unavailable, record `TBD` and do not close exact compatibility assertions.
    - Capture route request/response schemas for the in-scope `/api/harness/*` routes.
    - Capture representative SSE streams for successful turn, error, and disconnect/cancel paths where current implementation permits.
+   - Record which implementation paths can emit successful turn, error, and disconnect/cancel streams; unresolved path availability remains `TBD`.
    - Mark any unavailable payload details as `TBD` rather than filling from assumption.
 
 4. Implement or review the route adapter boundary.
@@ -42,6 +44,7 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
 
 6. Add compatibility tests and docs.
    - Add route adapter tests for preserved route shapes.
+   - Create a route adapter test index that maps each in-scope route to fixture path, capture status, and replay test status.
    - Add SSE compatibility fixtures for stable event names and terminal/error behavior.
    - Add UI event contract documentation that distinguishes browser `UIEvent`s from persisted `HarnessEvent`s.
 
@@ -60,6 +63,22 @@ Sources: `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Sections 10.4, 11, 
 | UI/runtime separation preserved | Browser `UIEvent` payloads remain compact and distinct from persisted `HarnessEvent` records. | `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` FR-074 |
 | PRD warning preserved | Traceability records REF-006 `HASH_MISMATCH` and unsupported payload/schema details remain `TBD`. | `_REFERENCES.md` |
 
+## Route Adapter Test Index Template
+
+Populate this table when implementation fixtures are captured. Until then, fixture paths, baseline SHA, and exact payload/schema assertions remain `TBD`.
+
+| Route | Method | Fixture Path | Baseline SHA | Capture Status | Replay Test Status |
+|---|---|---|---|---|---|
+| `/api/harness/session/create` | POST | TBD | TBD | TBD | TBD |
+| `/api/harness/session/boot` | POST | TBD | TBD | TBD | TBD |
+| `/api/harness/session/list` | GET | TBD | TBD | TBD | TBD |
+| `/api/harness/session/[id]` | GET/DELETE | TBD | TBD | TBD | TBD |
+| `/api/harness/turn` | POST | TBD | TBD | TBD | TBD |
+| `/api/harness/interrupt` | POST | TBD | TBD | TBD | TBD |
+| `/api/harness/scaffold` | POST | TBD | TBD | TBD | TBD |
+
+Source: `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 9.1.
+
 ## Records
 
 Expected records and artifacts:
@@ -67,6 +86,8 @@ Expected records and artifacts:
 - Route adapter tests.
 - SSE compatibility fixtures.
 - UI event contract docs.
-- Fixture capture notes identifying source commit or implementation baseline. Baseline source SHA is TBD.
+- Fixture capture notes identifying source commit or implementation baseline. Baseline source SHA is TBD and blocks exact compatibility closure until populated.
+- Route adapter test index mapping each in-scope route to preserved shape fixtures, capture status, replay test status, and unresolved `TBD` fields.
+- SSE stream fixture notes naming successful turn, error, and disconnect/cancel capture paths where current implementation permits; path availability is TBD until captured.
+- Compatibility decision notes for retained compatibility-only fields that constrain internal API shape.
 - Traceability notes mapping requirements to `_CONTEXT.md`, decomposition DEL-03-03, SPEC Sections 10/11/17.1, TYPES Section 7.4, CONTRACT K-EVENT-1, DIRECTIVE Sections 2.8/2.10, and PRD sections with hash warning.
-

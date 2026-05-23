@@ -36,6 +36,7 @@ This deliverable supports OBJ-003: making accepted turns, SDK messages, terminal
 - Redaction is adjacent but not optional. DEL-05-02 should define the event API so redaction can be enforced by DEL-05-03 without schema churn.
 - Tool permission, hook, compaction, subagent, and SDK mirror categories are listed as later event categories in SPEC/TYPES. The initial implementation should not block those categories, but should avoid over-implementing behavior owned by later deliverables.
 - Malformed-tail tolerance matters because append-only JSONL can be interrupted mid-write. Replay should preserve valid prior records and surface diagnostics rather than failing the whole session.
+- Append-only JSONL is sufficient for interrupted-write recovery only when accepted-turn and terminal events are written in sequence and replay treats the final malformed line as diagnostic context rather than as authority over earlier valid records. This bounds recovery to reconstructing durable prior events; it does not approve project state or replace human gate evidence.
 - Large payloads should be artifact references, not inline event blobs. Thresholds and storage policy are deferred to DEL-05-05 unless already established by adjacent implementation.
 
 ## Trade-offs
@@ -77,4 +78,3 @@ No source-content conflicts were identified during P1/P2 drafting.
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | SOURCE-WARN-001 | `docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`; PRD content aligns with matching SPEC/CONTRACT/TYPES slices used here but source state is not clean. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076 | Datasheet References; Specification Standards/Requirements; Guidance Considerations | Use PRD only as corroborating context until reference hash is reconciled. | TBD |
-

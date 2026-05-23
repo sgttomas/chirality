@@ -58,8 +58,8 @@ Sources: `_CONTEXT.md`; `docs/PRD.md` Sections 8.1, 8.4, 8.7; `execution/_Decomp
 | DEL-02-04-REQ-004, DEL-02-04-REQ-005, DEL-02-04-REQ-013 | Tests or review checks proving local presets do not write project truth files, do not override governance enforcement, and cannot be treated as authoritative runtime policy. |
 | DEL-02-04-REQ-006, DEL-02-04-REQ-007, DEL-02-04-REQ-008 | Local-storage tests for root/persona/mode keying, malformed-record discard, and storage-failure warning behavior. |
 | DEL-02-04-REQ-009, DEL-02-04-REQ-010 | Policy-mode integration tests once the permission policy engine exists; until then, mark enforcement wiring as TBD and avoid false claims. |
-| DEL-02-04-REQ-011, DEL-02-04-REQ-012 | Option-handoff tests confirming deterministic fallback display/submit behavior and warnings for unknown keys. |
-| DEL-02-04-REQ-014 | UI review against the accepted polish plan referenced by PRD FR-006; exact checklist location TBD unless provided by downstream implementation scope. |
+| DEL-02-04-REQ-011, DEL-02-04-REQ-012 | Option-handoff tests confirming deterministic fallback display/submit behavior and warnings for unknown keys; test records must show that unknown keys are warned, ignored, and do not silently mutate runtime behavior. |
+| DEL-02-04-REQ-014 | UI review against the accepted polish plan referenced by PRD FR-006. The referenced path `docs/ui/UI_POLISH_EXECUTION_PLAN.md` is not present in the accessible source tree for this run, so the exact checklist location remains TBD. |
 
 ## Documentation
 
@@ -70,10 +70,12 @@ Required artifacts for this deliverable:
 - Draft and preset storage guards.
 - Tests or verification notes for local-state non-authority and option fallback behavior.
 - Any unresolved policy-mode wiring notes marked `TBD` until the permission policy engine exists.
+- Policy-mode acceptance evidence after the permission policy engine exists, including the accepted enum/contract source, Toolkit mode-to-policy mapping, and evidence that controls are enforced by runtime policy rather than prompt text alone.
+- Option-handoff evidence for deterministic fallback and unknown-key handling, including the submitted option payload, warning behavior, and unchanged runtime behavior for ignored keys.
 
 ## Assumptions and TBDs
 
-- ASSUMPTION: UI implementation will key local draft and attachment-selection persistence by normalized root/persona/mode, matching PRD FR-043. Exact storage schema is TBD.
-- ASSUMPTION: Toolkit controls will present only runtime-supported option fields or clearly disabled/unavailable fields. Exact control inventory is TBD.
+- ASSUMPTION: UI implementation will key local draft and attachment-selection persistence by normalized root/persona/mode, matching PRD FR-043. Exact local storage namespace, key format, value schema, migration behavior, and retention policy are TBD.
+- ASSUMPTION: Toolkit controls will present only runtime-supported option fields or clearly disabled/unavailable fields. Exact runtime-supported control inventory is TBD; current source support names model, tools, max turns, mode, persona, and governance metadata as candidate option categories.
 - TBD: Exact file/component names for Toolkit controls and pane state implementation.
 - TBD: Exact permission policy mode enum and enforcement integration until the policy engine is accepted.

@@ -34,6 +34,7 @@ Sources: `docs/DIRECTIVE.md` Sections 1 and 2.1; `docs/CONTRACT.md` K-FS-1 and K
 | Preserve existing files vs. normalize on rerun | Rewriting existing files could repair drift but risks destroying human or agent work. | Preserve existing paths/files during scaffold rerun; report compatibility issues separately. |
 | Generated defaults vs. source fidelity | Rich defaults make folders look complete but can invent unsupported values. | Seed required files conservatively and use `TBD` where source data is missing. |
 | Route-owned behavior vs. service-owned behavior | Fat routes are easy to wire but hard to test and reuse. | Keep `/api/harness/scaffold` thin and place behavior in a reusable scaffold service, consistent with PRD route principles. |
+| Broad markdown parser vs. bounded fixture support | A broad parser may appear flexible but can silently reinterpret unsupported decomposition shapes. | Start with the accepted v3.2 SOFTWARE_DECOMP package/deliverable table shape, then report unsupported shapes as compatibility issues until additional grammars are source-backed. |
 
 ## Examples
 
@@ -57,6 +58,16 @@ Source: `docs/SPEC.md` Sections 2 and 3.
 On rerun, an existing package folder, deliverable folder, or metadata file should be preserved unless a separately authorized workflow owns migration or repair. The scaffold response should report what already existed, what was newly created, and what prevents PREPARATION compatibility.
 
 Source: `docs/PRD.md` Section 7.3 and NFR-011.
+
+P3 disposition: F-003 is incorporated here by making file-content preservation explicit, not only path preservation.
+
+### Dependency-readiness posture
+
+Declared upstream dependencies remain unresolved for this deliverable. Treat `_DEPENDENCIES.md` as the current dependency evidence container and do not infer accepted upstream closure from extracted rows alone.
+
+Source: `_DEPENDENCIES.md` Declared Upstream and Extracted Dependency Register; `docs/CONTRACT.md` K-DEP-1.
+
+P3 disposition: X-001 is already covered in Procedure prerequisites and reinforced here as an explicit readiness posture.
 
 ## Conflict Table (for human ruling)
 

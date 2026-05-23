@@ -32,6 +32,10 @@ DEL-08-01 exists to make instruction-root packaging and agent conformance explic
 | Broad packaging validation vs DEL-08-01 scope | Check instruction-root assets and conformance only; leave DMG packaging to DEL-09-04. | Decomposition separates DEL-08-01 from release packaging deliverables. |
 | Runtime subagent behavior vs conformance fixtures | Include fail-closed fixture expectations, but do not implement the runtime bridge here. | DEL-08-04 owns `evaluateSubagentGovernance` bridge implementation. |
 
+## Human Ruling Path
+
+PRD-only checks remain warning-labeled while REF-006 is `HASH_MISMATCH`. Before those checks become failures, a human or source-reconciliation workflow must either refresh `_REFERENCES.md` with an accepted PRD snapshot or explicitly amend the source basis. Until that ruling exists, SPEC, CONTRACT, and TYPES remain the governing authority for instruction-root packaging and agent conformance, and PRD-only entries are checklist warnings. Source: `_REFERENCES.md` REF-006; `docs/CONTRACT.md` K-CONFLICT-1.
+
 ## Examples
 
 Example positive agent-instruction expectations:
@@ -53,4 +57,4 @@ Example negative fixture expectations:
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CT-001 | `docs/PRD.md` is accessible but its recorded hash does not match `_REFERENCES.md`, so PRD-only requirements may be stale relative to the accepted source snapshot. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.10 and 15 | Datasheet Attributes; Specification R-004, R-005, R-012, R-013; Guidance Considerations | Use SPEC/CONTRACT/TYPES as governing authority; include PRD-only items as warning-labeled checks until REF-006 is reconciled. | TBD |
+| CT-001 | `docs/PRD.md` is accessible but its recorded hash does not match `_REFERENCES.md`, so PRD-only requirements may be stale relative to the accepted source snapshot. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections 8.10 and 15 | Datasheet Attributes; Specification DEL0801-REQ004, DEL0801-REQ005, DEL0801-REQ012, DEL0801-REQ013; Guidance Considerations and Human Ruling Path | Use SPEC/CONTRACT/TYPES as governing authority; include PRD-only items as warning-labeled checks until REF-006 is reconciled. | TBD |

@@ -45,6 +45,13 @@ Source: `_CONTEXT.md` `Identity`, `Traceability`; `execution/_Decomposition/Chir
 | Transcript placement | TBD: R1 must empirically decide the least surprising SDK transcript/storage pattern | `docs/SPEC.md` Section 8.4; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-046/OI-002 |
 | Source-state warning | `docs/PRD.md` is locally accessible but has a hash mismatch in `_REFERENCES.md`; PRD-only implementation detail remains provisional unless corroborated | `_REFERENCES.md` REF-006 |
 
+## Pass 3 Lensing Status
+
+| ItemID | Status | Datasheet impact |
+|---|---|---|
+| X-001 | unresolved TBD | Transcript placement remains an R1/OI-002 decision; this datasheet does not treat SDK transcript storage as stable review closure. |
+| E-001 | closure warning | PRD-derived behavior must be rechecked against REF-006 source state before implementation closure. |
+
 ## Construction
 
 Canonical vNext session folder:

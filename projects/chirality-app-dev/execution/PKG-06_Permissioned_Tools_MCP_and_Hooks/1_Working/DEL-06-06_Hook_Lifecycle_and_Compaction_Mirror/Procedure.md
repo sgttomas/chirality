@@ -14,7 +14,7 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
 | Hook vocabulary and required hook behavior | Available in `docs/TYPES.md` Section 8.5 and `docs/SPEC.md` Section 15.2 |
 | Engine adapter translation rules | Available in `docs/SPEC.md` Section 10.3 |
 | Compaction mirror product direction | Available in `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 is warning-qualified due to HASH_MISMATCH |
-| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
+| Declared upstream dependencies | Human-declared upstream dependencies remain `TBD`; extracted ACTIVE upstream edges exist in `_DEPENDENCIES.md` and must be closure-checked before final acceptance. |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
 
@@ -55,7 +55,7 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
    - Append JSONL events in write sequence with unique event IDs.
    - Keep replay tolerant of malformed trailing lines as required by the session event contract.
    - Store large or sensitive payloads as session artifacts or redact them according to policy.
-   - ASSUMPTION: the event writer and session artifact APIs are provided by PKG-05/PKG-03 surfaces; exact call path is TBD.
+   - BLOCKER: the event writer and session artifact API call paths must be cited from the owning PKG-05/PKG-03 surfaces before implementation closure; exact call path is TBD.
 
 8. Add tests and fixtures.
    - Add hook lifecycle mapper tests for start, completion, and failure outcomes.
@@ -92,3 +92,12 @@ This procedure describes how to produce and verify the DEL-06-06 hook lifecycle 
 - Session event replay validation evidence: TBD.
 - Redaction/payload-budget validation evidence: TBD.
 - Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Dependency-closure note: human-declared upstream dependency status is TBD; extracted ACTIVE edges in `_DEPENDENCIES.md` must be reconciled before closure.
+
+## Pass 3 Disposition
+
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| D-001 | Converted to a dependency-closure blocker: the deliverable is not asserted dependency-free; human-declared edges remain `TBD`, while extracted ACTIVE upstream edges require closure review. | `_DEPENDENCIES.md` Declared Upstream and Extracted Dependency Register |
+| D-002 | Rejected as an implementation assumption and replaced with a blocker: event writer/session artifact APIs must be cited from PKG-05/PKG-03 ownership before closure. | `docs/SPEC.md` Sections 8.4 and 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-4 through K-EVENT-7 |
+| E-002 | Incorporated as an explicit records and verification obligation for redaction or payload-budget validation evidence on hook and compaction payloads; evidence path remains `TBD`. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |

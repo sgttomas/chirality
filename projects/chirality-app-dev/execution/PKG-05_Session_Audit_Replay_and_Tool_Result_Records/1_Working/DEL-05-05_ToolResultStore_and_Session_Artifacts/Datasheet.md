@@ -49,6 +49,14 @@
 | Output budget tests | Verify inline/preview/artifact behavior and no chat/context flooding. | Required |
 | Replay fixtures | Verify artifact links remain reconstructible through `events.jsonl` replay, including malformed-tail tolerance. | Required |
 
+## Current Discovery State
+
+| Topic | Current state | Disposition |
+|---|---|---|
+| B-001 source-state warning | `_REFERENCES.md` marks REF-006 `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived artifact-budget and metadata claims remain warning-qualified until human source reconciliation accepts the snapshot. | Surfaced as a source-state caveat; not treated as a substitute for human ruling. |
+| C-001 implementation and fixture paths | Repository discovery did not find an accepted `ToolResultStore` module, output-budget test files, metadata fixture files, replay fixture files, or redaction fixture files. | Keep paths `TBD` until implementation work lands and is accepted. |
+| F-001 unresolved policy fields | Byte thresholds, preview length, artifact naming, checksum policy, and retention/deletion behavior are not specified by the matched source corpus. | Keep as governed design deferrals; do not encode hidden policy. |
+
 ## References
 
 | RefID | Source | Notes |

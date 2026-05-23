@@ -97,3 +97,14 @@ The reader, writer, and linter must preserve these core columns from `docs/SPEC.
 - `docs/DIRECTIVE.md` Sections 2.5 and 5.
 - `docs/PLAN.md` R4 target slice and Optional/Retired Scope Status.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-07 deliverable table and Scope Ledger SOW-029.
+
+## Pass 3 Semantic Lensing Notes
+
+| ItemID | Datasheet disposition |
+|---|---|
+| C-001 | Converted to a named TBD: the warning output must remain structured and deterministic, but the exact warning code/category taxonomy is not selected by the accessible sources. |
+| F-001 | Already surfaced as a source-state warning: `docs/PRD.md` remains usable only with the recorded `_REFERENCES.md` `HASH_MISMATCH` warning until a human accepts or refreshes the PRD hash. |
+| D-001 | Converted to implementation slots: module names, API handler names, fixture paths, payload type names, and test paths remain TBD until local code ownership selects them. |
+| X-001 | Converted to acceptance-evidence slots: API/MCP dependency payload evidence and governed write-hook evidence remain required, with final artifact paths TBD. |
+
+Source rereads for these notes: `_SEMANTIC_LENSING.md` current warranted rows; `docs/SPEC.md` Sections 6, 14.2, 14.3, 15.1, 15.2, and 17.2; `docs/CONTRACT.md` Sections 1.6 and 1.7; `docs/PRD.md` Sections 8.9, 10.9, and 17.2; `_REFERENCES.md` Authoritative Source Corpus.

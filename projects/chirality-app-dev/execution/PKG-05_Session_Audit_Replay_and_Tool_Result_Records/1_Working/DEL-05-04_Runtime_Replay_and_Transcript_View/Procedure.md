@@ -15,6 +15,8 @@ Define an operational path for producing and verifying the Runtime Replay and Tr
 | Declared dependency edges are accepted. | TBD - no accepted upstream/downstream edges have been extracted yet. | `_DEPENDENCIES.md` |
 | Redaction helper or policy is available. | Exact dependency is TBD; replay must not expose secrets. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 |
 
+Dependency closure disposition: F-001 remains a `TBD` closure question. Accepted upstream dependency edges for DEL-05-01, DEL-05-02, DEL-05-05, and the redaction policy/helper must be confirmed before implementation closure or explicitly carried in the handoff state. Source reread: `_DEPENDENCIES.md` extracted dependency register; decomposition rows for DEL-05-01, DEL-05-02, DEL-05-04, and DEL-05-05; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7.
+
 ## Steps
 
 1. **Confirm source contracts.**
@@ -54,10 +56,18 @@ Define an operational path for producing and verifying the Runtime Replay and Tr
    - Terminal outcome fixture for success, failure, cancellation, or interruption where source events exist.
    - SDK linkage fixture confirming `events.jsonl` remains canonical.
    - Legacy session fixture.
+   - Redaction fixture for secret-like event, tool, provider, or SDK metadata.
+   - Tool-result artifact-link fixture for compact summaries and stored payload references.
+   - Record exact fixture filenames as `TBD` until implementation assigns accepted paths.
 
 8. **Run verification.**
    - Execute unit tests and any Section 9 validation coverage that exists for `section9.session_event_replay` and `section9.sdk_session_link_resume`.
    - If the validation IDs are not implemented yet, record `TBD` rather than marking them passed.
+
+9. **Record accepted implementation locations.**
+   - Record the replay parser module path, transcript view model/interface name, route or component placement, transcript reconstruction fixture path, malformed-tail fixture path, SDK-linkage fixture path, redaction fixture path, and tool-result artifact fixture path.
+   - If any location is not assigned, retain `TBD` and carry it as a blocker in the handoff state rather than inventing a path.
+   - Source reread: `docs/SPEC.md` Sections 8.2, 8.4, 9.2, and 19.3; decomposition DEL-05-04 row. Disposition: D-001 incorporated as a record step with path names left `TBD` until code discovery.
 
 ## Verification
 
@@ -69,6 +79,7 @@ Define an operational path for producing and verifying the Runtime Replay and Tr
 | Legacy read | Legacy flat session record remains readable until migration completion is accepted. |
 | Redaction | Secret-like values do not appear in replay output, diagnostics, or summaries. |
 | Contract separation | Browser `UIEvent` and persisted `HarnessEvent` concepts remain distinct in naming and tests. |
+| Closure slots | Parser API, transcript model, route/component placement, fixture paths, dependency edges, and redaction/tool-result artifact coverage are either accepted or explicitly listed as `TBD` blockers. |
 
 ## Records
 
@@ -78,5 +89,6 @@ Expected records for closure:
 - Transcript reconstruction test results.
 - Malformed-tail fixture and test result.
 - SDK transcript linkage fixture and test result.
+- Accepted parser/API/view/route and fixture path record, or explicit `TBD` blockers.
 - Source-state note for `docs/PRD.md` HASH_MISMATCH if still present.
 - Dependency extraction output after `Dependencies.csv` exists and the FULL_GRAPH register is checked.

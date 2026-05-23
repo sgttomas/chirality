@@ -11,7 +11,7 @@ Define the bounded procedure for producing, checking, and using the persona alia
 | Deliverable context file `_CONTEXT.md` is available. | Satisfied. |
 | Reference record `_REFERENCES.md` is available. | Satisfied. |
 | Authoritative sources listed in `_REFERENCES.md` are locally accessible. | Satisfied with PRD hash mismatch warning. |
-| Declared upstream dependencies are available. | TBD; `_DEPENDENCIES.md` has no accepted extracted edges yet. |
+| Dependency register is available. | Satisfied for extracted rows: `Dependencies.csv` exists with 13 ACTIVE rows; declared human upstream/downstream edges remain TBD. |
 | ResponsibleParty assigned. | TBD. |
 | Exact implementation module paths for alias resolver, matrix fixture, and route tests are known. | TBD. |
 
@@ -30,7 +30,10 @@ Define the bounded procedure for producing, checking, and using the persona alia
 11. Build or update route fixtures proving row-to-surface routing.
 12. Build or update persona resolver tests for `agents/AGENT_*.md` lookup and `PERSONA_NOT_FOUND`.
 13. Mark any unsupported behavior as TBD rather than inventing requirements.
-14. Defer dependency extraction until the authorized `TASK + dependency-extract` phase; do not create `Dependencies.csv` in this procedure.
+14. Read the current dependency register when closure or fixture coverage depends on dependency state; do not create or rewrite `Dependencies.csv` during this four-document procedure.
+15. When implementation begins, fill F-001 with selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver.
+16. Fill D-001 with the actual route-state or query-parameter keys for selected agent, row, and column after code selects them.
+17. Resolve B-001 by recording the governed unknown-alias behavior and adding the matching negative alias resolver test.
 
 ## Verification
 
@@ -44,18 +47,20 @@ Define the bounded procedure for producing, checking, and using the persona alia
 | Persona lookup | Canonical persona names resolve to `agents/AGENT_*.md`; missing personas return `PERSONA_NOT_FOUND`. |
 | Unknown fields | Unknown runtime option keys warn rather than mutating behavior. |
 | Source warnings | PRD hash mismatch is recorded as a warning, not silently ignored. |
-| Dependency deferral | No `Dependencies.csv` is created by this deliverable-document run. |
+| Dependency register | Existing `Dependencies.csv` and `_DEPENDENCIES.md` are consumed as evidence; this procedure does not create or rewrite them. |
+| P3 evidence capture | F-002 records concrete test result files or command output locations for alias, matrix, route, workbench-context, persona, fallback, unknown-key, and unsupported-option checks. |
+| Acceptance transition | E-001 is closed only by refreshed REF-006 hash evidence or human acceptance of the current PRD hash. |
 
 ## Records
 
-Required records for this P1/P2 run:
+Required records for this document kit:
 
 - `Datasheet.md`
 - `Specification.md`
 - `Guidance.md`
 - `Procedure.md`
-- `_STATUS.md` updated to `INITIALIZED` only after the four required documents are written and non-empty.
 - `_run_records/TASK_RUN_2026-05-20_1614.md`
+- `_run_records/TASK_RUN_2026-05-23_W37_four-documents-p3.md`
 
 Future implementation records:
 
@@ -63,3 +68,6 @@ Future implementation records:
 - Route fixtures.
 - Matrix mapping tests.
 - Any human ruling on the PRD expected-hash mismatch.
+- F-001 path selections for implementation modules and fixture/test files.
+- F-002 evidence artifact names or command output locations.
+- X-001 follow-up accepted dependency edge ruling if human-declared upstream/downstream edges change.

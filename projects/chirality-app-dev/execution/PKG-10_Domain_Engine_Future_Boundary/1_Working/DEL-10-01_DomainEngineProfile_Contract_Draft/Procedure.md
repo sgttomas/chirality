@@ -10,8 +10,8 @@ Define the bounded procedure for producing and later maintaining the future `Dom
 |---|---|
 | Deliverable-local context is present. | Satisfied: `_CONTEXT.md` exists. |
 | Authoritative references are accessible. | Satisfied with warning: `_REFERENCES.md` lists accessible sources; PRD has recorded hash mismatch and is treated as source warning only. |
-| Declared upstream dependencies are accepted. | TBD: `_DEPENDENCIES.md` has no accepted upstream edges yet. |
-| Current state permits P1/P2 authoring. | Satisfied: `_STATUS.md` current state was `OPEN` before this run. |
+| Declared upstream dependencies are accepted. | TBD: `_DEPENDENCIES.md` records no accepted execution edges and lists anchor satisfaction as TBD. |
+| Current state permits P1/P2 authoring. | Historical P1/P2 only: `_STATUS.md` was set to `INITIALIZED` after initial authoring. Phase 2.5 P3_ONLY uses NO_STATUS_TOUCH. |
 | Current scope remains future-boundary. | Required by `docs/SPEC.md` §18 and dispatch instruction. |
 
 ## Steps
@@ -25,6 +25,7 @@ Define the bounded procedure for producing and later maintaining the future `Dom
 2. Confirm source posture from `_REFERENCES.md`.
    - Use matching source hashes as normal source evidence.
    - Treat PRD hash mismatch as source warning only, per dispatch instruction.
+   - Before downstream reliance on PRD-dependent assertions, require either refreshed matching PRD reference metadata or an explicit human ruling accepting the recorded mismatch.
    - Do not create `Dependencies.csv`.
 
 3. Read source slices for domain-engine future boundary.
@@ -40,6 +41,7 @@ Define the bounded procedure for producing and later maintaining the future `Dom
    - Keep `DomainEngineOperationDescriptor` as TBD until an authoritative descriptor schema exists.
    - Keep `manifestRules` schema as TBD until an authoritative manifest-rule schema exists.
    - Include validation notes for deterministic validation and future runtime exposure checks.
+   - If dependency satisfaction remains TBD, proceed only as a draft-maintenance action and do not claim closure or downstream readiness without a recorded human acceptance of the dependency posture.
 
 5. Preserve future-boundary constraints.
    - Do not implement candidate endpoints.
@@ -52,9 +54,11 @@ Define the bounded procedure for producing and later maintaining the future `Dom
    - Confirm requirements in `Specification.md` have verification hooks in this procedure.
    - Confirm unresolved schema details appear as TBD or conflict-table entries.
 
-7. Close P1/P2 run.
+7. Close or record the run according to phase policy.
    - Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` are all present and non-empty.
-   - If all four are non-empty and current state is `OPEN`, update `_STATUS.md` to `INITIALIZED`.
+   - For P1/P2 only: if all four are non-empty and current state is `OPEN`, update `_STATUS.md` to `INITIALIZED`.
+   - For Phase 2.5 P3_ONLY with NO_STATUS_TOUCH: do not modify `_STATUS.md`; record P3 dispositions and validation results in the run record.
+   - If accepted upstream dependency status remains unresolved, leave closure/downstream readiness as TBD unless a human ruling authorizes proceeding. Disposition: C-001 incorporated for status-policy normalization; F-001 incorporated for dependency-gate handling. Source reread: `_STATUS.md` Current State; `_DEPENDENCIES.md` Declared Upstream and SatisfactionStatus.
    - Record this TASK run in `_run_records/`.
 
 ## Verification
@@ -62,11 +66,12 @@ Define the bounded procedure for producing and later maintaining the future `Dom
 | Check | Expected result |
 |---|---|
 | Four document files | Present and non-empty. |
-| Status state | `INITIALIZED` only after all four documents are non-empty. |
+| Status state | `INITIALIZED` only after eligible P1/P2 authoring; unchanged during Phase 2.5 P3_ONLY NO_STATUS_TOUCH runs. |
 | Responsible party | Remains `TBD`. |
 | Future-boundary language | Present in all documents where scope or implementation posture is discussed. |
 | Schema gaps | `DomainEngineOperationDescriptor` and `manifestRules` details remain TBD or conflict-listed. |
 | Dependency register | `Dependencies.csv` is not created by this run. |
+| Dependency gate | If dependency satisfaction remains TBD, run records must say whether work is draft-only, human-accepted for continuation, or blocked for closure. |
 | Implementation activation | No domain-engine endpoint, tool, adapter, or protected-path write implementation is activated. |
 
 ## Records

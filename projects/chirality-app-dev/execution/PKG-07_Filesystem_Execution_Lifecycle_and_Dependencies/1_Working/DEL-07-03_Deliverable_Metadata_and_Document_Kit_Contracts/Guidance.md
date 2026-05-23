@@ -28,6 +28,8 @@ DEL-07-03 exists to make deliverable-local filesystem contracts machine-readable
 - The deliverable should not absorb sibling package responsibilities. Status transition authorization belongs to DEL-07-04; dependency register parsing and writing belongs to DEL-07-05. Source: decomposition / PKG-07 rows.
 - If scanner results feed `/api/working-root/scope` or `/api/project/deliverables`, keep route shapes stable unless the implementation task explicitly includes API contract changes. Source: `docs/SPEC.md` / Section 17.2; `docs/PLAN.md` / Current Baseline.
 - ASSUMPTION: The scanner should return structured findings that distinguish missing required files, missing recommended files, optional-file absence, prohibited-file presence, and source/hash warnings. This follows the source contracts but the exact data model is TBD.
+- Pass 3 normalization keeps the distinction between source-backed categories and implementation-selected enum names. B-001 is addressed by using required metadata, preparation baseline, lifecycle-conditioned document kit, canonical memory, prohibited memory, optional files, source/hash warning, and unknown unsupported condition as the working vocabulary; final enum names remain TBD until implementation.
+- C-001 is not locally resolvable in this deliverable. REF-006 remains a HASH_MISMATCH in `_REFERENCES.md`, so PRD-derived rows stay warning-qualified until a human or source-state owner accepts, corrects, or bypasses that reference state.
 
 ## Trade-offs
 
@@ -38,6 +40,22 @@ DEL-07-03 exists to make deliverable-local filesystem contracts machine-readable
 | Memory compatibility vs project profile | Do not add compatibility support for `_MEMORY.md`; reject it for this profile. | `docs/SPEC.md` / Section 3.1 and Section 5.4 |
 | Scanner ownership vs lifecycle ownership | Scanner may report state and file presence; lifecycle transition logic stays with the status API/tool slice. | `docs/SPEC.md` / Section 4.3; decomposition / DEL-07-04 |
 | Local requirements vs hash warning | Use local PRD content as requested source material but carry the HASH_MISMATCH warning in output evidence. | `_REFERENCES.md` / REF-006 |
+
+## P3 Disposition Guidance
+
+| Item | Guidance disposition |
+|---|---|
+| A-001 | Rejected for this P3 text pass as an implementation binding: implementation location and owning backend surface remain TBD until the implementation slice selects files. |
+| B-001 | Incorporated as normalized category vocabulary, with exact enum names and severity levels still TBD. |
+| C-001 | Surfaced as a source-state blocker: REF-006 HASH_MISMATCH remains warning-qualified and requires owner action outside this deliverable. |
+| D-001 | Converted to closure evidence requirements for implementation files, fixtures, and commands; exact paths remain TBD. |
+| D-002 | Reconciled as current-state language: extracted ACTIVE rows exist, while declared upstream/downstream dependency sections remain unaccepted/TBD. |
+| F-001 | Incorporated as minimum result-field guidance; final scanner schema remains TBD. |
+| F-002 | Converted to fixture/severity evidence requirements. |
+| X-001 | Converted to required implementation test evidence. |
+| X-002 | Converted to warning-propagation test evidence. |
+| E-001 | Incorporated with F-001 as the minimum scanner result model. |
+| E-002 | Reframed as an API compatibility assumption requiring implementation proof before closure. |
 
 ## Examples
 

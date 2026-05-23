@@ -9,6 +9,7 @@ Produce and verify the desktop shell and matrix navigation slice for DEL-02-01, 
 - Accessible source references listed in `_REFERENCES.md`.
 - Current deliverable context in `_CONTEXT.md`.
 - Existing implementation workspace for navigation components and tests. Exact implementation paths are TBD because they are not listed in this deliverable's authoritative source slices.
+- Implementation evidence slots are required for later closure: navigation component path, matrix UI test path, and route query handling test path. Exact paths remain TBD until selected by implementation. P3 disposition: D-001 converted to TBD.
 - Human acceptance that `ResponsibleParty` remains `TBD` until assigned.
 - Dependency extraction remains deferred; do not create `Dependencies.csv` as part of this procedure.
 
@@ -35,6 +36,7 @@ Declared downstream dependencies:
 11. Add or update matrix UI tests for row/column rendering and row-semantics routing.
 12. Add or update route query handling tests only to the extent implementation chooses route-state keys; exact query key names are TBD from source.
 13. Keep runtime engine internals out of this slice; hand off engine or selector-specific behavior to adjacent deliverables.
+14. Record selected implementation paths for navigation components, matrix UI tests, and route query handling tests when they exist; until selected, keep those fields as TBD. P3 disposition: D-001 converted to TBD.
 
 ## Verification
 
@@ -49,6 +51,16 @@ Declared downstream dependencies:
 | PIPELINE routing | OPERATIVE cells route to PIPELINE. |
 | Unsupported variants | Unsupported variants visible in this slice are disabled or coming soon, not silently removed. |
 | Scope discipline | No runtime engine internals are changed under this deliverable's authority. |
+
+## Implementation Evidence Slots
+
+| Evidence Slot | Current Value | Source |
+|---|---|---|
+| Navigation component path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+| Matrix UI test path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+| Route query handling test path | TBD until selected by implementation | `_CONTEXT.md` anticipated artifacts; decomp DEL-02-01 |
+
+P3 disposition: D-001 converted to TBD by adding explicit implementation evidence slots without inventing paths.
 
 ## Records
 

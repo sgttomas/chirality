@@ -23,10 +23,12 @@ Define the operational steps for producing and verifying the DEL-05-03 implement
 2. Inventory persistence and display boundaries.
    - Identify every code path that can persist or display provider errors, SDK errors, SDK stderr/debug logs, run logs, `HarnessEvent.data`, and tool result payloads.
    - Mark each boundary as `must redact before write`, `must redact before display`, `artifact policy required`, or `TBD`.
+   - Record the discovered module path, function or class name, payload shape, and owning deliverable when known; retain `TBD` for unknown paths rather than inferring them from adjacent scopes.
 
 3. Define the redaction helper contract.
    - Include configured API key values and configured secret variants.
    - Include raw key material and encoded variants where supported by tests.
+   - Include raw, URL-encoded, lowercase URL-encoded, double-encoded, and overlapping configured key cases once supported by the shared helper.
    - Preserve non-secret metadata needed for typed errors, audit replay, and debugging.
    - TBD: replacement token and configuration schema.
 
@@ -43,6 +45,7 @@ Define the operational steps for producing and verifying the DEL-05-03 implement
    - Serialize representative `HarnessEvent` payloads and assert secrets are absent.
    - Test small inline, medium preview, large artifact, and sensitive-tool-result paths.
    - Assert sensitive raw values are redacted or withheld before persistence.
+   - Cover inline, preview, artifact, explicit redacted payload, and withheld-payload outcomes for tool results.
 
 7. Add regression tests for key variants.
    - Cover raw configured key values.
@@ -65,6 +68,8 @@ Define the operational steps for producing and verifying the DEL-05-03 implement
 | Runtime event serialization | Representative `HarnessEvent.data` payloads contain no configured secret values. |
 | Tool result policy | Sensitive tool output is redacted, withheld, or stored only after an approved redaction pass. |
 | Audit usability | Non-secret metadata required for replay, diagnosis, and artifact references remains present. |
+| Cross-surface redaction assertion | Provider errors, SDK stderr/debug logs, SDK errors, run logs, `HarnessEvent.data`, and tool artifacts all pass through redaction before persistence and sensitive display. |
+| SDK transcript boundary | Record whether this deliverable can guarantee transcript redaction or only avoid/cross-reference transcripts; current source state keeps this decision TBD. |
 
 ## Records
 
@@ -81,3 +86,5 @@ TBD:
 
 - Exact test command set.
 - Exact Section 9 validation IDs to run for this deliverable after the runtime event schema lands.
+- Exact discovered code path inventory for provider, SDK, event, run-log, and tool-result surfaces.
+- Whether SDK transcript redaction is guaranteed by DEL-05-03 or only avoided and cross-referenced where feasible.

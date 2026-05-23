@@ -18,6 +18,17 @@ Out of scope:
 - General write/edit governance beyond root/path policy. `DEL-06-04` covers the broader write/edit surface and path hooks in the decomposition.
 - Instruction-root packaging completeness and release integrity beyond protection behavior. `DEL-08-01` and release verification deliverables cover packaging conformance.
 
+## Terminology
+
+Use these terms consistently in implementation notes and tests:
+
+| Term | Meaning | Source |
+|---|---|---|
+| Working root | User-selected local filesystem root for mutable project execution state. | `docs/TYPES.md` Section 1.6; `docs/SPEC.md` Section 1.2 |
+| `projectRoot` / active project root | Normalized runtime representation of the accepted working root. | `docs/TYPES.md` Section 1.6; `docs/SPEC.md` API/session sections |
+| Instruction root | Release-managed app resource tree that ordinary execution must not mutate. | `docs/TYPES.md` Section 1.5; `docs/SPEC.md` Section 1.1 |
+| Path containment | Policy that resolves tool/write paths against the active project root and rejects escapes. | `docs/CONTRACT.md` K-PATH-2; `docs/PRD.md` FR-050 |
+
 ## Requirements
 
 | ID | Requirement | Source |
@@ -55,6 +66,7 @@ Out of scope:
 | REQ-07-01-008, REQ-07-01-009 | Integration tests proving hooks fail closed and policy denials override permissive modes. | Hook failure triage and permission decision records. |
 | REQ-07-01-010 | Test matrix review against required acceptance cases. | Coverage checklist stored with test fixtures. |
 | REQ-07-01-011 | API test for `/api/working-root/validate` response shape and downstream normalized-root reuse. | API test output; ASSUMPTION remains pending until implementation design confirms reuse path. |
+| REQ-07-01-001 through REQ-07-01-011 | Source-state review confirms PRD-dependent acceptance remains warning-bearing until REF-006 hash mismatch is accepted, corrected, or bypassed by explicit human ruling. | Review note or run record naming `_REFERENCES.md` REF-006 disposition. |
 
 ## Documentation
 
@@ -69,4 +81,15 @@ Required artifacts for this deliverable:
 Documentation gaps:
 
 - Code module names and final helper/API locations are TBD.
+- Endpoint reuse through `/api/working-root/validate` and downstream normalized-root consumers remains an ASSUMPTION until implementation design confirms the concrete path.
+- Final test command names and evidence record locations for root validation, path policy, instruction-root protection, hook failure, symlink fixtures, and PRD source-state review are TBD.
 - Responsible party is TBD and must not be assigned without human action.
+
+## Pass 3 Semantic Lensing Notes
+
+| ItemID | Specification Disposition | Evidence |
+|---|---|---|
+| A-001 | converted to TBD | Documentation gaps explicitly retain unknown code module names, helper/API locations, and test file names rather than inventing implementation paths. |
+| C-001 | already covered | `Standards`, `Verification`, and `Documentation` preserve the PRD HASH_MISMATCH warning as review-aware source state. |
+| F-001 | incorporated | `Terminology` normalizes working root, `projectRoot` / active project root, instruction root, and path containment vocabulary for implementation use. |
+| D-001 | converted to TBD | REQ-07-01-011 remains labeled ASSUMPTION and verification requires implementation confirmation of endpoint reuse. |

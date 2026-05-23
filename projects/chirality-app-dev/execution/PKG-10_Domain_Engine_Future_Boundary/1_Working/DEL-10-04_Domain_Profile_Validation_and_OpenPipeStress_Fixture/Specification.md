@@ -8,6 +8,8 @@ The deliverable excludes current-release activation of domain-engine endpoints, 
 
 ResponsibleParty remains TBD.
 
+Current fixture implementation authority remains TBD. Before this deliverable can become executable implementation work, a human-approved PKG-10 amendment or explicit authorization must identify the ResponsibleParty, concrete test path, adapter manifest location, evidence-record format, and expected-failure fixtures.
+
 ## Requirements
 
 | ID | Requirement | Source | Verification |
@@ -21,6 +23,9 @@ ResponsibleParty remains TBD.
 | DEL-10-04-REQ-007 | Boundary notices shall state that Chirality does not provide professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `docs/TYPES.md` Section 11.3 | Tests or review checklist require boundary notice presence and wording coverage. |
 | DEL-10-04-REQ-008 | The fixture/test suite shall not rely on prompt-only restrictions for protected paths or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2; `docs/SPEC.md` Section 14.3 | Future implementation tests verify runtime or deterministic enforcement surfaces, not prompt text alone. |
 | DEL-10-04-REQ-009 | The deliverable shall preserve the PRD hash mismatch as a source warning rather than accepted truth drift. | `_REFERENCES.md` REF-006; assignment override | Run records and documents note the warning where source status matters. |
+| DEL-10-04-REQ-010 | Future negative tests shall define deterministic expected failures, not only checklist labels. | `docs/PRD.md` Section 8.17 FR-109; `docs/TYPES.md` Sections 11.1 and 11.2 | Missing required fields, overlapping paths, incomplete operation proposals, absent boundary notices, and core-runtime-coupling cases each have expected failure evidence. |
+| DEL-10-04-REQ-011 | Future operation-descriptor fixtures shall cover inputs, intended changes, deterministic checks, expected outputs, risks, required human gate, and status before any operation can be applied. | `docs/PRD.md` Section 8.17 FR-112/FR-113; `docs/TYPES.md` Section 11.2 | Fixture review confirms each `OperationProposal` field is represented or explicitly marked TBD. |
+| DEL-10-04-REQ-012 | Future fixture validation shall produce stable evidence records for pass/fail determinations and boundary-notice wording coverage. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4; `_DEPENDENCIES.md` Extracted Dependency Register | Evidence record path and format remain TBD until future amendment assigns them. |
 
 ## Standards
 
@@ -44,6 +49,9 @@ Future validation should include, at minimum:
 | Boundary notice | Fixture includes boundary notice text that prevents professional-approval or solver-truth overclaiming | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
 | Core-runtime separation | OpenPipeStress does not appear as core harness behavior | `docs/PRD.md` Section 8.17 FR-114 |
 | Future-scope gate | Tests do not activate domain-engine endpoints/tools as current-release implementation | `docs/SPEC.md` Section 18 |
+| Expected failure fixtures | Each negative case has deterministic expected output or failure evidence | `docs/PRD.md` Section 8.17 FR-109 |
+| Operation proposal fixture coverage | Inputs, intended changes, deterministic checks, expected outputs, risks, human gate, and status are present or explicitly TBD | `docs/TYPES.md` Section 11.2 |
+| Evidence records | Future test run output records pass/fail result, source-warning posture, boundary-notice wording coverage, and no-current-release-activation check | `docs/PRD.md` Section 8.17 FR-115; `docs/SPEC.md` Section 18 |
 
 ## Documentation
 
@@ -53,9 +61,11 @@ Required or anticipated artifacts:
 - Validation tests.
 - Adapter assumptions note.
 - ASSUMPTION: A future amendment will identify concrete file paths, test framework locations, and adapter manifest format before implementation.
+- TBD: Future evidence-record path and format for deterministic pass/fail decisions.
+- TBD: Human-approved boundary-notice wording fixture for professional-boundary coverage.
 
 ## Source Warnings
 
 | Warning | Impact |
 |---|---|
-| REF-006 `docs/PRD.md` has expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as source warning only per assignment; requirements cite PRD sections conservatively and do not treat the mismatch as a blocker. |
+| REF-006 `docs/PRD.md` has expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. | Treated as source warning only per assignment override; requirements cite PRD sections conservatively, preserve the mismatch visibly, and require human acceptance or refreshed source metadata before closure reliance. |

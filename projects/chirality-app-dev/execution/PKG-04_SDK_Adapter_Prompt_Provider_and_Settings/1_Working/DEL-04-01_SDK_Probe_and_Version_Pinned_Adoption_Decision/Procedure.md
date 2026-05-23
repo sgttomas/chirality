@@ -29,6 +29,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 
 3. Record version evidence.
    - Capture exact `@anthropic-ai/claude-agent-sdk` version under evaluation.
+   - Capture package manifest and lockfile evidence location once implementation begins.
    - Capture Claude Code subprocess version where knowable.
    - Mark unknowns as `TBD`; do not infer a version from roadmap text.
    - Source: `docs/SPEC.md` Section 12.4; `docs/CONTRACT.md` K-SDK-2.
@@ -43,12 +44,14 @@ This procedure is for producing the deliverable artifact. It does not authorize 
    - Verify shipped-like options use `settingSources: []`.
    - Verify `user` and `local` setting sources are not used in shipped builds.
    - If development-only project settings are used, require explicit environment configuration.
+   - Record the evidence row location for shipped settings posture, negative user/local settings evidence, and any development-only project-setting posture.
    - Source: `docs/SPEC.md` Section 12.2.
 
 6. Probe permissions and tool exposure.
    - Test `permissionMode`, `allowedTools`, `disallowedTools`, `canUseTool`, and hooks.
    - Confirm that `allowedTools` is not treated as a restriction boundary.
    - Confirm denied tools are blocked by policy, hooks, SDK deny rule, or human gate and are recorded before allowing/denying when applicable.
+   - Record one minimal evidence row per permission surface and one deny-first overlay outcome row.
    - Source: `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` K-PERM-1 through K-PERM-3.
 
 7. Probe MCP and hook behavior.
@@ -71,10 +74,12 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 10. Probe Electron packaging.
     - Validate that a packaged build can start an SDK-backed harness turn.
     - Record subprocess/binary execution path, `asarUnpack`, signing, environment, and transcript/storage effects.
+    - Record the residual-risk verdict if packaging works only with special path, signing, environment, or storage assumptions.
     - Source: `docs/PRD.md` KG-025; `docs/PLAN.md` R0.
 
 11. Draft the version-pinned adoption decision.
     - State `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.
+    - Name the human approver or approving role; keep this field `TBD` until ownership is assigned.
     - Cite probe evidence for each P0 reliance boundary.
     - Keep the SDK privileged as implementation substrate, not product identity or governance authority.
     - Source: `docs/DIRECTIVE.md` Sections 2.8 through 2.11.
@@ -95,13 +100,15 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 | Source-state check | REF-006 hash mismatch is resolved, accepted, or carried as a closure blocker. |
 | Probe coverage | Every required probe topic from R0 has an evidence row or `TBD` blocker. |
 | Version pin | Exact SDK package version is recorded before adoption. |
+| Version evidence location | Package manifest and lockfile evidence location is recorded once implementation begins. |
 | Contract boundary | Decision states that SDK-specific identifiers remain adapter metadata and Chirality contracts stay product-owned. |
 | Settings isolation | Shipped posture uses `settingSources: []`. |
-| Permissions | Deny-first behavior is verified; `allowedTools` is not treated as restriction. |
+| Permissions | Rows exist for `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and deny-first behavior; `allowedTools` is not treated as restriction. |
 | Sessions/transcripts | SDK transcript/store linkage is recorded without replacing Chirality audit JSONL. |
 | Interrupts | Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged. |
 | Packaging | Packaged app SDK turn is proven or recorded as fallback/residual risk. |
 | Fallback criteria | Any unverifiable P0 reliance boundary has an explicit fallback trigger. |
+| Adoption authority | `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK` has a named human approver or approving role, or remains `TBD`. |
 
 ## Records
 
@@ -118,6 +125,8 @@ TBD records:
 
 - Exact SDK version.
 - Exact Claude Code subprocess version, if knowable.
+- Exact package manifest and lockfile evidence location.
 - Exact transcript/store decision.
 - Exact Electron packaging result.
 - Exact adoption verdict.
+- Exact human approver or approving role.

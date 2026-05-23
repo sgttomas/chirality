@@ -12,7 +12,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 | Working root | Must remain separate from the instruction root and provide contextual project-root information only. | `docs/SPEC.md` Section 1.2; `docs/DIRECTIVE.md` Section 2.7 |
 | Persona alias vocabulary | Use or delegate the accepted alias mappings. | `docs/TYPES.md` Section 3.4 |
 | Runtime mode/tool policy | Use resolved mode and permitted tool-surface inputs supplied by the runtime/options layer. | `docs/SPEC.md` Sections 13-15 |
-| Upstream dependencies | TBD - no accepted upstream dependency edges have been extracted. | `_DEPENDENCIES.md` |
+| Upstream dependencies | Extracted ACTIVE upstream edges identify DEL-04-02 for resolved mode/tool-surface inputs, DEL-08-01 for instruction-root packaging/conformance, DEL-08-02 for alias routing/resolver interface, and a PRD source-snapshot constraint. Declared dependency sections remain TBD until accepted by the governing dependency workflow. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-DEL-04-04-004 through DEP-DEL-04-04-007 |
 | Source-state warning | Treat `docs/PRD.md` hash mismatch as a warning; do not rely on PRD-only details without confirmation. | `_REFERENCES.md` REF-006 |
 
 ## Steps
@@ -21,7 +21,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
    Verify the implementation remains in the prompt/persona composition slice and does not absorb SDK option building, SDK message mapping, provider key/network handling, or instruction-root packaging conformance.
 
 2. Define PersonaComposer inputs.
-   Include at minimum selected persona, normalized project root or working-root summary, mode, permitted tool surface, governance preface source, persona instruction content source, and available fingerprint-policy inputs. Mark unresolved fields `TBD` rather than inventing interfaces.
+   Include at minimum selected persona, normalized project root or working-root summary, mode, permitted tool surface, governance preface source, persona instruction content source, and available fingerprint-policy inputs. The accepted runtime input interface is `TBD`; preserve unresolved fields as explicit optional/TBD inputs rather than inventing an implementation contract.
 
 3. Resolve persona identity.
    Normalize aliases according to accepted vocabulary or delegate to the accepted alias resolver. Resolve the canonical persona to `agents/AGENT_<persona>.md`. Missing persona behavior should produce a typed failure; exact token `PERSONA_NOT_FOUND` is PRD-derived and requires confirmation against an accepted PRD snapshot.
@@ -62,5 +62,5 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 
 - Implementation artifact: `persona-composer.ts` or accepted equivalent.
 - Tests: persona content hash tests, boot fingerprint tests, alias/missing-persona tests, prompt-content tests.
-- Integration evidence: boot/session fingerprint metadata update.
-- Open items: accepted dependency edges, exact runtime input interface, and accepted PRD snapshot confirmation.
+- Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-DEL-04-04-008.
+- Open items: exact runtime input interface, downstream fingerprint handoff consumer, and accepted PRD snapshot confirmation.

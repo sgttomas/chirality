@@ -25,9 +25,9 @@ Sources: `docs/DIRECTIVE.md` Sections 1, 2.8, 2.11, and 3; `docs/CONTRACT.md` K-
 
 ## Considerations
 
-- Copy can disclose SDK usage, but should avoid centering SDK brand names in product-facing identity surfaces unless needed for transparency, diagnostics, or implementation context.
+- Copy can disclose SDK usage when it improves transparency, diagnostics, implementation context, or release evidence. It risks product-identity drift when the SDK brand becomes the subject of the product claim, appears to own governance semantics, or makes Chirality look like Claude Code, an Anthropic product, a vendor CLI, or a feature-parity target.
 - Professional-boundary copy should be visible where a user could confuse output generation, validation, event logging, or domain-engine results with approval.
-- Release review should include UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, and domain-engine future notices.
+- Release review should include UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, and domain-engine future notices. The checked-surface inventory for a given release remains TBD until the release owner identifies the affected surfaces.
 - ASSUMPTION: "Boundary notice examples" will be used as reusable copy snippets, not as a substitute for implementation enforcement. This is inferred from the deliverable scope and the reliance-boundary requirements.
 
 ## Trade-offs
@@ -35,9 +35,24 @@ Sources: `docs/DIRECTIVE.md` Sections 1, 2.8, 2.11, and 3; `docs/CONTRACT.md` K-
 | Trade-off | Preferred posture |
 |---|---|
 | Transparent SDK disclosure vs. product identity drift | Disclose SDK use where appropriate, but keep Chirality as the product and contract owner. |
-| Concise UI copy vs. professional-boundary clarity | Use concise language, but do not remove human-review and non-binding qualifiers where reliance confusion is plausible. |
+| Concise UI copy vs. professional-boundary clarity | Use concise language, but do not remove human-review and non-binding qualifiers where reliance confusion is plausible. For very short UI strings, pair concise labels with nearby help text, tooltip text, empty-state copy, or release notes when the label alone cannot carry the boundary without becoming misleading. |
 | Friendly automation language vs. authority confusion | Prefer "helps draft", "organizes", "records", "checks", and "proposes" over "approves", "certifies", "issues", or "validates for reliance". |
 | Future domain-engine capability vs. current scope | Present domain engines as future-boundary scope until governed amendment and implementation evidence exist. |
+
+## Term Normalization
+
+| Term | Copy treatment | Source basis |
+|---|---|---|
+| Draft | Non-binding working output that requires accountable human acceptance before reliance. | `docs/DIRECTIVE.md` Section 3.1; `docs/CONTRACT.md` K-BIND-1 |
+| Proposal | A suggested change, operation, or copy treatment requiring review or acceptance. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-GATE-1 |
+| Decision support | Assistance that informs judgment but does not replace accountable human decision rights. | `docs/DIRECTIVE.md` Section 3.4 |
+| Summary | Non-authoritative condensation unless imported into governed project files and accepted. | `docs/DIRECTIVE.md` Sections 2.5 and 2.6 |
+| Transcript | Runtime or SDK record used for diagnosis/review, not an approval record. | `docs/DIRECTIVE.md` Section 2.3; `docs/CONTRACT.md` K-SDK-3 |
+| Runtime event | Audit evidence of what happened during a turn; not approval, issuance, code compliance, external validation, or reliance clearance. | `docs/DIRECTIVE.md` Section 2.3 |
+| Validator result | Deterministic check evidence; not professional approval or external validation. | `docs/DIRECTIVE.md` Sections 2.4 and 3.2; `docs/CONTRACT.md` K-AUTH-1 |
+| Approval record | Human-authored binding evidence tied to specific content, normally a git SHA. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2 |
+
+Validators and runtime events cannot be treated as external validation or approval records because the sources separate evidence from human authority. They can show what was checked or what happened, but gate-relevant decisions still require versioned project files and accountable human acceptance.
 
 ## Examples
 
@@ -50,6 +65,7 @@ Acceptable examples, grounded in source posture:
 | SDK disclosure | "This runtime may use an SDK-backed engine behind Chirality-owned contracts and audit records." | `docs/DIRECTIVE.md` Sections 2.8 and 2.10 |
 | Runtime event notice | "Runtime events record what happened during the turn; they are not approval records." | `docs/DIRECTIVE.md` Section 2.3 |
 | Domain notice | "Domain-engine results require human review and do not represent Chirality-owned solver truth or professional approval." | `docs/CONTRACT.md` K-DOMAIN-4; `docs/PRD.md` FR-115 |
+| Validator result notice | "This validator result is check evidence, not external validation or professional approval." | `docs/DIRECTIVE.md` Sections 2.4 and 3.2; `docs/CONTRACT.md` K-AUTH-1 |
 
 Avoid examples:
 
@@ -66,4 +82,3 @@ Avoid examples:
 |---|---|---|---|---|---|---|
 | CT-001 | Dispatch path used `PKG-01_Governance_and_Product_Boundaries`, but the matching folder on disk is `PKG-01_Product_Governance_and_Reliance_Boundaries`. | User dispatch path | `_CONTEXT.md` PackageName and actual folder path | Run record; final report | Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID. | TBD |
 | CT-002 | `docs/PRD.md` hash differs from `_REFERENCES.md` expected hash. | `_REFERENCES.md` REF-006 expected/actual hash | User dispatch override says mismatch is source warning, not blocker | All PRD-sourced requirements | Use PRD as accessible source with warning; do not treat mismatch as blocker. | TBD |
-

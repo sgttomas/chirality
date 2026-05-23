@@ -34,6 +34,7 @@
 | Condition | Value | Source |
 |---|---|---|
 | Source warning | PRD source is accessible but has the run-declared expected/observed hash mismatch; this run treats the mismatch as a warning only. | Assignment instruction; `_REFERENCES.md` REF-006 |
+| Pass 3 source-state disposition | B-001 preserves REF-006 as warning-only source tension for all PRD-grounded security checks until a later human/source ruling records otherwise. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table |
 | Security posture | API keys are non-project convenience state and must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` NFR-002 |
 | Attachment trust boundary | Client attachment metadata is non-authoritative; server revalidates attachment properties. | `docs/PRD.md` Section 8.6, FR-037; `docs/CONTRACT.md` K-ATTACH-1 |
 | Failure handling | Partial attachment failure is non-fatal when executable content remains; all attachments failing with empty text returns `ATTACHMENT_FAILURE`. | `docs/SPEC.md` Section 16.1; `docs/PRD.md` Section 8.6, FR-040 |
@@ -57,3 +58,9 @@
 | REF-005 | `docs/PLAN.md` | MATCH | Implementation sequencing context for key handoff and validation |
 | REF-006 | `docs/PRD.md` | HASH_MISMATCH warning | Product requirements FR-030 through FR-040 and NFR security/privacy requirements |
 | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | accessible | DEL-09-06 scope and SOW/objective mapping |
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| B-001 | Incorporated as an explicit warning-only source-state condition; no PRD-derived value was promoted beyond the existing REF-006 warning. |

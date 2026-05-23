@@ -51,8 +51,8 @@ Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-02-05 row; `docs/PRD
 | Requirement | Verification Approach |
 |---|---|
 | DEL-02-05-R01 | UI/integration test confirms key save path uses Electron IPC and does not create working-root key material. |
-| DEL-02-05-R02 | UI test covers status rendering for `ui`, `env`, and `none`; no key value appears in rendered text or captured events. |
-| DEL-02-05-R03 | Integration or mocked status test covers precedence order. |
+| DEL-02-05-R02 | UI test covers status rendering for `ui`, `env`, and `none`; no key value appears in rendered text or captured events. Final fixture/module path is TBD until the API key settings surface is implemented. |
+| DEL-02-05-R03 | Integration or mocked status test covers precedence order. Final fixture/command is TBD until the API key settings surface is implemented. |
 | DEL-02-05-R04 | Mock unavailable safeStorage and verify visible error state. |
 | DEL-02-05-R05 | Unit test maps representative typed errors to title/message/next-step fields. |
 | DEL-02-05-R06 | UI state test confirms draft and attachment metadata remain available after a runtime error. |
@@ -75,3 +75,4 @@ Documentation or implementation details still TBD:
 - Exact typed error enum consumed by the UI.
 - Exact secure-storage unavailable copy.
 - Exact retry state owner for drafts and attachments.
+- Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.

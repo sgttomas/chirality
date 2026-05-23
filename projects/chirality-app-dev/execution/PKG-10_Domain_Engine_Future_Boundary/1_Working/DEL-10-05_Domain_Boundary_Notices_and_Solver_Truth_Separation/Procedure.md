@@ -44,6 +44,7 @@ Use this procedure to produce or review boundary-notice copy for future domain-e
 8. Record review outcome.
    - Note pass/fail against the checklist in `Guidance.md`.
    - Record any human-ruling items.
+   - Record the reviewed surface, reviewer, review date, source-warning status, closure verdict, unresolved human rulings, and carryforward items using the review output record fields below.
    - Do not create or update `Dependencies.csv` as part of this procedure.
 
 ## Verification
@@ -56,11 +57,40 @@ Use this procedure to produce or review boundary-notice copy for future domain-e
 | Protected paths preserved | Confirm protected domain artifacts are not described as directly agent-writable. |
 | Future scope preserved | Confirm current-release implementation is not implied. |
 | Unsupported facts labeled | Confirm unknowns are `TBD`, `ASSUMPTION`, `PROPOSAL`, or conflict-table items. |
+| Closure evidence complete | Confirm the review output record includes reviewed surface, reviewer, date, checklist result, source-warning status, unresolved human rulings, and closure verdict. |
+| PRD warning maintained | Confirm the PRD hash mismatch remains recorded with owner or resolution path until reconciled or formally waived. |
+
+## Review Output Record
+
+Use this minimum record shape for each boundary-notice review until a future product-native record is accepted:
+
+| Field | Required Content |
+|---|---|
+| Reviewed surface | UI, documentation, event record, domain profile, operation proposal, protected artifact notice, fixture example, or other named surface. |
+| Reviewed source | File/path, screen, mockup, record, or proposed copy location reviewed. |
+| Reviewer | Accountable reviewer name or `TBD` if not yet assigned. |
+| Review date | Calendar date or `TBD`. |
+| Checklist result | Pass/fail for each `Guidance.md#Domain Review Checklist` row, or a reference to the completed checklist. |
+| Notice pattern used | Standard, compact UI, operation proposal, protected artifact, fixture, or `TBD`. |
+| Source-warning status | PRD hash warning open/closed/waived; closure evidence must cite the reconciliation or waiver record. |
+| Human-ruling carryforward | Unresolved wording, profile-location, engine-specific, source-warning, or acceptance-authority questions. |
+| Closure verdict | `PROPOSAL`, `BLOCKED`, `READY_FOR_HUMAN_RULING`, or `ACCEPTED_BY_HUMAN` with evidence. |
+
+## Closure Evidence
+
+A reviewed notice package is not complete merely because copy exists. Closure evidence must show:
+
+- Required notice pattern or out-of-scope rationale for each selected future surface category.
+- Completed checklist capture location, or `TBD` when no accepted storage location exists.
+- OperationProposal schema citation status before operation-proposal notice examples are used as closure evidence.
+- PRD source-warning owner or resolution path while `_REFERENCES.md` records a hash mismatch.
+- Unresolved human-ruling items carried forward explicitly.
 
 ## Records
 
 - Reviewed boundary notice copy.
 - Completed domain review checklist from `Guidance.md`.
 - Human-ruling list for unresolved wording, profile, or engine-specific questions.
-- Source-warning note for PRD hash mismatch until reconciled.
+- Source-warning note for PRD hash mismatch until reconciled, including owner or resolution path `TBD`.
+- Review output record containing reviewed surface, reviewer, date, checklist result, source-warning status, closure verdict, and human-ruling carryforward.
 - This deliverable's `_STATUS.md` lifecycle state.

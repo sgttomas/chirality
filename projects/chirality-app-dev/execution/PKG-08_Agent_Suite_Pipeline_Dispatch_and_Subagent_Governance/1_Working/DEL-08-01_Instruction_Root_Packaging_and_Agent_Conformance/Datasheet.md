@@ -41,7 +41,7 @@ Source: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DE
 - This deliverable is a test-suite work item for PKG-08 and must not expand runtime capability. Source: `_CONTEXT.md`; decomposition DEL-08-01 row.
 - The test suite must respect instruction-root / working-root separation. Ordinary project execution may write project truth only under the working root. Source: `docs/DIRECTIVE.md` section 2.7; `docs/CONTRACT.md` K-ROOT-3.
 - `docs/PRD.md` is locally accessible but recorded as `HASH_MISMATCH` in `_REFERENCES.md`. Treat PRD-derived items as source-warning context until the reference hash is reconciled.
-- Declared upstream/downstream dependencies are currently `TBD`; dependency extraction has not yet populated accepted edges. Source: `_DEPENDENCIES.md`.
+- Declared upstream/downstream lists remain `TBD`; the current extracted register records PKG-08/SOW/OBJ anchors and upstream prerequisites for REF-001 through REF-007, DEC-004, and a `TBD current instruction-root source tree`, with no downstream handoff edges populated because the extraction ran with `CONSUMER_CONTEXT=NONE`. Source: `_DEPENDENCIES.md`.
 - ASSUMPTION: The validator target path, test framework, and exact fixture directory are implementation choices for a later coding task and are therefore `TBD` here.
 
 ## Construction

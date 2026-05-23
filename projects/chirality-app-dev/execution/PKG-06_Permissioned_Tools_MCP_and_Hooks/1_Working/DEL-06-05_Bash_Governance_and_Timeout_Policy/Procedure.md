@@ -13,7 +13,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 | Permission/mode vocabulary | Available in `docs/TYPES.md` Section 8 and `docs/SPEC.md` Section 15.1 |
 | Tool-surface rules | Available in `docs/SPEC.md` Section 14.3 |
 | R4 sequencing and acceptance criteria | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
-| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
+| Declared upstream dependencies | Extracted ACTIVE upstream rows exist in `_DEPENDENCIES.md`; declared upstream remains TBD until dependency satisfaction is accepted. |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
 | Bash-specific numeric timeout default and maximum | TBD - required by policy but not specified in accessible sources |
@@ -36,7 +36,7 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
    - Require stdout/stderr capture plan.
    - Require result storage or preview policy for medium/large outputs.
    - Require audit metadata sufficient to record permission, start, terminal outcome, and artifact references.
-   - ASSUMPTION: command metadata and network posture checks are part of Bash preflight because PRD R4 says the Bash `PreToolUse` hook enforces them; this is PRD HASH_MISMATCH warning-qualified.
+   - Treat command metadata fields and network posture checks as unresolved preflight slots until an accepted contract defines them or assigns them outside DEL-06-05. PRD R4 mentions both, but REF-006 remains HASH_MISMATCH warning-qualified.
 
 4. Enforce denied-never-spawns.
    - Place denial checks before process creation.
@@ -46,13 +46,14 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
    - Start the process with the resolved timeout.
    - Capture stdout and stderr separately.
    - Track exit code, timeout, interruption, cancellation, and failure classifications where available.
+   - If the SDK or process runner cannot interrupt an active Bash process, persist the actual terminal failure, cancellation, or residual-risk outcome instead of reporting successful interruption.
    - Redact secrets from logs, tool outputs, and event records where policy requires.
 
 6. Store and summarize output.
    - Inline only small safe outputs.
    - Preview medium/large outputs.
    - Store raw large outputs under session artifacts and persist safe metadata such as artifact path, byte counts, truncation status, and channel labels where the accepted schema permits.
-   - Exact metadata schema: TBD.
+   - PRD artifact-policy fields include tool name, turn ID, byte count, truncation flag, and relative artifact path; Bash channel labels and terminal-outcome linkage remain TBD pending accepted schema.
 
 7. Persist audit evidence.
    - Persist permission evidence before allowing execution.
@@ -90,4 +91,6 @@ This procedure describes how to produce and verify the DEL-06-05 Bash governance
 - Tool output artifact metadata fixture: TBD.
 - Denied-never-spawns test evidence: TBD.
 - Interruption/timeout terminal outcome test evidence: TBD.
+- Hook/path composition evidence with DEL-06-04 and DEL-06-06: TBD.
+- Concrete test names, fixtures, and harness paths for DEL-06-05 / SOW-062 traceability: TBD.
 - Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.

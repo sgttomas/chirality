@@ -36,6 +36,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-01-04-REQ-008 | Domain-engine operation execution must remain future-amendment scope; domain operations require proposal records and explicit human acceptance before application. | Confirm domain boundary row cites future-amendment status and human gate. | `docs/PRD.md` §6.4 and R7; `docs/CONTRACT.md` §1.10 K-DOMAIN-3 |
 | DEL-01-04-REQ-009 | The register must not imply automated professional approval, code compliance, external validation, or solver truth owned by Chirality. | Review copy for professional-boundary language. | `docs/DIRECTIVE.md` §3; `docs/CONTRACT.md` §1.2 K-AUTH-1 and K-PROF-1 |
 | DEL-01-04-REQ-010 | Unknown or unsupported scope facts must remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed entries rather than invented content. | Inspect rows and notes for unsupported facts. | `docs/CONTRACT.md` §1.7 K-INVENT-1 and K-CONFLICT-1 |
+| DEL-01-04-REQ-011 | The concrete boundary rows for this four-document kit must be inspectable in `Datasheet.md` under `Boundary Register Rows` until a governed amendment or publication step moves them into a dedicated register artifact. | Inspect `Datasheet.md` `Boundary Register Rows` for RowID, boundary item, source reference, amendment trigger, current status, and human ruling fields. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7; `docs/CONTRACT.md` §1.7 K-INVENT-1 |
 
 ## Standards
 
@@ -58,6 +59,7 @@ Verification is documentary and review-based for this phase:
 | Boundary coverage | Trace SOW-065, SOW-076, SOW-077, and SOW-078 from decomposition to register requirements. |
 | Source fidelity | Confirm non-trivial requirements cite source files and sections. |
 | Conservative drafting | Confirm unsupported facts are marked `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. |
+| Boundary-row inspection | Confirm the concrete register rows are present in `Datasheet.md` under `Boundary Register Rows` and include source reference, amendment trigger, current status, and human ruling fields. |
 | Scope containment | Confirm this run did not create `Dependencies.csv` and did not modify files outside the deliverable folder. |
 | Status transition | Confirm `_STATUS.md` is `INITIALIZED` only after all four required documents are written and non-empty. |
 
@@ -71,7 +73,8 @@ Required artifacts for this deliverable:
 - `Procedure.md`
 - `_STATUS.md`
 - `_run_records/TASK_RUN_*.md`
+- `Datasheet.md` `Boundary Register Rows` section as the concrete inspection surface for this kit
 
-Deferred artifact:
+Existing derivative artifact:
 
-- `Dependencies.csv` is deferred to later dependency extraction and must not be created by this run.
+- `Dependencies.csv` is maintained by the separate dependency-extract workflow. This Pass 3 enrichment must not create or edit it.

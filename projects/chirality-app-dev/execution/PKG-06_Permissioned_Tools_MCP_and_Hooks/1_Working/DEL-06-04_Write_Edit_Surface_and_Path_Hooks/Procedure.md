@@ -21,6 +21,8 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 
 1. Establish the mutation surfaces.
    - Identify SDK built-in `Write` and `Edit` surfaces, plus any Chirality MCP write tools currently exposed.
+   - Treat `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as current write/gated MCP surfaces from the SPEC inventory.
+   - Classify gated `mcp__chirality__scaffold` before enabling any mutation behavior, and record whether it remains preview-only, scaffold-write capable, or out of this deliverable's active write surface.
    - Confirm write/edit surfaces are not exposed in `readOnly` and are only available in governed write modes.
    - Keep unknown or future write-capable tools out of scope until registered and governed.
 
@@ -39,7 +41,8 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 4. Implement exact edit precondition checks.
    - Require edit-style operations to specify the exact content or equivalent exact precondition needed for safe replacement.
    - Deny or fail without mutation when the current file content does not match the precondition.
-   - Keep the exact matching algorithm and diff strategy as `TBD` until implementation design selects them.
+   - Select and document the exact matching algorithm, stale-content behavior, and diff strategy; keep them as `TBD` until implementation design selects them.
+   - Record whether stale content is surfaced as permission denial, tool validation failure, or another terminal outcome so runtime event evidence can be tested.
 
 5. Connect permission and hook decisions.
    - Feed DEL-06-01 permission overlay results into the write/edit gate.
@@ -54,6 +57,7 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 7. Record provenance and runtime evidence.
    - Record permission/runtime evidence for allowed and denied attempts.
    - For successful writes/edits, capture safe provenance, diff or summary, and hook outcome metadata.
+   - For failed or denied write/edit attempts, capture the deliverable-local evidence needed to prove no mutation occurred; leave lifecycle-wide hook failure mirroring to DEL-06-06.
    - Apply redaction and result-budget policy where outputs could be large or sensitive.
 
 8. Add tests and fixtures.
@@ -64,6 +68,7 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 
 9. Record residual gaps.
    - Track unresolved root naming, exact edit algorithm, implementation file paths, fixture paths, and PRD HASH_MISMATCH state.
+   - Add or reference a source-state verifier that keeps PRD-derived behavior warning-qualified until REF-006 is reconciled or a governed bypass record is accepted.
    - Surface any remaining source conflicts in the deliverable review notes.
 
 ## Verification
@@ -80,6 +85,7 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 | MCP parity | Chirality MCP write tools pass through equivalent gates as SDK built-ins. |
 | Provenance | Successful writes produce safe diff/summary/provenance evidence; denied attempts produce audit evidence. |
 | PRD warning | PRD-derived controlled-write details remain traceable to `_REFERENCES.md` HASH_MISMATCH until reconciled. |
+| Hook-lifecycle boundary | Write/edit denial or failure evidence is captured here, while broader hook lifecycle and compaction/terminal mirroring remain assigned to DEL-06-06. |
 
 ## Records
 
@@ -87,6 +93,8 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 - Root resolver and instruction-root resolver integration: TBD.
 - Path policy fixtures: TBD.
 - Exact edit validator and matcher tests: TBD.
+- Stale-content terminal outcome classification: TBD.
+- MCP write/gated surface inventory and parity tests: TBD.
 - Provenance/diff/summary evidence format: TBD.
 - Runtime event evidence for allowed and denied write attempts: TBD.
 - Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.

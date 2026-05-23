@@ -26,6 +26,7 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/DIRECTIVE.md` Sections 2.7-2.9
 - The decomposition assigns SOW-002 and SOW-027 to DEL-07-01. SOW-002 covers working-root selection and validation; SOW-027 covers path containment and instruction-root protection.
 - `DEL-06-04` also references path hooks for write/edit execution. ASSUMPTION: DEL-07-01 should define reusable root/path policy expectations and tests, while DEL-06-04 applies them in the broader write/edit surface. This is an inferred coordination note from the decomposition, not an accepted dependency edge.
 - `_DEPENDENCIES.md` currently has no accepted upstream or downstream edges. Do not treat neighboring deliverables as formal dependencies until dependency extraction accepts them.
+- The relationship to `DEL-06-04` remains a coordination note, not an accepted dependency edge, until the dependency register is updated or a human ruling says otherwise.
 - The instruction root may be supplied through `CHIRALITY_INSTRUCTION_ROOT` during development and packaged under app resources in builds. Tests should cover both source-tree and packaged-root resolution if implementation supports both paths.
 - Initial symlink write rejection is explicit. Any future relaxation requires a governed amendment and tests.
 
@@ -57,3 +58,19 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/DIRECTIVE.md` Sections 2.7-2.9
 | WARN-07-01-001 | `_REFERENCES.md` REF-006 | `docs/PRD.md` has `HASH_MISMATCH`. Brief says to treat it as a source-state warning. | Datasheet, Specification, Guidance, Procedure citations to `docs/PRD.md` | TBD |
 
 No direct source conflict was found among the accessible slices read for this draft.
+
+## Human Rulings Needed
+
+| ItemID | Ruling Needed | Current Posture |
+|---|---|---|
+| C-001 | Accept, correct, replace, or explicitly bypass the `docs/PRD.md` REF-006 hash mismatch before PRD-dependent rows are treated as stable closure evidence. | Source-state warning preserved; no human ruling invented. |
+| X-002 | Decide whether `DEL-06-04` remains only a coordination note or becomes an accepted dependency edge for write/edit hook enforcement. | No dependency edge accepted in `_DEPENDENCIES.md`; guidance keeps the relationship non-authoritative. |
+| E-001 | If future symlink-write relaxation is proposed, identify the amendment reference and fixture evidence required for acceptance. | Initial symlink rejection remains required. |
+
+## Pass 3 Semantic Lensing Notes
+
+| ItemID | Guidance Disposition | Evidence |
+|---|---|---|
+| C-001 | surfaced as human ruling | `Source-State Warnings` and `Human Rulings Needed` preserve the PRD hash mismatch without treating it as closure. |
+| X-002 | surfaced as human ruling | `Considerations` and `Human Rulings Needed` state that `DEL-06-04` is not an accepted dependency edge unless later accepted. |
+| E-001 | already covered | `Considerations`, `Trade-offs`, `Examples`, and `Human Rulings Needed` keep symlink writes rejected until governed amendment and tests exist. |

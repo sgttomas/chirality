@@ -35,6 +35,7 @@ Out of scope:
 | DEL-09-06-REQ-012 | Total attachment failure with empty text shall reject the turn with `ATTACHMENT_FAILURE`. | Route or resolver integration tests. |
 | DEL-09-06-REQ-013 | UI-facing retry behavior shall preserve draft and attachments on failed send where attachment failure recovery is exercised. | UI or integration retry-preservation tests. |
 | DEL-09-06-REQ-014 | Required local checks must remain explicit and repeatable before release-significant acceptance. | CI/premerge validation evidence. |
+| DEL-09-06-REQ-015 | Release-significant evidence shall include the source-named validation command family where applicable: `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, `instruction-root:integrity`, and `desktop:dist`; exact package-script spelling and output artifact paths remain `TBD` until implementation locations are selected. | Command output or CI artifact references tied to the selected implementation targets. |
 
 ## Standards
 
@@ -54,7 +55,7 @@ Out of scope:
 | REQ-005, REQ-006 | Electron network guard tests for allowed and denied URLs plus secret-free policy logs. | Network guard tests |
 | REQ-008, REQ-009, REQ-010 | Attachment resolver tests covering positive and negative file cases. | Attachment resolver validation |
 | REQ-011, REQ-012, REQ-013 | Route/UI integration tests for partial failure, total failure, and retry preservation. | Attachment retry/failure tests |
-| REQ-014 | Release-readiness validation command output. | Premerge validation evidence, exact command TBD |
+| REQ-014, REQ-015 | Release-readiness validation command output, including the source-named command family where applicable. | Premerge validation evidence; exact test file paths, package-script aliases, and artifact paths `TBD` |
 
 ## Documentation
 
@@ -64,4 +65,12 @@ Required output evidence for this deliverable:
 - Network guard tests.
 - Attachment resolver validation.
 - Key storage checks.
-- TBD: exact test file paths and command names once implementation locations are confirmed.
+- C-001: exact test file paths and command names for key, provider, renderer, attachment, and retry checks remain `TBD` until implementation locations are confirmed.
+- D-001: current-run release-readiness output remains `TBD`; the source-named command family is `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, `instruction-root:integrity`, and `desktop:dist` where applicable.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| C-001 | Converted to explicit `TBD` slots for exact test file paths and command names rather than inventing implementation locations. |
+| D-001 | Incorporated the source-named validation command family while retaining current-run output and exact artifact paths as `TBD`. |

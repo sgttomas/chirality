@@ -72,11 +72,20 @@ Required deliverable artifacts:
 - Engine conformance suite covering stub and SDK-backed adapters.
 - Test index or validation reference for `section9.runtime_engine_contract` once Section 9 runtime validation is implemented.
 
+Conformance evidence schema:
+
+- Adapter subject: `stub`, `SDK-backed`, or `blocked SDK-backed case`.
+- Case coverage: accepted-turn persistence, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume/linkage, redaction, and SDK-shaped leakage checks.
+- Result status: `PASS`, `FAIL`, or `BLOCKED_TBD`; blocked cases must name the missing DEL-04-01 probe detail or other upstream blocker.
+- Closure evidence: test output path or `TBD`, runtime contract documentation link, fallback/risk note when a product-critical boundary cannot be verified, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status once available.
+
 TBD:
 
 - Final implementation path if not `frontend/src/lib/harness/agent-engine-port.ts`.
 - Exact SDK-backed adapter fixture shape until DEL-04-01 confirms SDK probe details.
 - Exact session-link metadata fields accepted by the conformance suite until DEL-04-01/DEL-05 work confirms transcript/store placement.
+- Accepting party for staged SDK-dependent `BLOCKED_TBD` conformance cases.
+- `section9.runtime_engine_contract` validation linkage until DEL-09-02 implements the Section 9 runtime validation surface.
 
 ## Source-State Warning
 

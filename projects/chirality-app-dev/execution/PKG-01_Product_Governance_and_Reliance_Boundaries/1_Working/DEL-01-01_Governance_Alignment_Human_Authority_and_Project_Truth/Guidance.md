@@ -20,6 +20,7 @@ Use this deliverable to keep the governing document set coherent while the Chira
 | Authority order | Start with `docs/DIRECTIVE.md`, then `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, and `docs/PRD.md`; use decomposition and agent instructions for scoped execution context. |
 | PRD hash mismatch | Treat current `docs/PRD.md` as readable but source-warned. Do not use the mismatch to block this P1/P2 run, but do require a human ruling or accepted bypass before relying on the mismatched hash as clean source state. |
 | Accepted git history | When governance notes become acceptance evidence, bind them to a git SHA or equivalent immutable evidence. Content changes after approval require review again. |
+| Evidence roles | Runtime audit records support replay, diagnosis, and review; checklist outputs organize review evidence; accepted git history or equivalent immutable evidence binds any human approval to specific content. None of these records is approval by itself unless the accountable human approval record exists. |
 | Runtime implementation detail | Include runtime specifics only when they prove or preserve a boundary, such as accepted-turn persistence, event canonicality, settings isolation, permission denial, path containment, or SDK transcript non-authority. |
 | Scope discipline | Keep remote MCP, plugins, broad tool search, shipped bypass, Windows/Linux packaging, retired PKG-08 scope, and domain-operation execution out of this deliverable except as boundary examples. |
 | Responsible party | Keep `ResponsibleParty` as `TBD` until a human assigns ownership. |
@@ -58,4 +59,4 @@ Use this deliverable to keep the governing document set coherent while the Chira
 | DEL-01-01-R001 | Accept, bypass, or update the PRD hash mismatch in REF-006. |
 | DEL-01-01-R002 | Confirm whether the stale dispatch package-label path should be corrected in ORCHESTRATOR coordination state. |
 | DEL-01-01-R003 | Assign `ResponsibleParty`, if ownership is ready. |
-| DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, document diff checklist, and acceptance checklist. |
+| DEL-01-01-R004 | Define final filenames and destinations for governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table. |

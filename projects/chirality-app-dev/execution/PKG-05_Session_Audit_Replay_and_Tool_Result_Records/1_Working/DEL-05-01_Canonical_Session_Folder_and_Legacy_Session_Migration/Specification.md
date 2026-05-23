@@ -63,6 +63,9 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `execution/_Decomposition/Chirality_
 | R011, R012 | Tests or scanner checks proving `sessionId` is the persisted identity and not inferred from path labels alone. |
 | R013 | Redaction/security tests proving secret-like values are not written to session metadata or referenced artifacts; detailed redaction implementation belongs to DEL-05-03. |
 | R015 | Review check that implementation-specific file paths and helper names are either present in code or left as `TBD`/proposal until accepted. |
+| A-001 | Review check that save/update behavior is not implemented from the conflict table alone; coding must wait for implementation evidence or a human ruling. |
+| B-001, F-001 | Review check that legacy `claudeSessionId` mapping and duplicate folder-versus-flat behavior remain `TBD` until accepted by implementation evidence or human ruling. |
+| E-002 | Review check that any external SDK transcript path/store-key use has an explicit residual reliance-boundary note. |
 
 ## Documentation
 
@@ -74,5 +77,7 @@ Required artifacts:
 - `session.json` metadata field documentation.
 - SDK transcript/linkage residual-risk note where placement remains unresolved.
 - Test evidence for session root override behavior.
+- Human or implementation rulings for save/update behavior, duplicate folder-versus-flat behavior, and `claudeSessionId` to `sdkSessionId` mapping.
+- Source-state recheck for PRD-derived behavior affected by REF-006 `HASH_MISMATCH`.
 
 Source: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 8; `docs/PLAN.md` R1/R2 notes.

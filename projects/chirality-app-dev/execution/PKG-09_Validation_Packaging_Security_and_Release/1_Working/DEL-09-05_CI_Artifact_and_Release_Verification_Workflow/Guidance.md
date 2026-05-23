@@ -10,8 +10,8 @@ Source basis: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTW
 
 - Treat the local command sequence as the release-significant baseline: `test`, `typecheck`, `harness:validate:premerge`, `instruction-root:integrity`, and `desktop:dist` are the named commands in the accepted source slices.
 - Keep CI evidence stable and reviewable. The stable summary artifact path is `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`.
-- Separate CI automation from human release judgment. CI can run checks and upload artifacts, but it does not issue, certify, or professionally approve the work.
-- Preserve current release boundaries. The accepted target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended.
+- Separate CI automation from human release judgment. CI can run checks and upload artifacts, but it does not issue, certify, or professionally approve the work; only humans can author binding approval records, and release evidence remains review support until accepted.
+- Preserve current release boundaries. The accepted target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended; expanding signing, notarization, or platform targets would alter governed release scope.
 - Keep security posture visible during release verification: network scope and key handling are release constraints, not optional implementation details.
 - Prefer `TBD` over invented implementation detail when workflow filename, artifact retention, or evidence format is not source-defined.
 
@@ -26,6 +26,17 @@ Source basis: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTW
 | Manual verification | The runbook should record pass/fail/TBD per checklist item, not collapse all DMG checks into one overall statement. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
 | Secret handling | Release logs and artifacts should be checked for accidental key material. API keys are non-project convenience state and must not enter project files or tool artifacts. | `docs/CONTRACT.md` K-KEY-1 |
 | Network posture | CI and packaged-app verification should not broaden network policy beyond loopback plus Anthropic API path without governed scope change. | `docs/CONTRACT.md` K-NET-1 |
+| Professional-boundary rationale | Treat CI pass results as technical evidence, not approval, because the directive and contract reserve reliance, issue, certification, and external validation decisions to accountable humans. | `docs/DIRECTIVE.md` Sections 3.1 and 3.2; `docs/CONTRACT.md` K-AUTH-1 and K-PROF-1 |
+| Release-target rationale | Keep the macOS 15+ Apple Silicon unsigned/unnotarized local-builder target unchanged until amendment because it is the current release invariant and manual release verification target. | `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 |
+
+## Term Normalization
+
+| Term | Meaning | Current Disposition |
+|---|---|---|
+| Stable summary artifact | The source-defined validation summary at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | Defined by `docs/PRD.md` Sections 12.2 and 12.7 and `docs/SPEC.md` Section 19.1. |
+| CI upload artifact | The CI-provider artifact that uploads the stable summary artifact. | Name and retention period are `TBD`. |
+| Release verification runbook | The reviewable record of local command results, CI workflow evidence, artifact paths, manual checklist rows, security checks, and unresolved rulings. | Filename is `TBD`. |
+| Release evidence location | The final storage location for runbook and supporting release evidence. | Location is `TBD`; immutable snapshot policy remains open. |
 
 ## Trade-offs
 

@@ -21,9 +21,20 @@ The practical outcome is a user experience where operators can see the available
 
 - Prefer source-derived option lists and vocabulary over ad hoc labels. If implementation code already has local naming, reconcile it with `docs/TYPES.md` rather than silently creating a parallel taxonomy.
 - Scope scan behavior should be resilient to working-root changes. A selected deliverable or knowledge bucket that is no longer present should be cleared instead of retained as stale UI state.
-- Knowledge-type discovery should account for both the four-document kit and metadata buckets if those buckets are exposed in the same UI.
+- Knowledge-type discovery should account for the four-document kit first. Metadata buckets should be exposed only when the UI can use canonical `KnowledgeTypeOption` labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.
 - The deliverable's anticipated artifacts are tests and discovery behavior, not new authority for runtime subagent execution.
 - PRD hash mismatch is a warning. Use PRD content conservatively and preserve the mismatch in closure materials until a human reconciles the reference hash.
+
+## Boundary Rationale
+
+PIPELINE dispatch expresses operator intent and selects a proposed route through the operative surface. It is not an authorization boundary. Runtime authority remains with TASK and Type 2 governance checks because `docs/CONTRACT.md` requires explicit write scope, sealed context and gate metadata, no ghost inputs, and fail-closed subagent delegation. Selector state can therefore prepare or display a route, but execution must still pass the governed runtime checks before any child agent or task path is enabled.
+
+## Human Ruling Path
+
+| Topic | Required Ruling | Current Treatment |
+|---|---|---|
+| REF-006 PRD hash mismatch | Source owner or human reviewer must reconcile the expected and observed PRD hash, or explicitly accept continued conservative PRD use for this deliverable. | Keep PRD-derived requirements warning-qualified and do not treat the mismatched PRD hash as final closure evidence. |
+| Closure language for PRD-derived controls | Human reviewer must approve wording that distinguishes PRD-derived source-warning content from accepted source truth before final issue. | State that PRD content is used under recorded `HASH_MISMATCH` warning until reconciled; do not upgrade the warning by implication. |
 
 ## Trade-offs
 
@@ -53,3 +64,13 @@ The practical outcome is a user experience where operators can see the available
 
 - ASSUMPTION: OBJ-001 and OBJ-007 are relevant because the decomposition explicitly lists them for DEL-08-03.
 - ASSUMPTION: The final implementation surface is frontend/UI state and tests, but specific component and test file paths are TBD until the implementation worker selects or confirms existing modules.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| A-001 | Surfaced as conflict; the PRD hash mismatch remains in the Conflict Table and Human Ruling Path. |
+| C-001 | Incorporated as rationale for exposing metadata buckets only with canonical `KnowledgeTypeOption` labels or explicit mapping. |
+| D-001 | Converted to a human ruling path for REF-006 reconciliation before final closure. |
+| E-001 | Incorporated as boundary rationale distinguishing UI intent from TASK and Type 2 runtime authority. |
+| E-002 | Converted to human-approved closure-language requirement for PRD-derived controls under `HASH_MISMATCH`. |

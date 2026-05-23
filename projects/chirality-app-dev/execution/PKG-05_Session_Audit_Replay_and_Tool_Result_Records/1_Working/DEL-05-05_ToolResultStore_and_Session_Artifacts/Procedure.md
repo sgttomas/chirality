@@ -12,6 +12,7 @@ Define the production and verification procedure for implementing `ToolResultSto
 - Review `docs/PRD.md` Sections 10.4-10.5 and NFR-017 as source-state-warning input because `_REFERENCES.md` marks PRD as `HASH_MISMATCH`.
 - Confirm upstream dependencies once dependency extraction exists. Current `_DEPENDENCIES.md` lists upstream and downstream as TBD.
 - Confirm implementation location for `ToolResultStore`. Current source corpus names the concept but does not specify a module path.
+- Treat B-001 as unresolved until REF-006 source reconciliation is accepted; PRD-derived artifact-budget details remain warning-qualified.
 
 ## Steps
 
@@ -46,12 +47,14 @@ Define the production and verification procedure for implementing `ToolResultSto
    - Cover small inline, medium preview plus metadata, and large raw artifact storage.
    - Include threshold-boundary fixtures once threshold values are accepted.
    - Verify large outputs do not flood chat or model context.
+   - For X-001, record exact threshold-boundary tests as pending until byte thresholds and preview limits are accepted.
 
 8. Add metadata and replay fixtures.
    - Assert required metadata fields.
    - Verify relative artifact paths resolve under the session artifact root.
    - Verify valid artifact links remain available when replay ignores a malformed trailing JSONL line.
    - Include interleaved tool-result fixtures for deterministic replay under concurrency.
+   - For D-001, assert replay order from JSONL write sequence or accepted event-ordering metadata; do not rely on incidental SDK completion order.
 
 9. Run relevant validation.
    - Run unit and integration tests for the artifact store, event append/replay, redaction, and session metadata.
@@ -59,6 +62,7 @@ Define the production and verification procedure for implementing `ToolResultSto
 
 10. Record residual TBDs.
     - If thresholds, naming, checksum, retention, or redaction metadata remain unspecified, leave explicit `TBD` notes in implementation documentation and test TODOs rather than encoding hidden policy.
+    - For E-001, explain any accepted retention/deletion, checksum, and redaction-status metadata policy as a balance between audit reconstructability and leakage minimization.
 
 ## Verification
 
@@ -80,3 +84,8 @@ Define the production and verification procedure for implementing `ToolResultSto
 - Replay fixture files: TBD.
 - Redaction fixture files: TBD.
 - Residual design decisions: thresholds, preview length, artifact naming, checksum policy, retention/deletion behavior, and optional redaction-status metadata.
+- C-001 path disposition: current code discovery found no accepted implementation or fixture paths for this deliverable; all listed paths remain `TBD`.
+- F-001 policy disposition: output thresholds, preview length, artifact naming, checksum policy, and retention/deletion behavior remain governed deferrals.
+- D-001 verification disposition: concurrent replay checks must bind to write sequence or accepted event-ordering metadata.
+- X-001 verification disposition: threshold-boundary checks remain pending until threshold and preview-limit values are accepted.
+- E-001 rationale disposition: retention/deletion, checksum, and redaction-status rationale remains pending until the corresponding policies are chosen.

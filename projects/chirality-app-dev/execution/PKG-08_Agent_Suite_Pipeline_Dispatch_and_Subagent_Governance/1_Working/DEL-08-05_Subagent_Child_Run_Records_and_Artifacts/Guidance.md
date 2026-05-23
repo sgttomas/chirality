@@ -77,12 +77,11 @@ This deliverable makes governed subagent execution replayable and auditable with
 }
 ```
 
-The exact event payload keys inside `data` are TBD beyond the sourced `HarnessEvent` envelope and `HarnessSubagentRun` fields.
+The exact event payload keys inside `data` are TBD beyond the sourced `HarnessEvent` envelope and the minimum child-run linkage needed for replay (`runId` plus current or terminal `status`).
 
 ## Conflict Table (for human ruling)
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | C-001 | PRD hash mismatch: referenced PRD expected SHA does not match observed SHA. | `_REFERENCES.md` REF-006 expected hash | `_REFERENCES.md` REF-006 actual hash; runtime assignment says treat as warning | PRD-derived guidance and requirements | Use PRD content as accessible source with source warning; do not treat mismatch as closure blocker. | TBD |
-| C-002 | Denied subagent attempts may be represented as permission events, child-run records with `status: denied`, or both. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | Denial replay, schema tests, procedure verification | Record permission denial always; create child-run `denied` record only after the run allocation boundary is defined. | TBD |
-
+| Denied allocation ruling | Denied subagent attempts may be represented as permission events, child-run records with `status: denied`, or both. | `docs/TYPES.md` Section 10 includes `denied` status | `docs/CONTRACT.md` K-SUBAGENT-1 describes fail-closed delegation gate | Denial replay, schema tests, procedure verification | Record permission denial always; create child-run `denied` record only after the run allocation boundary is defined. | TBD |

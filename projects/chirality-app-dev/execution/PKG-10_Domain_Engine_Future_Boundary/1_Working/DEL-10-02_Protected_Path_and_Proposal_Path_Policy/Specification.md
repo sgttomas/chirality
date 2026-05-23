@@ -34,6 +34,8 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-10-02-REQ-008 | The policy shall require boundary notices or equivalent copy so domain-engine outputs are not presented as professional approval, code compliance, external validation, or Chirality-owned solver truth. | `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/PRD.md` §8.17 FR-115 |
 | DEL-10-02-REQ-009 | ASSUMPTION: Path policy enforcement should be expressed through future profile policy, path hooks, and operation workflow checks because those enforcement surfaces are named by CONTRACT. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2 |
 | DEL-10-02-REQ-010 | Concrete path glob syntax, adapter manifest schema, and per-engine examples remain TBD until DEL-10-01 / future amendment defines the profile contract. | `docs/PRD.md` §8.17 FR-108; `docs/TYPES.md` §11.1 |
+| DEL-10-02-REQ-011 | Future acceptance evidence shall include a proof slot showing that direct protected-path writes fail closed and cannot be performed by ordinary agent tools. P3 disposition: F-001 and X-001 incorporated as future evidence criteria. | `docs/CONTRACT.md` §1.6 K-PERM-2, §1.10 K-DOMAIN-2; `docs/PRD.md` §8.17 FR-110 |
+| DEL-10-02-REQ-012 | Future acceptance evidence shall include proof slots for proposal-path write allowance and accepted mutation through an approved adapter or operation workflow plus explicit human gate. P3 disposition: F-002 and D-002 incorporated as future workflow evidence criteria. | `docs/PRD.md` §8.17 FR-111, FR-113; `docs/SPEC.md` §18 |
 
 ## Standards
 
@@ -57,6 +59,8 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-10-02-REQ-007, DEL-10-02-REQ-008 | Confirm professional-boundary and solver-truth separation language is present. |
 | DEL-10-02-REQ-009 | Human review required because hook implementation detail is not fully specified in accessible source slices. |
 | DEL-10-02-REQ-010 | Human review required when profile contract or engine-specific path patterns are drafted. |
+| DEL-10-02-REQ-011 | Future validation fixture or equivalent review evidence confirms direct protected writes are denied or routed away from mutation and fail closed. |
+| DEL-10-02-REQ-012 | Future validation fixture or equivalent review evidence confirms proposal-path writes remain allowed as non-binding artifacts and accepted mutation requires the approved route plus human gate. |
 
 ## Documentation
 
@@ -71,3 +75,4 @@ Current documentation gaps:
 - Concrete protected/proposal path pattern examples are TBD.
 - Profile-specific adapter and manifest details are TBD.
 - ResponsibleParty remains TBD by dispatch instruction and `_CONTEXT.md`.
+- Future test fixture categories remain TBD until the governed `DomainEngineProfile` syntax and operation workflow are accepted: direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate. P3 disposition: F-002 and X-002 incorporated as future slots.

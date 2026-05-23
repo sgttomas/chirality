@@ -35,6 +35,7 @@ Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` 
 | Full SDK parity vs governed subset | Prefer governed subset. | PLAN states Chirality does not chase Claude Code feature parity; it adopts SDK mechanics where they accelerate the product-owned contract. |
 | Unit-only tests vs mixed conformance | Use both type/unit tests and route/SSE compatibility checks. | Contract correctness must cover adapter behavior and user-visible stream compatibility. |
 | Early implementation specificity vs `TBD` | Use `TBD` until SDK probe results exist. | Prevents inaccessible or unstable SDK behavior from becoming accepted project truth. |
+| Fallback criteria in docs vs tests only | Keep fallback criteria in runtime contract documentation and verify them through conformance where possible. | `docs/CONTRACT.md` K-ENGINE-5 and `docs/PRD.md` FR-126 make fallback a governed acceptance judgment, not just a test failure outcome; documentation must state when an unverifiable SDK boundary triggers fallback or residual-risk review. |
 
 ## Examples
 

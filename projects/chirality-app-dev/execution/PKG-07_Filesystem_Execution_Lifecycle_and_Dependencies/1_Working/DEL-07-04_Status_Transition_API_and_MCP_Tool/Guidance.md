@@ -32,6 +32,10 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 - `INITIALIZED -> SEMANTIC_READY` is optional according to `docs/TYPES.md` Section 4.1; if semantic lensing is skipped, deliverables may transition directly from `INITIALIZED -> IN_PROGRESS` under SPEC actor rules.
 - Status transition writes should remain subject to project-root containment and instruction-root protection expectations from the filesystem and permission surfaces. Source: `docs/CONTRACT.md` K-PATH-2 and K-MCP-1; `docs/PLAN.md` R3 implementation targets.
 - Runtime/event records can support audit, but they are not substitutes for accepted project-state files or human approval records. Source: `docs/DIRECTIVE.md` runtime event discussion and human authority section.
+- If alternate immutable approval evidence is ever accepted instead of a git SHA-like token, treat it as a human-approved policy extension recorded in versioned project evidence. Do not accept arbitrary runtime text as approval evidence. Source: `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2.
+- Review evidence should prove that status-transition outputs, tool events, hook events, and runtime records describe execution only. They must not use language that claims an agent, SDK, MCP tool, validator, or runtime event approved, issued, certified, or released work for reliance. Source: `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1.
+- `SOFTWARE_DECOMP` is the accepted decomposition-family label in deliverable context, while `SOFTWARE` is the runtime dispatch token used by the four-documents task. Preserve both labels with their context rather than normalizing one into the other.
+- The effect of the current PRD hash mismatch remains `TBD`: a human or implementation owner must decide whether it blocks implementation, blocks final acceptance, or blocks only PRD-specific acceptance claims.
 
 ## Trade-offs
 
@@ -42,6 +46,8 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 | Parser tolerance | Be tolerant enough to read the SPEC format, but report malformed or ambiguous status files rather than inferring state from other files. | `docs/SPEC.md` Section 4.1; `docs/CONTRACT.md` K-STATUS-1 |
 | Semantic-ready shortcut | Support the optional `INITIALIZED -> IN_PROGRESS` route when semantic lensing is skipped, but only under authorized actor rules. | `docs/TYPES.md` Section 4.1; `docs/SPEC.md` Section 4.3 |
 | Event logs | Record tool/runtime outcomes for audit, but do not treat runtime events as approval records. | `docs/DIRECTIVE.md` Runtime session logs and human authority |
+| Alternate approval evidence | Keep git SHA-like evidence as the default. Alternate immutable evidence requires human-approved policy extension and versioned evidence before implementation relies on it. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2 |
+| PRD hash warning | Continue using PRD-derived statements as warned source material for drafting, but require reconciliation or an approved bypass before final PRD-derived acceptance claims. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior |
 
 ## Examples
 
@@ -62,3 +68,12 @@ This deliverable exists to make deliverable lifecycle state a product-owned file
 ## Source Warning
 
 `docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`. Use PRD acceptance details as warned source material until the reference hash is reconciled.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| C-001 | Incorporated as a policy-extension rule for alternate immutable approval evidence. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2. |
+| D-002 | Incorporated as review-evidence guidance separating runtime/event records from human approval records. | `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1. |
+| E-001 | Incorporated as contextual variant-label guidance. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header. |
+| E-003 | Converted to `TBD` pending human or implementation-owner ruling on PRD hash mismatch governance effect. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior. |

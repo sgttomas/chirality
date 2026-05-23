@@ -27,6 +27,7 @@
 | Expected packaging outputs | `frontend/dist/Chirality-0.1.0-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; instruction-root integrity summary JSON | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
 | CI workflow baseline | Checkout repository; setup Node.js 20; run `npm ci`; verify instruction-root assets; preflight validation script presence; start Next server; poll readiness; run premerge validation; verify stable summary artifact; upload summary artifact | `docs/PRD.md` Section 12.7 |
 | Release target | macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended | `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 |
+| Ownership disposition | `ResponsibleParty` remains `TBD` until a human assigns ownership; CI/release execution must not be delegated on an inferred owner. | `_CONTEXT.md` Identity and Source Authority; `Procedure.md` Prerequisites |
 
 ## Conditions
 
@@ -34,9 +35,10 @@
 |---|---|---|
 | Source fidelity warning | `docs/PRD.md` has expected SHA `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34` and observed SHA `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`; per dispatch brief, this is a source warning only. | `_REFERENCES.md`; dispatch brief |
 | CI provider implementation | ASSUMPTION: GitHub Actions is the intended CI surface because `docs/PRD.md` Section 12.7 names "The GitHub workflow"; exact workflow file path is TBD. | `docs/PRD.md` Section 12.7 |
-| Artifact upload identity | Stable summary artifact upload is required; exact artifact name, retention period, and workflow path are TBD. | `docs/PRD.md` Section 12.7 |
+| Stable summary artifact path | The review target is `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/PRD.md` Sections 12.2 and 12.7; `docs/SPEC.md` Section 19.1 |
+| CI upload artifact identity | The CI workflow must upload the stable summary artifact, but the CI upload artifact name, retention period, and workflow file path are `TBD` until source-defined or human-approved. | `docs/PRD.md` Section 12.7; `_SEMANTIC_LENSING.md` D-001 |
 | Security posture during verification | API keys must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts; outbound network access remains loopback plus Anthropic API path unless amended. | `docs/CONTRACT.md` K-NET-1 and K-KEY-1 |
-| Dependency state | Declared upstream and downstream dependencies are TBD; do not create `Dependencies.csv` in this run. | `_DEPENDENCIES.md`; dispatch brief |
+| Dependency state | Declared upstream and downstream dependencies remain `TBD`; extracted `Dependencies.csv` v3.1 rows exist but readiness remains blocked until accepted dependency-edge or blocker disposition is recorded. | `_DEPENDENCIES.md` Extracted Dependency Register; `_SEMANTIC_LENSING.md` X-002 |
 
 ## Construction
 

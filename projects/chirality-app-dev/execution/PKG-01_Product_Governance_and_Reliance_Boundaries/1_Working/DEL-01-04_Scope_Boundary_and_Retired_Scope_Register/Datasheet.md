@@ -49,6 +49,18 @@ The register should be constructed as a documentary control surface with at leas
 | Retired-scope notes | Retired item, prohibited reactivation path, allowed adjacent infrastructure, source reference, human ruling. | ASSUMPTION: structure inferred from SOW-077 and PKG-08 notes. |
 | Amendment triggers | Trigger condition, affected boundary, required governed change surface, review evidence, approval status. | ASSUMPTION: structure inferred from `docs/DIRECTIVE.md` §7. |
 
+### Boundary Register Rows
+
+For this four-document kit, the concrete register-row artifact is this `Datasheet.md` section. Later publication may move these rows into a dedicated register file, but until amended this table is the inspection surface for boundary-row verification.
+
+| RowID | Boundary Item | Boundary Statement | Source Reference | Amendment Trigger | Current Status | Human Ruling |
+|---|---|---|---|---|---|---|
+| DEL-01-04-BR-001 | SOW-065 remote MCP/plugins/tool expansion | Remote MCP servers, plugins, remote execution, plugin marketplace, and broad tool search remain outside current scope until local SDK governance, permissions, hooks, event logging, and result storage are reliable. | `docs/PRD.md` §3.2 and §6.4; `docs/CONTRACT.md` §1.9 K-NET-1; `docs/PLAN.md` §11 | Governed amendment that admits remote or expanded tool scope and updates governance, tests, release checks, and implementation artifacts. | OUT | TBD |
+| DEL-01-04-BR-002 | SOW-076 ambient settings and shipped bypass | Shipped builds must not load ambient Claude settings and must not use `bypassPermissions` in shipped or ordinary operator workflows; developer-local bypass remains guarded. | `docs/PRD.md` §3.2 and FR-117; `docs/CONTRACT.md` §1.4 K-SDK-1 and §1.6 K-PERM-6 | Governed amendment plus SDK option, hook, environment guard, and release-check updates. | OUT | TBD |
+| DEL-01-04-BR-003 | SOW-077 retired PKG-08 scope | Retired PKG-08 execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record, and staleness propagation tooling remain retired; harness runtime event logging does not reactivate them. | `docs/PRD.md` §3.2 and KG-012; `docs/PLAN.md` §9; `docs/CONTRACT.md` §1.9 K-RETIRED-1 | Governed amendment that explicitly reactivates retired execution scope and updates active decomposition/package commitments. | OUT | TBD |
+| DEL-01-04-BR-004 | SOW-078 Windows/Linux packaging | Windows/Linux release packaging remains outside current release scope; current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG. | `docs/PRD.md` §6.4 and KG-014; `docs/CONTRACT.md` §1.9 K-RELEASE-1 | Governed release-scope amendment with packaging, validation, and instruction-root integrity updates. | OUT | TBD |
+| DEL-01-04-BR-005 | Domain operation execution and protected domain paths | Domain-engine integration as a shipping feature, direct protected-domain-path writes, and domain operation execution remain future-amendment scope; agents may write proposals and summaries, while application requires explicit human acceptance. | `docs/PRD.md` §6.4 and FR-106 through FR-115; `docs/CONTRACT.md` §1.10; `docs/PLAN.md` R7 | Governed domain-profile amendment with protected-path, proposal, deterministic-adapter, and human-gate controls. | OUT | TBD |
+
 ## References
 
 | RefID | Source | Use |

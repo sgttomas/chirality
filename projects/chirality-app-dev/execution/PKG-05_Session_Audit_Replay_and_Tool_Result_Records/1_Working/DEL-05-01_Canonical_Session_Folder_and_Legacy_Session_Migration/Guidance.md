@@ -32,6 +32,15 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `docs/CONT
 - Transcript placement remains an R1/OI-002 decision. A migration implementation should be able to record transcript path/store-key metadata without assuming the final storage mechanism.
 - Redaction requirements apply to metadata and artifacts, but detailed redaction behavior belongs to DEL-05-03.
 
+## Pass 3 Rulings Needed
+
+| ItemID | Ruling needed | Interim guidance |
+|---|---|---|
+| A-001 | Whether session save/update is a distinct behavior or covered by create/boot/retrieve/delete surfaces. | Treat save/update semantics as `TBD`; do not infer a route or persistence rule from SOW/PRD wording alone. |
+| B-001 | Whether legacy `claudeSessionId` maps directly to `sdkSessionId`. | Keep the legacy field readable and record new SDK linkage separately unless implementation evidence accepts a transform. |
+| F-001 | Duplicate folder-versus-flat behavior for the same stable `sessionId`. | Do not implement destructive delete or overwrite behavior until duplicate precedence and deletion semantics are ruled. |
+| X-001 | Final SDK transcript placement and review closure standard. | Keep SDK transcript path/store key as non-authoritative metadata while R1/OI-002 remains open. |
+
 ## Trade-offs
 
 | Option | Benefit | Cost / Risk | Guidance |
@@ -41,6 +50,8 @@ Sources: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `docs/CONT
 | Store SDK transcript under working-root-controlled folder | Better locality and governance review | SDK behavior must be empirically verified | Preferred direction when reliable; source marks it as R1 decision |
 | Cross-reference SDK transcript in user home | Preserves resume if SDK cannot be redirected | Adds reliance-boundary risk and non-project state dependency | Accept only with explicit `session.json` metadata and residual-risk record |
 | Keep `events.jsonl` as canonical audit mirror | Preserves Chirality-owned runtime evidence | Requires event writer/replay discipline | Required by SPEC and CONTRACT |
+
+E-002 disposition: when SDK transcripts remain outside project-controlled storage, the trade-off is acceptable only with `session.json` cross-reference metadata and a residual reliance-boundary record. Source: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4.
 
 ## Examples
 

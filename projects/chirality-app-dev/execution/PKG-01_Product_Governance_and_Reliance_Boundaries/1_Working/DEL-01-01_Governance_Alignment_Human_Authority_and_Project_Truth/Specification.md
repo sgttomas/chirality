@@ -46,7 +46,8 @@ ResponsibleParty remains `TBD` until assigned by a human.
 | Runtime-audit boundary | Checklist review | Runtime audit is evidence/replay support only; it does not replace approval records. |
 | Cross-document consistency | Diff checklist | PRD, DIRECTIVE, CONTRACT, SPEC, TYPES, PLAN, and decomposition remain aligned or conflicts are surfaced. |
 | Source warning handling | Conflict/source-warning table | PRD hash mismatch and dispatch-path mismatch are visible pending human ruling. |
-| Dependency deferral | File check | `Dependencies.csv` is absent. |
+| Source-warning acceptance | Reference-row or human-ruling check | Clean reliance on a source-warning item requires the exact affected reference row, accepted hash update, or explicit human bypass decision to be recorded before the warning is treated as resolved. |
+| Dependency deferral | Scope check | P3 does not create or update dependency records. |
 
 ## Documentation
 
@@ -60,4 +61,4 @@ The expected documentation artifacts are:
 - Acceptance checklist.
 - Conflict/source-warning table for human rulings where source records disagree or source hashes are not accepted.
 
-`TBD`: final artifact filenames and destination locations for the above checklists are not specified by the available sources.
+`TBD`: final artifact filenames and destination locations for the above checklists are not specified by the available sources. This includes the governance consistency notes, human-authority checklist, project-truth checklist, runtime-audit checklist, document diff checklist, acceptance checklist, and conflict/source-warning table.

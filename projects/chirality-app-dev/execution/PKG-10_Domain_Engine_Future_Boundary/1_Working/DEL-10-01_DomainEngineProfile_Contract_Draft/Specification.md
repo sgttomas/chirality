@@ -54,7 +54,9 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Source grounding | Check each non-trivial requirement against cited source sections. |
 | Unknown preservation | Confirm descriptor and manifest details remain `TBD` where sources do not define them. |
 | Cross-document consistency | Confirm terminology uses `DomainEngineProfile`, protected path, proposal path, deterministic adapter, boundary notice, and OperationProposal consistently. |
-| Status transition | Set `_STATUS.md` to `INITIALIZED` only after all four documents are non-empty. |
+| PRD source refresh gate | Before downstream reliance on PRD-dependent assertions, either refresh `_REFERENCES.md` so `docs/PRD.md` has a matching hash or record explicit human acceptance of the recorded PRD hash mismatch. Disposition: A-001 converted to a human ruling gate; B-001 incorporated as this verification check. Source reread: `_REFERENCES.md` Authoritative Source Corpus; `docs/PRD.md` §8.17. |
+| Future profile-instance review data | When concrete profile fixtures exist, review instance-level `boundaryNotice` copy and profile values rather than relying only on the generic illustrative skeleton. Disposition: E-001 incorporated as this future review-data check. Source reread: `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-115. |
+| Status policy | For P1/P2 authoring only, set `_STATUS.md` to `INITIALIZED` after all four documents are non-empty and the current state is `OPEN`; for Phase 2.5 P3_ONLY runs under NO_STATUS_TOUCH, leave `_STATUS.md` unchanged. |
 
 ## Documentation
 

@@ -24,6 +24,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 8.11-8.16 and 1
 - Keep Section 9 validation IDs aligned with DEL-09-02; this deliverable can provide underlying unit/API/integration coverage, but authoring the runner/ID catalog belongs to DEL-09-02 unless a later human ruling changes scope.
 - Treat the PRD hash mismatch as a warning, not a reason to discard PRD requirements, because the dispatch explicitly permits this handling.
 - Mark unimplemented or phase-dependent coverage as `TBD` or `ASSUMPTION` in planning notes rather than creating tests that assert unavailable behavior.
+- Treat missing implementation paths, fixture paths, and command output as closure evidence gaps, not as permission to invent paths. The implementation pass should replace those `TBD` values only after files and commands exist.
 
 ## Trade-offs
 
@@ -33,6 +34,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 8.11-8.16 and 1
 | Mocked engine vs real SDK adapter | Use stubs for deterministic product-owned contract tests; use SDK-backed adapter tests only where the source requirement is adapter conformance or SDK message mapping. |
 | API route tests vs service tests | Keep route tests focused on request validation, locking, SSE encoding, cleanup, and stable shape. Put runtime policy assertions in TurnEngine/permission/event tests. |
 | Current behavior vs future phase behavior | Tests for future phase behavior should be pending/TBD or fixture-ready until the corresponding implementation deliverable lands. |
+| Minimum coverage vs unavailable surfaces | Require one implemented or explicitly deferred test decision for each DEL-09-03 behavior group, but keep future-phase surfaces marked `TBD` until the owning implementation exists. |
 
 ## Examples
 

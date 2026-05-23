@@ -29,6 +29,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 - Local storage should degrade gracefully. A blocked quota, private-window limitation, or parse error should not make chat unusable; malformed records should be dropped and failures should warn. Source: `docs/PRD.md` Section 8.7 FR-043.
 - The Toolkit should not imply that SDK or permission modes are prompt hints only. PRD FR-044 requires runtime enforcement once the permission policy engine exists.
 - The PRD source is accessible but hash-mismatched against `_REFERENCES.md`; use it as directed by this task with warning, and avoid over-claiming details not present in the accessible text.
+- PRD FR-006 points to `docs/ui/UI_POLISH_EXECUTION_PLAN.md` for polish acceptance, but that file was not accessible in the source tree during this P3 run. Treat dense, professional interface review as required with checklist location TBD rather than substituting an invented rubric.
 
 ## Trade-offs
 
@@ -50,9 +51,11 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| CONFLICT-001 | `_REFERENCES.md` records a PRD SHA mismatch while the task instructs that the mismatch is a warning, not a blocker. | `_REFERENCES.md` REF-006 | Dispatch instruction for this TASK run | All sections citing `docs/PRD.md` | Use accessible PRD text with warning for this run; require later source-hash reconciliation before closure. | TBD |
+| CONFLICT-001 | `_REFERENCES.md` records a PRD SHA mismatch while the task instructs that the mismatch is a warning, not a blocker. | `_REFERENCES.md` REF-006 | Dispatch instruction for this TASK run | All sections citing `docs/PRD.md` | Use accessible PRD text with warning for this run; require later source-hash reconciliation before closure. Closure artifact and accountable resolver are TBD. | TBD |
 
 ## Rulings Needed
 
 - Human ruling needed on PRD hash reconciliation before final package closure, because `_REFERENCES.md` expected and actual PRD hashes differ.
+- Human ruling needed to name the accountable resolver and closure artifact for the PRD hash mismatch, such as an accepted reference refresh, source-snapshot ruling, or decomposition/package closure note.
 - Human ruling needed if local presets should have a specific retention duration, storage namespace, or migration policy; no accessible source defines those details.
+- Human ruling or downstream source needed for the missing UI polish checklist path referenced by PRD FR-006.

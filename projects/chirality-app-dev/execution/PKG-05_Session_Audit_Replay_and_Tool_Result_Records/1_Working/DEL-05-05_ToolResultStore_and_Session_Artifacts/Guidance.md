@@ -25,6 +25,8 @@ Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/DIRECTIVE.md` Sections 
 
 The corpus defines small, medium, and large output classes but does not define byte thresholds. Use `TBD` in implementation tickets and tests until thresholds are selected and accepted. A test can still assert class behavior once thresholds are parameterized.
 
+F-001 and X-001 should remain linked: threshold and preview-limit acceptance is the policy decision, and threshold-boundary verification is the proof that the accepted policy behaves as intended. Until that decision exists, boundary tests should be recorded as pending rather than filled with arbitrary values.
+
 ### Event and artifact separation
 
 Avoid embedding raw large payloads in `HarnessEvent.data`. Store the payload under session artifacts and persist metadata sufficient for replay. This keeps UI events compact and prevents model-context flooding while preserving audit evidence.
@@ -37,6 +39,8 @@ The safest implementation shape is a redaction decision before artifact persiste
 
 The decomposition explicitly includes deterministic replay under tool concurrency. Store enough sequence or parent-event linkage to preserve replay order under interleaved completions. The source corpus does not specify exact fields beyond the `HarnessEvent` shape, so sequence metadata details are TBD.
 
+D-001 is best handled as an assertion-design requirement: replay tests should prove ordering from JSONL write sequence or accepted event-ordering metadata, not from incidental SDK completion order.
+
 ## Trade-offs
 
 | Trade-off | Guidance |
@@ -45,6 +49,7 @@ The decomposition explicitly includes deterministic replay under tool concurrenc
 | Preview richness vs leakage risk | Rich previews help review, but sensitive data must be redacted. Prefer safe summaries when redaction status is uncertain. |
 | SDK transcript detail vs Chirality canonicality | SDK transcripts may contain useful details, but Chirality event metadata and artifact references are the replay authority unless transcript content is imported into `HarnessEvent` form. |
 | Early hardcoded thresholds vs configurable policy | Hardcoded thresholds would unblock tests but risk becoming undocumented product policy. Keep threshold values TBD until design acceptance. |
+| Retention/checksum certainty vs premature policy | E-001 remains a rationale gap until retention/deletion and checksum policy are selected. The interim balance is to preserve auditable artifact references and redaction posture while labeling retention, deletion, checksum, naming, and redaction-status metadata as explicit TBDs. |
 
 ## Examples
 
@@ -61,3 +66,4 @@ The decomposition explicitly includes deterministic replay under tool concurrenc
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
 | TBD | No direct source-content conflict identified. `docs/PRD.md` has a hash mismatch warning, but the task instructed use as a source-state warning. | `_REFERENCES.md` REF-006 | User task instruction | All sections citing PRD | Treat PRD as accessible direction while preserving unsupported details as `TBD`. | TBD |
+| B-001 | PRD-derived tool-result budgeting and metadata claims are useful direction, but REF-006 remains `HASH_MISMATCH` in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 10.4-10.5 and NFR-017 | Datasheet Attributes; Specification Requirements; Procedure Steps | Keep PRD-derived claims warning-qualified until source reconciliation is accepted. | TBD |

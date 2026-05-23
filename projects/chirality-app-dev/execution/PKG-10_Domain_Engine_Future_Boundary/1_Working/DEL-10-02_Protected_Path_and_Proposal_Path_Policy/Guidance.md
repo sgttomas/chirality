@@ -19,6 +19,8 @@ DEL-10-02 exists to define a future security boundary for domain-engine filesyst
 - Hook implications are policy-level in the current source set. CONTRACT names path hooks and operation workflow as enforcement surfaces, but the exact hook API for domain paths is TBD. Source: `docs/CONTRACT.md` §1.10 K-DOMAIN-2.
 - OpenPipeStress is only a potential first fixture profile. Avoid hardcoding OpenPipeStress assumptions into Chirality core policy. Source: `docs/PRD.md` §8.17 FR-114; `docs/TYPES.md` §11.3.
 - REF-006 `docs/PRD.md` has a hash mismatch in `_REFERENCES.md`; dispatch instruction says to treat that mismatch as a source warning only.
+- Concrete protected/proposal path examples stay category-level because `DomainEngineProfile` exposes `protectedPaths` and `proposalPaths` fields but the accessible sources do not define accepted glob syntax or per-engine path patterns. P3 disposition: C-001 already covered and made explicit; X-002 remains a future documentation slot.
+- Final publication wording should continue to say proposal artifacts are review aids only: they do not become accepted protected domain state without the future approved workflow and explicit human gate. P3 disposition: E-002 incorporated as closure wording guidance.
 
 ## Trade-offs
 
@@ -43,3 +45,5 @@ Supported example categories:
 |---|---|---|---|---|---|---|
 | CT-001 | PRD source hash mismatches expected reference hash, but dispatch instruction says to treat it as source warning only. | `_REFERENCES.md` REF-006 | Dispatch brief | All PRD-grounded sections | Use local `docs/PRD.md` as accessible source with warning recorded. | TBD |
 | CT-002 | Concrete protected/proposal path examples are requested as anticipated artifacts, but accessible sources define only categories and fields, not specific path patterns. | `_CONTEXT.md` Anticipated Artifacts | `docs/TYPES.md` §11.1/§11.3; `docs/PRD.md` §8.17 | Examples, requirements, procedure | Mark concrete patterns TBD until `DomainEngineProfile` contract/future amendment supplies them. | TBD |
+| CT-003 | PRD-grounded policy content uses a local PRD file whose recorded hash does not match the expected REF-006 hash. | `_REFERENCES.md` REF-006 | `docs/PRD.md` §8.17 and §10.10 | PRD-grounded requirements, closure language | Keep A-001 and E-001 visible as a source-warning conflict until a human accepts or replaces the PRD snapshot. | TBD |
+| CT-004 | No accountable owner is named for accepting or replacing the REF-006 PRD snapshot before final policy closure. | `_REFERENCES.md` REF-006 | `_CONTEXT.md` Source Authority | Source warning closure | Treat D-001 as a human-ruling TBD; do not close the PRD source warning by agent judgment. | TBD |

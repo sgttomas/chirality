@@ -20,6 +20,8 @@ This deliverable excludes feature implementation except test fixtures and packag
 | DEL-09-03-REQ-008 | Tests shall verify `Dependencies.csv` v3.1 parsing, validation, writing, provenance preservation, host deliverable consistency, row retirement, and legacy normalization. | Dependency parser/writer/linter tests assert required headers, enums, `FromDeliverableID` consistency, active extracted-row evidence fields, and retired-not-deleted behavior. Source: `docs/SPEC.md` Section 6; `docs/PRD.md` FR-055 through FR-057. |
 | DEL-09-03-REQ-009 | Tests shall verify denied actions do not execute and, where runtime event support exists, emit permission/runtime events. | Permission tests cover deny-over-allow, `dontAsk`, `readOnly`, unknown tool names, denied writes, denied Bash, hook failure, and structured decisions. Source: `docs/SPEC.md` Sections 14-15; `docs/CONTRACT.md` K-PERM-1 through K-PERM-5 and K-BASH-1. |
 | DEL-09-03-REQ-010 | Tests shall keep public APIs and canonical events provider-neutral, with SDK-specific names and IDs only as adapter metadata. | Conformance tests reject SDK-shaped leakage in public APIs and canonical `HarnessEvent` fields except explicit adapter metadata. Source: `docs/SPEC.md` Section 10.3; `docs/PRD.md` FR-122 and FR-123. |
+| DEL-09-03-REQ-011 | Closure shall include at least one implemented or explicitly deferred test case for each required behavior group: TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions. | Review the implemented test inventory against the eight behavior groups and record any group without executable coverage as `TBD`, deferred, or blocked with source-backed rationale. Source: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 12.5-12.6; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-09-03 row. |
+| DEL-09-03-REQ-012 | Closure shall preserve stable validation evidence for `npm run test` after implementation paths are selected. | Implementation run record or PR notes capture passing command output or a stable validation artifact; until execution occurs, command evidence remains `TBD`. Source: `docs/CONTRACT.md` K-VALIDATE-1; `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1. |
 
 ## Standards
 
@@ -40,6 +42,7 @@ This deliverable excludes feature implementation except test fixtures and packag
 | Integration tests | Accepted-turn-before-execution, interrupt cancellation, SSE compatibility, denied write under `dontAsk`, denied Bash, and governed allowed-write paths when those phases are available. |
 | Regression fixtures | Files and runtime records for malformed JSONL, symlinks, budget-sized attachments, invalid dependency rows, invalid status transitions, unknown tools, and denied permission cases. |
 | Command gate | `npm run test` from `frontend/` remains passing when dependencies and required instruction-root assets are present. Source: `docs/PRD.md` Section 12.2; `docs/CONTRACT.md` K-VALIDATE-1. |
+| Closure evidence | A behavior-group coverage table, final test source paths, fixture paths, and command evidence are recorded before closure; unavailable implementation surfaces remain `TBD` or explicitly deferred. Source: DEL-09-03-REQ-011 and DEL-09-03-REQ-012. |
 
 ## Documentation
 

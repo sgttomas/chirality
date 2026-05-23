@@ -38,7 +38,7 @@ Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` 
 | DEL-03-04-REQ-011 | Interrupt, disconnect, failure, and cancellation paths shall release the active turn state so the session is not left in `TURN_IN_PROGRESS`. | `docs/PRD.md` Section 8.3, FR-018 and FR-019; decomposition SOW-012 |
 | DEL-03-04-REQ-012 | Terminal outcome handling shall redact secrets and avoid storing API keys in runtime events, logs, provider errors, or tool artifacts. | `docs/CONTRACT.md` Section 1.5, K-EVENT-6; `docs/SPEC.md` Section 9.2 |
 | DEL-03-04-REQ-013 | The terminal event mapper shall translate SDK/provider terminal signals into Chirality `UIEvent` and `HarnessEvent` terms at the adapter boundary. | `docs/SPEC.md` Section 10.3; `docs/TYPES.md` Section 7.4 |
-| DEL-03-04-REQ-014 | ASSUMPTION: The implementation should expose testable cleanup hooks or observable state sufficient to prove lock release after interrupt, disconnect, failure, and cancellation. | Decomposition anticipated artifacts; `docs/PRD.md` Section 8.3, FR-018 |
+| DEL-03-04-REQ-014 | ASSUMPTION: The implementation should expose testable cleanup hooks or observable active-turn state sufficient to prove lock release after interrupt, disconnect, failure, and cancellation; exact hook or state API remains TBD. | Decomposition anticipated artifacts; `docs/PRD.md` Section 8.3, FR-018 |
 
 ## Standards
 
@@ -54,13 +54,13 @@ Source basis: `_CONTEXT.md`; `docs/PRD.md` Section 8.3 and 8.12; `docs/SPEC.md` 
 
 | Requirement IDs | Verification Approach |
 |---|---|
-| DEL-03-04-REQ-001, DEL-03-04-REQ-002, DEL-03-04-REQ-003 | API/integration test for `/api/harness/interrupt` during an active turn; assert provider abort path and interrupted `process:exit` SSE behavior. |
-| DEL-03-04-REQ-004, DEL-03-04-REQ-011 | Disconnect/cancellation cleanup test that closes the SSE client or cancellation signal and asserts active-turn lock release. |
-| DEL-03-04-REQ-005, DEL-03-04-REQ-006, DEL-03-04-REQ-008, DEL-03-04-REQ-009 | Event-log test that simulates failure/cancellation after `turn.accepted`, then replays JSONL and confirms accepted input plus terminal outcome remain recoverable. |
-| DEL-03-04-REQ-007, DEL-03-04-REQ-013 | Mapper unit tests using SDK/provider-like terminal signals and asserting Chirality-owned `UIEvent` / `HarnessEvent` outputs. |
+| DEL-03-04-REQ-001, DEL-03-04-REQ-002, DEL-03-04-REQ-003, DEL-03-04-REQ-007 | API/integration test for `/api/harness/interrupt` during an active turn; assert provider/model abort through the product-owned runtime boundary, interrupted `process:exit` SSE behavior, and absence of SDK-shaped names in public API or event assertions. |
+| DEL-03-04-REQ-004, DEL-03-04-REQ-011, DEL-03-04-REQ-014 | Terminal trigger matrix test covering successful completion, user interrupt, client disconnect, runtime/provider failure, and cancellation signal; assert each terminal path releases active-turn state through the selected observable hook/state API. |
+| DEL-03-04-REQ-005, DEL-03-04-REQ-006, DEL-03-04-REQ-008, DEL-03-04-REQ-009 | Event-log replay test that simulates failure/cancellation after `turn.accepted`, appends or simulates a malformed trailing JSONL line after valid records, then confirms accepted input plus terminal outcome remain recoverable and diagnostics surface. |
+| DEL-03-04-REQ-007, DEL-03-04-REQ-013 | Mapper unit tests using fixture cases for completion, failure, cancellation, and interruption-adjacent provider/runtime signals; assert Chirality-owned `UIEvent` / `HarnessEvent` outputs and keep provider-specific values only as adapter metadata where needed. |
 | DEL-03-04-REQ-010 | SSE compatibility fixture asserting current event names remain stable: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit`. |
-| DEL-03-04-REQ-012 | Redaction test for terminal failure/error payloads containing key-like input; assert no secret material is written to events or logs. |
-| DEL-03-04-REQ-014 | Unit or integration tests around `TurnEngine`/route cleanup observability; exact hook or state API is TBD. |
+| DEL-03-04-REQ-012 | Redaction test for terminal failure/error payloads, including provider error surfaces, runtime events, run logs, and tool artifacts; assert no API keys or configured secret variants are persisted. |
+| DEL-03-04-REQ-014 | Unit or integration tests around `TurnEngine`/route cleanup observability; exact hook or state API is TBD and must be resolved before implementation closure. |
 
 ## Documentation
 

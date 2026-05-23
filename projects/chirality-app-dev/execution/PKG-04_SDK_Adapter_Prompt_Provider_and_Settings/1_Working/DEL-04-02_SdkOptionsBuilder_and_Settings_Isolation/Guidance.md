@@ -14,21 +14,24 @@ Sources: `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` Section 1.4; `docs/
 2. Settings isolation is a release boundary.
    Shipped builds use `settingSources: []`. Development-only project settings require explicit environment enablement and must not include `user` or `local` sources. Sources: `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1.
 
-3. `allowedTools` is not a safety boundary.
+3. Policy adequacy is checked before option construction.
+   The builder should not normalize missing governed policy into permissive SDK defaults. If required settings, tool, permission, hook, MCP, or subagent policy inputs are absent, explicitly unresolved, or contradictory, the builder should fail closed or return a structured integration error before constructing SDK options. Sources: `docs/CONTRACT.md` K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; `docs/PLAN.md` R2.
+
+4. `allowedTools` is not a safety boundary.
    Treat `allowedTools` as SDK auto-approval posture, not as the complete restriction mechanism. Restricted modes require deny rules, disallowed tools, hooks, `canUseTool`, `dontAsk`, or the PKG-06 overlay as applicable. Sources: `docs/CONTRACT.md` K-PERM-3; `docs/SPEC.md` Section 14.3.
 
-4. Adapter metadata is allowed; public semantic leakage is not.
-   SDK-specific names may appear in adapter-local metadata and safe runtime metadata, but public Chirality APIs, canonical events, and governance records remain Chirality-owned. Sources: `docs/CONTRACT.md` K-ENGINE-4; `docs/TYPES.md` Section 9.
+5. Adapter metadata is allowed; public semantic leakage is not.
+   SDK-specific names and SDK package version may appear in adapter-local metadata and safe runtime metadata, but they are evidence about the runtime adapter, not public Chirality product-version authority. Public Chirality APIs, canonical events, and governance records remain Chirality-owned. Sources: `docs/CONTRACT.md` K-ENGINE-4; `docs/TYPES.md` Section 9.
 
-5. Prefer explicit unknowns over plausible SDK detail.
-   Exact SDK TypeScript option fields that are not confirmed by local accepted source or the SDK probe should remain `TBD`. Sources: `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1; `docs/PRD.md` KG-021, HASH_MISMATCH.
+6. Prefer explicit unknowns over plausible SDK detail.
+   Exact SDK TypeScript option fields that are not confirmed by local accepted source or the SDK probe should remain `TBD`. This is a review guard, not a drafting omission: premature property names can make an unverified SDK version look authoritative. Sources: `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1; `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH.
 
 ## Considerations
 
 | Topic | Guidance | Source |
 |---|---|---|
 | Fallback implementation | Keep fallback resolution pure and testable. Emit warnings for unknown option keys; do not let unknown fields affect behavior. | `docs/SPEC.md` Section 13.1 |
-| Settings posture | Make shipped/development posture an explicit input or environment-derived policy, then record the selected posture in safe metadata. | `docs/SPEC.md` Sections 12.2, 12.4 |
+| Settings posture | Make shipped/development posture an explicit input or environment-derived policy, then record the selected posture in safe metadata. Shipped option construction should omit ambient settings by using `settingSources: []`; development project settings should be admitted only by the explicit development policy path. | `docs/SPEC.md` Sections 12.2, 12.4 |
 | Tool registry | Resolve requested tool names against a deterministic registry of SDK built-ins and Chirality MCP tools. Unknown names should fail before SDK request construction. | `docs/SPEC.md` Section 14.3 |
 | Hooks and permissions | Accept hook/callback/deny policy inputs, but do not overclaim that this slice fully implements PKG-06 permission semantics. | `_CONTEXT.md` ContextEnvelopeNotes; `docs/PLAN.md` R2 |
 | Resume and session linkage | Include resume/session fields only through the engine/session contract and safe adapter metadata. SDK transcripts remain secondary to Chirality events. | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 12.4 |

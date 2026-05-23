@@ -8,7 +8,7 @@ This procedure describes how to produce and use product-identity and professiona
 
 - Read `_CONTEXT.md` for deliverable identity, scope, artifacts, and `ResponsibleParty: TBD`.
 - Read `_REFERENCES.md` for the authoritative source corpus and hash status.
-- Read `_DEPENDENCIES.md`; dependency extraction remains deferred and declared upstream/downstream dependencies are TBD.
+- Read `_DEPENDENCIES.md` and `Dependencies.csv`; dependency extraction has produced active rows, but satisfaction status remains `TBD` pending downstream FULL_GRAPH/cycle checks and human closure decisions.
 - Read relevant source slices from:
   - `docs/DIRECTIVE.md`
   - `docs/CONTRACT.md`
@@ -57,18 +57,26 @@ This procedure describes how to produce and use product-identity and professiona
    - Record the surfaces checked.
    - Record source sections used.
    - Record any `TBD`, `ASSUMPTION`, or human-ruling-needed item.
+   - Record reviewer name or role, review date, pass/fail result, findings, proposed copy, and human ruling status.
+   - Include PRD hash-mismatch handling and Conflict Table status as explicit evidence checkpoints.
+
+9. Route authority-sensitive wording.
+   - If copy uses approve, certify, sign, seal, issue, transmit, release, externally validate, code-compliant, solver truth, or safe for reliance, record the exact phrase and route it to the accountable human or human review body.
+   - If no accountable role has been assigned, record `TBD` rather than approving the wording.
+   - Do not close the item until the human ruling or deferral is recorded.
 
 ## Verification
 
-| Check | Pass condition |
-|---|---|
-| Identity check | Product-facing copy names Chirality and does not present the app as Claude Code, Anthropic, or a vendor CLI. |
-| SDK framing check | SDK references are implementation/provider detail behind Chirality-owned contracts. |
-| Human authority check | No copy claims automated approval, certification, issue, signature, seal, external validation, code compliance, or release for reliance. |
-| Binding-record check | Drafts, proposals, summaries, transcripts, runtime events, and validator results are not described as approval records. |
-| Reliance-boundary check | Product-critical boundaries are not described as prompt-only or SDK-default-only. |
-| Domain-boundary check | Domain-engine notices preserve human acceptance and do not assign solver truth or professional approval to Chirality. |
-| Uncertainty check | Unsupported facts remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. |
+| Check | Pass condition | Evidence fields |
+|---|---|---|
+| Identity check | Product-facing copy names Chirality and does not present the app as Claude Code, Anthropic, or a vendor CLI. | Surface; copy excerpt; source section; pass/fail; finding ID |
+| SDK framing check | SDK references are implementation/provider detail behind Chirality-owned contracts. | Surface; SDK phrase; source section; pass/fail; finding ID |
+| Human authority check | No copy claims automated approval, certification, issue, signature, seal, external validation, code compliance, or release for reliance. | Surface; authority-sensitive phrase; routed-to human role; ruling status |
+| Binding-record check | Drafts, proposals, summaries, transcripts, runtime events, and validator results are not described as approval records. | Record type; proposed label; source section; pass/fail |
+| Reliance-boundary check | Product-critical boundaries are not described as prompt-only or SDK-default-only. | Boundary; enforcement surface if known; unsupported claims marked `TBD` |
+| Domain-boundary check | Domain-engine notices preserve human acceptance and do not assign solver truth or professional approval to Chirality. | Domain surface; notice text; human-gate statement; pass/fail |
+| Uncertainty check | Unsupported facts remain `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, or human-ruling-needed. | Item; label used; owner/ruling field; closure status |
+| Source-status check | PRD hash mismatch and Conflict Table status are visible in review evidence. | REF-006 warning status; CT-001 status; CT-002 status; human ruling status |
 
 ## Records
 
@@ -79,4 +87,30 @@ Create or maintain these records as applicable:
 - Boundary notice examples: target path TBD.
 - Review notes with checked surfaces and source sections: target path TBD.
 - Human rulings for Conflict Table entries: TBD.
+- `Dependencies.csv` satisfaction closure notes: TBD.
 
+### Release Review Evidence Template
+
+| Field | Value |
+|---|---|
+| Review ID | TBD |
+| Reviewer / accountable role | TBD |
+| Review date | TBD |
+| Release or surface set | TBD |
+| Surfaces checked | TBD |
+| Source sections used | TBD |
+| PRD hash-mismatch treatment | REF-006 warning acknowledged; human ruling TBD |
+| Conflict Table status | CT-001 TBD; CT-002 TBD |
+| Overall result | TBD |
+
+### Review Note Record Template
+
+| Field | Value |
+|---|---|
+| Checked surface | TBD |
+| Source basis | TBD |
+| Issue type | Identity / SDK framing / human authority / binding record / reliance boundary / domain boundary / uncertainty / source status |
+| Current copy excerpt | TBD |
+| Proposed copy | TBD |
+| Finding | TBD |
+| Human ruling | TBD |

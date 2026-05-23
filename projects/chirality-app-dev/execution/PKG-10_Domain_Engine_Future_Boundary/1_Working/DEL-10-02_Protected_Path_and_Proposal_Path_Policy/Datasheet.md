@@ -28,6 +28,7 @@
 | Accepted mutation route | Any accepted mutation of domain state must flow through an approved adapter or operation workflow and an explicit human gate. | `docs/PRD.md` §10.10; `docs/SPEC.md` §18 |
 | Boundary notice requirement | Domain-engine outputs must not be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/PRD.md` §8.17 FR-115; `docs/CONTRACT.md` §1.10 K-DOMAIN-4 |
 | Current concrete path patterns | TBD - profile-specific protected/proposal path patterns are not defined in the accessible sources for DEL-10-02. | `docs/PRD.md` §8.17 FR-108 |
+| Profile-specific examples | TBD - example categories are source-supported, but concrete protected/proposal path patterns remain blocked until `DomainEngineProfile` path syntax is accepted. P3 disposition: X-002 incorporated as future slot. | `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108 |
 
 ## Conditions
 
@@ -39,6 +40,7 @@
 | Direct protected writes | Prohibited for agents and ordinary Chirality tools. | `docs/PRD.md` §8.17 FR-110; `docs/PRD.md` §10.10 |
 | Human acceptance | Required before application of a domain operation. | `docs/PRD.md` §8.17 FR-113; `docs/SPEC.md` §18 |
 | PRD source status | Source warning: expected SHA256 `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed SHA256 `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Treated as source warning only by dispatch instruction. | `_REFERENCES.md` REF-006 |
+| Responsible ownership | TBD - downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership. P3 disposition: B-001 converted to closure-relevant TBD. | `_CONTEXT.md` §Source Authority |
 
 ## Construction
 

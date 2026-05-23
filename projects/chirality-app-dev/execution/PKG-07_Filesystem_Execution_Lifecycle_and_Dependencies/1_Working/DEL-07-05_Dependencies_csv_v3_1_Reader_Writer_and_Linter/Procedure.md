@@ -111,3 +111,14 @@ Expected records from implementation:
 - Provenance fixtures showing valid source citation and `location TBD` behavior.
 - API/MCP tests or integration evidence for dependency read/write contract surfaces.
 - Review note confirming `docs/PRD.md` hash mismatch was considered before accepting PRD-derived requirements.
+
+## Pass 3 Worklist Disposition
+
+| ItemID | Procedure disposition | Required follow-through |
+|---|---|---|
+| C-001 | Converted to TBD. | Select and document stable warning categories or codes before locking tests for reader, writer, linter, API, and MCP warning output. |
+| F-001 | Already surfaced as conflict. | Preserve `_REFERENCES.md` PRD `HASH_MISMATCH` in review evidence or refresh/accept the PRD hash through the appropriate human-governed path. |
+| D-001 | Converted to implementation-location slots. | Record final module names, API handler names, MCP wrapper names, payload type names, fixture paths, and test paths in implementation evidence once selected. |
+| X-001 | Converted to acceptance-evidence slots. | Record API/MCP dependency read-write payload evidence and governed write-hook evidence, including containment, instruction-root rejection, symlink-write rejection, provenance/event hooks, extension-column preservation, retired-row retention, and warning behavior. |
+
+Source rereads: `docs/SPEC.md` Sections 6, 14.2, 14.3, 15.1, 15.2, and 17.2; `docs/CONTRACT.md` Sections 1.6 and 1.7; `docs/PRD.md` Sections 8.9 and 10.9 plus implementation targets; `docs/TYPES.md` Section 6; `docs/PLAN.md` Section 9.

@@ -10,7 +10,7 @@ Define the operating procedure for preserving and verifying Section 8 harness va
 - The frontend server must be reachable at `HARNESS_BASE_URL`, defaulting to `http://127.0.0.1:3000`, before Section 8 validation runs.
 - `frontend/scripts/validate-harness-section8.mjs` must exist and be readable.
 - `frontend/package.json` must expose `harness:validate:section8` and `harness:validate:premerge`.
-- Declared upstream dependencies are `TBD`; no accepted dependency edges have been extracted yet. Source: `_DEPENDENCIES.md`.
+- Current extracted dependency context records active upstream anchors for PKG-09, SOW-035, SOW-036, and OBJ-008, plus execution prerequisites for required local checks, `frontend/package.json`, `frontend/scripts/validate-harness-section8.mjs`, and `HARNESS_BASE_URL`. Closure remains `TBD` until dependency closure accepts the register. Source: `_DEPENDENCIES.md` Extracted Dependency Register and Lifecycle Summary.
 - Source warning: `docs/PRD.md` has a known hash mismatch for this run and remains usable only under the invoker's warning-only ruling.
 
 ## Steps
@@ -39,6 +39,7 @@ Define the operating procedure for preserving and verifying Section 8 harness va
      - `section8.interrupt_sigint`
      - `section8.sdk_native_stream`
    - Confirm `regression.api_chat_reachability` is absent.
+   - Where practical, preserve deterministic fixture coverage for a missing required ID and for the retired legacy ID so those failure paths do not depend solely on a live CI run.
 
 5. Verify stable artifact placement.
    - Confirm `frontend/artifacts/harness/section8/latest/summary.json` exists and is readable after the wrapper completes.
@@ -53,7 +54,7 @@ Define the operating procedure for preserving and verifying Section 8 harness va
    - Packaging release context additionally requires `npm run desktop:dist`.
 
 7. Record outcomes.
-   - Capture command status, summary path, test count, and any missing IDs.
+   - Capture command status, summary path, test count, any missing IDs, and the evidence location for each required local check.
    - Record `TBD`, `ASSUMPTION`, or source-warning items instead of filling unsupported facts.
 
 ## Verification
@@ -73,5 +74,5 @@ Define the operating procedure for preserving and verifying Section 8 harness va
 - Stable summary JSON at `frontend/artifacts/harness/section8/latest/summary.json`.
 - CI artifact named `harness-section8-summary`.
 - Any preservation test fixture outputs proving missing-ID rejection and legacy-ID rejection.
+- Current-run evidence for `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, `npm run instruction-root:integrity`, and release-context `npm run desktop:dist` when desktop packaging acceptance is in scope.
 - Human ruling record for the PRD hash mismatch before closure, if closure requires source hash reconciliation.
-

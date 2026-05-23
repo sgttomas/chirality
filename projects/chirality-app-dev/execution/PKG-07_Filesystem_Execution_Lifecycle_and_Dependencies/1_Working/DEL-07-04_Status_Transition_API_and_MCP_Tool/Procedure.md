@@ -13,7 +13,8 @@ Define the working procedure to produce and verify the DEL-07-04 backend feature
 | API/MCP contract references | Available in `docs/SPEC.md` Sections 13 and 14.2 and `docs/PRD.md` API inventory. |
 | Permission/MCP boundary references | Available in `docs/CONTRACT.md` Section 1.6 and `docs/DIRECTIVE.md` design commitments. |
 | Declared upstream dependencies | TBD; `_DEPENDENCIES.md` lists no accepted upstream edges yet. |
-| Implementation module location | TBD. |
+| Implementation module location | TBD; implementation owner must identify accepted module paths for working-root status APIs and Chirality MCP tools before implementation closeout. |
+| Accepted schema fixtures | TBD; exact request/response fields remain unresolved until API and MCP schema fixtures are accepted. |
 
 ## Steps
 
@@ -41,11 +42,13 @@ Define the working procedure to produce and verify the DEL-07-04 backend feature
    - Provide `GET /api/working-root/deliverable/status` for read-only status snapshots.
    - Provide `POST /api/working-root/deliverable/status/transition` for allowed lifecycle transitions.
    - Return structured success and denial outcomes. Exact response schema is `TBD`.
+   - After schema acceptance, add fixtures for status snapshot responses, transition requests, transition success responses, and transition denial responses.
 
 7. Implement the Chirality MCP status tools.
    - Provide `mcp__chirality__status_read` for reading `_STATUS.md`.
    - Provide `mcp__chirality__status_transition` for write-gated status transitions.
    - Route MCP execution through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.
+   - Record test evidence for permission decisions, path containment, hook outcomes, redaction behavior, and tool/runtime event logging for status operations.
 
 8. Add tests for the deliverable acceptance surface.
    - Parser tests for valid and malformed `_STATUS.md`.
@@ -53,6 +56,8 @@ Define the working procedure to produce and verify the DEL-07-04 backend feature
    - API route tests for read and transition.
    - MCP tool tests for naming, schema, read/write mode, denial, and success.
    - Permission/path/hook tests for gated writes.
+   - Denial payload tests for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, path/policy denial, and malformed `_STATUS.md`.
+   - Success payload tests once accepted field names exist.
 
 9. Record unresolved implementation details.
    - Keep `TBD` for exact module paths, request/response schemas, and actor identity mapping until accepted by implementation owners or adjacent deliverables.
@@ -70,6 +75,8 @@ Define the working procedure to produce and verify the DEL-07-04 backend feature
 | API tests | Status read and transition endpoints behave consistently with parser/validator. |
 | MCP tests | `mcp__chirality__status_read` and `mcp__chirality__status_transition` expose deterministic Chirality operations and preserve policy overlays. |
 | Boundary tests | Status transition does not imply human approval, professional validation, issue, or release. |
+| Schema fixture tests | After schemas are accepted, exact request/response fixtures cover API and MCP read, transition success, and transition denial. |
+| Audit overlay tests | Permission, hook, path-containment, redaction, and event logging evidence exists for MCP status operations. |
 
 ## Records
 
@@ -82,12 +89,24 @@ Expected records and artifacts:
 - Approval SHA test fixtures.
 - Denial/success fixtures for actor authorization and forward-only lifecycle behavior.
 - Runtime/event logging evidence for write-gated status transitions when the implementation surface supports it.
+- Permission decision, hook outcome, path-containment, redaction, and event logging evidence for MCP status operations.
+- PRD hash reconciliation or approved bypass evidence before final PRD-derived acceptance claims.
 
 TBD records:
 
 - Exact implementation file paths.
 - Exact request/response schemas.
 - Exact actor identity mapping.
+- Exact success and denial payload fields.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| D-001 | Converted to an explicit prerequisite and closeout blocker: accepted implementation module paths remain `TBD`. | `_DEPENDENCIES.md` DEL-07-04-DEP-008; decomposition DEL-07-04 anticipated artifacts. |
+| F-002 | Incorporated as post-schema fixture verification for API/MCP request and response schemas. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
+| X-002 | Incorporated as audit evidence expectations for permission, hook, path, redaction, and event logging policy on MCP status operations. | `docs/CONTRACT.md` K-MCP-1/K-PERM-1; `docs/PRD.md` FR-092, FR-093, FR-104. |
+| E-002 | Converted to explicit `TBD` success/denial payload fields until schema acceptance. | `docs/SPEC.md` API inventory; `docs/PRD.md` FR-079 and NFR-009. |
 
 ## Source Warning
 

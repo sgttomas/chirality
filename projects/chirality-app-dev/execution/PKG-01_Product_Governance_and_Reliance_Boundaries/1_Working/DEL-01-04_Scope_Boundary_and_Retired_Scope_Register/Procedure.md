@@ -29,6 +29,7 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
    - Treat the PRD hash mismatch as a warning for this run, not a blocker, because the dispatch explicitly says so.
 
 4. Build the out-of-scope register content.
+   - Materialize the concrete register-row artifact in `Datasheet.md` under `Boundary Register Rows` unless a governed publication step moves the rows to a dedicated register file.
    - Include SOW-065 for remote MCP, plugins, remote execution, marketplace extension, and broad tool search before mature governance.
    - Include SOW-076 for ambient Claude settings and shipped/ordinary `bypassPermissions`.
    - Include SOW-078 for Windows/Linux release packaging.
@@ -57,8 +58,8 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
    - Do not perform a state regression or human-gate transition.
 
 10. Defer dependency extraction.
-   - Do not create `Dependencies.csv`.
-   - Leave dependency extraction to the later `TASK + dependency-extract` workflow described in `_DEPENDENCIES.md`.
+   - Do not create or edit `Dependencies.csv` during this four-documents run.
+   - Treat any existing `Dependencies.csv` as output of the separate `TASK + dependency-extract` workflow described in `_DEPENDENCIES.md`.
 
 ## Verification
 
@@ -68,7 +69,8 @@ Define how to produce and maintain the Scope Boundary and Retired Scope Register
 | Boundary coverage | SOW-065, SOW-076, SOW-077, and SOW-078 are represented. |
 | Source grounding | Non-trivial boundary statements cite source files and sections. |
 | ResponsibleParty | Remains `TBD`. |
-| Dependency extraction | `Dependencies.csv` is absent after this run. |
+| Boundary-row artifact | `Datasheet.md` includes concrete `Boundary Register Rows` with source reference, amendment trigger, current status, and human ruling fields. |
+| Dependency extraction | This run does not create or edit `Dependencies.csv`; if present, it remains owned by the separate dependency-extract workflow. |
 | Status | `_STATUS.md` moves from `OPEN` to `INITIALIZED` only after four non-empty docs exist. |
 | Conflicts | Path mismatch and PRD hash mismatch are surfaced for human ruling rather than hidden. |
 
@@ -83,6 +85,6 @@ Records produced or updated by this procedure:
 - `_STATUS.md`
 - `_run_records/TASK_RUN_*.md`
 
-Deferred record:
+Related derivative record owned by a separate workflow:
 
 - `Dependencies.csv`

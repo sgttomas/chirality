@@ -37,6 +37,7 @@
 | Sequencing | PLAN R5 places governed subagent runtime after earlier runtime, permission, hook, and tool-governance work. |
 | Scope boundary | This deliverable covers the governance bridge, SDK agent definitions, and `Agent` hook tests. Persistent parent-child run records are primarily DEL-08-05. |
 | Authority boundary | SDK subagent mechanics are an implementation substrate; Chirality-owned governance, permission, audit, and runtime contracts control product semantics. |
+| Dependency boundary | Declared upstream/downstream dependency lists remain `TBD`; the current extracted register records ACTIVE execution prerequisites for the source corpus, `evaluateSubagentGovernance` contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. Source: `_DEPENDENCIES.md`. |
 
 ## Construction
 
@@ -47,6 +48,7 @@
 | Agent hook | PreToolUse or equivalent `Agent` hook that invokes the bridge before SDK subagent execution. |
 | Tests | `Agent` hook tests for missing metadata, non-allowlisted candidates, non-Type-2 candidates, unsealed context, missing approval reference, and restricted child tools/cwd. |
 | Events/records handoff | Interface with DEL-08-05 for child lifecycle and artifact-path persistence. |
+| Implementation paths | TBD until the coding task identifies the bridge module, SDK agent-definition builder, `Agent` hook module, fixture files, and runnable test command. |
 
 ## References
 

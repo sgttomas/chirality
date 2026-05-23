@@ -41,6 +41,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-012 | SDK-specific values MAY be retained only as explicit adapter metadata fields, not as Chirality public contract identifiers. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-CORE-1 |
 | DEL-06-06-REQ-013 | Tests MUST cover `context.compacted` event production and terminal hook fixtures. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 `section9.context_compaction_boundary` |
 | DEL-06-06-REQ-014 | Implementation MUST record the `docs/PRD.md` HASH_MISMATCH warning for any behavior that depends only on PRD Section 8.15 details. | `_REFERENCES.md` REF-006 |
+| DEL-06-06-REQ-015 | Implementation evidence MUST identify the mapper component path, schema or mapper tests, terminal fixtures, replay validation, and redaction or payload-budget checks before closure; unassigned paths remain `TBD` rather than assumed. | `_CONTEXT.md` anticipated artifacts; `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
 
 ## Standards
 
@@ -69,6 +70,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 thr
 | DEL-06-06-REQ-011 | Redaction and payload-budget tests assert secrets are excluded and large payloads are artifact-referenced. |
 | DEL-06-06-REQ-013 | Section 9 validation includes or points to `section9.context_compaction_boundary`; exact runner path: TBD. |
 | DEL-06-06-REQ-014 | Review evidence records the PRD hash warning when PRD-only behavior is cited. |
+| DEL-06-06-REQ-015 | Closure review verifies every required evidence path is either present and testable or retained as a blocker with owner/path `TBD`; exact runner and fixture paths are not inferred from the validation ID alone. |
 
 ## Documentation
 
@@ -80,6 +82,14 @@ Required implementation evidence:
 - Replay test or validation evidence proving compaction does not displace the Chirality audit mirror: TBD.
 - Redaction or payload-budget evidence for hook and compaction payloads: TBD.
 - Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+
+## Pass 3 Disposition
+
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| F-001 | Converted to a concrete verification obligation without inventing paths: `context.compacted` and terminal hook evidence must point to exact runner or fixture paths before closure; current path remains `TBD`. | `docs/SPEC.md` Section 19 `section9.context_compaction_boundary`; `_CONTEXT.md` anticipated artifacts |
+| F-002 | Incorporated as DEL-06-06-REQ-015 and documentation evidence blockers for mapper, schema tests, terminal fixtures, replay, and redaction or payload-budget checks. | `docs/SPEC.md` Sections 9.2 and 19; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
+| X-002 | Already covered in validation intent but not in path evidence; retained as `TBD` runner/fixture evidence tied to `section9.context_compaction_boundary`. | `docs/SPEC.md` Section 19; `docs/PRD.md` Section 8.14/8.15 validation list, HASH_MISMATCH warning |
 
 ## Traceability
 

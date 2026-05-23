@@ -69,4 +69,16 @@ Define the working procedure to produce and verify the API key UI and runtime fe
 - Typed error display implementation and tests.
 - Secure-storage error UI implementation and tests.
 - Evidence that key material is not written to working root, logs, runtime events, or tool artifacts.
-- Human rulings for `Guidance.md` Conflict Table entries C-001 and C-002.
+- Human rulings for `Guidance.md` Conflict Table entries CT001 and CT002.
+
+### Evidence Binding Table
+
+| Evidence Need | Required Record | Current Binding |
+|---|---|---|
+| API key settings surface | Component/module path and test path for the settings panel that routes key storage through Electron IPC. | TBD - implementation path not yet accepted. |
+| Key source/status and precedence | Test or review evidence covering `ui`, `env`, `none`, and precedence order. | TBD - final fixture or command not yet accepted. |
+| Secure-storage unavailable feedback | Test or review evidence proving unavailable safeStorage produces visible error feedback. | TBD - final fixture or command not yet accepted. |
+| Typed runtime error mapping | Test or review evidence mapping representative typed errors to title, message, and next-step fields. | TBD - runtime/provider taxonomy owner not yet accepted. |
+| Retry preservation | Test or review evidence proving draft prompt text and attachment metadata remain available after runtime error. | TBD - exact retry state owner not yet accepted. |
+| SSE compatibility | Test or review evidence proving `turn:error` and `process:exit` remain browser-facing event names. | TBD - final compatibility fixture not yet accepted. |
+| Secret hygiene and project-truth boundary | Static, unit, integration, or review evidence proving key material, logs, drafts, transcripts, and UI state do not become project truth. | TBD - final evidence paths or commands not yet accepted. |

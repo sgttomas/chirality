@@ -52,6 +52,13 @@
 | Test fixtures | Include invalid root cases, instruction-root-contained roots, outside-project paths, instruction-root write attempts, and symlink write attempts. | `docs/PRD.md` FR-003, FR-050, FR-051, FR-095, FR-097 |
 | Code locations | TBD - implementation files are not identified by the authoritative source slices read for this Phase 2.2 draft. | Source-grounding gap |
 
+## Pass 3 Semantic Lensing Notes
+
+| ItemID | Datasheet Disposition | Evidence |
+|---|---|---|
+| A-001 | converted to TBD | `Construction` keeps code locations as TBD because accessible sources identify required enforcement surfaces but not final runtime module, hook module, path helper, or test file names. |
+| E-002 | incorporated | `Conditions` and `References` preserve the `docs/PRD.md` HASH_MISMATCH warning; final implementation/review evidence location remains TBD and is carried in `Procedure.md`. |
+
 ## References
 
 | RefID | SourcePath | SectionRef | Notes |

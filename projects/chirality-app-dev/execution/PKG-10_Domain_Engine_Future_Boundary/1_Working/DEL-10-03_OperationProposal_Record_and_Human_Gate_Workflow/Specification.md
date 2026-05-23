@@ -18,6 +18,9 @@ This deliverable excludes current-release domain operation execution, domain ada
 | REQ-10-03-006 | Agents MUST write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17 FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Review checklist confirms proposed outputs target proposal/review paths, not protected paths. |
 | REQ-10-03-007 | Domain-engine outputs MUST NOT be represented as professional approval, code compliance, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 | Review checklist includes professional-boundary copy check. |
 | REQ-10-03-008 | ASSUMPTION: A proposal should not reach `applied` status without a successful deterministic adapter/application workflow and recorded human acceptance. | `docs/PRD.md` Section 8.17; `docs/SPEC.md` future domain endpoints note | Human ruling required before treating this as accepted lifecycle semantics. |
+| REQ-10-03-009 | Human acceptance evidence MUST remain a named `TBD` implementation blocker until the accepted artifact format, actor/authority field, timestamp rule, and proposal identifier binding are defined. | `docs/PRD.md` Section 8.17 FR-113; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3; `_SEMANTIC_LENSING.md` A-001/X-001 | Review checklist blocks application when the acceptance evidence artifact or `requiredHumanGate` value is unresolved. |
+| REQ-10-03-010 | Deterministic check evidence MUST remain a named `TBD` implementation blocker until the result payload, pass/fail semantics, adapter/profile reference, and provenance location are defined. | `docs/PRD.md` Section 8.17 FR-112; `docs/TYPES.md` Section 11.2; `_SEMANTIC_LENSING.md` F-001/D-001 | Review checklist blocks review closure when deterministic check result records or adapter apply results are unresolved. |
+| REQ-10-03-011 | Review sufficiency evidence MUST identify a future review-checklist artifact that records schema completeness, boundary-language review, protected-path posture, human-gate status, and unresolved `TBD` blockers. | `docs/PRD.md` Section 8.17 FR-110 through FR-115; `docs/CONTRACT.md` Section 1.10; `_SEMANTIC_LENSING.md` X-002 | Review closure requires a checklist result artifact or explicit `TBD` blocker. |
 
 ## Standards
 
@@ -38,6 +41,9 @@ This deliverable excludes current-release domain operation execution, domain ada
 | Protected path posture | Verify proposal outputs do not directly modify protected domain-engine paths. | PASS/TBD |
 | Boundary language | Verify no text claims Chirality approves, validates, or owns solver truth. | PASS/TBD |
 | Future-boundary constraint | Verify implementation activation is excluded until governed amendment. | PASS/TBD |
+| Acceptance evidence | Verify the acceptance/rejection artifact format, actor/authority, timestamp, and proposal binding are defined or explicitly blocked as `TBD`. | PASS/TBD |
+| Deterministic result evidence | Verify deterministic check result payload and adapter validation/apply result schema are defined or explicitly blocked as `TBD`. | PASS/TBD |
+| Review sufficiency evidence | Verify a review-checklist result artifact records boundary-language, protected-path, human-gate, and unresolved-blocker findings. | PASS/TBD |
 
 ## Documentation
 
@@ -50,7 +56,9 @@ Required artifacts for this deliverable:
 Additional documentation needed before implementation:
 
 - TBD: exact proposal ID generation semantics.
-- TBD: human acceptance evidence format.
-- TBD: deterministic check result schema.
-- TBD: adapter apply result schema.
+- TBD: human acceptance evidence format, including actor/authority field, timestamp rule, proposal identifier binding, and accepted/rejected value pattern.
+- TBD: exact `requiredHumanGate` value vocabulary and relationship to the human acceptance evidence artifact.
+- TBD: deterministic check result schema, including check name, adapter/profile reference, pass/fail result, evidence path, and failure reason field.
+- TBD: adapter validation/apply result schema, including operation identifier, accepted proposal reference, output references, and failure/rollback note.
+- TBD: review checklist result artifact that substantiates protected-path posture, boundary-language review, human-gate readiness, deterministic check readiness, and unresolved blockers.
 - TBD: relationship between `requiredHumanGate` and broader lifecycle approval SHA semantics.

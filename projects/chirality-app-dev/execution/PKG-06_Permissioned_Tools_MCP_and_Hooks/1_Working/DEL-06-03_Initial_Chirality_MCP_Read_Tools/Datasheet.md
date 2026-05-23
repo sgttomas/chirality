@@ -47,10 +47,16 @@
 | MCP definitions | In-process SDK MCP tool definitions using `createSdkMcpServer()` / `tool()` or equivalent SDK APIs. | `docs/PRD.md` Section 8.13 FR-119 |
 | Wrapper contract | Shared wrapper metadata for tool descriptors, permission classification, execution, result summarization, and event/redaction behavior. | `docs/PRD.md` Section 8.13 FR-079; `docs/CONTRACT.md` Section 1.6 K-MCP-1 |
 | Status read | Read `_STATUS.md` snapshot. Exact parser/API adapter TBD and should align with the status lifecycle API owner. | `docs/SPEC.md` Sections 14.2 and 17.2 |
-| Dependency read | Read and validate `Dependencies.csv`. Behavior when only `_DEPENDENCIES.md` exists is TBD pending dependency API contract. | `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.7 K-DEP-1 |
+| Dependency read | Read and validate `Dependencies.csv` when present. If only `_DEPENDENCIES.md` exists, return an explicit secondary-summary / not-structured-tracked result rather than inventing rows; final API shape remains TBD pending DEL-07-05. | `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.7 K-DEP-1; `_DEPENDENCIES.md` Extracted Dependency Register |
 | Scope scan | Run bounded workspace scope scan. Exact scanner interface TBD and should align with workspace scope API. | `docs/SPEC.md` Sections 14.2 and 17.2 |
 | Scaffold preview/dry-run | Wrap scaffold service or dry-run preview without opening uncontrolled write behavior. Exact preview schema TBD. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
 | Tests | MCP tool definitions and wrapper metadata are unit-tested and deterministic. | `docs/PRD.md` Section 8.13 FR-079 |
+
+## Pass 3 Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| C-001 | Incorporated with TBD boundary | Dependency read fallback now states the safe executable behavior for `_DEPENDENCIES.md`-only state and keeps final API shape `TBD` pending DEL-07-05. Source reread: `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.7 K-DEP-1; `_DEPENDENCIES.md` Extracted Dependency Register. |
 
 ## References
 

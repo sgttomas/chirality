@@ -27,6 +27,7 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 
 | Topic | Guidance | Source |
 |---|---|---|
+| Boundary-row placement | Inspect the concrete boundary rows in `Datasheet.md` under `Boundary Register Rows`; that section is the current register-row artifact unless a governed publication step moves the rows elsewhere. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-01 / DEL-01-04; `docs/DIRECTIVE.md` §7 |
 | Remote MCP and plugins | Keep as out of current scope until local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable and a governed amendment permits expansion. | `docs/PRD.md` §3.2, §6.4; `docs/PLAN.md` §11 |
 | Broad tool search | Treat as deferred; if later introduced, it must reveal only currently allowed tools and never denied tools. | `docs/PRD.md` §8.14 FR-103 |
 | Shipped settings | Do not allow shipped builds to load ambient Claude settings. A change attempt should trigger governance review before implementation. | `docs/PRD.md` §3.2; `docs/CONTRACT.md` §1.4 K-SDK-1 |
@@ -60,4 +61,3 @@ The controlling objective is OBJ-009: preserve professional boundary, product id
 |---|---|---|---|---|---|---|
 | CF-001 | Dispatch path names `PKG-01_Governance_and_Product_Boundaries`, but the only matching deliverable folder on disk is under `PKG-01_Product_Governance_and_Reliance_Boundaries`. | TASK dispatch | Filesystem path and `_CONTEXT.md` PackageName | Run record, final report | Use the located deliverable folder for this run and surface the stale path as a warning. | TBD |
 | CF-002 | `docs/PRD.md` hash mismatches `_REFERENCES.md`; dispatch says to treat mismatch as source warning, not blocker. | `_REFERENCES.md` REF-006 | TASK dispatch override | All PRD-cited requirements | Proceed with PRD as accessible source while preserving warning in run record. | TBD |
-

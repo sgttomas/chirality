@@ -11,9 +11,20 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 | Accepted decomposition scope for DEL-06-03 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 7.6 and Section 9. |
 | Source contracts for MCP tools and permissions | Available in `docs/SPEC.md` Sections 14-15, `docs/CONTRACT.md` Section 1.6, and `docs/PRD.md` Sections 8.13-8.14. |
 | Runtime sequence context | R2 requires permission-gated read surface before writes/bash; see `docs/PLAN.md` R2. |
-| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` has no accepted dependency edges yet. |
+| Declared upstream dependencies | Active unresolved interfaces are recorded in `_DEPENDENCIES.md`: DEL-06-01 permission overlay integration, DEL-07-05 dependency reader behavior, UNKNOWN/TBD status lifecycle API owner, and UNKNOWN/TBD Chirality runtime event path. Closure requires human or upstream acceptance of these states. |
 | Implementation module locations | TBD - no implementation path is specified in the accessible sources for this deliverable. |
 | PRD source-state warning | `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`; treat as warning per task brief. |
+
+### Implementation Location Worklist
+
+| Component | Expected Location Evidence | Status |
+|---|---|---|
+| MCP definitions | Module exporting `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and scaffold preview/dry-run descriptor. | TBD - owner/path not assigned in accessible sources. |
+| Wrapper metadata | Shared metadata table or builder for schema, permissions, read-only class, concurrency, interruption, execution, summarization, redaction, and events. | TBD - owner/path not assigned in accessible sources. |
+| Status reader | Adapter/parser for `_STATUS.md` snapshot read; final ownership should align with DEL-07-04. | TBD - status lifecycle API owner unresolved in `_DEPENDENCIES.md`. |
+| Dependency reader | Adapter/parser for `Dependencies.csv` plus `_DEPENDENCIES.md`-only absence/secondary-summary behavior; final ownership should align with DEL-07-05. | TBD - DEL-07-05 alignment unresolved in `_DEPENDENCIES.md`. |
+| Scope scan | Bounded workspace scope scanner or adapter. | TBD - owner/path not assigned in accessible sources. |
+| Scaffold preview | Dry-run/preview adapter that does not apply filesystem writes. | TBD - owner/path not assigned in accessible sources. |
 
 ## Steps
 
@@ -51,7 +62,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 
 9. Emit runtime events where available.
 
-   Persist or adapt permission, started, completed, and failed tool events through the Chirality runtime event path when the runtime event plumbing is active. If unavailable, leave an explicit `TBD` integration point and tests around the expected contract.
+   Persist or adapt permission, started, completed, and failed tool events through the Chirality runtime event path. The runtime event path owner is currently `UNKNOWN/TBD` in `_DEPENDENCIES.md`; until accepted upstream ownership exists, keep this as a tracked closure blocker and add tests around the expected event contract rather than silently treating event persistence as complete.
 
 10. Add tests.
 
@@ -75,6 +86,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 | Scope scan | Out-of-root scans are rejected. |
 | Scaffold preview | Dry-run/preview does not apply filesystem writes. |
 | Runtime events | Permission/start/completion/failure events are persisted or an explicit pending integration contract is tested. |
+| Upstream dependency closure | DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership are accepted or recorded as closure blockers. |
 | Source-state warning | `docs/PRD.md` HASH_MISMATCH is recorded until reference hashes are refreshed or human accepted. |
 
 ## Records
@@ -86,3 +98,14 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 - Status/dependency/scope/scaffold preview test results.
 - Section 9 validation mapping, including `section9.chirality_mcp_status_dependencies` where applicable.
 - Source-state note for `docs/PRD.md` HASH_MISMATCH until resolved.
+- Implementation location map for MCP definitions, wrapper metadata, status reader, dependency reader, scope scan, and scaffold preview.
+- Upstream closure record for DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership.
+- Runtime event contract blocker record if the Chirality runtime event path remains unavailable.
+
+## Pass 3 Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| D-001 | Converted to TBD worklist | Implementation module locations are named as required closure evidence, with all paths kept `TBD` because accessible sources do not assign ownership. Source reread: `_CONTEXT.md` Anticipated Artifacts; decomposition row `DEL-06-03`; `Procedure.md` Prerequisites and Records. |
+| D-002 | Incorporated as closure blocker | Upstream dependency state now names DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership as closure blockers or acceptance requirements. Source reread: `_DEPENDENCIES.md` Extracted Dependency Register and Open dependency closure items. |
+| E-001 | Converted to tracked blocker | Runtime-event wording now requires a cited event path or explicit blocker/test contract rather than treating availability as optional. Source reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-083; `_DEPENDENCIES.md` open runtime event path item. |

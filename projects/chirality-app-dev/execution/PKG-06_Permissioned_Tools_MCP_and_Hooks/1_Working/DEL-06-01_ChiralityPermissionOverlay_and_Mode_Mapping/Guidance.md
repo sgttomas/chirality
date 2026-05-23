@@ -34,6 +34,8 @@ Use the `source` field deliberately. A decision from `chirality-policy` should n
 
 `docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. PRD R2/R3 content is still useful product direction for this draft, but any implementation detail that depends only on PRD wording should be reviewed once the source-state warning is resolved.
 
+Current disposition: keep PRD-derived implementation direction warning-qualified and require review evidence before using PRD-only details as closure proof. CONTRACT, TYPES, SPEC, PLAN, and the accepted decomposition remain the unqualified sources for binding permission vocabulary, invariants, mode mapping, sequencing, and deliverable scope.
+
 ## Trade-offs
 
 | Trade-off | Guidance |
@@ -60,3 +62,8 @@ Use the `source` field deliberately. A decision from `chirality-policy` should n
 |---|---|---|---|---|---|---|
 | TBD | No direct source conflict identified during P1/P2. PRD has a HASH_MISMATCH source-state warning. | `_REFERENCES.md` REF-006 | `docs/PRD.md` sections used above | All PRD-cited requirements and guidance | Treat PRD as warning-qualified source until hash state is reconciled. | TBD |
 
+## Pass 3 Semantic Lensing Disposition
+
+| ItemID | Disposition | Evidence and source reread |
+|---|---|---|
+| X-001 | Incorporated as an explicit PRD HASH_MISMATCH disposition. | Guidance now states that PRD-only implementation direction remains warning-qualified and cannot close evidence without review. Reread: `_REFERENCES.md` REF-006; `docs/CONTRACT.md` Section 1.7 K-CONFLICT-1; `docs/PRD.md` R2/R3 direction with HASH_MISMATCH warning. |

@@ -41,6 +41,14 @@
 | Exact transcript view route/UI placement | TBD - source documents identify replay/transcript behavior, not a concrete route or component path. | Source gap |
 | Tool summary detail level | ASSUMPTION: replay should expose compact summaries and artifact links rather than raw large payloads, because large payloads are stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 
+## Pass 3 Semantic Lensing Notes
+
+| Item ID | Datasheet disposition | Source reread |
+|---|---|---|
+| B-001 | Already covered: REF-006 remains visible as `HASH_MISMATCH` in References and PRD-derived claims stay warning-qualified instead of silently verified. | `_REFERENCES.md` authoritative source corpus; `docs/DIRECTIVE.md` authority guidance; `Guidance.md` Source-State Notes |
+| C-001 | Already covered: exact parser API and transcript view route/UI placement remain explicit `TBD` source gaps rather than invented module or route names. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row |
+| D-001 | Converted to bounded `TBD`: verification fixture filenames and implementation paths remain unset until code discovery/ownership assigns accepted locations. | `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Section 19.3 |
+
 ## Construction
 
 | Component | Construction expectation | Source |

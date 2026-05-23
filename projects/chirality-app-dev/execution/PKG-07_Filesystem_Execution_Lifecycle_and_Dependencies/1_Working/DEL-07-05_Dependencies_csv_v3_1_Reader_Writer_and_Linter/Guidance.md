@@ -62,3 +62,14 @@ Source: `docs/CONTRACT.md` Section 1.7; `docs/TYPES.md` Section 6.5.
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | C-DEL-07-05-001 | `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`, but PRD Section 8.9 is the local source for FR-055 through FR-057 acceptance language. | `_REFERENCES.md` Authoritative Source Corpus | `docs/PRD.md` Section 8.9 | Datasheet Attributes; Specification Requirements; Procedure Verification | Use PRD content as a source warning for drafting, then require human review before relying on PRD-derived claims as accepted hash truth. | TBD |
+
+## Pass 3 Human Rulings and Design Holds
+
+| ItemID | Guidance disposition |
+|---|---|
+| C-001 | Keep the warning vocabulary as a design hold. The sources warrant structured warnings, but they do not choose final warning codes; implementation should select stable categories before tests freeze them. |
+| F-001 | Preserve the PRD hash conflict as a human ruling item. This P3 pass does not accept, refresh, or bypass the mismatched PRD hash. |
+| D-001 | Keep implementation path and payload-type names out of prose until code ownership chooses them. Stable IDs and file contracts are authoritative; module paths are projections. |
+| X-001 | Require evidence that API/MCP dependency operations and governed write hooks are tested together, because MCP is a transport and not a bypass of permission, hook, path, redaction, or event policy. |
+
+Source rereads: `_REFERENCES.md` Authoritative Source Corpus; `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-MCP-1, K-HOOK-1, K-PATH-2, K-PATH-3, K-DEP-1, K-DEP-2, K-PROV-1, K-INVENT-1, and K-CONFLICT-1; `docs/SPEC.md` Sections 6, 14.2, 14.3, 15, and 17.2; `docs/PLAN.md` Optional and Retired Scope Status.

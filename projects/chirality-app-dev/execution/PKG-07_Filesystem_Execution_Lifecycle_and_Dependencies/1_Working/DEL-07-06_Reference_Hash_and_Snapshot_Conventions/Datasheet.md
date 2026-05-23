@@ -35,6 +35,12 @@
 | Retired scope boundary | Do not reactivate execution-root validator, dependency graph generator, deliverable lock, unified pipeline run records, or staleness propagation as current commitments. | `docs/PLAN.md` Section 9; `docs/PRD.md` Section 6.4 and KG-012 with REF-006 hash warning |
 | Human authority | No agent, SDK, tool, runtime event, validator, or adapter can author binding approval records. | `docs/CONTRACT.md` K-AUTH-1; `docs/DIRECTIVE.md` Section 2.4 |
 
+## Pass 3 Disposition Notes
+
+| Item ID | Disposition | Evidence |
+|---|---|---|
+| A-002 | Already covered; ownership remains `TBD` and is not assigned by this pass. | Identification table; `_CONTEXT.md` Source Authority |
+
 ## Construction
 
 | Component | Expected Content | Source |

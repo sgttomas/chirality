@@ -8,8 +8,8 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 
 | Prerequisite | Status |
 |---|---|
-| Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md` | Present at P1/P2 drafting. |
-| Current lifecycle state permits four-document initialization | `OPEN`; allowed for `OPEN -> INITIALIZED` after four non-empty documents are written. |
+| Deliverable-local context files exist: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md` | Present at P3 enrichment. |
+| Current lifecycle state permits four-document enrichment | `INITIALIZED`; P3 may enrich the four-document kit but does not transition `_STATUS.md` under the local status policy. |
 | Authoritative references are locally accessible | Accessible; PRD has known hash mismatch warning. |
 | Upstream dependencies | TBD; no accepted dependency edges extracted yet. |
 | Downstream dependencies | TBD; no accepted dependency edges extracted yet. |
@@ -25,6 +25,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
    - Read `_REFERENCES.md`.
    - Confirm hash status for each source.
    - Treat the REF-006 PRD hash mismatch as a warning for this run, not a blocker.
+   - Do not treat the source warning as clean reliance until the exact reference row, accepted hash update, or explicit human bypass decision is recorded.
    - Mark any inaccessible or unsupported source-dependent content as `TBD`.
 
 3. Build governance consistency notes.
@@ -59,7 +60,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 9. Record results.
    - Write outputs to authorized deliverable-local artifacts only.
    - Do not create `Dependencies.csv` in this P1/P2 run.
-   - If all four required documents exist and are non-empty, transition `_STATUS.md` from `OPEN` to `INITIALIZED`.
+   - For P3 enrichment, preserve `_STATUS.md` unless an explicit governed status policy authorizes a transition.
 
 ## Verification
 
@@ -72,6 +73,7 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | Dependency deferral | `Dependencies.csv` is not created. |
 | No invention | Unsupported facts are `TBD`, `ASSUMPTION`, `PROPOSAL`, conflict, source warning, or human-ruling-needed. |
 | Boundary posture | Human authority, project truth, and runtime-audit boundaries are not weakened by the drafted artifacts. |
+| Immutable acceptance evidence | Governance notes or checklist outputs used as acceptance evidence are bound to a git SHA or equivalent immutable evidence, and a separate accountable human approval record exists. |
 
 ## Records
 
@@ -83,4 +85,5 @@ This procedure describes how to produce and use the DEL-01-01 governance-alignme
 | `Procedure.md` | Produced by this P1/P2 run. |
 | `_STATUS.md` | Updated to `INITIALIZED` only after non-empty four-doc kit verification. |
 | `_run_records/TASK_RUN_2026-05-20_1610.md` | Durable run record for this task. |
-| `Dependencies.csv` | Deferred; not created. |
+| P3 run record | Records semantic-lensing dispositions, source rereads, validation results, and status policy outcome. |
+| Dependency records | Not created or updated by this P3 run. |

@@ -56,3 +56,11 @@ Sources: `_CONTEXT.md`; decomposition DEL-07-06; `docs/DIRECTIVE.md` Sections 2.
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | SOURCE-WARN-001 | `docs/PRD.md` is accessible and needed for active vNext direction, but `_REFERENCES.md` reports a hash mismatch. | `_REFERENCES.md` REF-006 | `docs/PRD.md` current accessible text | All PRD-cited requirements and examples | Continue using PRD as warning-qualified source per task brief; require hash reconciliation or explicit acceptance before closure. | TBD |
+
+## Pass 3 Disposition Notes
+
+| Item ID | Disposition | Evidence |
+|---|---|---|
+| A-001 | Surfaced as conflict; SOURCE-WARN-001 remains open until hash reconciliation or explicit acceptance. | Conflict Table |
+| B-001 | Surfaced as conflict; PRD-derived closure-ready statements remain warning-qualified. | Conflict Table; Considerations |
+| E-001 | Surfaced as conflict; SOURCE-WARN-001 remains the active human-ruling item. | Conflict Table |

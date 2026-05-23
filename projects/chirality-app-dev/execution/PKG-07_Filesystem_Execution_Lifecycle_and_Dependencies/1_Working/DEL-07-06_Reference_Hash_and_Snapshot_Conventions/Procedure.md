@@ -36,12 +36,14 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
    - State that `_REFERENCES.md` carries source references and hash notes.
    - State that out-of-folder references should include content hashes when tooling is available.
    - State that hash bypasses require human approval and durable bypass records.
+   - When a concrete bypass is used, confirm the review package includes both human approval evidence and the durable bypass record before treating the bypass as accepted.
    - Identify `HASH_VERIFICATION_BYPASS.jsonl` as the deliverable-local bypass record surface where applicable.
    - Cite `docs/SPEC.md` Sections 3.1 and 5.3.
 
 5. Draft the CHANGE/SHA checklist.
    - Confirm candidate content evidence and action list are recorded before approval.
    - Confirm human approval evidence is present and SHA-like where required.
+   - Before any `CHECKING` or `ISSUED` transition, confirm approval SHA evidence exists for the exact candidate content under review.
    - Recheck HEAD/current candidate content before executing approved CHANGE/publication actions.
    - State that content changed after approval requires renewed review.
    - Cite `docs/DIRECTIVE.md` Section 2.4, `docs/CONTRACT.md` K-AUTH-2, and `docs/PRD.md` FR-063 with REF-006 hash warning.
@@ -67,7 +69,8 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 | Source-state warning | REF-006 `docs/PRD.md` hash mismatch is visible anywhere PRD-derived requirements or examples are used. |
 | Snapshot convention | Notes include timestamped immutable folders, optional `_LATEST.md`, and non-overwrite of accepted snapshots. |
 | Hash bypass convention | Notes include human approval, durable bypass record, and `HASH_VERIFICATION_BYPASS.jsonl` where applicable. |
-| CHANGE/SHA checklist | Notes include candidate evidence, approval token/SHA, HEAD/current-content recheck, and renewed review after content changes. |
+| Hash bypass evidence | If a bypass is used, review confirms explicit human approval evidence and a durable bypass record exist before accepting the bypass. |
+| CHANGE/SHA checklist | Notes include candidate evidence, approval token/SHA, approval SHA evidence before `CHECKING` or `ISSUED`, HEAD/current-content recheck, and renewed review after content changes. |
 | Retired scope | No current commitment is made for retired execution-root validator, dependency graph generator, deliverable lock, unified pipeline run record persistence, or automated staleness propagation. |
 | Human authority | No automated approval, signing, sealing, issue, certification, external validation, or professional reliance claim is introduced. |
 
@@ -77,3 +80,12 @@ Use this procedure to produce or review the DEL-07-06 convention notes: snapshot
 - `_run_records/TASK_RUN_*.md` capturing the TASK run and source-state warnings.
 - Future human/source-owner record resolving or accepting the `docs/PRD.md` hash mismatch: TBD.
 - Future exact deterministic tool/script registry evidence: TBD unless produced by the owning implementation slice.
+- Future accepted dependency edge record source: TBD until `_DEPENDENCIES.md` or `Dependencies.csv` records accepted upstream/downstream edge availability.
+
+## Pass 3 Disposition Notes
+
+| Item ID | Disposition | Evidence |
+|---|---|---|
+| F-001 | Converted to explicit `TBD`; dependency edge availability remains unresolved until an accepted dependency record source is present. | Prerequisites; Records |
+| D-001 | Incorporated; the CHANGE/SHA checklist now requires approval SHA evidence before any `CHECKING` or `ISSUED` transition. | Steps; Verification |
+| X-001 | Incorporated; bypass review now requires human approval evidence and a durable bypass record when a bypass is used. | Steps; Verification |

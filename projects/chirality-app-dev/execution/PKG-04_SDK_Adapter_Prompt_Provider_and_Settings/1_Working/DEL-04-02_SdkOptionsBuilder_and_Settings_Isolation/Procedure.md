@@ -13,6 +13,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 | Runtime engine contract integration point | TBD; adjacent deliverables define `AgentEnginePort`, `TurnEngine`, and conformance suite | `docs/CONTRACT.md` K-ENGINE-1; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
 | Persona composer output contract | TBD; DEL-04-04 owns prompt composition | `_CONTEXT.md`; `execution/_Decomposition/...` DEL-04-04 |
 | Permission overlay policy inputs | TBD; PKG-06 owns full overlay and hooks, but this builder must accept policy posture | `_CONTEXT.md` ContextEnvelopeNotes; `docs/PLAN.md` R2 |
+| Implementation module path | TBD; candidate R1 path is `frontend/src/lib/harness/sdk-options-builder.ts` but accepted path/export shape must follow implementation convention | `docs/PLAN.md` R1; `docs/PRD.md` Section 13.3, HASH_MISMATCH |
 | Dependency edges | TBD; no declared upstream/downstream dependencies have been extracted yet | `_DEPENDENCIES.md` |
 
 ## Steps
@@ -24,6 +25,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 
 2. Define the builder input shape.
    - Include session/runtime state needed for model, tools, max turns, mode, persona, hooks, MCP servers, subagents, resume/session linkage, and settings policy.
+   - Reference or import adjacent owner contracts for persona output, session linkage, hooks, MCP server descriptors, subagent descriptors, permission policy, and settings policy when those contracts exist.
    - Mark exact TypeScript API names as TBD until SDK probe/version evidence is accepted.
 
 3. Implement deterministic fallback resolution.
@@ -34,7 +36,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 4. Implement settings isolation posture.
    - For shipped posture, set SDK settings source behavior to `settingSources: []`.
    - Permit `['project']` only under explicit development configuration.
-   - Reject or prevent `user` and `local` settings sources in shipped builds.
+   - Reject invalid shipped policy inputs before option construction or omit ambient settings by construction; do not pass `user` or `local` settings sources in shipped builds.
    - Add safe visible metadata for selected settings-source posture.
 
 5. Implement tool-surface resolution.
@@ -58,19 +60,22 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 
 9. Add tests.
    - Add fallback-chain tests.
-   - Add unknown-option warning tests.
+   - Add unknown-option warning tests that prove resolved SDK behavior is unchanged when unknown keys are present.
    - Add shipped settings isolation tests.
    - Add development-only project-setting opt-in tests.
+   - Add forbidden `user` and `local` settings-source tests for shipped posture.
    - Add tool mapping, ordering, and unknown-tool tests.
+   - Add one composite deterministic-order fixture covering requested tools, visible tools, MCP server IDs, allow/deny lists, permission mode, hook/callback posture, and permission policy inputs together.
    - Add `allowedTools` misconception guard test.
    - Add max-turn propagation test.
-   - Add safe metadata redaction/exclusion test.
+   - Add safe metadata redaction/exclusion test proving safe fields are present and API keys/secrets are absent.
 
 10. Run validation.
-    - Run targeted unit tests for `sdk-options-builder.ts`.
+    - Run targeted unit tests for `sdk-options-builder.ts` or the selected equivalent module.
     - Run typecheck after SDK version/API is pinned.
     - Run broader harness validation when the feature is wired into `TurnEngine`.
-    - Record any remaining TBD fields or SDK-probe dependencies.
+    - Record the exact test command or validation suite once the implementation path exists; until then, keep the command as TBD.
+    - Record any remaining TBD fields, terminal max-turn fixture owner, or SDK-probe dependencies.
 
 ## Verification
 
@@ -81,6 +86,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 | Shipped settings isolation | Shipped posture produces `settingSources: []` and no `user`/`local` setting sources. |
 | Development settings gate | `['project']` requires explicit development configuration. |
 | Tool mapping | Registered SDK built-ins and Chirality MCP tools resolve; unknown names produce structured validation errors. |
+| Composite deterministic ordering | Tools, MCP server IDs, allow/deny lists, hook/callback posture, permission mode, and policy inputs remain stable for identical inputs. |
 | Permission posture | Restricted modes do not rely on `allowedTools` alone. |
 | Max-turn guard | Resolved max-turn value reaches SDK options. |
 | Metadata safety | Visible metadata contains only safe runtime details and no secrets. |
@@ -91,9 +97,12 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 Expected implementation records:
 
 - `sdk-options-builder.ts` or equivalent module selected by implementation owner.
+- Exact module path/export shape record, currently TBD pending implementation convention.
 - Settings isolation tests.
 - Tool mapping and visible metadata tests.
 - Max-turn propagation tests.
 - Unknown option warning tests.
+- Targeted test command or validation suite, currently TBD until implementation path exists.
 - SDK probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.
+- Terminal max-turn runtime/event handoff fixture owner, currently TBD and likely adjacent to DEL-04-03 or DEL-03-02 pending accepted contract.
 - Any unresolved `TBD`, `ASSUMPTION`, or conflict entries carried forward for human or upstream-agent ruling.

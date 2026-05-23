@@ -36,6 +36,8 @@ Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/SPEC.md` Sections 8-9; 
 | DEL-05-05-REQ-010 | Output budget tests MUST verify that large outputs do not flood chat or model context and that medium/large outputs surface usable previews or artifact links. | `docs/PRD.md` NFR-017 and R4 acceptance (HASH_MISMATCH warning); decomposition anticipated artifacts |
 | DEL-05-05-REQ-011 | ASSUMPTION: The implementation should expose `ToolResultStore` through a product-owned interface/module that is not SDK-shaped, because TYPES and PRD identify it as Chirality-owned policy. | `docs/TYPES.md` Section 7/8 glossary; `docs/PRD.md` Section 9.4 (HASH_MISMATCH warning) |
 | DEL-05-05-REQ-012 | Output class byte thresholds, preview length, artifact naming scheme, checksum policy, and retention/deletion behavior are TBD until specified by implementation design or a governed source update. | Source gap in `docs/SPEC.md` Sections 8-9 and `docs/PRD.md` Section 10.5 |
+| DEL-05-05-REQ-013 | The deterministic replay test for concurrent or interleaved tool-result completions MUST assert the accepted ordering signal: JSONL append/write sequence, `parentEventId` linkage where applicable, or another explicitly accepted event-ordering metadata field. | D-001; `docs/SPEC.md` Section 9.1-9.2; decomposition SOW-053 |
+| DEL-05-05-REQ-014 | Threshold-boundary verification MUST be added when byte thresholds and preview limits are accepted; until then, tests may verify class behavior only through parameterized or fixture-specific policy inputs. | X-001; `docs/PRD.md` NFR-017 and R4 acceptance (HASH_MISMATCH warning); F-001 deferral |
 
 ## Standards
 
@@ -56,9 +58,10 @@ Sources: `_CONTEXT.md`; decomposition `DEL-05-05`; `docs/SPEC.md` Sections 8-9; 
 | REQ-005 | Metadata fixture tests asserting tool name, turn ID, byte count, truncation flag, and relative artifact path. |
 | REQ-006, REQ-007 | Redaction tests using provider errors, run logs, event data, and tool-result payload fixtures with secret-like values. |
 | REQ-008 | Replay tests using valid JSONL followed by a malformed trailing line; valid prior artifact links must remain available. |
-| REQ-009 | Deterministic ordering tests using concurrent or interleaved tool-result completion fixtures. |
+| REQ-009, REQ-013 | Deterministic ordering tests using concurrent or interleaved tool-result completion fixtures; assertions must bind replay order to write sequence or accepted event-ordering metadata rather than completion-arrival ambiguity. |
 | REQ-011 | Conformance/type tests ensuring public event/API contracts remain provider-neutral and not SDK-shaped. |
 | REQ-012 | Human/design review before finalizing thresholds, preview limits, naming, checksums, and retention policy. |
+| REQ-014 | Threshold-boundary tests added after threshold and preview-limit acceptance; current validation remains `TBD` for exact boundary values. |
 
 ## Documentation
 
@@ -70,3 +73,4 @@ Required implementation artifacts for this deliverable:
 - Replay fixtures with artifact references and malformed-tail JSONL tolerance.
 - Redaction fixtures for sensitive tool output handling.
 - Developer notes identifying threshold values and any residual risks once chosen.
+- P3 disposition record for B-001, C-001, F-001, D-001, X-001, and E-001 showing which items were incorporated, deferred as `TBD`, or surfaced for human ruling.

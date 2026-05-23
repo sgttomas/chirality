@@ -16,6 +16,7 @@
 | ScopeItem | SOW-070 |
 | Objective | OBJ-010 |
 | Source posture | Future-boundary/gated scope; not current-release domain operation execution |
+| Validation evidence owner | TBD - no human owner is assigned for interpreting future fixture pass/fail evidence |
 
 ## Attributes
 
@@ -39,6 +40,7 @@
 | Fixture specificity | OpenPipeStress-specific assumptions must live in profile and adapter layers, not in core harness runtime | `docs/PRD.md` Section 8.17 FR-114 |
 | Dependency state | Declared upstream and downstream dependencies are TBD until dependency extraction and project graph validation occur | `_DEPENDENCIES.md` Declared Upstream/Downstream |
 | PRD source warning | Expected PRD hash differs from observed PRD hash; dispatch treats this as a source warning only | `_REFERENCES.md` REF-006; assignment override |
+| Future amendment gate | Accepted PKG-10 amendment or explicit human authorization is required before fixture implementation becomes active work | `_DEPENDENCIES.md` Extracted Dependency Register; `docs/PLAN.md` R7 |
 
 ## Construction
 
@@ -47,6 +49,7 @@
 | Future fixture profile | A future OpenPipeStress `DomainEngineProfile` example or fixture using the generic profile contract | TBD - no accepted fixture file exists in this deliverable yet |
 | Validation tests | Deterministic checks for required profile fields, path separation, manifest rules, operation descriptors, and boundary notices | TBD - test framework and target files are not assigned in this gated scope |
 | Adapter assumptions note | Notes separating OpenPipeStress profile/adapter assumptions from Chirality core runtime behavior | TBD - future amendment required before adapter assumptions become implementation truth |
+| Stable evidence records | Future pass/fail records for validation checks, expected failures, and professional-boundary wording coverage | TBD - no record format or artifact path has been assigned |
 
 ## References
 

@@ -38,6 +38,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 14 an
 | DEL-06-01-REQ-012 | In-process Chirality MCP tools MUST pass through the same permission policy as SDK built-ins when the overlay evaluates them. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.2 |
 | DEL-06-01-REQ-013 | The permission overlay MUST keep public Chirality contracts product-owned rather than SDK-shaped, with SDK-specific values translated as adapter metadata where needed. | `docs/CONTRACT.md` Section 1.5 K-ENGINE-4; `docs/PRD.md` Section 9.4, HASH_MISMATCH warning |
 | DEL-06-01-REQ-014 | Tests MUST cover `readOnly`, `dontAsk`, and `ask` mode behavior, including denied tool non-execution and permission-event persistence. | `_CONTEXT.md`; `docs/PRD.md` R2 acceptance, HASH_MISMATCH warning |
+| DEL-06-01-REQ-015 | The overlay input contract MUST include enough product-owned context to evaluate session identity, optional turn identity, requested tool name, Chirality mode, resolved tool-surface posture, and explicit deny/approval signals without making SDK request objects the public contract. | `docs/TYPES.md` Section 8.2; `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` Section 1.5 K-ENGINE-4 |
 
 ## Standards
 
@@ -66,6 +67,9 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 14 an
 | DEL-06-01-REQ-012 | MCP wrapper tests assert Chirality MCP tool attempts pass through overlay evaluation. |
 | DEL-06-01-REQ-013 | Type or conformance tests assert public `HarnessEvent`, permission decision, and API contracts do not leak SDK-shaped names except adapter metadata. |
 | DEL-06-01-REQ-014 | Test suite includes readOnly/dontAsk/ask fixtures named or tagged for DEL-06-01 traceability. Exact paths: TBD. |
+| DEL-06-01-REQ-015 | Type or unit tests assert the overlay accepts a product-owned input shape and translates SDK-specific values only at the adapter boundary. Exact implementation path remains TBD. |
+
+Required verification evidence remains path-TBD until implementation planning assigns files, but the acceptance set must cover: decision-record shape, deny precedence, allowedTools misconception, readOnly denial, dontAsk denial, ask persistence before callback return, workspaceWrite hook-pass gating, tool.permission event persistence, MCP parity, and product-owned contract shape. Source basis: `docs/TYPES.md` Section 8.2; `docs/SPEC.md` Sections 14.3 and 15.1; `docs/PRD.md` Section 12.6 and R2/R3 acceptance with HASH_MISMATCH warning.
 
 ## Documentation
 
@@ -79,12 +83,20 @@ Required implementation evidence:
 - ReadOnly/dontAsk/ask behavioral tests.
 - Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
 
+## Pass 3 Semantic Lensing Disposition
+
+| ItemID | Disposition | Evidence and source reread |
+|---|---|---|
+| C-001 | Incorporated as bounded interface requirements while preserving exact implementation shape as TBD. | Datasheet Construction and DEL-06-01-REQ-015 now identify the minimum product-owned context. Reread: `docs/TYPES.md` Section 8.2; `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` Section 1.5. |
+| F-001 | Incorporated as verification evidence for workspaceWrite hook-pass gating, with hook internals deferred to DEL-06-04. | Verification keeps hook implementation out of this deliverable but requires contract/integration proof before edits can allow. Reread: `docs/SPEC.md` Section 15.1; decomposition PKG-06 rows for DEL-06-04. |
+| X-002 | Converted to explicit path-TBD verification evidence requirements rather than invented test names. | Verification now lists required evidence topics and keeps exact paths TBD until implementation planning. Reread: `docs/PRD.md` Section 12.6 and R2/R3 acceptance with HASH_MISMATCH warning; `docs/SPEC.md` Section 9.4 later event categories. |
+| E-002 | Incorporated as MCP parity verification with concrete source obligation and adjacent wrapper ownership. | DEL-06-01-REQ-012 and verification require parity; wrapper detail remains with DEL-06-03. Reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.2; decomposition PKG-06 rows for DEL-06-03. |
+
 ## Traceability
 
 | Source item | Covered by |
 |---|---|
-| SOW-054 Structured permission decisions | DEL-06-01-REQ-001, REQ-002, REQ-013 |
-| SOW-055 Permission modes and deny-first overlay | DEL-06-01-REQ-003 through REQ-009, REQ-011 |
+| SOW-054 Structured permission decisions | DEL-06-01-REQ-001, REQ-002, REQ-013, REQ-015 |
+| SOW-055 Permission modes and deny-first overlay | DEL-06-01-REQ-003 through REQ-009, REQ-011, REQ-015 |
 | SOW-056 Tool permission events | DEL-06-01-REQ-010 |
 | SOW-058 Interactive approval through `canUseTool` | DEL-06-01-REQ-002, REQ-007 |
-

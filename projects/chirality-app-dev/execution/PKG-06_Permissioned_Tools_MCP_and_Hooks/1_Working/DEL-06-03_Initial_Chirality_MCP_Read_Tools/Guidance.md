@@ -40,6 +40,10 @@ Source basis: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2
 | Runtime events | Permission/start/completion/failure event persistence may depend on R1/R2 runtime plumbing. If not available, expose a typed integration seam and tests around the expected behavior. | `docs/PLAN.md` R2; `docs/PRD.md` Section 8.13 FR-083 |
 | PRD hash warning | The current PRD text is accessible but hash-mismatched against `_REFERENCES.md`; use it with the warning recorded, and avoid treating PRD-only detail as silently final if another accepted source disagrees. | `_REFERENCES.md`; task brief |
 
+### Source-State Posture
+
+PRD-backed details remain usable as warning-qualified implementation direction because `_REFERENCES.md` records `docs/PRD.md` as accessible but hash-mismatched. Closure should not rely on PRD-only wrapper-policy detail until one of these happens: the reference hash is refreshed, a human accepts the current PRD text for this deliverable, or the same requirement is corroborated by `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, or `docs/PLAN.md`.
+
 ## Trade-offs
 
 | Decision Area | Trade-off | Recommended Posture |
@@ -49,6 +53,10 @@ Source basis: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2
 | Dependency file absence | `Dependencies.csv` may not exist early in a deliverable lifecycle. | Return an explicit "not present / not tracked yet" result; do not fabricate dependencies. |
 | Event coupling | Full event persistence may not be complete when read tools are first drafted. | Keep event emission/adaptation explicit and testable; mark unavailable runtime pieces `TBD` instead of embedding hidden behavior. |
 | SDK-specific APIs | PRD references SDK MCP APIs, but Chirality contracts must remain product-owned. | Use SDK APIs behind product-owned wrappers and tests; do not leak SDK-shaped public contracts. |
+
+### Scaffold Boundary Rationale
+
+Scaffold preview belongs in this read-tool slice only as a non-mutating planning surface. `docs/SPEC.md` Section 14.2 classifies `mcp__chirality__scaffold` as gated, while `docs/PLAN.md` R2 sequences read and preview capability before write/edit/bash expansion. The practical boundary is therefore: allow a deterministic preview of intended scaffold effects, deny or defer filesystem mutation, and move any write-capable scaffold execution to the later governed write/path-hook surface.
 
 ## Examples
 
@@ -80,3 +88,10 @@ Example wrapper metadata fields:
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | N/A | No source-content conflict identified during Pass 1/2 drafting. Source-state warning only: `docs/PRD.md` has HASH_MISMATCH in `_REFERENCES.md`. | `_REFERENCES.md` REF-006 | Task brief | References and source confidence | Treat as warning per task brief; re-check hash before implementation closure. | TBD |
+
+## Pass 3 Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| X-001 | Incorporated as source-state posture | PRD HASH_MISMATCH handling is now explicit before PRD-only policy detail can be used for closure. Source reread: `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.13; `docs/CONTRACT.md` Section 1.6. |
+| E-002 | Incorporated | Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2. |

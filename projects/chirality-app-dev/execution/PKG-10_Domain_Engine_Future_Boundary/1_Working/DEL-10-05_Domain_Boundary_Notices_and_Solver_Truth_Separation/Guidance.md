@@ -19,6 +19,7 @@ Use this deliverable to keep future domain-engine language clear, conservative, 
 - DomainEngineProfile details remain future work. Do not invent profile fields beyond the source-backed set: engine identity, optional version, protected paths, proposal paths, artifact types, operations, manifest rules, and boundary notices.
 - OpenPipeStress may be useful as a first fixture profile, but examples must not hardcode OpenPipeStress assumptions into Chirality core behavior.
 - Runtime events, adapter results, and deterministic checks can support review; they do not make a deliverable professionally reliable by themselves.
+- The notice wording below is proposal-quality copy until an accountable human accepts it for a specific future UI, documentation, event-record, profile, or operation-proposal surface.
 
 ## Trade-offs
 
@@ -65,6 +66,10 @@ OpenPipeStress, if used, is a fixture profile or adapter example. Its assumption
 | Fixture posture | Is OpenPipeStress treated as a fixture profile if mentioned? | Yes |
 | Unsupported facts | Are missing details marked TBD, ASSUMPTION, PROPOSAL, or human-ruling items? | Yes |
 
+## Completed Checklist Capture
+
+Completed checklist evidence should be captured as part of the review output record described in `Procedure.md#Review Output Record`. Until a future amendment defines a product-native storage location, the capture location is `TBD` and the completed checklist is closure support only, not a human approval record.
+
 ## Examples
 
 | Context | Acceptable Wording | Avoid |
@@ -84,5 +89,6 @@ OpenPipeStress, if used, is a fixture profile or adapter example. Its assumption
 ## Human Rulings Needed
 
 - Confirm whether the standard and compact boundary notices are accepted wording or remain proposal copy.
+- Confirm who may accept proposed boundary notice copy as sufficient for specific future surfaces.
 - Confirm future `DomainEngineProfile` copy locations once DEL-10-01 is accepted.
 - Confirm engine-specific wording if OpenPipeStress or another domain engine is adopted by amendment.

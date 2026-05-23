@@ -33,7 +33,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Descriptor schema | Leave operation descriptor fields as TBD until authoritative definition exists. | Invented fields could become false contract surface. |
 | Manifest schema | Preserve `manifestRules: unknown` until a governed schema is accepted. | Over-specific rules could conflict with future adapter design. |
 | Endpoint references | Mention candidate endpoint families only as provisional future interfaces. | Current-release scope creep or accidental implementation pressure. |
-| Boundary notice copy | Require boundary notices but avoid final copy until future UI/doc context is approved. | Copy may imply professional reliance or solver-truth ownership. |
+| Boundary notice copy | Require boundary notices but avoid final copy until future UI, documentation, event-record, and concrete profile-instance context is approved. Disposition: X-001 incorporated as acceptance-context guidance. Source reread: `docs/CONTRACT.md` §1.10 K-DOMAIN-4; `docs/PRD.md` §8.17 FR-115 and §R7. | Copy may imply professional reliance or solver-truth ownership. |
 
 ## Examples
 
@@ -59,8 +59,21 @@ This example is illustrative only. It is not an accepted runtime fixture and mus
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| C-001 | `DomainEngineOperationDescriptor` is referenced but not defined in accessible sources. | `docs/TYPES.md` §11.1 references `DomainEngineOperationDescriptor[]`. | No accessible source slice defines `DomainEngineOperationDescriptor`. | `Datasheet.md` Attributes; `Specification.md` Requirements; future validator design | Keep descriptor shape TBD until governed type definition is accepted. | TBD |
-| C-002 | `manifestRules` is required but typed as `unknown`. | `docs/TYPES.md` §11.1 includes `manifestRules: unknown`. | `docs/PRD.md` §8.17 FR-108 requires manifest rules but does not define schema in accessible slice. | `Datasheet.md` Attributes; `Specification.md` Requirements; future validator design | Keep manifest schema TBD until accepted manifest-rule schema exists. | TBD |
+| CONFLICT-1 | `DomainEngineOperationDescriptor` is referenced but not defined in accessible sources. | `docs/TYPES.md` §11.1 references `DomainEngineOperationDescriptor[]`. | No accessible source slice defines `DomainEngineOperationDescriptor`. | `Datasheet.md` Attributes; `Specification.md` Requirements; future validator design | Keep descriptor shape TBD until governed type definition is accepted. Disposition: D-001 already covered and retained as unresolved conflict. Source reread: `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108. | TBD |
+| CONFLICT-2 | `manifestRules` is required but typed as `unknown`. | `docs/TYPES.md` §11.1 includes `manifestRules: unknown`. | `docs/PRD.md` §8.17 FR-108 requires manifest rules but does not define schema in accessible slice. | `Datasheet.md` Attributes; `Specification.md` Requirements; future validator design | Keep manifest schema TBD until accepted manifest-rule schema exists. Disposition: D-002 already covered and retained as unresolved conflict. Source reread: `docs/TYPES.md` §11.1; `docs/PRD.md` §8.17 FR-108. | TBD |
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| A-001 | Converted to human ruling gate. | `Specification.md` Verification now requires PRD hash refresh or explicit acceptance before downstream reliance. |
+| B-001 | Incorporated. | `Specification.md` Verification now includes a PRD source refresh gate for PRD-dependent assertions. |
+| C-001 | Incorporated as status-policy normalization. | `Procedure.md` distinguishes P1/P2 status transition from Phase 2.5 P3_ONLY NO_STATUS_TOUCH execution. |
+| F-001 | Incorporated as dependency gate. | `Procedure.md` now blocks closeout when accepted upstream dependency status remains unresolved unless human acceptance of proceeding is recorded. |
+| D-001 | Already covered and retained. | CONFLICT-1 keeps `DomainEngineOperationDescriptor` unresolved until an accepted type definition exists. |
+| D-002 | Already covered and retained. | CONFLICT-2 keeps `manifestRules` unresolved until an accepted manifest-rule schema exists. |
+| X-001 | Incorporated. | `Guidance.md` Trade-offs now names future UI, documentation, event-record, and profile-instance context for boundary notice acceptance. |
+| E-001 | Incorporated. | `Specification.md` Verification now requires future instance-level review data for concrete profile fixtures. |
 
 ## References
 

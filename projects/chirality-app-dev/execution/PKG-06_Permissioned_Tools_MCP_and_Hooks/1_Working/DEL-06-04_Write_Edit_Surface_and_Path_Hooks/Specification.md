@@ -37,12 +37,13 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/CONTRACT.md` Sections 1
 | DEL-06-04-REQ-007 | Explicit denies from policy, path containment, hook, governance, SDK deny rule, or human gate MUST override any allow. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
 | DEL-06-04-REQ-008 | `allowedTools` MUST NOT be treated as sufficient restriction or safety boundary for write/edit capability. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
 | DEL-06-04-REQ-009 | `readOnly` mode MUST deny write/edit capability, and `workspaceWrite` MUST allow governed writes only after hooks and policy pass. | `docs/SPEC.md` Section 15.1; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
-| DEL-06-04-REQ-010 | In-process Chirality MCP write tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6 K-MCP-1 |
+| DEL-06-04-REQ-010 | In-process Chirality MCP write/gated tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins before mutation behavior is enabled. Current source inventory includes `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, and gated `mcp__chirality__scaffold` classification. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.2 |
 | DEL-06-04-REQ-011 | Successful controlled writes/edits SHOULD be atomic where practical and MUST emit a diff or summary suitable for audit. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
 | DEL-06-04-REQ-012 | Every write attempt MUST produce permission/runtime event evidence or equivalent audit records, including denials. | `docs/PLAN.md` R3 acceptance; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
 | DEL-06-04-REQ-013 | Provenance append hooks MUST record safe provenance/run evidence where policy requires it. | `docs/SPEC.md` Section 15.2 |
 | DEL-06-04-REQ-014 | Path validation SHOULD include regular-file and symlink checks for attachment/write-relevant paths where applicable. | `docs/SPEC.md` attachment/path validation bullets; decomposition SOW-060 |
 | DEL-06-04-REQ-015 | Tests MUST cover outside-root denial, instruction-root denial, symlink denial, stale or missing exact edit preconditions, allowed in-root write/edit behavior, and provenance/event evidence. | `_CONTEXT.md`; `docs/PLAN.md` R3 acceptance |
+| DEL-06-04-REQ-016 | Acceptance evidence MUST keep PRD-derived controlled-write behavior warning-qualified until REF-006 source state is reconciled or a governed hash-bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/CONTRACT.md` Section 1.7 K-REF-1 |
 
 ## Standards
 
@@ -65,23 +66,25 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/CONTRACT.md` Sections 1
 | DEL-06-04-REQ-005 | Edit tests assert stale, missing, or non-exact preconditions do not mutate files. |
 | DEL-06-04-REQ-007, REQ-008 | Precedence tests assert SDK allows, `allowedTools`, or session allows cannot override Chirality deny policy. |
 | DEL-06-04-REQ-009 | Mode tests assert `readOnly` cannot write and `workspaceWrite` writes only after permission and hook gates pass. |
-| DEL-06-04-REQ-010 | MCP parity tests assert `mcp__chirality__deps_write` or future write MCP tools pass through equivalent gates. |
+| DEL-06-04-REQ-010 | MCP parity tests assert `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, gated `mcp__chirality__scaffold` if mutation-capable, and future write MCP tools pass through equivalent gates. |
 | DEL-06-04-REQ-011, REQ-013 | Successful-write tests assert diff/summary and provenance metadata are produced without leaking unsafe data. |
 | DEL-06-04-REQ-012 | Runtime event tests assert allowed and denied write attempts produce permission/runtime evidence. |
 | DEL-06-04-REQ-014 | Path fixture tests cover regular-file, symlink, extension, and validation failure cases where those checks apply. |
 | DEL-06-04-REQ-015 | Test index or validation marker references this deliverable and includes the required negative and positive fixtures. |
+| DEL-06-04-REQ-016 | Source-state verifier asserts PRD-derived requirements remain annotated with REF-006 HASH_MISMATCH until the reference hash is reconciled or an accepted bypass record exists. |
 
 ## Documentation
 
 Required implementation evidence:
 
-- Write/edit hook module or equivalent gate: TBD.
-- Path policy helper or fixture set: TBD.
-- Instruction-root and working-root resolver integration: TBD.
-- Exact edit precondition validator: TBD.
-- Provenance/diff/summary recorder: TBD.
-- Write/edit negative and positive tests: TBD.
-- Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+- Write/edit hook module or equivalent gate: TBD path to module that registers the pre-execution write/edit decision point and fail-closed behavior.
+- Path policy helper or fixture set: TBD path to helper and fixtures covering outside-root, instruction-root, symlink, malformed target, and allowed in-root cases.
+- Instruction-root and working-root resolver integration: TBD path to resolver integration proving a single active containment root is used for this deliverable.
+- Exact edit precondition validator: TBD path to validator plus selected stale-content behavior, matcher, and diff strategy.
+- MCP write/gated surface coverage: TBD test evidence for `mcp__chirality__status_transition`, `mcp__chirality__deps_write`, gated `mcp__chirality__scaffold` classification, and any later write-capable MCP tools.
+- Provenance/diff/summary recorder: TBD path to event or artifact writer that records allowed and denied write attempts.
+- Write/edit negative and positive tests: TBD paths for denial and allowed-mutation fixtures.
+- Source-state verifier and residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled or a governed hash-bypass record is accepted.
 
 ## Traceability
 
@@ -91,4 +94,4 @@ Required implementation evidence:
 | SOW-057 Hooks and fail-closed behavior | DEL-06-04-REQ-001, REQ-006, REQ-012, REQ-013 |
 | SOW-060 Safe write/edit behavior | DEL-06-04-REQ-004, REQ-005, REQ-011, REQ-014, REQ-015 |
 | OBJ-005 Deny-first permission policy, hooks, result budgets, and approvals | DEL-06-04-REQ-001, REQ-006 through REQ-013 |
-| OBJ-006 Filesystem project truth through containment and change discipline | DEL-06-04-REQ-002 through REQ-005, REQ-011 through REQ-015 |
+| OBJ-006 Filesystem project truth through containment and change discipline | DEL-06-04-REQ-002 through REQ-005, REQ-011 through REQ-016 |

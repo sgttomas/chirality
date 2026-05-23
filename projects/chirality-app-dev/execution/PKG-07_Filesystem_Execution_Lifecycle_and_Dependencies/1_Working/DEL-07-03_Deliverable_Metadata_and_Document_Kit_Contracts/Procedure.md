@@ -13,9 +13,9 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 | Product requirements for filesystem execution model | `docs/PRD.md` / Sections 8.8, 8.9, 10.8; HASH_MISMATCH warning in `_REFERENCES.md` |
 | Vocabulary for deliverables, artifacts, and lifecycle states | `docs/TYPES.md` / Sections 1.2, 1.3, lifecycle state table |
 | Governance posture for roots, memory, evidence, and conflicts | `docs/DIRECTIVE.md` / Sections 2.5, 2.6, 2.7; `docs/CONTRACT.md` / K-ROOT, K-CONFLICT |
-| Declared upstream dependencies | TBD - no accepted dependency edges have been extracted yet. Source: `_DEPENDENCIES.md` / Declared Upstream |
+| Declared upstream dependencies | TBD - no declared upstream dependency edges have been accepted by a human. Extracted ACTIVE rows exist in `_DEPENDENCIES.md` and `Dependencies.csv`, but they are not accepted declared dependencies for this prerequisite row. Source: `_DEPENDENCIES.md` / Declared Upstream and Extracted Dependency Register |
 | Implementation location | TBD |
-| Scanner output schema | TBD |
+| Scanner output schema | Minimum result fields are recorded in `Specification.md` / Scanner Finding Contract (P3); final implementation schema remains TBD. |
 
 ## Steps
 
@@ -36,6 +36,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
    - Require `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, and `_REFERENCES.md`.
    - Recognize `_SEMANTIC.md` as part of the minimum PREPARATION fileset.
    - Distinguish required, recommended, optional, and prohibited files in output.
+   - Use the Pass 3 finding categories in `Specification.md` as the working vocabulary until an implementation schema is accepted.
    - Source basis: `docs/SPEC.md` / Section 3.1; `docs/PRD.md` / FR-048 and Section 10.8.
 
 5. Implement document kit detection.
@@ -61,6 +62,7 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 9. Add tests and run verification.
    - Add metadata scanner tests, document kit detection tests, and `_MEMORY.md` rejection tests.
    - Add path/root containment fixtures if this code accepts filesystem paths.
+   - Include fixture coverage for missing `_SEMANTIC.md`, initialized folders missing one or more document-kit files, optional-file absence, optional-file presence, prohibited `_MEMORY.md`, REF-006 HASH_MISMATCH propagation, and unknown unsupported conditions.
    - Exact test command is TBD until implementation location is selected.
 
 ## Verification
@@ -77,6 +79,8 @@ Define the working procedure for producing and verifying the DEL-07-03 backend f
 | `_SEMANTIC_LENSING.md` absent | Validator does not fail solely for optional absence |
 | PRD hash mismatch present in references | Output/report preserves source warning |
 | Instruction-root path supplied to write-capable path handling | Write operation is blocked or not available from this slice |
+| Extracted dependency rows present but declared sections remain TBD | Procedure treats extracted rows as evidence records, not accepted declared prerequisites |
+| Scanner result consumed by scope API or adjacent API | Compatibility is proven by implementation or route-level tests; no route-shape change is assumed here |
 
 ## Records
 
@@ -87,3 +91,4 @@ Maintain the following records for closure:
 - Fixture list and test results.
 - Any unresolved `TBD` values from this procedure, especially implementation location, scanner output schema, and severity policy.
 - Evidence that `_MEMORY.md` rejection was tested.
+- P3 disposition trace for A-001, B-001, C-001, D-001, D-002, F-001, F-002, X-001, X-002, E-001, and E-002.

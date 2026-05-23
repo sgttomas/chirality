@@ -17,10 +17,13 @@ Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNe
 3. Renderer and provider network checks should be allowlist-oriented. The current shipped network posture is loopback plus Anthropic API path, with broader network access reserved for governed future scope.
    Source: `docs/CONTRACT.md` K-NET-1; `docs/SPEC.md` Section 16.3.
 
-4. Attachment metadata from the browser is advisory only. Server-side validation must be the authority for path, type, symlink status, readability, regular-file status, and byte budgets.
+4. Anthropic provider access and renderer outbound allowlisting are related but separately enforced surfaces. Provider execution needs the approved Anthropic endpoint, while renderer traffic still needs Electron-level cancellation of non-loopback and non-Anthropic requests; evidence should not treat one control as proof of the other.
+   Source: `docs/PRD.md` FR-032 and FR-033; `docs/SPEC.md` Section 16.3; `docs/CONTRACT.md` K-NET-1.
+
+5. Attachment metadata from the browser is advisory only. Server-side validation must be the authority for path, type, symlink status, readability, regular-file status, and byte budgets.
    Source: `docs/PRD.md` FR-037; `docs/CONTRACT.md` K-ATTACH-1.
 
-5. Failure behavior is part of the security surface. Tests should verify that partial attachment failures do not discard executable content and that total attachment failure without text returns the expected typed failure while preserving retry state where the UI is involved.
+6. Failure behavior is part of the security surface. Tests should verify that partial attachment failures do not discard executable content and that total attachment failure without text returns the expected typed failure while preserving retry state where the UI is involved.
    Source: `docs/PRD.md` FR-040; `docs/SPEC.md` Section 16.1.
 
 ## Considerations
@@ -56,3 +59,9 @@ Sources: `_CONTEXT.md` Traceability; `execution/_Decomposition/Chirality_App_vNe
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | TBD | No source-content conflict identified during P1/P2. PRD hash mismatch remains a source warning only. | `_REFERENCES.md` REF-006 | Assignment instruction | All PRD-grounded sections | Treat PRD content as usable with warning for this run. | TBD |
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| E-001 | Incorporated as a rationale principle distinguishing Anthropic provider endpoint access from renderer outbound allowlisting. |

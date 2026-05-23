@@ -54,6 +54,13 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Permission handoff | Feed the resolved tool surface into the Chirality permission overlay; do not rely on `allowedTools` alone for restriction. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
 | Tests | Include unknown-tool tests and deterministic ordering fixtures. Exact test paths: TBD. | `_CONTEXT.md`; decomposition DEL-06-02 |
 
+### Pending Implementation Evidence
+
+| Evidence slot | Current disposition | Source |
+|---|---|---|
+| Implementation, registry, metadata, and fixture paths | TBD until implementation ownership assigns concrete files; do not infer paths from planned artifact names. (P3: B-001) | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-INVENT-1 |
+| Terminology boundary | Use "read-first" for sequencing, "read-only" for capability class, and `readOnly` only for the runtime mode token. (P3: B-002) | `docs/TYPES.md` Section 8.1; `docs/PLAN.md` R2 |
+
 ## References
 
 | RefID | Source | Use | Source state |

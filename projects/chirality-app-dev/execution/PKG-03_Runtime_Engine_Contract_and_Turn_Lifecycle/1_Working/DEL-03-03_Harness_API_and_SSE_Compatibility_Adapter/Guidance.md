@@ -33,6 +33,19 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.4, 11, 17.1
 | Capture exact current route fixtures before implementation changes | Makes compatibility measurable. | Fixture capture can ossify accidental behavior; mitigate by documenting which fields are contractual and which are compatibility-only TBD. |
 | Allow additional tool progress events only with compatibility handling | Enables future richer UI feedback. | Could surprise older clients; mitigate through opt-in handling or backward-compatible event consumption. |
 
+Compatibility handling for additional tool progress events should name one accepted mode per event: ignored safely by existing clients, consumed only by opt-in UI behavior, or carried through a documented backward-compatible path. Source basis: `docs/PRD.md` Section 9.3 and `docs/PLAN.md` R2 acceptance context.
+
+Classify captured fixture fields before treating them as contract:
+
+| Field Class | Criteria | Evidence |
+|---|---|---|
+| Contractual | Named by SPEC, TYPES, CONTRACT, or PRD as part of the public route, SSE, `UIEvent`, or product-owned `HarnessEvent` contract. | Source section plus fixture assertion. |
+| Compatibility-only | Present in captured current behavior but not source-backed as a required public contract. | Fixture path, implementation baseline SHA, and rationale for retaining or ignoring. |
+| Adapter metadata | Provider/SDK identifiers, message names, transcript paths, session IDs, permission modes, or tool names that may appear only behind adapter boundaries. | DIRECTIVE Section 2.10; PRD Section 9.3; CONTRACT K-ENGINE-4. |
+| TBD | Field cannot yet be classified because current implementation capture or source location is unavailable. | `TBD` with required source or fixture capture action. |
+
+When a retained compatibility-only field constrains a cleaner internal API, add a decision note naming the field, source fixture, affected route/event, accepted risk, and why retaining it does not make the public contract SDK-shaped.
+
 ## Examples
 
 Source-backed examples:
@@ -50,4 +63,3 @@ TBD examples:
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
 | CONFLICT-001 | `docs/PRD.md` content is accessible but REF-006 records `HASH_MISMATCH`. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Sections 8.3, 8.12, 9.1, 9.3 | All PRD-derived requirements and verification notes | Treat PRD details as source-state-warning context until the reference hash is reconciled; do not invent missing details. | TBD |
-

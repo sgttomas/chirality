@@ -47,6 +47,13 @@ The deliverable is a documentation and copy-boundary package. Anticipated artifa
 
 ASSUMPTION: These artifacts may be implemented as sections or downstream documents, but no final target file paths are specified in the available sources. Target file paths remain TBD until a human or later deliverable assigns them.
 
+| Artifact | Current location in this deliverable | Final destination path | Source |
+|---|---|---|---|
+| UI copy guidelines | `Guidance.md` Principles, Considerations, Trade-offs, and Examples | TBD | `_CONTEXT.md` Anticipated Artifacts; decomposition DEL-01-03 AnticipatedArtifacts |
+| Release review checklist | `Procedure.md` Verification and Release Review Evidence Template | TBD | `_CONTEXT.md` Anticipated Artifacts; `docs/DIRECTIVE.md` Sections 2.4 and 3.2 |
+| Boundary notice examples | `Guidance.md` Examples | TBD | `_CONTEXT.md` Anticipated Artifacts; `docs/CONTRACT.md` K-AUTH-1 and K-DOMAIN-4 |
+| Review notes | `Procedure.md` Review Note Record Template | TBD | `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
+
 ## References
 
 | RefID | Source | Use |
@@ -58,4 +65,3 @@ ASSUMPTION: These artifacts may be implemented as sections or downstream documen
 | REF-005 | `docs/PLAN.md` | Product identity and release/local-check posture |
 | REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; hash mismatch treated as source warning per dispatch |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no copy requirements extracted |
-

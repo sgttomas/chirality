@@ -10,8 +10,8 @@ Define the operational procedure for producing and later verifying the DEL-10-04
 - Accessible source corpus for `docs/PRD.md`, `docs/TYPES.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/PLAN.md`.
 - ResponsibleParty assignment: TBD.
 - Concrete future test path and adapter manifest location: TBD.
-- Dependency extraction and project graph validation: TBD; `_DEPENDENCIES.md` currently has no accepted upstream/downstream edges.
-- Source warning acknowledged: REF-006 PRD hash mismatch is treated as warning only for this run.
+- Dependency posture: `_DEPENDENCIES.md` now contains extracted ACTIVE rows, but all satisfaction remains `PENDING`; accepted declared upstream/downstream closure and project graph validation remain TBD.
+- Source warning acknowledged: REF-006 PRD hash mismatch is treated as warning only for this run and remains visible for future closure reliance.
 
 ## Steps
 
@@ -34,6 +34,7 @@ Define the operational procedure for producing and later verifying the DEL-10-04
    - Check operation descriptors against `OperationProposal` concepts where operation fixtures are present.
    - Check deterministic adapter manifest presence or mark manifest rules TBD.
    - Check boundary notice presence.
+   - For each negative case, record the deterministic expected failure or mark the expected output TBD.
 
 5. Define negative validation cases.
    - Missing required field.
@@ -48,8 +49,9 @@ Define the operational procedure for producing and later verifying the DEL-10-04
 
 7. Verify no implementation activation occurred.
    - Confirm no current-release endpoint/tool activation was introduced.
-   - Confirm no Dependencies.csv was created by this four-documents task.
+   - Confirm this P3 four-documents task did not create, edit, or promote `Dependencies.csv`.
    - Confirm ResponsibleParty remains TBD.
+   - Confirm no future fixture output is treated as professional approval, code compliance, external validation, or Chirality-owned solver truth.
 
 ## Verification
 
@@ -62,11 +64,15 @@ Define the operational procedure for producing and later verifying the DEL-10-04
 | Protected path policy preserved | Direct protected-domain writes are disallowed in requirements and guidance. |
 | Human gate preserved | Domain operations require explicit human acceptance before application. |
 | Professional boundary preserved | No language claims automated approval, code compliance, external validation, or solver truth ownership. |
+| Expected failures documented | Future negative tests include deterministic expected failure evidence or explicit TBDs. |
+| P3 scope preserved | `_STATUS.md`, `_SEMANTIC_LENSING.md`, metadata files, and dependency registers are not modified by the P3 four-documents pass. |
 
 ## Records
 
 - Future fixture profile: TBD.
 - Validation tests: TBD.
 - Adapter assumptions note: TBD.
+- Stable validation evidence record format: TBD.
+- Human-approved boundary-notice wording fixture: TBD.
 - TASK run record under `_run_records/`.
-- `_STATUS.md` transition to INITIALIZED only after all four document files are non-empty.
+- `_STATUS.md` not changed during P3_ONLY because `_SEMANTIC_LENSING.md` declares `NO_STATUS_TOUCH`.

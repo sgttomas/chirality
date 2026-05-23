@@ -53,3 +53,10 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 - Confirm whether the package-folder label mismatch should be normalized, renamed, or left as a path-history artifact.
 - Resolve or explicitly accept the PRD hash mismatch for future closure.
 - Confirm exact UI component/module paths and API response field names before implementation-level acceptance.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| A-001 | Already covered as conflict: the package-folder label mismatch remains in the Conflict Table for human ruling. | `Guidance.md` Conflict Table; `_CONTEXT.md` Identity; `docs/CONTRACT.md` K-ID-1/K-PATH-1. |
+| X-003 | Already covered as conflict/source warning: the PRD hash mismatch remains visible and unresolved for closure. | `_REFERENCES.md` REF-006; `Guidance.md` Conflict Table; `Datasheet.md` Conditions; `Procedure.md` Prerequisites. |

@@ -14,8 +14,8 @@ Define the operational steps to produce and verify the Toolkit Options and Local
   - `docs/PLAN.md`
   - `docs/PRD.md` with hash mismatch warning from `_REFERENCES.md`
   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
-- Declared upstream dependencies: TBD; `_DEPENDENCIES.md` contains no accepted upstream dependency edges.
-- Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD.
+- Declared upstream dependencies: `_DEPENDENCIES.md` reports no accepted human-declared upstream dependency edges outside the extracted register. The extracted register is present and lists active source prerequisites plus `DEP-DEL-02-04-014` for TBD adjacent runtime option contracts and permission policy integration points.
+- Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD per `DEP-DEL-02-04-014`.
 - ResponsibleParty: TBD.
 
 ## Steps
@@ -34,11 +34,13 @@ Define the operational steps to produce and verify the Toolkit Options and Local
 3. Implement or review Toolkit per-turn option controls.
    - Expose model, tools, max turns, mode, persona, and governance metadata only as supported by runtime.
    - Treat exact component structure and labels as TBD until implementation files are selected.
+   - Record the runtime-supported option inventory used by the UI, or explicitly mark unavailable controls as TBD/disabled.
    - Source: `docs/PRD.md` Section 8.7 FR-041.
 
 4. Align Toolkit option handoff with deterministic runtime behavior.
    - Confirm model, tools, and max-turn fallback chains remain deterministic.
    - Confirm unknown option keys warn and are ignored.
+   - Preserve test evidence that unknown keys do not silently mutate runtime behavior.
    - Sources: `docs/PRD.md` Section 8.4 FR-023 and FR-024; `docs/SPEC.md` Section 13.1.
 
 5. Guard local presets and Toolkit settings.
@@ -79,6 +81,8 @@ Define the operational steps to produce and verify the Toolkit Options and Local
 - Toolkit controls implementation or review notes: TBD.
 - Pane resize/collapse implementation or review notes: TBD.
 - Draft/preset storage guard tests: TBD.
-- Runtime option handoff tests: TBD.
+- Runtime option handoff tests, including unknown-key warning/ignore evidence: TBD.
 - Accessibility checks for keyboard resize/collapse: TBD.
+- Local-state non-authority tests for presets, drafts, attachment selections, fallback behavior, accessibility, and storage guards: TBD.
+- Policy-mode mapping evidence after the permission policy engine exists: TBD.
 - Human ruling on PRD hash mismatch reconciliation: TBD.

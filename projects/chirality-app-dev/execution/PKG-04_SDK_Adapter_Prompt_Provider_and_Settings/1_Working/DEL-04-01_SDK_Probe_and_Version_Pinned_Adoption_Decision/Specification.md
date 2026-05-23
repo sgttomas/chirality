@@ -39,6 +39,21 @@ Sources: `_CONTEXT.md`; decomposition row for `DEL-04-01`; `docs/PLAN.md` R0/R1;
 | DEL-04-01-REQ-014 | The probe MUST not expose local tools to the model outside controlled validation. | Review probe setup and notes. | `docs/PLAN.md` R0; `docs/PRD.md` R0 |
 | DEL-04-01-REQ-015 | The decision MUST record residual risks for SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in. | Inspect residual-risk notes. | `docs/PRD.md` KG-021 through KG-032 |
 
+## Probe Evidence Thresholds
+
+The SDK probe may remain `TBD` until implementation begins, but the final probe notes and adoption decision must contain the following evidence rows before the SDK-backed path is accepted as a production default.
+
+| Evidence Area | Required Evidence Row(s) | Accept / TBD / Fallback Rule | Source |
+|---|---|---|---|
+| Version pin | Exact `@anthropic-ai/claude-agent-sdk` version, package manifest evidence, lockfile evidence, and Claude Code subprocess version where knowable. | `TBD` until the package and lockfile evidence exist; do not infer a version from roadmap text. | `docs/SPEC.md` Section 12.4; `docs/PLAN.md` R1 implementation targets |
+| Settings isolation | Shipped-like SDK options showing `settingSources: []`; negative evidence that `user` and `local` settings were not loaded; separate notation for any development-only `['project']` posture. | Failure to prove shipped `settingSources: []` is a fallback blocker or explicit residual-risk decision. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
+| Permission behavior | Rows for `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and deny-first overlay outcome. | Passing evidence must show `allowedTools` is not treated as a restriction boundary by itself and explicit denials fail closed. | `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` K-PERM-1 through K-PERM-3 |
+| Message mapping | Observed SDK `query()` message categories and sequence; mapping of each product-relevant message into stable `UIEvent` and `HarnessEvent` categories; unmapped categories with fallback or residual-risk treatment. | Adequate proof requires provider-neutral mapping without SDK names becoming public API or canonical persisted event fields. | `docs/SPEC.md` Sections 9 and 10.3; `docs/CONTRACT.md` K-ENGINE-4 |
+| Terminal outcomes | Success, failure, interruption, and cancellation evidence, including persisted terminal events and route/session cleanup behavior. | Production default use remains blocked until all required terminal outcomes persist or are explicitly carried as residual risk. | `docs/SPEC.md` Sections 10.1 and 11; `docs/PLAN.md` R1 acceptance |
+| API key handoff and redaction | Active-turn SDK environment handoff; redaction checks for logs, events, SDK transcripts if avoidable, provider errors, and tool artifacts. | Any persisted key material in project files, runtime events, logs, or artifacts is a blocker. | `docs/SPEC.md` Section 12.3; `docs/CONTRACT.md` K-KEY-1 |
+| Packaging | Packaged Electron app SDK turn result; subprocess/binary path behavior; `asarUnpack` or equivalent need; signing posture; environment handling; transcript/storage effect. | Packaging failure is fallback-blocking unless a human accepts a bounded residual-risk posture. | `docs/PLAN.md` Section 6.4; `docs/SPEC.md` Section 19.4 |
+| Decision authority | Human approver for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`. | TBD until a responsible party or approving role is assigned; `ResponsibleParty` remains TBD. | `_CONTEXT.md` Identity; `docs/DIRECTIVE.md` Section 2.4 |
+
 ## Standards
 
 | Standard / Contract | Applicability | Source |
@@ -54,16 +69,17 @@ Sources: `_CONTEXT.md`; decomposition row for `DEL-04-01`; `docs/PLAN.md` R0/R1;
 
 | Verification ID | Check | Required Result |
 |---|---|---|
-| DEL-04-01-V-001 | Version evidence check | Exact SDK package version is recorded, with lockfile/package evidence when implementation begins. |
-| DEL-04-01-V-002 | Message sequence probe | SDK message categories used by Chirality are observed and mapped or flagged as fallback blockers. |
-| DEL-04-01-V-003 | Settings isolation probe | Shipped posture proves `settingSources: []`; no user/local settings load. |
-| DEL-04-01-V-004 | Permission probe | `allowedTools` is not mistaken for restriction; deny-first overlay, hooks, and callbacks are evaluated. |
-| DEL-04-01-V-005 | MCP probe | In-process MCP tooling can be exposed only through Chirality policy and event logging. |
-| DEL-04-01-V-006 | Session/storage probe | SDK session ID, resume, transcript path/store key, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior are documented. |
-| DEL-04-01-V-007 | Interrupt probe | Cancel/interrupt behavior preserves terminal outcomes and releases route/session control. |
-| DEL-04-01-V-008 | Packaging probe | Packaged Electron runtime can start SDK-backed harness turn or records a fallback-blocking issue. |
-| DEL-04-01-V-009 | Fallback decision review | Any failed P0 reliance boundary produces fallback or residual-risk action before R1 production default. |
-| DEL-04-01-V-010 | Source-state check | REF-006 `docs/PRD.md` hash mismatch is resolved or explicitly accepted before closure. |
+| DEL-04-01-VER-001 | Version evidence check | Exact SDK package version is recorded, with lockfile/package evidence when implementation begins. |
+| DEL-04-01-VER-002 | Message sequence probe | SDK message categories used by Chirality are observed and mapped or flagged as fallback blockers. |
+| DEL-04-01-VER-003 | Settings isolation probe | Shipped posture proves `settingSources: []`; no user/local settings load. |
+| DEL-04-01-VER-004 | Permission probe | `allowedTools` is not mistaken for restriction; deny-first overlay, hooks, and callbacks are evaluated. |
+| DEL-04-01-VER-005 | MCP probe | In-process MCP tooling can be exposed only through Chirality policy and event logging. |
+| DEL-04-01-VER-006 | Session/storage probe | SDK session ID, resume, transcript path/store key, `SessionStore`, and `CLAUDE_CONFIG_DIR` behavior are documented. |
+| DEL-04-01-VER-007 | Interrupt probe | Cancel/interrupt behavior preserves terminal outcomes and releases route/session control. |
+| DEL-04-01-VER-008 | Packaging probe | Packaged Electron runtime can start SDK-backed harness turn or records a fallback-blocking issue. |
+| DEL-04-01-VER-009 | Fallback decision review | Any failed P0 reliance boundary produces fallback or residual-risk action before R1 production default. |
+| DEL-04-01-VER-010 | Source-state check | REF-006 `docs/PRD.md` hash mismatch is resolved or explicitly accepted before closure. |
+| DEL-04-01-VER-011 | Probe evidence completeness | Evidence rows listed in Probe Evidence Thresholds are present, or each missing row is marked `TBD` with fallback/residual-risk impact. |
 
 ## Documentation
 
@@ -80,5 +96,7 @@ TBD:
 
 - Final document file path for the SDK probe decision.
 - Exact SDK version and subprocess version.
+- Exact package manifest and lockfile evidence location.
 - Exact transcript storage decision: `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference default path as residual risk.
 - Exact packaging requirements discovered by the probe.
+- Exact human approver or approving role for `ADOPT`, `ADOPT_WITH_RESIDUAL_RISK`, or `FALLBACK`.

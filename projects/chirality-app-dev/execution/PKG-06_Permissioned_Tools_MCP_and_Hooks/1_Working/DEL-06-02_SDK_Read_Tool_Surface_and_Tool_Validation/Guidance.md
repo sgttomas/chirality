@@ -48,6 +48,20 @@ Initial read candidates are `Read`, `LS`, `Glob`, and `Grep` where available, pl
 
 `docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. Its R2/Section 8.13 content aligns with matching SPEC, CONTRACT, TYPES, PLAN, and decomposition slices used here, but PRD-only implementation details should be reviewed after source-state reconciliation.
 
+Pass 3 disposition: keep PRD-derived claims warning-qualified and do not treat REF-006 as closure authority until a human or accepted source-state process resolves the hash mismatch. (P3: A-001, D-002, E-002)
+
+### Terminology Normalization
+
+Use the following terms distinctly:
+
+| Term | Use |
+|---|---|
+| read-first | Sequencing posture: read tools are enabled before write/edit/bash capability. |
+| read-only | Capability class: tools that do not write, shell out, or perform network-capable side effects. |
+| `readOnly` | Runtime mode token from the permission vocabulary. |
+
+This normalization preserves the difference between staged rollout, tool capability, and runtime mode policy. (P3: B-002)
+
 ## Trade-offs
 
 | Trade-off | Guidance |

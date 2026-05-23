@@ -55,6 +55,12 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Event append integration | Uses append-only session event storage and replay-compatible JSONL behavior. Exact writer API: TBD. | `docs/SPEC.md` Sections 8.4 and 9.2 |
 | Validation | Include `context.compacted` tests and terminal hook fixtures; Section 9 validation includes `section9.context_compaction_boundary`. Exact test paths: TBD. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 |
 
+## Pass 3 Disposition
+
+| ItemID | Disposition | Evidence reread |
+|---|---|---|
+| C-001 | Converted to an explicit implementation blocker: the hook lifecycle mapper is required, but the exact module path remains `TBD` until implementation ownership assigns the adapter surface. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-06-06 row; `docs/SPEC.md` Sections 9, 10.3, and 15.2; `docs/TYPES.md` Sections 7.3 and 8.5 |
+
 ## References
 
 | RefID | Source | Use | Source state |

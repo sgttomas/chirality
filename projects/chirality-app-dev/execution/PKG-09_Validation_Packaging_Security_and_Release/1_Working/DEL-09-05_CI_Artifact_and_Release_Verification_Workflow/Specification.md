@@ -36,6 +36,9 @@ Out of scope:
 | REQ-09-05-010 | Verification MUST keep outbound network scope limited to explicit product scope: loopback plus Anthropic API path unless governed future scope expands it. | `docs/CONTRACT.md` K-NET-1 |
 | REQ-09-05-011 | The release workflow MUST NOT represent Chirality as providing automated professional approval, code compliance, external validation, or solver ownership. | `docs/PRD.md` Section 12.1; `docs/DIRECTIVE.md` professional-boundary sections |
 | REQ-09-05-012 | ASSUMPTION: The CI implementation target is a GitHub Actions workflow because `docs/PRD.md` Section 12.7 specifies "The GitHub workflow"; the exact workflow file path is TBD. | `docs/PRD.md` Section 12.7 |
+| REQ-09-05-013 | Release evidence MUST map each requirement in this specification to a concrete evidence artifact, checklist row, or `TBD` blocker before workflow readiness is claimed. | `docs/CONTRACT.md` K-VALIDATE-1 and K-INVENT-1; `_SEMANTIC_LENSING.md` C-001 |
+| REQ-09-05-014 | CI review evidence MUST show whether each of the ten PRD Section 12.7 workflow steps is present, absent, or `TBD`. | `docs/PRD.md` Section 12.7; `_SEMANTIC_LENSING.md` F-001 |
+| REQ-09-05-015 | Release evidence MUST include explicit secret-redaction and accepted-network-scope inspection results for CI logs, release records, and packaged-app verification artifacts. | `docs/CONTRACT.md` K-KEY-1 and K-NET-1; `_SEMANTIC_LENSING.md` X-001 |
 
 ## Standards
 
@@ -63,6 +66,29 @@ Out of scope:
 | REQ-09-05-010 | Confirm packaged-app and CI verification do not broaden network access beyond accepted policy. |
 | REQ-09-05-011 | Review runbook and CI/release notes for prohibited professional-approval or external-validation language. |
 | REQ-09-05-012 | Human or implementation review confirms exact CI workflow path and artifact naming. |
+| REQ-09-05-013 | Review the evidence matrix below and confirm every requirement has an artifact, checklist row, or unresolved blocker. |
+| REQ-09-05-014 | Review CI workflow evidence against the ten PRD Section 12.7 steps one by one. |
+| REQ-09-05-015 | Inspect release evidence for secret material and non-accepted network endpoints; record pass/fail/TBD for each inspection. |
+
+## Evidence Matrix
+
+| Requirement | Required Evidence |
+|---|---|
+| REQ-09-05-001 | Local runbook row showing `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, and `npm run instruction-root:integrity` from `frontend/`, or a `TBD` blocker. |
+| REQ-09-05-002 | Local runbook row showing `npm run desktop:dist`, or a `TBD` blocker. |
+| REQ-09-05-003 | Artifact-path evidence for the DMG, app bundle, and stable summary JSON, or failed/TBD path rows. |
+| REQ-09-05-004 | CI workflow review table with all ten PRD Section 12.7 steps marked present, absent, or `TBD`. |
+| REQ-09-05-005 | CI and release evidence referencing `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
+| REQ-09-05-006 | Manual macOS DMG checklist with a pass/fail/TBD row for each source-defined check. |
+| REQ-09-05-007 | Release-target row confirming macOS 15+ Apple Silicon unsigned/unnotarized local-builder scope, or governed amendment reference. |
+| REQ-09-05-008 | Gate record showing required local checks passed before release-significant acceptance, or an unresolved blocker. |
+| REQ-09-05-009 | Secret-redaction inspection row for logs, runtime records, SDK transcripts where applicable, and tool artifacts. |
+| REQ-09-05-010 | Network-scope inspection row confirming loopback plus Anthropic API path only, or governed amendment reference. |
+| REQ-09-05-011 | Boundary-language review row confirming no automated professional approval, code compliance, external validation, or solver-ownership claim. |
+| REQ-09-05-012 | Human or implementation ruling for CI workflow path, upload artifact name, and retention period. |
+| REQ-09-05-013 | Completed requirement-to-evidence matrix with unresolved entries carried as blockers. |
+| REQ-09-05-014 | Ten-step CI acceptance checklist tied to workflow evidence. |
+| REQ-09-05-015 | Secret and network inspection records tied to CI/release artifacts. |
 
 ## Documentation
 

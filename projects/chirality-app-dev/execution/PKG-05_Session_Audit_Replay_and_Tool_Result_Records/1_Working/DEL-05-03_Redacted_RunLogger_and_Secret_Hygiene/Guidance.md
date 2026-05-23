@@ -12,8 +12,8 @@ Primary evidence:
 
 ## Principles
 
-1. Redact before persistence.
-   Any provider, SDK, tool, or run-log payload that may be written to JSONL, artifacts, logs, error details, or diagnostics should pass through redaction before it crosses the persistence boundary.
+1. Redact before persistence and sensitive display.
+   Any provider, SDK, tool, or run-log payload that may be written to JSONL, artifacts, logs, error details, diagnostics, or user-visible diagnostic surfaces should pass through redaction before it crosses the persistence boundary or a display boundary that could reveal configured secrets.
 
 2. Keep the audit useful.
    Redaction should remove secret values while preserving non-secret diagnostic structure such as error class, status, source, policy category, event type, byte counts, truncation flags, and artifact references.
@@ -26,6 +26,9 @@ Primary evidence:
 
 5. Prefer shared redaction over isolated patches.
    Current code contains provider-local redaction behavior. ASSUMPTION: the deliverable should consolidate product-wide redaction behavior into a shared helper used by provider error handling, run logging, event emission, and tool artifact handling.
+
+6. Keep shape-specific handling where the payload requires it.
+   A shared helper should centralize secret matching and replacement, while provider errors, SDK diagnostics, `HarnessEvent.data`, and tool artifacts may still need surface-specific adapters so non-secret metadata remains useful and payload policies remain enforceable.
 
 ## Considerations
 
@@ -46,6 +49,7 @@ Primary evidence:
 | Inline tool result convenience vs leakage risk | Prefer preview/metadata/artifact references and redaction over raw inline content when sensitivity is possible. |
 | Product-owned audit vs SDK transcript completeness | Keep Chirality JSONL canonical; use SDK transcript linkage as secondary metadata, not as a replacement. |
 | Provider-local helper vs shared helper | Prefer a shared helper once this deliverable is implemented; keep provider-specific handling only where source payload shapes require it. |
+| One helper contract vs payload-specific policy | Centralize configured-secret redaction in one helper, but let each surface decide whether to preserve metadata, redact inline content, store an artifact, or withhold a payload. |
 
 ## Examples
 

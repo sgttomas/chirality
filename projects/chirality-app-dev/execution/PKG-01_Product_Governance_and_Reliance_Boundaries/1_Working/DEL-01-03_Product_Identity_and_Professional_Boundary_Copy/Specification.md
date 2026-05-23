@@ -14,7 +14,7 @@ Included:
 Excluded:
 
 - Runtime implementation details except where copy must reflect product-owned boundaries.
-- Dependency extraction; this run leaves dependency extraction deferred and does not create `Dependencies.csv`.
+- Dependency satisfaction closure; `Dependencies.csv` exists, but its rows remain `SatisfactionStatus=TBD` pending downstream FULL_GRAPH/cycle checks and any human closure decisions.
 - Final assignment of `ResponsibleParty`; it remains TBD.
 - Current-release domain operation implementation.
 
@@ -48,12 +48,20 @@ Excluded:
 
 | Requirement | Verification approach |
 |---|---|
-| REQ-01, REQ-02 | Review UI strings, docs, packaging metadata, release notes, and runtime copy for Chirality-owned identity and absence of Claude Code/Anthropic product-identity claims. |
+| REQ-01, REQ-02 | Review UI labels, empty states, permission prompts, status-transition messages, runtime/session summaries, documentation, packaging metadata, release notes, and future domain notices for Chirality-owned identity and absence of Claude Code/Anthropic product-identity claims. |
 | REQ-03 | Review SDK-related copy for implementation-detail framing and Chirality-owned contract language. |
 | REQ-04 through REQ-06 | Review copy for draft/non-binding language and human-only approval language. |
 | REQ-07 | Review reliance-boundary copy for non-prompt-only enforcement language and concrete ownership references. |
 | REQ-08, REQ-09 | Review future domain notices for domain-truth separation and explicit human acceptance. |
 | REQ-10 | Review deliverable and downstream copy for `TBD`, `ASSUMPTION`, `PROPOSAL`, and conflict labeling where source support is incomplete. |
+
+Closure evidence before downstream production copy updates:
+
+- `ResponsibleParty` assigned by an accountable human: TBD.
+- Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: TBD.
+- `Dependencies.csv` satisfaction and any project-level FULL_GRAPH/cycle checks closed or explicitly deferred by a human: TBD.
+- Conflict Table CT-001 and CT-002 human rulings recorded: TBD.
+- Release review evidence record completed for the checked surfaces and source sections: TBD.
 
 ## Documentation
 
@@ -68,5 +76,6 @@ TBD:
 - Final destination path for UI copy guidelines.
 - Final destination path for release review checklist.
 - Final destination path for boundary notice examples.
+- Final destination path for review notes.
 - Human assignment of `ResponsibleParty`.
-
+- Human closure decision for `Dependencies.csv` rows whose `SatisfactionStatus` remains `TBD`.

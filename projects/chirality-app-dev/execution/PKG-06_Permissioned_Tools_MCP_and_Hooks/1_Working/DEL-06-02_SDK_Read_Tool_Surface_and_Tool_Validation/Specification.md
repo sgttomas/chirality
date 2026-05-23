@@ -66,6 +66,14 @@ Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 14 an
 | DEL-06-02-REQ-012 | Metadata or boot-fingerprint tests assert resolved tool names/versions and MCP server identifiers are stable and safe to record. Exact metadata path: TBD. |
 | DEL-06-02-REQ-013 | Test suite includes DEL-06-02 traceability markers or fixture names. Exact test paths: TBD. |
 
+### Pass 3 Verification Evidence Disposition
+
+| ItemID | Disposition | Source reread evidence |
+|---|---|---|
+| C-001 | Incorporated as a verification-evidence requirement while concrete implementation paths remain TBD. Resolver, registry, deterministic-ordering, and read-first evidence must be named before closure. | `docs/CONTRACT.md` K-TOOL-1/K-TOOL-2; `docs/SPEC.md` Sections 13 and 14.3 |
+| D-001 | Incorporated as explicit tests for permission-boundary bypass cases: `allowedTools` cannot override deny inputs, and implementation availability alone cannot expose a tool. | `docs/CONTRACT.md` K-PERM-3 and K-TOOL-2; `docs/SPEC.md` Section 14.3 |
+| E-001 | Converted to a metadata-path TBD. Safe metadata or boot-fingerprint evidence is required, but the exact record path is not assigned in the current sources. | `docs/SPEC.md` Section 13; `docs/PRD.md` FR-128 with HASH_MISMATCH warning |
+
 ## Documentation
 
 Required implementation evidence:
@@ -76,6 +84,8 @@ Required implementation evidence:
 - Deterministic ordering fixtures.
 - Read-first sequencing tests.
 - Residual-risk note for `docs/PRD.md` HASH_MISMATCH until source state is reconciled.
+
+Concrete evidence locations remain TBD until implementation ownership assigns files. The documentation package must not close DEL-06-02 solely on planned artifact names or decomposition prose. (P3: B-001, C-001, E-001)
 
 ## Traceability
 

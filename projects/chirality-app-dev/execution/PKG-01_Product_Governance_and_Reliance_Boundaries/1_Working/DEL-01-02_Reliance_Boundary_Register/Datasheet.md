@@ -70,6 +70,8 @@
 | Transcript condition | SDK transcripts may support resume/debugging but `.chirality/sessions/<sessionId>/events.jsonl` remains canonical unless imported into `HarnessEvent` form. |
 | Human-gate condition | Reliance-affecting approval remains human-only and evidence-bound. |
 | PRD source-state warning | `docs/PRD.md` is accessible but hash-mismatched against `_REFERENCES.md`; any PRD-derived content should be rechecked before final acceptance. |
+| Source trace acceptance condition | Register rows that cite `docs/PRD.md` must remain warning-limited until a human/source owner reconciles the REF-006 hash or accepts the current PRD content as project truth. |
+| Implementation-surface completion condition | Exact module paths, hook/check names, and validation file names remain `TBD` until downstream runtime and Section 9 deliverables produce inspectable artifacts. |
 
 ## Construction
 
@@ -88,6 +90,16 @@
 | ValidationID | Section 9 or other test/check ID | Required where available; otherwise `TBD` |
 | ResidualRisk | Known unresolved risk or source-state warning | Required when applicable |
 | DecisionStatus | `TBD`, `PROPOSED`, `ACCEPTED`, or `CONFLICT` | Required |
+
+### Deferred Completion Fields
+
+| Deferred field | Current handling | Closure evidence required |
+|---|---|---|
+| ResponsibleParty | `TBD` by scaffold policy until human assignment. | Human-maintained ownership update in deliverable status/context or accepted downstream ownership record. |
+| Exact enforcement file paths | `TBD` where runtime modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
+| Exact validation file/test names | Candidate Section 9 IDs are listed; implementation IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
+| PRD-derived rows | May be drafted from accessible `docs/PRD.md` with visible HASH_MISMATCH warning. | Human/source-owner reconciliation of REF-006 expected hash or accepted current PRD content. |
+| SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted SDK probe result naming transcript placement or mirroring policy. |
 
 ### Candidate Validation Index
 

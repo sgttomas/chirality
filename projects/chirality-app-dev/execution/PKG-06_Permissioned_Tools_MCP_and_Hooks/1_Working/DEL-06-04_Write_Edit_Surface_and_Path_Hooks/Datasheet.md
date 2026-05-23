@@ -38,6 +38,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Mode dependency | `workspaceWrite` can use SDK edit acceptance only after write hooks pass; `readOnly` cannot write. | `docs/SPEC.md` Section 15.1; `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
 | Hook failure policy | Hook failures fail closed for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
 | MCP parity | Chirality MCP write tools must pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6 K-MCP-1 |
+| Current MCP write surface | The current source inventory identifies `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as write/gated tools; `mcp__chirality__scaffold` is gated and must be classified before any mutation behavior is enabled. | `docs/SPEC.md` Section 14.2 |
 | Adjacent deliverables | Permission mode mapping is owned by DEL-06-01; tool resolver/read MCP surfaces are owned by DEL-06-02 and DEL-06-03; compaction/terminal hook mirroring is owned by DEL-06-06. | decomposition PKG-06 rows |
 | Dependency state | `_DEPENDENCIES.md` lists no accepted upstream or downstream edges yet. | `_DEPENDENCIES.md` |
 
@@ -50,8 +51,8 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | Exact edit validator | Require exact edit preconditions for edit-style operations before mutation. Exact diff/match algorithm: TBD. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
 | Safe write/edit execution | Perform atomic write/edit where practical only after permission and hook gates pass. Atomicity details: TBD. | `docs/PRD.md` Section 7.9, HASH_MISMATCH warning |
 | Provenance recorder | Capture safe provenance, diff/summary, permission/runtime events, and source metadata for each write attempt. Exact event fields beyond source docs: TBD. | `docs/PLAN.md` R3; `docs/SPEC.md` Section 15.2 |
-| Path policy fixtures | Include fixtures for outside-root targets, instruction-root targets, symlink targets, missing files, stale edit preconditions, and allowed in-root writes. | `_CONTEXT.md`; `docs/PLAN.md` R3 acceptance |
-| Tests | Include write/edit tests for denied outside-root writes, denied instruction-root writes, denied symlink writes, exact edit preconditions, and provenance evidence. Exact test paths: TBD. | `_CONTEXT.md`; `docs/PLAN.md` R3 acceptance |
+| Path policy fixtures | Include fixtures for outside-root targets, instruction-root targets, symlink targets, missing files, stale edit preconditions, allowed in-root writes, and the current MCP write/gated surface. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance |
+| Tests | Include write/edit tests for denied outside-root writes, denied instruction-root writes, denied symlink writes, exact edit preconditions, provenance evidence, MCP parity, and PRD warning carry-forward. Exact test paths: TBD. | `_CONTEXT.md`; `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R3 acceptance; `_REFERENCES.md` REF-006 |
 
 ## References
 

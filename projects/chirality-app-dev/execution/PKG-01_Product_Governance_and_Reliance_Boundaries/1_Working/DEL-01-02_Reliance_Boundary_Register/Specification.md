@@ -47,6 +47,10 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-019 | Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants. | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 | Redaction tests; run logger tests; artifact inspection. |
 | RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 SDK probe review; fallback criteria row in register. |
 | RBR-021 | The register shall record the `docs/PRD.md` hash mismatch as source-state warning until the reference hash is reconciled. | `_REFERENCES.md`; user brief | Register metadata includes warning; final acceptance requires human/source hash reconciliation. |
+| RBR-022 | The register shall distinguish hash-verified source support from warning-limited REF-006 PRD support in row-level source traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows preserve the HASH_MISMATCH warning or cite reconciliation evidence. |
+| RBR-023 | Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125 | Generated register review includes explicit `PromptOnlyAllowed=NO`, `SDKDefaultOnlyAllowed=NO`, and non-empty enforcement-surface evidence for every P0 row. |
+| RBR-024 | Exact implementation file paths, hook names, check names, and validation files shall remain `TBD` until downstream deliverables produce inspectable artifacts. | REF-002 K-INVENT-1; REF-003 §19.3; decomposition DEL-03/DEL-04/DEL-06/DEL-09 rows | Open item review confirms each `TBD` has a downstream closure path or accepted conflict entry. |
+| RBR-025 | After `docs/harness/reliance_boundary_register.md` is generated, each register row shall be cross-checked against this specification, the datasheet field schema, and the test index. | REF-003 §19.3; REF-005 R0/R1 acceptance notes | Review record shows all rows map to requirements, source references, validation IDs or `TBD`, and residual risks. |
 
 ## Standards
 
@@ -68,6 +72,8 @@ This specification covers the content and verification expectations for `docs/ha
 | Coverage completeness | Rows exist for audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, runtime-engine, tool-surface, hooks, redaction, and fallback boundaries. |
 | Source traceability | Each row cites at least one governance/source reference and uses `location TBD` where exact implementation files are unavailable. |
 | P0 enforcement posture | P0 rows have `PromptOnlyAllowed=NO` and `SDKDefaultOnlyAllowed=NO`. |
+| Prompt/SDK-default exclusion evidence | Acceptance evidence proves the row has a Chirality-owned, verified SDK callback/hook, MCP wrapper, release check, or human gate beyond prompt-only or opaque SDK-default behavior. |
+| PRD source-state trace | Rows using REF-006 distinguish warning-limited PRD evidence from hash-verified sources until reconciliation. |
 | Validation mapping | Rows map to Section 9 validation IDs where listed in `docs/SPEC.md`; missing IDs remain `TBD`. |
 | Residual-risk surfacing | PRD hash mismatch, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved. |
 | Cross-document consistency | Datasheet boundary IDs, Specification requirement IDs, Guidance principles, and Procedure verification steps use the same terminology. |
@@ -90,3 +96,4 @@ The final work package should include:
 | OI-RBR-002 | Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist. | TBD |
 | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
 | OI-RBR-004 | Confirm exact Section 9 validation implementation IDs as runtime phases land. | TBD |
+| OI-RBR-005 | Confirm generated register rows distinguish hash-verified source evidence from REF-006 warning-limited PRD evidence. | TBD |

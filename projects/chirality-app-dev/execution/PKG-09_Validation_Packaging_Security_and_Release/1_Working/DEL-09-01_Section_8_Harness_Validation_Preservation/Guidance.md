@@ -12,6 +12,7 @@ DEL-09-01 exists to preserve the existing harness validation baseline while vNex
 - Prefer deterministic validation scripts over manual inspection wherever possible. This follows `docs/DIRECTIVE.md` deterministic validation guidance and the existing frontend scripts.
 - Keep PRD hash mismatch visible but non-blocking for this run, per invoker instruction.
 - Do not treat a passing historical provenance summary as proof that current code still passes. It is useful evidence of the expected summary shape and ID set, not a substitute for rerunning validation.
+- Keep DEL-09-01 limited to preserving Section 8 baseline behavior. Section 9 runtime validation IDs, broader runtime additions, and release workflow expansion belong to DEL-09-02 and related PKG-09 deliverables unless accepted sources move that scope here.
 
 ## Considerations
 
@@ -20,6 +21,7 @@ DEL-09-01 exists to preserve the existing harness validation baseline while vNex
 - The CI workflow starts the Next.js server, polls `/api/harness/session/list?projectRoot=/tmp`, runs the wrapper from `frontend/`, verifies the stable summary path, and uploads the artifact. A preservation change should cover this chain, not just the Node scripts.
 - The current stable summary records eight passing rows. If future accepted Section 8 scope changes the row set, update `REQUIRED_TEST_IDS`, `REQUIRED_CHECK_ORDER`, SPEC/PRD text, and CI expectations together.
 - ASSUMPTION: Unit tests or fixture tests for the wrapper may be preferable to relying solely on end-to-end CI runs, because they can exercise missing-ID and legacy-ID rejection deterministically. This is an implementation approach, not an accepted source requirement.
+- Current acceptance should cite fresh command outcomes. Historical provenance summaries are suitable shape references, while release-significant acceptance needs current evidence for the local checks named by `docs/SPEC.md` Section 19.1 and `docs/CONTRACT.md` K-VALIDATE-1.
 
 ## Trade-offs
 
@@ -46,4 +48,3 @@ DEL-09-01 exists to preserve the existing harness validation baseline while vNex
 ## Source Warnings
 
 - `docs/PRD.md` expected SHA256 in `_REFERENCES.md` is `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed SHA256 is `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. The invoker instructed this run to treat the mismatch as a source warning only.
-

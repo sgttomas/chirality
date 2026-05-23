@@ -12,7 +12,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 | Chirality owns semantics | SDK `agents`, `Agent` tool behavior, permission modes, and transcripts are implementation details. Public runtime contracts, audit events, and governance decisions remain Chirality-owned. |
 | No capability inheritance by accident | A child subagent should receive an explicit restricted tool list and cwd. It should not inherit parent capabilities implicitly, and it should not broaden parent authority. |
 | Sealed context only | Type 2 task-agent context is limited to folder contents and declared references. Avoid "ghost inputs" that are not in the sealed brief or declared sources. |
-| Approval is evidence, not vibes | The approval reference must be non-empty and traceable. If the approval reference is absent or ambiguous, the bridge should deny. |
+| Approval is evidence, not vibes | The approval reference must be non-empty and traceable to human/gate evidence. Until the accepted format is selected, the bridge should treat absent, ambiguous, mutable, or SDK-only approval data as denial or human-ruling-needed. |
 | Separate gate from record persistence | This slice owns bridge and hook behavior. Full parent-child record persistence and output artifact-path storage should be handed to DEL-08-05 through a clear interface. |
 
 ## Considerations
@@ -23,6 +23,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 - The candidate resolver should prefer explicit `AGENT_TYPE: 2` and task-agent metadata. If an instruction file is ambiguous, classify it as ineligible until a human or conformance validator resolves it.
 - Child cwd should be the approved bounded working root for the task, not the instruction root and not a broad ambient workspace.
 - The bridge should produce denial reasons suitable for audit and tests without leaking sensitive prompt or environment data.
+- REF-006 remains warning-qualified because `_REFERENCES.md` records a PRD hash mismatch. PRD-derived delegation behavior should remain traceable to the mismatch warning until a human refreshes or waives the accepted PRD snapshot.
 
 ## Trade-offs
 
@@ -38,6 +39,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 | Scenario | Expected outcome |
 |---|---|
 | Delegation request lacks approval reference | Denied before SDK `Agent` execution. |
+| Delegation request includes only an SDK transcript path or mutable UI label as approval evidence | Denied or human-ruling-needed until the accepted approval-reference format is selected. |
 | Candidate agent is not on the persona allowlist | Denied before SDK `Agent` execution. |
 | Candidate instruction is Type 1 or lacks `AGENT_TYPE: 2` | Denied as non-Type-2 candidate. |
 | Context is not sealed or includes undeclared references | Denied or human-ruling-needed; do not execute with ghost inputs. |
@@ -55,6 +57,7 @@ This deliverable exists to let Chirality use SDK subagent mechanics while keepin
 | Item | Status |
 |---|---|
 | Exact TypeScript module/file names for the bridge and SDK agent-definition builder | TBD |
-| Exact serialized shape of the governance decision object | TBD; should align with existing `evaluateSubagentGovernance` implementation and Chirality runtime event schema. |
-| Exact approval reference format | TBD; must be non-empty and traceable to human/gate evidence. |
+| Exact serialized shape of the governance decision object | TBD; must include allow/deny or human-ruling-needed behavior, stable denial reason vocabulary, decision source, safe metadata, approval reference, candidate/scope facts, and DEL-08-05 handoff fields. |
+| Exact approval reference format | TBD; must be non-empty, traceable to human/gate evidence, and stable enough for audit and tests. |
+| SDK R0/R1 probe readiness evidence | TBD; treat missing accepted probe evidence as a blocking prerequisite, not as runtime sufficiency. |
 | Exact interface boundary with DEL-08-05 | TBD; should carry child lifecycle metadata and output artifact-path hooks without duplicating persistence ownership. |

@@ -14,6 +14,8 @@ This procedure is grounded in `docs/PRD.md` Sections 12.2, 12.7, and 12.8; `docs
 | `ResponsibleParty` is assigned. | TBD |
 | Declared upstream dependency edges are accepted. | TBD |
 | CI provider and workflow path are confirmed. | ASSUMPTION: GitHub Actions; path TBD |
+| CI upload artifact name and retention period are confirmed. | TBD |
+| Release verification runbook filename and evidence storage location are confirmed. | TBD |
 | Local development environment can run commands from `frontend/`. | TBD |
 | Required instruction-root assets are present. | To be verified by workflow |
 | API keys and secrets are excluded from project files, logs, runtime events, and artifacts. | Required by `docs/CONTRACT.md` K-KEY-1 |
@@ -48,11 +50,13 @@ npm run desktop:dist
    - Run `npm run harness:validate:premerge`.
    - Verify `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`.
    - Upload the summary artifact.
+   - Record the exact workflow file path, CI upload artifact name, and retention period; keep each value `TBD` until source-defined or human-approved.
 
 4. Verify stable artifact handling.
    - Confirm the workflow checks for the stable summary artifact path.
    - Confirm artifact upload uses a stable, reviewable name.
    - Mark artifact upload name and retention as `TBD` until source-defined or human-approved.
+   - Distinguish the stable summary artifact path from the CI-provider upload artifact name.
 
 5. Execute or document packaging verification.
    - Run or require `npm run desktop:dist` from `frontend/`.
@@ -71,10 +75,16 @@ npm run desktop:dist
    - Confirm SDK-backed harness turn can start in packaged app after R1.
    - Confirm SDK subprocess or bundled binary is executable from package layout and not trapped inside `app.asar` without execution access.
    - Confirm SDK transcript storage/mirroring follows the accepted R1 storage decision.
+   - Record pass/fail/TBD separately for each manual checklist item.
 
 7. Record release evidence.
    - Record command results and artifact paths.
+   - Record the release verification runbook filename and evidence storage location; keep both `TBD` until human-approved.
+   - Map each specification requirement to an evidence artifact, checklist row, or unresolved blocker.
+   - Record all ten PRD Section 12.7 CI steps as present, absent, or `TBD`.
    - Record pass/fail/TBD for each manual release verification item.
+   - Record secret-redaction and accepted-network-scope inspection outcomes for CI and release artifacts.
+   - Record accepted dependency-edge or blocker state before declaring workflow readiness.
    - Record unresolved `TBD` items and conflicts.
    - Do not record API keys or secret material.
 
@@ -104,9 +114,13 @@ Required records:
 - Local command sequence/runbook.
 - Manual release verification checklist with pass/fail/TBD entries.
 - Release evidence summary with artifact paths and unresolved rulings.
+- Requirement-to-evidence matrix covering each `REQ-09-05-*` item.
+- CI ten-step review table covering PRD Section 12.7.
+- Secret-redaction and network-scope inspection records.
+- Dependency-edge or blocker disposition for release workflow readiness.
 
 Record constraints:
 
 - API keys and secret material must not be stored in project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts.
 - The PRD hash mismatch must remain visible as a source warning until separately resolved.
-- `Dependencies.csv` is not produced by this P1/P2 four-documents run.
+- `Dependencies.csv` was produced by a prior dependency-recording run; P3 does not edit dependency files, and readiness still requires accepted dependency-edge or blocker disposition.

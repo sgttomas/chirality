@@ -18,7 +18,7 @@ Out of scope:
 - General SDK adapter mechanics.
 - Full prompt composition implementation owned by DEL-04-04, except for the persona-name contract shared with this deliverable.
 - Pipeline category and task-scope dispatch owned by DEL-08-03, except for row-level `OPERATIVE -> PIPELINE` routing.
-- Dependency extraction; it is deferred for this run.
+- Dependency extraction authoring; the existing `Dependencies.csv` and `_DEPENDENCIES.md` are consumed as current dependency evidence for this deliverable.
 
 ## Requirements
 
@@ -63,6 +63,16 @@ Required verification artifacts:
 - Persona resolver tests proving canonical `AGENT_*.md` lookup and `PERSONA_NOT_FOUND` for missing personas.
 - Runtime fallback tests proving default persona behavior and warning behavior for unknown option keys where this deliverable touches shared runtime option handling.
 
+Pass 3 evidence slots:
+
+| ItemID | Disposition | Required evidence |
+|---|---|---|
+| B-001 | Converted to TBD. Unknown UI alias behavior is not selected by the current source set; implementation must choose reject, pass-through, or governed normalization before executable resolver closure. | Human ruling or source update, then alias resolver negative test. |
+| F-002 | Incorporated as audit evidence naming requirement. Verification records must identify concrete result files or command outputs for alias, matrix, route, workbench-context, persona, fallback, unknown-key, and unsupported-option checks. | Implementation-local test report paths or command output locations. |
+| D-001 | Converted to TBD. `docs/PRD.md` FR-009 states selected agent, row, and column are shown from query params, but the exact key names are not fixed by the source slices read for this P3 pass. | Implementation-selected query-param or route-state key names with route-state tests. |
+| X-001 | Incorporated from current dependency evidence. `Dependencies.csv` and `_DEPENDENCIES.md` now provide extracted rows; declared human upstream/downstream edges remain TBD. | Dependency register validation and any later human edge ruling. |
+| C-001 | Surfaced as source-state conflict. PRD-backed requirements remain usable as warning-labeled draft evidence until REF-006 is refreshed or accepted by human ruling. | Updated `_REFERENCES.md` hash match or human hash acceptance record. |
+
 ## Documentation
 
 This deliverable should produce or update:
@@ -71,5 +81,6 @@ This deliverable should produce or update:
 - Route fixtures.
 - Matrix mapping tests.
 - Any implementation-local notes needed to explain route-state keys, if those keys are not obvious from code.
+- Concrete verification evidence paths or command outputs for the checks listed in the Pass 3 evidence slots.
 
 Exact implementation file paths are TBD until the owning implementation slice selects or confirms the frontend/runtime module locations.

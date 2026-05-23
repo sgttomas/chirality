@@ -33,7 +33,7 @@ Out of scope:
 | DEL-02-01-REQ-008 | EVALUATIVE matrix cells shall route to WORKBENCH. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1 | Matrix routing test confirms destination surface. |
 | DEL-02-01-REQ-009 | OPERATIVE matrix cells shall route to PIPELINE. | P0 | REF-006 Sections 7.2 and 8.2 FR-008; REF-004 Section 4.1 | Matrix routing test confirms destination surface. |
 | DEL-02-01-REQ-010 | Disabled or unsupported variants shall remain visible as coming soon rather than disappearing when encountered in matrix-adjacent navigation flows. | P0 | REF-006 Section 7.2 acceptance | UI test confirms unsupported variants are visible and non-selectable where this deliverable exposes them. |
-| DEL-02-01-REQ-011 | Stable identifiers shall remain distinct from path or label changes. | TBD | REF-002 `docs/CONTRACT.md` K-ID-1 and K-PATH-1 | ASSUMPTION: applies to route state and matrix identity; exact implementation assertion TBD. |
+| DEL-02-01-REQ-011 | Stable identifiers shall remain distinct from path or label changes. | TBD | REF-002 `docs/CONTRACT.md` K-ID-1 and K-PATH-1; REF-006 Section 8.2 FR-009 | ASSUMPTION: applies to route state and matrix identity; exact implementation assertion TBD until route-state key names are selected. P3 disposition: C-001 converted to TBD for key names; X-001 converted to TBD for acceptance assertion names. |
 
 ## Standards
 
@@ -53,7 +53,7 @@ Out of scope:
 | REQ-004 through REQ-006 | Matrix rendering tests | Matrix UI test output |
 | REQ-007 through REQ-009 | Matrix click/routing tests | Route query handling test output |
 | REQ-010 | Disabled-state visibility test if unsupported variants are surfaced in this slice | UI test output or human ruling if owned by another deliverable |
-| REQ-011 | Identity/route-state review | TBD; exact route-state schema is not defined in source slices |
+| REQ-011 | Identity/route-state review | TBD; once route-state keys are selected, evidence should assert that selected agent, row, column, or category identity remains stable across label/path changes. Exact query key names and assertion names remain TBD from source slices. P3 disposition: C-001 and X-001 converted to TBD. |
 
 ## Documentation
 
@@ -64,4 +64,4 @@ Required or anticipated artifacts:
 - Route query handling.
 - Evidence notes identifying any route-state parameters chosen by implementation.
 - Human ruling if the dispatch path/package rename is material to scope identity.
-
+- P3 disposition: C-001 and X-001 require implementation-time evidence notes once route-state keys and acceptance assertions are selected.

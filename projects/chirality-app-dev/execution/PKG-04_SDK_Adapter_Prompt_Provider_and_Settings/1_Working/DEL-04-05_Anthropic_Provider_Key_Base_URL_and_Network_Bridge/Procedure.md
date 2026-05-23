@@ -107,6 +107,16 @@ The implementation owner should produce or update these records:
 - Validation command output or CI artifact references.
 - Residual risk notes for SDK behavior that cannot be directly enforced or observed.
 
+## Pass 3 Evidence Closure
+
+| ItemID | Disposition | Procedure Impact | Source Reread Evidence |
+|---|---|---|---|
+| D-001 | already covered | Keep PRD source-snapshot confirmation as a human ruling before final acceptance; do not treat the hash-mismatched PRD rows as silently reconciled. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.5; `Procedure.md` "Human Rulings Needed". |
+| D-002 | converted to TBD | Node/SDK network enforcement remains an implementation-specific decision. The procedure requires the implementation owner to record the selected mechanism and residual risk instead of assuming SDK internals expose direct hooks. | `docs/SPEC.md` Section 16.3; `docs/CONTRACT.md` K-NET-1; `Procedure.md` Steps 7 and 11. |
+| X-001 | converted to TBD | Validation record references for redaction fixture output, SDK stderr/debug redaction, and policy-denial metadata remain TBD until tests run and artifacts exist. | `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1; `docs/PLAN.md` Section 6.3; `Procedure.md` "Verification" and "Records". |
+| X-002 | converted to TBD | Evidence that Node/SDK provider calls do not broaden network scope must be produced by the selected wrapper, environment restriction, tests, or probes; no completed evidence exists in this deliverable folder. | `docs/SPEC.md` Section 16.3; `docs/PRD.md` Section 12.2 required checks; `Procedure.md` Steps 7 and 10. |
+| E-001 | converted to TBD | Audit evidence for absence of cleartext key material across logs, events, SDK errors, stderr/debug output, and tool artifacts remains required but unproduced. | `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1; `docs/PRD.md` FR-075 and NFR-002; `Procedure.md` "Verification" and "Records". |
+
 ## Human Rulings Needed
 
 | ID | Ruling | Why |

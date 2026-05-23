@@ -15,6 +15,7 @@ Sources: `docs/SPEC.md` sections 10-12; `docs/PRD.md` sections 8.16, 9, 12, and 
 | PRD source-state warning acknowledged | REF-006 has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details require human confirmation before acceptance closure. |
 | Declared upstream dependencies | `_DEPENDENCIES.md` lists declared upstream as TBD; no accepted dependency edges have been extracted yet. |
 | SDK probe details | TBD; exact SDK message categories, session store behavior, and interrupt behavior depend on DEL-04-01. |
+| Acceptance authority for staged SDK cases | TBD; human acceptance is required for any `BLOCKED_TBD` SDK-backed conformance case until DEL-04-01 supplies the missing probe detail. |
 
 ## Steps
 
@@ -78,6 +79,7 @@ Required records for closure:
 - Runtime contract documentation.
 - Engine conformance test file or suite.
 - Test output showing stub adapter pass.
-- Test output showing SDK-backed adapter pass, or `TBD` with DEL-04-01 blocker if SDK probe is incomplete.
+- Test output showing SDK-backed adapter pass, or a `BLOCKED_TBD` record naming the DEL-04-01 blocker, affected conformance case, fallback/risk note, and accepting party status.
+- Conformance evidence matrix covering adapter subject, case coverage, result status, test output path or `TBD`, fallback/risk note, REF-006 human ruling status, and `section9.runtime_engine_contract` linkage status.
 - Human ruling or acceptance note for REF-006 `docs/PRD.md` HASH_MISMATCH.
-- Section 9 validation linkage when `section9.runtime_engine_contract` exists.
+- Section 9 validation linkage when `section9.runtime_engine_contract` exists, or a `TBD` linkage record naming DEL-09-02 as the unavailable validation surface.

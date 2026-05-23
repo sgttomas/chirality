@@ -14,7 +14,7 @@
 | ResponsibleParty | TBD |
 | Type | DOC_UPDATE |
 | ContextEnvelope | M |
-| CurrentLifecycleStateAtDraft | OPEN |
+| CurrentLifecycleStateAtDraft | INITIALIZED |
 
 ## Attributes
 
@@ -37,8 +37,8 @@
 | Project truth condition | Gate-relevant project state must be represented in versioned project files under the working root and accepted git history. Hidden app state, chats, SDK transcripts, runtime logs, model context, caches, API keys, and provider transcripts are not project truth unless imported through a governed process. |
 | Runtime audit condition | Runtime events explain work and support replay, but they do not approve deliverables, issue work, prove code compliance, or substitute for accepted project files and human approval records. |
 | Reliance-boundary condition | Product-critical boundaries must be documented, implemented, and tested in Chirality terms; prompt text or opaque SDK defaults alone are insufficient for P0 boundaries. |
-| Lifecycle condition | `_STATUS.md` is the canonical lifecycle file. `OPEN -> INITIALIZED` may be performed by 4_DOCUMENTS or a human when the document kit is initialized. |
-| Dependency extraction condition | Deferred by assignment; `Dependencies.csv` is not produced in this run. |
+| Lifecycle condition | `_STATUS.md` is the canonical lifecycle file. Current deliverable state is `INITIALIZED`; later lifecycle transitions remain governed by SPEC and human-gate rules where applicable. |
+| Dependency extraction condition | Dependency extraction is out of scope for this P3 enrichment run; do not create or update dependency records in this pass. |
 
 ## Construction
 

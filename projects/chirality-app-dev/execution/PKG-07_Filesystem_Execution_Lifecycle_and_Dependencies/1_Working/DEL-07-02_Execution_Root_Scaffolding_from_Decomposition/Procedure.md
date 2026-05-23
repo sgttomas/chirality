@@ -13,7 +13,7 @@ Define the operational workflow for implementing and verifying execution-root sc
 | Instruction root and working root are distinct. | `docs/DIRECTIVE.md` Section 2.7; `docs/CONTRACT.md` K-ROOT-1 |
 | Scaffold operation target is under the active working root. | `docs/CONTRACT.md` K-ROOT-3 and K-PATH-2 |
 | Required source contracts are available. | `_REFERENCES.md` REF-001 through REF-007; REF-006 warning noted |
-| Declared upstream dependencies for this deliverable. | TBD; `_DEPENDENCIES.md` declares no accepted upstream edges yet. |
+| Declared upstream dependencies for this deliverable. | TBD; `_DEPENDENCIES.md` declares no accepted upstream edges yet. X-001 disposition: keep this as an explicit readiness blocker until accepted upstream edges or a human ruling are available. |
 
 ## Steps
 
@@ -30,6 +30,7 @@ Define the operational workflow for implementing and verifying execution-root sc
 3. Parse decomposition package and deliverable rows.
    - Extract package ID, package name, deliverable ID, deliverable name, type, description, anticipated artifacts, scope items, objectives, and context envelope where present.
    - If a required value is missing, emit `TBD` or a typed compatibility issue rather than inventing it.
+   - Treat the accepted v3.2 SOFTWARE_DECOMP package and deliverable table shape as the initial supported parser fixture boundary; unsupported markdown shapes should produce compatibility issues.
    - Source: decomposition DEL-07-02 row; `docs/CONTRACT.md` K-INVENT-1.
 
 4. Create or validate execution-root tool roots.
@@ -55,7 +56,7 @@ Define the operational workflow for implementing and verifying execution-root sc
    - Source: `docs/SPEC.md` Section 4; `docs/CONTRACT.md` K-STATUS-1.
 
 8. Return scaffold result diagnostics.
-   - Report execution root, decomposition path, package count, deliverable count, created directory/file inventory, layout validation, and PREPARATION compatibility.
+   - Report execution root, decomposition path, package count, deliverable count, created directory/file inventory, already-existing path/file indicators, layout validation, PREPARATION compatibility, and issue count.
    - On failure, report fail-fast stage, target path, and created path inventory.
    - Source: `docs/PRD.md` Section 7.3.
 
@@ -77,6 +78,7 @@ Define the operational workflow for implementing and verifying execution-root sc
 | Fail-fast recovery | Filesystem conflicts return stage, target path, and created paths. | DEL-07-02-REQ-008 |
 | API route | `POST /api/harness/scaffold` invokes scaffold behavior and returns summary payload. | DEL-07-02-REQ-009 |
 | Path policy | Writes outside active working root and instruction-root writes are rejected. | DEL-07-02-REQ-011 |
+| Parser boundary | Accepted v3.2 SOFTWARE_DECOMP fixtures parse; unsupported table shapes return compatibility issues. | DEL-07-02-REQ-013 |
 
 ## Records
 
@@ -96,3 +98,4 @@ Implementation should leave or update these records:
 | `INIT.md` exact content schema | Human or source-backed template needed. |
 | `_COORDINATION.md` exact scaffold template | Human or source-backed template needed. |
 | Parser grammar for decomposition markdown variants | Implementation decision and tests needed; current sources specify behavior but not full grammar. |
+| Scaffold API response field names | Implementation decision needed; current sources define response semantics for validation summaries, PREPARATION compatibility, issue counts, and fail-fast diagnostics but not exact field names. |

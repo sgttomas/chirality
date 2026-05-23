@@ -10,20 +10,24 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
 |---|---|
 | Deliverable context | Available in `_CONTEXT.md`. |
 | Authoritative references | Available in `_REFERENCES.md`; REF-006 `docs/PRD.md` has HASH_MISMATCH and is used as a warning-qualified source per task brief. |
-| Declared upstream dependencies | TBD; `_DEPENDENCIES.md` says no accepted dependency edges have been extracted yet. |
+| Accepted dependency register | `Dependencies.csv` exists with ACTIVE extracted edges, but all satisfaction statuses remain `TBD`; implementation closure should verify upstream satisfaction before closing this deliverable. |
+| Declared upstream dependencies | Extracted ACTIVE upstream execution dependencies include DEL-04-01, DEL-03-01, DEL-03-03, and DEL-04-02. Their satisfaction remains `TBD` in `_DEPENDENCIES.md` / `Dependencies.csv`. |
 | SDK probe results | TBD / pending DEL-04-01 and OI-001 for exact SDK message categories and payload fields. |
 | Engine contract target | Product-owned `AgentEnginePort` / `RuntimeEngineContract` is defined by PKG-03 / DEL-03-01, not by this deliverable. |
 | Runtime event schema target | `HarnessEvent` target type is available in REF-004 and REF-003. |
 | Browser event target | Stable browser SSE event names are available in REF-003 and REF-004. |
+| Implementation path discovery | Concrete mapper module path, UI/HarnessEvent type import paths, and mapper test locations are `TBD` until code discovery confirms the accepted backend/runtime layout. |
 
 ## Steps
 
 1. Confirm mapping boundaries.
    - Read the accepted `AgentEnginePort` / `RuntimeEngineContract` once available.
    - Confirm the mapper is an adapter component and not the owner of route policy, event persistence, SDK option construction, or permission enforcement.
+   - Before implementation closure, confirm `Dependencies.csv` has no unsatisfied blocker for the upstream runtime contract, SSE compatibility adapter, SDK options/settings isolation, or SDK probe evidence.
 
 2. Create the mapper module.
    - Add `sdk-message-mapper.ts` or equivalent in the accepted backend runtime location.
+   - Record the accepted mapper path, UI event type import path, `HarnessEvent` type import path, mapper unit-test path, and provider-neutral leakage-test path in implementation notes or fixture documentation once code discovery is complete.
    - Define input types for SDK-side messages using probe-backed fixtures where available.
    - Define output types for browser `UIEvent` and `HarnessEvent` results using Chirality-owned types.
 
@@ -50,7 +54,8 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
    - Cover each stable browser event name expected from supported SDK input fixtures.
    - Cover each supported `HarnessEvent` category and required schema field.
    - Cover deterministic ordering for repeated runs over the same input sequence.
-   - Cover terminal success, failure, interruption, and cancellation cases.
+   - Cover mapper-owned terminal success, failure, interruption, and cancellation translation cases.
+   - Leave accepted-turn persistence, client-disconnect cleanup, cancellation-source classification, lock cleanup, and terminal durability to `TurnEngine` / engine conformance tests; reference those results rather than duplicating ownership in the mapper.
 
 8. Write provider-neutral leakage tests.
    - Assert public event names are Chirality event names, not SDK message names.
@@ -88,3 +93,5 @@ Expected records and evidence from implementation:
 - `TBD` list for SDK message categories or payload fields not yet confirmed.
 - Section 9 validation entry or follow-up for `section9.sdk_message_mapper`.
 - Notes on any fallback or reliance-boundary concerns if SDK behavior cannot be mapped without weakening Chirality-owned contracts.
+- Implementation path record naming the accepted mapper module, UI/HarnessEvent type import paths, mapper unit-test path, and provider-neutral leakage-test path.
+- Dependency closure note confirming whether ACTIVE upstream dependencies remain `TBD`, blocked, or satisfied at implementation closeout.

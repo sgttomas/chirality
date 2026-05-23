@@ -31,6 +31,9 @@ Out of scope:
 | DEL-05-03-R8 | SDK transcripts remain secondary runtime state; this deliverable MUST NOT treat SDK transcripts as canonical project truth or allow unredacted transcript data to replace Chirality JSONL review surfaces. | P0 | `docs/CONTRACT.md` K-SDK-3; `docs/SPEC.md` Section 8.4 |
 | DEL-05-03-R9 | ASSUMPTION: The redaction helper SHOULD handle raw, URL-encoded, lowercase URL-encoded, and double-encoded configured key variants, because current provider tests already exercise those cases. | P1 | Current code context: `frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts`; exact product-wide helper API TBD |
 | DEL-05-03-R10 | Redaction MUST preserve enough non-secret metadata for audit and debugging, such as error class, policy category, status, source indicator, artifact metadata, and event type. | P1 | `docs/PRD.md` FR-034, FR-075; `docs/SPEC.md` Sections 9 and 12.3 |
+| DEL-05-03-R11 | Every runtime record or diagnostic write/display path that can carry provider, SDK, tool, run-log, event, or artifact payload data MUST pass through redaction before persistence and before user-visible diagnostic display where the value could reveal configured secrets. | P0 | `docs/CONTRACT.md` K-EVENT-6, K-KEY-1; `docs/PLAN.md` Section 6.3 |
+| DEL-05-03-R12 | The shared redaction helper contract MUST remain TBD until implementation records the final module path, public API, configured-secret schema, supported encoded variants, overlap handling, and accepted replacement token. | P0 | `docs/PRD.md` FR-075; current code context; `docs/CONTRACT.md` K-EVENT-6 |
+| DEL-05-03-R13 | Tool-result hygiene verification MUST cover inline, preview, artifact, redacted, and withheld payload paths before sensitive raw values may be accepted into persisted records. | P0 | `docs/CONTRACT.md` K-EVENT-7; `docs/PRD.md` Section 10.5 |
 
 ## Standards
 
@@ -55,6 +58,9 @@ Out of scope:
 | DEL-05-03-R8 | Replay/session tests confirming Chirality JSONL remains canonical and SDK transcript metadata is treated as secondary adapter metadata. |
 | DEL-05-03-R9 | Extend current provider redaction tests to the shared helper once the helper path is finalized. |
 | DEL-05-03-R10 | Snapshot or structured assertions that non-secret diagnostic metadata survives redaction. |
+| DEL-05-03-R11 | Cross-surface fixture asserting provider errors, SDK stderr/debug logs, SDK errors, `HarnessEvent.data`, run logs, and tool artifacts are redacted before persistence and before display when display could expose secrets. |
+| DEL-05-03-R12 | Contract tests for raw, URL-encoded, lowercase URL-encoded, double-encoded, and overlapping configured key values; final fixture ownership remains TBD until the shared helper API is accepted. |
+| DEL-05-03-R13 | Tool-result tests for small inline data, medium preview data, large artifact storage, explicit redacted payloads, and withheld sensitive payloads. |
 
 ## Documentation
 
@@ -73,3 +79,5 @@ TBD:
 - Config format for additional non-API-key secret variants.
 - Exact redaction replacement token.
 - Whether SDK transcript redaction can be guaranteed or only avoided/cross-referenced, because source text says SDK transcripts should avoid API keys "if avoidable".
+- Final ownership of provider-local encoded/overlapping key tests after migration to the shared helper.
+- Final source path inventory for provider errors, SDK diagnostics, `HarnessEvent.data`, run logs, and tool result persistence/display.

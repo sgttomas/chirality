@@ -20,6 +20,8 @@ DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipe
 - A useful future validation suite should include negative cases. Examples include missing boundary notice, protected path listed as proposal path, missing deterministic adapter manifest rule, incomplete operation descriptor, or fixture wording that implies Chirality owns solver truth.
 - ASSUMPTION: Future test locations will be selected by the package implementation plan after PKG-10 amendment; no current source assigns concrete test paths for DEL-10-04.
 - ASSUMPTION: The adapter assumptions note should distinguish profile-level assumptions, adapter-manifest assumptions, operation-proposal assumptions, and explicit non-assumptions about Chirality core runtime.
+- Future adapter assumptions should separate at least four classes: profile-level fixture facts, adapter-level manifest and execution assumptions, operation-proposal-level human-gated change assumptions, and explicit core-runtime non-assumptions. This preserves `docs/PRD.md` Section 8.17 FR-114 without making OpenPipeStress behavior part of the harness core.
+- The REF-006 PRD hash mismatch is a visible source-status warning, not a new design fact. Continued PRD citation is accepted for this assignment only because the task brief explicitly directed P3 enrichment to proceed; closure reliance still needs human acceptance or refreshed source metadata.
 
 ## Trade-offs
 
@@ -29,6 +31,7 @@ DEL-10-04 exists to keep future Domain Engine Profile validation and an OpenPipe
 | Agent convenience vs. protected domain truth | Prefer proposal paths and review aids; reject direct protected model writes. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 |
 | Prompt instruction vs. runtime enforcement | Do not rely on prompt-only controls for writes, tool exposure, or domain operations. | `docs/CONTRACT.md` Section 1.6 K-PERM-2 |
 | Early domain integration vs. runtime spine stability | Keep profile validation future-scoped until core harness stability. | `docs/PLAN.md` R7; `docs/PRD.md` R7 |
+| Early fixture detail vs. evidence quality | Prefer TBDs and deterministic expected-failure slots over unsupported OpenPipeStress values, solver assumptions, or file formats. | `docs/PRD.md` Section 8.17 FR-109/FR-114 |
 
 ## Examples
 
@@ -46,8 +49,20 @@ TBD - no accepted fixture file exists. A future positive fixture should be a gen
 
 These are candidate examples only; they require future amendment and test-path assignment before implementation.
 
+### Future Evidence Checklist
+
+TBD until amendment assigns files and owner:
+
+- Concrete positive fixture path.
+- Negative fixture paths and deterministic expected failures.
+- Adapter manifest location and rule semantics.
+- Operation proposal fixture records with required human gate.
+- Boundary notice wording fixture.
+- Stable validation result record format.
+- No-current-release-activation evidence.
+
 ## Conflict Table (for human ruling)
 
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| None | No source-content conflict identified during P1/P2. PRD hash mismatch is recorded as a source warning only per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | Treat PRD mismatch as warning, not blocker | TBD |
+| CT-001 | No source-content conflict identified during P1/P2. PRD hash mismatch is recorded as a source warning only per dispatch. | `_REFERENCES.md` REF-006 | Assignment override | All documents citing PRD | Treat PRD mismatch as warning during P3, but require human acceptance or refreshed source metadata before closure reliance | TBD |

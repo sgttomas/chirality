@@ -38,6 +38,8 @@ If a module, validation ID, SDK behavior, transcript location, or release check 
 
 `docs/PRD.md` is accessible and contains detailed runtime requirements and known gaps, but `_REFERENCES.md` records a HASH_MISMATCH. Treat PRD content as a current accessible source for drafting while preserving a visible source-state warning. Final acceptance should reconcile the hash or confirm the changed PRD as accepted project truth.
 
+This warning is a closure blocker, not just a drafting note. A row that depends on PRD content may remain in the register as proposed or warning-limited evidence, but it should not be treated as final accepted truth until the expected hash is reconciled or a human/source owner accepts the current PRD content.
+
 ### Boundary Granularity
 
 Rows should be fine-grained enough that a reviewer can answer:
@@ -49,6 +51,8 @@ Rows should be fine-grained enough that a reviewer can answer:
 - What residual risk remains?
 
 Rows should not be so granular that every implementation function becomes its own governance item. Use one boundary row per product-critical semantic, then point to multiple enforcement surfaces when needed.
+
+For required register fields, use mandatory completion criteria rather than advisory wording: each row must name the protected product semantic, source evidence, enforcement owner, enforcement surface, prompt-only posture, SDK-default-only posture, validation evidence or `TBD`, residual risk, and decision status.
 
 ### Implementation Surfaces That May Be `TBD`
 
@@ -74,6 +78,7 @@ Track these explicitly until closed:
 - SDK subagents inheriting powerful parent permissions.
 - Thin-wrapper drift where product identity becomes SDK-shaped.
 - PRD source hash mismatch.
+- Section 9 validation IDs or test file names still being candidate labels rather than implemented checks.
 
 ## Trade-offs
 
@@ -125,3 +130,4 @@ Track these explicitly until closed:
 | TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | Leave `TBD` until downstream implementation deliverables exist. |
 | TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 SDK probe and session linkage work. |
 | TBD-RBR-003 | Final Section 9 validation file/test names. | Resolve as runtime validation suite is implemented. |
+| TBD-RBR-004 | Generated-register completion evidence. | Resolve after `docs/harness/reliance_boundary_register.md`, enforcement matrix, and test index are produced and cross-checked. |

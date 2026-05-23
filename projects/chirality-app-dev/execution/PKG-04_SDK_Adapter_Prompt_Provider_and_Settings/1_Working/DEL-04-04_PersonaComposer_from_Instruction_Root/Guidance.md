@@ -30,6 +30,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-04-04 row; `docs/DIR
 - Keep prompt assembly deterministic: stable section ordering, stable omitted-field behavior, and explicit handling for missing optional inputs.
 - Prefer structured composer inputs over ad hoc strings so tests can isolate persona content, governance preface, mode, tool surface, and fingerprint material.
 - If DEL-04-02 owns the final SDK option/tool-surface object, this deliverable should accept that resolved surface rather than reconstruct it.
+- Resolve aliases locally only for the canonical vocabulary in `docs/TYPES.md` Section 3.4, or delegate when an accepted DEL-08-02 resolver/interface exists. The decision criterion is ownership: local handling is appropriate for stable source-defined mappings needed to reach `agents/AGENT_<persona>.md`; delegation is appropriate when the routing contract owns broader UI/matrix alias behavior or exposes a tested resolver.
 - If DEL-08-01 or DEL-08-02 changes instruction-root packaging or alias contracts, update the composer through an explicit dependency note rather than local convention.
 
 ## Trade-offs
@@ -37,7 +38,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-04-04 row; `docs/DIR
 | Decision Area | Preferred Direction | Trade-off |
 |---|---|---|
 | Prompt detail vs. enforcement | Include concise governance/mode/tool reminders, but enforce with runtime policy. | Long prompts can drift into false reliance if not backed by hooks and permissions. |
-| Direct alias handling vs. delegated resolver | Use the accepted alias vocabulary or a dedicated resolver if one exists. | Duplicating alias logic risks divergence; over-delegation can obscure missing persona failures. |
+| Direct alias handling vs. delegated resolver | Handle only source-defined alias mappings locally unless DEL-08-02 provides an accepted resolver/interface; then delegate to that resolver and keep missing-persona behavior visible. | Duplicating alias logic risks divergence with the routing contract; over-delegation can obscure missing persona failures if the resolver does not return canonical agent names and typed failures. |
 | Fingerprint breadth | Hash real prompt and policy inputs that affect runtime behavior. | Broader fingerprints can churn when non-semantic metadata changes; define stable normalized inputs. |
 | SDK-specific names in prompt | Keep SDK-specific names as adapter/tool metadata where necessary. | Overexposure can make Chirality appear SDK-shaped; underexposure can make tool context unclear. |
 

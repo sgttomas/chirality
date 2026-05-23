@@ -13,6 +13,8 @@ Produce and verify the DEL-09-06 security-control evidence set for renderer netw
 | Declared upstream dependencies | TBD; `_DEPENDENCIES.md` has no accepted dependency edges yet |
 | Test framework and exact command names | TBD; source corpus requires repeatable local checks but this deliverable folder does not identify exact commands |
 | Implementation paths for renderer guard, provider policy, key storage, and attachment resolver | TBD |
+| Implementation target slots | F-001 keeps renderer network guard, provider base URL validation, API key storage/resolution, redaction helper/logger, attachment resolver, and route/UI failure handling paths as explicit `TBD` slots until selected by implementation work. |
+| Release-readiness command evidence | D-001 requires current-run command output or CI artifact references for the selected validation command family; exact output paths remain `TBD`. |
 
 ## Steps
 
@@ -23,6 +25,7 @@ Produce and verify the DEL-09-06 security-control evidence set for renderer netw
 2. Identify implementation targets.
    - Locate the renderer network guard, provider base URL validation, API key storage/resolution, redaction helper/logger, attachment resolver, and route/UI failure handling code.
    - If a target cannot be located, mark the related test path `TBD` rather than inventing a path.
+   - Preserve the following implementation target path slots until confirmed: renderer network guard path `TBD`; provider base URL policy path `TBD`; API key storage/resolution path `TBD`; redaction helper/logger path `TBD`; attachment resolver path `TBD`; route/UI failure handling path `TBD`.
 
 3. Build API key security checks.
    - Test UI safeStorage precedence over environment fallback.
@@ -53,7 +56,7 @@ Produce and verify the DEL-09-06 security-control evidence set for renderer netw
 
 8. Run repeatable validation.
    - Execute the relevant unit/API/integration tests.
-   - Execute release-significant premerge checks where applicable.
+   - Execute release-significant premerge checks where applicable, including `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, `instruction-root:integrity`, and `desktop:dist` when those source-named checks apply to the selected implementation surface.
    - Record command output paths or summaries in the deliverable evidence location selected by the implementation task.
 
 ## Verification
@@ -77,4 +80,11 @@ Produce and verify the DEL-09-06 security-control evidence set for renderer netw
 - Provider endpoint policy tests.
 - Redaction fixtures or scan output.
 - Validation command output or CI artifact reference.
-- TBD: exact artifact paths after implementation locations and test commands are selected.
+- X-001: exact artifact paths remain `TBD` for security tests, network guard tests, attachment resolver validation, key storage checks, provider policy tests, redaction fixtures, and validation command output until implementation locations and test commands are selected.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition |
+|---|---|
+| F-001 | Converted to explicit implementation target path slots, all retained as `TBD` pending implementation-owner selection. |
+| X-001 | Converted to explicit evidence artifact path slots, all retained as `TBD` pending validation run and artifact-location selection. |

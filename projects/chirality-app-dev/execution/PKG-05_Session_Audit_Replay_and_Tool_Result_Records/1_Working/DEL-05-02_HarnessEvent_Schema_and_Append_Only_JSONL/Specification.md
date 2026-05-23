@@ -37,6 +37,7 @@ Out of scope:
 | DEL-05-02-RQ-012 | Core runtime APIs, events, tests, and records shall use Chirality terms; provider/SDK-specific terms may appear only as adapter metadata. | `docs/CONTRACT.md` K-CORE-1, K-ENGINE-4 |
 | DEL-05-02-RQ-013 | Event schema evolution shall be backward-compatible or explicitly versioned. | `docs/SPEC.md` Section 9.2 |
 | DEL-05-02-RQ-014 | The canonical runtime audit mirror shall be `.chirality/sessions/<sessionId>/events.jsonl` or an explicitly configured Chirality-controlled session path. | `docs/DIRECTIVE.md` Section 2.3; `docs/SPEC.md` Section 8.2, 8.4 |
+| DEL-05-02-RQ-015 | Event schema fixtures shall keep later tool, hook, compaction, subagent, and SDK mirror event categories representable without asserting payload-specific semantics before their owning deliverables mature. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
 
 ## Standards
 
@@ -57,11 +58,12 @@ Out of scope:
 | DEL-05-02-RQ-006 | Accepted-turn lifecycle test verifies `turn.accepted` is written before the SDK/model request begins. |
 | DEL-05-02-RQ-007 | Terminal-event tests cover success, failure, cancellation, and interruption outcomes. |
 | DEL-05-02-RQ-008 | Replay tests include a malformed trailing line fixture and confirm valid prior records survive with diagnostics. |
-| DEL-05-02-RQ-009 | Redaction/secret-safety tests or fixtures verify API keys and configured secrets are absent from event payloads. ASSUMPTION: detailed redaction helper tests are owned by DEL-05-03. |
-| DEL-05-02-RQ-010 | Large-payload tests verify artifact references instead of inline oversized payloads. ASSUMPTION: storage thresholds are finalized by DEL-05-05. |
+| DEL-05-02-RQ-009 | Redaction/secret-safety tests or fixtures verify API keys and configured secrets are absent from event payloads. ASSUMPTION: detailed redaction helper tests are owned by DEL-05-03; exact helper or fixture contract remains TBD until that deliverable is accepted. |
+| DEL-05-02-RQ-010 | Large-payload tests verify artifact references instead of inline oversized payloads. ASSUMPTION: storage thresholds are finalized by DEL-05-05; numeric threshold source remains TBD until that deliverable is accepted. |
 | DEL-05-02-RQ-011 through RQ-012 | Mapper/API contract tests verify browser `UIEvent`s remain compact and SDK/provider terms do not leak into canonical event fields except adapter metadata. |
 | DEL-05-02-RQ-013 | Compatibility tests verify older event fixtures replay after additive schema evolution, or require explicit version handling for breaking changes. |
 | DEL-05-02-RQ-014 | Session layout tests verify `.chirality/sessions/<sessionId>/events.jsonl` placement or configured Chirality-controlled override. |
+| DEL-05-02-RQ-015 | Fixture coverage plan verifies later event category names can serialize and replay as versioned `HarnessEvent`s while category-specific payload schemas remain TBD until source or implementation acceptance. |
 
 ## Documentation
 
@@ -74,5 +76,6 @@ Required deliverable artifacts:
 - Terminal-event persistence test.
 - Malformed-tail replay test.
 - UI/runtime separation test.
+- Later-category fixture coverage plan for tool, hook, compaction, subagent, and SDK mirror event names, with payload-specific fixtures marked TBD until owning deliverables mature.
+- Redaction helper or fixture contract reference from DEL-05-03, currently TBD.
 - Source notes documenting the `docs/PRD.md` HASH_MISMATCH warning if PRD text is used to justify implementation behavior not also present in matching sources.
-

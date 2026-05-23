@@ -38,6 +38,7 @@ Out of scope:
 | REQ-06-03-012 | Dependency read behavior MUST treat deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` as dependency truth sources, with `Dependencies.csv` read/validation behavior where present. | `docs/CONTRACT.md` Section 1.7 K-DEP-1; `docs/SPEC.md` Section 14.2 |
 | REQ-06-03-013 | Scope scan behavior MUST be bounded to the workspace/project root contract and must not scan arbitrary external locations. | `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.6 K-PATH-2 |
 | REQ-06-03-014 | Unknown or unsupported MCP tool names MUST fail with structured validation errors rather than silent pass-through. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13 FR-078 |
+| REQ-06-03-015 | Dependency-read behavior MUST expose explicit structured absence or secondary-summary status when `Dependencies.csv` is absent and `_DEPENDENCIES.md` exists; it MUST NOT infer structured dependency rows from prose. Final result schema remains TBD pending DEL-07-05. | `docs/CONTRACT.md` Section 1.7 K-DEP-1; `docs/SPEC.md` Sections 14.2 and 17.2; `_DEPENDENCIES.md` Extracted Dependency Register |
 
 ## Standards
 
@@ -54,14 +55,23 @@ Out of scope:
 
 | Requirement(s) | Verification Approach |
 |---|---|
-| REQ-06-03-001 through REQ-06-03-004 | Unit-test exported MCP descriptors/wrapper metadata for names, schemas, permission class, read/write classification, concurrency/interruption declarations, execution binding, and summarization metadata. |
+| REQ-06-03-001 through REQ-06-03-004 | Unit-test exported MCP descriptors/wrapper metadata for names, schemas, permission class, read/write classification, concurrency/interruption declarations, execution binding, and summarization metadata. Proposed tests: `chirality-mcp-descriptor-schema`, `chirality-mcp-permission-class`, `chirality-mcp-readonly-classification`, `chirality-mcp-concurrency-interruption`, `chirality-mcp-execution-binding`, and `chirality-mcp-summarization-metadata`; final file paths TBD. |
 | REQ-06-03-005 | Snapshot or table-driven tests proving deterministic ordering for a fixed session/persona/mode/option set. |
-| REQ-06-03-006 through REQ-06-03-010 | Integration or adapter tests proving tools pass through permission overlay/hook/event/redaction paths and denied tools do not execute. |
+| REQ-06-03-006 through REQ-06-03-010 | Integration or adapter tests proving tools pass through permission overlay/hook/path/redaction/event paths and denied tools do not execute. Acceptance evidence should include permission decision records, hook invocation records, path-containment rejection fixtures, redaction assertions, event mirror records, and denied-execution assertions; final fixture paths TBD. |
 | REQ-06-03-011 | Status read tests using `_STATUS.md` fixtures, including missing/malformed status handling. |
-| REQ-06-03-012 | Dependency read tests using absent, valid, and malformed `Dependencies.csv` fixtures; behavior for `_DEPENDENCIES.md`-only state remains TBD until dependency API contract is finalized. |
+| REQ-06-03-012 and REQ-06-03-015 | Dependency read tests using absent, valid, and malformed `Dependencies.csv` fixtures, plus `_DEPENDENCIES.md`-only fixtures that assert explicit secondary-summary / not-structured-tracked behavior without invented rows. Final behavior must align with DEL-07-05 when its dependency API contract is accepted. |
 | REQ-06-03-013 | Scope scan tests proving bounded root behavior and rejection of out-of-root scan requests. |
 | REQ-06-03-014 | Unknown-tool validation tests asserting structured errors. |
 | Section 9 marker | Add or map runtime validation coverage to `section9.chirality_mcp_status_dependencies` when the Section 9 runner is active. |
+
+### Acceptance Evidence Register
+
+| Evidence Area | Required Evidence | Status |
+|---|---|---|
+| Descriptor and wrapper metadata | Named tests or fixtures for schema, permission class, read-only behavior, concurrency, interruption, execution binding, and summarization metadata. | TBD - proposed test names listed above; implementation file paths not assigned. |
+| Policy traversal | Permission decision records, hook traversal records, path-containment evidence, redaction assertions, and event mirror records for Chirality MCP tool execution. | TBD - requires implementation and runtime event path availability. |
+| Section 9 coverage | Mapping to `section9.chirality_mcp_status_dependencies` for status/dependency MCP behavior. | TBD - active when Section 9 runner accepts this validation ID. |
+| Dependency fallback | Fixture proving `_DEPENDENCIES.md`-only state returns explicit non-structured / secondary-summary status and does not synthesize `Dependencies.csv` rows. | TBD - final schema depends on DEL-07-05. |
 
 ## Documentation
 
@@ -75,3 +85,11 @@ Required artifacts:
 ## Conflict Table
 
 No source-content conflict was identified during Pass 1/2 drafting. Source-state warning remains: `_REFERENCES.md` reports `docs/PRD.md` HASH_MISMATCH; per task brief this was treated as a warning rather than a blocker.
+
+## Pass 3 Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| F-001 | Converted to named TBD evidence | Concrete descriptor/wrapper metadata test names were added, while final implementation paths remain `TBD`. Source reread: `docs/PRD.md` Section 8.13 FR-079; `docs/SPEC.md` Section 14. |
+| F-002 | Incorporated with TBD artifact paths | Acceptance evidence for permission, hook, path, redaction, and event-policy traversal is now explicit. Source reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.3. |
+| X-002 | Incorporated with TBD closure paths | Verification now names concrete evidence categories and Section 9 mapping while preserving implementation paths as `TBD`. Source reread: `docs/SPEC.md` Section 19.3; `docs/PRD.md` Section 8.13 FR-079 and FR-083. |

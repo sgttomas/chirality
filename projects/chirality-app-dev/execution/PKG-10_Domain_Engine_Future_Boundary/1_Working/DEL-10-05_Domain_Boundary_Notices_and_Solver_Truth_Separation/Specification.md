@@ -45,6 +45,8 @@ No external engineering code or domain-solver standard is selected by this deliv
 | Protected/proposal path scan | Protected domain paths are not described as agent-writable; proposal/review aid paths are distinct. |
 | Fixture scan | OpenPipeStress is fixture/profile language only, not core runtime behavior. |
 | Unsupported fact scan | Missing solver/profile specifics are marked TBD, ASSUMPTION, PROPOSAL, or human-ruling items. |
+| Surface inventory scan | Each selected future surface category has either a required notice pattern or an explicit out-of-scope rationale. Selected surfaces are `TBD` until a future amendment identifies accepted UI, documentation, API, event-record, profile, or proposal-record locations. |
+| OperationProposal schema scan | Operation-proposal notice examples are not used as closure evidence unless an accepted upstream `OperationProposal` schema or record shape is cited; until then, operation-proposal examples remain `PROPOSAL` copy only. |
 
 ## Documentation
 
@@ -55,3 +57,5 @@ This deliverable produces and maintains:
 - UI/documentation examples.
 - Human-ruling list for unresolved future-amendment details.
 - Source-warning note for the PRD hash mismatch recorded in `_REFERENCES.md`.
+- Surface inventory or out-of-scope rationale for selected future surfaces.
+- OperationProposal schema citation status before operation-proposal examples are used for closure evidence.

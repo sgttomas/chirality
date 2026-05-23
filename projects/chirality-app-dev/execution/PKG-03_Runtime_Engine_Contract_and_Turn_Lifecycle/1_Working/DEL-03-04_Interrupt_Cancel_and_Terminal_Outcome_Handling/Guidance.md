@@ -33,6 +33,7 @@ Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7
 - The terminal mapper should be small and deterministic. It should map completion, failure, cancellation, and interruption-adjacent provider signals into stable browser and runtime event outputs.
 - The interrupt path should be tested while an active turn is streaming, because the required browser symptom is an interrupted `process:exit` event and an updated UI state.
 - Client disconnect is not necessarily user intent to interrupt, but SPEC says disconnect cleanup must record cancellation once the event log exists. The implementation should avoid overstating disconnect as an explicit user cancellation unless the data model supports a reason field.
+- Use "interruption" for the user-visible active-turn interrupt path and "cancellation" for the schema-compatible terminal category unless a human ruling amends SPEC/TYPES to add `turn.interrupted`. If interruption is encoded as `turn.cancelled`, reason metadata must preserve the distinction without changing public SSE event names.
 - Terminal records must not store API keys, provider secrets, or raw error data that violates redaction policy.
 - Replay tolerance matters for failure paths: malformed trailing JSONL should not hide valid prior events or the accepted input that preceded failure.
 - `docs/PRD.md` is hash-mismatched in `_REFERENCES.md`. Use PRD content as an accessible source-state warning and reconfirm before closure of implementation work.
@@ -46,6 +47,7 @@ Source basis: decomposition DEL-03-04 row; `docs/PRD.md` Sections 5, 6.1, 7.4, 7
 | Cleanup ownership | Centralize terminal cleanup in `TurnEngine` | Keeps route thin and makes lifecycle behavior unit-testable. | Requires route adapter to reliably forward cancellation/disconnect signals. |
 | Route-level fallback cleanup | Keep defensive cleanup in route adapter | Protects against transport errors and stream failures. | Can duplicate policy if terminal mapping is not centralized behind the runtime contract. |
 | Event log write strictness | Fail closed on terminal event write failure | Avoids claiming terminal durability when no event exists. | Could make user-visible failures noisier; exact retry/fallback behavior is TBD. |
+| Terminal write recovery | PROPOSAL: permit retry only when the event writer can prove idempotent append behavior through unique event IDs and replay diagnostics | Preserves the durable-terminal-outcome requirement while avoiding duplicate terminal records. | Exact retry/fallback behavior remains TBD pending event-writer design and human ruling. |
 
 ## Examples
 

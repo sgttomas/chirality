@@ -36,7 +36,7 @@ Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` 
 
 | Topic | Guidance | Source |
 |---|---|---|
-| Lock storage | Keep the lock associated with session identity and observable turn state. Exact implementation is TBD because no source slice defines a storage mechanism. | `docs/PRD.md` FR-018; `docs/SPEC.md` Section 10.4 |
+| Lock storage | Keep the lock associated with session identity and observable turn state. Current code uses an in-module `Set<string>` named `activeSessionTurns` in `frontend/src/app/api/harness/turn/route.ts`; treat this as observed implementation context, not an authoritative final storage mechanism. | `docs/PRD.md` FR-018; `docs/SPEC.md` Section 10.4; current code slice `frontend/src/app/api/harness/turn/route.ts` |
 | Cleanup ownership | The route handles cleanup, but terminal lifecycle persistence belongs behind the runtime boundary. Split responsibilities so both are testable. | `docs/SPEC.md` Sections 10.1 and 10.4 |
 | Cancellation signal | Include cancellation signal in `TurnInput` where applicable; full interrupt behavior should remain coordinated with DEL-03-04. | `docs/SPEC.md` Section 10.2; decomposition DEL-03-04 |
 | Boot metadata | Forward active session and resolved runtime options into `TurnInput`; boot fingerprint composition belongs to adjacent prompt/options work and should not be invented here. | `docs/SPEC.md` Sections 10.2 and 13.2; `docs/PRD.md` FR-016, FR-029 |
@@ -51,7 +51,7 @@ Sources: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` 
 | Thin route vs. route-owned lifecycle | Prefer thin route with lifecycle in `TurnEngine`. | Required by `docs/SPEC.md` Section 10.4 and `docs/PRD.md` FR-070-FR-071. |
 | Strict lock release vs. broad catch-all cleanup | Prefer explicit terminal-path cleanup plus route abort cleanup. | Avoids stranded sessions and supports testable active-turn semantics. |
 | SDK-shaped internal convenience vs. Chirality-owned public contract | Prefer adapter translation and metadata-only SDK leakage. | Required by `docs/SPEC.md` Section 10.3 and `docs/CONTRACT.md` K-ENGINE-4. |
-| Implement interrupt details now vs. defer full terminal semantics | Implement lock cleanup/cancellation signal boundary now; defer full interrupt/cancel outcome handling to DEL-03-04 where needed. | DEL-03-02 scope is thin `TurnEngine` and session locking; DEL-03-04 owns interrupt/cancel terminal handling. |
+| Implement interrupt details now vs. defer full terminal semantics | Implement lock cleanup/cancellation signal boundary now; defer full interrupt/cancel outcome handling to DEL-03-04 where needed. | DEL-03-02 scope is thin `TurnEngine` and session locking; DEL-03-04 owns interrupt/cancel terminal handling. The boundary exists because DEL-03-02 must prove the active-turn guard cannot strand a session, while DEL-03-04 owns the broader terminal-event semantics for interrupts, client disconnects, failures, and cancellations. |
 | Add new capabilities during refactor vs. preserve behavior | Preserve behavior and avoid new capability exposure. | R1 acceptance forbids new user-visible local tool capability beyond current surface. |
 
 ## Examples
@@ -76,3 +76,4 @@ This is a conceptual flow only. Exact function names, file paths, and call order
 | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
 |---|---|---|---|---|---|---|
 | TBD | No direct content conflict found during Pass 1/2. `docs/PRD.md` has a hash mismatch in `_REFERENCES.md`, which is a source-state warning rather than a source-content conflict. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | All PRD-derived requirements | Revalidate PRD hash before closure; keep PRD-derived details conservative. | TBD |
+| B-001 | REF-006 source-state mismatch must remain a closure blocker until source hash reconciliation is accepted or explicitly carried forward. | `_REFERENCES.md` REF-006 | `docs/PRD.md` cited sections | Datasheet Conditions; Specification Documentation; Guidance Conflict Table; Procedure Prerequisites and Records | Revalidate PRD hash before closure; use PRD-derived content only with source-state warning. | TBD |

@@ -31,7 +31,7 @@
 |---|---|---|
 | PRD source status | Source warning only: expected PRD hash `86cb6fb9f3342c5e36e794d3f3c6316d876f519e171a7c432f1308bfeb56eb34`; observed `fb1c73f7ca54a0508e3fa2157d8b2e8af49f18ac03814aef67d762eb151c6fc8`. Content is used with this warning recorded. | Assignment; `_REFERENCES.md` REF-006 |
 | Source grounding | Requirements and validation IDs are limited to accessible local sources. Unsupported implementation details remain `TBD` or `ASSUMPTION`. | `skills/four-documents/SKILL.md`; `_REFERENCES.md` Notes |
-| Dependency state | Declared upstream and downstream dependencies are `TBD`; no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
+| Dependency state | Declared upstream and downstream dependencies remain `TBD`; an extracted dependency register exists, but `_DEPENDENCIES.md` says not to compute blocked/available state until the project-level FULL_GRAPH register has been checked. | `_DEPENDENCIES.md` Dependency Tracking; `_DEPENDENCIES.md` Extracted Dependency Register |
 | Domain-profile validation | `section9.domain_profile_validation` appears in the Section 9 list, but PRD says it applies after a governed domain-profile amendment enters scope. | `docs/PRD.md` Section 12.4 |
 
 ## Construction
@@ -42,6 +42,7 @@
 | Harness runner updates | Runner must execute or report Section 9 validation IDs as runtime phases land. Exact runner entrypoint is TBD. | `_CONTEXT.md`; `docs/PRD.md` Section 12.4 |
 | Summary schema | Summary output should distinguish Section 9 IDs and preserve stable premerge reporting conventions. Exact schema path is TBD. | `_CONTEXT.md`; `docs/PRD.md` Objective 7 and Section 12.4 |
 | Runtime evidence checks | Checks should cover product-owned engine contract, canonical event mirror, SDK mapper, settings isolation, permissions, MCP, hooks, result budgets, compaction, and subagent governance. | `docs/SPEC.md` Sections 9, 10, 14, 15, 19.3; `docs/CONTRACT.md` Sections 1.4-1.6 |
+| Registry and summary location slots | Exact validation registry/manifest path, summary schema or fixture path, runner entrypoint, validation command, and validation output artifact remain `TBD` until implementation files are accepted. | `_SEMANTIC_LENSING.md` B-002/A-002/D-002 worklist; `Procedure.md` Steps and Records; `Specification.md` Documentation |
 
 ## References
 
@@ -54,4 +55,3 @@
 | REF-005 | `docs/PLAN.md` | Roadmap sequencing and validation themes. |
 | REF-006 | `docs/PRD.md` | Product requirements and Section 9 runtime validation additions; hash mismatch warning applies. |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no deliverable-specific requirement extracted. |
-

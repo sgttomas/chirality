@@ -13,7 +13,7 @@
 | Type | UX_UI_SLICE |
 | ContextEnvelope | S |
 | ResponsibleParty | TBD |
-| Current Lifecycle State at Draft | OPEN |
+| Current Lifecycle State at Draft | INITIALIZED |
 
 ## Attributes
 
@@ -38,6 +38,7 @@
 | Governance posture | Unknown values remain `TBD`, and source conflicts must be surfaced rather than silently resolved. | `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
 | Route shape constraint | Existing harness route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 17.1 |
 | Unsupported variants | Disabled or unsupported matrix/pipeline variants remain visible as coming soon rather than disappearing. | `docs/PRD.md` Section 7.2 and FR-011 |
+| Dependency register state | `Dependencies.csv` exists in v3.1 format with 13 ACTIVE extracted rows; declared upstream/downstream human edges remain TBD. | `_DEPENDENCIES.md` Compact Register; `Dependencies.csv` |
 
 ## Construction
 
@@ -49,6 +50,8 @@
 | Workbench route fixture | MUST preserve selected agent, row, and column context from route state or query parameters. |
 | Pipeline route fixture | MUST distinguish operative category routing from interactive WORKBENCH persona routing. |
 | Unspecified UI details | TBD until implementation evidence or human ruling defines exact component names, route query keys, and fixture file paths. |
+| P3 implementation path slot | F-001 remains a TBD implementation slot: selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver must be filled when implementation begins. |
+| P3 route key slot | D-001 remains a TBD implementation slot: selected agent, row, and column context keys must be replaced with actual query-param or route-state names once chosen by code. |
 
 ## References
 

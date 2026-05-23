@@ -37,6 +37,7 @@ Sources: `_CONTEXT.md`; `docs/SPEC.md` Sections 8-11; `docs/CONTRACT.md` K-EVENT
 | DEL-05-04-REQ-010 | Replay fixtures MUST cover event append/replay, malformed trailing JSONL behavior, and SDK session linkage/resume metadata. | `docs/SPEC.md` Section 19.3; `docs/PRD.md` conformance bullets, with PRD source-state warning |
 | DEL-05-04-REQ-011 | ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 | DEL-05-04-REQ-012 | Exact parser module names, exported TypeScript interfaces, and UI route/component paths are TBD until implementation ownership and local code integration are assigned. | Source gap |
+| DEL-05-04-REQ-013 | The implementation handoff MUST record the accepted replay parser module path, transcript view model/interface name, transcript route or component placement, and fixture paths once those names are established; until then they remain `TBD` and are not requirements by guesswork. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001 |
 
 ## Standards
 
@@ -60,6 +61,9 @@ Sources: `_CONTEXT.md`; `docs/SPEC.md` Sections 8-11; `docs/CONTRACT.md` K-EVENT
 | DEL-05-04-REQ-009 | Legacy session discovery/retrieval fixture remains readable while canonical folder layout is introduced. |
 | DEL-05-04-REQ-010 | Section 9 validation coverage includes `section9.session_event_replay` and `section9.sdk_session_link_resume`. |
 | DEL-05-04-REQ-011 | Tool-result replay fixture confirms compact summary plus artifact link behavior. |
+| DEL-05-04-REQ-013 | Handoff/review check confirms all replay parser, transcript model, route/component, and fixture path placeholders are either filled with accepted code locations or retained as explicit `TBD` blockers. |
+
+Minimum fixture coverage before closure includes success, failure, cancellation, interruption, malformed-tail diagnostics, legacy session reads, SDK transcript linkage, redaction behavior, and compact tool-result artifact links. Exact validation IDs and fixture filenames remain `TBD` until implementation adds them. Source reread: `docs/SPEC.md` Sections 9.2 and 19.3; `docs/PRD.md` Section 12 validation IDs with REF-006 source-state warning. Disposition: X-001 incorporated as coverage checklist with implementation-specific names left `TBD`.
 
 ## Documentation
 
@@ -69,4 +73,5 @@ Required records or artifacts for this deliverable:
 - Transcript reconstruction test fixtures.
 - Malformed-tail JSONL fixtures and expected diagnostics.
 - SDK transcript/session-link fixture showing non-canonical linkage.
+- Accepted implementation slots for replay parser API, transcript view model/interface, route or component placement, and fixture paths; `TBD` until code discovery assigns them.
 - Source-state note: `docs/PRD.md` was used with HASH_MISMATCH warning per task brief and must not be treated as silently verified source state.

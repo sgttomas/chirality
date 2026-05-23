@@ -50,8 +50,8 @@
 | Coordination initializer | Create or validate `_Coordination/_COORDINATION.md`. Coordination mode values should align to TYPES vocabulary where applicable. | `docs/SPEC.md` Section 2.2; `docs/TYPES.md` Section 13 |
 | Package scaffolder | Create flat package folders using `{PKG-ID}_{Sanitize(PackageName)}/` and required/expected subfolders. | `docs/SPEC.md` Section 2.1 |
 | Deliverable scaffolder | Create deliverable folders under `1_Working/` and seed minimum PREPARATION fileset. | `docs/SPEC.md` Section 3.1 |
-| Validation summary | Return validation summaries, PREPARATION compatibility, and fail-fast recovery diagnostics including stage, target path, and created paths. | `docs/PRD.md` Section 7.3 |
-| Idempotence tests | Tests should prove reruns preserve existing paths and report compatibility without duplicating or corrupting files. | `docs/PRD.md` Section 7.3; `docs/PRD.md` NFR-011 |
+| Validation summary | Return validation summaries, PREPARATION compatibility, issue counts, scaffold counts, created path inventory, and fail-fast recovery diagnostics including stage and target path. | `docs/PRD.md` Section 7.3; `docs/SPEC.md` Section 17.1 |
+| Idempotence tests | Tests should prove reruns preserve existing directories, file contents, and file metadata where applicable, and report compatibility without duplicating or corrupting files. | `docs/PRD.md` Section 7.3; `docs/PRD.md` NFR-011 |
 
 ## References
 

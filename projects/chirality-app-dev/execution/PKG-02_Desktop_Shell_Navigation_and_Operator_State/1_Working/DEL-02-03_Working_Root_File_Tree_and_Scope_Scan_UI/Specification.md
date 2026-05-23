@@ -80,5 +80,14 @@ Required deliverable artifacts:
 TBD:
 
 - Exact component/module paths.
-- Exact API response shape details for truncation and inaccessible-directory markers.
-- Exact status/dependency summary widget fields.
+- Exact API response shape details for skipped-directory, truncation, and inaccessible-directory markers.
+- Exact status/dependency summary widget fields; unsupported fields remain deferred rather than inferred.
+
+## Pass 3 Disposition Notes
+
+| ItemID | Disposition | Evidence |
+|---|---|---|
+| B-001 | Converted to `TBD` / already covered: implementation-level component paths, API field names, and UI copy remain unresolved. | `Specification.md` Documentation; `Guidance.md` Human-Ruling Needed; `Procedure.md` Steps. |
+| X-001 | Incorporated as `TBD`: skipped-directory response-shape details were added to the API response shape unknowns. | `docs/PRD.md` FR-004; `docs/SPEC.md` §17.2. |
+| X-002 | Already covered: verification binds error rendering to preserving type/status/message/details where available. | `docs/PRD.md` NFR-009; `Specification.md` Verification for DEL-02-03-REQ-011. |
+| E-001 | Converted to `TBD` / deferred: exact status/dependency summary fields remain unresolved and unsupported fields must not be inferred. | `docs/PRD.md` FR-010; `docs/SPEC.md` §17.2. |

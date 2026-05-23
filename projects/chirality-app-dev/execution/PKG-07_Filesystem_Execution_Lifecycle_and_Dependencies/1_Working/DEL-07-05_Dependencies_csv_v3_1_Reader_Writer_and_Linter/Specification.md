@@ -70,6 +70,16 @@ Sources: `_CONTEXT.md` (Deliverable Scope); `docs/SPEC.md` Sections 5, 6, 14.2; 
 
 ASSUMPTION: The exact module names, API handler names, and fixture paths are TBD until implementation ownership chooses the local code structure.
 
+### Pass 3 Acceptance Evidence Mapping
+
+| ItemID | Required evidence | Current disposition |
+|---|---|---|
+| C-001 | A stable structured warning taxonomy for parse, schema, enum, identity, provenance, target-resolution, legacy-normalization, permission, hook, containment, and source-state findings. | Converted to TBD because the sources require warnings but do not name final warning codes or categories. |
+| D-001 | Implementation path register naming parser/writer module, linter module, API handler, MCP wrapper, payload type definitions, fixtures, and tests. | Converted to TBD path slots pending local code ownership. |
+| X-001 | API GET/PUT payload tests, MCP dependency read/write tests, write-hook containment tests, instruction-root rejection tests, symlink-write rejection tests, provenance/event-hook evidence, and PRD hash-warning review evidence. | Converted to required acceptance evidence with final artifact paths TBD. |
+
+Source rereads: `docs/SPEC.md` Sections 6, 14.2, 14.3, 15.1, 15.2, and 17.2; `docs/CONTRACT.md` Sections 1.6 and 1.7; `docs/PRD.md` Sections 8.9, 10.9, 17.2, and implementation targets; `docs/TYPES.md` Section 6.
+
 ## Documentation
 
 Required artifacts for this deliverable:
@@ -84,3 +94,5 @@ Recommended supporting documentation:
 - API/MCP contract notes that point back to `docs/SPEC.md` Section 6 and `docs/PRD.md` Section 8.9.
 
 Source warning: `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived requirements above should be rechecked by a human before relying on them as accepted hash truth.
+
+Pass 3 source-state disposition: F-001 is already surfaced by the source warning above and by the Guidance conflict table. P3 does not resolve the PRD hash mismatch or treat PRD-derived claims as accepted hash truth.

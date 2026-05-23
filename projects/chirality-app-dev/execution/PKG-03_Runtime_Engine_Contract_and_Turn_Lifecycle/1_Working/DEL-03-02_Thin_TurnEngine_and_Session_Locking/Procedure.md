@@ -14,15 +14,16 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 | Runtime vocabulary | Available in `docs/TYPES.md` Section 7. |
 | Product/runtime invariants | Available in `docs/CONTRACT.md` K-CORE, K-ENGINE, K-EVENT. |
 | PRD runtime requirements | Available in `docs/PRD.md`, but `_REFERENCES.md` records `HASH_MISMATCH`; revalidate before closure. |
-| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` has no accepted dependency edges yet. |
-| Current route/session implementation path | TBD - not specified by the authoritative source corpus for this drafting pass. |
-| Existing test conventions | TBD - not specified by the authoritative source corpus for this drafting pass. |
+| Declared upstream dependencies | `_DEPENDENCIES.md` / `Dependencies.csv` now list ACTIVE extracted upstream edges for PKG-03, SOW-009, SOW-010, SOW-011, SOW-038, DEL-03-01, and DEL-05-02; all remain `SatisfactionStatus=PENDING`. |
+| Current route/session implementation path | Current route path is `frontend/src/app/api/harness/turn/route.ts`; current route-level active-turn storage is the in-module `activeSessionTurns` set. Current session manager access is through `getHarnessRuntime().sessionManager` in the route. |
+| Existing test conventions | Current route and interrupt tests live in `frontend/src/__tests__/api/harness/routes.test.ts`; Section 8 harness validation lives in `frontend/scripts/validate-harness-section8.mjs`. |
 
 ## Steps
 
 1. Locate the current `/api/harness/turn` implementation and current session manager/lock behavior.
 
    Output: code pointers for route validation, active-turn guard, provider/engine invocation, SSE writing, and cleanup.  
+   Current code pointers: route validation/lock/SSE cleanup in `frontend/src/app/api/harness/turn/route.ts`; stub active-turn state in `frontend/src/lib/harness/agent-sdk-manager.ts`; Anthropic active-turn state and `AbortController` handling in `frontend/src/lib/harness/anthropic-agent-sdk-manager.ts`; route/interrupt tests in `frontend/src/__tests__/api/harness/routes.test.ts`.  
    Verification: no implementation changes yet; mapping notes distinguish current route responsibilities from target `TurnEngine` responsibilities.
 
 2. Define the `TurnEngine` input/output boundary.
@@ -53,7 +54,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/SPEC.md` Sections 10.1-10.4, 11,
 
    Release the active-turn lock after normal completion, adapter failure, route abort, and cancellation cleanup.  
    Source: `docs/SPEC.md` Section 10.4; `docs/CONTRACT.md` K-EVENT-3.  
-   Verification: lock cleanup tests prove a follow-up turn can start after each terminal or cleanup path.
+   Verification: lock cleanup tests prove a follow-up turn can start after each terminal or cleanup path. Current `routes.test.ts` covers overlapping same-session rejection, interrupt, stream drain, and a recovery turn after lock release; additional DEL-03-02 implementation closure should add or retain equivalent evidence after `TurnEngine` extraction.
 
 7. Persist accepted-turn before engine execution.
 
@@ -105,5 +106,6 @@ Records to preserve for implementation closure:
 - Code paths changed for `TurnEngine`, route adapter, session lock, and event writer integration.
 - Test files and commands proving the verification items above.
 - Any source-state note resolving or carrying forward the `docs/PRD.md` hash mismatch.
-- Residual `TBD` decisions for exact lock storage, interrupt/cancel ownership with DEL-03-04, and current-code file path choices.
-- Handoff note if dependency extraction has not yet populated `_DEPENDENCIES.md` / `Dependencies.csv`.
+- Residual `TBD` decisions for final lock storage and interrupt/cancel ownership with DEL-03-04.
+- Handoff note carrying ACTIVE dependency edges from `Dependencies.csv`, including pending upstream DEL-03-01 and DEL-05-02 edges and downstream DEL-03-03, DEL-03-04, and DEL-09-03 edges.
+- REF-006 source-state warning until the `docs/PRD.md` hash mismatch is reconciled or accepted for closure.

@@ -16,6 +16,7 @@ Define and verify the deliverable implementation for `HarnessEvent` schema and a
   - `docs/PRD.md` Sections 8.12, 9.4, FR-072-FR-076, with HASH_MISMATCH warning from `_REFERENCES.md`.
 - Declared upstream dependencies: TBD - no accepted dependency edges have been extracted yet.
 - Declared downstream dependencies: TBD - no accepted dependency edges have been extracted yet.
+- Extracted active dependency edges are recorded in `Dependencies.csv` and summarized in `_DEPENDENCIES.md`: upstream/interface or constraint edges to DEL-05-01, DEL-03-04, DEL-05-03, DEL-05-05, DEL-03-03, and DEL-04-03, plus downstream enablement of DEL-05-04. Treat these as accepted only to the maturity and satisfaction state recorded in the dependency register.
 
 ## Steps
 
@@ -62,7 +63,7 @@ Define and verify the deliverable implementation for `HarnessEvent` schema and a
    - Source: `docs/CONTRACT.md` K-EVENT-1; `docs/PRD.md` Section 9.4 (HASH_MISMATCH source warning).
 
 9. Document unresolved implementation choices.
-   - Mark event payload schemas by type as TBD unless already supported by source or accepted implementation.
+   - Mark event payload schemas by type as TBD unless already supported by source or accepted implementation, including payload-specific schemas for later tool, hook, compaction, subagent, and SDK mirror categories.
    - Mark artifact threshold values as TBD unless owned and accepted by DEL-05-05.
    - Mark redaction mechanism details as TBD unless owned and accepted by DEL-05-03.
 
@@ -75,6 +76,7 @@ Define and verify the deliverable implementation for `HarnessEvent` schema and a
 - Replay test confirms malformed trailing JSONL does not discard prior valid events and does surface diagnostics.
 - Separation test confirms browser `UIEvent`s and persisted `HarnessEvent`s remain separate contracts.
 - Secret-safety test confirms API keys and configured secrets are absent from event payload fixtures.
+- Later-category fixture plan confirms tool, hook, compaction, subagent, and SDK mirror event names remain serializable/replayable while category-specific payload schemas remain TBD.
 - Source-state check records that `docs/PRD.md` is HASH_MISMATCH if PRD text is used for verification expectations.
 
 ## Records
@@ -86,5 +88,8 @@ Define and verify the deliverable implementation for `HarnessEvent` schema and a
 - Terminal-event test fixture/results.
 - Malformed-tail replay fixture/results.
 - UI/runtime separation test fixture/results.
+- Dependency-edge register snapshot used for implementation handoff.
+- Later-category fixture coverage plan with TBD payload-schema slots.
+- DEL-05-03 redaction helper or fixture contract reference, currently TBD.
+- DEL-05-05 artifact threshold source, currently TBD.
 - TASK run record under `_run_records/`.
-

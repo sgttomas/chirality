@@ -11,7 +11,7 @@ Define the operational procedure to produce and verify the DEL-08-01 test-suite 
 - Decomposition reference: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
 - Current instruction-root source tree containing the candidate root assets and `agents/AGENT_*.md` files.
 - Test framework, validator command, and fixture directory: TBD.
-- Declared upstream dependencies: TBD; no accepted upstream edges have been extracted yet. Source: `_DEPENDENCIES.md`.
+- Declared upstream/downstream lists: TBD. The extracted dependency register currently records upstream source prerequisites and no populated downstream handoff edges; do not invent deliverable edges from boundary references alone. Source: `_DEPENDENCIES.md`.
 
 ## Steps
 
@@ -41,7 +41,10 @@ Define the operational procedure to produce and verify the DEL-08-01 test-suite 
 5. Implement or update validator and fixtures.
    - Validator path: TBD.
    - Fixture path: TBD.
+   - Test framework: TBD.
    - CI or local command: TBD.
+   - Pass/fail artifact directory: TBD.
+   - Record the selected path, framework, command, fixture directory, and artifact directory before treating verification as executable.
    - Keep outputs under the working root; do not write to the instruction root during ordinary test execution.
 
 6. Run verification.
@@ -49,6 +52,7 @@ Define the operational procedure to produce and verify the DEL-08-01 test-suite 
    - Confirm positive fixtures pass.
    - Confirm negative fixtures fail with actionable messages.
    - Confirm PRD-only checks are warning-labeled while the PRD hash mismatch remains unresolved.
+   - Capture pass/fail evidence with the command, working tree or commit identifier when available, fixture summary, warning/failure counts, and output artifact location.
 
 7. Record results.
    - Store validator output, source-completeness checklist, and fixture summary in the appropriate test artifact location: TBD.
@@ -70,6 +74,7 @@ Completion checks:
 
 Required records after implementation:
 
+- Validator implementation decision record naming the framework, validator path, fixture path, local command, CI command or omission, and pass/fail artifact directory.
 - Agent conformance validator output.
 - Instruction-root integrity fixture summary.
 - Source-completeness checklist.

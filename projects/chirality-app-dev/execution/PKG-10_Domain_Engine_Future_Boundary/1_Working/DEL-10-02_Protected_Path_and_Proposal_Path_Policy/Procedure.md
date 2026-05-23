@@ -13,7 +13,7 @@ Define a repeatable procedure for producing and reviewing the protected path and
 | Domain invariants | Available in `docs/CONTRACT.md` §1.10. |
 | Future domain requirements | Available in `docs/PRD.md` §8.17 and §10.10, with REF-006 hash mismatch treated as source warning only. |
 | Future profile vocabulary | Available in `docs/TYPES.md` §11. |
-| Declared upstream dependencies | TBD - no accepted dependency edges have been extracted yet in `_DEPENDENCIES.md`. |
+| Declared upstream dependencies | Extracted dependency register exists in `_DEPENDENCIES.md`; declared upstream/downstream sections remain TBD. P3 disposition: B-002 already covered as deferred closure input. |
 | ResponsibleParty | TBD. |
 
 ## Steps
@@ -65,6 +65,7 @@ Define a repeatable procedure for producing and reviewing the protected path and
 | Human-gate check | Accepted protected-state mutation requires explicit human acceptance. |
 | Boundary-copy check | No text says Chirality approves, validates, certifies, or owns solver truth. |
 | TBD check | Concrete path patterns, hook implementation details, and engine-specific examples remain TBD where unsupported. |
+| Future fixture check | Future verification records include categories for direct protected-write denial, proposal-path write allowance, and accepted mutation through human gate once profile syntax and workflow are accepted. P3 disposition: F-002 incorporated. |
 
 ## Records
 
@@ -72,4 +73,5 @@ Define a repeatable procedure for producing and reviewing the protected path and
 - Hook implications and TBDs: `Specification.md`, `Guidance.md`.
 - Examples and conflicts: `Guidance.md`.
 - Source warning: PRD hash mismatch recorded in `Datasheet.md` and `Guidance.md`.
-- Dependency register: not created in this run; `_DEPENDENCIES.md` says extraction occurs after four-document authoring and later phases.
+- Dependency register: `_DEPENDENCIES.md` includes extracted active rows, while human-declared upstream/downstream sections remain TBD; closure must not treat those extracted rows as human-declared acceptance.
+- Future workflow owner: TBD - the owner who defines the approved adapter or operation workflow that can convert proposals into protected-state changes is not named in accessible sources. P3 disposition: D-002 converted to closure-relevant TBD.

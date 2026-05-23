@@ -45,7 +45,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 
 | Component | Construction note | Source |
 |---|---|---|
-| Overlay input | Session/persona/mode/tool/policy context needed to decide tool permission. Exact interface shape: TBD. | `docs/PRD.md` Section 9.4, HASH_MISMATCH warning; `docs/SPEC.md` Section 15.1 |
+| Overlay input | Session, optional turn, selected Chirality mode, requested tool name, resolved tool-surface posture, and explicit policy/hook/human-gate signals needed to decide tool permission. Exact TypeScript interface shape remains TBD until implementation ownership is assigned. | `docs/TYPES.md` Section 8.2; `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
 | Mode mapper | Maps Chirality modes to SDK posture plus overlay behavior. | `docs/SPEC.md` Section 15.1 |
 | Deny evaluation | Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1 |
 | Decision persistence | A structured permission decision is recorded before downstream execution or before returning an SDK approval result. | `docs/TYPES.md` Section 8.2; decomposition rows SOW-054 and SOW-058 |

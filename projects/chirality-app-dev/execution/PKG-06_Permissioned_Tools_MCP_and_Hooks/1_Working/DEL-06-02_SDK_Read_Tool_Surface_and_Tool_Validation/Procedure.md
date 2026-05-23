@@ -27,12 +27,14 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 
 2. Define the resolver input and output.
    - Input should include resolved runtime options, especially `opts.tools`, plus context needed for deterministic ordering and policy filtering.
+   - Keep the exact interface shape TBD until the runtime owner assigns the object or function boundary carrying `opts.tools`, session, persona, mode, SDK version, MCP server set, and permission policy. (P3: F-001)
    - Output should identify SDK built-ins and Chirality MCP tools in the form required by SDK options/MCP configuration.
    - Keep SDK-specific values as adapter metadata, not public Chirality contract terms.
 
 3. Validate requested names.
    - For each `opts.tools` entry, resolve against the accepted registry.
    - If a name is unknown, produce a structured validation error and stop before SDK request construction.
+   - Keep the exact structured validation error type and fixture assertion shape TBD until the implementation contract is named. (P3: C-002)
    - Ensure unknown names are not present in emitted SDK options or model context.
 
 4. Apply read-first sequencing.
@@ -86,8 +88,10 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 
 - Tool resolver implementation path: TBD.
 - SDK built-in and Chirality MCP registry path: TBD.
-- Structured validation error contract: TBD.
-- Unknown-tool test path: TBD.
-- Deterministic ordering fixture path: TBD.
-- Read-first sequencing test path: TBD.
-- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
+- Structured validation error contract: TBD. (P3: C-002)
+- Unknown-tool test path: TBD. (P3: F-002)
+- Deterministic ordering fixture path: TBD. (P3: F-002)
+- Read-first sequencing test path: TBD. (P3: F-002)
+- Safe metadata or boot-fingerprint path for SDK names, versions, and MCP identifiers: TBD. (P3: E-001)
+- Trace package tying resolver, registry, error contract, fixtures, sequencing tests, and PRD warning note to implementation evidence: TBD. (P3: X-001)
+- Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled. (P3: A-001, D-002, E-002)

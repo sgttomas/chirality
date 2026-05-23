@@ -38,6 +38,7 @@ Sources: `_CONTEXT.md`; `docs/PLAN.md` Section 9; `docs/PRD.md` Sections 6.4 and
 | DEL-07-06-REQ-013 | Deterministic project tools and scripts SHOULD remain indexed and locally executable when present. | `docs/PRD.md` FR-061 with REF-006 hash warning; decomposition SOW-032 |
 | DEL-07-06-REQ-014 | PRD-derived requirements MUST carry the REF-006 source-state warning until `docs/PRD.md` hash state is reconciled or accepted. | `_REFERENCES.md` REF-006; task brief |
 | DEL-07-06-REQ-015 | The deliverable MUST NOT state or imply that runtime events, tools, validators, SDKs, or agents approve, sign, seal, issue, certify, or externally validate work. | `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1 and K-BIND-1 |
+| DEL-07-06-REQ-016 | Exact deterministic tool/script registry membership MUST remain `TBD` unless verified by the owning implementation slice or an accepted registry source. | `docs/PRD.md` FR-061 with REF-006 hash warning; `docs/PRD.md` KG-013 with REF-006 hash warning; `docs/CONTRACT.md` K-INVENT-1 |
 
 ## Standards
 
@@ -60,6 +61,14 @@ Sources: `_CONTEXT.md`; `docs/PLAN.md` Section 9; `docs/PRD.md` Sections 6.4 and
 | REQ-012 through REQ-013 | Scope review confirms tool/script continuity is documented while exact registry membership remains `TBD` unless separately verified. |
 | REQ-014 | Review confirms PRD-derived statements visibly carry the REF-006 hash warning. |
 | REQ-015 | Professional-boundary review confirms no automated approval, issue, certification, external validation, or reliance claim is introduced. |
+| REQ-016 | Registry review confirms exact tool/script membership is not asserted without accepted registry evidence. |
+
+## Pass 3 Disposition Notes
+
+| Item ID | Disposition | Evidence |
+|---|---|---|
+| B-002 | Converted to explicit `TBD` control by REQ-016; exact registry membership awaits owning implementation evidence. | Requirements and Verification tables |
+| C-001 | Already covered and retained; REQ-014 and its verification row require visible REF-006 warning language for PRD-derived statements. | Requirements and Verification tables |
 
 ## Documentation
 

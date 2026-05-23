@@ -27,7 +27,7 @@
 | Persisted runtime output contract | Versioned `HarnessEvent` records with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data` | REF-003 Section 10; REF-004 Section 7.3 |
 | SDK-specific data posture | SDK message names, session IDs, transcript paths, permission modes, hook names, and tool names remain adapter metadata, not public Chirality contracts | REF-001 Sections 2.8-2.10; REF-003 Section 10.3; REF-004 Section 9 |
 | Known SDK input categories | `SDKSystemMessage`, `SDKAssistantMessage`, `SDKPartialAssistantMessage`, `SDKResultMessage`, permission-denial, hook, compact-boundary, tool-progress, and subagent messages | REF-006 Section 8.12, source-state warning applies |
-| Exact observed SDK message sequence | TBD pending DEL-04-01 SDK probe / OI-001 | Decomposition OI-001; SOW-044 |
+| Exact observed SDK message sequence | TBD pending DEL-04-01 SDK probe / OI-001; current named categories are planning targets until probe-backed fixtures are accepted. | Decomposition OI-001; SOW-044; REF-006 FR-116, HASH_MISMATCH warning applies |
 
 ## Conditions
 
@@ -39,7 +39,7 @@
 | SDK model/tool loop | SDK supplies the model/tool loop when conformance passes; Chirality mirrors SDK tool-use, tool-result, permission-denial, hook, result, and compact-boundary messages into events. | SOW-051; REF-006 FR-083 |
 | Redaction boundary | Runtime event data and logs must not expose API keys or configured secret variants. | REF-006 FR-075; REF-005 Section 6.3 |
 | Conformance boundary | SDK-backed adapter must pass engine conformance tests before production default use. | REF-003 Section 10.3 |
-| Dependency state | Declared upstream and downstream dependencies are `TBD` until dependency extraction runs. | `_DEPENDENCIES.md` |
+| Dependency state | `Dependencies.csv` exists with 11 ACTIVE extracted rows; satisfaction remains `TBD` for all rows, including ACTIVE upstream execution dependencies DEL-04-01, DEL-03-01, DEL-03-03, and DEL-04-02. | `_DEPENDENCIES.md`; `Dependencies.csv` |
 
 ## Construction
 

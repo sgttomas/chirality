@@ -31,6 +31,8 @@ Sources: `_CONTEXT.md`; `docs/DIRECTIVE.md` Sections 2.2-2.3; `docs/SPEC.md` Sec
 | SDK transcript detail vs. Chirality canonicality | Show SDK transcript/store linkage as secondary metadata. | Maintains provider-neutral core and avoids SDK-shaped public contracts. |
 | Legacy compatibility vs. clean vNext layout | Keep legacy reads until migration is explicitly complete. | Preserves existing session usability during layout transition. |
 
+For tool results, compact summaries plus artifact references are the preferred replay shape because the audit view needs durable traceability without re-exposing large or sensitive payloads in transcript context. The artifact reference preserves where the full result was stored, while the summary supports review and redaction-aware replay. Sources reread: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7. Disposition: E-001 incorporated.
+
 ## Examples
 
 | Scenario | Expected replay behavior | Source |
@@ -43,6 +45,8 @@ Sources: `_CONTEXT.md`; `docs/DIRECTIVE.md` Sections 2.2-2.3; `docs/SPEC.md` Sec
 ## Source-State Notes
 
 `docs/PRD.md` is listed in `_REFERENCES.md` with `HASH_MISMATCH`. Per the task brief, this is treated as a source-state warning. PRD-derived replay requirements were used only when consistent with matched sources or clearly labeled with the warning.
+
+Disposition: B-001 is already covered by this warning-qualified source-state note and by the References table in `Datasheet.md`; the mismatch is not resolved here and remains a human/source-state issue rather than a content conflict.
 
 ## Conflict Table (for human ruling)
 

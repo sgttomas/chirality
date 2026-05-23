@@ -33,6 +33,7 @@ This deliverable exists to create a narrow SDK adapter mapping surface: SDK stre
 |---|---|---|
 | UI versus audit detail | Use UI events for compact browser streaming; use `HarnessEvent`s for richer runtime records such as model, tool, permission, hook, terminal, and SDK metadata events. | REF-003 Sections 10-11; REF-004 Sections 7.3-7.4 |
 | SDK probe dependency | The exact SDK message categories and payload fields remain dependent on DEL-04-01 / OI-001. Design fixture gaps as explicit `TBD`s rather than guessing payload details. | Decomposition SOW-044 / OI-001 |
+| Probe-backed category promotion slot | After DEL-04-01 / OI-001 is accepted, update this deliverable's mapper fixtures and documentation with the observed SDK message categories that are supported inputs. Until then, the currently named SDK-side categories remain warning-qualified and must not be treated as accepted observed payload schemas. | REF-006 FR-116 and FR-123, HASH_MISMATCH warning applies; decomposition OI-001 |
 | Provider neutrality | Prefer Chirality terms for public event names and canonical event types. Use adapter metadata for values like `sdkSessionId`, `sdkTranscriptPath`, and SDK tool names. | REF-001 Section 2.10; REF-004 Section 9 |
 | Error handling | Convert SDK/provider failures into Chirality terminal or diagnostic events that preserve operator meaning without exposing secrets. | REF-006 FR-075, HASH_MISMATCH warning applies |
 | Test strategy | Start with SPEC/TYPES event contracts and PRD/decomposition requirements; add probe-derived fixtures after DEL-04-01 confirms real SDK streams. | REF-003 Section 19.3; REF-005 R1 acceptance |
@@ -46,6 +47,10 @@ This deliverable exists to create a narrow SDK adapter mapping surface: SDK stre
 | Early broad category support versus probe-backed precision | Use explicit `TBD`s for unconfirmed cases. | SOW-044 is marked open until the SDK probe confirms categories. |
 | Mapper-local redaction versus central redaction only | Do both where practical. | Event records and logs must not expose API keys or secrets; mapper copying should be conservative. |
 | SDK session data omitted versus captured as metadata | Capture only explicit metadata. | Resume/debug linkage is useful, but SDK identifiers remain adapter metadata. |
+
+## Adapter Metadata Rationale
+
+SDK identifiers, transcript paths, tool names, permission modes, hook names, and provider identifiers are useful for resume, diagnosis, conformance, and audit review, but they are not Chirality identity or event vocabulary. Keep them in explicit adapter metadata because REF-001 Sections 2.8-2.10 and REF-003 Section 10 make the runtime boundary, `UIEvent` schema, `HarnessEvent` schema, permission semantics, session canonicality, and audit mirror product-owned. REF-004 Section 9 also names SDK terms as adapter-boundary vocabulary. This allows the mapper to preserve needed implementation detail while leakage tests can reject SDK-shaped public event names, canonical event types, or top-level fields.
 
 ## Examples
 
@@ -65,4 +70,4 @@ Illustrative mappings, subject to DEL-04-01 probe confirmation:
 
 | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
 |---|---|---|---|---|---|---|
-| None | No direct source conflict found in accessible slices. REF-006 `docs/PRD.md` hash mismatch is a source-state warning, not a content conflict for this Phase 2.2 draft. | `_REFERENCES.md` REF-006 status | Task brief instruction | All documents | Use PRD slices conservatively and flag unsupported/probe-dependent detail as `TBD` or `ASSUMPTION`. | TBD |
+| B-001 | REF-006 `docs/PRD.md` is accessible but has a recorded hash mismatch, while production documents use PRD-derived runtime and SDK-message requirements. This is a source-state conflict/blocker, not a resolved content contradiction. | `_REFERENCES.md` REF-006 status | REF-006 Sections 8.12 and 8.13 as cited by current production documents | Datasheet references and conditions; Specification requirements/standards; Guidance considerations/examples; Procedure prerequisites | Continue using PRD-derived slices only with HASH_MISMATCH warning and keep probe-dependent details as `TBD` until source reconciliation and DEL-04-01 / OI-001 acceptance. | TBD |

@@ -23,15 +23,19 @@ The decomposition uses "project-root containment"; `docs/CONTRACT.md`, `docs/SPE
 
 ### Hook Placement
 
-`PreToolUse` should be the normal enforcement point for path containment, instruction-root protection, symlink rejection, exact edit preconditions, and mode/policy denial before mutation. `PostToolUse` should record successful write provenance, diff/summary, and safe metadata. Post-failure evidence should be captured where the runtime supports it, but failure mirroring details may belong to DEL-06-06.
+`PreToolUse` should be the normal enforcement point for path containment, instruction-root protection, symlink rejection, exact edit preconditions, and mode/policy denial before mutation. `PostToolUse` should record successful write provenance, diff/summary, and safe metadata. This deliverable owns the evidence that a write/edit attempt was allowed, denied, or failed without mutation; DEL-06-06 owns broader hook lifecycle, compaction, stop/finalization, and terminal mirror semantics. Post-failure records should therefore capture the minimum write/edit denial or failure evidence here and hand lifecycle-wide failure mirroring to DEL-06-06. Sources: `docs/SPEC.md` Section 15.2; decomposition rows DEL-06-04 and DEL-06-06.
 
 ### Exact Edit Preconditions
 
-Exact edit preconditions should prevent stale or ambiguous edits from mutating files. The source corpus requires exact preconditions but does not specify the matching algorithm. Keep algorithmic details as `TBD` until implementation design chooses the file matcher, diff strategy, and stale-content behavior.
+Exact edit preconditions should prevent stale or ambiguous edits from mutating files. The source corpus requires exact preconditions but does not specify the matching algorithm. Keep algorithmic details as `TBD` until implementation design chooses the file matcher, diff strategy, and stale-content behavior. The design record should state whether stale content is a denied permission decision, a tool validation failure, or another terminal outcome, because that choice determines the event evidence and user-facing feedback.
+
+### MCP Write/Gated Surface
+
+The current SPEC inventory names `mcp__chirality__status_transition` and `mcp__chirality__deps_write` as write/gated Chirality MCP tools, and `mcp__chirality__scaffold` as gated. Treat `scaffold` as requiring explicit mutation classification before exposure, and require any future write-capable MCP tool to opt into the same gate sequence as SDK `Write`/`Edit`. Source: `docs/SPEC.md` Section 14.2.
 
 ### PRD Hash Warning
 
-`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. Use PRD Section 7.9 as warning-qualified product direction for controlled writes and exact edit preconditions. Implementation acceptance should retain this warning until REF-006 source state is reconciled.
+`docs/PRD.md` is listed as HASH_MISMATCH in `_REFERENCES.md`. Use PRD Section 7.9 as warning-qualified product direction for controlled writes and exact edit preconditions. Implementation acceptance should include a verifier or review note that the warning remains visible until REF-006 source state is reconciled or a governed hash-bypass record is accepted.
 
 ## Trade-offs
 
@@ -39,7 +43,7 @@ Exact edit preconditions should prevent stale or ambiguous edits from mutating f
 |---|---|
 | Omit write tools vs expose and deny | Prefer not exposing write/edit tools until mode and permission policy allow them, but still enforce hook denial because exposure control alone is not a safety boundary. Sources: `docs/SPEC.md` Section 14.3; `docs/CONTRACT.md` K-PERM-3. |
 | SDK built-ins vs Chirality MCP write tools | Treat both as mutation surfaces requiring equivalent permission, hook, path, redaction, and event logging policy. Source: `docs/CONTRACT.md` K-MCP-1. |
-| Atomic write/edit vs implementation simplicity | Perform atomic mutation where practical, but do not use atomicity as a substitute for pre-execution path and precondition checks. Source: `docs/PRD.md` Section 7.9, HASH_MISMATCH warning. |
+| Atomic write/edit vs implementation simplicity | Perform atomic mutation where practical, but do not use atomicity as a substitute for pre-execution path and precondition checks. The implementation rationale should identify when atomic behavior is practical, when it is not, and what evidence proves failed gates preserved prior content. Source: `docs/PRD.md` Section 7.9, HASH_MISMATCH warning. |
 | Symlink denial vs advanced workspace layouts | Reject symlink writes initially. If future workspace needs require symlink support, add a governed policy amendment and targeted tests first. Source: `docs/CONTRACT.md` K-PATH-3. |
 | Provenance detail vs data exposure | Record enough diff/summary/provenance to audit the write while applying the same redaction and result-budget posture as other tools. Source: `docs/SPEC.md` Section 15.2. |
 

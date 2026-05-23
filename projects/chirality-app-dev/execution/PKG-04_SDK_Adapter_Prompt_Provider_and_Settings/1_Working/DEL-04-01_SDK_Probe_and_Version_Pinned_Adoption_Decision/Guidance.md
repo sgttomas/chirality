@@ -28,11 +28,12 @@ Source grounding: `docs/DIRECTIVE.md` Section 2.8 through 2.11; `docs/PLAN.md` R
 
 ## Considerations
 
-- Treat `docs/PRD.md` as source-state warning material until REF-006 hash mismatch is resolved or accepted. Its R0/R1 content aligns with `docs/PLAN.md`, `docs/SPEC.md`, and `docs/CONTRACT.md`, but closure should not ignore the mismatch.
+- Treat `docs/PRD.md` as source-state warning material until REF-006 hash mismatch is resolved or accepted. Corroborated PRD claims may remain draft context where matching MATCH sources independently support the same control, but closure should not rely on PRD-only wording until the source-state conflict is ruled on.
 - The decomposition marks this as a documentation/probe slice with no new user tool exposure. Keep implementation changes out of this deliverable and route code work to downstream DEL-04-02 through DEL-04-05.
 - Open issue OI-001 makes SDK viability, message categories, settings behavior, hooks, permissions, MCP, sessions, and packaging empirical questions. Do not convert unknown probe results into requirements that pretend the answer is already known.
 - Open issue OI-002 leaves transcript placement unresolved. The acceptable outcomes are project-controlled `SessionStore`, `CLAUDE_CONFIG_DIR`, both, or cross-reference to default path with residual risk, per the decomposition and source corpus.
 - Packaging risk is not limited to the SDK package dependency. The probe must consider SDK subprocess/binary execution in Electron and any built-app path constraints.
+- Fallback threshold is a human-governed TBD: if a product-critical reliance boundary cannot be observed, enforced, and recorded in Chirality terms, the adoption decision should either select `FALLBACK` or explicitly assign `ADOPT_WITH_RESIDUAL_RISK` to an accountable approver.
 
 ## Trade-offs
 
@@ -44,6 +45,16 @@ Source grounding: `docs/DIRECTIVE.md` Section 2.8 through 2.11; `docs/PLAN.md` R
 | Session storage | Project-controlled transcript/store linkage where reliable. | SDK default transcript path becoming de facto canonical. | `docs/SPEC.md` Section 8.4; `docs/PRD.md` KG-024 |
 | Settings | `settingSources: []` in shipped builds. | Ambient `.claude` or user/local settings entering product behavior. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
 | Adoption | Version-pinned SDK path with conformance tests. | SDK API drift, packaging failures, or unverifiable reliance boundaries. | `docs/CONTRACT.md` K-SDK-2; `docs/PRD.md` KG-021 through KG-032 |
+
+## Residual-Risk Appraisal Method
+
+Residual-risk notes should evaluate each unresolved SDK adoption issue against three questions:
+
+1. Can Chirality observe the behavior in project-owned records or adapter metadata?
+2. Can Chirality enforce or fail closed at a product-owned boundary rather than relying on prompt text or opaque SDK defaults?
+3. Can a human reviewer distinguish `ADOPT_WITH_RESIDUAL_RISK` from `FALLBACK` using version-pinned probe evidence?
+
+Apply the method to SDK API drift, settings leakage, allowed-tools misconception, transcript location, Electron packaging, SDK security boundary, subagent inherited permissions, session mirror reliability, product-identity drift, platform dependency, reliance-boundary ambiguity, and engine adapter lock-in. Sources: `docs/DIRECTIVE.md` Sections 2.8 through 2.11; `docs/CONTRACT.md` K-ENGINE-5, K-RELIANCE-1, K-RELIANCE-2, and K-SDK-2; `docs/PLAN.md` R0/R1 and Section 8.
 
 ## Examples
 

@@ -28,8 +28,10 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 3. Implement or inspect Workbench deliverable contract summaries.
    - Load selected-deliverable status/dependency summaries through workspace contract APIs where the UI supports deliverable context.
    - Keep lifecycle controls disabled for unsupported agents.
+   - Identify the source of truth for unsupported lifecycle controls, or record it as TBD if the registry/API response/policy surface is not yet named.
+   - Verify status/dependency summaries are not populated from local UI convenience state while dependency extraction remains deferred.
    - Do not treat UI state as authoritative lifecycle or dependency truth.
-   - Sources: `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/CONTRACT.md` Section 1.7.
+   - Sources: `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7.
 
 4. Implement or inspect Pipeline category controls.
    - Expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls.
@@ -61,6 +63,7 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 | Workbench query context | Selected agent, row, and column are shown with sensible defaults. | `docs/PRD.md` Section 8.2 FR-009 |
 | Matrix routing boundary | NORMATIVE/EVALUATIVE route to WORKBENCH; OPERATIVE routes to PIPELINE. | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 8.2 FR-008 |
 | Workbench contract summaries | Status/dependency summaries load for selected deliverables; unsupported transition controls are disabled. | `docs/PRD.md` Section 8.2 FR-010 |
+| Workbench contract boundary | Status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD; UI convenience state is not used as dependency truth. | `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
 | Pipeline categories | `DECOMP`, `PREP`, `TASK`, and `AUDIT` are represented; unsupported variants are disabled. | `docs/PRD.md` Section 8.2 FR-011 |
 | TASK split selectors | Task agent and scope selectors are distinct; scope mode behavior matches `DELIVERABLES` / `KNOWLEDGE_TYPES`. | `docs/PRD.md` Section 8.2 FR-012 |
 | Stale selection reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selections. | `docs/PRD.md` Section 8.2 FR-013 |
@@ -69,7 +72,11 @@ Define the operational steps to produce and verify the Workbench and Pipeline Se
 ## Records
 
 - Workbench context UI implementation or inspection notes: TBD.
+- Workbench context UI test evidence for query defaults: TBD.
+- Workbench lifecycle-control source-of-truth fixture or registry evidence: TBD.
+- Workbench contract boundary evidence for status/dependency summaries: TBD.
 - Pipeline selector behavior implementation or inspection notes: TBD.
-- Stale selection test evidence: TBD.
+- Pipeline category and TASK split-selector test evidence: TBD.
+- Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: TBD.
 - Human rulings for conflict table entries in `Guidance.md`: TBD.
 - Dependency extraction remains deferred; `Dependencies.csv` is intentionally not produced by this run.

@@ -13,7 +13,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 | Binding permission invariants | Available in `docs/CONTRACT.md` Section 1.6 |
 | Tool surface and mode mapping specification | Available in `docs/SPEC.md` Sections 14 and 15 |
 | Roadmap sequencing for R2/R3 | Available in `docs/PLAN.md`; `docs/PRD.md` is warning-qualified due to HASH_MISMATCH |
-| Declared upstream dependencies | TBD - `_DEPENDENCIES.md` lists no accepted upstream edges yet |
+| Declared upstream dependencies | Available as extracted dependency records in `_DEPENDENCIES.md` and `Dependencies.csv`; human-declared upstream lists remain TBD pending closure ruling |
 | Exact implementation file paths | TBD |
 | Exact test fixture paths | TBD |
 
@@ -40,7 +40,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 
 5. Integrate permission-event persistence.
    - Persist `tool.permission` evidence for governed attempts with source, reason, and safe SDK metadata when available.
-   - ASSUMPTION: the event writer and session JSONL append API are provided by PKG-05/PKG-03 surfaces; exact call path is TBD.
+   - Use the product-owned `HarnessEvent` JSONL surface for persisted permission evidence when the owning PKG-05/PKG-03 writer contract is available; exact call path remains TBD and is a tracked blocker rather than an accepted implementation fact.
 
 6. Integrate MCP and SDK tool evaluation points.
    - Ensure SDK built-ins and in-process `mcp__chirality__*` tools are evaluated by equivalent overlay policy.
@@ -52,6 +52,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
    - Verify `ask` persists the UI/human decision before returning SDK allow or deny.
    - Verify deny-overrides-allow when `allowedTools` or SDK posture conflicts with Chirality deny policy.
    - Verify `tool.permission` event records include decision source and reason.
+   - Verify in-process Chirality MCP tool attempts pass through the same overlay decision path as SDK built-ins, with detailed wrapper fixtures owned by DEL-06-03 unless this deliverable defines a shared hook point.
 
 8. Record residual gaps.
    - Keep exact file paths, fixture names, and implementation ownership as `TBD` until assigned.
@@ -78,5 +79,16 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
 - `HarnessPermissionDecision` schema/type evidence: TBD.
 - Permission event tests: TBD.
 - readOnly/dontAsk/ask behavior tests: TBD.
+- WorkspaceWrite hook-pass gating evidence: TBD, dependent on DEL-06-04 hook result interface.
+- MCP parity evidence: TBD, dependent on DEL-06-03 wrapper points or a shared overlay hook point.
+- Dependency closure ruling: TBD for human-declared upstream status; extracted rows are present in `_DEPENDENCIES.md` and `Dependencies.csv`.
 - Review note for PRD HASH_MISMATCH: required until REF-006 source state is reconciled.
 
+## Pass 3 Semantic Lensing Disposition
+
+| ItemID | Disposition | Evidence and source reread |
+|---|---|---|
+| D-001 | Converted to explicit Records blockers rather than invented paths. | Records now name required implementation, fixture, hook-gating, MCP parity, and decision-schema evidence as TBD. Reread: `_CONTEXT.md` anticipated artifacts; `docs/SPEC.md` Sections 14 and 15; decomposition PKG-06 rows. |
+| D-002 | Incorporated as a dependency closure distinction. | Prerequisites now distinguish extracted dependency records from still-TBD human-declared upstream closure. Reread: `_DEPENDENCIES.md` Dependency Tracking and Extracted Dependency Register; `Dependencies.csv` v3.1. |
+| E-001 | Converted from ASSUMPTION to tracked blocker. | Step 5 no longer states the event writer/session JSONL API as accepted fact; it depends on the owning writer contract and keeps exact call path TBD. Reread: `docs/SPEC.md` Section 9.2 and Section 9.4; `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `_DEPENDENCIES.md` DEP-06-01-E009 warning. |
+| E-002 | Incorporated as explicit MCP parity procedure and record evidence. | Step 7 and Records require MCP parity evidence while leaving wrapper points to DEL-06-03 or a shared overlay hook point. Reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.2; decomposition PKG-06 rows for DEL-06-03. |

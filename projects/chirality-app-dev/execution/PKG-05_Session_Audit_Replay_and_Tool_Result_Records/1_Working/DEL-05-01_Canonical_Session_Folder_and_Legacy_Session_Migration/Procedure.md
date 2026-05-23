@@ -72,7 +72,7 @@ Source: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `execution/
    - Test legacy resume metadata remains available.
    - Test legacy retrieve/delete behavior.
    - Test root override behavior.
-   - Test duplicate-shape behavior once policy is accepted.
+   - Test duplicate-shape behavior once policy is accepted. D-001 remains open until this accepted policy exists.
    - Source basis: `_CONTEXT.md` `Anticipated Artifacts`; `docs/SPEC.md` Section 19.3.
 
 10. Re-run relevant local validation.
@@ -94,6 +94,15 @@ Source: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `execution/
 | Redaction posture | Session metadata and artifacts do not store API keys or known secrets. |
 | Source-state warning | PRD-derived behavior affected by `HASH_MISMATCH` is rechecked before implementation closure. |
 
+## Pass 3 Evidence Checks
+
+| ItemID | Check | Expected handling |
+|---|---|---|
+| C-001 | Implementation worker identifies current session storage source files and focused test commands. | Keep paths and commands `TBD` until code inspection confirms them. |
+| D-001 | Duplicate-shape test exists after duplicate policy is accepted. | Do not close this branch without an accepted duplicate folder/flat policy and evidence. |
+| E-001 | PRD-derived behavior is rechecked against REF-006 source state before closure. | Record the recheck result in implementation evidence; keep PRD-only details provisional until corroborated. |
+| F-001 | Delete behavior is verified when both folder and flat records exist for the same `sessionId`. | Require human or design ruling before destructive behavior. |
+
 ## Records
 
 - Updated source files for session root resolution, canonical folder layout, and migration helpers: TBD.
@@ -102,3 +111,4 @@ Source: `_CONTEXT.md` `Deliverable Scope`; `docs/SPEC.md` Section 8; `execution/
 - Test results for list/resume/retrieve/delete migration behavior: TBD.
 - Residual-risk note for SDK transcript placement if not project-controlled: TBD.
 - Human ruling for duplicate folder/flat record delete semantics: TBD.
+- Source-state recheck record for REF-006 PRD-derived behavior: TBD.

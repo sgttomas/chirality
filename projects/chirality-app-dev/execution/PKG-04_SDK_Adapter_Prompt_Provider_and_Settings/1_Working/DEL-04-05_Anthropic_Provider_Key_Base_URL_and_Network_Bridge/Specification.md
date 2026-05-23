@@ -82,6 +82,15 @@ TBD:
 - Whether provider/base URL policy is implemented as a shared helper, `TurnEngine` collaborator, Electron guard module, or a combination.
 - Final SDK error object shapes from the accepted SDK package version.
 
+## Pass 3 Enrichment Disposition
+
+| ItemID | Disposition | Specification Impact | Source Reread Evidence |
+|---|---|---|---|
+| F-001 | converted to TBD | Exact provider wrapper, key handoff test, base URL/network test, and redaction fixture paths remain required artifacts, but final paths cannot be filled until the owning implementation selects them. | `_CONTEXT.md` "Anticipated Artifacts"; decomposition row `DEL-04-05`; `Specification.md` "Documentation". |
+| D-001 | already covered | The `Source-State Warning` remains a final-acceptance blocker for PRD-derived provider-policy rows rather than a specification fact to resolve in P3. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.5; `Specification.md` "Source-State Warning". |
+| D-003 | converted to TBD | Final SDK error object shapes remain TBD pending the accepted SDK package/version probe; the requirement keeps the stable classification classes without freezing SDK object shapes. | `docs/PRD.md` Section 8.5 FR-034; `docs/CONTRACT.md` K-ENGINE-4; `Specification.md` "Documentation". |
+| E-001 | converted to TBD | Redaction evidence is required for logs, events, SDK/provider errors, stderr/debug output, and tool artifacts, but no completed fixture or validation artifact is present in this deliverable folder. | `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1; `docs/PRD.md` FR-075; `Specification.md` "Verification". |
+
 ## Source-State Warning
 
 `docs/PRD.md` is listed as `HASH_MISMATCH` in `_REFERENCES.md`. Requirements sourced from `docs/PRD.md` are preserved because the brief instructed this warning to be treated as source-state warning, not a blocker. Before final acceptance, the owning workflow should reverify PRD-derived FR/NFR rows against the accepted source snapshot.

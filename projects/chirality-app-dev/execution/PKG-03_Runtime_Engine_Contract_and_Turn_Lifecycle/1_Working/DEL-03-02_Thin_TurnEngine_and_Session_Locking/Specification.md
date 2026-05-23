@@ -59,6 +59,7 @@ Minimum verification set:
 - Unit test `TurnEngine.runTurn()` can execute without HTTP and uses a stub `AgentEnginePort`.
 - Unit or integration test proves concurrent turn on same session returns `TURN_IN_PROGRESS`.
 - Lock cleanup tests cover normal completion, adapter failure, route abort/cancellation cleanup, and subsequent turn acceptance.
+- Acceptance evidence for route abort/cancellation cleanup is limited in this slice to lock release and subsequent turn acceptance. Full interrupt/cancel terminal mapping remains a DEL-03-04 dependency and must not be claimed closed by DEL-03-02 alone.
 - Session lifecycle tests cover session binding, boot metadata forwarding, runtime option forwarding, and normalized project root preservation.
 - Event ordering test proves `turn.accepted` is persisted before engine adapter execution.
 - Terminal outcome tests prove success, failure, and cancellation each produce exactly one durable terminal event.
@@ -80,3 +81,4 @@ Required documentation/artifacts for this deliverable:
 Source-state warning:
 
 - `_REFERENCES.md` records `docs/PRD.md` as `HASH_MISMATCH`; PRD requirements are used as accessible current source content but should be revalidated before closure.
+- Closure blocker: PRD-derived requirements remain source-state-warning content until REF-006 hash reconciliation is accepted or the mismatch is explicitly carried forward by a human ruling.
