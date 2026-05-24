@@ -47,19 +47,19 @@ Current register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEL-07-06-DEP-001 | ANCHOR | OTHER | UPSTREAM | DEL-07-06 | ACTIVE | `_CONTEXT.md#Identity`; decomposition DEL-07-06 |
-| DEL-07-06-DEP-002 | ANCHOR | OTHER | UPSTREAM | SOW-032 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-032 |
-| DEL-07-06-DEP-003 | ANCHOR | OTHER | UPSTREAM | SOW-033 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-033 |
-| DEL-07-06-DEP-004 | ANCHOR | OTHER | UPSTREAM | SOW-034 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-034 |
-| DEL-07-06-DEP-005 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-006 |
-| DEL-07-06-DEP-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-009 |
-| DEL-07-06-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-07-06-DEP-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE | `Procedure.md#Steps` |
-| DEL-07-06-DEP-009 | EXECUTION | PREREQUISITE | UPSTREAM | `_DEPENDENCIES.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-07-06-DEP-010 | EXECUTION | PREREQUISITE | UPSTREAM | `_STATUS.md` | ACTIVE | `Procedure.md#Prerequisites`; target not read |
-| DEL-07-06-DEP-011 | EXECUTION | PREREQUISITE | UPSTREAM | decomposition v3.2 | ACTIVE | `Procedure.md#Steps` |
-| DEL-07-06-DEP-012 | EXECUTION | PREREQUISITE | UPSTREAM | authoritative source corpus | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-07-06-DEP-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | `Specification.md#Requirements`; `_REFERENCES.md` REF-006 |
+| DEP-07-06-001 | ANCHOR | OTHER | UPSTREAM | DEL-07-06 | ACTIVE | `_CONTEXT.md#Identity`; decomposition DEL-07-06 |
+| DEP-07-06-002 | ANCHOR | OTHER | UPSTREAM | SOW-032 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-032 |
+| DEP-07-06-003 | ANCHOR | OTHER | UPSTREAM | SOW-033 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-033 |
+| DEP-07-06-004 | ANCHOR | OTHER | UPSTREAM | SOW-034 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-034 |
+| DEP-07-06-005 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-006 |
+| DEP-07-06-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-009 |
+| DEP-07-06-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-07-06-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE | `Procedure.md#Steps` |
+| DEP-07-06-009 | EXECUTION | PREREQUISITE | UPSTREAM | `_DEPENDENCIES.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-07-06-010 | EXECUTION | PREREQUISITE | UPSTREAM | `_STATUS.md` | ACTIVE | `Procedure.md#Prerequisites`; target not read |
+| DEP-07-06-011 | EXECUTION | PREREQUISITE | UPSTREAM | decomposition v3.2 | ACTIVE | `Procedure.md#Steps` |
+| DEP-07-06-012 | EXECUTION | PREREQUISITE | UPSTREAM | authoritative source corpus | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-07-06-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | `Specification.md#Requirements`; `_REFERENCES.md` REF-006 |
 
 ## Lifecycle Summary
 

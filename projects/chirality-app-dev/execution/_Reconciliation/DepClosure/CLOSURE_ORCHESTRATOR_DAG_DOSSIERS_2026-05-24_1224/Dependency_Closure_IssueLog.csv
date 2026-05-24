@@ -1,0 +1,4 @@
+ID,Severity,Check,Evidence,RequiredRuling
+ISSUE-001,BLOCKER,Strict FULL_GRAPH acyclicity,Evidence/scc_summary.csv; Cycle_Dossiers.md,Decide whether all active execution edges must form a DAG or whether interface/co-development SCCs are reported separately.
+ISSUE-002,BLOCKER,Blocker-subset cycle,Blocker_Subset_Edges.csv; Cycle_Dossiers.md,"Resolve DEL-03-01 / DEL-04-01 by precedence perspective, satisfaction/waiver/not-applicable ruling, or co-development cluster."
+ISSUE-003,WARNING,Strict DependencyID hygiene,Evidence/app_strict_validation.json,Decide whether app-local strict DependencyID format should be normalized in a separate metadata-only pass.

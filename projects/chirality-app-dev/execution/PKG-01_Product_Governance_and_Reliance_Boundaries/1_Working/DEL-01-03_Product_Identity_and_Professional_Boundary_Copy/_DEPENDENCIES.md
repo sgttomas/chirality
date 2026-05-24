@@ -43,18 +43,18 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-01-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
-| DEP-DEL-01-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-071 Domain professional boundary | ACTIVE |
-| DEP-DEL-01-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-074 Human authority/professional boundaries | ACTIVE |
-| DEP-DEL-01-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Governance identity objective | ACTIVE |
-| DEP-DEL-01-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility objective | ACTIVE |
-| DEP-DEL-01-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE |
-| DEP-DEL-01-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE |
-| DEP-DEL-01-03-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE |
-| DEP-DEL-01-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE |
-| DEP-DEL-01-03-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE |
-| DEP-DEL-01-03-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE |
-| DEP-DEL-01-03-012 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 decomposition authority | ACTIVE |
+| DEP-01-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
+| DEP-01-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-071 Domain professional boundary | ACTIVE |
+| DEP-01-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-074 Human authority/professional boundaries | ACTIVE |
+| DEP-01-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Governance identity objective | ACTIVE |
+| DEP-01-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility objective | ACTIVE |
+| DEP-01-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE |
+| DEP-01-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE |
+| DEP-01-03-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE |
+| DEP-01-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE |
+| DEP-01-03-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE |
+| DEP-01-03-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE |
+| DEP-01-03-012 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 decomposition authority | ACTIVE |
 
 ## Run History
 

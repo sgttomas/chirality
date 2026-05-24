@@ -3,6 +3,7 @@
 **Updated By:** ORCHESTRATOR
 **Scope:** 51 deliverable-local `Dependencies.csv` registers
 **Register Schema:** v3.1
+**Latest DepClosure Ruling:** `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/`
 
 ## Summary
 
@@ -14,15 +15,22 @@
 | Active rows | 554 |
 | ANCHOR rows | 244 |
 | EXECUTION rows | 310 |
-| Concrete deliverable execution edges | 129 |
+| Active deliverable execution edges | 114 unique / 129 rows |
 | Non-concrete execution rows (`DOCUMENT`, `UNKNOWN`, `EXTERNAL`, etc.) | 181 |
 | Concrete deliverable graph acyclic | NO |
+| Strict active execution SCCs | 2 (sizes 18, 2) |
+| Blocker-subset SCCs | 0 |
+| Accepted co-development clusters | 1 (`DEL-03-01`, `DEL-04-01`) |
 
 ## Ruling
 
-Do not compute FULL_GRAPH blocked/available state yet.
+Do not compute strict FULL_GRAPH blocked/available state yet.
 
-The dependency registers are schema-valid, but the concrete deliverable-to-deliverable execution graph is not a DAG. The graph must be reconciled before blocker state can be reported under `FULL_GRAPH`.
+The dependency registers are schema-valid, but the strict concrete deliverable-to-deliverable execution graph is not a DAG. The strict graph must be reconciled before strict FULL_GRAPH blocker state can be reported.
+
+WORKING_ITEMS follow-up recorded 2026-05-24: `DEP-04-01-008` is now `SATISFIED` based on CODEV-001 runtime-boundary evidence. This resolves the `DEL-03-01` / `DEL-04-01` blocker-subset SCC, but it does not make the strict all-active project-level graph acyclic.
+
+ORCHESTRATOR must continue to distinguish strict all-active graph closure from blocker-subset closure. Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable while the strict graph is cyclic.
 
 ## Cycle Components
 
@@ -36,18 +44,18 @@ Representative internal edges:
 
 | Edge | DependencyID | Type |
 |---|---|---|
-| `DEL-04-01 -> DEL-03-01` | `DEP-DEL-03-01-003` | PREREQUISITE |
-| `DEL-03-03 -> DEL-03-01` | `DEP-DEL-03-01-005` | INTERFACE |
-| `DEL-03-04 -> DEL-03-01` | `DEP-DEL-03-01-006` | INTERFACE |
-| `DEL-03-01 -> DEL-03-02` | `DEL-03-02-DEP-006` | INTERFACE |
-| `DEL-05-02 -> DEL-03-02` | `DEL-03-02-DEP-007` | INTERFACE |
-| `DEL-03-02 -> DEL-03-03` | `DEL-03-02-DEP-008` | INTERFACE |
-| `DEL-03-02 -> DEL-03-04` | `DEL-03-02-DEP-009` | INTERFACE |
-| `DEL-03-02 -> DEL-03-03` | `DEP-DEL-03-03-006` | INTERFACE |
-| `DEL-03-04 -> DEL-03-03` | `DEP-DEL-03-03-007` | INTERFACE |
-| `DEL-04-03 -> DEL-03-03` | `DEP-DEL-03-03-009` | INTERFACE |
-| `DEL-03-01 -> DEL-03-04` | `DEP-DEL-03-04-006` | PREREQUISITE |
-| `DEL-03-02 -> DEL-03-04` | `DEP-DEL-03-04-007` | PREREQUISITE |
+| `DEL-04-01 -> DEL-03-01` | `DEP-03-01-003` | PREREQUISITE |
+| `DEL-03-03 -> DEL-03-01` | `DEP-03-01-005` | INTERFACE |
+| `DEL-03-04 -> DEL-03-01` | `DEP-03-01-006` | INTERFACE |
+| `DEL-03-01 -> DEL-03-02` | `DEP-03-02-006` | INTERFACE |
+| `DEL-05-02 -> DEL-03-02` | `DEP-03-02-007` | INTERFACE |
+| `DEL-03-02 -> DEL-03-03` | `DEP-03-02-008` | INTERFACE |
+| `DEL-03-02 -> DEL-03-04` | `DEP-03-02-009` | INTERFACE |
+| `DEL-03-02 -> DEL-03-03` | `DEP-03-03-006` | INTERFACE |
+| `DEL-03-04 -> DEL-03-03` | `DEP-03-03-007` | INTERFACE |
+| `DEL-04-03 -> DEL-03-03` | `DEP-03-03-009` | INTERFACE |
+| `DEL-03-01 -> DEL-03-04` | `DEP-03-04-006` | PREREQUISITE |
+| `DEL-03-02 -> DEL-03-04` | `DEP-03-04-007` | PREREQUISITE |
 
 ### SCC-002 PKG-10 Policy / Proposal Pair
 
@@ -57,8 +65,8 @@ Internal concrete execution edges: 2
 
 | Edge | DependencyID | Type |
 |---|---|---|
-| `DEL-10-03 -> DEL-10-02` | `DEP-DEL-10-02-004` | INTERFACE |
-| `DEL-10-02 -> DEL-10-03` | `DEL-10-03-DEP-006` | PREREQUISITE |
+| `DEL-10-03 -> DEL-10-02` | `DEP-10-02-004` | INTERFACE |
+| `DEL-10-02 -> DEL-10-03` | `DEP-10-03-006` | PREREQUISITE |
 
 ## Notes
 
@@ -66,3 +74,4 @@ Internal concrete execution edges: 2
 - Semantic lensing and P3 enrichment remain skipped by human ruling.
 - `docs/PRD.md` / `REF-006` hash mismatch remains a source-state warning across registers.
 - Unresolved `UNKNOWN` / `TBD` targets were intentionally excluded from the graph rather than guessed.
+- The blocker-subset graph is now acyclic in `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/Evidence/blocker_subset_summary.json`.

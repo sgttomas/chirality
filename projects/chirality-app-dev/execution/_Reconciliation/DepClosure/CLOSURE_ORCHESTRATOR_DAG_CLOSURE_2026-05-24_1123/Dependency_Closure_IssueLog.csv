@@ -1,0 +1,5 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+ISSUE-001,BLOCKER,Circular dependencies,,,,Evidence/scc_summary.csv; Cycle_Inventory.csv,Review and approve/reject Proposed_Edge_Rulings.csv; rerun closure after approved dependency lifecycle edits.
+ISSUE-002,WARNING,Isolated deliverables,,,,Evidence/orphans.csv,Confirm whether orphans are valid independent work items or missing dependency rows.
+ISSUE-003,WARNING,Bidirectional pairs,,,,Evidence/bidirectional_pairs.csv,"Resolve mutual prerequisite/interface pairs into one sequencing edge, a non-blocking interface note, or explicit concurrency pattern."
+ISSUE-004,WARNING,Strict DependencyID hygiene,,,,Evidence/app_strict_validation.json,Normalize DependencyID values only after deciding whether app-local strict format is authoritative for this workspace.

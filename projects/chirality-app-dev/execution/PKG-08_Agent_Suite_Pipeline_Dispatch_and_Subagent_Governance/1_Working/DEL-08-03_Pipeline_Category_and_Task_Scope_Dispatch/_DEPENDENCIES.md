@@ -36,16 +36,16 @@ Register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type / Anchor | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-08-03-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
-| DEP-DEL-08-03-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-007 Pipeline selectors | ACTIVE |
-| DEP-DEL-08-03-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-026 Metadata files and document kit | ACTIVE |
-| DEP-DEL-08-03-004 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-001 governed local desktop harness/operator workflow objective | ACTIVE |
-| DEP-DEL-08-03-005 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-007 agent-suite integrity/governed delegation objective | ACTIVE |
-| DEP-DEL-08-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` Section 4.4 vocabulary | ACTIVE |
-| DEP-DEL-08-03-007 | EXECUTION | INTERFACE | UPSTREAM | REF-003 `docs/SPEC.md` Section 17.2 working-root scope API | ACTIVE |
-| DEP-DEL-08-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 `docs/CONTRACT.md` Section 1.8 governance invariants | ACTIVE |
-| DEP-DEL-08-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` Section 8.2 product requirements | ACTIVE |
-| DEP-DEL-08-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | Pipeline selector, knowledge-type discovery, and disabled option tests | ACTIVE |
+| DEP-08-03-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
+| DEP-08-03-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-007 Pipeline selectors | ACTIVE |
+| DEP-08-03-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-026 Metadata files and document kit | ACTIVE |
+| DEP-08-03-004 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-001 governed local desktop harness/operator workflow objective | ACTIVE |
+| DEP-08-03-005 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-007 agent-suite integrity/governed delegation objective | ACTIVE |
+| DEP-08-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` Section 4.4 vocabulary | ACTIVE |
+| DEP-08-03-007 | EXECUTION | INTERFACE | UPSTREAM | REF-003 `docs/SPEC.md` Section 17.2 working-root scope API | ACTIVE |
+| DEP-08-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 `docs/CONTRACT.md` Section 1.8 governance invariants | ACTIVE |
+| DEP-08-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` Section 8.2 product requirements | ACTIVE |
+| DEP-08-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | Pipeline selector, knowledge-type discovery, and disabled option tests | ACTIVE |
 
 ## Run Notes — 2026-05-20 20:54
 

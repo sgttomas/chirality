@@ -34,14 +34,14 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEL-06-05-DEP-001 | ANCHOR | OTHER | UPSTREAM | SOW-062 Bash denied by default and governed when enabled | ACTIVE | `_CONTEXT.md#Traceability` |
-| DEL-06-05-DEP-002 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE | `Specification.md#Scope` |
-| DEL-06-05-DEP-003 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md#Scope` |
-| DEL-06-05-DEP-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE | `Specification.md#Scope` |
-| DEL-06-05-DEP-005 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/CONTRACT.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-06-05-DEP-006 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/TYPES.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-06-05-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/SPEC.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEL-06-05-DEP-008 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/PLAN.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-06-05-001 | ANCHOR | OTHER | UPSTREAM | SOW-062 Bash denied by default and governed when enabled | ACTIVE | `_CONTEXT.md#Traceability` |
+| DEP-06-05-002 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE | `Specification.md#Scope` |
+| DEP-06-05-003 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md#Scope` |
+| DEP-06-05-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE | `Specification.md#Scope` |
+| DEP-06-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/CONTRACT.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-06-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/TYPES.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-06-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/SPEC.md` | ACTIVE | `Procedure.md#Prerequisites` |
+| DEP-06-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | `docs/PLAN.md` | ACTIVE | `Procedure.md#Prerequisites` |
 
 Counts:
 

@@ -45,30 +45,30 @@ Structured register: `Dependencies.csv` (`v3.1`)
 
 | DependencyID | Class | Direction | Type | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-01-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
-| DEP-DEL-01-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-037 Product-owned engine contract | ACTIVE |
-| DEP-DEL-01-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-045 SDK settings isolation | ACTIVE |
-| DEP-DEL-01-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-DEL-01-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-057 Hooks and fail-closed behavior | ACTIVE |
-| DEP-DEL-01-02-006 | ANCHOR | UPSTREAM | OTHER | SOW-074 Human authority and professional boundaries | ACTIVE |
-| DEP-DEL-01-02-007 | EXECUTION | UPSTREAM | PREREQUISITE | REF-001 docs/DIRECTIVE.md | ACTIVE |
-| DEP-DEL-01-02-008 | EXECUTION | UPSTREAM | PREREQUISITE | REF-002 docs/CONTRACT.md | ACTIVE |
-| DEP-DEL-01-02-009 | EXECUTION | UPSTREAM | PREREQUISITE | REF-003 docs/SPEC.md | ACTIVE |
-| DEP-DEL-01-02-010 | EXECUTION | UPSTREAM | PREREQUISITE | REF-004 docs/TYPES.md | ACTIVE |
-| DEP-DEL-01-02-011 | EXECUTION | UPSTREAM | PREREQUISITE | REF-005 docs/PLAN.md | ACTIVE |
-| DEP-DEL-01-02-012 | EXECUTION | UPSTREAM | PREREQUISITE | REF-006 docs/PRD.md | ACTIVE |
-| DEP-DEL-01-02-013 | EXECUTION | UPSTREAM | PREREQUISITE | REF-007 AGENT_SOFTWARE_DECOMP.md | ACTIVE |
-| DEP-DEL-01-02-014 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
-| DEP-DEL-01-02-015 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
-| DEP-DEL-01-02-016 | EXECUTION | DOWNSTREAM | ENABLES | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
-| DEP-DEL-01-02-017 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
-| DEP-DEL-01-02-018 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEP-DEL-01-02-019 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
-| DEP-DEL-01-02-020 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
-| DEP-DEL-01-02-021 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
-| DEP-DEL-01-02-022 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE |
-| DEP-DEL-01-02-023 | EXECUTION | DOWNSTREAM | ENABLES | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
-| DEP-DEL-01-02-024 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
+| DEP-01-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
+| DEP-01-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-037 Product-owned engine contract | ACTIVE |
+| DEP-01-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-045 SDK settings isolation | ACTIVE |
+| DEP-01-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-054 Structured permission decisions | ACTIVE |
+| DEP-01-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-057 Hooks and fail-closed behavior | ACTIVE |
+| DEP-01-02-006 | ANCHOR | UPSTREAM | OTHER | SOW-074 Human authority and professional boundaries | ACTIVE |
+| DEP-01-02-007 | EXECUTION | UPSTREAM | PREREQUISITE | REF-001 docs/DIRECTIVE.md | ACTIVE |
+| DEP-01-02-008 | EXECUTION | UPSTREAM | PREREQUISITE | REF-002 docs/CONTRACT.md | ACTIVE |
+| DEP-01-02-009 | EXECUTION | UPSTREAM | PREREQUISITE | REF-003 docs/SPEC.md | ACTIVE |
+| DEP-01-02-010 | EXECUTION | UPSTREAM | PREREQUISITE | REF-004 docs/TYPES.md | ACTIVE |
+| DEP-01-02-011 | EXECUTION | UPSTREAM | PREREQUISITE | REF-005 docs/PLAN.md | ACTIVE |
+| DEP-01-02-012 | EXECUTION | UPSTREAM | PREREQUISITE | REF-006 docs/PRD.md | ACTIVE |
+| DEP-01-02-013 | EXECUTION | UPSTREAM | PREREQUISITE | REF-007 AGENT_SOFTWARE_DECOMP.md | ACTIVE |
+| DEP-01-02-014 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
+| DEP-01-02-015 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
+| DEP-01-02-016 | EXECUTION | DOWNSTREAM | ENABLES | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
+| DEP-01-02-017 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
+| DEP-01-02-018 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
+| DEP-01-02-019 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
+| DEP-01-02-020 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
+| DEP-01-02-021 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
+| DEP-01-02-022 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE |
+| DEP-01-02-023 | EXECUTION | DOWNSTREAM | ENABLES | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
+| DEP-01-02-024 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
 
 ## Lifecycle Summary
 

@@ -33,14 +33,14 @@ Compact register:
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-02-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 Desktop Shell, Navigation, and Operator State | ACTIVE |
-| DEP-DEL-02-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-001 Desktop shell with main navigation. | ACTIVE |
-| DEP-DEL-02-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-005 Matrix rendering and routing. | ACTIVE |
-| DEP-DEL-02-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 Governed local desktop harness objective | ACTIVE |
-| DEP-DEL-02-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN/TBD existing implementation workspace | ACTIVE |
-| DEP-DEL-02-01-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-02 Persona Alias and Agent Matrix Routing Contract | ACTIVE |
-| DEP-DEL-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 Workbench and Pipeline Selection UX | ACTIVE |
-| DEP-DEL-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
+| DEP-02-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 Desktop Shell, Navigation, and Operator State | ACTIVE |
+| DEP-02-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-001 Desktop shell with main navigation. | ACTIVE |
+| DEP-02-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-005 Matrix rendering and routing. | ACTIVE |
+| DEP-02-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 Governed local desktop harness objective | ACTIVE |
+| DEP-02-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN/TBD existing implementation workspace | ACTIVE |
+| DEP-02-01-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-02 Persona Alias and Agent Matrix Routing Contract | ACTIVE |
+| DEP-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 Workbench and Pipeline Selection UX | ACTIVE |
+| DEP-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
 
 ## Run Notes
 
@@ -56,7 +56,7 @@ Compact register:
 - [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` records `REF-006` with `Status=HASH_MISMATCH`; treated as a source warning, not a blocker, per local source instructions.
 - [WARNING] PACKAGE_PATH_MISMATCH: `Guidance.md` records a package path mismatch requiring later human ruling; this run wrote only inside the assigned `ScopePath`.
 - [WARNING] ROUTE_SEMANTICS_SOURCE_POINTER: `Guidance.md` records an unresolved PRD/SPEC/TYPES source-pointer issue; dependency extraction used only concrete local evidence and preserved open ruling status.
-- [WARNING] UNKNOWN_IMPLEMENTATION_WORKSPACE: `Procedure.md` requires an implementation workspace, but exact implementation paths are `TBD`; row `DEP-DEL-02-01-005` preserves `TargetType=UNKNOWN`.
+- [WARNING] UNKNOWN_IMPLEMENTATION_WORKSPACE: `Procedure.md` requires an implementation workspace, but exact implementation paths are `TBD`; row `DEP-02-01-005` preserves `TargetType=UNKNOWN`.
 
 ## Run History
 

@@ -41,14 +41,14 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEL-10-04-DEP-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
-| DEL-10-04-DEP-002 | ANCHOR | OTHER | UPSTREAM | SOW-070 OpenPipeStress fixture profile | ACTIVE |
-| DEL-10-04-DEP-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine boundary objective | ACTIVE |
-| DEL-10-04-DEP-004 | EXECUTION | CONSTRAINT | UPSTREAM | Accepted PKG-10 amendment or explicit human authorization | ACTIVE |
-| DEL-10-04-DEP-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accessible source corpus for domain profile validation | ACTIVE |
-| DEL-10-04-DEP-006 | EXECUTION | PREREQUISITE | UPSTREAM | ResponsibleParty assignment | ACTIVE |
-| DEL-10-04-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | Concrete future test path and adapter manifest location | ACTIVE |
-| DEL-10-04-DEP-008 | EXECUTION | PREREQUISITE | UPSTREAM | Dependency extraction and project graph validation | ACTIVE |
+| DEP-10-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
+| DEP-10-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-070 OpenPipeStress fixture profile | ACTIVE |
+| DEP-10-04-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine boundary objective | ACTIVE |
+| DEP-10-04-004 | EXECUTION | CONSTRAINT | UPSTREAM | Accepted PKG-10 amendment or explicit human authorization | ACTIVE |
+| DEP-10-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accessible source corpus for domain profile validation | ACTIVE |
+| DEP-10-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | ResponsibleParty assignment | ACTIVE |
+| DEP-10-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | Concrete future test path and adapter manifest location | ACTIVE |
+| DEP-10-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | Dependency extraction and project graph validation | ACTIVE |
 
 ## Lifecycle Summary
 

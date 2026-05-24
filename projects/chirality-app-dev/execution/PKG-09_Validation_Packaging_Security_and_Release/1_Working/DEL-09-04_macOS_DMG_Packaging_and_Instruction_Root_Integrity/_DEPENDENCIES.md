@@ -28,7 +28,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition status: available and used to validate PKG-09, DEL-09-04, SOW-030, SOW-072, SOW-073, OI-003, and OI-004.
 - [WARNING] REF-006_HASH_MISMATCH: `_REFERENCES.md` marks `docs/PRD.md` as `HASH_MISMATCH`; assignment override treats this as a source warning only for this run.
 - [WARNING] OPEN_ISSUE_TARGET_TYPE: OI-003 and OI-004 were preserved as `TargetType=UNKNOWN` because `OPEN_ISSUE` is not a Dependencies.csv v3.1 target enum.
-- No `[WARNING] FLOATING_NODE`: one ACTIVE parent anchor (`DEP-DEL-09-04-001`) exists.
+- No `[WARNING] FLOATING_NODE`: one ACTIVE parent anchor (`DEP-09-04-001`) exists.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor exists.
 
 ## Extracted Dependency Register
@@ -49,15 +49,15 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-DEL-09-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-09 - Validation, Packaging, Security, and Release | ACTIVE | NOT_APPLICABLE |
-| DEP-DEL-09-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-030 - Instruction-root resources | ACTIVE | NOT_APPLICABLE |
-| DEP-DEL-09-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-072 - macOS arm64 unsigned DMG release target | ACTIVE | NOT_APPLICABLE |
-| DEP-DEL-09-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-073 - Source completeness for instruction-root assets | ACTIVE | TBD |
-| DEP-DEL-09-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | Node.js and frontend npm dependencies | ACTIVE | TBD |
-| DEP-DEL-09-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | Pre-packaging local validation commands | ACTIVE | TBD |
-| DEP-DEL-09-04-007 | EXECUTION | CONSTRAINT | UPSTREAM | OI-004 - Instruction-root source completeness | ACTIVE | TBD |
-| DEP-DEL-09-04-008 | EXECUTION | CONSTRAINT | UPSTREAM | OI-003 - SDK subprocess and macOS DMG packaging verification | ACTIVE | TBD |
-| DEP-DEL-09-04-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-09-04-REQ-009 - Anthropic-only packaged network guardrails | ACTIVE | TBD |
+| DEP-09-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-09 - Validation, Packaging, Security, and Release | ACTIVE | NOT_APPLICABLE |
+| DEP-09-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-030 - Instruction-root resources | ACTIVE | NOT_APPLICABLE |
+| DEP-09-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-072 - macOS arm64 unsigned DMG release target | ACTIVE | NOT_APPLICABLE |
+| DEP-09-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-073 - Source completeness for instruction-root assets | ACTIVE | TBD |
+| DEP-09-04-005 | EXECUTION | PREREQUISITE | UPSTREAM | Node.js and frontend npm dependencies | ACTIVE | TBD |
+| DEP-09-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | Pre-packaging local validation commands | ACTIVE | TBD |
+| DEP-09-04-007 | EXECUTION | CONSTRAINT | UPSTREAM | OI-004 - Instruction-root source completeness | ACTIVE | TBD |
+| DEP-09-04-008 | EXECUTION | CONSTRAINT | UPSTREAM | OI-003 - SDK subprocess and macOS DMG packaging verification | ACTIVE | TBD |
+| DEP-09-04-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-09-04-REQ-009 - Anthropic-only packaged network guardrails | ACTIVE | TBD |
 
 ## Run History
 

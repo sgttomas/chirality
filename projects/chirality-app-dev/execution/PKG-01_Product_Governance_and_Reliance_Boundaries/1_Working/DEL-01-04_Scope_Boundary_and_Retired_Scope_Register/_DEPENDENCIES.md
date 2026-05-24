@@ -37,19 +37,19 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEL-01-04-DEP-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
-| DEL-01-04-DEP-002 | ANCHOR | OTHER | UPSTREAM | SOW-065 Remote MCP/plugins out of current scope | ACTIVE |
-| DEL-01-04-DEP-003 | ANCHOR | OTHER | UPSTREAM | SOW-076 Ambient settings and shipped bypass forbidden | ACTIVE |
-| DEL-01-04-DEP-004 | ANCHOR | OTHER | UPSTREAM | SOW-077 Retired PKG-08 scope remains retired | ACTIVE |
-| DEL-01-04-DEP-005 | ANCHOR | OTHER | UPSTREAM | SOW-078 Windows/Linux packaging out of scope | ACTIVE |
-| DEL-01-04-DEP-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Professional boundary and reliance-boundary ownership | ACTIVE |
-| DEL-01-04-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE |
-| DEL-01-04-DEP-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE |
-| DEL-01-04-DEP-009 | EXECUTION | PREREQUISITE | UPSTREAM | Decomposition v3.2 | ACTIVE |
-| DEL-01-04-DEP-010 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
-| DEL-01-04-DEP-011 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-07-06 Reference Hash and Snapshot Conventions | ACTIVE |
-| DEL-01-04-DEP-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
-| DEL-01-04-DEP-013 | EXECUTION | CONSTRAINT | DOWNSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
+| DEP-01-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
+| DEP-01-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-065 Remote MCP/plugins out of current scope | ACTIVE |
+| DEP-01-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-076 Ambient settings and shipped bypass forbidden | ACTIVE |
+| DEP-01-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-077 Retired PKG-08 scope remains retired | ACTIVE |
+| DEP-01-04-005 | ANCHOR | OTHER | UPSTREAM | SOW-078 Windows/Linux packaging out of scope | ACTIVE |
+| DEP-01-04-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Professional boundary and reliance-boundary ownership | ACTIVE |
+| DEP-01-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE |
+| DEP-01-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE |
+| DEP-01-04-009 | EXECUTION | PREREQUISITE | UPSTREAM | Decomposition v3.2 | ACTIVE |
+| DEP-01-04-010 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
+| DEP-01-04-011 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-07-06 Reference Hash and Snapshot Conventions | ACTIVE |
+| DEP-01-04-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
+| DEP-01-04-013 | EXECUTION | CONSTRAINT | DOWNSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
 
 ## Lifecycle Summary
 

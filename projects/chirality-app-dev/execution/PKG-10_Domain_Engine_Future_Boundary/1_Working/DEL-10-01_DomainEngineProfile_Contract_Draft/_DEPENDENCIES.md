@@ -40,9 +40,9 @@ Generated: 2026-05-20 21:02
 
 | DependencyID | Class | AnchorType | Direction | TargetType | TargetRefID | TargetName | Status |
 |---|---|---|---|---|---|---|---|
-| DEP-DEL-10-01-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | WBS_NODE | PKG-10 | Domain Engine Future Boundary | ACTIVE |
-| DEP-DEL-10-01-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | SOW-066 | Future Domain Engine Profile compatibility | ACTIVE |
-| DEP-DEL-10-01-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | SOW-067 | Generic domain profile contract | ACTIVE |
+| DEP-10-01-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | WBS_NODE | PKG-10 | Domain Engine Future Boundary | ACTIVE |
+| DEP-10-01-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | SOW-066 | Future Domain Engine Profile compatibility | ACTIVE |
+| DEP-10-01-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | SOW-067 | Generic domain profile contract | ACTIVE |
 
 ## Run History
 

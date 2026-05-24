@@ -44,18 +44,18 @@ Source register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Target | Status |
 |---|---|---|---|---|
-| DEP-DEL-05-02-001 | ANCHOR | OTHER | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
-| DEP-DEL-05-02-002 | ANCHOR | OTHER | SOW-014 Persist accepted user input before execution | ACTIVE |
-| DEP-DEL-05-02-003 | ANCHOR | OTHER | SOW-015 Persist terminal turn outcomes | ACTIVE |
-| DEP-DEL-05-02-004 | ANCHOR | OTHER | SOW-039 Append-only HarnessEvent JSONL | ACTIVE |
-| DEP-DEL-05-02-005 | ANCHOR | OTHER | OBJ-003 Make accepted turns SDK messages terminal outcomes tool activity and replay auditable through Chirality-owned session records | ACTIVE |
-| DEP-DEL-05-02-006 | EXECUTION | INTERFACE | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
-| DEP-DEL-05-02-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
-| DEP-DEL-05-02-008 | EXECUTION | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
-| DEP-DEL-05-02-009 | EXECUTION | CONSTRAINT | DEL-05-03 Redacted RunLogger and Secret Hygiene | ACTIVE |
-| DEP-DEL-05-02-010 | EXECUTION | INTERFACE | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
-| DEP-DEL-05-02-011 | EXECUTION | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
-| DEP-DEL-05-02-012 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
+| DEP-05-02-001 | ANCHOR | OTHER | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
+| DEP-05-02-002 | ANCHOR | OTHER | SOW-014 Persist accepted user input before execution | ACTIVE |
+| DEP-05-02-003 | ANCHOR | OTHER | SOW-015 Persist terminal turn outcomes | ACTIVE |
+| DEP-05-02-004 | ANCHOR | OTHER | SOW-039 Append-only HarnessEvent JSONL | ACTIVE |
+| DEP-05-02-005 | ANCHOR | OTHER | OBJ-003 Make accepted turns SDK messages terminal outcomes tool activity and replay auditable through Chirality-owned session records | ACTIVE |
+| DEP-05-02-006 | EXECUTION | INTERFACE | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
+| DEP-05-02-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
+| DEP-05-02-008 | EXECUTION | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
+| DEP-05-02-009 | EXECUTION | CONSTRAINT | DEL-05-03 Redacted RunLogger and Secret Hygiene | ACTIVE |
+| DEP-05-02-010 | EXECUTION | INTERFACE | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
+| DEP-05-02-011 | EXECUTION | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
+| DEP-05-02-012 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
 
 ## Run History
 

@@ -122,6 +122,25 @@ class ValidateDependenciesTest(TestCase):
             self.assertEqual(payload["summary"]["failFiles"], 0)
             self.assertEqual(payload["summary"]["errorFiles"], 0)
 
+    def test_invalid_dependency_id_format_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            csv_path = Path(tmp_dir) / "Dependencies.csv"
+            write_csv(
+                csv_path,
+                CORE_COLUMNS,
+                [
+                    base_row(
+                        DependencyID="DEP-PKG-01-01-001",
+                    )
+                ],
+            )
+
+            completed = self.run_script(str(csv_path), "--format", "json")
+            self.assertEqual(completed.returncode, 1, msg=completed.stderr)
+            payload = json.loads(completed.stdout)
+            error_codes = {issue["code"] for issue in payload["files"][0]["errors"]}
+            self.assertIn("INVALID_DEPENDENCY_ID_FORMAT", error_codes)
+
     def test_missing_core_column_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             csv_path = Path(tmp_dir) / "Dependencies.csv"

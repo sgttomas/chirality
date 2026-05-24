@@ -21,12 +21,12 @@ TBD - no accepted dependency edges have been declared by a human.
 
 | DependencyID | Class | Type | Direction | TargetType | Target | Status | Evidence |
 |---|---|---|---|---|---|---|---|
-| DEP-DEL-02-05-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-02 Desktop Shell, Navigation, and Operator State | ACTIVE | `_CONTEXT.md` Identity; decomposition PKG-02 |
-| DEP-DEL-02-05-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-013 Typed runtime errors | ACTIVE | `_CONTEXT.md` Traceability; decomposition SOW ledger |
-| DEP-DEL-02-05-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-019 API key storage and resolution | ACTIVE | `_CONTEXT.md` Traceability; decomposition SOW ledger |
-| DEP-DEL-02-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN | Runtime/API key-status and secure-storage contracts | ACTIVE | `Procedure.md` Prerequisites |
-| DEP-DEL-02-05-005 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | Typed runtime/provider error taxonomy | ACTIVE | `Specification.md` Requirements |
-| DEP-DEL-02-05-006 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | Browser-facing SSE event contract | ACTIVE | `Procedure.md` Steps |
+| DEP-02-05-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-02 Desktop Shell, Navigation, and Operator State | ACTIVE | `_CONTEXT.md` Identity; decomposition PKG-02 |
+| DEP-02-05-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-013 Typed runtime errors | ACTIVE | `_CONTEXT.md` Traceability; decomposition SOW ledger |
+| DEP-02-05-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-019 API key storage and resolution | ACTIVE | `_CONTEXT.md` Traceability; decomposition SOW ledger |
+| DEP-02-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN | Runtime/API key-status and secure-storage contracts | ACTIVE | `Procedure.md` Prerequisites |
+| DEP-02-05-005 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | Typed runtime/provider error taxonomy | ACTIVE | `Specification.md` Requirements |
+| DEP-02-05-006 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | Browser-facing SSE event contract | ACTIVE | `Procedure.md` Steps |
 
 Counts:
 

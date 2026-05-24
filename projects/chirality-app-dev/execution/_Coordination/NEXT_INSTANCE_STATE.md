@@ -1,7 +1,7 @@
 # NEXT INSTANCE STATE - Chirality App vNext
 
-**Last Updated:** 2026-05-20
-**Updated By:** ORCHESTRATOR
+**Last Updated:** 2026-05-24
+**Updated By:** WORKING_ITEMS
 
 ## Current Pointers
 
@@ -19,8 +19,8 @@
 | Packages scaffolded | 10 |
 | Deliverables scaffolded | 51 |
 | OPEN | 0 |
-| INITIALIZED | 51 |
-| SEMANTIC_READY | 0 |
+| INITIALIZED | 0 |
+| SEMANTIC_READY | 51 |
 | IN_PROGRESS | 0 |
 | CHECKING | 0 |
 | ISSUED | 0 |
@@ -34,8 +34,12 @@
 | Dependencies.csv files created | 51 |
 | Dependency register rows extracted | 554 |
 | Dependency schema validation | 51/51 PASS |
-| Concrete deliverable execution edges | 129 |
+| Active deliverable execution edges | 114 unique / 129 rows |
 | Concrete dependency graph acyclic | NO |
+| Strict active execution SCCs | 2 (sizes 18, 2) |
+| Blocker-subset SCCs | 0 |
+| Accepted co-development clusters | 1 (DEL-03-01 / DEL-04-01) |
+| CODEV-001 tranche evidence | implemented; blocker-subset closure scan passed |
 | Stale interrupted PENDING run records retained as incomplete evidence | 5 |
 
 ## Data-Quality Notes
@@ -64,20 +68,26 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - Dependency satisfaction threshold: SEMANTIC_READY.
 - Dependency extraction is permitted after four-document authoring by human ruling on 2026-05-20.
 - Existing `_SEMANTIC.md` outputs are invalid evidence and must not be consumed for dependency recording.
+- `DEL-03-01` and `DEL-04-01` are accepted as co-development cluster `CODEV-001`; WORKING_ITEMS may proceed with them iteratively as a paired tranche.
+- CODEV-001 follow-up closure satisfied `DEP-04-01-008`; blocker-subset SCC count is now 0.
+- Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable while the strict all-active execution graph is cyclic.
 
 ## Immediate Next Actions
 
-1. Semantic enrichment path skipped by human ruling; do not run `lens-register` or `four-documents` P3.
-2. Dependency extraction is complete: 51 of 51 deliverables have schema-valid `Dependencies.csv` registers.
-3. Review `execution/_Coordination/DEPENDENCY_GRAPH_CHECK.md`; concrete deliverable graph has cycles.
-4. Do not report FULL_GRAPH blockers until cycle reconciliation produces an accepted acyclic graph.
+1. Review follow-up DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/`.
+2. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 2 (sizes 18, 2).
+3. Resolve remaining CODEV-001 `BLOCKED_TBD` evidence items: live SDK query/init probe, Claude Code subprocess version, interrupt/cancel subprocess behavior, Electron packaging behavior, Section 9 linkage, and adoption verdict.
+4. Do not run `lens-register` or `four-documents` P3; semantic enrichment remains skipped by human ruling.
+5. Do not report strict project-wide `BLOCKED/UNBLOCKED` until strict FULL_GRAPH closure passes.
 
 ## Handoff Payload
 
 - Stable invariant instructions: `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - Mutable state and queue: this file
 - Deliverable-local continuity: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`
-- Dependency state: pending post-enrichment extraction
+- Dependency state: extraction complete; graph cyclic; co-development ruling recorded
+- CODEV-001 implementation evidence: runtime boundary, opt-in SDK probe provider, SDK options isolation, message mapping, session event JSONL, and deliverable evidence records created
+- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/`
 
 ## Update Protocol
 

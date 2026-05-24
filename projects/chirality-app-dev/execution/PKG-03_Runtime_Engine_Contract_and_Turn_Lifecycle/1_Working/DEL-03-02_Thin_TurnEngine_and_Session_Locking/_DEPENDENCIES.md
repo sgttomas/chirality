@@ -47,16 +47,16 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Direction | Type | Target | Status |
 |---|---|---|---|---|---|
-| DEL-03-02-DEP-001 | ANCHOR | UPSTREAM | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
-| DEL-03-02-DEP-002 | ANCHOR | UPSTREAM | OTHER | SOW-009 Session CRUD | ACTIVE |
-| DEL-03-02-DEP-003 | ANCHOR | UPSTREAM | OTHER | SOW-010 Session boot metadata | ACTIVE |
-| DEL-03-02-DEP-004 | ANCHOR | UPSTREAM | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
-| DEL-03-02-DEP-005 | ANCHOR | UPSTREAM | OTHER | SOW-038 Thin TurnEngine and route extraction | ACTIVE |
-| DEL-03-02-DEP-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
-| DEL-03-02-DEP-007 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEL-03-02-DEP-008 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
-| DEL-03-02-DEP-009 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
-| DEL-03-02-DEP-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-03 Unit and Integration Test Expansion | ACTIVE |
+| DEP-03-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
+| DEP-03-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-009 Session CRUD | ACTIVE |
+| DEP-03-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-010 Session boot metadata | ACTIVE |
+| DEP-03-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
+| DEP-03-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-038 Thin TurnEngine and route extraction | ACTIVE |
+| DEP-03-02-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
+| DEP-03-02-007 | EXECUTION | UPSTREAM | INTERFACE | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
+| DEP-03-02-008 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE |
+| DEP-03-02-009 | EXECUTION | DOWNSTREAM | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
+| DEP-03-02-010 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-03 Unit and Integration Test Expansion | ACTIVE |
 
 ## Lifecycle Summary
 

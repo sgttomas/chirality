@@ -1,0 +1,16 @@
+Found 51 Dependencies.csv files
+Loaded 554 total dependency rows
+Schema: 51 valid, 0 invalid
+ANCHOR rows: 244, EXECUTION rows: 310
+IMPLEMENTS_NODE: 51 present, 0 missing
+Evidence coverage: 554/554
+Graph: 46 nodes, 114 edges
+Orphans: 5
+SCCs (size > 1): 2
+  SCC-001: 18 nodes
+  SCC-002: 2 nodes
+Hubs (degree >= 20): 0
+Bidirectional pairs: 13
+ID normalizations: 0
+
+Outputs written to: execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_DAG_DOSSIERS_2026-05-24_1224/Evidence

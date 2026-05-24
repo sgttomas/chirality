@@ -1,0 +1,27 @@
+{
+  "finalDagVerdict": "CYCLIC",
+  "canComputeBlockedUnblocked": false,
+  "allDeliverablesAtOrAboveSemanticReady": true,
+  "initialSccCount": 2,
+  "initialSccSizes": [
+    18,
+    2
+  ],
+  "cycleInventoryRows": 57,
+  "proposedEdgeRulings": 20,
+  "projectedSccCountIfAllProposalsApproved": 0,
+  "humanRulingRequiredCount": 0,
+  "nativeSchemaSummary": {
+    "filesScanned": 51,
+    "passFiles": 51,
+    "failFiles": 0
+  },
+  "strictSchemaSummary": {
+    "errorFiles": 0,
+    "failFiles": 46,
+    "filesScanned": 51,
+    "passFiles": 5,
+    "totalErrors": 503,
+    "totalWarnings": 0
+  }
+}

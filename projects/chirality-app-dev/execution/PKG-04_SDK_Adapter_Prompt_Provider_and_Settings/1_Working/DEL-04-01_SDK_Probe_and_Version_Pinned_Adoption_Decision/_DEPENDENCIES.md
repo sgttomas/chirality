@@ -31,19 +31,19 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-DEL-04-01-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 | ACTIVE | SATISFIED |
-| DEP-DEL-04-01-002 | ANCHOR | UPSTREAM | OTHER | SOW-018 | ACTIVE | SATISFIED |
-| DEP-DEL-04-01-003 | ANCHOR | UPSTREAM | OTHER | SOW-044 | ACTIVE | SATISFIED |
-| DEP-DEL-04-01-004 | ANCHOR | UPSTREAM | OTHER | SOW-046 | ACTIVE | SATISFIED |
-| DEP-DEL-04-01-005 | ANCHOR | UPSTREAM | OTHER | OBJ-004 | ACTIVE | SATISFIED |
-| DEP-DEL-04-01-006 | EXECUTION | UPSTREAM | CONSTRAINT | REF-006 `docs/PRD.md` | ACTIVE | TBD |
-| DEP-DEL-04-01-007 | EXECUTION | UPSTREAM | PREREQUISITE | SDK probe environment | ACTIVE | TBD |
-| DEP-DEL-04-01-008 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-03-01 | ACTIVE | TBD |
-| DEP-DEL-04-01-009 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-01-02 | ACTIVE | TBD |
-| DEP-DEL-04-01-010 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-02 | ACTIVE | TBD |
-| DEP-DEL-04-01-011 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-03 | ACTIVE | TBD |
-| DEP-DEL-04-01-012 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-04 | ACTIVE | TBD |
-| DEP-DEL-04-01-013 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-05 | ACTIVE | TBD |
+| DEP-04-01-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 | ACTIVE | SATISFIED |
+| DEP-04-01-002 | ANCHOR | UPSTREAM | OTHER | SOW-018 | ACTIVE | SATISFIED |
+| DEP-04-01-003 | ANCHOR | UPSTREAM | OTHER | SOW-044 | ACTIVE | SATISFIED |
+| DEP-04-01-004 | ANCHOR | UPSTREAM | OTHER | SOW-046 | ACTIVE | SATISFIED |
+| DEP-04-01-005 | ANCHOR | UPSTREAM | OTHER | OBJ-004 | ACTIVE | SATISFIED |
+| DEP-04-01-006 | EXECUTION | UPSTREAM | CONSTRAINT | REF-006 `docs/PRD.md` | ACTIVE | TBD |
+| DEP-04-01-007 | EXECUTION | UPSTREAM | PREREQUISITE | SDK probe environment | ACTIVE | TBD |
+| DEP-04-01-008 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-03-01 | ACTIVE | SATISFIED |
+| DEP-04-01-009 | EXECUTION | UPSTREAM | CONSTRAINT | DEL-01-02 | ACTIVE | TBD |
+| DEP-04-01-010 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-02 | ACTIVE | TBD |
+| DEP-04-01-011 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-03 | ACTIVE | TBD |
+| DEP-04-01-012 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-04 | ACTIVE | TBD |
+| DEP-04-01-013 | EXECUTION | DOWNSTREAM | HANDOVER | DEL-04-05 | ACTIVE | TBD |
 
 ## Run Notes
 
@@ -58,6 +58,7 @@ Structured register: `Dependencies.csv` v3.1
 - Execution doc order: `Procedure.md`, `Specification.md`, `Guidance.md`, `Datasheet.md`, `_REFERENCES.md`.
 - `[WARNING] SOURCE_STATE`: `_REFERENCES.md` records REF-006 `docs/PRD.md` as `HASH_MISMATCH`; closure remains dependent on resolving or explicitly accepting that source-state condition.
 - `[WARNING] TBD_PROBE_ENVIRONMENT`: the SDK probe environment, exact SDK version, subprocess version, transcript/store decision, packaging result, and adoption verdict remain `TBD`.
+- 2026-05-24 WORKING_ITEMS CODEV-001 closure assessment set `DEP-04-01-008` to `SATISFIED` based on `Evidence_CODEV-001_SDK_Probe_Record.md` and `Evidence_CODEV-001_Runtime_Engine_Conformance.md`; live SDK query, packaging, and adoption verdict remain unresolved.
 - Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
 - No downstream handoff notes were added because `CONSUMER_CONTEXT=NONE`.
 
@@ -76,8 +77,8 @@ Structured register: `Dependencies.csv` v3.1
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 5 |
-| TBD | 8 |
+| SATISFIED | 6 |
+| TBD | 7 |
 
 | DependencyType | Count |
 |---|---:|

@@ -32,14 +32,14 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEL-10-03-DEP-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE | `_CONTEXT.md` |
-| DEL-10-03-DEP-002 | ANCHOR | OTHER | UPSTREAM | SOW-069 OperationProposal records | ACTIVE | decomposition scope ledger |
-| DEL-10-03-DEP-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility | ACTIVE | `Datasheet.md` |
-| DEL-10-03-DEP-004 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted future amendment authorizing domain-engine operation workflow implementation | ACTIVE | `Procedure.md` |
-| DEL-10-03-DEP-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted DomainEngineProfile for the target engine | ACTIVE | `Procedure.md` |
-| DEL-10-03-DEP-006 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-02 Protected Path and Proposal Path Policy | ACTIVE | `Procedure.md` |
-| DEL-10-03-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | Deterministic adapter or validation tool for the operation | ACTIVE | `Procedure.md` |
-| DEL-10-03-DEP-008 | EXECUTION | CONSTRAINT | UPSTREAM | Explicit human gate definition and acceptance evidence | ACTIVE | `Specification.md`; `Procedure.md` |
+| DEP-10-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE | `_CONTEXT.md` |
+| DEP-10-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-069 OperationProposal records | ACTIVE | decomposition scope ledger |
+| DEP-10-03-003 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility | ACTIVE | `Datasheet.md` |
+| DEP-10-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted future amendment authorizing domain-engine operation workflow implementation | ACTIVE | `Procedure.md` |
+| DEP-10-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted DomainEngineProfile for the target engine | ACTIVE | `Procedure.md` |
+| DEP-10-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-02 Protected Path and Proposal Path Policy | ACTIVE | `Procedure.md` |
+| DEP-10-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | Deterministic adapter or validation tool for the operation | ACTIVE | `Procedure.md` |
+| DEP-10-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | Explicit human gate definition and acceptance evidence | ACTIVE | `Specification.md`; `Procedure.md` |
 
 Counts: 8 ACTIVE rows; 3 ANCHOR rows; 5 EXECUTION rows; 0 RETIRED rows.
 

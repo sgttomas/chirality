@@ -34,19 +34,19 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-DEL-05-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-05 Session Audit, Replay, and Tool Result Records | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-021 Provider error classification | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-041 Runtime redaction | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-003 Chirality-owned session auditability | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-008 Repeatable validation/key/security checks | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | SATISFIED |
-| DEP-DEL-05-03-009 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` hash-mismatch warning | ACTIVE | PENDING |
-| DEP-DEL-05-03-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge | ACTIVE | PENDING |
-| DEP-DEL-05-03-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE | PENDING |
-| DEP-DEL-05-03-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE | PENDING |
-| DEP-DEL-05-03-013 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN/TBD final module paths and configured-secret schema | ACTIVE | PENDING |
+| DEP-05-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-05 Session Audit, Replay, and Tool Result Records | ACTIVE | SATISFIED |
+| DEP-05-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-021 Provider error classification | ACTIVE | SATISFIED |
+| DEP-05-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-041 Runtime redaction | ACTIVE | SATISFIED |
+| DEP-05-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-003 Chirality-owned session auditability | ACTIVE | SATISFIED |
+| DEP-05-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-008 Repeatable validation/key/security checks | ACTIVE | SATISFIED |
+| DEP-05-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
+| DEP-05-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
+| DEP-05-03-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | SATISFIED |
+| DEP-05-03-009 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` hash-mismatch warning | ACTIVE | PENDING |
+| DEP-05-03-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-05 Anthropic Provider Key, Base URL, and Network Bridge | ACTIVE | PENDING |
+| DEP-05-03-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE | PENDING |
+| DEP-05-03-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE | PENDING |
+| DEP-05-03-013 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN/TBD final module paths and configured-secret schema | ACTIVE | PENDING |
 
 ## Run History
 

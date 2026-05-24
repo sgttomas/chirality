@@ -1,0 +1,3 @@
+ClusterID,Status,DeliverableIDs,SourceCycle,HumanRuling,AllowedNextAgent,AllowedExecutionMode,BlockerComputationEffect,FollowUpRequirement
+CODEV-001,ACCEPTED,DEL-03-01;DEL-04-01,BLOCKER-SCC-001,"Proceed together as a co-development cluster; project-wide blocker computation remains unavailable until follow-up closure scan passes.",WORKING_ITEMS,ITERATIVE_CLUSTER,"Do not compute project-wide BLOCKED/UNBLOCKED yet.","After tranche work, rerun dependency closure and update dependency satisfaction or lifecycle rows only through approved workflow."
+

@@ -30,20 +30,20 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Target | Status | Evidence |
 |---|---|---|---|---|---|
-| DEP-DEL-02-04-001 | ANCHOR | OTHER | PKG-02 | ACTIVE | `_CONTEXT.md` > Identity and Package Scope |
-| DEP-DEL-02-04-002 | ANCHOR | OTHER | SOW-004 | ACTIVE | `Datasheet.md` > Identification |
-| DEP-DEL-02-04-003 | ANCHOR | OTHER | SOW-008 | ACTIVE | `Datasheet.md` > Identification |
-| DEP-DEL-02-04-004 | ANCHOR | OTHER | SOW-016 | ACTIVE | `Datasheet.md` > Identification |
-| DEP-DEL-02-04-005 | ANCHOR | OTHER | OBJ-001 | ACTIVE | `Datasheet.md` > Identification |
-| DEP-DEL-02-04-006 | ANCHOR | OTHER | OBJ-004 | ACTIVE | `Guidance.md` > Purpose |
-| DEP-DEL-02-04-007 | EXECUTION | PREREQUISITE | REF-001 `docs/DIRECTIVE.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-008 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-009 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-010 | EXECUTION | PREREQUISITE | REF-004 `docs/TYPES.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-011 | EXECUTION | PREREQUISITE | REF-005 `docs/PLAN.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-012 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-013 | EXECUTION | PREREQUISITE | DECOMP-v3.2 | ACTIVE | `Procedure.md` > Prerequisites |
-| DEP-DEL-02-04-014 | EXECUTION | PREREQUISITE | TBD adjacent deliverables | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-001 | ANCHOR | OTHER | PKG-02 | ACTIVE | `_CONTEXT.md` > Identity and Package Scope |
+| DEP-02-04-002 | ANCHOR | OTHER | SOW-004 | ACTIVE | `Datasheet.md` > Identification |
+| DEP-02-04-003 | ANCHOR | OTHER | SOW-008 | ACTIVE | `Datasheet.md` > Identification |
+| DEP-02-04-004 | ANCHOR | OTHER | SOW-016 | ACTIVE | `Datasheet.md` > Identification |
+| DEP-02-04-005 | ANCHOR | OTHER | OBJ-001 | ACTIVE | `Datasheet.md` > Identification |
+| DEP-02-04-006 | ANCHOR | OTHER | OBJ-004 | ACTIVE | `Guidance.md` > Purpose |
+| DEP-02-04-007 | EXECUTION | PREREQUISITE | REF-001 `docs/DIRECTIVE.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-008 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-009 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-010 | EXECUTION | PREREQUISITE | REF-004 `docs/TYPES.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-011 | EXECUTION | PREREQUISITE | REF-005 `docs/PLAN.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-012 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-013 | EXECUTION | PREREQUISITE | DECOMP-v3.2 | ACTIVE | `Procedure.md` > Prerequisites |
+| DEP-02-04-014 | EXECUTION | PREREQUISITE | TBD adjacent deliverables | ACTIVE | `Procedure.md` > Prerequisites |
 
 ## Run Notes
 
@@ -83,5 +83,5 @@ Structured register: `Dependencies.csv` v3.1
 Closure notes:
 
 - The extracted register is schema-valid and evidence-first, but project-level availability must still wait for FULL_GRAPH cycle checks.
-- `DEP-DEL-02-04-012` remains `PENDING` because REF-006 has a hash mismatch.
-- `DEP-DEL-02-04-014` remains `TBD` because the source explicitly leaves adjacent runtime option contracts and permission policy integration points unresolved.
+- `DEP-02-04-012` remains `PENDING` because REF-006 has a hash mismatch.
+- `DEP-02-04-014` remains `TBD` because the source explicitly leaves adjacent runtime option contracts and permission policy integration points unresolved.

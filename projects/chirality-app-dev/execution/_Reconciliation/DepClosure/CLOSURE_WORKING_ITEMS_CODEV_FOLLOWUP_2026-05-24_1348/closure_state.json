@@ -1,0 +1,22 @@
+{
+  "runStatus": "OK",
+  "runLabel": "WORKING_ITEMS_CODEV_FOLLOWUP",
+  "sourceDependencyRowsChanged": 1,
+  "changedRows": [
+    {
+      "dependencyId": "DEP-04-01-008",
+      "previousProposedMaturity": "TBD",
+      "newProposedMaturity": "SEMANTIC_READY",
+      "previousSatisfactionStatus": "TBD",
+      "newSatisfactionStatus": "SATISFIED",
+      "status": "ACTIVE"
+    }
+  ],
+  "strictAllActiveDagVerdict": "CYCLIC",
+  "strictSccCount": 2,
+  "strictSccSizes": [18, 2],
+  "blockerSubsetVerdict": "ACYCLIC",
+  "blockerSubsetSccCount": 0,
+  "priorRulingSnapshot": "execution/_Reconciliation/DepClosure/CLOSURE_ORCHESTRATOR_CODEV_RULING_2026-05-24_1245"
+}
+

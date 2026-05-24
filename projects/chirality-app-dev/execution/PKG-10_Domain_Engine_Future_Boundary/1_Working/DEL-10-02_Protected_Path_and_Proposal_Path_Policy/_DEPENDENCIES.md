@@ -37,11 +37,11 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEP-DEL-10-02-001 | ANCHOR | OTHER | UPSTREAM | SOW-068 | ACTIVE | `Datasheet.md` §Identification |
-| DEP-DEL-10-02-002 | ANCHOR | OTHER | UPSTREAM | OBJ-010 | ACTIVE | `Datasheet.md` §Identification |
-| DEP-DEL-10-02-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-01 | ACTIVE | `Datasheet.md` §Conditions |
-| DEP-DEL-10-02-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-10-03 | ACTIVE | `Specification.md` §Requirements DEL-10-02-REQ-006 |
-| DEP-DEL-10-02-005 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN / TBD | ACTIVE | `Procedure.md` §Steps step 6 |
+| DEP-10-02-001 | ANCHOR | OTHER | UPSTREAM | SOW-068 | ACTIVE | `Datasheet.md` §Identification |
+| DEP-10-02-002 | ANCHOR | OTHER | UPSTREAM | OBJ-010 | ACTIVE | `Datasheet.md` §Identification |
+| DEP-10-02-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-10-01 | ACTIVE | `Datasheet.md` §Conditions |
+| DEP-10-02-004 | EXECUTION | INTERFACE | UPSTREAM | DEL-10-03 | ACTIVE | `Specification.md` §Requirements DEL-10-02-REQ-006 |
+| DEP-10-02-005 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN / TBD | ACTIVE | `Procedure.md` §Steps step 6 |
 
 ### Counts
 

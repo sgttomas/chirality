@@ -35,16 +35,16 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 
 | DependencyID | Class | Type / Anchor | Direction | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
-| DEL-08-05-DEP-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | WBS_NODE | SOW-063 Governed subagent runtime | ACTIVE |
-| DEL-08-05-DEP-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | OBJ-003 Auditable Chirality-owned session records | ACTIVE |
-| DEL-08-05-DEP-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | OBJ-007 Agent-suite integrity and governed subagent delegation | ACTIVE |
-| DEL-08-05-DEP-004 | EXECUTION | PREREQUISITE | UPSTREAM | DELIVERABLE | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
-| DEL-08-05-DEP-005 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | Runtime event schema and HarnessEvent | ACTIVE |
-| DEL-08-05-DEP-006 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | Artifact storage policy | ACTIVE |
-| DEL-08-05-DEP-007 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Runtime redaction policy | ACTIVE |
-| DEL-08-05-DEP-008 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | SDK transcript metadata boundary | ACTIVE |
-| DEL-08-05-DEP-009 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Retired unified pipeline run record boundary | ACTIVE |
-| DEL-08-05-DEP-010 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN | Human ruling for denied child-run allocation | ACTIVE |
+| DEP-08-05-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | WBS_NODE | SOW-063 Governed subagent runtime | ACTIVE |
+| DEP-08-05-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | OBJ-003 Auditable Chirality-owned session records | ACTIVE |
+| DEP-08-05-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | REQUIREMENT | OBJ-007 Agent-suite integrity and governed subagent delegation | ACTIVE |
+| DEP-08-05-004 | EXECUTION | PREREQUISITE | UPSTREAM | DELIVERABLE | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
+| DEP-08-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | Runtime event schema and HarnessEvent | ACTIVE |
+| DEP-08-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | Artifact storage policy | ACTIVE |
+| DEP-08-05-007 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Runtime redaction policy | ACTIVE |
+| DEP-08-05-008 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | SDK transcript metadata boundary | ACTIVE |
+| DEP-08-05-009 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | Retired unified pipeline run record boundary | ACTIVE |
+| DEP-08-05-010 | EXECUTION | CONSTRAINT | UPSTREAM | UNKNOWN | Human ruling for denied child-run allocation | ACTIVE |
 
 ## Run Notes
 
@@ -59,7 +59,7 @@ Extraction timestamp: 2026-05-20T20:55:00-0600
 - No `[WARNING] FLOATING_NODE`: one ACTIVE parent anchor was found.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE parent anchor was found.
 - `[WARNING] SOURCE_HASH_MISMATCH`: `_REFERENCES.md` reports REF-006 `docs/PRD.md` hash mismatch; PRD-derived rows retain the source warning in notes and are not treated as closure proof by themselves.
-- `[WARNING] HUMAN_RULING_TBD`: denied child-run allocation semantics remain unresolved; dependency row DEL-08-05-DEP-010 preserves the target as `UNKNOWN` with `TBD` closure.
+- `[WARNING] HUMAN_RULING_TBD`: denied child-run allocation semantics remain unresolved; dependency row DEP-08-05-010 preserves the target as `UNKNOWN` with `TBD` closure.
 - Schema validation passed: 29 required columns and 10 data rows.
 
 ## Run History

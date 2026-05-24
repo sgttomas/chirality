@@ -14,8 +14,8 @@ Define the operational steps to produce and verify the Toolkit Options and Local
   - `docs/PLAN.md`
   - `docs/PRD.md` with hash mismatch warning from `_REFERENCES.md`
   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
-- Declared upstream dependencies: `_DEPENDENCIES.md` reports no accepted human-declared upstream dependency edges outside the extracted register. The extracted register is present and lists active source prerequisites plus `DEP-DEL-02-04-014` for TBD adjacent runtime option contracts and permission policy integration points.
-- Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD per `DEP-DEL-02-04-014`.
+- Declared upstream dependencies: `_DEPENDENCIES.md` reports no accepted human-declared upstream dependency edges outside the extracted register. The extracted register is present and lists active source prerequisites plus `DEP-02-04-014` for TBD adjacent runtime option contracts and permission policy integration points.
+- Runtime option contracts and permission policy integration points available from adjacent deliverables: TBD per `DEP-02-04-014`.
 - ResponsibleParty: TBD.
 
 ## Steps

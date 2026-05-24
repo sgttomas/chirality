@@ -1,0 +1,4546 @@
+{
+  "executionRoot": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution",
+  "files": [
+    {
+      "errorCount": 12,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-01-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-01-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-01-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-01-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-01-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-01-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-01-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-01-01-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-01-01-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-01-01-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-01-01-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-01-01-012"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Dependencies.csv",
+      "rows": 12,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 24,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-01-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-01-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-01-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-01-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-01-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-01-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-01-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-01-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-01-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-01-02-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-01-02-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-01-02-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-01-02-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-01-02-014"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 16,
+          "severity": "error",
+          "value": "DEP-01-02-015"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 17,
+          "severity": "error",
+          "value": "DEP-01-02-016"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 18,
+          "severity": "error",
+          "value": "DEP-01-02-017"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 19,
+          "severity": "error",
+          "value": "DEP-01-02-018"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 20,
+          "severity": "error",
+          "value": "DEP-01-02-019"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 21,
+          "severity": "error",
+          "value": "DEP-01-02-020"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 22,
+          "severity": "error",
+          "value": "DEP-01-02-021"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 23,
+          "severity": "error",
+          "value": "DEP-01-02-022"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 24,
+          "severity": "error",
+          "value": "DEP-01-02-023"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 25,
+          "severity": "error",
+          "value": "DEP-01-02-024"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/Dependencies.csv",
+      "rows": 24,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 12,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-01-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-01-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-01-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-01-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-01-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-01-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-01-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-01-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-01-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-01-03-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-01-03-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-01-03-012"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/Dependencies.csv",
+      "rows": 12,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-01-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-01-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-01-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-01-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-01-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-01-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-01-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-01-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-01-04-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-01-04-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-01-04-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-01-04-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-01-04-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-02-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-02-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-02-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-02-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-02-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-02-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-02-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-02-01-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 9,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-02-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-02-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-02-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-02-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-02-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-02-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-02-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-02-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-02-02-009"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+      "rows": 9,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 9,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-02-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-02-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-02-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-02-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-02-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-02-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-02-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-02-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-02-03-009"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/Dependencies.csv",
+      "rows": 9,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 14,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-02-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-02-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-02-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-02-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-02-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-02-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-02-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-02-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-02-04-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-02-04-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-02-04-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-02-04-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-02-04-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-02-04-014"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+      "rows": 14,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 6,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-02-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-02-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-02-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-02-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-02-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-02-05-006"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+      "rows": 6,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-03-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-03-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-03-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-03-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-03-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-03-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-03-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-03-01-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-03-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-03-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-03-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-03-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-03-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-03-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-03-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-03-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-03-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-03-02-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-03-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-03-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-03-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-03-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-03-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-03-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-03-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-03-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-03-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-03-03-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-03-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-03-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-03-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-03-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-03-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-03-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-03-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-03-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-03-04-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-03-04-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-04-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-04-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-04-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-04-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-04-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-04-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-04-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-04-01-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-04-01-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-04-01-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-04-01-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-04-01-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-04-01-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 11,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-04-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-04-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-04-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-04-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-04-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-04-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-04-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-04-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-04-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-04-02-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-04-02-011"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/Dependencies.csv",
+      "rows": 11,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 11,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-04-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-04-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-04-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-04-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-04-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-04-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-04-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-04-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-04-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-04-03-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-04-03-011"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/Dependencies.csv",
+      "rows": 11,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-04-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-04-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-04-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-04-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-04-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-04-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-04-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-04-04-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 12,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-04-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-04-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-04-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-04-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-04-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-04-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-04-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-04-05-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-04-05-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-04-05-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-04-05-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-04-05-012"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/Dependencies.csv",
+      "rows": 12,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 0,
+      "errors": [],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Dependencies.csv",
+      "rows": 12,
+      "status": "PASS",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 12,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-05-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-05-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-05-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-05-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-05-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-05-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-05-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-05-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-05-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-05-02-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-05-02-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-05-02-012"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Dependencies.csv",
+      "rows": 12,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-05-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-05-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-05-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-05-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-05-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-05-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-05-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-05-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-05-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-05-03-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-05-03-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-05-03-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-05-03-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 9,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-05-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-05-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-05-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-05-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-05-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-05-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-05-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-05-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-05-04-009"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/Dependencies.csv",
+      "rows": 9,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-05-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-05-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-05-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-05-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-05-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-05-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-05-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-05-05-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-05-05-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-05-05-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 14,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-06-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-06-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-06-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-06-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-06-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-06-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-06-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-06-01-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-06-01-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-06-01-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-06-01-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-06-01-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-06-01-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-06-01-014"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/Dependencies.csv",
+      "rows": 14,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 0,
+      "errors": [],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/Dependencies.csv",
+      "rows": 11,
+      "status": "PASS",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 0,
+      "errors": [],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/Dependencies.csv",
+      "rows": 9,
+      "status": "PASS",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-06-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-06-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-06-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-06-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-06-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-06-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-06-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-06-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-06-04-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-06-04-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-06-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-06-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-06-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-06-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-06-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-06-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-06-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-06-05-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-06-06-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-06-06-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-06-06-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-06-06-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-06-06-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-06-06-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-06-06-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-06-06-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 0,
+      "errors": [],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/Dependencies.csv",
+      "rows": 5,
+      "status": "PASS",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 7,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-07-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-07-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-07-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-07-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-07-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-07-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-07-02-007"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/Dependencies.csv",
+      "rows": 7,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-07-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-07-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-07-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-07-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-07-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-07-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-07-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-07-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-07-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-07-03-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-07-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-07-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-07-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-07-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-07-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-07-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-07-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-07-04-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 26,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-07-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-07-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-07-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-07-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-07-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-07-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-07-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-07-05-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-07-05-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-07-05-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-07-05-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-07-05-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-07-05-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-07-05-014"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 16,
+          "severity": "error",
+          "value": "DEP-07-05-015"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 17,
+          "severity": "error",
+          "value": "DEP-07-05-016"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 18,
+          "severity": "error",
+          "value": "DEP-07-05-017"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 19,
+          "severity": "error",
+          "value": "DEP-07-05-018"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 20,
+          "severity": "error",
+          "value": "DEP-07-05-019"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 21,
+          "severity": "error",
+          "value": "DEP-07-05-020"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 22,
+          "severity": "error",
+          "value": "DEP-07-05-021"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 23,
+          "severity": "error",
+          "value": "DEP-07-05-022"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 24,
+          "severity": "error",
+          "value": "DEP-07-05-023"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 25,
+          "severity": "error",
+          "value": "DEP-07-05-024"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 26,
+          "severity": "error",
+          "value": "DEP-07-05-025"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 27,
+          "severity": "error",
+          "value": "DEP-07-05-026"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/Dependencies.csv",
+      "rows": 26,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-07-06-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-07-06-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-07-06-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-07-06-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-07-06-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-07-06-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-07-06-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-07-06-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-07-06-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-07-06-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-07-06-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-07-06-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-07-06-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 15,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-08-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-08-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-08-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-08-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-08-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-08-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-08-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-08-01-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-08-01-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-08-01-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-08-01-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-08-01-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-08-01-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-08-01-014"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 16,
+          "severity": "error",
+          "value": "DEP-08-01-015"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+      "rows": 15,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-08-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-08-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-08-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-08-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-08-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-08-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-08-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-08-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-08-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-08-02-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-08-02-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-08-02-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-08-02-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-08-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-08-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-08-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-08-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-08-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-08-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-08-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-08-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-08-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-08-03-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 6,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-08-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-08-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-08-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-08-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-08-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-08-04-006"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Dependencies.csv",
+      "rows": 6,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-08-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-08-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-08-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-08-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-08-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-08-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-08-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-08-05-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-08-05-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-08-05-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-09-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-09-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-09-01-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-09-01-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-09-01-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-09-01-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-09-01-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-09-01-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-09-01-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-09-01-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 25,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-09-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-09-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-09-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-09-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-09-02-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-09-02-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-09-02-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-09-02-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-09-02-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-09-02-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-09-02-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-09-02-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-09-02-013"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 15,
+          "severity": "error",
+          "value": "DEP-09-02-014"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 16,
+          "severity": "error",
+          "value": "DEP-09-02-015"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 17,
+          "severity": "error",
+          "value": "DEP-09-02-016"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 18,
+          "severity": "error",
+          "value": "DEP-09-02-017"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 19,
+          "severity": "error",
+          "value": "DEP-09-02-018"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 20,
+          "severity": "error",
+          "value": "DEP-09-02-019"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 21,
+          "severity": "error",
+          "value": "DEP-09-02-020"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 22,
+          "severity": "error",
+          "value": "DEP-09-02-021"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 23,
+          "severity": "error",
+          "value": "DEP-09-02-022"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 24,
+          "severity": "error",
+          "value": "DEP-09-02-023"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 25,
+          "severity": "error",
+          "value": "DEP-09-02-024"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 26,
+          "severity": "error",
+          "value": "DEP-09-02-025"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/Dependencies.csv",
+      "rows": 25,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 13,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-09-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-09-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-09-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-09-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-09-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-09-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-09-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-09-03-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-09-03-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-09-03-010"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 12,
+          "severity": "error",
+          "value": "DEP-09-03-011"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 13,
+          "severity": "error",
+          "value": "DEP-09-03-012"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 14,
+          "severity": "error",
+          "value": "DEP-09-03-013"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/Dependencies.csv",
+      "rows": 13,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 9,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-09-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-09-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-09-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-09-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-09-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-09-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-09-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-09-04-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-09-04-009"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/Dependencies.csv",
+      "rows": 9,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 0,
+      "errors": [],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Dependencies.csv",
+      "rows": 14,
+      "status": "PASS",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-09-06-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-09-06-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-09-06-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-09-06-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-09-06-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-09-06-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-09-06-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-09-06-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-09-06-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-09-06-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 3,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-10-01-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-10-01-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-10-01-003"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/Dependencies.csv",
+      "rows": 3,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 5,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-10-02-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-10-02-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-10-02-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-10-02-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-10-02-005"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Dependencies.csv",
+      "rows": 5,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-10-03-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-10-03-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-10-03-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-10-03-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-10-03-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-10-03-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-10-03-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-10-03-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 8,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-10-04-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-10-04-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-10-04-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-10-04-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-10-04-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-10-04-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-10-04-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-10-04-008"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/Dependencies.csv",
+      "rows": 8,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    },
+    {
+      "errorCount": 10,
+      "errors": [
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 2,
+          "severity": "error",
+          "value": "DEP-10-05-001"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 3,
+          "severity": "error",
+          "value": "DEP-10-05-002"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 4,
+          "severity": "error",
+          "value": "DEP-10-05-003"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 5,
+          "severity": "error",
+          "value": "DEP-10-05-004"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 6,
+          "severity": "error",
+          "value": "DEP-10-05-005"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 7,
+          "severity": "error",
+          "value": "DEP-10-05-006"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 8,
+          "severity": "error",
+          "value": "DEP-10-05-007"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 9,
+          "severity": "error",
+          "value": "DEP-10-05-008"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 10,
+          "severity": "error",
+          "value": "DEP-10-05-009"
+        },
+        {
+          "code": "INVALID_DEPENDENCY_ID_FORMAT",
+          "column": "DependencyID",
+          "message": "DependencyID must match DEP-{PKG}-{DEL}-{SEQ}.",
+          "row": 11,
+          "severity": "error",
+          "value": "DEP-10-05-010"
+        }
+      ],
+      "path": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/Dependencies.csv",
+      "rows": 10,
+      "status": "FAIL",
+      "warningCount": 0,
+      "warnings": []
+    }
+  ],
+  "mode": "scan",
+  "schemaVersion": "v3.1",
+  "summary": {
+    "errorFiles": 0,
+    "failFiles": 46,
+    "filesScanned": 51,
+    "passFiles": 5,
+    "totalErrors": 503,
+    "totalWarnings": 0
+  },
+  "timestamp": "2026-05-24T17:24:07Z",
+  "tool": "validate_dependencies"
+}

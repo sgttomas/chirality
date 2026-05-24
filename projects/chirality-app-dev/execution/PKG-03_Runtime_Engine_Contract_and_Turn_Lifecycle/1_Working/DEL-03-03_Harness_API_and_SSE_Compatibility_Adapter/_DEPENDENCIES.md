@@ -32,16 +32,16 @@ Source register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Target | Status |
 |---|---|---|---|---|
-| DEP-DEL-03-03-001 | ANCHOR | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
-| DEP-DEL-03-03-002 | ANCHOR | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
-| DEP-DEL-03-03-003 | ANCHOR | OTHER | SOW-040 UIEvent and HarnessEvent separation | ACTIVE |
-| DEP-DEL-03-03-004 | ANCHOR | OTHER | OBJ-001 Preserve browser-facing harness experience | ACTIVE |
-| DEP-DEL-03-03-005 | ANCHOR | OTHER | OBJ-002 Stabilize runtime contract and turn lifecycle | ACTIVE |
-| DEP-DEL-03-03-006 | EXECUTION | INTERFACE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
-| DEP-DEL-03-03-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
-| DEP-DEL-03-03-008 | EXECUTION | INTERFACE | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
-| DEP-DEL-03-03-009 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
-| DEP-DEL-03-03-010 | EXECUTION | PREREQUISITE | Current implementation fixture capture | ACTIVE |
+| DEP-03-03-001 | ANCHOR | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
+| DEP-03-03-002 | ANCHOR | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
+| DEP-03-03-003 | ANCHOR | OTHER | SOW-040 UIEvent and HarnessEvent separation | ACTIVE |
+| DEP-03-03-004 | ANCHOR | OTHER | OBJ-001 Preserve browser-facing harness experience | ACTIVE |
+| DEP-03-03-005 | ANCHOR | OTHER | OBJ-002 Stabilize runtime contract and turn lifecycle | ACTIVE |
+| DEP-03-03-006 | EXECUTION | INTERFACE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
+| DEP-03-03-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
+| DEP-03-03-008 | EXECUTION | INTERFACE | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
+| DEP-03-03-009 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
+| DEP-03-03-010 | EXECUTION | PREREQUISITE | Current implementation fixture capture | ACTIVE |
 
 ## Run Notes
 

@@ -6,6 +6,7 @@ import {
   resolveHarnessProviderMode
 } from '../../lib/harness/runtime';
 import { StubAgentSdkManager } from '../../lib/harness/agent-sdk-manager';
+import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 
 afterEach(() => {
   delete process.env.CHIRALITY_HARNESS_PROVIDER;
@@ -25,5 +26,13 @@ describe('harness runtime provider mode', () => {
     expect(resolveHarnessProviderMode()).toBe('anthropic');
     const runtime = getHarnessRuntime();
     expect(runtime.agentSdkManager).toBeInstanceOf(AnthropicAgentSdkManager);
+  });
+
+  it('selects Claude Agent SDK provider mode only when explicitly configured', () => {
+    process.env.CHIRALITY_HARNESS_PROVIDER = 'agentSdk';
+
+    expect(resolveHarnessProviderMode()).toBe('agentSdk');
+    const runtime = getHarnessRuntime();
+    expect(runtime.agentSdkManager).toBeInstanceOf(ClaudeAgentSdkManager);
   });
 });

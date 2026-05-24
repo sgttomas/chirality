@@ -30,16 +30,16 @@ TBD - no declared downstream dependency edges have been accepted by a human.
 
 | DependencyID | Class | Type | Target | Status | Evidence |
 |---|---|---|---|---|---|
-| DEP-DEL-07-03-001 | ANCHOR | IMPLEMENTS_NODE / OTHER | SOW-026 Metadata files and document kit | ACTIVE | `Datasheet.md` / Identification |
-| DEP-DEL-07-03-002 | ANCHOR | TRACES_TO_REQUIREMENT / OTHER | OBJ-006 filesystem project truth objective | ACTIVE | `Datasheet.md` / Identification |
-| DEP-DEL-07-03-003 | EXECUTION | PREREQUISITE | Accepted decomposition entry for DEL-07-03 | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-004 | EXECUTION | PREREQUISITE | `docs/SPEC.md` | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-005 | EXECUTION | PREREQUISITE | `docs/PRD.md` | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-006 | EXECUTION | PREREQUISITE | `docs/TYPES.md` | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-007 | EXECUTION | PREREQUISITE | `docs/DIRECTIVE.md` | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-008 | EXECUTION | PREREQUISITE | `docs/CONTRACT.md` | ACTIVE | `Procedure.md` / Prerequisites |
-| DEP-DEL-07-03-009 | EXECUTION | CONSTRAINT | DEL-07-04 Status Transition API and MCP Tool | ACTIVE | `Procedure.md` / Steps |
-| DEP-DEL-07-03-010 | EXECUTION | CONSTRAINT | DEL-07-05 Dependencies.csv v3.1 Reader Writer and Linter | ACTIVE | `Procedure.md` / Steps |
+| DEP-07-03-001 | ANCHOR | IMPLEMENTS_NODE / OTHER | SOW-026 Metadata files and document kit | ACTIVE | `Datasheet.md` / Identification |
+| DEP-07-03-002 | ANCHOR | TRACES_TO_REQUIREMENT / OTHER | OBJ-006 filesystem project truth objective | ACTIVE | `Datasheet.md` / Identification |
+| DEP-07-03-003 | EXECUTION | PREREQUISITE | Accepted decomposition entry for DEL-07-03 | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-004 | EXECUTION | PREREQUISITE | `docs/SPEC.md` | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-005 | EXECUTION | PREREQUISITE | `docs/PRD.md` | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-006 | EXECUTION | PREREQUISITE | `docs/TYPES.md` | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-007 | EXECUTION | PREREQUISITE | `docs/DIRECTIVE.md` | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-008 | EXECUTION | PREREQUISITE | `docs/CONTRACT.md` | ACTIVE | `Procedure.md` / Prerequisites |
+| DEP-07-03-009 | EXECUTION | CONSTRAINT | DEL-07-04 Status Transition API and MCP Tool | ACTIVE | `Procedure.md` / Steps |
+| DEP-07-03-010 | EXECUTION | CONSTRAINT | DEL-07-05 Dependencies.csv v3.1 Reader Writer and Linter | ACTIVE | `Procedure.md` / Steps |
 
 ## Run Notes
 

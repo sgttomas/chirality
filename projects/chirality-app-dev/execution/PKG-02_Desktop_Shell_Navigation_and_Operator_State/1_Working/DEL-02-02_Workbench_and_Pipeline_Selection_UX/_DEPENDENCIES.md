@@ -36,15 +36,15 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Note |
 |---|---|---|---|---|---|---|
-| DEP-DEL-02-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | Parent package anchor. |
-| DEP-DEL-02-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-006 | ACTIVE | Workbench context trace. |
-| DEP-DEL-02-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-007 | ACTIVE | Pipeline selector trace with ownership warning. |
-| DEP-DEL-02-02-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | Objective trace; target type kept `UNKNOWN` because schema has no objective enum. |
-| DEP-DEL-02-02-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-01 | ACTIVE | Matrix routing interface. |
-| DEP-DEL-02-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-03 | ACTIVE | Scope scan / stale selection interface. |
-| DEP-DEL-02-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-04 | ACTIVE | Status summary interface. |
-| DEP-DEL-02-02-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 | ACTIVE | Dependency summary interface. |
-| DEP-DEL-02-02-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-03 | ACTIVE | Dispatch semantics ownership constraint. |
+| DEP-02-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | Parent package anchor. |
+| DEP-02-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-006 | ACTIVE | Workbench context trace. |
+| DEP-02-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-007 | ACTIVE | Pipeline selector trace with ownership warning. |
+| DEP-02-02-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | Objective trace; target type kept `UNKNOWN` because schema has no objective enum. |
+| DEP-02-02-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-01 | ACTIVE | Matrix routing interface. |
+| DEP-02-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-03 | ACTIVE | Scope scan / stale selection interface. |
+| DEP-02-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-04 | ACTIVE | Status summary interface. |
+| DEP-02-02-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 | ACTIVE | Dependency summary interface. |
+| DEP-02-02-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-03 | ACTIVE | Dispatch semantics ownership constraint. |
 
 ## Run History
 

@@ -1,0 +1,3 @@
+DependencyID,SourceFile,PreviousProposedMaturity,NewProposedMaturity,PreviousSatisfactionStatus,NewSatisfactionStatus,PreviousStatus,NewStatus,Rationale,Evidence
+DEP-04-01-008,execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/Dependencies.csv,TBD,SEMANTIC_READY,TBD,SATISFIED,ACTIVE,ACTIVE,"CODEV-001 implemented the product-owned runtime boundary and opt-in SDK probe posture required before DEL-04-01 SDK probe/adoption work can proceed. Live SDK query, packaging, and adoption verdict remain separate unresolved rows/evidence items.","Evidence_CODEV-001_SDK_Probe_Record.md; Evidence_CODEV-001_Runtime_Engine_Conformance.md; frontend/docs/harness/runtime_engine_contract.md"
+

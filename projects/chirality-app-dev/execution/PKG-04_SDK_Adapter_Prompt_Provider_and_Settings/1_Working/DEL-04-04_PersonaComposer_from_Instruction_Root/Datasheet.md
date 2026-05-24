@@ -38,7 +38,7 @@ Source: `_CONTEXT.md` Identity, Package Scope, Deliverable Scope, Traceability; 
 | Runtime option fallbacks | Persona fallback is request/session persona, then `HELP_HUMAN` or configured default. Other option fallback chains are owned by adjacent SDK-options work. | `docs/SPEC.md` Section 13.1; decomposition DEL-04-02 and DEL-04-04 rows |
 | Safety boundary | Prompt text is not sufficient as a reliance boundary; permission, path, hook, and tool enforcement remain runtime code responsibilities. | `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Sections 14.3 and 15 |
 | Settings isolation | The composer must not depend on ambient SDK settings; shipped SDK options use `settingSources: []` outside this deliverable's implementation responsibility. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
-| Dependencies | Declared upstream/downstream sections remain TBD, but the extracted dependency register records ACTIVE upstream interfaces/prerequisites for DEL-04-02, DEL-08-01, and DEL-08-02, a PRD snapshot constraint, and a downstream boot/session fingerprint handoff whose consuming interface is `UNKNOWN` / `TBD`. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-DEL-04-04-004 through DEP-DEL-04-04-008 |
+| Dependencies | Declared upstream/downstream sections remain TBD, but the extracted dependency register records ACTIVE upstream interfaces/prerequisites for DEL-04-02, DEL-08-01, and DEL-08-02, a PRD snapshot constraint, and a downstream boot/session fingerprint handoff whose consuming interface is `UNKNOWN` / `TBD`. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-04-04-004 through DEP-04-04-008 |
 
 ## Construction
 
@@ -46,7 +46,7 @@ Source: `_CONTEXT.md` Identity, Package Scope, Deliverable Scope, Traceability; 
 |---|---|---|
 | `persona-composer.ts` | Build system/appended prompt material from governance preface, selected persona instruction, working-root summary, mode policy, permitted tool surface, and professional-boundary reminders. | Anticipated by `_CONTEXT.md`; exact module path TBD. |
 | Persona content hash tests | Prove persona instruction content and prompt inputs affect the generated fingerprint. | Anticipated by `_CONTEXT.md`; test file path TBD. |
-| Boot fingerprint updates | Extend boot/session metadata to reflect prompt and SDK-policy inputs. | Anticipated by `_CONTEXT.md`; `docs/SPEC.md` Sections 12.4 and 13.2; downstream consuming deliverable/interface remains `UNKNOWN` / `TBD` in `Dependencies.csv` DEP-DEL-04-04-008. |
+| Boot fingerprint updates | Extend boot/session metadata to reflect prompt and SDK-policy inputs. | Anticipated by `_CONTEXT.md`; `docs/SPEC.md` Sections 12.4 and 13.2; downstream consuming deliverable/interface remains `UNKNOWN` / `TBD` in `Dependencies.csv` DEP-04-04-008. |
 
 ## References
 

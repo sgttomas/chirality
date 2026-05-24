@@ -46,16 +46,16 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|
-| DEP-DEL-05-05-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | PKG-05 Session Audit, Replay, and Tool Result Records | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-053 Deterministic event ordering under tool concurrency | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-059 Tool result budgets and artifacts | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-004 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-003 Audit and session objective | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-005 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-005 Tool governance objective | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-006 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-007 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
-| DEP-DEL-05-05-008 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-DEL-05-05-009 | EXECUTION | PREREQUISITE | ToolResultStore implementation location | ACTIVE | TBD |
-| DEP-DEL-05-05-010 | EXECUTION | CONSTRAINT | Output budget policy parameters | ACTIVE | TBD |
+| DEP-05-05-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | PKG-05 Session Audit, Replay, and Tool Result Records | ACTIVE | SATISFIED |
+| DEP-05-05-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-053 Deterministic event ordering under tool concurrency | ACTIVE | SATISFIED |
+| DEP-05-05-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-059 Tool result budgets and artifacts | ACTIVE | SATISFIED |
+| DEP-05-05-004 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-003 Audit and session objective | ACTIVE | SATISFIED |
+| DEP-05-05-005 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-005 Tool governance objective | ACTIVE | SATISFIED |
+| DEP-05-05-006 | EXECUTION | PREREQUISITE | REF-003 `docs/SPEC.md` | ACTIVE | SATISFIED |
+| DEP-05-05-007 | EXECUTION | PREREQUISITE | REF-002 `docs/CONTRACT.md` | ACTIVE | SATISFIED |
+| DEP-05-05-008 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
+| DEP-05-05-009 | EXECUTION | PREREQUISITE | ToolResultStore implementation location | ACTIVE | TBD |
+| DEP-05-05-010 | EXECUTION | CONSTRAINT | Output budget policy parameters | ACTIVE | TBD |
 
 ## Lifecycle Summary
 

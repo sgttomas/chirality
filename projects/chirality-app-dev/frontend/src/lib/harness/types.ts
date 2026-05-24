@@ -26,6 +26,13 @@ export interface SessionRecord {
   createdAt: string;
   updatedAt: string;
   claudeSessionId?: string;
+  sdkSessionId?: string;
+  sdkTranscriptPath?: string;
+  sdkSessionStoreKey?: string;
+  sdkConfigDir?: string;
+  sdkSettingSources?: string[];
+  sdkPackageVersion?: string;
+  sdkClaudeCodeVersion?: string;
   bootFingerprint?: string;
   bootedAt?: string;
   model?: string;

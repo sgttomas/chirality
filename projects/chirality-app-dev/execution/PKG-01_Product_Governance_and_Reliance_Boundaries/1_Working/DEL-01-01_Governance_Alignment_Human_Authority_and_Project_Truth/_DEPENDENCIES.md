@@ -34,18 +34,18 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-DEL-01-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 | ACTIVE | SATISFIED |
-| DEP-DEL-01-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-074 | ACTIVE | SATISFIED |
-| DEP-DEL-01-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-075 | ACTIVE | SATISFIED |
-| DEP-DEL-01-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | SATISFIED |
-| DEP-DEL-01-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
-| DEP-DEL-01-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-001 decomposition v3.2 | ACTIVE | PENDING |
+| DEP-01-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 | ACTIVE | SATISFIED |
+| DEP-01-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-074 | ACTIVE | SATISFIED |
+| DEP-01-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-075 | ACTIVE | SATISFIED |
+| DEP-01-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | SATISFIED |
+| DEP-01-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
+| DEP-01-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
+| DEP-01-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
+| DEP-01-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
+| DEP-01-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
+| DEP-01-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
+| DEP-01-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
+| DEP-01-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-001 decomposition v3.2 | ACTIVE | PENDING |
 
 ## Run Notes
 
@@ -58,7 +58,7 @@ Structured register: `Dependencies.csv` v3.1
 - Anchor doc selection: `Datasheet.md` with `_CONTEXT.md` and decomposition cross-checks.
 - Execution doc order: `Guidance.md`, `Procedure.md`, `Specification.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Conservative extraction emitted no downstream deliverable edges because the approved local documents state upstream and downstream dependencies are `TBD` and do not identify accepted downstream consumers.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-DEL-01-01-010 preserves this as a source warning with `Confidence=MEDIUM`.
+- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-01-01-010 preserves this as a source warning with `Confidence=MEDIUM`.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 

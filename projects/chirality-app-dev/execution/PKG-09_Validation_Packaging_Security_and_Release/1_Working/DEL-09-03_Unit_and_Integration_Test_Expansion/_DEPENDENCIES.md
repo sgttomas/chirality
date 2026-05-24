@@ -40,19 +40,19 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type / AnchorType | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEL-09-03-DEP-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | PKG-09 Validation, Packaging, Security, and Release | ACTIVE |
-| DEL-09-03-DEP-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-011 SSE turn stream and session locking | ACTIVE |
-| DEL-09-03-DEP-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-012 Interrupt/cancel/failure cleanup | ACTIVE |
-| DEL-09-03-DEP-004 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-014 Persist accepted user input before execution | ACTIVE |
-| DEL-09-03-DEP-005 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-015 Persist terminal turn outcomes | ACTIVE |
-| DEL-09-03-DEP-006 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-022 Attachment resolver validation | ACTIVE |
-| DEL-09-03-DEP-007 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-028 Status lifecycle and approval SHA | ACTIVE |
-| DEL-09-03-DEP-008 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-029 Dependencies CSV v3.1 | ACTIVE |
-| DEL-09-03-DEP-009 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-002 Runtime architecture objective | ACTIVE |
-| DEL-09-03-DEP-010 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-003 Audit and session objective | ACTIVE |
-| DEL-09-03-DEP-011 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-006 Filesystem governance objective | ACTIVE |
-| DEL-09-03-DEP-012 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-008 Release readiness objective | ACTIVE |
-| DEL-09-03-DEP-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
+| DEP-09-03-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | PKG-09 Validation, Packaging, Security, and Release | ACTIVE |
+| DEP-09-03-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-011 SSE turn stream and session locking | ACTIVE |
+| DEP-09-03-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-012 Interrupt/cancel/failure cleanup | ACTIVE |
+| DEP-09-03-004 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-014 Persist accepted user input before execution | ACTIVE |
+| DEP-09-03-005 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-015 Persist terminal turn outcomes | ACTIVE |
+| DEP-09-03-006 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-022 Attachment resolver validation | ACTIVE |
+| DEP-09-03-007 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-028 Status lifecycle and approval SHA | ACTIVE |
+| DEP-09-03-008 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-029 Dependencies CSV v3.1 | ACTIVE |
+| DEP-09-03-009 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-002 Runtime architecture objective | ACTIVE |
+| DEP-09-03-010 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-003 Audit and session objective | ACTIVE |
+| DEP-09-03-011 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-006 Filesystem governance objective | ACTIVE |
+| DEP-09-03-012 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-008 Release readiness objective | ACTIVE |
+| DEP-09-03-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
 
 ## Run History
 

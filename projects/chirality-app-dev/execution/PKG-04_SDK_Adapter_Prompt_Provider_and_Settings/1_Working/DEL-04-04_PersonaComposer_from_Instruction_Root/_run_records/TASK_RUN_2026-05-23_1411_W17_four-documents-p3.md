@@ -32,7 +32,7 @@
 | `_CONTEXT.md` Identity, Deliverable Scope, Anticipated Artifacts, Traceability | Confirmed deliverable identity, artifacts, SOW-017/SOW-030, OBJ-004/OBJ-007. |
 | `_REFERENCES.md` Authoritative Source Corpus | Confirmed REF-006 `HASH_MISMATCH` and matching source set. |
 | `_DEPENDENCIES.md` Extracted Dependency Register and Run Notes | Confirmed ACTIVE extracted dependency edges, PRD warning, and UNKNOWN downstream handoff. |
-| `Dependencies.csv` DEP-DEL-04-04-004 through DEP-DEL-04-04-008 | Confirmed upstream interface/prerequisite/constraint edges and downstream UNKNOWN handoff. |
+| `Dependencies.csv` DEP-04-04-004 through DEP-04-04-008 | Confirmed upstream interface/prerequisite/constraint edges and downstream UNKNOWN handoff. |
 | `docs/SPEC.md` Sections 1.1-1.3, 10, 12.4, 13.1-13.2, 14.3, 15 | Confirmed instruction-root rules, product-owned runtime boundary, runtime metadata, persona composer inputs, fingerprint inputs, and tool/permission enforcement boundaries. |
 | `docs/TYPES.md` Sections 3.4, 8.1-8.5, 9, 10 | Confirmed alias vocabulary, tool/permission vocabulary, SDK adapter terms, and subagent runtime vocabulary. |
 | `docs/DIRECTIVE.md` Sections 2.6-2.11, 4.1-4.2, 5 | Confirmed non-authoritative state, root separation, Chirality-owned prompt composition, provider-neutral boundary, and prompt-not-enforcement posture. |
@@ -48,7 +48,7 @@
 | B-001 | Incorporated. | `Datasheet.md` Conditions and `Procedure.md` Prerequisites now distinguish declared dependency TBD sections from the ACTIVE extracted dependency register without editing dependency files. |
 | F-001 | Incorporated. | `Specification.md` PC-REQ-010 and Verification now split composer-available fingerprint verification from adjacent optional inputs that remain `TBD` until supplied by owning slices. |
 | D-001 | Incorporated as explicit TBD. | `Procedure.md` Step 2 and Records now preserve the accepted runtime input interface as `TBD` instead of implying an invented implementation contract. |
-| X-001 | Incorporated as explicit TBD. | `Datasheet.md` Construction and `Procedure.md` Records now identify the downstream boot/session fingerprint handoff consumer as `UNKNOWN` / `TBD` from `Dependencies.csv` DEP-DEL-04-04-008. |
+| X-001 | Incorporated as explicit TBD. | `Datasheet.md` Construction and `Procedure.md` Records now identify the downstream boot/session fingerprint handoff consumer as `UNKNOWN` / `TBD` from `Dependencies.csv` DEP-04-04-008. |
 | E-001 | Incorporated. | `Guidance.md` Considerations and Trade-offs now state the decision criterion for local alias handling versus delegation to an accepted DEL-08-02 resolver/interface. |
 
 ## Mini Consistency Sweep

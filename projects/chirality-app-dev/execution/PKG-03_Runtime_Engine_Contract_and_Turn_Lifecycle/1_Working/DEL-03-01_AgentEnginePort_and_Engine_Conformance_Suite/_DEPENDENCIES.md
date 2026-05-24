@@ -36,14 +36,14 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---:|---:|---:|---|---:|---:|
-| DEP-DEL-03-01-001 | ANCHOR | OTHER | UPSTREAM | SOW-037 Product-owned engine contract | ACTIVE | SATISFIED |
-| DEP-DEL-03-01-002 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Runtime architecture objective | ACTIVE | SATISFIED |
-| DEP-DEL-03-01-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | ACTIVE | PENDING |
-| DEP-DEL-03-01-004 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-DEL-03-01-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE | PENDING |
-| DEP-DEL-03-01-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE | PENDING |
-| DEP-DEL-03-01-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-01-02 Reliance Boundary Register | ACTIVE | PENDING |
-| DEP-DEL-03-01-008 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | PENDING |
+| DEP-03-01-001 | ANCHOR | OTHER | UPSTREAM | SOW-037 Product-owned engine contract | ACTIVE | SATISFIED |
+| DEP-03-01-002 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Runtime architecture objective | ACTIVE | SATISFIED |
+| DEP-03-01-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | ACTIVE | PENDING |
+| DEP-03-01-004 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
+| DEP-03-01-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03 Harness API and SSE Compatibility Adapter | ACTIVE | PENDING |
+| DEP-03-01-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE | PENDING |
+| DEP-03-01-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-01-02 Reliance Boundary Register | ACTIVE | PENDING |
+| DEP-03-01-008 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | PENDING |
 
 ## Lifecycle Summary
 

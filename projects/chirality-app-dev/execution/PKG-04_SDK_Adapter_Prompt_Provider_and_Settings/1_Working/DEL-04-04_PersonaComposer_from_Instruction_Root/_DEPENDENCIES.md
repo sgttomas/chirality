@@ -31,14 +31,14 @@ Generated register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Direction | Type | Target | Status | Confidence |
 |---|---|---|---|---|---|---|
-| DEP-DEL-04-04-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 SDK Adapter, Prompt, Provider, and Settings | ACTIVE | HIGH |
-| DEP-DEL-04-04-002 | ANCHOR | UPSTREAM | OTHER | SOW-017 Persona resolution and prompt composition | ACTIVE | HIGH |
-| DEP-DEL-04-04-003 | ANCHOR | UPSTREAM | OTHER | SOW-030 Instruction-root resources | ACTIVE | HIGH |
-| DEP-DEL-04-04-004 | EXECUTION | UPSTREAM | INTERFACE | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE | HIGH |
-| DEP-DEL-04-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-08-01 Instruction Root Packaging and Agent Conformance | ACTIVE | HIGH |
-| DEP-DEL-04-04-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-02 Persona Alias and Agent Matrix Routing Contract | ACTIVE | MEDIUM |
-| DEP-DEL-04-04-007 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md PRD source snapshot | ACTIVE | HIGH |
-| DEP-DEL-04-04-008 | EXECUTION | DOWNSTREAM | HANDOVER | UNKNOWN Runtime boundary boot/session fingerprint integration | ACTIVE | MEDIUM |
+| DEP-04-04-001 | ANCHOR | UPSTREAM | OTHER | PKG-04 SDK Adapter, Prompt, Provider, and Settings | ACTIVE | HIGH |
+| DEP-04-04-002 | ANCHOR | UPSTREAM | OTHER | SOW-017 Persona resolution and prompt composition | ACTIVE | HIGH |
+| DEP-04-04-003 | ANCHOR | UPSTREAM | OTHER | SOW-030 Instruction-root resources | ACTIVE | HIGH |
+| DEP-04-04-004 | EXECUTION | UPSTREAM | INTERFACE | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE | HIGH |
+| DEP-04-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DEL-08-01 Instruction Root Packaging and Agent Conformance | ACTIVE | HIGH |
+| DEP-04-04-006 | EXECUTION | UPSTREAM | INTERFACE | DEL-08-02 Persona Alias and Agent Matrix Routing Contract | ACTIVE | MEDIUM |
+| DEP-04-04-007 | EXECUTION | UPSTREAM | CONSTRAINT | docs/PRD.md PRD source snapshot | ACTIVE | HIGH |
+| DEP-04-04-008 | EXECUTION | DOWNSTREAM | HANDOVER | UNKNOWN Runtime boundary boot/session fingerprint integration | ACTIVE | MEDIUM |
 
 ## Run Notes
 

@@ -12,7 +12,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 | Working root | Must remain separate from the instruction root and provide contextual project-root information only. | `docs/SPEC.md` Section 1.2; `docs/DIRECTIVE.md` Section 2.7 |
 | Persona alias vocabulary | Use or delegate the accepted alias mappings. | `docs/TYPES.md` Section 3.4 |
 | Runtime mode/tool policy | Use resolved mode and permitted tool-surface inputs supplied by the runtime/options layer. | `docs/SPEC.md` Sections 13-15 |
-| Upstream dependencies | Extracted ACTIVE upstream edges identify DEL-04-02 for resolved mode/tool-surface inputs, DEL-08-01 for instruction-root packaging/conformance, DEL-08-02 for alias routing/resolver interface, and a PRD source-snapshot constraint. Declared dependency sections remain TBD until accepted by the governing dependency workflow. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-DEL-04-04-004 through DEP-DEL-04-04-007 |
+| Upstream dependencies | Extracted ACTIVE upstream edges identify DEL-04-02 for resolved mode/tool-surface inputs, DEL-08-01 for instruction-root packaging/conformance, DEL-08-02 for alias routing/resolver interface, and a PRD source-snapshot constraint. Declared dependency sections remain TBD until accepted by the governing dependency workflow. | `_DEPENDENCIES.md` Extracted Dependency Register; `Dependencies.csv` DEP-04-04-004 through DEP-04-04-007 |
 | Source-state warning | Treat `docs/PRD.md` hash mismatch as a warning; do not rely on PRD-only details without confirmation. | `_REFERENCES.md` REF-006 |
 
 ## Steps
@@ -62,5 +62,5 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 
 - Implementation artifact: `persona-composer.ts` or accepted equivalent.
 - Tests: persona content hash tests, boot fingerprint tests, alias/missing-persona tests, prompt-content tests.
-- Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-DEL-04-04-008.
+- Integration evidence: boot/session fingerprint metadata update; downstream consuming deliverable/interface is currently `UNKNOWN` / `TBD` per `Dependencies.csv` DEP-04-04-008.
 - Open items: exact runtime input interface, downstream fingerprint handoff consumer, and accepted PRD snapshot confirmation.

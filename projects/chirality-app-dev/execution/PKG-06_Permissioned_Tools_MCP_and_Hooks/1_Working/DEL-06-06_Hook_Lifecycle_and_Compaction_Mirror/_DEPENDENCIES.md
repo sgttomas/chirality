@@ -36,14 +36,14 @@ Run timestamp: 2026-05-20T19:47:33-0600
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEP-DEL-06-06-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE | `_CONTEXT.md` |
-| DEP-DEL-06-06-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-057 Hooks and fail-closed behavior | ACTIVE | `Specification.md` |
-| DEP-DEL-06-06-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-061 Compaction mirror | ACTIVE | `Specification.md` |
-| DEP-DEL-06-06-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE | `Specification.md` |
-| DEP-DEL-06-06-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md` |
-| DEP-DEL-06-06-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling | ACTIVE | `Guidance.md` |
-| DEP-DEL-06-06-007 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | `Procedure.md` |
-| DEP-DEL-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` HASH_MISMATCH | ACTIVE | `Specification.md` |
+| DEP-06-06-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE | `_CONTEXT.md` |
+| DEP-06-06-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-057 Hooks and fail-closed behavior | ACTIVE | `Specification.md` |
+| DEP-06-06-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-061 Compaction mirror | ACTIVE | `Specification.md` |
+| DEP-06-06-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE | `Specification.md` |
+| DEP-06-06-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md` |
+| DEP-06-06-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling | ACTIVE | `Guidance.md` |
+| DEP-06-06-007 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | `Procedure.md` |
+| DEP-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` HASH_MISMATCH | ACTIVE | `Specification.md` |
 
 ## Run Notes
 

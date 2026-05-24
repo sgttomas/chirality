@@ -29,7 +29,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor exists.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor exists.
 - `[WARNING] PRD_HASH_MISMATCH`: `_REFERENCES.md` lists `docs/PRD.md` as `HASH_MISMATCH`; PRD-derived acceptance details remain warned evidence.
-- `[WARNING] IMPLEMENTATION_LOCATION_TBD`: allowed evidence names no implementation module path; dependency row DEL-07-04-DEP-008 preserves the target as `UNKNOWN` / `TBD`.
+- `[WARNING] IMPLEMENTATION_LOCATION_TBD`: allowed evidence names no implementation module path; dependency row DEP-07-04-008 preserves the target as `UNKNOWN` / `TBD`.
 
 ## Extracted Dependency Register
 
@@ -37,14 +37,14 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | TargetType | TargetRefID | TargetName | Status |
 |---|---|---|---|---|---|---|---|
-| DEL-07-04-DEP-001 | ANCHOR | OTHER | UPSTREAM | WBS_NODE | SOW-028 | Status lifecycle and approval SHA | ACTIVE |
-| DEL-07-04-DEP-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | OBJ-006 | Preserve filesystem project truth through working-root containment | ACTIVE |
-| DEL-07-04-DEP-003 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 | docs/SPEC.md | ACTIVE |
-| DEL-07-04-DEP-004 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 | docs/CONTRACT.md | ACTIVE |
-| DEL-07-04-DEP-005 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 | docs/PRD.md | ACTIVE |
-| DEL-07-04-DEP-006 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-001 | docs/DIRECTIVE.md | ACTIVE |
-| DEL-07-04-DEP-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 | docs/TYPES.md | ACTIVE |
-| DEL-07-04-DEP-008 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN | TBD | Implementation module location | ACTIVE |
+| DEP-07-04-001 | ANCHOR | OTHER | UPSTREAM | WBS_NODE | SOW-028 | Status lifecycle and approval SHA | ACTIVE |
+| DEP-07-04-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | OBJ-006 | Preserve filesystem project truth through working-root containment | ACTIVE |
+| DEP-07-04-003 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 | docs/SPEC.md | ACTIVE |
+| DEP-07-04-004 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 | docs/CONTRACT.md | ACTIVE |
+| DEP-07-04-005 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 | docs/PRD.md | ACTIVE |
+| DEP-07-04-006 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-001 | docs/DIRECTIVE.md | ACTIVE |
+| DEP-07-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 | docs/TYPES.md | ACTIVE |
+| DEP-07-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN | TBD | Implementation module location | ACTIVE |
 
 Counts:
 

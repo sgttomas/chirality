@@ -29,8 +29,8 @@ TBD - no accepted dependency edges have been extracted yet.
 - Execution doc order: `Procedure.md`, `Guidance.md`, `Specification.md`, `Datasheet.md`, `_REFERENCES.md`.
 - Conservative extraction emitted no downstream deliverable edges because local evidence names DEL-08-04 and DEL-08-05 only as out-of-scope/boundary owners, not accepted handoff targets.
 - Implementation details for validator path, test framework, fixture path, CI/local command, and output artifact location remain `TBD`; no dependency target was invented for those unresolved choices.
-- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-DEL-08-01-012 preserves this as a source warning with `Confidence=MEDIUM`.
-- `[WARNING] UNRESOLVED_TARGET`: row DEP-DEL-08-01-015 records the explicitly required current instruction-root source tree, but the stable target location is unresolved and remains `UNKNOWN`/`TBD`.
+- `[WARNING] SOURCE_HASH_MISMATCH`: `REF-006` (`docs/PRD.md`) has `HASH_MISMATCH` in `_REFERENCES.md`; row DEP-08-01-012 preserves this as a source warning with `Confidence=MEDIUM`.
+- `[WARNING] UNRESOLVED_TARGET`: row DEP-08-01-015 records the explicitly required current instruction-root source tree, but the stable target location is unresolved and remains `UNKNOWN`/`TBD`.
 - No `[WARNING] FLOATING_NODE`: one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 - No `[WARNING] AMBIGUOUS_ANCHOR`: exactly one ACTIVE `IMPLEMENTS_NODE` parent anchor was extracted.
 
@@ -52,21 +52,21 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-DEL-08-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-08 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-030 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-031 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-004 | ANCHOR | OTHER | UPSTREAM | SOW-073 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-005 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | SATISFIED |
-| DEP-DEL-08-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-013 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
-| DEP-DEL-08-01-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-004 decomposition v3.2 | ACTIVE | PENDING |
-| DEP-DEL-08-01-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD current instruction-root source tree | ACTIVE | PENDING |
+| DEP-08-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-08 | ACTIVE | SATISFIED |
+| DEP-08-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-030 | ACTIVE | SATISFIED |
+| DEP-08-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-031 | ACTIVE | SATISFIED |
+| DEP-08-01-004 | ANCHOR | OTHER | UPSTREAM | SOW-073 | ACTIVE | SATISFIED |
+| DEP-08-01-005 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | SATISFIED |
+| DEP-08-01-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | SATISFIED |
+| DEP-08-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
+| DEP-08-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
+| DEP-08-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
+| DEP-08-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
+| DEP-08-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
+| DEP-08-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
+| DEP-08-01-013 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
+| DEP-08-01-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-004 decomposition v3.2 | ACTIVE | PENDING |
+| DEP-08-01-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD current instruction-root source tree | ACTIVE | PENDING |
 
 ## Run History
 

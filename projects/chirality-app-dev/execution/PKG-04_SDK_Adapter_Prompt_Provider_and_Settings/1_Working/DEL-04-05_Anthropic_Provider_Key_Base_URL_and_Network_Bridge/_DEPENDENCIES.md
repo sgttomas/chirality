@@ -31,18 +31,18 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEP-DEL-04-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | `_CONTEXT.md` |
-| DEP-DEL-04-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | `Datasheet.md` |
-| DEP-DEL-04-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-020 | ACTIVE | `Datasheet.md` |
-| DEP-DEL-04-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-021 | ACTIVE | `Datasheet.md` |
-| DEP-DEL-04-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | `Datasheet.md` |
-| DEP-DEL-04-05-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | `Datasheet.md` |
-| DEP-DEL-04-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE | `Procedure.md` |
-| DEP-DEL-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | ACTIVE | `Specification.md` |
-| DEP-DEL-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
-| DEP-DEL-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
-| DEP-DEL-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | ACTIVE | `Specification.md` |
-| DEP-DEL-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | `Procedure.md` |
+| DEP-04-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | `_CONTEXT.md` |
+| DEP-04-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | `Datasheet.md` |
+| DEP-04-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-020 | ACTIVE | `Datasheet.md` |
+| DEP-04-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-021 | ACTIVE | `Datasheet.md` |
+| DEP-04-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | `Datasheet.md` |
+| DEP-04-05-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | `Datasheet.md` |
+| DEP-04-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE | `Procedure.md` |
+| DEP-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | ACTIVE | `Specification.md` |
+| DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
+| DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
+| DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | ACTIVE | `Specification.md` |
+| DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | `Procedure.md` |
 
 Counts: 12 ACTIVE rows; 6 ANCHOR, 6 EXECUTION.
 

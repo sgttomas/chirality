@@ -103,7 +103,7 @@ TBD records:
 
 | ItemID | Disposition | Evidence |
 |---|---|---|
-| D-001 | Converted to an explicit prerequisite and closeout blocker: accepted implementation module paths remain `TBD`. | `_DEPENDENCIES.md` DEL-07-04-DEP-008; decomposition DEL-07-04 anticipated artifacts. |
+| D-001 | Converted to an explicit prerequisite and closeout blocker: accepted implementation module paths remain `TBD`. | `_DEPENDENCIES.md` DEP-07-04-008; decomposition DEL-07-04 anticipated artifacts. |
 | F-002 | Incorporated as post-schema fixture verification for API/MCP request and response schemas. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
 | X-002 | Incorporated as audit evidence expectations for permission, hook, path, redaction, and event logging policy on MCP status operations. | `docs/CONTRACT.md` K-MCP-1/K-PERM-1; `docs/PRD.md` FR-092, FR-093, FR-104. |
 | E-002 | Converted to explicit `TBD` success/denial payload fields until schema acceptance. | `docs/SPEC.md` API inventory; `docs/PRD.md` FR-079 and NFR-009. |

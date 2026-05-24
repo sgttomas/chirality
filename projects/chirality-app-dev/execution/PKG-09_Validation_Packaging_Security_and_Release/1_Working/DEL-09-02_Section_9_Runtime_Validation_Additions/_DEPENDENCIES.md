@@ -49,31 +49,31 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-09-02-001 | ANCHOR | OTHER | UPSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
-| DEP-DEL-09-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-036 Section 8/9 validation | ACTIVE |
-| DEP-DEL-09-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-037 Product-owned engine contract | ACTIVE |
-| DEP-DEL-09-02-004 | ANCHOR | OTHER | UPSTREAM | SOW-039 Append-only HarnessEvent JSONL | ACTIVE |
-| DEP-DEL-09-02-005 | ANCHOR | OTHER | UPSTREAM | SOW-045 SDK settings isolation | ACTIVE |
-| DEP-DEL-09-02-006 | ANCHOR | OTHER | UPSTREAM | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-DEL-09-02-007 | ANCHOR | OTHER | UPSTREAM | SOW-057 Hooks and fail-closed behavior | ACTIVE |
-| DEP-DEL-09-02-008 | ANCHOR | OTHER | UPSTREAM | SOW-063 Governed subagent runtime | ACTIVE |
-| DEP-DEL-09-02-009 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Product-owned runtime contracts | ACTIVE |
-| DEP-DEL-09-02-010 | ANCHOR | OTHER | UPSTREAM | OBJ-003 Auditable Chirality-owned session records | ACTIVE |
-| DEP-DEL-09-02-011 | ANCHOR | OTHER | UPSTREAM | OBJ-005 Deny-first tool governance | ACTIVE |
-| DEP-DEL-09-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 Agent-suite integrity and governed subagent delegation | ACTIVE |
-| DEP-DEL-09-02-013 | ANCHOR | OTHER | UPSTREAM | OBJ-008 Explicit and repeatable validation and release checks | ACTIVE |
-| DEP-DEL-09-02-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-09-01 Section 8 Harness Validation Preservation | ACTIVE |
-| DEP-DEL-09-02-015 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
-| DEP-DEL-09-02-016 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
-| DEP-DEL-09-02-017 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEP-DEL-09-02-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
-| DEP-DEL-09-02-019 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
-| DEP-DEL-09-02-020 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 Initial Chirality MCP Read Tools | ACTIVE |
-| DEP-DEL-09-02-021 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
-| DEP-DEL-09-02-022 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE |
-| DEP-DEL-09-02-023 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
-| DEP-DEL-09-02-024 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
-| DEP-DEL-09-02-025 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-05 Subagent Child Run Records and Artifacts | ACTIVE |
+| DEP-09-02-001 | ANCHOR | OTHER | UPSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
+| DEP-09-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-036 Section 8/9 validation | ACTIVE |
+| DEP-09-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-037 Product-owned engine contract | ACTIVE |
+| DEP-09-02-004 | ANCHOR | OTHER | UPSTREAM | SOW-039 Append-only HarnessEvent JSONL | ACTIVE |
+| DEP-09-02-005 | ANCHOR | OTHER | UPSTREAM | SOW-045 SDK settings isolation | ACTIVE |
+| DEP-09-02-006 | ANCHOR | OTHER | UPSTREAM | SOW-054 Structured permission decisions | ACTIVE |
+| DEP-09-02-007 | ANCHOR | OTHER | UPSTREAM | SOW-057 Hooks and fail-closed behavior | ACTIVE |
+| DEP-09-02-008 | ANCHOR | OTHER | UPSTREAM | SOW-063 Governed subagent runtime | ACTIVE |
+| DEP-09-02-009 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Product-owned runtime contracts | ACTIVE |
+| DEP-09-02-010 | ANCHOR | OTHER | UPSTREAM | OBJ-003 Auditable Chirality-owned session records | ACTIVE |
+| DEP-09-02-011 | ANCHOR | OTHER | UPSTREAM | OBJ-005 Deny-first tool governance | ACTIVE |
+| DEP-09-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 Agent-suite integrity and governed subagent delegation | ACTIVE |
+| DEP-09-02-013 | ANCHOR | OTHER | UPSTREAM | OBJ-008 Explicit and repeatable validation and release checks | ACTIVE |
+| DEP-09-02-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-09-01 Section 8 Harness Validation Preservation | ACTIVE |
+| DEP-09-02-015 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
+| DEP-09-02-016 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
+| DEP-09-02-017 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
+| DEP-09-02-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
+| DEP-09-02-019 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
+| DEP-09-02-020 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 Initial Chirality MCP Read Tools | ACTIVE |
+| DEP-09-02-021 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
+| DEP-09-02-022 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE |
+| DEP-09-02-023 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-05 ToolResultStore and Session Artifacts | ACTIVE |
+| DEP-09-02-024 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
+| DEP-09-02-025 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-05 Subagent Child Run Records and Artifacts | ACTIVE |
 
 ## Run History
 

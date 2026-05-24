@@ -95,7 +95,8 @@ export async function POST(request: Request): Promise<Response> {
 
     const runtime = getHarnessRuntime();
     const session = await runtime.sessionManager.resume(sessionId);
-    if (resolveHarnessProviderMode() === 'anthropic' && !hasAnthropicApiKeyConfigured()) {
+    const providerMode = resolveHarnessProviderMode();
+    if ((providerMode === 'anthropic' || providerMode === 'agentSdk') && !hasAnthropicApiKeyConfigured()) {
       throw new HarnessError(
         'MISSING_API_KEY',
         503,
@@ -187,7 +188,13 @@ export async function POST(request: Request): Promise<Response> {
             if (event.type === 'session:init') {
               await runtime.sessionManager.save(sessionId, {
                 claudeSessionId: event.data.claudeSessionId,
-                model: event.data.model
+                model: event.data.model,
+                ...(providerMode === 'agentSdk'
+                  ? {
+                      sdkSessionId: event.data.claudeSessionId,
+                      sdkPackageVersion: '0.3.150'
+                    }
+                  : {})
               });
             }
 

@@ -1,0 +1,33 @@
+{
+  "strictAllActiveExecutionDagVerdict": "CYCLIC",
+  "blockerSubsetDagVerdict": "CYCLIC",
+  "allActiveExecutionRows": 129,
+  "allActiveExecutionUniqueEdges": 114,
+  "allActiveExecutionSccCount": 2,
+  "allActiveExecutionSccSizes": [
+    18,
+    2
+  ],
+  "blockerSubsetRows": 24,
+  "blockerSubsetUniqueEdges": 24,
+  "blockerSubsetSccCount": 1,
+  "blockerSubsetSccSizes": [
+    2
+  ],
+  "bidirectionalPairs": 13,
+  "humanRulingWorkbookRows": 13,
+  "sourceDependencyRowsChanged": 0,
+  "nativeSchemaSummary": {
+    "filesScanned": 51,
+    "passFiles": 51,
+    "failFiles": 0
+  },
+  "strictSchemaSummary": {
+    "errorFiles": 0,
+    "failFiles": 46,
+    "filesScanned": 51,
+    "passFiles": 5,
+    "totalErrors": 503,
+    "totalWarnings": 0
+  }
+}

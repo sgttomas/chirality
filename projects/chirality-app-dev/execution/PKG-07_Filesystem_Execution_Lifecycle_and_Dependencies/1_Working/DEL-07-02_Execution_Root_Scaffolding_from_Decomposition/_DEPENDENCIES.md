@@ -23,13 +23,13 @@ Active extracted rows: 7.
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-DEL-07-02-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | UPSTREAM | DEL-07-02 - Execution Root Scaffolding from Decomposition | ACTIVE |
-| DEP-DEL-07-02-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | UPSTREAM | SOW-024 - Execution-root scaffolding | ACTIVE |
-| DEP-DEL-07-02-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | UPSTREAM | SOW-025 - Package/deliverable layout | ACTIVE |
-| DEP-DEL-07-02-004 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted v3.2 SOFTWARE_DECOMP decomposition markdown | ACTIVE |
-| DEP-DEL-07-02-005 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-07-01 - Working Root Validation and Instruction Root Protection | ACTIVE |
-| DEP-DEL-07-02-006 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 - docs/CONTRACT.md | ACTIVE |
-| DEP-DEL-07-02-007 | EXECUTION | PREREQUISITE | UPSTREAM | _REFERENCES.md - Authoritative source corpus | ACTIVE |
+| DEP-07-02-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | UPSTREAM | DEL-07-02 - Execution Root Scaffolding from Decomposition | ACTIVE |
+| DEP-07-02-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | UPSTREAM | SOW-024 - Execution-root scaffolding | ACTIVE |
+| DEP-07-02-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | UPSTREAM | SOW-025 - Package/deliverable layout | ACTIVE |
+| DEP-07-02-004 | EXECUTION | PREREQUISITE | UPSTREAM | Accepted v3.2 SOFTWARE_DECOMP decomposition markdown | ACTIVE |
+| DEP-07-02-005 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-07-01 - Working Root Validation and Instruction Root Protection | ACTIVE |
+| DEP-07-02-006 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 - docs/CONTRACT.md | ACTIVE |
+| DEP-07-02-007 | EXECUTION | PREREQUISITE | UPSTREAM | _REFERENCES.md - Authoritative source corpus | ACTIVE |
 
 ## Run Notes
 

@@ -29,12 +29,12 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | DependencyID | Class | Direction | Type | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
-| DEP-DEL-08-04-001 | ANCHOR | UPSTREAM | OTHER | WBS_NODE | SOW-063 Governed subagent runtime | ACTIVE |
-| DEP-DEL-08-04-002 | EXECUTION | UPSTREAM | PREREQUISITE | DOCUMENT | Accepted source corpus for DEL-08-04 | ACTIVE |
-| DEP-DEL-08-04-003 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Existing `evaluateSubagentGovernance` behavior or target contract | ACTIVE |
-| DEP-DEL-08-04-004 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Permission overlay and hook infrastructure | ACTIVE |
-| DEP-DEL-08-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DELIVERABLE | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | ACTIVE |
-| DEP-DEL-08-04-006 | EXECUTION | DOWNSTREAM | HANDOVER | DELIVERABLE | DEL-08-05 Subagent Child Run Records and Artifacts | ACTIVE |
+| DEP-08-04-001 | ANCHOR | UPSTREAM | OTHER | WBS_NODE | SOW-063 Governed subagent runtime | ACTIVE |
+| DEP-08-04-002 | EXECUTION | UPSTREAM | PREREQUISITE | DOCUMENT | Accepted source corpus for DEL-08-04 | ACTIVE |
+| DEP-08-04-003 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Existing `evaluateSubagentGovernance` behavior or target contract | ACTIVE |
+| DEP-08-04-004 | EXECUTION | UPSTREAM | PREREQUISITE | UNKNOWN | Permission overlay and hook infrastructure | ACTIVE |
+| DEP-08-04-005 | EXECUTION | UPSTREAM | PREREQUISITE | DELIVERABLE | DEL-04-01 SDK Probe and Version-Pinned Adoption Decision | ACTIVE |
+| DEP-08-04-006 | EXECUTION | DOWNSTREAM | HANDOVER | DELIVERABLE | DEL-08-05 Subagent Child Run Records and Artifacts | ACTIVE |
 
 ## Run Notes
 

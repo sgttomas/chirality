@@ -38,20 +38,20 @@ Register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
-| DEP-06-01-A001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE |
-| DEP-06-01-A002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-06-01-A003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-055 Permission modes and deny-first overlay | ACTIVE |
-| DEP-06-01-A004 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-056 Tool permission events | ACTIVE |
-| DEP-06-01-A005 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-058 Interactive approval through `canUseTool` | ACTIVE |
-| DEP-06-01-E001 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 `docs/TYPES.md` Section 8 | ACTIVE |
-| DEP-06-01-E002 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 `docs/CONTRACT.md` Section 1.6 | ACTIVE |
-| DEP-06-01-E003 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 `docs/SPEC.md` Sections 14 and 15 | ACTIVE |
-| DEP-06-01-E004 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-005 `docs/PLAN.md` roadmap sequencing | ACTIVE |
-| DEP-06-01-E005 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 `docs/PRD.md` source-state reconciliation | ACTIVE |
-| DEP-06-01-E006 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
-| DEP-06-01-E007 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-02 SDK Read Tool Surface and Tool Validation | ACTIVE |
-| DEP-06-01-E008 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-03 Initial Chirality MCP Read Tools | ACTIVE |
-| DEP-06-01-E009 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | PKG-05/PKG-03 event writer and session JSONL append API | ACTIVE |
+| DEP-06-01-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE |
+| DEP-06-01-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-054 Structured permission decisions | ACTIVE |
+| DEP-06-01-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-055 Permission modes and deny-first overlay | ACTIVE |
+| DEP-06-01-004 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-056 Tool permission events | ACTIVE |
+| DEP-06-01-005 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-058 Interactive approval through `canUseTool` | ACTIVE |
+| DEP-06-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 `docs/TYPES.md` Section 8 | ACTIVE |
+| DEP-06-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-002 `docs/CONTRACT.md` Section 1.6 | ACTIVE |
+| DEP-06-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-003 `docs/SPEC.md` Sections 14 and 15 | ACTIVE |
+| DEP-06-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-005 `docs/PLAN.md` roadmap sequencing | ACTIVE |
+| DEP-06-01-010 | EXECUTION | CONSTRAINT | UPSTREAM | DOCUMENT | REF-006 `docs/PRD.md` source-state reconciliation | ACTIVE |
+| DEP-06-01-011 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
+| DEP-06-01-012 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-02 SDK Read Tool Surface and Tool Validation | ACTIVE |
+| DEP-06-01-013 | EXECUTION | INTERFACE | UPSTREAM | DELIVERABLE | DEL-06-03 Initial Chirality MCP Read Tools | ACTIVE |
+| DEP-06-01-014 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN | PKG-05/PKG-03 event writer and session JSONL append API | ACTIVE |
 
 ## Run Notes
 
@@ -64,13 +64,13 @@ Register: `Dependencies.csv` v3.1
 - Decomposition validation status: available; parent anchor resolves to `PKG-06`; SOW trace anchors resolve to SOW-054, SOW-055, SOW-056, and SOW-058.
 - Parent anchor check: PASS. One ACTIVE `IMPLEMENTS_NODE` anchor exists.
 - [WARNING] SOURCE_STATE: `_REFERENCES.md` reports `docs/PRD.md` REF-006 as `HASH_MISMATCH`; PRD-derived details remain warning-qualified until reconciled.
-- [WARNING] TARGET_TBD: Event writer/session JSONL append API dependency is explicit in `Procedure.md` as an assumption, but exact target deliverable and call path remain `TBD`; row DEP-06-01-E009 preserves `TargetType=UNKNOWN`.
+- [WARNING] TARGET_TBD: Event writer/session JSONL append API dependency is explicit in `Procedure.md` as an assumption, but exact target deliverable and call path remain `TBD`; row DEP-06-01-014 preserves `TargetType=UNKNOWN`.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition path/status | ACTIVE counts | Warnings |
 |---|---|---|---|---|---|
-| 2026-05-20T19:41:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | 14 total: 5 ANCHOR, 9 EXECUTION | SOURCE_STATE REF-006 HASH_MISMATCH; TARGET_TBD DEP-06-01-E009 |
+| 2026-05-20T19:41:28-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` / available | 14 total: 5 ANCHOR, 9 EXECUTION | SOURCE_STATE REF-006 HASH_MISMATCH; TARGET_TBD DEP-06-01-014 |
 
 ## Lifecycle Summary
 
