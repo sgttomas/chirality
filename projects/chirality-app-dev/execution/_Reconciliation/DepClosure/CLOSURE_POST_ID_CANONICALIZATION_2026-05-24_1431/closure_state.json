@@ -1,0 +1,16 @@
+{
+  "blocker_subset_scc_count": 0,
+  "canonical_dependency_id_format": "DEP-XX-YY-NNN",
+  "changed_dependency_rows": 0,
+  "created": "2026-05-24",
+  "id_canonicalization_status": "COMPLETE",
+  "id_normalization_count": 0,
+  "latest_prior_snapshot": "CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348",
+  "strict_full_graph_scc_count": 2,
+  "strict_full_graph_scc_sizes": [
+    18,
+    2
+  ],
+  "strict_project_blocker_state_reportable": false,
+  "verdict": "STRICT_FULL_GRAPH_CYCLIC_BLOCKER_SUBSET_ACYCLIC"
+}

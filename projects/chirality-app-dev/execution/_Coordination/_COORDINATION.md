@@ -15,7 +15,14 @@
 - Treat upstream dependencies as satisfied only when the upstream deliverable is `SEMANTIC_READY`.
 - Determine dependencies after four-document authoring. Human ruling on 2026-05-20 skips semantic lensing and P3 enrichment for dependency recording.
 - Treat existing `_SEMANTIC.md` outputs as invalid evidence for dependency extraction; do not consume them for dependency recording.
+- `PKG-00` is reserved as a meta/control package for DAG closure and project-level dependency reconciliation. It may contain `DEL-00-*` control deliverables for SCC closure. These control deliverables must not participate as product dependency graph nodes unless a later human ruling explicitly promotes them with deliverable-local dependency registers.
 
 ## Reporting Rule
 
 ORCHESTRATOR may report lifecycle state immediately. It must not compute blocked/available state until dependency extraction has produced valid `Dependencies.csv` registers and the merged FULL_GRAPH is acyclic.
+
+## Control Package Overlay
+
+| PackageID | Name | Role | Graph Participation |
+|---|---|---|---|
+| PKG-00 | DAG Closure and Project Control | Meta/control package for SCC closure workflow, DepClosure pointers, and project-level reconciliation records. | `DEL-00-*` control deliverables excluded from product dependency graph by default. |

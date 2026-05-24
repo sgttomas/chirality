@@ -37,7 +37,7 @@ DOCX_PATH = SOURCE_ROOT / "26020-Package_Requirements.docx"
 DBM_COMP_PATH = SOURCE_ROOT / "DBM-Comp_and_Liquids" / "3-25_Comp_and_Liquids_DBM.md"
 DBM_DEEPCUT_PATH = SOURCE_ROOT / "DBM-Deepcut" / "4-25_Deepcut_DBM.md"
 
-REVISION = "0.9"
+REVISION = "1.0"
 GENERATED_ON = date.today().isoformat()
 GATE1_APPROVAL_DATE = "2026-05-24"
 GATE1_SNAPSHOT_DIRNAME = f"GATE-01_Intake_Approved_{GATE1_APPROVAL_DATE}"
@@ -47,6 +47,12 @@ GATE3_APPROVAL_DATE = "2026-05-24"
 GATE3_SNAPSHOT_DIRNAME = f"GATE-03_Objectives_Approved_{GATE3_APPROVAL_DATE}"
 GATE4_APPROVAL_DATE = "2026-05-24"
 GATE4_SNAPSHOT_DIRNAME = f"GATE-04_Packages_Approved_{GATE4_APPROVAL_DATE}"
+GATE5_APPROVAL_DATE = "2026-05-24"
+GATE5_SNAPSHOT_DIRNAME = f"GATE-05_Deliverables_Approved_{GATE5_APPROVAL_DATE}"
+GATE6_APPROVAL_DATE = "2026-05-24"
+GATE6_SNAPSHOT_DIRNAME = f"GATE-06_Coverage_Approved_{GATE6_APPROVAL_DATE}"
+GATE7_APPROVAL_DATE = "2026-05-24"
+GATE7_SNAPSHOT_DIRNAME = f"GATE-07_Final_Published_{GATE7_APPROVAL_DATE}"
 
 CORE_INTERFACE_COLUMNS = [
     "Process Piping",
@@ -68,6 +74,18 @@ CORE_INTERFACE_COLUMNS = [
     "Product Loading",
     "Pipeline / Pigging",
 ]
+
+MANUAL_DOC_MATCH_BY_PACKAGE_ID = {
+    "PKG-060": "26020-01-PT-18-002",
+    "PKG-061": "26020-01-PT-18-004",
+    "PKG-075": "26020-01-PT-28-001",
+    "PKG-091": "26020-03-PT-18-002",
+}
+
+PACKAGE_SOURCE_DISPOSITIONS = {
+    "PKG-069": "Gate 6 disposition: Gas Mole Sieve scope is included with the Cryogenic Unit package scope; NGL Mole Sieve remains a distinct package.",
+    "PKG-077": "Gate 6 disposition: Methanol Injection scope is included with the Cryogenic Unit package scope.",
+}
 
 OBJECTIVES = [
     {
@@ -109,7 +127,7 @@ OBJECTIVES = [
         "SourceRef": "Accepted Gate 1 responsibility clarification; accepted Gate 2 SSOW; workbook Electrical and Mechanical discipline rows; 26020-Package_Requirements.docx vendor-document tables",
         "DerivedSourceIntent": "The user clarified that electrical and mechanical packages are developed by vendors while the EPC integrates them into the facility.",
         "TestCriteria": "Electrical and mechanical package deliverables assign package engineering/design/equipment/documentation to the Package Vendor and integration/interface review to the EPC Integrator.",
-        "ExpectedEvidence": "Electrical and mechanical package register rows, vendor-equipment deliverables, vendor-document deliverables, responsibility model text, and EPC interface deliverables.",
+        "ExpectedEvidence": "Electrical and mechanical package register rows, EPC Scope of Work, Package Datasheet, Construction Work Package, vendor-equipment deliverables, vendor-document turnover deliverables, responsibility model text, and EPC interface artifacts.",
         "MappingBasis": "Workbook packages with Electrical or Mechanical discipline.",
         "Notes": "This remains a valid objective because it controls responsibility and deliverable ownership, not just formatting.",
         "ReviewFocus": "Confirm the vendor/EPC split is stated strongly enough and does not assign vendor design work to the EPC Integrator.",
@@ -175,7 +193,7 @@ OBJECTIVES = [
         "SourceRef": "DBM-Deepcut/4-25_Deepcut_DBM.md SEC-10 Plant Design Philosophy and Mechanical Requirements plus assumptions/TBD sections; DBM-Comp_and_Liquids/3-25_Comp_and_Liquids_DBM.md SEC-09 Plant Design Requirements and Mechanical Package Structure plus assumptions/TBD sections; 26020-Package_Requirements.docx vendor-document tables",
         "DerivedSourceIntent": "The DBMs and package requirements document define sparing, isolation, maintenance access, vendor document registers, package deliverables, and open design-development items as closure conditions.",
         "TestCriteria": "Package deliverables and open issues show vendor documents, package engineering basis, sparing/isolation/access/winterization assumptions, commissioning/turnover needs, and unresolved DBM/package TBDs.",
-        "ExpectedEvidence": "Vendor document groups, package scope-basis deliverables, interface coordination deliverables, maintenance-access interfaces, open issue register rows, and coverage telemetry.",
+        "ExpectedEvidence": "Vendor document turnover deliverables, EPC Scope of Work, Package Datasheet, Construction Work Package, interface evidence artifacts, maintenance-access interfaces, open issue register rows, and coverage telemetry.",
         "MappingBasis": "Vendor packages, packages with maintenance-access interfaces, packages with detailed Word requirements, and packages with source-limited detail/open issues.",
         "Notes": "This is retained as an objective because it is a handoff success condition with deliverable evidence, not just register hygiene.",
         "ReviewFocus": "Confirm open-item and handoff readiness evidence should remain a Gate 3 objective.",
@@ -193,7 +211,11 @@ VOCABULARY = [
     ("Electrical Package", "Electrical equipment package; electrical vendor package", "Electrical package rows are treated as vendor-owned engineering/design/equipment packages unless later source authority says otherwise."),
     ("Package Vendor", "Vendor; supplier; equipment vendor", "Entity responsible for engineering, design, vendor documentation, and physical equipment package for each electrical or mechanical package."),
     ("EPC Integrator", "Main EPC company; central EPC; integration contractor", "Entity responsible for integrating vendor packages into a functional process facility, including interfaces, tie-ins, constructability, procurement/construction coordination, and facility-level integration."),
-    ("Vendor Engineering Deliverable", "Vendor document; document requirement", "Word-document deliverable rows grouped into PROJECT_DECOMP deliverables by category."),
+    ("Scope of Work", "SOW; package scope of work", "Mandatory EPC Integrator package deliverable that identifies tagged equipment where source-supported, states package function, and explains whole-facility integration."),
+    ("Package Datasheet", "Package data sheet; vendor handoff datasheet", "Mandatory EPC Integrator technical handoff deliverable containing the data required for third-party vendor or discipline package engineering and design."),
+    ("Construction Work Package", "CWP; construction package", "Mandatory EPC Integrator package deliverable describing physical installation, construction, tie-ins, inspection, and turnover."),
+    ("Vendor Document Turnover", "Vendor document package; vendor submittal package", "Single package-level vendor deliverable that groups source vendor-document rows as artifacts/evidence."),
+    ("Vendor Engineering Deliverable", "Vendor document; document requirement", "Word-document deliverable rows carried as artifacts/evidence under Vendor Document Turnover Package deliverables."),
     ("Interface Type", "Interface column; package interface", "Workbook X columns captured as interface facts, not packages."),
     ("DBM", "Design Basis Memorandum; design basis", "Integral source for objectives, boundaries, and source context."),
     ("TBD", "To be determined; unresolved", "Allowed when source truth is missing; must be surfaced in OPEN_ISSUES.csv."),
@@ -662,6 +684,32 @@ def responsibility_model(package: PackageRow) -> str:
     )
 
 
+def interface_disposition_note(package: PackageRow) -> str:
+    if not package.interface_notes:
+        return ""
+    if package.discipline == "Controls":
+        return (
+            f"{package.interface_notes} Gate 6 disposition: controls power-panel interfaces remain interface "
+            "facts/artifacts under the package datasheet; no separate package or deliverable is created."
+        )
+    if package.discipline == "Instrumentation":
+        return (
+            f"{package.interface_notes} Gate 6 disposition: instrumentation field supports, power, and "
+            "communications are included in each package scope as appropriate under the plug-n-play package philosophy."
+        )
+    if package.package_id == "PKG-103":
+        return (
+            f"{package.interface_notes} Gate 6 disposition: pipe racks and pipe rack modules are designed "
+            "exclusively by the EPC Integrator."
+        )
+    if package.package_id == "PKG-105":
+        return (
+            f"{package.interface_notes} Gate 6 disposition: platform-to-equipment tie-ins are the EPC "
+            "Integrator's responsibility through the overall 3D model and integrated P&ID set."
+        )
+    return f"{package.interface_notes} Gate 6 disposition recorded."
+
+
 def base_deliverable_responsible_party(package: PackageRow, deliverable_type: str) -> str:
     if is_vendor_package(package):
         if deliverable_type == "Interface Coordination":
@@ -678,6 +726,8 @@ def source_refs_for_package(package: PackageRow, doc_pkg: DocPackage | None) -> 
         refs.append(doc_pkg.source_ref)
         if doc_pkg.source_basis:
             refs.append(f"Word Source Basis: {doc_pkg.source_basis}")
+    if package.package_id in PACKAGE_SOURCE_DISPOSITIONS:
+        refs.append(PACKAGE_SOURCE_DISPOSITIONS[package.package_id])
     if package.wbs == "01":
         refs.append("DBM-Deepcut/4-25_Deepcut_DBM.md")
     elif package.wbs in {"02", "03"}:
@@ -688,14 +738,25 @@ def source_refs_for_package(package: PackageRow, doc_pkg: DocPackage | None) -> 
 def build_doc_package_match(packages: list[PackageRow], doc_packages: list[DocPackage]) -> dict[str, DocPackage]:
     by_key: dict[str, list[DocPackage]] = defaultdict(list)
     by_tracking: dict[str, list[DocPackage]] = defaultdict(list)
+    by_raw_tracking: dict[str, list[DocPackage]] = defaultdict(list)
     for doc_pkg in doc_packages:
         by_key[source_package_key(doc_pkg.tracking, doc_pkg.name)].append(doc_pkg)
         by_tracking[doc_pkg.normalized_tracking].append(doc_pkg)
+        by_raw_tracking[doc_pkg.tracking].append(doc_pkg)
 
     matched: dict[str, DocPackage] = {}
     used_doc_ids: set[int] = set()
     for package in packages:
+        manual_doc_tracking = MANUAL_DOC_MATCH_BY_PACKAGE_ID.get(package.package_id)
+        if manual_doc_tracking:
+            manual_candidates = by_raw_tracking.get(manual_doc_tracking, [])
+            if len(manual_candidates) == 1:
+                matched[package.source_package_key] = manual_candidates[0]
+                used_doc_ids.add(id(manual_candidates[0]))
+                continue
+
         candidates = by_key.get(package.source_package_key, [])
+        candidates = [candidate for candidate in candidates if id(candidate) not in used_doc_ids]
         if len(candidates) == 1:
             matched[package.source_package_key] = candidates[0]
             used_doc_ids.add(id(candidates[0]))
@@ -821,21 +882,6 @@ def build_outputs() -> None:
             )
             issue_seq += 1
 
-        if package.interface_notes:
-            open_issues.append(
-                issue(
-                    issue_seq,
-                    "ACTION",
-                    "INTERFACE_NOTE_CONFIRMATION",
-                    "Gate 5",
-                    package.package_id,
-                    package.interface_notes,
-                    package.source_ref,
-                    "Confirm interface note disposition before final downstream package handoff.",
-                )
-            )
-            issue_seq += 1
-
         for interface_type in package.interfaces:
             interface_rows.append(
                 {
@@ -848,7 +894,7 @@ def build_outputs() -> None:
                     "InterfaceType": interface_type,
                     "Applicability": "YES",
                     "SourceRef": package.source_ref,
-                    "Notes": package.interface_notes,
+                    "Notes": interface_disposition_note(package),
                 }
             )
 
@@ -909,32 +955,6 @@ def build_outputs() -> None:
             next_deliverable_seq,
         )
 
-        if doc_pkg:
-            next_deliverable_seq = append_vendor_deliverables(
-                package,
-                doc_pkg,
-                package_objectives,
-                scope_by_package[package.package_id],
-                deliverable_rows,
-                artifact_rows,
-                deliverables_by_package,
-                next_deliverable_seq,
-            )
-        else:
-            open_issues.append(
-                issue(
-                    issue_seq,
-                    "INFO" if package.discipline == "Mechanical" else "ACTION",
-                    "MISSING_DETAILED_PACKAGE_REQUIREMENTS",
-                    "Gate 5",
-                    package.package_id,
-                    f"No matching detailed package requirements section was found for workbook package '{package.name}'.",
-                    package.source_ref,
-                    "Use workbook and DBM basis only until discipline-specific source detail is provided or mapped.",
-                )
-            )
-            issue_seq += 1
-
     assign_scope_deliverables(scope_rows, deliverables_by_package)
 
     unmatched_doc_packages = [doc_pkg for doc_pkg in doc_packages if id(doc_pkg) not in matched_doc_object_ids]
@@ -944,7 +964,7 @@ def build_outputs() -> None:
                 issue_seq,
                 "ACTION",
                 "UNMATCHED_WORD_PACKAGE_SECTION",
-                "Gate 5",
+                "Gate 6",
                 "TBD",
                 f"Word package section '{doc_pkg.heading}' did not match a workbook package row by tracking/name.",
                 doc_pkg.source_ref,
@@ -1143,79 +1163,428 @@ def append_base_deliverables(
     deliverables_by_package: dict[str, list[str]],
     next_seq: int,
 ) -> int:
-    base_specs = [
-        (
-            "Package Scope Basis",
-            "package-scope-basis",
-            "Scope Basis",
-            "Package scope description and basis record",
-            "Record the workbook-defined package scope, source references, and any detailed Word package scope when available.",
-        ),
+    source_ref = package.source_ref if not doc_pkg else f"{package.source_ref}; {doc_pkg.source_ref}"
+    sow_artifacts = [
+        {
+            "Name": "Package scope of work",
+            "Type": "EPC Scope of Work",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Integrator-authored package scope, function, tagged-equipment basis, source rows, WBS, discipline, and boundaries.",
+        },
+        {
+            "Name": "Tagged equipment and package identity list",
+            "Type": "Tagged Equipment Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Package name, workbook ID, CoA tracking number, WBS, and detailed major-equipment text where source-supported.",
+        },
+        {
+            "Name": "Package function and whole-facility integration narrative",
+            "Type": "EPC Integration Narrative",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Explains what the package does and how it integrates into the process facility.",
+        },
+        {
+            "Name": "Package responsibility assignment record",
+            "Type": "Responsibility Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": package.source_ref,
+            "Notes": responsibility_model(package),
+        },
     ]
-    if is_vendor_package(package):
-        base_specs.append(
-            (
-                "Vendor Engineering, Design and Physical Equipment Package",
-                "vendor-engineering-design-and-physical-equipment-package",
-                "Vendor Equipment Package",
-                "Vendor engineered physical equipment package",
-                "Package vendor engineering, design, documentation, fabrication/supply, and physical equipment package for EPC integration into the full process facility.",
-            )
-        )
-    base_specs.append(
-        (
-            "Physical Interface Coordination",
-            "physical-interface-coordination",
-            "Interface Coordination",
-            "Package interface matrix",
-            "Carry applicable workbook interface types and interface notes for downstream coordination.",
-        ),
-    )
-    if not doc_pkg:
-        base_specs.append(
-            (
-                f"{package.discipline} Discipline Package Requirements",
-                f"{package.discipline.lower()}-discipline-package-requirements",
-                "TBD Discipline Requirements",
-                "TBD discipline documentation package",
-                "Placeholder deliverable limited to workbook and DBM source support; detailed requirements remain open.",
-            )
-        )
-    for name, desc, deliverable_type, artifact_name, description in base_specs:
-        deliverable_id = make_deliverable_id(package.package_id, next_seq, desc)
-        next_seq += 1
-        deliverables_by_package[package.package_id].append(deliverable_id)
-        deliverable_rows.append(
+    if doc_pkg:
+        sow_artifacts.append(
             {
-                "DeliverableID": deliverable_id,
-                "Name": name,
-                "ParentPackageID": package.package_id,
-                "ParentWorkbookID": package.workbook_id,
-                "PackageName": package.name,
-                "Description": description,
-                "ResponsibleParty": base_deliverable_responsible_party(package, deliverable_type),
-                "Type": deliverable_type,
-                "AnticipatedArtifacts": artifact_name,
-                "CoversScopeItems": scope_ids,
-                "SupportsObjectives": objective_ids,
-                "SourceRef": package.source_ref if not doc_pkg else f"{package.source_ref}; {doc_pkg.source_ref}",
-                "OpenIssue": "TRUE" if package.package_id == "TBD_PENDING_ID" or not doc_pkg and deliverable_type == "TBD Discipline Requirements" else "FALSE",
-                "Notes": "Generated from workbook package row and source availability.",
+                "Name": "Detailed mechanical package scope extraction evidence",
+                "Type": "Source Scope Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": doc_pkg.source_ref,
+                "Notes": "Detailed scope text from the package requirements document supports this package basis.",
             }
         )
-        artifact_rows.append(
+    next_seq = append_deliverable(
+        package,
+        objective_ids,
+        scope_ids,
+        deliverable_rows,
+        artifact_rows,
+        deliverables_by_package,
+        next_seq,
+        "Scope of Work",
+        "scope-of-work",
+        "EPC Scope of Work",
+        "Mandatory EPC Integrator deliverable for the full package scope, including tagged equipment, package function, source basis, boundaries, and whole-facility integration narrative.",
+        "EPC Integrator",
+        "Package scope of work; tagged equipment and package identity list; package function and integration narrative; responsibility assignment record",
+        source_ref,
+        "FALSE",
+        "Mandatory Gate 5 EPC anchor deliverable defined by user instruction.",
+        sow_artifacts,
+    )
+
+    datasheet_artifacts = [
+        {
+            "Name": "Package technical datasheet",
+            "Type": "EPC Package Datasheet",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Integrator-authored technical handoff data required for third-party package engineering and design.",
+        },
+        {
+            "Name": "Vendor engineering handoff basis",
+            "Type": "Vendor Handoff Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Technical basis, battery limits, design expectations, and source-supported requirements to be handed to the package delivery entity.",
+        },
+        {
+            "Name": "Package interface requirements matrix",
+            "Type": "EPC Interface Requirements Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": package.source_ref,
+            "Notes": "Workbook interface facts are carried as datasheet evidence for third-party engineering/design handoff.",
+        },
+    ]
+    for interface_type in package.interfaces:
+        datasheet_artifacts.append(
             {
-                "ArtifactID": digest_id("ART", deliverable_id, artifact_name),
-                "Name": artifact_name,
-                "ParentDeliverableID": deliverable_id,
-                "ParentPackageID": package.package_id,
-                "Type": deliverable_type,
+                "Name": f"Interface fact - {interface_type}",
+                "Type": "Interface Fact Evidence",
+                "SourceArtifactID": digest_id("IFC", package.source_ref, interface_type),
+                "SourceRef": package.source_ref,
+                "Notes": interface_disposition_note(package) or "Workbook interface X-column fact carried as evidence, not as a separate deliverable.",
+            }
+        )
+    if package.interface_notes:
+        datasheet_artifacts.append(
+            {
+                "Name": "Interface note disposition record",
+                "Type": "Interface Issue Evidence",
                 "SourceArtifactID": "",
                 "SourceRef": package.source_ref,
-                "Notes": "Anticipated artifact generated from PROJECT_DECOMP package requirements.",
+                "Notes": interface_disposition_note(package),
             }
         )
+    if doc_pkg and doc_pkg.major_equipment:
+        datasheet_artifacts.append(
+            {
+                "Name": "Major included equipment evidence",
+                "Type": "Tagged Equipment Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": f"{doc_pkg.source_ref}; Major Included Equipment",
+                "Notes": doc_pkg.major_equipment,
+            }
+        )
+    next_seq = append_deliverable(
+        package,
+        sorted(set(objective_ids + ["OBJ-004", "OBJ-010"])) if is_vendor_package(package) else objective_ids,
+        scope_ids,
+        deliverable_rows,
+        artifact_rows,
+        deliverables_by_package,
+        next_seq,
+        "Package Datasheet",
+        "package-datasheet",
+        "EPC Package Datasheet",
+        "Mandatory EPC Integrator technical handoff deliverable containing the package data required for third-party vendor or discipline package engineering and design.",
+        "EPC Integrator",
+        "Package technical datasheet; vendor engineering handoff basis; package interface requirements matrix; source-supported equipment and design criteria",
+        source_ref,
+        "FALSE",
+        "Mandatory Gate 5 EPC anchor deliverable; interface facts are intentionally carried here as evidence rather than standalone deliverables.",
+        datasheet_artifacts,
+    )
+
+    cwp_artifacts = [
+        {
+            "Name": "Construction work package",
+            "Type": "EPC Construction Work Package",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Integrator-authored construction work package for physical installation, construction, and tie-in to larger systems.",
+        },
+        {
+            "Name": "Installation and tie-in workface plan",
+            "Type": "Construction Tie-In Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": source_ref,
+            "Notes": "Workface planning evidence for installing/building the package and connecting it to adjacent process, utility, electrical, controls, civil, structural, and safety systems as applicable.",
+        },
+        {
+            "Name": "Construction interface and turnover checklist",
+            "Type": "Construction Interface Evidence",
+            "SourceArtifactID": "",
+            "SourceRef": package.source_ref,
+            "Notes": "Construction-facing interface, tie-in, inspection, and turnover evidence for the approved package.",
+        },
+    ]
+    next_seq = append_deliverable(
+        package,
+        sorted(set(objective_ids + ["OBJ-008", "OBJ-010"])),
+        scope_ids,
+        deliverable_rows,
+        artifact_rows,
+        deliverables_by_package,
+        next_seq,
+        "Construction Work Package",
+        "construction-work-package",
+        "EPC Construction Work Package",
+        "Mandatory EPC Integrator deliverable describing how the package will be physically installed, built, inspected, turned over, and tied into the larger facility systems.",
+        "EPC Integrator",
+        "Construction work package; installation and tie-in workface plan; construction interface and turnover checklist",
+        source_ref,
+        "FALSE",
+        "Mandatory Gate 5 EPC anchor deliverable defined by user instruction.",
+        cwp_artifacts,
+    )
+
+    if is_vendor_package(package):
+        vendor_equipment_artifacts = [
+            {
+                "Name": "Vendor engineered physical equipment package",
+                "Type": "Vendor Equipment Package",
+                "SourceArtifactID": "",
+                "SourceRef": source_ref,
+                "Notes": "Vendor-owned engineering, design, fabrication/supply, and physical package evidence.",
+            },
+            {
+                "Name": "Vendor package design basis and datasheet set",
+                "Type": "Vendor Design Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": source_ref,
+                "Notes": "Expected vendor package design basis and datasheet evidence; detailed rows are source-specific where available.",
+            },
+        ]
+        if doc_pkg and doc_pkg.major_equipment:
+            vendor_equipment_artifacts.append(
+                {
+                    "Name": "Major included equipment evidence",
+                    "Type": "Source Scope Evidence",
+                    "SourceArtifactID": "",
+                    "SourceRef": f"{doc_pkg.source_ref}; Major Included Equipment",
+                    "Notes": doc_pkg.major_equipment,
+                }
+            )
+        next_seq = append_deliverable(
+            package,
+            objective_ids,
+            scope_ids,
+            deliverable_rows,
+            artifact_rows,
+            deliverables_by_package,
+            next_seq,
+            "Vendor Engineered Equipment Package",
+            "vendor-engineered-equipment-package",
+            "Vendor Package Production Unit",
+            "Package Vendor production unit for engineering, design, fabrication/supply, and the physical equipment package developed from the EPC package Scope of Work and Package Datasheet.",
+            "Package Vendor (engineering/design/equipment) with EPC Integrator integration review",
+            "Vendor engineered physical equipment package; vendor package design basis and datasheet set",
+            source_ref,
+            "FALSE",
+            "Additional Gate 5 deliverable framed as a vendor package production unit anchored by the EPC Scope of Work and Package Datasheet.",
+            vendor_equipment_artifacts,
+        )
+
+        vendor_doc_artifacts = build_vendor_document_artifacts(package, doc_pkg)
+        next_seq = append_deliverable(
+            package,
+            sorted(set(objective_ids + ["OBJ-004", "OBJ-010"])),
+            scope_ids,
+            deliverable_rows,
+            artifact_rows,
+            deliverables_by_package,
+            next_seq,
+            "Vendor Document Turnover Package",
+            "vendor-document-turnover-package",
+            "Vendor Document Turnover",
+            "Single Package Vendor deliverable for the vendor document register, submittals, source-required vendor documentation, and turnover records, with EPC Integrator review.",
+            "Package Vendor (vendor documentation) with EPC Integrator interface/integration review",
+            "Vendor document register; vendor document submittals; source vendor document table rows as artifacts where available; turnover records",
+            source_ref,
+            "FALSE" if doc_pkg else "TRUE",
+            "Additional Gate 5 deliverable; individual source document rows remain artifacts/evidence, not separate deliverables.",
+            vendor_doc_artifacts,
+        )
+
+        acceptance_artifacts = [
+            {
+                "Name": "Vendor document review and comment log",
+                "Type": "EPC Vendor Review Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": source_ref,
+                "Notes": "EPC review evidence for vendor documentation and integration requirements.",
+            },
+            {
+                "Name": "Vendor package acceptance and turnover checklist",
+                "Type": "EPC Acceptance Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": source_ref,
+                "Notes": "Acceptance and turnover evidence for integration into the facility.",
+            },
+            {
+                "Name": "Factory/shop test and inspection evidence",
+                "Type": "Vendor Test Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": source_ref,
+                "Notes": "Expected package test/inspection evidence; detailed requirements are source-specific where available.",
+            },
+        ]
+        next_seq = append_deliverable(
+            package,
+            sorted(set(objective_ids + ["OBJ-010"])),
+            scope_ids,
+            deliverable_rows,
+            artifact_rows,
+            deliverables_by_package,
+            next_seq,
+            "EPC Vendor Package Review and Acceptance",
+            "epc-vendor-package-review-and-acceptance",
+            "EPC Vendor Package Acceptance",
+            "EPC Integrator deliverable for vendor package review, integration acceptance, and handoff readiness against the EPC Scope of Work, Package Datasheet, and Construction Work Package.",
+            "EPC Integrator (lead) with Package Vendor input",
+            "Vendor document review log; package acceptance checklist; test/inspection evidence; turnover evidence",
+            source_ref,
+            "FALSE" if doc_pkg else "TRUE",
+            "Additional Gate 5 deliverable framed as EPC-integrator review and acceptance evidence.",
+            acceptance_artifacts,
+        )
+    else:
+        next_seq = append_deliverable(
+            package,
+            objective_ids,
+            scope_ids,
+            deliverable_rows,
+            artifact_rows,
+            deliverables_by_package,
+            next_seq,
+            f"EPC / {package.discipline} Discipline Production Package",
+            f"epc-{package.discipline.lower()}-discipline-production-package",
+            "EPC/Discipline Production Unit",
+            "EPC Integrator or discipline subcontractor production unit for the non-vendor package scope, carried conservatively from workbook and DBM support.",
+            "TBD; EPC Integrator or discipline subcontractor as assigned",
+            "Discipline production package basis; TBD discipline deliverable register; source-limited requirements closure record",
+            source_ref,
+            "TRUE",
+            "Detailed non-vendor package deliverable requirements are source-limited and remain open for Gate 5 disposition.",
+            [
+                {
+                    "Name": "Discipline production package basis",
+                    "Type": "EPC/Discipline Production Evidence",
+                    "SourceArtifactID": "",
+                    "SourceRef": source_ref,
+                    "Notes": "Workbook and DBM-supported production package evidence.",
+                },
+                {
+                    "Name": "Source-limited requirements closure record",
+                    "Type": "Source Gap Evidence",
+                    "SourceArtifactID": "",
+                    "SourceRef": source_ref,
+                    "Notes": "Detailed discipline requirements are not present in the current source set and remain open.",
+                },
+            ],
+        )
     return next_seq
+
+
+def append_deliverable(
+    package: PackageRow,
+    objective_ids: list[str],
+    scope_ids: list[str],
+    deliverable_rows: list[dict[str, Any]],
+    artifact_rows: list[dict[str, Any]],
+    deliverables_by_package: dict[str, list[str]],
+    next_seq: int,
+    name: str,
+    desc: str,
+    deliverable_type: str,
+    description: str,
+    responsible_party: str,
+    anticipated_artifacts: str,
+    source_ref: str,
+    open_issue: str,
+    notes: str,
+    artifacts: list[dict[str, str]],
+) -> int:
+    deliverable_id = make_deliverable_id(package.package_id, next_seq, desc)
+    deliverables_by_package[package.package_id].append(deliverable_id)
+    deliverable_rows.append(
+        {
+            "DeliverableID": deliverable_id,
+            "Name": name,
+            "ParentPackageID": package.package_id,
+            "ParentWorkbookID": package.workbook_id,
+            "PackageName": package.name,
+            "Description": description,
+            "ResponsibleParty": responsible_party,
+            "Type": deliverable_type,
+            "AnticipatedArtifacts": anticipated_artifacts,
+            "CoversScopeItems": scope_ids,
+            "SupportsObjectives": objective_ids,
+            "SourceRef": source_ref,
+            "OpenIssue": open_issue,
+            "Notes": notes,
+        }
+    )
+    for artifact in artifacts:
+        artifact_rows.append(
+            {
+                "ArtifactID": digest_id("ART", deliverable_id, artifact.get("Name", ""), artifact.get("SourceArtifactID", "")),
+                "Name": artifact.get("Name", ""),
+                "ParentDeliverableID": deliverable_id,
+                "ParentPackageID": package.package_id,
+                "Type": artifact.get("Type", deliverable_type),
+                "SourceArtifactID": artifact.get("SourceArtifactID", ""),
+                "SourceRef": artifact.get("SourceRef", source_ref),
+                "Notes": artifact.get("Notes", ""),
+            }
+        )
+    return next_seq + 1
+
+
+def build_vendor_document_artifacts(package: PackageRow, doc_pkg: DocPackage | None) -> list[dict[str, str]]:
+    if not doc_pkg:
+        return [
+            {
+                "Name": "TBD vendor document register",
+                "Type": "Vendor Documentation Gap Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": package.source_ref,
+                "Notes": "Detailed vendor-document requirements are not present in current source material for this package.",
+            }
+        ]
+    artifacts: list[dict[str, str]] = [
+        {
+            "Name": "Vendor document register",
+            "Type": "Vendor Documentation Register",
+            "SourceArtifactID": "",
+            "SourceRef": f"{doc_pkg.source_ref}; Vendor Engineering Deliverables table",
+            "Notes": "Register-level evidence for source vendor-document rows.",
+        }
+    ]
+    for group in doc_pkg.deliverable_groups:
+        category = group["Category"]
+        artifacts.append(
+            {
+                "Name": f"Vendor document category - {category}",
+                "Type": "Vendor Documentation Category Evidence",
+                "SourceArtifactID": "",
+                "SourceRef": f"{doc_pkg.source_ref}; Vendor Engineering Deliverables table",
+                "Notes": "Source vendor-document category carried as evidence under the vendor documentation production unit.",
+            }
+        )
+        for item in group["Items"]:
+            artifacts.append(
+                {
+                    "Name": item["DeliverableName"],
+                    "Type": f"Vendor Documentation Evidence - {category}",
+                    "SourceArtifactID": item["SourceDeliverableID"],
+                    "SourceRef": f"{doc_pkg.source_ref}; Vendor Engineering Deliverables table",
+                    "Notes": item["Notes"],
+                }
+            )
+    return artifacts
 
 
 def make_deliverable_id(package_id: str, seq: int, desc: str) -> str:
@@ -1329,6 +1698,8 @@ def build_telemetry(
 ) -> dict[str, Any]:
     issue_counts = Counter(row["IssueType"] for row in open_issues)
     discipline_counts = Counter(package.discipline for package in packages)
+    deliverable_type_counts = Counter(row["Type"] for row in deliverable_rows)
+    artifact_type_counts = Counter(row["Type"] for row in artifact_rows)
     vendor_package_rows = [row for row in package_rows if row["Discipline"] in {"Electrical", "Mechanical"}]
     accepted_package_ids = [package.package_id for package in packages if re.match(r"^PKG-\d{3}$", package.package_id)]
     missing_package_ids = [package for package in packages if package.package_id == "TBD_PENDING_ID"]
@@ -1357,10 +1728,22 @@ def build_telemetry(
         for tracking, rows in group_by([package for package in packages if package.tracking], lambda package: package.tracking).items()
         if len(rows) > 1
     }
+    mandatory_epc_anchor_names = {"Scope of Work", "Package Datasheet", "Construction Work Package"}
+    deliverable_names_by_package: dict[str, set[str]] = defaultdict(set)
+    for row in deliverable_rows:
+        deliverable_names_by_package[row["ParentPackageID"]].add(row["Name"])
+    mandatory_epc_anchors_present = all(
+        mandatory_epc_anchor_names <= deliverable_names_by_package[package.package_id]
+        for package in packages
+    )
+    mandatory_epc_anchor_counts = {
+        anchor_name: sum(1 for row in deliverable_rows if row["Name"] == anchor_name)
+        for anchor_name in sorted(mandatory_epc_anchor_names)
+    }
     return {
         "Revision": REVISION,
         "GeneratedOn": GENERATED_ON,
-        "Status": "GATE4_APPROVED_PENDING_GATE5_REVIEW"
+        "Status": "FINAL_PUBLISHED"
         if not any(row["Severity"] == "BLOCKER" for row in open_issues)
         else "DRAFT_WITH_BLOCKERS",
         "GateStatus": {
@@ -1368,15 +1751,18 @@ def build_telemetry(
             "Gate2SSOWVocabulary": f"APPROVED {GATE2_APPROVAL_DATE}",
             "Gate3Objectives": f"APPROVED {GATE3_APPROVAL_DATE}",
             "Gate4Packages": f"APPROVED {GATE4_APPROVAL_DATE}",
-            "Gate5Deliverables": "ACTIVE_REVIEW",
-            "Gate6Coverage": "DRAFTED_PENDING_GATE5_ACCEPTANCE",
-            "Gate7Publish": "NOT_ACCEPTED",
+            "Gate5Deliverables": f"APPROVED {GATE5_APPROVAL_DATE}",
+            "Gate6Coverage": f"APPROVED {GATE6_APPROVAL_DATE}",
+            "Gate7Publish": f"APPROVED {GATE7_APPROVAL_DATE}",
         },
         "AcceptedGateSnapshots": [
             f"_GateSnapshots/{GATE1_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
             f"_GateSnapshots/{GATE2_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
             f"_GateSnapshots/{GATE3_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
             f"_GateSnapshots/{GATE4_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
+            f"_GateSnapshots/{GATE5_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
+            f"_GateSnapshots/{GATE6_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
+            f"_GateSnapshots/{GATE7_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md",
         ],
         "PackageRole": "coverage telemetry",
         "ScopeItemCount": len(scope_rows),
@@ -1384,6 +1770,9 @@ def build_telemetry(
         "AcceptedPackageIDCount": len(accepted_package_ids),
         "DeliverableCount": len(deliverable_rows),
         "ArtifactCount": len(artifact_rows),
+        "DeliverableTypeCounts": dict(sorted(deliverable_type_counts.items())),
+        "MandatoryEPCAnchorDeliverableCounts": mandatory_epc_anchor_counts,
+        "ArtifactTypeCounts": dict(sorted(artifact_type_counts.items())),
         "ObjectiveCount": len(OBJECTIVES),
         "ObjectiveScopeMapRowCount": len(objective_scope_map_rows),
         "ObjectivePackageMapRowCount": len(objective_package_map_rows),
@@ -1428,6 +1817,23 @@ def build_telemetry(
                 for row in vendor_package_rows
             ),
             "DeliverableIDsValidExceptBlockedTBD": not invalid_deliverable_ids,
+            "MandatoryEPCAnchorsPresent": mandatory_epc_anchors_present
+            and all(count == len(packages) for count in mandatory_epc_anchor_counts.values()),
+            "DeliverablesReframedAsProductionUnits": set(deliverable_type_counts)
+            <= {
+                "EPC Scope of Work",
+                "EPC Package Datasheet",
+                "EPC Construction Work Package",
+                "Vendor Package Production Unit",
+                "Vendor Document Turnover",
+                "EPC Vendor Package Acceptance",
+                "EPC/Discipline Production Unit",
+            },
+            "InterfaceFactsCarriedAsArtifacts": any(row["Type"] == "Interface Fact Evidence" for row in artifact_rows)
+            and not any(row["Type"] == "EPC Interface Control" for row in deliverable_rows),
+            "VendorDocumentsGroupedAsTurnoverDeliverables": deliverable_type_counts["Vendor Document Turnover"]
+            == len(vendor_package_rows)
+            and not any(row["Type"].startswith("Vendor Documentation - ") for row in deliverable_rows),
             "ObjectiveRegisterRowsConcise": all(
                 "MappedScopeItems" not in row
                 and "MappedPackages" not in row
@@ -1689,9 +2095,9 @@ def write_main_doc(
         f"| Gate 2 — SSOW + Vocabulary | APPROVED ({GATE2_APPROVAL_DATE}) | User approved the generated scope ledger and vocabulary map as-is. |",
         f"| Gate 3 — Objectives | APPROVED ({GATE3_APPROVAL_DATE}) | User approved the EPC-integrator-centric objective set as the Gate 3 basis. |",
         f"| Gate 4 — Packages | APPROVED ({GATE4_APPROVAL_DATE}) | User approved the workbook-locked flat package partition. |",
-        "| Gate 5 — Deliverables | ACTIVE REVIEW | Deliverables are drafted by package; review focuses on granularity, responsible party, type, artifact grouping, and source-supported gaps. |",
-        "| Gate 6 — Coverage | Drafted, pending Gate 5 acceptance | Coverage checks are in `COVERAGE_TELEMETRY.json` and `VALIDATION_REPORT.md`; no blocking validation issue is currently open. |",
-        "| Gate 7 — Publish | Not accepted | Final acceptance requires remaining gate confirmations. |",
+        f"| Gate 5 — Deliverables | APPROVED ({GATE5_APPROVAL_DATE}) | User approved the deliverable basis with mandatory EPC anchors, vendor production units, vendor document turnover grouping, and interface facts carried as artifacts/evidence. |",
+        f"| Gate 6 — Coverage | APPROVED ({GATE6_APPROVAL_DATE}) | User approved coverage after Gate 6 source dispositions closed the prior non-blocking open issues. |",
+        f"| Gate 7 — Publish | APPROVED ({GATE7_APPROVAL_DATE}) | Final decomposition package accepted and published as downstream basis. |",
         "",
         "## 3. Companion Inventory",
         "",
@@ -1715,6 +2121,9 @@ def write_main_doc(
         f"| `_GateSnapshots/{GATE2_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 2 approval snapshot. |",
         f"| `_GateSnapshots/{GATE3_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 3 approval snapshot. |",
         f"| `_GateSnapshots/{GATE4_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 4 approval snapshot. |",
+        f"| `_GateSnapshots/{GATE5_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 5 approval snapshot. |",
+        f"| `_GateSnapshots/{GATE6_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 6 approval snapshot. |",
+        f"| `_GateSnapshots/{GATE7_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` | snapshot / handoff artifact | Immutable Gate 7 final published snapshot. |",
         "",
         "## 4. References",
         "",
@@ -1778,27 +2187,48 @@ def write_main_doc(
             "",
             "The package list is intentionally not duplicated in full here. `PACKAGE_REGISTER.csv` is the authoritative companion register for package identity, source rows, discipline, WBS, scope description, interface types, and source references.",
             "",
-            "## 7. Gate 5 Review Surface — Deliverables",
+            "## 7. Gate 5 Accepted Basis — Deliverables",
             "",
-            "Gate 5 asks whether deliverables inside each approved package are acceptable as units of production, with the right granularity, responsible party, type, anticipated artifacts, scope coverage, and objective support.",
+            f"Gate 5 was approved on {GATE5_APPROVAL_DATE}. The accepted deliverable basis makes the EPC Integrator anchor set mandatory for every approved package: `Scope of Work`, `Package Datasheet`, and `Construction Work Package`. Additional deliverables are then added where needed as vendor package production units, vendor document turnover, EPC acceptance, or source-limited discipline production units. Interface facts and source vendor-document rows are carried mostly as artifacts/evidence.",
             "",
-            "Gate 5 review should confirm:",
+            "The accepted Gate 5 basis confirms:",
             "",
             "- every deliverable belongs to exactly one approved `PackageID`;",
             "- every deliverable ID is mechanically coupled to its parent package as `DEL-XXX-YY_{shortDescription}`;",
-            "- electrical and mechanical package deliverables assign package engineering, design, vendor documentation, and physical equipment responsibility to the Package Vendor, with EPC Integrator integration review;",
-            "- mechanical vendor-document deliverables are grouped by Word-document vendor-document category, with source document rows represented as artifacts rather than separate deliverables;",
-            "- design/package deliverables are organized by artifact kind rather than individual repeated artifact instances;",
+            "- every package includes the three mandatory EPC Integrator deliverables: `Scope of Work`, `Package Datasheet`, and `Construction Work Package`;",
+            "- package `Scope of Work` deliverables identify tagged equipment where source-supported, explain package function, and describe whole-facility integration;",
+            "- package `Package Datasheet` deliverables carry the technical handoff basis required for third-party vendor or discipline package engineering and design;",
+            "- package `Construction Work Package` deliverables describe physical installation, construction, tie-in, inspection, and turnover into larger systems;",
+            "- electrical and mechanical vendor production units assign package engineering, design, vendor documentation, and physical equipment responsibility to the Package Vendor, with EPC Integrator integration review;",
+            "- vendor-document turnover is a single deliverable where needed; Word-document vendor-document rows are artifacts under `Vendor Document Turnover Package`, not separate deliverables;",
+            "- workbook interface `X` facts are artifacts/evidence under the package `Package Datasheet`, not separate deliverables;",
             "- non-mechanical detailed requirements are not invented; source-limited deliverables remain `TBD` and open issues identify what must be resolved;",
             "- `CoversScopeItems` and `SupportsObjectives` mappings are acceptable as best-effort Gate 5 mappings.",
             "",
             f"- Deliverables: {telemetry['DeliverableCount']}",
             f"- Artifacts: {telemetry['ArtifactCount']}",
-            "- Electrical and mechanical package deliverables assign package engineering/design/equipment responsibility to the Package Vendor and integration responsibility to the EPC Integrator.",
-            "- Mechanical vendor-document deliverables are grouped by source-table category rather than by individual document row.",
+            "- Mandatory EPC anchor counts: "
+            + ", ".join(f"{key}={value}" for key, value in telemetry["MandatoryEPCAnchorDeliverableCounts"].items())
+            + ".",
+            "- Deliverable type counts: "
+            + ", ".join(f"{key}={value}" for key, value in telemetry["DeliverableTypeCounts"].items())
+            + ".",
+            "- Artifact type counts are in `COVERAGE_TELEMETRY.json`; major artifact groups include package scope evidence, datasheet handoff evidence, construction/tie-in evidence, interface fact evidence, vendor-document evidence, EPC review evidence, and source-gap evidence.",
             "- Non-mechanical package detail is carried conservatively from workbook and DBM sources, with open issues where discipline-specific detailed source material is absent.",
             "",
-            "## 8. Coverage & Telemetry",
+            "## 8. Gate 6 Accepted Basis — Coverage & Telemetry",
+            "",
+            f"Gate 6 was approved on {GATE6_APPROVAL_DATE}. The accepted coverage basis confirms package, scope, objective, deliverable, artifact, and source coverage is complete enough to serve as downstream basis, with the prior non-blocking issue set resolved by source dispositions.",
+            "",
+            "The accepted Gate 6 basis confirms:",
+            "",
+            "- every `IN` scope item maps to exactly one approved package and at least one approved deliverable;",
+            "- every approved objective maps to downstream deliverables or is explicitly carried as an open issue;",
+            "- every deliverable belongs to exactly one approved package and uses a valid mechanically coupled `DEL-XXX-YY_{shortDescription}` ID;",
+            "- mandatory EPC anchor deliverables are present for all 105 packages;",
+            "- interface facts are preserved as artifacts/evidence and not promoted to packages or standalone deliverables;",
+            "- vendor-document rows are grouped as artifacts/evidence under package-level vendor document turnover deliverables;",
+            "- Gate 6 issue dispositions are correctly recorded in package source references, interface evidence, and Word-section mappings.",
             "",
             "| Metric | Value |",
             "|---|---:|",
@@ -1818,16 +2248,16 @@ def write_main_doc(
             "",
             "## 9. Open Issues",
             "",
-            "The live open issues are part of Gate 5 deliverable review. They identify detailed source gaps and interface-note dispositions that affect deliverable acceptance and later coverage closure.",
+            "Gate 6 source review resolved the prior non-blocking issue set. Non-mechanical detailed-package warnings are accepted as source-limited package basis supported by workbook and DBM discipline sections. Instrumentation support/power/comms notes, pipe-rack responsibility, platform tie-ins, and the mechanical package remappings are recorded as Gate 6 dispositions. The live open issue register is now empty unless new source changes introduce new blockers.",
             "",
             "| Issue Type | Count | Gate Focus | Review Note |",
             "|---|---:|---|---|",
         ]
     )
     issue_focus = {
-        "INTERFACE_NOTE_CONFIRMATION": ("Gate 5 / Gate 6", "Confirm workbook interface notes before final deliverable and coverage acceptance."),
-        "MISSING_DETAILED_PACKAGE_REQUIREMENTS": ("Gate 5", "Non-mechanical and unmatched package details remain source-limited; do not invent requirements."),
-        "UNMATCHED_WORD_PACKAGE_SECTION": ("Gate 5", "Resolve whether Word package sections are superseded, renamed, or manually mapped."),
+        "INTERFACE_NOTE_CONFIRMATION": ("Gate 6 / Gate 7", "Confirm workbook interface notes before final coverage acceptance or carry as explicit handoff conditions."),
+        "MISSING_DETAILED_PACKAGE_REQUIREMENTS": ("Gate 6 / Gate 7", "Non-mechanical and unmatched package details remain source-limited; accept as handoff conditions or provide additional source material."),
+        "UNMATCHED_WORD_PACKAGE_SECTION": ("Gate 6 / Gate 7", "Resolve whether Word package sections are superseded, renamed, manually mapped, or accepted as handoff conditions."),
     }
     for issue_type, count in open_issue_counts.items():
         gate_focus, note = issue_focus.get(issue_type, ("TBD", "See `OPEN_ISSUES.csv`."))
@@ -1837,14 +2267,31 @@ def write_main_doc(
     lines.extend(
         [
             "",
-            "## 10. Decision Log",
+            "## 10. Gate 7 Accepted Basis — Final Publication",
+            "",
+            f"Gate 7 was accepted on {GATE7_APPROVAL_DATE}. The PROJECT_DECOMP package is final-published as downstream basis for subsequent project workflows.",
+            "",
+            "The final published basis confirms:",
+            "",
+            "- Gates 1 through 6 have immutable accepted snapshots;",
+            "- package partition, scope ledger, objectives, deliverables, artifacts, interfaces, vocabulary, open issues, coverage telemetry, and validation are published together as one governed decomposition package;",
+            "- validation passes with zero blocking issues and zero open issues;",
+            "- downstream agents should consume the Gate 7 final published snapshot as the accepted decomposition truth, not mutable working state alone;",
+            "- source documents remain upstream source truth and this package remains the accepted decomposition-state derivative of those sources.",
+        ]
+    )
+
+    lines.extend(
+        [
+            "",
+            "## 11. Decision Log",
             "",
             "| DecisionRef | Decision | Source |",
             "|---|---|---|",
             "| DEC-001 | Workbook package rows are authoritative and are not merged by name or repeated CoA tracking number. | User instruction; `26020-Packages_Interfaces_4_export.xlsx` |",
             "| DEC-002 | Workbook `ID #` is used as `PKG-XXX`; the initially missing Yard Lighting ID was resolved as workbook ID 106 / `PKG-106`. | User-selected implementation policy and source workbook update |",
             "| DEC-003 | Interface `X` columns are represented as interface facts in `INTERFACE_REGISTER.csv`, not as separate packages. | User instruction; PROJECT_DECOMP flat-package invariant |",
-            "| DEC-004 | Word vendor-document rows are represented as artifacts under category-level PROJECT_DECOMP deliverables. | PROJECT_DECOMP design-deliverable granularity rule |",
+            "| DEC-004 | Word vendor-document rows are represented as artifacts under a package-level vendor document turnover deliverable rather than as standalone deliverables. | PROJECT_DECOMP design-deliverable granularity rule; Gate 5 user direction |",
             "| DEC-005 | Non-mechanical detail is not invented; where detailed source material is absent, deliverables are marked TBD and open issues are recorded. | No-invention invariant |",
             "| DEC-006 | Electrical and mechanical packages are vendor-owned for package engineering, design, vendor documentation, and physical equipment; the central EPC company owns integration into the full process facility. | Human Gate 1 clarification |",
             f"| DEC-007 | Gate 1 intake understanding is approved; proceed to Gate 2 SSOW and Vocabulary review. | Human Gate 1 approval on {GATE1_APPROVAL_DATE} |",
@@ -1852,8 +2299,14 @@ def write_main_doc(
             "| DEC-009 | Gate 3 objectives were rebuilt before Gate 3 approval to function as source-derived, testable decomposition success criteria rather than broad umbrella labels or internal register controls. | PROJECT_DECOMP reassessment before Gate 3 acceptance |",
             f"| DEC-010 | Gate 3 objectives are approved; proceed to Gate 4 package partition review using the workbook package breakdown as the authoritative flat package list. | Human Gate 3 approval on {GATE3_APPROVAL_DATE} |",
             f"| DEC-011 | Gate 4 package partition is approved; proceed to Gate 5 deliverable review using the approved workbook-locked package list as the parent partition basis. | Human Gate 4 approval on {GATE4_APPROVAL_DATE} |",
+            "| DEC-012 | Gate 5 deliverables were reframed so deliverable rows represent EPC-integrator production units or vendor package production units; interface facts and source vendor-document rows are carried primarily as artifacts/evidence. | Gate 5 second review pass |",
+            "| DEC-013 | Every approved package must include EPC Integrator `Scope of Work`, `Package Datasheet`, and `Construction Work Package` deliverables before additional vendor or discipline production deliverables are added. | Human Gate 5 direction on 2026-05-24 |",
+            f"| DEC-014 | Gate 5 deliverables are approved; proceed to Gate 6 coverage review using the accepted package and deliverable basis. | Human Gate 5 approval on {GATE5_APPROVAL_DATE} |",
+            "| DEC-015 | Gate 6 issue dispositions close the prior 67 non-blocking open issues: non-Word disciplines are accepted as source-limited workbook/DBM basis; instrumentation plug-n-play interfaces are included by package as appropriate; pipe-rack design and platform-to-equipment tie-ins are EPC Integrator responsibilities; Cryogenic Deep Cut, LPG Booster, and Tank Farm Pump Word sections are manually mapped; Methanol Injection and Gas Mole Sieve scope are included with the Cryogenic Unit while NGL Mole Sieve remains distinct. | Human Gate 6 direction on 2026-05-24 plus source cross-check |",
+            f"| DEC-016 | Gate 6 coverage is approved; proceed to Gate 7 final publish review using the accepted Gate 1 through Gate 6 snapshots as upstream basis. | Human Gate 6 approval on {GATE6_APPROVAL_DATE} |",
+            f"| DEC-017 | Gate 7 final publish is accepted; PROJECT_DECOMP is final-published as downstream basis. | Human Gate 7 approval on {GATE7_APPROVAL_DATE} |",
             "",
-            "## 11. DBM Section Coverage Notes",
+            "## 12. DBM Section Coverage Notes",
             "",
             "The DBMs were ingested as design-basis sources and cited by WBS grouping. Representative top-level sections discovered:",
             "",
@@ -1868,11 +2321,11 @@ def write_main_doc(
     lines.extend(
         [
             "",
-            "## 12. Handoff State",
+            "## 13. Handoff State",
             "",
-            f"- Accepted upstream snapshots: `_GateSnapshots/{GATE1_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE2_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE3_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, and `_GateSnapshots/{GATE4_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` record the accepted Gate 1 through Gate 4 basis.",
-            "- Derivative-package status: Gate 1 through Gate 4 snapshots are accepted decomposition-state records; the live Gate 5 deliverables remain under active review. The source documents remain upstream source truth.",
-            "- Closure verdict: Gates 1-4 closed; Gate 5 is active. Overall decomposition is not closed until Gates 5-7 are accepted.",
+            f"- Accepted upstream snapshots: `_GateSnapshots/{GATE1_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE2_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE3_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE4_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE5_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, `_GateSnapshots/{GATE6_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md`, and `_GateSnapshots/{GATE7_SNAPSHOT_DIRNAME}/Snapshot_Manifest.md` record the accepted Gate 1 through Gate 7 basis.",
+            "- Derivative-package status: Gate 1 through Gate 7 snapshots are accepted decomposition-state records. The source documents remain upstream source truth.",
+            "- Closure verdict: Gates 1-7 closed; PROJECT_DECOMP is final-published.",
             "- Rerun requirements: rerun `scripts/build_project_decomp.py` after workbook ID correction, package source additions, or human disposition of open issues.",
             f"- Remaining blockers: {first_blocker_id(open_issues)}.",
             "",

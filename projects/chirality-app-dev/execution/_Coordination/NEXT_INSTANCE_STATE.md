@@ -17,6 +17,10 @@
 | Metric | Value |
 |---|---:|
 | Packages scaffolded | 10 |
+| Control packages scaffolded | 1 (`PKG-00`) |
+| Control deliverables scaffolded | 2 (`DEL-00-01`, `DEL-00-02`) |
+| Control deliverables SEMANTIC_READY | 2 (`DEL-00-01`, `DEL-00-02`) |
+| PKG-00 TASK provenance repair | complete; 5 TASK run records per control deliverable |
 | Deliverables scaffolded | 51 |
 | OPEN | 0 |
 | INITIALIZED | 0 |
@@ -34,6 +38,7 @@
 | Dependencies.csv files created | 51 |
 | Dependency register rows extracted | 554 |
 | Dependency schema validation | 51/51 PASS |
+| Dependency ID canonicalization | complete; `DEP-XX-YY-NNN`; 0 DepClosure ID normalizations |
 | Active deliverable execution edges | 114 unique / 129 rows |
 | Concrete dependency graph acyclic | NO |
 | Strict active execution SCCs | 2 (sizes 18, 2) |
@@ -50,6 +55,7 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 
 | PackageID | Name | Path |
 |---|---|---|
+| PKG-00 | DAG Closure and Project Control | `execution/PKG-00_DAG_Closure_and_Project_Control` |
 | PKG-01 | Product Governance and Reliance Boundaries | `execution/PKG-01_Product_Governance_and_Reliance_Boundaries` |
 | PKG-02 | Desktop Shell, Navigation, and Operator State | `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State` |
 | PKG-03 | Runtime Engine Contract and Turn Lifecycle | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle` |
@@ -70,15 +76,21 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - Existing `_SEMANTIC.md` outputs are invalid evidence and must not be consumed for dependency recording.
 - `DEL-03-01` and `DEL-04-01` are accepted as co-development cluster `CODEV-001`; WORKING_ITEMS may proceed with them iteratively as a paired tranche.
 - CODEV-001 follow-up closure satisfied `DEP-04-01-008`; blocker-subset SCC count is now 0.
+- Post-ID-canonicalization closure verified canonical dependency IDs and made no dependency edge state changes.
+- `PKG-00` is the meta/control package for DAG closure and project-level reconciliation; it is excluded from deliverable dependency graph participation by default.
+- `DEL-00-01` owns SCC-002 closure control; `DEL-00-02` owns SCC-001 closure control.
+- PKG-00 control deliverable readiness is backed by bounded TASK run records after invalidating the earlier direct ORCHESTRATOR-authored readiness state.
 - Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable while the strict all-active execution graph is cyclic.
 
 ## Immediate Next Actions
 
-1. Review follow-up DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/`.
-2. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 2 (sizes 18, 2).
-3. Resolve remaining CODEV-001 `BLOCKED_TBD` evidence items: live SDK query/init probe, Claude Code subprocess version, interrupt/cancel subprocess behavior, Electron packaging behavior, Section 9 linkage, and adoption verdict.
-4. Do not run `lens-register` or `four-documents` P3; semantic enrichment remains skipped by human ruling.
-5. Do not report strict project-wide `BLOCKED/UNBLOCKED` until strict FULL_GRAPH closure passes.
+1. Review post-ID-canonicalization DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/`.
+2. Use `execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DAG_CLOSURE_CONTROL.md` as the project-control record for DAG closure workflow.
+3. Work `DEL-00-01` first to close SCC-002 (`DEL-10-02`, `DEL-10-03`), then `DEL-00-02` for SCC-001; both control deliverables are now semantically ready for that reconciliation work.
+4. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 2 (sizes 18, 2).
+5. Resolve remaining CODEV-001 `BLOCKED_TBD` evidence items: live SDK query/init probe, Claude Code subprocess version, interrupt/cancel subprocess behavior, Electron packaging behavior, Section 9 linkage, and adoption verdict.
+6. Do not run product-deliverable `lens-register` or `four-documents` P3; the prior skip ruling remains applicable to product deliverables, while PKG-00 control deliverables have completed their own TASK-backed semantic pipeline.
+7. Do not report strict project-wide `BLOCKED/UNBLOCKED` until strict FULL_GRAPH closure passes.
 
 ## Handoff Payload
 
@@ -87,7 +99,9 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - Deliverable-local continuity: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`
 - Dependency state: extraction complete; graph cyclic; co-development ruling recorded
 - CODEV-001 implementation evidence: runtime boundary, opt-in SDK probe provider, SDK options isolation, message mapping, session event JSONL, and deliverable evidence records created
-- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/`
+- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/`
+- Control package: `execution/PKG-00_DAG_Closure_and_Project_Control/`
+- SCC control deliverables: `DEL-00-01`, `DEL-00-02`
 
 ## Update Protocol
 

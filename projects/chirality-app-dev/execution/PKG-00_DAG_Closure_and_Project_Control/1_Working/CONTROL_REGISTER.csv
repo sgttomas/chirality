@@ -1,0 +1,7 @@
+RecordID,RecordType,Status,Owner,Statement,Evidence
+PKG-00-CTRL-001,CONTROL_PACKAGE,ACTIVE,HUMAN,"PKG-00 is the meta/control package for DAG closure and project-level dependency reconciliation.","README.md"
+PKG-00-CTRL-002,WORKFLOW_RULE,ACTIVE,RECONCILIATION,"Closing SCCs with source-grounded rulings is the workflow that produces the project DAG.","1_Working/DAG_CLOSURE_CONTROL.md"
+PKG-00-CTRL-003,BOUNDARY_RULE,ACTIVE,ORCHESTRATOR,"PKG-00 does not participate as a deliverable node in the strict dependency graph.","README.md"
+PKG-00-CTRL-004,NEXT_TARGET,ACTIVE,RECONCILIATION,"Triage SCC-002 before the larger SCC-001 workbook pass.","execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/SCC_Triage_Workbook.csv"
+PKG-00-CTRL-005,CONTROL_DELIVERABLE_SEMANTIC_READY,ACTIVE,RECONCILIATION,"DEL-00-01 owns SCC-002 PKG-10 policy/proposal closure control; semantic readiness is backed by TASK run records after invalidating the direct ORCHESTRATOR-authored readiness state.","1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/_run_records/"
+PKG-00-CTRL-006,CONTROL_DELIVERABLE_SEMANTIC_READY,ACTIVE,RECONCILIATION,"DEL-00-02 owns SCC-001 runtime/SDK/session/tooling closure control; semantic readiness is backed by TASK run records after invalidating the direct ORCHESTRATOR-authored readiness state.","1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/_run_records/"
