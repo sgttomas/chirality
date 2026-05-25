@@ -58,4 +58,4 @@ Procedure for producing the Vendor Document Turnover Package for `PKG-036` (6.9k
 - Source-derived vendor document table rows carried as artifacts (none locally available for PKG-036 at this pass).
 - Turnover record set for the package (structure defined here; content TBD pending vendor scope).
 - `_STATUS.md` History line for the transition, when authorized.
-- TASK run record at `_run_records/TASK_RUN_2026-05-24_1910.md`.
+- TASK run record at `_run_records/TASK_RUN_2026-05-24_2026.md`.

@@ -17,12 +17,12 @@ Exclusions:
 |---|---|---|
 | REQ-037-05-001 | The deliverable shall identify `PKG-037`, workbook row 39, WBS 01, CoA tracking number 26020-01-30-028, discipline Electrical, and package name "5kV SWITCHGEAR ELECTRICAL BUILDING (880-1)." Source: Workbook Packages row 39; `PACKAGE_REGISTER.csv`. | Identity review against workbook row and Gate 7 registers. |
 | REQ-037-05-002 | The deliverable shall state the accepted responsibility split: Package Vendor owns vendor documentation and physical equipment; EPC Integrator performs interface/integration review. Source: `PACKAGE_REGISTER.csv` row `PKG-037`; `_CONTEXT.md`; `DELIVERABLE_REGISTER.csv`. | Responsibility statement review against Gate 7 register. |
-| REQ-037-05-003 | The deliverable shall include a vendor document register covering all vendor-produced documents required to design, fabricate, ship, install, commission, and operate the package. Source: `_Sources/DBM-Comp_and_Liquids/3-25_Comp_and_Liquids_DBM.md`, mechanical package deliverables paragraph (line 617). | Register existence and completeness review. |
+| REQ-037-05-003 | The deliverable shall include a vendor document register covering all vendor-produced documents required to design, fabricate, ship, install, commission, and operate the package. Source: `_Sources/DBM-Comp_and_Liquids/3-25_Comp_and_Liquids_DBM.md`, mechanical package deliverables paragraph (line 617); `_Sources/26020-Package_Requirements.docx`, Core vendor documents table (`PRQ-009` Vendor Document Index). | Register existence and completeness review. |
 | REQ-037-05-004 | The deliverable shall include vendor submittals tracked by the document register, with revision and transmittal control. Source: `_CONTEXT.md`, anticipated artifacts. | Submittal log/transmittal review. |
 | REQ-037-05-005 | Where individual source vendor-document table rows are available, the deliverable shall carry them as artifacts/evidence rather than as separate deliverables. Source: `_CONTEXT.md`, notes; `DELIVERABLE_REGISTER.csv` row `DEL-037-05`. | Artifact register cross-check. |
 | REQ-037-05-006 | The deliverable shall include final turnover records covering documentation required for handover to operations. Source: `_CONTEXT.md`, anticipated artifacts. | Turnover record completeness review. |
 | REQ-037-05-007 | The deliverable shall represent the twelve applicable interface facts for `PKG-037` (Utility Piping; Drain / Containment; Electrical Power; Grounding / Bonding; Area / Exterior Lighting; I&C / Control Cabling; Communications / Network; Building HVAC / Services; Fire & Gas / Safety Systems; Maintenance Access; Grading / Site Drainage / Spill Containment; Structural / Foundations / Supports) within the vendor documentation that crosses each interface. Source: Workbook Packages row 39; `INTERFACE_REGISTER.csv`. | Interface matrix check. |
-| REQ-037-05-008 | The deliverable shall identify source gaps for vendor document register schema, hold/issue codes, submittal stages, and turnover acceptance criteria as `TBD` instead of invented values. Source: `_REFERENCES.md`; `ARTIFACT_REGISTER.csv` `ART-8E3FB7B466` (Vendor Documentation Gap Evidence). | Gap review before vendor handoff and EPC acceptance. |
+| REQ-037-05-008 | The deliverable shall identify source gaps for detailed vendor document register schema, hold/issue codes, submittal stages, and turnover acceptance criteria as `TBD` instead of invented values, while preserving the generic `PRQ-009` Vendor Document Index and `DOC-008` Vendor Document Control Procedure entries from the accessible package requirements source. Source: `_Sources/26020-Package_Requirements.docx`, Core vendor documents table; `ARTIFACT_REGISTER.csv` `ART-8E3FB7B466` (Vendor Documentation Gap Evidence). | Gap review before vendor handoff and EPC acceptance. |
 | REQ-037-05-009 | The deliverable shall preserve source spelling and identity (package name including the parenthetical "(880-1)") as recorded in Workbook row 39 and `PACKAGE_REGISTER.csv`. Source: Workbook Packages row 39. | Spelling/identity review. |
 | REQ-037-05-010 | The deliverable shall not duplicate or supersede `DEL-037-06_epc-vendor-package-review-and-acceptance`; EPC acceptance of the overall vendor package is a separate deliverable. Source: `DELIVERABLE_REGISTER.csv` rows `DEL-037-05` and `DEL-037-06`. | Scope-boundary review. |
 
@@ -51,10 +51,11 @@ Exclusions:
 
 The deliverable shall produce or preserve these artifacts:
 
-- Vendor document register (initial scope per `ART-8E3FB7B466`; detailed content `TBD`).
+- Vendor document register / Vendor Document Index (`PRQ-009`; detailed package-specific content `TBD` per `ART-8E3FB7B466`).
+- Vendor Document Control Procedure (`DOC-008`; package-specific workflow details `TBD`).
 - Vendor document submittals (transmittals and revision control).
 - Source vendor document table rows carried as artifacts/evidence (where available).
 - Final turnover records.
 - Source-gap / `TBD` list for vendor or human resolution.
 
-The deliverable shall cite the Gate 7 snapshot, workbook row 39, applicable Gate 7 registers, and the DBM source slices used for package-deliverable basis and 5 kV insulation class.
+The deliverable shall cite the Gate 7 snapshot, workbook row 39, applicable Gate 7 registers, the Package Requirements core vendor-document table, and the DBM source slices used for package-deliverable basis and 5 kV insulation class.

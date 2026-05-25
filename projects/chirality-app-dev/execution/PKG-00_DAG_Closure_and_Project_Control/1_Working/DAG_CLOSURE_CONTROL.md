@@ -42,7 +42,7 @@ WORKING_ITEMS prepared SCC Resolution Cases for bounded TASK work. These cases a
 | Case | Control Deliverable | Scope | Status |
 |---|---|---|---|
 | `CASE-SCC-002_PKG-10_Policy_Proposal` | `DEL-00-01` | SCC-002 PKG-10 policy/proposal pair | `CLOSED_BY_DEPCLOSURE` |
-| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `OPEN_FOR_TASK_WORK` |
+| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `READY_FOR_OWNER_WORKFLOWS` |
 
 ## Seed Packets
 
@@ -59,7 +59,16 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 runtime/SDK/session/tooling | Dispatch bounded TASK work into `CASE-SCC-001` by concern group until owner workflow handoffs are ready. |
+| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 runtime/SDK/session/tooling | Use `SCC-001_Ruling_Workbook.csv` and `SCC-001_Dispatch_Plan.md` to drive human rulings, dependency-workflow handoff, and any later CHANGE-owned row treatment. |
+
+## SCC-001 Dispatch Evidence
+
+`CASE-SCC-001_Runtime_SDK_Session_Tooling` now contains a normalized ruling workbook and dispatch plan:
+
+- `SCC-001_Ruling_Workbook.csv` indexes the 12 bidirectional pairs plus longer-cycle cross-links that can keep SCC-001 alive.
+- `SCC-001_Dispatch_Plan.md` records which evidence tasks may run in parallel and which governance, mutation, and closure gates must remain sequential.
+
+No dependency rows have been changed for SCC-001, no SCOPE_CHANGE intake has been selected, and SCC-001 remains open until accepted owner workflow changes are followed by an immutable DepClosure snapshot proving closure.
 
 ## SCC-002 Closure Evidence
 

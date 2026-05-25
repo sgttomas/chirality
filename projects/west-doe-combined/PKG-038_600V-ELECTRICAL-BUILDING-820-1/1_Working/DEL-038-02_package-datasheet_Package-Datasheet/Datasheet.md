@@ -69,7 +69,7 @@
 - `_REFERENCES.md`, Gate 7 source pointers.
 - `DELIVERABLE_REGISTER.csv`, row `DEL-038-02_package-datasheet`.
 - `PACKAGE_REGISTER.csv`, row `PKG-038`.
-- `ARTIFACT_REGISTER.csv`, rows for `DEL-038-02_package-datasheet`.
+- `ARTIFACT_REGISTER.csv`, checked for `DEL-038-02_package-datasheet`; no deliverable-local artifact rows are present in the accepted Gate 7 register.
 - `INTERFACE_REGISTER.csv`, rows for `PKG-038` (twelve interface facts).
 - `OBJECTIVE_DELIVERABLE_MAP.csv`, rows for `DEL-038-02_package-datasheet`.
 - `_Sources/26020-Packages_Interfaces_4_export.xlsx`, Packages sheet row 40.

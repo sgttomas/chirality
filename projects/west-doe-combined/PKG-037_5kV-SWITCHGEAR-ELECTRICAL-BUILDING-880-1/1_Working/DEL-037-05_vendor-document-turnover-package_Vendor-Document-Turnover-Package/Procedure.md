@@ -10,6 +10,7 @@ Define the procedure for producing and checking the Vendor Document Turnover Pac
 - Deliverable-local `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and `_STATUS.md`.
 - Workbook source: `_Sources/26020-Packages_Interfaces_4_export.xlsx`, Packages sheet row 39.
 - Gate 7 registers: `PACKAGE_REGISTER.csv`, `DELIVERABLE_REGISTER.csv`, `ARTIFACT_REGISTER.csv`, `INTERFACE_REGISTER.csv`, and `OBJECTIVE_DELIVERABLE_MAP.csv`.
+- Package requirements source slice: `_Sources/26020-Package_Requirements.docx`, Core vendor documents table (`PRQ-009` Vendor Document Index; `DOC-008` Vendor Document Control Procedure).
 - DBM source slices: `_Sources/DBM-Comp_and_Liquids/3-25_Comp_and_Liquids_DBM.md`, mechanical package deliverables paragraph (line 617); `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md`, electrical buildings paragraph and MV cable table (line 3009).
 - Declared upstream dependencies: none declared during PREPARATION.
 
@@ -21,8 +22,8 @@ Define the procedure for producing and checking the Vendor Document Turnover Pac
 4. Read `PACKAGE_REGISTER.csv` row `PKG-037` and carry forward the responsibility model, inclusion criteria, exclusions, source references, and objective support.
 5. Read `ARTIFACT_REGISTER.csv` rows for `DEL-037-05` and confirm the deliverable carries the vendor document register, submittals, turnover records, and source-set gap evidence (`ART-8E3FB7B466`).
 6. Read `INTERFACE_REGISTER.csv` rows for `PKG-037` and confirm the vendor documentation must address each of the twelve applicable interfaces where vendor scope crosses them.
-7. Read DBM source slices for package-deliverable basis (vendor document registers) and 5 kV insulation-class basis, and confirm that no package-specific register schema or acceptance criteria are available in the accessible source set.
-8. Search accessible package-specific requirements for PKG-037 in `26020-Package_Requirements.docx`. If no source-supported package-specific match is found, mark detailed register schema, hold/issue codes, submittal stages, and turnover acceptance criteria as `TBD`.
+7. Read DBM source slices for package-deliverable basis (vendor document registers) and 5 kV insulation-class basis.
+8. Read `26020-Package_Requirements.docx` for core vendor-document entries and preserve `PRQ-009` Vendor Document Index and `DOC-008` Vendor Document Control Procedure. If no source-supported package-specific match is found, mark detailed register schema, hold/issue codes, submittal stages, and turnover acceptance criteria as `TBD`.
 9. Draft the Datasheet using source-supported values only; preserve unsupported values as `TBD`.
 10. Draft the Specification requirements and verification hooks from the Datasheet basis and source slices, including the explicit scope boundary against `DEL-037-06_epc-vendor-package-review-and-acceptance`.
 11. Draft Guidance to explain conservative interpretation, source gaps, trade-offs, and human-ruling items.
@@ -40,7 +41,7 @@ Define the procedure for producing and checking the Vendor Document Turnover Pac
 | Source grounding | Non-trivial claims cite workbook row 39, Gate 7 registers, DBM source slices, or are marked `TBD` / `ASSUMPTION`. |
 | Interface consistency | All twelve applicable interfaces are consistent across Datasheet, Specification, Guidance, and Procedure. |
 | Responsibility consistency | Vendor documentation production and EPC interface/integration review are not conflated; EPC acceptance is routed to `DEL-037-06`. |
-| Source-gap handling | Vendor document register schema, hold/issue codes, submittal stages, and turnover acceptance criteria remain `TBD` unless source-supported. |
+| Source-gap handling | Core `PRQ-009` / `DOC-008` entries are preserved; package-specific vendor document register schema, hold/issue codes, submittal stages, and turnover acceptance criteria remain `TBD` unless source-supported. |
 | Human ruling items | Open ambiguity about 5 kV meaning and missing vendor document register schema appears in the Guidance Conflict Table and run record. |
 
 ## Records
