@@ -21,7 +21,7 @@
 | Control deliverables scaffolded | 2 (`DEL-00-01`, `DEL-00-02`) |
 | Control deliverables SEMANTIC_READY | 2 (`DEL-00-01`, `DEL-00-02`) |
 | PKG-00 TASK provenance repair | complete; 5 TASK run records per control deliverable |
-| PKG-00 SCC resolution cases | SCC-002 `CLOSED_BY_DEPCLOSURE`; SCC-001 `READY_FOR_OWNER_WORKFLOWS`; ruling workbook and dispatch plan recorded; runtime/SDK core, session/audit, and tooling/permissions/MCP evidence indexed and candidate remedies bucketed; 4 prior packets preserved as seed evidence; 0 selected for SCOPE_CHANGE intake |
+| PKG-00 SCC resolution cases | SCC-002 `CLOSED_BY_DEPCLOSURE`; SCC-001 `DEP_CLOSURE_PENDING`; ready-tranche CHANGE handoff applied and verified by DepClosure as graph reduction only; residual human-ruling-needed remedies are `REM-SCC-001-005`, `010`, `012`, `015`; 4 prior packets preserved as seed evidence; 0 selected for SCOPE_CHANGE intake |
 | Deliverables scaffolded | 51 |
 | OPEN | 0 |
 | INITIALIZED | 0 |
@@ -40,9 +40,9 @@
 | Dependency register rows extracted | 554 |
 | Dependency schema validation | 51/51 PASS |
 | Dependency ID canonicalization | complete; `DEP-XX-YY-NNN`; 0 DepClosure ID normalizations |
-| Active deliverable execution edges | 113 unique / 128 rows |
+| Active deliverable execution edges | 105 unique / 120 rows |
 | Concrete dependency graph acyclic | NO |
-| Strict active execution SCCs | 1 (size 18) |
+| Strict active execution SCCs | 2 (sizes 2 and 8) |
 | Blocker-subset SCCs | 0 |
 | Accepted co-development clusters | 1 (DEL-03-01 / DEL-04-01) |
 | CODEV-001 tranche evidence | implemented; blocker-subset closure scan passed |
@@ -79,7 +79,7 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - CODEV-001 follow-up closure satisfied `DEP-04-01-008`; blocker-subset SCC count is now 0.
 - Post-ID-canonicalization closure verified canonical dependency IDs and made no dependency edge state changes.
 - SCC-002 closure is accepted by DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/`: `DEP-10-02-004` is retired as non-blocking interface/reference evidence; `DEP-10-03-006` remains the hard prerequisite; SCC-002 is absent.
-- SCC-001 runtime/SDK core, session/audit, and tooling/permissions/MCP evidence have been indexed and candidate remedies bucketed in `CASE-SCC-001_Runtime_SDK_Session_Tooling` through bounded `TASK + scc-resolution-case` work; `SCC-001_Ruling_Workbook.csv` and `SCC-001_Dispatch_Plan.md` are the current decision surfaces; no dependency rows were changed and no SCOPE_CHANGE workflow was initiated.
+- SCC-001 runtime/SDK core, session/audit, and tooling/permissions/MCP evidence have been indexed and candidate remedies bucketed in `CASE-SCC-001_Runtime_SDK_Session_Tooling` through bounded `TASK + scc-resolution-case` work; `SCC-001_Ruling_Workbook.csv` and `SCC-001_Dispatch_Plan.md` are the current decision surfaces. Ready-tranche CHANGE edits retired selected non-blocking or already-satisfied rows for `REM-SCC-001-006`, `007`, `008`, `009`, `011`, `013`, `014`, and `016`; DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` proves graph reduction only with `scc_count = 2`. No SCOPE_CHANGE workflow was initiated.
 - `PKG-00` is the meta/control package for DAG closure and project-level reconciliation; it is excluded from deliverable dependency graph participation by default.
 - `DEL-00-01` owns SCC-002 closure control; `DEL-00-02` owns SCC-001 closure control.
 - PKG-00 control deliverable readiness is backed by bounded TASK run records after invalidating the earlier direct ORCHESTRATOR-authored readiness state.
@@ -89,10 +89,10 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 
 ## Immediate Next Actions
 
-1. Use accepted DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/` as the current dependency closure ruling.
+1. Use accepted DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` as the current dependency closure ruling.
 2. Use `execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DAG_CLOSURE_CONTROL.md` as the project-control record for DAG closure workflow.
-3. Hand off `CASE-SCC-001_Runtime_SDK_Session_Tooling` using `SCC-001_Ruling_Workbook.csv` and `SCC-001_Dispatch_Plan.md`: dependency-workflow-ready remedies are `REM-SCC-001-006`, `007`, `008`, `009`, `011`, `013`, `014`, `016`; human-ruling-needed remedies are `REM-SCC-001-005`, `010`, `012`, `015`; no SCOPE_CHANGE candidate is selected unless the human explicitly initiates one.
-4. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 1 (size 18).
+3. Continue `CASE-SCC-001_Runtime_SDK_Session_Tooling` using `SCC-001_Ruling_Workbook.csv`, `SCC-001_Dispatch_Plan.md`, and `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301`: residual human-ruling-needed remedies are `REM-SCC-001-005`, `010`, `012`, `015`; no SCOPE_CHANGE candidate is selected unless the human explicitly initiates one.
+4. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 2 (sizes 2 and 8).
 5. Keep `CASE-SCC-002_PKG-10_Policy_Proposal` closed unless later accepted evidence changes the ruling.
 6. Resolve remaining CODEV-001 `BLOCKED_TBD` evidence items: live SDK query/init probe, Claude Code subprocess version, interrupt/cancel subprocess behavior, Electron packaging behavior, Section 9 linkage, and adoption verdict.
 7. Do not run product-deliverable `lens-register` or `four-documents` P3; the prior skip ruling remains applicable to product deliverables, while PKG-00 control deliverables have completed their own TASK-backed semantic pipeline.
@@ -105,7 +105,7 @@ REF-006 docs/PRD.md=HASH_MISMATCH
 - Deliverable-local continuity: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`
 - Dependency state: extraction complete; graph cyclic; co-development ruling recorded
 - CODEV-001 implementation evidence: runtime boundary, opt-in SDK probe provider, SDK options isolation, message mapping, session event JSONL, and deliverable evidence records created
-- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/`
+- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/`
 - Control package: `execution/PKG-00_DAG_Closure_and_Project_Control/`
 - SCC control deliverables: `DEL-00-01`, `DEL-00-02`
 - SCC Resolution Cases: `CASE-SCC-002_PKG-10_Policy_Proposal`, `CASE-SCC-001_Runtime_SDK_Session_Tooling`

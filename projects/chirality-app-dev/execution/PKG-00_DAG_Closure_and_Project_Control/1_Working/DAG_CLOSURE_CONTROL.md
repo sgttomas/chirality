@@ -6,9 +6,9 @@
 |---|---|
 | ControlPackageID | PKG-00 |
 | ControlPackageName | DAG Closure and Project Control |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/` |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` |
 | StrictFullGraphStatus | CYCLIC |
-| StrictSCCCount | 1 |
+| StrictSCCCount | 2 |
 | BlockerSubsetStatus | ACYCLIC |
 | ProjectBlockedAvailableReportable | NO |
 
@@ -42,7 +42,7 @@ WORKING_ITEMS prepared SCC Resolution Cases for bounded TASK work. These cases a
 | Case | Control Deliverable | Scope | Status |
 |---|---|---|---|
 | `CASE-SCC-002_PKG-10_Policy_Proposal` | `DEL-00-01` | SCC-002 PKG-10 policy/proposal pair | `CLOSED_BY_DEPCLOSURE` |
-| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `READY_FOR_OWNER_WORKFLOWS` |
+| `CASE-SCC-001_Runtime_SDK_Session_Tooling` | `DEL-00-02` | SCC-001 runtime/SDK/session/tooling | `DEP_CLOSURE_PENDING` |
 
 ## Seed Packets
 
@@ -59,7 +59,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 runtime/SDK/session/tooling | Use `SCC-001_Ruling_Workbook.csv` and `SCC-001_Dispatch_Plan.md` to drive human rulings, dependency-workflow handoff, and any later CHANGE-owned row treatment. |
+| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 residual runtime/session/tooling SCCs | Use `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301` and `SCC-001_Ruling_Workbook.csv` to drive residual human rulings for `REM-SCC-001-005`, `010`, `012`, and `015`, then any later CHANGE-owned row treatment. |
 
 ## SCC-001 Dispatch Evidence
 
@@ -68,7 +68,13 @@ The four existing scope-change packets remain available as seed evidence inside 
 - `SCC-001_Ruling_Workbook.csv` indexes the 12 bidirectional pairs plus longer-cycle cross-links that can keep SCC-001 alive.
 - `SCC-001_Dispatch_Plan.md` records which evidence tasks may run in parallel and which governance, mutation, and closure gates must remain sequential.
 
-No dependency rows have been changed for SCC-001, no SCOPE_CHANGE intake has been selected, and SCC-001 remains open until accepted owner workflow changes are followed by an immutable DepClosure snapshot proving closure.
+SCC-001 ready-tranche dependency rows have now been changed by CHANGE and verified by DepClosure as graph reduction only. No SCOPE_CHANGE intake has been selected, and SCC-001 remains open until a later immutable DepClosure snapshot proves strict closure.
+
+## SCC-001 Ready Tranche 001 Evidence
+
+RECONCILIATION converted the dependency-workflow-ready bucket into a CHANGE handoff. CHANGE retired `DEP-04-01-008`, `DEP-03-04-008`, `DEP-03-03-009`, `DEP-04-04-004`, `DEP-04-05-011`, `DEP-06-01-012`, `DEP-06-01-013`, and `DEP-06-04-009` as non-blocking or already-satisfied evidence. AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` proves graph reduction only: `scc_count = 2`, `graph_edges = 105`, and residual SCC sizes `2` and `8`.
+
+SCC-001 is not closed. Remaining bidirectional pairs are `DEL-03-01,DEL-03-04`, `DEL-03-04,DEL-05-02`, `DEL-05-02,DEL-05-03`, and `DEL-06-01,DEL-06-04`. Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable.
 
 ## SCC-002 Closure Evidence
 

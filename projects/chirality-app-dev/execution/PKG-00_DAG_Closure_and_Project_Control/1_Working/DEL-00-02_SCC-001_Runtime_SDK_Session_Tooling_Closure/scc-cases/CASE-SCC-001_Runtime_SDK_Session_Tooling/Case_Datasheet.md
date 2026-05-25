@@ -4,13 +4,16 @@
 | --- | --- |
 | CaseID | CASE-SCC-001 |
 | CaseTitle | Runtime SDK Session Tooling |
-| CaseState | READY_FOR_OWNER_WORKFLOWS |
+| CaseState | DEP_CLOSURE_PENDING |
 | OwningControlDeliverable | DEL-00-02 |
 | SCCBaseline | SCC-001 from `execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/` |
 | AffectedDeliverables | DEL-03-01; DEL-03-02; DEL-03-03; DEL-03-04; DEL-04-01; DEL-04-02; DEL-04-03; DEL-04-04; DEL-04-05; DEL-05-01; DEL-05-02; DEL-05-03; DEL-05-05; DEL-06-01; DEL-06-02; DEL-06-03; DEL-06-04; DEL-06-06 |
 | SeedEvidence | `case-seeds/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/`; `case-seeds/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/`; `case-seeds/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/` |
 | WorkingModel | Living SCC resolution case; seed packets retained as prior evidence, normalized into a ruling workbook and dispatch plan |
-| ClosureAuthority | Future accepted DepClosure snapshot only |
+| ClosureAuthority | Future accepted DepClosure snapshot with `scc_count = 0` only |
+| LatestDepClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` |
+| LatestDepClosureVerdict | Graph reduction only; `scc_count = 2`, residual SCC sizes `2` and `8` |
+| ResidualRulingPackage | `SCC-001_Residual_Ruling_Package.md` |
 
 ## Evidence Baseline
 
@@ -18,4 +21,4 @@ The seed evidence records a large runtime, SDK, session, audit, permission, tool
 
 ## Current Readiness
 
-The case has indexed bounded WORKING_ITEMS/TASK evidence for runtime/SDK core packet `002`, session/audit records packet `003`, and tooling/permissions/MCP packet `004`. `SCC-001_Ruling_Workbook.csv` normalizes the 12 bidirectional pairs and longer-cycle cross-links into row-level ruling candidates. `SCC-001_Dispatch_Plan.md` records which evidence tasks may run in parallel and which governance gates must remain sequential. Candidate remedies are classified for owner workflow handoff. It is not ready to request graph closure and it is not a SCOPE_CHANGE intake by itself.
+The case has indexed bounded WORKING_ITEMS/TASK evidence for runtime/SDK core packet `002`, session/audit records packet `003`, and tooling/permissions/MCP packet `004`. `SCC-001_Ruling_Workbook.csv` normalized the 12 bidirectional pairs and longer-cycle cross-links into row-level ruling candidates. CHANGE implemented the dependency-workflow-ready tranche for `REM-SCC-001-006`, `007`, `008`, `009`, `011`, `013`, `014`, and `016`; AUDIT_DEP_CLOSURE snapshot `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301` proves reduction from one 18-node SCC to two residual SCCs. The remaining ruling queue is `REM-SCC-001-005`, `010`, `012`, and `015`; `SCC-001_Residual_Ruling_Package.md` records the proposed human rulings and pending CHANGE handoff for those rows. The case is not closed and is not a SCOPE_CHANGE intake by itself.

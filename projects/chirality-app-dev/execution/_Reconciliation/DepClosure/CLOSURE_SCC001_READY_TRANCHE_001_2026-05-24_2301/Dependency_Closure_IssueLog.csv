@@ -1,0 +1,7 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+ISS-SCC001-T001-001,WARNING,CIRCULAR_DEPENDENCY,,,,Evidence/scc_summary.csv,"Prepare row-level rulings for residual SCC-001 and SCC-002; do not claim closure."
+ISS-SCC001-T001-002,WARNING,BIDIRECTIONAL_PAIR,DEL-03-01,DEL-03-04,,Evidence/bidirectional_pairs.csv,"Resolve REM-SCC-001-005 through human ruling before CHANGE edit."
+ISS-SCC001-T001-003,WARNING,BIDIRECTIONAL_PAIR,DEL-03-04,DEL-05-02,,Evidence/bidirectional_pairs.csv,"Resolve REM-SCC-001-010 through terminal taxonomy and HarnessEvent ownership ruling."
+ISS-SCC001-T001-004,WARNING,BIDIRECTIONAL_PAIR,DEL-05-02,DEL-05-03,,Evidence/bidirectional_pairs.csv,"Resolve REM-SCC-001-012 through redaction-before-persistence ruling."
+ISS-SCC001-T001-005,WARNING,BIDIRECTIONAL_PAIR,DEL-06-01,DEL-06-04,,Evidence/bidirectional_pairs.csv,"Resolve REM-SCC-001-015 through permission/write-hook sequencing ruling."
+ISS-SCC001-T001-006,WARNING,ORPHAN_TARGET,,,,Evidence/orphans.csv,"Carry forward existing orphan warning for later dependency hygiene work."
