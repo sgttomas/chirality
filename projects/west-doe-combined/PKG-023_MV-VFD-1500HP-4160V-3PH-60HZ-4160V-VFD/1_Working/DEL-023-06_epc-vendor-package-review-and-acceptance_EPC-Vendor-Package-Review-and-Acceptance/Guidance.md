@@ -1,0 +1,45 @@
+# Guidance: DEL-023-06_epc-vendor-package-review-and-acceptance
+
+## Purpose
+
+Explain how the EPC Integrator should perform vendor package review and acceptance for `PKG-023` (MV VFD - 1500HP, 4160V, 3PH, 60HZ - 4160V VFD) without overstating what the accessible source set actually authorizes, and how to record acceptance evidence that downstream activities (construction handover, turnover to operations) can rely upon.
+
+## Principles
+
+- **Authority hierarchy is upstream-fixed.** The accepted EPC Scope of Work (`DEL-023-01`), the `DEL-023-02` Package Datasheet, and the Construction Work Package (`DEL-023-03`) are the acceptance basis. The vendor package is the subject of review, not its own authority.
+- **Responsibility split is non-negotiable.** Per `PACKAGE_REGISTER.csv` row `PKG-023`, the Package Vendor owns package engineering, package design, vendor documentation, and the physical equipment package; the EPC Integrator owns facility-level integration. Review comments shall not redesign the vendor package or accept vendor scope drift into EPC scope.
+- **Source gaps are not silently filled.** Where the EPC Scope of Work, Construction Work Package, or vendor data is not accessible, the acceptance criteria are recorded as `TBD` with the missing reference noted — not invented.
+- **Interface evidence is the minimum acceptance unit.** Each of the six declared package interfaces must have an explicit disposition before acceptance is asserted.
+- **Status discipline.** This deliverable updates only its own `_STATUS.md` (safe rule). It does not change the Package Datasheet's status or any other deliverable's metadata.
+
+## Considerations
+
+- The accessible source set in `_REFERENCES.md` is a decomposition basis, not a vendor data package. Reviewers should expect the bulk of acceptance criteria to depend on the EPC SoW and the accepted Package Datasheet (`DEL-023-02`) rather than the DBM, and should treat the DBM-Deepcut electrical slices as background design basis.
+- The DBM-Deepcut electrical section states that "VFD and soft-starter requirements for 4.16 kV motors are TBD" and that VFD-fed motors located in Zone 2 areas must be marked accordingly with a temperature code lower than the area-classification value. Reviewers should expect these DBM gaps to be closed by the EPC SoW and the Package Datasheet, and should not treat the DBM "TBD" as a vendor-acceptance criterion in itself.
+- "MV VFD - 1500HP, 4160V, 3PH, 60HZ" in the package name identifies driven-motor horsepower, primary voltage, phases, and frequency, but the package's VFD topology (cascaded H-bridge vs. NPC vs. other), harmonic mitigation strategy, cooling (air vs. liquid), enclosure rating, and motor-VFD compatibility (carrier frequency, dv/dt, common-mode mitigation) remain vendor-defined and are `TBD` at the package-decomposition level until vendor data is received and accepted.
+- Vendor documentation is typically delivered in revisions. The review log should record vendor revision and reviewer disposition for each cycle, not just the latest.
+- Test/inspection categories (FAT, SAT, electrical inspection, grounding/bonding, harmonic verification at the point of common coupling) are reasonable expectations for a 4.16 kV MV VFD package, but the specific acceptance criteria belong to the EPC SoW and the Package Datasheet; reviewers should not assert acceptance criteria that are not source-supported.
+- Turnover categories (mechanical-complete, energization-readiness, handover-to-operations) align with typical EPC construction workflow, but the authoritative gates belong to the Construction Work Package for `PKG-023`; until that document is accessible the categories serve as placeholders.
+
+## Trade-offs
+
+- **Accept partial vs. hold for completeness.** Where vendor documentation is partial, EPC Integrator may accept-with-comments and carry an explicit punch list rather than rejecting wholesale; the trade-off is schedule continuity vs. acceptance-evidence completeness. Either choice must be recorded in the review log.
+- **Re-test vs. accept by analysis.** Where FAT/SAT cannot be re-performed, acceptance by certified vendor records and on-site inspection is acceptable when the EPC SoW permits; otherwise the item remains `TBD` and is surfaced for human ruling.
+- **Strict interface verification vs. construction sequencing.** Strict verification of all six package interfaces before energization protects integration integrity; deferring some verification (for example, end-to-end I&C / Control Cabling and Communications / Network checks) to commissioning may be necessary for sequencing reasons but must be explicit, not implicit.
+- **Bundled vs. discrete I&C and Communications evidence.** The interface register lists I&C / Control Cabling and Communications / Network as distinct interfaces. Reviewers may accept evidence bundled by physical cable run, but the checklist must still record a disposition under each interface ID separately to preserve traceability.
+
+## Examples
+
+- Acceptance-checklist row example (Electrical Power): "Interface: Electrical Power (IFC-2F6B2D3B80). Vendor evidence: vendor single-line diagram rev N; cable schedule rev N. EPC reference: EPC SoW clause TBD. Disposition: Accepted with comments. Comment: confirm upstream 4.16 kV feeder breaker coordination and harmonic limits at point of common coupling in commissioning." (Form is illustrative; specific clause references depend on accessible EPC SoW.)
+- Acceptance-checklist row example (I&C / Control Cabling): "Interface: I&C / Control Cabling (IFC-488756F914). Vendor evidence: vendor control schematic rev N; I/O list rev N. EPC reference: EPC SoW clause TBD. Disposition: Accepted with comments. Comment: confirm hard-wired Run/Trip and speed reference routing to plant PLC; field cabling assignment per project electrical spec." (Form is illustrative.)
+- Vendor-document review-log row example: "Document: VFD general arrangement drawing. Revision: B. Reviewer: EPC Electrical Lead. Disposition: Accepted with comments. Comments: confirm enclosure heat rejection vs. electrical-building HVAC sizing for n+1 service." (Form is illustrative.)
+- Turnover record example: "Mechanical complete: vendor VFD lineup installed and anchored per general arrangement. Evidence: signed installation checklist." (Form is illustrative; authoritative gates per Construction Work Package, `TBD`.)
+
+## Conflict Table (for human ruling)
+
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority | Human ruling |
+|---|---|---|---|---|---|---|
+| HRR-023-06-001 | Acceptance criteria depend on the EPC Scope of Work for `PKG-023` (`DEL-023-01`), but no external EPC SoW source slice is present in `_REFERENCES.md`, and the in-project `DEL-023-01` deliverable's drafting state is not yet confirmed at acceptance maturity. | `_CONTEXT.md` (scope text refers to EPC SoW) | `_REFERENCES.md` (no EPC SoW source slice); `DEL-023-01/_STATUS.md` | Specification REQ-023-06-005, REQ-023-06-006; Procedure steps; Guidance Examples | PROPOSAL: rely on `DEL-023-01` once it reaches an accepted state and add its location to `_REFERENCES.md`; carry specific acceptance criteria as `TBD` until then. | TBD |
+| HRR-023-06-002 | Turnover evidence categories are aligned to a Construction Work Package for `PKG-023` (`DEL-023-03`), but no external CWP source slice is present in `_REFERENCES.md`, and the in-project `DEL-023-03` deliverable is not yet at acceptance maturity. | `_CONTEXT.md` (scope text refers to CWP) | `_REFERENCES.md` (no CWP source slice); `DEL-023-03/_STATUS.md` | Specification REQ-023-06-006; Procedure turnover steps | PROPOSAL: rely on `DEL-023-03` once it reaches an accepted state; carry CWP-specific transition criteria as `TBD` until then. | TBD |
+| HRR-023-06-003 | The companion Package Datasheet `DEL-023-02` is the EPC handoff basis, but its `_STATUS.md` is `OPEN` (not yet drafted), so relying on it as acceptance authority is currently impossible. | `DEL-023-02/_STATUS.md` (`OPEN`) | This deliverable's role definition (`DELIVERABLE_REGISTER.csv`) | Specification REQ-023-06-001, REQ-023-06-004; Procedure step 5 | PROPOSAL: defer substantive vendor-package acceptance evidence until `DEL-023-02` is drafted and accepted; record this dependency explicitly in the review log and as a dependency in `_DEPENDENCIES.md` at the next dependency-extract cycle. | TBD |
+| HRR-023-06-004 | DBM-Deepcut states "VFD and soft-starter requirements for 4.16 kV motors are TBD." Until that DBM gap is closed by EPC SoW or Package Datasheet, vendor acceptance against project-level VFD requirements is provisional. | `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md` (4.16 kV MCC section) | EPC SoW / Package Datasheet (`TBD`) | Specification REQ-023-06-005; Datasheet "VFD service basis"; Guidance Considerations | PROPOSAL: record the DBM gap explicitly in the review log and treat vendor-asserted VFD-class requirements as provisional until the EPC SoW or Package Datasheet closes the gap. | TBD |

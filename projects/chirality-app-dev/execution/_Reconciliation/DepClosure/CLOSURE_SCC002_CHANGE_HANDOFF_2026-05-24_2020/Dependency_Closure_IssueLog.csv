@@ -1,0 +1,4 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+ISS-SCC002-001,INFO,SCC_CLOSURE,DEL-10-02,DEL-10-03,DEP-10-02-004,"Dependency row retired by CHANGE per RUL-SCC-002-004; SCC-002 absent from Evidence/scc_summary.csv.","No further SCC-002 action required unless later evidence changes the accepted ruling."
+ISS-SCC001-001,BLOCKER,CIRCULAR_DEPENDENCY,,,,Evidence/scc_summary.csv,"Continue SCC-001 reconciliation before reporting strict project-wide BLOCKED/UNBLOCKED state."
+

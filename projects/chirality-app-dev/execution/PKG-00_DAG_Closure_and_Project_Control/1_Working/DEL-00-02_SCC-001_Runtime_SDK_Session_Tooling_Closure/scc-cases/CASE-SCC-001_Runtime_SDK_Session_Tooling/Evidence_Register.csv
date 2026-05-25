@@ -1,0 +1,6 @@
+EvidenceID,SourcePath,SourceRef,EvidenceType,Supports,Notes
+EVID-SCC-001-001,execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/scc_summary.csv,SCC-001,DEPCLOSURE_BASELINE,REM-SCC-001-004,"Accepted baseline evidence for the SCC case."
+EVID-SCC-001-002,execution/_Reconciliation/DepClosure/CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431/bidirectional_pairs.csv,SCC-001,DEPCLOSURE_BASELINE,REM-SCC-001-004,"Bidirectional-pair evidence to be interpreted by owner workflow work."
+EVID-SCC-001-003,case-seeds/PKG00-SCA-PACKET-002_SCC-001_Runtime_SDK_Core/Packet_QA.md,Packet readiness,SEED_EVIDENCE,FIND-SCC-001-001;REM-SCC-001-001,"Prior runtime/SDK packet retained as seed evidence."
+EVID-SCC-001-004,case-seeds/PKG00-SCA-PACKET-003_SCC-001_Session_Audit_Records/Packet_QA.md,Packet readiness,SEED_EVIDENCE,FIND-SCC-001-002;REM-SCC-001-002,"Prior session/audit packet retained as seed evidence."
+EVID-SCC-001-005,case-seeds/PKG00-SCA-PACKET-004_SCC-001_Tooling_Permissions_MCP/Packet_QA.md,Packet readiness,SEED_EVIDENCE,FIND-SCC-001-003;REM-SCC-001-003,"Prior tooling/permissions/MCP packet retained as seed evidence."

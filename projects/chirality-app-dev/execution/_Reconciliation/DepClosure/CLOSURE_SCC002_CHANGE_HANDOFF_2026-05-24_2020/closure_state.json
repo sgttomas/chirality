@@ -1,0 +1,20 @@
+{
+  "created": "2026-05-24",
+  "latest_prior_snapshot": "CLOSURE_POST_ID_CANONICALIZATION_2026-05-24_1431",
+  "scc002_status": "CLOSED_BY_CHANGE_HANDOFF",
+  "changed_dependency_rows": 1,
+  "retired_dependency_rows": [
+    "DEP-10-02-004"
+  ],
+  "preserved_dependency_rows": [
+    "DEP-10-03-006"
+  ],
+  "strict_full_graph_scc_count": 1,
+  "strict_full_graph_scc_sizes": [
+    18
+  ],
+  "graph_edges": 113,
+  "bidirectional_pair_count": 12,
+  "strict_project_blocker_state_reportable": false,
+  "verdict": "SCC002_CLOSED_STRICT_FULL_GRAPH_STILL_CYCLIC"
+}

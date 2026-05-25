@@ -26,6 +26,17 @@ Both SCC closure control deliverables are `SEMANTIC_READY` through bounded `TASK
 
 This does not modify dependency edge state and does not make the strict product graph acyclic.
 
+## SCC Resolution Case Workflow
+
+PKG-00 now stages SCC remediation as SCC Resolution Cases. WORKING_ITEMS dispatches bounded TASK agents into case folders under the relevant `DEL-00-*` control deliverable. Cases are living receptacles for repeated deliverable-local findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs.
+
+The earlier Scope Change Consumable Packets remain preserved as seed evidence inside the cases. They are not sufficient by themselves to select a remedy, initiate SCOPE_CHANGE, update dependency rows, amend decomposition truth, or close the dependency graph.
+
+Active cases:
+
+- `DEL-00-01/.../scc-cases/CASE-SCC-002_PKG-10_Policy_Proposal`
+- `DEL-00-02/.../scc-cases/CASE-SCC-001_Runtime_SDK_Session_Tooling`
+
 ## Non-Goals
 
 - Do not use this package to invent dependency edges.

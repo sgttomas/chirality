@@ -1,0 +1,42 @@
+# Guidance: DEL-039-04_vendor-engineered-equipment-package
+
+## Purpose
+
+This guidance supports the Package Vendor production unit (engineering, design, fabrication/supply, and physical equipment) for the 600V ELECTRICAL BUILDING (850-1) package, `PKG-039` — the 600 V Inlet / Sales Compressor Electrical Building. The deliverable converts the accepted EPC Scope of Work and EPC Package Datasheet into a vendor-engineered, shop-built modular electrical building with a defendable design basis and supplied internal equipment. EPC integration review is performed downstream (`DEL-039-06`).
+
+## Principles
+
+- **Vendor inputs are EPC outputs.** The vendor design starts from `DEL-039-01` (Scope of Work) and `DEL-039-02` (Package Datasheet). The vendor shall not invent package scope outside those inputs.
+- **Responsibility split is preserved.** Package engineering, package design, vendor documentation, and the physical equipment (the shop-built electrical building and its internals) belong to the Package Vendor. Facility integration, interfaces, tie-ins, constructability, procurement/construction coordination, and facility-level integration belong to the EPC Integrator.
+- **Source-anchored values only.** Where accessible source slices (DBM electrical-buildings basis, Gate 7 registers, workbook row 41) define a value or constraint, the vendor design shall reflect it. Where source is silent, values remain `TBD` for vendor data to close — not for invention by drafting.
+- **Interfaces drive design, not the reverse.** The twelve applicable package interfaces are inputs to vendor engineering, not items the vendor may redefine.
+- **Standby-power and facility-level items remain EPC.** The vendor designs the building and 600 V MCC compatibility envelope; TOU generator sizing, transfer-switch configuration, load shedding, sequencing, TOU standard confirmation, and facility-level grounding/F&G strategy are not vendor scope.
+
+## Considerations
+
+- **Service basis.** DBM identifies the 600 V building family as receiving radial step-down feeds from the 13.8 kV switchgear backbone via step-down transformers. The DBM's "600 V Sales/Overheads Compressor Electrical Building" naming and the workbook's "600V ELECTRICAL BUILDING (850-1) — Inlet / Sales Compressor" naming are similar but not strictly identical; vendor data should confirm the feeder mapping to building tag 850-1.
+- **Permitted internal equipment.** DBM enumerates the permitted population for an electrical building "as required by detailed design": 600 V MCCs, 600 V VFDs in the MCC lineup, 600 V SCR heater-control panels, 600 V to 208/120 V distribution transformers and panelboards, 208/120 V contactor panels, 120 VAC and 125 VDC UPS systems with battery banks and distribution panels, plant PLC control panels, and network racks. Whether a 600 V building of this tag also houses medium-voltage gear is `TBD` from accessible source; vendor data should confirm.
+- **Standby power tie-in.** Standby-power tie-in is at the 600 V MCC via TOU standby generators and transfer switches. The vendor building shall provide compatible MCC sections; sizing and sequencing remain EPC.
+- **Cable entry and elevation.** Bottom entry of incoming and outgoing power cables, building elevation on piles, and under-building tray space are non-negotiable per DBM.
+- **HVAC redundancy.** n + 1 HVAC sizing is required so a unit may fail or be taken out for maintenance without affecting heating or cooling. Heater selection defaults to electric (e.g., Ruffneck-type) where heat-medium heating is impractical.
+- **Maintenance access.** Equipment doors must be sized for (or include removable transom sections to allow) removal of the largest equipment; this constrains door schedules and wall openings.
+- **Hazardous-area classification.** The building is sited in a general-purpose (unclassified) area per DBM. If detailed design moves any portion into a classified area, equipment ratings and conduit sealing change accordingly.
+
+## Trade-offs
+
+- **Standardized vendor electrical buildings vs. project-specific engineering.** A standardized modular electrical building shortens vendor schedule but may force interface adapters (cable-entry, HVAC duct, tie-in panel locations). A project-specific design improves integration fit but lengthens delivery. The trade-off is a vendor + EPC decision at integration review.
+- **HVAC redundancy strategy (n + 1 unit count vs. capacity reserve).** n + 1 may be implemented with several smaller units or fewer larger units with capacity reserve. Each option affects footprint, electrical load, and serviceability.
+- **Equipment population scope.** Including UPS, network, and PLC content inside this electrical building (vs. siting some content in a separate building/RDC) affects building size, HVAC load, and grounding scope. Source permits either model; vendor + EPC must decide based on the EPC Package Datasheet.
+
+## Examples
+
+- A shop-built modular 600 V electrical building, elevated on piles in a general-purpose area, with a 600 V MCC lineup (including in-lineup VFDs), 600 V to 208/120 V distribution transformer and panelboards, 120 VAC and 125 VDC UPS systems, plant PLC control panels, network racks, and an n + 1 HVAC system, supplied with the vendor design basis and per-equipment datasheet set. (ASSUMPTION: representative configuration; actual configuration set by vendor data and the EPC Package Datasheet.)
+- A vendor design basis documenting the twelve interface positions (Utility Piping; Drain / Containment; Electrical Power; Grounding / Bonding; Area / Exterior Lighting; I&C / Control Cabling; Communications / Network; Building HVAC / Services; Fire & Gas / Safety Systems; Maintenance Access; Grading / Site Drainage / Spill Containment; Structural / Foundations / Supports) and the vendor's response to each at the building envelope.
+
+## Conflict Table (for human ruling)
+
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CFL-039-04-001 | The workbook names PKG-039 as "600V ELECTRICAL BUILDING (850-1)" with the Inlet / Sales Compressor association implied by the DBM electrical-buildings list ("850-1 600V Inlet / Sales Compressor Electrical Building"), while the DBM power-distribution paragraph lists "600 V Sales/Overheads Compressor Electrical Building" among 600 V buildings fed from the 13.8 kV switchgear. The exact upstream feeder mapping for tag 850-1 is not unambiguously confirmed. | Workbook Packages row 41; `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md`, electrical-buildings table (850-1 row) | `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md`, power-distribution paragraph (600 V Sales/Overheads naming) | Datasheet attributes (incoming feeder source); Specification REQ-039-04-005, REQ-039-04-013; Guidance Considerations | Treat the 850-1 building name as workbook truth; record the upstream feeder mapping as `ASSUMPTION` and resolve via vendor data confirming the actual 600 V step-down transformer assignment. | TBD |
+| CFL-039-04-002 | Source permits a broad equipment population inside an electrical building ("as required by detailed design"), but does not confirm which subset applies to PKG-039 (e.g., whether MV gear is housed, exact MCC count, UPS rating, VFD count, PLC/network rack count). | `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md`, electrical-buildings paragraph | `_REFERENCES.md` (no PKG-039 vendor-data slice available) | Datasheet attributes (equipment population, counts/ratings); Specification REQ-039-04-005, REQ-039-04-013; Guidance Considerations | Carry detailed equipment counts/ratings as `TBD`; vendor data closes them during package engineering, anchored by the EPC Package Datasheet (`DEL-039-02`). | TBD |
+| CFL-039-04-003 | Installation location (plot-plan coordinate, elevation reference, foundation/pile design specifics) is not assigned to PKG-039 in the accessible source set. | `_Sources/DBM-Deepcut/4-25_Deepcut_DBM.md`, electrical-buildings paragraph (general-purpose-area placement; elevated on piles) | Gate 7 registers (silent on PKG-039 plot-plan coordinate) | Datasheet construction (installation location, foundations/supports); Specification REQ-039-04-006, REQ-039-04-013; Guidance Trade-offs | Defer plot-plan/pile design to EPC integration; vendor design preserves bottom cable entry and elevated/pile envelope until EPC confirms specifics. | TBD |

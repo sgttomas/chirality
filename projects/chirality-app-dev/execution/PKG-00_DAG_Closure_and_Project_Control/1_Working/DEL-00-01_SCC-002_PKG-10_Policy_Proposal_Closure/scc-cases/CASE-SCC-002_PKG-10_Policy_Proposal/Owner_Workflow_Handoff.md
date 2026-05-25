@@ -1,0 +1,5 @@
+HandoffID,OwnerWorkflow,TriggerCondition,PayloadPath,ExpectedOutput,Status
+HOFF-SCC-002-001,WORKING_ITEMS,"Bounded row evidence for DEP-10-02-004 and DEP-10-03-006 has been deposited in the case.",Task_Findings.csv,"Additional findings and evidence rows.",COMPLETE
+HOFF-SCC-002-002,SCOPE_CHANGE,"Human rules that decomposition or scope amendment is needed.",case-seeds/PKG00-SCA-PACKET-001_SCC-002_PKG-10_Policy_Proposal/SCOPE_CHANGE_INIT.md,"Possible SCA snapshot if SCOPE_CHANGE accepts an amendment.",CLOSED_NOT_INITIATED
+HOFF-SCC-002-003,CHANGE,"Human rulings approved row-level treatment for DEP-10-02-004 and DEP-10-03-006.",Candidate_Remedies.csv,"CHANGE retired DEP-10-02-004 as non-blocking interface/reference evidence and preserved DEP-10-03-006 as the hard prerequisite.",COMPLETE
+HOFF-SCC-002-004,DEPCLOSURE,"CHANGE-owned dependency row treatment has been applied.",execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/,"Accepted closure snapshot determines SCC-002 is removed; SCC-001 remains.",COMPLETE
