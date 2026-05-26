@@ -1,0 +1,44 @@
+# Guidance — DEL-075-01 Scope of Work (PKG-075 Cryogenic Unit "Deepcut")
+
+## Purpose
+
+The EPC Scope of Work for the PKG-075 UltraTEF cryogenic unit (the "Deepcut" package) exists to fix the package boundary, tagged-equipment identity, package function, and responsibility assignments that bind every downstream PKG-075 deliverable (Package Datasheet, Construction Work Package, Vendor Engineered Equipment Package, Vendor Document Turnover, and EPC Vendor Package Review and Acceptance) and that align the package with the surrounding facility design (`_CONTEXT.md` Scope; DELIVERABLE_REGISTER.csv rows 276-281). It is the Gate 5 EPC anchor for the cryogenic unit (per `_CONTEXT.md` Notes).
+
+## Principles
+
+- **Source-anchored package definition.** The package boundary, equipment, and conditions are defined from DBM-Deepcut SEC-06 "UltraTEF Cryogenic Recovery Basis" (lines 1293-1396). Items not present in that slice are recorded as `TBD` and routed to the package datasheet or vendor engineering, not invented in the scope of work (DBM-Deepcut "UltraTEF Open Items and Assumptions" line 1351; "Assumptions, TBDs..." lines 1380-1395).
+- **Single design point governs sizing.** Summer ambient, expander-mode is the design point for BAHX and turbo-expander sizing; winter is expected performance and must be checked separately for tower, pump, and reboiler hydraulics (DBM-Deepcut lines 1299, 1305). Confusing the two leads to undersized winter relief and reboiler problems.
+- **Two operating modes, one package.** Both expander mode (normal design) and J-T mode (start-up / off-design) are part of the package's operating envelope (DBM-Deepcut lines 1345-1346). The scope of work must keep the J-T path intact and properly protected; J-T values remain `TBC` and must be carried as open items, not closed out by assumption.
+- **Protection-by-design, not by procedure.** Three protective intents are baked into the equipment basis and must not be procedurally substituted: J-T valve mechanical stroke limit for cryogenic-flare flow protection (DBM-Deepcut line 1321); BAHX E-pass bypass to prevent MDMT excursion in the reflux loop (DBM-Deepcut line 1333); and lube-oil accumulator sized for at least one minute of post-ESD flow (DBM-Deepcut line 1323).
+- **Mercury and mercaptan vigilance.** BAHX mercury-tolerant features are required, with detail TBD (DBM-Deepcut line 1324); upstream MRU and dust filtration are the credited protective barrier (DBM-Deepcut line 1362). Mercaptan concentration in deethanizer bottoms is acknowledged in design and constrains downstream NGL treating (DBM-Deepcut lines 1314, 1338).
+- **Interfaces are part of the package.** The scope of work must enumerate, not assume, the upstream (molecular-sieve / MRU / dust filtration), downstream (sales-gas compression; future NGL treating), and utility (methanol, heat medium, drains, fuel gas) interfaces, even when those scopes are owned outside PKG-075 (DBM-Deepcut "Interfaces" lines 1365-1378).
+
+## Considerations
+
+- **Winter hydraulics check.** Pressure and liquid loads are higher in winter; tower flooding margins, reboiler approach, and pump differentials must be recomputed against winter cases even though sizing is set by summer (DBM-Deepcut line 1299; pump and reboiler basis lines 1331, 1335, 1336).
+- **A-pass bypass capacity.** The 15-20% range is preliminary and the final figure remains TBC; over-sizing the bypass undermines absorber pressure/temperature control at low inlet temperatures (DBM-Deepcut line 1326). The package datasheet should fix the value before bid.
+- **Methanol distribution.** Designed to inject at one point at a time; the operator-selectable single-point design fixes pump sizing and header capacity. Required injection points and capacities are TBC and need to be closed during detailed engineering (DBM-Deepcut lines 1328, 1392).
+- **Vendor exceptions to ALPEMA.** ALPEMA 3rd Edition plus manufacturer practice "with vendor exceptions" is the BAHX basis (DBM-Deepcut line 1324); exceptions must be enumerated by the vendor and reviewed by the EPC Integrator before acceptance.
+- **Future-state interfaces.** The future deethanizer bottoms exchanger and cooler are scope only as interface provisions today; locking in current design values to future NGL treating is premature (DBM-Deepcut lines 1337-1338, 1394).
+- **External composition appendices.** Inlet composition, sales composition, detailed product specifications, and sulphur distribution rely on external appendices that are not present in the locally accessible source slice (DBM-Deepcut line 1378). The scope of work cites this dependency rather than restating values.
+- **Package_Requirements.docx.** The deliverable register names `26020-Package_Requirements.docx` heading 29 as a source. The docx text is not machine-readable in this run; any contractual requirement that lives only in that document is recorded as `TBD` in Specification.md and must be reconciled before the scope of work is issued.
+
+## Trade-offs
+
+- **Mechanical stroke limit on the J-T valve vs. operational flexibility.** The stroke limit prevents control failure from exceeding flare design (DBM-Deepcut line 1321) but caps maximum J-T-mode throughput. The package datasheet must fix the stop position consistent with the cryogenic flare design flow, not with peak production aspiration.
+- **A-pass bypass capacity.** Larger bypass eases winter operability but reduces propane recovery; the final value is a recovery-vs-operability trade and is left TBC in the source (DBM-Deepcut line 1326).
+- **Mercury-tolerant features in the BAHX.** Mercury-tolerant construction adds cost and lead time but is required for cryogenic aluminum service downstream of mercury-laden gas (DBM-Deepcut line 1324). The trade is between vendor cost and the consequences of a mercury embrittlement event; the design basis resolves it in favor of mercury tolerance.
+- **Co-current trays in the deethanizer.** "May be evaluated" (DBM-Deepcut line 1332): co-current trays can improve capacity but change the operating signature; evaluating them belongs in vendor engineering, not in the scope of work.
+
+## Examples
+
+- A vendor responding to this scope of work should be able to size the BAHX (six-pass, ALPEMA 3rd Ed., U Stamp + CRN, +10% area, max 150 degF, 0 mm CA), the turbo-expander/compressor (common-shaft, IGV 125% normal, anti-surge recycle), and the deethanizer (35 actual valve trays, jet/downcomer flood <=70%, TEMA BKU reboiler at 350 degF with >=25 degF approach in expander mode) directly from the values reproduced in `Datasheet.md` and `Specification.md` (Sources: DBM-Deepcut lines 1322, 1324, 1332, 1336).
+- The EPC Integrator should be able to draw the package boundary on the plot plan such that the inlet ESDV is the boundary instrument (DBM-Deepcut lines 1307-1308) and that the sales-gas tie point is at the BAHX C-pass / expander-compressor discharge (DBM-Deepcut lines 1312, 1376).
+
+## Conflict Table (for human ruling)
+
+| Conflict ID | Conflict (short statement) | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
+|---|---|---|---|---|---|---|
+| CONFL-01 | Deethanizer bottoms C2/C3 target is stated as "<=654 mol%" expected/operating and "<=1.5 mol%" design. The "<=654 mol%" value is non-physical and appears to be a typographic error; the intended value is likely 0.654 mol%. | DBM-Deepcut SEC-06 / UltraTEF Design Values (line 1311), expected/operating target | DBM-Deepcut SEC-06 / UltraTEF Design Values (line 1311), design target | Specification.md R-16; Datasheet.md (if values are migrated) | PROPOSAL: treat expected/operating target as 0.654 mol% (ASSUMPTION); confirm against vendor heat-and-material balance and original DBM source | TBD |
+| CONFL-02 | `26020-Package_Requirements.docx` (heading 29) is named as the package-requirements source for this deliverable but its body is not present in any locally machine-readable form. Any contractual requirement that exists only in that document is currently unrepresentable. | `_CONTEXT.md` Source Reference; `_REFERENCES.md` Source Materials | (none locally accessible) | Specification.md Standards (Package Requirements row); R-22; R-23 | PROPOSAL: convert the docx to markdown via `tools/pdf2md` (or equivalent) and reread before issuing the scope of work | TBD |
+| CONFL-03 | Objectives OBJ-001, OBJ-003..OBJ-010 are recorded as supported by this deliverable based on the package-grouping heuristic (`OBJECTIVE_ASSOCIATION_MODE = PACKAGE_HEURISTIC`), not via an explicit deliverable-ID-level objective mapping. | `_CONTEXT.md` Supports Objectives | `_Decomposition/.../OBJECTIVE_DELIVERABLE_MAP.csv` (package-grouped, not deliverable-ID-keyed) | Datasheet.md Identification (Supports Objectives row) | PROPOSAL: keep association as ASSUMPTION (best-effort mapping) until human confirms; do not derive any binding requirement from this association | TBD |

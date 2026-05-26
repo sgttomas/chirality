@@ -1,0 +1,48 @@
+# Guidance — DEL-069-01 Scope of Work (PKG-069 Mole Sieve Drier Unit (Gas))
+
+## Purpose
+
+This Scope of Work is the EPC Integrator's anchoring statement of *what the gas mole-sieve drier package is and how it integrates into the facility*. It is the upstream deliverable that the Package Datasheet (`DEL-069-02`), Construction Work Package (`DEL-069-03`), Vendor Engineered Equipment Package (`DEL-069-04`), Vendor Document Turnover Package (`DEL-069-05`), and EPC Vendor Package Review and Acceptance (`DEL-069-06`) all consume. Getting identity, function, boundary, responsibility, and interface set correct here prevents downstream rework when the vendor receives the technical handoff and when construction begins integration tie-ins.
+
+Source: `_CONTEXT.md`; `DELIVERABLE_REGISTER.csv` (DEL-069-01 through DEL-069-06); package note "Mandatory Gate 5 EPC anchor deliverable defined by user instruction".
+
+## Principles
+
+1. **Vendor owns the package; EPC owns the integration.** Package engineering, design, vendor documentation, and equipment supply belong to the Package Vendor. Interfaces, tie-ins, constructability, procurement/construction coordination, and facility-level integration belong to the EPC Integrator. This split is the controlling responsibility model for `PKG-069`. Source: `PACKAGE_REGISTER.csv` ResponsibilityModel.
+2. **Source-anchored content; no invention.** Every non-trivial statement should cite Workbook Packages row 73, `26020-Package_Requirements.docx` package row 73 heading, the 04-25 Deepcut DBM, or another locally accessible source slice. Where a value is not in an accessible slice, mark `TBD` with `location TBD` rather than inferring it. Source: SKILL `four-documents` source-grounding rule.
+3. **Interface set is exhaustive at the package boundary.** The twelve interface types in `INTERFACE_REGISTER.csv` for `PKG-069` form the integration surface. Omitting any of them in the SOW will create a hidden EPC scope item downstream (notably I&C / Control Cabling, Fire & Gas / Safety Systems, and Building HVAC / Services, which are easy to omit on an apparently "mechanical" skid). Source: `INTERFACE_REGISTER.csv`.
+4. **Regeneration heat is a facility interface, not a package-internal utility.** Per DBM line ~1947, gas mole sieve regeneration is fed by a separate direct-fired heater and is explicitly removed from the unified heat medium loop. Treat the regeneration heater interface as part of the facility integration narrative. Source: `DBM-Deepcut/4-25_Deepcut_DBM.md` (line ~1947).
+5. **Three-bed adsorption configuration governs.** Two adsorbing + one standby/regeneration/cooling is the architecture from which sparing (`3 × 50%`), instrumentation manifolding (three moisture analyzer lines + common), and isolation philosophy (unit-level isolation for maintenance) derive. Do not redescribe the configuration; reproduce it. Source: `DBM-Deepcut/4-25_Deepcut_DBM.md` (line ~1243, ~1263, ~2362, ~2134, ~2408).
+
+## Considerations
+
+- **Tag preservation.** Carry the DBM row-56 tag list (`AC-6180-1`, `K-6190-1`, `K-6195-1`, `F-5910-1`, `F-5920-1`, `F-6151-1`, `F-6155-1`, `E-6170-1`, `V-6160-1`, `V-6130-1`, `V-6140-1`, `V-6150-1`, `V-6185-1`) exactly as stated; downstream P&ID, datasheet, and construction documents will key off these tags.
+- **Gas vs. NGL mole sieve.** `PKG-069` is the gas mole sieve (DBM row 56, equipment series `*-61xx-1`/`*-619x-1`). The NGL mole sieve (DBM row 57, `*-68xx-1`/`*-67xx-1`) is a separate workbook package per the Gate-6 disposition note in `PACKAGE_REGISTER.csv`. Do not conflate tags between the two units.
+- **Regeneration heater ownership.** The separate direct-fired regeneration gas heater is named at the facility level (DBM line ~1947) but its scope split (vendor-supplied with the mole sieve package vs. separate EPC/facility-supplied heater) is not stated in locally accessible source slices. Capture as Conflict ID `CONF-069-01-02`.
+- **Cryogenic-unit package overlap.** `PACKAGE_REGISTER.csv` PKG-069 NotesRaw records the Gate-6 disposition that gas mole sieve scope is referenced as included with the Cryogenic Unit package scope, while `PKG-069` remains a discrete workbook package. The SOW must surface this as a package-integration question (Conflict ID `CONF-069-01-01`) rather than silently merging or splitting scope.
+- **Moisture analyzer scope split.** DBM line ~2134 specifies analyzers but does not state whether they are vendor-supplied with the mole sieve package or EPC-supplied under I&C. Capture as Conflict ID `CONF-069-01-03`.
+- **Design conditions not locally extracted.** Bed sizing, cycle time, regeneration heater duty, vessel design pressures/temperatures, and materials are not in the accessible DBM slices. These belong in the Package Datasheet (`DEL-069-02`) and must be extracted from `26020-Package_Requirements.docx` row-73 heading before downstream handoff.
+
+## Trade-offs
+
+- **Specificity vs. source coverage.** The locally accessible source slices (workbook row, scope ledger, package register, DBM mole-sieve narrative slices) describe identity, function, equipment list, configuration, regeneration architecture, responsibility, and interface set, but do not provide clause-level design conditions. SOW content should be specific where source supports it and explicitly `TBD` (with `location TBD`) elsewhere. Pushing more detail into the SOW than source supports compromises auditability.
+- **EPC-authored vs. vendor-authored content.** This SOW is EPC-authored; technical design content belongs in the Package Datasheet (`DEL-069-02`) and the vendor's engineered equipment package (`DEL-069-04`). Resist drift of vendor design content into this deliverable.
+- **Interface enumeration vs. interface design.** Naming the twelve applicable interfaces in this SOW satisfies the integration narrative requirement; interface *design* belongs in the Package Datasheet and downstream EPC discipline deliverables.
+- **Package discreteness vs. cryogenic-unit consolidation.** Holding `PKG-069` discrete (per Workbook row 73) is the source-authoritative position; the Gate-6 disposition is recorded as context but does not override the workbook package boundary without explicit human ruling (see Conflict Table).
+
+## Examples
+
+Source-grounded statement (good):
+> "The package provides final process-gas dehydration via three molecular-sieve adsorber driers (`V-6130-1`, `V-6140-1`, `V-6150-1`); at any time two are in downflow adsorption while the third is in standby, regeneration, or cooling (DBM 4-25 Deepcut, mole sieve narrative; spares table `3 × 50%`)."
+
+Insufficiently grounded statement (avoid):
+> "Each adsorber bed is sized for an 8-hour adsorption cycle at 950 psig and 50 deg C." — there is no locally accessible source slice for these values; mark `TBD` with `location TBD`.
+
+## Conflict Table (for human ruling)
+
+| Conflict ID | Conflict | Source A | Source B | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
+|---|---|---|---|---|---|---|
+| CONF-069-01-01 | Gate-6 disposition records gas mole sieve scope as "included with the Cryogenic Unit package scope" while `PKG-069` remains a discrete workbook package. Package-boundary disposition is unresolved. | `PACKAGE_REGISTER.csv` PKG-069 NotesRaw (Gate-6 disposition) | `PACKAGE_REGISTER.csv` PKG-069 row exists as discrete workbook package; `DELIVERABLE_REGISTER.csv` PKG-069 deliverables defined as discrete | Datasheet "Gate-6 Disposition Note"; Specification R12; downstream `DEL-069-02` package boundary | PROPOSAL: Hold `PKG-069` as a discrete EPC scope-of-work package per Workbook row 73; treat consolidation with the Cryogenic Unit package as an integration coordination concern to be ruled at EPC review (`DEL-069-06`). | TBD |
+| CONF-069-01-02 | Regeneration gas direct-fired heater is identified at facility level but its scope split (inside vs. outside the mole sieve vendor package) is not stated. | `DBM-Deepcut/4-25_Deepcut_DBM.md` line ~1947 (separate direct-fired heater fact) | `PACKAGE_REGISTER.csv` PKG-069 InterfaceTypes (no "direct-fired heater" interface enumerated; nearest is Process Piping + Electrical Power + Fire & Gas) | Datasheet "Construction"; Specification R04; Procedure step 4 | PROPOSAL: Assign the regeneration gas direct-fired heater as a separate EPC-Integrator-supplied utility upstream of the mole sieve package boundary; treat the hot-gas tie-in as a Process Piping + Fire & Gas / Safety Systems interface. | TBD |
+| CONF-069-01-03 | Moisture analyzer scope split (vendor-supplied with mole sieve package vs. EPC-supplied under I&C / Control Cabling) is not stated. | `DBM-Deepcut/4-25_Deepcut_DBM.md` line ~2134 (analyzer + manifolding fact) | `PACKAGE_REGISTER.csv` PKG-069 InterfaceTypes (I&C / Control Cabling listed as an interface, implying EPC-side) | Datasheet "Conditions" (moisture analysis basis); Specification R14; downstream `DEL-069-02` | PROPOSAL: Carry the analyzers as vendor-supplied with the mole sieve package, with EPC-side I&C / Control Cabling for signal/power integration. | TBD |
+| CONF-069-01-04 | Design conditions (P, T, bed sizing, cycle time, regeneration heater duty, materials, codes) are not in locally accessible source slices but are required by downstream Package Datasheet (`DEL-069-02`). | `_REFERENCES.md` (no copied slices) | `PACKAGE_REGISTER.csv` SourceRefRaw (`26020-Package_Requirements.docx` row-73 heading exists in source but not locally extracted) | Datasheet "Conditions"; Specification "Standards"; downstream `DEL-069-02` | PROPOSAL: Extract design conditions from `26020-Package_Requirements.docx` row-73 heading into a deliverable-local source slice before producing `DEL-069-02_package-datasheet`. | TBD |

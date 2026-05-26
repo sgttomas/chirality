@@ -1,6 +1,6 @@
 # NEXT INSTANCE STATE
 
-Last updated: 2026-05-24
+Last updated: 2026-05-25
 
 ## Current Pointers
 
@@ -11,74 +11,61 @@ Last updated: 2026-05-24
 | Coordination policy | `_Coordination/_COORDINATION.md` |
 | Accepted upstream decomposition truth | `_Decomposition/PROJECT_DECOMP/_GateSnapshots/GATE-07_Final_Published_2026-05-24/` |
 | Decomposition variant | `PROJECT_DECOMP` |
-| Active setup phase | Phase 2.2, `TASK + four-documents`, `RUN_PASSES=P1_P2` |
+| Active setup phase | Phase 2.2 closed; lensing phases (2.3–2.5) skipped per human directive |
 
 ## Current Program State
 
-- Workspace count after Batch 13 closeout: 105 packages, 808 deliverable folders.
-- Lifecycle distribution after Batch 13 closeout:
-  - `OPEN`: 594
-  - `INITIALIZED`: 213
+- Workspace: 105 packages, 594 deliverable folders.
+- Lifecycle distribution:
+  - `OPEN`: 0
+  - `INITIALIZED`: 0
   - `SEMANTIC_READY`: 0
-  - `IN_PROGRESS`: 0
+  - `IN_PROGRESS`: 594
   - `CHECKING`: 0
   - `ISSUED`: 0
 - Tool roots present: `_Coordination`, `_Decomposition`, `_Sources`.
 - Tool roots absent/not yet used: `_Aggregation`, `_Estimates`, `_EstimatePrep`, `_Reconciliation`, `_Schedule`, `_Change`.
 
+## Phase 2.2 Closure
+
+Phase 2.2 (`TASK + four-documents`, `RUN_PASSES=P1_P2`) executed across all 594 deliverables in 24 parallel batches (Batches 10–24). Every deliverable has:
+- Four production documents: `Datasheet.md`, `Specification.md`, `Guidance.md` (with Conflict Table for HRR), `Procedure.md`.
+- `_STATUS.md` history showing `OPEN → INITIALIZED` (TASK+four-documents) → `IN_PROGRESS` (ORCHESTRATOR+human-directive(skip-lensing)).
+- `_run_records/TASK_RUN_2026-05-25_*.md` evidence.
+- `_MEMORY.md` per `docs/SPEC.md §8` canonical schema, with a Key Decisions entry recording the lensing-skip directive.
+
+## Human Directive — Lensing Skipped
+
+Phases 2.3 (`semantic-matrix-build`), 2.4 (`lens-register`), and 2.5 (`four-documents P3_ONLY`) were intentionally skipped at human direction. Per `docs/TYPES.md` §5.1 the `INITIALIZED → SEMANTIC_READY` transition is optional; deliverables were advanced directly `INITIALIZED → IN_PROGRESS`. Consequently:
+- No `_SEMANTIC.md` files exist.
+- No `_SEMANTIC_LENSING.md` files exist.
+- The four-document kit reflects only Pass 1 (draft) + Pass 2 (cross-document consistency); no Pass 3 semantic-lensing enrichment has been applied.
+
 ## Active Human Rulings And Assumptions
 
 1. Accepted upstream decomposition truth is the Gate 7 final published PROJECT_DECOMP snapshot named above.
-2. Raw source corpus is not to be reinterpreted by ORCHESTRATOR; Phase 2.2 workers consume Gate 7 plus deliverable-local references as their basis.
+2. Raw source corpus is not to be reinterpreted by ORCHESTRATOR; Phase 2.2 workers consumed Gate 7 plus deliverable-local references as their basis.
 3. Coordination mode is `DECLARED`; blocker computation is advisory and limited to declared dependency edges.
 4. Default dependency maturity threshold is `INITIALIZED`.
-5. Phase 2.2 uses `TASK + four-documents` with `RUN_PASSES=P1_P2`, `DECOMP_VARIANT=PROJECT`, and deliverable-local write scope.
-
-## Completed Batch 13 Closure
-
-Interrupted Batch 13 was restarted and closed.
-
-Scope:
-- `DEL-033-03..06`
-- `PKG-034..039`
-- Total: 40 deliverables
-
-Closure verdict:
-- 40 / 40 are `INITIALIZED`.
-- 40 / 40 have `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`.
-- 40 / 40 have successful `TASK + four-documents` `P1_P2` run-record evidence.
-- No Batch 13 worker remains open.
-
-Evidence notes:
-- Initial inspection found 21 deliverables already complete and 19 requiring restart.
-- The 19 restart workers completed successfully.
-- Final audit result: `Batch13 final total=40 ok=40 bad=0`.
-- Project state count after closeout: `INITIALIZED=213`.
+5. Phase 2.2 used `TASK + four-documents` with `RUN_PASSES=P1_P2`, `DECOMP_VARIANT=PROJECT`, and deliverable-local write scope.
+6. Lensing phases (2.3–2.5) skipped per human directive; `INITIALIZED → IN_PROGRESS` transition recorded with actor `ORCHESTRATOR+human-directive(skip-lensing)`.
 
 ## Immediate Next Actions
 
-1. Continue Phase 2.2 after Batch 13.
-2. Candidate next batch by Gate 7 register order begins with:
-   - `DEL-040-01..06`
-   - `DEL-041-01..06`
-   - `DEL-042-01..06`
-   - `DEL-043-01..04`
-   - `DEL-044-01..04`
-   - `DEL-045-01..04`
-   - `DEL-046-01..06`
-   - `DEL-073-01..04`
-3. Before dispatching, re-scan filesystem state and exclude any deliverable already closed by evidence.
-4. Dispatch each remaining Phase 2.2 unit as bounded `TASK + four-documents` with disjoint deliverable-local write scope.
+1. Deliverables are now in `IN_PROGRESS` and available for active human + agent work.
+2. Pervasive open items: per-deliverable Conflict Tables in `Guidance.md` enumerate HRR (Human Ruling Required) entries — common themes include API 650 clause-level text inaccessible, binary `.docx`/`.xlsx` source slices not parsed, OBJECTIVE_ASSOCIATION via PACKAGE_HEURISTIC marked ASSUMPTION, and various design-value TBDs.
+3. Advancement past `CHECKING → ISSUED` is reserved to the licensed professional per K-AUTH-1.
+4. Downstream phases (estimating, scheduling, reconciliation, change control) may begin consuming `IN_PROGRESS` deliverables as needed.
 
 ## Handoff Payload
 
 - Stable coordination policy: `_Coordination/_COORDINATION.md`.
 - Mutable handoff state: this file.
 - Accepted decomposition snapshot: `_Decomposition/PROJECT_DECOMP/_GateSnapshots/GATE-07_Final_Published_2026-05-24/`.
-- Deliverable-local continuity: each deliverable folder's `_STATUS.md`, four documents, and `_run_records/`.
+- Deliverable-local continuity: each deliverable folder's `_STATUS.md`, four documents, `_MEMORY.md`, and `_run_records/`.
 
 ## Update Protocol
 
-- Update this file at each ORCHESTRATOR handoff with the latest completed batch, lifecycle distribution, active blockers, and next queue slice.
+- Update this file at each ORCHESTRATOR handoff with the latest lifecycle distribution, active blockers, and next queue slice.
 - Do not treat derivative artifacts as replacement decomposition truth.
 - If a later phase consumes derivative packages, record the accepted upstream snapshot and derivative package currency before proceeding.
