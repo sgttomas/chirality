@@ -2,6 +2,17 @@
 
 Last updated: 2026-05-25
 
+## Source extractions
+
+On 2026-05-25 the two previously-unparsed binaries in `_Sources/` were extracted to sibling markdown so downstream agents (notably `dependency-extract` Pass 2 EXECUTION scans) can cite their content as text. Pandoc was unavailable on the host; `python-docx==1.2.0` and `openpyxl==3.1.5` were used instead. Originals retained for audit.
+
+| Binary | Markdown sibling | SHA-256 (binary) | Extractor |
+| --- | --- | --- | --- |
+| `_Sources/26020-Package_Requirements.docx` | `_Sources/26020-Package_Requirements.md` | `ce17472e911d858c0112b820d9765ab440c2a7769f8ffde616ee67ae7c96dd6a` | python-docx 1.2.0 |
+| `_Sources/26020-Packages_Interfaces_4_export.xlsx` | `_Sources/26020-Packages_Interfaces_4_export.md` | `eb367b0e19315f6da1d377d0fbe186a25fbadce20d1c6317c71086363cc33e25` | openpyxl 3.1.5 |
+
+Both markdown files carry a YAML front-matter block (`source_path`, `source_sha256`, `extractor`, `extraction_date`). Deliverable-local `_REFERENCES.md` and `_run_records/` were intentionally NOT touched; that update is deferred to the upcoming `TASK + dependency-extract` sweep, which will cite the new markdown anchors in its provenance rows.
+
 ## Current Pointers
 
 | Item | Path / Value |
