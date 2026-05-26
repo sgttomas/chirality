@@ -1,6 +1,6 @@
 # NEXT INSTANCE STATE
 
-Last updated: 2026-05-25
+Last updated: 2026-05-26
 
 ## Source extractions
 
@@ -60,6 +60,30 @@ Phases 2.3 (`semantic-matrix-build`), 2.4 (`lens-register`), and 2.5 (`four-docu
 4. Default dependency maturity threshold is `INITIALIZED`.
 5. Phase 2.2 used `TASK + four-documents` with `RUN_PASSES=P1_P2`, `DECOMP_VARIANT=PROJECT`, and deliverable-local write scope.
 6. Lensing phases (2.3–2.5) skipped per human directive; `INITIALIZED → IN_PROGRESS` transition recorded with actor `ORCHESTRATOR+human-directive(skip-lensing)`.
+
+## Phase 2.6 Closure — Dependency Extract
+
+On 2026-05-26 the `dependency-extract` skill was executed across all 594 deliverables (Option B sweep) via parallel TASK batches.
+
+**Metrics (closure scan 20260526T084941):**
+
+| Metric | Value |
+| --- | --- |
+| Deliverables processed | 594 / 594 |
+| Dependencies.csv files written | 594 |
+| Total dependency rows | 7,454 |
+| Schema valid / invalid | 594 / 0 |
+| ANCHOR rows | 3,736 |
+| EXECUTION rows | 3,718 |
+| IMPLEMENTS_NODE present / missing | 593 / 1 |
+| Evidence coverage | 7,454 / 7,454 (100%) |
+| Graph nodes / edges | 613 / 1,402 |
+| SCCs (size > 1) | 41 |
+| Bidirectional pairs | 48 |
+
+Closure snapshot: `_Reconciliation/DepClosure/20260526T084941/closure_report.txt`
+
+The 1 missing IMPLEMENTS_NODE and 41 SCCs are advisory; under CONSERVATIVE strictness they do not block the sweep. Bidirectional pairs reflect HANDOVER ↔ PREREQUISITE counterpart patterns across sibling deliverables — expected for this package structure.
 
 ## Immediate Next Actions
 
