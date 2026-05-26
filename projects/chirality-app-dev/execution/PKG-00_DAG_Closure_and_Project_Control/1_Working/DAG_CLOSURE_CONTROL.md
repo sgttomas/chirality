@@ -6,9 +6,9 @@
 |---|---|
 | ControlPackageID | PKG-00 |
 | ControlPackageName | DAG Closure and Project Control |
-| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` |
+| CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` |
 | StrictFullGraphStatus | CYCLIC |
-| StrictSCCCount | 2 |
+| StrictSCCCount | 1 |
 | BlockerSubsetStatus | ACYCLIC |
 | ProjectBlockedAvailableReportable | NO |
 
@@ -59,7 +59,7 @@ The four existing scope-change packets remain available as seed evidence inside 
 
 | Priority | Control Deliverable | Scope | Action |
 |---:|---|---|---|
-| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 residual runtime/session/tooling SCCs | Use `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301` and `SCC-001_Ruling_Workbook.csv` to drive residual human rulings for `REM-SCC-001-005`, `010`, `012`, and `015`, then any later CHANGE-owned row treatment. |
+| 1 | `DEL-00-02` (`SEMANTIC_READY`) | SCC-001 six-node longer-cycle residual SCC | Use `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` and its closure report to prepare the next longer-cycle ruling package for `DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, and `DEL-05-02`. |
 
 ## SCC-001 Dispatch Evidence
 
@@ -74,7 +74,13 @@ SCC-001 ready-tranche dependency rows have now been changed by CHANGE and verifi
 
 RECONCILIATION converted the dependency-workflow-ready bucket into a CHANGE handoff. CHANGE retired `DEP-04-01-008`, `DEP-03-04-008`, `DEP-03-03-009`, `DEP-04-04-004`, `DEP-04-05-011`, `DEP-06-01-012`, `DEP-06-01-013`, and `DEP-06-04-009` as non-blocking or already-satisfied evidence. AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` proves graph reduction only: `scc_count = 2`, `graph_edges = 105`, and residual SCC sizes `2` and `8`.
 
-SCC-001 is not closed. Remaining bidirectional pairs are `DEL-03-01,DEL-03-04`, `DEL-03-04,DEL-05-02`, `DEL-05-02,DEL-05-03`, and `DEL-06-01,DEL-06-04`. Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable.
+SCC-001 is not closed. The ready tranche left bidirectional pairs that were addressed by the subsequent residual closeout tranche. Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable.
+
+## SCC-001 Residual Closeout Evidence
+
+The human approved the residual ruling package. CHANGE retired `DEP-03-01-006`, `DEP-05-02-007`, `DEP-05-03-011`, and `DEP-06-01-011` as non-blocking reciprocal interface/conformance evidence while preserving `DEP-03-04-006`, `DEP-03-04-009`, `DEP-05-02-009`, and `DEP-06-04-007`.
+
+AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves all bidirectional pairs are removed, but SCC-001 is not closed: `scc_count = 1`, `graph_edges = 101`, and the residual SCC has 6 nodes (`DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, `DEL-05-02`).
 
 ## SCC-002 Closure Evidence
 

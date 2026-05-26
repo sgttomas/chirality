@@ -3,7 +3,7 @@
 **Updated By:** RECONCILIATION / CHANGE / AUDIT_DEP_CLOSURE
 **Scope:** 51 deliverable-local `Dependencies.csv` registers
 **Register Schema:** v3.1
-**Latest DepClosure Ruling:** `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/`
+**Latest DepClosure Ruling:** `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/`
 
 ## Summary
 
@@ -12,13 +12,13 @@
 | `Dependencies.csv` files | 51 |
 | Schema validation | PASS - 51/51 |
 | Total rows | 554 |
-| Active rows | 545 |
+| Active rows | 541 |
 | ANCHOR rows | 244 |
 | EXECUTION rows | 310 |
-| Active deliverable execution edges | 105 unique / 120 rows |
+| Active deliverable execution edges | 101 unique / 116 rows |
 | Non-concrete execution rows (`DOCUMENT`, `UNKNOWN`, `EXTERNAL`, etc.) | 181 |
 | Concrete deliverable graph acyclic | NO |
-| Strict active execution SCCs | 2 (sizes 2 and 8) |
+| Strict active execution SCCs | 1 (size 6) |
 | Blocker-subset SCCs | 0 |
 | Accepted co-development clusters | 1 (`DEL-03-01`, `DEL-04-01`) |
 
@@ -42,23 +42,21 @@ PKG-00 SCC Resolution Cases recorded 2026-05-24: the SCC-002 case is `CLOSED_BY_
 
 SCC-001 ready tranche recorded 2026-05-24: RECONCILIATION converted dependency-workflow-ready remedies `REM-SCC-001-006`, `007`, `008`, `009`, `011`, `013`, `014`, and `016` into a CHANGE handoff. CHANGE retired selected non-blocking or already-satisfied rows. DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` proves graph reduction only: `scc_count = 2`, `graph_edges = 105`, residual SCC sizes `2` and `8`, and 4 bidirectional pairs remain.
 
+SCC-001 residual closeout recorded 2026-05-24: human-approved CHANGE retired `DEP-03-01-006`, `DEP-05-02-007`, `DEP-05-03-011`, and `DEP-06-01-011`. DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves all bidirectional pairs are removed, but strict closure is not complete: `scc_count = 1`, `graph_edges = 101`, and residual SCC size `6`.
+
 ORCHESTRATOR must continue to distinguish strict all-active graph closure from blocker-subset closure. Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable while the strict graph is cyclic.
 
 ## Cycle Components
 
-### SCC-001 Residual Runtime / Session / Tooling
+### SCC-001 Longer-Cycle Residual Runtime / Session / Tooling
 
-Snapshot `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301` splits the former 18-node SCC into two residual SCCs:
+Snapshot `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` removes all bidirectional pairs but leaves one residual longer-cycle SCC:
 
-- `SCC-001`: `DEL-06-01;DEL-06-04`
-- `SCC-002`: `DEL-03-01;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-03;DEL-05-02;DEL-05-03;DEL-05-05`
+- `SCC-001`: `DEL-03-01;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-03;DEL-05-02`
 
-Remaining bidirectional pairs:
+Remaining bidirectional pairs: none.
 
-- `DEL-03-01,DEL-03-04`
-- `DEL-03-04,DEL-05-02`
-- `DEL-05-02,DEL-05-03`
-- `DEL-06-01,DEL-06-04`
+Representative internal active rows are listed in `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`.
 
 ### SCC-002 PKG-10 Policy / Proposal Pair
 
@@ -74,4 +72,4 @@ CLOSED by `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_20
 - `docs/PRD.md` / `REF-006` hash mismatch remains a source-state warning across registers.
 - Unresolved `UNKNOWN` / `TBD` targets were intentionally excluded from the graph rather than guessed.
 - The blocker-subset graph is now acyclic in `execution/_Reconciliation/DepClosure/CLOSURE_WORKING_ITEMS_CODEV_FOLLOWUP_2026-05-24_1348/Evidence/blocker_subset_summary.json`.
-- The SCC-002 CHANGE handoff DepClosure snapshot removes the `DEL-10-02` / `DEL-10-03` SCC. The SCC-001 ready tranche reduces the former 18-node component but strict full graph closure remains blocked by two residual SCCs.
+- The SCC-002 CHANGE handoff DepClosure snapshot removes the `DEL-10-02` / `DEL-10-03` SCC. The SCC-001 ready and residual-closeout tranches reduce the former 18-node component and remove all bidirectional pairs, but strict full graph closure remains blocked by one six-node SCC.

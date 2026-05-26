@@ -14,17 +14,23 @@
 | SCC-001 dispatch plan recorded | PASS - `SCC-001_Dispatch_Plan.md` |
 | Candidate remedies bucketed | PASS |
 | SCOPE_CHANGE candidates selected | NONE |
-| DepClosure rerun after CHANGE | PASS - `CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301` |
-| Strict SCC count after tranche | 2 |
-| Residual SCC sizes | 2 and 8 |
+| DepClosure rerun after CHANGE | PASS - `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` |
+| Strict SCC count after tranche | 1 |
+| Residual SCC sizes | 6 |
+| Residual bidirectional pairs | 0 |
 | Residual ruling package | PASS - `SCC-001_Residual_Ruling_Package.md` |
+| Longer-cycle ruling package | PASS - `SCC-001_Longer_Cycle_Ruling_Package.md` |
 | CaseState | DEP_CLOSURE_PENDING |
 | Validator status | PASS - `python3 /Users/ryan/ai-env/projects/chirality/tools/validation/validate_scc_resolution_case.py` |
 
 ## Readiness Verdict
 
-DEP_CLOSURE_PENDING. CHANGE implemented the dependency-workflow-ready tranche and AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/` proves graph reduction only: `scc_count = 2`, residual SCC sizes `2` and `8`, and `graph_edges = 105`. The case is not closed, does not initiate SCOPE_CHANGE, does not amend decomposition truth or product text, and does not report project-wide blocker state.
+DEP_CLOSURE_PENDING. CHANGE implemented the human-approved residual closeout tranche and AUDIT_DEP_CLOSURE snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves graph reduction only: `scc_count = 1`, residual SCC size `6`, `graph_edges = 101`, and `bidirectional_pair_count = 0`. The case is not closed, does not initiate SCOPE_CHANGE, does not amend decomposition truth or product text, and does not report project-wide blocker state.
 
 ## Residual Ruling Readiness
 
-`SCC-001_Residual_Ruling_Package.md` records the four remaining bidirectional-pair recommendations and a pending CHANGE handoff. Human rulings remain required before any further dependency-row mutation.
+`SCC-001_Residual_Ruling_Package.md` records the four bidirectional-pair recommendations that were approved and implemented by CHANGE. Further human rulings are now required for the six-node longer-cycle SCC before any additional dependency-row mutation.
+
+## Longer-Cycle Ruling Readiness
+
+`SCC-001_Longer_Cycle_Ruling_Package.md` records the six-node longer-cycle recommendations and a pending CHANGE handoff. Human approval remains required before any further dependency-row mutation.

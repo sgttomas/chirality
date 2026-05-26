@@ -1,0 +1,4 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+ISS-SCC001-CLOSEOUT-001,WARNING,CIRCULAR_DEPENDENCY,,,,Evidence/scc_summary.csv,"Prepare longer-cycle row-level rulings for residual six-node SCC; do not claim closure."
+ISS-SCC001-CLOSEOUT-002,INFO,BIDIRECTIONAL_PAIR,,,,Evidence/bidirectional_pairs.csv,"All bidirectional pairs are removed; continue with longer-cycle SCC analysis."
+ISS-SCC001-CLOSEOUT-003,WARNING,ORPHAN_TARGET,,,,Evidence/orphans.csv,"Carry forward existing orphan warning for later dependency hygiene work."

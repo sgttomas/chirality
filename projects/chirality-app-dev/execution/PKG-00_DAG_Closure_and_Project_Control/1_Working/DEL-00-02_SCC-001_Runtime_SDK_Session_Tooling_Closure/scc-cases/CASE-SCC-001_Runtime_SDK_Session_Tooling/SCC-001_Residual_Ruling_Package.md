@@ -4,13 +4,13 @@ Date: 2026-05-24
 
 Prepared by: RECONCILIATION
 
-Status: HUMAN_RULINGS_PENDING
+Status: APPROVED_AND_IMPLEMENTED_GRAPH_REDUCTION_ONLY
 
-Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_READY_TRANCHE_001_2026-05-24_2301/`
+Latest accepted DepClosure snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/`
 
 ## Purpose
 
-Four read-only pair reviews assessed the remaining bidirectional pairs in the SCC-001 residual graph. This package converts those findings into a decision surface for human rulings and a later CHANGE handoff. It does not mutate dependency registers, initiate SCOPE_CHANGE, or claim closure.
+Four read-only pair reviews assessed the remaining bidirectional pairs in the SCC-001 residual graph. This package converted those findings into a decision surface for human rulings and a CHANGE handoff. The human approved the rulings, CHANGE applied the four row retirements, and DepClosure snapshot `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320` verified graph reduction only.
 
 ## Residual Pair Recommendations
 
@@ -23,12 +23,21 @@ Four read-only pair reviews assessed the remaining bidirectional pairs in the SC
 
 ## Proposed CHANGE Handoff If Approved
 
-If the human approves the four rulings above, CHANGE may apply the following schema-compatible row treatments:
+The human approved the four rulings above. CHANGE applied the following schema-compatible row treatments:
 
 - Set `DEP-03-01-006`, `DEP-05-02-007`, `DEP-05-03-011`, and `DEP-06-01-011` to `Status=RETIRED`, `SatisfactionStatus=NOT_APPLICABLE`, and `LastSeen=2026-05-24`, with notes citing the accepted SCC-001 residual ruling.
 - Preserve `DEP-03-04-006`, `DEP-03-04-009`, `DEP-05-02-009`, and `DEP-06-04-007` as active hard prerequisite, test-seam, safety, or enforcement dependencies.
 - Validate all touched dependency registers before and after mutation.
-- Run AUDIT_DEP_CLOSURE into a new immutable snapshot.
+- Run AUDIT_DEP_CLOSURE into a new immutable snapshot. Complete: `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320`.
+
+## DepClosure Result
+
+The residual closeout scan removed all bidirectional pairs, but did not close SCC-001:
+
+- `scc_count = 1`
+- residual SCC size `6`
+- residual nodes: `DEL-03-01;DEL-03-02;DEL-03-03;DEL-03-04;DEL-04-03;DEL-05-02`
+- `bidirectional_pair_count = 0`
 
 ## Evidence Pointers
 

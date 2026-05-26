@@ -1,5 +1,5 @@
 RulingID,QuestionID,Ruling,RulingBy,Date,EvidenceRefs,Status
-RUL-SCC-001-001,Q-SCC-001-001,TBD,TBD,TBD,,OPEN
-RUL-SCC-001-002,Q-SCC-001-002,TBD,TBD,TBD,,OPEN
-RUL-SCC-001-003,Q-SCC-001-003,TBD,TBD,TBD,,OPEN
-RUL-SCC-001-004,Q-SCC-001-004,TBD,TBD,TBD,,OPEN
+RUL-SCC-001-001,Q-SCC-001-001,"Approve retiring DEP-03-01-006 as non-blocking conformance/interface evidence; preserve DEP-03-04-006 as active runtime-boundary prerequisite.",Human,2026-05-24,EVID-SCC-001-006;EVID-SCC-001-007;EVID-SCC-001-036;EVID-SCC-001-037,ACCEPTED_BY_CHANGE_VERIFIED_RESIDUAL_SCC_REMAINS
+RUL-SCC-001-002,Q-SCC-001-002,"Approve retiring DEP-05-02-007 as non-blocking terminal-taxonomy alignment evidence; preserve DEP-03-04-009 as active HarnessEvent writer/API or compatible test-seam prerequisite.",Human,2026-05-24,EVID-SCC-001-016;EVID-SCC-001-017;EVID-SCC-001-036;EVID-SCC-001-037,ACCEPTED_BY_CHANGE_VERIFIED_RESIDUAL_SCC_REMAINS
+RUL-SCC-001-003,Q-SCC-001-003,"Approve retiring DEP-05-03-011 as non-blocking JSONL persistence interface evidence; preserve DEP-05-02-009 as active redaction and secret-hygiene safety constraint.",Human,2026-05-24,EVID-SCC-001-020;EVID-SCC-001-021;EVID-SCC-001-036;EVID-SCC-001-037,ACCEPTED_BY_CHANGE_VERIFIED_RESIDUAL_SCC_REMAINS
+RUL-SCC-001-004,Q-SCC-001-004,"Approve retiring DEP-06-01-011 as non-blocking permission/write-hook verification evidence; preserve DEP-06-04-007 as active permission-policy prerequisite for write/edit enforcement.",Human,2026-05-24,EVID-SCC-001-026;EVID-SCC-001-027;EVID-SCC-001-036;EVID-SCC-001-037,ACCEPTED_BY_CHANGE_VERIFIED_RESIDUAL_SCC_REMAINS
