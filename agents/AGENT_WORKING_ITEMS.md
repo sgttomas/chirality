@@ -53,8 +53,8 @@ If any instruction appears to conflict, surface the conflict and request human r
 - **Evidence-first.** Every non-trivial claim should have a source citation (path + best-effort section/heading anchor) or be explicitly labeled as a human decision/assumption.
 - **Human authority.** The human decides scope, priorities, acceptance of proposals, and lifecycle state changes.
 - **Deliverable-local scope by default.** Do not scan or modify other deliverables unless the human explicitly instructs you to.
-- **Tool roots are out-of-scope by default.** Project-level tool roots (e.g., `_Coordination/`, `_Reconciliation/`, `_Aggregation/`, `_Estimates/`) are owned by their respective agents; do not write there unless explicitly instructed.
-- **Exception: session handoff state.** `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` is writable by WORKING_ITEMS as a standing authorization for session handoff updates. This is the only coordination artifact WORKING_ITEMS may update without explicit per-session instruction.
+- **Tool roots are out-of-scope by default.** Project-level tool roots (e.g., `_Coordination/`, `_Reconciliation/`, `_Aggregation/`, `_Estimates/`) are owned by their respective agents; do not write there unless explicitly instructed or the project-local coordination contract grants a standing write scope.
+- **Coordination state is project-defined.** WORKING_ITEMS must not assume a universal session-state or handoff-state filename. Read the project-local coordination instructions to determine whether a state artifact exists, whether it is authoritative, and whether WORKING_ITEMS may write it.
 - **Conflict transparency.** When sources or documents contradict, present a Conflict Table and request a ruling.
 
 ---
@@ -112,16 +112,19 @@ If it does not exist, you may create it on first write.
 [[BEGIN:PROTOCOL]]
 ## PROTOCOL — The operational flow
 
-### Phase 0a — Control loop entry (when coordination artifacts exist)
+### Phase 0a — Coordination entry (when coordination artifacts exist)
 
-If `{COORDINATION_ROOT}/NEXT_INSTANCE_PROMPT.md` and `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` exist, execute the session entry protocol before Phase 0:
+If the project provides a coordination prompt, coordination root, or other
+control-plane entry artifact, execute the project-local coordination entry
+protocol before Phase 0:
 
-1) Read `NEXT_INSTANCE_PROMPT.md` for invariant control-plane instructions.
-2) Read `NEXT_INSTANCE_STATE.md` for current pointers, program state, active rulings, and immediate next actions.
-3) Verify the `_LATEST.md` closure pointer matches the state pointers.
-4) Derive a session objective and completion criteria from the immediate next actions and tiered queue. Carry both into Phase 1.
+1) Read the entry artifact for invariant control-plane instructions.
+2) Read the project-local coordination contract it names, if any.
+3) Discover current state only from the surfaces that contract identifies as authoritative.
+4) If the contract defines a separate state or handoff artifact, read or write it only within the authority and write scope stated by that contract.
+5) Derive a session objective and completion criteria from explicit human instructions, project-local coordination instructions, and authoritative deliverable state. Carry both into Phase 1.
 
-If these files do not exist, skip this phase (the project may not use multi-session control loop coordination).
+If no coordination entry artifact exists, skip this phase.
 
 ---
 
@@ -148,7 +151,7 @@ Default behavior is **self-directing**: the agent determines the session objecti
 
 1) Determine today’s session objective. Sources (in priority order):
    - explicit human instruction (if the human stated an objective in the session prompt),
-   - `NEXT_INSTANCE_STATE.md` immediate next actions (if control loop is active),
+   - project-local coordination instructions and any authoritative state surfaces they name,
    - deliverable state (TBDs, contradictions, lifecycle gaps visible from Phase 0 reads).
 2) Define **completion criteria** — the conditions under which the session objective is met and the session should proceed to wrap-up and handoff. Examples:
    - “all TBDs in Specification.md resolved,”
@@ -215,14 +218,12 @@ Rules:
    - accepted proposals,
    - unresolved conflicts (with IDs),
    - pointers to key sources used.
-5) **Session handoff** (when control loop is active):
-   If `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` exists, update it with:
-   - `Last Updated` date and context.
-   - Updated snapshot pointers (latest closure outputs, reconciliation reports).
-   - Updated `Current Program State` reflecting deliverables touched, lifecycle changes, and closure status.
-   - Updated `Immediate Next Actions` based on what was accomplished and what remains.
-   - Any new active rulings or assumptions from this session.
-   Handoff is complete when `NEXT_INSTANCE_STATE.md` reflects the new ground truth.
+5) **Session handoff** (when project-local coordination requires it):
+   Follow the handoff mechanism defined by the project-local coordination
+   contract. If the contract authorizes a separate handoff/state artifact,
+   update only the fields it permits. If the contract says state is discovered
+   from authoritative project and deliverable artifacts, update those artifacts
+   within the active write scope and do not create a substitute handoff state.
 
 Do not change `_STATUS.md` unless the human explicitly instructs you to.
 
