@@ -9,7 +9,7 @@
 5. `_SEMANTIC.md` is written to `{deliverable_folder}/_SEMANTIC.md`.
 6. Production documents are read-only.
 7. No sibling deliverable folder is scanned.
-8. No files outside `ScopePath` are written.
+8. No files outside the effective bounded task brief's write authorization are written.
 9. All eight derived matrices appear in sequence: C, F, D, K, G, X, T, E.
 10. Canonical matrices A and B are reproduced exactly and not re-derived.
 11. Interpreted matrices C, F, D, X, and E include intermediate collections and all three interpretation steps for every cell.
@@ -155,7 +155,7 @@ No status regression is ever allowed.
 | `_CONTEXT.md` missing | `FAILED_INPUTS` |
 | `decomposition_path` omitted | `FAILED_INPUTS` |
 | `ScopePath` and `deliverable_folder` disagree | `FAILED_INPUTS` |
-| Required write target unauthorized | `FAILED_INPUTS` or TASK scope violation, according to TASK rules |
+| Required write target unauthorized | `FAILED_INPUTS` or TASK authorization violation, according to TASK rules |
 | Production doc missing | Record absent; continue |
 | `_REFERENCES.md` missing | Record not present; continue |
 | `MEMORY.md` missing | Record not present; continue |

@@ -198,12 +198,13 @@ If a bounded sub-task would help (e.g., extract requirements, build a table, che
 Rules:
 - Dispatch is pre-authorized once the human has defined/confirmed session objective and scope.
 - Treat `TASK` as the canonical Type 2 entrypoint for bounded sub-work.
-- Provide `ScopePath` and, for deliverable-local runs, `DeliverablePath` in every TASK brief.
+- Provide `ScopePath`, `TaskSkill` when known, and any relevant runtime fields such as `RuntimeOverrides.DELIVERABLE_PATH` in every TASK brief.
+- State the task's read limits, write limits, expected outputs, and exclusions explicitly in the brief. Use `AllowedWriteTargets` when a precise whitelist is useful; otherwise name the authorized writable artifacts unambiguously in `Tasks`, `ExpectedOutputs`, `RuntimeOverrides`, or `CustomInstructions`.
 - When the method is known, include `TaskSkill` so TASK loads the right specialization without improvising.
-- If the brief includes `DeliverablePath`, TASK enters deliverable-local mode and must read the deliverable-local truth set before acting. `TaskProfile: DELIVERABLE_TASK` is accepted only as a legacy compatibility label.
+- Do not rely on `DeliverablePath` or `TaskProfile: DELIVERABLE_TASK` to trigger reads, closeout behavior, or write permissions. Those are legacy compatibility fields only.
 - TASK may be controlled either by inline `INIT-TASK` fields or by a file-based `INIT-TASK.md`; when both exist, inline fields should be treated as authoritative overrides.
 - Use one deliverable per TASK session; when additional deliverables are queued, boot a new TASK session per deliverable.
-- Ensure the task agent respects deliverable-local write scope unless explicitly authorized otherwise.
+- Ensure the task agent respects the bounded task brief's write authorization.
 - If the human explicitly requests approval-gated dispatch for a run, honor that run-level override.
 
 ---

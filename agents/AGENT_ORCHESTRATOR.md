@@ -324,8 +324,8 @@ Run this phase only when the human requests a DOMAIN KTY enrichment or verificat
 **Action:**
 - **DOMAIN_DECOMP:** Skip this phase. DOMAIN variants do not use the semantic lensing pipeline; source-fidelity verification is handled by the `domain-documents` skill's Pass 3 (run in Phase 2.2 with `RUN_PASSES: FULL`). Do not dispatch `semantic-matrix-build` for DOMAIN unless the human explicitly overrides the DOMAIN pipeline routing.
 - **PROJECT_DECOMP / SOFTWARE_DECOMP:** If the project uses semantic lensing, dispatch **TASK + `semantic-matrix-build`** for each deliverable. Do not create or use a dedicated semantic-matrix persona agent for normal execution.
-- Run this phase as a sealed TASK step: one deliverable, one skill, one write scope. The ORCHESTRATOR/parent must not author `_SEMANTIC.md` inline and must not repair or rewrite matrix cells after TASK returns. If a semantic product needs review, dispatch a separate bounded review task after the semantic run has completed.
-- ORCHESTRATOR must write or resolve a complete TASK brief. The brief must include both TASK-normalized scope fields and the skill's semantic brief fields so that `ScopePath`, `DeliverablePath`, `deliverable_folder`, and `decomposition_path` are unambiguous.
+- Run this phase as a sealed TASK step: one deliverable, one skill, one brief-defined write authorization. The ORCHESTRATOR/parent must not author `_SEMANTIC.md` inline and must not repair or rewrite matrix cells after TASK returns. If a semantic product needs review, dispatch a separate bounded review task after the semantic run has completed.
+- ORCHESTRATOR must write or resolve a complete TASK brief. The brief must include the TASK run/context anchor and the skill's semantic fields so that `ScopePath`, `deliverable_folder`, and `decomposition_path` are unambiguous.
 
 **Canonical Phase 2.3 TASK brief template:**
 
@@ -334,8 +334,6 @@ PURPOSE: Generate the deliverable-local semantic lens for one production unit.
 RequestedBy: ORCHESTRATOR
 
 ScopePath: {DELIVERABLE_PATH}
-DeliverablePath: {DELIVERABLE_PATH}
-TaskProfile: DELIVERABLE_TASK
 TaskSkill: semantic-matrix-build
 
 Tasks:
@@ -353,7 +351,7 @@ AllowedWriteTargets:
 RuntimeOverrides:
   DECOMP_VARIANT: {PROJECT|SOFTWARE}
   deliverable_folder: {DELIVERABLE_PATH}
-  DeliverablePath: {DELIVERABLE_PATH}
+  DELIVERABLE_PATH: {DELIVERABLE_PATH}
   decomposition_path: {DECOMPOSITION_PATH}
   PHASE: ORCHESTRATOR_PHASE_2_3
   STATUS_POLICY: PRESERVE_CURRENT_STATE_UNTIL_POST_LENSING_P3

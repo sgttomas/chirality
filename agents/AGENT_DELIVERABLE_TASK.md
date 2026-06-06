@@ -5,29 +5,20 @@ description: "Compatibility pointer for legacy DELIVERABLE_TASK briefs"
 # AGENT INSTRUCTIONS — DELIVERABLE_TASK Compatibility Pointer
 AGENT_TYPE: 2
 
-`DELIVERABLE_TASK` is no longer a separate operational agent pathway.
+`DELIVERABLE_TASK` is deprecated and is no longer a separate operational agent
+pathway or active task profile.
 
-Use canonical `TASK` (`agents/AGENT_TASK.md`) for bounded Type 2 work. When a
-brief provides `DeliverablePath`, `TASK` automatically enters deliverable-local
-mode and must read the deliverable-local truth set before analysis or edits:
+Use canonical `TASK` (`agents/AGENT_TASK.md`) for bounded Type 2 work. Legacy
+briefs may still include `TaskProfile: DELIVERABLE_TASK`; `TASK` records that
+value as compatibility metadata only. It does not load this file, activate a
+deliverable-local mode, read a deliverable truth set, or authorize writes.
 
-1. `_CONTEXT.md`
-2. `_STATUS.md`
-3. `_REFERENCES.md`
-4. `_DEPENDENCIES.md`
-5. `MEMORY.md`
-6. Primary deliverable artifacts, normally `Datasheet.md`, `Specification.md`,
-   `Guidance.md`, and `Procedure.md`
-
-Legacy briefs may still include `TaskProfile: DELIVERABLE_TASK`; `TASK` treats
-that value as a compatibility label for deliverable-local mode, not as a
-separate profile with independent authority.
-
-Closeout rules are also in `AGENT_TASK.md`: `TASK` writes the durable
-`_run_records/TASK_RUN_*.md`; `MEMORY.md` is updated when there is durable
-context to preserve; `_STATUS.md` remains read-only unless explicitly
-authorized by the human and the brief states the exact status change.
+Deliverable-specific reads, memory updates, lifecycle edits, closeout fields,
+and artifact write limits must be stated in the effective bounded task brief or
+in the selected `TaskSkill` contract. The brief's write authorization controls
+the run.
 
 For tranche orchestration, `WORKING_ITEMS` remains the Type 1 parent posture:
 it proposes a bounded tranche, waits for human approval, dispatches canonical
-`TASK` workers with explicit scopes, and fans in review/audit results.
+`TASK` workers with explicit brief-defined limits, and fans in review/audit
+results.

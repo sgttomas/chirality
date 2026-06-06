@@ -18,7 +18,7 @@ The canonical loader for these skills is [`AGENT_TASK.md`](../agents/AGENT_TASK.
 
 Use a new skill when:
 - the role stays the same,
-- the write scope stays the same,
+- write authority is supplied by the bounded TASK brief,
 - the interaction model stays the same,
 - but the **method** and **toolchain** vary.
 
@@ -29,12 +29,11 @@ Do **not** create a new agent just because a bounded task has a different tool r
 When a skill is loaded by `TASK`, precedence is:
 
 1. Human instructions in the run brief
-2. `TASK` shell hard boundaries
-3. Active task profile (if any)
-4. Skill contract
-5. Skill defaults
+2. `TASK` shell hard authorization boundary
+3. Skill contract
+4. Skill defaults
 
-A skill must never widen scope beyond what the agent shell and brief allow.
+A skill must never widen write authority beyond what the TASK shell and effective bounded task brief allow.
 
 ## Skill dispatch and hydration
 
@@ -91,20 +90,24 @@ Good skill design makes tool usage explicit:
 - disallowed tools
 - when to fall back from tools to manual/LLM reasoning
 
-## Relationship to task profiles
+## Relationship to task briefs
 
-Profiles and skills are orthogonal:
+Briefs and skills are orthogonal:
 
-- **Task profile** = structural specialization of the agent
+- **Brief** = run-specific authority, scope inputs, write permissions, overrides, and expected outputs
 - **Skill** = method pack for a recurring task shape
 
 Example:
-- `TaskProfile: DELIVERABLE_TASK`
+- `ScopePath: /abs/path/to/deliverable`
+- `RuntimeOverrides.DELIVERABLE_PATH: /abs/path/to/deliverable`
 - `TaskSkill: deliverable-consistency`
+- `ApplyEdits: false`
 
 or:
-- no profile
+- `ScopePath: /abs/path/to/pdf-work-dir`
 - `TaskSkill: pdf2md`
+
+The `metadata.chirality-task-profile` frontmatter field remains part of the repo metadata contract for compatibility and should normally be `NONE`. Non-`NONE` values are deprecated compatibility metadata, not write-scope grants.
 
 Current example:
 - `deliverable-consistency` should normally begin with `tools/validation/scan_deliverable_consistency.py`, then read only the flagged files and nearby context.

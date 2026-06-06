@@ -1,10 +1,10 @@
 ---
 name: semantic-lensing
 description: Apply semantic lensing analysis to deliverable documents using _SEMANTIC.md matrices. Treats lensing entries as a candidate worklist, tags proposals with matrix coordinates, and optionally updates lens artifacts.
-compatibility: Chirality TASK with DELIVERABLE_TASK profile; reasoning-only (no deterministic tools).
+compatibility: Chirality TASK generic shell; reasoning-only (no deterministic tools).
 metadata:
   chirality-skill-version: "1"
-  chirality-task-profile: DELIVERABLE_TASK
+  chirality-task-profile: NONE
 ---
 
 # SKILL — semantic-lensing
@@ -13,13 +13,13 @@ metadata:
 
 Apply semantic lensing analysis to deliverable-local production documents using `_SEMANTIC.md` as the lens reference and `_SEMANTIC_LENSING.md` as the enrichment worklist.
 
-This skill provides the structured method for semantic lensing that DELIVERABLE_TASK identifies as an optional analysis path. When loaded, it supplies the matrix interpretation, tagging conventions, and interactive proposal workflow.
+This skill provides the structured method for interactive semantic lensing analysis. When loaded, it supplies the matrix interpretation, tagging conventions, and proposal workflow.
 
 This skill is the **optional interactive proposal/review tool**, not the regular ORCHESTRATOR enrichment step. In the regular PROJECT/SOFTWARE setup workflow:
 
 - `skills/lens-register/` is the pipeline producer of `_SEMANTIC_LENSING.md`.
 - `skills/four-documents/` Pass 3 is the pipeline consumer that applies `_SEMANTIC_LENSING.md` as an enrichment worklist.
-- `skills/semantic-lensing/` is loaded only when a DELIVERABLE_TASK session needs human-facing `PROPOSAL:` blocks, focused review, or optional lens artifact updates.
+- `skills/semantic-lensing/` is loaded only when a WORKING_ITEMS or TASK run needs human-facing `PROPOSAL:` blocks, focused review, or optional lens artifact updates.
 
 Put another way, `_SEMANTIC_LENSING.md` becomes useful to the four documents through `four-documents` Pass 3. This skill may also consume the same file, but only for interactive review. Both paths treat lensing entries as candidates, not evidence.
 
@@ -27,14 +27,14 @@ This skill is the **interactive, proposal-producing** contract in the semantic-l
 
 ## Suitable agent shells
 
-- `TASK` with `TaskProfile: DELIVERABLE_TASK`
+- `TASK` (generic shell, no profile)
 
 ## Inputs
 
 ### Required
 
-- `DeliverablePath` via `DELIVERABLE_TASK`
-- `UseSemanticLensing: true` in the brief (DELIVERABLE_TASK will not activate lensing without this flag)
+- `ScopePath`
+- `RuntimeOverrides.DELIVERABLE_PATH`
 - `_SEMANTIC.md` must exist in the deliverable folder (read-only)
 
 ### Optional
@@ -44,6 +44,7 @@ This skill is the **interactive, proposal-producing** contract in the semantic-l
 - `FocusLensTags` — restrict processing to specific `Matrix.Row.Column` tags
 - `AllowLensLogUpdate` — permit creating/updating `_SEMANTIC_LENSING.md`
 - `AllowTransferableContextUpdate` — permit creating/updating `_TRANSFERABLE_CONTEXT.md`
+- `UseSemanticLensing` — accepted compatibility flag; loading this skill is the actual method selector
 
 ## Runtime overrides
 
@@ -59,13 +60,13 @@ This is a reasoning-only skill. No deterministic tools are required or allowed.
 
 Preferred method:
 - read `_SEMANTIC.md` to understand the matrix structure and question framework
-- read the production documents loaded by DELIVERABLE_TASK
+- read the production documents under `RuntimeOverrides.DELIVERABLE_PATH`
 - if `_SEMANTIC_LENSING.md` exists, read each entry as a candidate improvement
 - generate proposals with `Lens:` tags grounded in evidence from the production documents
 - do not treat lensing entries as evidence — they are candidates only
 
 Disallowed behavior:
-- no treating `_SEMANTIC.md` or `_SEMANTIC_LENSING.md` as authority (see authority hierarchy in DELIVERABLE_TASK)
+- no treating `_SEMANTIC.md` or `_SEMANTIC_LENSING.md` as evidence authority
 - no inventing facts to fill lens-identified gaps — use `TBD`
 - no widening scope beyond the single deliverable
 - no edits to `_SEMANTIC.md` under any circumstances
@@ -77,7 +78,7 @@ Disallowed behavior:
 - `NEEDS_HUMAN_RULING:` items where lensing surfaces contradictions
 - optionally updated `_SEMANTIC_LENSING.md` (when `AllowLensLogUpdate: true`)
 - optionally updated `_TRANSFERABLE_CONTEXT.md` (when `AllowTransferableContextUpdate: true`)
-- updated `MEMORY.md` through DELIVERABLE_TASK closeout
+- optional `MEMORY.md` update only when explicitly authorized by the brief
 
 ## Method: matrix interpretation
 

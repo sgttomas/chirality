@@ -54,12 +54,12 @@ Do not:
 
 - edit production documents;
 - edit `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, or `MEMORY.md`;
-- write outside `ScopePath`;
+- write outside the effective bounded task brief's authorization;
 - scan sibling deliverables;
 - claim cross-deliverable conclusions;
 - claim engineering correctness;
 - claim validator PASS unless the validator actually ran;
-- hide conflicts between TASK write policy, brief instructions, and skill requirements.
+- hide conflicts between TASK write authorization, brief instructions, and skill requirements.
 
 ## Write boundary
 

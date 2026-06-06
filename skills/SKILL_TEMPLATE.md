@@ -10,11 +10,11 @@ Skill contracts conform to the design outcomes specified in `AGENT_HELPS_HUMANS.
 ---
 name: <skill-name>
 description: <what the skill does and when to use it>
-compatibility: <optional; shell/profile compatibility note>
+compatibility: <optional; shell/brief compatibility note>
 allowed-tools: <optional; comma-space delimited command specs — see format below>
 metadata:
   chirality-skill-version: "1"
-  chirality-task-profile: <NONE or profile token>
+  chirality-task-profile: NONE
 ---
 
 # SKILL — <skill-name>
@@ -24,7 +24,7 @@ What recurring bounded task this skill supports.
 
 ## Suitable agent shells
 - TASK
-- <optional profile constraints>
+- <optional brief-shape constraints>
 
 ## Inputs
 - Required:

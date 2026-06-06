@@ -1,10 +1,10 @@
 ---
 name: proposal-format
 description: Structured recommendation output using PROPOSAL blocks with evidence, change, risk, and status fields. Use for any deliverable-local task that surfaces actionable findings.
-compatibility: Chirality TASK with DELIVERABLE_TASK profile; reasoning-only (no deterministic tools).
+compatibility: Chirality TASK generic shell; reasoning-only (no deterministic tools).
 metadata:
   chirality-skill-version: "1"
-  chirality-task-profile: DELIVERABLE_TASK
+  chirality-task-profile: NONE
 ---
 
 # SKILL — proposal-format
@@ -17,13 +17,14 @@ The PROPOSAL: pattern is the canonical recommendation format for deliverable-loc
 
 ## Suitable agent shells
 
-- `TASK` with `TaskProfile: DELIVERABLE_TASK`
+- `TASK` (generic shell, no profile)
 
 ## Inputs
 
 ### Required
 
-- `DeliverablePath` via `DELIVERABLE_TASK`
+- `ScopePath`
+- `RuntimeOverrides.DELIVERABLE_PATH`
 
 ### Optional
 
@@ -50,7 +51,7 @@ When combined with other skills that use deterministic tools (e.g., deliverable-
 Disallowed behavior:
 - no inventing evidence to justify a proposal
 - no widening scope beyond the single deliverable
-- no edits outside the files permitted by `DELIVERABLE_TASK`
+- no edits outside the effective bounded task brief's write authorization
 - no silent conflict resolution — contradictions go in `NEEDS_HUMAN_RULING`
 
 ## Method: PROPOSAL block format
@@ -119,7 +120,7 @@ This baseline scan is the default behavior, not a separate mode. It is what the 
 - `NEEDS_HUMAN_RULING:` items
 - `DEPENDENCY_NOTES:` items
 - Optional applied edits (when `ApplyEdits: true`)
-- Updated `MEMORY.md` through DELIVERABLE_TASK closeout
+- Optional `MEMORY.md` update only when explicitly authorized by the brief
 
 ## Non-negotiable constraints
 

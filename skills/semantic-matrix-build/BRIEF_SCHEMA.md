@@ -24,7 +24,7 @@ Place these in `RuntimeOverrides` unless the local TASK convention passes them t
 
 ## Normal ORCHESTRATOR Phase 2.3 brief
 
-Use `ScopePath`, not `DeliverablePath`, for the normal semantic-matrix run. `DeliverablePath` may activate TASK deliverable-local mode, whose write policy can treat existing `_SEMANTIC.md` as read-only. This skill must create or overwrite `_SEMANTIC.md`, so the normal invocation is TASK generic shell mode with `ScopePath` bounded to the deliverable folder.
+Use `ScopePath` as the TASK run/context anchor and provide `RuntimeOverrides.deliverable_folder` as the skill-local deliverable anchor. This skill must create or overwrite `_SEMANTIC.md`, so the brief must set `ApplyEdits: true` and authorize `_SEMANTIC.md` as a writable target.
 
 ```yaml
 PURPOSE: Generate deliverable-local semantic lens

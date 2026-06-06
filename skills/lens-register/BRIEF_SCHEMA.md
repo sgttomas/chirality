@@ -4,7 +4,7 @@
 
 `lens-register` is the normal ORCHESTRATOR Phase 2.4 setup-pipeline skill for PROJECT / SOFTWARE semantic lensing. It is dispatched through TASK as a bounded method pack. It reads one deliverable folder, parses `_SEMANTIC.md`, scans production documents, and writes `_SEMANTIC_LENSING.md`.
 
-Use **TASK generic shell mode** for normal ORCHESTRATOR dispatch. Do not require `TaskProfile: DELIVERABLE_TASK`; that profile is reserved for interactive deliverable-local work. This skill supplies its own method contract and write boundary.
+Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its own method contract and write-boundary requirements, and the brief must authorize `_SEMANTIC_LENSING.md` writes.
 
 ## Required
 
@@ -24,7 +24,7 @@ Use **TASK generic shell mode** for normal ORCHESTRATOR dispatch. Do not require
 ## Optional / compatibility aliases
 
 - `deliverable_folder` may be provided as a top-level legacy field, but `RuntimeOverrides.deliverable_folder` is preferred.
-- `DeliverablePath` is accepted only as a compatibility alias when an existing caller provides it. It is **not recommended** for normal ORCHESTRATOR Phase 2.4 because it may activate TASK deliverable-local mode, whose artifact write policy can conflict with generated-artifact skills.
+- `DeliverablePath` is accepted only as a compatibility alias when an existing caller provides it. It does not affect TASK write authorization.
 - `DECOMP_VARIANT` may be provided top-level or in `RuntimeOverrides`; runtime override wins.
 
 ## Unsupported

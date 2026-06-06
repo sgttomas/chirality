@@ -21,11 +21,9 @@ This is the **setup-pipeline, coverage-complete** contract in the semantic-lensi
 
 ## Suitable agent shells
 
-- `TASK` generic shell mode, no profile.
+- `TASK` generic shell, no profile.
 
-Typical dispatcher: ORCHESTRATOR Phase 2.4 dispatches TASK with `TaskSkill: lens-register`, `ScopePath={DELIVERABLE_PATH}`, and `RuntimeOverrides.deliverable_folder={DELIVERABLE_PATH}`.
-
-Do not require `TaskProfile: DELIVERABLE_TASK` for normal setup-pipeline dispatch. `DeliverablePath` is accepted only as a compatibility alias; `ScopePath` is the normal TASK scope field.
+Typical dispatcher: ORCHESTRATOR Phase 2.4 dispatches TASK with `TaskSkill: lens-register`, `ScopePath={DELIVERABLE_PATH}`, `RuntimeOverrides.deliverable_folder={DELIVERABLE_PATH}`, and write authorization for `_SEMANTIC_LENSING.md`.
 
 ## Inputs
 
@@ -39,7 +37,7 @@ Do not require `TaskProfile: DELIVERABLE_TASK` for normal setup-pipeline dispatc
 
 - `DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`). `DOMAIN` is not supported.
 - `STATUS_POLICY` — default `NO_STATUS_TOUCH`.
-- `DeliverablePath` — compatibility alias only.
+- `DeliverablePath` — compatibility alias only; does not affect TASK write authorization.
 
 ### Files read
 

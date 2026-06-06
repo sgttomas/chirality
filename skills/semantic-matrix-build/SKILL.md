@@ -25,9 +25,7 @@ The output is one file:
 
 ## Runtime shell
 
-Use `TASK` in **generic shell mode** with `ScopePath` set to the deliverable folder.
-
-Do **not** require `TaskProfile: DELIVERABLE_TASK` for this skill. Do **not** set `DeliverablePath` in the normal Phase 2.3 brief unless the TASK deliverable-local write policy explicitly permits `_SEMANTIC.md` creation/overwrite. This skill needs to write `_SEMANTIC.md`; TASK deliverable-local mode may otherwise treat existing semantic artifacts as read-only.
+Use `TASK` in generic shell mode with `ScopePath` set to the deliverable folder. This skill is fully controlled by its brief and method contract.
 
 Normal dispatch shape:
 
@@ -45,11 +43,11 @@ RuntimeOverrides:
 
 This skill is a method pack loaded by TASK. It is not a persona agent.
 
-The skill may narrow runtime behavior but must not widen TASK's hard scope boundary. If TASK and this skill disagree about write scope or tool use, TASK wins and the run report must surface the contradiction.
+The skill may narrow runtime behavior but must not widen the effective bounded task brief's write authorization. If TASK and this skill disagree about write authorization or tool use, the narrower instruction wins and the run report must surface the contradiction.
 
 ## Precedence
 
-1. TASK hard scope and active brief
+1. TASK hard authorization boundary and active brief
 2. This SKILL.md method contract
 3. QA_CHECKS.md validity contract
 4. TOOL_POLICY.md tool contract
