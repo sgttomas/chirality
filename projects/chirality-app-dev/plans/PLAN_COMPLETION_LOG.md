@@ -16,6 +16,16 @@ This tranche did not change runtime API, source code, package manifests, applica
 
 Validation: `git diff --cached --check -- docs plans execution/_Coordination`; positive reference search for the new validation and release-gate surfaces; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
 
+## 2026-06-13 - Build/release skeleton landed (`GOV-BUILD-001`)
+
+Added app-dev `docs/BUILD_AND_RELEASE.md` as a first-class governance support surface for local build, packaging, artifact, and release-evidence posture.
+
+The guide records the current Electron/Next command surface from `frontend/package.json`, artifact locations, suggested local evidence profiles, packaging review steps, future CI/release mapping, and open human-gated release decisions. It does not change package scripts, package dependencies, runtime language, desktop wrapper architecture, provider policy, tool exposure, release-publication authority, or professional-boundary authority.
+
+Residual: `GOV-WORKFLOW-001` workflow and docs index cleanup if the governance-support lane continues.
+
+Validation: `git diff --cached --check -- docs plans execution/_Coordination`; positive reference search for `BUILD_AND_RELEASE`, `build_release`, `GOV-BUILD-001`, `GOV-WORKFLOW-001`, `desktop:pack`, and `desktop:dist`; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
+
 ## 2026-06-13 - Tool descriptor design landed (`3bf6f9fb1`)
 
 Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces. The metadata covers provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, runtime exposure, and adapter-name fields.

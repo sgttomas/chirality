@@ -9,7 +9,7 @@
 5. Read `plans/PLAN_2026-06-13_runtime_completion.md`.
 6. Read `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 7. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
-8. For validation, release-quality, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md`.
+8. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
 9. Record `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
@@ -49,7 +49,7 @@ Default priority:
 At completion of a validated tranche:
 
 1. Run appropriate verification.
-2. Route checks through `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` for release-significant work.
+2. Route checks through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` for build, packaging, or release-significant work.
 3. Update `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md` when a plan item lands.
 4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
 5. Update `execution/_Coordination/NEXT_INSTANCE_STATE.md` only if pointers, queue, blockers, or pending rulings change.

@@ -57,9 +57,9 @@ This lane records human-requested control-plane support work that improves valid
 
 | ID | Tranche | Status | Residual handoff | Validation pointer |
 |---|---|---|---|---|
-| GOV-QUALITY-001 | **Quality and validation skeleton** | LANDED 2026-06-13 | Build/release skeleton remains next if the governance migration lane continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
-| GOV-BUILD-001 | **Build/release skeleton** | NEXT when governance lane continues | Add `docs/BUILD_AND_RELEASE.md` for Electron/Next local build, packaging, artifact, and release-evidence posture. | Static docs checks; no runtime/package changes. |
-| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | FOLLOWS `GOV-BUILD-001` | Add app-dev workflow/index/manifest surfaces as needed, without replacing canonical agent instructions. | Static docs checks; no runtime/package changes. |
+| GOV-QUALITY-001 | **Quality and validation skeleton** | LANDED 2026-06-13 | Build/release skeleton landed in `GOV-BUILD-001`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| GOV-BUILD-001 | **Build/release skeleton** | LANDED 2026-06-13 | Workflow and docs index cleanup remains next if the governance migration lane continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | NEXT when governance lane continues | Add app-dev workflow/index/manifest surfaces as needed, without replacing canonical agent instructions. | Static docs checks; no runtime/package changes. |
 
 ## Human-Gated Decisions
 

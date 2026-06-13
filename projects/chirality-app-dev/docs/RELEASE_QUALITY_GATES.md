@@ -7,7 +7,7 @@
 
 ## 1. Purpose
 
-This checklist routes app-dev changes through release-quality evidence gates. It complements `docs/VALIDATION_STRATEGY.md` and the invariants in `docs/CONTRACT.md`.
+This checklist routes app-dev changes through release-quality evidence gates. It complements `docs/VALIDATION_STRATEGY.md`, `docs/BUILD_AND_RELEASE.md`, and the invariants in `docs/CONTRACT.md`.
 
 These gates define evidence to collect or explicitly waive before a release-significant change is accepted. They do not publish a release, approve lifecycle issuance, certify professional work, seal or authenticate work product, declare code compliance, or authorize external distribution.
 
@@ -117,6 +117,7 @@ Use this gate for instruction-root resources, Electron build configuration, pack
 
 Required evidence:
 
+- review the command and artifact posture in `docs/BUILD_AND_RELEASE.md`;
 - `npm run instruction-root:integrity`;
 - `npm run build`;
 - `npm run desktop:pack` for package-layout changes;

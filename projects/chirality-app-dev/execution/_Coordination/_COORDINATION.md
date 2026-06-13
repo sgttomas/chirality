@@ -21,6 +21,7 @@ Primary authority and guidance:
 - `docs/TYPES.md`
 - `docs/VALIDATION_STRATEGY.md`
 - `docs/RELEASE_QUALITY_GATES.md`
+- `docs/BUILD_AND_RELEASE.md`
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
 - `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
@@ -41,7 +42,7 @@ Authoritative state:
 
 1. `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` define requirements, invariants, mechanics, and vocabulary.
 2. `docs/PLAN.md` records strategic runtime direction and roadmap rationale. It is not the ordinary active work queue.
-3. `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` route evidence and release-quality checks. They do not create release readiness, lifecycle issuance, or professional acceptance.
+3. `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` route evidence, release-quality checks, and local build/package evidence. They do not create release readiness, lifecycle issuance, publication authorization, or professional acceptance.
 4. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
 5. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
 6. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
@@ -65,7 +66,7 @@ At the start of a new loop:
 4. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
 5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
 6. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
-7. Read `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, or release-significant work.
+7. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
 8. Read the implementation reference surfaces needed for the selected tranche.
 9. Run `git status --short` before coordination-sensitive planning or edits.
 
@@ -119,7 +120,7 @@ At the end of a validated tranche:
    - from `frontend/`: `npm run harness:validate:premerge`;
    - from `frontend/`: `npm run instruction-root:integrity`.
 3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
-4. Route release-significant changes through `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md`.
+4. Route build, packaging, and release-significant changes through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
 5. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
 6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
 7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.

@@ -42,6 +42,8 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 
 Documentation-only governance tranches normally use static checks instead of frontend runtime commands. Runtime, SDK, permission, network, packaging, and release-significant tranches use the applicable gate family in `docs/RELEASE_QUALITY_GATES.md`.
 
+Build, packaging, artifact, and release-evidence command details are recorded in `docs/BUILD_AND_RELEASE.md`.
+
 ## 4. Evidence Routing
 
 | Change surface | Minimum evidence |
