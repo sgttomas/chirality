@@ -1,42 +1,64 @@
-# NEXT INSTANCE PROMPT - Chirality App vNext
+# NEXT INSTANCE PROMPT - Chirality App Dev
 
-Adopt ORCHESTRATOR when initializing or scanning the workspace.
+## Entry Protocol
 
-## Startup Read List
+1. Read `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`.
+2. Act in the `WORKING_ITEMS` persona for `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev`.
+3. Read `execution/_Coordination/_COORDINATION.md`.
+4. Read `execution/_Coordination/NEXT_INSTANCE_STATE.md`.
+5. Read the relevant authority and plan files named by `_COORDINATION.md`.
+6. Record `git status --short` before coordination-sensitive planning or edits.
 
-1. `execution/_Coordination/_COORDINATION.md`
-2. `execution/_Coordination/NEXT_INSTANCE_STATE.md`
-3. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
-4. `docs/PLAN.md`
-5. Relevant deliverable-local `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, and `_DEPENDENCIES.md`
+## Active Direction
 
-## Operating Invariants
+Continue bounded app-integration tranches toward the Chirality App's inherent goals:
 
-- v3.2 SOFTWARE_DECOMP is the active decomposition authority until a later human ruling replaces it.
-- Packages are flat work domains, not phases.
-- Deliverables are the bounded execution units.
-- Coordination mode is FULL_GRAPH with `SEMANTIC_READY` as the dependency satisfaction threshold.
-- Dependency blockers are advisory and must be computed only from accepted dependency registers.
-- R0/R1 runtime deliverables precede R2+ capability expansion.
-- Read tools and read MCP exposure precede write/edit/bash.
-- Domain engine execution, remote MCP, plugins, shipped bypass, non-macOS packaging, and retired PKG-08 hardening scope require governed amendment before implementation.
+- a local desktop harness for governed agents;
+- a Chirality-owned runtime contract and audit/event model;
+- Claude Agent SDK as the current privileged adapter path;
+- Pi retained as a reference and possible later constrained backend-adapter spike.
 
-## Control Loop
+## Selection Rules
 
-1. ORCHESTRATOR scans lifecycle state and dependency-register readiness.
-2. TASK executes one deliverable at a time with the selected skill and sealed write scope.
-3. For setup, run `four-documents` P1/P2, `semantic-matrix-build`, `lens-register`, then `four-documents` P3.
-4. After P3 enrichment reaches `SEMANTIC_READY`, run `dependency-extract`.
-5. Validate touched artifacts before computing graph state.
-6. Hand coherent work to CHANGE only after human approval gates are satisfied.
+If a human has already approved or requested a tranche, continue it within its write bounds.
 
-## TASK Dispatch Defaults
+Otherwise, select exactly one next bounded tranche from the unblocked items in:
 
-- `DECOMP_VARIANT=SOFTWARE`
-- `DECOMPOSITION_REF=/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
-- `ALLOW_OVERWRITE_STATES=OPEN,INITIALIZED,SEMANTIC_READY`
-- one deliverable folder per TASK invocation
+1. `docs/PLAN.md` R0/R1 runtime objectives;
+2. `plans/chirality-app-future-development-plan.md`;
+3. `plans/claude-agent-sdk-implementation-followups.md`;
+4. `plans/pi-agent-harness-assessment.md` only where it refines the runtime-adapter path.
 
-## Starter Prompt
+Default priority:
 
-Read `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` and `execution/_Coordination/NEXT_INSTANCE_STATE.md`, adopt ORCHESTRATOR, scan the filesystem-grounded state, and propose the next gated action without inventing dependency blockers.
+1. Fix failing validation or incomplete evidence for already-landed runtime work.
+2. Generalize provider-neutral contracts and metadata before adding new adapters.
+3. Extract runtime lifecycle from route-owned code into product-owned services.
+4. Expand session/event replay before tool expansion.
+5. Define permission/tool descriptors before enabling read/write/bash tools.
+6. Prepare Pi adapter work only after contract hardening and conformance tests exist.
+
+## Execution Rules
+
+- Tranches selected from unblocked completion-plan items are pre-approved for execution.
+- Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
+- Keep writes scoped to the selected tranche.
+- Use `/Users/ryan/ai-env/projects/pi` and `plans/pi-agent-harness-assessment.md` as reference sources for runtime design.
+- Stop when any further progress requires a human ruling.
+
+## Closeout
+
+At completion of a validated tranche:
+
+1. Run appropriate verification.
+2. Update `execution/_Coordination/NEXT_INSTANCE_STATE.md` if the queue or blockers changed.
+3. Report skipped checks explicitly.
+4. Git commit and push when validation and git state allow closeout.
+
+End the session summary with:
+
+- completed tranche;
+- validation performed;
+- files changed;
+- human rulings pending from `_DECISIONS/_REGISTER.md`;
+- next unblocked tranche.
