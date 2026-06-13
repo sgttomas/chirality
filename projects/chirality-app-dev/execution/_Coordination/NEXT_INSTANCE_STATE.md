@@ -1,8 +1,9 @@
 # NEXT INSTANCE STATE - Chirality App Dev
 
 **Last Updated:** 2026-06-13
-**Updated By:** Codex WORKING_ITEMS Tool descriptor design tranche
+**Updated By:** Codex WORKING_ITEMS governance planning migration tranche
 **Active persona:** `WORKING_ITEMS`
+**Status:** Compact coordination state; not substitute authority.
 
 ## Current Pointers
 
@@ -13,44 +14,30 @@
 | Human decision register | `execution/_Coordination/_DECISIONS/_REGISTER.md` |
 | Product requirements | `docs/PRD.md` |
 | Strategic roadmap | `docs/PLAN.md` |
+| Active runtime completion plan | `plans/PLAN_2026-06-13_runtime_completion.md` |
+| Runtime completion log | `plans/PLAN_COMPLETION_LOG.md` |
 | Runtime contract | `frontend/docs/harness/runtime_engine_contract.md` |
-| Current completion plan | `plans/chirality-app-future-development-plan.md` |
+| Seed runtime roadmap | `plans/chirality-app-future-development-plan.md` |
 | Claude SDK follow-ups | `plans/claude-agent-sdk-implementation-followups.md` |
 | Pi assessment | `plans/pi-agent-harness-assessment.md` |
 
-## Current Program State
+## Current Direction
 
 The active direction is app-integration work on the Chirality harness runtime:
 
 - preserve Chirality-owned contracts and governance;
 - continue the Claude Agent SDK path where it satisfies the runtime contract;
 - borrow Pi patterns selectively for event/session/tool architecture;
-- prepare Pi package import or adapter work only after contract hardening and conformance tests exist;
+- prepare Pi package import or adapter work only after contract hardening, conformance tests, and human rulings exist;
 - keep production domain workflows under Chirality-owned profile, proposal, adapter, audit, and human-gate contracts.
-
-Recent assessment artifacts added:
-
-- `plans/pi-agent-harness-assessment.md`
-- `plans/pi-assessment/01_core_session_primitives.md`
-- `plans/pi-assessment/02_backend_adapter_feasibility.md`
-- `plans/pi-assessment/03_security_governance_fit.md`
-- `plans/pi-assessment/04_domain_harness_fit.md`
-- `plans/pi-assessment/05_license_maintenance.md`
-
-Completed app-integration tranche:
-
-- 2026-06-13: Provider-neutral runtime contract cleanup. Persisted `HarnessEvent` type names were generalized away from SDK-prefixed names, SDK identifiers remain adapter metadata, `engineSessionId` was added as a provider-neutral compatibility alias, and validation defaults were repaired for the nested app-dev workspace layout.
-- 2026-06-13: Turn lifecycle extraction. Added product-owned `TurnEngine` for pre-stream turn preflight, same-session locking, attachment/governance shaping, adapter stream execution, session metadata persistence, cancellation delegation, and mid-stream terminal error mapping while preserving `/api/harness/turn` SSE behavior.
-- 2026-06-13: HarnessEvent expansion. Added provider-neutral persisted event categories for message, tool, hook, queue, branch, interruption, compaction, and subagent lifecycle coverage; expanded Claude Agent SDK message mapping for deterministic runtime evidence while preserving public browser SSE event names.
-- 2026-06-13: Engine conformance fixtures. Added a provider-neutral engine conformance evaluator plus deterministic scripted Claude Agent SDK adapter fixtures covering success, provider failure, interruption terminal evidence, public UI event names, and missing terminal evidence.
-- 2026-06-13: Tool descriptor design. Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces, including provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, and adapter-name metadata. SDK option construction now derives its broad `disallowedTools` list from the registry while keeping `tools: []` and `allowedTools: []`.
 
 ## Active Queue
 
-Recommended next unblocked tranches, in order:
+Recommended next unblocked plan items, in order:
 
 1. **Permission overlay skeleton.** Define `HarnessPermissionDecision` and deny-first, mode-aware permission resolution against descriptor metadata before enabling read-tool execution.
-2. **Pi adapter spike packet.** Prepare a constrained `pi-ai` / `pi-agent-core` sidecar spike brief after the contract and conformance prerequisites are in place.
+2. **SDK read-tool exposure behind deny-first policy.** Enable only read-class SDK built-ins after the overlay exists.
+3. **Read MCP / descriptor integration.** Add Chirality-owned read MCP descriptors without write capability.
 
 ## Pending Human Rulings
 
@@ -59,15 +46,17 @@ See `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 Current known pending questions:
 
 - whether to approve any future Pi-backed adapter spike;
-- whether to raise runtime requirements or use a sidecar if Pi packages are ever imported.
+- whether to raise runtime requirements or use a sidecar if Pi packages are ever imported;
+- whether to broaden network/provider policy beyond the current Anthropic-centered runtime scope.
 
 ## Update Protocol
 
 Update this file only when:
 
+- active pointers change;
 - the active queue changes;
 - a human ruling changes scope;
-- a tranche completes and changes the recommended next action;
-- a new blocker is discovered.
+- a new blocker is discovered;
+- pending-ruling summary changes.
 
-Project truth remains governed docs, source, tests, and git-tracked artifacts.
+Do not store landed-tranche narrative history here. Use `plans/PLAN_COMPLETION_LOG.md` for landed-tranche narrative and `plans/PLAN_2026-06-13_runtime_completion.md` for compressed plan rows.

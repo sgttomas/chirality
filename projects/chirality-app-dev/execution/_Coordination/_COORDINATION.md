@@ -5,29 +5,52 @@
 **Default work mode:** bounded app-integration tranches
 **Current strategic focus:** Chirality-owned agent harness runtime, with Claude Agent SDK as the current privileged adapter path and Pi as a reference / possible later backend-adapter spike.
 
-## Current Authority
+## Active Surface
 
-Use this coordination surface as the active entrypoint for app-integration work.
+Use this coordination surface as the active entrypoint for app-integration work. Keep it lean: project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history.
 
 Primary authority and guidance:
 
 - `/Users/ryan/ai-env/projects/chirality/AGENTS.md`
 - `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`
-- `docs/PRD.md`
-- `docs/PLAN.md`
+- `docs/PRD.md` - product requirements and current runtime scope
+- `docs/PLAN.md` - strategic roadmap, not the active queue
 - `docs/DIRECTIVE.md`
 - `docs/CONTRACT.md`
 - `docs/SPEC.md`
 - `docs/TYPES.md`
+- `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
-- `plans/chirality-app-future-development-plan.md`
-- `plans/claude-agent-sdk-implementation-followups.md`
-- `plans/agent-harness-patterns-from-claw-code-assessment.md`
+- `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
+- `plans/PLAN_COMPLETION_LOG.md` - landed-tranche narrative history
+- `plans/chirality-app-future-development-plan.md` - seed runtime roadmap/reference
+- `plans/claude-agent-sdk-implementation-followups.md` - SDK implementation reference
 - `plans/pi-agent-harness-assessment.md`
 - `plans/pi-assessment/*.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - `execution/_Coordination/NEXT_INSTANCE_STATE.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
+
+## Authority And State Rules
+
+Use two layers of state. Do not let handoff prose, completion plans, or runtime logs become substitute authority.
+
+Authoritative state:
+
+1. `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` define requirements, invariants, mechanics, and vocabulary.
+2. `docs/PLAN.md` records strategic runtime direction and roadmap rationale. It is not the ordinary active work queue.
+3. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
+4. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
+5. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
+
+Guidance and history surfaces:
+
+1. `plans/PLAN_2026-06-13_runtime_completion.md` is the active non-governing completion plan. It orders tranche selection toward the PRD and strategic roadmap.
+2. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
+3. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
+4. `execution/_Coordination/NEXT_INSTANCE_STATE.md` is compact state only: pointers, current active queue, pending rulings, and update protocol. It is not authority and must not accumulate landed-tranche history.
+
+When guidance surfaces disagree with authoritative surfaces, surface the discrepancy and correct the guidance surface. Do not silently rewrite authority.
 
 ## Baseline Intake
 
@@ -35,34 +58,32 @@ At the start of a new loop:
 
 1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
 2. Read this file and `NEXT_INSTANCE_PROMPT.md`.
-3. Read `NEXT_INSTANCE_STATE.md` for the current active tranche queue.
-4. Read `docs/PRD.md` and `docs/PLAN.md` enough to confirm the current runtime target.
-5. Read `frontend/docs/harness/runtime_engine_contract.md` before changing adapter, event, or session behavior.
-6. Read the relevant plan surfaces for the selected tranche:
-   - current runtime roadmap: `plans/chirality-app-future-development-plan.md`;
-   - Claude SDK implementation details: `plans/claude-agent-sdk-implementation-followups.md`;
-   - Pi reference and adapter implications: `plans/pi-agent-harness-assessment.md`.
-7. Run `git status --short` before planning edits and again before closeout.
+3. Read `NEXT_INSTANCE_STATE.md` for compact pointers and queue state.
+4. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
+5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
+6. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
+7. Read the implementation reference surfaces needed for the selected tranche.
+8. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Development Loop
 
-Use bounded app-integration tranches. A tranche is acceptable when it has:
+Use bounded app-integration tranches. If a human has already approved or requested a tranche, continue it within its write bounds. Otherwise select exactly one earliest unblocked item from `plans/PLAN_2026-06-13_runtime_completion.md`.
 
-- one clear objective tied to the runtime roadmap or accepted plan surfaces;
+A tranche is acceptable when it has:
+
+- one clear objective tied to the active completion plan;
 - a narrow write scope;
 - a validation command or concrete manual verification target;
 - all required human rulings recorded in `_DECISIONS/_REGISTER.md`;
-- work contained within accepted professional-boundary, network, dependency, and release policy.
+- work contained within accepted professional-boundary, network, dependency, runtime, and release policy.
 
-Default tranche ordering:
+Default ordering:
 
-1. Repair or complete validation for already-landed runtime surfaces.
-2. Generalize Chirality-owned contracts that are still Claude/SDK-shaped.
-3. Extract route-owned lifecycle into runtime services where already planned.
-4. Expand `HarnessEvent` and session evidence toward message/tool/queue/compaction coverage.
-5. Define `HarnessToolDescriptor` and deny-first permission semantics before exposing new tools.
-6. Continue Claude Agent SDK R0/R1 hardening before R2+ tool expansion.
-7. Use Pi as reference/design input, with any runtime-adapter spike handled as a separate approved tranche.
+1. Repair failing validation or incomplete evidence for already-landed runtime work.
+2. Select the earliest unblocked item on the active completion plan's dependency spine.
+3. Prepare a decision packet only when the next plan item is blocked by a human ruling and no packet exists.
+4. If a packet already awaits ruling, continue to the next unblocked implementation item.
+5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
 
 ## Subagent Use
 
@@ -93,9 +114,13 @@ At the end of a validated tranche:
    - from `frontend/`: `npm run typecheck`;
    - from `frontend/`: `npm run harness:validate:premerge`;
    - from `frontend/`: `npm run instruction-root:integrity`.
-3. Record any skipped checks and why.
-4. Update `NEXT_INSTANCE_STATE.md` if the active queue, blockers, or next recommended tranche changed.
-5. Commit and push completed validated work when validation and git state allow closeout.
+3. For governance/control-plane-only tranches, run static governance checks and explicitly record that frontend tests were skipped because no runtime/source files changed.
+4. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
+5. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
+6. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
+7. Update `NEXT_INSTANCE_STATE.md` only for pointer, queue, blocker, or pending-ruling changes.
+8. Record any skipped checks and why.
+9. Commit and push completed validated work when validation and git state allow closeout.
 
 Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
 
@@ -103,11 +128,11 @@ Git closeout is source-control hygiene. Lifecycle issuance, release readiness, p
 
 Stop and surface a human-ruling request when further progress requires a change to:
 
-- product runtime policy in `docs/PRD.md` or `docs/PLAN.md`;
+- product runtime policy in `docs/PRD.md` or strategic roadmap policy in `docs/PLAN.md`;
 - outbound network policy or shipped provider scope;
 - package/runtime requirements for Pi-backed execution;
-- write/edit/bash/tool-execution exposure;
-- the project-truth model for sessions, transcripts, chats, or runtime logs;
+- write/edit/bash/tool-execution exposure beyond the current approved plan item;
+- the project-truth model for sessions, transcripts, chats, runtime logs, or completion logs;
 - professional-boundary claims or release-readiness posture.
 
 Record human-gated questions in `_DECISIONS/_REGISTER.md`.

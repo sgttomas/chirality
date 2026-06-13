@@ -1,11 +1,13 @@
 Surface,Path,Role
 coordination_policy,execution/_Coordination/_COORDINATION.md,Active app-integration loop policy
 next_instance_prompt,execution/_Coordination/NEXT_INSTANCE_PROMPT.md,Stable entry instructions
-next_instance_state,execution/_Coordination/NEXT_INSTANCE_STATE.md,Current queue and state
+next_instance_state,execution/_Coordination/NEXT_INSTANCE_STATE.md,Compact pointers and current queue; not substitute authority
 decision_register,execution/_Coordination/_DECISIONS/_REGISTER.md,Human-gated decision tracking
 prd,docs/PRD.md,Product requirements
 plan,docs/PLAN.md,Strategic roadmap
+runtime_completion_plan,plans/PLAN_2026-06-13_runtime_completion.md,Active non-governing runtime tranche-selection plan
+runtime_completion_log,plans/PLAN_COMPLETION_LOG.md,Landed runtime-tranche narrative history
 runtime_contract,frontend/docs/harness/runtime_engine_contract.md,Runtime adapter contract
-future_plan,plans/chirality-app-future-development-plan.md,Runtime completion plan
+future_plan,plans/chirality-app-future-development-plan.md,Seed runtime roadmap and historical planning reference
 sdk_followups,plans/claude-agent-sdk-implementation-followups.md,Claude SDK implementation follow-ups
 pi_assessment,plans/pi-agent-harness-assessment.md,Pi reference and adapter assessment
