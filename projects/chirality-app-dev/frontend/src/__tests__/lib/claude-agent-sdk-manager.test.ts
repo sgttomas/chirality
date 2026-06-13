@@ -130,6 +130,7 @@ describe('ClaudeAgentSdkManager', () => {
       'turn.started',
       'adapter.initialized',
       'model.delta',
+      'message.delta',
       'model.completed',
       'turn.completed'
     ]);

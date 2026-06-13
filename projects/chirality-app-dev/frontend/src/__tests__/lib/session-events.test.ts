@@ -18,6 +18,26 @@ afterEach(async () => {
 describe('session events', () => {
   it('keeps canonical HarnessEvent types provider-neutral', () => {
     expect(HARNESS_EVENT_TYPES.join(' ')).not.toMatch(/sdk|claude|anthropic/i);
+    expect(HARNESS_EVENT_TYPES).toEqual(
+      expect.arrayContaining([
+        'message.completed',
+        'tool.queued',
+        'tool.started',
+        'tool.progress',
+        'tool.completed',
+        'tool.failed',
+        'hook.started',
+        'hook.completed',
+        'queue.enqueued',
+        'branch.summarized',
+        'interruption.requested',
+        'interruption.completed',
+        'context.compaction.started',
+        'context.compacted',
+        'subagent.started',
+        'subagent.completed'
+      ])
+    );
   });
 
   it('appends and replays HarnessEvent JSONL records', async () => {

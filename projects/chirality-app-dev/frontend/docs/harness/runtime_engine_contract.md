@@ -51,18 +51,47 @@ remain browser-visible SSE terminal evidence.
 `frontend/src/lib/harness/session-events.ts` appends JSONL records under the configured
 Chirality session root.
 
-Initial SDK probe events include:
+Current persisted event categories include:
 
 - `turn.accepted`
 - `turn.started`
 - `adapter.initialized`
+- `message.accepted`
+- `message.queued`
+- `message.started`
+- `message.delta`
+- `message.completed`
+- `model.request.started`
 - `model.delta`
 - `model.completed`
 - `turn.completed`
 - `turn.failed`
 - `turn.cancelled`
+- `tool.queued`
 - `tool.permission`
+- `tool.started`
+- `tool.progress`
+- `tool.completed`
+- `tool.failed`
+- `hook.started`
+- `hook.progress`
+- `hook.completed`
+- `hook.failed`
+- `queue.enqueued`
+- `queue.consumed`
+- `queue.cleared`
+- `branch.created`
+- `branch.selected`
+- `branch.summarized`
+- `interruption.requested`
+- `interruption.completed`
+- `context.compaction.started`
 - `context.compacted`
+- `context.compaction.failed`
+- `subagent.started`
+- `subagent.progress`
+- `subagent.completed`
+- `subagent.failed`
 - `runtime.mirror.error`
 
 Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.

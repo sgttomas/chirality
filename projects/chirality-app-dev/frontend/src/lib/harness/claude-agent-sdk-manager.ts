@@ -39,6 +39,15 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       });
     }
 
+    await appendHarnessEvent(
+      createHarnessEvent({
+        sessionId,
+        type: 'interruption.requested',
+        data: {
+          provider: 'claude-agent-sdk'
+        }
+      })
+    );
     activeTurn.interrupted = true;
     activeTurn.abortController.abort();
     await activeTurn.query?.interrupt().catch(() => undefined);
@@ -136,6 +145,24 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       let sawTerminal = false;
       for await (const sdkMessage of sdkStream) {
         if (activeTurn.interrupted) {
+          await appendHarnessEvent(
+            createHarnessEvent({
+              sessionId: input.session.sessionId,
+              type: 'interruption.completed',
+              data: {
+                provider: 'claude-agent-sdk'
+              }
+            })
+          );
+          await appendHarnessEvent(
+            createHarnessEvent({
+              sessionId: input.session.sessionId,
+              type: 'turn.cancelled',
+              data: {
+                provider: 'claude-agent-sdk'
+              }
+            })
+          );
           yield {
             type: 'process:exit',
             data: {
@@ -168,6 +195,15 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       }
     } catch (error) {
       if (activeTurn.interrupted || abortController.signal.aborted) {
+        await appendHarnessEvent(
+          createHarnessEvent({
+            sessionId: input.session.sessionId,
+            type: 'interruption.completed',
+            data: {
+              provider: 'claude-agent-sdk'
+            }
+          })
+        );
         await appendHarnessEvent(
           createHarnessEvent({
             sessionId: input.session.sessionId,
