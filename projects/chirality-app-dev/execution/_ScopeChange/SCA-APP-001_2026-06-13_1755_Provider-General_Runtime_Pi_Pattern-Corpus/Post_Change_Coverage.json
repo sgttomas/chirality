@@ -1,0 +1,13 @@
+{
+  "amendment_id": "SCA-APP-001",
+  "status": "NOT_RUN_GATE_5_PENDING",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "snapshot_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1755_Provider-General_Runtime_Pi_Pattern-Corpus",
+  "gate5_executed": false,
+  "topology_change_applied": false,
+  "notes": [
+    "This placeholder records that no post-change coverage exists yet.",
+    "Populate after approved Gate 5 edits."
+  ]
+}
