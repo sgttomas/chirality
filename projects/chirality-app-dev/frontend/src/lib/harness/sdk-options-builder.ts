@@ -1,16 +1,6 @@
 import type { Options, PermissionMode, SettingSource } from '@anthropic-ai/claude-agent-sdk';
 import { ContentBlock, ResolvedOpts, SessionRecord } from './types';
-
-const DISALLOWED_TRANCHE_TOOLS = [
-  'Agent',
-  'Bash',
-  'Edit',
-  'MultiEdit',
-  'NotebookEdit',
-  'WebFetch',
-  'WebSearch',
-  'Write'
-];
+import { resolveHarnessToolPool } from './tool-descriptor';
 
 export type SdkProbeOptions = Options & {
   settingSources: SettingSource[];
@@ -76,6 +66,11 @@ export function buildSdkOptions(input: {
   abortController: AbortController;
   systemPrompt: string;
 }): SdkProbeOptions {
+  const toolPool = resolveHarnessToolPool({
+    requestedTools: input.opts.tools,
+    mode: input.opts.mode
+  });
+
   return {
     abortController: input.abortController,
     cwd: input.session.projectRoot,
@@ -83,8 +78,8 @@ export function buildSdkOptions(input: {
     maxTurns: input.opts.maxTurns,
     permissionMode: mapPermissionMode(input.opts.mode),
     tools: [],
-    allowedTools: [],
-    disallowedTools: DISALLOWED_TRANCHE_TOOLS,
+    allowedTools: [...toolPool.allowedToolNames],
+    disallowedTools: [...toolPool.disallowedToolNames],
     mcpServers: {},
     resume: input.session.sdkSessionId,
     settingSources: parseSettingSources(process.env.CHIRALITY_SDK_SETTING_SOURCES),

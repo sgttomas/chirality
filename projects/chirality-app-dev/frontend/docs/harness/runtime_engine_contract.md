@@ -96,6 +96,20 @@ Current persisted event categories include:
 
 Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.
 
+## Harness Tool Descriptor Contract
+
+`frontend/src/lib/harness/tool-descriptor.ts` defines the Chirality-owned
+`HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces.
+Descriptors record provider-neutral names, aliases, permissions, path scope, idempotence,
+concurrency, interrupt behavior, result-budget policy, provenance events, human-gate
+metadata, and adapter tool names.
+
+This tranche is descriptor-only. Tool execution remains disabled until the permission
+overlay, hooks, result storage, and model/tool loop are implemented. The SDK options
+builder therefore keeps `tools: []` and `allowedTools: []`, while deriving a broad
+`disallowedTools` list from the descriptor registry so SDK read/write/shell/network/subagent
+tools are not exposed to the model by accident.
+
 ## Claude Agent SDK Probe Posture
 
 `CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the opt-in Claude Agent SDK probe adapter.
@@ -108,7 +122,8 @@ Probe posture:
 - SDK filesystem settings default to `settingSources: []`.
 - `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
-- Built-in tools are disabled for this tranche with `tools: []` and `allowedTools: []`.
+- Built-in tools are disabled for this tranche with `tools: []`, `allowedTools: []`, and
+  descriptor-derived `disallowedTools`.
 
 ## Conformance Gates
 

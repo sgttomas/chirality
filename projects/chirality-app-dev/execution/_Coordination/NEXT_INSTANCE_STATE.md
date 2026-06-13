@@ -1,7 +1,7 @@
 # NEXT INSTANCE STATE - Chirality App Dev
 
 **Last Updated:** 2026-06-13
-**Updated By:** Codex WORKING_ITEMS Engine conformance fixtures tranche
+**Updated By:** Codex WORKING_ITEMS Tool descriptor design tranche
 **Active persona:** `WORKING_ITEMS`
 
 ## Current Pointers
@@ -43,12 +43,13 @@ Completed app-integration tranche:
 - 2026-06-13: Turn lifecycle extraction. Added product-owned `TurnEngine` for pre-stream turn preflight, same-session locking, attachment/governance shaping, adapter stream execution, session metadata persistence, cancellation delegation, and mid-stream terminal error mapping while preserving `/api/harness/turn` SSE behavior.
 - 2026-06-13: HarnessEvent expansion. Added provider-neutral persisted event categories for message, tool, hook, queue, branch, interruption, compaction, and subagent lifecycle coverage; expanded Claude Agent SDK message mapping for deterministic runtime evidence while preserving public browser SSE event names.
 - 2026-06-13: Engine conformance fixtures. Added a provider-neutral engine conformance evaluator plus deterministic scripted Claude Agent SDK adapter fixtures covering success, provider failure, interruption terminal evidence, public UI event names, and missing terminal evidence.
+- 2026-06-13: Tool descriptor design. Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces, including provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, and adapter-name metadata. SDK option construction now derives its broad `disallowedTools` list from the registry while keeping `tools: []` and `allowedTools: []`.
 
 ## Active Queue
 
 Recommended next unblocked tranches, in order:
 
-1. **Tool descriptor design.** Define a Chirality-owned `HarnessToolDescriptor` and permission metadata before enabling additional tool execution.
+1. **Permission overlay skeleton.** Define `HarnessPermissionDecision` and deny-first, mode-aware permission resolution against descriptor metadata before enabling read-tool execution.
 2. **Pi adapter spike packet.** Prepare a constrained `pi-ai` / `pi-agent-core` sidecar spike brief after the contract and conformance prerequisites are in place.
 
 ## Pending Human Rulings

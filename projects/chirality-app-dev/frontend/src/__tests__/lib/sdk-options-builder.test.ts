@@ -26,7 +26,7 @@ afterEach(() => {
 });
 
 describe('buildSdkOptions', () => {
-  it('defaults to SDK settings isolation and exposes no built-in tools in CODEV-001', () => {
+  it('defaults to SDK settings isolation and exposes no built-in tools in the descriptor-only tranche', () => {
     const options = buildSdkOptions({
       session,
       opts,
@@ -37,6 +37,8 @@ describe('buildSdkOptions', () => {
     expect(options.settingSources).toEqual([]);
     expect(options.tools).toEqual([]);
     expect(options.allowedTools).toEqual([]);
+    expect(options.disallowedTools).toContain('Read');
+    expect(options.disallowedTools).toContain('LS');
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
     expect(options.disallowedTools).toContain('Edit');
