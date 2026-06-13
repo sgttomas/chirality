@@ -1,7 +1,7 @@
 # NEXT INSTANCE STATE - Chirality App Dev
 
 **Last Updated:** 2026-06-13
-**Updated By:** Codex WORKING_ITEMS workflow/docs index tranche
+**Updated By:** Codex WORKING_ITEMS init prompt sync tranche
 **Active persona:** `WORKING_ITEMS`
 **Status:** Compact coordination state; not substitute authority.
 
@@ -9,7 +9,9 @@
 
 | Artifact | Path |
 |---|---|
+| Bootstrap init prompt | `init/init-prompt.md` |
 | Coordination policy | `execution/_Coordination/_COORDINATION.md` |
+| Latest coordination pointer | `execution/_Coordination/_LATEST.md` |
 | Stable startup prompt | `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` |
 | Human decision register | `execution/_Coordination/_DECISIONS/_REGISTER.md` |
 | Product requirements | `docs/PRD.md` |

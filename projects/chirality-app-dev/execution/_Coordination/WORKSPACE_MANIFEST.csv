@@ -1,5 +1,7 @@
 Surface,Path,Role
+init_prompt,init/init-prompt.md,Bootstrap prompt delegating to stable entry instructions
 coordination_policy,execution/_Coordination/_COORDINATION.md,Active app-integration loop policy
+coordination_latest,execution/_Coordination/_LATEST.md,Latest coordination pointer; not authority
 next_instance_prompt,execution/_Coordination/NEXT_INSTANCE_PROMPT.md,Stable entry instructions
 next_instance_state,execution/_Coordination/NEXT_INSTANCE_STATE.md,Compact pointers and current queue; not substitute authority
 decision_register,execution/_Coordination/_DECISIONS/_REGISTER.md,Human-gated decision tracking
