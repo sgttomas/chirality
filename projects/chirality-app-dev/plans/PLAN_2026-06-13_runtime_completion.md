@@ -51,6 +51,16 @@ Select the earliest unblocked item in this table unless regression repair is nee
 | 5 | **Write/edit hooks and path containment** | Add write/edit policy only after read surface is proven. Enforce project-root containment, instruction-root block, symlink rejection, provenance, and diff/result evidence. | Path/hook tests, denied-write tests, and no bash exposure. |
 | 6 | **Bash, governed subagents, Pi adapter packet** | Prepare or execute only after required human gates and prior conformance evidence. Pi work remains packet/spike only until approved. | Decision packets or human rulings in `_DECISIONS/_REGISTER.md`; no implementation before approval. |
 
+## Governance Support Lane
+
+This lane records human-requested control-plane support work that improves validation, release-quality, and workflow governance without reordering the runtime dependency spine above.
+
+| ID | Tranche | Status | Residual handoff | Validation pointer |
+|---|---|---|---|---|
+| GOV-QUALITY-001 | **Quality and validation skeleton** | LANDED 2026-06-13 | Build/release skeleton remains next if the governance migration lane continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| GOV-BUILD-001 | **Build/release skeleton** | NEXT when governance lane continues | Add `docs/BUILD_AND_RELEASE.md` for Electron/Next local build, packaging, artifact, and release-evidence posture. | Static docs checks; no runtime/package changes. |
+| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | FOLLOWS `GOV-BUILD-001` | Add app-dev workflow/index/manifest surfaces as needed, without replacing canonical agent instructions. | Static docs checks; no runtime/package changes. |
+
 ## Human-Gated Decisions
 
 Decision authority lives in `execution/_Coordination/_DECISIONS/_REGISTER.md`. This table is a planning mirror only.

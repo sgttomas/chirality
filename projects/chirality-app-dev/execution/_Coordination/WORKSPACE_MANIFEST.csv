@@ -5,6 +5,8 @@ next_instance_state,execution/_Coordination/NEXT_INSTANCE_STATE.md,Compact point
 decision_register,execution/_Coordination/_DECISIONS/_REGISTER.md,Human-gated decision tracking
 prd,docs/PRD.md,Product requirements
 plan,docs/PLAN.md,Strategic roadmap
+validation_strategy,docs/VALIDATION_STRATEGY.md,Validation evidence routing
+release_quality_gates,docs/RELEASE_QUALITY_GATES.md,Release-quality gate routing
 runtime_completion_plan,plans/PLAN_2026-06-13_runtime_completion.md,Active non-governing runtime tranche-selection plan
 runtime_completion_log,plans/PLAN_COMPLETION_LOG.md,Landed runtime-tranche narrative history
 runtime_contract,frontend/docs/harness/runtime_engine_contract.md,Runtime adapter contract

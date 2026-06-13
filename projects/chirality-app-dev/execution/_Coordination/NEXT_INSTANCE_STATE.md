@@ -14,6 +14,8 @@
 | Human decision register | `execution/_Coordination/_DECISIONS/_REGISTER.md` |
 | Product requirements | `docs/PRD.md` |
 | Strategic roadmap | `docs/PLAN.md` |
+| Validation strategy | `docs/VALIDATION_STRATEGY.md` |
+| Release quality gates | `docs/RELEASE_QUALITY_GATES.md` |
 | Active runtime completion plan | `plans/PLAN_2026-06-13_runtime_completion.md` |
 | Runtime completion log | `plans/PLAN_COMPLETION_LOG.md` |
 | Runtime contract | `frontend/docs/harness/runtime_engine_contract.md` |
@@ -38,6 +40,8 @@ Recommended next unblocked plan items, in order:
 1. **Permission overlay skeleton.** Define `HarnessPermissionDecision` and deny-first, mode-aware permission resolution against descriptor metadata before enabling read-tool execution.
 2. **SDK read-tool exposure behind deny-first policy.** Enable only read-class SDK built-ins after the overlay exists.
 3. **Read MCP / descriptor integration.** Add Chirality-owned read MCP descriptors without write capability.
+
+Human-requested governance-support follow-up, if continuing the migration lane: **Build/release skeleton.** Add app-dev `docs/BUILD_AND_RELEASE.md` without changing application code or package scripts.
 
 ## Pending Human Rulings
 

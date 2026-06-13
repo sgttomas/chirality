@@ -9,7 +9,8 @@
 5. Read `plans/PLAN_2026-06-13_runtime_completion.md`.
 6. Read `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 7. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
-8. Record `git status --short` before coordination-sensitive planning or edits.
+8. For validation, release-quality, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md`.
+9. Record `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
 
@@ -48,11 +49,12 @@ Default priority:
 At completion of a validated tranche:
 
 1. Run appropriate verification.
-2. Update `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md` when a plan item lands.
-3. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
-4. Update `execution/_Coordination/NEXT_INSTANCE_STATE.md` only if pointers, queue, blockers, or pending rulings change.
-5. Report skipped checks explicitly.
-6. Git commit and push when validation and git state allow closeout.
+2. Route checks through `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` for release-significant work.
+3. Update `plans/PLAN_2026-06-13_runtime_completion.md` and `plans/PLAN_COMPLETION_LOG.md` when a plan item lands.
+4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
+5. Update `execution/_Coordination/NEXT_INSTANCE_STATE.md` only if pointers, queue, blockers, or pending rulings change.
+6. Report skipped checks explicitly.
+7. Git commit and push when validation and git state allow closeout.
 
 End the session summary with:
 

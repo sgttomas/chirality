@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-13 - Quality and validation skeleton landed (`GOV-QUALITY-001`)
+
+Added app-dev `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` as first-class governance support surfaces for evidence routing and release-quality gate selection.
+
+The validation strategy separates static governance evidence, runtime contract verification, harness workflow validation, packaging/instruction-root evidence, and boundary/claims review. The release-quality gates route governance, runtime, permission/tool, harness workflow, security/network, UI/claims, packaging, and future domain-adapter changes to appropriate evidence.
+
+This tranche did not change runtime API, source code, package manifests, application wrapper, provider policy, tool exposure, release-readiness posture, or professional-boundary authority. Residual: `GOV-BUILD-001` build/release skeleton if the governance-support lane continues.
+
+Validation: `git diff --cached --check -- docs plans execution/_Coordination`; positive reference search for the new validation and release-gate surfaces; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
+
 ## 2026-06-13 - Tool descriptor design landed (`3bf6f9fb1`)
 
 Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces. The metadata covers provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, runtime exposure, and adapter-name fields.
