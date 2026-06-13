@@ -123,4 +123,9 @@ An adapter cannot become the default production runtime until it passes:
 - API key redaction checks,
 - route/SSE regression checks.
 
+`frontend/src/lib/harness/engine-conformance.ts` provides the executable adapter
+conformance evaluator. Companion fixtures use deterministic scripted provider streams so
+success, failure, and interruption behavior can be checked without live provider calls or
+new backend adapter dependencies.
+
 Packaging remains `BLOCKED_TBD` until a packaged Electron SDK subprocess run is performed.
