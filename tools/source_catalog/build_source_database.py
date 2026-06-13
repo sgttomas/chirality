@@ -5,9 +5,17 @@ Usage:
   python3 tools/source_catalog/build_source_database.py \
       --domain-root domains/piping-design
 
+  python3 tools/source_catalog/build_source_database.py \
+      --domain-root domains/chirality \
+      --repo-root . \
+      --source-manifest domains/chirality/_Sources/Source_Manifest.csv
+
 Inputs:
   --domain-root                Domain package root. Defaults to piping-design.
   --out-root                   Output root. Defaults to <domain-root>/_LocalIndexes.
+  --repo-root                  Repository root used to resolve @repo/ catalog paths.
+  --source-manifest            CSV of repo-relative source files. When provided,
+                               manifest rows define catalog membership.
   --include-archive-metadata   Catalog archive files as ARCHIVE metadata. Archive
                                files are never indexable.
 
@@ -43,6 +51,7 @@ from source_database import (  # noqa: E402
     CHUNK_COLUMNS,
     DEFAULT_DOMAIN_ROOT,
     DEFAULT_OUT_ROOT_NAME,
+    REPO_PATH_PREFIX,
     SCHEMA_VERSION,
     SNAPSHOT_PREFIX,
     SOURCE_DOC_COLUMNS,
@@ -51,6 +60,7 @@ from source_database import (  # noqa: E402
     Artifact,
     SourceDoc,
     artifact_role,
+    catalog_path,
     audit_kind_and_role,
     count_json_entries,
     indexable_for_role,
@@ -76,6 +86,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--domain-root", type=Path, default=DEFAULT_DOMAIN_ROOT)
     ap.add_argument("--out-root", type=Path)
+    ap.add_argument("--repo-root", type=Path, help="Repository root for @repo manifest paths")
+    ap.add_argument("--source-manifest", type=Path, help="CSV manifest of repo-relative source files to index")
     ap.add_argument("--include-archive-metadata", action="store_true")
     args = ap.parse_args()
 
@@ -89,24 +101,31 @@ def main() -> int:
         return 2
 
     out_root = (args.out_root or (domain_root / DEFAULT_OUT_ROOT_NAME)).resolve()
+    repo_root = args.repo_root.resolve() if args.repo_root else Path.cwd().resolve()
+    source_manifest = args.source_manifest.resolve() if args.source_manifest else None
     snapshot_dir = create_snapshot_dir(out_root)
     started = datetime.now(timezone.utc)
 
     print(f"[1/6] Scanning artifacts under {domain_root}")
-    artifacts = collect_artifacts(domain_root, args.include_archive_metadata)
+    artifacts, source_metadata = collect_artifacts(
+        domain_root,
+        args.include_archive_metadata,
+        repo_root=repo_root,
+        source_manifest=source_manifest,
+    )
     print(f"      {len(artifacts):,} artifacts")
 
     print("[2/6] Resolving source documents and generated-from relations")
     artifacts = assign_generated_from(artifacts)
-    source_docs = collect_source_docs(domain_root, artifacts)
+    source_docs = collect_source_docs(domain_root, artifacts, source_metadata)
     print(f"      {len(source_docs):,} source docs")
 
     print("[3/6] Extracting audit state")
-    audit_state = collect_audit_state(domain_root, artifacts)
+    audit_state = collect_audit_state(domain_root, artifacts, repo_root=repo_root)
     print(f"      {len(audit_state):,} audit rows")
 
     print("[4/6] Building searchable chunks")
-    chunks = collect_chunks(domain_root, artifacts)
+    chunks = collect_chunks(domain_root, artifacts, repo_root=repo_root)
     source_docs = ensure_source_docs_for_chunks(source_docs, chunks)
     print(f"      {len(chunks):,} chunks")
 
@@ -131,6 +150,8 @@ def main() -> int:
         "schema_version": SCHEMA_VERSION,
         "build_utc": finished.isoformat(timespec="seconds"),
         "domain_root": str(domain_root),
+        "repo_root": str(repo_root) if source_manifest else None,
+        "source_manifest": str(source_manifest) if source_manifest else None,
         "out_root": str(out_root),
         "snapshot_dir": str(snapshot_dir),
         "include_archive_metadata": bool(args.include_archive_metadata),
@@ -184,20 +205,122 @@ def iter_catalog_paths(domain_root: Path, include_archive_metadata: bool):
                 yield path
 
 
-def collect_artifacts(domain_root: Path, include_archive_metadata: bool) -> list[Artifact]:
+REQUIRED_SOURCE_MANIFEST_COLUMNS = [
+    "SourceDocID",
+    "SourceName",
+    "RepoRelPath",
+    "SourceGroup",
+    "AuthorityRole",
+    "IncludeInIndex",
+    "ArchiveState",
+    "ExpectedSha256",
+    "Notes",
+]
+
+
+def collect_artifacts(
+    domain_root: Path,
+    include_archive_metadata: bool,
+    *,
+    repo_root: Path | None = None,
+    source_manifest: Path | None = None,
+) -> tuple[list[Artifact], dict[str, dict[str, str]]]:
+    source_metadata: dict[str, dict[str, str]] = {}
+    if source_manifest:
+        if repo_root is None:
+            raise ValueError("--repo-root is required with --source-manifest")
+        artifacts, source_metadata = collect_manifest_artifacts(source_manifest, repo_root)
+    else:
+        artifacts = []
+        for path in iter_catalog_paths(domain_root, include_archive_metadata):
+            if not path.is_file():
+                continue
+            rel_path = rel_to(domain_root, path)
+            archive_state = "ARCHIVE" if is_archive_path(Path(rel_path)) else "ACTIVE"
+            role = artifact_role(rel_path)
+            stat = path.stat()
+            digest = sha256_file(path)
+            artifacts.append(
+                Artifact(
+                    artifact_id=stable_id("ART", rel_path, digest),
+                    source_doc_id=source_doc_id_for_rel(rel_path),
+                    rel_path=rel_path,
+                    artifact_role=role,
+                    media_type=media_type_for(path),
+                    extension=path.suffix.lower().lstrip("."),
+                    size_bytes=stat.st_size,
+                    mtime_ns=stat.st_mtime_ns,
+                    sha256=digest,
+                    archive_state=archive_state,
+                    generated_from_artifact_id=None,
+                    indexable=indexable_for_role(role, archive_state),
+                )
+            )
+    seen: set[str] = set()
+    for art in artifacts:
+        if art.rel_path in seen:
+            raise ValueError(f"duplicate artifact rel_path: {art.rel_path}")
+        seen.add(art.rel_path)
+    artifacts.sort(key=lambda a: a.rel_path)
+    return artifacts, source_metadata
+
+
+def read_source_manifest(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        raise FileNotFoundError(str(path))
+    rows = load_csv_rows(path)
+    if not rows:
+        return []
+    missing = [name for name in REQUIRED_SOURCE_MANIFEST_COLUMNS if name not in rows[0]]
+    if missing:
+        raise ValueError(f"source manifest missing columns: {', '.join(missing)}")
+    return rows
+
+
+def collect_manifest_artifacts(
+    source_manifest: Path,
+    repo_root: Path,
+) -> tuple[list[Artifact], dict[str, dict[str, str]]]:
     artifacts: list[Artifact] = []
-    for path in iter_catalog_paths(domain_root, include_archive_metadata):
+    source_metadata: dict[str, dict[str, str]] = {}
+    for line_num, row in enumerate(read_source_manifest(source_manifest), start=2):
+        source_doc_id = row.get("SourceDocID", "").strip()
+        repo_rel = row.get("RepoRelPath", "").strip()
+        include = row.get("IncludeInIndex", "").strip().upper()
+        archive_state = (row.get("ArchiveState", "").strip().upper() or "ACTIVE")
+        expected_sha = row.get("ExpectedSha256", "").strip().lower()
+        if not source_doc_id:
+            raise ValueError(f"source manifest line {line_num}: SourceDocID is required")
+        if not repo_rel:
+            raise ValueError(f"source manifest line {line_num}: RepoRelPath is required")
+        if include not in {"YES", "NO"}:
+            raise ValueError(f"source manifest line {line_num}: IncludeInIndex must be YES or NO")
+        if archive_state not in {"ACTIVE", "ARCHIVE"}:
+            raise ValueError(f"source manifest line {line_num}: ArchiveState must be ACTIVE or ARCHIVE")
+        rel_candidate = Path(repo_rel)
+        if rel_candidate.is_absolute() or ".." in rel_candidate.parts:
+            raise ValueError(f"source manifest line {line_num}: RepoRelPath must stay inside repo root")
+        path = (repo_root / rel_candidate).resolve()
+        try:
+            path.relative_to(repo_root.resolve())
+        except ValueError as exc:
+            raise ValueError(f"source manifest line {line_num}: RepoRelPath escapes repo root") from exc
         if not path.is_file():
-            continue
-        rel_path = rel_to(domain_root, path)
-        archive_state = "ARCHIVE" if is_archive_path(Path(rel_path)) else "ACTIVE"
+            raise FileNotFoundError(f"source manifest line {line_num}: source file not found: {repo_rel}")
+        rel_path = f"{REPO_PATH_PREFIX}{rel_candidate.as_posix()}"
         role = artifact_role(rel_path)
+        if include == "YES" and role != "SOURCE_MARKDOWN":
+            raise ValueError(
+                f"source manifest line {line_num}: IncludeInIndex=YES is only supported "
+                f"for Markdown files in v1, found role={role}"
+            )
+        actual_sha = sha256_file(path)
+        digest = expected_sha or actual_sha
         stat = path.stat()
-        digest = sha256_file(path)
         artifacts.append(
             Artifact(
                 artifact_id=stable_id("ART", rel_path, digest),
-                source_doc_id=source_doc_id_for_rel(rel_path),
+                source_doc_id=source_doc_id,
                 rel_path=rel_path,
                 artifact_role=role,
                 media_type=media_type_for(path),
@@ -207,11 +330,17 @@ def collect_artifacts(domain_root: Path, include_archive_metadata: bool) -> list
                 sha256=digest,
                 archive_state=archive_state,
                 generated_from_artifact_id=None,
-                indexable=indexable_for_role(role, archive_state),
+                indexable=1 if archive_state == "ACTIVE" and include == "YES" else 0,
             )
         )
-    artifacts.sort(key=lambda a: a.rel_path)
-    return artifacts
+        source_metadata[source_doc_id] = {
+            "SourceName": row.get("SourceName", "").strip() or source_doc_id.removeprefix("SRC-"),
+            "SourceGroup": row.get("SourceGroup", "").strip(),
+            "AuthorityRole": row.get("AuthorityRole", "").strip(),
+            "RepoRelPath": rel_candidate.as_posix(),
+            "ExpectedSha256": expected_sha,
+        }
+    return artifacts, source_metadata
 
 
 def assign_generated_from(artifacts: list[Artifact]) -> list[Artifact]:
@@ -261,7 +390,12 @@ def assign_generated_from(artifacts: list[Artifact]) -> list[Artifact]:
     return out
 
 
-def collect_source_docs(domain_root: Path, artifacts: list[Artifact]) -> list[SourceDoc]:
+def collect_source_docs(
+    domain_root: Path,
+    artifacts: list[Artifact],
+    source_metadata: dict[str, dict[str, str]] | None = None,
+) -> list[SourceDoc]:
+    source_metadata = source_metadata or {}
     grouped: dict[str, list[Artifact]] = defaultdict(list)
     roots: dict[str, str] = {}
     for art in artifacts:
@@ -279,6 +413,7 @@ def collect_source_docs(domain_root: Path, artifacts: list[Artifact]) -> list[So
         primary_md = first_artifact_id(group, "SOURCE_MARKDOWN")
         section_nodes = first_artifact_id(group, "SECTION_NODES_CSV")
         source_root = roots.get(source_doc_id, "")
+        meta = source_metadata.get(source_doc_id, {})
         audit_dir = None
         if source_root and (domain_root / source_root / "audit").exists():
             audit_dir = f"{source_root}/audit"
@@ -286,7 +421,7 @@ def collect_source_docs(domain_root: Path, artifacts: list[Artifact]) -> list[So
         source_docs.append(
             SourceDoc(
                 source_doc_id=source_doc_id,
-                source_name=source_doc_id.removeprefix("SRC-"),
+                source_name=meta.get("SourceName") or source_doc_id.removeprefix("SRC-"),
                 source_root_rel_path=source_root,
                 archive_state=archive_state,
                 primary_md_artifact_id=primary_md,
@@ -323,7 +458,12 @@ def first_artifact_id(group: list[Artifact], role: str) -> str | None:
     return None
 
 
-def collect_audit_state(domain_root: Path, artifacts: list[Artifact]) -> list[AuditState]:
+def collect_audit_state(
+    domain_root: Path,
+    artifacts: list[Artifact],
+    *,
+    repo_root: Path | None = None,
+) -> list[AuditState]:
     rows: list[AuditState] = []
     for art in artifacts:
         if art.artifact_role not in {"AUDIT_HTML", "AUDIT_JSONL", "AUDIT_SIDECAR_JSON"}:
@@ -331,7 +471,7 @@ def collect_audit_state(domain_root: Path, artifacts: list[Artifact]) -> list[Au
         kind, role = audit_kind_and_role(art.rel_path)
         status_count = None
         if art.artifact_role in {"AUDIT_JSONL", "AUDIT_SIDECAR_JSON"}:
-            status_count = count_json_entries(domain_root / art.rel_path)
+            status_count = count_json_entries(catalog_path(domain_root, art.rel_path, repo_root))
         rows.append(
             AuditState(
                 audit_id=stable_id("AUD", art.rel_path, art.sha256),
@@ -348,12 +488,17 @@ def collect_audit_state(domain_root: Path, artifacts: list[Artifact]) -> list[Au
     return rows
 
 
-def collect_chunks(domain_root: Path, artifacts: list[Artifact]) -> list[Chunk]:
+def collect_chunks(
+    domain_root: Path,
+    artifacts: list[Artifact],
+    *,
+    repo_root: Path | None = None,
+) -> list[Chunk]:
     chunks: list[Chunk] = []
     for art in artifacts:
         if not art.indexable:
             continue
-        path = domain_root / art.rel_path
+        path = catalog_path(domain_root, art.rel_path, repo_root)
         try:
             if art.artifact_role in {"SOURCE_MARKDOWN", "PAGE_MARKDOWN"}:
                 chunks.extend(chunks_from_markdown(path, art))
@@ -612,6 +757,8 @@ def write_qa_report(
         f"- Schema: `{meta['schema_version']}`",
         f"- Build UTC: `{meta['build_utc']}`",
         f"- Domain root: `{meta['domain_root']}`",
+        f"- Repo root: `{meta.get('repo_root') or 'N/A'}`",
+        f"- Source manifest: `{meta.get('source_manifest') or 'N/A'}`",
         f"- Snapshot: `{meta['snapshot_dir']}`",
         f"- Source files copied: `{str(meta['source_files_copied']).lower()}`",
         "",

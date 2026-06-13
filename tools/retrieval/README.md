@@ -55,6 +55,17 @@ python3 tools/source_catalog/build_source_database.py \
   --domain-root domains/piping-design
 ```
 
+For the Chirality self-domain, build from the manifest-referenced governance
+core corpus. Source files are not copied; catalog paths are recorded as
+`@repo/<RepoRelPath>` and resolved through `--repo-root`:
+
+```sh
+python3 tools/source_catalog/build_source_database.py \
+  --domain-root domains/chirality \
+  --repo-root . \
+  --source-manifest domains/chirality/_Sources/Source_Manifest.csv
+```
+
 Build BM25 + dense retrieval sidecars into that snapshot:
 
 ```sh
@@ -67,6 +78,22 @@ For fixture tests or quick lexical-only builds:
 ```sh
 python3 tools/retrieval/build_source_index.py \
   --snapshot <snapshot-or-latest> --no-embeddings
+```
+
+For the initial Chirality self-domain milestone, build BM25 only first:
+
+```sh
+python3 tools/retrieval/build_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --no-embeddings
+```
+
+Optionally build dense embeddings later after the catalog and BM25 retrieval
+path are accepted:
+
+```sh
+python3 tools/retrieval/build_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md
 ```
 
 ## Query
@@ -111,6 +138,15 @@ Internal row numbers are implementation detail only.
 ```sh
 python3 tools/source_catalog/validate_source_database.py \
   --snapshot domains/piping-design/_LocalIndexes/_LATEST.md
+```
+
+Validate the Chirality self-domain snapshot with repo-path resolution:
+
+```sh
+python3 tools/source_catalog/validate_source_database.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --domain-root domains/chirality \
+  --repo-root .
 ```
 
 Use `--skip-hash-verify` for quick checks over very large local corpora.

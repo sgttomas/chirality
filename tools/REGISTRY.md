@@ -256,8 +256,8 @@ Canonical versions at `tools/evaluation/`. Project-specific variants may also ex
 
 | Name | Language | Purpose | Inputs | Outputs |
 |------|----------|---------|--------|---------|
-| `build_source_database.py` | Python 3 | Build a domain-local V2 source catalog snapshot over filesystem artifacts. References source files in place by relative path and SHA-256; does not copy large source assets. Excludes archive paths unless archive metadata is explicitly requested | `[--domain-root]`, `[--out-root]`, `[--include-archive-metadata]` | `<domain-root>/_LocalIndexes/snapshots/SRCIDX_<UTC>/{catalog.sqlite,SourceDocs.csv,Artifacts.csv,AuditState.csv,Chunks.csv,meta.json,QA_Report.md}` and `_LocalIndexes/_LATEST.md` |
-| `validate_source_database.py` | Python 3 | Validate a V2 source catalog snapshot: schema, exports, counts, path existence, hash freshness, FK integrity, chunk hashes, audit surface warnings, and source-copy policy | `[--snapshot]`, `[--domain-root]`, `[--skip-hash-verify]`, `[--json]` | PASS/FAIL summary or JSON findings; exit 0/1/2 |
+| `build_source_database.py` | Python 3 | Build a domain-local V2 source catalog snapshot over filesystem artifacts or a source manifest. Manifest-backed rows reference live repo files as `@repo/<RepoRelPath>` plus SHA-256 and do not copy source assets. Excludes archive paths unless archive metadata is explicitly requested | `[--domain-root]`, `[--out-root]`, `[--repo-root]`, `[--source-manifest]`, `[--include-archive-metadata]` | `<domain-root>/_LocalIndexes/snapshots/SRCIDX_<UTC>/{catalog.sqlite,SourceDocs.csv,Artifacts.csv,AuditState.csv,Chunks.csv,meta.json,QA_Report.md}` and `_LocalIndexes/_LATEST.md` |
+| `validate_source_database.py` | Python 3 | Validate a V2 source catalog snapshot: schema, exports, counts, path existence, `@repo/` path resolution, hash freshness, FK integrity, chunk hashes, audit surface warnings, and source-copy policy | `[--snapshot]`, `[--domain-root]`, `[--repo-root]`, `[--skip-hash-verify]`, `[--json]` | PASS/FAIL summary or JSON findings; exit 0/1/2 |
 
 ## Backlog (CREATE LATER)
 

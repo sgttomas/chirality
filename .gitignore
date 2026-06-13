@@ -100,6 +100,9 @@ domains/*/_LocalIndexes/**
 **/*_drawing_extract_work_run*/
 **/*_symbol_instance_diag_work/
 **/_LocalIndexes/
+!domains/*/_LocalIndexes/
+!domains/*/_LocalIndexes/.gitkeep
+!domains/*/_LocalIndexes/README.md
 **/_Aggregation/_pdf_work/
 tools/retrieval/_index/
 

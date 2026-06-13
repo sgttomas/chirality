@@ -22,6 +22,7 @@ SCHEMA_VERSION = "chirality-source-db/v2"
 DEFAULT_DOMAIN_ROOT = Path("domains/piping-design")
 DEFAULT_OUT_ROOT_NAME = "_LocalIndexes"
 SNAPSHOT_PREFIX = "SRCIDX"
+REPO_PATH_PREFIX = "@repo/"
 
 ARTIFACT_COLUMNS = [
     "artifact_id",
@@ -163,6 +164,24 @@ def rel_to(root: Path, path: Path) -> str:
     return path.resolve().relative_to(root.resolve()).as_posix()
 
 
+def is_repo_rel_path(rel_path: str) -> bool:
+    return rel_path.startswith(REPO_PATH_PREFIX)
+
+
+def repo_rel_path(rel_path: str) -> str:
+    if not is_repo_rel_path(rel_path):
+        raise ValueError(f"not a repo-relative catalog path: {rel_path}")
+    return rel_path[len(REPO_PATH_PREFIX):]
+
+
+def catalog_path(domain_root: Path, rel_path: str, repo_root: Path | None = None) -> Path:
+    if is_repo_rel_path(rel_path):
+        if repo_root is None:
+            raise ValueError(f"repo_root is required to resolve {rel_path}")
+        return repo_root / repo_rel_path(rel_path)
+    return domain_root / rel_path
+
+
 def is_archive_path(path: Path) -> bool:
     return any(part.lower() in {"_archive", ".archive", "archive"} for part in path.parts)
 
@@ -174,6 +193,8 @@ def should_skip_dir(path: Path, include_archive_metadata: bool) -> bool:
 
 
 def source_doc_id_for_rel(rel_path: str) -> str | None:
+    if is_repo_rel_path(rel_path):
+        return "SRC-" + slug_token(Path(repo_rel_path(rel_path)).with_suffix("").as_posix())
     parts = Path(rel_path).parts
     if not parts:
         return None
@@ -194,6 +215,8 @@ def source_doc_id_for_rel(rel_path: str) -> str | None:
 
 
 def source_root_for_rel(rel_path: str) -> str | None:
+    if is_repo_rel_path(rel_path):
+        return rel_path
     parts = Path(rel_path).parts
     if parts and parts[0] == "_Sources" and len(parts) >= 2:
         name = parts[1]
@@ -213,7 +236,7 @@ def slug_token(value: str) -> str:
 
 
 def artifact_role(rel_path: str) -> str:
-    p = Path(rel_path)
+    p = Path(repo_rel_path(rel_path) if is_repo_rel_path(rel_path) else rel_path)
     parts = p.parts
     suffix = p.suffix.lower()
     name = p.name.lower()
