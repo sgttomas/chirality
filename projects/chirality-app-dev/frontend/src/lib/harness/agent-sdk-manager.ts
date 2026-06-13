@@ -119,9 +119,12 @@ export class StubAgentSdkManager implements IAgentSdkManager {
         };
       }
 
-      // Keep the turn open long enough for interrupt route verification.
+      // Test marker: keep the turn open while bundle-boundary interrupt verification imports routes.
       if (message.includes(INTERRUPT_MARKER)) {
-        await delay(220);
+        const deadline = Date.now() + 4_500;
+        while (!turnState.interrupted && Date.now() < deadline) {
+          await delay(50);
+        }
       }
 
       const chunks = chunkText(fullText);

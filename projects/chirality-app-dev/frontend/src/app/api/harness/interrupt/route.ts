@@ -13,7 +13,7 @@ export async function POST(request: Request): Promise<Response> {
     const sessionId = requireNonEmptyString(body.sessionId, 'sessionId');
 
     const runtime = getHarnessRuntime();
-    await runtime.agentSdkManager.interrupt(sessionId);
+    await runtime.turnEngine.interrupt(sessionId);
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {

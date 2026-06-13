@@ -24,6 +24,27 @@ Required behavior:
 - SDK/provider identifiers may be stored as metadata fields such as `sdkSessionId` or
   `sdkClaudeCodeVersion`; they do not rename public UI events.
 
+## TurnEngine
+
+`frontend/src/lib/harness/turn-engine.ts` owns the product turn lifecycle above the
+adapter port. API routes are transport adapters: they parse HTTP, await engine
+preflight, format `UIEvent`s as SSE, and delegate cancellation.
+
+Current lifecycle ownership includes:
+
+- same-session active-turn locking;
+- session resume and provider API-key preflight;
+- runtime option resolution;
+- attachment warning and executable attachment shaping;
+- persona prompt existence validation;
+- subagent governance evaluation and delegated-subagent shaping;
+- adapter stream execution through `IAgentSdkManager`;
+- engine session metadata persistence on `session:init`;
+- mid-stream adapter error mapping to stable `turn:error` and `process:exit` events.
+
+Pre-stream failures remain JSON API errors. Adapter failures after SSE streaming begins
+remain browser-visible SSE terminal evidence.
+
 ## HarnessEvent Evidence
 
 `frontend/src/lib/harness/event-schema.ts` defines versioned persisted runtime evidence.

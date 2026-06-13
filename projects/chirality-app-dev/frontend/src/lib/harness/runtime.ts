@@ -4,6 +4,7 @@ import { ClaudeAgentSdkManager } from './claude-agent-sdk-manager';
 import { AttachmentResolver } from './attachment-resolver';
 import { StubPersonaManager } from './persona-manager';
 import { FileSessionManager } from './session-manager';
+import { TurnEngine } from './turn-engine';
 import { IAgentSdkManager, IAttachmentResolver, IPersonaManager, ISessionManager } from './types';
 
 type HarnessRuntime = {
@@ -11,6 +12,7 @@ type HarnessRuntime = {
   personaManager: IPersonaManager;
   attachmentResolver: IAttachmentResolver;
   agentSdkManager: IAgentSdkManager;
+  turnEngine: TurnEngine;
 };
 
 type HarnessRuntimeGlobal = typeof globalThis & {
@@ -56,11 +58,23 @@ function buildAgentSdkManager(mode: HarnessProviderMode): IAgentSdkManager {
 export function getHarnessRuntime(): HarnessRuntime {
   if (!harnessRuntimeGlobal.__CHIRALITY_HARNESS_RUNTIME__) {
     const providerMode = resolveHarnessProviderMode();
+    const sessionManager = new FileSessionManager();
+    const personaManager = new StubPersonaManager();
+    const attachmentResolver = new AttachmentResolver();
+    const agentSdkManager = buildAgentSdkManager(providerMode);
+
     harnessRuntimeGlobal.__CHIRALITY_HARNESS_RUNTIME__ = {
-      sessionManager: new FileSessionManager(),
-      personaManager: new StubPersonaManager(),
-      attachmentResolver: new AttachmentResolver(),
-      agentSdkManager: buildAgentSdkManager(providerMode)
+      sessionManager,
+      personaManager,
+      attachmentResolver,
+      agentSdkManager,
+      turnEngine: new TurnEngine({
+        sessionManager,
+        personaManager,
+        attachmentResolver,
+        agentSdkManager,
+        resolveProviderMode: resolveHarnessProviderMode
+      })
     };
   }
 

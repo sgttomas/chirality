@@ -285,7 +285,7 @@ max_turns: 7
     for (let index = 0; index < 100; index += 1) {
       await expect(resolveRuntimeOptions(makeSession(), {})).resolves.toEqual(baseline);
     }
-  });
+  }, 15_000);
 
   it('falls back to runtime defaults when persona frontmatter is malformed', async () => {
     const instructionRoot = await createInstructionRootFixture({

@@ -1,7 +1,7 @@
 # NEXT INSTANCE STATE - Chirality App Dev
 
 **Last Updated:** 2026-06-13
-**Updated By:** Codex WORKING_ITEMS runtime-contract tranche
+**Updated By:** Codex WORKING_ITEMS turn-lifecycle tranche
 **Active persona:** `WORKING_ITEMS`
 
 ## Current Pointers
@@ -40,16 +40,16 @@ Recent assessment artifacts added:
 Completed app-integration tranche:
 
 - 2026-06-13: Provider-neutral runtime contract cleanup. Persisted `HarnessEvent` type names were generalized away from SDK-prefixed names, SDK identifiers remain adapter metadata, `engineSessionId` was added as a provider-neutral compatibility alias, and validation defaults were repaired for the nested app-dev workspace layout.
+- 2026-06-13: Turn lifecycle extraction. Added product-owned `TurnEngine` for pre-stream turn preflight, same-session locking, attachment/governance shaping, adapter stream execution, session metadata persistence, cancellation delegation, and mid-stream terminal error mapping while preserving `/api/harness/turn` SSE behavior.
 
 ## Active Queue
 
 Recommended next unblocked tranches, in order:
 
-1. **Turn lifecycle extraction.** Continue moving route-owned lifecycle into a product-owned `TurnEngine` while preserving the existing SSE event contract.
-2. **HarnessEvent expansion.** Add Chirality-owned message/tool/queue/compaction/interruption event coverage inspired by Pi's lifecycle.
-3. **Engine conformance fixtures.** Add deterministic adapter conformance tests using fake/scripted provider streams before any new backend adapter.
-4. **Tool descriptor design.** Define a Chirality-owned `HarnessToolDescriptor` and permission metadata before enabling additional tool execution.
-5. **Pi adapter spike packet.** Prepare a constrained `pi-ai` / `pi-agent-core` sidecar spike brief after the contract and conformance prerequisites are in place.
+1. **HarnessEvent expansion.** Add Chirality-owned message/tool/queue/compaction/interruption event coverage inspired by Pi's lifecycle.
+2. **Engine conformance fixtures.** Add deterministic adapter conformance tests using fake/scripted provider streams before any new backend adapter.
+3. **Tool descriptor design.** Define a Chirality-owned `HarnessToolDescriptor` and permission metadata before enabling additional tool execution.
+4. **Pi adapter spike packet.** Prepare a constrained `pi-ai` / `pi-agent-core` sidecar spike brief after the contract and conformance prerequisites are in place.
 
 ## Pending Human Rulings
 
