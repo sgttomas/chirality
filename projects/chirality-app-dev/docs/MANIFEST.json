@@ -1,0 +1,87 @@
+{
+  "created": "2026-06-13",
+  "root": "docs/",
+  "status": "governance_index",
+  "product": "Chirality desktop harness and bundled agent operating system",
+  "files": [
+    {
+      "path": "DIRECTIVE.md",
+      "role": "founding directive"
+    },
+    {
+      "path": "CONTRACT.md",
+      "role": "invariant catalog"
+    },
+    {
+      "path": "SPEC.md",
+      "role": "technical specification"
+    },
+    {
+      "path": "TYPES.md",
+      "role": "vocabulary and identities"
+    },
+    {
+      "path": "PRD.md",
+      "role": "product requirements"
+    },
+    {
+      "path": "PLAN.md",
+      "role": "strategic roadmap"
+    },
+    {
+      "path": "VALIDATION_STRATEGY.md",
+      "role": "validation evidence routing"
+    },
+    {
+      "path": "RELEASE_QUALITY_GATES.md",
+      "role": "release-quality gate routing"
+    },
+    {
+      "path": "BUILD_AND_RELEASE.md",
+      "role": "build and release evidence guide"
+    },
+    {
+      "path": "AGENTIC_DEVELOPMENT_WORKFLOW.md",
+      "role": "agentic workflow guide"
+    },
+    {
+      "path": "README.md",
+      "role": "docs package index"
+    },
+    {
+      "path": "MANIFEST.json",
+      "role": "machine-readable docs index"
+    }
+  ],
+  "linked_control_plane_surfaces": [
+    {
+      "path": "execution/_Coordination/_COORDINATION.md",
+      "role": "active app-integration loop policy"
+    },
+    {
+      "path": "execution/_Coordination/NEXT_INSTANCE_PROMPT.md",
+      "role": "stable entry instructions"
+    },
+    {
+      "path": "execution/_Coordination/NEXT_INSTANCE_STATE.md",
+      "role": "compact non-authoritative state"
+    },
+    {
+      "path": "execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "role": "human-gated decision tracking"
+    },
+    {
+      "path": "plans/PLAN_2026-06-13_runtime_completion.md",
+      "role": "active non-governing tranche-selection plan"
+    },
+    {
+      "path": "plans/PLAN_COMPLETION_LOG.md",
+      "role": "landed-tranche history"
+    }
+  ],
+  "notes": [
+    "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
+    "docs/PLAN.md is strategic roadmap context, not the active queue.",
+    "The active tranche-selection surface is plans/PLAN_2026-06-13_runtime_completion.md."
+  ]
+}

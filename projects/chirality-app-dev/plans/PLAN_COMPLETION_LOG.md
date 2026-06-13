@@ -26,6 +26,14 @@ Residual: `GOV-WORKFLOW-001` workflow and docs index cleanup if the governance-s
 
 Validation: `git diff --cached --check -- docs plans execution/_Coordination`; positive reference search for `BUILD_AND_RELEASE`, `build_release`, `GOV-BUILD-001`, `GOV-WORKFLOW-001`, `desktop:pack`, and `desktop:dist`; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
 
+## 2026-06-13 - Workflow and docs index cleanup landed (`GOV-WORKFLOW-001`)
+
+Added app-dev `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` as workflow and discovery surfaces. The workflow guide maps authority surfaces, current phase posture, tranche selection, `TASK` discipline, validation routing, closeout shape, and non-authority boundaries. The docs index and manifest make the governance package discoverable without changing authoritative semantics.
+
+This tranche did not replace canonical agent instructions, change the active runtime queue, modify runtime API/source code/package manifests, alter provider policy, create release authorization, or change professional-boundary authority. Residual: no current governance-support item remains in the active plan; return to the runtime spine unless the human selects another governance tranche.
+
+Validation: `git diff --cached --check -- docs plans execution/_Coordination`; `docs/MANIFEST.json` JSON parse check; positive reference search for the new workflow/index surfaces and `GOV-WORKFLOW-001`; stale queued-governance-lane search returned no matches; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
+
 ## 2026-06-13 - Tool descriptor design landed (`3bf6f9fb1`)
 
 Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces. The metadata covers provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, runtime exposure, and adapter-name fields.

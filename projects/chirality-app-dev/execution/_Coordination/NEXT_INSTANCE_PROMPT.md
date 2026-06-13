@@ -10,7 +10,8 @@
 6. Read `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 7. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
 8. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
-9. Record `git status --short` before coordination-sensitive planning or edits.
+9. For workflow or docs-index work, read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json`.
+10. Record `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
 

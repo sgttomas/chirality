@@ -1,0 +1,107 @@
+# AGENTIC DEVELOPMENT WORKFLOW - Chirality App Dev
+
+**Status:** Draft governance support surface
+**Date:** 2026-06-13
+**Product:** Chirality desktop harness and bundled agent operating system
+**Applies to:** app-dev agentic coordination, tranche selection, validation routing, and closeout discipline
+
+## 1. Purpose
+
+This document maps how agentic development moves through the app-dev governance surfaces. It explains the current workflow; it does not replace `AGENTS.md`, `agents/AGENT_*.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PRD.md`, `docs/PLAN.md`, `execution/_Coordination/_COORDINATION.md`, the active completion plan, accepted execution artifacts, source, tests, decision records, or human project-authority instructions.
+
+If this map conflicts with a governing document, active coordination record, selected tranche brief, human ruling, or source/test evidence, stop and surface the conflict.
+
+This workflow is project guidance only. It is not lifecycle approval, release publication authorization, professional approval, certification, sealing, authentication, code-compliance acceptance, or external validation for reliance.
+
+## 2. Authority Map
+
+| Surface | What it owns | Boundary |
+|---|---|---|
+| `/Users/ryan/ai-env/projects/chirality/AGENTS.md` and `agents/AGENT_*.md` | Canonical agent roles, persona semantics, and task-agent discipline. | This file does not redefine canonical agent behavior. |
+| `docs/DIRECTIVE.md` | Founding intent, design philosophy, filesystem truth posture, and professional-responsibility model. | Does not provide implementation sequencing by itself. |
+| `docs/CONTRACT.md` | Binding invariant catalog for runtime, permissions, events, packaging, network, release, and professional boundaries. | Invariants require enforcement through code, tests, review, or human gates. |
+| `docs/SPEC.md` | Physical structures, file formats, runtime mechanics, validation surfaces, and future domain-engine mechanics. | Does not authorize out-of-plan implementation. |
+| `docs/TYPES.md` | Vocabulary, identifiers, states, runtime terms, and artifact names. | Does not settle active queue priority. |
+| `docs/PRD.md` | Product requirements and accepted app-dev runtime direction. | Does not replace directive, contract, spec, types, or human gates. |
+| `docs/PLAN.md` | Strategic roadmap and sequencing rationale. | It is not the active queue. |
+| `docs/VALIDATION_STRATEGY.md` | Evidence classification and validation command routing. | Evidence does not create release readiness or approval. |
+| `docs/RELEASE_QUALITY_GATES.md` | Release-quality gate selection by change family. | Gate evidence is not release publication authorization. |
+| `docs/BUILD_AND_RELEASE.md` | Local build, packaging, artifact, and release-evidence command map. | It is not a live CI workflow or release approval. |
+| `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
+| `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
+| `plans/PLAN_2026-06-13_runtime_completion.md` | Active non-governing tranche-selection surface. | Orders work; does not change product requirements or release posture. |
+| `plans/PLAN_COMPLETION_LOG.md` | Landed-tranche narrative history. | History only; not project truth or approval. |
+| `execution/_Coordination/_DECISIONS/_REGISTER.md` | Human-gated decision-packet status and rulings. | Agents prepare packets; humans rule. |
+| `frontend/docs/harness/runtime_engine_contract.md` | Current runtime adapter, event, session, and tool-descriptor contract posture. | Does not override higher governance or active plan staging. |
+| Source, tests, build scripts, validation artifacts, and git history | Current implementation truth and evidence. | Implementation does not silently amend governed requirements. |
+
+## 3. Current Development Posture
+
+The current default work mode is bounded app-integration tranches for the Chirality harness runtime. The active completion plan has:
+
+- the runtime dependency spine, where the next unblocked implementation item is **Permission overlay skeleton**; and
+- a governance support lane that records the landed planning, validation, release, and workflow documentation alignment tranches.
+
+Select exactly one tranche unless the human explicitly approves batching. Tranches selected from unblocked plan rows are pre-approved for execution within their stated write scope. Stop when further progress requires a human ruling.
+
+## 4. Phase-Aware Loop
+
+| Phase | Dominant question | Normal work unit | Coordination emphasis |
+|---|---|---|---|
+| Governance baseline | What must remain true? | Governance doc or decomposition update. | Authority hierarchy, invariant clarity, project-truth boundaries, human gates. |
+| Runtime integration | What runtime capability should become real next? | Narrow app/runtime slice. | Product-owned contract, SDK isolation, event evidence, tests, and premerge validation. |
+| Permission/tool expansion | What can the model see or do? | Permission/tool tranche. | Deny-first posture, descriptor metadata, hooks, MCP wrappers, result evidence. |
+| Build and release evidence | What proves software-quality posture? | Docs, validation, packaging, or evidence tranche. | Evidence routing, package integrity, release-quality gates, no release claims. |
+| Domain-engine future scope | How will Chirality govern domain truth without owning it? | Decision packet, profile, adapter, or proposal workflow. | Protected paths, operation proposals, deterministic checks, human acceptance. |
+
+The current phase is runtime integration. The first governance-support alignment wave is complete unless the human selects another governance tranche. Formal lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain separate human-governed states.
+
+## 5. Standard Session Flow
+
+1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
+2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, `NEXT_INSTANCE_STATE.md`, the active completion plan, and the decision register.
+3. Read authority and implementation-reference files needed for the selected tranche.
+4. Record `git status --short` before planning or edits.
+5. Select the earliest unblocked active-plan item unless the human has explicitly selected a tranche.
+6. Keep writes scoped to the tranche.
+7. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
+8. Update affected completion-plan rows, completion log, compact state pointers, and decision-register rows only when their state changes.
+9. Commit and push validated work when git state allows closeout.
+
+## 6. TASK Subagent Discipline
+
+`TASK` fan-out is optional and bounded. Use it only when subscopes are separable, write scopes are disjoint, and the brief names:
+
+- source files to read;
+- allowed write targets;
+- validation expected;
+- whether production code may be changed or the output is assessment/docs only;
+- excluded scope and human-ruling stops.
+
+The parent `WORKING_ITEMS` agent remains responsible for integration, validation, coordination updates, git closeout, and final summary. `TASK` outputs are draft evidence until integrated and validated.
+
+## 7. Closeout Shape
+
+A valid closeout identifies:
+
+- completed tranche;
+- validation performed, including skipped checks and reasons;
+- files changed;
+- decision packets or human rulings pending;
+- next unblocked active-plan item;
+- commit and push result when completed.
+
+For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.
+
+## 8. Non-Authority Boundaries
+
+The following are evidence, history, or convenience surfaces, not substitute authority:
+
+- runtime events and SDK transcripts;
+- completion logs and compact handoff state;
+- generated build artifacts;
+- validation summaries;
+- chat history and model context;
+- UI drafts or local presets.
+
+Accepted project truth must land in governed docs, accepted execution artifacts, source, tests, validation records, decision records, or git history as appropriate.

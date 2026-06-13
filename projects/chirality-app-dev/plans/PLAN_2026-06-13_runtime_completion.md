@@ -59,7 +59,7 @@ This lane records human-requested control-plane support work that improves valid
 |---|---|---|---|---|
 | GOV-QUALITY-001 | **Quality and validation skeleton** | LANDED 2026-06-13 | Build/release skeleton landed in `GOV-BUILD-001`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 | GOV-BUILD-001 | **Build/release skeleton** | LANDED 2026-06-13 | Workflow and docs index cleanup remains next if the governance migration lane continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
-| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | NEXT when governance lane continues | Add app-dev workflow/index/manifest surfaces as needed, without replacing canonical agent instructions. | Static docs checks; no runtime/package changes. |
+| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | LANDED 2026-06-13 | Governance-support lane has no current next item; return to runtime spine unless the human selects another governance tranche. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 
 ## Human-Gated Decisions
 

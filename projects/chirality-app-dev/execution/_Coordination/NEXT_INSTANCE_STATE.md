@@ -1,7 +1,7 @@
 # NEXT INSTANCE STATE - Chirality App Dev
 
 **Last Updated:** 2026-06-13
-**Updated By:** Codex WORKING_ITEMS build/release skeleton tranche
+**Updated By:** Codex WORKING_ITEMS workflow/docs index tranche
 **Active persona:** `WORKING_ITEMS`
 **Status:** Compact coordination state; not substitute authority.
 
@@ -17,6 +17,9 @@
 | Validation strategy | `docs/VALIDATION_STRATEGY.md` |
 | Release quality gates | `docs/RELEASE_QUALITY_GATES.md` |
 | Build and release guide | `docs/BUILD_AND_RELEASE.md` |
+| Agentic workflow guide | `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` |
+| Docs index | `docs/README.md` |
+| Docs manifest | `docs/MANIFEST.json` |
 | Active runtime completion plan | `plans/PLAN_2026-06-13_runtime_completion.md` |
 | Runtime completion log | `plans/PLAN_COMPLETION_LOG.md` |
 | Runtime contract | `frontend/docs/harness/runtime_engine_contract.md` |
@@ -42,7 +45,7 @@ Recommended next unblocked plan items, in order:
 2. **SDK read-tool exposure behind deny-first policy.** Enable only read-class SDK built-ins after the overlay exists.
 3. **Read MCP / descriptor integration.** Add Chirality-owned read MCP descriptors without write capability.
 
-Human-requested governance-support follow-up, if continuing the migration lane: **Workflow and docs index cleanup.** Add app-dev workflow/index/manifest surfaces as needed, without replacing canonical agent instructions.
+No further governance-support item is currently queued in the active plan. Return to the runtime spine unless the human selects another governance tranche.
 
 ## Pending Human Rulings
 

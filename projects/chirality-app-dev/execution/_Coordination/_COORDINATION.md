@@ -22,6 +22,9 @@ Primary authority and guidance:
 - `docs/VALIDATION_STRATEGY.md`
 - `docs/RELEASE_QUALITY_GATES.md`
 - `docs/BUILD_AND_RELEASE.md`
+- `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`
+- `docs/README.md`
+- `docs/MANIFEST.json`
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
 - `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
@@ -43,9 +46,10 @@ Authoritative state:
 1. `docs/PRD.md`, `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` define requirements, invariants, mechanics, and vocabulary.
 2. `docs/PLAN.md` records strategic runtime direction and roadmap rationale. It is not the ordinary active work queue.
 3. `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` route evidence, release-quality checks, and local build/package evidence. They do not create release readiness, lifecycle issuance, publication authorization, or professional acceptance.
-4. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
-5. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
-6. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
+4. `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` are workflow/index surfaces. They help discovery and orientation, but they do not replace canonical agent instructions, coordination policy, project truth, or human rulings.
+5. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
+6. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
+7. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
 
 Guidance and history surfaces:
 
@@ -67,8 +71,9 @@ At the start of a new loop:
 5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
 6. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
 7. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
-8. Read the implementation reference surfaces needed for the selected tranche.
-9. Run `git status --short` before coordination-sensitive planning or edits.
+8. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+9. Read the implementation reference surfaces needed for the selected tranche.
+10. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Development Loop
 
