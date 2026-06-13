@@ -2,17 +2,24 @@
 
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const REQUIRED_ROOT_FILES = [
   'AGENTS.md',
   'README.md',
-  'WHAT-IS-AN-AGENT.md',
   'PROFESSIONAL_ENGINEERING.md'
 ];
 
-const REQUIRED_DOC_FILES = ['DIRECTIVE.md', 'CONTRACT.md', 'SPEC.md', 'TYPES.md', 'PLAN.md'];
+const REQUIRED_DOC_FILES = [
+  'DIRECTIVE.md',
+  'CONTRACT.md',
+  'SPEC.md',
+  'TYPES.md',
+  'PLAN.md',
+  'WHAT-IS-AN-AGENT.md'
+];
 
 function toPosix(relativePath) {
   return relativePath.split(path.sep).join('/');
@@ -99,6 +106,26 @@ function readGitSha(sourceRoot) {
   } catch {
     return null;
   }
+}
+
+function hasInstructionRootShape(candidateRoot) {
+  return (
+    existsSync(path.join(candidateRoot, 'agents')) &&
+    existsSync(path.join(candidateRoot, 'AGENTS.md')) &&
+    existsSync(path.join(candidateRoot, 'docs', 'DIRECTIVE.md'))
+  );
+}
+
+function resolveDefaultSourceRoot() {
+  const candidates = [
+    process.env.CHIRALITY_INSTRUCTION_ROOT
+      ? path.resolve(process.env.CHIRALITY_INSTRUCTION_ROOT)
+      : undefined,
+    path.resolve(process.cwd(), '..'),
+    path.resolve(process.cwd(), '..', '..', '..')
+  ].filter(Boolean);
+
+  return candidates.find(hasInstructionRootShape) ?? candidates[0];
 }
 
 async function listSourceAgentFiles(sourceRoot) {
@@ -211,7 +238,7 @@ async function main() {
     return;
   }
 
-  const sourceRoot = path.resolve(args.sourceRoot ?? path.resolve(process.cwd(), '..'));
+  const sourceRoot = path.resolve(args.sourceRoot ?? resolveDefaultSourceRoot());
   const bundleRoot = path.resolve(
     args.bundleRoot ?? path.join(process.cwd(), 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
   );

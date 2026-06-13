@@ -34,15 +34,15 @@ Initial SDK probe events include:
 
 - `turn.accepted`
 - `turn.started`
-- `sdk.system.init`
+- `adapter.initialized`
 - `model.delta`
 - `model.completed`
 - `turn.completed`
 - `turn.failed`
 - `turn.cancelled`
-- `sdk.permission.denied`
-- `sdk.compact.boundary`
-- `sdk.mirror.error`
+- `tool.permission`
+- `context.compacted`
+- `runtime.mirror.error`
 
 Browser `UIEvent` and persisted `HarnessEvent` are separate contracts.
 

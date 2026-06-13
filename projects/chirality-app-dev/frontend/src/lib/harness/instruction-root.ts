@@ -1,4 +1,4 @@
-import { constants as fsConstants } from 'node:fs';
+import { constants as fsConstants, existsSync } from 'node:fs';
 import { access, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { HarnessError } from './errors';
@@ -23,8 +23,24 @@ function resolveInstructionRootFromEnv(): string | undefined {
   return path.resolve(override);
 }
 
+function hasRequiredInstructionRootEntries(candidateRoot: string): boolean {
+  return (
+    REQUIRED_DIRECTORY_ENTRIES.every((entry) => existsSync(path.join(candidateRoot, entry))) &&
+    REQUIRED_FILE_ENTRIES.every((entry) => existsSync(path.join(candidateRoot, entry)))
+  );
+}
+
+function resolveInstructionRootFromWorkspace(): string {
+  const candidates = [
+    path.resolve(process.cwd(), '..'),
+    path.resolve(process.cwd(), '..', '..', '..')
+  ];
+
+  return candidates.find(hasRequiredInstructionRootEntries) ?? candidates[0];
+}
+
 export function resolveInstructionRootPath(): string {
-  return resolveInstructionRootFromEnv() ?? path.resolve(process.cwd(), '..');
+  return resolveInstructionRootFromEnv() ?? resolveInstructionRootFromWorkspace();
 }
 
 export function instructionRootContainsPath(

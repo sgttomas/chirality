@@ -25,6 +25,7 @@ export interface SessionRecord {
   mode: string;
   createdAt: string;
   updatedAt: string;
+  engineSessionId?: string;
   claudeSessionId?: string;
   sdkSessionId?: string;
   sdkTranscriptPath?: string;
@@ -111,6 +112,7 @@ export interface SessionListResponse {
 }
 
 export interface BootMetadata {
+  engineSessionId?: string;
   claudeSessionId: string;
   bootFingerprint: string;
   bootedAt: string;
@@ -184,6 +186,7 @@ export type UIEvent =
   | {
       type: 'session:init';
       data: {
+        engineSessionId?: string;
         claudeSessionId: string;
         model: string;
       };

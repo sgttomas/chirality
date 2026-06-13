@@ -552,7 +552,7 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-058 | P0 | The full instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, `README.md`, `WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md` where required by integrity policy. |
+| FR-058 | P0 | The full instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, `README.md`, `docs/WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md` where required by integrity policy. |
 | FR-059 | P0 | Agent instruction files shall declare type/class/surface/write-scope/blocking/output metadata. | Conformance is auditable against governing instruction architecture and SPEC. |
 | FR-060 | P0 | Type 2 subagent injection shall fail closed. | Requires `CHIRALITY_ENABLE_SUBAGENTS=true`, persona allowlist, `contextSealed=true`, `pipelineRunApproved=true`, non-empty `approvalRef`, and Type 2 candidate files. |
 | FR-061 | P1 | Deterministic project tools and scripts shall remain indexed and executable when present. | Tool registries and validation scripts identify inputs/outputs and remain locally runnable. |
@@ -592,7 +592,7 @@ Initial persisted event categories:
 - `session.resumed`
 - `turn.accepted`
 - `turn.started`
-- `sdk.system.init`
+- `adapter.initialized`
 - `model.request.started`
 - `model.delta`
 - `model.completed`
@@ -613,7 +613,7 @@ Later categories:
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
-- `sdk.mirror.error`
+- `runtime.mirror.error`
 
 ### 8.13 SDK Tool Surface, Chirality MCP Tools, and Model/Tool Loop
 
@@ -822,7 +822,7 @@ Required entries for a complete source tree / packaged app include:
 - `docs/SPEC.md`
 - `docs/TYPES.md`
 - `docs/PLAN.md`
-- `WHAT-IS-AN-AGENT.md` where required by packaging/integrity policy
+- `docs/WHAT-IS-AN-AGENT.md` where required by packaging/integrity policy
 - `PROFESSIONAL_ENGINEERING.md` where required by packaging/integrity policy
 
 Instruction root may be overridden by `CHIRALITY_INSTRUCTION_ROOT`; packaged builds set it to `process.resourcesPath` or equivalent resource root.
@@ -858,6 +858,7 @@ Current session record fields:
 - `mode`
 - `createdAt`
 - `updatedAt`
+- `engineSessionId`
 - `claudeSessionId`
 - `bootFingerprint`
 - `bootedAt`
@@ -1472,7 +1473,7 @@ Acceptance:
 
 | ID | Area | Risk / Gap | Product Decision |
 |---|---|---|---|
-| KG-001 | Source completeness | The reviewed archive lacks required root instruction assets (`AGENTS.md`, `agents/`, root `README.md`, `WHAT-IS-AN-AGENT.md`, `PROFESSIONAL_ENGINEERING.md`, `tools/REGISTRY.md`, and `examples/`) expected by docs, packaging, validation, or frontend code. | P0 before packaging/reliance: complete the source tree or adjust integrity requirements and code paths explicitly. |
+| KG-001 | Source completeness | The reviewed archive lacks required instruction assets (`AGENTS.md`, `agents/`, root `README.md`, `docs/WHAT-IS-AN-AGENT.md`, `PROFESSIONAL_ENGINEERING.md`, `tools/REGISTRY.md`, and `examples/`) expected by docs, packaging, validation, or frontend code. | P0 before packaging/reliance: complete the source tree or adjust integrity requirements and code paths explicitly. |
 | KG-002 | Persona prompting | Current `StubPersonaManager.buildSystemPrompt()` validates persona existence but returns a short stub rather than composing full instruction-root context into SDK requests. | P0 in R1: replace with persona/governance prompt composer and fingerprint actual inputs. |
 | KG-003 | Route lifecycle ownership | `turn/route.ts` owns locking, option resolution, attachment warnings, prompt validation, governance, provider streaming, session persistence, and error mapping. | P0 in R1: extract SDK-backed `TurnEngine` and keep route as SSE adapter. |
 | KG-004 | Append-only transcript | Session metadata exists, but not a robust per-turn Chirality event log. | P0 in R1: add `HarnessEvent`, session JSONL, redacted replay, and SDK message mirror. |
@@ -1499,7 +1500,7 @@ Acceptance:
 | KG-025 | Electron packaging | SDK-bundled Claude Code subprocess may need `asarUnpack`, signing, environment, or path adjustments. | R1 packaging probe and `desktop:dist` validation must prove packaged execution. |
 | KG-026 | SDK security boundary | SDK permissions are necessary but not sufficient as a professional-work safety boundary. | Maintain Chirality path containment, instruction-root protection, redaction, and human gates as product-owned overlays. |
 | KG-027 | Subagent inherited permissions | SDK subagents may inherit powerful parent modes such as bypass/accept edits. | Developer-only bypass remains out of shipped mode; subagent tool restrictions and governance hooks fail closed. |
-| KG-028 | SDK session mirror reliability | `SessionStore` mirror failures may not stop the SDK turn because local transcript writes are primary. | Monitor mirror errors, persist `sdk.mirror.error`, and rely on Chirality JSONL for product audit. |
+| KG-028 | SDK session mirror reliability | `SessionStore` mirror failures may not stop the SDK turn because local transcript writes are primary. | Monitor mirror errors, persist `runtime.mirror.error` with SDK adapter metadata, and rely on Chirality JSONL for product audit. |
 | KG-029 | Thin-wrapper drift | SDK adoption could make Chirality look and behave like a Claude Code wrapper instead of a governed professional-work harness. | Add product-identity principle, runtime-engine contract, reliance-boundary register, and branding/copy checks. |
 | KG-030 | Runtime platform dependency | SDK pricing, packaging, terms, tool behavior, permission behavior, storage behavior, or session format may change upstream. | Pin versions, run SDK probes and conformance tests on upgrade, and preserve a governed fallback/custom-runtime path. |
 | KG-031 | Reliance-boundary ambiguity | Product-critical boundaries could be accidentally delegated to SDK defaults, prompt text, or noncanonical transcripts. | P0 R0/R1 deliverable: reliance-boundary register with enforcement-surface ownership and tests. |

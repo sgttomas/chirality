@@ -128,7 +128,7 @@ describe('ClaudeAgentSdkManager', () => {
     expect(replay.events.map((event) => event.type)).toEqual([
       'turn.accepted',
       'turn.started',
-      'sdk.system.init',
+      'adapter.initialized',
       'model.delta',
       'model.completed',
       'turn.completed'

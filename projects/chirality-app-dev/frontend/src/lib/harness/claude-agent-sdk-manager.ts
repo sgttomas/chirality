@@ -81,6 +81,7 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         yield {
           type: 'session:init',
           data: {
+            engineSessionId: bootstrapSessionId,
             claudeSessionId: bootstrapSessionId,
             model: input.opts.model
           }

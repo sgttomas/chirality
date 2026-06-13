@@ -1,7 +1,8 @@
-# NEXT INSTANCE STATE - Chirality App vNext
+# NEXT INSTANCE STATE - Chirality App Dev
 
-**Last Updated:** 2026-05-24
-**Updated By:** RECONCILIATION / CHANGE / AUDIT_DEP_CLOSURE
+**Last Updated:** 2026-06-13
+**Updated By:** Codex WORKING_ITEMS runtime-contract tranche
+**Active persona:** `WORKING_ITEMS`
 
 ## Current Pointers
 
@@ -9,108 +10,63 @@
 |---|---|
 | Coordination policy | `execution/_Coordination/_COORDINATION.md` |
 | Stable startup prompt | `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` |
-| Decomposition authority | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
-| Source corpus | `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md`, `docs/PRD.md` |
+| Human decision register | `execution/_Coordination/_DECISIONS/_REGISTER.md` |
+| Product requirements | `docs/PRD.md` |
+| Strategic roadmap | `docs/PLAN.md` |
+| Runtime contract | `frontend/docs/harness/runtime_engine_contract.md` |
+| Current completion plan | `plans/chirality-app-future-development-plan.md` |
+| Claude SDK follow-ups | `plans/claude-agent-sdk-implementation-followups.md` |
+| Pi assessment | `plans/pi-agent-harness-assessment.md` |
 
 ## Current Program State
 
-| Metric | Value |
-|---|---:|
-| Packages scaffolded | 10 |
-| Control packages scaffolded | 1 (`PKG-00`) |
-| Control deliverables scaffolded | 2 (`DEL-00-01`, `DEL-00-02`) |
-| Control deliverables SEMANTIC_READY | 2 (`DEL-00-01`, `DEL-00-02`) |
-| PKG-00 TASK provenance repair | complete; 5 TASK run records per control deliverable |
-| PKG-00 SCC resolution cases | SCC-002 `CLOSED_BY_DEPCLOSURE`; SCC-001 `DEP_CLOSURE_PENDING`; ready and residual CHANGE tranches applied and verified by DepClosure as graph reduction only; all bidirectional pairs removed; one six-node longer-cycle SCC remains; 4 prior packets preserved as seed evidence; 0 selected for SCOPE_CHANGE intake |
-| Deliverables scaffolded | 51 |
-| OPEN | 0 |
-| INITIALIZED | 0 |
-| SEMANTIC_READY | 51 |
-| IN_PROGRESS | 0 |
-| CHECKING | 0 |
-| ISSUED | 0 |
-| Four-document kits complete | 51 |
-| TASK four-documents P1/P2 success records | 51 |
-| Semantic matrices validated | 51 |
-| TASK semantic-matrix-build success records | 51 |
-| Semantic matrices remaining | 0 |
-| Semantic lensing skipped by human ruling | yes |
-| P3 enrichment skipped by human ruling | yes |
-| Dependencies.csv files created | 51 |
-| Dependency register rows extracted | 554 |
-| Dependency schema validation | 51/51 PASS |
-| Dependency ID canonicalization | complete; `DEP-XX-YY-NNN`; 0 DepClosure ID normalizations |
-| Active deliverable execution edges | 101 unique / 116 rows |
-| Concrete dependency graph acyclic | NO |
-| Strict active execution SCCs | 1 (size 6) |
-| Blocker-subset SCCs | 0 |
-| Accepted co-development clusters | 1 (DEL-03-01 / DEL-04-01) |
-| CODEV-001 tranche evidence | implemented; blocker-subset closure scan passed |
-| Stale interrupted PENDING run records retained as incomplete evidence | 5 |
+The active direction is app-integration work on the Chirality harness runtime:
 
-## Data-Quality Notes
+- preserve Chirality-owned contracts and governance;
+- continue the Claude Agent SDK path where it satisfies the runtime contract;
+- borrow Pi patterns selectively for event/session/tool architecture;
+- prepare Pi package import or adapter work only after contract hardening and conformance tests exist;
+- keep production domain workflows under Chirality-owned profile, proposal, adapter, audit, and human-gate contracts.
 
-REF-006 docs/PRD.md=HASH_MISMATCH
+Recent assessment artifacts added:
 
-## Package Folders
+- `plans/pi-agent-harness-assessment.md`
+- `plans/pi-assessment/01_core_session_primitives.md`
+- `plans/pi-assessment/02_backend_adapter_feasibility.md`
+- `plans/pi-assessment/03_security_governance_fit.md`
+- `plans/pi-assessment/04_domain_harness_fit.md`
+- `plans/pi-assessment/05_license_maintenance.md`
 
-| PackageID | Name | Path |
-|---|---|---|
-| PKG-00 | DAG Closure and Project Control | `execution/PKG-00_DAG_Closure_and_Project_Control` |
-| PKG-01 | Product Governance and Reliance Boundaries | `execution/PKG-01_Product_Governance_and_Reliance_Boundaries` |
-| PKG-02 | Desktop Shell, Navigation, and Operator State | `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State` |
-| PKG-03 | Runtime Engine Contract and Turn Lifecycle | `execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle` |
-| PKG-04 | SDK Adapter, Prompt, Provider, and Settings | `execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings` |
-| PKG-05 | Session Audit, Replay, and Tool Result Records | `execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records` |
-| PKG-06 | Permissioned Tools, MCP, and Hooks | `execution/PKG-06_Permissioned_Tools_MCP_and_Hooks` |
-| PKG-07 | Filesystem Execution, Lifecycle, and Dependencies | `execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies` |
-| PKG-08 | Agent Suite, Pipeline Dispatch, and Subagent Governance | `execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance` |
-| PKG-09 | Validation, Packaging, Security, and Release | `execution/PKG-09_Validation_Packaging_Security_and_Release` |
-| PKG-10 | Domain Engine Future Boundary | `execution/PKG-10_Domain_Engine_Future_Boundary` |
+Completed app-integration tranche:
 
-## Active Human Rulings
+- 2026-06-13: Provider-neutral runtime contract cleanup. Persisted `HarnessEvent` type names were generalized away from SDK-prefixed names, SDK identifiers remain adapter metadata, `engineSessionId` was added as a provider-neutral compatibility alias, and validation defaults were repaired for the nested app-dev workspace layout.
 
-- Decomposition authority: v3.2 SOFTWARE_DECOMP.
-- Coordination representation: FULL_GRAPH.
-- Dependency satisfaction threshold: SEMANTIC_READY.
-- Dependency extraction is permitted after four-document authoring by human ruling on 2026-05-20.
-- Existing `_SEMANTIC.md` outputs are invalid evidence and must not be consumed for dependency recording.
-- `DEL-03-01` and `DEL-04-01` are accepted as co-development cluster `CODEV-001`; WORKING_ITEMS may proceed with them iteratively as a paired tranche.
-- CODEV-001 follow-up closure satisfied `DEP-04-01-008`; blocker-subset SCC count is now 0.
-- Post-ID-canonicalization closure verified canonical dependency IDs and made no dependency edge state changes.
-- SCC-002 closure is accepted by DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/`: `DEP-10-02-004` is retired as non-blocking interface/reference evidence; `DEP-10-03-006` remains the hard prerequisite; SCC-002 is absent.
-- SCC-001 runtime/SDK core, session/audit, and tooling/permissions/MCP evidence have been indexed and candidate remedies bucketed in `CASE-SCC-001_Runtime_SDK_Session_Tooling` through bounded `TASK + scc-resolution-case` work. Ready-tranche CHANGE edits retired selected non-blocking or already-satisfied rows for `REM-SCC-001-006`, `007`, `008`, `009`, `011`, `013`, `014`, and `016`. Residual closeout CHANGE edits retired `DEP-03-01-006`, `DEP-05-02-007`, `DEP-05-03-011`, and `DEP-06-01-011`. DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` proves graph reduction only with `scc_count = 1`, residual SCC size `6`, and no bidirectional pairs. No SCOPE_CHANGE workflow was initiated.
-- `PKG-00` is the meta/control package for DAG closure and project-level reconciliation; it is excluded from deliverable dependency graph participation by default.
-- `DEL-00-01` owns SCC-002 closure control; `DEL-00-02` owns SCC-001 closure control.
-- PKG-00 control deliverable readiness is backed by bounded TASK run records after invalidating the earlier direct ORCHESTRATOR-authored readiness state.
-- PKG-00 SCC Resolution Cases are living WORKING_ITEMS/TASK receptacles for SCC evidence, human rulings, candidate remedies, and owner-workflow handoffs; prior scope-change packets are seed evidence only.
-- The human must explicitly initiate SCOPE_CHANGE before any case or packet material becomes an intake request, and SCOPE_CHANGE gates still govern any amendment.
-- Strict project-wide `BLOCKED/UNBLOCKED` remains unavailable while the strict all-active execution graph is cyclic.
+## Active Queue
 
-## Immediate Next Actions
+Recommended next unblocked tranches, in order:
 
-1. Use accepted DepClosure snapshot `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/` as the current dependency closure ruling.
-2. Use `execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DAG_CLOSURE_CONTROL.md` as the project-control record for DAG closure workflow.
-3. Continue `CASE-SCC-001_Runtime_SDK_Session_Tooling` using `CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320`: prepare the next longer-cycle ruling package for `DEL-03-01`, `DEL-03-02`, `DEL-03-03`, `DEL-03-04`, `DEL-04-03`, and `DEL-05-02`; no SCOPE_CHANGE candidate is selected unless the human explicitly initiates one.
-4. Continue strict FULL_GRAPH reconciliation; strict all-active SCCs remain 1 (size 6).
-5. Keep `CASE-SCC-002_PKG-10_Policy_Proposal` closed unless later accepted evidence changes the ruling.
-6. Resolve remaining CODEV-001 `BLOCKED_TBD` evidence items: live SDK query/init probe, Claude Code subprocess version, interrupt/cancel subprocess behavior, Electron packaging behavior, Section 9 linkage, and adoption verdict.
-7. Do not run product-deliverable `lens-register` or `four-documents` P3; the prior skip ruling remains applicable to product deliverables, while PKG-00 control deliverables have completed their own TASK-backed semantic pipeline.
-8. Do not report strict project-wide `BLOCKED/UNBLOCKED` until strict FULL_GRAPH closure passes.
+1. **Turn lifecycle extraction.** Continue moving route-owned lifecycle into a product-owned `TurnEngine` while preserving the existing SSE event contract.
+2. **HarnessEvent expansion.** Add Chirality-owned message/tool/queue/compaction/interruption event coverage inspired by Pi's lifecycle.
+3. **Engine conformance fixtures.** Add deterministic adapter conformance tests using fake/scripted provider streams before any new backend adapter.
+4. **Tool descriptor design.** Define a Chirality-owned `HarnessToolDescriptor` and permission metadata before enabling additional tool execution.
+5. **Pi adapter spike packet.** Prepare a constrained `pi-ai` / `pi-agent-core` sidecar spike brief after the contract and conformance prerequisites are in place.
 
-## Handoff Payload
+## Pending Human Rulings
 
-- Stable invariant instructions: `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- Mutable state and queue: this file
-- Deliverable-local continuity: `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`
-- Dependency state: extraction complete; graph cyclic; co-development ruling recorded
-- CODEV-001 implementation evidence: runtime boundary, opt-in SDK probe provider, SDK options isolation, message mapping, session event JSONL, and deliverable evidence records created
-- Latest dependency closure ruling: `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/`
-- Control package: `execution/PKG-00_DAG_Closure_and_Project_Control/`
-- SCC control deliverables: `DEL-00-01`, `DEL-00-02`
-- SCC Resolution Cases: `CASE-SCC-002_PKG-10_Policy_Proposal`, `CASE-SCC-001_Runtime_SDK_Session_Tooling`
-- Seed Scope Change Consumable Packets: `PKG00-SCA-PACKET-001` through `PKG00-SCA-PACKET-004`
+See `execution/_Coordination/_DECISIONS/_REGISTER.md`.
+
+Current known pending questions:
+
+- whether to approve any future Pi-backed adapter spike;
+- whether to raise runtime requirements or use a sidecar if Pi packages are ever imported.
 
 ## Update Protocol
 
-WORKING_ITEMS or TASK handoff should update this file when lifecycle distribution, active blockers, or immediate next actions change. ORCHESTRATOR should update it only when explicitly performing a scan or setup-state refresh.
+Update this file only when:
+
+- the active queue changes;
+- a human ruling changes scope;
+- a tranche completes and changes the recommended next action;
+- a new blocker is discovered.
+
+Project truth remains governed docs, source, tests, and git-tracked artifacts.

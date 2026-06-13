@@ -31,6 +31,7 @@ export async function POST(request: Request): Promise<Response> {
       resolvedOpts.mode
     );
 
+    let engineSessionId = session.engineSessionId ?? session.claudeSessionId;
     let claudeSessionId = session.claudeSessionId;
 
     for await (const event of runtime.agentSdkManager.startTurn(
@@ -39,6 +40,7 @@ export async function POST(request: Request): Promise<Response> {
       resolvedOpts
     )) {
       if (event.type === 'session:init') {
+        engineSessionId = event.data.engineSessionId ?? event.data.claudeSessionId;
         claudeSessionId = event.data.claudeSessionId;
       }
       if (event.type === 'process:exit' && event.data.exitCode !== 0) {
@@ -50,6 +52,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const bootedAt = new Date().toISOString();
     const updatedSession = await runtime.sessionManager.save(sessionId, {
+      engineSessionId,
       claudeSessionId,
       bootFingerprint,
       bootedAt,
@@ -60,6 +63,7 @@ export async function POST(request: Request): Promise<Response> {
       {
         session: updatedSession,
         boot: {
+          engineSessionId,
           claudeSessionId,
           bootFingerprint,
           bootedAt

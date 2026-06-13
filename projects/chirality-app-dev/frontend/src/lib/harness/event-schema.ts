@@ -1,20 +1,23 @@
 import { randomUUID } from 'node:crypto';
 
-export type HarnessEventType =
-  | 'session.created'
-  | 'session.resumed'
-  | 'turn.accepted'
-  | 'turn.started'
-  | 'sdk.system.init'
-  | 'model.request.started'
-  | 'model.delta'
-  | 'model.completed'
-  | 'turn.completed'
-  | 'turn.failed'
-  | 'turn.cancelled'
-  | 'sdk.permission.denied'
-  | 'sdk.compact.boundary'
-  | 'sdk.mirror.error';
+export const HARNESS_EVENT_TYPES = [
+  'session.created',
+  'session.resumed',
+  'turn.accepted',
+  'turn.started',
+  'adapter.initialized',
+  'model.request.started',
+  'model.delta',
+  'model.completed',
+  'turn.completed',
+  'turn.failed',
+  'turn.cancelled',
+  'tool.permission',
+  'context.compacted',
+  'runtime.mirror.error'
+] as const;
+
+export type HarnessEventType = (typeof HARNESS_EVENT_TYPES)[number];
 
 export type HarnessEvent = {
   schemaVersion: 1;

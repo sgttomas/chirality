@@ -279,6 +279,7 @@ Legacy `COORDINATION` and `INFORMATION` are not emitted in new extractions.
 |---|---|
 | `SessionRecord` | Metadata record for a harness session. |
 | `sessionId` | Chirality session identifier. |
+| `engineSessionId` | Provider-neutral adapter session identifier exposed by the runtime boundary when available. |
 | `sdkSessionId` | SDK session identifier used for resume; adapter metadata, not Chirality identity. |
 | `sdkProjectKey` | SDK project key or encoded cwd, if exposed. |
 | `sdkTranscriptPath` | Path to SDK transcript when applicable. Secondary to Chirality audit events. |
@@ -309,7 +310,7 @@ Initial event categories:
 - `session.resumed`
 - `turn.accepted`
 - `turn.started`
-- `sdk.system.init`
+- `adapter.initialized`
 - `model.request.started`
 - `model.delta`
 - `model.completed`
@@ -330,7 +331,7 @@ Later event categories:
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
-- `sdk.mirror.error`
+- `runtime.mirror.error`
 
 ### 7.4 Browser `UIEvent` Terms
 

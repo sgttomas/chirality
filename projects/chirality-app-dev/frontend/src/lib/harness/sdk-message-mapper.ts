@@ -82,6 +82,7 @@ export function mapSdkMessageToHarness(
         {
           type: 'session:init',
           data: {
+            engineSessionId: message.session_id,
             claudeSessionId: message.session_id,
             model: message.model
           }
@@ -90,8 +91,10 @@ export function mapSdkMessageToHarness(
       harnessEvents: [
         createHarnessEvent({
           sessionId,
-          type: 'sdk.system.init',
+          type: 'adapter.initialized',
           data: redactJsonLike({
+            adapterName: 'claude-agent-sdk',
+            adapterSessionId: message.session_id,
             sdkSessionId: message.session_id,
             sdkClaudeCodeVersion: message.claude_code_version,
             model: message.model,
@@ -253,8 +256,13 @@ export function mapSdkMessageToHarness(
       harnessEvents: [
         createHarnessEvent({
           sessionId,
-          type: 'sdk.permission.denied',
+          type: 'tool.permission',
           data: redactJsonLike({
+            behavior: 'deny',
+            source: 'adapter',
+            adapterName: 'claude-agent-sdk',
+            adapterSessionId: message.session_id,
+            adapterToolName: message.tool_name,
             sdkSessionId: message.session_id,
             toolName: message.tool_name,
             reason: message.decision_reason,
@@ -273,8 +281,11 @@ export function mapSdkMessageToHarness(
       harnessEvents: [
         createHarnessEvent({
           sessionId,
-          type: 'sdk.compact.boundary',
+          type: 'context.compacted',
           data: redactJsonLike({
+            adapterName: 'claude-agent-sdk',
+            adapterSessionId: message.session_id,
+            adapterCompactMetadata: message.compact_metadata,
             sdkSessionId: message.session_id,
             compactMetadata: message.compact_metadata
           })
@@ -290,8 +301,11 @@ export function mapSdkMessageToHarness(
       harnessEvents: [
         createHarnessEvent({
           sessionId,
-          type: 'sdk.mirror.error',
+          type: 'runtime.mirror.error',
           data: redactJsonLike({
+            adapterName: 'claude-agent-sdk',
+            adapterSessionId: message.session_id,
+            adapterMirrorKey: message.key,
             sdkSessionId: message.session_id,
             error: message.error,
             key: message.key

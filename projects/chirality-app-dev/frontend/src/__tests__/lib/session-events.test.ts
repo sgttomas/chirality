@@ -2,7 +2,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { createHarnessEvent } from '../../lib/harness/event-schema';
+import { createHarnessEvent, HARNESS_EVENT_TYPES } from '../../lib/harness/event-schema';
 import { appendHarnessEvent, replayHarnessEvents } from '../../lib/harness/session-events';
 
 let tmpDir = '';
@@ -16,6 +16,10 @@ afterEach(async () => {
 });
 
 describe('session events', () => {
+  it('keeps canonical HarnessEvent types provider-neutral', () => {
+    expect(HARNESS_EVENT_TYPES.join(' ')).not.toMatch(/sdk|claude|anthropic/i);
+  });
+
   it('appends and replays HarnessEvent JSONL records', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-session-events-'));
     process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');

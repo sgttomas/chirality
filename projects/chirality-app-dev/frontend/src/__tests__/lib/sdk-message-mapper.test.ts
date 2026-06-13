@@ -27,6 +27,7 @@ describe('mapSdkMessageToHarness', () => {
       {
         type: 'session:init',
         data: {
+          engineSessionId: 'sdk_1',
           claudeSessionId: 'sdk_1',
           model: 'claude-test'
         }
@@ -35,7 +36,12 @@ describe('mapSdkMessageToHarness', () => {
     expect(mapped.harnessEvents[0]).toMatchObject({
       schemaVersion: 1,
       sessionId: 'sess_1',
-      type: 'sdk.system.init'
+      type: 'adapter.initialized'
+    });
+    expect(mapped.harnessEvents[0].data).toMatchObject({
+      adapterName: 'claude-agent-sdk',
+      adapterSessionId: 'sdk_1',
+      sdkSessionId: 'sdk_1'
     });
   });
 
@@ -79,5 +85,44 @@ describe('mapSdkMessageToHarness', () => {
       'model.completed',
       'turn.completed'
     ]);
+  });
+
+  it('maps SDK-only system messages into provider-neutral HarnessEvent types', () => {
+    const permission = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'permission_denied',
+      uuid: '00000000-0000-0000-0000-000000000004',
+      session_id: 'sdk_1',
+      tool_name: 'Write',
+      decision_reason: 'read-only mode',
+      decision_reason_type: 'policy',
+      message: 'permission denied'
+    } as never);
+    const compact = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'compact_boundary',
+      uuid: '00000000-0000-0000-0000-000000000005',
+      session_id: 'sdk_1',
+      compact_metadata: { preservedTurns: 3 }
+    } as never);
+    const mirror = mapSdkMessageToHarness('sess_1', {
+      type: 'system',
+      subtype: 'mirror_error',
+      uuid: '00000000-0000-0000-0000-000000000006',
+      session_id: 'sdk_1',
+      error: 'mirror failed',
+      key: 'transcript-key'
+    } as never);
+
+    expect([
+      permission.harnessEvents[0].type,
+      compact.harnessEvents[0].type,
+      mirror.harnessEvents[0].type
+    ]).toEqual(['tool.permission', 'context.compacted', 'runtime.mirror.error']);
+    expect(permission.harnessEvents[0].data).toMatchObject({
+      behavior: 'deny',
+      source: 'adapter',
+      adapterToolName: 'Write'
+    });
   });
 });

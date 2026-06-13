@@ -186,12 +186,14 @@ export async function POST(request: Request): Promise<Response> {
             turnContentBlocks
           )) {
             if (event.type === 'session:init') {
+              const engineSessionId = event.data.engineSessionId ?? event.data.claudeSessionId;
               await runtime.sessionManager.save(sessionId, {
+                engineSessionId,
                 claudeSessionId: event.data.claudeSessionId,
                 model: event.data.model,
                 ...(providerMode === 'agentSdk'
                   ? {
-                      sdkSessionId: event.data.claudeSessionId,
+                      sdkSessionId: engineSessionId,
                       sdkPackageVersion: '0.3.150'
                     }
                   : {})

@@ -73,11 +73,11 @@ describe('dmg packaging policy', () => {
     expect(resources).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          from: '../agents',
+          from: '../../../agents',
           to: 'agents'
         }),
         expect.objectContaining({
-          from: '../docs',
+          from: '../../../docs',
           to: 'docs'
         })
       ])

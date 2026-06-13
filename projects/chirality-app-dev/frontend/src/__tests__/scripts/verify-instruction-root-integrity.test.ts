@@ -11,8 +11,8 @@ const SCRIPT_PATH = path.resolve(process.cwd(), 'scripts', 'verify-instruction-r
 const BASE_FIXTURE_FILES: Record<string, string> = {
   'AGENTS.md': '# agents index\n',
   'README.md': '# readme\n',
-  'WHAT-IS-AN-AGENT.md': '# what is an agent\n',
   'PROFESSIONAL_ENGINEERING.md': '# professional engineering\n',
+  'docs/WHAT-IS-AN-AGENT.md': '# what is an agent\n',
   'docs/DIRECTIVE.md': '# directive\n',
   'docs/CONTRACT.md': '# contract\n',
   'docs/SPEC.md': '# spec\n',

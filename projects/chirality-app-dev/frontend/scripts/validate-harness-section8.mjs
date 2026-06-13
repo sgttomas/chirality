@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -54,11 +55,27 @@ function resolveProjectRoot() {
     return path.resolve(process.env.HARNESS_PROJECT_ROOT);
   }
 
-  return path.resolve(process.cwd(), '..', 'examples', 'example-project');
+  const candidates = [
+    path.resolve(process.cwd(), '..', 'examples', 'example-project'),
+    path.resolve(process.cwd(), '..', '..', '..', 'examples', 'example-project')
+  ];
+
+  return (
+    candidates.find((candidate) => existsSync(candidate)) ??
+    path.join(TMP_ROOT, 'workroots', 'default-project-root')
+  );
 }
 
 function resolveInstructionRoot() {
-  return path.resolve(process.cwd(), '..');
+  const candidates = [
+    process.env.CHIRALITY_INSTRUCTION_ROOT
+      ? path.resolve(process.env.CHIRALITY_INSTRUCTION_ROOT)
+      : undefined,
+    path.resolve(process.cwd(), '..'),
+    path.resolve(process.cwd(), '..', '..', '..')
+  ].filter(Boolean);
+
+  return candidates.find((candidate) => existsSync(path.join(candidate, 'agents'))) ?? candidates[0];
 }
 
 function isPathWithin(basePath, targetPath) {
@@ -284,6 +301,9 @@ async function main() {
   await ensureOutputLayout();
 
   const requestedProjectRoot = resolveProjectRoot();
+  if (!process.env.HARNESS_PROJECT_ROOT && requestedProjectRoot.startsWith(TMP_ROOT)) {
+    await mkdir(requestedProjectRoot, { recursive: true });
+  }
   const { effectiveProjectRoot: projectRoot, stagedFromInstructionRoot } =
     await prepareProjectRoot(requestedProjectRoot);
   const createdSessions = new Set();

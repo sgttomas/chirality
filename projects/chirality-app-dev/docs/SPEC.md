@@ -28,7 +28,7 @@ Required entries for a complete source tree / packaged app include:
 - `docs/SPEC.md`
 - `docs/TYPES.md`
 - `docs/PLAN.md`
-- `WHAT-IS-AN-AGENT.md` where required by packaging/integrity policy
+- `docs/WHAT-IS-AN-AGENT.md` where required by packaging/integrity policy
 - `PROFESSIONAL_ENGINEERING.md` where required by packaging/integrity policy
 
 Rules:
@@ -450,6 +450,7 @@ Current fields:
 - `mode`
 - `createdAt`
 - `updatedAt`
+- `engineSessionId`
 - `claudeSessionId`
 - `bootFingerprint`
 - `bootedAt`
@@ -487,6 +488,7 @@ CHIRALITY_SESSION_ROOT
 - `updatedAt`
 - `model`
 - `bootFingerprint`
+- `engineSessionId`
 - `sdkSessionId`
 - `sdkProjectKey`
 - `sdkTranscriptPath` or `sdkSessionStoreKey`
@@ -537,7 +539,7 @@ type HarnessEvent = {
 - `session.resumed`
 - `turn.accepted`
 - `turn.started`
-- `sdk.system.init`
+- `adapter.initialized`
 - `model.request.started`
 - `model.delta`
 - `model.completed`
@@ -558,7 +560,7 @@ type HarnessEvent = {
 - `context.compacted`
 - `subagent.started`
 - `subagent.completed`
-- `sdk.mirror.error`
+- `runtime.mirror.error`
 
 ---
 
