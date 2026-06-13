@@ -29,6 +29,7 @@ This workflow is project guidance only. It is not lifecycle approval, release pu
 | `docs/BUILD_AND_RELEASE.md` | Local build, packaging, artifact, and release-evidence command map. | It is not a live CI workflow or release approval. |
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Package and deliverable decomposition basis. | Does not substitute for current source/test state. |
 | `execution/_Coordination/_COORDINATION.md` | Active entry protocol, authority intake, selection loop, validation closeout, and human-ruling stops. | Handoff prose is not substitute authority. |
+| `execution/_Reconciliation/DepClosure/_LATEST.md` and latest DepClosure snapshot | Dependency/SCC discovery evidence. | Snapshot evidence informs blocker analysis; it does not replace decomposition truth or plan selection. |
 | `plans/PLAN_2026-06-13_runtime_completion.md` | Active non-governing tranche-selection surface. | Orders work; does not change product requirements or release posture. |
 | `plans/PLAN_COMPLETION_LOG.md` | Landed-tranche narrative history. | History only; not project truth or approval. |
 | `execution/_Coordination/_DECISIONS/_REGISTER.md` | Human-gated decision-packet status and rulings. | Agents prepare packets; humans rule. |
@@ -59,14 +60,15 @@ The current phase is runtime integration. The first governance-support alignment
 ## 5. Standard Session Flow
 
 1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
-2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, `NEXT_INSTANCE_STATE.md`, the active completion plan, and the decision register.
-3. Read authority and implementation-reference files needed for the selected tranche.
-4. Record `git status --short` before planning or edits.
-5. Select the earliest unblocked active-plan item unless the human has explicitly selected a tranche.
-6. Keep writes scoped to the tranche.
-7. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
-8. Update affected completion-plan rows, completion log, compact state pointers, and decision-register rows only when their state changes.
-9. Commit and push validated work when git state allows closeout.
+2. Read `execution/_Coordination/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, the active completion plan, and the decision register.
+3. Discover current state from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, source, tests, validation evidence, and git history.
+4. Read authority and implementation-reference files needed for the selected tranche.
+5. Record `git status --short` before planning or edits.
+6. Select the earliest unblocked active-plan item unless the human has explicitly selected a tranche.
+7. Keep writes scoped to the tranche.
+8. Route validation through `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when applicable.
+9. Update affected completion-plan rows, completion log, discovery pointers, and decision-register rows only when their state changes.
+10. Commit and push validated work when git state allows closeout.
 
 ## 6. TASK Subagent Discipline
 
@@ -98,10 +100,12 @@ For governance-only tranches, frontend runtime tests are normally skipped and th
 The following are evidence, history, or convenience surfaces, not substitute authority:
 
 - runtime events and SDK transcripts;
-- completion logs and compact handoff state;
+- completion logs and handoff prose;
 - generated build artifacts;
 - validation summaries;
 - chat history and model context;
 - UI drafts or local presets.
+
+`execution/_Coordination/NEXT_INSTANCE_STATE.md` is retired. Do not use it as the current app state, update it, or recreate it.
 
 Accepted project truth must land in governed docs, accepted execution artifacts, source, tests, validation records, decision records, or git history as appropriate.

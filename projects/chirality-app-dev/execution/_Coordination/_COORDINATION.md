@@ -33,13 +33,15 @@ Primary authority and guidance:
 - `plans/claude-agent-sdk-implementation-followups.md` - SDK implementation reference
 - `plans/pi-agent-harness-assessment.md`
 - `plans/pi-assessment/*.md`
+- `execution/_Coordination/_LATEST.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
-- `execution/_Coordination/NEXT_INSTANCE_STATE.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
+- `execution/_Reconciliation/DepClosure/_LATEST.md`
+- `execution/_Reconciliation/DepClosure/CLOSURE_SCC001_RESIDUAL_CLOSEOUT_2026-05-24_2320/Dependency_Closure_Report.md`
 
 ## Authority And State Rules
 
-Use two layers of state. Do not let handoff prose, completion plans, or runtime logs become substitute authority.
+Do not maintain a separate next-instance state file. Current state must be discovered from authoritative artifacts, dependency evidence, current implementation surfaces, the active plan, decision records, validation evidence, and git history. Do not let handoff prose, completion plans, dependency snapshots, or runtime logs become substitute authority.
 
 Authoritative state:
 
@@ -49,14 +51,16 @@ Authoritative state:
 4. `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` are workflow/index surfaces. They help discovery and orientation, but they do not replace canonical agent instructions, coordination policy, project truth, or human rulings.
 5. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
 6. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
-7. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
+7. Current dependency and SCC evidence lives in immutable reconciliation snapshots under `execution/_Reconciliation/DepClosure/**`, with `execution/_Reconciliation/DepClosure/_LATEST.md` as a discovery pointer. The current latest snapshot reports one residual six-node strict SCC; project-wide strict `BLOCKED` / `UNBLOCKED` state must not be reported from that evidence until the graph is closed or explicitly ruled.
+8. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
 
 Guidance and history surfaces:
 
 1. `plans/PLAN_2026-06-13_runtime_completion.md` is the active non-governing completion plan. It orders tranche selection toward the PRD and strategic roadmap.
 2. `plans/PLAN_COMPLETION_LOG.md` preserves landed-tranche narrative after plan rows are compressed.
 3. `execution/_Coordination/_DECISIONS/_REGISTER.md` tracks human-gated decision-packet status. Agents prepare `PROPOSAL` packets; humans rule.
-4. `execution/_Coordination/NEXT_INSTANCE_STATE.md` is compact state only: pointers, current active queue, pending rulings, and update protocol. It is not authority and must not accumulate landed-tranche history.
+4. `execution/_Coordination/_LATEST.md` is a discovery pointer for coordination surfaces only. It is not authority and must not accumulate state history.
+5. There is no active `NEXT_INSTANCE_STATE.md`; do not recreate it or use any hand-maintained coordination file as the app state.
 
 When guidance surfaces disagree with authoritative surfaces, surface the discrepancy and correct the guidance surface. Do not silently rewrite authority.
 
@@ -66,14 +70,16 @@ At the start of a new loop:
 
 1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
 2. Read this file and `NEXT_INSTANCE_PROMPT.md`.
-3. Read `NEXT_INSTANCE_STATE.md` for compact pointers and queue state.
+3. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
 4. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
 5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
-6. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
-7. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
-8. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
-9. Read the implementation reference surfaces needed for the selected tranche.
-10. Run `git status --short` before coordination-sensitive planning or edits.
+6. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
+7. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
+8. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
+9. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
+10. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+11. Read the implementation reference surfaces needed for the selected tranche.
+12. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Development Loop
 
@@ -94,6 +100,8 @@ Default ordering:
 3. Prepare a decision packet only when the next plan item is blocked by a human ruling and no packet exists.
 4. If a packet already awaits ruling, continue to the next unblocked implementation item.
 5. Stop when no current plan item remains unblocked; do not substitute unrelated hardening or out-of-stage scope.
+
+If dependency evidence is needed, use the latest DepClosure snapshot and selected deliverable-local dependency files to discover blockers. Do not infer project-wide blocked/unblocked state from a stale summary or from a hand-maintained coordination state file.
 
 ## Subagent Use
 
@@ -129,9 +137,10 @@ At the end of a validated tranche:
 5. Update affected rows in `plans/PLAN_2026-06-13_runtime_completion.md`.
 6. Move landed narrative detail to `plans/PLAN_COMPLETION_LOG.md`; keep the plan row compressed.
 7. Update `_DECISIONS/_REGISTER.md` only when a decision packet or ruling state changes.
-8. Update `NEXT_INSTANCE_STATE.md` only for pointer, queue, blocker, or pending-ruling changes.
-9. Record any skipped checks and why.
-10. Commit and push completed validated work when validation and git state allow closeout.
+8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.
+9. Do not update or recreate `NEXT_INSTANCE_STATE.md`.
+10. Record any skipped checks and why.
+11. Commit and push completed validated work when validation and git state allow closeout.
 
 Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
 

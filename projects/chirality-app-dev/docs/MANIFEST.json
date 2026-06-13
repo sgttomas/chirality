@@ -63,8 +63,8 @@
       "role": "stable entry instructions"
     },
     {
-      "path": "execution/_Coordination/NEXT_INSTANCE_STATE.md",
-      "role": "compact non-authoritative state"
+      "path": "execution/_Coordination/_LATEST.md",
+      "role": "coordination discovery pointer"
     },
     {
       "path": "execution/_Coordination/_DECISIONS/_REGISTER.md",
@@ -77,11 +77,16 @@
     {
       "path": "plans/PLAN_COMPLETION_LOG.md",
       "role": "landed-tranche history"
+    },
+    {
+      "path": "execution/_Reconciliation/DepClosure/_LATEST.md",
+      "role": "dependency and SCC discovery pointer"
     }
   ],
   "notes": [
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
-    "The active tranche-selection surface is plans/PLAN_2026-06-13_runtime_completion.md."
+    "The active tranche-selection surface is plans/PLAN_2026-06-13_runtime_completion.md.",
+    "execution/_Coordination/NEXT_INSTANCE_STATE.md is retired; discover current state from authoritative surfaces, dependency evidence, source/tests, validation artifacts, and git history."
   ]
 }

@@ -59,7 +59,8 @@ This lane records human-requested control-plane support work that improves valid
 |---|---|---|---|---|
 | GOV-QUALITY-001 | **Quality and validation skeleton** | LANDED 2026-06-13 | Build/release skeleton landed in `GOV-BUILD-001`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 | GOV-BUILD-001 | **Build/release skeleton** | LANDED 2026-06-13 | Workflow and docs index cleanup remains next if the governance migration lane continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
-| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | LANDED 2026-06-13 | Governance-support lane has no current next item; return to runtime spine unless the human selects another governance tranche. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | LANDED 2026-06-13 | State-file retirement landed in `GOV-STATE-001`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| GOV-STATE-001 | **Retire next-instance state file** | LANDED 2026-06-13 | Governance-support lane has no current next item; return to runtime spine unless the human selects another governance tranche. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 
 ## Human-Gated Decisions
 
@@ -76,5 +77,6 @@ Decision authority lives in `execution/_Coordination/_DECISIONS/_REGISTER.md`. T
 - Do not treat `docs/PLAN.md` as the active queue; it remains the strategic roadmap.
 - Do not expose write/edit/bash/network/subagent/Pi capabilities before their prerequisites and human gates.
 - Do not make package, dependency, runtime-language, or desktop-wrapper migrations in this control-plane plan.
-- Do not turn runtime events, SDK transcripts, completion logs, or coordination state into project-truth substitutes.
+- Do not turn runtime events, SDK transcripts, completion logs, handoff prose, or coordination state files into project-truth substitutes.
+- Do not recreate `execution/_Coordination/NEXT_INSTANCE_STATE.md`; discover current state from authoritative surfaces, dependency/SCC evidence, source/tests, validation artifacts, and git history.
 - Do not advance release-readiness, lifecycle, professional, certification, sealing, authentication, or code-compliance claims.

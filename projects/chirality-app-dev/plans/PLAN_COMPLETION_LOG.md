@@ -34,6 +34,16 @@ This tranche did not replace canonical agent instructions, change the active run
 
 Validation: `git diff --cached --check -- docs plans execution/_Coordination`; `docs/MANIFEST.json` JSON parse check; positive reference search for the new workflow/index surfaces and `GOV-WORKFLOW-001`; stale queued-governance-lane search returned no matches; referenced-file existence check; decision-register uniqueness check; staged frontend/package-source exclusion check. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
 
+## 2026-06-13 - Next-instance state file retired (`GOV-STATE-001`)
+
+Retired `execution/_Coordination/NEXT_INSTANCE_STATE.md` as an active coordination surface and aligned app-dev with the piping control-plane model: `_COORDINATION.md` and `NEXT_INSTANCE_PROMPT.md` define the entry protocol, while current state is discovered from governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
+
+The coordination files now point to `execution/_Reconciliation/DepClosure/_LATEST.md` for dependency/SCC discovery when blocker posture matters. The latest known dependency closure evidence still reports one residual six-node strict SCC, so project-wide strict `BLOCKED` / `UNBLOCKED` state is not claimed.
+
+This tranche did not change runtime API, source code, package manifests, application wrapper, provider policy, tool exposure, release-readiness posture, professional-boundary authority, or dependency-row semantics.
+
+Validation: static governance checks only. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
+
 ## 2026-06-13 - Tool descriptor design landed (`3bf6f9fb1`)
 
 Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces. The metadata covers provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, runtime exposure, and adapter-name fields.

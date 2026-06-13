@@ -12,7 +12,7 @@ This document captures the strategic development roadmap for Chirality App. It s
 ## Control-Plane Boundary
 
 - `docs/PLAN.md` is strategic. It explains priorities, rationale, and roadmap direction.
-- Operational sequencing and blocker policy belong in execution coordination artifacts such as `execution/_Coordination/_COORDINATION.md` and any active `NEXT_INSTANCE_STATE.md`.
+- Operational sequencing and blocker policy belong in execution coordination artifacts such as `execution/_Coordination/_COORDINATION.md`, `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`, the active completion plan, decision records, and dependency/SCC evidence. `NEXT_INSTANCE_STATE.md` is retired and must not be used as current app state.
 - `docs/PRD.md` defines current product requirements; this plan translates those requirements into roadmap structure.
 - `docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, and `docs/TYPES.md` govern intent, invariants, mechanics, and vocabulary.
 - Accepted execution deliverables and scope-change records remain authoritative for the work they cover.
