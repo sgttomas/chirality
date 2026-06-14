@@ -1,12 +1,17 @@
 CheckID,Status,Evidence,Notes
-CATALOG_VALIDATION,PASS,"PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z (0 blockers, 0 warnings)",Required run-start source database validation.
+CATALOG_VALIDATION,PASS,"PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z (0 blockers, 0 warnings)",Required source database validation re-run after Batch 1 fan-in.
 CATALOG_SNAPSHOT,PASS,snapshots/SRCIDX_20260614T005449Z,chunks=4523 retrieval=BM25_ONLY
-RETRIEVAL_SMOKE_QUERY,PASS,derivative-package rule -> @repo/AGENTS.md,BM25-only query check against accepted governance surface.
-SOURCE_MANIFEST_SHA256,RECORDED,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Computed at adapter build time.
+RETRIEVAL_SMOKE_QUERY,PASS,derivative-package rule -> @repo/AGENTS.md rank 1,BM25-only query check against accepted governance surface.
+SOURCE_MANIFEST_SHA256,RECORDED,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Accepted Gate 1 source manifest SHA-256.
 SOURCE_PREFIX_UNIQUENESS,PASS,242/242 unique prefixes,Prefixes are explicit in Source_Decomp_Prefix_Map.csv.
 SKELETON_INVENTORY,PASS,skeletons=242 sources=242 failures=0,SRC-LICENSE uses a synthetic OUT/deferred skeleton.
-REVIEW_HTML_INVENTORY,PASS,html=242 skeletons=242,Structure-mode section review surfaces only.
+REVIEW_HTML_INVENTORY,PASS,html=242 skeletons=242; 22 Batch 1 files rendered in atom-review mode,Non-Batch-1 sources remain structure-mode review surfaces.
 DISPATCH_ELIGIBILITY,PASS,no AtomizeInV1=YES source has zero dispatch units,Only explicitly deferred sources may have zero dispatch units.
-PHASE_2_ATOMIZATION,NOT_RUN,Gate 1 accepted; Phase 2 not started,No TASK + domain-source-atomize dispatch was started.
-GATE1_ACCEPTANCE,PASS,gate_snapshots/GATE1_20260614T005942Z,Human accepted Gate 1 on 2026-06-14; Phase 2 atomization remains NOT_RUN.
-PHASE2_BATCH1_SETUP,PASS,BATCH1_BINDING_GOVERNANCE_20260614T011101Z; sources=22; dispatch_units=22; briefs=22,Deterministic setup only; TASK + domain-source-atomize workers NOT_RUN.
+GATE1_ACCEPTANCE,PASS,gate_snapshots/GATE1_20260614T005942Z,Human accepted Gate 1 on 2026-06-14.
+PHASE2_BATCH1_SETUP,PASS,BATCH1_BINDING_GOVERNANCE_20260614T011101Z; sources=22; dispatch_units=22; briefs=22,Deterministic setup completed before worker fan-out.
+PHASE2_BATCH1_WORKER_QA,PASS,dispatch_units=22 raw_atoms=3276 IN=3264 OUT=12 TBD=0 vocab_rows=830,"Per-unit QA passed for headers, hashes, line bounds, SectionID, DispatchUnitID, and repo-backed SourceRefs."
+PHASE2_BATCH1_PER_SOURCE_MERGE,PASS,per_source_ledgers=22 merged_rows=3274 dedupe_dropped=2,Strict-coverage merge passed for every selected source; SRC-DOCS-DIRECTIVE deduped two duplicate ContentHash rows.
+PHASE2_BATCH1_CROSS_SOURCE_MERGE,PASS,Atomic_Domain_Ledger.csv rows=3274 unresolved_corrects=0,Batch 1 partial ledger only; not full 242-source domain truth.
+PHASE2_BATCH1_VOCAB_MERGE,PASS,Vocabulary_Map.csv terms=670 multi_source=115,Merged from 22 per-source vocabulary seed files.
+PHASE2_BATCH1_ATOM_REVIEW_HTML,PASS,atom_review_html=22,Rendered Batch 1 selected sources in atom-review mode.
+GATE2_STATUS,OPEN,Batch 1 fan-out/fan-in complete; no human Gate 2 acceptance recorded,"Do not proceed to Phase 2.5, Categories, KTYs, hypergraph, DBM publication, or public export from this ledger as accepted truth."

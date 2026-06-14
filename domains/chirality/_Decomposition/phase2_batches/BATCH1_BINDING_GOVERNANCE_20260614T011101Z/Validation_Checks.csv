@@ -1,8 +1,14 @@
 CheckID,Status,Evidence,Notes
-GATE1_UPSTREAM_VALIDATION,PASS,validate_source_database PASS against SRCIDX_20260614T005449Z,Re-run before Batch 1 setup generation.
+GATE1_UPSTREAM_VALIDATION,PASS,validate_source_database PASS against SRCIDX_20260614T005449Z,Re-run before Batch 1 setup and after fan-in.
 SOURCE_MANIFEST_SHA256,PASS,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Matches accepted Gate 1 snapshot.
 BATCH1_SOURCE_COUNT,PASS,22,Binding-governance staged source set.
 BATCH1_DISPATCH_UNIT_COUNT,PASS,22,Every selected source has one dispatch unit.
 BATCH1_BRIEF_COUNT,PASS,22,One INIT-TASK brief rendered per dispatch unit.
 SOURCE_REF_BASE_EMITTED,PASS,all rendered briefs contain SOURCE_REF_BASE,Repo-backed SourceRef template is present for worker use.
-ATOMIZATION_WORKERS,NOT_RUN,no per-unit CSV outputs expected at setup stage,TASK + domain-source-atomize fan-out requires explicit next authorization.
+ATOMIZATION_WORKERS,PASS,22/22 RUN_STATUS=SUCCESS,All TASK + domain-source-atomize workers completed.
+PER_UNIT_QA,PASS,raw_atoms=3276 IN=3264 OUT=12 TBD=0 vocab_rows=830,"Checked exact headers, ContentHash, LocalSeq, InOutStatus, SectionID, DispatchUnitID, SourceRef, and source line bounds."
+PER_SOURCE_MERGE,PASS,per_source_ledgers=22 merged_rows=3274 dedupe_dropped=2,Strict coverage passed for each selected source.
+CROSS_SOURCE_MERGE,PASS,Atomic_Domain_Ledger.csv rows=3274 unresolved_corrects=0,Batch 1 partial cross-source ledger generated.
+VOCABULARY_MERGE,PASS,Vocabulary_Map.csv terms=670 multi_source=115,Merged from per-source vocabulary seeds.
+ATOM_REVIEW_RENDER,PASS,22 source HTML files rendered in atom-review mode,Ready for browser-mediated Gate 2 review.
+GATE2_STATUS,OPEN,human Gate 2 acceptance not recorded,Batch 1 outputs are ready for review but not accepted decomposition truth.

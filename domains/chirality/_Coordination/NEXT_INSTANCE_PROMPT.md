@@ -8,27 +8,31 @@
 4. Act in the `DOMAIN_DECOMP` persona for `/Users/ryan/ai-env/projects/chirality/domains/chirality`.
 5. Read `/Users/ryan/ai-env/projects/chirality/skills/domain-source-atomize/SKILL.md`.
 6. Read `/Users/ryan/ai-env/projects/chirality/plans/chirality_domain_decomp_readiness_2026-06-13.md`.
-7. Read the Chirality domain-pack surfaces:
+7. Read the current decomposition control and handoff surfaces:
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Chirality_Domain_Decomposition.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH1_ATOMIZATION.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_ATOMIZATION_HANDOFF.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Validation_Checks.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Open_Issues_Register.csv`
+8. Read the Chirality domain-pack source surfaces:
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/README.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/domain-pack.yaml`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Sources/SOURCE_BOUNDARY.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Sources/Source_Manifest.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/_LATEST.md`
-8. Run `git status --short` before coordination-sensitive planning or edits.
+9. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
 
-Continue from the accepted Gate 1 package:
+Continue from the accepted Gate 1 package and the completed Batch 1 Phase 2 fan-out/fan-in state.
 
-`/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Chirality_Domain_Decomposition.md`
+Gate 1 is accepted. Batch 1 binding-governance atomization is complete and ready for Gate 2 review. Gate 2 is **open / not accepted**.
 
-Batch 0 is complete, Gate 1 is accepted, and Batch 1 binding-governance setup is ready at `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`. Resume at explicit staged Batch 1 worker fan-out only if the human asks for it; otherwise keep planning and validation staged. Do not run full unbatched atomization of all 242 files.
-
-Before any Phase 2 worker dispatch, re-run validation, confirm the accepted Gate 1 snapshot still matches the working package, verify the rendered Batch 1 briefs under `domains/chirality/_Decomposition/dispatch_briefs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/` still contain repo-backed `SOURCE_REF_BASE`, and keep dispatches staged.
+Do not proceed to Phase 2.5 retrieval refresh, Phase 3 Categories, KTYs, hypergraph generation, DBM publication, or public export from the Batch 1 ledger as accepted truth until the human explicitly accepts Gate 2 or returns review flags for repair.
 
 ## Current Accepted Evidence
 
-Use the Gate 1 acceptance snapshot as the authoritative handoff for exact hashes and counts. The current accepted evidence, subject to fresh validation at run start, is:
+Use the Gate 1 acceptance snapshot as the authoritative upstream handoff:
 
 - source manifest: `domains/chirality/_Sources/Source_Manifest.csv`
 - source manifest SHA-256: `f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1`
@@ -39,6 +43,7 @@ Use the Gate 1 acceptance snapshot as the authoritative handoff for exact hashes
 - chunk count: `4523`
 - retrieval index status: `BM25_ONLY`
 - source-copy policy: `source_files_copied=false`
+- Gate 1 acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`
 
 Run this first:
 
@@ -53,41 +58,17 @@ If validation fails, stop and repair or report the blocker before proceeding. If
 
 ## Source Model
 
-Live repo files are source truth. The `domains/chirality/` pack records manifest membership, hashes, local derived indexes, and later decomposition artifacts.
+Live repo files are source truth. The `domains/chirality/` pack records manifest membership, hashes, local derived indexes, and decomposition artifacts.
 
 Do not copy the 242 manifest source files into `_Sources/` as authoritative source snapshots.
 
-Use `@repo/<RepoRelPath>` provenance for live repo files. Generated skeletons, dispatch plans, minimal asset manifests, section-node CSVs, review HTML, telemetry, and future ledgers are decomposition companion artifacts, not source truth.
+Use `@repo/<RepoRelPath>` provenance for live repo files. Generated skeletons, dispatch plans, minimal asset manifests, section-node CSVs, review HTML, telemetry, ledgers, and vocabulary maps are decomposition companion artifacts, not source truth.
 
 ## Accepted Batch 0 State
 
-The manifest-backed DOMAIN_DECOMP adapter layer exists under:
+Accepted Batch 0 companions live under:
 
 `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/`
-
-Accepted Batch 0 companions include:
-
-- `Chirality_Domain_Decomposition.md`
-- `Source_Decomp_Prefix_Map.csv`
-- `source_asset_manifests/*.json`
-- `source_skeletons/*_skeleton.json`
-- `source_dispatch_plans/*_dispatch_plan.json`
-- `source_review_html/*.html`
-- `source_section_nodes/*_section_nodes.csv`
-- intake telemetry and open-issue records
-- Gate 1 acceptance snapshot: `_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`
-
-Telemetry:
-
-- sources: `242`
-- skeletons: `242`
-- review HTML files: `242`
-- section-node CSVs: `242`
-- total sections: `4449`
-- in-scope sections: `4446`
-- dispatch units: `242`
-- deferred sources: `1`
-- failures: `0`
 
 Accepted dispositions:
 
@@ -96,11 +77,9 @@ Accepted dispositions:
 - Repo-backed SourceRefs are accepted for Phase 2.
 - Per-kind asset surfaces are N/A for Markdown-only manifest rows.
 
-## Adapter Rules
+## SourceRef Policy
 
-Minimal asset manifests are authoritative decomposition companions for Markdown-only source handling, not source truth.
-
-Use this accepted SourceRef form for atomization:
+The accepted SourceRef form for atomization is:
 
 ```text
 @repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>
@@ -108,60 +87,75 @@ Use this accepted SourceRef form for atomization:
 
 `tools/decomp/build_atomization_brief.py` emits `SOURCE_REF_BASE` from `Source_Decomp_Prefix_Map.csv`.
 
-Gate 1.5 asset surfaces (`equations.html`, `figures.html`, `tables.html`, `images.html`, `folios.html`) are `N/A` for this Markdown-only manifest unless a later source row has an asset manifest with actual assets. The section/atom review HTML remains required.
-
-## Retrieval Use
-
-Use the accepted BM25-only index for source discovery and scope checks during startup. Dense embeddings are optional later and are not a blocker for Batch 0.
-
-Example query:
-
-```sh
-python3 tools/retrieval/query_source_index.py \
-  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
-  --query "derivative-package rule" \
-  --k 10
-```
-
-## Current Phase 2 Batch 1 Setup
-
-Batch 1 setup is ready but worker fan-out is not started.
+## Batch 1 Current State
 
 - batch ID: `BATCH1_BINDING_GOVERNANCE_20260614T011101Z`
-- setup handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_SETUP.md`
-- source register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Batch_Source_Register.csv`
-- dispatch unit register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Dispatch_Unit_Register.csv`
-- validation register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Validation_Checks.csv`
-- dispatch briefs root: `domains/chirality/_Decomposition/dispatch_briefs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
-- reserved output root: `domains/chirality/_Decomposition/dispatch_outputs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+- handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_ATOMIZATION_HANDOFF.md`
+- pointer: `domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH1_ATOMIZATION.md`
 - selected sources: `22`
 - dispatch units: `22`
-- rendered briefs: `22`
-- atomization status: `NOT_RUN`
+- per-unit atom CSVs: `22`
+- per-unit vocabulary CSVs: `22`
+- raw worker atom rows: `3276`
+- merged atom rows: `3274`
+- deduped duplicate hash rows: `2`
+- IN rows after merge: `3262`
+- OUT rows after merge: `12`
+- TBD rows after merge: `0`
+- per-source ledgers: `22`
+- raw vocabulary seed rows: `830`
+- merged vocabulary terms: `670`
+- atom-review HTML files: `22`
+- Gate 2 status: `OPEN / NOT_ACCEPTED`
 
-No per-unit atom CSVs, per-source ledgers, cross-source `Atomic_Domain_Ledger.csv`, or `Vocabulary_Map.csv` have been produced for Batch 1 yet.
+Primary Batch 1 outputs:
+
+- `domains/chirality/_Decomposition/dispatch_outputs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+- `domains/chirality/_Decomposition/per_source_ledgers/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+- `domains/chirality/_Decomposition/vocabulary_seeds/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+- `domains/chirality/_Decomposition/Atomic_Domain_Ledger.csv`
+- `domains/chirality/_Decomposition/Vocabulary_Map.csv`
+- `domains/chirality/_Decomposition/source_review_html/<Batch1 SourceDocID>.html`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Dispatch_Run_Log.csv`
+
+## Validation Evidence
+
+Latest recorded checks:
+
+- source database validation: `PASS` against `SRCIDX_20260614T005449Z`
+- BM25 smoke query `derivative-package rule`: `@repo/AGENTS.md` rank 1
+- per-unit QA: `PASS` for all 22 units
+- per-source merge: `PASS` with strict coverage
+- cross-source merge: `PASS`, `rows=3274`, `unresolved_corrects=0`
+- vocabulary merge: `PASS`, `terms=670`, `multi_source=115`
+- atom-review render: `PASS`, `22` files
+
+## Required Next Human Ruling
+
+Gate 2 remains open until the human reviews the 22 Batch 1 atom-review HTML files and confirms or returns flags.
+
+The Gate 2 confirmation should be explicit and batch-scoped, for example:
+
+```text
+The Batch 1 merged Domain Ledger reflects the selected binding-governance corpus content, the IN/OUT/TBD classifications are correct, the cleaning rule was applied correctly, and the vocabulary choices are acceptable.
+```
+
+If the human returns flags, repair only the affected source/dispatch unit, then rerun per-source merge, cross-source merge, vocabulary merge if affected, atom-review render, and validation.
 
 ## Non-Goals
 
 Do not start with:
 
 - full unbatched atomization of all 242 files;
-- `TASK + domain-source-atomize` fan-out outside an explicitly selected staged batch and explicit human authorization;
+- treating Batch 1 partial `Atomic_Domain_Ledger.csv` as full-corpus truth;
+- Gate 2 closure without explicit human review;
 - dense embedding build as a prerequisite;
 - copying live repo source files into `_Sources/` as authoritative source truth;
-- final Category, KTY, Knowledge Subject, or Atomic Domain Ledger truth;
+- final Category, KTY, Knowledge Subject, or full Atomic Domain Ledger truth;
 - hypergraph generation;
 - DBM publication;
 - public export changes;
 - treating generated catalog or retrieval snapshots as decomposition truth.
-
-## Gate 1 Status
-
-Gate 1 is accepted. The acceptance snapshot is:
-
-`domains/chirality/_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`
-
-Do not reopen Gate 1 unless source manifest membership, source hashes, skeleton inventory, or deferred-source decisions change.
 
 ## Closeout
 
@@ -172,6 +166,4 @@ Report:
 - skipped checks and why;
 - remaining human rulings;
 - whether Gate 1 remains accepted after validation;
-- next action for Phase 2 setup or explicitly authorized Batch 1 worker fan-out.
-
-Do not commit unless the human explicitly asks.
+- whether Gate 2 remains open or has been explicitly accepted.
