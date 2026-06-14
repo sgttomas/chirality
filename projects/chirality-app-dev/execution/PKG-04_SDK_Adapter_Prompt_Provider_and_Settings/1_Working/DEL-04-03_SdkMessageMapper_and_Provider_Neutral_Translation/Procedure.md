@@ -12,7 +12,7 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
 | Authoritative references | Available in `_REFERENCES.md`; REF-006 `docs/PRD.md` has HASH_MISMATCH and is used as a warning-qualified source per task brief. |
 | Accepted dependency register | `Dependencies.csv` exists with ACTIVE extracted edges, but all satisfaction statuses remain `TBD`; implementation closure should verify upstream satisfaction before closing this deliverable. |
 | Declared upstream dependencies | Extracted ACTIVE upstream execution dependencies include DEL-04-01, DEL-03-01, DEL-03-03, and DEL-04-02. Their satisfaction remains `TBD` in `_DEPENDENCIES.md` / `Dependencies.csv`. |
-| SDK probe results | TBD / pending DEL-04-01 and OI-001 for exact SDK message categories and payload fields. |
+| first-adapter probe results | TBD / pending DEL-04-01 and OI-001 for exact SDK message categories and payload fields. |
 | Engine contract target | Product-owned `AgentEnginePort` / `RuntimeEngineContract` is defined by PKG-03 / DEL-03-01, not by this deliverable. |
 | Runtime event schema target | `HarnessEvent` target type is available in REF-004 and REF-003. |
 | Browser event target | Stable browser SSE event names are available in REF-003 and REF-004. |
@@ -23,7 +23,7 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
 1. Confirm mapping boundaries.
    - Read the accepted `AgentEnginePort` / `RuntimeEngineContract` once available.
    - Confirm the mapper is an adapter component and not the owner of route policy, event persistence, SDK option construction, or permission enforcement.
-   - Before implementation closure, confirm `Dependencies.csv` has no unsatisfied blocker for the upstream runtime contract, SSE compatibility adapter, SDK options/settings isolation, or SDK probe evidence.
+   - Before implementation closure, confirm `Dependencies.csv` has no unsatisfied blocker for the upstream runtime contract, SSE compatibility adapter, SDK options/settings isolation, or first-adapter probe evidence.
 
 2. Create the mapper module.
    - Add `sdk-message-mapper.ts` or equivalent in the accepted backend runtime location.
@@ -66,7 +66,7 @@ Define the working procedure to implement and verify the `SdkMessageMapper` deli
    - Add or prepare coverage for `section9.sdk_message_mapper` when Section 9 runtime validation IDs are implemented.
    - Ensure mapper tests are part of local premerge validation once the runtime validation suite lands.
 
-10. Reconcile with SDK probe updates.
+10. Reconcile with first-adapter probe updates.
    - When DEL-04-01 provides observed SDK message fixtures, replace `TBD` cases with probe-backed tests.
    - If SDK behavior cannot support required product-owned mapping semantics, surface the issue through the reliance-boundary/fallback process rather than weakening provider neutrality.
 
@@ -89,7 +89,7 @@ Expected records and evidence from implementation:
 - `sdk-message-mapper.ts` or equivalent implementation.
 - Mapper unit tests.
 - Provider-neutral leakage tests.
-- Fixture files or inline fixtures derived from DEL-04-01 SDK probe outputs.
+- Fixture files or inline fixtures derived from DEL-04-01 first-adapter probe outputs.
 - `TBD` list for SDK message categories or payload fields not yet confirmed.
 - Section 9 validation entry or follow-up for `section9.sdk_message_mapper`.
 - Notes on any fallback or reliance-boundary concerns if SDK behavior cannot be mapped without weakening Chirality-owned contracts.

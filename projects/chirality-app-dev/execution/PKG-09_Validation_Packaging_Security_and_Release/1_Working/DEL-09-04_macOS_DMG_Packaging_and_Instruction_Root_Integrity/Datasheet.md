@@ -34,7 +34,7 @@
 | Build platform prerequisites | Node.js `>=20`; dependencies installed in `frontend/` with `npm ci` before validation/package sequence. | `docs/PRD.md` Section 6.2 and CI sequence near Section 12.2 |
 | Release scope exclusions | Windows/Linux packaging is out of current release scope unless amended. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-078; `docs/PRD.md` KG-014 |
 | Signing posture | Unsigned/adhoc as scoped; no notarization requirement in current target. | `docs/PRD.md` Sections 6.2 and 7.12; `docs/SPEC.md` Section 19.4 |
-| Network/security posture during packaged validation | Anthropic-only network guardrails remain in force. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
+| Network/security posture during packaged validation | current shipped Anthropic network guardrails remain in force. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
 
 ## Construction
 

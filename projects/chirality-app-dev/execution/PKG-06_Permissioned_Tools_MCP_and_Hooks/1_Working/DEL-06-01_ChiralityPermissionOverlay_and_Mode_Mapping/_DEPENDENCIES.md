@@ -40,7 +40,7 @@ Register: `Dependencies.csv` v3.1
 |---|---|---|---|---|---|---|
 | DEP-06-01-001 | ANCHOR | OTHER | UPSTREAM | PACKAGE | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE |
 | DEP-06-01-002 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-06-01-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-055 Permission modes and deny-first overlay | ACTIVE |
+| DEP-06-01-003 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-055 Permission modes and capability policy with explicit hard-deny precedence | ACTIVE |
 | DEP-06-01-004 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-056 Tool permission events | ACTIVE |
 | DEP-06-01-005 | ANCHOR | OTHER | UPSTREAM | REQUIREMENT | SOW-058 Interactive approval through `canUseTool` | ACTIVE |
 | DEP-06-01-006 | EXECUTION | PREREQUISITE | UPSTREAM | DOCUMENT | REF-004 `docs/TYPES.md` Section 8 | ACTIVE |

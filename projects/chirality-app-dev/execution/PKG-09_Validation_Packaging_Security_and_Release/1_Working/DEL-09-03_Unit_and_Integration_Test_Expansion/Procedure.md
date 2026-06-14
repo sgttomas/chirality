@@ -62,7 +62,7 @@ This procedure describes how to produce and verify the DEL-09-03 test expansion 
 | Event check | Accepted-turn, terminal, replay, and redaction tests align with product-owned `HarnessEvent` contracts. |
 | API check | SSE route tests preserve browser event names and route shape. |
 | Lifecycle check | `_STATUS.md` and `Dependencies.csv` tests follow SPEC sections 4 and 6. |
-| Permission check | Deny-first behavior is tested as an enforcement boundary, not as prompt text. |
+| Permission check | Explicit hard-deny precedence is tested as an enforcement boundary, not as prompt text. |
 | Fixture check | Fixtures are deterministic, small, and free of secrets. |
 | Command check | `npm run test` passes when dependencies and required instruction-root assets are present. |
 | Closure evidence check | Test source paths, fixture paths, behavior-group coverage decisions, and command evidence are recorded, or explicitly remain `TBD` with a blocker. |

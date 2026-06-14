@@ -63,7 +63,7 @@
 - `_CONTEXT.md` for deliverable identity, package scope, and anticipated artifacts.
 - `_REFERENCES.md` for source corpus and source-state warning.
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 6, 7, 9, and 10A for objective, deliverable, SOW, and invariant-family mapping.
-- `docs/DIRECTIVE.md` Sections 13-14 for runtime integration boundaries and deny-first MCP posture.
+- `docs/DIRECTIVE.md` Sections 13-14 for runtime integration boundaries and capability-forward MCP posture with explicit hard-deny precedence.
 - `docs/CONTRACT.md` Sections 1.6-1.7 for binding tool, MCP, permission, status, dependency, and invention invariants.
 - `docs/SPEC.md` Sections 14, 15, 17.2, and 19.3 for tool names, modes, API surfaces, and validation IDs.
 - `docs/TYPES.md` Sections 8.1-8.4 for permission and MCP vocabulary.

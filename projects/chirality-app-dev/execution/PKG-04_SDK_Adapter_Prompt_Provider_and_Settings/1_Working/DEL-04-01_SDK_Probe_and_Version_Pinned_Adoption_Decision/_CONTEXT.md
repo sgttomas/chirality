@@ -1,4 +1,4 @@
-# Context: DEL-04-01 SDK Probe and Version-Pinned Adoption Decision
+# Context: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
 ## Identity
 
@@ -10,26 +10,26 @@
 | PackageID | PKG-04 |
 | PackageName | SDK Adapter, Prompt, Provider, and Settings |
 | DeliverableID | DEL-04-01 |
-| DeliverableName | SDK Probe and Version-Pinned Adoption Decision |
+| DeliverableName | First-Adapter Probe and Version-Pinned Adoption Decision |
 | ResponsibleParty | TBD |
 | Type | REQ_SLICE |
 | ContextEnvelope | M |
 
 ## Package Scope
 
-**ScopeDescription:** SDK adoption probe, SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
 
-**InclusionCriteria:** SDK-facing implementation and provider boundary.
+**InclusionCriteria:** First-adapter/provider-boundary implementation.
 
 **Exclusions:** Chirality event store internals beyond metadata handoff.
 
 ## Deliverable Scope
 
-Confirm SDK package version, message sequence, permissions, hooks, MCP, sessions, storage, interrupts, packaging, and fallback triggers.
+Confirm provider-adapter viability and Claude Agent SDK / Anthropic as first concrete adapter, including package version, message sequence, permissions, hooks, MCP, sessions, storage, interrupts, packaging, fallback triggers, and future-provider criteria.
 
 ## Anticipated Artifacts
 
-SDK probe notes; version decision; fallback criteria; residual-risk notes
+First-adapter probe notes; version decision; fallback criteria; future-provider criteria; residual-risk notes
 
 ## Traceability
 
@@ -42,10 +42,13 @@ SDK probe notes; version decision; fallback criteria; residual-risk notes
 ## Source Authority
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+
 ## SCA-APP-001 Context Alignment
 
 `SCA-APP-001` is accepted. This deliverable is aligned to the provider-adapter-general runtime strategy: Claude Agent SDK / Anthropic remains the first concrete/current path; Pi is pattern corpus/reference only; permission governance is capability-forward with explicit hard-deny precedence.
 
 Primary impact: First-adapter probe must be framed as Claude Agent SDK / Anthropic within provider-adapter architecture, not permanent provider scope.
 
-Local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, and `_REFERENCES.md` remain `STALE_LOCAL_REVIEW_REQUIRED` where they encode prior Anthropic-only, Pi-spike, or blanket deny-first assumptions. Do not treat those local artifacts as refreshed until a bounded package-local review updates or confirms them.
+Package-local review status: `SCA-APP-001-CLOSURE-002` refreshed the base context fields and reviewed or updated targeted local kit wording in `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` against the accepted SCA. Remaining `TBD` values and non-SCA dependency lifecycle states retain their prior status.
+
+This package-local refresh does not change runtime source, package manifests, lockfiles, desktop wrapper files, provider implementation, Pi implementation, or release-readiness posture.

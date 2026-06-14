@@ -2,11 +2,11 @@
 
 ## Decisions And Evidence
 
-- 2026-05-24 - Added `@anthropic-ai/claude-agent-sdk@0.3.150` as the pinned SDK probe dependency.
+- 2026-05-24 - Added `@anthropic-ai/claude-agent-sdk@0.3.150` as the pinned first-adapter probe dependency.
 - 2026-05-24 - Upgraded direct `@anthropic-ai/sdk` to `0.93.0` to satisfy the Claude Agent SDK peer dependency while keeping the existing direct adapter selectable.
 - 2026-05-24 - Added opt-in SDK provider mode `CHIRALITY_HARNESS_PROVIDER=agentSdk`; default provider behavior remains unchanged.
 - 2026-05-24 - SDK options builder defaults to `settingSources: []`, exposes no built-in tools for CODEV-001, and accepts only explicit `CHIRALITY_SDK_SETTING_SOURCES=project` as a development override.
-- 2026-05-24 - SDK probe evidence recorded in `Evidence_CODEV-001_SDK_Probe_Record.md`.
+- 2026-05-24 - first-adapter probe evidence recorded in `Evidence_CODEV-001_SDK_Probe_Record.md`.
 - 2026-05-24 - Dependency closure assessment set `DEP-04-01-008` to `SATISFIED`; follow-up DepClosure blocker-subset scan is acyclic.
 
 ## Open Items

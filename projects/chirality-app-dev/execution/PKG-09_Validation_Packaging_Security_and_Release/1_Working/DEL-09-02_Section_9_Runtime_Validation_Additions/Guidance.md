@@ -43,7 +43,7 @@ Example validation record shape, ASSUMPTION based on anticipated "summary schema
 
 ```json
 {
-  "id": "section9.permission_overlay_deny_first",
+  "id": "section9.permission_overlay_hard_deny_precedence",
   "status": "TBD",
   "evidence": [],
   "source": "docs/PRD.md Section 12.4; docs/CONTRACT.md K-PERM-1"

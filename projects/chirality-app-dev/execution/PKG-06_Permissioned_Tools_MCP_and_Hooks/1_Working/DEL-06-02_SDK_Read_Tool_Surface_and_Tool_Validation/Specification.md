@@ -15,7 +15,7 @@ In scope:
 
 Out of scope:
 
-- Deny-first permission decision semantics, mode mapping, and `canUseTool` approval mediation, except where this resolver consumes or forwards their policy outputs. Those are primarily DEL-06-01.
+- Capability-forward policy with explicit hard-deny precedence permission decision semantics, mode mapping, and `canUseTool` approval mediation, except where this resolver consumes or forwards their policy outputs. Those are primarily DEL-06-01.
 - In-process MCP tool implementation details and wrapper metadata, which are primarily DEL-06-03.
 - Write/edit path hooks and provenance capture, which are DEL-06-04.
 - Bash enablement and timeout/capture policy, which are DEL-06-05.

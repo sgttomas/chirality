@@ -14,14 +14,14 @@ Sources: `_CONTEXT.md` "Deliverable Scope" and "Anticipated Artifacts"; `docs/SP
 | Source documents | `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/PLAN.md`, and `docs/PRD.md` are locally accessible. |
 | PRD source warning | `docs/PRD.md` is `HASH_MISMATCH`; treat PRD-specific implementation detail as needing revalidation before final acceptance. |
 | Upstream dependency edges | TBD - `_DEPENDENCIES.md` has no accepted upstream/downstream edges yet. |
-| SDK probe/version decision | TBD - required for exact SDK error object shapes and packaged SDK behavior. |
+| first-adapter probe/version decision | TBD - required for exact SDK error object shapes and packaged SDK behavior. |
 | Final implementation paths | TBD - provider wrapper, tests, and fixtures paths are not fixed by accessible source text. |
 
 ## Steps
 
 1. Confirm source and scope.
    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and the decomposition row for `DEL-04-05`.
-   - Confirm this deliverable remains limited to API key precedence, Anthropic-only network policy, provider error classification, and redacted SDK environment handoff.
+   - Confirm this deliverable remains limited to API key precedence, current shipped Anthropic network policy, provider error classification, and redacted SDK environment handoff.
 
 2. Define the provider-boundary API.
    - Select the implementation path for the provider wrapper or equivalent SDK adapter boundary.
@@ -77,7 +77,7 @@ Sources: `_CONTEXT.md` "Deliverable Scope" and "Anticipated Artifacts"; `docs/SP
 
 11. Record residuals.
    - Document exact implementation paths.
-   - Record any SDK probe dependency, PRD hash revalidation need, or Node/SDK network-enforcement residual risk.
+   - Record any first-adapter probe dependency, PRD hash revalidation need, or Node/SDK network-enforcement residual risk.
    - Keep unresolved values as `TBD` rather than inferring final acceptance.
 
 ## Verification

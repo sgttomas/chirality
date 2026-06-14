@@ -63,6 +63,7 @@ This lane records human-requested control-plane support work that improves valid
 | GOV-WORKFLOW-001 | **Workflow and docs index cleanup** | LANDED 2026-06-13 | State-file retirement landed in `GOV-STATE-001`. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 | GOV-STATE-001 | **Retire next-instance state file** | LANDED 2026-06-13 | Governance-support lane has no current next item; return to runtime spine unless the human selects another governance tranche. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 | SCA-APP-001-CLOSURE-001 | **Scope-change pointer, propagation, and supersession repair** | LANDED 2026-06-13 | Package-local context refresh remains if SCA closure continues. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static governance and supersession-map checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| SCA-APP-001-CLOSURE-002 | **Package-local context and local-kit refresh** | LANDED 2026-06-13 | Fresh `AUDIT_SCOPE_CLOSURE` rerun remains required to accept SCC-003/SCC-004 closure; otherwise return to the runtime spine. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Static package-local refresh checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 
 ## Human-Gated Decisions
 

@@ -1,11 +1,11 @@
-# Datasheet: DEL-04-01 SDK Probe and Version-Pinned Adoption Decision
+# Datasheet: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
 ## Identification
 
 | Field | Value |
 |---|---|
 | Deliverable ID | DEL-04-01 |
-| Deliverable Name | SDK Probe and Version-Pinned Adoption Decision |
+| Deliverable Name | First-Adapter Probe and Version-Pinned Adoption Decision |
 | Package | PKG-04 SDK Adapter, Prompt, Provider, and Settings |
 | Decomposition Variant | SOFTWARE_DECOMP v3.2 |
 | Type | REQ_SLICE |
@@ -13,7 +13,7 @@
 | Responsible Party | TBD |
 | Scope Items | SOW-018, SOW-044, SOW-046 |
 | Objective | OBJ-004 |
-| Anticipated Artifacts | SDK probe notes; version decision; fallback criteria; residual-risk notes |
+| Anticipated Artifacts | first-adapter probe notes; version decision; fallback criteria; residual-risk notes |
 
 ## Attributes
 
@@ -42,7 +42,7 @@
 
 This deliverable is a requirements/probe decision package, not runtime code. It should be constructed as:
 
-1. SDK probe notes that record empirical behavior for every required probe topic.
+1. first-adapter probe notes that record empirical behavior for every required probe topic.
 2. A version-pinned adoption decision identifying the exact `@anthropic-ai/claude-agent-sdk` version and any Claude Code subprocess version when knowable.
 3. Fallback criteria that preserve the custom-runtime roadmap if a product-critical boundary cannot be satisfied or verified.
 4. Residual-risk notes for SDK API drift, settings leakage, transcript location, packaging, permissions, subagents, and product-identity drift.

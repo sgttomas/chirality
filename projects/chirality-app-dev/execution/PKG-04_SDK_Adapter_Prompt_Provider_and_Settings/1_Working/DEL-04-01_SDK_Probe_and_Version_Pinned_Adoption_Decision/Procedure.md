@@ -1,8 +1,8 @@
-# Procedure: DEL-04-01 SDK Probe and Version-Pinned Adoption Decision
+# Procedure: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
 ## Purpose
 
-Define the operational steps to produce and verify the SDK probe notes, version-pinned adoption decision, fallback criteria, and residual-risk notes for DEL-04-01.
+Define the operational steps to produce and verify the first-adapter probe notes, version-pinned adoption decision, fallback criteria, and residual-risk notes for DEL-04-01.
 
 This procedure is for producing the deliverable artifact. It does not authorize implementation of SDK-backed runtime code or exposure of new user-visible tools.
 
@@ -13,7 +13,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 | Accepted decomposition row for DEL-04-01 | Present in SOFTWARE_DECOMP v3.2. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 | Source corpus | Accessible; `docs/PRD.md` has REF-006 `HASH_MISMATCH`. | `_REFERENCES.md` |
 | Upstream dependencies | TBD: no accepted dependency edges have been extracted yet. | `_DEPENDENCIES.md` |
-| SDK probe environment | TBD: package version, subprocess availability, Electron packaging posture, and test harness are not yet recorded. | Source gap |
+| first-adapter probe environment | TBD: package version, subprocess availability, Electron packaging posture, and test harness are not yet recorded. | Source gap |
 | Runtime contract expectations | Required before SDK adapter production default. | `docs/SPEC.md` Section 10; `docs/PLAN.md` R1 |
 | Reliance-boundary expectations | Required for P0 boundaries and fallback decisions. | `docs/DIRECTIVE.md` Section 2.9; `docs/CONTRACT.md` K-RELIANCE-1 |
 
@@ -51,7 +51,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
    - Test `permissionMode`, `allowedTools`, `disallowedTools`, `canUseTool`, and hooks.
    - Confirm that `allowedTools` is not treated as a restriction boundary.
    - Confirm denied tools are blocked by policy, hooks, SDK deny rule, or human gate and are recorded before allowing/denying when applicable.
-   - Record one minimal evidence row per permission surface and one deny-first overlay outcome row.
+   - Record one minimal evidence row per permission surface and one capability-policy and hard-deny precedence outcome row.
    - Source: `docs/SPEC.md` Sections 14.3 and 15.1; `docs/CONTRACT.md` K-PERM-1 through K-PERM-3.
 
 7. Probe MCP and hook behavior.
@@ -103,7 +103,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 | Version evidence location | Package manifest and lockfile evidence location is recorded once implementation begins. |
 | Contract boundary | Decision states that SDK-specific identifiers remain adapter metadata and Chirality contracts stay product-owned. |
 | Settings isolation | Shipped posture uses `settingSources: []`. |
-| Permissions | Rows exist for `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and deny-first behavior; `allowedTools` is not treated as restriction. |
+| Permissions | Rows exist for `allowedTools`, `disallowedTools`, `permissionMode`, `canUseTool`, hooks, and explicit hard-deny precedence; `allowedTools` is not treated as restriction. |
 | Sessions/transcripts | SDK transcript/store linkage is recorded without replacing Chirality audit JSONL. |
 | Interrupts | Success, failure, interruption, and cancellation terminal behavior is evidenced or flagged. |
 | Packaging | Packaged app SDK turn is proven or recorded as fallback/residual risk. |
@@ -114,7 +114,7 @@ This procedure is for producing the deliverable artifact. It does not authorize 
 
 Required records:
 
-- SDK probe matrix and notes.
+- first-adapter probe matrix and notes.
 - Version-pinned adoption decision.
 - Fallback criteria.
 - Residual-risk notes.

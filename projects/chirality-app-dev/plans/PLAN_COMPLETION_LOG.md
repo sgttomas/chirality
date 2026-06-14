@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-13 - Package-local context and local-kit refresh landed (`SCA-APP-001-CLOSURE-002`)
+
+Repaired the package-local `SCA-APP-001` closure follow-up for SCC-003 and SCC-004.
+
+The tranche refreshed 26 impacted `_CONTEXT.md` files across PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 from the accepted v3.2 decomposition, preserving the SCA alignment notes while replacing stale base identity, package scope, deliverable scope, artifact, and traceability fields. It also reviewed the named local-kit surfaces and normalized stale first-adapter, provider-scope, network-scope, and permission-policy wording in `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `Dependencies.csv` where present.
+
+Residual: a fresh `AUDIT_SCOPE_CLOSURE` rerun remains required before `SCA-APP-001` can be independently accepted as fully closed. The pre-existing dependency closure snapshot still reports one residual six-node strict SCC outside this package-local repair scope. No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider implementation, Pi implementation, network expansion, tool exposure, or release-readiness posture changed.
+
+Validation: `git diff --check -- projects/chirality-app-dev/execution projects/chirality-app-dev/plans`; impact-CSV-to-decomposition alignment check for all 26 affected `_CONTEXT.md` files; stale local wording scan for `SDK Probe`, `deny-first`, `deny-overrides-allow`, `Anthropic-only`, `Pi-spike`, `blanket deny-first`, `permission_overlay_deny_first`, and `engine contract, SDK mapper`; Ruby CSV structural check for all 10 modified `Dependencies.csv` files; `node -e` JSON parse for `Post_Change_Coverage.json`; source/package exclusion check. Frontend runtime tests were skipped because this tranche changed only execution governance/package-local documentation, SCA repair evidence, and planning closeout records.
+
 ## 2026-06-13 - Scope-change pointer, propagation, and supersession repair landed (`SCA-APP-001-CLOSURE-001`)
 
 Repaired the first set of `AUDIT_SCOPE_CLOSURE` findings for `SCA-APP-001`.

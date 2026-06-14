@@ -128,6 +128,6 @@ Track these explicitly until closed:
 |---|---|---|
 | ASSUMPTION-RBR-001 | The decomposition-listed objectives OBJ-002, OBJ-005, and OBJ-009 are directionally relevant to DEL-01-02. | Supported by DEL-01-02 decomposition row; not an extra hard requirement beyond cited source requirements. |
 | TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | Leave `TBD` until downstream implementation deliverables exist. |
-| TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 SDK probe and session linkage work. |
+| TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 first-adapter probe and session linkage work. |
 | TBD-RBR-003 | Final Section 9 validation file/test names. | Resolve as runtime validation suite is implemented. |
 | TBD-RBR-004 | Generated-register completion evidence. | Resolve after `docs/harness/reliance_boundary_register.md`, enforcement matrix, and test index are produced and cross-checked. |

@@ -41,7 +41,7 @@ Define the operational steps to produce the macOS arm64 unsigned DMG and assembl
    - verify execution does not require secret leakage or broader network policy.
 9. Confirm packaged app preserves release-relevant runtime guardrails:
    - working-root selector is available;
-   - Anthropic-only network guardrails remain in force;
+   - current shipped Anthropic network guardrails remain in force;
    - `TBD`: human/source ruling must decide whether SDK-backed turn start after R1 blocks DEL-09-04 closure or is deferred to a broader packaged-app validation workflow.
 10. Record all command outputs, artifact paths, summary JSON, probe output, checksums or deterministic artifact identifiers, and residual blockers in the integrity/package evidence bundle.
 
@@ -56,7 +56,7 @@ Define the operational steps to produce the macOS arm64 unsigned DMG and assembl
 | macOS target | Binary architecture is arm64 and minimum macOS target is `15.0.0` or later. | DEL-09-04-REQ-001 |
 | Signing posture | Codesign evidence matches unsigned/adhoc local-builder scope. | DEL-09-04-REQ-001 |
 | SDK subprocess | Packaged SDK subprocess/binary probe records command, package path, expected result, observed result, and shows the binary is locatable and executable from app bundle/package layout. | DEL-09-04-REQ-008 |
-| Network guardrails | Packaged validation preserves Anthropic-only network policy. | DEL-09-04-REQ-009 |
+| Network guardrails | Packaged validation preserves current shipped Anthropic network policy. | DEL-09-04-REQ-009 |
 
 ## Records
 

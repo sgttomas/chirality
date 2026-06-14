@@ -27,7 +27,7 @@
 | Persisted runtime output contract | Versioned `HarnessEvent` records with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data` | REF-003 Section 10; REF-004 Section 7.3 |
 | SDK-specific data posture | SDK message names, session IDs, transcript paths, permission modes, hook names, and tool names remain adapter metadata, not public Chirality contracts | REF-001 Sections 2.8-2.10; REF-003 Section 10.3; REF-004 Section 9 |
 | Known SDK input categories | `SDKSystemMessage`, `SDKAssistantMessage`, `SDKPartialAssistantMessage`, `SDKResultMessage`, permission-denial, hook, compact-boundary, tool-progress, and subagent messages | REF-006 Section 8.12, source-state warning applies |
-| Exact observed SDK message sequence | TBD pending DEL-04-01 SDK probe / OI-001; current named categories are planning targets until probe-backed fixtures are accepted. | Decomposition OI-001; SOW-044; REF-006 FR-116, HASH_MISMATCH warning applies |
+| Exact observed SDK message sequence | TBD pending DEL-04-01 first-adapter probe / OI-001; current named categories are planning targets until probe-backed fixtures are accepted. | Decomposition OI-001; SOW-044; REF-006 FR-116, HASH_MISMATCH warning applies |
 
 ## Conditions
 

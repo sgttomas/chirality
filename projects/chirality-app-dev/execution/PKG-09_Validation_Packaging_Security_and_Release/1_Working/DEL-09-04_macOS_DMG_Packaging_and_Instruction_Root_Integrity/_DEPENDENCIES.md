@@ -57,7 +57,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-09-04-006 | EXECUTION | PREREQUISITE | UPSTREAM | Pre-packaging local validation commands | ACTIVE | TBD |
 | DEP-09-04-007 | EXECUTION | CONSTRAINT | UPSTREAM | OI-004 - Instruction-root source completeness | ACTIVE | TBD |
 | DEP-09-04-008 | EXECUTION | CONSTRAINT | UPSTREAM | OI-003 - SDK subprocess and macOS DMG packaging verification | ACTIVE | TBD |
-| DEP-09-04-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-09-04-REQ-009 - Anthropic-only packaged network guardrails | ACTIVE | TBD |
+| DEP-09-04-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-09-04-REQ-009 - current shipped Anthropic packaged network guardrails | ACTIVE | TBD |
 
 ## Run History
 

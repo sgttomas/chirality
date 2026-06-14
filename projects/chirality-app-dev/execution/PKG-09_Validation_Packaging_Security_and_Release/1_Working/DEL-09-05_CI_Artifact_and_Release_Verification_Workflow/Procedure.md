@@ -71,7 +71,7 @@ npm run desktop:dist
    - Confirm signing posture is unsigned/adhoc as scoped.
    - Confirm app resources contain required instruction-root assets.
    - Confirm app launches and working-root selector is available.
-   - Confirm Anthropic-only network guardrails remain in force.
+   - Confirm current shipped Anthropic network guardrails remain in force.
    - Confirm SDK-backed harness turn can start in packaged app after R1.
    - Confirm SDK subprocess or bundled binary is executable from package layout and not trapped inside `app.asar` without execution access.
    - Confirm SDK transcript storage/mirroring follows the accepted R1 storage decision.

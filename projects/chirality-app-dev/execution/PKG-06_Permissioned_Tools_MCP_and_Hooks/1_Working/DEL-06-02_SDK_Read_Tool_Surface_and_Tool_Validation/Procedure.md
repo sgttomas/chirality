@@ -44,7 +44,7 @@ This procedure describes how to produce and verify the DEL-06-02 SDK read tool-s
 
 5. Preserve permission policy boundaries.
    - Do not treat `allowedTools` alone as restriction.
-   - Hand the resolved surface to deny-first permission policy, disallowed tools, hooks, `canUseTool`, and/or `dontAsk` posture as applicable.
+   - Hand the resolved surface to capability policy with explicit hard-deny precedence, disallowed tools, hooks, `canUseTool`, and/or `dontAsk` posture as applicable.
    - Ensure implementation availability does not override policy filtering.
 
 6. Normalize deterministic ordering.

@@ -32,7 +32,7 @@ This deliverable exists to create a narrow SDK adapter mapping surface: SDK stre
 | Topic | Guidance | Source Basis |
 |---|---|---|
 | UI versus audit detail | Use UI events for compact browser streaming; use `HarnessEvent`s for richer runtime records such as model, tool, permission, hook, terminal, and SDK metadata events. | REF-003 Sections 10-11; REF-004 Sections 7.3-7.4 |
-| SDK probe dependency | The exact SDK message categories and payload fields remain dependent on DEL-04-01 / OI-001. Design fixture gaps as explicit `TBD`s rather than guessing payload details. | Decomposition SOW-044 / OI-001 |
+| first-adapter probe dependency | The exact SDK message categories and payload fields remain dependent on DEL-04-01 / OI-001. Design fixture gaps as explicit `TBD`s rather than guessing payload details. | Decomposition SOW-044 / OI-001 |
 | Probe-backed category promotion slot | After DEL-04-01 / OI-001 is accepted, update this deliverable's mapper fixtures and documentation with the observed SDK message categories that are supported inputs. Until then, the currently named SDK-side categories remain warning-qualified and must not be treated as accepted observed payload schemas. | REF-006 FR-116 and FR-123, HASH_MISMATCH warning applies; decomposition OI-001 |
 | Provider neutrality | Prefer Chirality terms for public event names and canonical event types. Use adapter metadata for values like `sdkSessionId`, `sdkTranscriptPath`, and SDK tool names. | REF-001 Section 2.10; REF-004 Section 9 |
 | Error handling | Convert SDK/provider failures into Chirality terminal or diagnostic events that preserve operator meaning without exposing secrets. | REF-006 FR-075, HASH_MISMATCH warning applies |
@@ -44,7 +44,7 @@ This deliverable exists to create a narrow SDK adapter mapping surface: SDK stre
 |---|---|---|
 | Raw SDK passthrough versus translation | Translate. | Raw passthrough would make SDK shape part of the product contract. |
 | Rich UI stream versus compact UI stream | Keep UI compact. | SPEC and TYPES define stable browser event names; richer audit detail belongs in `HarnessEvent`s. |
-| Early broad category support versus probe-backed precision | Use explicit `TBD`s for unconfirmed cases. | SOW-044 is marked open until the SDK probe confirms categories. |
+| Early broad category support versus probe-backed precision | Use explicit `TBD`s for unconfirmed cases. | SOW-044 is marked open until the first-adapter probe confirms categories. |
 | Mapper-local redaction versus central redaction only | Do both where practical. | Event records and logs must not expose API keys or secrets; mapper copying should be conservative. |
 | SDK session data omitted versus captured as metadata | Capture only explicit metadata. | Resume/debug linkage is useful, but SDK identifiers remain adapter metadata. |
 
@@ -58,11 +58,11 @@ Illustrative mappings, subject to DEL-04-01 probe confirmation:
 
 | SDK-side input category | Browser `UIEvent` direction | `HarnessEvent` direction | Notes |
 |---|---|---|---|
-| SDK system/session initialization | `session:init` if the UI needs session start metadata | `sdk.system.init` with adapter metadata | Exact payload fields TBD pending SDK probe. |
+| SDK system/session initialization | `session:init` if the UI needs session start metadata | `sdk.system.init` with adapter metadata | Exact payload fields TBD pending first-adapter probe. |
 | Partial assistant text | `chat:delta` | `model.delta` | Preserve text ordering; avoid embedding raw SDK message object. |
 | Assistant completion/result | `chat:complete` or `session:complete` as appropriate | `model.completed` and/or `turn.completed` | Terminal split depends on TurnEngine contract. |
 | Tool result/progress | `tool:result` for compact UI feedback | `tool.progress`, `tool.completed`, or `tool.failed` | Later category support should be fixture-backed. |
-| Permission denial | `turn:error` only if it is turn-terminal or UI-actionable | `tool.permission` or `turn.failed` depending on contract | Deny-first semantics are owned by policy, not the SDK name. |
+| Permission denial | `turn:error` only if it is turn-terminal or UI-actionable | `tool.permission` or `turn.failed` depending on contract | Capability-forward policy with explicit hard-deny precedence semantics are owned by policy, not the SDK name. |
 | Compact boundary | Usually no direct UI event unless UI compatibility accepts it | `context.compacted` | Probe exact SDK compact message shape. |
 | Subagent lifecycle | TBD for UI | `subagent.started` / `subagent.completed` | Governed subagent support is later-phase and must remain restricted. |
 

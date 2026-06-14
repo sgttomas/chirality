@@ -2,7 +2,7 @@
 
 ## Scope
 
-DEL-06-01 specifies the Chirality permission overlay and mode mapping needed to mediate governed tool use in PKG-06. It covers structured permission decisions, deny-overrides-allow semantics, Chirality-to-SDK mode posture, `canUseTool` approval mediation, and permission-event persistence for governed tool attempts.
+DEL-06-01 specifies the Chirality permission overlay and mode mapping needed to mediate governed tool use in PKG-06. It covers structured permission decisions, explicit hard-deny precedence, Chirality-to-SDK mode posture, `canUseTool` approval mediation, and permission-event persistence for governed tool attempts.
 
 In scope:
 
@@ -97,6 +97,6 @@ Required implementation evidence:
 | Source item | Covered by |
 |---|---|
 | SOW-054 Structured permission decisions | DEL-06-01-REQ-001, REQ-002, REQ-013, REQ-015 |
-| SOW-055 Permission modes and deny-first overlay | DEL-06-01-REQ-003 through REQ-009, REQ-011, REQ-015 |
+| SOW-055 Permission modes and capability policy with explicit hard-deny precedence | DEL-06-01-REQ-003 through REQ-009, REQ-011, REQ-015 |
 | SOW-056 Tool permission events | DEL-06-01-REQ-010 |
 | SOW-058 Interactive approval through `canUseTool` | DEL-06-01-REQ-002, REQ-007 |

@@ -55,7 +55,7 @@ Sources: `docs/CONTRACT.md` K-EVENT-6; `docs/PLAN.md` Section 6.3; `docs/PRD.md`
 
 | Choice | Benefit | Cost / Risk | Recommended Posture |
 |---|---|---|---|
-| Single provider wrapper | Centralizes redaction, key handoff, base URL validation, and provider error mapping. | May become too broad if it absorbs turn lifecycle or SDK message mapping. | Keep wrapper provider-boundary focused and delegate turn lifecycle to `TurnEngine`. |
+| Single provider wrapper | Centralizes redaction, key handoff, base URL validation, and provider error mapping. | May become too broad if it absorbs turn lifecycle or Provider/SDK message mapping. | Keep wrapper provider-boundary focused and delegate turn lifecycle to `TurnEngine`. |
 | Separate helpers for key, URL, network, and error classification | Easier unit testing and clearer ownership. | Requires careful integration tests to prove boundary behavior as a whole. | Prefer small helpers plus provider-boundary integration tests. |
 | Rely on SDK defaults for network/key behavior | Lower initial code volume. | Violates product-owned governance and may be opaque or version-sensitive. | Do not rely on opaque SDK defaults for product-critical behavior. |
 | Allow configurable base URL | Useful for mocks and future providers. | Current product requirement accepts only Anthropic production API for shipped policy. | Keep shipped validation strict; test or dev-only escape hatches require explicit governance if introduced. |

@@ -79,7 +79,7 @@ Define the working procedure for producing and verifying the DEL-06-03 MCP read-
 | Tool names | Only accepted Chirality MCP names use the `mcp__chirality__*` namespace; unknown names fail with structured errors. |
 | Descriptor completeness | Each Chirality-owned tool declares schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior. |
 | Deterministic surface | Tool ordering and metadata are stable for fixed session/persona/mode/option input. |
-| Deny-first policy | Denied tools do not execute; `allowedTools` alone is not treated as restriction. |
+| Capability policy with explicit hard-deny precedence | Denied tools do not execute; `allowedTools` alone is not treated as restriction. |
 | Read-only mode | Write/edit/bash/network-capable behavior is unavailable or hard-denied. |
 | Status read | `_STATUS.md` is the only lifecycle truth source. |
 | Dependency read | `Dependencies.csv` is read/validated when present; absence is explicit rather than inferred. |

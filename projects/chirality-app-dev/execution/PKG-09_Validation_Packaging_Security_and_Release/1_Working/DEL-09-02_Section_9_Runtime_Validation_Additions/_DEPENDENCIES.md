@@ -59,7 +59,7 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-09-02-008 | ANCHOR | OTHER | UPSTREAM | SOW-063 Governed subagent runtime | ACTIVE |
 | DEP-09-02-009 | ANCHOR | OTHER | UPSTREAM | OBJ-002 Product-owned runtime contracts | ACTIVE |
 | DEP-09-02-010 | ANCHOR | OTHER | UPSTREAM | OBJ-003 Auditable Chirality-owned session records | ACTIVE |
-| DEP-09-02-011 | ANCHOR | OTHER | UPSTREAM | OBJ-005 Deny-first tool governance | ACTIVE |
+| DEP-09-02-011 | ANCHOR | OTHER | UPSTREAM | OBJ-005 Capability-policy tool governance with explicit hard-deny precedence | ACTIVE |
 | DEP-09-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 Agent-suite integrity and governed subagent delegation | ACTIVE |
 | DEP-09-02-013 | ANCHOR | OTHER | UPSTREAM | OBJ-008 Explicit and repeatable validation and release checks | ACTIVE |
 | DEP-09-02-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-09-01 Section 8 Harness Validation Preservation | ACTIVE |

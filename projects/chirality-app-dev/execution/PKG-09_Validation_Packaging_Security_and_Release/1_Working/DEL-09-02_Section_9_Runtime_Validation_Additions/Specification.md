@@ -2,7 +2,7 @@
 
 ## Scope
 
-This deliverable specifies runtime validation additions for Section 9 of the harness validation surface. It covers validation IDs, harness runner updates, and summary schema expectations for runtime boundaries related to the engine contract, SDK mapper, event log, settings isolation, permissions, MCP tools, hooks, compaction, and subagents.
+This deliverable specifies runtime validation additions for Section 9 of the harness validation surface. It covers validation IDs, harness runner updates, and summary schema expectations for runtime boundaries related to the provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP tools, hooks, compaction, and subagents.
 
 Excluded from this deliverable:
 
@@ -19,7 +19,7 @@ Excluded from this deliverable:
 | DEL-09-02-RQ-003 | Validation for SDK mapping and event-log IDs MUST preserve the distinction between browser `UIEvent`s and persisted `HarnessEvent`s; SDK messages and transcripts are adapter metadata or secondary state unless imported into `HarnessEvent` form. | `docs/SPEC.md` Sections 9 and 10.3; `docs/CONTRACT.md` K-EVENT-1, K-SDK-3 |
 | DEL-09-02-RQ-004 | Validation for session replay MUST confirm newline-delimited append order, unique event IDs, no secret storage, artifact references for large payloads, and tolerance for malformed trailing lines. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5, K-EVENT-6, K-EVENT-7 |
 | DEL-09-02-RQ-005 | Validation for `section9.settingsources_isolation` MUST confirm shipped runtime does not load ambient user/global Claude Code settings or local `.claude/settings.local.json`; default `settingSources: []` is required where applicable. | `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117, NFR-028 |
-| DEL-09-02-RQ-006 | Validation for permission overlay MUST confirm deny-first behavior, that prompt text and `allowedTools` alone are not safety boundaries, and that `disallowedTools`, mode policy, hooks, `canUseTool`, and/or `dontAsk` enforce restrictions. | `docs/CONTRACT.md` K-PERM-1 through K-PERM-4; `docs/SPEC.md` Sections 14.3 and 15.1 |
+| DEL-09-02-RQ-006 | Validation for permission overlay MUST confirm explicit hard-deny precedence, that prompt text and `allowedTools` alone are not safety boundaries, and that `disallowedTools`, mode policy, hooks, `canUseTool`, and/or `dontAsk` enforce restrictions. | `docs/CONTRACT.md` K-PERM-1 through K-PERM-4; `docs/SPEC.md` Sections 14.3 and 15.1 |
 | DEL-09-02-RQ-007 | Validation for Chirality MCP status/dependency tools MUST use `mcp__chirality__*` naming and confirm MCP tools pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/SPEC.md` Sections 14.1-14.3; `docs/TYPES.md` Section 8.4; `docs/CONTRACT.md` K-MCP-1 |
 | DEL-09-02-RQ-008 | Validation for path and instruction-root hooks MUST confirm active project-root containment, instruction-root write denial, initial symlink-write rejection, and fail-closed behavior for write, shell, domain, and subagent actions. | `docs/SPEC.md` Section 15.2; `docs/CONTRACT.md` K-HOOK-1, K-PATH-2, K-PATH-3 |
 | DEL-09-02-RQ-009 | Validation for tool result budgets MUST confirm large or sensitive tool results are budgeted, previewed, stored as artifacts, or redacted according to policy. | `docs/CONTRACT.md` K-EVENT-7; `docs/PRD.md` FR-096 |

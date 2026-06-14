@@ -38,7 +38,7 @@ Initial read candidates are `Read`, `LS`, `Glob`, and `Grep` where available, pl
 
 | Adjacent deliverable | Interface point |
 |---|---|
-| DEL-06-01 | Provides deny-first permission and mode policy that this resolver must consume or preserve. |
+| DEL-06-01 | Provides capability policy with explicit hard-deny precedence and mode policy that this resolver must consume or preserve. |
 | DEL-06-03 | Provides Chirality MCP read tool definitions that this resolver registers or references. |
 | DEL-06-04 | Provides write/edit hooks and path policy needed before powerful write tools can be exposed. |
 | DEL-06-05 | Provides bash governance needed before `Bash` can be exposed. |
@@ -68,7 +68,7 @@ This normalization preserves the difference between staged rollout, tool capabil
 |---|---|
 | Omit denied tools vs include and deny at call time | Prefer omission where possible to reduce context and accidental attempts, but never rely on omission alone; runtime denial must still hold. |
 | Strict registry vs permissive passthrough | Use strict registry behavior. Passthrough conflicts with SOW-047 and makes unknown tool names hard to audit. |
-| Resolver owns permission vs resolver consumes permission | Keep the resolver focused on validation and deterministic exposure. Deny-first semantics belong to permission policy, but resolver output must not bypass it. |
+| Resolver owns permission vs resolver consumes permission | Keep the resolver focused on validation and deterministic exposure. Capability-forward policy with explicit hard-deny precedence semantics belong to permission policy, but resolver output must not bypass it. |
 | SDK-specific names vs Chirality contracts | SDK names are adapter metadata. Public runtime contracts and event schemas should stay Chirality-owned. |
 | Read convenience vs staged governance | Exposing read tools first is useful, but it must not become a back door to write/bash or remote tool expansion. |
 

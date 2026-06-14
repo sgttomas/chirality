@@ -24,7 +24,7 @@ Sources: `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` Section 1.4; `docs/
    SDK-specific names and SDK package version may appear in adapter-local metadata and safe runtime metadata, but they are evidence about the runtime adapter, not public Chirality product-version authority. Public Chirality APIs, canonical events, and governance records remain Chirality-owned. Sources: `docs/CONTRACT.md` K-ENGINE-4; `docs/TYPES.md` Section 9.
 
 6. Prefer explicit unknowns over plausible SDK detail.
-   Exact SDK TypeScript option fields that are not confirmed by local accepted source or the SDK probe should remain `TBD`. This is a review guard, not a drafting omission: premature property names can make an unverified SDK version look authoritative. Sources: `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1; `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH.
+   Exact SDK TypeScript option fields that are not confirmed by local accepted source or the first-adapter probe should remain `TBD`. This is a review guard, not a drafting omission: premature property names can make an unverified SDK version look authoritative. Sources: `docs/DIRECTIVE.md` Section 2.5; `docs/CONTRACT.md` K-INVENT-1; `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH.
 
 ## Considerations
 

@@ -13,7 +13,7 @@ This deliverable covers the security and provider-boundary behavior for Anthropi
 This deliverable excludes:
 
 - General SDK option construction and settings isolation except where required for safe provider handoff; those are primarily DEL-04-02.
-- SDK message mapping except where provider errors cross into stable runtime/UI events; that is primarily DEL-04-03.
+- Provider/SDK message mapping except where provider errors cross into stable runtime/UI events; that is primarily DEL-04-03.
 - UI API key settings behavior except for the stored-key precedence contract; that is shared with DEL-02-05.
 - Redacted run logger ownership except for provider-boundary fixtures and requirements; that is shared with DEL-05-03.
 - Project event-store internals beyond redacted metadata handoff, per `_CONTEXT.md`.

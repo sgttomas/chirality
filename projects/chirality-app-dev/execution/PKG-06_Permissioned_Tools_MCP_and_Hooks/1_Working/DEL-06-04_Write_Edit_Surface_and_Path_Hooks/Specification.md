@@ -93,5 +93,5 @@ Required implementation evidence:
 | SOW-027 Project-root containment and instruction-root protection | DEL-06-04-REQ-002, REQ-003, REQ-007, REQ-015 |
 | SOW-057 Hooks and fail-closed behavior | DEL-06-04-REQ-001, REQ-006, REQ-012, REQ-013 |
 | SOW-060 Safe write/edit behavior | DEL-06-04-REQ-004, REQ-005, REQ-011, REQ-014, REQ-015 |
-| OBJ-005 Deny-first permission policy, hooks, result budgets, and approvals | DEL-06-04-REQ-001, REQ-006 through REQ-013 |
+| OBJ-005 Capability-forward policy with explicit hard-deny precedence permission policy, hooks, result budgets, and approvals | DEL-06-04-REQ-001, REQ-006 through REQ-013 |
 | OBJ-006 Filesystem project truth through containment and change discipline | DEL-06-04-REQ-002 through REQ-005, REQ-011 through REQ-016 |

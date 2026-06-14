@@ -27,7 +27,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
    - Align with `HarnessPermissionDecision` from `docs/TYPES.md` Section 8.2.
    - Include safe SDK metadata only when it does not leak secrets or SDK-shaped public contract fields.
 
-3. Implement the deny-first overlay.
+3. Implement the capability policy with explicit hard-deny precedence.
    - Evaluate explicit denies from Chirality policy, path containment, hooks, governance, SDK deny rules, and human gates.
    - If any explicit deny is present, return or persist `deny` even when an SDK or tool option would otherwise allow.
 
@@ -50,7 +50,7 @@ This procedure describes how to produce and verify the DEL-06-01 permission over
    - Verify `readOnly` denies write/edit/bash/network-capable and unexpected tools.
    - Verify `dontAsk` denies unknown or unapproved tools without prompting.
    - Verify `ask` persists the UI/human decision before returning SDK allow or deny.
-   - Verify deny-overrides-allow when `allowedTools` or SDK posture conflicts with Chirality deny policy.
+   - Verify explicit hard-deny precedence when `allowedTools` or SDK posture conflicts with Chirality deny policy.
    - Verify `tool.permission` event records include decision source and reason.
    - Verify in-process Chirality MCP tool attempts pass through the same overlay decision path as SDK built-ins, with detailed wrapper fixtures owned by DEL-06-03 unless this deliverable defines a shared hook point.
 

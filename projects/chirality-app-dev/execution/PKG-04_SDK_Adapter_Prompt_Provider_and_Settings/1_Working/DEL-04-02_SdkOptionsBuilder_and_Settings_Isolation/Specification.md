@@ -36,7 +36,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-04-02-REQ-009 | The builder MUST preserve Chirality-owned semantics by keeping SDK-specific names and option details at adapter boundaries and safe metadata surfaces, not public API contracts. | `docs/CONTRACT.md` K-ENGINE-1 through K-ENGINE-4; `docs/TYPES.md` Section 9 |
 | DEL-04-02-REQ-010 | Safe visible metadata SHOULD include SDK package version, SDK permission mode, visible tool list, MCP server names, settings-source posture, SDK session ID/resume mode, and transcript/store linkage where available. | `docs/SPEC.md` Section 12.4 |
 | DEL-04-02-REQ-011 | API keys and secrets MUST NOT be written to project files or included in visible metadata produced by this builder. | `docs/CONTRACT.md` K-KEY-1; `docs/PRD.md` Section 10.3.1, HASH_MISMATCH |
-| DEL-04-02-REQ-012 | Exact SDK option property names beyond cited source text are TBD until the SDK probe/version decision confirms current TypeScript APIs. | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
+| DEL-04-02-REQ-012 | Exact SDK option property names beyond cited source text are TBD until the first-adapter probe/version decision confirms current TypeScript APIs. | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
 | DEL-04-02-REQ-013 | The builder input contract MUST either define or explicitly import the owning adjacent contract for session state, persona output, hook policy, MCP server descriptors, subagent descriptors, resume linkage, and settings policy before the exact TypeScript shape is treated as closed. | `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Section 4, HASH_MISMATCH; `execution/_Decomposition/...` DEL-04-01 through DEL-04-05 |
 | DEL-04-02-REQ-014 | Before constructing SDK options, the builder MUST fail closed or return a structured integration error when required governed policy inputs for settings, tools, permission posture, hooks, MCP, or subagents are absent or explicitly unresolved. | `docs/CONTRACT.md` K-RELIANCE-2, K-PERM-1 through K-PERM-3, K-MCP-1, K-HOOK-1; `docs/PLAN.md` R2 |
 
@@ -46,7 +46,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 |---|---|---|
 | Chirality `AgentEnginePort` / `RuntimeEngineContract` | SDK options are constructed behind a product-owned engine boundary. | `docs/CONTRACT.md` K-ENGINE-1; `docs/SPEC.md` Section 11; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
 | SDK settings isolation | Shipped runtime must not load ambient user/global Claude Code settings or local `.claude/settings.local.json`. | `docs/CONTRACT.md` K-SDK-1; `docs/SPEC.md` Section 12.2 |
-| Deny-first permission policy | Builder must carry policy posture without confusing auto-approval with restriction. | `docs/CONTRACT.md` K-PERM-1 through K-PERM-6 |
+| Capability-forward policy with explicit hard-deny precedence permission policy | Builder must carry policy posture without confusing auto-approval with restriction. | `docs/CONTRACT.md` K-PERM-1 through K-PERM-6 |
 | Chirality MCP naming | Chirality tools use `mcp__chirality__*` names. | `docs/SPEC.md` Section 14.2; `docs/TYPES.md` Section 8.4 |
 | Epistemic controls | Unknown implementation details remain `TBD` rather than invented. | `docs/CONTRACT.md` K-INVENT-1; `docs/DIRECTIVE.md` Section 2.5 |
 
@@ -61,7 +61,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 | DEL-04-02-VER-005 | REQ-008 | Max-turn option propagation test and terminal max-turn handoff fixture. | SDK options fixture plus runtime event handoff fixture location TBD; likely adjacent owner is DEL-04-03 or DEL-03-02 pending accepted integration contract. |
 | DEL-04-02-VER-006 | REQ-009, REQ-010, REQ-011 | Metadata-shape and redaction review confirming SDK details are adapter metadata and safe runtime metadata only. | Single metadata fixture proves safe fields are present and API keys, raw secrets, hidden user settings content, and public product-version claims are absent. |
 | DEL-04-02-VER-007 | REQ-011 | Redaction/secret exclusion test for builder output and visible metadata. | Fixture with API-key-like input verifies no secret output in project files, visible metadata, or runtime records owned by this slice. |
-| DEL-04-02-VER-008 | REQ-012, REQ-013 | SDK probe/typecheck after package pin and adjacent-contract import review. | Probe notes, TypeScript compile evidence from DEL-04-01 or R1 implementation, and source-backed references for any imported persona/session/hook/MCP/settings policy types. |
+| DEL-04-02-VER-008 | REQ-012, REQ-013 | first-adapter probe/typecheck after package pin and adjacent-contract import review. | Probe notes, TypeScript compile evidence from DEL-04-01 or R1 implementation, and source-backed references for any imported persona/session/hook/MCP/settings policy types. |
 
 ## Documentation
 
@@ -70,7 +70,7 @@ Required artifacts:
 - `sdk-options-builder.ts` or equivalent module path selected by implementation owner.
 - Unit tests for fallback chains, unknown keys, settings isolation, tool mapping, deterministic ordering, max-turn propagation, and visible metadata.
 - Safe visible tool/settings metadata fixture.
-- Notes in implementation comments or local docs for any SDK option whose exact TypeScript shape depends on the accepted SDK probe.
+- Notes in implementation comments or local docs for any SDK option whose exact TypeScript shape depends on the accepted first-adapter probe.
 
 Open documentation items:
 

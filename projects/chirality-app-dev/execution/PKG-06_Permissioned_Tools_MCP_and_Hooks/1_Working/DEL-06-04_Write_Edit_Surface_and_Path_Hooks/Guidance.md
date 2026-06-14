@@ -9,7 +9,7 @@ Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/CONTRACT.md` Sections 1.3 an
 ## Principles
 
 1. Runtime code is the boundary. Prompt text, persona wording, or tool descriptions must not be relied on to protect filesystem writes. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-2.
-2. Deny-first remains controlling. A denial from policy, path containment, hook, governance, SDK deny rule, or human gate overrides any allow. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
+2. Capability-forward policy with explicit hard-deny precedence remains controlling. A denial from policy, path containment, hook, governance, SDK deny rule, or human gate overrides any allow. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
 3. The active project or working root bounds ordinary writes. Target paths outside that root are denied before mutation. Source: `docs/CONTRACT.md` Section 1.6 K-PATH-2.
 4. Instruction-root writes are release/change operations, not ordinary project execution. Ordinary project runs must not mutate the instruction root. Source: `docs/CONTRACT.md` Section 1.3 K-ROOT-2.
 5. Symlink write rejection is the initial policy. Any relaxation would need a governed amendment and tests. Source: `docs/CONTRACT.md` Section 1.6 K-PATH-3.

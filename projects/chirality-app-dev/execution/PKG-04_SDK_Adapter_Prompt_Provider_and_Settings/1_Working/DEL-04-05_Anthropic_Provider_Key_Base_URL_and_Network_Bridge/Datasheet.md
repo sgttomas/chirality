@@ -50,7 +50,7 @@ Source: `_CONTEXT.md` "Identity", "Traceability"; `execution/_Decomposition/Chir
 |---|---|
 | Provider wrapper | A provider boundary that resolves API key source, validates Anthropic base URL, supplies SDK environment only for the active turn, normalizes provider/SDK failures, and emits redacted details. Exact module name: TBD. |
 | Key handoff tests | Tests proving UI key precedence, environment fallback order, absence of working-root writes, and redacted SDK environment/log/event handoff. Exact test paths: TBD. |
-| Base URL/network tests | Tests proving only `https://api.anthropic.com` with no credentials and empty/443 port is accepted, renderer outbound requests are loopback or Anthropic-only, and Node/SDK calls do not broaden policy. Exact test paths: TBD. |
+| Base URL/network tests | Tests proving only `https://api.anthropic.com` with no credentials and empty/443 port is accepted, renderer outbound requests are loopback or current shipped Anthropic path only, and Node/SDK calls do not broaden policy. Exact test paths: TBD. |
 | Redaction fixtures | Fixtures covering key material, provider error messages, SDK stderr/debug output, and policy-denial metadata. Exact fixture shape: TBD. |
 | Status metadata | Safe status source values are `ui`, `env`, or `none`; no key value is recorded. |
 

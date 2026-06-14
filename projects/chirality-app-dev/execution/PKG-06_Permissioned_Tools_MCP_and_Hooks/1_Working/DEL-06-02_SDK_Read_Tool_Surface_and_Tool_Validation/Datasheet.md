@@ -37,7 +37,7 @@ Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_D
 |---|---|---|
 | PRD source state | `docs/PRD.md` is accessible but has HASH_MISMATCH in `_REFERENCES.md`; PRD-derived details are warning-qualified until source-state reconciliation. | `_REFERENCES.md` REF-006 |
 | Package boundary | DEL-06-02 is bounded to tool exposure and validation; domain-engine operation semantics are excluded except protected-path hooks in adjacent scopes. | `_CONTEXT.md`; decomposition PKG-06 |
-| Permission overlay dependency | Deny-first mode semantics and `canUseTool` mediation are adjacent policy inputs, primarily owned by DEL-06-01. | decomposition DEL-06-01 and DEL-06-02 |
+| Permission overlay dependency | Capability-forward policy with explicit hard-deny precedence mode semantics and `canUseTool` mediation are adjacent policy inputs, primarily owned by DEL-06-01. | decomposition DEL-06-01 and DEL-06-02 |
 | MCP implementation boundary | Chirality MCP tool definitions are adjacent to this resolver, primarily owned by DEL-06-03. | decomposition DEL-06-03 |
 | Write/bash sequencing | Write/edit and bash capability remain later-phase surfaces and must not be exposed by the read-first resolver until the required hooks and governance land. | `docs/PRD.md` Section 8.13, HASH_MISMATCH warning; `docs/PLAN.md` R2/R3 |
 | Shipped runtime posture | `readOnly` mode exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/PRD.md` Section 8.14, HASH_MISMATCH warning; `docs/TYPES.md` Section 8.1 |

@@ -9,7 +9,7 @@ Sources: `_CONTEXT.md`; decomposition row SOW-062; `docs/CONTRACT.md` Section 1.
 ## Principles
 
 1. Denied Bash must be a non-event at the process layer. A policy denial is only effective if no shell process starts. Sources: `docs/PLAN.md` R4 acceptance; `docs/PRD.md` FR-100, HASH_MISMATCH warning.
-2. Bash exposure follows deny-first permission semantics. Any explicit deny from policy, hook, path check, governance, SDK deny rule, or human gate blocks execution. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
+2. Bash exposure follows capability-forward permission semantics with explicit hard-deny precedence. Any explicit deny from policy, hook, path check, governance, SDK deny rule, or human gate blocks execution. Source: `docs/CONTRACT.md` Section 1.6 K-PERM-1.
 3. `allowedTools` is not a security boundary. Bash must not become available merely because it appears in a tool list; the overlay, disallowed tools, mode policy, hooks, and approval mediation remain controlling. Sources: `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3.
 4. Timeout and result storage are part of authorization, not post-processing. A Bash request without a timeout/capture/storage plan is not ready to execute. Source: `docs/CONTRACT.md` Section 1.6 K-BASH-1.
 5. Auditability is product-owned. SDK transcripts may help debugging and resume, but Chirality event records remain canonical for runtime governance. Sources: `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/PRD.md` FR-121, HASH_MISMATCH warning.
@@ -34,7 +34,7 @@ Stdout and stderr should be captured separately so users and replay tooling can 
 
 ### Hooks And Path Policy
 
-Bash-specific governance should compose with the broader hook model. If a command can write, delete, traverse outside the project, touch the instruction root, follow symlink writes, or invoke prohibited network behavior, the same deny-first posture applies. Hook failures fail closed for shell actions.
+Bash-specific governance should compose with the broader hook model. If a command can write, delete, traverse outside the project, touch the instruction root, follow symlink writes, or invoke prohibited network behavior, the same capability-forward posture with explicit hard-deny precedence applies. Hook failures fail closed for shell actions.
 
 ### PRD Hash Warning
 

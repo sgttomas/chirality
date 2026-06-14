@@ -1,4 +1,4 @@
-# Guidance: DEL-04-01 SDK Probe and Version-Pinned Adoption Decision
+# Guidance: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
 ## Purpose
 
@@ -41,7 +41,7 @@ Source grounding: `docs/DIRECTIVE.md` Section 2.8 through 2.11; `docs/PLAN.md` R
 |---|---|---|---|
 | Runtime mechanics | SDK handles generic model/tool loop when verified. | SDK defaults redefining product semantics. | `docs/DIRECTIVE.md` Section 2.8; `docs/PLAN.md` R0/R1 |
 | Event model | Chirality maps SDK messages into stable UI/runtime events. | Browser or persisted event contracts becoming SDK-shaped. | `docs/SPEC.md` Sections 9 and 10.3 |
-| Tool permissions | Deny-first overlay with hooks and callbacks. | Mistaking `allowedTools` for restriction. | `docs/SPEC.md` Sections 14.3 and 15.1 |
+| Tool permissions | Capability-forward policy with explicit hard-deny precedence overlay with hooks and callbacks. | Mistaking `allowedTools` for restriction. | `docs/SPEC.md` Sections 14.3 and 15.1 |
 | Session storage | Project-controlled transcript/store linkage where reliable. | SDK default transcript path becoming de facto canonical. | `docs/SPEC.md` Section 8.4; `docs/PRD.md` KG-024 |
 | Settings | `settingSources: []` in shipped builds. | Ambient `.claude` or user/local settings entering product behavior. | `docs/SPEC.md` Section 12.2; `docs/CONTRACT.md` K-SDK-1 |
 | Adoption | Version-pinned SDK path with conformance tests. | SDK API drift, packaging failures, or unverifiable reliance boundaries. | `docs/CONTRACT.md` K-SDK-2; `docs/PRD.md` KG-021 through KG-032 |
@@ -58,7 +58,7 @@ Apply the method to SDK API drift, settings leakage, allowed-tools misconception
 
 ## Examples
 
-TBD: no completed SDK probe notes are available in the accessible source corpus.
+TBD: no completed first-adapter probe notes are available in the accessible source corpus.
 
 Example evidence rows the final probe notes should contain:
 
@@ -67,7 +67,7 @@ Example evidence rows the final probe notes should contain:
 | SDK version | Package name, exact version, lockfile evidence, subprocess version when knowable. | Can this version be pinned and regression-tested? |
 | Messages | Observed message categories and sequence from `query()`. | Can all required categories map to stable `UIEvent` and `HarnessEvent` records? |
 | Settings | Effective `settingSources` behavior in shipped-like and dev-only modes. | Can shipped builds avoid ambient user/local settings? |
-| Permissions | Behavior of `permissionMode`, `allowedTools`, `disallowedTools`, `canUseTool`, and hooks. | Can deny-first policy be verified in Chirality terms? |
+| Permissions | Behavior of `permissionMode`, `allowedTools`, `disallowedTools`, `canUseTool`, and hooks. | Can capability policy with explicit hard-deny precedence be verified in Chirality terms? |
 | Session storage | SDK session ID, resume behavior, transcript path/store key, `SessionStore`, `CLAUDE_CONFIG_DIR`. | Can SDK transcripts remain secondary and traceable? |
 | Packaging | Built Electron app starts SDK-backed turn and can execute required subprocess/binary. | Does packaging require fallback or release blocker? |
 

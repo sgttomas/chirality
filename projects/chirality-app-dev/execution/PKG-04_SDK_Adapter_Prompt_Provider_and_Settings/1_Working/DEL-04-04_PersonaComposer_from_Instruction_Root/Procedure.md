@@ -18,7 +18,7 @@ Provide an operational path for implementing and verifying the PersonaComposer s
 ## Steps
 
 1. Confirm target boundaries.
-   Verify the implementation remains in the prompt/persona composition slice and does not absorb SDK option building, SDK message mapping, provider key/network handling, or instruction-root packaging conformance.
+   Verify the implementation remains in the prompt/persona composition slice and does not absorb SDK option building, Provider/SDK message mapping, provider key/network handling, or instruction-root packaging conformance.
 
 2. Define PersonaComposer inputs.
    Include at minimum selected persona, normalized project root or working-root summary, mode, permitted tool surface, governance preface source, persona instruction content source, and available fingerprint-policy inputs. The accepted runtime input interface is `TBD`; preserve unresolved fields as explicit optional/TBD inputs rather than inventing an implementation contract.

@@ -47,7 +47,7 @@
 |---|---|---|---|---|
 | RB-ENGINE | Runtime engine contract | SDK APIs must not define public Chirality semantics. | `AgentEnginePort` / `RuntimeEngineContract`; engine conformance tests; adapter boundary | REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123 |
 | RB-AUDIT | Runtime audit mirror | Accepted turns and runtime outcomes must be recoverable in Chirality terms. | `.chirality/sessions/<sessionId>/events.jsonl`; `HarnessEvent` schema; replay tests | REF-001 §2.7-2.9; REF-002 K-EVENT-4; REF-003 §8.4/§19.3; REF-006 FR-072-FR-074/FR-121 |
-| RB-PERMISSION | Permission decisions | Tool and runtime permissions are structured, persisted, and deny-first. | `ChiralityPermissionOverlay`; `HarnessPermissionDecision`; `tool.permission` events | REF-002 K-PERM-1/K-PERM-3; REF-003 §15; REF-004 §8; REF-006 FR-087-FR-092 |
+| RB-PERMISSION | Permission decisions | Tool and runtime permissions are structured, persisted, and governed by capability-forward policy with explicit hard-deny precedence. | `ChiralityPermissionOverlay`; `HarnessPermissionDecision`; `tool.permission` events | REF-002 K-PERM-1/K-PERM-3; REF-003 §15; REF-004 §8; REF-006 FR-087-FR-092 |
 | RB-FILESYSTEM | Filesystem writes and roots | Writes must stay inside the active project root and must not mutate instruction-root assets. | Path containment helpers; `PreToolUse` hooks; MCP wrappers; symlink write rejection | REF-001 §2.7/§5; REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097 |
 | RB-LIFECYCLE | Deliverable lifecycle and gates | `_STATUS.md` is canonical and human gates are non-delegable. | Status parser; status transition API/MCP; approval SHA checks for human-gate states | REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-003 lifecycle sections; REF-001 §3 |
 | RB-TRANSCRIPT | SDK transcript separation | SDK transcripts are secondary and must not displace the Chirality audit mirror. | SDK session linkage metadata; local `SessionStore`/`CLAUDE_CONFIG_DIR` where reliable; residual-risk register entry when default SDK paths remain | REF-001 §2.8-2.10; REF-002 K-SDK-3; REF-003 §8.4/§12.4; REF-006 FR-118/FR-121/KG-024 |
@@ -57,7 +57,7 @@
 | RB-TOOL-SURFACE | Tool exposure | Tool availability must be deterministic and permission-filtered; `allowedTools` alone is not a restriction boundary. | Tool resolver; `disallowedTools`; mode policy; `canUseTool`; hooks; tests | REF-002 K-TOOL-1/K-TOOL-2/K-PERM-3; REF-003 §14.3; REF-006 FR-078-FR-083/KG-023 |
 | RB-HOOKS | Hook lifecycle and fail-closed behavior | Hook failures block write, shell, domain, and subagent actions. | SDK hook callbacks mapped through Chirality hooks; hook events; failure triage | REF-002 K-HOOK-1; REF-003 §15.2; REF-004 §8.5; REF-006 FR-093-FR-095 |
 | RB-REDACTION | Secrets and sensitive runtime records | API keys and secret variants must not be persisted in logs, events, SDK transcripts if avoidable, or tool artifacts. | SafeStorage/env precedence; redaction helper; run logger tests; event/log redaction | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 |
-| RB-FALLBACK | SDK fallback | A governed fallback/custom-runtime path remains necessary if an SDK behavior cannot satisfy a critical boundary. | R0/R1 SDK probe; fallback criteria; conformance suite; reliance-boundary register residual-risk entries | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 |
+| RB-FALLBACK | SDK fallback | A governed fallback/custom-runtime path remains necessary if an SDK behavior cannot satisfy a critical boundary. | R0/R1 first-adapter probe; fallback criteria; conformance suite; reliance-boundary register residual-risk entries | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 |
 
 ## Conditions
 
@@ -99,7 +99,7 @@
 | Exact enforcement file paths | `TBD` where runtime modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
 | Exact validation file/test names | Candidate Section 9 IDs are listed; implementation IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
 | PRD-derived rows | May be drafted from accessible `docs/PRD.md` with visible HASH_MISMATCH warning. | Human/source-owner reconciliation of REF-006 expected hash or accepted current PRD content. |
-| SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted SDK probe result naming transcript placement or mirroring policy. |
+| SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted first-adapter probe result naming transcript placement or mirroring policy. |
 
 ### Candidate Validation Index
 
@@ -112,7 +112,7 @@
 | `section9.reliance_boundary_register` | All register rows |
 | `section9.settingsources_isolation` | RB-SETTINGS |
 | `section9.sdk_session_link_resume` | RB-TRANSCRIPT |
-| `section9.permission_overlay_deny_first` | RB-PERMISSION, RB-TOOL-SURFACE |
+| `section9.permission_overlay_hard_deny_precedence` | RB-PERMISSION, RB-TOOL-SURFACE |
 | `section9.tool_runtime_read_file` | RB-TOOL-SURFACE, RB-FILESYSTEM |
 | `section9.chirality_mcp_status_dependencies` | RB-LIFECYCLE, RB-TOOL-SURFACE |
 | `section9.path_containment_hook` | RB-FILESYSTEM, RB-HOOKS |

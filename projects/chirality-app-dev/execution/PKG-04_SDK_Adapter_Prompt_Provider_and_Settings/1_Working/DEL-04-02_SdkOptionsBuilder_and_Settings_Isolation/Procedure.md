@@ -9,7 +9,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 | Prerequisite | Status | Source |
 |---|---|---|
 | Accepted deliverable scope for DEL-04-02 | Available in decomposition and `_CONTEXT.md` | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-04-02 |
-| SDK probe/version decision | TBD; required before final exact SDK TypeScript option fields are frozen | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
+| first-adapter probe/version decision | TBD; required before final exact SDK TypeScript option fields are frozen | `docs/PLAN.md` R0; `docs/PRD.md` KG-021, HASH_MISMATCH |
 | Runtime engine contract integration point | TBD; adjacent deliverables define `AgentEnginePort`, `TurnEngine`, and conformance suite | `docs/CONTRACT.md` K-ENGINE-1; `docs/PRD.md` Section 8.12, HASH_MISMATCH |
 | Persona composer output contract | TBD; DEL-04-04 owns prompt composition | `_CONTEXT.md`; `execution/_Decomposition/...` DEL-04-04 |
 | Permission overlay policy inputs | TBD; PKG-06 owns full overlay and hooks, but this builder must accept policy posture | `_CONTEXT.md` ContextEnvelopeNotes; `docs/PLAN.md` R2 |
@@ -26,7 +26,7 @@ Define the operational steps to produce and verify the `SdkOptionsBuilder` featu
 2. Define the builder input shape.
    - Include session/runtime state needed for model, tools, max turns, mode, persona, hooks, MCP servers, subagents, resume/session linkage, and settings policy.
    - Reference or import adjacent owner contracts for persona output, session linkage, hooks, MCP server descriptors, subagent descriptors, permission policy, and settings policy when those contracts exist.
-   - Mark exact TypeScript API names as TBD until SDK probe/version evidence is accepted.
+   - Mark exact TypeScript API names as TBD until first-adapter probe/version evidence is accepted.
 
 3. Implement deterministic fallback resolution.
    - Resolve model, tools, and max turns using `docs/SPEC.md` Section 13.1.
@@ -103,6 +103,6 @@ Expected implementation records:
 - Max-turn propagation tests.
 - Unknown option warning tests.
 - Targeted test command or validation suite, currently TBD until implementation path exists.
-- SDK probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.
+- first-adapter probe/version evidence from DEL-04-01 before exact SDK option fields are treated as final.
 - Terminal max-turn runtime/event handoff fixture owner, currently TBD and likely adjacent to DEL-04-03 or DEL-03-02 pending accepted contract.
 - Any unresolved `TBD`, `ASSUMPTION`, or conflict entries carried forward for human or upstream-agent ruling.

@@ -89,7 +89,7 @@ For each boundary row:
    - `section9.reliance_boundary_register`
    - `section9.settingsources_isolation`
    - `section9.sdk_session_link_resume`
-   - `section9.permission_overlay_deny_first`
+   - `section9.permission_overlay_hard_deny_precedence`
    - `section9.tool_runtime_read_file`
    - `section9.chirality_mcp_status_dependencies`
    - `section9.path_containment_hook`
@@ -165,4 +165,4 @@ For each boundary row:
 |---|---|---|
 | BLK-RBR-001 | `docs/PRD.md` hash mismatch | Human/source owner must reconcile expected hash or approve the current PRD as accepted source. |
 | BLK-RBR-002 | Exact implementation surfaces not yet complete | Downstream runtime implementation deliverables must fill file paths and tests. |
-| BLK-RBR-003 | SDK transcript and settings behavior require empirical probe | R0/R1 SDK probe and validation must confirm behavior before final acceptance. |
+| BLK-RBR-003 | SDK transcript and settings behavior require empirical probe | R0/R1 first-adapter probe and validation must confirm behavior before final acceptance. |

@@ -21,7 +21,7 @@ Define the operational steps to produce and verify the Section 9 runtime validat
    - `section9.runtime_engine_contract`: engine conformance and product-owned boundary checks.
    - `section9.sdk_turn_engine_event_log`, `section9.sdk_message_mapper`, `section9.session_event_replay`: event schema, mapper, append/replay, and transcript non-authority checks.
    - `section9.settingsources_isolation`: shipped settings-source posture check.
-   - `section9.permission_overlay_deny_first`: deny-first and `allowedTools` non-boundary checks.
+   - `section9.permission_overlay_hard_deny_precedence`: capability-forward policy with explicit hard-deny precedence and `allowedTools` non-boundary checks.
    - `section9.tool_runtime_read_file` and `section9.chirality_mcp_status_dependencies`: tool exposure and MCP wrapper checks.
    - `section9.path_containment_hook` and `section9.instruction_root_protection_hook`: hook/path checks.
    - `section9.tool_result_budget`: inline/preview/artifact/redaction check.

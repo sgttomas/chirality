@@ -18,12 +18,12 @@
 
 | Attribute | Value | Source |
 |---|---|---|
-| Primary scope | Add runtime validation IDs for engine contract, SDK mapper, event log, settings isolation, permissions, MCP, hooks, compaction, and subagents. | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-09-02 |
+| Primary scope | Add runtime validation IDs for provider-adapter conformance, first-adapter mapper, event log, settings isolation, permissions, MCP, hooks, compaction, and subagents. | `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-09-02 |
 | Anticipated artifacts | Section 9 validation IDs; harness runner updates; summary schema. | `_CONTEXT.md`; decomposition DEL-09-02 |
 | Covered SOW items | SOW-036, SOW-037, SOW-039, SOW-045, SOW-054, SOW-057, SOW-063. | `_CONTEXT.md`; decomposition DEL-09-02 |
 | Supported objectives | OBJ-002, OBJ-003, OBJ-005, OBJ-007, OBJ-008. | `_CONTEXT.md`; decomposition DEL-09-02 |
 | Baseline validation context | Section 8 validation already covers server reachability, session CRUD, boot error taxonomy, stream ordering, session persistence/resume, permission markers, interrupts, and SDK-native stream handling. | `docs/PRD.md` Section 12.3; `docs/SPEC.md` Section 19.2 |
-| Section 9 validation ID source list | `section9.runtime_engine_contract`, `section9.sdk_turn_engine_event_log`, `section9.sdk_message_mapper`, `section9.session_event_replay`, `section9.reliance_boundary_register`, `section9.settingsources_isolation`, `section9.sdk_session_link_resume`, `section9.permission_overlay_deny_first`, `section9.tool_runtime_read_file`, `section9.chirality_mcp_status_dependencies`, `section9.path_containment_hook`, `section9.instruction_root_protection_hook`, `section9.tool_result_budget`, `section9.context_compaction_boundary`, `section9.subagent_governance_hook`, `section9.domain_profile_validation`. | `docs/PRD.md` Section 12.4; `docs/SPEC.md` Section 19.3 |
+| Section 9 validation ID source list | `section9.runtime_engine_contract`, `section9.sdk_turn_engine_event_log`, `section9.sdk_message_mapper`, `section9.session_event_replay`, `section9.reliance_boundary_register`, `section9.settingsources_isolation`, `section9.sdk_session_link_resume`, `section9.permission_overlay_hard_deny_precedence`, `section9.tool_runtime_read_file`, `section9.chirality_mcp_status_dependencies`, `section9.path_containment_hook`, `section9.instruction_root_protection_hook`, `section9.tool_result_budget`, `section9.context_compaction_boundary`, `section9.subagent_governance_hook`, `section9.domain_profile_validation`. | `docs/PRD.md` Section 12.4; `docs/SPEC.md` Section 19.3 |
 
 ## Conditions
 
@@ -48,7 +48,7 @@
 
 | RefID | Source | Notes |
 |---|---|---|
-| REF-001 | `docs/DIRECTIVE.md` | Runtime events, reliance boundaries, SDK boundary posture, deny-first and MCP constraints. |
+| REF-001 | `docs/DIRECTIVE.md` | Runtime events, reliance boundaries, SDK boundary posture, capability-forward policy with explicit hard-deny precedence and MCP constraints. |
 | REF-002 | `docs/CONTRACT.md` | Invariants for engine, events, permissions, MCP, hooks, paths, and subagents. |
 | REF-003 | `docs/SPEC.md` | Runtime event schema, engine contract, MCP names, hook rules, Section 9 IDs. |
 | REF-004 | `docs/TYPES.md` | HarnessEvent target, MCP names, hook terms, Section 9 vocabulary. |

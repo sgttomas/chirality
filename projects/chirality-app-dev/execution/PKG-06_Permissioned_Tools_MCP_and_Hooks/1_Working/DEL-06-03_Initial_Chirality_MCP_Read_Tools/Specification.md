@@ -46,7 +46,7 @@ Out of scope:
 |---|---|---|
 | SDK tool surface and Chirality MCP contract | Governs tool naming, initial tool set, deterministic ordering, and tool-surface rules. | `docs/SPEC.md` Section 14 |
 | Permission modes and hooks | Governs readOnly, workspaceWrite, dontAsk, ask, and bypass mapping to overlay policy. | `docs/SPEC.md` Section 15 |
-| Permission/tool/MCP invariants | Binding constraints for deny-first behavior, tool exposure, and MCP wrapper enforcement. | `docs/CONTRACT.md` Section 1.6 |
+| Permission/tool/MCP invariants | Binding constraints for explicit hard-deny precedence, tool exposure, and MCP wrapper enforcement. | `docs/CONTRACT.md` Section 1.6 |
 | Lifecycle/dependency invariants | Binding constraints for `_STATUS.md`, dependency truth, provenance, and no-invention posture. | `docs/CONTRACT.md` Section 1.7 |
 | Permission and tool vocabulary | Defines permission modes, decision records, tool-surface terms, and MCP names. | `docs/TYPES.md` Section 8 |
 | R2 roadmap sequence | Requires permission-gated read surface and first MCP tools before write/bash expansion. | `docs/PLAN.md` R2; `docs/PRD.md` roadmap row R2 |

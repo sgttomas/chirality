@@ -46,7 +46,7 @@ This procedure describes how to produce and verify the DEL-06-04 write/edit surf
 
 5. Connect permission and hook decisions.
    - Feed DEL-06-01 permission overlay results into the write/edit gate.
-   - Apply deny-overrides-allow when SDK options, mode, operator intent, or `allowedTools` conflict with Chirality policy or hook denial.
+   - Apply explicit hard-deny precedence when SDK options, mode, operator intent, or `allowedTools` conflict with Chirality policy or hook denial.
    - Do not rely on `allowedTools` alone as a restriction boundary.
 
 6. Execute controlled mutation only after gates pass.

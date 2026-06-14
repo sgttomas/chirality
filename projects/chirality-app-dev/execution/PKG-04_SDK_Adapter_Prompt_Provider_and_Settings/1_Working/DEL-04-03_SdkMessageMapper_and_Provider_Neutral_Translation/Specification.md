@@ -38,7 +38,7 @@ Out of scope:
 | DEL-04-03-REQ011 | The mapper MUST preserve route and SSE compatibility during SDK adoption. | Integration or adapter tests assert existing route event shapes remain readable by the UI. |
 | DEL-04-03-REQ012 | Runtime event outputs MUST be compatible with redaction policy; secrets and API key material must not be emitted by mapper outputs. | Redaction fixture tests include SDK error/tool payload examples and assert configured secret variants are absent. |
 | DEL-04-03-REQ013 | The mapper MUST expose enough terminal outcome information for success, failure, interruption, and cancellation to be persisted by the runtime event log, but it MUST NOT own upstream `TurnEngine` lock cleanup, cancellation-source classification, or accepted-turn persistence semantics. | Unit tests cover mapper-owned terminal inputs and resulting `turn.completed`, `turn.failed`, or `turn.cancelled` style outputs; integration/conformance tests owned by `TurnEngine` prove accepted-turn persistence, interrupt/cancel cleanup, and terminal durability. |
-| DEL-04-03-REQ014 | ASSUMPTION: Exact SDK message payload fixtures will be derived from the DEL-04-01 SDK probe; until then, exact payload-field mappings remain `TBD`. | Open test fixture list references OI-001. |
+| DEL-04-03-REQ014 | ASSUMPTION: Exact SDK message payload fixtures will be derived from the DEL-04-01 first-adapter probe; until then, exact payload-field mappings remain `TBD`. | Open test fixture list references OI-001. |
 
 ## Standards
 
@@ -48,7 +48,7 @@ Out of scope:
 | Browser SSE event contract | UI mapping must preserve stable browser event names during SDK adoption. | REF-003 Section 11; REF-004 Section 7.4 |
 | `HarnessEvent` target type | Runtime mapping must emit versioned, canonical Chirality events. | REF-004 Section 7.3; REF-003 Section 10 |
 | SDK adapter vocabulary boundary | SDK terms remain adapter-boundary metadata. | REF-004 Section 9 |
-| PRD FR-074 / FR-116 / FR-083 | Event separation, deterministic SDK message mapping, and SDK model/tool loop mirroring. | REF-006 Section 8.12 and 8.13, HASH_MISMATCH warning applies |
+| PRD FR-074 / FR-116 / FR-083 | Event separation, deterministic Provider/SDK message mapping, and SDK model/tool loop mirroring. | REF-006 Section 8.12 and 8.13, HASH_MISMATCH warning applies |
 | Section 9 validation IDs | Runtime validation should include `section9.sdk_message_mapper`. | REF-003 Section 19.3 |
 
 ## Verification
@@ -59,7 +59,7 @@ Out of scope:
 | Runtime event schema | Schema tests for `HarnessEvent` output fields and category values. | TBD implementation |
 | Determinism | Same SDK fixture sequence produces same ordered UI/runtime event outputs. | TBD implementation |
 | Provider-neutral leakage | Tests fail on unapproved SDK-shaped top-level fields, public event names, or canonical event types. | TBD implementation |
-| Probe-backed SDK categories | Fixtures populated from DEL-04-01 SDK probe for exact message sequence and payloads. | BLOCKED/TBD by OI-001 |
+| Probe-backed SDK categories | Fixtures populated from DEL-04-01 first-adapter probe for exact message sequence and payloads. | BLOCKED/TBD by OI-001 |
 | Redaction compatibility | Mapper output examples exclude API keys and configured secret variants. | TBD implementation |
 | Conformance integration | Engine conformance suite includes mapper coverage before SDK-backed adapter becomes production default. | TBD implementation |
 | Terminal boundary ownership | Mapper unit tests verify translation from supported terminal SDK/runtime inputs to Chirality terminal event categories; `TurnEngine` integration/conformance tests verify cancellation source, client disconnect cleanup, accepted-turn survival, and durable terminal persistence. | TBD implementation; source-supported by REF-002 K-EVENT-2/K-EVENT-3, REF-003 Sections 9-10, REF-005 R1 acceptance, and REF-006 FR-022/FR-123; REF-006 HASH_MISMATCH warning applies |

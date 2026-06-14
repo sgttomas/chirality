@@ -31,7 +31,7 @@ Sources: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 8.11-8.16 and 1
 | Trade-off | Guidance |
 |---|---|
 | Broad matrix vs focused regression cases | Favor source-mapped regression cases for the named DEL-09-03 behaviors. Exhaustive cross-product matrices can be deferred unless a source requirement demands them. |
-| Mocked engine vs real SDK adapter | Use stubs for deterministic product-owned contract tests; use SDK-backed adapter tests only where the source requirement is adapter conformance or SDK message mapping. |
+| Mocked engine vs real SDK adapter | Use stubs for deterministic product-owned contract tests; use SDK-backed adapter tests only where the source requirement is adapter conformance or Provider/SDK message mapping. |
 | API route tests vs service tests | Keep route tests focused on request validation, locking, SSE encoding, cleanup, and stable shape. Put runtime policy assertions in TurnEngine/permission/event tests. |
 | Current behavior vs future phase behavior | Tests for future phase behavior should be pending/TBD or fixture-ready until the corresponding implementation deliverable lands. |
 | Minimum coverage vs unavailable surfaces | Require one implemented or explicitly deferred test decision for each DEL-09-03 behavior group, but keep future-phase surfaces marked `TBD` until the owning implementation exists. |

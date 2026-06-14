@@ -18,7 +18,7 @@ This specification covers the content and verification expectations for `docs/ha
 ### Out of Scope
 
 - Implementing `AgentEnginePort`, `TurnEngine`, `SdkOptionsBuilder`, permission overlay, MCP tools, hooks, event store, or subagent bridge.
-- Claiming acceptance of unresolved SDK probe items.
+- Claiming acceptance of unresolved first-adapter probe items.
 - Treating `docs/PRD.md` as hash-verified accepted truth while its `_REFERENCES.md` status is `HASH_MISMATCH`.
 - Issuing professional approval or external validation.
 
@@ -35,7 +35,7 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-007 | SDK transcripts shall be treated as secondary resume/debug artifacts unless explicitly imported into `HarnessEvent` form. | REF-001 §2.7-2.10; REF-002 K-SDK-3; REF-003 §8.4; REF-006 FR-121/KG-024 | Transcript-linkage tests; register residual risk where default SDK paths remain. |
 | RBR-008 | Shipped SDK options shall use `settingSources: []`; `user` and `local` setting sources shall not be used in shipped builds. | REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022 | `section9.settingsources_isolation`; release verification. |
 | RBR-009 | Permission decisions shall be structured, persisted, and recorded as `allow`, `deny`, or application-level `ask`. | REF-004 §8.2; REF-006 FR-087/FR-092; SOW-054 | `tool.permission` event tests; permission decision schema tests. |
-| RBR-010 | Deny rules shall override all allow decisions, including persona/session/operator allows and developer-local bypass. | REF-002 K-PERM-1; REF-006 FR-089 | `section9.permission_overlay_deny_first`; targeted deny precedence tests. |
+| RBR-010 | Deny rules shall override all allow decisions, including persona/session/operator allows and developer-local bypass. | REF-002 K-PERM-1; REF-006 FR-089 | `section9.permission_overlay_hard_deny_precedence`; targeted deny precedence tests. |
 | RBR-011 | `allowedTools` alone shall not be treated as a restriction boundary. | REF-002 K-PERM-3; REF-003 §14.3; REF-006 FR-081/KG-023 | SDK options builder tests showing restriction requires deny/mode/hook/callback policy. |
 | RBR-012 | Filesystem write/edit behavior shall enforce active project-root containment, instruction-root protection, and initial symlink write rejection. | REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097 | `section9.path_containment_hook`; `section9.instruction_root_protection_hook`; write/edit tests. |
 | RBR-013 | Hook denials and hook failures shall fail closed for write, shell, domain, and subagent actions. | REF-002 K-HOOK-1; REF-003 §15.2; REF-006 FR-093-FR-095 | Hook lifecycle tests; denied action must not execute. |
@@ -45,7 +45,7 @@ This specification covers the content and verification expectations for `docs/ha
 | RBR-017 | `_STATUS.md` shall remain the canonical lifecycle state file and human-gate transitions shall require human evidence. | REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-001 §3 | Status transition API/MCP tests; approval SHA checks. |
 | RBR-018 | No agent, SDK, tool, runtime event, validator, or domain adapter shall claim to approve, certify, sign, seal, issue, transmit, or externally validate professional work. | REF-001 §3; REF-002 K-AUTH-1/K-PROF-1 | UI/docs copy review; human-gate checklist. |
 | RBR-019 | Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants. | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 | Redaction tests; run logger tests; artifact inspection. |
-| RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 SDK probe review; fallback criteria row in register. |
+| RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 first-adapter probe review; fallback criteria row in register. |
 | RBR-021 | The register shall record the `docs/PRD.md` hash mismatch as source-state warning until the reference hash is reconciled. | `_REFERENCES.md`; user brief | Register metadata includes warning; final acceptance requires human/source hash reconciliation. |
 | RBR-022 | The register shall distinguish hash-verified source support from warning-limited REF-006 PRD support in row-level source traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows preserve the HASH_MISMATCH warning or cite reconciliation evidence. |
 | RBR-023 | Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125 | Generated register review includes explicit `PromptOnlyAllowed=NO`, `SDKDefaultOnlyAllowed=NO`, and non-empty enforcement-surface evidence for every P0 row. |
@@ -85,7 +85,7 @@ The final work package should include:
 - `docs/harness/reliance_boundary_register.md`
 - enforcement matrix
 - test index keyed to Section 9 validation IDs and other implementation checks
-- residual-risk notes for unresolved SDK probe findings
+- residual-risk notes for unresolved first-adapter probe findings
 - source-state warning for `docs/PRD.md` until the hash mismatch is reconciled
 
 ## Open Items

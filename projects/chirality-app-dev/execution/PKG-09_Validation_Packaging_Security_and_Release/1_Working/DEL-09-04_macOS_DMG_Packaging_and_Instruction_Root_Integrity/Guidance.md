@@ -9,7 +9,7 @@ This deliverable makes release packaging explicit and repeatable for the current
 - Treat `desktop:dist` as release-significant. `docs/CONTRACT.md` K-VALIDATE-1 includes `desktop:dist` among checks required before release-significant changes are accepted.
 - Keep the release target narrow. `docs/PRD.md` KG-014 and decomposition SOW-078 make Windows/Linux packaging out of scope without amendment.
 - Treat instruction-root resources as package blockers. `docs/SPEC.md` Section 1.1 says missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.
-- Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, Anthropic-only network guardrails, and SDK package execution.
+- Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, current shipped Anthropic network guardrails, and SDK package execution.
 - Do not use the PRD hash mismatch as a blocker in this run. The assignment explicitly downgrades REF-006 mismatch to a source warning only; future validation should still resolve or accept the source state.
 
 ## Considerations
@@ -18,7 +18,7 @@ This deliverable makes release packaging explicit and repeatable for the current
 - SDK subprocess packaging is an empirical check. `docs/PRD.md` KG-025 flags potential needs such as `asarUnpack`, signing, environment, or path adjustments; the accepted result must come from a probe or build evidence, not from configuration review alone.
 - The integrity summary path is part of expected packaging evidence: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`.
 - The unsigned/adhoc local-builder DMG posture is acceptable only because `docs/CONTRACT.md` K-RELEASE-1 and `docs/PRD.md` Section 6.2 define that as the current release target. A notarized distribution target would require scope amendment rather than silent tightening of this deliverable.
-- Release evidence should be reviewable without rerunning the build: command transcript, artifact listing or checksum, integrity summary, SDK probe output, and blocker list need stable paths or attachment identifiers.
+- Release evidence should be reviewable without rerunning the build: command transcript, artifact listing or checksum, integrity summary, first-adapter probe output, and blocker list need stable paths or attachment identifiers.
 - `ASSUMPTION: PACKAGE_HEURISTIC` associates OBJ-008 because the decomposition maps this deliverable through PKG-09 and SOW-072/SOW-073, but no human has assigned a hard objective-specific owner.
 
 ## Trade-offs

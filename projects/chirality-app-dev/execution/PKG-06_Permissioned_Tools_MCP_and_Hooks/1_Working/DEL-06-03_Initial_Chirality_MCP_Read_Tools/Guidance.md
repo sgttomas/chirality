@@ -2,7 +2,7 @@
 
 ## Purpose
 
-DEL-06-03 provides the first Chirality-owned in-process MCP read tools so the runtime can expose deterministic project-state operations without opening write, edit, shell, remote MCP, plugin, or domain-operation capability. The deliverable supports OBJ-005 by keeping tool exposure behind deny-first policy and MCP wrappers, and OBJ-006 by reading filesystem-native project truth.
+DEL-06-03 provides the first Chirality-owned in-process MCP read tools so the runtime can expose deterministic project-state operations without opening write, edit, shell, remote MCP, plugin, or domain-operation capability. The deliverable supports OBJ-005 by keeping tool exposure behind capability policy with explicit hard-deny precedence and MCP wrappers, and OBJ-006 by reading filesystem-native project truth.
 
 Source basis: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 6-7 and 9; `docs/PLAN.md` R2; `docs/PRD.md` Sections 8.13-8.14.
 
@@ -20,7 +20,7 @@ Source basis: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2
 
    Tool naming, ordering, server IDs, wrapper metadata, and allow/deny behavior should be table-driven or otherwise stable for a fixed runtime configuration.
 
-4. Deny-first behavior is non-negotiable.
+4. Explicit hard-deny precedence is non-negotiable.
 
    `allowedTools` may auto-approve, but it is not a restriction boundary. Denies from policy, hooks, path containment, governance, SDK deny rules, or human gates must win.
 

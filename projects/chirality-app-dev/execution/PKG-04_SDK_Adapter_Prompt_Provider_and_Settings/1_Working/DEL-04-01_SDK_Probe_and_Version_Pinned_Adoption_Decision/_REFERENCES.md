@@ -1,4 +1,4 @@
-# References: DEL-04-01 SDK Probe and Version-Pinned Adoption Decision
+# References: DEL-04-01 First-Adapter Probe and Version-Pinned Adoption Decision
 
 ## Authoritative Source Corpus
 
