@@ -20,3 +20,4 @@ PHASE2_5_RETRIEVAL_REFRESH,PASS,source_v2 BM25_ONLY rows=12246 dense=deferred,BM
 PHASE2_5_LEDGER_RETRIEVAL_SMOKE,PASS,LEDGER_ATOM query returned accepted Atomic_Domain_Ledger.csv chunks,Confirms accepted Batch 1 atoms are reachable through retrieval filters.
 PHASE2_5_TOC_PRIORS,PASS,cross_source_toc_matrix.csv rows=81 pairs; scope=22 Batch 1 sources,Generated from accepted Batch 1 skeletons for batch-scoped Gate 3 preparation.
 DOMAIN_DECOMP_INTEGRITY_GATE3_ANNEXES,NOT_APPLICABLE,"validate_domain_decomposition_integrity.py reports missing categories, ktys, subjects, objectives, coverage",Expected until Gate 3+ annex/register generation starts; not a Gate 2 or Phase 2.5 blocker.
+PHASE2_BATCH2_SETUP,PASS,BATCH2_AGENT_CONTRACTS_20260614T024251Z; sources=37; dispatch_units=37; briefs=37,Deterministic setup completed; no TASK+domain-source-atomize workers dispatched.

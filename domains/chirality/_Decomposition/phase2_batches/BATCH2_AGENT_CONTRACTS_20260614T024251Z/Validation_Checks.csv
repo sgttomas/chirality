@@ -1,0 +1,9 @@
+CheckID,Status,Evidence,Notes
+GATE1_UPSTREAM,PASS,gate_snapshots/GATE1_20260614T005942Z,"Accepted source set, source-prefix map, dispatch inventory, and SourceRef policy remain upstream truth."
+GATE2_CONTEXT,PASS,gate_snapshots/GATE2_BATCH1_20260614T023234Z,Batch 1 Gate 2 accepted; Batch 2 setup does not consume Batch 1 ledger as full-corpus truth.
+SOURCE_SELECTION,PASS,AGENT_CONTRACTS AtomizeInV1=YES sources=37,Selected coherent agent-contract source group for staged Phase 2 Batch 2.
+BATCH_OVERLAP,PASS,overlap_with_batch1=0,No Batch 2 source appears in Batch 1 source register.
+DISPATCH_UNIT_COUNT,PASS,sources=37 dispatch_units=37,Every selected source has at least one dispatch unit.
+BRIEF_RENDER,PASS,briefs=37,Rendered one INIT-TASK brief per dispatch unit with repo-backed SOURCE_REF_BASE.
+OUTPUT_DIRS_READY,PASS,output_dirs=37 per_source_root=domains/chirality/_Decomposition/per_source_ledgers/BATCH2_AGENT_CONTRACTS_20260614T024251Z vocab_root=domains/chirality/_Decomposition/vocabulary_seeds/BATCH2_AGENT_CONTRACTS_20260614T024251Z,Worker and merge output directories were created locally; empty directories are not committed.
+WORKER_FANOUT_STATUS,NOT_STARTED,no per-unit atom CSVs or vocabulary CSVs created by setup,Explicit authorization is required before TASK+domain-source-atomize fan-out.

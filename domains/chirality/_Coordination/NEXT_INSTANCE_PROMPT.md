@@ -13,6 +13,7 @@
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/_LATEST_GATE2.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z/HANDOFF_STATE.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH1_GATE2.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH2_SETUP.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Validation_Checks.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Open_Issues_Register.csv`
 7. Read the Chirality domain-pack source surfaces:
@@ -25,11 +26,13 @@
 
 ## Active Direction
 
-Continue from accepted Gate 1 and accepted Batch 1 Gate 2.
+Continue from accepted Gate 1, accepted Batch 1 Gate 2, and setup-ready Batch 2.
 
 Gate 2 for `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` is **accepted**. Phase 2.5 source catalog, BM25 retrieval, and TOC-prior refresh are complete.
 
 The accepted Batch 1 ledger is batch-scoped binding-governance decomposition truth for the selected 22 sources only. It is not full-corpus decomposition truth for all 242 manifest sources.
+
+Batch 2 (`BATCH2_AGENT_CONTRACTS_20260614T024251Z`) is **setup ready** for 37 `AGENT_CONTRACTS` sources and 37 dispatch units. No Batch 2 `TASK + domain-source-atomize` workers have been dispatched.
 
 ## Current Accepted Evidence
 
@@ -52,6 +55,7 @@ The accepted Batch 1 ledger is batch-scoped binding-governance decomposition tru
 - Dense embeddings: `DEFERRED`
 - Source-copy policy: `source_files_copied=false`
 - TOC-prior matrix: `domains/chirality/_Decomposition/cross_source_toc_matrix.{md,csv}`
+- Batch 2 setup handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/BATCH2_SETUP.md`
 
 Run this validation first:
 
@@ -98,6 +102,27 @@ Primary Batch 1 outputs:
 - `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 - `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_GATE2_HANDOFF.md`
 
+## Batch 2 Setup State
+
+- batch ID: `BATCH2_AGENT_CONTRACTS_20260614T024251Z`
+- selected source group: `AGENT_CONTRACTS`
+- selected sources: `37`
+- dispatch units: `37`
+- rendered INIT-TASK briefs: `37`
+- atomization worker status: `NOT_STARTED`
+- Gate 2 status: `NOT_OPEN`
+
+Primary Batch 2 setup outputs:
+
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/BATCH2_SETUP.md`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Batch_Source_Register.csv`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Dispatch_Unit_Register.csv`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Validation_Checks.csv`
+- `domains/chirality/_Decomposition/dispatch_briefs/BATCH2_AGENT_CONTRACTS_20260614T024251Z/`
+- `domains/chirality/_Decomposition/dispatch_outputs/BATCH2_AGENT_CONTRACTS_20260614T024251Z/`
+
+Do not run Batch 2 worker fan-out without explicit operator authorization.
+
 ## Source Model
 
 Live repo files are source truth. Do not copy the 242 manifest source files into `_Sources/` as authoritative source snapshots.
@@ -108,11 +133,13 @@ Use `@repo/<RepoRelPath>` provenance for live repo files. Generated skeletons, d
 
 - `OI-005`: full 242-source atomization remains staged/incomplete; Batch 1 covers 22 sources.
 - `OI-007`: accepted Batch 1 atoms do not yet have ratified Category/KTY/Knowledge Subject assignments.
+- `OI-008`: Batch 2 agent-contract setup is ready but worker fan-out has not started.
 
 Next valid DOMAIN_DECOMP actions are either:
 
 - prepare batch-scoped Gate 3 Category/KTY/Knowledge Subject proposal surfaces from the accepted Batch 1 ledger and refreshed retrieval substrate; or
-- stage the next Phase 2 atomization batch if the operator chooses continued source atomization first.
+- run Batch 2 `TASK + domain-source-atomize` fan-out if the operator explicitly authorizes worker execution; or
+- stage a later Phase 2 atomization batch if the operator chooses setup-only continuation.
 
 ## Non-Goals
 
