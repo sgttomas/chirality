@@ -21,49 +21,73 @@
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/domain-pack.yaml`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Sources/SOURCE_BOUNDARY.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Sources/Source_Manifest.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Source_Decomp_Prefix_Map.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/_LATEST.md`
 8. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
 
-Continue from accepted Gate 1, accepted Batch 1 Gate 2, and setup-ready Batch 2.
+Continue from accepted Batch 1 Gate 2, but treat it as prior-boundary evidence for active reuse until the source-boundary amendment is accepted or Batch 1 is rebaselined.
 
-Gate 2 for `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` is **accepted**. Phase 2.5 source catalog, BM25 retrieval, and TOC-prior refresh are complete.
+Source-boundary cleanup has retired 21 rows from active V1 indexing and atomization:
 
-The accepted Batch 1 ledger is batch-scoped binding-governance decomposition truth for the selected 22 sources only. It is not full-corpus decomposition truth for all 242 manifest sources.
+- `SRC-FRONTEND-*` / `HX001`..`HX009` for `frontend/README.md` and `frontend/docs/...`.
+- `SRC-AGENTS-AGENT-DELIVERABLE-TASK` / `AG013`, because `agents/AGENT_DELIVERABLE_TASK.md` was archived as obsolete.
+- `SRC-CLAUDE` / `RT003`, `SRC-INIT` / `RT004`, and `SRC-DOCS-*` / `DG001`..`DG009` for eleven root/governance sources whose live repo files are now archived or removed.
 
-Batch 2 (`BATCH2_AGENT_CONTRACTS_20260614T024251Z`) is **setup ready** for 37 `AGENT_CONTRACTS` sources and 37 dispatch units. No Batch 2 `TASK + domain-source-atomize` workers have been dispatched.
+Current active manifest:
 
-## Current Accepted Evidence
+- Active rows: `221`
+- SHA-256: `acd2fd88ff66be89b33d5cde05ab15cbcb584adea2fd25e661d9ea9eb0f64b04`
+- Retired prefixes reserved in `Source_Decomp_Prefix_Map.csv`: `AG013`, `HX001`..`HX009`, `RT003`, `RT004`, `DG001`..`DG009`
+- Batch 0 generated companion files for retired frontend/AG013 rows were removed.
+- Prior-boundary Batch 1 companions for the eleven newly retired sources were retained as historical evidence; prefix-map active companion paths were cleared.
+- Batch 2 was regenerated as `BATCH2_AGENT_CONTRACTS_20260614T032003Z`, excluding retired `AG013`; fan-out/fan-in is complete and Gate 2 is open.
 
-- Gate 1 acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`
-- Gate 2 acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z/`
-- Source manifest: `domains/chirality/_Sources/Source_Manifest.csv`
-- Source manifest SHA-256: `f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1`
-- Accepted Batch 1 partial ledger: `domains/chirality/_Decomposition/Atomic_Domain_Ledger.csv`
-- Accepted Batch 1 partial ledger SHA-256: `ce781347e9417577127251a7ce713b1cfd9e3b7d27b54c98b270a775d1cf5bf8`
-- Accepted vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
-- Accepted vocabulary map SHA-256: `a428b77b2b2bcbe60500f6f91fffdf4543d84a9f8d886d32d43d7be23b3dc98e`
-- Current source catalog snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T023650Z`
-- Catalog schema: `chirality-source-db/v2`
-- Source docs: `242`
-- Artifacts: `485`
-- Chunks: `12246`
-- Chunk types: `MARKDOWN_SECTION=4523`, `SECTION_NODE=4449`, `LEDGER_ATOM=3274`
-- Retrieval index status: `BM25_ONLY`
-- Retrieval rows: `12246`
-- Dense embeddings: `DEFERRED`
-- Source-copy policy: `source_files_copied=false`
-- TOC-prior matrix: `domains/chirality/_Decomposition/cross_source_toc_matrix.{md,csv}`
-- Batch 2 setup handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/BATCH2_SETUP.md`
+Gate 2 for `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` remains **accepted** for its original 22-source binding-governance scope, but 11 of those sources are now retired from active V1. Do not use the accepted Batch 1 ledger for active Gate 3 or downstream closure without explicit carry-forward or a rebaseline.
 
-Run this validation first:
+The previous Batch 2 setup package `BATCH2_AGENT_CONTRACTS_20260614T024251Z` is **superseded stale evidence** because it selected retired `AG013`. Use only `BATCH2_AGENT_CONTRACTS_20260614T032003Z` for Batch 2 review. Do not promote Batch 2 atoms to accepted decomposition truth until Gate 2 is human-accepted.
+
+## Current Validation State
+
+The source catalog and BM25 retrieval index were rebuilt after Batch 2 atom-review section-node refresh:
+
+- Latest source catalog: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T050727Z`
+- `validate_source_database.py`: `PASS` with 0 blockers and 0 warnings
+- Source docs: `232`
+- Artifacts: `454`
+- Chunks: `11652`
+- Retrieval: `BM25_ONLY`, rows `11652`
+- Smoke query `derivative-package rule`: rank 1 `SRC-AGENTS` section node
+
+Important warning: source catalog validation is structural. The catalog still contains retained Batch 1 prior-boundary ledger/section companions that reference the eleven newly retired sources. Batch 2 also remains unaccepted at Gate 2. This is intentional evidence retention and review staging, not current active-boundary closure.
+
+## Rebuild Commands
+
+Rebuild the source catalog when the source boundary or companions change:
+
+```sh
+python3 tools/source_catalog/build_source_database.py \
+  --domain-root domains/chirality \
+  --repo-root . \
+  --source-manifest domains/chirality/_Sources/Source_Manifest.csv
+```
+
+Then validate:
 
 ```sh
 python3 tools/source_catalog/validate_source_database.py \
   --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
   --domain-root domains/chirality \
   --repo-root .
+```
+
+Then rebuild BM25 retrieval:
+
+```sh
+python3 tools/retrieval/build_source_index.py \
+  --snapshot domains/chirality/_LocalIndexes/_LATEST.md \
+  --no-embeddings
 ```
 
 Then confirm the smoke query if retrieval will be used:
@@ -75,85 +99,83 @@ python3 tools/retrieval/query_source_index.py \
   --k 1
 ```
 
-Expected rank 1 result: `@repo/AGENTS.md`.
+Expected rank 1 result is `SRC-AGENTS` / `@repo/AGENTS.md`.
 
 ## Batch 1 Accepted State
 
 - batch ID: `BATCH1_BINDING_GOVERNANCE_20260614T011101Z`
 - selected sources: `22`
 - dispatch units: `22`
-- raw worker atom rows: `3276`
 - merged atom rows: `3274`
-- deduped duplicate hash rows: `2`
 - IN rows after merge: `3262`
 - OUT rows after merge: `12`
 - TBD rows after merge: `0`
 - merged vocabulary terms: `670`
-- atom-review HTML files: `22`
 - Gate 2 status: `ACCEPTED`
-- Phase 2.5 status: `COMPLETE`
+- Phase 2.5 status: `PASS_WITH_PRIOR_BOUNDARY_WARNING`
+- active reuse status: `BLOCKED_BY_OI_012` until carry-forward or rebaseline is accepted.
 
-Primary Batch 1 outputs:
+Primary Batch 1 outputs remain:
 
-- `domains/chirality/_Decomposition/dispatch_outputs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
-- `domains/chirality/_Decomposition/per_source_ledgers/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
-- `domains/chirality/_Decomposition/vocabulary_seeds/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
 - `domains/chirality/_Decomposition/Atomic_Domain_Ledger.csv`
 - `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 - `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_GATE2_HANDOFF.md`
 
-## Batch 2 Setup State
+## Batch 2 State
 
-- batch ID: `BATCH2_AGENT_CONTRACTS_20260614T024251Z`
-- selected source group: `AGENT_CONTRACTS`
-- selected sources: `37`
-- dispatch units: `37`
-- rendered INIT-TASK briefs: `37`
-- atomization worker status: `NOT_STARTED`
-- Gate 2 status: `NOT_OPEN`
+- batch ID: `BATCH2_AGENT_CONTRACTS_20260614T032003Z`
+- selected sources: `36` active `AGENT_CONTRACTS` rows
+- excluded retired source: `SRC-AGENTS-AGENT-DELIVERABLE-TASK` / `AG013`
+- dispatch units: `36`
+- rendered INIT-TASK briefs: `36`
+- per-unit atom CSVs: `36`
+- per-unit vocabulary CSVs: `36`
+- raw worker atom rows: `7772` (`IN=7760`, `OUT=4`, `TBD=8`)
+- per-source ledgers: `36`
+- merged atom rows: `7770` (`IN=7758`, `OUT=4`, `TBD=8`)
+- merged vocabulary terms: `968` (`137` multi-source)
+- atom-review HTML files: `36`
+- Gate 2 status: `OPEN_HUMAN_REVIEW_REQUIRED`
 
-Primary Batch 2 setup outputs:
+Primary Batch 2 outputs:
 
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/BATCH2_SETUP.md`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Batch_Source_Register.csv`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Dispatch_Unit_Register.csv`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T024251Z/Validation_Checks.csv`
-- `domains/chirality/_Decomposition/dispatch_briefs/BATCH2_AGENT_CONTRACTS_20260614T024251Z/`
-- `domains/chirality/_Decomposition/dispatch_outputs/BATCH2_AGENT_CONTRACTS_20260614T024251Z/`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_SETUP.md`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_ATOMIZATION_HANDOFF.md`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/Dispatch_Run_Log.csv`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_Atomic_Domain_Ledger.csv`
+- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_Vocabulary_Map.csv`
+- `domains/chirality/_Decomposition/dispatch_outputs/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
+- `domains/chirality/_Decomposition/per_source_ledgers/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
+- `domains/chirality/_Decomposition/vocabulary_seeds/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
 
-Do not run Batch 2 worker fan-out without explicit operator authorization.
-
-## Source Model
-
-Live repo files are source truth. Do not copy the 242 manifest source files into `_Sources/` as authoritative source snapshots.
-
-Use `@repo/<RepoRelPath>` provenance for live repo files. Generated skeletons, dispatch plans, minimal asset manifests, section-node CSVs, review HTML, telemetry, ledgers, vocabulary maps, source catalogs, retrieval indexes, and TOC-prior matrices are derivative or companion artifacts, not source truth.
+Gate 2 remains open until the human explicitly confirms: “The Batch 2 atom boundaries, IN/OUT/TBD classifications, source bindings, and vocabulary choices are accepted as decomposition truth for the active 36-source agent-contract batch.”
 
 ## Open Work
 
-- `OI-005`: full 242-source atomization remains staged/incomplete; Batch 1 covers 22 sources.
-- `OI-007`: accepted Batch 1 atoms do not yet have ratified Category/KTY/Knowledge Subject assignments.
-- `OI-008`: Batch 2 agent-contract setup is ready but worker fan-out has not started.
+- `OI-005`: active-manifest atomization remains staged/incomplete; active manifest is 221 rows, Batch 1 is prior-boundary accepted, and Batch 2 is complete but unaccepted.
+- `OI-007`: Batch 1 Gate 3 is blocked by the prior-boundary issue.
+- `OI-009`: source-boundary amendment retires 21 rows after Gate 1 accepted the prior 242-row manifest.
+- `OI-012`: 11 accepted Batch 1 sources are retired from active V1; explicit carry-forward or rebaseline is required before active Batch 1 reuse.
+- `OI-013`: Batch 2 Gate 2 human review is required before its 7770 merged atom rows and 968 vocabulary terms become accepted decomposition truth.
 
-Next valid DOMAIN_DECOMP actions are either:
+Closed by the latest pass:
 
-- prepare batch-scoped Gate 3 Category/KTY/Knowledge Subject proposal surfaces from the accepted Batch 1 ledger and refreshed retrieval substrate; or
-- run Batch 2 `TASK + domain-source-atomize` fan-out if the operator explicitly authorizes worker execution; or
-- stage a later Phase 2 atomization batch if the operator chooses setup-only continuation.
+- `OI-008`: stale 37-source Batch 2 setup was superseded by regenerated 36-source setup.
+- `OI-011`: retired AG013 is excluded from active Batch 2 and no AG013 output is used by the active merge.
 
 ## Non-Goals
 
 Do not start with:
 
-- treating Batch 1 partial `Atomic_Domain_Ledger.csv` as full-corpus truth;
-- dense embedding build as a prerequisite;
+- treating Batch 1 partial `Atomic_Domain_Ledger.csv` or unaccepted Batch 2 batch-scoped ledgers as full-corpus truth;
+- running Batch 2 workers from the superseded stale 37-source setup;
 - copying live repo source files into `_Sources/` as authoritative source truth;
-- final full-corpus Category, KTY, Knowledge Subject, or Atomic Domain Ledger truth;
+- admitting `.archive/`, `projects/`, `examples/`, or generated export staging as replacement source truth without explicit source-boundary acceptance;
+- dense embedding build as a prerequisite;
 - hypergraph generation;
 - DBM publication;
-- public export changes;
-- treating generated catalog or retrieval snapshots as decomposition truth.
+- public export changes.
 
 ## Closeout
 
-Report files created or changed, validation run, skipped checks and why, remaining human rulings, and whether Gate 1 and Batch 1 Gate 2 remain accepted after validation.
+Report files created or changed, validation run, skipped checks and why, remaining human rulings, and whether Batch 1 Gate 2 remains accepted for its original 22-source scope.

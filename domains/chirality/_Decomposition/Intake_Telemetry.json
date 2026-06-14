@@ -1,94 +1,112 @@
 {
-  "generated_utc": "2026-06-14T00:55:15+00:00",
-  "source_count": 242,
+  "generated_utc": "2026-06-14T03:16:02+00:00",
+  "source_count": 221,
   "source_manifest": "domains/chirality/_Sources/Source_Manifest.csv",
-  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
-  "catalog_snapshot": "snapshots/SRCIDX_20260614T005449Z",
+  "source_manifest_sha256": "acd2fd88ff66be89b33d5cde05ab15cbcb584adea2fd25e661d9ea9eb0f64b04",
+  "accepted_gate1_source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "catalog_build_status": "PASS_WITH_PRIOR_BOUNDARY_WARNING",
+  "catalog_snapshot": "domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T031420Z",
   "catalog_meta": {
-    "schema_version": "chirality-source-db/v2",
-    "build_utc": "2026-06-14T00:54:49+00:00",
-    "domain_root": "/Users/ryan/ai-env/projects/chirality/domains/chirality",
-    "repo_root": "/Users/ryan/ai-env/projects/chirality",
-    "source_manifest": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Sources/Source_Manifest.csv",
-    "out_root": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes",
-    "snapshot_dir": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z",
-    "include_archive_metadata": false,
-    "artifact_count": 242,
-    "source_doc_count": 242,
-    "audit_state_count": 0,
-    "chunk_count": 4523,
-    "elapsed_seconds": 0.21,
-    "artifacts_sha256": "3576ef40ac434f7e36085d9ea379dab5520b35eec31cf079c1b3cf5e265c5342",
-    "chunks_sha256": "b6a3042dd64acbb48b4c3f716e0198f2cf337b0a1a9be5493d57a78dd915855e",
-    "derived_only": true,
-    "source_files_copied": false,
-    "retrieval_index": {
-      "index_name": "source_v2",
-      "built_utc": "2026-06-14T00:54:53+00:00",
-      "row_count": 4523,
-      "lexical": "bm25s",
-      "bm25_dir": "bm25/",
-      "dense": null,
-      "embedding_model": null,
-      "embedding_dim": null,
-      "embeddings": null,
-      "embeddings_norm": null,
-      "input_chunks_sha256": "df98a51996f83f773f1dd92ef4eca79daa431f205c5e35e845cffd5cf73096c9",
-      "status": "BM25_ONLY"
-    }
+    "status": "PASS_WITH_PRIOR_BOUNDARY_WARNING",
+    "active_manifest_sources": 221,
+    "catalog_source_docs": 232,
+    "artifacts": 454,
+    "chunks": 11652,
+    "markdown_section_chunks": 4032,
+    "section_node_chunks": 4346,
+    "ledger_atom_chunks": 3274,
+    "missing_active_sources": [],
+    "prior_boundary_batch1_retired_sources": [
+      "SRC-CLAUDE/RT003",
+      "SRC-INIT/RT004",
+      "SRC-DOCS-CONTRACT/DG001",
+      "SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE/DG002",
+      "SRC-DOCS-DIRECTIVE/DG003",
+      "SRC-DOCS-PLAN/DG004",
+      "SRC-DOCS-PRD-CANDIDATE/DG005",
+      "SRC-DOCS-SE-DESIGN-ANALYSIS/DG006",
+      "SRC-DOCS-SPEC/DG007",
+      "SRC-DOCS-TYPES/DG008",
+      "SRC-DOCS-WHAT-IS-AN-AGENT/DG009"
+    ],
+    "warning": "Catalog validates structurally, but retained Batch 1 ledger/section companions still reference 11 sources retired from active V1."
   },
   "catalog_validation_status": "PASS",
-  "catalog_validation_evidence": "PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z (0 blockers, 0 warnings)",
+  "catalog_validation_evidence": "validate_source_database PASS on domains/chirality/_LocalIndexes/_LATEST.md (0 blockers, 0 warnings)",
   "retrieval_smoke_status": "PASS",
-  "retrieval_smoke_evidence": "derivative-package rule -> @repo/AGENTS.md",
-  "skeleton_count": 242,
-  "review_html_count": 242,
-  "section_nodes_count": 242,
-  "section_count": 4449,
-  "in_scope_section_count": 4446,
-  "dispatch_unit_count": 242,
+  "retrieval_smoke_evidence": "BM25 rank 1 for derivative-package rule is SRC-AGENTS SECTION_NODE",
+  "skeleton_count": 221,
+  "review_html_count": 221,
+  "section_nodes_count": 221,
+  "section_count": 3959,
+  "in_scope_section_count": 3956,
+  "dispatch_unit_count": 221,
   "oversized_dispatch_unit_count": 0,
   "deferred_count": 1,
+  "retired_source_boundary_rows": 21,
+  "retired_source_prefixes": [
+    "AG013",
+    "DG001",
+    "DG002",
+    "DG003",
+    "DG004",
+    "DG005",
+    "DG006",
+    "DG007",
+    "DG008",
+    "DG009",
+    "HX001",
+    "HX002",
+    "HX003",
+    "HX004",
+    "HX005",
+    "HX006",
+    "HX007",
+    "HX008",
+    "HX009",
+    "RT003",
+    "RT004"
+  ],
   "failure_count": 0,
   "groups": [
     {
       "SourceGroup": "AGENT_CONTRACTS",
-      "SourceCount": 37,
-      "SkeletonCount": 37,
+      "SourceCount": 36,
+      "SkeletonCount": 36,
       "DeferredCount": 0,
-      "SectionCount": 1405,
-      "InScopeSectionCount": 1403,
-      "DispatchUnitCount": 37,
+      "SectionCount": 1404,
+      "InScopeSectionCount": 1402,
+      "DispatchUnitCount": 36,
       "OversizedDispatchUnitCount": 0
     },
     {
       "SourceGroup": "HARNESS_EXPORT_DOCS",
-      "SourceCount": 11,
-      "SkeletonCount": 11,
+      "SourceCount": 2,
+      "SkeletonCount": 2,
       "DeferredCount": 0,
-      "SectionCount": 106,
-      "InScopeSectionCount": 106,
-      "DispatchUnitCount": 11,
+      "SectionCount": 4,
+      "InScopeSectionCount": 4,
+      "DispatchUnitCount": 2,
       "OversizedDispatchUnitCount": 0
     },
     {
       "SourceGroup": "ROOT_DOCS",
-      "SourceCount": 7,
-      "SkeletonCount": 7,
+      "SourceCount": 5,
+      "SkeletonCount": 5,
       "DeferredCount": 1,
-      "SectionCount": 119,
-      "InScopeSectionCount": 118,
-      "DispatchUnitCount": 6,
+      "SectionCount": 95,
+      "InScopeSectionCount": 94,
+      "DispatchUnitCount": 4,
       "OversizedDispatchUnitCount": 0
     },
     {
       "SourceGroup": "ROOT_GOVERNANCE_DOCS",
-      "SourceCount": 31,
-      "SkeletonCount": 31,
+      "SourceCount": 22,
+      "SkeletonCount": 22,
       "DeferredCount": 0,
-      "SectionCount": 1059,
-      "InScopeSectionCount": 1059,
-      "DispatchUnitCount": 32,
+      "SectionCount": 696,
+      "InScopeSectionCount": 696,
+      "DispatchUnitCount": 23,
       "OversizedDispatchUnitCount": 0
     },
     {
@@ -110,6 +128,63 @@
       "InScopeSectionCount": 47,
       "DispatchUnitCount": 3,
       "OversizedDispatchUnitCount": 0
+    }
+  ],
+  "retired_after_batch1_gate2_sources": [
+    {
+      "SourceDocID": "SRC-CLAUDE",
+      "SourcePrefix": "RT003",
+      "RepoRelPath": "CLAUDE.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-CONTRACT",
+      "SourcePrefix": "DG001",
+      "RepoRelPath": "docs/CONTRACT.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE",
+      "SourcePrefix": "DG002",
+      "RepoRelPath": "docs/DBM_Agent_Instruction_Architecture.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-DIRECTIVE",
+      "SourcePrefix": "DG003",
+      "RepoRelPath": "docs/DIRECTIVE.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-PLAN",
+      "SourcePrefix": "DG004",
+      "RepoRelPath": "docs/PLAN.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-PRD-CANDIDATE",
+      "SourcePrefix": "DG005",
+      "RepoRelPath": "docs/PRD_CANDIDATE.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-SE-DESIGN-ANALYSIS",
+      "SourcePrefix": "DG006",
+      "RepoRelPath": "docs/SE_Design_Analysis.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-SPEC",
+      "SourcePrefix": "DG007",
+      "RepoRelPath": "docs/SPEC.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-TYPES",
+      "SourcePrefix": "DG008",
+      "RepoRelPath": "docs/TYPES.md"
+    },
+    {
+      "SourceDocID": "SRC-DOCS-WHAT-IS-AN-AGENT",
+      "SourcePrefix": "DG009",
+      "RepoRelPath": "docs/WHAT-IS-AN-AGENT.md"
+    },
+    {
+      "SourceDocID": "SRC-INIT",
+      "SourcePrefix": "RT004",
+      "RepoRelPath": "init/INIT.md"
     }
   ]
 }

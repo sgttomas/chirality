@@ -1,0 +1,10 @@
+CheckID,Status,Evidence,Notes
+BATCH2_SOURCE_SELECTION,PASS,BATCH2_AGENT_CONTRACTS_20260614T032003Z; source_group=AGENT_CONTRACTS; selected_sources=36; excluded_retired=AG013,Selected active AtomizeInV1=YES AGENT_CONTRACTS rows only.
+BATCH2_DISPATCH_UNITS,PASS,dispatch_units=36; all sources have one dispatch unit,Dispatch-unit register regenerated from current source dispatch plans.
+BATCH2_BRIEF_RENDER,PASS,briefs=36; source_ref_base=@repo form,All regenerated briefs include manifest-backed SOURCE_REF_BASE.
+BATCH2_OUTPUT_QA,PASS,dispatch_units=36; atom_csvs=36; vocab_csvs=36; raw_atoms=7772; IN=7760; OUT=4; TBD=8; vocab_rows=1229; schema_hash_ref_errors=0,"Per-unit CSV headers, LocalSeq, ContentHash, InOutStatus, SourceRef line bounds, SectionID, and DispatchUnitID validated."
+BATCH2_PER_SOURCE_MERGE,PASS,per_source_ledgers=36; merged_rows=7770; dedupe_dropped=2,Per-source stable HBA IDs assigned by merge_source_atomizations.py; duplicate same-source content hashes deduped.
+BATCH2_CROSS_SOURCE_MERGE,PASS,BATCH2_Atomic_Domain_Ledger.csv rows=7770; IN=7758; OUT=4; TBD=8; unresolved_corrects=0,Batch-scoped cross-source ledger created; global Atomic_Domain_Ledger.csv was not overwritten.
+BATCH2_VOCAB_MERGE,PASS,BATCH2_Vocabulary_Map.csv terms=968; multi_source=137,Batch-scoped vocabulary map created; global Vocabulary_Map.csv was not overwritten.
+BATCH2_ATOM_REVIEW_HTML,PASS,atom_review_html=36; section_node_csvs=36,Batch 2 selected source review HTML regenerated in atom-review mode using per-source ledgers.
+BATCH2_GATE2_STATUS,OPEN_HUMAN_REVIEW_REQUIRED,Gate 2 acceptance snapshot not created for Batch 2,"Human must accept Batch 2 atom boundaries, IN/OUT/TBD decisions, and vocabulary choices before treating these atoms as accepted decomposition truth."

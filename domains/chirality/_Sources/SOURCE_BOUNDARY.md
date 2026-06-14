@@ -2,8 +2,8 @@
 
 ## Status
 
-This source boundary defines the initial admitted corpus for
-`domains/chirality/`.
+This source boundary defines the current admitted corpus for
+`domains/chirality/` after source-boundary cleanup.
 
 ## Source Model
 
@@ -23,11 +23,13 @@ the recorded hashes.
 - Agent instruction contracts under `agents/`.
 - Repo-native skill contracts under `skills/`.
 - Tool registry and retrieval documentation.
-- Public harness/export documentation.
+- Repo-local export summary documentation under `exports/chirality-app/`
+  (`README.md` and `export-report.md`).
 
 ## Excluded In V1
 
 - `projects/`
+- `frontend/`
 - existing `domains/`
 - `examples/`
 - `.archive/`
@@ -35,8 +37,44 @@ the recorded hashes.
 - dependency folders, caches, and build outputs
 - non-governance code internals
 
+## Retired From Active V1
+
+- `SRC-FRONTEND-*` (`HX001`..`HX009`) rows for `frontend/README.md`
+  and `frontend/docs/...` are retired from active V1 indexing and
+  atomization. Their prefixes remain reserved in
+  `_Decomposition/Source_Decomp_Prefix_Map.csv` for traceability only.
+- Active frontend work is outside this Chirality source boundary under
+  `projects/chirality-app-dev/`, which remains excluded by the `projects/`
+  rule.
+- `.archive/frontend/` is archive evidence only and is not admitted as
+  replacement source truth.
+- `SRC-AGENTS-AGENT-DELIVERABLE-TASK` (`AG013`) is retired from
+  active V1 indexing and atomization because
+  `agents/AGENT_DELIVERABLE_TASK.md` has been archived as obsolete. Its
+  prefix remains reserved for traceability only. Any existing Batch 2 setup
+  package that still selects `AG013` is stale and must be regenerated or
+  explicitly amended before worker fan-out resumes.
+- Eleven root/governance sources accepted into the original Batch 1 scope are
+  retired from active V1 because their live repo files are now archived or
+  removed:
+  `SRC-CLAUDE` (`RT003`), `SRC-INIT` (`RT004`),
+  `SRC-DOCS-CONTRACT` (`DG001`),
+  `SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE` (`DG002`),
+  `SRC-DOCS-DIRECTIVE` (`DG003`), `SRC-DOCS-PLAN` (`DG004`),
+  `SRC-DOCS-PRD-CANDIDATE` (`DG005`),
+  `SRC-DOCS-SE-DESIGN-ANALYSIS` (`DG006`),
+  `SRC-DOCS-SPEC` (`DG007`), `SRC-DOCS-TYPES` (`DG008`), and
+  `SRC-DOCS-WHAT-IS-AN-AGENT` (`DG009`). Their prefixes remain reserved
+  for prior-boundary traceability only.
+- The accepted Batch 1 ledger and review companions for those eleven sources
+  remain historical prior-boundary evidence. They must not be treated as
+  current active-boundary truth unless the operator explicitly accepts
+  carry-forward or regenerates/rebaselines Batch 1 for the current manifest.
+
 ## Downstream Status
 
-This milestone creates retrieval-ready domain infrastructure only. It does not
-create a DOMAIN_DECOMP category register, knowledge-type register, atom ledger,
-hypergraph snapshot, or publication package.
+The current active manifest has 221 rows. The local source catalog validates
+structurally against this source boundary, but retained prior-boundary Batch 1
+companions still reference eleven retired sources. Category registers,
+knowledge-type registers, hypergraph snapshots, and publication packages remain
+out of scope until the Batch 1 prior-boundary issue is explicitly resolved.
