@@ -1,6 +1,6 @@
 CheckID,Status,Evidence,Notes
-CATALOG_VALIDATION,PASS,"PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z (0 blockers, 0 warnings)",Required source database validation re-run after Batch 1 fan-in.
-CATALOG_SNAPSHOT,PASS,snapshots/SRCIDX_20260614T005449Z,chunks=4523 retrieval=BM25_ONLY
+CATALOG_VALIDATION,PASS,"PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T023650Z (0 blockers, 0 warnings)",Phase 2.5 source database validation after Gate 2 acceptance and Batch 1 ledger indexing.
+CATALOG_SNAPSHOT,PASS,snapshots/SRCIDX_20260614T023650Z,chunks=12246 artifacts=485 source_docs=242
 RETRIEVAL_SMOKE_QUERY,PASS,derivative-package rule -> @repo/AGENTS.md rank 1,BM25-only query check against accepted governance surface.
 SOURCE_MANIFEST_SHA256,RECORDED,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Accepted Gate 1 source manifest SHA-256.
 SOURCE_PREFIX_UNIQUENESS,PASS,242/242 unique prefixes,Prefixes are explicit in Source_Decomp_Prefix_Map.csv.
@@ -14,4 +14,9 @@ PHASE2_BATCH1_PER_SOURCE_MERGE,PASS,per_source_ledgers=22 merged_rows=3274 dedup
 PHASE2_BATCH1_CROSS_SOURCE_MERGE,PASS,Atomic_Domain_Ledger.csv rows=3274 unresolved_corrects=0,Batch 1 partial ledger only; not full 242-source domain truth.
 PHASE2_BATCH1_VOCAB_MERGE,PASS,Vocabulary_Map.csv terms=670 multi_source=115,Merged from 22 per-source vocabulary seed files.
 PHASE2_BATCH1_ATOM_REVIEW_HTML,PASS,atom_review_html=22,Rendered Batch 1 selected sources in atom-review mode.
-GATE2_STATUS,OPEN,Batch 1 fan-out/fan-in complete; no human Gate 2 acceptance recorded,"Do not proceed to Phase 2.5, Categories, KTYs, hypergraph, DBM publication, or public export from this ledger as accepted truth."
+GATE2_STATUS,PASS,gate_snapshots/GATE2_BATCH1_20260614T023234Z,Human accepted Batch 1 Gate 2 on 2026-06-14.
+PHASE2_5_SOURCE_CATALOG_REFRESH,PASS,SRCIDX_20260614T023650Z,"Manifest-backed source catalog now indexes source markdown, section-node CSV chunks, and accepted Batch 1 LEDGER_ATOM chunks."
+PHASE2_5_RETRIEVAL_REFRESH,PASS,source_v2 BM25_ONLY rows=12246 dense=deferred,BM25 sidecars rebuilt on accepted Phase 2.5 snapshot; dense embeddings intentionally deferred.
+PHASE2_5_LEDGER_RETRIEVAL_SMOKE,PASS,LEDGER_ATOM query returned accepted Atomic_Domain_Ledger.csv chunks,Confirms accepted Batch 1 atoms are reachable through retrieval filters.
+PHASE2_5_TOC_PRIORS,PASS,cross_source_toc_matrix.csv rows=81 pairs; scope=22 Batch 1 sources,Generated from accepted Batch 1 skeletons for batch-scoped Gate 3 preparation.
+DOMAIN_DECOMP_INTEGRITY_GATE3_ANNEXES,NOT_APPLICABLE,"validate_domain_decomposition_integrity.py reports missing categories, ktys, subjects, objectives, coverage",Expected until Gate 3+ annex/register generation starts; not a Gate 2 or Phase 2.5 blocker.

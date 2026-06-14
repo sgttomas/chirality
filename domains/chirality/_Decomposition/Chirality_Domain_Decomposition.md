@@ -2,9 +2,9 @@
 
 Package role: working surface
 
-Status: Gate 1 intake accepted. Phase 2 Batch 1 fan-out and fan-in complete; Gate 2 remains open pending human review.
+Status: Gate 1 intake accepted. Phase 2 Batch 1 Gate 2 accepted; Phase 2.5 source catalog, BM25 retrieval, and TOC-prior refresh complete.
 
-Generated UTC: 2026-06-14T02:28:00+00:00
+Generated UTC: 2026-06-14T02:32:34+00:00
 
 ## Source Model
 
@@ -14,7 +14,7 @@ Accepted manifest for this Batch 0 packet: `domains/chirality/_Sources/Source_Ma
 
 Current source manifest SHA-256: `f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1`
 
-Current source catalog snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z`
+Current source catalog snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T023650Z`
 
 Catalog schema: `chirality-source-db/v2`
 
@@ -26,14 +26,19 @@ Retrieval index status: `BM25_ONLY`
 
 Retrieval smoke query: `PASS`
 
+Dense retrieval status: `DEFERRED`
+
 ## Intake Summary
 
 | Metric | Value |
 |---|---:|
 | Manifest source rows | 242 |
-| Catalog artifacts | 242 |
+| Catalog artifacts | 485 |
 | Catalog source docs | 242 |
-| Catalog chunks | 4523 |
+| Catalog chunks | 12246 |
+| Catalog markdown chunks | 4523 |
+| Catalog section-node chunks | 4449 |
+| Catalog ledger-atom chunks | 3274 |
 | Skeletons generated | 242 |
 | Review HTML files generated | 242 |
 | Section-node CSVs generated | 242 |
@@ -75,7 +80,7 @@ Per-kind asset audit surfaces are N/A for this Markdown-only manifest because th
 
 ## Phase 2 Batch Status
 
-Batch 1 binding-governance atomization is ready for Gate 2 review. Worker fan-out, deterministic fan-in, vocabulary merge, and atom-review HTML rendering are complete for the selected 22-source batch. This is a partial Phase 2 ledger over the binding-governance source set only; it is not full-corpus decomposition truth and Gate 2 is not accepted.
+Batch 1 binding-governance atomization is accepted at Gate 2. Worker fan-out, deterministic fan-in, vocabulary merge, atom-review HTML rendering, human Gate 2 acceptance, and Phase 2.5 refresh are complete for the selected 22-source batch. This is an accepted partial Phase 2 ledger over the binding-governance source set only; it is not full-corpus decomposition truth.
 
 | Metric | Value |
 |---|---:|
@@ -95,11 +100,14 @@ Batch 1 binding-governance atomization is ready for Gate 2 review. Worker fan-ou
 | Per-source ledgers | 22 |
 | Merged vocabulary terms | 670 |
 | Atom-review HTML files | 22 |
-| Gate 2 status | `OPEN` |
+| Gate 2 status | `ACCEPTED` |
+| Gate 2 snapshot | `GATE2_BATCH1_20260614T023234Z` |
 
 Batch setup handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_SETUP.md`
 
 Batch atomization handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_ATOMIZATION_HANDOFF.md`
+
+Batch Gate 2 handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_GATE2_HANDOFF.md`
 
 Batch source register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Batch_Source_Register.csv`
 
@@ -117,12 +125,38 @@ Partial cross-source ledger: `domains/chirality/_Decomposition/Atomic_Domain_Led
 
 Merged vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 
+## Phase 2.5 Retrieval Refresh
+
+Phase 2.5 was run after human Gate 2 approval. The manifest-backed source catalog now includes live repo source markdown plus derived decomposition companions: section-node CSV chunks from Batch 0 and accepted `LEDGER_ATOM` chunks from the Batch 1 ledger.
+
+| Metric | Value |
+|---|---:|
+| Source catalog snapshot | `SRCIDX_20260614T023650Z` |
+| Catalog validation | `PASS` |
+| Source docs | 242 |
+| Artifacts | 485 |
+| Total chunks | 12246 |
+| `MARKDOWN_SECTION` chunks | 4523 |
+| `SECTION_NODE` chunks | 4449 |
+| `LEDGER_ATOM` chunks | 3274 |
+| Retrieval status | `BM25_ONLY` |
+| Retrieval rows | 12246 |
+| Dense embeddings | `DEFERRED` |
+| BM25 smoke query | `derivative-package rule` -> `@repo/AGENTS.md` rank 1 |
+| TOC-prior matrix scope | 22 accepted Batch 1 skeletons |
+| TOC-prior source-pair rows | 81 |
+
+TOC-prior matrix Markdown: `domains/chirality/_Decomposition/cross_source_toc_matrix.md`
+
+TOC-prior matrix CSV: `domains/chirality/_Decomposition/cross_source_toc_matrix.csv`
+
 ## References
 
 - `domains/chirality/_Sources/Source_Manifest.csv` - manifest-backed source membership.
 - `domains/chirality/_Sources/SOURCE_BOUNDARY.md` - source boundary.
 - `domains/chirality/_LocalIndexes/_LATEST.md` - latest source catalog pointer.
-- `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z` - current validated source catalog snapshot.
+- `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T023650Z` - current validated source catalog and BM25 retrieval snapshot.
+- `domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z/` - accepted Gate 2 Batch 1 snapshot.
 
 ## Companion Inventory
 
@@ -138,6 +172,13 @@ Merged vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 | `gate_snapshots/_LATEST_GATE1.md` | snapshot / handoff artifact | Pointer to the accepted Gate 1 snapshot. |
 | `gate_snapshots/GATE1_20260614T005942Z/GATE1_ACCEPTANCE.md` | snapshot / handoff artifact | Immutable Gate 1 acceptance record. |
 | `gate_snapshots/GATE1_20260614T005942Z/HANDOFF_STATE.md` | snapshot / handoff artifact | Gate 1 handoff state for later DOMAIN_DECOMP phases. |
+| `gate_snapshots/_LATEST_GATE2.md` | snapshot / handoff artifact | Pointer to the accepted Batch 1 Gate 2 snapshot. |
+| `gate_snapshots/GATE2_BATCH1_20260614T023234Z/GATE2_ACCEPTANCE.md` | snapshot / handoff artifact | Immutable Batch 1 Gate 2 acceptance record. |
+| `gate_snapshots/GATE2_BATCH1_20260614T023234Z/HANDOFF_STATE.md` | snapshot / handoff artifact | Gate 2 / Phase 2.5 handoff state. |
+| `phase2_batches/_LATEST_BATCH1_GATE2.md` | snapshot / handoff artifact | Pointer to the accepted Batch 1 Gate 2 handoff. |
+| `phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_GATE2_HANDOFF.md` | snapshot / handoff artifact | Batch 1 Gate 2 accepted and Phase 2.5 complete handoff. |
+| `cross_source_toc_matrix.md` | derivative planning surface | Batch 1 cross-source TOC-prior review surface generated after Gate 2 acceptance. |
+| `cross_source_toc_matrix.csv` | derivative planning surface | Batch 1 cross-source TOC-prior machine-readable matrix. |
 | `domains/chirality/_Decomposition/source_asset_manifests/SRC-AGENTS_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-AGENTS. |
 | `domains/chirality/_Decomposition/source_skeletons/SRC-AGENTS_skeleton.json` | authoritative companion register | Source skeleton for SRC-AGENTS. |
 | `domains/chirality/_Decomposition/source_dispatch_plans/SRC-AGENTS_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-AGENTS. |
@@ -211,7 +252,7 @@ Merged vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 | `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-TYPES_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-TYPES. |
 | `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-TYPES_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-TYPES. |
 | `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-TYPES_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-TYPES. |
-| `Companion_Inventory.csv` | authoritative companion register | Full file-level inventory for all 1341 generated companion entries. |
+| `Companion_Inventory.csv` | authoritative companion register | Full file-level inventory for all 1348 generated companion entries. |
 
 ## Open Issues
 
@@ -220,8 +261,9 @@ Merged vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 | `OI-001` | ACCEPTED_FOR_PHASE_2 | LICENSE.md is headingless and legal/license text. | Keep AtomizeInV1=NO and InOutDefault=OUT for v1 unless human says license terms are in-domain. |
 | `OI-002` | ACCEPTED_FOR_PHASE_2 | DOMAIN_DECOMP source atomization docs specify older <book>.md:L#### SourceRefs. | @repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID> |
 | `OI-004` | ACCEPTED_FOR_PHASE_2 | Per-kind asset surfaces are N/A for Markdown-only manifest rows. | Use section review HTML only unless future sources carry actual asset manifests. |
-| `OI-005` | BATCH1_ATOMIZATION_READY_FOR_REVIEW | Full 242-file atomization is too large for one unbatched review gate. | Review Batch 1 first, then schedule later staged batches after Gate 2 disposition for this batch. |
-| `OI-006` | OPEN | Batch 1 atom boundaries, IN/OUT classifications, and vocabulary choices have not been human-reviewed. | Use the 22 atom-review HTML files, `Dispatch_Run_Log.csv`, and `BATCH1_ATOMIZATION_HANDOFF.md`; Gate 2 remains open until accepted or flags are returned. |
+| `OI-005` | OPEN | Full 242-file atomization is too large for one unbatched review gate. | Batch 1 Gate 2 is accepted; schedule later staged batches separately if full-corpus atomization remains required. |
+| `OI-006` | CLOSED | Batch 1 atom boundaries, IN/OUT classifications, and vocabulary choices have not been human-reviewed. | Closed by human Gate 2 approval on 2026-06-14; accepted for the selected 22-source Batch 1 corpus only. |
+| `OI-007` | OPEN | Accepted Batch 1 atoms do not yet have ratified Category/KTY/Knowledge Subject assignments. | Prepare batch-scoped Gate 3 proposal surfaces from the accepted Batch 1 ledger and refreshed retrieval substrate. |
 
 ## Decision Log / Change Log
 
@@ -235,7 +277,9 @@ Merged vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
 | DEC-006 | 2026-06-14 | Human accepted Gate 1 intake, including the manifest-backed source set, source-prefix map, skeleton inventory, `SRC-LICENSE` OUT/deferred disposition, Markdown-only asset-surface N/A policy, and repo-backed SourceRef policy. |
 | DEC-007 | 2026-06-14 | Prepared `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` as the staged Phase 2 Batch 1 binding-governance setup: 22 sources, 22 dispatch units, 22 repo-backed dispatch briefs; no atomization workers were run. |
 | DEC-008 | 2026-06-14 | Ran authorized Batch 1 `TASK + domain-source-atomize` fan-out for 22 dispatch units. All workers completed successfully and local QA passed. |
-| DEC-009 | 2026-06-14 | Merged Batch 1 outputs into 22 per-source ledgers, partial `Atomic_Domain_Ledger.csv`, and `Vocabulary_Map.csv`; rendered 22 atom-review HTML files. Gate 2 remains open pending human review. |
+| DEC-009 | 2026-06-14 | Merged Batch 1 outputs into 22 per-source ledgers, partial `Atomic_Domain_Ledger.csv`, and `Vocabulary_Map.csv`; rendered 22 atom-review HTML files for Gate 2 review. |
+| DEC-010 | 2026-06-14 | Human accepted Gate 2 for `BATCH1_BINDING_GOVERNANCE_20260614T011101Z`; recorded `GATE2_BATCH1_20260614T023234Z`. |
+| DEC-011 | 2026-06-14 | Completed Phase 2.5 refresh: rebuilt source catalog `SRCIDX_20260614T023650Z`, rebuilt BM25 retrieval with 12246 rows, confirmed `@repo/AGENTS.md` rank 1 for `derivative-package rule`, and generated Batch 1 `cross_source_toc_matrix.{md,csv}`. |
 
 ## Gate 1 Acceptance
 
@@ -247,4 +291,12 @@ I accept Gate 1
 
 Acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`.
 
-Batch 1 atomization is ready for Gate 2 review at `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`. Do not proceed to Phase 2.5 retrieval refresh, Phase 3 categories, KTYs, hypergraph generation, DBM publication, or public export from this Batch 1 ledger as accepted truth until the human explicitly accepts Gate 2 or returns review flags for repair.
+Gate 2 for Batch 1 was accepted by human confirmation on 2026-06-14:
+
+```text
+Gate 2 approved.  Proceed accordingly.
+```
+
+Acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z/`.
+
+Batch 1 is ready for batch-scoped Gate 3 category/KTY/subject proposal work or for staging the next Phase 2 atomization batch, depending on operator sequencing. Do not treat the Batch 1 partial ledger as full-corpus decomposition truth.

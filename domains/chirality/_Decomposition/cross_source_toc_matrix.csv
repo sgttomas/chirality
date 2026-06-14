@@ -1,0 +1,82 @@
+source_a,section_a_id,title_a,source_b,section_b_id,title_b,shared_keywords,shared_count,jaccard
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0004,1.2 Human Authority at Every Gate,SRC-DOCS-DIRECTIVE,SEC-DG003-0011,2.3 Human Authority at Every Gate,authority;every;gate;human,4,1.0
+SRC-AGENTS,SEC-RT001-0008,Type 2 — Bounded Task Agents,SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0015,2.3 Type 2 — Bounded Task Agents (Specialist),agents;bounded;task;type,4,0.8
+SRC-DOCS-CONTRACT,SEC-DG001-0009,1.6 Staleness and Change Propagation,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0009,2.3 Change Propagation & Staleness,change;propagation;staleness,3,1.0
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0048,10.5 Execution Root Layout,SRC-DOCS-SPEC,SEC-DG007-0003,1. Execution Root Layout,execution;layout;root,3,1.0
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0049,10.6 Deliverable Folder Layout,SRC-DOCS-SPEC,SEC-DG007-0006,2. Deliverable Folder Layout,deliverable;folder;layout,3,1.0
+SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0011,3.3 Competence Includes Tool Competence,SRC-DOCS-DIRECTIVE,SEC-DG003-0018,3.3 Competence Includes Tool Competence,competence;includes;tool,3,1.0
+SRC-AGENTS,SEC-RT001-0006,Type 0 — Canonical Standards,SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0012,2.1 Type 0 — Canonical Standards (Architect),canonical;standards;type,3,0.75
+SRC-AGENTS,SEC-RT001-0007,Type 1 — Interactive Personas,SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0014,2.2 Type 1 — Interactive Personas (Manager),interactive;personas;type,3,0.75
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0009,"2.6 Teams, Project Management, and Governance",SRC-DOCS-WHAT-IS-AN-AGENT,SEC-DG009-0007,Teams and Project Management,management;project;teams,3,0.75
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0010,2.7 What the Framework Does and Does Not Cover,SRC-DOCS-WHAT-IS-AN-AGENT,SEC-DG009-0005,What This Does and Does Not Mean,does;not;what,3,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0018,AGENT INSTRUCTIONS — <AGENT_NAME> (<Role Description>),SRC-DOCS-SPEC,SEC-DG007-0065,AGENT INSTRUCTIONS — {AGENT_NAME} ({Brief Descriptor}),agent;instructions;name,3,0.4286
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0014,3.2 The Four Pillars,SRC-DOCS-DIRECTIVE,SEC-DG003-0004,The Four Pillars,four;pillars,2,1.0
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0019,3.4 The Fractal Property,SRC-DOCS-DIRECTIVE,SEC-DG003-0005,The Fractal Property,fractal;property,2,1.0
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0026,7. The Closing Principle,SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0041,10. Closing Principle,closing;principle,2,1.0
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0027,Document History,SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0043,Document History,document;history,2,1.0
+SRC-DOCS-CONTRACT,SEC-DG001-0006,1.3 Sealing and Context,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0019,4.3 Context Sealing,context;sealing,2,1.0
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0002,1. Design Philosophy,SRC-DOCS-DIRECTIVE,SEC-DG003-0003,2. Design Philosophy,design;philosophy,2,1.0
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0009,1.7 Immutable Snapshots,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0010,2.4 Immutable Snapshots,immutable;snapshots,2,1.0
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0019,Agent Type,SRC-DOCS-SPEC,SEC-DG007-0067,Agent Type,agent;type,2,1.0
+SRC-DOCS-PLAN,SEC-DG004-0007,Drawing Extraction,SRC-TOOLS-REGISTRY,SEC-TL001-0008,Drawing Extraction,drawing;extraction,2,1.0
+SRC-DOCS-SPEC,SEC-DG007-0070,9.5 Classification Properties,SRC-DOCS-TYPES,SEC-DG008-0019,4.2 Classification Properties,classification;properties,2,1.0
+SRC-INIT,SEC-RT004-0003,Naming Convention,SRC-DOCS-SPEC,SEC-DG007-0071,9.6 Naming Convention,convention;naming,2,1.0
+SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0012,3.4 Evidence Over Plausibility,SRC-DOCS-DIRECTIVE,SEC-DG003-0012,2.4 Evidence Over Plausibility,evidence;plausibility,2,1.0
+SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0013,3.5 Hierarchy of Authority,SRC-DOCS-DIRECTIVE,SEC-DG003-0019,3.4 Hierarchy of Authority,authority;hierarchy,2,1.0
+SRC-AGENTS,SEC-RT001-0002,Agent Matrix,SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0020,7.2 Navigate the Agent Matrix,agent;matrix,2,0.6667
+SRC-CLAUDE,SEC-RT003-0002,What This Repo Is,SRC-README,SEC-RT007-0004,What This Repo Contains,repo;what,2,0.6667
+SRC-CLAUDE,SEC-RT003-0016,Frontend Development,SRC-README,SEC-RT007-0010,Frontend Development Path,development;frontend,2,0.6667
+SRC-CLAUDE,SEC-RT003-0019,Change Workflow,SRC-README,SEC-RT007-0008,Maintainer Change Workflow,change;workflow,2,0.6667
+SRC-DOCS-CONTRACT,SEC-DG001-0008,1.5 Status and Lifecycle,SRC-DOCS-SPEC,SEC-DG007-0008,3. `_STATUS.md` — Lifecycle State,lifecycle;status,2,0.6667
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0019,Agent Type,SRC-DOCS-SPEC,SEC-DG007-0066,9.2 Required Agent Type Table,agent;type,2,0.6667
+SRC-DOCS-PLAN,SEC-DG004-0007,Drawing Extraction,SRC-TOOLS-REGISTRY,SEC-TL001-0010,Drawing Extraction — P&ID Valves,drawing;extraction,2,0.6667
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0050,10.7 Dependency Register,SRC-DOCS-SPEC,SEC-DG007-0030,Extracted Dependency Register,dependency;register,2,0.6667
+SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0023,5.3 Acceptance Criteria Allocation,SRC-DOCS-SPEC,SEC-DG007-0018,Acceptance Criteria,acceptance;criteria,2,0.6667
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0020,3.5 The Generative Relationship to Systems Engineering,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0043,10.1 The Generative Relationship,generative;relationship,2,0.5
+SRC-DOCS-CONTRACT,SEC-DG001-0013,1.10 Write Scope and Snapshots,SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0039,7. Write Scope Architecture,scope;write,2,0.5
+SRC-DOCS-CONTRACT,SEC-DG001-0013,1.10 Write Scope and Snapshots,SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0041,7.2 Write Scope Rules,scope;write,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0005,1.3 Evidence-First Epistemology,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0040,9.3 Evidence-First Epistemology as Safety Mechanism,epistemology;evidence-first,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0037,6.2 Control Loop (Session Handoff),SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0025,6.1 The Control Loop,control;loop,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0056,11.1 Immutable Snapshot + Pointer,SRC-DOCS-SPEC,SEC-DG007-0077,11. Snapshot and Pointer Conventions,pointer;snapshot,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0057,11.2 Evidence-First Epistemology,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0040,9.3 Evidence-First Epistemology as Safety Mechanism,epistemology;evidence-first,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0061,11.6 Session Handoff (Control Loop),SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0025,6.1 The Control Loop,control;loop,2,0.5
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0064,11.9 Approval Gate (CHANGE),SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0065,16. Approval and Change Control,approval;change,2,0.5
+SRC-DOCS-DIRECTIVE,SEC-DG003-0022,4.2 Out of Scope,SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0017,6.3 Out of Scope for Current Release,out;scope,2,0.5
+SRC-DOCS-PLAN,SEC-DG004-0007,Drawing Extraction,SRC-TOOLS-REGISTRY,SEC-TL001-0009,Drawing Extraction — Sheet Inventory,drawing;extraction,2,0.5
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0021,7.3 Scaffold an Execution Root,SRC-DOCS-SPEC,SEC-DG007-0003,1. Execution Root Layout,execution;root,2,0.5
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0021,7.3 Scaffold an Execution Root,SRC-DOCS-SPEC,SEC-DG007-0081,12.1 Valid Execution Root,execution;root,2,0.5
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0048,10.5 Execution Root Layout,SRC-DOCS-SPEC,SEC-DG007-0081,12.1 Valid Execution Root,execution;root,2,0.5
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0049,10.6 Deliverable Folder Layout,SRC-DOCS-SPEC,SEC-DG007-0083,12.3 Valid Deliverable Folder,deliverable;folder,2,0.5
+SRC-DOCS-SPEC,SEC-DG007-0012,3.2 Valid Lifecycle States,SRC-DOCS-TYPES,SEC-DG008-0021,5. Deliverable Lifecycle States,lifecycle;states,2,0.5
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0001,The Chirality Framework,SRC-TOOLS-EXTERNAL-TOOLS,SEC-TL002-0001,External Tools — Integration with the Chirality Framework,chirality;framework,2,0.4
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0026,3.2 Agent Header Block (6 Required Fields),SRC-DOCS-SPEC,SEC-DG007-0064,9.1 Required Header,header;required,2,0.4
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0044,8.2 Required Output Sections (All Decompositions),SRC-DOCS-SPEC,SEC-DG007-0068,9.3 Required Sections,required;sections,2,0.4
+SRC-DOCS-DIRECTIVE,SEC-DG003-0010,2.2 Git Is the Event Store,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0007,2.1 Version Control as Event Store,event;store,2,0.4
+SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0050,10.7 Dependency Register,SRC-DOCS-SPEC,SEC-DG007-0037,6. Dependencies.csv — Structured Dependency Register (v3.1),dependency;register,2,0.4
+SRC-README,SEC-RT007-0007,"Agents, Skills, Tools, And Tests",SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0037,"8.10 Agents, Tools, and Governance",agents;tools,2,0.4
+SRC-README,SEC-RT007-0011,Public Export Boundary,SRC-EXPORTS-CHIRALITY-APP-README,SEC-HX010-0001,Chirality App Public Export,export;public,2,0.4
+SRC-README,SEC-RT007-0011,Public Export Boundary,SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT,SEC-HX011-0001,chirality-app Public Export Report,export;public,2,0.4
+SRC-AGENTS,SEC-RT001-0004,Operative Row — Pipeline Categories,SRC-DOCS-PRD-CANDIDATE,SEC-DG005-0023,7.5 Run an Operative Pipeline Intent,operative;pipeline,2,0.3333
+SRC-CLAUDE,SEC-RT003-0015,Apply the public export to a local checkout,SRC-README,SEC-RT007-0011,Public Export Boundary,export;public,2,0.3333
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0004,1.2 Human Authority at Every Gate,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0027,6.3 Human Authority as the Halting Condition,authority;human,2,0.3333
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0004,1.2 Human Authority at Every Gate,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0033,8. Human Factors & Decision Authority,authority;human,2,0.3333
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0026,3.2 Agent Header Block (6 Required Fields),SRC-DOCS-SPEC,SEC-DG007-0066,9.2 Required Agent Type Table,agent;required,2,0.3333
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0047,8.5 Extension Contract,SRC-DOCS-SPEC,SEC-DG007-0091,15. `/api/project/deliverables` Response Contract Extension,contract;extension,2,0.3333
+SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE,SEC-DG002-0052,9.3 RECONCILIATION's Formal Brief Schema (Most Structured),SRC-SKILLS-SKILL-TEMPLATE,SEC-SK002-0012,`BRIEF_SCHEMA.md`,brief;schema,2,0.3333
+SRC-DOCS-DIRECTIVE,SEC-DG003-0011,2.3 Human Authority at Every Gate,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0027,6.3 Human Authority as the Halting Condition,authority;human,2,0.3333
+SRC-DOCS-DIRECTIVE,SEC-DG003-0011,2.3 Human Authority at Every Gate,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0033,8. Human Factors & Decision Authority,authority;human,2,0.3333
+SRC-EXPORTS-CHIRALITY-APP-README,SEC-HX010-0001,Chirality App Public Export,SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT,SEC-HX011-0001,chirality-app Public Export Report,export;public,2,0.3333
+SRC-README,SEC-RT007-0009,Private Project And Domain Workspaces,SRC-TOOLS-EXTERNAL-TOOLS,SEC-TL002-0006,DOMAIN → Human → PROJECT / SOFTWARE,domain;project,2,0.3333
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0003,2. The Nature of Knowledge in Professional Practice,SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0001,Professional Engineering with Agentic AI in Regulated Practice,practice;professional,2,0.2857
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0019,3.4 The Fractal Property,SRC-DOCS-SPEC,SEC-DG007-0002,0.1 Fractal Property: SPEC Sections Map to DIRECTIVE Pillars,fractal;property,2,0.2857
+SRC-CLAUDE,SEC-RT003-0015,Apply the public export to a local checkout,SRC-EXPORTS-CHIRALITY-APP-README,SEC-HX010-0001,Chirality App Public Export,export;public,2,0.2857
+SRC-CLAUDE,SEC-RT003-0015,Apply the public export to a local checkout,SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT,SEC-HX011-0001,chirality-app Public Export Report,export;public,2,0.2857
+SRC-DOCS-DIRECTIVE,SEC-DG003-0005,The Fractal Property,SRC-DOCS-SPEC,SEC-DG007-0002,0.1 Fractal Property: SPEC Sections Map to DIRECTIVE Pillars,fractal;property,2,0.2857
+SRC-CLAUDE,SEC-RT003-0009,Run Python tests across root tools,SRC-README,SEC-RT007-0007,"Agents, Skills, Tools, And Tests",tests;tools,2,0.25
+SRC-CLAUDE,SEC-RT003-0010,Run Chirality App dev frontend tests,SRC-EXPORTS-CHIRALITY-APP-README,SEC-HX010-0001,Chirality App Public Export,app;chirality,2,0.25
+SRC-CHIRALITY-FRAMEWORK,SEC-RT002-0020,3.5 The Generative Relationship to Systems Engineering,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0001,Systems Engineering Design Analysis — Agent Instruction Architecture,engineering;systems,2,0.2222
+SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0001,Systems Engineering Design Analysis — Agent Instruction Architecture,SRC-DOCS-SPEC,SEC-DG007-0063,9. Agent Instruction File Structure,agent;instruction,2,0.2222
+SRC-PROFESSIONAL-ENGINEERING,SEC-RT006-0026,6.2 Instruction Governance as Release Engineering,SRC-DOCS-SE-DESIGN-ANALYSIS,SEC-DG006-0001,Systems Engineering Design Analysis — Agent Instruction Architecture,engineering;instruction,2,0.2222
+SRC-CLAUDE,SEC-RT003-0014,Build and check the public export (run before publishing or after changing exported files),SRC-README,SEC-RT007-0011,Public Export Boundary,export;public,2,0.1667
+SRC-CLAUDE,SEC-RT003-0014,Build and check the public export (run before publishing or after changing exported files),SRC-EXPORTS-CHIRALITY-APP-README,SEC-HX010-0001,Chirality App Public Export,export;public,2,0.1538
+SRC-CLAUDE,SEC-RT003-0014,Build and check the public export (run before publishing or after changing exported files),SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT,SEC-HX011-0001,chirality-app Public Export Report,export;public,2,0.1538

@@ -185,9 +185,13 @@ def create_snapshot_dir(out_root: Path) -> Path:
     return candidate
 
 
-def iter_catalog_paths(domain_root: Path, include_archive_metadata: bool):
-    roots = [domain_root / "_Sources", domain_root / "_Decomposition"]
-    for root in roots:
+def iter_catalog_paths(
+    domain_root: Path,
+    include_archive_metadata: bool,
+    root_names: tuple[str, ...] = ("_Sources", "_Decomposition"),
+):
+    for root_name in root_names:
+        root = domain_root / root_name
         if not root.exists():
             continue
         for current, dirs, files in os.walk(root):
@@ -230,32 +234,16 @@ def collect_artifacts(
         if repo_root is None:
             raise ValueError("--repo-root is required with --source-manifest")
         artifacts, source_metadata = collect_manifest_artifacts(source_manifest, repo_root)
-    else:
-        artifacts = []
-        for path in iter_catalog_paths(domain_root, include_archive_metadata):
-            if not path.is_file():
-                continue
-            rel_path = rel_to(domain_root, path)
-            archive_state = "ARCHIVE" if is_archive_path(Path(rel_path)) else "ACTIVE"
-            role = artifact_role(rel_path)
-            stat = path.stat()
-            digest = sha256_file(path)
-            artifacts.append(
-                Artifact(
-                    artifact_id=stable_id("ART", rel_path, digest),
-                    source_doc_id=source_doc_id_for_rel(rel_path),
-                    rel_path=rel_path,
-                    artifact_role=role,
-                    media_type=media_type_for(path),
-                    extension=path.suffix.lower().lstrip("."),
-                    size_bytes=stat.st_size,
-                    mtime_ns=stat.st_mtime_ns,
-                    sha256=digest,
-                    archive_state=archive_state,
-                    generated_from_artifact_id=None,
-                    indexable=indexable_for_role(role, archive_state),
-                )
+        artifacts.extend(
+            collect_local_artifacts(
+                domain_root,
+                include_archive_metadata,
+                root_names=("_Decomposition",),
+                include_rel_path=is_manifest_companion_artifact,
             )
+        )
+    else:
+        artifacts = collect_local_artifacts(domain_root, include_archive_metadata)
     seen: set[str] = set()
     for art in artifacts:
         if art.rel_path in seen:
@@ -263,6 +251,53 @@ def collect_artifacts(
         seen.add(art.rel_path)
     artifacts.sort(key=lambda a: a.rel_path)
     return artifacts, source_metadata
+
+
+def collect_local_artifacts(
+    domain_root: Path,
+    include_archive_metadata: bool,
+    *,
+    root_names: tuple[str, ...] = ("_Sources", "_Decomposition"),
+    include_rel_path=None,
+) -> list[Artifact]:
+    artifacts: list[Artifact] = []
+    for path in iter_catalog_paths(domain_root, include_archive_metadata, root_names):
+        if not path.is_file():
+            continue
+        rel_path = rel_to(domain_root, path)
+        if include_rel_path is not None and not include_rel_path(rel_path):
+            continue
+        archive_state = "ARCHIVE" if is_archive_path(Path(rel_path)) else "ACTIVE"
+        role = artifact_role(rel_path)
+        stat = path.stat()
+        digest = sha256_file(path)
+        artifacts.append(
+            Artifact(
+                artifact_id=stable_id("ART", rel_path, digest),
+                source_doc_id=source_doc_id_for_rel(rel_path),
+                rel_path=rel_path,
+                artifact_role=role,
+                media_type=media_type_for(path),
+                extension=path.suffix.lower().lstrip("."),
+                size_bytes=stat.st_size,
+                mtime_ns=stat.st_mtime_ns,
+                sha256=digest,
+                archive_state=archive_state,
+                generated_from_artifact_id=None,
+                indexable=indexable_for_role(role, archive_state),
+            )
+        )
+    return artifacts
+
+
+def is_manifest_companion_artifact(rel_path: str) -> bool:
+    role = artifact_role(rel_path)
+    return role in {
+        "SECTION_NODES_CSV",
+        "DECOMPOSITION_LEDGER_CSV",
+        "AUDIT_SIDECAR_JSON",
+        "AUDIT_JSONL",
+    }
 
 
 def read_source_manifest(path: Path) -> list[dict[str, str]]:
@@ -405,7 +440,7 @@ def collect_source_docs(
         root = source_root_for_rel(art.rel_path)
         if root:
             current = roots.get(art.source_doc_id)
-            if current is None or Path(current).suffix:
+            if current is None or (Path(current).suffix and not root.startswith("_Decomposition")):
                 roots[art.source_doc_id] = root
 
     source_docs: list[SourceDoc] = []
@@ -553,6 +588,10 @@ def chunks_from_section_nodes(path: Path, art: Artifact) -> list[Chunk]:
         section_id = row.get("SectionID") or row.get("section_id") or f"row-{i}"
         title = row.get("Title") or row.get("title") or ""
         body = row.get("Text") or row.get("text") or ""
+        source_doc_id = (
+            source_doc_id_from_source_doc(row.get("SourceDoc") or row.get("SourceDocID"))
+            or art.source_doc_id
+        )
         searchable = truncate_text((title + "\n\n" + body).strip())
         if not searchable:
             continue
@@ -562,7 +601,7 @@ def chunks_from_section_nodes(path: Path, art: Artifact) -> list[Chunk]:
             Chunk(
                 chunk_id=stable_id("CHK", "section", art.artifact_id, section_id, h),
                 artifact_id=art.artifact_id,
-                source_doc_id=art.source_doc_id,
+                source_doc_id=source_doc_id,
                 chunk_type="SECTION_NODE",
                 rel_path=art.rel_path,
                 source_ref=source_ref,
@@ -701,7 +740,12 @@ def page_label_from_path(path: Path) -> str | None:
 def source_doc_id_from_source_doc(value: str | None) -> str | None:
     if not value:
         return None
-    return "SRC-" + __import__("re").sub(r"[^A-Za-z0-9]+", "-", Path(value).stem).strip("-").upper()
+    token = __import__("re").sub(r"[^A-Za-z0-9]+", "-", Path(value.strip()).stem).strip("-").upper()
+    if not token:
+        return None
+    if token.startswith("SRC-"):
+        return token
+    return "SRC-" + token
 
 
 def artifact_to_row(a: Artifact) -> dict:

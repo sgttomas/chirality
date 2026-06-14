@@ -198,6 +198,13 @@ def source_doc_id_for_rel(rel_path: str) -> str | None:
     parts = Path(rel_path).parts
     if not parts:
         return None
+    if (
+        parts[0] == "_Decomposition"
+        and len(parts) >= 3
+        and parts[1] == "source_section_nodes"
+        and parts[-1].endswith("_section_nodes.csv")
+    ):
+        return parts[-1][: -len("_section_nodes.csv")]
     if parts[0] == "_Sources" and len(parts) >= 2:
         name = parts[1]
         if name == "_LATEST.md":
@@ -210,7 +217,7 @@ def source_doc_id_for_rel(rel_path: str) -> str | None:
             return "SRC-ARCHIVE"
         return "SRC-" + slug_token(name)
     if parts[0] == "_Decomposition":
-        return "SRC-DECOMPOSITION"
+        return None
     return None
 
 
@@ -242,10 +249,15 @@ def artifact_role(rel_path: str) -> str:
     name = p.name.lower()
     parent_names = {part.lower() for part in parts}
 
-    if parts and parts[0] == "_Decomposition" and suffix == ".csv":
-        if name == "atomic_domain_ledger.csv":
-            return "DECOMPOSITION_LEDGER_CSV"
-        return "DECOMPOSITION_CSV"
+    if name.endswith("_section_nodes.csv"):
+        return "SECTION_NODES_CSV"
+    if parts and parts[0] == "_Decomposition":
+        if suffix == ".csv":
+            if name == "atomic_domain_ledger.csv":
+                return "DECOMPOSITION_LEDGER_CSV"
+            return "DECOMPOSITION_CSV"
+        if suffix == ".md":
+            return "DECOMPOSITION_MARKDOWN"
     if "audit" in parent_names:
         if suffix == ".html":
             return "AUDIT_HTML"
@@ -255,8 +267,6 @@ def artifact_role(rel_path: str) -> str:
             return "AUDIT_SIDECAR_JSON"
     if name.endswith("_assets_manifest.json"):
         return "ASSET_MANIFEST_JSON"
-    if name.endswith("_section_nodes.csv"):
-        return "SECTION_NODES_CSV"
     if parts[:2] == ("_Sources", "_LATEST.md"):
         return "SOURCE_POINTER"
     if "_pdf2md_work" in rel_path:

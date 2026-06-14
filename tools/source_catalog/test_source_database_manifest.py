@@ -166,6 +166,118 @@ def test_manifest_expected_hash_mismatch_is_reported(tmp_path: Path) -> None:
     assert "HASH_MISMATCH" in validation.stdout
 
 
+def test_manifest_mode_indexes_decomposition_ledger_and_section_nodes(tmp_path: Path) -> None:
+    repo_root = tmp_path / "repo"
+    domain_root = tmp_path / "domain"
+    source = repo_root / "docs" / "CONTRACT.md"
+    source.parent.mkdir(parents=True)
+    source.write_text("# Contract\n\nSource text.\n", encoding="utf-8")
+    (domain_root / "_Sources").mkdir(parents=True)
+    write_manifest(
+        domain_root / "_Sources" / "Source_Manifest.csv",
+        [
+            {
+                "SourceDocID": "SRC-CONTRACT",
+                "SourceName": "Contract",
+                "RepoRelPath": "docs/CONTRACT.md",
+                "SourceGroup": "ROOT_GOVERNANCE_DOCS",
+                "AuthorityRole": "GOVERNANCE_AUTHORITY",
+                "IncludeInIndex": "YES",
+                "ArchiveState": "ACTIVE",
+                "ExpectedSha256": sha256(source),
+                "Notes": "test",
+            }
+        ],
+    )
+
+    section_dir = domain_root / "_Decomposition" / "source_section_nodes"
+    section_dir.mkdir(parents=True)
+    with (section_dir / "SRC-CONTRACT_section_nodes.csv").open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.DictWriter(
+            fh,
+            fieldnames=["SectionID", "SourceDoc", "Title", "Text", "HtmlAnchor"],
+        )
+        writer.writeheader()
+        writer.writerow(
+            {
+                "SectionID": "SEC-CON-0001",
+                "SourceDoc": "SRC-CONTRACT",
+                "Title": "Contract Section",
+                "Text": "Section-node evidence text.",
+                "HtmlAnchor": "SRC-CONTRACT.html#SEC-CON-0001",
+            }
+        )
+
+    with (domain_root / "_Decomposition" / "Atomic_Domain_Ledger.csv").open(
+        "w",
+        encoding="utf-8",
+        newline="",
+    ) as fh:
+        writer = csv.DictWriter(
+            fh,
+            fieldnames=[
+                "AtomicUnitID",
+                "SourceDoc",
+                "SourcePrefix",
+                "LocalSeq",
+                "UnitStatement",
+                "SourceRef",
+                "ContentHash",
+                "InOutStatus",
+                "SectionID",
+                "DispatchUnitID",
+                "Corrects",
+                "Notes",
+            ],
+        )
+        writer.writeheader()
+        writer.writerow(
+            {
+                "AtomicUnitID": "HBA-CON-00001",
+                "SourceDoc": "SRC-CONTRACT",
+                "SourcePrefix": "CON",
+                "LocalSeq": "1",
+                "UnitStatement": "Ledger atom evidence text.",
+                "SourceRef": "@repo/docs/CONTRACT.md:L0001|domains/test#SEC-CON-0001",
+                "ContentHash": "abc123",
+                "InOutStatus": "IN",
+                "SectionID": "SEC-CON-0001",
+                "DispatchUnitID": "UNIT-CON-0001",
+                "Corrects": "",
+                "Notes": "",
+            }
+        )
+
+    result = run_cmd(
+        BUILD,
+        "--domain-root",
+        domain_root,
+        "--repo-root",
+        repo_root,
+        "--source-manifest",
+        domain_root / "_Sources" / "Source_Manifest.csv",
+    )
+    assert result.returncode == 0, result.stderr
+    snapshot = latest_snapshot(domain_root)
+
+    artifacts = rows_from(snapshot, "Artifacts.csv")
+    chunks = rows_from(snapshot, "Chunks.csv")
+    source_docs = rows_from(snapshot, "SourceDocs.csv")
+
+    assert {row["artifact_role"] for row in artifacts} == {
+        "DECOMPOSITION_LEDGER_CSV",
+        "SECTION_NODES_CSV",
+        "SOURCE_MARKDOWN",
+    }
+    chunk_types = {row["chunk_type"] for row in chunks}
+    assert {"LEDGER_ATOM", "MARKDOWN_SECTION", "SECTION_NODE"} <= chunk_types
+    assert {row["source_doc_id"] for row in chunks} == {"SRC-CONTRACT"}
+    [source_doc] = source_docs
+    assert source_doc["source_doc_id"] == "SRC-CONTRACT"
+    assert source_doc["source_root_rel_path"] == "@repo/docs/CONTRACT.md"
+    assert source_doc["section_nodes_artifact_id"]
+
+
 def test_without_manifest_keeps_piping_design_style_local_source_behavior(tmp_path: Path) -> None:
     domain_root = tmp_path / "domain"
     source = domain_root / "_Sources" / "Handbook" / "Handbook.md"
