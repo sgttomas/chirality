@@ -14,7 +14,8 @@
 
 - Chirality App product descriptions from conversations with the developer.
 - The existing `frontend/` files.
-- Anthropic Claude Agent SDK / Claude Code SDK documentation current as of 2026-05-20, including TypeScript `query()` options, permissions, hooks, MCP, sessions, `SessionStore`, system prompts, subagents, and hosting guidance.
+- Anthropic Claude Agent SDK / Claude Code SDK documentation current as of 2026-05-20, including TypeScript `query()` options, permissions, hooks, MCP, sessions, `SessionStore`, system prompts, subagents, and hosting guidance for the first concrete adapter.
+- `SCA-APP-001 Provider-General Runtime and Pi Pattern-Corpus Reorientation`, accepted on 2026-06-13.
 
 ## 2. Product Summary
 
@@ -32,11 +33,12 @@ Runtime thesis:
 
 Runtime implementation direction:
 
-- Chirality should privilege the Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`, formerly the Claude Code SDK) as the hosted runtime spine for generic agent-loop behavior.
-- Chirality should not reimplement generic primitives that the SDK already provides well: the model/tool loop, built-in file tools, bash tool surface, permission-mode machinery, hook dispatch, MCP transport, SDK session transcripts, subagent invocation, and compaction messages.
-- Chirality must treat the SDK as a replaceable engine behind product-owned contracts, not as the product runtime contract itself. The SDK is the preferred implementation substrate; Chirality's event schema, session canonicality, permission semantics, lifecycle authority, tool-exposure rules, professional-boundary posture, and human gates remain product-owned.
-- Chirality still owns the product-critical governance shell: instruction-root versus working-root separation, persona/system-prompt composition, working-root validation, professional-boundary posture, `_STATUS.md` lifecycle authority, `Dependencies.csv` contract behavior, subagent governance allowlists, path containment, instruction-root write blocking, runtime redaction, provenance events, UI transport compatibility, local packaging, the Chirality audit mirror, and the fallback criteria for replacing the SDK if a product-critical boundary cannot be verified.
-- Therefore the vNext runtime is **SDK-privileged, contract-owned, and Chirality-governed**: the SDK supplies reusable runtime machinery; Chirality defines the reliance boundaries, configures and constrains the engine, observes and records what happened, and preserves a governed exit path.
+- Chirality should use a provider-adapter architecture where external provider SDKs and APIs remain implementation substrates behind Chirality-owned contracts.
+- Claude Agent SDK / Anthropic remains the first concrete adapter and the current shipped path.
+- Chirality should not reimplement generic primitives that the current adapter provides well when they can be governed by Chirality-owned policy: model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK session transcripts, subagent invocation, and compaction messages.
+- Chirality must treat every provider/SDK as a replaceable engine behind product-owned contracts, not as the product runtime contract itself. Chirality's event schema, session canonicality, permission semantics, lifecycle authority, tool-exposure rules, professional-boundary posture, and human gates remain product-owned.
+- Chirality still owns the product-critical governance shell: instruction-root versus working-root separation, persona/system-prompt composition, working-root validation, professional-boundary posture, `_STATUS.md` lifecycle authority, `Dependencies.csv` contract behavior, subagent governance allowlists, path containment, instruction-root write blocking, runtime redaction, provenance events, UI transport compatibility, local packaging, the Chirality audit mirror, and the fallback criteria for replacing an adapter if a product-critical boundary cannot be verified.
+- Therefore the vNext runtime is **provider-adapter-general, contract-owned, and Chirality-governed**: adapters supply reusable runtime machinery only where verified; Chirality defines the reliance boundaries, configures and constrains the engine, observes and records what happened, and preserves governed exit paths.
 
 Current implementation assessment:
 
@@ -45,11 +47,11 @@ Current implementation assessment:
 
 Revised product direction:
 
-- The next development objective is to evolve the shell into a governed SDK-hosted Chirality runtime without becoming a thin Claude Code wrapper.
-- The first implementation slice must establish a thin `TurnEngine` wrapper around SDK `query()`, SDK option construction, SDK-message mapping, append-only Chirality session events, redacted run logging, SDK settings isolation, prompt composition, and an explicit `AgentEnginePort`/`RuntimeEngineContract` boundary, without changing the browser-facing SSE contract.
-- Local tool exposure should begin by configuring SDK built-ins and in-process Chirality MCP tools behind deny-first policy, not by building a custom model/tool loop from scratch.
-- R0/R1 must create a reliance-boundary register that identifies which product-critical semantics are enforced by Chirality code, SDK configuration, SDK hooks/callbacks, or prompt text. Product-critical safety or audit semantics may not depend on prompt text or opaque SDK defaults alone.
-- A custom runtime remains an explicit fallback if the R0/R1 SDK probe proves that the SDK cannot satisfy, expose, or be wrapped to satisfy a product-critical Chirality requirement without weakening governance.
+- The next development objective is to evolve the shell into a governed provider-adapter Chirality runtime without becoming a thin Claude Code wrapper or any other external harness wrapper.
+- The first implementation slice must establish a thin `TurnEngine` wrapper around the first adapter, adapter option construction, provider/SDK-message mapping, append-only Chirality session events, redacted run logging, first-adapter settings isolation, prompt composition, and an explicit `AgentEnginePort`/`RuntimeEngineContract` boundary, without changing the browser-facing SSE contract.
+- Local tool exposure should begin by configuring first-adapter SDK built-ins and in-process Chirality MCP tools behind capability-forward policy with explicit hard-deny precedence, not by building a custom model/tool loop from scratch.
+- R0/R1 must create a reliance-boundary register that identifies which product-critical semantics are enforced by Chirality code, adapter configuration, adapter hooks/callbacks, or prompt text. Product-critical safety or audit semantics may not depend on prompt text or opaque provider/SDK defaults alone.
+- A custom runtime remains an explicit fallback if the R0/R1 first-adapter probe proves that the adapter cannot satisfy, expose, or be wrapped to satisfy a product-critical Chirality requirement without weakening governance.
 
 ## 3. Goals
 
@@ -59,18 +61,18 @@ Revised product direction:
 2. Preserve strict separation between bundled instruction root and mutable working root.
 3. Make agent work auditable through plain files, git diffs, lifecycle files, dependency registers, immutable snapshots, and runtime session events.
 4. Provide matrix-based navigation into two execution surfaces: WORKBENCH for interactive persona agents and PIPELINE for operative task categories.
-5. Support streaming chat turns with session persistence, runtime options, interrupts, multimodal attachments, and Anthropic provider integration.
-6. Enforce safety and governance boundaries: human authority at gates, no automated issuance, no hidden project memory, fail-closed subagent delegation, and Anthropic-only outbound network policy.
+5. Support streaming chat turns with session persistence, runtime options, interrupts, multimodal attachments, and current Anthropic provider integration.
+6. Enforce safety and governance boundaries: human authority at gates, no automated issuance, no hidden project memory, fail-closed subagent delegation, and explicit outbound network policy.
 7. Provide deterministic tools and validation workflows for scaffolding, schema checks, dependency closure, harness runtime validation, and release packaging.
 8. Ship a macOS 15+ Apple Silicon unsigned DMG build path with instruction-root integrity verification.
-9. Privilege the Claude Agent SDK as the runtime spine for generic agent-loop behavior while keeping Chirality-specific governance in product-owned code.
-10. Put the SDK behind a product-owned `AgentEnginePort` / `RuntimeEngineContract` so public APIs, canonical event schema, session storage, permission semantics, and governance rules are not SDK-shaped.
-11. Maintain engine conformance tests that verify the Chirality runtime contract independently of the specific SDK adapter.
-12. Establish a thin `TurnEngine` that owns the harness turn lifecycle outside the HTTP route and delegates model/tool execution to SDK `query()` through the engine contract.
-13. Persist accepted user input before SDK execution and persist success, failure, interruption, permission, hook, tool, compaction, and subagent lifecycle records in an append-only Chirality event log.
-14. Compose real prompt/system context from instruction-root governance, active persona, project-root boundaries, mode policy, and configured SDK tool surface.
-15. Configure SDK options deterministically: model, cwd, permission mode, allowed/disallowed tools, hooks, MCP servers, subagents, session ID/resume, settings isolation, and system prompt.
-16. Implement a Chirality permission overlay using SDK permission modes, `disallowedTools`, hooks, and `canUseTool`; never treat `allowedTools` alone as a restriction boundary.
+9. Build a provider-adapter runtime architecture while keeping Chirality-specific governance in product-owned code.
+10. Put every provider/SDK behind a product-owned `AgentEnginePort` / `RuntimeEngineContract` so public APIs, canonical event schema, session storage, permission semantics, and governance rules are not provider-shaped.
+11. Maintain engine conformance tests that verify the Chirality runtime contract independently of the specific provider/SDK adapter.
+12. Establish a thin `TurnEngine` that owns the harness turn lifecycle outside the HTTP route and delegates model/tool execution to the first adapter through the engine contract.
+13. Persist accepted user input before adapter execution and persist success, failure, interruption, permission, hook, tool, compaction, and subagent lifecycle records in an append-only Chirality event log.
+14. Compose real prompt/system context from instruction-root governance, active persona, project-root boundaries, mode policy, and configured tool surface.
+15. Configure adapter options deterministically: model, cwd, permission mode, allowed/disallowed tools, hooks, MCP servers, subagents, session ID/resume, settings isolation, and system prompt.
+16. Implement a Chirality capability policy / permission overlay using adapter permission modes, explicit hard-deny precedence, `disallowedTools`, hooks, and `canUseTool`; never treat `allowedTools` alone as a restriction boundary.
 17. Prefer in-process Chirality MCP tools for `_STATUS.md`, `Dependencies.csv`, scope scan, scaffold, and future deterministic Chirality adapters.
 18. Keep the canonical Chirality audit mirror under `.chirality/sessions/<id>/` even when the SDK writes or mirrors its own richer transcripts.
 19. Store SDK session linkage (`sdkSessionId`, project key, transcript location or store key) in Chirality session metadata.
@@ -89,16 +91,18 @@ The product must not:
 - Depend on an external project database.
 - Persist project truth in hidden app state, chats, caches, or vendor systems.
 - Treat local UI preferences, API keys, runtime logs, SDK transcripts, or chat drafts as authoritative project state.
-- Allow outbound network access beyond the Anthropic API path required for provider execution unless a governed future amendment explicitly permits it.
+- Allow outbound network access beyond the current shipped Anthropic API path required for provider execution unless a governed future implementation tranche explicitly permits it.
 - Treat prompt instructions as the only safety boundary for filesystem writes or tool execution.
 - Add `bash` as a user-enabled capability before permission, hooks, result storage, timeout, audit logging, and packaging checks exist.
 - Add remote MCP servers, plugins, remote execution, or a plugin marketplace before local/in-process SDK integration, permission policy, hooks, event logging, and result storage are stable.
-- Reimplement SDK-provided primitives when the Claude Agent SDK satisfies Chirality requirements and can be governed by Chirality overlays.
-- Collapse into a thin Claude Code wrapper where SDK defaults, SDK transcript shape, SDK tool names, or Claude Code product assumptions define Chirality's runtime semantics.
-- Chase feature parity with Claude Code CLI or any external codebase. The SDK is privileged as an implementation substrate, not as a product identity or governance authority.
+- Reimplement provider/SDK-provided primitives when the current adapter satisfies Chirality requirements and can be governed by Chirality overlays.
+- Collapse into a thin Claude Code, Pi, or other external wrapper where provider defaults, transcript shape, tool names, or external product assumptions define Chirality's runtime semantics.
+- Chase feature parity with Claude Code CLI, Pi, or any external codebase. Provider SDKs are implementation substrates, not product identity or governance authority.
 - Use Claude Code branding, Claude Code visual identity, or user-facing copy that makes Chirality appear to be Claude Code or an Anthropic product.
 - Load ambient user/global Claude Code settings (`~/.claude/settings.json`) or local `.claude/settings.local.json` in shipped builds.
 - Use `bypassPermissions` in shipped builds or ordinary operator workflows. Any developer-only bypass remains guarded by explicit local configuration and Chirality deny hooks.
+- Import Pi packages, fork Pi, build a Pi adapter, introduce a Node 22 Pi sidecar, raise the runtime floor for Pi, or run a Pi spike under current scope. Pi is a pattern corpus/reference only after `SCA-APP-001`.
+- Implement concrete non-Anthropic providers under the strategic provider-adapter ruling without a bounded future implementation tranche.
 - Reopen retired execution-scope items such as unified **pipeline** run records, dependency graph generation, deliverable locks, or staleness tooling without a governed scope amendment. Harness session event logs are a runtime audit facility and do not by themselves reactivate retired pipeline deliverables.
 - Become OpenPipeStress, a pipe-stress solver, or any other domain-specific engineering solver.
 - Allow agents to write directly into protected domain-engine model paths.
@@ -148,16 +152,16 @@ A future accountable reviewer who examines domain-engine proposals, deterministi
 5. **Evidence over plausibility.** Claims require provenance. Unknowns become `TBD`, not guesses.
 6. **No hidden memory for project truth.** Runtime convenience state is allowed only when explicitly non-authoritative.
 7. **Instruction root and working root are separate.** Release-managed agent OS files must not be modified by project execution.
-8. **SDK-privileged, contract-owned.** The Claude Agent SDK is the preferred hosted engine for generic agent-loop mechanics, but Chirality owns the runtime contract exposed to the app and to project governance.
-9. **Reliance boundaries are first-class.** Audit semantics, permission semantics, lifecycle transitions, filesystem truth, transcript canonicality, and human gates must be defined and tested in Chirality terms, not inferred from SDK defaults.
-10. **Engine replaceability by construction.** The SDK adapter may be hard to replace in practice, but it must sit behind explicit contracts, conformance tests, and fallback criteria so upstream changes do not silently redefine the product.
+8. **Provider-adapter-general, contract-owned.** Provider SDKs may supply generic agent-loop mechanics, but Chirality owns the runtime contract exposed to the app and to project governance.
+9. **Reliance boundaries are first-class.** Audit semantics, permission semantics, lifecycle transitions, filesystem truth, transcript canonicality, and human gates must be defined and tested in Chirality terms, not inferred from provider/SDK defaults.
+10. **Engine replaceability by construction.** The first adapter may be hard to replace in practice, but every adapter must sit behind explicit contracts, conformance tests, and fallback criteria so upstream changes do not silently redefine the product.
 11. **SDK isolation.** Shipped builds must not load ambient user/global Claude Code settings. Programmatic options and Chirality instruction-root policy are the source of runtime behavior.
 12. **Provider-neutral core.** Core runtime records, APIs, and tests use Chirality terms. Claude/SDK-specific identifiers, message names, transcript paths, permission modes, and tool names are translated at the adapter boundary.
 13. **Routes stay thin.** HTTP routes parse requests, handle transport, acquire/release locks, and forward events; runtime services own behavior.
 14. **Persist accepted user input early.** A killed or interrupted process must leave a recoverable accepted-turn record.
 15. **Separate UI events from runtime events.** Browser `UIEvent`s remain stable and compact; persisted runtime events may be richer and versioned.
-16. **Expose only permitted capabilities to the model.** Tool-surface resolution happens before SDK request construction. `allowedTools` is not enough by itself; restrictions require mode, deny rules, hooks, and overlay policy.
-17. **Deny overrides allow.** SDK deny rules, Chirality hook denials, path-containment failures, and governance denials override any prompt, persona, session, operator, or SDK permission-mode allow decision.
+16. **Expose only policy-permitted capabilities to the model.** Tool-surface resolution happens before adapter request construction. `allowedTools` is not enough by itself; restrictions require mode, explicit hard-deny precedence, hooks, and overlay policy.
+17. **Hard denies override allows.** Provider/SDK deny rules, Chirality hook denials, path-containment failures, protected-path rules, release/professional boundaries, and governance denials override any prompt, persona, session, operator, or adapter permission-mode allow decision.
 18. **Safety lives in runtime code.** Prompts reinforce safety but do not replace path containment, permission policy, hooks, result budgets, timeouts, and packaging/network controls.
 19. **MCP is a transport, not a bypass.** In-process Chirality MCP tools must pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.
 20. **Product identity stays Chirality.** SDK usage must not make the app look, behave, or describe itself as Claude Code. User-facing copy should describe Chirality's own governed-work posture.
@@ -190,28 +194,28 @@ Current product scope:
 - Instruction-root integrity verification in packaged builds.
 - macOS Apple Silicon unsigned DMG packaging workflow.
 
-New SDK-hosted harness-runtime scope:
+New provider-adapter harness-runtime scope:
 
-- Adopt `@anthropic-ai/claude-agent-sdk` as the preferred runtime spine, subject to the R0/R1 empirical probe.
-- Define a product-owned `AgentEnginePort` / `RuntimeEngineContract` before deep SDK integration. The contract governs accepted-turn persistence, UI event mapping, canonical `HarnessEvent`s, permission decisions, tool exposure, session linkage, interrupt behavior, and terminal outcomes.
-- Add engine conformance tests so the SDK-backed adapter proves it satisfies Chirality's contract rather than making the contract SDK-shaped.
+- Adopt `@anthropic-ai/claude-agent-sdk` as the first concrete provider/SDK adapter, subject to the R0/R1 empirical probe.
+- Define a product-owned `AgentEnginePort` / `RuntimeEngineContract` before deep adapter integration. The contract governs accepted-turn persistence, UI event mapping, canonical `HarnessEvent`s, permission decisions, tool exposure, session linkage, interrupt behavior, and terminal outcomes.
+- Add engine conformance tests so provider/SDK-backed adapters prove they satisfy Chirality's contract rather than making the contract provider-shaped.
 - Add a reliance-boundary register that identifies every product-critical safety, audit, filesystem, lifecycle, and human-gate semantic and the concrete enforcement surface for it.
-- Add a thin `TurnEngine` wrapper around SDK `query()` that satisfies the existing `IAgentSdkManager.startTurn()` shape and keeps `/api/harness/turn` as an SSE transport adapter.
+- Add a thin `TurnEngine` wrapper around the first adapter's SDK `query()` path that satisfies the existing `IAgentSdkManager.startTurn()` shape and keeps `/api/harness/turn` as an SSE transport adapter.
 - Add `sdk-options-builder.ts` to construct SDK options from Chirality session state, resolved runtime options, content blocks, prompt composition, hooks, MCP servers, subagents, permission policy, and settings-isolation policy.
 - Add `sdk-message-mapper.ts` to map SDK messages into both existing browser `UIEvent`s and richer persisted `HarnessEvent`s.
 - Add versioned `HarnessEvent` schema, append-only Chirality JSONL event storage, replay helpers, and redacted run logging.
 - Persist `turn.accepted` before SDK `query()` starts, so killed or interrupted turns leave recoverable evidence.
 - Replace the persona prompt stub with a real composer that reads instruction-root governance and active `AGENT_<persona>.md` content and produces either a custom SDK `systemPrompt` or a `claude_code` preset with append instructions where appropriate.
 - Configure `settingSources: []` for shipped builds unless a governed exception is accepted. Development may enable `['project']` only through explicit environment configuration. `user` and `local` setting sources are out of shipped scope.
-- Configure SDK built-in tools through deterministic allowed/disallowed tool lists, permission mode, hooks, and `canUseTool`. The PRD must never rely on `allowedTools` alone as a restriction boundary.
-- Implement a Chirality deny-first permission overlay using SDK `permissionMode`, `disallowedTools`, `canUseTool`, and `PreToolUse` hooks.
+- Configure first-adapter SDK built-in tools through deterministic allowed/disallowed tool lists, permission mode, hooks, and `canUseTool`. The PRD must never rely on `allowedTools` alone as a restriction boundary.
+- Implement a Chirality capability policy / permission overlay using adapter `permissionMode`, explicit hard-deny precedence, `disallowedTools`, `canUseTool`, and `PreToolUse` hooks.
 - Register Chirality-specific deterministic tools as in-process SDK MCP servers, initially for status read/transition, dependency CSV read/write, scope scan, and scaffold.
 - Implement Chirality hooks as SDK hook callbacks: path containment, instruction-root write protection, symlink rejection, write budget, provenance append, compaction boundary recording, stop/finalization, and subagent governance.
 - Configure Type 2 task subagents through SDK `agents` definitions generated from `agents/AGENT_*.md`, with restricted tool lists and a fail-closed `Agent` tool gate through `evaluateSubagentGovernance`.
 - Store `sdkSessionId` and SDK transcript linkage in Chirality `session.json` and resume with explicit `resume` rather than ambiguous `continue`.
 - Prefer SDK transcript placement or mirroring under the working root / parent project folders by using `sessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable. If unavoidable, treat default `~/.claude/projects/...` transcripts as secondary SDK state cross-referenced from Chirality metadata, not project truth.
 - Preserve the browser-facing `UIEvent` and SSE event names during the runtime pivot.
-- Maintain Anthropic-only outbound network policy; any MCP or tool network access outside Anthropic requires explicit future scope.
+- Maintain the current shipped loopback plus Anthropic outbound network policy; any concrete non-Anthropic provider, MCP, or tool network access outside current scope requires explicit future implementation scope.
 - Add Electron packaging checks for the SDK-spawned Claude Code subprocess, native/bundled binaries, `asarUnpack` requirements, code-signing implications, and API-key environment handling.
 
 Future platform compatibility scope, not current-release scope:
@@ -630,7 +634,7 @@ Later categories:
 | FR-086 | P1 | Concurrency behavior may rely on the SDK only after event ordering is testable. | Chirality replay remains deterministic even if the SDK executes safe tool activity concurrently. |
 | FR-119 | P0 | Chirality-specific deterministic operations shall be exposed as in-process SDK MCP tools. | Status read/transition, dependency CSV read/write, scope scan, and scaffold use `createSdkMcpServer()`/`tool()` or equivalent SDK APIs and pass through Chirality hooks and redaction. |
 
-Initial SDK-hosted tool sequence:
+Initial first-adapter tool sequence:
 
 1. SDK read tools and Chirality read MCP tools.
 2. Chirality status/dependency/scope/scaffold MCP tools.
@@ -638,13 +642,13 @@ Initial SDK-hosted tool sequence:
 4. SDK `Bash` only after timeout, result storage, hook, interrupt, and audit behavior pass validation.
 5. Remote MCP, tool search, and plugins only after local/in-process tool governance matures.
 
-### 8.14 SDK Permission Policy and Chirality Hooks
+### 8.14 Capability Policy, Adapter Permission Modes, and Chirality Hooks
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-087 | P0 | Permission decisions shall be structured. | Decision is recorded as `allow`, `deny`, or application-level `ask`, with reason, source, SDK tool use ID where present, and safe metadata. |
-| FR-088 | P0 | Chirality modes shall map to SDK permission modes plus Chirality overlay policy. | `readOnly`, `workspaceWrite`, `dontAsk`, `ask`, and developer-only `bypass` are enforced by SDK `permissionMode`, `allowedTools`, `disallowedTools`, hooks, and `canUseTool`, not prompt text. |
-| FR-089 | P0 | Deny rules shall override all allow decisions. | Explicit SDK `disallowedTools`, Chirality hook denials, and path/governance denials block persona/session/operator allows and even developer-only bypass. |
+| FR-087 | P0 | Permission decisions shall be structured. | Decision is recorded as `allow`, `deny`, or application-level `ask`, with reason, source, provider/SDK tool use ID where present, and safe metadata. |
+| FR-088 | P0 | Chirality modes shall map to adapter permission modes plus Chirality overlay policy. | `readOnly`, `workspaceWrite`, `dontAsk`, `ask`, and developer-only `bypass` are enforced by adapter `permissionMode`, `allowedTools`, `disallowedTools`, hooks, and `canUseTool`, not prompt text. |
+| FR-089 | P0 | Explicit hard-deny rules shall override all allow decisions. | Explicit provider/SDK `disallowedTools`, Chirality hook denials, path/governance denials, protected-path rules, professional/release boundaries, and unvalidated provider/network expansion blocks persona/session/operator allows and even developer-only bypass. |
 | FR-090 | P0 | `dontAsk` shall deny unapproved write, shell, network, or non-allowlisted actions. | Denied action does not execute and emits permission/runtime events. |
 | FR-091 | P0 | `readOnly` shall expose or allow read-only tools only. | Write/edit/bash/network-capable tools are unavailable or hard-denied; plan/read-only mode behavior is validated. |
 | FR-092 | P0 | Permission decisions shall be persisted. | `tool.permission` events record behavior, source, reason, SDK tool name, and safe metadata. |
@@ -671,7 +675,7 @@ Provisional Chirality-to-SDK permission mapping:
 | FR-097 | P0 | Write/edit tools shall use safe filesystem behavior. | Paths resolve inside project root, symlinks are rejected initially, instruction-root writes are blocked, edits require exact old content unless configured otherwise. |
 | FR-098 | P1 | Context window management shall preserve auditability. | Full Chirality event log stays on disk; SDK transcript linkage is preserved; compaction boundaries are mirrored when the SDK emits them. |
 | FR-099 | P1 | Compaction events shall be persisted. | `context.compacted` records boundary, preserved recent turns where knowable, SDK compact metadata, and replay implications. |
-| FR-100 | P1 | Bash shall remain denied by default even though the SDK ships the tool. | Denied bash never spawns; allowed bash captures stdout/stderr separately, times out, stores large output, and can be interrupted when possible. |
+| FR-100 | P1 | Bash shall remain unavailable unless explicitly governed and validated. | Denied bash never spawns; allowed bash captures stdout/stderr separately, times out, stores large output, and can be interrupted when possible. This bash gate must not suppress unrelated safe read/tool capability. |
 | FR-101 | P1 | Subagent execution shall create governed child run records. | Child run includes parent session/turn, persona, agent name, SDK agent ID where available, model, project root, status, timestamps, and output artifact path. |
 | FR-102 | P1 | Subagent tools and working directory shall be restricted. | SDK `agents` definitions inherit or reduce parent permissions; they cannot bypass `evaluateSubagentGovernance`. |
 | FR-103 | P2 | Deferred tool search shall return only currently allowed tools. | Tool search is added only when catalog size justifies it and never reveals denied tools. |
@@ -683,17 +687,17 @@ Provisional Chirality-to-SDK permission mapping:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-122 | P0 | Chirality shall define an `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs. | Public harness APIs, browser `UIEvent`s, canonical `HarnessEvent`s, permission decisions, and session storage contracts do not depend on SDK message names or transcript shape. |
-| FR-123 | P0 | The SDK-backed adapter shall pass engine conformance tests before becoming the default production path. | Tests cover accepted-turn persistence, terminal outcome persistence, SSE compatibility, SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction. |
-| FR-124 | P0 | A reliance-boundary register shall identify ownership for product-critical semantics. | For each boundary, the register records whether enforcement is Chirality code, SDK option, SDK hook/callback, MCP wrapper, human gate, or prompt support; P0 boundaries cannot be prompt-only. |
-| FR-125 | P0 | Product-critical denies shall be enforced in Chirality-owned code or verified SDK callbacks/hooks. | Protected path writes, instruction-root writes, ambient settings, unapproved bash, ungated subagent delegation, and human-gate transitions are denied even if SDK defaults would allow them. |
-| FR-126 | P1 | The runtime shall preserve an exit path from the SDK if a critical boundary cannot be governed. | R0/R1 records fallback criteria and the minimal custom-runtime components required if the SDK probe fails. |
+| FR-122 | P0 | Chirality shall define an `AgentEnginePort` / `RuntimeEngineContract` separate from provider/SDK APIs. | Public harness APIs, browser `UIEvent`s, canonical `HarnessEvent`s, permission decisions, and session storage contracts do not depend on provider/SDK message names or transcript shape. |
+| FR-123 | P0 | A provider/SDK-backed adapter shall pass engine conformance tests before becoming the default production path. | Tests cover accepted-turn persistence, terminal outcome persistence, SSE compatibility, provider/SDK message mapping, permission denial, tool exposure, interrupt/cancel behavior, session resume, and redaction. |
+| FR-124 | P0 | A reliance-boundary register shall identify ownership for product-critical semantics. | For each boundary, the register records whether enforcement is Chirality code, adapter option, adapter hook/callback, MCP wrapper, human gate, or prompt support; P0 boundaries cannot be prompt-only. |
+| FR-125 | P0 | Product-critical denies shall be enforced in Chirality-owned code or verified adapter callbacks/hooks. | Protected path writes, instruction-root writes, ambient settings, unapproved bash, ungated subagent delegation, unvalidated provider/network expansion, and human-gate transitions are denied even if provider/SDK defaults would allow them. |
+| FR-126 | P1 | The runtime shall preserve an exit path from an adapter if a critical boundary cannot be governed. | R0/R1 records fallback criteria and the minimal custom-runtime components required if the first-adapter probe fails. |
 | FR-127 | P1 | The product shall maintain Chirality identity when using the SDK. | User-facing labels, docs, and packaging do not present the app as Claude Code or an Anthropic product; SDK usage is disclosed only where appropriate as implementation/provider detail. |
-| FR-128 | P1 | SDK adapter behavior shall be version-pinned and regression-tested. | SDK package version, Claude Code subprocess version, settings posture, visible tool list, permissions, hooks, and session-store behavior are recorded in safe runtime metadata and tested on upgrade. |
+| FR-128 | P1 | Provider/SDK adapter behavior shall be version-pinned and regression-tested. | SDK package version, Claude Code subprocess version, settings posture, visible tool list, permissions, hooks, and session-store behavior are recorded in safe runtime metadata for the first adapter and tested on upgrade. |
 
 ### 8.17 Domain Engine Future Compatibility
 
-The thesis and bigger-picture documents describe domain-engine integration, including OpenPipeStress-style protected domain artifacts and operation-proposal workflows. This PRD does not make domain engines part of the current release. It preserves future compatibility through these requirements without moving domain work ahead of the harness runtime spine.
+The thesis and bigger-picture documents describe domain-engine integration, including OpenPipeStress-style protected domain artifacts and operation-proposal workflows. This PRD does not make domain engines part of the current release. It preserves future compatibility through these requirements without moving domain work ahead of the provider-adapter runtime spine.
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
@@ -726,7 +730,7 @@ The thesis and bigger-picture documents describe domain-engine integration, incl
 
 Compatibility requirement:
 
-- Existing `/api/harness/*` route shapes remain stable during SDK adoption and TurnEngine extraction.
+- Existing `/api/harness/*` route shapes remain stable during adapter adoption and TurnEngine extraction.
 - Runtime implementation moves behind route boundaries; public SSE event names remain compatible while internal persisted events expand.
 
 ### 9.2 Workspace APIs
@@ -757,16 +761,16 @@ Additional tool progress events may be introduced only with UI compatibility han
 
 The stream must always terminate with a process-level completion/error signal unless the client disconnects and cancel cleanup runs. Client disconnect cleanup must record cancellation in the persisted runtime log once the event log exists.
 
-SDK adoption requirement:
+Adapter adoption requirement:
 
-- SDK messages are not the browser contract. `sdk-message-mapper.ts` translates SDK stream messages into this stable UI contract and into richer product-owned `HarnessEvent`s.
+- Provider/SDK messages are not the browser contract. The first-adapter `sdk-message-mapper.ts` translates SDK stream messages into this stable UI contract and into richer product-owned `HarnessEvent`s.
 
 ### 9.4 Internal Runtime Interfaces
 
-Target internal interfaces are not public API contracts, but they are product-significant implementation boundaries. After SDK adoption, Chirality owns these interfaces:
+Target internal interfaces are not public API contracts, but they are product-significant implementation boundaries. After adapter adoption, Chirality owns these interfaces:
 
 - `AgentEnginePort` / `RuntimeEngineContract`: product-owned boundary for accepted turns, UI event yield, canonical event mapping, permissions, tool exposure, session linkage, interrupt/cancel, and terminal outcomes.
-- `EngineConformanceSuite`: tests that any engine adapter, including the SDK adapter, must pass before it can become the production path.
+- `EngineConformanceSuite`: tests that any engine adapter, including the first SDK adapter, must pass before it can become the production path.
 - `EngineAdapter`: provider-specific translator that converts external identifiers, message names, permission modes, tool names, transcript paths, and session IDs into provider-neutral Chirality contracts.
 - `TurnEngine`: thin owner for a single harness turn lifecycle around SDK `query()` through the engine contract.
 - `SdkOptionsBuilder`: deterministic construction of SDK options from Chirality session, persona, mode, tool, MCP, hook, permission, and settings-isolation policy.
@@ -776,7 +780,7 @@ Target internal interfaces are not public API contracts, but they are product-si
 - `SessionEvents`: append/replay JSONL event API.
 - `RunLogger`: redacted structured runtime logger.
 - `RelianceBoundaryRegister`: product-owned list of audit, permission, lifecycle, filesystem, transcript, and human-gate semantics with their enforcement surfaces and fallback implications.
-- `ChiralityPermissionOverlay`: SDK mode, disallowed tool, hook, and `canUseTool` policy implementation.
+- `ChiralityPermissionOverlay`: adapter mode, disallowed tool, hook, explicit hard-deny precedence, and `canUseTool` policy implementation.
 - `ChiralityHooks`: SDK hook callbacks for path containment, instruction-root protection, symlink policy, provenance, failure triage, compaction mirror, and subagent governance.
 - `ChiralityMcpTools`: in-process SDK MCP server definitions for deterministic Chirality operations.
 - `SdkSessionLink`: metadata and helper functions for `sdkSessionId`, SDK project key, transcript path/store key, and resume behavior.
@@ -785,7 +789,7 @@ Target internal interfaces are not public API contracts, but they are product-si
 - `DomainEngineProfile`: future-amendment contract for describing deterministic domain engine boundaries, protected paths, proposal paths, operations, manifests, and boundary notices.
 - `OperationProposal`: future-amendment record for proposed domain operations that require deterministic checks and human gates before application.
 
-Interfaces no longer intended as standalone custom runtime primitives unless the R0/R1 SDK probe fails:
+Interfaces no longer intended as standalone custom runtime primitives unless the R0/R1 first-adapter probe fails:
 
 - Custom generic `ModelAdapter`.
 - Custom generic model/tool loop.
@@ -1095,15 +1099,16 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 This PRD remains acceptable only if:
 
 - it does not claim automated professional approval, code compliance, external validation, or solver ownership;
-- the first implementation slice remains SDK adoption plus `TurnEngine`, SDK option mapping, SDK message mapping, session event log, run logger, prompt composer, settings isolation, and the runtime-engine boundary contract;
-- the SDK remains privileged but replaceable behind Chirality-owned contracts and conformance tests;
+- the first implementation slice remains first-adapter adoption plus `TurnEngine`, adapter option mapping, provider/SDK message mapping, session event log, run logger, prompt composer, settings isolation, and the runtime-engine boundary contract;
+- provider/SDK adapters remain replaceable behind Chirality-owned contracts and conformance tests;
 - no local write/bash/subagent/domain capability is exposed before permission, hooks, result storage, and event logging pass validation;
-- roadmap order remains clear: SDK runtime spine before tool expansion, read tools before writes/bash, and domain profiles only after core harness stability;
+- roadmap order remains clear: provider-adapter runtime spine before tool expansion, read tools before writes/bash, and domain profiles only after core harness stability;
 - retired PKG-08 deliverables remain out of current scope unless explicitly reactivated by governed amendment;
 - domain-engine requirements remain future compatibility scope and preserve protected-path and human-gate boundaries;
 - the PRD does not treat `allowedTools` alone as a security boundary;
 - the PRD does not permit shipped loading of ambient `~/.claude` user/local settings;
-- the PRD does not let Claude Code branding, SDK defaults, SDK transcript shape, or SDK tool availability define Chirality's product identity or reliance semantics;
+- the PRD does not let Claude Code branding, provider/SDK defaults, transcript shape, or tool availability define Chirality's product identity or reliance semantics;
+- the PRD treats Pi as a pattern corpus/reference only and does not authorize Pi adapter, fork, import, sidecar, runtime-floor migration, or spike work;
 - `git diff -- docs/PRD.md` shows the intended PRD change without unrelated file modifications.
 
 ### 12.2 Required Local Checks
@@ -1129,12 +1134,12 @@ Expected packaging outputs:
 - `frontend/dist/mac-arm64/Chirality.app`
 - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 
-SDK-specific checks after R1:
+First-adapter checks after R1:
 
 - SDK package version pinned to a known-good release.
 - SDK TypeScript options compile with current types.
 - Packaged Electron build can find the SDK-bundled Claude Code subprocess.
-- SDK calls use the expected Anthropic API endpoint and do not silently broaden network policy.
+- SDK calls use the expected Anthropic API endpoint for the current shipped path and do not silently broaden network policy.
 - SDK stderr/debug output is redacted.
 - `settingSources` default is `[]`.
 - `resume` works from persisted `sdkSessionId` and configured transcript/store location.
@@ -1157,13 +1162,13 @@ The Section 8 harness validation shall verify:
 As runtime phases land, add validation IDs:
 
 - `section9.runtime_engine_contract`
-- `section9.sdk_turn_engine_event_log`
-- `section9.sdk_message_mapper`
+- `section9.adapter_turn_engine_event_log`
+- `section9.adapter_message_mapper`
 - `section9.session_event_replay`
 - `section9.reliance_boundary_register`
 - `section9.settingsources_isolation`
 - `section9.sdk_session_link_resume`
-- `section9.permission_overlay_deny_first`
+- `section9.permission_overlay_hard_deny_precedence`
 - `section9.tool_runtime_read_file`
 - `section9.chirality_mcp_status_dependencies`
 - `section9.path_containment_hook`
@@ -1177,10 +1182,10 @@ As runtime phases land, add validation IDs:
 
 Add tests for:
 
-- `AgentEnginePort` / `RuntimeEngineContract` conformance using the SDK-backed adapter and a stub adapter.
+- `AgentEnginePort` / `RuntimeEngineContract` conformance using the first provider/SDK-backed adapter and a stub adapter.
 - `TurnEngine.runTurn()` lifecycle without HTTP.
-- SDK options builder mode/tool/settings mapping.
-- SDK message mapper for every known SDK message category used by Chirality.
+- Adapter options builder mode/tool/settings mapping.
+- Provider/SDK message mapper for every known SDK message category used by Chirality.
 - Provider-neutral core conformance: SDK-specific message names, permission modes, transcript paths, tool names, and session IDs do not appear in public APIs or canonical `HarnessEvent` fields except as adapter metadata.
 - Session event append and replay.
 - Event schema serialization and malformed trailing JSONL behavior.
@@ -1188,7 +1193,7 @@ Add tests for:
 - Prompt builder from instruction-root and persona content.
 - SDK settings isolation.
 - Reliance-boundary register completeness for P0 audit, permission, path, transcript, and human-gate semantics.
-- Permission overlay precedence, including deny over SDK allow and developer-only bypass.
+- Permission overlay precedence, including hard deny over provider/SDK allow and developer-only bypass.
 - Project-root path containment and symlink rejection hooks.
 - In-process Chirality MCP server tool input/output and error cases.
 - Tool result storage thresholds.
@@ -1199,7 +1204,7 @@ Add tests for:
 
 Add tests for:
 
-- `/api/harness/turn` streaming unchanged after SDK-backed TurnEngine extraction.
+- `/api/harness/turn` streaming unchanged after first-adapter TurnEngine extraction.
 - Accepted turn persisted before SDK `query()` starts.
 - Interrupt during SDK stream records cancellation.
 - SDK read-file tool call completes with Chirality audit events.
@@ -1233,8 +1238,8 @@ For macOS DMG:
 - Codesign reports no developer TeamIdentifier and adhoc signature.
 - App resources contain required instruction-root assets.
 - App launches and working-root selector is available.
-- Anthropic-only network guardrails remain in force.
-- SDK-backed harness turn can start in packaged app.
+- Current loopback plus Anthropic network guardrails remain in force.
+- First-adapter harness turn can start in packaged app.
 - SDK subprocess/bundled binary is not trapped inside `app.asar` without execution access.
 - SDK transcript storage/mirroring follows the accepted R1 storage decision.
 
@@ -1242,23 +1247,23 @@ For macOS DMG:
 
 The current execution decomposition is issued, but the harness runtime needs a forward implementation sequence. This sequence updates the product roadmap without reactivating retired PKG-08 project-level hardening deliverables.
 
-The controlling architectural decision is to privilege the Claude Agent SDK as the runtime spine, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility.
+The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility.
 
-### R0 — Runtime Scope Confirmation, SDK Probe, and Reliance Boundary Register
+### R0 — Runtime Scope Confirmation, First-Adapter Probe, and Reliance Boundary Register
 
 Purpose:
 
-- Record what Chirality owns versus what the Claude Agent SDK owns.
-- Validate SDK assumptions before committing R1 implementation details.
-- Make the SDK adoption decision explicit as a privileged-but-replaceable engine choice rather than a product-identity choice.
+- Record what Chirality owns versus what provider/SDK adapters own.
+- Validate first-adapter assumptions before committing R1 implementation details.
+- Make Claude Agent SDK / Anthropic explicit as a first-adapter choice rather than product identity or permanent strategy ceiling.
 
 Decisions:
 
-- SDK owns the generic agent loop, built-in tools, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages when these satisfy Chirality requirements.
-- Chirality owns the runtime contract, prompt composition, working-root/instruction-root policy, permission overlay, hooks, in-process Chirality MCP tools, event mirror, redaction, UI mapping, professional governance, and fallback criteria.
+- Provider/SDK adapters may own the generic agent loop, built-in tools, permission-mode machinery, hook dispatch, MCP transport, transcripts, subagent invocation, and compaction messages only when these satisfy Chirality requirements.
+- Chirality owns the runtime contract, prompt composition, working-root/instruction-root policy, capability policy / permission overlay, hooks, in-process Chirality MCP tools, event mirror, redaction, UI mapping, professional governance, and fallback criteria.
 - Chirality JSONL under `.chirality/sessions/<id>/events.jsonl` is the product-owned audit mirror.
 - SDK transcript placement should prefer project-controlled runtime folders, using `SessionStore`, `CLAUDE_CONFIG_DIR`, or both if reliable.
-- Product-critical boundaries are not considered satisfied until the enforcement surface is identified, testable, and under Chirality control or verified SDK callback/hook control.
+- Product-critical boundaries are not considered satisfied until the enforcement surface is identified, testable, and under Chirality control or verified adapter callback/hook control.
 
 Deliverables:
 
@@ -1266,26 +1271,26 @@ Deliverables:
 - `docs/harness/runtime_engine_contract.md` defining `AgentEnginePort` / `RuntimeEngineContract` and engine conformance expectations.
 - `docs/harness/reliance_boundary_register.md` mapping audit, permission, filesystem, lifecycle, transcript, subagent, and human-gate boundaries to enforcement surfaces.
 - Updated `docs/harness/chirality_harness_graphs_and_sequence.md`.
-- SDK probe notes answering: package version, `query()` message sequence, `settingSources`, permission mapping, `canUseTool`, hooks, in-process MCP, `agents`, `resume`, `sessionStore`, `CLAUDE_CONFIG_DIR`, interrupt behavior, Electron packaging, API-key environment handling, branding/product-identity constraints, and fallback triggers.
+- First-adapter probe notes answering: package version, `query()` message sequence, `settingSources`, permission mapping, `canUseTool`, hooks, in-process MCP, `agents`, `resume`, `sessionStore`, `CLAUDE_CONFIG_DIR`, interrupt behavior, Electron packaging, API-key environment handling, branding/product-identity constraints, and fallback triggers.
 
 Acceptance:
 
-- The SDK is confirmed viable for R1, or a governed fallback decision reactivates the custom-runtime roadmap.
-- Engine conformance tests are specified before the SDK adapter becomes the production path.
+- Claude Agent SDK / Anthropic is confirmed viable for R1, or a governed fallback decision reactivates the custom-runtime roadmap.
+- Engine conformance tests are specified before the first adapter becomes the production path.
 - Every P0 reliance boundary has a non-prompt-only enforcement plan.
 - No local tools are exposed to the model during the probe outside controlled validation.
 
-### R1 — SDK Adoption, Engine Contract, Thin TurnEngine, Prompt Composer, and Chirality Audit JSONL
+### R1 — First-Adapter Adoption, Engine Contract, Thin TurnEngine, Prompt Composer, and Chirality Audit JSONL
 
 Purpose:
 
-- Replace the current direct Anthropic streaming adapter with an SDK-hosted runtime while preserving visible app behavior.
+- Replace the current direct Anthropic streaming adapter with a first-adapter runtime while preserving visible app behavior.
 
 Implementation targets:
 
 - Add `@anthropic-ai/claude-agent-sdk` dependency and pin a known-good version.
 - `frontend/src/lib/harness/agent-engine-port.ts` or equivalent product-owned runtime contract.
-- `frontend/src/lib/harness/engine-conformance.ts` or equivalent test harness for SDK-backed and stub adapters.
+- `frontend/src/lib/harness/engine-conformance.ts` or equivalent test harness for first-adapter and stub adapters.
 - `frontend/src/lib/harness/reliance-boundaries.ts` or equivalent register loader/checker.
 - `frontend/src/lib/harness/turn-engine.ts` exposing the existing manager shape and internally invoking SDK `query()` through the engine contract.
 - `frontend/src/lib/harness/sdk-options-builder.ts`.
@@ -1295,7 +1300,7 @@ Implementation targets:
 - `frontend/src/lib/harness/run-logger.ts`.
 - `frontend/src/lib/harness/persona-composer.ts` or equivalent replacement for the stub persona manager.
 - `frontend/src/lib/harness/sdk-session-link.ts` for `sdkSessionId`, transcript/store linkage, and resume.
-- Runtime wiring so `CHIRALITY_HARNESS_PROVIDER=anthropic` can use the SDK-backed path while stub mode remains deterministic.
+- Runtime wiring so `CHIRALITY_HARNESS_PROVIDER=anthropic` can use the first-adapter SDK path while stub mode remains deterministic.
 - Shipped SDK options use `settingSources: []`; development-only project settings require explicit env.
 - API key is supplied to the SDK environment for the active turn and redacted from all logs/events.
 
@@ -1304,16 +1309,16 @@ Acceptance:
 - Existing tests pass.
 - Section 8 validation passes.
 - `turn.accepted` persists before SDK `query()` is invoked.
-- SDK-backed adapter passes the initial engine conformance suite.
+- First-adapter runtime passes the initial engine conformance suite.
 - Reliance-boundary register has complete entries for P0 audit, permission, path, transcript, settings, and human-gate semantics.
-- SDK `system/init`, assistant, partial-stream, result, error, and compact-boundary messages map to stable UI/runtime events.
+- Provider/SDK `system/init`, assistant, partial-stream, result, error, and compact-boundary messages map to stable UI/runtime events.
 - Success, failure, interruption, and cancellation terminal events persist.
 - Route shape and SSE event names are unchanged.
 - `settingSources` isolation test passes.
 - SDK session ID and transcript/store linkage are persisted.
 - No new user-visible local tool capability is enabled beyond the current product surface.
 
-### R2 — Permission-Gated Read Surface and First Chirality MCP Tools
+### R2 — Capability-Policy-Gated Read Surface and First Chirality MCP Tools
 
 Purpose:
 
@@ -1332,7 +1337,7 @@ Acceptance:
 
 - Unknown tool names produce structured validation errors.
 - Denied tools never execute.
-- Read-only tool calls execute through the SDK loop and Chirality MCP.
+- Read-only tool calls execute through the first-adapter loop and Chirality MCP.
 - Tool calls produce UI-compatible compact events and Chirality JSONL events.
 - `dontAsk` denies anything not explicitly pre-approved.
 
@@ -1340,7 +1345,7 @@ Acceptance:
 
 Purpose:
 
-- Enable controlled writes through SDK `Write`/`Edit` and Chirality MCP write tools only after hooks and deny-first policy are active.
+- Enable controlled writes through first-adapter `Write`/`Edit` and Chirality MCP write tools only after hooks and capability policy with explicit hard-deny precedence are active.
 
 Implementation targets:
 
@@ -1430,7 +1435,7 @@ Acceptance:
 
 Purpose:
 
-- Add generic domain-engine awareness only after the core SDK-hosted harness runtime, permissions, result storage, hooks, and protected-path policy are stable.
+- Add generic domain-engine awareness only after the core provider-adapter harness runtime, permissions, result storage, hooks, and protected-path policy are stable.
 
 Acceptance:
 
@@ -1442,8 +1447,8 @@ Acceptance:
 
 ### Phases consolidated from the prior custom-runtime roadmap
 
-- Prior prompt-builder/model-adapter work is absorbed into R1 because the SDK supplies the generic model adapter; Chirality still builds prompt composition and SDK message mapping.
-- Prior tool contract/tool pool work becomes R2 SDK options and MCP configuration.
+- Prior prompt-builder/model-adapter work is absorbed into R1 because the first adapter supplies the generic model adapter; Chirality still builds prompt composition and provider/SDK message mapping.
+- Prior tool contract/tool pool work becomes R2 adapter options and MCP configuration.
 - Prior permission-policy work becomes the Chirality permission overlay across R2/R3.
 - Prior model/tool loop work is supplied by the SDK and validated through mirrored events.
 - Prior write/edit, hook, context, bash, subagent, and extensibility phases remain, but they are now SDK configuration plus Chirality policy rather than custom loop construction.
@@ -1475,11 +1480,11 @@ Acceptance:
 |---|---|---|---|
 | KG-001 | Source completeness | The reviewed archive lacks required instruction assets (`AGENTS.md`, `agents/`, root `README.md`, `docs/WHAT-IS-AN-AGENT.md`, `PROFESSIONAL_ENGINEERING.md`, `tools/REGISTRY.md`, and `examples/`) expected by docs, packaging, validation, or frontend code. | P0 before packaging/reliance: complete the source tree or adjust integrity requirements and code paths explicitly. |
 | KG-002 | Persona prompting | Current `StubPersonaManager.buildSystemPrompt()` validates persona existence but returns a short stub rather than composing full instruction-root context into SDK requests. | P0 in R1: replace with persona/governance prompt composer and fingerprint actual inputs. |
-| KG-003 | Route lifecycle ownership | `turn/route.ts` owns locking, option resolution, attachment warnings, prompt validation, governance, provider streaming, session persistence, and error mapping. | P0 in R1: extract SDK-backed `TurnEngine` and keep route as SSE adapter. |
+| KG-003 | Route lifecycle ownership | `turn/route.ts` owns locking, option resolution, attachment warnings, prompt validation, governance, provider streaming, session persistence, and error mapping. | P0 in R1: extract first-adapter `TurnEngine` and keep route as SSE adapter. |
 | KG-004 | Append-only transcript | Session metadata exists, but not a robust per-turn Chirality event log. | P0 in R1: add `HarnessEvent`, session JSONL, redacted replay, and SDK message mirror. |
-| KG-005 | Tool runtime | `opts.tools` exists but there is no SDK-backed tool surface, MCP configuration layer, or permission-filtered option builder. | P0/P1 in R2: map tools to SDK built-ins and Chirality MCP tools; validate unknowns. |
-| KG-006 | Permission model | Current validation uses `dontAsk` markers; no generic SDK/Chirality permission overlay exists. | P0 before write/bash: implement deny-first overlay using SDK modes, `disallowedTools`, hooks, and `canUseTool`. |
-| KG-007 | Runtime enforcement | Several K-* invariants are enforced by instructions and human review, not runtime guards. | Accept for current governed-human use; add SDK hooks, path policy, and permission checks before powerful tools. |
+| KG-005 | Tool runtime | `opts.tools` exists but there is no provider/SDK-backed tool surface, MCP configuration layer, or permission-filtered option builder. | P0/P1 in R2: map tools to first-adapter SDK built-ins and Chirality MCP tools; validate unknowns. |
+| KG-006 | Permission model | Current validation uses `dontAsk` markers; no generic adapter/Chirality permission overlay exists. | P0 before write/bash: implement capability policy with explicit hard-deny precedence using adapter modes, `disallowedTools`, hooks, and `canUseTool`. |
+| KG-007 | Runtime enforcement | Several K-* invariants are enforced by instructions and human review, not runtime guards. | Accept for current governed-human use; add adapter hooks, path policy, and permission checks before powerful tools. |
 | KG-008 | Context budgeting | `maxTurns` exists in options but not as full conversation context control. SDK compaction may not expose deterministic control. | P1: mirror SDK compaction boundaries and maintain full Chirality audit log; track limited compaction control as residual risk. |
 | KG-009 | Tool output budget | Large future tool outputs could flood chat/model context. | P0 before tool expansion: add tool-result storage thresholds and artifacts; use SDK events/hooks where possible. |
 | KG-010 | Subagent execution | Governance gates exist, but no child runtime records or SDK `agents` integration exists. | R5: generate SDK subagents from Type 2 agents and gate `Agent` tool through `evaluateSubagentGovernance`. |
@@ -1493,18 +1498,18 @@ Acceptance:
 | KG-018 | Protected domain paths | Domain-engine protected paths need runtime enforcement, not prompt-only guidance. | Add profile-driven path policy before write tools can interact with domain artifacts. |
 | KG-019 | Domain provenance | Domain summaries, manifests, and operation outputs need deterministic provenance. | Use adapter manifests, tool-result artifacts, and `OperationProposal` records. |
 | KG-020 | Professional boundary | Domain-engine outputs may be mistaken for professional approval or solver truth. | Require boundary notices, human gates, and explicit copy restrictions. |
-| KG-021 | SDK API drift | Claude Agent SDK APIs, message types, and option semantics may change. | Pin SDK versions; R1 includes API probe and tests for options/messages/hooks/permissions/session behavior. |
+| KG-021 | Provider/SDK API drift | Claude Agent SDK APIs, message types, and option semantics may change for the first adapter; future provider APIs will have their own drift profiles. | Pin adapter versions; R1 includes API probe and tests for options/messages/hooks/permissions/session behavior. |
 | KG-022 | SDK settings leakage | Enabling `project`, `local`, or `user` settings could silently import `.claude` or `CLAUDE.md` behavior outside Chirality governance. | Shipped builds use `settingSources: []`; any project settings are explicit dev-only or governed future scope. |
 | KG-023 | `allowedTools` misconception | SDK `allowedTools` auto-approves tools but does not by itself restrict tool availability. | PRD and implementation require `dontAsk`, `disallowedTools`, hooks, and `canUseTool` for restriction. |
 | KG-024 | SDK transcript location | SDK default transcripts live under `~/.claude/projects/<encoded-cwd>`, which conflicts with the preference for project-local runtime records. | Prefer project-controlled `CLAUDE_CONFIG_DIR` and/or local `SessionStore` mirror; otherwise cross-reference default path and keep Chirality JSONL canonical. |
 | KG-025 | Electron packaging | SDK-bundled Claude Code subprocess may need `asarUnpack`, signing, environment, or path adjustments. | R1 packaging probe and `desktop:dist` validation must prove packaged execution. |
-| KG-026 | SDK security boundary | SDK permissions are necessary but not sufficient as a professional-work safety boundary. | Maintain Chirality path containment, instruction-root protection, redaction, and human gates as product-owned overlays. |
+| KG-026 | Provider/SDK security boundary | Provider/SDK permissions are necessary but not sufficient as a professional-work safety boundary. | Maintain Chirality path containment, instruction-root protection, redaction, and human gates as product-owned overlays. |
 | KG-027 | Subagent inherited permissions | SDK subagents may inherit powerful parent modes such as bypass/accept edits. | Developer-only bypass remains out of shipped mode; subagent tool restrictions and governance hooks fail closed. |
 | KG-028 | SDK session mirror reliability | `SessionStore` mirror failures may not stop the SDK turn because local transcript writes are primary. | Monitor mirror errors, persist `runtime.mirror.error` with SDK adapter metadata, and rely on Chirality JSONL for product audit. |
-| KG-029 | Thin-wrapper drift | SDK adoption could make Chirality look and behave like a Claude Code wrapper instead of a governed professional-work harness. | Add product-identity principle, runtime-engine contract, reliance-boundary register, and branding/copy checks. |
-| KG-030 | Runtime platform dependency | SDK pricing, packaging, terms, tool behavior, permission behavior, storage behavior, or session format may change upstream. | Pin versions, run SDK probes and conformance tests on upgrade, and preserve a governed fallback/custom-runtime path. |
-| KG-031 | Reliance-boundary ambiguity | Product-critical boundaries could be accidentally delegated to SDK defaults, prompt text, or noncanonical transcripts. | P0 R0/R1 deliverable: reliance-boundary register with enforcement-surface ownership and tests. |
-| KG-032 | Engine adapter lock-in | If public APIs or internal event schemas become SDK-shaped, replacement becomes impractical even if governance later requires it. | Keep `AgentEnginePort`, `HarnessEvent`, `UIEvent`, session storage, and permission decisions product-owned; reject SDK-shaped leakage in conformance tests. |
+| KG-029 | Thin-wrapper drift | First-adapter adoption could make Chirality look and behave like a Claude Code wrapper instead of a governed professional-work harness. | Add product-identity principle, runtime-engine contract, reliance-boundary register, and branding/copy checks. |
+| KG-030 | Runtime platform dependency | Provider/SDK pricing, packaging, terms, tool behavior, permission behavior, storage behavior, or session format may change upstream. | Pin versions, run adapter probes and conformance tests on upgrade, and preserve a governed fallback/custom-runtime path. |
+| KG-031 | Reliance-boundary ambiguity | Product-critical boundaries could be accidentally delegated to provider/SDK defaults, prompt text, or noncanonical transcripts. | P0 R0/R1 deliverable: reliance-boundary register with enforcement-surface ownership and tests. |
+| KG-032 | Engine adapter lock-in | If public APIs or internal event schemas become provider/SDK-shaped, replacement becomes impractical even if governance later requires it. | Keep `AgentEnginePort`, `HarnessEvent`, `UIEvent`, session storage, and permission decisions product-owned; reject provider/SDK-shaped leakage in conformance tests. |
 
 ## 16. Execution Package Traceability Summary
 
@@ -1523,7 +1528,7 @@ Source-area traceability:
 | Agent governance | `AGENTS.md` when present, `docs/TYPES.md`, `docs/DBM_Agent_Instruction_Architecture.md`, and active `agents/AGENT_*.md` instructions |
 | Desktop and harness baseline | Active SOFTWARE_DECOMP packages `PKG-02`, `PKG-03`, `PKG-04`, `PKG-05`, and current `frontend/` implementation |
 | Filesystem governance | Active SOFTWARE_DECOMP package `PKG-07`, SPEC file contracts, lifecycle/dependency contracts, and validation surfaces |
-| Runtime roadmap | `docs/PLAN.md`, active SOFTWARE_DECOMP packages `PKG-03` through `PKG-06`, R0/R1 SDK probe results, and official Claude Agent SDK documentation |
+| Runtime roadmap | `docs/PLAN.md`, active SOFTWARE_DECOMP packages `PKG-03` through `PKG-06`, accepted SCOPE_CHANGE records, R0/R1 first-adapter probe results, and official Claude Agent SDK documentation for the current first adapter |
 | Validation and release | Active SOFTWARE_DECOMP package `PKG-09`, required local checks, Section 8/9 validation, instruction-root integrity, and macOS DMG packaging |
 | Domain-engine future | Active SOFTWARE_DECOMP package `PKG-10`, governed future amendment only |
 
@@ -1534,9 +1539,9 @@ The active decomposition partitions scope into these 10 flat work-domain package
 | PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
 | PKG-02 Desktop Shell, Navigation, and Operator State | PORTAL, WORKBENCH, PIPELINE, matrix routing, file tree, toolkit, API key UI, local UI state | FR-001 through FR-013, FR-041 through FR-044, relevant user journeys |
 | PKG-03 Runtime Engine Contract and Turn Lifecycle | Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
-| PKG-04 SDK Adapter, Prompt, Provider, and Settings | SDK adoption probe, SDK options, prompt composition, provider integration, settings isolation | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
+| PKG-04 SDK Adapter, Prompt, Provider, and Settings | Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
 | PKG-05 Session Audit, Replay, and Tool Result Records | Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
-| PKG-06 Permissioned Tools, MCP, and Hooks | Deny-first permission overlay, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks | FR-078 through FR-100, FR-119 through FR-121 |
+| PKG-06 Permissioned Tools, MCP, and Hooks | Capability policy / permission overlay with explicit hard-deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks | FR-078 through FR-100, FR-119 through FR-121 |
 | PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
 | PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records | FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
 | PKG-09 Validation, Packaging, Security, and Release | Required checks, CI, Section 8/9 validation, network/key security, macOS DMG packaging | FR-064 through FR-069, validation plan, security/privacy NFRs, release verification |
@@ -1546,9 +1551,9 @@ Runtime roadmap traceability:
 
 | Runtime Phase | Primary Requirement IDs |
 |---|---|
-| R0 Runtime scope confirmation, SDK probe, and reliance boundary register | FR-070, FR-074, FR-116 through FR-118, FR-122 through FR-128, KG-021 through KG-032 |
-| R1 SDK TurnEngine/event log/run logger/prompt composer/engine contract | FR-021, FR-022, FR-028, FR-029, FR-035, FR-070 through FR-077, FR-116 through FR-118, FR-122 through FR-128, NFR-010, NFR-013, NFR-028 through NFR-031 |
-| R2 Permission-gated read surface and first MCP tools | FR-078 through FR-086, FR-087 through FR-092, FR-119 |
+| R0 Runtime scope confirmation, first-adapter probe, and reliance boundary register | FR-070, FR-074, FR-116 through FR-118, FR-122 through FR-128, KG-021 through KG-032 |
+| R1 First-adapter TurnEngine/event log/run logger/prompt composer/engine contract | FR-021, FR-022, FR-028, FR-029, FR-035, FR-070 through FR-077, FR-116 through FR-118, FR-122 through FR-128, NFR-010, NFR-013, NFR-028 through NFR-031 |
+| R2 Capability-policy-gated read surface and first MCP tools | FR-078 through FR-086, FR-087 through FR-092, FR-119 |
 | R3 Write surface and Chirality hooks | FR-087 through FR-097, FR-120, NFR-006, NFR-007 |
 | R4 Bash/result budgeting/context mirror | FR-096, FR-098 through FR-100, FR-121 |
 | R5 Governed subagent runtime | FR-101, FR-102 |
@@ -1567,7 +1572,7 @@ This PRD is a product requirements artifact. It does not supersede:
 - `docs/CONTRACT.md`
 - Active decomposition and scope-change records under `execution/_Decomposition/` and `execution/_ScopeChange/`
 
-This PRD **does** establish a revised product-development direction for the harness runtime. The immediate next implementation slice should be `R0/R1 — SDK Scope Confirmation, Reliance Boundary Register, Engine Contract, SDK-backed TurnEngine, Session Event Log, Prompt Composer, Settings Isolation, and Run Logger`.
+This PRD **does** establish a revised product-development direction for the harness runtime. The immediate next implementation slice should be `R0/R1 — Provider-Adapter Scope Confirmation, Reliance Boundary Register, Engine Contract, First-Adapter TurnEngine, Session Event Log, Prompt Composer, Settings Isolation, and Run Logger`.
 
 Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.
 

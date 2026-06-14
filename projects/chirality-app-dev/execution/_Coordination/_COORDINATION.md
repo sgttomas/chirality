@@ -3,7 +3,7 @@
 **Recorded:** 2026-06-13
 **Active persona:** `WORKING_ITEMS`
 **Default work mode:** bounded app-integration tranches
-**Current strategic focus:** Chirality-owned agent harness runtime, with Claude Agent SDK as the current privileged adapter path and Pi as a reference / possible later backend-adapter spike.
+**Current strategic focus:** Chirality-owned provider-adapter runtime. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. Pi is a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
 
 ## Active Surface
 
@@ -26,13 +26,14 @@ Primary authority and guidance:
 - `docs/README.md`
 - `docs/MANIFEST.json`
 - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
+- `execution/_ScopeChange/_LATEST.md`
 - `frontend/docs/harness/runtime_engine_contract.md`
 - `plans/PLAN_2026-06-13_runtime_completion.md` - active non-governing tranche-selection plan
 - `plans/PLAN_COMPLETION_LOG.md` - landed-tranche narrative history
 - `plans/chirality-app-future-development-plan.md` - seed runtime roadmap/reference
-- `plans/claude-agent-sdk-implementation-followups.md` - SDK implementation reference
-- `plans/pi-agent-harness-assessment.md`
-- `plans/pi-assessment/*.md`
+- `plans/claude-agent-sdk-implementation-followups.md` - first-adapter implementation reference
+- `plans/pi-agent-harness-assessment.md` - Pi pattern-corpus reference
+- `plans/pi-assessment/*.md` - Pi pattern-corpus reference assessments
 - `execution/_Coordination/_LATEST.md`
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`
 - `execution/_Coordination/_DECISIONS/_REGISTER.md`
@@ -50,9 +51,10 @@ Authoritative state:
 3. `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` route evidence, release-quality checks, and local build/package evidence. They do not create release readiness, lifecycle issuance, publication authorization, or professional acceptance.
 4. `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json` are workflow/index surfaces. They help discovery and orientation, but they do not replace canonical agent instructions, coordination policy, project truth, or human rulings.
 5. `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` records the package/deliverable decomposition and source-governed scope basis.
-6. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
-7. Current dependency and SCC evidence lives in immutable reconciliation snapshots under `execution/_Reconciliation/DepClosure/**`, with `execution/_Reconciliation/DepClosure/_LATEST.md` as a discovery pointer. The current latest snapshot reports one residual six-node strict SCC; project-wide strict `BLOCKED` / `UNBLOCKED` state must not be reported from that evidence until the graph is closed or explicitly ruled.
-8. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
+6. Accepted SCOPE_CHANGE snapshots under `execution/_ScopeChange/**` record governed decomposition/guidance amendments. `SCA-APP-001` approves provider-adapter generality, Pi pattern-corpus-only posture, and capability-forward permission governance with explicit hard-deny precedence.
+7. Deliverable-local `_STATUS.md`, `MEMORY.md`, `_run_records/**`, four-document kits, dependency files, and review/evidence files carry lifecycle, working memory, and execution evidence inside their ownership boundary.
+8. Current dependency and SCC evidence lives in immutable reconciliation snapshots under `execution/_Reconciliation/DepClosure/**`, with `execution/_Reconciliation/DepClosure/_LATEST.md` as a discovery pointer. The current latest snapshot reports one residual six-node strict SCC; project-wide strict `BLOCKED` / `UNBLOCKED` state must not be reported from that evidence until the graph is closed or explicitly ruled.
+9. Current implementation truth lives in source, tests, build scripts, validation artifacts, and git history.
 
 Guidance and history surfaces:
 
@@ -74,12 +76,13 @@ At the start of a new loop:
 4. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
 5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
 6. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
-7. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
-8. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
-9. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
-10. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
-11. Read the implementation reference surfaces needed for the selected tranche.
-12. Run `git status --short` before coordination-sensitive planning or edits.
+7. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
+8. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
+9. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
+10. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
+11. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+12. Read the implementation reference surfaces needed for the selected tranche.
+13. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Development Loop
 
@@ -150,7 +153,8 @@ Stop and surface a human-ruling request when further progress requires a change 
 
 - product runtime policy in `docs/PRD.md` or strategic roadmap policy in `docs/PLAN.md`;
 - outbound network policy or shipped provider scope;
-- package/runtime requirements for Pi-backed execution;
+- package/runtime requirements for Pi-backed execution, which remains unapproved after D-APP-01 and D-APP-02;
+- concrete non-Anthropic provider implementation, provider-network expansion, or provider routing beyond the current shipped Anthropic path;
 - write/edit/bash/tool-execution exposure beyond the current approved plan item;
 - the project-truth model for sessions, transcripts, chats, runtime logs, or completion logs;
 - professional-boundary claims or release-readiness posture.

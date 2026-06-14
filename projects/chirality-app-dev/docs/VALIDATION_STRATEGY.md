@@ -35,7 +35,7 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
 | `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
-| `npm run proof:network-policy` | Network policy proof for the current loopback plus Anthropic-centered outbound policy. |
+| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
 | `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
 | `npm run desktop:dist` | Unsigned/unnotarized local-builder macOS arm64 DMG plus instruction-root integrity. |
@@ -73,5 +73,5 @@ Evidence artifacts are derivative records. They support review and regression an
 - Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
 - Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
 - Final coverage, performance, and platform-matrix thresholds remain `TBD`.
-- Broader provider/network policy beyond the current Anthropic-centered scope remains human-gated in `execution/_Coordination/_DECISIONS/_REGISTER.md`.
-- Pi-backed adapter work remains human-gated and out of implementation scope until ruled.
+- Concrete provider/network implementation beyond the current shipped Anthropic path requires a bounded future implementation tranche and recorded decision evidence.
+- D-APP-01 and D-APP-02 rule Pi pattern-corpus-only: no Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, or spike work unless a future ruling explicitly reverses those boundaries.

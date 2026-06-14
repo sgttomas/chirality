@@ -52,7 +52,7 @@ Rules:
 
 ### 1.3 Runtime Configuration State
 
-Runtime configuration state such as UI presets, API keys, SDK linkage, SDK transcript cross-references, session metadata, and window layout is non-authoritative convenience state unless imported into a governed project file.
+Runtime configuration state such as UI presets, API keys, provider/SDK linkage, adapter transcript cross-references, session metadata, and window layout is non-authoritative convenience state unless imported into a governed project file.
 
 ---
 
@@ -568,17 +568,17 @@ type HarnessEvent = {
 
 ### 10.1 Product-Owned Boundary
 
-Chirality MUST define an `AgentEnginePort` / `RuntimeEngineContract` separate from SDK APIs.
+Chirality MUST define an `AgentEnginePort` / `RuntimeEngineContract` separate from provider/SDK APIs.
 
 Target responsibilities:
 
 - accept validated turn input;
-- persist `turn.accepted` before SDK/model execution;
+- persist `turn.accepted` before adapter/model execution;
 - yield browser `UIEvent`s;
 - persist canonical `HarnessEvent`s;
 - enforce or invoke permission decisions;
 - expose only permitted tools;
-- link SDK session metadata;
+- link adapter session metadata;
 - handle interrupt/cancel behavior;
 - persist terminal outcomes.
 
@@ -595,12 +595,13 @@ interface AgentEnginePort {
 
 ### 10.3 Engine Adapter Rules
 
-- SDK messages are not the browser contract.
-- SDK messages are not the canonical persisted event contract.
-- SDK-specific names and IDs appear only as adapter metadata.
+- Provider/SDK messages are not the browser contract.
+- Provider/SDK messages are not the canonical persisted event contract.
+- Provider/SDK-specific names and IDs appear only as adapter metadata.
 - `EngineAdapter` MUST translate external message names, external session IDs, external tool names, external permission modes, external transcript paths, and external hook names into Chirality-owned contracts.
 - Provider-specific values MAY be retained under explicit adapter metadata fields.
-- The SDK-backed adapter MUST pass engine conformance tests before production default use.
+- Any provider/SDK-backed adapter MUST pass engine conformance tests before production default use.
+- The current Claude Agent SDK / Anthropic adapter is the first concrete adapter and current shipped path.
 - Stub adapter remains available for deterministic tests.
 
 ### 10.4 Thin Route Rule
@@ -630,13 +631,13 @@ Rules:
 
 ---
 
-## 12. SDK Runtime Configuration
+## 12. Provider/SDK Runtime Configuration
 
-### 12.1 SDK Position
+### 12.1 Adapter Position
 
-The Claude Agent SDK is the preferred runtime spine for generic agent-loop behavior, subject to R0/R1 empirical verification and ongoing conformance tests.
+Chirality uses a provider-adapter runtime architecture. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path, subject to R0/R1 empirical verification and ongoing conformance tests. Concrete non-Anthropic providers require bounded future implementation scope.
 
-### 12.2 Shipped Settings Isolation
+### 12.2 Shipped First-Adapter Settings Isolation
 
 Shipped builds MUST use:
 
@@ -651,19 +652,19 @@ Development-only project settings MAY use `['project']` behind explicit environm
 - UI safeStorage key takes precedence.
 - Then `ANTHROPIC_API_KEY`.
 - Then `CHIRALITY_ANTHROPIC_API_KEY`.
-- Key material is supplied to SDK environment only as needed for active turns and redacted from logs/events.
+- Key material is supplied to the provider/SDK environment only as needed for active turns and redacted from logs/events.
 
-### 12.4 SDK Metadata to Record
+### 12.4 Adapter Metadata to Record
 
 Safe runtime metadata SHOULD include:
 
-- SDK package version;
+- provider/SDK package version;
 - Claude Code subprocess version where knowable;
-- SDK permission mode;
+- provider/SDK permission mode;
 - visible tool list;
 - MCP server names;
 - settings-source posture;
-- SDK session ID and resume mode;
+- provider/SDK session ID and resume mode;
 - transcript/store linkage.
 
 ---
@@ -693,15 +694,15 @@ The persona composer builds system prompt or appended system prompt from:
 - permitted tool surface;
 - professional-boundary reminders.
 
-Boot fingerprints SHOULD include hashes for persona content, governance preface, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version.
+Boot fingerprints SHOULD include hashes for persona content, governance preface, mode, adapter tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version.
 
 ---
 
-## 14. SDK Tool Surface and Chirality MCP Tools
+## 14. Adapter Tool Surface and Chirality MCP Tools
 
 ### 14.1 Tool Naming
 
-SDK built-ins map to SDK names where available:
+First-adapter SDK built-ins map to SDK names where available:
 
 | Chirality concept | SDK built-in candidate |
 |---|---|
@@ -731,21 +732,21 @@ Chirality-specific deterministic operations use `mcp__chirality__*` names.
 - Tool ordering MUST be deterministic.
 - Denied tools SHOULD be omitted from model context where possible.
 - `allowedTools` MUST NOT be treated as a restriction boundary by itself.
-- `disallowedTools`, `permissionMode`, `canUseTool`, and hooks enforce restrictions.
+- Explicit hard-deny precedence, `disallowedTools`, `permissionMode`, `canUseTool`, and hooks enforce restrictions.
 
 ---
 
 ## 15. Permission Modes and Hooks
 
-### 15.1 Provisional Chirality-to-SDK Mapping
+### 15.1 Provisional Chirality-to-First-Adapter Mapping
 
-| Chirality mode | SDK posture | Chirality overlay |
+| Chirality mode | First-adapter posture | Chirality overlay |
 |---|---|---|
 | `readOnly` | Prefer SDK `plan` or `dontAsk` with read tools pre-approved. | Deny write/edit/bash/network-capable tools and unexpected tools. |
 | `workspaceWrite` | SDK `acceptEdits` only after write hooks pass; otherwise default with explicit approvals. | Enforce project-root containment, instruction-root block, symlink rejection, and provenance. |
 | `dontAsk` | SDK `dontAsk` if available or equivalent deny-without-prompt overlay. | Pre-approve exact safe tools; everything else denies without prompting. |
 | `ask` | SDK default with `canUseTool`. | Present UI approval for governed writes/shell; persist decision before returning SDK allow/deny. |
-| `bypass` | SDK `bypassPermissions` only in developer-local mode. | Still apply disallowed tools, path hooks, instruction-root protection, and subagent governance. |
+| `bypass` | SDK `bypassPermissions` only in developer-local mode. | Still apply explicit hard-deny rules, disallowed tools, path hooks, instruction-root protection, and subagent governance. |
 
 ### 15.2 Required Hooks
 
@@ -802,9 +803,9 @@ Rules:
 
 ### 16.3 Network Policy
 
-- Renderer outbound traffic is allowlisted for loopback and Anthropic API path.
-- Node/SDK provider calls must not silently broaden network policy.
-- Remote MCP, plugins, and non-Anthropic network tools require governed future scope.
+- Renderer outbound traffic is allowlisted for loopback and the current shipped Anthropic API path.
+- Node/provider/SDK calls must not silently broaden network policy.
+- Provider-adapter generality is approved strategically, but concrete non-Anthropic providers, remote MCP, plugins, and network-capable tools require bounded governed future implementation scope.
 
 ---
 
@@ -822,7 +823,7 @@ Rules:
 | `/api/harness/interrupt` | POST | Interrupt active turn. |
 | `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
 
-Existing route shapes remain stable during SDK adoption and TurnEngine extraction.
+Existing route shapes remain stable during adapter adoption and TurnEngine extraction.
 
 ### 17.2 Workspace APIs
 
@@ -898,13 +899,13 @@ Section 8 validation verifies baseline behavior:
 As runtime phases land, add:
 
 - `section9.runtime_engine_contract`
-- `section9.sdk_turn_engine_event_log`
-- `section9.sdk_message_mapper`
+- `section9.adapter_turn_engine_event_log`
+- `section9.adapter_message_mapper`
 - `section9.session_event_replay`
 - `section9.reliance_boundary_register`
 - `section9.settingsources_isolation`
 - `section9.sdk_session_link_resume`
-- `section9.permission_overlay_deny_first`
+- `section9.permission_overlay_hard_deny_precedence`
 - `section9.tool_runtime_read_file`
 - `section9.chirality_mcp_status_dependencies`
 - `section9.path_containment_hook`
@@ -923,8 +924,8 @@ For macOS DMG:
 - signing posture is unsigned/adhoc as scoped;
 - app resources contain required instruction-root assets;
 - working-root selector is available;
-- Anthropic-only network guardrails remain in force;
-- SDK-backed turn can start in packaged app after R1;
+- current loopback plus Anthropic network guardrails remain in force;
+- first-adapter SDK-backed turn can start in packaged app after R1;
 - SDK subprocess/binary is executable from package layout;
 - SDK transcript storage/mirroring follows accepted R1 decision.
 

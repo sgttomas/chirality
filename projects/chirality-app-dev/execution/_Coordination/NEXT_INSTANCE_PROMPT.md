@@ -21,8 +21,9 @@ Continue bounded app-integration tranches toward the Chirality App's inherent go
 
 - a local desktop harness for governed agents;
 - a Chirality-owned runtime contract and audit/event model;
-- Claude Agent SDK as the current privileged adapter path;
-- Pi retained as a reference and possible later constrained backend-adapter spike.
+- provider-adapter-general runtime architecture;
+- Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path;
+- Pi retained as a pattern corpus / reference only, not an adapter, fork, package import, sidecar, or spike target.
 
 ## Selection Rules
 
@@ -44,8 +45,9 @@ Default priority:
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
 - Keep writes scoped to the selected tranche.
-- Use `/Users/ryan/ai-env/projects/pi` and `plans/pi-agent-harness-assessment.md` as reference sources for runtime design only where they refine the active plan item.
-- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, or Pi-adapter migrations unless the active plan item and human rulings explicitly allow them.
+- Use `/Users/ryan/ai-env/projects/pi` and `plans/pi-agent-harness-assessment.md` only as pattern-corpus references where they refine the active plan item.
+- Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, or Pi migrations unless the active plan item and human rulings explicitly allow them.
+- D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
 - Stop when any further progress requires a human ruling.
 
 ## Closeout

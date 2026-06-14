@@ -111,16 +111,16 @@ Chirality separates the release-managed instruction root from the mutable workin
 
 The instruction root defines how agents should behave. The working root contains the project being worked on. These roots must not be conflated.
 
-### 2.8 SDK-Privileged, Contract-Owned, Chirality-Governed
+### 2.8 Provider-Adapter-General, Contract-Owned, Chirality-Governed
 
-Chirality should privilege the Claude Agent SDK as the preferred hosted runtime engine for generic agent-loop mechanics where it satisfies Chirality requirements. The SDK may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
+Chirality should use a provider-adapter runtime architecture for generic agent-loop mechanics where an external provider or SDK satisfies Chirality requirements behind product-owned contracts. The Claude Agent SDK / Anthropic path is the first concrete adapter and current shipped path. Provider/SDK adapters may provide the model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK transcripts, subagent invocation, and compaction messages.
 
-The SDK does not own Chirality’s product contract. Chirality owns:
+Provider/SDK adapters do not own Chirality’s product contract. Chirality owns:
 
 - `AgentEnginePort` / `RuntimeEngineContract`;
 - browser `UIEvent` and persisted `HarnessEvent` schemas;
 - session canonicality and the Chirality audit mirror;
-- permission semantics and deny-first policy;
+- permission semantics, capability policy, and explicit hard-deny precedence;
 - working-root and instruction-root policy;
 - persona/system-prompt composition;
 - `_STATUS.md` and `Dependencies.csv` lifecycle rules;
@@ -130,7 +130,7 @@ The SDK does not own Chirality’s product contract. Chirality owns:
 - user-facing product identity;
 - fallback criteria if SDK behavior cannot be governed.
 
-The preferred architecture is **SDK-privileged, contract-owned, and Chirality-governed**.
+The preferred architecture is **provider-adapter-general, contract-owned, and Chirality-governed**.
 
 ### 2.9 Reliance Boundaries Are First-Class
 
@@ -200,13 +200,13 @@ Chirality supports:
 - harness sessions, streamed turns, interrupts, runtime options, and attachments;
 - instruction-root packaging and integrity verification;
 - API key handling as non-project convenience state;
-- Anthropic provider access under governed network policy;
-- SDK-hosted runtime integration behind Chirality contracts;
+- current Anthropic provider access under governed network policy;
+- provider/SDK-hosted runtime integration behind Chirality contracts;
 - append-only Chirality session event logs;
 - persona/system-prompt composition from instruction-root resources;
 - status and dependency contract APIs;
 - execution-root scaffolding;
-- read tools and Chirality MCP tools under deny-first policy;
+- read tools and Chirality MCP tools under capability policy with explicit hard-deny precedence;
 - controlled write/edit/bash/subagent capability only after required gates land;
 - validation and packaging runbooks;
 - future Domain Engine Profiles after core harness stability.

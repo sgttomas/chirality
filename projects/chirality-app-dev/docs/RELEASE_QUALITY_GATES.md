@@ -98,7 +98,7 @@ Required evidence:
 - relevant key-storage, redaction, and network-policy tests;
 - `npm run proof:network-policy` when network or provider behavior changes;
 - confirmation that API keys are not written to project files, runtime events, logs, tool artifacts, or SDK transcript imports;
-- confirmation that outbound network remains loopback plus current Anthropic-centered scope unless a human ruling broadens it.
+- confirmation that outbound network remains loopback plus the current shipped Anthropic path unless a bounded future implementation tranche and recorded decision evidence broaden it.
 
 ## 9. UI And Claims Gate
 
@@ -147,5 +147,5 @@ Open release-quality decisions:
 - final release matrix, signing, notarization, publication, and attestation;
 - release-label vocabulary and release-candidate evidence bundle format;
 - coverage, performance, and permitted-variance thresholds;
-- broader provider/network policy;
-- Pi-backed adapter import/runtime strategy.
+- concrete provider/network implementation beyond the current shipped Anthropic path;
+- any attempt to reverse the D-APP-01/D-APP-02 Pi pattern-corpus-only ruling.

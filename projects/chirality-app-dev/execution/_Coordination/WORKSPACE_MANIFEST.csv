@@ -14,8 +14,9 @@ docs_readme,docs/README.md,Docs package index
 docs_manifest,docs/MANIFEST.json,Machine-readable docs index
 runtime_completion_plan,plans/PLAN_2026-06-13_runtime_completion.md,Active non-governing runtime tranche-selection plan
 runtime_completion_log,plans/PLAN_COMPLETION_LOG.md,Landed runtime-tranche narrative history
+scope_change_latest,execution/_ScopeChange/_LATEST.md,Latest scope-change pointer
 dependency_closure_latest,execution/_Reconciliation/DepClosure/_LATEST.md,Dependency/SCC closure discovery pointer
 runtime_contract,frontend/docs/harness/runtime_engine_contract.md,Runtime adapter contract
 future_plan,plans/chirality-app-future-development-plan.md,Seed runtime roadmap and historical planning reference
-sdk_followups,plans/claude-agent-sdk-implementation-followups.md,Claude SDK implementation follow-ups
-pi_assessment,plans/pi-agent-harness-assessment.md,Pi reference and adapter assessment
+sdk_followups,plans/claude-agent-sdk-implementation-followups.md,Claude SDK first-adapter implementation follow-ups
+pi_assessment,plans/pi-agent-harness-assessment.md,Pi pattern-corpus reference assessment

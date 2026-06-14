@@ -4,6 +4,7 @@
 **Date:** 2026-05-19
 **Author:** working session
 **Authority:** This document only proposes changes. The PRD remains authoritative until edited and reviewed. Higher-authority sources (`docs/DIRECTIVE.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, accepted decomposition, scope-change records) still control.
+**SCA-APP-001 status:** Superseded as strategic framing. Keep this proposal only as first-adapter implementation reference for the Claude Agent SDK / Anthropic path. It does not define Chirality's provider strategy, authorize blanket "deny-first" suppression of useful tool use, authorize Pi implementation work, or authorize concrete non-Anthropic provider implementation.
 
 ---
 

@@ -4,6 +4,8 @@ Date: 2026-06-13
 
 Pi source baseline: `/Users/ryan/ai-env/projects/pi` at commit `9e9fc7947871a913946f727854ae0a57fbce1863` (`fix(coding-agent): treat uppercase config values as literals`).
 
+SCA-APP-001 status: historical/reference assessment. Pi is now a pattern corpus and reference source only. D-APP-01 and D-APP-02 rule out a Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work unless a future human ruling explicitly reverses those boundaries.
+
 ## Scope
 
 Read-only assessment of Pi's generic agent/session layer as a source of Chirality harness primitives.

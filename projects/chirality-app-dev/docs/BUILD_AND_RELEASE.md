@@ -131,5 +131,5 @@ Hosted workflows must not receive private project data, API keys, protected prof
 - Signing, notarization, checksum publication, publication destination, and attestation.
 - Release-label vocabulary and release-candidate evidence-bundle format.
 - Coverage, performance, and platform-threshold policy.
-- Broader provider/network policy beyond the current Anthropic-centered scope.
-- Pi-backed adapter package import/runtime strategy.
+- Concrete provider/network implementation beyond the current shipped Anthropic path.
+- Any attempt to reverse the D-APP-01/D-APP-02 Pi pattern-corpus-only ruling.

@@ -1,67 +1,60 @@
 # SCA-APP-001 Handoff State
 
 **Package Role:** snapshot / handoff artifact
-**Status:** OPEN_PENDING_HUMAN_APPROVAL
-**Accepted amendment snapshot:** none yet
-**Pending preview snapshot:** `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/`
+**Status:** GATE_5_COMPLETE_VALIDATED
+**Accepted amendment snapshot:** `execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2/`
+**Latest pointer:** `execution/_ScopeChange/_LATEST.md`
 
 ## Fixed State Fields
 
 | Field | Value | Evidence |
 |---|---|---|
-| `DecompositionTruthState` | INCOMPLETE | No authoritative decomposition edits have been applied. |
-| `DerivativePackageState` | INCOMPLETE | Governance/control-plane surfaces remain stale relative to the human rulings. |
+| `DecompositionTruthState` | COMPLETE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` includes DEC-017 and SCA-aligned package/deliverable wording. |
+| `DerivativePackageState` | PARTIAL_LOCAL_REVIEW_REQUIRED | Active governance/control-plane docs and impacted `_CONTEXT.md` files are aligned; deliverable-local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, `_DEPENDENCIES.md`, and `_REFERENCES.md` remain stale until bounded package-local review. |
 | `ContentRemediationState` | NOT_REQUIRED | This is SOFTWARE SCOPE_CHANGE; no KTY remediation applies. |
-| `DownstreamRerunState` | FROZEN | Downstream reruns are advisory after Gate 5 and not started. |
-| `MetadataAlignmentState` | NOT_REQUIRED | No KTY metadata alignment applies. |
-| `AuditState` | WARNINGS | Preview/static assessment only; no post-change validation yet. |
-| `ReadyForNextPhase` | NO | Human approval and Gate 5 execution are required. |
+| `DownstreamRerunState` | ADVISORY | Dependency/SCC reruns are advisory because topology did not change; provider-general semantics may affect future tranche selection. |
+| `MetadataAlignmentState` | PARTIAL | Decision register, active plan, coordination, and `_CONTEXT.md` pointers are aligned; local four-doc-kit metadata remains `STALE_LOCAL_REVIEW_REQUIRED`. |
+| `AuditState` | STATIC_PASS | Static validation recorded in `RUN_SUMMARY.md`. |
+| `ReadyForNextPhase` | YES_WITH_STALE_LOCAL_ARTIFACT_WARNINGS | Future runtime/governance tranches may proceed from updated authority docs and contexts, but must not treat deliverable-local kits as refreshed until reviewed. |
 
-## Authoritative Truth Changed In This Run
+## Authoritative Truth Changed In Gate 5
 
-None. This run created a SCOPE_CHANGE preview snapshot only.
-
-## Pending Authoritative Changes
-
-| Surface | Status | Next required action |
-|---|---|---|
-| `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | STALE_PENDING_APPROVAL | Apply approved Gate 3 amendments at Gate 5. |
-| `docs/PRD.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md` | STALE_PENDING_APPROVAL | Apply approved governance propagation at Gate 5. |
-| `execution/_Coordination/_DECISIONS/_REGISTER.md` | STALE_PENDING_APPROVAL | Add D-APP ruling records and update rows at Gate 5. |
-| Active completion/coordination docs | STALE_PENDING_APPROVAL | Remove Pi adapter/spike selection language and update provider-general focus at Gate 5. |
-| Runtime contract and Pi assessment docs | STALE_PENDING_APPROVAL | Generalize adapter language and mark Pi as pattern corpus only at Gate 5. |
-| Affected execution deliverable `_CONTEXT.md` files | STALE_PENDING_APPROVAL | Align per `Execution_Deliverable_Impact.csv` or record row-level blockers at Gate 5. |
-| Affected execution deliverable four-doc kits and local metadata | STALE_LOCAL_REVIEW_REQUIRED_AFTER_GATE_5 | Review in bounded follow-up tranches after authoritative docs/decomposition land. |
-
-## Derivative-Package State
-
-| Package / surface | Owner | Status | Evidence | Next required action |
-|---|---|---|---|---|
-| Decomposition package | SCOPE_CHANGE | STALE_PENDING_APPROVAL | `Amendment_Preview.md` | Human approval, then Gate 5 edits. |
-| Governance docs | WORKING_ITEMS / governance | STALE_PENDING_APPROVAL | `Impact_Assessment.md` | Human approval, then Gate 5 edits. |
-| Coordination and planning | WORKING_ITEMS | STALE_PENDING_APPROVAL | `Propagation_Plan.md` | Human approval, then Gate 5 edits. |
-| Execution deliverable contexts | SCOPE_CHANGE metadata propagation | STALE_PENDING_APPROVAL | `Execution_Deliverable_Impact.csv` | Human approval, then Gate 5 `_CONTEXT.md` alignment or blocker record. |
-| Execution deliverable local artifact kits | Downstream TASK / WORKING_ITEMS | STALE_LOCAL_REVIEW_REQUIRED_AFTER_GATE_5 | `Execution_Deliverable_Impact.csv` | Refresh package-local artifacts in bounded follow-up tranches. |
-| Runtime source | Runtime implementation owner | CURRENT_NO_CHANGE | No source writes in this preview | No action in this SCA. |
-
-## Active Snapshot State
-
-| Item | State |
+| Surface | State |
 |---|---|
-| Snapshot folder exists | YES |
-| `_LATEST.md` points to this snapshot | YES |
-| Required preview artifacts exist | YES |
-| Execution deliverable impact register exists | YES |
-| Gate 5 closure artifacts finalized | NO |
-| Post-change coverage available | NO |
+| `docs/DIRECTIVE.md` | Narrowly aligned to provider-adapter strategy and capability policy / explicit hard-deny precedence. |
+| `docs/PRD.md`, `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PLAN.md` | Aligned to provider-adapter generality, Claude Agent SDK / Anthropic as first/current adapter, Pi pattern-corpus-only posture, and capability-forward permission governance. |
+| `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Amended with SCA decision, package/deliverable/ledger wording, and provider-expansion open issue; no package/deliverable topology change. |
+| `execution/_Coordination/_DECISIONS/_REGISTER.md` and D-APP ruling records | D-APP-01/02/03 are `RULED` with ruling-record pointers. |
+| `execution/_Coordination/_COORDINATION.md`, `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`, `execution/_Coordination/_LATEST.md`, `WORKSPACE_MANIFEST.csv` | Active control plane aligned to SCA-APP-001. |
+| `plans/PLAN_2026-06-13_runtime_completion.md`, `plans/PLAN_COMPLETION_LOG.md` | Active completion surface and history aligned to the SCA. |
+| `frontend/docs/harness/runtime_engine_contract.md` | Runtime contract wording aligned to provider-adapter strategy and first-adapter path. |
+
+## Derivative / Reference Surfaces Changed
+
+| Surface | State | Notes |
+|---|---|---|
+| `plans/pi-agent-harness-assessment.md` | REFERENCE_ONLY_SUPERSEDED_FOR_IMPLEMENTATION | Pi assessment retained as pattern corpus; no Pi adapter/import/spike authorization. |
+| `plans/pi-assessment/*.md` | REFERENCE_ONLY_SUPERSEDED_FOR_IMPLEMENTATION | Per-slice Pi assessments carry SCA status and no-spike/no-import boundaries. |
+| `plans/claude-agent-sdk-implementation-followups.md` | FIRST_ADAPTER_REFERENCE | Claude SDK follow-ups remain useful as first-adapter implementation detail only. |
+| `plans/prd-revisions-claude-agent-sdk.md` | SUPERSEDED_STRATEGIC_REFERENCE | Retained for historical/first-adapter mechanics; not live strategic authority. |
+| 26 impacted deliverable `_CONTEXT.md` files | CONTEXT_ALIGNED_REVIEW_REQUIRED | Each includes `SCA-APP-001 Context Alignment` with primary impact and stale-local-artifact warning. |
+
+## Stale / Deferred Surfaces
+
+| Surface | Status | Required follow-up |
+|---|---|---|
+| Affected deliverable-local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md` | STALE_LOCAL_REVIEW_REQUIRED | Review through bounded package-local tranches before relying on local kit details that encode prior provider/Pi/permission assumptions. |
+| Affected deliverable-local `_DEPENDENCIES.md`, `_REFERENCES.md` | STALE_LOCAL_REVIEW_REQUIRED | Refresh or confirm against accepted SCA and current dependency/SCC graph. |
+| Dependency extraction / SCC graph | ADVISORY_RERUN | Topology unchanged; rerun only if a future planning tranche needs refreshed dependency semantics. |
+| Runtime source and package manifests | CURRENT_NO_CHANGE | No runtime implementation or dependency changes were made. |
 
 ## Remaining Blockers
 
-1. Human must accept the impact assessment.
-2. Human must approve the amendment preview.
-3. Human must approve the propagation plan.
-4. Gate 5 must then apply and validate the approved changes, including execution deliverable `_CONTEXT.md` handling.
+- No blockers remain for closing SCA-APP-001.
+- Concrete non-Anthropic provider implementation remains blocked pending bounded future tranche.
+- Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike remain prohibited unless a future ruling explicitly reverses D-APP-01/D-APP-02.
+- Bash/write/subagent/runtime policy expansion remains blocked until its active plan row and validation gates authorize it.
 
-## Next Owning Workflow
+## Recommended Next Runtime Tranche
 
-SCOPE_CHANGE remains the owner until Gate 5 completes or the human rejects/modifies the preview. CHANGE should only own staging/commit/push after a validated closeout or a deliberately committed preview package.
+Resume the active runtime spine with the earliest unblocked provider-adapter architecture item in `plans/PLAN_2026-06-13_runtime_completion.md`, expected to remain bounded to provider-adapter architecture/governance before any new provider implementation.

@@ -13,6 +13,10 @@ Active planning and history surfaces:
 - `plans/PLAN_2026-06-13_runtime_completion.md`
 - `plans/PLAN_COMPLETION_LOG.md`
 
+Active scope-change surfaces:
+
+- `execution/_ScopeChange/_LATEST.md`
+
 Dependency discovery surfaces:
 
 - `execution/_Reconciliation/DepClosure/_LATEST.md`

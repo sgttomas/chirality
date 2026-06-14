@@ -4,6 +4,8 @@ Date: 2026-06-13
 
 Pi source baseline: `/Users/ryan/ai-env/projects/pi` at commit `9e9fc7947871a913946f727854ae0a57fbce1863`.
 
+SCA-APP-001 status: historical/reference assessment. Pi is now a pattern corpus and reference source only. D-APP-01 and D-APP-02 rule out a Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work unless a future human ruling explicitly reverses those boundaries.
+
 ## Scope
 
 Assess Pi's trust, filesystem, tool, extension, and sandbox assumptions against Chirality's governed professional-work requirements.
@@ -51,7 +53,7 @@ Pi's extension docs show lifecycle subscriptions, custom tools, event intercepti
 
 | Gap | Pi posture | Chirality requirement | Required wrapper |
 | --- | --- | --- | --- |
-| Sandbox | None in-process | Deny-first runtime boundaries | OS/container/VM or Chirality policy layer |
+| Sandbox | None in-process | Capability policy with explicit hard-deny precedence | OS/container/VM or Chirality policy layer |
 | Filesystem containment | Paths may be absolute/home-relative | Working-root containment, instruction-root block | Mandatory path gate before every tool |
 | Writes | Direct write/edit | Proposal paths or approved workspace writes | Human/mode gates plus provenance |
 | Bash | Arbitrary shell | Default denied; timeout/audit required | Explicit mode gate plus sandbox |

@@ -4,7 +4,7 @@ This `docs/` package is the app-dev governance and runtime-planning set for the 
 
 The central project stance is:
 
-> SDK-privileged, contract-owned, and Chirality-governed.
+> Provider-adapter-general, contract-owned, and Chirality-governed.
 
 This docs package defines why the app exists, what must remain true, how the runtime is staged, and how validation, release-quality, build, and agentic workflow evidence are routed. It is an index and guidance surface; it is not a lifecycle approval, release authorization, professional approval, certification, sealing, authentication, or code-compliance claim.
 
@@ -12,8 +12,8 @@ This docs package defines why the app exists, what must remain true, how the run
 
 | File | Role | Use |
 |---|---|---|
-| `DIRECTIVE.md` | Founding directive | Intent, filesystem truth, SDK-governed posture, human authority, professional boundaries, and stop rules. |
-| `CONTRACT.md` | Invariant catalog | Binding constraints for runtime, SDK, permissions, events, packaging, network, release, agents, and future domain engines. |
+| `DIRECTIVE.md` | Founding directive | Intent, filesystem truth, provider-adapter posture, human authority, professional boundaries, and stop rules. |
+| `CONTRACT.md` | Invariant catalog | Binding constraints for runtime, provider/SDK adapters, permissions, events, packaging, network, release, agents, and future domain engines. |
 | `SPEC.md` | Technical specification | Runtime mechanics, file structures, project surfaces, validation surfaces, and future platform mechanics. |
 | `TYPES.md` | Vocabulary and identities | Canonical terms, identifiers, states, runtime records, and type targets. |
 | `PRD.md` | Product requirements | Current product scope, functional requirements, milestones, known gaps, and accepted implementation direction. |

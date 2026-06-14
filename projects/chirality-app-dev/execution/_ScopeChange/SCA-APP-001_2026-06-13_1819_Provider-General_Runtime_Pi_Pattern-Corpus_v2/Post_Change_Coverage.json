@@ -1,13 +1,89 @@
 {
   "amendment_id": "SCA-APP-001",
-  "status": "NOT_RUN_GATE_5_PENDING",
+  "status": "GATE_5_COMPLETE_VALIDATED",
   "decomp_variant": "SOFTWARE",
   "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
   "snapshot_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2",
-  "gate5_executed": false,
+  "gate5_executed": true,
   "topology_change_applied": false,
+  "topology_counts": {
+    "scope_items": 78,
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10
+  },
+  "rulings_applied": [
+    "D-APP-01",
+    "D-APP-02",
+    "D-APP-03"
+  ],
+  "changed_surface_classes": {
+    "decomposition_truth": [
+      "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
+    ],
+    "governance_docs": [
+      "docs/DIRECTIVE.md",
+      "docs/PRD.md",
+      "docs/CONTRACT.md",
+      "docs/SPEC.md",
+      "docs/TYPES.md",
+      "docs/PLAN.md",
+      "docs/BUILD_AND_RELEASE.md",
+      "docs/VALIDATION_STRATEGY.md",
+      "docs/RELEASE_QUALITY_GATES.md"
+    ],
+    "coordination_and_plans": [
+      "execution/_Coordination/_COORDINATION.md",
+      "execution/_Coordination/NEXT_INSTANCE_PROMPT.md",
+      "execution/_Coordination/_LATEST.md",
+      "execution/_Coordination/WORKSPACE_MANIFEST.csv",
+      "plans/PLAN_2026-06-13_runtime_completion.md",
+      "plans/PLAN_COMPLETION_LOG.md"
+    ],
+    "decisions": [
+      "execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "execution/_Coordination/_DECISIONS/D-APP-01_RULING_2026-06-13.md",
+      "execution/_Coordination/_DECISIONS/D-APP-02_RULING_2026-06-13.md",
+      "execution/_Coordination/_DECISIONS/D-APP-03_RULING_2026-06-13.md"
+    ],
+    "runtime_contract_docs": [
+      "frontend/docs/harness/runtime_engine_contract.md"
+    ],
+    "reference_plans": [
+      "plans/claude-agent-sdk-implementation-followups.md",
+      "plans/prd-revisions-claude-agent-sdk.md",
+      "plans/pi-agent-harness-assessment.md",
+      "plans/pi-assessment/01_core_session_primitives.md",
+      "plans/pi-assessment/02_backend_adapter_feasibility.md",
+      "plans/pi-assessment/03_security_governance_fit.md",
+      "plans/pi-assessment/04_domain_harness_fit.md",
+      "plans/pi-assessment/05_license_maintenance.md"
+    ],
+    "execution_contexts": {
+      "aligned_count": 26,
+      "source": "Execution_Deliverable_Impact.csv"
+    },
+    "runtime_source": [],
+    "package_manifests": [],
+    "desktop_wrapper": []
+  },
+  "stale_or_deferred_surfaces": [
+    {
+      "surface": "affected deliverable-local Guidance.md/Specification.md/Procedure.md/Datasheet.md",
+      "status": "STALE_LOCAL_REVIEW_REQUIRED"
+    },
+    {
+      "surface": "affected deliverable-local _DEPENDENCIES.md/_REFERENCES.md",
+      "status": "STALE_LOCAL_REVIEW_REQUIRED"
+    },
+    {
+      "surface": "dependency extraction / SCC graph",
+      "status": "ADVISORY_RERUN"
+    }
+  ],
   "notes": [
-    "This placeholder records that no post-change coverage exists yet.",
-    "Populate after approved Gate 5 edits."
+    "SCA-APP-001 was applied as governance/decomposition/control-plane migration only.",
+    "No runtime source, package manifests, dependencies, lockfiles, or desktop wrapper files were modified.",
+    "Validation results are recorded in RUN_SUMMARY.md."
   ]
 }

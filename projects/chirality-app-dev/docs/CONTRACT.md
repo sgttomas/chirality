@@ -44,20 +44,20 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 | **K-ROOT-3** | The working root is the only ordinary location where agents may write project truth. | Tool path policy; MCP wrappers; hook denials; git review. |
 | **K-PACKAGE-1** | Packaged builds must contain the required instruction-root resources and verify integrity before distribution. | `instruction-root:integrity`; `desktop:dist`; manual release verification. |
 
-### 1.4 Runtime Engine Boundary and SDK Governance
+### 1.4 Runtime Engine Boundary and Provider/SDK Governance
 
 | ID | Invariant | Enforcement |
 |---|---|---|
 | **K-CORE-1** | Core runtime APIs, events, tests, and records use Chirality terms. Provider/SDK-specific terms are translated at adapter boundaries. | `EngineAdapter`; event-schema tests; API review. |
-| **K-ENGINE-1** | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`; SDK APIs do not define public harness semantics. | Runtime contract docs; engine conformance tests; adapter boundary. |
-| **K-ENGINE-2** | Any SDK-backed adapter must pass engine conformance tests before becoming the default production path. | `EngineConformanceSuite`; Section 9 validation; CI. |
-| **K-ENGINE-3** | The SDK is privileged as implementation substrate, not as product identity or governance authority. | DIRECTIVE; PRD; product copy review; adapter implementation. |
-| **K-ENGINE-4** | Public APIs, `UIEvent`, `HarnessEvent`, session storage, permission decisions, and governance records must not become SDK-shaped except as adapter metadata. | Type tests; mapper tests; event-schema review. |
-| **K-ENGINE-5** | A governed fallback/custom-runtime path must remain available if a product-critical boundary cannot be satisfied or verified through the SDK. | R0/R1 SDK probe; reliance-boundary register; plan updates. |
+| **K-ENGINE-1** | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`; provider and SDK APIs do not define public harness semantics. | Runtime contract docs; engine conformance tests; adapter boundary. |
+| **K-ENGINE-2** | Any provider/SDK-backed adapter must pass engine conformance tests before becoming the default production path. | `EngineConformanceSuite`; Section 9 validation; CI. |
+| **K-ENGINE-3** | External SDKs and providers are implementation substrates behind Chirality adapters, not product identity or governance authority. Claude Agent SDK / Anthropic is the first concrete adapter and current shipped path. | DIRECTIVE; PRD; product copy review; adapter implementation. |
+| **K-ENGINE-4** | Public APIs, `UIEvent`, `HarnessEvent`, session storage, permission decisions, and governance records must not become provider/SDK-shaped except as adapter metadata. | Type tests; mapper tests; event-schema review. |
+| **K-ENGINE-5** | A governed fallback/custom-runtime path must remain available if a product-critical boundary cannot be satisfied or verified through the current adapter. | R0/R1 adapter probe; reliance-boundary register; plan updates. |
 | **K-RELIANCE-1** | Product-critical safety, audit, filesystem, lifecycle, transcript, settings, subagent, and human-gate boundaries must be mapped in the reliance-boundary register. | R0/R1 deliverables; conformance tests; governance review. |
-| **K-RELIANCE-2** | P0 reliance boundaries cannot be prompt-only or opaque SDK-default-only. | Reliance-boundary review; SDK probe; runtime tests. |
-| **K-SDK-1** | Shipped builds must not load ambient user/global Claude Code settings or local `.claude/settings.local.json`. | `settingSources: []`; SDK options builder tests; release verification. |
-| **K-SDK-2** | SDK adapter behavior must be version-pinned and regression-tested on upgrade. | package lock; SDK probe; conformance suite; release notes. |
+| **K-RELIANCE-2** | P0 reliance boundaries cannot be prompt-only or opaque provider/SDK-default-only. | Reliance-boundary review; adapter probe; runtime tests. |
+| **K-SDK-1** | Shipped builds for the Claude Agent SDK / Anthropic adapter must not load ambient user/global Claude Code settings or local `.claude/settings.local.json`. | `settingSources: []`; SDK options builder tests; release verification. |
+| **K-SDK-2** | Provider/SDK adapter behavior must be version-pinned and regression-tested on upgrade. | package lock; adapter probe; conformance suite; release notes. |
 | **K-SDK-3** | SDK transcripts are resume/debug artifacts, not canonical Chirality audit records unless explicitly imported into `HarnessEvent` form. | Session store; event mirror; replay code; documentation. |
 | **K-SDK-4** | Product identity remains Chirality. The app must not appear to be Claude Code or an Anthropic product. | UI/copy review; packaging metadata; release checklist. |
 
@@ -77,9 +77,9 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-PERM-1** | Deny overrides allow. Any explicit deny from policy, path containment, hook, governance, SDK deny rule, or human gate blocks execution. | `ChiralityPermissionOverlay`; hooks; MCP wrappers; tests. |
+| **K-PERM-1** | Permission governance is capability-forward and policy-mediated: useful agent tool use may be exposed when mode, adapter, descriptor, hook, evidence, and human-gate policy allow it. Explicit hard denies override allows. | `ChiralityPermissionOverlay`; hooks; MCP wrappers; tests. |
 | **K-PERM-2** | Prompt text is not a safety boundary. Filesystem writes, tool exposure, bash, subagents, and domain operations require runtime enforcement. | Permission overlay; hooks; runtime contract. |
-| **K-PERM-3** | `allowedTools` alone is not a restriction boundary. Restriction requires disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | SDK options builder; validation tests. |
+| **K-PERM-3** | Tool availability or `allowedTools` alone is not a restriction boundary. Restriction requires explicit deny precedence, disallowed tools, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | SDK options builder; validation tests. |
 | **K-PERM-4** | `readOnly` mode must not expose or allow write/edit/bash/network-capable actions. | SDK options; tool exposure tests; hook denials. |
 | **K-PERM-5** | `dontAsk` mode denies unapproved writes, shell, network, and unknown tools without prompting. | Permission overlay; integration tests. |
 | **K-PERM-6** | `bypassPermissions` is developer-local only and never shipped as ordinary operator behavior. Chirality deny hooks still apply. | Options builder; environment guard; release checklist. |
@@ -89,7 +89,7 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 | **K-HOOK-1** | Hook failures fail closed for write, shell, domain, and subagent actions. | `ChiralityHooks`; integration tests. |
 | **K-PATH-2** | Runtime tools must enforce working-root containment and reject writes outside the active project root. | Path helpers; PreToolUse hooks; MCP tools. |
 | **K-PATH-3** | Symlink writes are rejected in the initial policy. Any relaxation requires governed amendment and tests. | PreToolUse hooks; write tests. |
-| **K-BASH-1** | Bash is denied by default even though the SDK ships the tool. Enabling bash requires timeout, output capture, result storage, interrupt behavior, and audit events. | Options builder; hooks; R4 validation. |
+| **K-BASH-1** | Bash is unavailable unless an explicitly governed mode enables it after timeout, output capture, result storage, interrupt behavior, and audit events are validated. This bash gate must not suppress unrelated safe read/tool capabilities. | Options builder; hooks; R4 validation. |
 
 ### 1.7 Filesystem Execution, Lifecycle, Dependencies, and Provenance
 
@@ -120,7 +120,7 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-NET-1** | Outbound network access is limited to explicit product scope. Current shipped policy is loopback plus Anthropic API path; remote MCP and broader network access require governed future scope. | Electron network guardrails; provider policy; tests. |
+| **K-NET-1** | Outbound network access is limited to explicit product scope. Current shipped policy is loopback plus Anthropic API path. Provider-adapter generality is approved strategically, but concrete non-Anthropic providers, remote MCP, and broader network access require bounded governed implementation scope. | Electron network guardrails; provider policy; tests. |
 | **K-KEY-1** | API keys are non-project convenience state and must never be written to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts. | SafeStorage; env handling; redaction tests. |
 | **K-ATTACH-1** | Attachments are server-validated; client metadata is non-authoritative. Symlinks, directories, special files, unsupported extensions, and over-budget files are rejected. | Attachment resolver; route tests. |
 | **K-RELEASE-1** | Current release target is macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended. | `desktop:dist`; manual release verification. |
@@ -175,3 +175,11 @@ New invariants may be added with new IDs. Existing IDs must not be reused for di
 ## 4. Retired Invariants
 
 No invariants are retired in this vNext rewrite.
+
+---
+
+## 5. Accepted Scope Changes
+
+| Scope Change | Date | Effect |
+|---|---|---|
+| `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter and current shipped path, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. |

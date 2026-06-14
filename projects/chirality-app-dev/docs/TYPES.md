@@ -265,13 +265,16 @@ Legacy `COORDINATION` and `INFORMATION` are not emitted in new extractions.
 |---|---|
 | `AgentEnginePort` | Product-owned boundary for running a turn, yielding UI events, recording canonical events, enforcing permissions, managing session linkage, and terminal outcomes. |
 | `RuntimeEngineContract` | The formal expectations an engine adapter must satisfy before use. |
-| `EngineAdapter` | Provider/SDK-specific implementation behind `AgentEnginePort`. |
+| `EngineAdapter` | Provider/SDK-specific implementation behind `AgentEnginePort`; translates provider-specific events, sessions, permissions, and tool names into Chirality-owned contracts. |
+| `ProviderAdapter` | Concrete integration layer for an external agent provider or provider SDK. |
+| `FirstAdapter` | The current concrete Claude Agent SDK / Anthropic adapter path. It is the first shipped path, not the strategic ceiling. |
 | `EngineConformanceSuite` | Tests proving an adapter satisfies Chirality contracts. |
 | `TurnEngine` | Runtime service that owns a single turn lifecycle and invokes the engine through the product-owned boundary. |
-| `SdkOptionsBuilder` | Deterministic constructor for SDK options from Chirality state and policy. |
-| `SdkMessageMapper` | Mapper from SDK stream messages into browser `UIEvent`s and persisted `HarnessEvent`s. |
+| `SdkOptionsBuilder` | Deterministic constructor for first-adapter SDK options from Chirality state and policy. |
+| `SdkMessageMapper` | First-adapter mapper from SDK stream messages into browser `UIEvent`s and persisted `HarnessEvent`s. |
 | `PersonaComposer` | Builder for system prompt / appended prompt from instruction root, active persona, mode, and working-root policy. |
 | `RelianceBoundaryRegister` | Record of product-critical semantics and their enforcement surfaces. |
+| `PiPatternCorpus` | Reference corpus for stable agentic patterns observed in Pi packages and behavior. It is not a runtime dependency, adapter target, fork target, package import path, or spike authorization. |
 
 ### 7.2 Session Terms
 
@@ -335,7 +338,7 @@ Later event categories:
 
 ### 7.4 Browser `UIEvent` Terms
 
-Browser-facing turn streams use compact UI events. SDK messages are not the UI contract.
+Browser-facing turn streams use compact UI events. Provider/SDK messages are not the UI contract.
 
 SSE event names:
 
@@ -359,7 +362,13 @@ SSE event names:
 | `workspaceWrite` | Governed writes inside project root may be allowed after hooks and policy pass. |
 | `dontAsk` | Deny unapproved actions rather than prompting. |
 | `ask` | Application may request interactive approval for governed actions. |
-| `bypass` | Developer-local escape hatch only; never shipped ordinary mode; still subject to Chirality denies. |
+| `bypass` | Developer-local escape hatch only; never shipped ordinary mode; still subject to explicit Chirality hard denies. |
+
+Capability policy is the Chirality-owned policy that decides which tools and capabilities
+are exposed and executable for a session, persona, mode, provider adapter, and validation
+state. Explicit hard-deny precedence overrides allows at reliance boundaries, secrets,
+protected paths, release/professional claims, destructive actions, and unvalidated
+provider/network expansion.
 
 ### 8.2 Permission Decision
 
@@ -383,10 +392,10 @@ type HarnessPermissionDecision = {
 
 | Term | Meaning |
 |---|---|
-| `SDK built-in tool` | Tool supplied by the SDK, such as `Read`, `Glob`, `Grep`, `LS`, `Write`, `Edit`, or `Bash` where available. |
+| `SDK built-in tool` | Tool supplied by the current first-adapter SDK, such as `Read`, `Glob`, `Grep`, `LS`, `Write`, `Edit`, or `Bash` where available. |
 | `Chirality MCP tool` | In-process deterministic Chirality operation exposed through SDK MCP tooling with `mcp__chirality__*` naming. |
 | `allowedTools` | SDK option that may auto-approve tools; not by itself a restriction boundary. |
-| `disallowedTools` | SDK option or Chirality wrapper policy used to prevent tool use or remove tools from context. |
+| `disallowedTools` | SDK option or Chirality wrapper policy used to prevent tool use or remove tools from context; participates in explicit hard-deny precedence. |
 | `canUseTool` | SDK callback or equivalent hook path used by Chirality to mediate permission decisions. |
 | `ToolResultStore` | Chirality artifact and preview policy for tool outputs. |
 
@@ -416,17 +425,18 @@ Future domain tools use `mcp__chirality__domain_*` only after a governed domain-
 
 ---
 
-## 9. SDK Adapter Vocabulary
+## 9. Provider/SDK Adapter Vocabulary
 
 | Term | Meaning |
 |---|---|
-| Claude Agent SDK | Preferred hosted runtime substrate for generic agent-loop mechanics. |
+| Claude Agent SDK | Current first concrete hosted runtime substrate for generic agent-loop mechanics; implementation substrate, not product identity or strategic ceiling. |
 | SDK transcript | SDK-managed session transcript, secondary to Chirality audit mirror. |
 | `settingSources` | SDK option controlling filesystem settings load. Shipped builds use `[]`. |
 | `SessionStore` | SDK session mirror/storage mechanism when used. Mirror reliability is not assumed to be canonical. |
 | `CLAUDE_CONFIG_DIR` | Environment mechanism that may redirect SDK local config/transcript behavior if empirically reliable. |
-| `permissionMode` | SDK permission posture translated from Chirality mode plus overlay policy. |
+| `permissionMode` | SDK permission posture translated from Chirality mode plus capability policy and explicit hard-deny precedence. |
 | `bypassPermissions` | SDK mode not permitted in shipped ordinary workflows. |
+| Pi pattern corpus | Reference source for agentic patterns only. D-APP-01 and D-APP-02 rule out Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work. |
 
 SDK terms belong at the adapter boundary. Public Chirality APIs and canonical events use Chirality terms.
 

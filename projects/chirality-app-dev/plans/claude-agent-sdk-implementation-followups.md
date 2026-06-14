@@ -4,6 +4,8 @@
 **Date:** 2026-05-19
 **Scope:** The "how", not the "what". Each item is concrete and actionable but does not change product requirements; it specifies how to realize them once the PRD revision (or a subset of it) is accepted.
 
+**SCA-APP-001 alignment:** This file now describes first-adapter implementation detail for the Claude Agent SDK / Anthropic path. It does not define Chirality's strategic provider ceiling, authorize a Pi adapter/import/spike, or authorize concrete non-Anthropic provider implementation.
+
 This document is organized as a punch list. Items are independently actionable. Sequencing follows the proposed new R-phases in the PRD revision (R1 → R7), but items can be pulled out of order if scoping changes.
 
 ---
@@ -64,7 +66,7 @@ Locations under `frontend/src/lib/harness/`:
   - `preToolUse_writeBudget` / `postToolUse_writeBudget` — large output spill to `.chirality/sessions/<id>/artifacts/`.
   - `postToolUse_provenance` — appends provenance evidence where policy requires.
   - `preCompact_mirror` — records compaction boundary in audit JSONL.
-- `canUseTool.ts` — deny-first overlay function passed to `query()` (or implemented via `PreToolUse` returning `permissionDecision: "deny"`).
+- `canUseTool.ts` — capability-policy function with explicit hard-deny precedence passed to `query()` (or implemented via `PreToolUse` returning `permissionDecision: "deny"`).
 - `mcp/` (new directory) — Chirality MCP server implementations:
   - `mcp/status.ts` — `_STATUS.md` reader and transition tool.
   - `mcp/dependencies.ts` — `Dependencies.csv` reader/writer.
@@ -95,11 +97,11 @@ Route-level work that IS needed:
 - `route.ts:188` already writes `claudeSessionId` back to the session on `session:init` — adjust the event mapper to emit `claudeSessionId` from `SDKSystemMessage` (init) or from the first `SDKResultMessage.session_id` (whichever the SDK exposes first).
 - Ensure `turn.accepted` is appended to the audit JSONL **before** `query()` is awaited (currently the route does not write a per-turn record at all).
 
-## 5. Permission mode mapping (Chirality → SDK)
+## 5. Permission mode mapping (Chirality → first-adapter SDK)
 
 Concrete mapping table to implement in `sdk-options-builder.ts`:
 
-| Chirality mode | SDK `permissionMode` | `allowedTools` | `disallowedTools` | `canUseTool` overlay |
+| Chirality mode | SDK `permissionMode` | `allowedTools` | `disallowedTools` | `canUseTool` policy |
 |---|---|---|---|---|
 | `readOnly` | `default` | `Read`, `Glob`, `LS`, `Grep`, Chirality read MCP tools | `Write`, `Edit`, `Bash`, Chirality write MCP tools, `WebFetch`, `WebSearch` | denies any tool not in allowedTools |
 | `workspaceWrite` | `acceptEdits` | read tools + `Write`, `Edit`, Chirality write MCP tools | `Bash`, `WebFetch`, `WebSearch` | enforces projectRoot containment, instruction-root block, symlink reject |
@@ -107,7 +109,7 @@ Concrete mapping table to implement in `sdk-options-builder.ts`:
 | `ask` | `default` | read tools + write tools | `Bash` unless explicitly enabled | returns `ask` for write/shell, propagates to UI prompt |
 | `bypass` (dev-only) | `bypassPermissions` | all | none | **still applies** containment for instruction root and symlink writes |
 
-Deny-first principle: `canUseTool` overlay always runs after SDK permission resolution and can override any allow.
+Explicit hard-deny precedence: `canUseTool` or equivalent hooks can override any allow at reliance boundaries, secrets, protected paths, release/professional claims, destructive actions, and unvalidated provider/network expansion.
 
 ## 6. Chirality MCP servers (in-process)
 
@@ -194,16 +196,16 @@ Existing tests under `frontend/src/__tests__/` should keep passing after R1 (no 
 - `sdk-message-mapper.test.ts` — each known SDK message type maps to the right `UIEvent` and `HarnessEvent`.
 - `sdk-options-builder.test.ts` — Chirality mode → SDK options mapping table coverage.
 - `chirality-hooks.test.ts` — path containment, instruction-root protection, symlink rejection, subagent governance gating.
-- `canUseTool.test.ts` — deny-first override; deny beats allow.
+- `canUseTool.test.ts` — explicit hard-deny precedence; deny beats allow at protected boundaries.
 - `mcp/*.test.ts` — each Chirality MCP server's tool input/output and error cases.
 - `persona-composer.test.ts` — real prompt builder content, fingerprint stability.
 - `settingSources.test.ts` — default is `[]`; dev env opens `["project"]`; never `"user"`.
 
 Section 9 validation IDs (added to `harness:validate:premerge` as the phase lands):
-- `section9.sdk_turn_engine_event_log`
+- `section9.adapter_turn_engine_event_log`
 - `section9.session_event_replay`
 - `section9.tool_runtime_read_file` (SDK Read + audit event)
-- `section9.permission_overlay_deny_first`
+- `section9.permission_overlay_hard_deny_precedence`
 - `section9.path_containment_hook`
 - `section9.instruction_root_protection_hook`
 - `section9.subagent_governance_hook`

@@ -2,9 +2,9 @@
 
 **Package Role:** snapshot / handoff artifact
 **Gate:** 3 - Amendment Approval
-**Status:** PREVIEW_PENDING_HUMAN_APPROVAL
+**Status:** ACCEPTED_EXECUTED_GATE_5
 
-This file previews exact amendment intent. It does not apply changes to decomposition truth or governed docs.
+This file records the exact amendment intent accepted for Gate 5. Authoritative edits were applied during Gate 5 and are closed out by `Handoff_State.md` and `RUN_SUMMARY.md`.
 
 ## Decomposition Amendments
 

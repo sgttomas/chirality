@@ -44,6 +44,18 @@ This tranche did not change runtime API, source code, package manifests, applica
 
 Validation: static governance checks only. Frontend runtime tests were skipped because this tranche changed only docs, plans, and coordination files.
 
+## 2026-06-13 - Provider-general runtime scope change landed (`SCA-APP-001`)
+
+Accepted `SCA-APP-001 Provider-General Runtime and Pi Pattern-Corpus Reorientation`.
+
+The amendment records provider-adapter generality as the strategic runtime direction, keeps Claude Agent SDK / Anthropic as the first concrete adapter and current shipped path, treats Pi as pattern corpus/reference only, and reframes permission governance as capability-forward, policy-mediated, and evidence-recorded tool use with explicit hard-deny precedence.
+
+D-APP-01, D-APP-02, and D-APP-03 are now RULED in `execution/_Coordination/_DECISIONS/_REGISTER.md`. The active completion plan no longer selects Pi adapter/spike work.
+
+Execution deliverable `_CONTEXT.md` files for affected PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 deliverables were aligned with SCA context. Their local `Guidance.md`, `Specification.md`, `Procedure.md`, `Datasheet.md`, dependency, and reference artifacts remain explicit follow-up review surfaces.
+
+Validation: static governance checks only. Frontend runtime tests were skipped because this tranche changed governance, decomposition, planning, coordination, runtime-contract documentation, and execution metadata only; no runtime source or package files changed.
+
 ## 2026-06-13 - Tool descriptor design landed (`3bf6f9fb1`)
 
 Added a Chirality-owned descriptor-only `HarnessToolDescriptor` registry for SDK built-ins and reserved future tool surfaces. The metadata covers provider-neutral permissions, path scope, idempotence, result-budget, provenance, human-gate, runtime exposure, and adapter-name fields.

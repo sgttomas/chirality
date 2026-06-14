@@ -4,6 +4,8 @@ Date: 2026-06-13
 
 Pi source baseline: `/Users/ryan/ai-env/projects/pi` at commit `9e9fc7947871a913946f727854ae0a57fbce1863`.
 
+SCA-APP-001 status: historical/reference assessment. Pi is now a pattern corpus and reference source only. D-APP-01 and D-APP-02 rule out a Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work unless a future human ruling explicitly reverses those boundaries.
+
 ## Scope
 
 Assess legal, package, runtime, and maintenance implications for borrowing from or depending on Pi.
@@ -34,7 +36,7 @@ Pi package versions inspected are `0.79.3`. The generic core package depends on 
 
 Chirality currently targets Node `>=20` (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/package.json:44`). Pi requires Node `>=22.19.0` at the repo and package level (`/Users/ryan/ai-env/projects/pi/package.json:51`, `/Users/ryan/ai-env/projects/pi/packages/agent/package.json:51`, `/Users/ryan/ai-env/projects/pi/packages/ai/package.json:98`, and `/Users/ryan/ai-env/projects/pi/packages/coding-agent/package.json:92`).
 
-This is the main direct-dependency blocker. Chirality should not add a Pi package dependency until it either raises its runtime floor or isolates Pi behind a Node 22 sidecar process.
+This is a direct-dependency blocker, and D-APP-01/D-APP-02 now prohibit using a Pi package dependency, Node 22 sidecar process, runtime-floor migration, or spike under current scope.
 
 ## Maintenance Risk
 
@@ -44,8 +46,7 @@ The current lowest-risk uses are:
 
 1. Reference-only design borrowing.
 2. Small code excerpts with MIT notice where a strong practical advantage exists.
-3. A sidecar spike pinned to an exact Pi version.
-4. A direct package dependency only after Chirality's Node/runtime/packaging strategy is revised.
+3. No sidecar spike, direct package dependency, or runtime-floor change unless a future human ruling explicitly reverses D-APP-01/D-APP-02.
 
 ## Recommendation
 
@@ -53,9 +54,9 @@ The current lowest-risk uses are:
 | --- | --- | --- | --- |
 | Reference only | Clean | Low cost | Preferred now |
 | Borrow selected code | Allowed with MIT notice | Medium; keep small | Use only when necessary |
-| Depend on `pi-ai` | Allowed | Node/provider breadth risk | Later spike only |
-| Depend on `pi-agent-core` | Allowed | Node/runtime risk | Later spike only |
+| Depend on `pi-ai` | Legally allowed | Node/provider breadth risk | Not approved under D-APP-01/D-APP-02 |
+| Depend on `pi-agent-core` | Legally allowed | Node/runtime risk | Not approved under D-APP-01/D-APP-02 |
 | Depend on `pi-coding-agent` | Allowed | High risk | Avoid for production |
 | Fork Pi | Allowed | High ongoing burden | Do not pursue |
 
-Verdict: **do not add Pi as a Chirality dependency now.** Keep it cloned as a reference, cite it in assessment/ADR material, and revisit an exact-version sidecar adapter only after the current Claude SDK runtime boundary is generalized.
+Verdict: **do not add Pi as a Chirality dependency.** Keep it cloned as a reference and cite it in assessment/ADR material when Pi patterns influence Chirality-native designs.

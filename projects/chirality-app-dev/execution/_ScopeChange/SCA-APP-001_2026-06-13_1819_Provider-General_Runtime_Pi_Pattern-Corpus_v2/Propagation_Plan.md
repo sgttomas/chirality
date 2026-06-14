@@ -2,7 +2,7 @@
 
 **Package Role:** snapshot / handoff artifact
 **Gate:** 4 - Propagation Plan Approval
-**Status:** PREVIEW_PENDING_HUMAN_APPROVAL
+**Status:** ACCEPTED_EXECUTED_GATE_5
 
 This plan is limited to governance, decomposition, coordination, planning, and runtime-contract documentation. It excludes runtime source, package manifests, dependencies, lockfiles, coding-language migrations, desktop wrapper changes, Pi imports, Pi adapter work, and concrete non-Anthropic provider implementation.
 

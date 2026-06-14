@@ -4,6 +4,8 @@ Date: 2026-06-13
 
 Author: Codex fan-out/fan-in assessment pass
 
+SCA-APP-001 status: historical/reference assessment. Pi is now a pattern corpus and reference source only. D-APP-01 and D-APP-02 rule out a Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work unless a future human ruling explicitly reverses those boundaries.
+
 Pi source baseline:
 
 - Local path: `/Users/ryan/ai-env/projects/pi`
@@ -20,17 +22,16 @@ Chirality source baseline:
 
 Pi should **not** be forked or embedded wholesale into Chirality.
 
-Pi should be used in three narrower ways:
+Pi should be used in two narrower ways:
 
 1. **Reference implementation** for agent-loop lifecycle, session tree, tool hook, extension, and provider-adapter ideas.
 2. **Pattern source** for Chirality-native session/event/tool designs, with attribution in assessment/ADR material.
-3. **Possible future backend-adapter spike** only as a constrained, exact-version, no-tools, Anthropic-only `pi-ai` or `pi-agent-core` sidecar/probe behind Chirality's `AgentEnginePort`.
 
-Do not adopt `pi-coding-agent` as Chirality's shipped runtime adapter. It is a strong local coding-agent shell, but its filesystem, shell, extension, provider, and project-trust assumptions are too broad for production app-embedded engineering-domain workflows.
+Do not adopt any Pi package as Chirality's shipped runtime adapter under current scope. `pi-coding-agent` is a strong local coding-agent shell, but its filesystem, shell, extension, provider, and project-trust assumptions are too broad for production app-embedded engineering-domain workflows.
 
 ## Basis
 
-Chirality's PRD says the product is a governed desktop harness where project truth lives in git-tracked plain files, humans retain authority, and runtime events remain audit rather than truth (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/docs/PRD.md:21`). It also says the runtime should remain SDK-privileged, contract-owned, and Chirality-governed, with the SDK behind product-owned contracts rather than defining the product runtime contract (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/docs/PRD.md:35`).
+Chirality's PRD says the product is a governed desktop harness where project truth lives in git-tracked plain files, humans retain authority, and runtime events remain audit rather than truth (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/docs/PRD.md:21`). It now says the runtime is provider-adapter-general, contract-owned, and Chirality-governed, with provider/SDK adapters behind product-owned contracts rather than defining the product runtime contract.
 
 Current Chirality has a small `AgentEnginePort` boundary (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/src/lib/harness/agent-engine-port.ts:12`), a versioned `HarnessEvent` schema (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/src/lib/harness/event-schema.ts:3`), append-only session events (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/src/lib/harness/session-events.ts:14`), and a Claude Agent SDK adapter path (`/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts:21`). Those are the right starting boundaries, but still too Claude/SDK-shaped for direct Pi substitution.
 
@@ -52,15 +53,15 @@ Pi's coding shell is not a safety boundary. Its security docs state that project
 | File mutation queue | Pi coding-agent tools | Same-file write serialization | Borrow pattern, not code yet |
 | Extension lifecycle | `/Users/ryan/ai-env/projects/pi/packages/coding-agent/docs/extensions.md:3` | Chirality MCP/hooks/profile adapters | Rehouse under Chirality governance |
 | Pi project trust | `/Users/ryan/ai-env/projects/pi/packages/coding-agent/docs/security.md:5` | Instruction-root/working-root policy | Do not adopt as safety model |
-| Pi built-in bash/write/edit defaults | `/Users/ryan/ai-env/projects/pi/packages/coding-agent/docs/security.md:31` | Deny-first tool surface | Avoid direct adoption |
+| Pi built-in bash/write/edit defaults | `/Users/ryan/ai-env/projects/pi/packages/coding-agent/docs/security.md:31` | Capability policy with explicit hard-deny precedence | Avoid direct adoption |
 
 ## Backend Adapter Matrix
 
 | Backend option | Fit | Risks | Decision |
 | --- | --- | --- | --- |
 | Continue Claude Agent SDK | Best aligned with current PRD and dependency state | SDK-shaped leakage remains; route still owns too much lifecycle | Continue R0/R1 path |
-| `pi-ai` Anthropic-only adapter | Possible provider abstraction probe | Provider breadth, Node 22, ESM, custom base URLs/headers must be locked down | Later sidecar spike only |
-| `pi-agent-core` with injected stream/tools | Possible custom loop fallback | More runtime ownership; durability incomplete; must supply all policy | Later spike after session/event schema hardens |
+| `pi-ai` Anthropic-only adapter | Possible provider abstraction reference | Provider breadth, Node 22, ESM, custom base URLs/headers must be locked down | Not approved under D-APP-01/D-APP-02 |
+| `pi-agent-core` with injected stream/tools | Possible custom loop reference | More runtime ownership; durability incomplete; must supply all policy | Not approved under D-APP-01/D-APP-02 |
 | `pi-coding-agent` SDK | Rich programmatic coding harness | Tools/extensions/sessions/resources too broad; default coding assumptions | Do not use for shipped Chirality runtime |
 | Fork Pi | Legally possible | Large maintenance burden; shifts identity | No |
 | Reference only | Immediate benefit, low risk | No runtime acceleration by itself | Yes, current default |
@@ -72,7 +73,7 @@ Pi's coding shell is not a safety boundary. Its security docs state that project
 | Filesystem | Absolute/home/cwd path ergonomics | Working-root containment and instruction-root block | Chirality path gate before every operation |
 | Shell | Local process command execution | Default denied; explicit human/mode gate | Keep denied until sandbox/audit/timeout exist |
 | Extensions | Arbitrary TypeScript in process | Release-managed capabilities | Disable project-loaded extensions in product runtime |
-| Provider config | Broad providers, custom endpoints, ambient credentials | Anthropic-only current scope | Hard provider/model/baseURL allowlist |
+| Provider config | Broad providers, custom endpoints, ambient credentials | Current shipped Anthropic path | Hard provider/model/baseURL allowlist |
 | Sessions | Useful JSONL traces | Audit mirror plus git-tracked truth | Chirality session/event schema remains canonical |
 | Recovery | Provider streams not resumable | Explicit interrupted/retry-safe records | Recover only from durable boundaries |
 | Domain state | Coding-agent file edits | Typed proposal/adapters/human gates | DomainEngineProfile and operation proposals |
@@ -98,14 +99,13 @@ That flow should be governed by Chirality profiles, protected paths, determinist
 
 1. **Borrow patterns with attribution** - recommended now.
 2. **Reference only** - already useful and should remain the default until implementation starts.
-3. **Pi-backed adapter spike** - worthwhile later, but only narrow, no-tools, Anthropic-only, exact-version, likely sidecar because Pi requires Node `>=22.19.0` while Chirality currently declares Node `>=20` (`/Users/ryan/ai-env/projects/pi/package.json:51` and `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/frontend/package.json:44`).
-4. **Borrow selected code** - allowed under MIT, but only for small isolated pieces where pattern borrowing is insufficient.
-5. **Do not use Pi** - not recommended; Pi is too useful as a reference to ignore.
-6. **Fork Pi** - not recommended.
+3. **Borrow selected code** - allowed under MIT, but only for small isolated pieces where pattern borrowing is insufficient and a future tranche approves code copying plus notice handling.
+4. **Do not import, fork, adapt, sidecar, or spike Pi** - required under D-APP-01 and D-APP-02.
+5. **Fork Pi** - not approved.
 
 ## Recommended Next Technical Step
 
-Do **not** implement a Pi adapter immediately.
+Do **not** implement a Pi adapter, sidecar, package import, fork, runtime-floor migration, or spike under current scope.
 
 First, harden Chirality's runtime contract:
 
@@ -115,7 +115,7 @@ First, harden Chirality's runtime contract:
 4. Extract turn lifecycle ownership out of the HTTP route and current SDK manager into a real `TurnEngine`.
 5. Add engine conformance tests using deterministic fake provider streams.
 
-After that, run a constrained Pi spike:
+Superseded prior spike shape, retained only as historical pattern evidence:
 
 - Name: `pi-ai-anthropic-sidecar-spike`.
 - Runtime: no built-in tools, no extensions, no project resource discovery, no broad provider registry.
@@ -123,6 +123,8 @@ After that, run a constrained Pi spike:
 - Output: map Pi stream events to Chirality UI/events and prove interrupt/terminal behavior.
 - Success criterion: passes the same engine conformance suite as the Claude Agent SDK adapter.
 - Failure criterion: requires widening provider/network/config/tool permissions or importing `pi-coding-agent` defaults.
+
+No item in this spike shape is authorized after SCA-APP-001 without a future human ruling that explicitly reverses D-APP-01/D-APP-02.
 
 ## Related Slice Memos
 

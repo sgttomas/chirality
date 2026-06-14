@@ -4,7 +4,11 @@
 
 This contract defines Chirality's product-owned turn boundary for harness runtime adapters.
 It applies to the deterministic stub adapter, the existing direct Anthropic Messages adapter,
-and the opt-in Claude Agent SDK probe adapter.
+and the Claude Agent SDK / Anthropic first-adapter path.
+
+SCA-APP-001 establishes a provider-adapter-general runtime strategy. The current Claude
+Agent SDK / Anthropic path remains the first concrete adapter and current shipped path;
+concrete non-Anthropic providers require bounded future implementation scope.
 
 The browser-facing event stream remains the stable public contract. Provider and SDK message
 names, transcript paths, session IDs, tool names, and permission modes are adapter metadata
@@ -110,10 +114,10 @@ builder therefore keeps `tools: []` and `allowedTools: []`, while deriving a bro
 `disallowedTools` list from the descriptor registry so SDK read/write/shell/network/subagent
 tools are not exposed to the model by accident.
 
-## Claude Agent SDK Probe Posture
+## First Adapter Probe Posture
 
 `CHIRALITY_HARNESS_PROVIDER=agentSdk` selects the opt-in Claude Agent SDK probe adapter.
-The default provider remains unchanged.
+The default provider remains unchanged unless a later bounded runtime tranche changes it.
 
 Probe posture:
 
@@ -124,6 +128,9 @@ Probe posture:
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
 - Built-in tools are disabled for this tranche with `tools: []`, `allowedTools: []`, and
   descriptor-derived `disallowedTools`.
+
+Pi is a pattern corpus/reference only. This contract does not authorize a Pi adapter, fork,
+package import, Node 22 sidecar, runtime-floor migration, or spike.
 
 ## Conformance Gates
 

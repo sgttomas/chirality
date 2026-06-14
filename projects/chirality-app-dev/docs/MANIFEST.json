@@ -71,6 +71,10 @@
       "role": "human-gated decision tracking"
     },
     {
+      "path": "execution/_ScopeChange/_LATEST.md",
+      "role": "accepted scope-change discovery pointer"
+    },
+    {
       "path": "plans/PLAN_2026-06-13_runtime_completion.md",
       "role": "active non-governing tranche-selection plan"
     },
@@ -87,6 +91,7 @@
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
     "The active tranche-selection surface is plans/PLAN_2026-06-13_runtime_completion.md.",
+    "Accepted scope changes under execution/_ScopeChange/ record governed decomposition and guidance amendments.",
     "execution/_Coordination/NEXT_INSTANCE_STATE.md is retired; discover current state from authoritative surfaces, dependency evidence, source/tests, validation artifacts, and git history."
   ]
 }

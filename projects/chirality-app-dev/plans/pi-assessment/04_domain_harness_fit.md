@@ -4,6 +4,8 @@ Date: 2026-06-13
 
 Pi source baseline: `/Users/ryan/ai-env/projects/pi` at commit `9e9fc7947871a913946f727854ae0a57fbce1863`.
 
+SCA-APP-001 status: historical/reference assessment. Pi is now a pattern corpus and reference source only. D-APP-01 and D-APP-02 rule out a Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike work unless a future human ruling explicitly reverses those boundaries.
+
 ## Scope
 
 Assess how Pi concepts translate to Chirality's non-coding, app-embedded engineering-domain workflows.
@@ -43,7 +45,7 @@ Pi can help with the mechanics around this flow, but Pi should not own this flow
 | --- | --- | --- |
 | Skill/prompts | Domain task instructions | `TASK + TaskSkill`, governed skill folders |
 | Custom tools | Deterministic domain adapters | In-process MCP or domain adapter APIs |
-| Tool-call hooks | Path/proposal/human-gate policy | Deny-first runtime overlay |
+| Tool-call hooks | Path/proposal/human-gate policy | Capability policy with explicit hard-deny precedence |
 | Sessions/events | Runtime observability | `.chirality/sessions/<id>/events.jsonl` plus git truth |
 | Packages | Curated domain profiles | Release-managed instruction/profile bundles |
 | Compaction | Runtime context management | Non-authoritative context mirror events |
