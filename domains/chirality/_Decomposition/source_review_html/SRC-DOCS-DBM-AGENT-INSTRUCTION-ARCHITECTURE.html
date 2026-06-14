@@ -1,0 +1,827 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>65</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG002-0001">DBM — Workflow-Component Architecture</a> <a href="#SEC-DG002-0002">1. Design Philosophy</a> <a href="#SEC-DG002-0011">2. Type Hierarchy</a> <a href="#SEC-DG002-0016">3. Structural Template</a> <a href="#SEC-DG002-0018">AGENT INSTRUCTIONS — &lt;AGENT_NAME&gt; (&lt;Role Description&gt;)</a> <a href="#SEC-DG002-0019">Agent Type</a> <a href="#SEC-DG002-0020">Precedence (conflict resolution)</a> <a href="#SEC-DG002-0021">Non-negotiable invariants</a> <a href="#SEC-DG002-0022">PROTOCOL</a> <a href="#SEC-DG002-0023">SPEC</a> <a href="#SEC-DG002-0024">STRUCTURE</a> <a href="#SEC-DG002-0025">RATIONALE</a> <a href="#SEC-DG002-0029">4. Contract Framework</a> <a href="#SEC-DG002-0034">5. Agent Registry Reference</a> <a href="#SEC-DG002-0035">6. Orchestration Architecture</a> <a href="#SEC-DG002-0039">7. Write Scope Architecture</a> <a href="#SEC-DG002-0042">8. Decomposition System</a> <a href="#SEC-DG002-0049">9. Brief &amp; Output Contracts</a> <a href="#SEC-DG002-0054">10. Variant Coverage Matrix</a> <a href="#SEC-DG002-0055">11. Canonical Patterns</a> <a href="#SEC-DG002-0065">12. Design Outcomes Required for New Workflows</a></nav>
+<main>
+<section id="SEC-DG002-0001" class="chunk sec depth-1" data-kind="section" data-key="section:af032f98f5c7" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG002-0001</span> DBM — Workflow-Component Architecture</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af032f98f5c7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af032f98f5c7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af032f98f5c7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document is the design basis memorandum for the governed workflow-component system shipped with the Chirality App. It establishes the architectural basis — the principles, contracts, structures, and relationships — that govern how agents, skills, and tools are designed, how they relate to each other, and how the system maintains coherence at scale.</p>
+<p>**Audience:** Anyone who will work with, extend, audit, or maintain the agent instruction suite, the skill subsystem, or the deterministic tool layer.</p>
+<p>**Scope:** The three governed workflow-component layers:</p>
+<p>1. The **indexed agent suite** described in <a href="../AGENTS.md" target="_blank" rel="noopener">`AGENTS.md`</a>, including the two Type 0 canonical standards.
+2. The **repo-native skill subsystem** under <a href="../skills/" target="_blank" rel="noopener">`skills/`</a> (governed by SKILLMAKER under HELPS_HUMANS).
+3. The **deterministic tool layer** under <a href="../tools/" target="_blank" rel="noopener">`tools/`</a> (governed by TOOLMAKER under HELPS_HUMANS).</p>
+<p>This document does not cover the desktop application runtime, the harness SDK, or the UI — only the workflow-component architecture.</p>
+<p>**Relationship to other governance documents:**</p>
+<p>| Document | Role | Relationship to this DBM |
+|----------|------|--------------------------|
+| `DIRECTIVE.md` | Founding intent and design philosophy | This DBM operationalizes DIRECTIVE&#x27;s principles into the agent instruction layer |
+| `SPEC.md` | Physical structures, schemas, folder layouts | SPEC defines the filesystem contracts that agents write to; this DBM defines the agents themselves |
+| `TYPES.md` | Domain vocabulary, ID formats, enums | TYPES defines the nouns; this DBM defines how agents use them |
+| `CONTRACT.md` | K-* invariant catalog | This DBM maps K-* invariants to the agents that enforce them |
+| `AGENTS.md` | Operator-facing index and rules of the road | AGENTS.md is the quick-reference; this DBM is the detailed basis |
+| `SE_Design_Analysis.md` | Systems engineering design analysis | Characterizes the SE disciplines realized in this architecture; this DBM defines the architecture that the SE analysis examines |
+| `PROFESSIONAL_ENGINEERING.md` | Professional practice standard (PPMP-referenced) | Traces the instruction architecture to APEGA regulatory obligations; maps direct supervision and control (§3.1.1) and thorough review (§3.1.2) to the governance mechanisms defined in this DBM |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0002" class="chunk sec depth-2" data-kind="section" data-key="section:b656a97025e1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0002</span> 1. Design Philosophy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b656a97025e1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b656a97025e1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b656a97025e1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The agent instruction architecture is governed by eight foundational principles derived from `DIRECTIVE.md`. These are not independent guidelines — they form a structural dependency chain where foundational decisions enable downstream capabilities. `DIRECTIVE.md` §2 frames these principles as instantiations of four philosophical pillars — ontology, epistemology, praxiology, and axiology — and identifies the epistemology (evidence-first knowledge architecture) as the system&#x27;s most distinctive and load-bearing contribution. The eight principles below operationalize that framework into the instruction layer.
+</p></div></div></section>
+<section id="SEC-DG002-0003" class="chunk sec depth-3" data-kind="section" data-key="section:3b360bbfe6f8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0003</span> 1.1 Filesystem Is the State</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3b360bbfe6f8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3b360bbfe6f8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3b360bbfe6f8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Project truth lives in git-tracked files. Agents do not maintain hidden databases, private state, or transient context that diverges from the filesystem. If it is not on disk, it does not exist for purposes of reliance.</p>
+<p>This is the load-bearing architectural decision. The V-model traceability (§8), immutable snapshots (<a class="xref" href="#SEC-DG002-0009">§1.7</a>), change propagation tracking (K-STALE-1/2), content-addressed approval (K-AUTH-2), and the entire audit trail all depend on state being in git-tracked files. If state moved to a database, every one of these capabilities would need to be rebuilt. The filesystem choice is not a simplification — it is the mechanism that makes the SE apparatus work.
+</p></div></div></section>
+<section id="SEC-DG002-0004" class="chunk sec depth-3" data-kind="section" data-key="section:e590f7f71f11" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0004</span> 1.2 Human Authority at Every Gate</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e590f7f71f11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e590f7f71f11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e590f7f71f11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Humans own acceptance, rulings, conflict resolution, scope boundary changes, and publication approval. Agents execute bounded work and preserve provenance; they may propose but do not declare truth.
+</p></div></div></section>
+<section id="SEC-DG002-0005" class="chunk sec depth-3" data-kind="section" data-key="section:e74a9bb71dc1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0005</span> 1.3 Evidence-First Epistemology</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e74a9bb71dc1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e74a9bb71dc1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e74a9bb71dc1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every non-trivial claim includes a source path and best-effort section reference (or explicit `location TBD`). Epistemic labels — `FACT`, `ASSUMPTION`, `PROPOSAL`, `TBD` — are used to distinguish what is directly observed, what is inferred from cited material, what is proposed for decision, and what remains unresolved.</p>
+<p>This is the system&#x27;s primary response to the fundamental limitation of LLM-based agents: hallucination. Rather than attempting to prevent unsupported claims (which is not reliably possible), the architecture requires provenance for every claim and makes unsupported claims structurally visible. K-PROV-1 (mandatory provenance), K-INVENT-1 (no invention), and K-CONFLICT-1 (conflict surfacing) enforce this collectively. The result is that gaps in evidence are findings — not hidden failures.
+</p></div></div></section>
+<section id="SEC-DG002-0006" class="chunk sec depth-3" data-kind="section" data-key="section:6684212198f1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0006</span> 1.4 No Invention</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6684212198f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6684212198f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6684212198f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When required information is missing, agents label it `TBD` and surface the gap as an open issue. They do not guess, default-fill, or silently infer. Missing data is a finding, not a problem to solve.
+</p></div></div></section>
+<section id="SEC-DG002-0007" class="chunk sec depth-3" data-kind="section" data-key="section:23b72e2a50e2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0007</span> 1.5 Write Quarantine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23b72e2a50e2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23b72e2a50e2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23b72e2a50e2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every agent declares an explicit write scope. Tool roots (where derived outputs land) are isolated from source truth (where human-accepted deliverables live). No agent writes outside its declared scope. This creates formal fault containment zones — a Type 2 agent failure cannot corrupt source truth (see §7 for the full scope architecture).
+</p></div></div></section>
+<section id="SEC-DG002-0008" class="chunk sec depth-3" data-kind="section" data-key="section:7d8b6597a88a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0008</span> 1.6 Layered Abstraction (Type 0 / 1 / 2)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d8b6597a88a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d8b6597a88a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d8b6597a88a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The system separates standards definition (Type 0) from interactive orchestration (Type 1) from bounded task execution (Type 2). Each layer has distinct responsibilities, constraints, and interaction patterns. See §2 for details.
+</p></div></div></section>
+<section id="SEC-DG002-0009" class="chunk sec depth-3" data-kind="section" data-key="section:179918b8e823" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0009</span> 1.7 Immutable Snapshots</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:179918b8e823" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:179918b8e823" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:179918b8e823" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Task agents that produce analysis outputs write to timestamped snapshot folders that are never modified after creation. Mutable pointer files (`_LATEST.md`) provide convenience access to the most recent snapshot. The snapshot trail is the audit trail. This is possible because state is in git-tracked files (<a class="xref" href="#SEC-DG002-0003">§1.1</a>) — the filesystem natively supports append-only history.
+</p></div></div></section>
+<section id="SEC-DG002-0010" class="chunk sec depth-3" data-kind="section" data-key="section:72848e219402" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0010</span> 1.8 Least Structure That Works</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72848e219402" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72848e219402" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72848e219402" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Structure is added only when it reduces error or rework. Rigor scales with stakes. The system avoids premature abstraction and unnecessary ceremony while maintaining the controls required for professional and regulated environments.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0011" class="chunk sec depth-2" data-kind="section" data-key="section:5e3e757b7abf" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0011</span> 2. Type Hierarchy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5e3e757b7abf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5e3e757b7abf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5e3e757b7abf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The agent system is organized into three types with distinct responsibilities, constraints, and interaction patterns.
+</p></div></div></section>
+<section id="SEC-DG002-0012" class="chunk sec depth-3" data-kind="section" data-key="section:9de158072ba4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0012</span> 2.1 Type 0 — Canonical Standards (Architect)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9de158072ba4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9de158072ba4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9de158072ba4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Type 0 agents define the invariant protocols and design standards that all downstream agents must conform to. They do not write project state. They are the constitutional layer.</p>
+<p>| Agent | Role | What It Defines |
+|-------|------|-----------------|
+| **HELPS_HUMANS** | Workflow-component design standard (agents, skills, tools) | Agent Header Block, R1–R12 compliance requirements, 4-section structure, brief formats, QA contract, publication hygiene, skill-contract and tool-contract design outcomes |
+| **DECOMP_BASE** | Decomposition protocol standard | 7-gate protocol, I1–I10 invariants, entity schemas, extension contract, ledger/telemetry contracts |</p>
+<p>**Key constraint:** Where any `AGENT_*` file, skill contract, or tool contract disagrees with a Type 0 standard, the other file must be edited to conform.</p>
+<p>**Subordinate managers under HELPS_HUMANS:**
+- **SKILLMAKER** (Type 1, `agents/AGENT_SKILLMAKER.md`) governs the repo-native skill subsystem under `skills/`. Skill contracts conform to HELPS_HUMANS &quot;Design Outcomes for Skill Contracts&quot; and R10 + R12.
+- **TOOLMAKER** (Type 1, `agents/AGENT_TOOLMAKER.md`) governs the deterministic-tool layer under `tools/`. Tool contracts conform to HELPS_HUMANS &quot;Design Outcomes for Tool Contracts&quot; and R11 + R12.</p>
+<p>These are not parallel Type 0 standards; they are subordinate Type 1 managers implementing HELPS_HUMANS requirements within their respective subsystems. The skill/tool boundary is preserved: skills identify tool needs; tools implement deterministic helpers.
+</p></div></div></section>
+<section id="SEC-DG002-0013" class="chunk sec depth-3" data-kind="section" data-key="section:ecb194330b7d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0013</span> Formal Authority Properties</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ecb194330b7d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ecb194330b7d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ecb194330b7d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The type hierarchy enforces three authority invariants that the entire system depends on:</p>
+<p>1. **Type 2 cannot escalate to Type 1 authority.** Specialists execute bounded briefs and return outputs — they cannot initiate gate reviews, spawn other agents, or make scope decisions.
+2. **Type 1 cannot override Type 0 constraints.** Managers orchestrate within the rules defined by canonical standards — they cannot relax R1–R12, I1–I10, or K-* invariants.
+3. **Human gates cannot be bypassed by any type.** No agent — regardless of type — can approve deliverables, issue work for reliance, resolve conflicts authoritatively, or commit to the baseline without explicit human authorization.
+</p></div></div></section>
+<section id="SEC-DG002-0014" class="chunk sec depth-3" data-kind="section" data-key="section:b0f94cb3f96e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0014</span> 2.2 Type 1 — Interactive Personas (Manager)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0f94cb3f96e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0f94cb3f96e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0f94cb3f96e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Type 1 agents are human-facing. They run conversational, gate-controlled workflows where the human makes consequential decisions and the agent handles orchestration, routing, and structured output.</p>
+<p>**Characteristics:**
+- `AGENT_CLASS: PERSONA`, `INTERACTION_SURFACE: chat`, `BLOCKING: allowed`
+- Multi-phase workflows with explicit gate questions at each phase
+- May spawn Type 2 agents
+- Own orchestration decisions but not engineering content
+- Produce guidance, run plans, briefs, and structured cards</p>
+<p>**Inventory:** See §5.
+</p></div></div></section>
+<section id="SEC-DG002-0015" class="chunk sec depth-3" data-kind="section" data-key="section:c76343d28a9c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0015</span> 2.3 Type 2 — Bounded Task Agents (Specialist)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c76343d28a9c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c76343d28a9c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c76343d28a9c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Type 2 agents are brief-driven specialists that run straight-through without human interaction. They receive structured inputs (INIT-TASK briefs), produce auditable outputs, and return status to their invoking agent.</p>
+<p>**Characteristics:**
+- `AGENT_CLASS: TASK`, `INTERACTION_SURFACE: INIT-TASK or spawned`, `BLOCKING: never`
+- Straight-through execution (no mid-run gates)
+- Produce immutable snapshots or deliverable-local file writes
+- Never spawn other agents
+- If inputs are invalid: `FAILED_INPUTS` (halt). If data missing: `TBD` (continue conservatively)</p>
+<p>**Inventory:** See §5.</p>
+<p>**Note:** Supporting template files consumed by agents at runtime live outside `agents/`: e.g., `docs/templates/MEMORY_TEMPLATE.md`.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0016" class="chunk sec depth-2" data-kind="section" data-key="section:5ddf18016098" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0016</span> 3. Structural Template</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ddf18016098" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ddf18016098" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ddf18016098" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every agent instruction file follows a universal skeleton mandated by `AGENT_HELPS_HUMANS.md`.
+</p></div></div></section>
+<section id="SEC-DG002-0017" class="chunk sec depth-3" data-kind="section" data-key="section:21759adf3256" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0017</span> 3.1 File Anatomy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21759adf3256" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21759adf3256" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21759adf3256" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+---
+description: &quot;&lt;one-line description for UI labels&gt;&quot;
+---
+[[DOC:AGENT_INSTRUCTIONS]]</p></div></div></section>
+<section id="SEC-DG002-0018" class="chunk sec depth-1" data-kind="section" data-key="section:44460c5d0ef7" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG002-0018</span> AGENT INSTRUCTIONS — &lt;AGENT_NAME&gt; (&lt;Role Description&gt;)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44460c5d0ef7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44460c5d0ef7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44460c5d0ef7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: &lt;0 | 1 | 2&gt;
+</p></div></div></section>
+<section id="SEC-DG002-0019" class="chunk sec depth-2" data-kind="section" data-key="section:a0b619fb8118" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0019</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0b619fb8118" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0b619fb8118" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0b619fb8118" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>| Property            | Value |
+|---------------------|-------|
+| AGENT_TYPE          | ...   |
+| AGENT_CLASS         | ...   |
+| INTERACTION_SURFACE | ...   |
+| WRITE_SCOPE         | ...   |
+| BLOCKING            | ...   |
+| PRIMARY_OUTPUTS     | ...   |
+</p></div></div></section>
+<section id="SEC-DG002-0020" class="chunk sec depth-2" data-kind="section" data-key="section:0a3b3e9848ed" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0020</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a3b3e9848ed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a3b3e9848ed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a3b3e9848ed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>1. PROTOCOL &gt; 2. SPEC &gt; 3. STRUCTURE &gt; 4. RATIONALE
+</p></div></div></section>
+<section id="SEC-DG002-0021" class="chunk sec depth-2" data-kind="section" data-key="section:df727e9d8207" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0021</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:df727e9d8207" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:df727e9d8207" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:df727e9d8207" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- &lt;bulleted list; 5–14 items per agent&gt;</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-DG002-0022" class="chunk sec depth-2" data-kind="section" data-key="section:ce55694e0d77" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0022</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce55694e0d77" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce55694e0d77" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce55694e0d77" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>&lt;Operational workflow: steps, phases, gates, or functions&gt;
+[[END:PROTOCOL]]</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-DG002-0023" class="chunk sec depth-2" data-kind="section" data-key="section:18a0f7b6e9d5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0023</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18a0f7b6e9d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18a0f7b6e9d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18a0f7b6e9d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>&lt;Validity requirements and invalid states&gt;
+[[END:SPEC]]</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-DG002-0024" class="chunk sec depth-2" data-kind="section" data-key="section:d14c83f07d65" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0024</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d14c83f07d65" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d14c83f07d65" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d14c83f07d65" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>&lt;File schemas, templates, output formats&gt;
+[[END:STRUCTURE]]</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-DG002-0025" class="chunk sec depth-2" data-kind="section" data-key="section:91129b14f163" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0025</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91129b14f163" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91129b14f163" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91129b14f163" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>&lt;Design intent — non-normative&gt;
+[[END:RATIONALE]]
+```
+</p></div></div></section>
+<section id="SEC-DG002-0026" class="chunk sec depth-3" data-kind="section" data-key="section:db7f32d9ec31" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0026</span> 3.2 Agent Header Block (6 Required Fields)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:db7f32d9ec31" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:db7f32d9ec31" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:db7f32d9ec31" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Field | Valid Values | Semantics |
+|-------|-------------|-----------|
+| `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Position in the layered hierarchy |
+| `AGENT_CLASS` | `PERSONA`, `TASK` | Conversational interface vs straight-through execution |
+| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
+| `WRITE_SCOPE` | `none`, `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `repo-metadata-only`, `workspace-scaffold-only`, `knowledge-type-local` | What filesystem area the agent may write to |
+| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
+| `PRIMARY_OUTPUTS` | Free text | What the agent produces |
+</p></div></div></section>
+<section id="SEC-DG002-0027" class="chunk sec depth-3" data-kind="section" data-key="section:5ba3393f4cac" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0027</span> 3.3 The Four Standard Sections</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5ba3393f4cac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5ba3393f4cac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5ba3393f4cac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Section | Governs | Precedence Rank |
+|---------|---------|-----------------|
+| **PROTOCOL** | Sequencing and interaction rules — how to run the process | 1 (highest) |
+| **SPEC** | Validity — pass/fail requirements; what is considered correct | 2 |
+| **STRUCTURE** | Allowed entities, relationships, schemas, templates | 3 |
+| **RATIONALE** | Interpretation when ambiguity remains — design values and intent | 4 (lowest) |</p>
+<p>All sections are bounded by `[[BEGIN:X]]...[[END:X]]` delimiters for machine parseability.
+</p></div></div></section>
+<section id="SEC-DG002-0028" class="chunk sec depth-3" data-kind="section" data-key="section:15b99ccefe5d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0028</span> 3.4 Type 1 vs Type 2 Structural Differences</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15b99ccefe5d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15b99ccefe5d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15b99ccefe5d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Aspect | Type 1 (Persona) | Type 2 (Task) |
+|--------|------------------|---------------|
+| PROTOCOL style | Multi-phase gated workflow with human gates | Straight-through numbered steps; no mid-run gates |
+| Input format | Natural language conversation | Structured parameter table (INIT-TASK brief) |
+| Output format | Conversational guidance + structured cards | File writes + run report (PASS/FAIL) |
+| Sub-agent spawning | May spawn Type 2 agents | Never spawns others |
+| Preamble sections | Foundations, glossary, perspective, coordination rules | Runtime parameters table, glossary |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0029" class="chunk sec depth-2" data-kind="section" data-key="section:bffe37165011" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0029</span> 4. Contract Framework</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bffe37165011" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bffe37165011" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bffe37165011" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Three layers of contracts govern agent behavior. They are complementary and non-overlapping.
+</p></div></div></section>
+<section id="SEC-DG002-0030" class="chunk sec depth-3" data-kind="section" data-key="section:00f2e50f0573" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0030</span> 4.1 R1–R12: Workflow-Component Design Requirements (from HELPS_HUMANS)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00f2e50f0573" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00f2e50f0573" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00f2e50f0573" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These requirements apply to all agents, skills, and tools, and to the design of new workflow components.</p>
+<p>| ID | Requirement | Rule |
+|----|-------------|------|
+| **R1** | Human decision rights are explicit | Human-owned decisions are enumerated and preserved |
+| **R2** | Task agents are straight-through | Task agents run without requiring mid-run human decisions |
+| **R3** | Write quarantine is enforced | Every agent has an explicit write scope; tool roots are isolated from source truth |
+| **R4** | Snapshots are immutable | Each run produces a new snapshot folder; pointer files may be overwritten; snapshots may not |
+| **R5** | Provenance is mandatory | Aggregated/extracted data includes `SourcePath` and best-effort `SectionRef` |
+| **R6** | No invention behavior is defined | Missing data becomes `TBD` with assumptions captured |
+| **R7** | Conflicts/duplicates are surfaced | The system does not hide or silently resolve discrepancies |
+| **R8** | Brief-driven execution exists | Pipelines have a defined brief format (INIT-TASK) and deterministic outputs |
+| **R9** | Publication is hygienic | Version control publishing is reviewable and non-destructive by default |
+| **R10** | Skill tool policy is explicit | Every skill declares preferred, optional, disallowed tools, and fall-back conditions |
+| **R11** | Tool contract is explicit | Every deterministic tool declares input/output contract, scope boundary, and idempotence posture |
+| **R12** | Skill/tool boundary is preserved | Skills identify tool needs; tools implement deterministic helpers; no cross-mixing of concerns |
+</p></div></div></section>
+<section id="SEC-DG002-0031" class="chunk sec depth-3" data-kind="section" data-key="section:85853346692d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0031</span> 4.2 I1–I10: Decomposition Invariants (from DECOMP_BASE)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:85853346692d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:85853346692d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:85853346692d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These invariants apply to all decomposition agents (PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP) and are verified by AUDIT_DECOMP.</p>
+<p>| ID | Invariant | Rule |
+|----|-----------|------|
+| **I1** | Human-validated decomposition | Confirmed by human at defined gates; no gate may be skipped |
+| **I2** | No invention | Do not create units, objectives, or artifacts beyond source material; unknowns → `TBD` |
+| **I3** | Partitions are flat | No nested partitions; additional granularity via additional partitions at the same level |
+| **I4** | No overlap / no gaps | Every IN-scope atomic unit assigned to exactly one partition |
+| **I5** | Stable identifiers | Once assigned, IDs remain stable unless human explicitly requests renumbering |
+| **I6** | Deterministic ID coupling | Production unit IDs mechanically derived from parent partition IDs |
+| **I7** | Objective mapping is best-effort | Unmapped objectives surfaced as open issues |
+| **I8** | Traceable rationale | Non-trivial assignment decisions recorded as explicit decisions |
+| **I9** | Ledger + telemetry | Every decomposition includes a machine-checkable ledger and Coverage &amp; Telemetry summary |
+| **I10** | Vocabulary discipline | Every decomposition includes a Vocabulary Map; canonical terms used consistently |
+</p></div></div></section>
+<section id="SEC-DG002-0032" class="chunk sec depth-3" data-kind="section" data-key="section:1ab1fd34f2c0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0032</span> 4.3 K-* Invariants: System-Wide Enforcement (from CONTRACT.md)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1ab1fd34f2c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1ab1fd34f2c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1ab1fd34f2c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The `K-*` invariants are defined in `CONTRACT.md`. Their enforcement is distributed across the agent suite:</p>
+<p>| K-* Group | Invariants | Primary Enforcing Agents |
+|-----------|-----------|--------------------------|
+| Hierarchy &amp; Identity | K-HIER-1, K-ID-1 | PROJECT_DECOMP, PREPARATION |
+| Authority &amp; Approval | K-AUTH-1, K-AUTH-2, K-BIND-1 | REVIEW, CHANGE (approval gates) |
+| Sealing &amp; Context | K-SEAL-1, K-GHOST-1 | Type 2 agents (check lifecycle state before writes) |
+| Dependencies | K-DEP-1, K-DEP-2 | TASK+dependency-extract, AUDIT_DEP_CLOSURE |
+| Status | K-STATUS-1 | PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW |
+| Staleness &amp; Validation | K-STALE-1, K-STALE-2, K-VAL-1 | AUDIT_DEP_CLOSURE, RECONCILIATION; future tooling (SHA comparison) |
+| Gates | K-GATE-1 | ORCHESTRATOR, SCHEDULING |
+| Merge | K-MERGE-1 | CHANGE |
+| Provenance | K-PROV-1 | Universal (all claim-producing agents); TASK+dependency-extract applies row schema for `Dependencies.csv` |
+| Invention | K-INVENT-1 | Universal (all agents) |
+| Conflicts | K-CONFLICT-1 | Universal (all agents) |
+| Write scope | K-WRITE-1 | Universal (WRITE_SCOPE declaration per agent) |
+| Snapshots | K-SNAP-1 | All snapshot-producing agents |
+</p></div></div></section>
+<section id="SEC-DG002-0033" class="chunk sec depth-3" data-kind="section" data-key="section:7d106a1ea234" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0033</span> 4.4 Normative Keywords</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7d106a1ea234" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7d106a1ea234" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7d106a1ea234" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per HELPS_HUMANS, agent instructions use these keywords with defined meaning:</p>
+<p>| Keyword | Meaning |
+|---------|---------|
+| **MUST** / **MUST NOT** | Mandatory for compliance |
+| **SHOULD** / **SHOULD NOT** | Recommended best practice |
+| **MAY** | Optional |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0034" class="chunk sec depth-2" data-kind="section" data-key="section:823469c03cbb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0034</span> 5. Agent Registry Reference</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:823469c03cbb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:823469c03cbb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:823469c03cbb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The canonical agent registry is `AGENTS.md`. It owns active agent membership, matrix placement, role classification, and TASK dispatch relationships. This DBM describes the architecture behind that registry; it does not duplicate the registry table.</p>
+<p>Skills are discovered through `skills/README.md` and live `skills/*/SKILL.md` files. Deterministic tools are registered in `tools/REGISTRY.md`. Test surfaces are generated on demand by `tools/validation/discover_test_surfaces.py`.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0035" class="chunk sec depth-2" data-kind="section" data-key="section:efb19d1f4ecd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0035</span> 6. Orchestration Architecture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efb19d1f4ecd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efb19d1f4ecd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efb19d1f4ecd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG002-0036" class="chunk sec depth-3" data-kind="section" data-key="section:66e2ee61e5a4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0036</span> 6.1 Spawning Graph</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:66e2ee61e5a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:66e2ee61e5a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:66e2ee61e5a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+HELP_HUMAN (Type 1 — classifies intent, routes to agents; does not spawn)</p>
+<p>ORCHESTRATOR (Type 1) ──spawns──┬── PREPARATION (Type 2)
+                                ├── DOMAIN_HYPERGRAPH (Type 2) [DOMAIN only; Phase 2.6]
+                                ├── ESTIMATING (Type 2)
+                                └── AGGREGATION (Type 2)
+                  ──dispatches TASK+skill──┬── four-documents [Phases 2.2 + 2.5]
+                                           ├── domain-documents [Phase 2.2; DOMAIN]
+                                           ├── semantic-matrix-build [Phase 2.3]
+                                           ├── lens-register [Phase 2.4]
+                                           ├── dependency-extract [setup + refresh]
+                                           └── estimate-snapshot, estimate-prep [Phase 4]</p>
+<p>WORKING_ITEMS (Type 1) ──spawns──── TASK (Type 2)</p>
+<p>RECONCILIATION (Type 1) ──spawns──┬── AUDIT_DEP_CLOSURE (Type 2)
+                                  ├── AUDIT_AGENTS (Type 2)
+                                  ├── AUDIT_DECOMP (Type 2)
+                                  └── AUDIT_HYPERGRAPH_CLOSURE (Type 2) [DOMAIN only]</p>
+<p>EVALUATION (Type 1) ──spawns──┬── CONTENT_DIGEST (Type 2)
+                              ├── EVALUATION_REPORT (Type 2)
+                              ├── EVALUATION_STRUCTURE_AUDIT (Type 2)
+                              └── EVALUATION_DEPENDENCY_AUDIT (Type 2)</p>
+<p>DBM_PUBLISHER (Type 1) ──dispatches TASK+skill──┬── dbm-section-publish [one approved section per run]
+                                                └── dbm-publish [package assembly + readiness gate]</p>
+<p>CHANGE (Type 1) ── leaf agent (spawns nothing; implements approved edits)</p>
+<p>REVIEW (Type 1) ── triggers AUDIT_DECOMP as precondition check
+SCOPE_CHANGE (Type 1) ── hands off to ORCHESTRATOR (for PREPARATION) + CHANGE (for commits)
+CONTEXT_TRANSPOSE (Type 1) ── hands off to CHANGE (for publication)
+SCHEDULING (Type 1) ── standalone (reads dependency graph; produces schedule artifacts)
+TOOLMAKER (Type 1) ── standalone (designs and implements deterministic tools; hands off to CHANGE for publication)
+SKILLMAKER (Type 1) ── standalone (designs and governs skills; coordinates with TOOLMAKER for deterministic helpers)</p>
+<p>PDF2MD (Type 1) ──spawns──── PDF2MD_PAGE (Type 2) [per page]
+PDF2MD (Type 1) ──optionally spawns──── PDF2MD_PAGE_ASSETS (Type 2) [per page, ASSET_MODE=prose]
+DRAWING_EXTRACT (Type 1) ──spawns──── DRAWING_EXTRACT_PAGE (Type 2) [per page]
+```
+</p></div></div></section>
+<section id="SEC-DG002-0037" class="chunk sec depth-3" data-kind="section" data-key="section:944d7da87933" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0037</span> 6.2 Control Loop (Session Handoff)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:944d7da87933" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:944d7da87933" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:944d7da87933" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The system maintains session continuity across agent invocations through two durable artifacts:</p>
+<p>| Artifact | Owner | Mutability | Content |
+|----------|-------|------------|---------|
+| `NEXT_INSTANCE_PROMPT.md` | ORCHESTRATOR (creates) | Stable — updated only on protocol changes | Stable session startup instructions |
+| `NEXT_INSTANCE_STATE.md` | ORCHESTRATOR (creates); WORKING_ITEMS (updates) | Mutable — updated at each session handoff | Current pointers, program state, active rulings, immediate next actions |</p>
+<p>**Flow:** ORCHESTRATOR creates both files during workspace initialization → WORKING_ITEMS reads both at session start (Phase 0a) → WORKING_ITEMS updates `NEXT_INSTANCE_STATE.md` at session end (standing authorization) → CHANGE verifies state before committing.
+</p></div></div></section>
+<section id="SEC-DG002-0038" class="chunk sec depth-3" data-kind="section" data-key="section:0245302e7e70" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0038</span> 6.3 Spawning Mechanisms</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0245302e7e70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0245302e7e70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0245302e7e70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Mechanism | Used By | Details |
+|-----------|---------|---------|
+| **Human-gated phases** | ORCHESTRATOR | Sequential phases with human confirmation between each; passes parameter sets to spawned agents |
+| **Pre-authorized dispatch** | WORKING_ITEMS | TASK agents dispatched autonomously after human confirms session objective; no per-task approval |
+| **Human-directed toolbelt** | RECONCILIATION | Only agents listed in human-provided TOOLBELT may be dispatched; formal 9-field brief schema; max one task per cycle by default |
+| **Approval-gated execution** | CHANGE | Explicit approval tokens (`APPROVE:` / `APPROVE_DESTRUCTIVE:`) required before any state-changing action |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0039" class="chunk sec depth-2" data-kind="section" data-key="section:45deeb7b289f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0039</span> 7. Write Scope Architecture</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45deeb7b289f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45deeb7b289f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45deeb7b289f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG002-0040" class="chunk sec depth-3" data-kind="section" data-key="section:4f710d0cb6a1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0040</span> 7.1 Scope Categories</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f710d0cb6a1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f710d0cb6a1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f710d0cb6a1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The write scope model enforces separation between source truth and derived outputs.</p>
+<p>```
+NONE (read-only; may draft content for human to apply)
+├── HELPS_HUMANS
+├── DECOMP_BASE
+└── HELP_HUMAN</p>
+<p>REPO-METADATA-ONLY (instruction files, README, templates — not execution truth)
+├── DOMAIN_DECOMP
+└── CONTEXT_TRANSPOSE</p>
+<p>REPO-WIDE (tools, skills, and related contract docs)
+├── TOOLMAKER             → tools/ + agent instruction updates
+└── SKILLMAKER            → skills/ + related contract docs</p>
+<p>PROJECT-LEVEL (decomposition documents, metadata files, folder scaffolding)
+├── PROJECT_DECOMP
+├── SOFTWARE_DECOMP
+├── SCOPE_CHANGE
+├── PREPARATION
+└── ESTIMATE_PREP</p>
+<p>DELIVERABLE-LOCAL (single production unit folder only)
+├── WORKING_ITEMS (+NEXT_INSTANCE_STATE.md standing exception)
+├── TASK  (shell; skill-driven writes bounded by TASK&#x27;s hard scope)
+├── DELIVERABLE_TASK
+└── REVIEW (+tool-root for snapshots)</p>
+<p>  Dispatched skills that normally write under TASK&#x27;s deliverable-local scope:
+  four-documents, domain-documents, semantic-matrix-build, lens-register, dependency-extract</p>
+<p>TOOL-ROOT-ONLY (derived outputs under execution tool roots)
+├── ORCHESTRATOR           → _Coordination/
+├── RECONCILIATION         → _Reconciliation/
+├── CHANGE                 → _Change/ (+repo files with approval gate)
+├── SCHEDULING             → _Schedule/
+├── ESTIMATING             → _Estimates/
+├── AGGREGATION            → _Aggregation/
+├── EVALUATION             → _Evaluation/
+├── DBM_PUBLISHER          → _Publication/DBM/
+├── AUDIT_AGENTS           → _Reconciliation/AgentAudit/
+├── AUDIT_DECOMP           → _Reconciliation/DecompCoverage/
+├── AUDIT_DEP_CLOSURE      → _Reconciliation/DepClosure/
+├── AUDIT_HYPERGRAPH_CLOSURE → _Reconciliation/HypergraphClosure/
+├── DOMAIN_HYPERGRAPH      → _Aggregation/Hypergraph/
+├── CONTENT_DIGEST         → _Evaluation/content-digests/
+├── EVALUATION_REPORT      → _Evaluation/reports/
+├── EVALUATION_STRUCTURE_AUDIT → _Evaluation/reports/
+└── EVALUATION_DEPENDENCY_AUDIT → _Evaluation/reports/</p>
+<p>  Publication-local TASK skills use publication-bounded scopes under `_Publication/DBM/`:
+  dbm-section-publish → `sections/{SectionID}/`
+  dbm-publish         → `package/RUN-YYYYMMDD-HHMMSS/`
+```
+</p></div></div></section>
+<section id="SEC-DG002-0041" class="chunk sec depth-3" data-kind="section" data-key="section:30d66eb21c4a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0041</span> 7.2 Write Scope Rules</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30d66eb21c4a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30d66eb21c4a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30d66eb21c4a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Every agent declares its write scope in the Agent Header Block.
+2. Deliverable-local agents cannot write outside their assigned production unit folder.
+3. Tool-root agents write only to their designated tool root under `{EXECUTION_ROOT}/`.
+4. Source truth (deliverable production documents) is never modified by tool-root agents.
+5. `_STATUS.md` updates are restricted to designated actors (PREPARATION, TASK+four-documents, TASK+semantic-matrix-build, REVIEW) and only for forward lifecycle transitions.
+6. Cross-deliverable scanning/editing is prohibited inside WORKING_ITEMS sessions unless the human explicitly requests a cross-check.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0042" class="chunk sec depth-2" data-kind="section" data-key="section:4edff17ed111" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0042</span> 8. Decomposition System</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4edff17ed111" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4edff17ed111" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4edff17ed111" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG002-0043" class="chunk sec depth-3" data-kind="section" data-key="section:12d8f6d5f04e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0043</span> 8.1 Base Protocol (DECOMP_BASE)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:12d8f6d5f04e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:12d8f6d5f04e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:12d8f6d5f04e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All decomposition agents conform to an invariant 7-gate conversational workflow:</p>
+<p>| Phase | Name | Goal | Gate Question |
+|-------|------|------|---------------|
+| 1 | **Intake** | Capture source material faithfully | &quot;Does this reflect the source material and context as intended?&quot; |
+| 2 | **Normalize** | Convert source → atomic units + vocabulary | &quot;Are the atomic units, classifications (IN/OUT/TBD), and vocabulary correct?&quot; |
+| 3 | **Objectives** | Derive success criteria from source | &quot;Do these objectives represent success as intended?&quot; |
+| 4 | **Partitions** | Flat groupings — no nesting, no overlaps, no gaps | &quot;Are partitions correct? Does each IN-scope unit belong to exactly one?&quot; |
+| 5 | **Production Units** | Operationalize each partition into bounded work units | &quot;Are production units (granularity, types, responsibilities) acceptable?&quot; |
+| 6 | **Coverage** | Prove completeness; surface gaps | &quot;Are coverage, mappings, and open issues acceptable?&quot; |
+| 7 | **Publish** | Finalize as accepted decomposition | &quot;Is this the accepted basis for downstream work?&quot; |
+</p></div></div></section>
+<section id="SEC-DG002-0044" class="chunk sec depth-3" data-kind="section" data-key="section:e37c8c0b743a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0044</span> 8.2 Required Output Sections (All Decompositions)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e37c8c0b743a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e37c8c0b743a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e37c8c0b743a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every decomposition document must include:</p>
+<p>1. **Vocabulary Map** — canonical terms, synonyms, notes (prevents semantic drift)
+2. **Decomposition Ledger** — machine-checkable table mapping every atomic unit to partition and production unit
+3. **Coverage &amp; Telemetry** — counts, gap metrics, open issue taxonomy
+4. **Open Issues** — unresolved items referencing stable IDs
+5. **Decision Log** — non-trivial assignment decisions for traceability
+</p></div></div></section>
+<section id="SEC-DG002-0045" class="chunk sec depth-3" data-kind="section" data-key="section:99160603d6b8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0045</span> 8.3 Ledger Contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:99160603d6b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:99160603d6b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:99160603d6b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Decomposition Ledger has these minimum columns:</p>
+<p>`UnitID`, `InOutStatus` (IN|OUT|TBD), `UnitStatement`, `SourceRef`, `PartitionID`, `ProductionUnitID(s)`, `ObjectiveID(s)`, `DecisionRef`, `OpenIssue` (TRUE|FALSE), `Notes`</p>
+<p>**Hard rule:** Every IN-scope UnitID has exactly one PartitionID.
+</p></div></div></section>
+<section id="SEC-DG002-0046" class="chunk sec depth-3" data-kind="section" data-key="section:af99373dd7af" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0046</span> 8.4 Three Conforming Variants</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af99373dd7af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af99373dd7af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af99373dd7af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Dimension | PROJECT_DECOMP | SOFTWARE_DECOMP | DOMAIN_DECOMP |
+|-----------|---------------|-----------------|---------------|
+| **Domain** | EPC / design-build | Software development | Handbook / knowledge |
+| **Source Corpus** | SOW (Scope of Work) | SOW (Scope of Work) | Handbook |
+| **Structured Outline** | SSOW | SSOW | SDO |
+| **Atomic Unit** | Scope Item (`SOW-####`) | Scope Item (`SOW-###`) | Handbook Unit (`HBK-####`) |
+| **Partition** | Package (`PKG-XXX`, 3-digit) | Package (`PKG-XX`, 2-digit) | Category (`CAT-###`, 3-digit) |
+| **Production Unit** | Deliverable (`DEL-XXX-YY_{desc}`) | Deliverable (`DEL-XX-YY`) | Knowledge Type (`KTY-CC-TT_{desc}`) |
+| **ID coupling** | DEL first 3 digits = PKG digits | DEL first 2 digits = PKG digits | KTY `CC` = CAT index, `TT` = type index |
+| **Production documents** | Fixed 4-doc set | Fixed 4-doc set | Variable Knowledge Artifacts |
+| **Dependency graph** | Yes | Yes | No |
+| **Unique constraint** | Discipline-exclusive design packages | Context Envelope sizing (S/M/L/XL mandatory) | Canonical knowledge schemas (5 types) |
+| **Telemetry extension** | — | ContextEnvelopeCounts (S/M/L/XL breakdown) | — |
+</p></div></div></section>
+<section id="SEC-DG002-0047" class="chunk sec depth-3" data-kind="section" data-key="section:a88344967115" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0047</span> 8.5 Extension Contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a88344967115" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a88344967115" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a88344967115" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A conforming decomposition agent must provide:</p>
+<p>1. Reference to `AGENT_DECOMP_BASE.md` (state conformance)
+2. Entity binding table (abstract → domain-specific terms)
+3. ID formats and width specifications
+4. Production unit type taxonomy
+5. Phase-specific extensions (domain actions, outputs, gate language)
+6. WRITE_SCOPE declaration
+7. Domain-specific fields, anti-patterns, and SPEC requirements
+8. Domain-specific telemetry fields
+</p></div></div></section>
+<section id="SEC-DG002-0048" class="chunk sec depth-3" data-kind="section" data-key="section:0a8a5c414af2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0048</span> 8.6 How Variants Combine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a8a5c414af2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a8a5c414af2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a8a5c414af2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **SOFTWARE_DECOMP extends any branch.** If a branch has software to build, SOFTWARE_DECOMP decomposes that software component. Can recursively extend other SOFTWARE_DECOMP branches.
+- **DOMAIN_DECOMP runs parallel to any branch.** It captures the knowledge domain a branch operates within — orthogonal to the work decomposition. Can recursively parallel other DOMAIN_DECOMP branches.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0049" class="chunk sec depth-2" data-kind="section" data-key="section:e19682b72eba" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0049</span> 9. Brief &amp; Output Contracts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e19682b72eba" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e19682b72eba" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e19682b72eba" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG002-0050" class="chunk sec depth-3" data-kind="section" data-key="section:b5b8b67c3c39" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0050</span> 9.1 INIT-TASK Brief Format (Type 2 Standard)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b5b8b67c3c39" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b5b8b67c3c39" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b5b8b67c3c39" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All Type 2 agents accept a structured brief. The brief may be supplied inline or via a file-based `INIT-TASK.md` control surface. When both are present, inline fields are authoritative and file-derived values fill omissions only. The recommended template:</p>
+<p>```
+PURPOSE: &lt;what the run is for&gt;
+INIT_TASK_PATH: &lt;optional path to INIT-TASK.md&gt;
+SCOPE: &lt;deliverable IDs / package IDs / paths&gt;
+WHERE_TO_LOOK: &lt;roots / patterns&gt;
+OUTPUT_LABEL: &lt;optional&gt;
+CONFIG: &lt;optional; validated enums driving behavior&gt;
+CONSTRAINTS: &lt;schema, naming, maturity&gt;
+EXCLUSIONS: &lt;paths / patterns&gt;
+NOTES: &lt;anything else&gt;
+```
+</p></div></div></section>
+<section id="SEC-DG002-0051" class="chunk sec depth-3" data-kind="section" data-key="section:56ac6f6607a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0051</span> 9.2 Agent-Specific Brief Extensions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56ac6f6607a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56ac6f6607a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56ac6f6607a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Publication-local TASK dispatches should use `ScopePath` and `AllowedWriteTargets` inside `{EXECUTION_ROOT}/_Publication/DBM/`. Section runs should point at `sections/{SectionID}/`; package runs should point at `package/` snapshots.</p>
+<p>| Agent | Key Additional Parameters |
+|-------|--------------------------|
+| **PREPARATION** | Task type (A–G), PKG_ID, DEL_ID, CAT_ID, KTY_ID |
+| **TASK+four-documents** | DELIVERABLE_PATH, DECOMPOSITION_REF, RUN_PASSES (FULL/P1_P2/P3_ONLY), ALLOW_OVERWRITE_STATES, DECOMP_VARIANT |
+| **TASK+domain-documents** | KTY_PATH, UNIT_SCOPE (EXAMPLES_ONLY/ALL_MAPPED), ARTIFACT_NAMING, MAX_ARTIFACTS |
+| **TASK+dbm-section-publish** | SECTION_ID, SECTION_TITLE, SECTION_TYPE, SECTION_PURPOSE, PUBLICATION_INPUT_MANIFEST, PUBLICATION_SCHEMA_PATH, SECTION_MAP_PATH, PUBLICATION_RULES_PATH, PUBLICATION_CONCORDANCE_REGISTER_PATH, MAX_KA_FILES |
+| **TASK+dbm-publish** | PUBLICATION_ROOT, PUBLICATION_INPUT_MANIFEST, PUBLICATION_SCHEMA_PATH, SECTION_MAP_PATH, PUBLICATION_RULES_PATH, PUBLICATION_CONCORDANCE_REGISTER_PATH, SECTIONS_ROOT, PACKAGE_OUTPUT_ROOT |
+| **TASK+dependency-extract** | MODE (UPDATE/RESET_EXTRACTED), STRICTNESS (CONSERVATIVE/AGGRESSIVE), CONSUMER_CONTEXT, SOURCE_DOCS |
+| **TASK+semantic-matrix-build** | deliverable_folder, decomposition_path, DECOMP_VARIANT |
+| **TASK+lens-register** | deliverable_folder, DECOMP_VARIANT |
+| **ESTIMATING** | BASIS_OF_ESTIMATE (QUOTE/RATE_TABLE/HISTORICAL/PARAMETRIC/ALLOWANCE), CURRENCY, PRICE_SOURCES |
+| **ESTIMATE_PREP** | PHASE (SCAFFOLD/BOE), PROJECT_CONTEXT, HUMAN_PRICING |
+| **AGGREGATION** | PURPOSE, PIPELINE_ID, currency normalization policy |
+| **TASK** | InitTaskPath, ScopePath or DeliverablePath, TaskProfile, TaskSkill, AllowedTools, RuntimeOverrides, CustomInstructions |
+| **DELIVERABLE_TASK** | DeliverablePath, ApplyEdits, UseSemanticLensing, permission flags |
+| **AUDIT_AGENTS** | FILES_TO_AUDIT, CANON_FILE, RUBRIC_FILE |
+| **AUDIT_DECOMP** | DECOMPOSITION_PATH, DECOMP_VARIANT, SCOPE |
+| **AUDIT_DEP_CLOSURE** | SCOPE, EDGE_FILTER, HUB_THRESHOLD |
+| **DOMAIN_HYPERGRAPH** | EXECUTION_ROOT, SCOPE (CAT/KTY IDs or ALL), DECOMPOSITION_PATH, LEDGER_PATH, OBJECTIVE_MAP_PATH |
+| **AUDIT_HYPERGRAPH_CLOSURE** | HYPERGRAPH_REF, REQUIRE_LEDGER_CHECKS, STRICT_MODE |
+</p></div></div></section>
+<section id="SEC-DG002-0052" class="chunk sec depth-3" data-kind="section" data-key="section:dd65b0172560" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0052</span> 9.3 RECONCILIATION&#x27;s Formal Brief Schema (Most Structured)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd65b0172560" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd65b0172560" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd65b0172560" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+RECONCILIATION defines a 9-field schema for all Type 2 dispatches:</p>
+<p>```
+REQUESTED_BY, RUN_LABEL, EXECUTION_ROOT, SCOPE, INPUT_ARTIFACTS,
+OUTPUT_REQUIREMENTS, ACCEPTANCE_CRITERIA, CONSTRAINTS, ESCALATION
+```
+</p></div></div></section>
+<section id="SEC-DG002-0053" class="chunk sec depth-3" data-kind="section" data-key="section:09b9f4992d58" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0053</span> 9.4 Snapshot Output Convention</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09b9f4992d58" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09b9f4992d58" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09b9f4992d58" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All snapshot-producing agents follow this pattern:</p>
+<p>```
+{TOOL_ROOT}/{AGENT_PREFIX}_{RUN_LABEL}_{YYYY-MM-DD}_{HHMM}/
+├── Brief.md              # Verbatim brief inputs
+├── RUN_SUMMARY.md        # What happened
+├── QA_Report.md          # Schema validity, coverage, provenance, warnings
+├── Decision_Log.md       # Non-trivial decisions
+├── &lt;agent-specific outputs&gt;
+└── Evidence/             # (where applicable) supporting CSV/data files</p>
+<p>{TOOL_ROOT}/_LATEST.md    # Mutable pointer to latest snapshot
+```</p>
+<p>**Rules:**
+- Each run writes a new snapshot folder with unique timestamp
+- Snapshots are never modified or overwritten after creation
+- `_LATEST.md` may be overwritten; it is a convenience pointer
+- Snapshots form an immutable audit trail</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0054" class="chunk sec depth-2" data-kind="section" data-key="section:fb2a1368db3b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0054</span> 10. Variant Coverage Matrix</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fb2a1368db3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fb2a1368db3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fb2a1368db3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Not all agents operate across all decomposition variants.</p>
+<p>| Agent | PROJECT | SOFTWARE | DOMAIN | Variant-Independent |
+|-------|:-------:|:--------:|:------:|:-------------------:|
+| **DECOMP agents** | PROJECT_DECOMP | SOFTWARE_DECOMP | DOMAIN_DECOMP | — |
+| **ORCHESTRATOR** | yes | yes | yes | — |
+| **PREPARATION** | yes | yes | yes | — |
+| **TASK+four-documents** | yes | yes | — | — |
+| **TASK+domain-documents** | — | — | yes | — |
+| **TASK+semantic-matrix-build** | yes | yes | yes | — |
+| **TASK+lens-register** | yes | yes | yes | — |
+| **TASK+dependency-extract** | yes | yes | — | — |
+| **ESTIMATING** | yes | yes | — | — |
+| **ESTIMATE_PREP** | yes | yes | — | — |
+| **SCHEDULING** | yes | yes | — | — |
+| **AGGREGATION** | yes | yes | yes | — |
+| **AUDIT_DEP_CLOSURE** | yes | yes | — | — |
+| **DOMAIN_HYPERGRAPH** | — | — | yes | — |
+| **AUDIT_HYPERGRAPH_CLOSURE** | — | — | yes | — |
+| **AUDIT_DECOMP** | yes | yes | yes | — |
+| **WORKING_ITEMS** | yes | yes | yes | — |
+| **TASK** | yes | yes | yes | — |
+| **DELIVERABLE_TASK** | yes | yes | yes | — |
+| **REVIEW** | yes | yes | yes | — |
+| **SCOPE_CHANGE** | yes | yes | — | — |
+| **RECONCILIATION** | yes | yes | yes | — |
+| **CHANGE** | — | — | — | yes |
+| **HELP_HUMAN** | — | — | — | yes |
+| **HELPS_HUMANS** | — | — | — | yes |
+| **DECOMP_BASE** | — | — | — | yes |
+| **AUDIT_AGENTS** | — | — | — | yes |
+| **CONTEXT_TRANSPOSE** | — | — | — | yes |
+| **TOOLMAKER** | — | — | — | yes |
+| **SKILLMAKER** | — | — | — | yes |
+| **PDF2MD** | — | — | — | yes |
+| **DRAWING_EXTRACT** | — | — | — | yes |
+| **PDF2MD_PAGE** | — | — | — | yes |
+| **PDF2MD_PAGE_ASSETS** | — | — | — | yes |
+| **DRAWING_EXTRACT_PAGE** | — | — | — | yes |
+| **AUDIT_GOVERNANCE** | — | — | — | yes |
+| **AUDIT_EPISTEMIC** | — | — | — | yes |
+| **AUDIT_SCOPE_CLOSURE** | — | — | — | yes |</p>
+<p>Agents that support multiple variants use `DECOMP_VARIANT` auto-detection: folder name prefix `KTY-` → DOMAIN; otherwise PROJECT/SOFTWARE.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0055" class="chunk sec depth-2" data-kind="section" data-key="section:89d8a1450d3b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0055</span> 11. Canonical Patterns</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89d8a1450d3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89d8a1450d3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89d8a1450d3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+These recurring design patterns appear across the agent suite and define the system&#x27;s behavioral vocabulary.
+</p></div></div></section>
+<section id="SEC-DG002-0056" class="chunk sec depth-3" data-kind="section" data-key="section:09c060105671" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0056</span> 11.1 Immutable Snapshot + Pointer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:09c060105671" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:09c060105671" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:09c060105671" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All Type 2 agents that produce analysis outputs write to a timestamped snapshot folder that is never modified. A mutable `_LATEST.md` pointer file provides convenient access to the most recent snapshot. The snapshot trail is the audit trail.
+</p></div></div></section>
+<section id="SEC-DG002-0057" class="chunk sec depth-3" data-kind="section" data-key="section:0462e08273af" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0057</span> 11.2 Evidence-First Epistemology</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0462e08273af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0462e08273af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0462e08273af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every non-trivial claim includes `SourcePath` + `SectionRef` (or explicit `location TBD`). Epistemic labels distinguish observed facts, cited inferences, proposals for decision, and unresolved gaps: `FACT`, `ASSUMPTION`, `PROPOSAL`, `TBD`. No agent may claim certainty without evidence.
+</p></div></div></section>
+<section id="SEC-DG002-0058" class="chunk sec depth-3" data-kind="section" data-key="section:86f2cc6fa134" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0058</span> 11.3 Conflict Table</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86f2cc6fa134" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86f2cc6fa134" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86f2cc6fa134" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When sources disagree, agents produce a Conflict Table:</p>
+<p>| Column | Content |
+|--------|---------|
+| ConflictID | Stable identifier |
+| Key | What is in conflict |
+| Contenders | Paths/references to competing claims |
+| ProposedAuthority | Agent&#x27;s recommendation (labeled PROPOSAL) |
+| HumanRuling | Remains `TBD` until human decides |</p>
+<p>Agents never silently resolve conflicts. The human owns the ruling.
+</p></div></div></section>
+<section id="SEC-DG002-0059" class="chunk sec depth-3" data-kind="section" data-key="section:617e82c33b9a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0059</span> 11.4 Gate-Controlled Workflow (Type 1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:617e82c33b9a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:617e82c33b9a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:617e82c33b9a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Type 1 agents use numbered phases with explicit gate questions. Each gate pauses for human confirmation. No gate may be skipped. The gate question makes the decision explicit and recorded.
+</p></div></div></section>
+<section id="SEC-DG002-0060" class="chunk sec depth-3" data-kind="section" data-key="section:fcee74a6443b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0060</span> 11.5 Straight-Through Execution (Type 2)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fcee74a6443b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fcee74a6443b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fcee74a6443b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Type 2 agents run start-to-finish without human interaction. Invalid inputs → `FAILED_INPUTS` (halt). Missing data → `TBD` (continue conservatively). Output includes a run report with PASS/FAIL status and warnings.
+</p></div></div></section>
+<section id="SEC-DG002-0061" class="chunk sec depth-3" data-kind="section" data-key="section:1058cd2e7a38" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0061</span> 11.6 Session Handoff (Control Loop)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1058cd2e7a38" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1058cd2e7a38" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1058cd2e7a38" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+ORCHESTRATOR creates durable handoff artifacts → WORKING_ITEMS reads at session start and updates at session end → CHANGE verifies state before commit. This enables continuity across sessions without hidden state.
+</p></div></div></section>
+<section id="SEC-DG002-0062" class="chunk sec depth-3" data-kind="section" data-key="section:4ae50d6d7490" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0062</span> 11.7 Write Quarantine</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ae50d6d7490" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ae50d6d7490" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ae50d6d7490" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every agent declares an explicit write scope. Tool roots are isolated from source truth. Deliverable-local agents write only within their assigned folder. Cross-deliverable writes require explicit routing (RECONCILIATION → CHANGE with approval gate).
+</p></div></div></section>
+<section id="SEC-DG002-0063" class="chunk sec depth-3" data-kind="section" data-key="section:7ae6466d6264" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0063</span> 11.8 No-Autopilot Rule (RECONCILIATION)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ae6466d6264" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ae6466d6264" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ae6466d6264" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+RECONCILIATION dispatches at most one Type 2 task per cycle unless the human provides a multi-step run plan. If the TOOLBELT (list of authorized agents) is missing, RECONCILIATION proposes a minimal toolbelt and stops. This prevents runaway orchestration.
+</p></div></div></section>
+<section id="SEC-DG002-0064" class="chunk sec depth-3" data-kind="section" data-key="section:295969f17671" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG002-0064</span> 11.9 Approval Gate (CHANGE)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:295969f17671" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:295969f17671" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:295969f17671" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+CHANGE requires explicit approval tokens before any state-changing action:
+- Standard: `APPROVE: &lt;explicit action list&gt;`
+- Heightened: `APPROVE_DESTRUCTIVE: &lt;explicit action list&gt;` (for force-push, hard reset, etc.)</p>
+<p>&quot;Yes&quot; alone is insufficient. The human must enumerate what is approved.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG002-0065" class="chunk sec depth-2" data-kind="section" data-key="section:84decc5a0803" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG002-0065</span> 12. Design Outcomes Required for New Workflows</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:84decc5a0803" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:84decc5a0803" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:84decc5a0803" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per HELPS_HUMANS, any new workflow specification must produce these 8 design outcomes:</p>
+<p>1. **System map** — agents, tool roots, lifecycle states, key artifacts
+2. **Human agency map** — what humans decide vs what agents execute
+3. **Permission map** — write zones; which agents may write where
+4. **Brief format** — INIT-TASK template for each straight-through pipeline
+5. **Snapshot contract** — what each run writes; how `_LATEST` pointers behave
+6. **Schemas** — for registers/tables (required columns, keys, enums)
+7. **QA contract** — coverage reporting, conflict surfacing, provenance requirements
+8. **Runbooks** — minimal human steps + rerun loop</p>
+<p>---</p>
+<p>*This document was produced by systematic research across the governed agent instruction suite (see `AGENTS.md` for the current index) and the governance documents in `docs/`. The operational architecture described here is what results when the four philosophical pillars — ontology, epistemology, praxiology, and axiology (`DIRECTIVE.md` §2) — are implemented as an agent instruction system. The systems engineering disciplines that pervade this architecture — formal interface contracts, invariant systems, fault containment zones, V-model traceability, gate-controlled workflows, and evidence-first epistemology — are not compliance artifacts applied after the fact. In Chirality, they are the principal mechanisms by which the four-pillar commitments are made architecturally real, and they constitute one coherent implementation of those commitments in the instruction layer. See `SE_Design_Analysis.md` for the detailed characterization and the generative mapping from pillars to SE disciplines.*</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

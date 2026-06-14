@@ -25,6 +25,8 @@ RuntimeOverrides:
   LINE_END: <integer>
   SKELETON_PATH: <absolute path to <book>_skeleton.json>
   ASSET_MANIFEST_PATH: <absolute path to <book>_assets_manifest.json>
+  SOURCE_REF_BASE: <optional dual-citation template for manifest-backed sources>
+  SOURCE_HTML_PATH: <optional review HTML path>
   OUTPUT_LEDGER_PATH: <absolute path; per-unit atom CSV>
   OUTPUT_VOCAB_SEED_PATH: <absolute path; per-unit vocab CSV>
   TARGET_SECTION_IDS:
@@ -37,7 +39,7 @@ CustomInstructions:
   - Every emitted atom MUST map to one of the TARGET_SECTION_IDS (its SectionID column).
   - LocalSeq is monotonic across atoms in the same dispatch unit. Final stable IDs are NOT assigned here — the merge step assigns HBA-<PREFIX>-NNNNN.
   - ContentHash MUST be sha1(UnitStatement)[:12]; this column is load-bearing for dedup and HTML cross-reference.
-  - SourceRef is dual: `<book>.md:L####` (the MD line) and `<book>.html#anchor` (the HTML anchor; SectionID when no finer applies).
+  - SourceRef is dual. If SOURCE_REF_BASE is present, use that template by replacing L#### with the source line and <SectionID> with the mapped section. Otherwise use `<book>.md:L####|<book>.html#anchor`.
   - InOutStatus ∈ {IN, OUT, TBD}. Default IN for substantive technical statements; OUT for boilerplate; TBD for ambiguous content.
   - Do not invent (AOP-08).
   - Write ONLY to OUTPUT_LEDGER_PATH and OUTPUT_VOCAB_SEED_PATH.
@@ -69,6 +71,7 @@ ExpectedOutputs:
 |---|---|---|---|
 | `MAX_ATOMS` | positive integer | `200` | smoke-test bound; halt when reached |
 | `SOURCE_HTML_PATH` | string | `audit/Pipe-Stress-Engineering.html` | when known, included in dual SourceRefs |
+| `SOURCE_REF_BASE` | string | `@repo/docs/CONTRACT.md:L####\|domains/chirality/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#<SectionID>` | manifest-backed dual-citation template; replace `L####` and `<SectionID>` per atom |
 
 ## `AllowedWriteTargets`
 

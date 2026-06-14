@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-AGENTS-AGENT-AUDIT-SCOPE-CLOSURE",
+  "source_doc_id": "SRC-AGENTS-AGENT-AUDIT-SCOPE-CLOSURE",
+  "source_name": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+  "source_prefix": "AG008",
+  "repo_rel_path": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+  "catalog_rel_path": "@repo/agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

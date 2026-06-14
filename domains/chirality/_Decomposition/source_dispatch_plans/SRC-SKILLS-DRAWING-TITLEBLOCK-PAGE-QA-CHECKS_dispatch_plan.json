@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-QA-CHECKS",
+  "source_prefix": "SK060",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/drawing-titleblock-page/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:07+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK060-0001",
+      "line_start": 1,
+      "line_end": 19,
+      "target_section_ids": [
+        "SEC-SK060-0001",
+        "SEC-SK060-0002",
+        "SEC-SK060-0003"
+      ],
+      "estimated_md_tokens": 152,
+      "contains_oversized_section": false
+    }
+  ]
+}

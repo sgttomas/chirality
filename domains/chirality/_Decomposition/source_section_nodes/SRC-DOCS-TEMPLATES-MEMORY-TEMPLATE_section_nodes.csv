@@ -1,0 +1,7 @@
+SectionID,SourceDoc,SourcePrefix,Path,Depth,Title,LineStart,LineEnd,PageFirst,PageLast,HtmlAnchor,ContentHash,InScope,IsFrontMatter,IsBackMatter,FigureRefs,TableRefs,EquationRefs,AssetIDs,Text
+SEC-DG011-0001,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Memory — {{DEL-ID}},1,Memory — {{DEL-ID}},1,4,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0001,52104b28fc70,True,False,False,,,,,"> Organize by semantic topic, then chronologically within each topic. These headings are the minimum schema — add new sections as needed to capture what matters for this deliverable."
+SEC-DG011-0002,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Key Decisions & Human Rulings,2,Key Decisions & Human Rulings,5,6,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0002,45f71e81fbad,True,False,False,,,,,
+SEC-DG011-0003,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Domain Context,2,Domain Context,7,8,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0003,6f23d75df01f,True,False,False,,,,,
+SEC-DG011-0004,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Open Items,2,Open Items,9,10,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0004,1fe50555d30a,True,False,False,,,,,
+SEC-DG011-0005,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Proposal History,2,Proposal History,11,12,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0005,1b82d24fcca2,True,False,False,,,,,
+SEC-DG011-0006,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE,DG011,Interface & Dependency Notes,2,Interface & Dependency Notes,13,13,,,SRC-DOCS-TEMPLATES-MEMORY-TEMPLATE.html#SEC-DG011-0006,ebfb2e257096,True,False,False,,,,,

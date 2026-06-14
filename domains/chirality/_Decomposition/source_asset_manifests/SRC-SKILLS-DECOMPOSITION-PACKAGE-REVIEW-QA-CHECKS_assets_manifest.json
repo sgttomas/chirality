@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-QA-CHECKS",
+  "source_doc_id": "SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-QA-CHECKS",
+  "source_name": "skills/decomposition-package-review/QA_CHECKS.md",
+  "source_prefix": "SK032",
+  "repo_rel_path": "skills/decomposition-package-review/QA_CHECKS.md",
+  "catalog_rel_path": "@repo/skills/decomposition-package-review/QA_CHECKS.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

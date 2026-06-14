@@ -1,0 +1,378 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-CONTRACT - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>15</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG001-0001">CONTRACT — Invariant Catalog</a> <a href="#SEC-DG001-0002">1. Invariant Catalog</a> <a href="#SEC-DG001-0014">2. Enforcement Map Summary</a> <a href="#SEC-DG001-0015">3. Retired Invariants</a></nav>
+<main>
+<section id="SEC-DG001-0001" class="chunk sec depth-1" data-kind="section" data-key="section:bea5a1f8651c" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG001-0001</span> CONTRACT — Invariant Catalog</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bea5a1f8651c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bea5a1f8651c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bea5a1f8651c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This document is the authoritative catalog of binding invariants for the Chirality project execution system.</p>
+<p>Invariants listed here are enforceable constraints that agents, tooling, and human processes must respect. Each invariant includes its enforcement point (where and how compliance is checked).</p>
+<p>Invariant IDs (`K-*`) are **stable and never reused**. Retired invariants are moved to §3 with retirement rationale.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG001-0002" class="chunk sec depth-2" data-kind="section" data-key="section:1df0c5a6757c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG001-0002</span> 1. Invariant Catalog</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1df0c5a6757c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1df0c5a6757c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1df0c5a6757c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG001-0003" class="chunk sec depth-3" data-kind="section" data-key="section:a1875184ee51" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0003</span> K-* Invariant Index</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a1875184ee51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a1875184ee51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a1875184ee51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+All K-* identifiers defined in this section are listed below with their definition locations. There are **21 stable invariants** across 10 subsections.</p>
+<p>| K-* ID | Subsection | Topic |
+|--------|------------|-------|
+| K-HIER-1 | 1.1 | Hierarchy and Identity |
+| K-ID-1 | 1.1 | Hierarchy and Identity |
+| K-AUTH-1 | 1.2 | Authority and Approval |
+| K-AUTH-2 | 1.2 | Authority and Approval |
+| K-BIND-1 | 1.2 | Authority and Approval |
+| K-SEAL-1 | 1.3 | Sealing and Context |
+| K-GHOST-1 | 1.3 | Sealing and Context |
+| K-DEP-1 | 1.4 | Dependencies |
+| K-DEP-2 | 1.4 | Dependencies |
+| K-STATUS-1 | 1.5 | Status and Lifecycle |
+| K-STALE-1 | 1.6 | Staleness and Change Propagation |
+| K-STALE-2 | 1.6 | Staleness and Change Propagation |
+| K-VAL-1 | 1.6 | Staleness and Change Propagation |
+| K-GATE-1 | 1.7 | Gates |
+| K-MERGE-1 | 1.8 | Merge and Publication |
+| K-PROV-1 | 1.9 | Provenance and Epistemic Integrity |
+| K-INVENT-1 | 1.9 | Provenance and Epistemic Integrity |
+| K-CONFLICT-1 | 1.9 | Provenance and Epistemic Integrity |
+| K-CLAIM-1 | 1.9 | Provenance and Epistemic Integrity |
+| K-WRITE-1 | 1.10 | Write Scope and Snapshots |
+| K-SNAP-1 | 1.10 | Write Scope and Snapshots |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG001-0004" class="chunk sec depth-3" data-kind="section" data-key="section:3c3baa69eded" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0004</span> 1.1 Hierarchy and Identity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3c3baa69eded" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3c3baa69eded" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3c3baa69eded" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-HIER-1** | Projects are decomposed as **packages containing deliverables** (flat; no nesting; no phases layer). | PROJECT_DECOMP gates; PREPARATION folder creation; human review |
+| **K-ID-1** | Deliverable IDs are **stable** and persist across path changes. Path is a physical projection of decomposition, not identity. | PROJECT_DECOMP (ID assignment); all agents (ID referencing) |
+</p></div></div></section>
+<section id="SEC-DG001-0005" class="chunk sec depth-3" data-kind="section" data-key="section:4ddf39227c9f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0005</span> 1.2 Authority and Approval</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4ddf39227c9f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4ddf39227c9f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4ddf39227c9f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-AUTH-1** | Only **humans** author binding approval records. No agent may claim to certify, approve, sign, seal, or issue work for reliance. | Agent instruction constraints; human review |
+| **K-AUTH-2** | Approvals bind to a **specific git SHA**. Content change after approval voids the approval. | Human review; future tooling (SHA comparison) |
+| **K-BIND-1** | Approvals are **always binding and only binding**. Non-binding guidance is allowed outside approval records. | Human process discipline |
+</p></div></div></section>
+<section id="SEC-DG001-0006" class="chunk sec depth-3" data-kind="section" data-key="section:e84ff91b41ce" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0006</span> 1.3 Sealing and Context</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e84ff91b41ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e84ff91b41ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e84ff91b41ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-SEAL-1** | No Type 2 agent execution before context is **sealed and gate-approved** by a human. | ORCHESTRATOR (seal check); human gate approval |
+| **K-GHOST-1** | Type 2 agent context is limited to **folder contents + declared references**. No ghost inputs. | Agent instruction constraints (WRITE_SCOPE, _REFERENCES.md); human review of diffs |
+</p></div></div></section>
+<section id="SEC-DG001-0007" class="chunk sec depth-3" data-kind="section" data-key="section:6ecd863bceb7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0007</span> 1.4 Dependencies</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ecd863bceb7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ecd863bceb7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ecd863bceb7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; aggregation is on-demand via `_Reconciliation/`. | TASK+dependency-extract (local writes only); RECONCILIATION agent (read-only aggregation) |
+| **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
+</p></div></div></section>
+<section id="SEC-DG001-0008" class="chunk sec depth-3" data-kind="section" data-key="section:45dbe4c15717" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0008</span> 1.5 Status and Lifecycle</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45dbe4c15717" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45dbe4c15717" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45dbe4c15717" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-STATUS-1** | `_STATUS.md` is the **canonical, human-readable lifecycle state file** for each deliverable. No other file determines deliverable state. | All agents (read _STATUS.md for state); transition rules in SPEC.md Section 3.3 |
+</p></div></div></section>
+<section id="SEC-DG001-0009" class="chunk sec depth-3" data-kind="section" data-key="section:a51349d906c2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0009</span> 1.6 Staleness and Change Propagation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a51349d906c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a51349d906c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a51349d906c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-STALE-1** | Upstream changes **propagate staleness** to all transitive dependent deliverables. | Future tooling (staleness calculation); human triage |
+| **K-STALE-2** | Stale items must be **triaged by a human** before being considered current. Resolution modes: no impact (clear flag), needs rework, or needs review. | Human triage queue |
+| **K-VAL-1** | A deliverable is **dirty** if any governed input has changed since its last approved SHA. | Future tooling (SHA comparison); human review |
+</p></div></div></section>
+<section id="SEC-DG001-0010" class="chunk sec depth-3" data-kind="section" data-key="section:1903d9e154a6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0010</span> 1.7 Gates</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1903d9e154a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1903d9e154a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1903d9e154a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | ORCHESTRATOR (gate map); human configuration |
+</p></div></div></section>
+<section id="SEC-DG001-0011" class="chunk sec depth-3" data-kind="section" data-key="section:2fe796fec91b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0011</span> 1.8 Merge and Publication</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fe796fec91b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fe796fec91b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fe796fec91b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-MERGE-1** | Merge to main allowed only when **branch HEAD == approved SHA** for the relevant run. | Human review; future CI check |
+</p></div></div></section>
+<section id="SEC-DG001-0012" class="chunk sec depth-3" data-kind="section" data-key="section:c0f14b1cd817" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0012</span> 1.9 Provenance and Epistemic Integrity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c0f14b1cd817" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c0f14b1cd817" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c0f14b1cd817" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-PROV-1** | Every non-trivial governed claim must cite evidence with a source path and best-effort section reference, or carry explicit `location TBD`. Dependency rows are a schema-specific instance of this rule and use **`EvidenceFile` + `SourceRef`** per `SPEC.md` §6.5. | Agent instruction constraints; TASK+dependency-extract row validation; governance audits; human review |
+| **K-INVENT-1** | Unknown values become **`TBD`**, not guessed. Agents must not invent scope items, dependency targets, parameter values, or engineering content. | All agent instruction invariants; human review |
+| **K-CONFLICT-1** | Conflicts between sources must be **surfaced, not silently resolved**. Agents expose disagreements with pointers to the conflicting sources. | Agent instruction invariants (HELPS_HUMANS R7); human adjudication |
+| **K-CLAIM-1** | Claims, conclusions, and characterizations must not **overstate what the available warrant supports**. Statements of necessity, sufficiency, universality, completeness, exclusivity, or direct regulatory conclusiveness may be used only when the cited evidence supports that strength; otherwise they must be framed as interpretation, implementation-specific design, or proposal. | Agent instruction constraints; governance audits (AUDIT_GOVERNANCE); human review |
+</p></div></div></section>
+<section id="SEC-DG001-0013" class="chunk sec depth-3" data-kind="section" data-key="section:7bd860759f29" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG001-0013</span> 1.10 Write Scope and Snapshots</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7bd860759f29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7bd860759f29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7bd860759f29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Invariant | Enforcement |
+|----|-----------|-------------|
+| **K-WRITE-1** | Every agent has an **explicit write scope** declared in its header block. No agent writes outside its declared zone. | Agent Type table (WRITE_SCOPE property); human review of diffs |
+| **K-SNAP-1** | Task agent outputs to tool roots are **immutable snapshots**. Pointer files (`_LATEST.md`) may be overwritten; snapshot folders must not. | Agent instruction constraints; SPEC.md Section 11 |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG001-0014" class="chunk sec depth-2" data-kind="section" data-key="section:a78971350a8f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG001-0014</span> 2. Enforcement Map Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a78971350a8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a78971350a8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a78971350a8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Enforcement Point | Invariants Checked |
+|-------------------|-------------------|
+| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2 |
+| **ORCHESTRATOR** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
+| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1 |
+| **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
+| **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG001-0015" class="chunk sec depth-2" data-kind="section" data-key="section:c3fa24004413" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG001-0015</span> 3. Retired Invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3fa24004413" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3fa24004413" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3fa24004413" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+No invariants have been retired.</p>
+<p>---</p>
+<p>EOF</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG001";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

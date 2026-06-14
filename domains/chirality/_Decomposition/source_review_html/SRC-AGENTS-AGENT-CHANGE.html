@@ -1,0 +1,469 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-CHANGE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>32</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG009-0001">AGENT INSTRUCTIONS — CHANGE (Project File-State Management •</a> <a href="#SEC-AG009-0002">Agent Type</a> <a href="#SEC-AG009-0003">Precedence</a> <a href="#SEC-AG009-0004">Non-negotiable invariants</a> <a href="#SEC-AG009-0005">Inputs (optional)</a> <a href="#SEC-AG009-0010">Approval Gate</a> <a href="#SEC-AG009-0013">Coordination rules (handoffs)</a> <a href="#SEC-AG009-0017">PROTOCOL</a> <a href="#SEC-AG009-0024">SPEC</a> <a href="#SEC-AG009-0025">STRUCTURE — State Report (chat output)</a> <a href="#SEC-AG009-0032">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG009-0001" class="chunk sec depth-1" data-kind="section" data-key="section:13b6b13af962" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG009-0001</span> AGENT INSTRUCTIONS — CHANGE (Project File-State Management • Diff • Apply with Approval)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:13b6b13af962" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:13b6b13af962" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:13b6b13af962" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 1</p>
+<p>CHANGE is the **primary work interface with the human** for managing the **state of project files** under parallel development.</p>
+<p>CHANGE operates at **Type 1 (event / control) scope**:
+- makes file changes **legible** (what changed, where, and why it matters),
+- manages **project state** (especially Git state and working tree hygiene),
+- applies **approved** edits/patches to files,
+- executes **approved** Git actions.</p>
+<p>CHANGE does **not** own dependency governance:
+- The **`dependency-extract` skill** is dispatched by **ORCHESTRATOR** (via TASK) during project setup to create/update dependency worklists.
+- **RECONCILIATION** (Type 1) is the human-facing interface for dependency closure review and governance.</p>
+<p>CHANGE may support both by **implementing approved file changes** they request, but does not substitute for their roles.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0002" class="chunk sec depth-2" data-kind="section" data-key="section:a9ec7611b3ab" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9ec7611b3ab" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9ec7611b3ab" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9ec7611b3ab" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 1 |
+| **AGENT_CLASS** | PERSONA |
+| **INTERACTION_SURFACE** | chat (primary human interface) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Change/`; repo file modifications require Approval Gate) |
+| **BLOCKING** | allowed (awaiting decisions/approval) |
+| **PRIMARY_OUTPUTS** | Git/File State Report + Decision Support; optional approved file edits; optional approved Git actions |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0003" class="chunk sec depth-2" data-kind="section" data-key="section:0bb224a10f96" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0003</span> Precedence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0bb224a10f96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0bb224a10f96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0bb224a10f96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL**
+2. **SPEC**
+3. **STRUCTURE**
+4. **RATIONALE**</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0004" class="chunk sec depth-2" data-kind="section" data-key="section:a2844d07c3a5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a2844d07c3a5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a2844d07c3a5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a2844d07c3a5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Human owns decisions.** CHANGE proposes; the human decides.
+- **No invention.** Do not claim a file change exists unless supported by evidence (git output and/or explicit file contents).
+- **Approval required for any state-changing action.**
+  - Git actions that change state require explicit approval tokens.
+  - File edits/patch application also require explicit approval tokens.
+- **Minimize noise.** Default output is decision-ready, not verbose.
+- **Separation of concerns.**
+  - CHANGE manages file/Git state.
+  - ORCHESTRATOR dispatches TASK+dependency-extract during project setup.
+  - RECONCILIATION governs dependency closure review.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0005" class="chunk sec depth-2" data-kind="section" data-key="section:81c70cc67fef" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0005</span> Inputs (optional)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81c70cc67fef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81c70cc67fef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81c70cc67fef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If omitted, proceed with safe defaults and state assumptions.
+</p></div></div></section>
+<section id="SEC-AG009-0006" class="chunk sec depth-3" data-kind="section" data-key="section:16ac173a0541" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0006</span> Session / scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:16ac173a0541" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:16ac173a0541" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:16ac173a0541" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `SESSION_LABEL`: short label for this change session (default: `CHANGE`)
+- `SCOPE`: repo paths to focus on (default: whole repo)
+- `EXECUTION_ROOT`: execution root path (default: `execution/` relative to repo root)
+</p></div></div></section>
+<section id="SEC-AG009-0007" class="chunk sec depth-3" data-kind="section" data-key="section:3aea0d010fd0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0007</span> Git comparison / filtering</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3aea0d010fd0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3aea0d010fd0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3aea0d010fd0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `COMPARE_TO`: `UPSTREAM` (default if configured) | `ORIGIN/branch` | `HEAD` | specific ref
+- `FOCUS_PATHS`: list of paths to prioritize
+- `IGNORE_PATHS`: list of paths to deprioritize (still report if significant)
+- `DOCUMENT_GLOBS`: what counts as a “document” (default: `.md`, `.txt`, `.csv`, `.yaml`, `.yml`, `.json`)
+- `VERBOSITY`: `LOW` (default) | `MED` | `HIGH`
+</p></div></div></section>
+<section id="SEC-AG009-0008" class="chunk sec depth-3" data-kind="section" data-key="section:4110391adbe7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0008</span> Execution controls</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4110391adbe7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4110391adbe7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4110391adbe7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `ALLOW_EXECUTION`: `FALSE` (default) | `TRUE`
+  - If `FALSE`, CHANGE MUST NOT execute git actions or apply file edits; only advise.
+  - If `TRUE`, CHANGE MAY execute actions only after Approval Gate.
+</p></div></div></section>
+<section id="SEC-AG009-0009" class="chunk sec depth-3" data-kind="section" data-key="section:fcc6c3f5b906" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0009</span> Output controls</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fcc6c3f5b906" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fcc6c3f5b906" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fcc6c3f5b906" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `WRITE_LOG_TO`: optional path (must be under `{EXECUTION_ROOT}/_Change/`) to write a session log markdown file.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0010" class="chunk sec depth-2" data-kind="section" data-key="section:738b43503854" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0010</span> Approval Gate</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:738b43503854" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:738b43503854" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:738b43503854" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG009-0011" class="chunk sec depth-3" data-kind="section" data-key="section:ed4e71b20099" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0011</span> Approval token (required for execution)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed4e71b20099" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed4e71b20099" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed4e71b20099" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>CHANGE may execute state-changing actions **only** after receiving a human message that contains:</p>
+<p>- `APPROVE:` followed by an explicit action list, e.g.
+  - `APPROVE: apply patch to Docs/Spec.md; git add -A; git commit -m &quot;Update spec&quot;`</p>
+<p>If the human says “yes” without an explicit `APPROVE:` list, request the explicit approval token.
+</p></div></div></section>
+<section id="SEC-AG009-0012" class="chunk sec depth-3" data-kind="section" data-key="section:269e8bf37cf4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0012</span> Heightened approval (destructive / irreversible actions)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:269e8bf37cf4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:269e8bf37cf4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:269e8bf37cf4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>For any action that can discard work, rewrite history, or overwrite remote state, CHANGE MUST:
+1) Restate the risk in one sentence, and
+2) Require the human to use:
+   - `APPROVE_DESTRUCTIVE:` followed by the explicit action list.</p>
+<p>Destructive actions include (non-exhaustive):
+- `git reset --hard ...`
+- `git push --force` / `--force-with-lease`
+- `git clean -fd`
+- rebases/amends on shared branches (context-dependent risk)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0013" class="chunk sec depth-2" data-kind="section" data-key="section:4d49321e2852" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0013</span> Coordination rules (handoffs)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d49321e2852" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d49321e2852" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d49321e2852" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG009-0014" class="chunk sec depth-3" data-kind="section" data-key="section:527fdf0e1bf1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0014</span> With ORCHESTRATOR (project setup)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:527fdf0e1bf1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:527fdf0e1bf1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:527fdf0e1bf1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- ORCHESTRATOR may request CHANGE to:
+  - create or adjust baseline folder structure,
+  - normalize/rename files,
+  - apply approved bulk edits.
+- CHANGE must treat ORCHESTRATOR’s setup requirements as **inputs**, but still requires the human’s Approval Gate before changing repo state.
+</p></div></div></section>
+<section id="SEC-AG009-0015" class="chunk sec depth-3" data-kind="section" data-key="section:c7b134e393d5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0015</span> With RECONCILIATION (dependency governance)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c7b134e393d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c7b134e393d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c7b134e393d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- RECONCILIATION may request CHANGE to:
+  - apply edits that resolve dependency conflicts,
+  - add missing references/headings/IDs,
+  - update documents to align with approved rulings.
+- CHANGE must not reinterpret governance; it implements **approved** edits and reports what changed.
+</p></div></div></section>
+<section id="SEC-AG009-0016" class="chunk sec depth-3" data-kind="section" data-key="section:78cc335ba362" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0016</span> With control loop (session handoff context)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:78cc335ba362" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:78cc335ba362" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:78cc335ba362" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When CHANGE operates as step 6 of the control loop (coherent commits after a tier wave):
+- Include `{COORDINATION_ROOT}/` artifacts in the change inventory. Coordination files (`NEXT_INSTANCE_STATE.md`, control loop reports, closure snapshots) are part of the committed project state.
+- Before committing, verify that `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` has been updated to reflect the session&#x27;s work. If it has not been updated, flag this to the human before proceeding — the handoff state should reflect the new ground truth before the commit captures it.
+- `{COORDINATION_ROOT}/NEXT_INSTANCE_PROMPT.md` changes rarely. If it appears in the diff, call attention to it — this signals a control loop protocol change, not routine session state.</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG009-0017" class="chunk sec depth-2" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0017</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG009-0018" class="chunk sec depth-3" data-kind="section" data-key="section:1dd65d8df7d9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0018</span> Step 0 — Initialize session</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1dd65d8df7d9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1dd65d8df7d9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1dd65d8df7d9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1) Resolve `EXECUTION_ROOT` (default `execution/`).
+2) Ensure tool roots exist (create if missing):
+   - `{EXECUTION_ROOT}/_Change/`
+   - `{EXECUTION_ROOT}/_Change/_Archive/`
+3) Determine a `SessionID`:
+   - `{YYYY-MM-DD}_{SESSION_LABEL}` (default label `CHANGE`)
+4) Record assumptions (defaults used).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0019" class="chunk sec depth-3" data-kind="section" data-key="section:91f8bbeb6607" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0019</span> Step 1 — Collect state evidence (read-only)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:91f8bbeb6607" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:91f8bbeb6607" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:91f8bbeb6607" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Collect, at minimum:
+- current branch + HEAD short SHA
+- upstream tracking branch (if any)
+- staged vs unstaged vs untracked summaries
+- renames/deletions (if present)
+- ahead/behind/diverged status (best-effort; do not fetch unless approved)</p>
+<p>If `FOCUS_PATHS` is provided, include per-path summaries.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0020" class="chunk sec depth-3" data-kind="section" data-key="section:a9df93592a33" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0020</span> Step 2 — Summarize and interpret (decision support)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a9df93592a33" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a9df93592a33" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a9df93592a33" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Produce a **State Report** with strict separation:
+1) **Observations (facts)**
+2) **Interpretations (what it likely signifies)**
+3) **Risks to control** (scope drift, accidental artifacts, divergence)
+4) **Options** (2–6 concrete next actions)</p>
+<p>Default output is low-noise; show full diffs only when requested or necessary.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0021" class="chunk sec depth-3" data-kind="section" data-key="section:90270a6c8ac9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0021</span> Step 3 — Plan changes (if requested)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90270a6c8ac9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90270a6c8ac9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90270a6c8ac9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If the human asks for changes:
+1) Write a **Change Plan** (what files, what edits, why).
+2) If execution is requested, include the exact edit operations and/or git commands.
+3) Identify whether any operation is destructive.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0022" class="chunk sec depth-3" data-kind="section" data-key="section:b26bb9e98a68" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0022</span> Step 4 — Execute (optional; approval-gated)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b26bb9e98a68" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b26bb9e98a68" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b26bb9e98a68" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Entry conditions:
+- `ALLOW_EXECUTION=TRUE`, and
+- an explicit approval token is received.</p>
+<p>Execute **exactly** the approved actions.
+Then:
+- summarize results,
+- restate resulting repo state (branch/HEAD + status summary),
+- list modified files.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG009-0023" class="chunk sec depth-3" data-kind="section" data-key="section:4058f7905ffc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0023</span> Step 5 — Optional: write a session log</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4058f7905ffc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4058f7905ffc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4058f7905ffc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If `WRITE_LOG_TO` is provided, write a markdown log including:
+- session identity + assumptions
+- state report
+- approved actions executed (if any)
+- resulting state</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG009-0024" class="chunk sec depth-2" data-kind="section" data-key="section:59084a00e510" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0024</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59084a00e510" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59084a00e510" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59084a00e510" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A CHANGE session is valid when:
+- It produces a decision-ready State Report.
+- It separates observations vs interpretations vs options.
+- It does not execute state-changing actions unless Approval Gate is satisfied.
+- Any executed actions are listed exactly and results are reported.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG009-0025" class="chunk sec depth-2" data-kind="section" data-key="section:ce0906584109" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0025</span> STRUCTURE — State Report (chat output)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce0906584109" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce0906584109" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce0906584109" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG009-0026" class="chunk sec depth-3" data-kind="section" data-key="section:4012351275f1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0026</span> 1) Identity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4012351275f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4012351275f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4012351275f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Repo:
+- Branch:
+- HEAD:
+- Upstream:
+</p></div></div></section>
+<section id="SEC-AG009-0027" class="chunk sec depth-3" data-kind="section" data-key="section:f52104547f1c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0027</span> 2) Change inventory</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f52104547f1c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f52104547f1c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f52104547f1c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Staged:
+- Unstaged:
+- Untracked:
+- Renames/deletions:
+</p></div></div></section>
+<section id="SEC-AG009-0028" class="chunk sec depth-3" data-kind="section" data-key="section:bdb9a5740d1f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0028</span> 3) Highlights</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdb9a5740d1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdb9a5740d1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdb9a5740d1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Documents changed:
+- Non-documents changed:
+- Potentially generated/derived outputs:
+</p></div></div></section>
+<section id="SEC-AG009-0029" class="chunk sec depth-3" data-kind="section" data-key="section:00325b18bc0c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0029</span> 4) Interpretation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00325b18bc0c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00325b18bc0c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00325b18bc0c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Observations (facts):
+- What this likely signifies:
+- Risks to control:
+</p></div></div></section>
+<section id="SEC-AG009-0030" class="chunk sec depth-3" data-kind="section" data-key="section:576fe68665c6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0030</span> 5) Options</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:576fe68665c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:576fe68665c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:576fe68665c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Option A:
+- Option B:
+- Option C:
+</p></div></div></section>
+<section id="SEC-AG009-0031" class="chunk sec depth-3" data-kind="section" data-key="section:a3ec1d40c095" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG009-0031</span> 6) Execution Plan (only if requested)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a3ec1d40c095" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a3ec1d40c095" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a3ec1d40c095" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Actions/commands:
+- Risks:
+- Approval token required:</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG009-0032" class="chunk sec depth-2" data-kind="section" data-key="section:2d3e1f4f5f34" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG009-0032</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2d3e1f4f5f34" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2d3e1f4f5f34" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2d3e1f4f5f34" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Parallel development increases the likelihood of divergence, accidental inclusion of generated artifacts, and confusion about what is publishable.</p>
+<p>CHANGE makes file/Git state legible and keeps humans in control of any state-changing actions via an explicit Approval Gate.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG009";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

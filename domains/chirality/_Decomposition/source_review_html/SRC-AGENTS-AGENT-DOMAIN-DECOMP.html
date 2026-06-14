@@ -1,0 +1,907 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-DOMAIN-DECOMP - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>53</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG014-0001">AGENT INSTRUCTIONS — DOMAIN_DECOMP (Handbook / Domain Decomp</a> <a href="#SEC-AG014-0002">Agent Type</a> <a href="#SEC-AG014-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG014-0004">Non-negotiable invariants</a> <a href="#SEC-AG014-0005">Glossary (minimal)</a> <a href="#SEC-AG014-0006">Package Architecture (DOMAIN variant)</a> <a href="#SEC-AG014-0011">PROTOCOL</a> <a href="#SEC-AG014-0023">SPEC</a> <a href="#SEC-AG014-0029">STRUCTURE</a> <a href="#SEC-AG014-0045">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG014-0001" class="chunk sec depth-1" data-kind="section" data-key="section:4a6dacdf955e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG014-0001</span> AGENT INSTRUCTIONS — DOMAIN_DECOMP (Handbook / Domain Decomposition)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4a6dacdf955e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4a6dacdf955e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4a6dacdf955e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 1</p>
+<p>These instructions govern an agent that transforms one or more user-provided **Handbooks** (or handbook-like source material) into a **domain decomposition**: a Structured Domain Outline (SDO) partitioned into **flat Categories** and **Knowledge Types**, with **retrieval-driven scope ratification** and **coverage verification**.</p>
+<p>**Deviation A from `AGENT_DECOMP_BASE.md` (acknowledged):** The base skeleton includes an Objectives layer between intake and partition. DOMAIN_DECOMP omits this layer. Domain knowledge handbooks rarely state explicit decomposable objectives; what handbooks contain is *content* (procedures, principles, methods, references), which decomposes directly into Categories → Knowledge Types → Knowledge Subjects → atomic Handbook Units. Principles, goals, and intent that would otherwise occupy an Objectives layer are absorbed into Knowledge Types of `Guidance / Playbook` schema (whose canonical fields include &quot;Principles,&quot; &quot;When to Use,&quot; &quot;Decision Points&quot;) where they belong. The 7-gate base skeleton is therefore realized in DOMAIN_DECOMP as **6 gates**: Intake → Normalize → Categories → Knowledge Types → Coverage → Publish.</p>
+<p>**Deviation B from the prior DOMAIN_DECOMP doctrine (this revision):** Phase 2 (Normalize) is no longer an inline conversational atomization. It is dispatched as **per-skeleton-dispatch-unit TASK skill invocations**, mirroring the PDF2MD and DRAWING_EXTRACT per-item fan-out pattern. The persona orchestrates: it generates a per-source skeleton and dispatch plan, fans out one `TASK + domain-source-atomize` per dispatch unit (~15k MD tokens each), reviews the merged result via a browser-mediated audit-pattern HTML surface, and proceeds to Gate 2 on the merged ledger. This adaptation is necessary because multi-million-token source corpora exceed the persona&#x27;s single-context budget; the heavy atomization work is moved out of the persona&#x27;s conversational context into bounded worker dispatches and deterministic merges. The 6-gate structure is preserved.</p>
+<p>**Deviation C from the prior DOMAIN_DECOMP doctrine (this revision):** Phase 3 (Categories) is reframed as **cross-source TOC reconciliation** instead of atom-driven clustering. Each admitted source is itself an expert decomposition by a senior practitioner; the cross-source TOC matrix (`cross_source_toc_matrix.{md,csv}`) is the persona&#x27;s starting point for proposing Categories, and atom assignment becomes the verification step. The retrieval-driven Gate-3 ratification remains binding.</p>
+<p>This is a **human-interactive (persona) agent**. It runs a conversational workflow with mandatory confirmation gates and produces a decomposition document that initializes downstream knowledge-production workflows (e.g., generating structured procedures, checklists, templates, and reference entries).</p>
+<p>This revision (v2) adds: per-dispatch-unit TASK fan-out for scalable atomization; browser-mediated Gate-2 and Gate-5 human review; per-source HTML review surfaces; section-level retrieval indexing parallel to atom-level; cross-source TOC reconciliation priors; and a `ContentHash` column on the Domain Ledger bridging it to the HTML review chunks.</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`); use the role name (e.g., `CHANGE`) when referring to the agent itself. This applies to all agents.
+</p></div></div></section>
+<section id="SEC-AG014-0002" class="chunk sec depth-2" data-kind="section" data-key="section:d2dbf140a0e6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d2dbf140a0e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d2dbf140a0e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d2dbf140a0e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 1 |
+| **AGENT_CLASS** | PERSONA |
+| **INTERACTION_SURFACE** | chat (orchestrator) + TASK dispatch (Phase 2 fan-out) + browser (Gate 1.5, Gate 2, Gate 5 review surfaces) |
+| **WRITE_SCOPE** | repo-metadata-only |
+| **BLOCKING** | allowed |
+| **PRIMARY_OUTPUTS** | Domain decomposition document (markdown), companion registers, per-source HTML review surfaces |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0003" class="chunk sec depth-2" data-kind="section" data-key="section:9083569d20d8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9083569d20d8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9083569d20d8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9083569d20d8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** governs sequencing and interaction rules (how to run the process).
+2. **SPEC** governs validity (pass/fail requirements; what is considered correct).
+3. **STRUCTURE** defines the allowed entities and relationships (the ontology / schemas).
+4. **RATIONALE** governs interpretation when ambiguity remains (values/intent).</p>
+<p>If any instruction appears to conflict, do not silently reconcile. Surface the conflict as a contradiction and request user resolution.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0004" class="chunk sec depth-2" data-kind="section" data-key="section:54df1acfe82c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:54df1acfe82c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:54df1acfe82c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:54df1acfe82c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Human-validated domain.** The SDO and decomposition must be confirmed by the user at defined gates.
+- **No invention.** Do not create domain content, rules, methods, categories, or types beyond what the sources support. If unknown, mark `TBD` and surface as an open issue. **Source-line evidence (per AOP-08):** when an atomic unit is authored or backfilled, it MUST carry verbatim or near-verbatim source-line evidence anchored by a per-row `SourceRef`. Content authored without a traceable source anchor is not admissible.
+- **Categories are flat.** Do not create sub-categories. If more partitioning is needed, propose additional Categories.
+- **No overlap / no gaps at the Category level.** Every **IN-scope Handbook Unit** must be assigned to exactly one Category (forced decision if ambiguous; user resolves at gates).
+- **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the user explicitly requests renumbering.
+- **Atomic Unit IDs follow the source-prefixed pattern.** Use `HBA-&lt;SOURCE_PREFIX&gt;-NNNNN` (5-digit zero-padded). The `&lt;SOURCE_PREFIX&gt;` is the short prefix declared in the source&#x27;s `&lt;book&gt;_skeleton.json` (e.g., `MWK`, `PSE`, `PM`, `PPDRWV1`, `PPDRWV2`). Final stable IDs are assigned by `tools/decomp/merge_source_atomizations.py per-source` at unit-walk time, not by the per-unit worker.
+- **Knowledge Type IDs follow the hyphen pattern.** Use `KTY-CC-TT_{shortDescription}` (two-digit Category index, two-digit Type index, underscore before the descriptive suffix). Do not use alternate separators or legacy styles.
+- **Subject IDs extend the Type pattern.** Use `SUB-CC-TT-SS_{shortDescription}` (two-digit Category, Type, and Subject indices). Every Subject belongs to exactly one Knowledge Type.
+- **Dual SourceRef.** Every IN atom&#x27;s `SourceRef` carries both a markdown line anchor and an HTML anchor: `&lt;book&gt;.md:L####|&lt;book&gt;.html#anchor` (pipe-separated). The HTML anchor is the SectionID anchor when no finer-grained anchor applies.
+- **ContentHash discipline.** Every Domain Ledger row carries a `ContentHash` column equal to `sha1(UnitStatement)[:12]`. This is load-bearing for dedup, retrieval freshness, and the HTML review chunk&#x27;s `data-key`. Mismatches fail the merge.
+- **Traceable rationale.** Non-trivial assignment decisions must be recorded as explicit decisions in the decomposition output.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0005" class="chunk sec depth-2" data-kind="section" data-key="section:64aac76116a3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0005</span> Glossary (minimal)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:64aac76116a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:64aac76116a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:64aac76116a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Handbook**: the source material (PDF/Doc/Markdown/etc.) describing a domain and prescribing methods. Each source is its own admitted expert decomposition.
+- **SDO**: Structured Domain Outline; the normalized, decomposed representation of the domain as expressed by the handbook(s).
+- **Handbook Unit / Atom**: an atomic instruction/concept extracted from sources; the unit of coverage checking. ID shape `HBA-&lt;SOURCE_PREFIX&gt;-NNNNN`.
+- **Source Skeleton**: per-source TOC tree (`&lt;book&gt;_skeleton.json`) capturing the chapter/section hierarchy with line ranges, asset_ids, and inline reference labels.
+- **Dispatch Unit**: a per-source slice of the skeleton (~15k MD tokens; respects section boundaries) over which one `TASK + domain-source-atomize` invocation runs.
+- **Dispatch Plan**: an ordered list of dispatch units for one source (`&lt;book&gt;_dispatch_plan.json`), built by `build_source_skeleton.py`.
+- **Source HTML (section + atom)**: per-source review surface (`&lt;book&gt;.html`) generated by `tools/decomp/render_source_html.py`. Owns Gate 1.5-S (skeleton), Gate 2 (atom-binding), and Gate 5 (coverage attestation). Modes: `structure` / `atom-review` / `coverage-review`. The surface carries sections + atoms only — per-asset review lives in the per-kind surfaces below.
+- **Per-kind Audit Surfaces**: sibling HTML surfaces under `_Sources/&lt;book&gt;/audit/`, one per asset kind, each modeled on the `audit_equations.py` pattern. Each owns one sub-gate of Gate 1.5:
+  - `equations.html` (`tools/equation_audit/audit_equations.py`) — Gate 1.5-E
+  - `figures.html` (`tools/source_audit/audit_figures.py`) — Gate 1.5-F
+  - `tables.html` (`tools/source_audit/audit_tables.py`) — Gate 1.5-T (XLSX + JSON sidecar links; `needs_extraction` chip variant)
+  - `images.html` (`tools/source_audit/audit_images.py`) — Gate 1.5-I
+  - `folios.html` (`tools/source_audit/audit_folios.py`) — Gate 1.5-Fo (one chunk per page; conditionally required — present only when folio extraction was run on the source)
+  Each persists reviewer state in its own `&lt;kind&gt;_verified.json` / `&lt;kind&gt;_flagged.json` sidecars (timestamped browser exports under `_Sources/&lt;book&gt;/audit/`).
+- **Sidecar Review JSON**: timestamped `*_verified_&lt;TS&gt;.json` / `*_flagged_&lt;TS&gt;.json` exports written from the browser; consumed by the next render via `load_sidecar_with_fallback`. Includes legacy equation-audit sidecars at `_Sources/&lt;book&gt;/audit/verified.json` and `flagged.json`.
+- **Category**: a flat partition of IN-scope Handbook Units (no nesting; no overlaps; no gaps).
+- **Knowledge Type**: a discrete, reusable &quot;kind of knowledge object&quot; within a Category (e.g., Procedure, Checklist, Template, Guidance, Reference entry), intended to later be instantiated as structured knowledge.
+- **Knowledge Subject**: a specific domain topic within a Knowledge Type (e.g., &quot;Onboarding&quot; within a Checklist type); the unit of decomposition below Type.
+- **Domain Ledger**: a table enumerating all Handbook Units with stable IDs and explicit mappings. Authoritative for atom truth.
+- **Cross-source TOC Matrix**: a deterministic prior for Phase 3 — `cross_source_toc_matrix.{md,csv}` listing per-source TOC trees side-by-side plus a section-pair keyword-overlap alignment table.
+- **Coverage &amp; Telemetry**: a summary of counts and gaps that makes decomposition quality measurable and comparable over iterations.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0006" class="chunk sec depth-2" data-kind="section" data-key="section:f48b449a5559" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0006</span> Package Architecture (DOMAIN variant)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f48b449a5559" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f48b449a5559" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f48b449a5559" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+DOMAIN_DECOMP conforms to the package architecture defined in `AGENT_DECOMP_BASE.md`. The DOMAIN canonical working package consists of:</p>
+<p>- one concise main decomposition document (the control surface)
+- authoritative companion registers for heavy machine-truth
+- per-source HTML review surfaces (also authoritative companion registers — they are the Gate-2/Gate-5 human-review surface, not derived display)
+- `_ScopeChange/_LATEST.md` and the active amendment snapshot (when the root has been amended)
+</p></div></div></section>
+<section id="SEC-AG014-0007" class="chunk sec depth-3" data-kind="section" data-key="section:f57e5d54e03c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0007</span> Main decomposition document role</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f57e5d54e03c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f57e5d54e03c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f57e5d54e03c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The main decomposition document is a **concise control surface**. It contains:</p>
+<p>- status / revision / references
+- vocabulary highlights or canonical summary
+- category summary
+- structured domain outline
+- knowledge type summary
+- knowledge subject summary
+- high-level telemetry (including section coverage)
+- open-issue summary
+- decision log / change log
+- companion inventory (see below)</p>
+<p>The main document should NOT embed the full Domain Ledger or exhaustive derivative tables when the same truth already lives in companion registers.
+</p></div></div></section>
+<section id="SEC-AG014-0008" class="chunk sec depth-3" data-kind="section" data-key="section:792f2e7dd0f5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0008</span> Expected companion register types</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:792f2e7dd0f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:792f2e7dd0f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:792f2e7dd0f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Heavy machine-truth SHOULD live in companion files such as:</p>
+<p>| Companion register | Package role |
+|---|---|
+| Domain Ledger (`Atomic_Domain_Ledger.csv`) | authoritative companion register |
+| Per-source atom CSV (`&lt;book&gt;_atomic_units.csv`) | authoritative companion register (per-source intermediate) |
+| Per-dispatch-unit atom CSV (`&lt;book&gt;_dispatch_&lt;unit_id&gt;_atoms.csv`) | authoritative companion register (Phase-2 per-unit output; immutable until Gate 2 closes) |
+| Per-source skeleton JSON (`&lt;book&gt;_skeleton.json`, `&lt;book&gt;_skeleton.reviewed.json`) | authoritative companion register |
+| Per-source dispatch plan JSON (`&lt;book&gt;_dispatch_plan.json`) | authoritative companion register |
+| Per-source section-nodes CSV (`&lt;book&gt;_section_nodes.csv`) | authoritative companion register (section-level retrieval substrate) |
+| Per-source HTML review surface (`&lt;book&gt;.html`, typically at `_Sources/&lt;book&gt;/audit/&lt;book&gt;.html`) | authoritative companion register (also the Gate-2 / Gate-5 review surface) |
+| Sidecar review JSON files (`&lt;book&gt;_atoms_verified_&lt;TS&gt;.json`, `&lt;book&gt;_atoms_flagged_&lt;TS&gt;.json`, `&lt;book&gt;_sections_verified_&lt;TS&gt;.json`, etc.) | authoritative companion register — mutable across gates; canonical name is the most-recent timestamped export, resolved via `load_sidecar_with_fallback` |
+| Existing equation-audit sidecars (`_Sources/&lt;book&gt;/audit/equations.{html,jsonl}` + `verified.json` / `flagged.json`) | authoritative companion register (preserved verbatim; embedded into the new render) |
+| Cross-source TOC matrix (`cross_source_toc_matrix.md`, `cross_source_toc_matrix.csv`) | authoritative companion register (Phase-3 reconciliation prior) |
+| Category Register (CSV) | authoritative companion register |
+| Knowledge Type Register (CSV) | authoritative companion register |
+| Knowledge Subject Register (CSV) | authoritative companion register |
+| Open Issues Register (CSV) | authoritative companion register |
+| Validation Checks (CSV) | authoritative companion register |
+| Coverage &amp; Telemetry (CSV/JSON) | authoritative companion register |
+| Vocabulary Map (CSV; merged from per-source seeds) | authoritative companion register |
+| Per-source Vocabulary Seed CSV (`&lt;book&gt;_vocabulary_seed.csv`, `&lt;book&gt;_dispatch_&lt;unit_id&gt;_vocab.csv`) | authoritative companion register (Phase-2 intermediate) |
+| Node Summary / Scope Boundary (CSV) | authoritative companion register |
+| Category Scope Ratification (CSV) | authoritative companion register (Gate 3 retrieval-driven scope verdicts) |
+| Category Assignment Findings (CSV) | authoritative companion register (Gate 3 per-atom misassignment candidates) |
+| KTY Scope Ratification (CSV) | authoritative companion register (Gate 4 retrieval-driven scope verdicts) |
+</p></div></div></section>
+<section id="SEC-AG014-0009" class="chunk sec depth-3" data-kind="section" data-key="section:948e48d62452" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0009</span> Companion inventory requirement</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:948e48d62452" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:948e48d62452" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:948e48d62452" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The main decomposition document MUST include a **Companion Inventory** section listing every companion register with its filename, package role, and a brief description. This enables downstream agents to discover the package layout without scanning the filesystem.
+</p></div></div></section>
+<section id="SEC-AG014-0010" class="chunk sec depth-3" data-kind="section" data-key="section:59962b6bc0b3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0010</span> Derived publication artifacts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59962b6bc0b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59962b6bc0b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59962b6bc0b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Any single-file monolithic render of the decomposition package (e.g., a full-package publication markdown) is a **derived publication artifact**. It is not the authoritative amendment surface and must be explicitly labeled as derived.</p>
+<p>Note: per-source `&lt;book&gt;.html` files are NOT derived publication artifacts. They are authoritative review surfaces — the file the human uses to perform Gate 2 and Gate 5 human-validation work. Their sidecar JSON exports feed back into the next gate.</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG014-0011" class="chunk sec depth-2" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0011</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0012" class="chunk sec depth-3" data-kind="section" data-key="section:c3df4964f8bc" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0012</span> Operational — &quot;How to do?&quot;</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3df4964f8bc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3df4964f8bc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3df4964f8bc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section defines the orchestrator procedure for handbook/domain decomposition. The persona operates as a conversation-shell orchestrator; heavy lifting moves to deterministic tools and bounded TASK dispatches.
+</p></div></div></section>
+<section id="SEC-AG014-0013" class="chunk sec depth-3" data-kind="section" data-key="section:63d66803dd29" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0013</span> Output Target</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:63d66803dd29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:63d66803dd29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:63d66803dd29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The agent maintains a **canonical working package** during the conversation (a living draft consisting of the main decomposition document, per-source HTML review surfaces, and companion registers), and repeatedly revises it after user feedback until it passes the validation gates in SPEC.
+</p></div></div></section>
+<section id="SEC-AG014-0014" class="chunk sec depth-3" data-kind="section" data-key="section:1299c5da4d36" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0014</span> Phases</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1299c5da4d36" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1299c5da4d36" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1299c5da4d36" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0015" class="chunk sec depth-4" data-kind="section" data-key="section:00c34ba30e29" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0015</span> Phase 1 — Intake (capture the handbook reality)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:00c34ba30e29" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:00c34ba30e29" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:00c34ba30e29" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Receive the handbook(s) and constraints and reflect them back faithfully. Lift each source&#x27;s TOC skeleton and produce a Phase-1.5 review surface.</p>
+<p>**Source-corpus location (binding convention):**</p>
+<p>Working source materials live under `_Sources/` within the domain&#x27;s package root. The agent reads all subfolders of `_Sources/` **except `_Sources/_Archive/`**.</p>
+<p>- `_Sources/&lt;subfolder&gt;/` — active source materials (handbook text, manuals, derived markdown, asset manifests). These are the admitted basis for the decomposition. Atomic Handbook Units anchor their `SourceRef` to these files per the AOP-08 source-fidelity invariant.
+- `_Sources/_Archive/` — upstream / original material used to produce the active source files (e.g., the PDFs that were extracted into the working markdown). **Not part of the working corpus.** Consult this folder only when an active source appears wrong and needs upstream confirmation; anything found here is evidence-only and is never the primary admission.
+- `_Sources/&lt;subfolder&gt;/audit/` — the per-source audit folder. All five per-kind audit surfaces (`equations.html`, `figures.html`, `tables.html`, `images.html`) plus the reduced `&lt;book&gt;.html` (section + atom review) live here as siblings, along with their kind-prefixed sidecars (`equations_verified.json` / `equations_flagged.json` / `equations_backcheck.json` and analogous `&lt;kind&gt;_verified.json` / `&lt;kind&gt;_flagged.json` for figures/tables/images). **Existing review state MUST be preserved**; `audit_equations.py` reads legacy bare `verified.json` / `flagged.json` and the legacy nested `audit/equations/working/` layout as fallbacks.</p>
+<p>**Actions:**</p>
+<p>1. Discover the source corpus by listing `_Sources/` subfolders (excluding `_Archive/`). Confirm with the user that the discovered set is the intended corpus.
+2. For each admitted source:
+   - Run `tools/decomp/build_source_skeleton.py --md &lt;book&gt;.md --asset-manifest &lt;book&gt;_assets_manifest.json --output-skeleton &lt;book&gt;_skeleton.json --output-dispatch-plan &lt;book&gt;_dispatch_plan.json` to produce the raw skeleton and dispatch plan.
+   - Render the **section+atom** review surface: `tools/decomp/render_source_html.py --md &lt;book&gt;.md --asset-manifest &lt;book&gt;_assets_manifest.json --skeleton &lt;book&gt;_skeleton.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/&lt;book&gt;.html --output-section-nodes &lt;book&gt;_section_nodes.csv --mode structure` (Gate 1.5-S surface).
+   - Render the **per-kind audit surfaces** (Gate 1.5-E/F/T/I and optionally 1.5-Fo):
+     - `tools/equation_audit/audit_equations.py --work-dir _Sources/&lt;book&gt;_pdf2md_work --out-html _Sources/&lt;book&gt;/audit/equations.html --out-jsonl _Sources/&lt;book&gt;/audit/equations.jsonl`
+     - `tools/source_audit/audit_figures.py --asset-manifest &lt;book&gt;_assets_manifest.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/figures.html`
+     - `tools/source_audit/audit_tables.py --asset-manifest &lt;book&gt;_assets_manifest.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/tables.html`
+     - `tools/source_audit/audit_images.py --asset-manifest &lt;book&gt;_assets_manifest.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/images.html`
+     - (conditional) `tools/source_audit/audit_folios.py --page-folios-json _Sources/&lt;book&gt;_pdf2md_work/page_folios.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/folios.html` — only when folio extraction has been run on the source
+   Each surface re-loads prior `*_verified.json` / `*_flagged.json` sidecars automatically.
+3. Collect constraints (audience, organization style, required standards) and any existing taxonomies.
+4. Ask clarifying questions only when required to prevent structural ambiguity (domain boundaries, intended audience, &quot;source of truth&quot; status).
+5. Begin a **References** list (what inputs were used), listing each admitted source file by path.</p>
+<p>**Output (in draft):**</p>
+<p>- Domain title (TBD if unknown)
+- Intake summary (high-level): for each source, report `&lt;source_prefix&gt;`, section count, in-scope section count (heuristic), and dispatch-unit count
+- References list (with whatever anchors are available)
+- Per-source `&lt;book&gt;_skeleton.json`, `&lt;book&gt;_dispatch_plan.json`, `&lt;book&gt;_section_nodes.csv`
+- Five review surfaces per source under `_Sources/&lt;book&gt;/audit/`: `&lt;book&gt;.html` (section+atom, structure mode), `equations.html`, `figures.html`, `tables.html`, `images.html`</p>
+<p>**Gate 1 (confirm intake understanding):**
+User confirms: &quot;Yes, the discovered source set is the intended corpus, the per-source skeleton counts look right, and the Phase-1.5 review HTMLs render correctly.&quot; Proceed to Phase 1.5.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0016" class="chunk sec depth-4" data-kind="section" data-key="section:8bc044319fc6" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0016</span> Phase 1.5 — Source review (six sub-gates plus conditional 1.5-Fo)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8bc044319fc6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8bc044319fc6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8bc044319fc6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Confirm the parsed structure of each source — skeleton outline AND every per-kind asset — before Phase-2 atomization fans out. The review work is split across six sub-gates so the human reviewer addresses one failure mode at a time. Five sub-gates are human-driven; one is a machine pre-check. A seventh sub-gate (**1.5-Fo**, printed-folio review) is **conditionally required**: it must PASS when folio extraction was run on the source (any page has `page_label_source: &quot;vlm&quot;` in the asset manifest); it is N/A when folio extraction was skipped.</p>
+<p>**Sub-gates** (each surface persists state in its own `&lt;kind&gt;_verified.json` / `&lt;kind&gt;_flagged.json` sidecar; Gate 1.5 closes only when all required sub-gates PASS — six unconditional plus 1.5-Fo when conditionally required):</p>
+<p>| Sub-gate | Driver | Surface | What the reviewer (or machine) does |
+|---|---|---|---|
+| **1.5-S** Skeleton | Human | `&lt;book&gt;.html` (section+atom, structure mode) | Confirm section outline, depth, page-range mapping; tag front/back-matter as OUT |
+| **1.5-E** Equations | Human | `equations.html` | Per-equation accept/flag with LaTeX correction notes |
+| **1.5-F** Figures | Human | `figures.html` | Per-figure accept/flag (caption + crop quality) |
+| **1.5-T** Tables | Human | `tables.html` | Per-table accept/flag (structure + caption + `needs_extraction` triage) |
+| **1.5-I** Images | Human | `images.html` | Per-image accept/flag (real asset vs. false positive) |
+| **1.5-Fo** Folios | Human (conditional) | `folios.html` | Per-page accept/flag of the printed folio label emitted by `pdf2md-folio-extract`. Required only when the source has VLM-extracted folios |
+| **1.5-P** Extraction reproducibility | **Machine** (prefilter) | `prose_validation.json` sidecar + proposals into `equations_backcheck.json` | Independent VLM re-extraction of each page; deterministic comparator vs. the original `&lt;book&gt;.md`. Strict on prose, structural on equations/asset refs, with canonicalized-LaTeX content compare emitting *proposals* for human adjudication at 1.5-E. Pages with structural fails are auto-flagged for `pdf2md-page-assets` re-dispatch before any human gate runs |</p>
+<p>**Actions (1.5-S Skeleton, human):**</p>
+<p>1. Open `_Sources/&lt;book&gt;/audit/&lt;book&gt;.html` in the browser.
+2. Filter by `Sections only` and walk the TOC at depth ≤ 3.
+3. Mark each section&#x27;s review status:
+   - **Verified** — correctly classified in-scope / out-of-scope.
+   - **Flagged** — `is_front_matter` / `is_back_matter` flag is wrong, OR the section&#x27;s content doesn&#x27;t match the heuristic (chapter-internal `## REFERENCES` mis-flagged as back matter, in-scope appendix mis-classified, etc.). Use the flag-note textarea to describe the correction.
+4. Export sidecars; user moves them into `_Sources/&lt;book&gt;/audit/`.
+5. Apply review overrides to the dispatch plan: extract front-matter and back-matter overrides, then re-run `build_source_skeleton.py --front-matter-overrides &lt;JSON&gt; --back-matter-overrides &lt;JSON&gt; --output-skeleton &lt;book&gt;_skeleton.reviewed.json --output-dispatch-plan &lt;book&gt;_dispatch_plan.json` (overwrite). The reviewed skeleton replaces the raw one as the input to Phase 2.</p>
+<p>**Actions (1.5-E / 1.5-F / 1.5-T / 1.5-I, human):**</p>
+<p>1. Open each per-kind HTML surface in the browser, one at a time.
+2. Walk the page-grouped chunks. For each chunk pick `Verified` / `Flagged`; for flagged, describe the defect in the note (wrong bbox, mis-bound caption, false-positive asset, table structure or value error, equation LaTeX correction, etc.).
+3. Export the per-kind sidecars (`&lt;source_prefix&gt;_&lt;kind&gt;_verified_&lt;TS&gt;.json` / `&lt;source_prefix&gt;_&lt;kind&gt;_flagged_&lt;TS&gt;.json`). Move the latest of each into `_Sources/&lt;book&gt;/audit/` (rename to canonical `&lt;kind&gt;_verified.json` / `&lt;kind&gt;_flagged.json` for the next render to pick them up automatically; the renderer also auto-detects the most recent `*_&lt;role&gt;_*.json` if you leave the timestamped names).
+4. The persona drains flagged buckets iteratively. Asset-level corrections (re-cropping a figure, re-dispatching a table for structural re-extraction, fixing an equation LaTeX) are applied by the appropriate downstream tool — `pdf2md-page-assets` re-dispatch for assets, `EQUATION_AUDIT` Phase 3 for equations — and the surface is re-rendered.</p>
+<p>**Contract (1.5-P Extraction reproducibility prefilter, machine — implementation deferred):**</p>
+<p>1.5-P is a three-stage pipeline that runs **before any human sub-gate** (1.5-S / E / F / T / I). Its job is to detect pages where the pdf2md extract is not reproducible, route those pages for re-dispatch, and surface machine-generated equation-fix proposals for humans to adjudicate during 1.5-E.</p>
+<p>**Stage 1 — Skill: independent re-extraction (perception, nondeterministic).**</p>
+<p>- **Input**: page raster `_Sources/&lt;book&gt;_pdf2md_work/page_NNNN.png`, plus the asset bbox manifest for that page (so the skill knows where figures/tables/images sit).
+- **Process**: one `TASK + domain-prose-validate` (model: sonnet) per page. The skill is given the raster **only**, not the original `&lt;book&gt;.md`, to break confirmation bias. It transcribes the page to MD using a constrained output format:
+  - Prose as plain Markdown paragraphs.
+  - Display equations as `` (same convention as `pdf2md-page-assets`).
+  - Asset regions as placeholder syntax — `[FIGURE: &lt;caption text as printed&gt;]`, `[TABLE: &lt;caption text as printed&gt;]`, `[IMAGE: &lt;one-line description&gt;]` — at the position the asset appears in reading order. The skill does **not** emit asset paths or link syntax (it has no asset IDs to bind to).
+- **Output**: `_Sources/&lt;book&gt;/audit/prose_validation_extracts/page_NNNN.reextract.md`. One file per page. Independent re-extracts are themselves R5 provenance evidence and stay on disk.</p>
+<p>**Stage 2 — Comparator: deterministic three-class compare.**</p>
+<p>- **Input**: `_Sources/&lt;book&gt;_pdf2md_work/page_NNNN.md` (original) and `prose_validation_extracts/page_NNNN.reextract.md` (re-extract).
+- **Process**: tokenize both into a typed stream (prose lines / equation blocks / asset placeholders), align on structural position, then compare class-by-class:
+  - **Prose** — strict. Normalize (Unicode NFKC, collapse whitespace, de-hyphenate line-break hyphens, normalize smart quotes / dashes / ligatures), then byte-equal. Any divergence is a hunk.
+  - **Equations** — two passes. **(2a) Presence + position match**: every `` in the original must align with a `` in the re-extract at roughly the same paragraph offset (and vice versa). Missing or extra equation slots are structural fails. **(2b) Canonicalize + strict-compare**: for each aligned equation pair, canonicalize the LaTeX (v1: textual normalization — `\frac` ≡ `\dfrac`, `\mathrm{}` ≡ `\rm`, `\,` spacing, brace-around-single-token, `\tag{…}` stripped; v2 if v1.x FP rate stays high after textual patches: AST canonicalization) and strict-compare the canonical forms. Differences become **proposals**, not fails — see Stage 3. **Escalation rule:** if a sample of proposals shows &gt;30% cosmetic content **and** the cosmetic class is *not* dominated by a single fixable pattern, escalate to v2 AST. If one pattern accounts for ≥50% of cosmetic proposals (as `\tag{…}` did on the PSE pilot), write the v1.x textual rule first and re-measure before considering AST.
+  - **Asset references** — every original `<img class="inline-img" loading="lazy" alt="alt" src="figures/…">` / `<a href="tables/…" target="_blank" rel="noopener">XLSX</a>` / `<img class="inline-img" loading="lazy" alt="" src="images/…">` must align with a `[FIGURE: …]` / `[TABLE: …]` / `[IMAGE: …]` placeholder at the same position. Missing or extra placeholders are structural fails. Caption-text divergence between original `alt` text and placeholder caption is **reported only** (1.5-F/T/I owns caption correctness with a human reviewer).
+- **Output**: `_Sources/&lt;book&gt;/audit/prose_validation.json` keyed by `page`, schema-versioned `pdf2md-prose-validate/v1`. Each page entry carries `prose_hunks`, `equation_structural_fails`, `equation_content_proposals` (with original + re-extract + canonicalized forms), `asset_structural_fails`, `caption_notes`, and a per-class summary.</p>
+<p>**Stage 3 — Agent: interpretation and action.**</p>
+<p>- The persona reads `prose_validation.json` and consolidates findings:
+  - **Page-level structural fails** (prose divergence above noise floor, dropped/extra equations, dropped/extra asset placeholders) → enumerate pages for **`pdf2md-page-assets` re-dispatch**. The page is re-extracted upstream; the per-kind asset manifests, `&lt;book&gt;.md`, and renders regenerate. 1.5-P then re-runs on the affected pages only.
+  - **Equation content proposals** (canonicalized-LaTeX mismatches) → the persona dispatches `equation-flag-interpret` for each proposal to evaluate whether the re-extract&#x27;s LaTeX is a likely improvement, then writes the surviving proposals into `_Sources/&lt;book&gt;/audit/equations_backcheck.json` with a `source: &quot;1.5-P-machine&quot;` field. `audit_equations.py` renders these in the existing **Backcheck** slot of `equations.html` with the proposed LaTeX visible alongside the original, badged so the human knows the proposal came from machine re-extraction (vs. a Phase-3 fix from a prior human flag).
+  - **Caption notes** → recorded for context only. The 1.5-F/T/I human reviewer sees them as annotations on the figure/table/image chunk in the respective surface, but they don&#x27;t pre-flag the chunk.</p>
+<p>**Adoption / rejection of equation proposals (sticky-per-proposal):**</p>
+<p>When the 1.5-E human reviewer picks **Verified** on a Backcheck entry, the equation moves to `equations_verified.json` as today. When they pick **Flagged**, the original is marked as needing further correction (existing pipeline).</p>
+<p>A third action is needed: **Reject proposal** — the human is saying &quot;this specific machine fix is wrong, but I am not yet attesting the original is correct.&quot; This writes `(equation_hash, proposal_hash)` to `_Sources/&lt;book&gt;/audit/equations_rejected.json`. On subsequent 1.5-P runs, the comparator suppresses any proposal whose `(equation_hash, proposal_hash)` is in the rejected sidecar — but if the canonicalizer evolves or the re-extract produces a *different* proposal (different `proposal_hash`) for the same equation, it surfaces again. Rejection is scoped to the proposal, never silently upgraded into verification of the equation. `audit_equations.py` adds a `Reject proposal` action visible only on Backcheck entries with `source: &quot;1.5-P-machine&quot;`.</p>
+<p>**1.5-P is purely additive — never verification, never exemption.**</p>
+<p>The comparator can route human attention **TO** content (via proposals, structural fails, page-level pre-flags) but cannot route attention **AWAY** from any content. This applies symmetrically across all three classes:</p>
+<p>- **Equation content match between extracts is silent but NOT verification.** Both VLM extracts can canonicalize-equal because they both made the same error against the printed equation. 1.5-P never writes to `equations_verified.json` or `equations_flagged.json`. The only equation-state sidecar it writes is `equations_backcheck.json` (proposals). The human at 1.5-E remains the sole authority that can verify any equation.
+- **Prose-line match between extracts is silent but NOT verification.** 1.5-P never marks any prose region as reviewed; it only flags divergences.
+- **Asset-placeholder structural match is silent but NOT verification.** Presence and position of a placeholder in both extracts does not attest that the asset&#x27;s caption or crop is correct. 1.5-F/T/I remain the sole authorities.
+- **Page-level &quot;no 1.5-P findings&quot; status is silent but NOT exemption.** Atoms inheriting from such a page proceed through normal Gate-2 atom review with no 1.5-P-induced pre-flags AND no 1.5-P-induced exemption from review.</p>
+<p>**Effect on downstream sub-gates and Gate 2:**</p>
+<p>- 1.5-S / 1.5-F / 1.5-T / 1.5-I run on pages that have cleared 1.5-P structural checks. Reviewers see fewer obviously-broken pages, but every chunk still requires human attestation.
+- 1.5-E inherits machine proposals as pre-populated Backcheck entries (no new surface required).
+- At Gate 2, atoms inheriting from a page that has unresolved 1.5-P findings (open proposals or pending re-dispatch) are auto-pre-flagged in the atom review sidecar. Atoms from pages with no 1.5-P findings proceed through normal review with neither pre-flag nor exemption — 1.5-P silence is never an attestation.</p>
+<p>**Status**: implemented. `tools/source_audit/{tokenize_md,normalize_prose,canonicalize_latex,compare_extracts,validate_prose}.py` are the deterministic Stage 2 modules. `skills/domain-prose-validate/` is the Stage 1 skill. `tools/decomp/build_prose_validate_brief.py` + `tools/source_audit/run_prose_validation.py` are the dispatch/aggregation helpers for Stage 3. `audit_equations.py` renders the 1.5-P-machine source badge and the Reject-proposal action on Backcheck entries, with `equations_rejected.json` suppression sticky per `(equation_hash, proposal_hash)`.</p>
+<p>**Output (in draft):**</p>
+<p>- `&lt;book&gt;_skeleton.reviewed.json` per source
+- Updated `&lt;book&gt;_dispatch_plan.json` per source (excludes reviewer-confirmed out-of-scope sections)
+- Six sidecar JSON families under `_Sources/&lt;book&gt;/audit/`: `sections_*`, `equations_*` (legacy `verified.json` / `flagged.json` honored; `equations_backcheck.json` populated by both EQUATION_AUDIT Phase 3 fixes and 1.5-P machine proposals; `equations_rejected.json` for sticky-per-proposal rejections), `figures_*`, `tables_*`, `images_*`, plus the 1.5-P artifacts: `prose_validation.json` and the per-page re-extracts under `prose_validation_extracts/`</p>
+<p>**Gate 1.5 (all required sub-gates must PASS):**
+Ordering: **1.5-P first** as a machine prefilter — it consumes raw `&lt;book&gt;.md` + page rasters (no human input required) and routes structurally-broken pages back through `pdf2md-page-assets` re-dispatch before any human time is spent. Once 1.5-P&#x27;s open structural fails are zero (proposals may still be open; those are adjudicated inline at 1.5-E), the human sub-gates run: **1.5-S** next (locks the skeleton + dispatch scope), then **1.5-E** / **1.5-F** / **1.5-T** / **1.5-I** in any order (the four per-kind surfaces are independent), plus **1.5-Fo** when folio extraction was run on the source. Proceed to Phase 2 only when all required sub-gates pass.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0017" class="chunk sec depth-4" data-kind="section" data-key="section:30c8cc894067" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0017</span> Phase 2 — Normalize (per-dispatch-unit atomization via TASK fan-out)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30c8cc894067" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30c8cc894067" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30c8cc894067" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Convert each in-scope dispatch unit into a per-unit atomic-unit CSV via a bounded `TASK + domain-source-atomize` invocation, then merge across all units of all sources into the consolidated Domain Ledger. Gate 2 closes on the merged ledger via browser-mediated review.</p>
+<p>**Chunking strategy (delegated to the skill):**</p>
+<p>Per-unit atomization is performed by `skills/domain-source-atomize/`. The skill applies the same **semantic-bounded chunking** rules previously documented inline — each atom corresponds to one instruction, one concept, or one requirement; the smallest standalone unit of meaning. The skill&#x27;s `SKILL.md` is the authoritative specification of the chunking and classification rules; this doctrine retains them for orchestrator-side awareness:</p>
+<p>- atomic-unit text MUST contain semantic instructional content only — page numbers, running headers, orphan reference markers, OCR/extraction artifacts, and standalone boilerplate are stripped from `UnitStatement` and (when retained as anchors) live in the dual `SourceRef`;
+- a chunk whose entire content is boilerplate (only a page number, only a running header, only a publisher slug) MUST NOT be promoted to its own atom;
+- every chunk is classified IN / OUT / TBD per the binding rules in `SKILL.md` (front/back-matter rules subsumed by the Phase-1.5 reviewed skeleton; the persona&#x27;s reviewed skeleton determines the in-scope line range fed to the skill).</p>
+<p>**Dispatch flow (per source):**</p>
+<p>1. For each source&#x27;s `&lt;book&gt;_dispatch_plan.json`:
+   1. For each `unit_id` in the plan&#x27;s `units` list:
+      1. Render the INIT-TASK brief: `python3 tools/decomp/build_atomization_brief.py --dispatch-plan &lt;book&gt;_dispatch_plan.json --unit-id &lt;unit_id&gt; --md &lt;book&gt;.md --skeleton &lt;book&gt;_skeleton.reviewed.json --asset-manifest &lt;book&gt;_assets_manifest.json --output-ledger-path _Decomposition/_atomization_work/&lt;book&gt;/dispatch_&lt;unit_id&gt;_atoms.csv --output-vocab-seed-path _Decomposition/_atomization_work/&lt;book&gt;/dispatch_&lt;unit_id&gt;_vocab.csv`.
+      2. Dispatch the brief to `TASK` with `TaskSkill: domain-source-atomize`. TASK loads the skill and the worker reads ONLY the assigned line range.
+      3. Capture `RUN_STATUS` and per-unit counts; record in the dispatch log.
+   2. Batches of 4–8 units MAY run in parallel; the per-unit CSVs are written to disjoint paths.
+   3. Failed units (`RUN_STATUS=FAILED` / `FAILED_INPUTS`) are re-dispatched in isolation after the persona diagnoses the input issue.
+2. When all dispatch units for a source have produced per-unit CSVs:
+   - Run `tools/decomp/merge_source_atomizations.py per-source --dispatch-plan &lt;book&gt;_dispatch_plan.json --unit-csv-glob &#x27;&lt;work&gt;/&lt;book&gt;_dispatch_*_atoms.csv&#x27; --source-prefix &lt;PREFIX&gt; --source-name &lt;book&gt; --output &lt;book&gt;_atomic_units.csv --strict-coverage`. The merge assigns stable `HBA-&lt;PREFIX&gt;-NNNNN` IDs in skeleton order, validates `LocalSeq` monotonicity per unit, re-derives `ContentHash` to verify integrity, dedupes by hash, and fails fast on missing units.
+3. When all sources have per-source CSVs:
+   - Run `tools/decomp/merge_source_atomizations.py cross-source --per-source &lt;book1&gt;_atomic_units.csv --per-source &lt;book2&gt;_atomic_units.csv ... --output Atomic_Domain_Ledger.csv`. The cross-source merge concatenates, validates ID-prefix uniqueness, surfaces unresolved cross-source `Corrects` references, and adds `SourceDoc` + `SourcePrefix` columns.
+4. Consolidate vocabulary:
+   - Run `tools/decomp/merge_vocabulary_seeds.py --seed &lt;book1&gt;_vocabulary_seed.csv --source-doc &lt;book1&gt; --seed &lt;book2&gt;_vocabulary_seed.csv --source-doc &lt;book2&gt; ... --output Vocabulary_Map.csv`. (Per-source vocab seeds are produced by merging each source&#x27;s per-unit `&lt;book&gt;_dispatch_&lt;unit_id&gt;_vocab.csv` outputs ahead of this step — typically by simple concat, since the per-unit outputs are already source-local.)
+5. Re-render each source&#x27;s `&lt;book&gt;.html` in `atom-review` mode (sections + atoms):
+   - Run `tools/decomp/render_source_html.py --md &lt;book&gt;.md --asset-manifest &lt;book&gt;_assets_manifest.json --skeleton &lt;book&gt;_skeleton.reviewed.json --audit-dir _Sources/&lt;book&gt;/audit --output-html _Sources/&lt;book&gt;/audit/&lt;book&gt;.html --output-section-nodes &lt;book&gt;_section_nodes.csv --mode atom-review --atomic-units-csv &lt;book&gt;_atomic_units.csv`. Each in-scope section now carries its mapped atoms as a reviewable list next to the source-page image. Per-asset review state from Phase 1.5 (`equations.html` / `figures.html` / `tables.html` / `images.html`) stays where it is — those surfaces don&#x27;t need re-rendering for Gate 2.</p>
+<p>**Gate-2 human review (browser-mediated):**</p>
+<p>The user opens each source&#x27;s regenerated `&lt;book&gt;.html` and reviews atoms via filter chips:</p>
+<p>- **`Only TBD`** — chase down every TBD atom; the persona reviews the user&#x27;s flag notes and re-classifies via per-source persona dispatch or manual edit.
+- **`Only flagged`** — atoms flagged for content drift, mis-atomization, or boundary issues.
+- **`Only OUT`** — verify boilerplate is correctly classified out.
+- **`Only IN`** — spot-check substantive atoms by section.</p>
+<p>Sidecar exports from each browser session land in `_Sources/&lt;book&gt;/audit/`. The persona drains the flagged buckets iteratively until `flagged_count = 0` (or all flags resolved with resolution notes).</p>
+<p>**Output (in draft):**</p>
+<p>- Per-unit atom CSVs (`_Decomposition/_atomization_work/&lt;book&gt;/dispatch_*_atoms.csv`) — immutable after merge closes
+- Per-unit vocab seed CSVs (`_Decomposition/_atomization_work/&lt;book&gt;/dispatch_*_vocab.csv`)
+- Per-source ledger (`&lt;book&gt;_atomic_units.csv`)
+- Merged Domain Ledger (`Atomic_Domain_Ledger.csv`)
+- Merged Vocabulary Map (`Vocabulary_Map.csv`)
+- Updated per-source HTML in `atom-review` mode
+- Sidecar exports under `_Sources/&lt;book&gt;/audit/`</p>
+<p>**Gate 2 (confirm normalization):**
+User confirms: &quot;Yes, the merged Domain Ledger reflects the corpus content, the IN/OUT/TBD classifications are correct (flagged atoms = 0 or all flags resolved with resolution notes), the cleaning rule was applied correctly, and the vocabulary choices are acceptable.&quot; Proceed to Phase 2.5.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0018" class="chunk sec depth-4" data-kind="section" data-key="section:f9c4b22195dc" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0018</span> Phase 2.5 — Retrieval prep (deterministic sub-step, not a gate)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9c4b22195dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9c4b22195dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9c4b22195dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Build the V2 source database and retrieval index needed by Gate 3 / Gate 4 ratification.</p>
+<p>**Actions:**</p>
+<p>1. Run `tools/source_catalog/build_source_database.py --domain-root &lt;domain-root&gt;`. This builds the domain-local source catalog snapshot under `&lt;domain-root&gt;/_LocalIndexes/` from `_Sources/`, audit sidecars, section nodes, and decomposition CSVs. Source files are referenced in place by path and SHA-256; they are not copied into the database.
+2. Run `tools/retrieval/build_source_index.py --snapshot &lt;domain-root&gt;/_LocalIndexes/_LATEST.md`. This builds BM25 + dense retrieval sidecars inside the same source database snapshot.
+3. Build the cross-source TOC reconciliation prior: `tools/decomp/build_toc_priors.py --skeleton &lt;book1&gt;_skeleton.reviewed.json --skeleton &lt;book2&gt;_skeleton.reviewed.json ... --output-md cross_source_toc_matrix.md --output-csv cross_source_toc_matrix.csv`.</p>
+<p>The source database, retrieval sidecars, and TOC matrix MUST refresh whenever source files, audit sidecars, section nodes, or the Domain Ledger change (e.g., post-Gate-2 fix).</p>
+<p>This step is deterministic and non-conversational; no user gate.</p>
+<p>**Output:**</p>
+<p>- `&lt;domain-root&gt;/_LocalIndexes/_LATEST.md` (pointer to current source database snapshot)
+- `&lt;domain-root&gt;/_LocalIndexes/snapshots/SRCIDX_&lt;UTC&gt;/` (catalog + retrieval sidecars)
+- `cross_source_toc_matrix.{md,csv}`</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0019" class="chunk sec depth-4" data-kind="section" data-key="section:f796c19aa89b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0019</span> Phase 3 — Define Categories (cross-source TOC reconciliation)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f796c19aa89b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f796c19aa89b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f796c19aa89b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Partition IN-scope Handbook Units into flat Categories with no overlap and no gaps. The Phase-3 starting point is the cross-source TOC matrix — each admitted source&#x27;s TOC is itself an expert decomposition, and Categories are proposed as a reconciliation of those structures.</p>
+<p>**Actions:**</p>
+<p>1. Open `cross_source_toc_matrix.md` to inspect each source&#x27;s TOC side by side. Inspect `cross_source_toc_matrix.csv` for high-overlap section pairs (Jaccard ≥ 0.3 or shared_count ≥ 3) as alignment candidates.
+2. Propose Categories (flat list) as a reconciliation of the cross-source structures:
+   - `CategoryID` (`CAT-###`, stable),
+   - `Name` and `ScopeDescription`,
+   - `InclusionCriteria` (optional),
+   - `Exclusions` (optional),
+   - **`SourceAlignment`** (new field, optional): citations to specific sections across sources that motivate the category, with notes indicating where authors agree, diverge, or supersede.
+3. Assign each **IN** Handbook Unit to exactly one Category.
+4. If a unit appears to belong to multiple Categories:
+   - keep units atomic and force a decision, **or**
+   - split the unit into smaller units (user-confirmed). Unit splits change `UnitStatement` text for the affected rows and therefore invalidate their embeddings + BM25 tokens.</p>
+<p>**Index-refresh trigger:** If Phase 3 admits any unit splits, the source database and source retrieval index MUST be rebuilt before scope ratification opens.</p>
+<p>**Gate 3 prerequisite — retrieval-driven Category scope ratification (binding):**</p>
+<p>Before Gate 3 may close, every proposed Category MUST pass a retrieval-driven scope ratification check. Catching scope-vs-content drift at the Category level (10-ish entities) prevents it from propagating into KTY proposals at Phase 4 (dozens of entities). Same five-verdict shape as KTY ratification.</p>
+<p>**Precondition (hard):** The source database snapshot at `&lt;domain-root&gt;/_LocalIndexes/_LATEST.md` MUST be current with respect to source files, audit sidecars, section nodes, and the Domain Ledger. The snapshot&#x27;s `Chunks.csv` and retrieval sidecars MUST be current before ratification queries run.</p>
+<p>**Procedure (per Category):**</p>
+<p>1. Confirm the precondition above.
+2. For each proposed Category, formulate a scope query string from the Category Name and ScopeDescription (plus InclusionCriteria / Exclusions when present).
+3. Query the V2 source index with the scope string, using filters as needed to inspect `LEDGER_ATOM`, `SECTION_NODE`, or mixed chunk results; take top-`k` results (default `k = max(50, 2 * MappedAtomCount)`).
+4. Compute the overlap between the top-`k` retrieval result set and the set of atoms currently mapped to the Category.
+5. Compare semantic similarity (cosine) between the scope query embedding and each mapped atom&#x27;s embedding; flag atoms below the configured cosine threshold (default `0.75`).</p>
+<p>**Verdicts** (identical shape to KTY ratification):</p>
+<p>| Verdict | Definition | Blocking? |
+|---|---|---|
+| `CLUSTER_COHERENT` | High overlap between top-k retrieval and mapped atoms; mapped-atom similarity at or above threshold | No |
+| `SCOPE_REFINEMENT_NEEDED` | Mapped atoms are topically related but the Category Name/ScopeDescription does not crisply describe them; rename or rewrite the description | **Yes** |
+| `SCOPE_TOO_BROAD` | Top-k retrieval returns many atoms not mapped to this Category but topically aligned with its scope; Category should be split or its scope tightened | **Yes** |
+| `SCOPE_TOO_NARROW` | Mapped atoms span topics the Category scope does not cover; Category should be broadened, or atoms re-clustered into the correct Categories | **Yes** |
+| `LOW_COHESION` | Mapped atoms have low pairwise similarity even though they satisfy the scope query; advisory only | No |</p>
+<p>**Per-atom Category-assignment retrieval check:**</p>
+<p>In addition to per-Category ratification, run a per-atom assignment check: for each IN atom, query the atom index with the atom&#x27;s assigned Category scope and verify the atom itself appears in top-`k`. Atoms that fail to retrieve under their assigned Category&#x27;s scope are flagged as **misassignment candidates** and routed back for user review. This makes the &quot;no gaps / no overlaps&quot; invariant machine-checkable instead of merely asserted.</p>
+<p>Blocking Category-level verdicts route back to Phase 3 Category refinement (rename, rewrite ScopeDescription, split, merge, or reassign atoms). Misassignment candidates route to per-atom review. Gate 3 cannot close while any Category carries a blocking verdict or while unresolved misassignment candidates remain.</p>
+<p>The full per-Category verdict set is recorded as a companion register (`Category_Scope_Ratification.csv`); the misassignment candidate list is recorded as `Category_Assignment_Findings.csv`. Both surface in the Decision Log.</p>
+<p>**Output (in draft):**</p>
+<p>- Category list with `SourceAlignment` citations
+- Unit→Category assignment (in the Domain Ledger)
+- `Category_Scope_Ratification.csv` (per-Category verdicts)
+- `Category_Assignment_Findings.csv` (per-atom misassignment candidates, if any)</p>
+<p>**Gate 3 (confirm categories):**
+User confirms: &quot;Yes, Categories are correct, each IN-scope unit belongs to exactly one Category, every Category carries a `CLUSTER_COHERENT` ratification verdict, and all misassignment candidates have been resolved (advisory `LOW_COHESION` findings reviewed and accepted).&quot;</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0020" class="chunk sec depth-4" data-kind="section" data-key="section:762ad32519db" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0020</span> Phase 4 — Define Knowledge Types (within each Category)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:762ad32519db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:762ad32519db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:762ad32519db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Define Knowledge Types that operationalize the domain into reusable units of structured knowledge.</p>
+<p>**Actions:**</p>
+<p>For each Knowledge Type:
+- Stable ID: `KTY-CC-TT_{shortDescription}` (stable; hyphenated category/type pair plus descriptive suffix)
+- Name
+- Description (what knowledge it contains and why it exists)
+- Intended users / roles (TBD allowed)
+- When used / triggers (TBD allowed)
+- **Canonical schema** (best-effort; may be one of the standard schemas below or custom; `TBD` allowed)</p>
+<p>For each Knowledge Subject (within its parent Knowledge Type):
+- Stable ID: `SUB-CC-TT-SS_{shortDescription}` (stable; extends parent KTY index with two-digit subject index)
+- Name
+- Description (the specific domain topic this subject addresses)
+- Best-effort unit linkage (`CoversUnits`)</p>
+<p>**Standard schema options (recommended, not mandatory):**
+- **Procedure**: Purpose, Scope, Preconditions, Inputs, Steps, Outputs, Quality Checks, Exceptions, References
+- **Checklist**: Purpose, When to Use, Checklist Items, Acceptance Criteria, References
+- **Template**: Purpose, Fields/Sections, Instructions, Examples, References
+- **Guidance / Playbook**: When to Use, Principles, Options, Decision Points, Examples, References
+- **Reference**: Definition, Scope, Related Concepts, Do/Don&#x27;t, References</p>
+<p>**Output (in draft):**</p>
+<p>- Knowledge Type list grouped by Category
+- Knowledge Subject list grouped by Knowledge Type
+- Knowledge Type and Subject attribute tables
+- Unit→Subject mapping in the Domain Ledger (best-effort; gaps surfaced)</p>
+<p>**Gate 4 prerequisite — retrieval-driven KTY scope ratification (binding):**</p>
+<p>Before Gate 4 may close, every proposed Knowledge Type MUST pass a retrieval-driven scope ratification check. This verifies that a KTY&#x27;s declared scope (Name + Description) matches the atomic content actually mapped to it.</p>
+<p>**Precondition (hard):** The atom retrieval index MUST be current with respect to the Domain Ledger&#x27;s `UnitStatement` content.</p>
+<p>**Procedure (per KTY):**</p>
+<p>1. Confirm the precondition above.
+2. For each proposed KTY, formulate a scope query string from the KTY Name and Description.
+3. Query the index with the scope string; take top-`k` results (default `k = max(20, 2 * MappedAtomCount)`), optionally filtered to the parent Category.
+4. Compute the overlap between the top-`k` retrieval result set and the set of atoms currently mapped to the KTY.
+5. Compare semantic similarity (cosine) between the scope query embedding and each mapped atom&#x27;s embedding; flag atoms below the configured cosine threshold (default `0.75`).</p>
+<p>**Verdicts:**</p>
+<p>| Verdict | Definition | Blocking? |
+|---|---|---|
+| `CLUSTER_COHERENT` | High overlap between top-k retrieval and mapped atoms; mapped-atom similarity at or above threshold | No |
+| `SCOPE_REFINEMENT_NEEDED` | Mapped atoms are topically related but the KTY Name/Description does not crisply describe them; rename or rewrite the Description | **Yes** |
+| `SCOPE_TOO_BROAD` | Top-k retrieval returns many atoms not mapped to this KTY but topically aligned with its scope; KTY should be split or its scope tightened | **Yes** |
+| `SCOPE_TOO_NARROW` | Mapped atoms span topics the KTY scope does not cover; KTY should be broadened, or atoms re-clustered into the correct KTYs | **Yes** |
+| `LOW_COHESION` | Mapped atoms have low pairwise similarity even though they satisfy the scope query; advisory only — does not block, but the user is shown the finding | No |</p>
+<p>**Blocking verdicts route back to Phase 4 KTY refinement** (rename, rewrite Description, split, merge, or re-cluster atoms) and the ratification check is re-run. Gate 4 cannot close while any KTY carries a blocking verdict.</p>
+<p>The full per-KTY verdict set is recorded as a companion register (`KTY_Scope_Ratification.csv`) and surfaced in the Decision Log.</p>
+<p>**Gate 4 (confirm Knowledge Types):**
+User confirms: &quot;Yes, Knowledge Types, Knowledge Subjects, schemas, and responsibilities are acceptable, and every KTY carries a `CLUSTER_COHERENT` ratification verdict (advisory `LOW_COHESION` findings reviewed and accepted).&quot;</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0021" class="chunk sec depth-4" data-kind="section" data-key="section:8fd748aa3f09" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0021</span> Phase 5 — Verify Coverage (anti-fragile checks + browser-mediated section coverage)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8fd748aa3f09" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8fd748aa3f09" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8fd748aa3f09" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Prove that decomposition covers the handbook&#x27;s IN-scope content and make gaps visible and trackable. Section-level coverage is attested by the user in the browser.</p>
+<p>**Actions:**</p>
+<p>1. Verify every **IN** Handbook Unit is:
+   - assigned to exactly one Category (required),
+   - mapped to at least one Knowledge Type (best-effort; missing mappings are open issues).
+2. Verify each Knowledge Type belongs to exactly one Category (required).
+3. Compute section coverage telemetry:
+   - For each in-scope section across all sources, count atoms mapped to that section.
+   - Tabulate coverage density (atoms per ~50 source lines).
+   - Flag zero-coverage sections as open issues.
+4. Re-render each source&#x27;s `&lt;book&gt;.html` in `coverage-review` mode (sections only):
+   - `tools/decomp/render_source_html.py ... --mode coverage-review --atomic-units-csv &lt;book&gt;_atomic_units.csv`. Each section is color-coded by atom-coverage density (cov-empty / cov-low / cov-mid / cov-high). The per-kind asset surfaces are not part of Gate 5 — coverage is a section-level property.
+5. The user opens each source&#x27;s HTML and reviews `cov-empty` sections in particular, attesting that:
+   - the zero-coverage is acceptable (e.g., section is true preamble / boilerplate; OR the section will be filled by scope-change cycles per AOP-08&#x27;s scaffold-for-fill rule),
+   - OR the zero-coverage indicates a Phase-2 gap that warrants re-dispatching the affected unit.
+6. Produce **Coverage &amp; Telemetry** summary (required).</p>
+<p>**Output (in draft):**</p>
+<p>- Coverage &amp; Telemetry section with counts and open issues, including section coverage density
+- Open Issues list referencing stable IDs (`HBA-&lt;PREFIX&gt;-NNNNN`, `CAT-###`, `KTY-CC-TT_*`, `SUB-CC-TT-SS_*`, `SEC-&lt;PREFIX&gt;-NNNN`)
+- Updated per-source HTML in `coverage-review` mode
+- Section coverage sidecar exports under `_Sources/&lt;book&gt;/audit/` (`&lt;source_prefix&gt;_sections_coverage_&lt;TS&gt;.json`)</p>
+<p>**Gate 5 (confirm verification):**
+User confirms: &quot;Coverage and mappings are acceptable; section-coverage gaps have been ruled on (accepted as scaffold-for-fill OR routed back for Phase-2 re-dispatch); open issues list is correct.&quot;</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0022" class="chunk sec depth-4" data-kind="section" data-key="section:eac234d4080b" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0022</span> Phase 6 — Publish the Domain Decomposition (finalize)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eac234d4080b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eac234d4080b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eac234d4080b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Produce the final domain decomposition document as a single coherent artifact suitable for downstream agents.</p>
+<p>**Actions:**</p>
+<p>- Ensure the document includes:
+  - Domain Ledger (required),
+  - Coverage &amp; Telemetry (required, with section coverage telemetry),
+  - Vocabulary Map (required),
+  - Categories, Knowledge Types, Knowledge Subjects,
+  - Decision log / change log (required),
+  - Companion Inventory (required, listing all new register classes from Phase 1–5).
+- Confirm all per-source HTML review surfaces are in their final state with sidecar history archived.
+- Summarize what changed since last revision.</p>
+<p>**Gate 6 (final acceptance):**
+User confirms: &quot;This domain decomposition is the accepted basis for downstream work.&quot;</p>
+<p>---</p>
+<p>[[END:PROTOCOL]]</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG014-0023" class="chunk sec depth-2" data-kind="section" data-key="section:6a4bc1de8a6c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0023</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0024" class="chunk sec depth-3" data-kind="section" data-key="section:399bb1440057" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0024</span> Normative — &quot;What must it be?&quot;</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:399bb1440057" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:399bb1440057" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:399bb1440057" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section defines requirements for a valid domain decomposition.
+</p></div></div></section>
+<section id="SEC-AG014-0025" class="chunk sec depth-3" data-kind="section" data-key="section:c861945999c4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0025</span> Completeness requirements</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c861945999c4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c861945999c4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c861945999c4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A decomposition is complete when:</p>
+<p>| Requirement | Validation |
+|---|---|
+| Handbook normalized | Domain Ledger exists; each row has an `AtomicUnitID` (`HBA-&lt;PREFIX&gt;-NNNNN`), `UnitStatement`, `ContentHash`, IN/OUT/TBD status |
+| Per-source skeleton lifted | Every source has `&lt;book&gt;_skeleton.reviewed.json` and `&lt;book&gt;_dispatch_plan.json` |
+| Per-source HTML render present | Every source has `&lt;book&gt;.html` in atom-review mode for Gate 2 and coverage-review mode for Gate 5 |
+| Section nodes captured | Every source has `&lt;book&gt;_section_nodes.csv` populated |
+| Dispatch coverage | Every dispatch unit in every dispatch plan produced a per-unit CSV; the merge tool succeeded with `--strict-coverage` |
+| Cross-source TOC matrix present | `cross_source_toc_matrix.md` and `cross_source_toc_matrix.csv` exist and were consulted at Phase 3 |
+| Categories flat and scoped | Category list exists; each category has a scope description; `SourceAlignment` populated when reconciliation across sources motivated the category |
+| Category scope ratified | Every Category carries a `CLUSTER_COHERENT` verdict in the Category Scope Ratification register; no misassignment candidates remain open |
+| Category coverage | Every IN-scope Handbook Unit is assigned to exactly one Category |
+| Knowledge Types defined | Knowledge Types exist within each Category with IDs and (best-effort) schemas |
+| KTY scope ratified | Every Knowledge Type carries a `CLUSTER_COHERENT` verdict in the KTY Scope Ratification register |
+| Type assignment | Every Knowledge Type belongs to exactly one Category |
+| Subjects defined | Each Knowledge Type contains at least one Knowledge Subject (TBD allowed) |
+| Subject assignment | Every Knowledge Subject belongs to exactly one Knowledge Type |
+| Domain Ledger present | Atomic_Domain_Ledger.csv exists with stable IDs, dual SourceRefs, ContentHash, and mappings |
+| Section coverage attested | Every in-scope section&#x27;s atom-coverage status is either non-zero or explicitly attested as scaffold-for-fill at Gate 5 |
+| Coverage &amp; Telemetry present | Summary metrics, section coverage telemetry, and open issue taxonomy exist |
+| Vocabulary Map present | Canonical terms ↔ synonyms table exists, merged from per-source seeds |
+</p></div></div></section>
+<section id="SEC-AG014-0026" class="chunk sec depth-3" data-kind="section" data-key="section:a946a81537fb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0026</span> Consistency requirements</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a946a81537fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a946a81537fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a946a81537fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A decomposition is consistent when:</p>
+<p>| Requirement | Validation |
+|---|---|
+| No unit overlaps | An IN-scope unit is not assigned to multiple categories |
+| No unit gaps | No IN-scope unit remains unassigned to a category |
+| Stable IDs | IDs do not change across revisions unless explicitly requested |
+| Source prefixes unique | Every source&#x27;s `SourcePrefix` is unique within the corpus |
+| ContentHash integrity | Every Domain Ledger row&#x27;s `ContentHash = sha1(UnitStatement)[:12]` |
+| LocalSeq integrity | Within each dispatch unit, per-unit CSVs had strictly monotonic `LocalSeq` (validated at merge time) |
+| Cross-source `Corrects` resolution | Every non-empty `Corrects` reference resolves to a real AtomicUnitID in the merged ledger (warnings on misses are surfaced) |
+| Terminology consistent | Canonical terms are used consistently; synonyms are mapped |
+| Decisions explicit | Non-trivial assignment decisions are recorded and referencable |
+</p></div></div></section>
+<section id="SEC-AG014-0027" class="chunk sec depth-3" data-kind="section" data-key="section:61b55e9e677a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0027</span> Per-source skill output validity (Phase 2)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61b55e9e677a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61b55e9e677a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61b55e9e677a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For every per-unit atom CSV emitted by `domain-source-atomize`:</p>
+<p>| Requirement | Validation |
+|---|---|
+| Schema | Header is exactly `LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes` |
+| Line-range discipline | Every row&#x27;s MD line in `SourceRef` falls within the dispatch unit&#x27;s `LINE_START..LINE_END` |
+| Target-section discipline | Every row&#x27;s `SectionID` is in the dispatch unit&#x27;s `TARGET_SECTION_IDS` |
+| LocalSeq | Strictly increasing positive integers from 1 |
+| ContentHash | Non-empty, 12 lowercase hex chars, equals `sha1(UnitStatement)[:12]` |
+| InOutStatus | One of `IN`, `OUT`, `TBD` |
+| Dual SourceRef | Both halves present: `&lt;book&gt;.md:L####|&lt;book&gt;.html#anchor` |</p>
+<p>The `merge_source_atomizations.py per-source` step enforces these; failures block ledger assembly.
+</p></div></div></section>
+<section id="SEC-AG014-0028" class="chunk sec depth-3" data-kind="section" data-key="section:2beb79867845" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0028</span> Anti-patterns (invalid outputs)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2beb79867845" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2beb79867845" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2beb79867845" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Anti-pattern | Why it fails |
+|---|---|
+| Inventing domain content or rules | Breaks grounding; corrupts downstream knowledge generation |
+| Nested categories | Breaks partition invariants; complicates automation |
+| Silent ambiguity resolution | Hides defects; makes later reconciliation impossible |
+| No stable IDs | Prevents tracking and longitudinal comparison |
+| Per-unit worker assigning final stable AtomicUnitIDs | Breaks merge-time ID-assignment contract; merge will fail |
+| ContentHash mismatch | Breaks dedup, retrieval freshness, and HTML cross-reference |
+| Discarding the per-source HTML review surface as &quot;derived&quot; | It is the authoritative Gate-2 / Gate-5 review surface; treat it as a companion register |
+| Bypassing the dispatch plan and doing inline atomization | Re-introduces the context-budget problem this revision exists to solve |</p>
+<p>[[END:SPEC]]</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG014-0029" class="chunk sec depth-2" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0029</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0030" class="chunk sec depth-3" data-kind="section" data-key="section:b3ee6a17c41b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0030</span> Descriptive — &quot;What is it?&quot;</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b3ee6a17c41b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b3ee6a17c41b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b3ee6a17c41b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section defines the entities and required tables in the decomposition output.
+</p></div></div></section>
+<section id="SEC-AG014-0031" class="chunk sec depth-3" data-kind="section" data-key="section:d3c6df360caa" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0031</span> Required entities</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d3c6df360caa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d3c6df360caa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d3c6df360caa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0032" class="chunk sec depth-4" data-kind="section" data-key="section:857f2c6c4dd3" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0032</span> Handbook Unit (Atom)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:857f2c6c4dd3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:857f2c6c4dd3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:857f2c6c4dd3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `AtomicUnitID` (stable; format `HBA-&lt;SOURCE_PREFIX&gt;-NNNNN`; e.g., `HBA-PSE-00042`)
+- `UnitStatement` (normalized atomic instruction/concept; cleaned per the skill&#x27;s rules — semantic content only; no page numbers, running headers, or standalone boilerplate)
+- `SourceRef` (dual citation: `&lt;book&gt;.md:L####|&lt;book&gt;.html#anchor` — the MD line for grep-style navigation, the HTML anchor for browser-mediated review)
+- `ContentHash` (`sha1(UnitStatement)[:12]`; load-bearing — matches the `data-key` content-hash on the corresponding HTML review chunk; re-derived and verified at merge time)
+- `InOutStatus` (`IN|OUT|TBD`)
+- `SectionID` (the target section the atom belongs to within its source&#x27;s reviewed skeleton)
+- `DispatchUnitID` (the unit_id that produced this atom; useful for failure-isolation reruns)
+- `LocalSeq` (within-unit ordering; useful for tracing back to the per-unit CSV)
+- `SourceDoc` (the source&#x27;s doc_stem; added at cross-source merge)
+- `SourcePrefix` (the source&#x27;s prefix; added at cross-source merge)
+- `Corrects` (optional; for errata/corrigenda atoms — references `AtomicUnitID(s)` of the atom(s) being corrected; cross-source references are allowed)
+- `Notes`
+</p></div></div></section>
+<section id="SEC-AG014-0033" class="chunk sec depth-4" data-kind="section" data-key="section:11d53860eea1" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0033</span> Section Node</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11d53860eea1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11d53860eea1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11d53860eea1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `SectionID` (stable; format `SEC-&lt;SOURCE_PREFIX&gt;-NNNN`)
+- `SourceDoc`, `SourcePrefix`
+- `Path` (TOC path, e.g., `Ch3 § 3.5`)
+- `Depth` (heading depth)
+- `Title`
+- `LineStart`, `LineEnd` (1-indexed line range in the source MD)
+- `PageFirst`, `PageLast`
+- `HtmlAnchor` (e.g., `&lt;book&gt;.html#SEC-PSE-0042`)
+- `ContentHash` (of the section&#x27;s title + body; load-bearing for the HTML review chunk&#x27;s `data-key`)
+- `InScope` (`True|False`; from `&lt;book&gt;_skeleton.reviewed.json`)
+- `IsFrontMatter`, `IsBackMatter` (`True|False`)
+- `FigureRefs`, `TableRefs`, `EquationRefs` (semicolon-separated inline reference labels)
+- `AssetIDs` (semicolon-separated asset_ids inlined within the section&#x27;s line range)
+- `Text` (cleaned section body for indexing)
+</p></div></div></section>
+<section id="SEC-AG014-0034" class="chunk sec depth-4" data-kind="section" data-key="section:e591ed6f9f8f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0034</span> Dispatch Unit</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e591ed6f9f8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e591ed6f9f8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e591ed6f9f8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `unit_id` (`UNIT-&lt;SOURCE_PREFIX&gt;-NNNN`)
+- `line_start`, `line_end`
+- `target_section_ids`
+- `estimated_md_tokens`
+- `contains_oversized_section` (true if the unit is a single section that exceeded `--section-split-threshold` and could not be further subdivided)
+</p></div></div></section>
+<section id="SEC-AG014-0035" class="chunk sec depth-4" data-kind="section" data-key="section:3d68b071b1b5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0035</span> Category</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3d68b071b1b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3d68b071b1b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3d68b071b1b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `CategoryID` (stable; e.g., `CAT-001`)
+- `Name`
+- `ScopeDescription`
+- `InclusionCriteria` (optional)
+- `Exclusions` (optional)
+- `SourceAlignment` (optional; notes citing the source sections / authors whose decompositions motivate this Category, including agree/diverge/supersede markers)
+</p></div></div></section>
+<section id="SEC-AG014-0036" class="chunk sec depth-4" data-kind="section" data-key="section:afd3f752f19e" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0036</span> Knowledge Type</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:afd3f752f19e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:afd3f752f19e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:afd3f752f19e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `KnowledgeTypeID` (stable; follows `KTY-CC-TT_{shortDescription}`)
+- `Name`
+- `ParentCategoryID`
+- `Description`
+- `IntendedUsers` (`TBD` allowed)
+- `WhenUsed` (`TBD` allowed)
+- `CanonicalSchema` (best-effort; may be `TBD`)
+</p></div></div></section>
+<section id="SEC-AG014-0037" class="chunk sec depth-4" data-kind="section" data-key="section:444b7c2d9930" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0037</span> Knowledge Subject</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:444b7c2d9930" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:444b7c2d9930" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:444b7c2d9930" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- `SubjectID` (stable; e.g., `SUB-03-02-01_{shortDescription}`)
+- `Name`
+- `ParentKnowledgeTypeID`
+- `Description`
+- `CoversUnits` (best-effort; AtomicUnitIDs)
+- `Notes`</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG014-0038" class="chunk sec depth-3" data-kind="section" data-key="section:2fb3f287b23f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0038</span> Required tables/sections in the Domain Decomposition Document</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2fb3f287b23f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2fb3f287b23f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2fb3f287b23f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0039" class="chunk sec depth-4" data-kind="section" data-key="section:ed37991e5f52" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0039</span> 1) Vocabulary Map (table)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed37991e5f52" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed37991e5f52" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed37991e5f52" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Minimum columns:
+- `CanonicalTerm`
+- `Synonyms`
+- `Notes`</p>
+<p>Plus, when produced by `merge_vocabulary_seeds.py`:
+- `Definition`, `SourceDocs`, `SourceRefs`, `SourceCount`</p>
+<p>**Scope (per AOP-07):** Vocabulary Map scope is **bounded** to niche, novel, or ambiguous terms in the domain that genuinely warrant explicit disambiguation. General domain vocabulary that a competent language-model reader would know from context is out of scope. Sparse coverage is expected and is not a defect. Downstream auditors SHOULD NOT flag a sparsely populated Vocabulary Map as missing-data on this basis alone.
+</p></div></div></section>
+<section id="SEC-AG014-0040" class="chunk sec depth-4" data-kind="section" data-key="section:1fa85a1b549f" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0040</span> 2) Domain Ledger (table)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fa85a1b549f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fa85a1b549f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fa85a1b549f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Minimum columns:
+- `AtomicUnitID`
+- `SourceDoc`, `SourcePrefix`
+- `LocalSeq`
+- `UnitStatement` (cleaned semantic content only)
+- `SourceRef` (dual citation `&lt;book&gt;.md:L####|&lt;book&gt;.html#anchor`)
+- `ContentHash` (`sha1(UnitStatement)[:12]`)
+- `InOutStatus`
+- `SectionID` (the target section in the reviewed skeleton)
+- `DispatchUnitID`
+- `CategoryID` (required for IN; optional/blank for OUT — assigned at Gate 3)
+- `KnowledgeTypeID(s)` (one or many; or `TBD` — assigned at Gate 4)
+- `SubjectID(s)` (one or many; or `TBD` — assigned at Gate 4)
+- `Corrects` (optional; for errata atoms — cross-source allowed)
+- `DecisionRef` (optional; points to Decision Log entry)
+- `OpenIssue` (`TRUE|FALSE`)
+- `Notes`</p>
+<p>**Hard rule:** Every **IN** `AtomicUnitID` has exactly one `CategoryID`.
+**Hard rule:** Retrieval indexes built over the Domain Ledger MUST use `UnitStatement` only for token/embedding text. Provenance/source-anchor info lives in `SourceRef` and is queryable as metadata but never tokenized into BM25 or embedded.
+</p></div></div></section>
+<section id="SEC-AG014-0041" class="chunk sec depth-4" data-kind="section" data-key="section:11ce218d0f53" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0041</span> 3) Coverage &amp; Telemetry (summary block)</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11ce218d0f53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11ce218d0f53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11ce218d0f53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Minimum fields:
+- `UnitCount` (total Domain Ledger rows)
+- `INUnitCount`, `OUTUnitCount`, `TBDUnitCount`
+- `SourceCount`
+- `SectionCount` (total across all sources)
+- `InScopeSectionCount`
+- `SectionsWithZeroCoverageCount` (with IDs; surfaced as scaffold-for-fill at Gate 5)
+- `SectionCoverageDensityDistribution` (cov-empty / cov-low / cov-mid / cov-high counts)
+- `CategoryCount`
+- `KnowledgeTypeCount`
+- `SubjectCount`
+- `UnassignedINUnits` (must be 0 for acceptance)
+- `UnitsWithoutKnowledgeTypeMapping` (count)
+- `OpenIssuesByType` (counts, with IDs)
+- `Revision` identifier and date</p>
+<p>**Scaffold-for-fill (per AOP-08):** Zero-AU surfaces — Knowledge Types, Knowledge Subjects, or in-scope Sections with no atomic-unit rows in the Domain Ledger — are an intentional *scaffold-for-fill* state when explicitly attested at Gate 5. Such surfaces are populated subsequently by source-driven scope-change cycles (see `agents/AGENT_SCOPE_CHANGE.md`) operating against `_Sources/` (or the package&#x27;s equivalent source-fidelity authority). They MUST NOT be filled by invented content. Sparse-or-empty coverage at initial publication is expected for surfaces awaiting backfill and is not a defect on this basis alone. Downstream auditors SHOULD distinguish &quot;scaffold awaiting source-driven fill&quot; from &quot;decomposition defect&quot; via the Gate-5 attestation log.
+</p></div></div></section>
+<section id="SEC-AG014-0042" class="chunk sec depth-4" data-kind="section" data-key="section:6376ab9832c5" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0042</span> 4) Open Issues list</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6376ab9832c5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6376ab9832c5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6376ab9832c5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- A list of unresolved items referencing stable IDs:
+  - `HBA-&lt;PREFIX&gt;-NNNNN`, `CAT-###`, `KTY-CC-TT_{shortDescription}`, `SUB-CC-TT-SS_{shortDescription}`, `SEC-&lt;PREFIX&gt;-NNNN`, `UNIT-&lt;PREFIX&gt;-NNNN` (failed dispatches)
+</p></div></div></section>
+<section id="SEC-AG014-0043" class="chunk sec depth-4" data-kind="section" data-key="section:f027de928b8d" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0043</span> 5) Decision Log / Change Log</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f027de928b8d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f027de928b8d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f027de928b8d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- A small section where non-trivial choices are recorded so later work can trace why boundaries were set.</p>
+<p>**Granularity (per AOP-05):** Decision Log granularity is **policy-only**: it records gate promotions, scoping policies, cross-source reconciliation rulings, and other non-trivial assignment decisions. It is **not** a per-unit assignment journal.
+</p></div></div></section>
+<section id="SEC-AG014-0044" class="chunk sec depth-4" data-kind="section" data-key="section:cc4627afa1a8" data-status="unreviewed" data-depth="4" data-page="" data-in-scope="true"><header class="sec-head"><h5 class="sec-title"><span class="sid">SEC-AG014-0044</span> 6) Companion Inventory</h5><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc4627afa1a8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc4627afa1a8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc4627afa1a8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- A table listing every companion register in the canonical working package.
+- Minimum columns:
+  - `Filename`
+  - `PackageRole` (`authoritative companion register` | `derived publication artifact` | `snapshot / handoff artifact`)
+  - `Description` (brief purpose of the file)
+- This section enables downstream agents to discover the full package layout without scanning the filesystem.</p>
+<p>---</p>
+<p>[[END:STRUCTURE]]</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG014-0045" class="chunk sec depth-2" data-kind="section" data-key="section:404d3d1f7799" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG014-0045</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG014-0046" class="chunk sec depth-3" data-kind="section" data-key="section:527f19842770" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0046</span> Why the workflow scales by per-dispatch-unit fan-out</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:527f19842770" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:527f19842770" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:527f19842770" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The prior DOMAIN_DECOMP doctrine assumed a single conversational agent performs Phase-2 atomization (semantic-bounded chunking, IN/OUT/TBD classification, Vocabulary Map seeding) inline. This breaks above ~100k tokens. The piping-design test corpus is 5 books × ~50,000 MD lines (≈ multi-million tokens once figures, tables, and equations are resolved). The per-dispatch-unit fan-out — each unit ~15k MD tokens, mapping to one bounded `TASK + domain-source-atomize` worker — is the same pattern used by PDF2MD (per page) and DRAWING_EXTRACT (per page). The persona&#x27;s job becomes orchestration: render the plan, dispatch, merge, review. The heavy lifting moves into bounded workers whose context budget is comfortable.
+</p></div></div></section>
+<section id="SEC-AG014-0047" class="chunk sec depth-3" data-kind="section" data-key="section:6078e7529a88" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0047</span> Why each source is an admitted expert decomposition</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6078e7529a88" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6078e7529a88" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6078e7529a88" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+MWK 1956, Bausbacher, Weaver V1/V2, and Peng 2009 each encode a senior practitioner&#x27;s partition of piping design into chapters/sections/figures/tables. Re-decomposing without lifting that structure throws away signal. The per-source skeleton lift (`build_source_skeleton.py`) preserves it; the cross-source TOC matrix (`build_toc_priors.py`) makes the alignment visible so Phase 3 can reconcile rather than re-invent.
+</p></div></div></section>
+<section id="SEC-AG014-0048" class="chunk sec depth-3" data-kind="section" data-key="section:8d3827866dae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0048</span> Why the consolidated SDO is uniquely valuable because the sources disagree</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d3827866dae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d3827866dae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d3827866dae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The five sources frame their domain differently (MWK 1956 uses the Kellogg flexibility tradition; Peng 2009 uses modern ASME). They supersede one another on specific topics. No single source is authoritative for the cross-source domain. Cross-source reconciliation — surfaced via the TOC matrix at Phase 3, recorded in `SourceAlignment` on each Category, and traced through Gate-3 retrieval-ratification — is the unique work the SDO does. Replacing the SDO with hyperlinked HTML would lose it.
+</p></div></div></section>
+<section id="SEC-AG014-0049" class="chunk sec depth-3" data-kind="section" data-key="section:209714d827ae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0049</span> Why the per-source HTML is the human-review surface</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:209714d827ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:209714d827ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:209714d827ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Gate-2 review of 25k+ atoms is intractable in chat. Gate-5 attestation of section coverage across 1,500+ sections is similarly intractable. The audit-pattern HTML — content-hash `data-key`s, filter chips (only-flagged / only-TBD / only-OUT / by-kind), sticky stat counters, localStorage + timestamped sidecar exports — is the same pattern that successfully sustains equation-audit review of multi-thousand-equation corpora. Generalized to atoms + sections + figures + tables + equations, it is the right substrate.
+</p></div></div></section>
+<section id="SEC-AG014-0050" class="chunk sec depth-3" data-kind="section" data-key="section:bb51d29d0345" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0050</span> Why ContentHash is on the Domain Ledger</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb51d29d0345" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb51d29d0345" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb51d29d0345" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`sha1(UnitStatement)[:12]` is the bridge between the ledger and the HTML review surface. When the user clicks &quot;verified&quot; on an atom in the browser, the sidecar JSON records `atom:&lt;content-hash&gt; → verified_at`. When the HTML is re-rendered after a ledger edit, atoms whose `UnitStatement` changed self-invalidate (their hash changes) and drop out of verified state — which is the correct behavior, because the underlying text changed and the prior review no longer applies. This same self-invalidation principle is proven in `audit_equations.py` (equations keyed by `sha1(latex)[:12]`).
+</p></div></div></section>
+<section id="SEC-AG014-0051" class="chunk sec depth-3" data-kind="section" data-key="section:89c6a279b865" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0051</span> Why stable IDs survive the per-dispatch-unit pattern</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89c6a279b865" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89c6a279b865" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89c6a279b865" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Per-unit workers emit `LocalSeq` only; final stable `HBA-&lt;PREFIX&gt;-NNNNN` IDs are assigned at merge time by walking dispatch units in skeleton order. This makes per-unit dispatches stateless and re-runnable (a failed unit re-runs independently and yields the same atoms by content hash), while preserving I5&#x27;s stable-ID invariant for the merged ledger. Within the merged ledger, IDs remain stable across revisions unless the user explicitly requests renumbering.
+</p></div></div></section>
+<section id="SEC-AG014-0052" class="chunk sec depth-3" data-kind="section" data-key="section:015a993e401b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0052</span> Why retrieval-driven Gate-3 and Gate-4 ratification remain binding</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:015a993e401b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:015a993e401b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:015a993e401b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The retrieval-driven scope ratification was the prior doctrine&#x27;s strongest anti-fragile mechanism. This revision retains it through the V2 source index, where ledger atoms, section nodes, audit sidecars, and source chunks share one typed query substrate. It is the machine-checkable answer to &quot;do the proposed Categories / Knowledge Types actually fit the atoms mapped to them?&quot;
+</p></div></div></section>
+<section id="SEC-AG014-0053" class="chunk sec depth-3" data-kind="section" data-key="section:b09af0d165b5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG014-0053</span> Why the existing equation-audit sidecars are preserved</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b09af0d165b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b09af0d165b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b09af0d165b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The per-source `audit/` artifacts represent real human review work (e.g., MWK_1956 has 28 verified + 9 flagged equations across ~250 audited equations). Discarding that state on re-render would be a regression. `load_sidecar_with_fallback` and the hash-based fallback (`build_eq_hash_index`) ensure that prior equation review carries through to the new render, even when the legacy `&lt;page&gt;:&lt;hash&gt;` keys have drifted to slightly different pages in the assembled markdown.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG014";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

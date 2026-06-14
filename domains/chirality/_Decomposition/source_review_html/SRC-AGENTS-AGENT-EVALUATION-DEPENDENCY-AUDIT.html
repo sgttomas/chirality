@@ -1,0 +1,397 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-EVALUATION-DEPENDENCY-AUDIT - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>24</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG020-0001">AGENT INSTRUCTIONS — EVALUATION_DEPENDENCY_AUDIT (Type 2 Tas</a> <a href="#SEC-AG020-0002">Agent Type</a> <a href="#SEC-AG020-0003">Precedence</a> <a href="#SEC-AG020-0004">Non-negotiable invariants</a> <a href="#SEC-AG020-0005">Inputs (INIT-TASK Brief)</a> <a href="#SEC-AG020-0006">PROTOCOL</a> <a href="#SEC-AG020-0014">SPEC</a> <a href="#SEC-AG020-0015">STRUCTURE</a> <a href="#SEC-AG020-0017">Dependency Audit Report</a> <a href="#SEC-AG020-0018">Schema Conformance</a> <a href="#SEC-AG020-0019">Anchor Coverage</a> <a href="#SEC-AG020-0020">Evidence Coverage</a> <a href="#SEC-AG020-0021">Enum Validation (sampled)</a> <a href="#SEC-AG020-0022">Reconciliation Summary (if available)</a> <a href="#SEC-AG020-0023">Per-File Summary Table</a> <a href="#SEC-AG020-0024">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG020-0001" class="chunk sec depth-1" data-kind="section" data-key="section:410ce16747b4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG020-0001</span> AGENT INSTRUCTIONS — EVALUATION_DEPENDENCY_AUDIT (Type 2 Task • Dependency Register Validation)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:410ce16747b4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:410ce16747b4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:410ce16747b4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>This agent performs a deterministic audit of all `Dependencies.csv` files in a project execution instance. It validates schema conformance (v3.1), IMPLEMENTS_NODE anchor presence, EvidenceFile population, and canonical enum usage.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG020-0002" class="chunk sec depth-2" data-kind="section" data-key="section:a86ac923d3e3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a86ac923d3e3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a86ac923d3e3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a86ac923d3e3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/reports/`) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | Dependency audit report with per-deliverable schema check, anchor check, evidence check |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG020-0003" class="chunk sec depth-2" data-kind="section" data-key="section:1a0a2886d5bb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0003</span> Precedence</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a0a2886d5bb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a0a2886d5bb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a0a2886d5bb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** &gt; 2. **SPEC** &gt; 3. **STRUCTURE** &gt; 4. **RATIONALE**</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG020-0004" class="chunk sec depth-2" data-kind="section" data-key="section:3399ef0ba0b9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3399ef0ba0b9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3399ef0ba0b9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3399ef0ba0b9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Read-only.** Reads Dependencies.csv files and reconciliation reports. MUST NOT modify any files.
+- **Exhaustive.** Must check every Dependencies.csv file found, not a sample.
+- **Schema-aware.** Validates against Dependencies.csv v3.1 schema (29 required columns + optional extensions).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG020-0005" class="chunk sec depth-2" data-kind="section" data-key="section:ea0085575870" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0005</span> Inputs (INIT-TASK Brief)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea0085575870" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea0085575870" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea0085575870" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+PURPOSE: Dependency register audit of project execution instance
+EXECUTION_ROOT: {path}
+OUTPUT_FILE: {path to write report}
+```</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG020-0006" class="chunk sec depth-2" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0006</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG020-0007" class="chunk sec depth-3" data-kind="section" data-key="section:6bd0c62f7646" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0007</span> Step 1 — Find all Dependencies.csv files</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6bd0c62f7646" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6bd0c62f7646" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6bd0c62f7646" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Run: `find {EXECUTION_ROOT} -name &quot;Dependencies.csv&quot; -path &quot;*/1_Working/*&quot; | sort`
+</p></div></div></section>
+<section id="SEC-AG020-0008" class="chunk sec depth-3" data-kind="section" data-key="section:4f6ef0f1ab92" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0008</span> Step 2 — Validate schema per file</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4f6ef0f1ab92" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4f6ef0f1ab92" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4f6ef0f1ab92" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Run `tools/validation/validate_dependencies_schema.py {csv_path}` for each file found.
+Record per file: path, column count, schema status (VALID/INVALID), extension columns.</p>
+<p>&gt; Tool invocation: `python3 tools/validation/validate_dependencies_schema.py {csv_path}`
+&gt; Tool invocation (shell wrapper, optional): `tools/evaluation/check_dependency_schema.sh {EXECUTION_ROOT}`
+</p></div></div></section>
+<section id="SEC-AG020-0009" class="chunk sec depth-3" data-kind="section" data-key="section:78944c850536" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0009</span> Step 3 — Check IMPLEMENTS_NODE anchor</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:78944c850536" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:78944c850536" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:78944c850536" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Run: `tools/evaluation/check_implements_node.sh {EXECUTION_ROOT}` (or inline equivalent)
+Record per file: anchor count, has-at-least-one (Y/N).
+</p></div></div></section>
+<section id="SEC-AG020-0010" class="chunk sec depth-3" data-kind="section" data-key="section:b8fe1bb8bf1a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0010</span> Step 4 — Check EvidenceFile population</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8fe1bb8bf1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8fe1bb8bf1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8fe1bb8bf1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Run: `tools/evaluation/check_evidence_coverage.sh {EXECUTION_ROOT}` (or inline equivalent)
+Record per file: total rows, evidence-populated count, coverage percentage.
+</p></div></div></section>
+<section id="SEC-AG020-0011" class="chunk sec depth-3" data-kind="section" data-key="section:5708b9d41d0b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0011</span> Step 5 — Validate enum values</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5708b9d41d0b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5708b9d41d0b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5708b9d41d0b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>For a representative sample (10-15 files across packages), use `tools/validation/validate_enum.py` to verify:
+- `tools/validation/validate_enum.py DEPENDENCY_CLASS {value}`
+- `tools/validation/validate_enum.py ANCHOR_TYPE {value}`
+- `tools/validation/validate_enum.py DIRECTION {value}`
+- `tools/validation/validate_enum.py DEPENDENCY_TYPE {value}`
+- `tools/validation/validate_enum.py TARGET_TYPE {value}`
+- `tools/validation/validate_enum.py STATUS {value}`</p>
+<p>No legacy values (COORDINATION, INFORMATION) should appear.</p>
+<p>&gt; Tool invocation: `python3 tools/validation/validate_enum.py {ENUM_FIELD} {value}`
+&gt; Tool invocation (ID format spot-check, optional): `tools/validation/validate_id_format.sh {ID_TYPE} {ID_VALUE}`
+</p></div></div></section>
+<section id="SEC-AG020-0012" class="chunk sec depth-3" data-kind="section" data-key="section:8f08fe63a798" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0012</span> Step 6 — Run full graph analysis (if feasible)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f08fe63a798" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f08fe63a798" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f08fe63a798" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Run: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {SNAPSHOT_DIR}`
+This produces: `closure_summary.json`, `orphans.csv`, `scc_summary.csv`, `hubs.csv`, `bidirectional_pairs.csv`, `coverage.csv`, `id_normalization.csv`.</p>
+<p>&gt; Tool invocation: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {SNAPSHOT_DIR}`</p>
+<p>If the full analysis tool is unavailable, fall back to reading existing reconciliation reports at `_Reconciliation/DepClosure/`.
+</p></div></div></section>
+<section id="SEC-AG020-0013" class="chunk sec depth-3" data-kind="section" data-key="section:6e62c7ab19f9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0013</span> Step 7 — Compile report</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e62c7ab19f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e62c7ab19f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e62c7ab19f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Write to `OUTPUT_FILE`.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG020-0014" class="chunk sec depth-2" data-kind="section" data-key="section:618ee7849709" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0014</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:618ee7849709" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:618ee7849709" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:618ee7849709" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The audit is valid when:
+1. Every Dependencies.csv file found has been schema-checked.
+2. Anchor coverage is reported for every file.
+3. Evidence coverage percentage is computed for every file.
+4. Enum validation covers at least 10 files across different packages.
+5. Summary statistics are internally consistent.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG020-0015" class="chunk sec depth-2" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0015</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG020-0016" class="chunk sec depth-3" data-kind="section" data-key="section:e04a749eb1fd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG020-0016</span> Report format</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG020-0017" class="chunk sec depth-1" data-kind="section" data-key="section:90da995de679" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG020-0017</span> Dependency Audit Report</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:90da995de679" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:90da995de679" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:90da995de679" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Execution Root:** {path}
+**Date:** {YYYY-MM-DD}
+**Files Analyzed:** {N}
+**Total Dependency Rows:** {N}
+</p></div></div></section>
+<section id="SEC-AG020-0018" class="chunk sec depth-2" data-kind="section" data-key="section:4488d16d9e81" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0018</span> Schema Conformance</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4488d16d9e81" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4488d16d9e81" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4488d16d9e81" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Metric | Value |
+|--------|-------|
+| Files with valid v3.1 schema | {N}/{total} |
+| Files with extension columns | {N} |
+| Schema-invalid files | {N} (list if any) |
+</p></div></div></section>
+<section id="SEC-AG020-0019" class="chunk sec depth-2" data-kind="section" data-key="section:f5bd37055b1f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0019</span> Anchor Coverage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f5bd37055b1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f5bd37055b1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f5bd37055b1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Metric | Value |
+|--------|-------|
+| Total ANCHOR rows | {N} |
+| IMPLEMENTS_NODE rows | {N} |
+| Files with at least one IMPLEMENTS_NODE | {N}/{total} |
+| Files missing IMPLEMENTS_NODE | {list if any} |
+</p></div></div></section>
+<section id="SEC-AG020-0020" class="chunk sec depth-2" data-kind="section" data-key="section:b0b32edaf9ea" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0020</span> Evidence Coverage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0b32edaf9ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0b32edaf9ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0b32edaf9ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Metric | Value |
+|--------|-------|
+| Total rows checked | {N} |
+| Rows with EvidenceFile populated | {N} |
+| Coverage rate | {percentage} |
+</p></div></div></section>
+<section id="SEC-AG020-0021" class="chunk sec depth-2" data-kind="section" data-key="section:fd295afd7ca7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0021</span> Enum Validation (sampled)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd295afd7ca7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd295afd7ca7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd295afd7ca7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Enum Field | Valid | Invalid | Legacy |
+|-----------|-------|---------|--------|
+| DependencyClass | {N} | {N} | {N} |
+| ... | ... | ... | ... |
+</p></div></div></section>
+<section id="SEC-AG020-0022" class="chunk sec depth-2" data-kind="section" data-key="section:8788f9cebd58" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0022</span> Reconciliation Summary (if available)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8788f9cebd58" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8788f9cebd58" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8788f9cebd58" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Orphans, SCCs, hubs, bidirectional pairs from closure reports}
+</p></div></div></section>
+<section id="SEC-AG020-0023" class="chunk sec depth-2" data-kind="section" data-key="section:b85e46deaae6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0023</span> Per-File Summary Table</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b85e46deaae6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b85e46deaae6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b85e46deaae6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| DEL-ID | Total Rows | Anchor Rows | Execution Rows | Has IMPLEMENTS_NODE | Evidence Complete | Schema Valid |
+|--------|-----------|-------------|----------------|---------------------|-------------------|--------------|
+| ... | ... | ... | ... | ... | ... | ... |
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG020-0024" class="chunk sec depth-2" data-kind="section" data-key="section:246c073e46f8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG020-0024</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:246c073e46f8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:246c073e46f8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:246c073e46f8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This agent consolidates the dependency validation work that was performed ad hoc during the initial evaluation into a reproducible pipeline. It is separate from AUDIT_DEP_CLOSURE (which analyzes graph properties like cycles and orphans) because it focuses on per-file schema conformance and evidence completeness — mechanical checks that do not require graph traversal.</p>
+<p>Haiku model is sufficient because the work is deterministic CSV parsing and counting with no reasoning required beyond column matching and value validation.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG020";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

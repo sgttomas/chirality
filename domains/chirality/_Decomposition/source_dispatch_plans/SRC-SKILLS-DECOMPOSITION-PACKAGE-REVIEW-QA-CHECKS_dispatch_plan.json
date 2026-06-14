@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-QA-CHECKS",
+  "source_prefix": "SK032",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/decomposition-package-review/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:05+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK032-0001",
+      "line_start": 1,
+      "line_end": 55,
+      "target_section_ids": [
+        "SEC-SK032-0001",
+        "SEC-SK032-0002",
+        "SEC-SK032-0003",
+        "SEC-SK032-0004"
+      ],
+      "estimated_md_tokens": 317,
+      "contains_oversized_section": false
+    }
+  ]
+}

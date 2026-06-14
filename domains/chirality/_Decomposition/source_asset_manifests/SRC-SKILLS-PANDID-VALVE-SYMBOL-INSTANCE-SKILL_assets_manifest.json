@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-SKILLS-PANDID-VALVE-SYMBOL-INSTANCE-SKILL",
+  "source_doc_id": "SRC-SKILLS-PANDID-VALVE-SYMBOL-INSTANCE-SKILL",
+  "source_name": "skills/pandid-valve-symbol-instance/SKILL.md",
+  "source_prefix": "SK108",
+  "repo_rel_path": "skills/pandid-valve-symbol-instance/SKILL.md",
+  "catalog_rel_path": "@repo/skills/pandid-valve-symbol-instance/SKILL.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-PDF2MD-BRIEF-SCHEMA",
+  "source_prefix": "SK130",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-PDF2MD-BRIEF-SCHEMA_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/pdf2md/BRIEF_SCHEMA.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:12+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK130-0001",
+      "line_start": 1,
+      "line_end": 56,
+      "target_section_ids": [
+        "SEC-SK130-0001",
+        "SEC-SK130-0002",
+        "SEC-SK130-0003",
+        "SEC-SK130-0004"
+      ],
+      "estimated_md_tokens": 198,
+      "contains_oversized_section": false
+    }
+  ]
+}

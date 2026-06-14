@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-BRIEF-SCHEMA",
+  "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-BRIEF-SCHEMA",
+  "source_name": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+  "source_prefix": "SK011",
+  "repo_rel_path": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+  "catalog_rel_path": "@repo/skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

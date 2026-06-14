@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-FOUR-DOCUMENTS-QA-CHECKS",
+  "source_prefix": "SK091",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-FOUR-DOCUMENTS-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/four-documents/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:09+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK091-0001",
+      "line_start": 1,
+      "line_end": 28,
+      "target_section_ids": [
+        "SEC-SK091-0001",
+        "SEC-SK091-0002",
+        "SEC-SK091-0003",
+        "SEC-SK091-0004"
+      ],
+      "estimated_md_tokens": 251,
+      "contains_oversized_section": false
+    }
+  ]
+}

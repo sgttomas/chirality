@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-THESIS-BIGGER-PICTURE-CHIRALITY-OPENPIPESTRESS-BIGGER-PICTURE-DEVELOPMENT-PLAN",
+  "source_doc_id": "SRC-DOCS-THESIS-BIGGER-PICTURE-CHIRALITY-OPENPIPESTRESS-BIGGER-PICTURE-DEVELOPMENT-PLAN",
+  "source_name": "docs/thesis/bigger-picture/Chirality_OpenPipeStress_Bigger_Picture_Development_Plan.md",
+  "source_prefix": "DG028",
+  "repo_rel_path": "docs/thesis/bigger-picture/Chirality_OpenPipeStress_Bigger_Picture_Development_Plan.md",
+  "catalog_rel_path": "@repo/docs/thesis/bigger-picture/Chirality_OpenPipeStress_Bigger_Picture_Development_Plan.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

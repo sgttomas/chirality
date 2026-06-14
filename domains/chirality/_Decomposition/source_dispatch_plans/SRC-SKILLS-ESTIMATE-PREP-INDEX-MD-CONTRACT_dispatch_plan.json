@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-ESTIMATE-PREP-INDEX-MD-CONTRACT",
+  "source_prefix": "SK081",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-ESTIMATE-PREP-INDEX-MD-CONTRACT_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/estimate-prep/INDEX_MD_CONTRACT.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:08+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK081-0001",
+      "line_start": 1,
+      "line_end": 76,
+      "target_section_ids": [
+        "SEC-SK081-0001",
+        "SEC-SK081-0002",
+        "SEC-SK081-0003",
+        "SEC-SK081-0004",
+        "SEC-SK081-0005",
+        "SEC-SK081-0006",
+        "SEC-SK081-0007",
+        "SEC-SK081-0008",
+        "SEC-SK081-0009",
+        "SEC-SK081-0010",
+        "SEC-SK081-0011"
+      ],
+      "estimated_md_tokens": 391,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": "SRC-AGENTS-AGENT-DELIVERABLE-TASK",
+  "source_prefix": "AG013",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_DELIVERABLE_TASK.md",
+  "asset_manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_asset_manifests/SRC-AGENTS-AGENT-DELIVERABLE-TASK_assets_manifest.json",
+  "total_md_lines": 24,
+  "section_count": 1,
+  "generated_utc": "2026-06-14T00:55:01+00:00",
+  "sections": [
+    {
+      "section_id": "SEC-AG013-0001",
+      "depth": 1,
+      "title": "AGENT INSTRUCTIONS \u2014 DELIVERABLE_TASK Compatibility Pointer",
+      "section_number": null,
+      "parent_section_id": null,
+      "line_start": 5,
+      "line_end": 24,
+      "page_first": null,
+      "page_last": null,
+      "estimated_md_tokens": 180,
+      "is_front_matter": false,
+      "is_back_matter": false,
+      "in_scope_default": true,
+      "figure_refs": [],
+      "table_refs": [],
+      "equation_refs": [],
+      "asset_ids": []
+    }
+  ]
+}

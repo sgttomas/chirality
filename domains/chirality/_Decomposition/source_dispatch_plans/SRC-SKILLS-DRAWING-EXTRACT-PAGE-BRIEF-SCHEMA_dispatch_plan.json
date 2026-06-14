@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DRAWING-EXTRACT-PAGE-BRIEF-SCHEMA",
+  "source_prefix": "SK055",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DRAWING-EXTRACT-PAGE-BRIEF-SCHEMA_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/drawing-extract-page/BRIEF_SCHEMA.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:06+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK055-0001",
+      "line_start": 1,
+      "line_end": 247,
+      "target_section_ids": [
+        "SEC-SK055-0001",
+        "SEC-SK055-0002",
+        "SEC-SK055-0003",
+        "SEC-SK055-0004",
+        "SEC-SK055-0005",
+        "SEC-SK055-0006",
+        "SEC-SK055-0007",
+        "SEC-SK055-0008",
+        "SEC-SK055-0009",
+        "SEC-SK055-0010",
+        "SEC-SK055-0011",
+        "SEC-SK055-0012",
+        "SEC-SK055-0013",
+        "SEC-SK055-0014",
+        "SEC-SK055-0015",
+        "SEC-SK055-0016",
+        "SEC-SK055-0017",
+        "SEC-SK055-0018",
+        "SEC-SK055-0019",
+        "SEC-SK055-0020",
+        "SEC-SK055-0021",
+        "SEC-SK055-0022",
+        "SEC-SK055-0023"
+      ],
+      "estimated_md_tokens": 1817,
+      "contains_oversized_section": false
+    }
+  ]
+}

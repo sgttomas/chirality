@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-FRONTEND-README",
+  "source_prefix": "HX001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-FRONTEND-README_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/frontend/README.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:14+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-HX001-0001",
+      "line_start": 1,
+      "line_end": 185,
+      "target_section_ids": [
+        "SEC-HX001-0001",
+        "SEC-HX001-0002",
+        "SEC-HX001-0003",
+        "SEC-HX001-0004",
+        "SEC-HX001-0005",
+        "SEC-HX001-0006",
+        "SEC-HX001-0007",
+        "SEC-HX001-0008",
+        "SEC-HX001-0009",
+        "SEC-HX001-0010",
+        "SEC-HX001-0011"
+      ],
+      "estimated_md_tokens": 1229,
+      "contains_oversized_section": false
+    }
+  ]
+}

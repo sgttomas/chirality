@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-CONTRACT",
+  "source_prefix": "DG001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-CONTRACT_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/docs/CONTRACT.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:54:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-DG001-0001",
+      "line_start": 1,
+      "line_end": 134,
+      "target_section_ids": [
+        "SEC-DG001-0001",
+        "SEC-DG001-0002",
+        "SEC-DG001-0003",
+        "SEC-DG001-0004",
+        "SEC-DG001-0005",
+        "SEC-DG001-0006",
+        "SEC-DG001-0007",
+        "SEC-DG001-0008",
+        "SEC-DG001-0009",
+        "SEC-DG001-0010",
+        "SEC-DG001-0011",
+        "SEC-DG001-0012",
+        "SEC-DG001-0013",
+        "SEC-DG001-0014",
+        "SEC-DG001-0015"
+      ],
+      "estimated_md_tokens": 1551,
+      "contains_oversized_section": false
+    }
+  ]
+}

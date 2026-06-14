@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DBM-DRAFT-REVIEW-TOOL-POLICY",
+  "source_prefix": "SK018",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DBM-DRAFT-REVIEW-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/dbm-draft-review/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:04+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK018-0001",
+      "line_start": 1,
+      "line_end": 57,
+      "target_section_ids": [
+        "SEC-SK018-0001",
+        "SEC-SK018-0002",
+        "SEC-SK018-0003",
+        "SEC-SK018-0004",
+        "SEC-SK018-0005",
+        "SEC-SK018-0006",
+        "SEC-SK018-0007",
+        "SEC-SK018-0008"
+      ],
+      "estimated_md_tokens": 566,
+      "contains_oversized_section": false
+    }
+  ]
+}

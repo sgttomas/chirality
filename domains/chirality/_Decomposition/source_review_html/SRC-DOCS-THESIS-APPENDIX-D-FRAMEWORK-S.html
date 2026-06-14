@@ -1,0 +1,355 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-APPENDIX-D-FRAMEWORK-S - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>15</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG026-0001">Appendix D — A Conjecture on the Nature of Being and Knowing</a> <a href="#SEC-DG026-0002">D.1 Framework: Relationships with Respect to S</a> <a href="#SEC-DG026-0007">D.2 Interpretation</a> <a href="#SEC-DG026-0012">D.3 G Is Undefined Yet May Be Found</a> <a href="#SEC-DG026-0013">D.4 Connection to the Chirality Framework</a> <a href="#SEC-DG026-0014">D.5 Relationship to Polanyi&#x27;s *Meaning*</a> <a href="#SEC-DG026-0015">D.6 Note on Scope</a></nav>
+<main>
+<section id="SEC-DG026-0001" class="chunk sec depth-1" data-kind="section" data-key="section:33e29f8253ec" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG026-0001</span> Appendix D — A Conjecture on the Nature of Being and Knowing</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:33e29f8253ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:33e29f8253ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:33e29f8253ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This appendix presents a formal existential framework that underlies the claims made in Chapter 3 about the chirality of knowledge, the knowledge gap, and the double commitment. It is the philosophical foundation from which the Chirality Framework&#x27;s architectural commitments are derived.</p>
+<p>The framework uses formal notation to express existential relationships. It is not a logical proof — it clarifies existential conditions and possibilities. It supports authentic reflection. It does not compel acceptance or rejection of any position.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0002" class="chunk sec depth-2" data-kind="section" data-key="section:69125ed9aa5d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0002</span> D.1 Framework: Relationships with Respect to S</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69125ed9aa5d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69125ed9aa5d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69125ed9aa5d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG026-0003" class="chunk sec depth-3" data-kind="section" data-key="section:9d6188e4a9f2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0003</span> Premise</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d6188e4a9f2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d6188e4a9f2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d6188e4a9f2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. □(S → M)
+</p></div></div></section>
+<section id="SEC-DG026-0004" class="chunk sec depth-3" data-kind="section" data-key="section:74188c3a2c8e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0004</span> Argument</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74188c3a2c8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74188c3a2c8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74188c3a2c8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+2. E → (C ∧ M)
+3. C → (¬(M ∧ □M) ∨ (M ∧ N))
+4. ((M ∧ N) → G) ↔ (S → G)
+5. ¬G → (¬(M ∧ □M) ∧ ¬S)
+</p></div></div></section>
+<section id="SEC-DG026-0005" class="chunk sec depth-3" data-kind="section" data-key="section:b3b7361c078e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0005</span> Thesis</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b3b7361c078e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b3b7361c078e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b3b7361c078e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+6. (S ⊢ (S ⊢ (M ∧ N))) → G
+</p></div></div></section>
+<section id="SEC-DG026-0006" class="chunk sec depth-3" data-kind="section" data-key="section:9d557e0310ae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0006</span> Terms and Operators</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d557e0310ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d557e0310ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d557e0310ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Symbol | Meaning |
+|--------|---------|
+| S | The Self — existential, structural, relational |
+| M | Meaning |
+| E | An event occurs |
+| C | Contingency |
+| □ | Modal necessity operator |
+| □M | &quot;It is necessary that Meaning obtains&quot; (modal status) |
+| N | S&#x27;s existential affirmation that M is necessary (commitment, not modal) |
+| ⊢ | Existential affirmation (commitment), not logical entailment |
+| G | Undefined — may emerge only relationally and existentially from S&#x27;s engagement with M, C, and N |
+| ¬ | Negation |
+| ∧ | Conjunction |
+| ∨ | Disjunction |
+| → | Conditional (not causation) |
+| ↔ | Biconditional |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0007" class="chunk sec depth-2" data-kind="section" data-key="section:ffeb2eddd4c1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0007</span> D.2 Interpretation</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ffeb2eddd4c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ffeb2eddd4c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ffeb2eddd4c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG026-0008" class="chunk sec depth-3" data-kind="section" data-key="section:d8c5a6441db7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0008</span> Knowledge of Self (Premise 1)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d8c5a6441db7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d8c5a6441db7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d8c5a6441db7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+S is the existential Self defined only through relations to M, C, and N. It is not identical with the empirical person who persists regardless of the framework. From □(S → M): for S, meaning is already given. With E, S encounters C; M is not produced by C.
+</p></div></div></section>
+<section id="SEC-DG026-0009" class="chunk sec depth-3" data-kind="section" data-key="section:330eb2f353ad" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0009</span> The Fork (Premises 2–3)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:330eb2f353ad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:330eb2f353ad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:330eb2f353ad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When an event occurs, S encounters both contingency and meaning. Contingency presents a fork: either meaning is present but not necessarily necessary (left disjunct: ¬(M ∧ □M)), or meaning is present and S affirms it as necessary (right disjunct: M ∧ N). The fork is underdetermined by causes — more facts do not pick a side.
+</p></div></div></section>
+<section id="SEC-DG026-0010" class="chunk sec depth-3" data-kind="section" data-key="section:72a521dd49e0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0010</span> The Decisive Locus (Premise 4)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:72a521dd49e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:72a521dd49e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:72a521dd49e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Facts cannot enact commitment. N is a stance, not a fact. The infinite chain of causal &quot;whys&quot; stays inside C and never produces N. The route to G requires (M ∧ N), and therefore S must supply N by affirmation, or the route remains closed.
+</p></div></div></section>
+<section id="SEC-DG026-0011" class="chunk sec depth-3" data-kind="section" data-key="section:a728b537b03c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG026-0011</span> The Double Commitment (Thesis 6)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a728b537b03c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a728b537b03c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a728b537b03c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Inner ⊢:** S ⊢ (M ∧ N) — S affirms meaning as necessary, selecting the right disjunct of premise 3.
+- **Outer ⊢:** S ⊢ (S ⊢ (M ∧ N)) — S affirms itself as bound to that stance, stabilizing S as defined here.</p>
+<p>The chain: premise 2 places S in contingency with meaning → premise 3 presents the fork → the inner ⊢ picks (M ∧ N) → the outer ⊢ stabilizes S → by premise 4 the route to G opens. If absent, G is blocked and premise 5 reports the failure. Thesis 6 encodes this as the condition for G.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0012" class="chunk sec depth-2" data-kind="section" data-key="section:07cd6ab260f1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0012</span> D.3 G Is Undefined Yet May Be Found</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:07cd6ab260f1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:07cd6ab260f1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:07cd6ab260f1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+G remains intentionally undefined. It may emerge only relationally and existentially from S&#x27;s necessary engagement with M, C, and N.</p>
+<p>G does not appear by proof. If it appears, it does so through lived consistency of experience, commitment, and response. That is S ⊢ (S ⊢ (M ∧ N)) being lived, not merely thought.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0013" class="chunk sec depth-2" data-kind="section" data-key="section:29c680cbc126" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0013</span> D.4 Connection to the Chirality Framework</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:29c680cbc126" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:29c680cbc126" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:29c680cbc126" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Chirality Framework is the architectural implementation of the conditions under which premise 6 can be enacted in professional practice.</p>
+<p>| Framework Element | Architectural Implementation |
+|---|---|
+| M (meaning) | Claims produced by AI agents — the content of deliverables |
+| C (contingency) | The epistemic condition of AI output — plausible by construction, with no intrinsic warrant |
+| The fork (premise 3) | The professional&#x27;s encounter with AI output: present-but-unwarranted (left) or present-and-affirmed (right) |
+| N (commitment) | The professional&#x27;s act of warranting — reviewing claims, assessing warrants, resolving gaps and conflicts |
+| Inner ⊢ | REVIEWED in the warrant lifecycle — the professional affirms that the claims are warranted |
+| Outer ⊢ | AUTHENTICATED — the professional binds themselves to that stance under duty of care |
+| G | What emerges through consistent practice — not provable from within the architecture, but recognizable in the evidence trail of a project executed with integrity |
+| Premise 4 (facts cannot enact N) | K-AUTH-1 — only humans author binding approval records; the architecture cannot cross the gap |
+| Premise 5 (¬G without S) | Without the professional&#x27;s commitment, the deliverables are information, not knowledge |</p>
+<p>The knowledge gap identified in Chapter 3 (§3.6.2) is the space between the two disjuncts of premise 3. The architecture makes both sides of the fork visible — the content on one side, the warrant state on the other — so that the professional can see clearly across the gap before choosing to commit.</p>
+<p>The axiom — *to know what you know, why you know it, and why you know why* — is thesis 6 in natural language: know the claims (M), know the warrants (N), and know that you stand by both (the outer ⊢).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0014" class="chunk sec depth-2" data-kind="section" data-key="section:2bc14a052ccf" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0014</span> D.5 Relationship to Polanyi&#x27;s *Meaning*</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2bc14a052ccf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2bc14a052ccf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2bc14a052ccf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The conjecture is consistent with and extends the epistemology developed by Michael Polanyi, particularly as articulated in *Meaning* (1975, co-authored with Harry Prosch) [CITE:Polanyi1975].</p>
+<p>**Premise 1 and the from-to structure.** □(S → M) — for S, meaning is already given — formalizes Polanyi&#x27;s central claim that the person never encounters raw data and then adds meaning. Meaning is how the world is encountered. The person who indwells a tradition meets reality as already meaningful. The conjecture&#x27;s premise that S cannot exist without M is the from-to structure expressed formally.</p>
+<p>**N and the personal coefficient.** Polanyi insists that all knowing involves a personal contribution — the &quot;personal coefficient&quot; — that cannot be stripped away. The conjecture separates this cleanly: M is the meaning encountered; N is S&#x27;s affirmation that this meaning is necessary. In Polanyi&#x27;s terms, M is the focal integration; N is the fiduciary act that declares &quot;I believe this integration is a genuine discovery of structure in reality, and I stake myself on it.&quot;</p>
+<p>**The fork and the drama of commitment.** Premise 3 formalizes the choice that Polanyi describes throughout *Meaning*: the artist, the scientist, the professional all face the same decision — treat their integration as tentative and provisional (left disjunct), or commit to it as a real discovery (right disjunct: M ∧ N). The conjecture makes explicit what Polanyi develops through examples: this choice is underdetermined by causes. No amount of evidence compels the commitment. The person must supply it.</p>
+<p>**The double ⊢ and the fiduciary program.** Polanyi&#x27;s fiduciary program holds that the person who makes a knowledge claim is not merely asserting a proposition but committing to a way of being — accepting responsibility for the claim and its consequences. The inner ⊢ (S affirms M ∧ N) is the assertion. The outer ⊢ (S affirms itself as bound to that stance) is the fiduciary commitment. Polanyi describes this across hundreds of pages of *Personal Knowledge* and *Meaning*. The conjecture encodes it in one line: S ⊢ (S ⊢ (M ∧ N)).</p>
+<p>**G and the achievement of meaning.** In *Meaning*, the highest achievements — great art, scientific discovery, religious understanding — cannot be specified in advance. They emerge from committed practice. The conjecture&#x27;s G, intentionally undefined, found only through lived consistency, corresponds to what Polanyi describes in the final chapters of *Meaning*: the real but unspecifiable outcome of a life committed to integration. The conjecture leaves G more open than Polanyi — it creates space for his answer without requiring it.</p>
+<p>**Where the conjecture extends Polanyi.** The conjecture is more formally precise than Polanyi would have allowed himself. He resisted formalization, arguing that formal systems always rest on tacit knowledge that cannot itself be formalized. The symbols □, ⊢, →, and ∧ can only be interpreted by a person who already has the tacit understanding to read them. This is a methodological tension, not a substantive inconsistency — the conjecture formalizes the structure Polanyi articulated in prose, accepting the limitation he identified: that the formalization is itself an act of tacit knowing.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG026-0015" class="chunk sec depth-2" data-kind="section" data-key="section:bf4cd4c582a9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG026-0015</span> D.6 Note on Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf4cd4c582a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf4cd4c582a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf4cd4c582a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This framework clarifies existential conditions and possibilities. It is presented as a conjecture, not as a theorem. The Chirality Framework&#x27;s architectural commitments do not depend on accepting the conjecture — the architecture is justified by the regulatory obligations of professional practice and by the practical need for epistemic transparency when relying on AI-produced work. The conjecture provides the deeper philosophical grounding for why those obligations and needs have the structure they do.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG026";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

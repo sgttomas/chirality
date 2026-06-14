@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DELIVERABLE-CONSISTENCY-QA-CHECKS",
+  "source_prefix": "SK036",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DELIVERABLE-CONSISTENCY-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/deliverable-consistency/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:05+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK036-0001",
+      "line_start": 1,
+      "line_end": 24,
+      "target_section_ids": [
+        "SEC-SK036-0001"
+      ],
+      "estimated_md_tokens": 186,
+      "contains_oversized_section": false
+    }
+  ]
+}

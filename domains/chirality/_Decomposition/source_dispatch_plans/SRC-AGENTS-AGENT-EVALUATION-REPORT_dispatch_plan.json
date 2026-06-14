@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "SRC-AGENTS-AGENT-EVALUATION-REPORT",
+  "source_prefix": "AG021",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-AGENTS-AGENT-EVALUATION-REPORT_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_EVALUATION_REPORT.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-AG021-0001",
+      "line_start": 6,
+      "line_end": 187,
+      "target_section_ids": [
+        "SEC-AG021-0001",
+        "SEC-AG021-0002",
+        "SEC-AG021-0003",
+        "SEC-AG021-0004",
+        "SEC-AG021-0005",
+        "SEC-AG021-0006",
+        "SEC-AG021-0007",
+        "SEC-AG021-0008",
+        "SEC-AG021-0009",
+        "SEC-AG021-0010",
+        "SEC-AG021-0011",
+        "SEC-AG021-0012",
+        "SEC-AG021-0013",
+        "SEC-AG021-0014",
+        "SEC-AG021-0015",
+        "SEC-AG021-0016",
+        "SEC-AG021-0017",
+        "SEC-AG021-0018",
+        "SEC-AG021-0019",
+        "SEC-AG021-0020",
+        "SEC-AG021-0021"
+      ],
+      "estimated_md_tokens": 1069,
+      "contains_oversized_section": false
+    }
+  ]
+}

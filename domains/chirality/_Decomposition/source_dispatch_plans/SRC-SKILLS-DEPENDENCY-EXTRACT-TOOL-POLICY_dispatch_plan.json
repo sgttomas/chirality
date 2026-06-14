@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DEPENDENCY-EXTRACT-TOOL-POLICY",
+  "source_prefix": "SK042",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DEPENDENCY-EXTRACT-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/dependency-extract/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:06+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK042-0001",
+      "line_start": 1,
+      "line_end": 44,
+      "target_section_ids": [
+        "SEC-SK042-0001",
+        "SEC-SK042-0002",
+        "SEC-SK042-0003",
+        "SEC-SK042-0004",
+        "SEC-SK042-0005",
+        "SEC-SK042-0006",
+        "SEC-SK042-0007",
+        "SEC-SK042-0008"
+      ],
+      "estimated_md_tokens": 448,
+      "contains_oversized_section": false
+    }
+  ]
+}

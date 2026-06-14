@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-SKILL",
+  "source_prefix": "SK053",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-SKILL_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/domain-source-atomize/SKILL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:06+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK053-0001",
+      "line_start": 10,
+      "line_end": 240,
+      "target_section_ids": [
+        "SEC-SK053-0001",
+        "SEC-SK053-0002",
+        "SEC-SK053-0003",
+        "SEC-SK053-0004",
+        "SEC-SK053-0005",
+        "SEC-SK053-0006",
+        "SEC-SK053-0007",
+        "SEC-SK053-0008",
+        "SEC-SK053-0009",
+        "SEC-SK053-0010",
+        "SEC-SK053-0011",
+        "SEC-SK053-0012",
+        "SEC-SK053-0013",
+        "SEC-SK053-0014",
+        "SEC-SK053-0015",
+        "SEC-SK053-0016",
+        "SEC-SK053-0017",
+        "SEC-SK053-0018",
+        "SEC-SK053-0019",
+        "SEC-SK053-0020",
+        "SEC-SK053-0021",
+        "SEC-SK053-0022"
+      ],
+      "estimated_md_tokens": 2734,
+      "contains_oversized_section": false
+    }
+  ]
+}

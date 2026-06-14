@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-TOOL-POLICY",
+  "source_prefix": "SK034",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DECOMPOSITION-PACKAGE-REVIEW-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/decomposition-package-review/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:05+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK034-0001",
+      "line_start": 1,
+      "line_end": 58,
+      "target_section_ids": [
+        "SEC-SK034-0001",
+        "SEC-SK034-0002",
+        "SEC-SK034-0003",
+        "SEC-SK034-0004",
+        "SEC-SK034-0005",
+        "SEC-SK034-0006",
+        "SEC-SK034-0007",
+        "SEC-SK034-0008"
+      ],
+      "estimated_md_tokens": 347,
+      "contains_oversized_section": false
+    }
+  ]
+}

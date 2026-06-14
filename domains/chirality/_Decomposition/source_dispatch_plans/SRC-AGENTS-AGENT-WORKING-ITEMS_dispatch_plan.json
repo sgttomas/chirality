@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source": "SRC-AGENTS-AGENT-WORKING-ITEMS",
+  "source_prefix": "AG037",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-AGENTS-AGENT-WORKING-ITEMS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:02+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-AG037-0001",
+      "line_start": 5,
+      "line_end": 294,
+      "target_section_ids": [
+        "SEC-AG037-0001",
+        "SEC-AG037-0002",
+        "SEC-AG037-0003",
+        "SEC-AG037-0004",
+        "SEC-AG037-0005",
+        "SEC-AG037-0006",
+        "SEC-AG037-0007",
+        "SEC-AG037-0008",
+        "SEC-AG037-0009",
+        "SEC-AG037-0010",
+        "SEC-AG037-0011",
+        "SEC-AG037-0012",
+        "SEC-AG037-0013",
+        "SEC-AG037-0014",
+        "SEC-AG037-0015",
+        "SEC-AG037-0016",
+        "SEC-AG037-0017",
+        "SEC-AG037-0018",
+        "SEC-AG037-0019",
+        "SEC-AG037-0020"
+      ],
+      "estimated_md_tokens": 2650,
+      "contains_oversized_section": false
+    }
+  ]
+}

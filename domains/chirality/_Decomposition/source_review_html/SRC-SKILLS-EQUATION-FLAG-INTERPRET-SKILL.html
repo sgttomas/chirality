@@ -1,0 +1,401 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-EQUATION-FLAG-INTERPRET-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>20</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK069-0001">SKILL — equation-flag-interpret</a> <a href="#SEC-SK069-0002">Purpose</a> <a href="#SEC-SK069-0003">Suitable agent shells</a> <a href="#SEC-SK069-0004">Inputs</a> <a href="#SEC-SK069-0007">Runtime overrides</a> <a href="#SEC-SK069-0008">Read boundary</a> <a href="#SEC-SK069-0009">Write boundary</a> <a href="#SEC-SK069-0010">Tool usage</a> <a href="#SEC-SK069-0011">Method</a> <a href="#SEC-SK069-0018">Non-negotiable constraints</a> <a href="#SEC-SK069-0019">QA expectations</a> <a href="#SEC-SK069-0020">Relationship to EQUATION_AUDIT</a></nav>
+<main>
+<section id="SEC-SK069-0001" class="chunk sec depth-1" data-kind="section" data-key="section:4bcde6e71900" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK069-0001</span> SKILL — equation-flag-interpret</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4bcde6e71900" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4bcde6e71900" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4bcde6e71900" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK069-0002" class="chunk sec depth-2" data-kind="section" data-key="section:89f5bf9e32f6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:89f5bf9e32f6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:89f5bf9e32f6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:89f5bf9e32f6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Read one flagged-equation entry — comprising the current (incorrect) LaTeX expression, the human&#x27;s natural-language description of what is wrong or how to fix it, and optionally the source page raster for visual context — and emit ONE corrected LaTeX expression as a small JSON file at `OUTPUT_PATH`.</p>
+<p>This skill replaces the deterministic-tool subprocess fork that the legacy `process_flagged.py --interpret` flag used (`tools/equation_audit/process_flagged.py` shelled out to the `claude` CLI in Sonnet mode). That pattern violated AGENT_HELPS_HUMANS R12 (LLM reasoning inside a deterministic tool). All such reasoning now happens here, inside a bounded TASK skill loaded by the persona.
+</p></div></div></section>
+<section id="SEC-SK069-0003" class="chunk sec depth-2" data-kind="section" data-key="section:6dc669c2220e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6dc669c2220e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6dc669c2220e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6dc669c2220e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` in generic shell mode, spawned by the `EQUATION_AUDIT` persona.</p>
+<p>Not the right fit for:
+- batch re-interpretation across many equations (run one TASK per entry; the persona orchestrates)
+- equation re-extraction or page-level re-OCR (use `audit_equations.py` + `equation-bbox-detect` instead)
+- modifying anything other than one corrected LaTeX expression (no scope creep — this skill emits exactly one corrected LaTeX, nothing else)
+</p></div></div></section>
+<section id="SEC-SK069-0004" class="chunk sec depth-2" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0004</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK069-0005" class="chunk sec depth-3" data-kind="section" data-key="section:a686e3dbffd6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0005</span> Required (via `RuntimeOverrides`)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a686e3dbffd6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a686e3dbffd6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a686e3dbffd6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `EQUATION_KEY` — the `&lt;page&gt;:&lt;hash&gt;` key identifying the flagged entry in `flagged.json`
+- `PAGE_NUM` — the page the equation appears on (1-indexed)
+- `EQUATION_HASH` — the 12-char hex hash of the current (incorrect) LaTeX
+- `CURRENT_LATEX` — the current (incorrect) LaTeX expression as a literal block
+- `FLAG_NOTE` — the human&#x27;s natural-language description of the correction
+- `OUTPUT_PATH` — absolute path where the interpreted-LaTeX JSON will be written
+</p></div></div></section>
+<section id="SEC-SK069-0006" class="chunk sec depth-3" data-kind="section" data-key="section:28384b7789a6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0006</span> Optional</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:28384b7789a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:28384b7789a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:28384b7789a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `PAGE_IMAGE_PATH` — absolute path to the page raster (PNG). Use ONLY to disambiguate symbols the note references implicitly. Do NOT re-OCR the page; trust `CURRENT_LATEX` as the authoritative transcription baseline.
+</p></div></div></section>
+<section id="SEC-SK069-0007" class="chunk sec depth-2" data-kind="section" data-key="section:44bcbc556c48" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0007</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44bcbc556c48" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44bcbc556c48" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44bcbc556c48" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `EQUATION_KEY` | `&lt;page&gt;:&lt;hash&gt;` identifier | **Required** | `&lt;int&gt;:&lt;12-hex&gt;` |
+| `PAGE_NUM` | Page number | **Required** | Positive integer |
+| `EQUATION_HASH` | Hash of current LaTeX | **Required** | 12 lowercase hex chars |
+| `CURRENT_LATEX` | Original (incorrect) LaTeX | **Required** | Non-empty string |
+| `FLAG_NOTE` | Human correction note | **Required** | Non-empty string |
+| `OUTPUT_PATH` | Where to write the interpreted JSON | **Required** | Parent dir exists; `.json` |
+| `PAGE_IMAGE_PATH` | Optional page PNG for visual disambiguation | None | Existing `.png` file |
+</p></div></div></section>
+<section id="SEC-SK069-0008" class="chunk sec depth-2" data-kind="section" data-key="section:77b15138a6ee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0008</span> Read boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:77b15138a6ee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:77b15138a6ee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:77b15138a6ee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reads are limited to:</p>
+<p>- `PAGE_IMAGE_PATH` (if provided) — the single page PNG, multimodal load.</p>
+<p>No other reads. The skill MUST NOT:
+- read `flagged.json` itself (the brief embeds the entry&#x27;s fields verbatim)
+- read other pages
+- read `equations.jsonl` or any other audit artifact
+- cross-reference earlier equations on the page or other pages
+</p></div></div></section>
+<section id="SEC-SK069-0009" class="chunk sec depth-2" data-kind="section" data-key="section:49a0af78f80b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0009</span> Write boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49a0af78f80b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49a0af78f80b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49a0af78f80b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly one file:</p>
+<p>- `OUTPUT_PATH` — the interpreted-LaTeX JSON</p>
+<p>No other side effects.
+</p></div></div></section>
+<section id="SEC-SK069-0010" class="chunk sec depth-2" data-kind="section" data-key="section:74a277166fac" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0010</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:74a277166fac" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:74a277166fac" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:74a277166fac" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No deterministic tools are invoked. This is a reasoning-only skill (optionally augmented by the multimodal Read tool when `PAGE_IMAGE_PATH` is provided).
+- The `allowed-tools` frontmatter field is intentionally omitted.</p>
+<p>Disallowed behavior:</p>
+<p>- MUST NOT shell out to any subprocess or external command.
+- MUST NOT invent equation content not implied by the note.
+- MUST NOT re-extract or re-OCR the page — `CURRENT_LATEX` is authoritative.
+- MUST NOT widen the correction beyond what the note describes.
+- MUST NOT write any file other than `OUTPUT_PATH`.
+</p></div></div></section>
+<section id="SEC-SK069-0011" class="chunk sec depth-2" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0011</span> Method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK069-0012" class="chunk sec depth-3" data-kind="section" data-key="section:d60952c9b1a3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0012</span> Step 1 — Validate inputs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d60952c9b1a3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d60952c9b1a3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d60952c9b1a3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm `CURRENT_LATEX` and `FLAG_NOTE` are non-empty.
+2. Confirm `OUTPUT_PATH` parent directory exists.
+3. If any required input is missing, write `{&quot;key&quot;: &quot;&lt;EQUATION_KEY&gt;&quot;, &quot;interpreted_latex&quot;: &quot;&quot;, &quot;reason&quot;: &quot;missing required input&quot;}` to `OUTPUT_PATH` and return `RUN_STATUS=FAILED_INPUTS`.
+</p></div></div></section>
+<section id="SEC-SK069-0013" class="chunk sec depth-3" data-kind="section" data-key="section:379f2483a920" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0013</span> Step 2 — Read the note and the LaTeX together</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:379f2483a920" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:379f2483a920" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:379f2483a920" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Examine `CURRENT_LATEX` to understand the equation&#x27;s current structure.
+2. Read `FLAG_NOTE` as a directive about what is wrong or how to fix it. Common note shapes:
+   - **Replacement note** — &quot;denominator should be 2 not 3&quot;
+   - **Insertion note** — &quot;missing a sigma in the second term&quot;
+   - **Symbol-substitution note** — &quot;numerator should be ℓ (cursive ell) not e&quot;
+   - **Restructuring note** — &quot;left side should be Y/2 not Y&quot;
+3. If `PAGE_IMAGE_PATH` is provided AND the note&#x27;s intent is ambiguous (e.g., it references &quot;the symbol on the left&quot; without specifying which), use the Read tool to load the PNG. Use the image only to disambiguate — do not re-OCR.
+</p></div></div></section>
+<section id="SEC-SK069-0014" class="chunk sec depth-3" data-kind="section" data-key="section:ed3a612d3eec" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0014</span> Step 3 — Synthesize the corrected LaTeX</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ed3a612d3eec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ed3a612d3eec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ed3a612d3eec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Start from `CURRENT_LATEX` and apply ONLY the change the note describes.
+2. Preserve every other element of the original expression verbatim (subscripts, superscripts, numbering tags like `\qquad (1.5)`, spacing commands, fraction structures, etc.).
+3. The output is a single LaTeX expression — NO `$$` delimiters, NO Markdown code fences, NO commentary, NO surrounding quotes.
+4. The output must be syntactically valid LaTeX (parsable by KaTeX). When in doubt about a non-standard symbol, prefer a standard equivalent (e.g., `\ell` for cursive ell, `\beta` for beta).
+</p></div></div></section>
+<section id="SEC-SK069-0015" class="chunk sec depth-3" data-kind="section" data-key="section:d76108e16991" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0015</span> Step 4 — Handle ambiguity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d76108e16991" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d76108e16991" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d76108e16991" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If after Step 2 + Step 3 the note remains too ambiguous to interpret unambiguously, DO NOT GUESS:</p>
+<p>1. Set `interpreted_latex` to the empty string.
+2. Add a `reason` field describing the ambiguity.</p>
+<p>The persona then surfaces the ambiguity to the human at Gate 5 (Verify backcheck) rather than applying a guessed fix.
+</p></div></div></section>
+<section id="SEC-SK069-0016" class="chunk sec depth-3" data-kind="section" data-key="section:6b3861c15e87" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0016</span> Step 5 — Write outputs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6b3861c15e87" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6b3861c15e87" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6b3861c15e87" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Write `OUTPUT_PATH` as a single JSON object with the schema below.</p>
+<p>```json
+{
+  &quot;key&quot;: &quot;&lt;EQUATION_KEY&gt;&quot;,
+  &quot;page&quot;: &lt;PAGE_NUM&gt;,
+  &quot;hash&quot;: &quot;&lt;EQUATION_HASH&gt;&quot;,
+  &quot;current_latex&quot;: &quot;&lt;CURRENT_LATEX&gt;&quot;,
+  &quot;interpreted_latex&quot;: &quot;&lt;corrected LaTeX | empty if ambiguous&gt;&quot;,
+  &quot;source_note&quot;: &quot;&lt;FLAG_NOTE&gt;&quot;,
+  &quot;reason&quot;: &quot;&lt;optional; populated only when interpreted_latex is empty&gt;&quot;
+}
+```
+</p></div></div></section>
+<section id="SEC-SK069-0017" class="chunk sec depth-3" data-kind="section" data-key="section:951b48092e5f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK069-0017</span> Step 6 — Return status</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:951b48092e5f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:951b48092e5f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:951b48092e5f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Return one of:</p>
+<p>- `RUN_STATUS=SUCCESS` — `interpreted_latex` is non-empty and applies the note&#x27;s correction.
+- `RUN_STATUS=NO_FINDINGS` — note was too ambiguous; `interpreted_latex` is empty with a `reason`.
+- `RUN_STATUS=FAILED_INPUTS` — required inputs were missing.
+- `RUN_STATUS=FAILED` — interpretation failed for an unexpected reason (encoding, write boundary violation, etc.).</p>
+<p>Also return: `EQUATION_KEY`, `PAGE_NUM`, `EQUATION_HASH`.
+</p></div></div></section>
+<section id="SEC-SK069-0018" class="chunk sec depth-2" data-kind="section" data-key="section:b5975b4a7a3d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0018</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b5975b4a7a3d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b5975b4a7a3d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b5975b4a7a3d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **One-equation discipline.** Exactly one corrected LaTeX expression per invocation. No batch processing.
+- **CURRENT_LATEX is authoritative.** Do not re-transcribe the equation from the page image; trust the brief&#x27;s input.
+- **Note-fidelity.** Apply ONLY the change the note describes. Do not &quot;improve&quot; surrounding LaTeX, do not normalize unrelated symbols, do not strip the equation&#x27;s numbering tag.
+- **No invention.** If the note does not specify a change for some part of the expression, that part stays exactly as it appears in `CURRENT_LATEX`.
+- **No `...$$` delimiters in per-page Markdown.
+- **Write-path-only writes.** Exactly one file is written per invocation. No other side effects.
+</p></div></div></section>
+<section id="SEC-SK069-0019" class="chunk sec depth-2" data-kind="section" data-key="section:69acce1c7d48" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0019</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69acce1c7d48" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69acce1c7d48" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69acce1c7d48" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Exactly one file exists at `OUTPUT_PATH` after the run.
+- The file is valid JSON; top-level is a single object (not a list).
+- `key`, `page`, `hash`, `current_latex`, `interpreted_latex`, `source_note` keys all present.
+- `interpreted_latex` is either non-empty LaTeX OR explicitly empty with a `reason` field.
+- If non-empty, `interpreted_latex` contains no `$$` delimiters, no Markdown code fences, no surrounding quotes.
+- `RUN_STATUS` is one of: `SUCCESS`, `NO_FINDINGS`, `FAILED_INPUTS`, `FAILED`.
+</p></div></div></section>
+<section id="SEC-SK069-0020" class="chunk sec depth-2" data-kind="section" data-key="section:ff08178dc61b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK069-0020</span> Relationship to EQUATION_AUDIT</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff08178dc61b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff08178dc61b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff08178dc61b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This skill is the per-flag worker invoked by the `EQUATION_AUDIT` persona during Phase 3a. The persona:</p>
+<p>- iterates the (validated) `flagged.json`, detecting entries whose `description` is prose-shaped (via `tools/equation_audit/validate_flagged_schema.py`),
+- renders one INIT-TASK brief per such entry via `tools/equation_audit/build_equation_interpret_brief.py`,
+- dispatches one `TASK + equation-flag-interpret` invocation per brief,
+- collects the per-flag JSON outputs and merges each `interpreted_latex` back into `flagged.json`&#x27;s `description` field for that key,
+- re-runs `validate_flagged_schema.py` (Phase 3b) — at this point every description must be LaTeX-shaped,
+- runs `process_flagged.py` (Phase 3c) to apply the fixes deterministically.</p>
+<p>This skill is a sibling of `pdf2md-page` and `drawing-extract-page` — same per-item fanout pattern, but per-flag interpretation instead of per-page extraction.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK069";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

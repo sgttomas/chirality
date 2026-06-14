@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-ESTIMATE-PREP-SKILL",
+  "source_prefix": "SK084",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-ESTIMATE-PREP-SKILL_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/estimate-prep/SKILL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:09+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK084-0001",
+      "line_start": 10,
+      "line_end": 218,
+      "target_section_ids": [
+        "SEC-SK084-0001",
+        "SEC-SK084-0002",
+        "SEC-SK084-0003",
+        "SEC-SK084-0004",
+        "SEC-SK084-0005",
+        "SEC-SK084-0006",
+        "SEC-SK084-0007",
+        "SEC-SK084-0008",
+        "SEC-SK084-0009",
+        "SEC-SK084-0010",
+        "SEC-SK084-0011",
+        "SEC-SK084-0012",
+        "SEC-SK084-0013",
+        "SEC-SK084-0014",
+        "SEC-SK084-0015",
+        "SEC-SK084-0016",
+        "SEC-SK084-0017",
+        "SEC-SK084-0018",
+        "SEC-SK084-0019"
+      ],
+      "estimated_md_tokens": 2376,
+      "contains_oversized_section": false
+    }
+  ]
+}

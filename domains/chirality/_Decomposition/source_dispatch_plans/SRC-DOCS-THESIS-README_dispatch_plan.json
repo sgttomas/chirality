@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-THESIS-README",
+  "source_prefix": "DG023",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-THESIS-README_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/docs/thesis/README.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:54:59+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-DG023-0001",
+      "line_start": 1,
+      "line_end": 50,
+      "target_section_ids": [
+        "SEC-DG023-0001",
+        "SEC-DG023-0002",
+        "SEC-DG023-0003",
+        "SEC-DG023-0004",
+        "SEC-DG023-0005"
+      ],
+      "estimated_md_tokens": 515,
+      "contains_oversized_section": false
+    }
+  ]
+}

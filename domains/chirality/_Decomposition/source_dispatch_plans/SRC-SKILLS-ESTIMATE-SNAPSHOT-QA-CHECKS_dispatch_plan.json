@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-ESTIMATE-SNAPSHOT-QA-CHECKS",
+  "source_prefix": "SK087",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-ESTIMATE-SNAPSHOT-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/estimate-snapshot/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:09+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK087-0001",
+      "line_start": 1,
+      "line_end": 122,
+      "target_section_ids": [
+        "SEC-SK087-0001",
+        "SEC-SK087-0002",
+        "SEC-SK087-0003",
+        "SEC-SK087-0004",
+        "SEC-SK087-0005",
+        "SEC-SK087-0006",
+        "SEC-SK087-0007",
+        "SEC-SK087-0008",
+        "SEC-SK087-0009",
+        "SEC-SK087-0010",
+        "SEC-SK087-0011",
+        "SEC-SK087-0012",
+        "SEC-SK087-0013",
+        "SEC-SK087-0014",
+        "SEC-SK087-0015"
+      ],
+      "estimated_md_tokens": 927,
+      "contains_oversized_section": false
+    }
+  ]
+}

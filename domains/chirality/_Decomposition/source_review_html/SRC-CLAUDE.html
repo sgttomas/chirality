@@ -1,0 +1,367 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-CLAUDE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>20</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-RT003-0001">CLAUDE.md</a> <a href="#SEC-RT003-0002">What This Repo Is</a> <a href="#SEC-RT003-0003">Reading Order for Orientation</a> <a href="#SEC-RT003-0004">Key Architecture Concepts</a> <a href="#SEC-RT003-0005">Surfaces and Their Roots</a> <a href="#SEC-RT003-0006">Validation and Testing Commands</a> <a href="#SEC-RT003-0007">After skill changes</a> <a href="#SEC-RT003-0008">Discover test surfaces (tools, frontend, OpenPipeStress)</a> <a href="#SEC-RT003-0009">Run Python tests across root tools</a> <a href="#SEC-RT003-0010">Run Chirality App dev frontend tests</a> <a href="#SEC-RT003-0011">Run OpenPipeStress Python tests</a> <a href="#SEC-RT003-0012">Run OpenPipeStress desktop tests (Vitest)</a> <a href="#SEC-RT003-0013">Run OpenPipeStress Rust tests (per-crate)</a> <a href="#SEC-RT003-0014">Build and check the public export (run before publishing or </a> <a href="#SEC-RT003-0015">Apply the public export to a local checkout</a> <a href="#SEC-RT003-0016">Frontend Development</a> <a href="#SEC-RT003-0017">Shell 1</a> <a href="#SEC-RT003-0018">Shell 2</a> <a href="#SEC-RT003-0019">Change Workflow</a> <a href="#SEC-RT003-0020">Governing Invariants (Selected)</a></nav>
+<main>
+<section id="SEC-RT003-0001" class="chunk sec depth-1" data-kind="section" data-key="section:67b9e29c0c53" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0001</span> CLAUDE.md</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:67b9e29c0c53" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:67b9e29c0c53" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:67b9e29c0c53" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+</p></div></div></section>
+<section id="SEC-RT003-0002" class="chunk sec depth-2" data-kind="section" data-key="section:6657cf627177" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0002</span> What This Repo Is</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6657cf627177" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6657cf627177" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6657cf627177" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality is a filesystem-native agent operating system for deliverable-heavy professional work. The repo contains the private canonical source tree: instruction architecture, agent contracts, skills, deterministic tools, domain workspaces, and the tooling to produce the sanitized public `chirality-app` package.</p>
+<p>The core design principle: the filesystem is the database. Authoritative project state lives in git-tracked plain files. Agents propose; humans decide. No agent may certify, approve, sign, or issue work for reliance.
+</p></div></div></section>
+<section id="SEC-RT003-0003" class="chunk sec depth-2" data-kind="section" data-key="section:b6c9338440bd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0003</span> Reading Order for Orientation</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b6c9338440bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b6c9338440bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b6c9338440bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Start with these in order:</p>
+<p>1. `INIT.md` — bootstrap and document map
+2. `AGENTS.md` — agent index, matrix, and governance integration rules
+3. `docs/DIRECTIVE.md` — founding philosophy
+4. `docs/SPEC.md` — physical structures, file formats, folder layouts
+5. `docs/TYPES.md` — stable IDs, enums, lifecycle states
+6. `docs/CONTRACT.md` — 21 K-* binding invariants
+7. `skills/README.md` — skill system contract
+8. `tools/REGISTRY.md` — deterministic tool index
+</p></div></div></section>
+<section id="SEC-RT003-0004" class="chunk sec depth-2" data-kind="section" data-key="section:80230bc484e6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0004</span> Key Architecture Concepts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:80230bc484e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:80230bc484e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:80230bc484e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Agent types:** Type 0 = canonical standards, Type 1 = interactive personas (open in WORKBENCH), Type 2 = bounded task shells (open in PIPELINE). `TASK` is the canonical Type 2 execution shell; it hydrates skills via `TaskSkill: &lt;name&gt;`.</p>
+<p>**Skills vs agents:** Skills are method packs for recurring task shapes. Use a skill when role, write scope, and interaction model are the same but the method changes. Do not create a new agent for that. Skills live under `skills/&lt;name&gt;/` with four required files: `SKILL.md`, `BRIEF_SCHEMA.md`, `TOOL_POLICY.md`, `QA_CHECKS.md`.</p>
+<p>**Derivative-package rule:** Any package assembled from accepted upstream truth (aggregations, audit snapshots, concordance packages) is a derivative package. It must cite its upstream snapshot and must never substitute for decomposition truth.</p>
+<p>**Snapshot rule:** Every phase-boundary decision must produce an immutable snapshot. Later phases consume accepted snapshots, never mutable working state.</p>
+<p>**Write scope:** Agents have explicit, bounded write scopes. Skills must never widen scope beyond what the agent shell and brief allow.</p>
+<p>**Epistemic labels:** Claims carry `FACT`, `ASSUMPTION`, `PROPOSAL`, or `TBD` labels. `TBD` markers are surfaced, not silently resolved.
+</p></div></div></section>
+<section id="SEC-RT003-0005" class="chunk sec depth-2" data-kind="section" data-key="section:dbb16f0b432e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0005</span> Surfaces and Their Roots</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dbb16f0b432e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dbb16f0b432e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dbb16f0b432e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Surface | Root(s) | Notes |
+|---|---|---|
+| Agent instructions | `AGENTS.md`, `agents/AGENT_*.md` | Change via live registry, not narrative |
+| Skills | `skills/` | Each immediate subfolder containing `SKILL.md` is one skill; treat the live folder as the index |
+| Tools | `tools/` | Registry at `tools/REGISTRY.md`; subfolders group by function (scaffolding, validation, pdf2md, aggregation, etc.) |
+| Frontend harness snapshot | `frontend/` | Public-export snapshot only; dev work goes in `projects/chirality-app-dev/` |
+| Domain workspaces | `domains/` | Private; large corpora excluded from git |
+| Project workspaces | `projects/` | Private; not exported |
+| Public export profile | `exports/chirality-app/` | Controls what goes into the public package |
+| Plans / archives | `plans/`, `.archive/` | Non-governing; historical context |
+</p></div></div></section>
+<section id="SEC-RT003-0006" class="chunk sec depth-2" data-kind="section" data-key="section:110bf8191a34" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0006</span> Validation and Testing Commands</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:110bf8191a34" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:110bf8191a34" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:110bf8191a34" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```sh</p></div></div></section>
+<section id="SEC-RT003-0007" class="chunk sec depth-1" data-kind="section" data-key="section:7ce3bf9f1b3e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0007</span> After skill changes</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ce3bf9f1b3e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ce3bf9f1b3e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ce3bf9f1b3e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>python3 tools/validation/validate_skill_metadata.py skills
+</p></div></div></section>
+<section id="SEC-RT003-0008" class="chunk sec depth-1" data-kind="section" data-key="section:42aedb4f1c25" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0008</span> Discover test surfaces (tools, frontend, OpenPipeStress)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42aedb4f1c25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42aedb4f1c25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42aedb4f1c25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>python3 tools/validation/discover_test_surfaces.py . --text
+</p></div></div></section>
+<section id="SEC-RT003-0009" class="chunk sec depth-1" data-kind="section" data-key="section:b216b1d0be91" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0009</span> Run Python tests across root tools</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b216b1d0be91" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b216b1d0be91" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b216b1d0be91" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>python3 -m pytest -q tools
+</p></div></div></section>
+<section id="SEC-RT003-0010" class="chunk sec depth-1" data-kind="section" data-key="section:01cdec2644d6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0010</span> Run Chirality App dev frontend tests</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:01cdec2644d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:01cdec2644d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:01cdec2644d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cd projects/chirality-app-dev/frontend &amp;&amp; npm test
+</p></div></div></section>
+<section id="SEC-RT003-0011" class="chunk sec depth-1" data-kind="section" data-key="section:a342d7305d4d" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0011</span> Run OpenPipeStress Python tests</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a342d7305d4d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a342d7305d4d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a342d7305d4d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cd projects/chirality-piping &amp;&amp; python3 -m pytest -q tests
+</p></div></div></section>
+<section id="SEC-RT003-0012" class="chunk sec depth-1" data-kind="section" data-key="section:8d78cd014264" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0012</span> Run OpenPipeStress desktop tests (Vitest)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d78cd014264" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d78cd014264" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d78cd014264" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cd projects/chirality-piping &amp;&amp; npm test --workspace apps/desktop
+</p></div></div></section>
+<section id="SEC-RT003-0013" class="chunk sec depth-1" data-kind="section" data-key="section:e2396eeb3d52" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0013</span> Run OpenPipeStress Rust tests (per-crate)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e2396eeb3d52" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e2396eeb3d52" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e2396eeb3d52" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cargo test --manifest-path &lt;crate&gt;/Cargo.toml
+</p></div></div></section>
+<section id="SEC-RT003-0014" class="chunk sec depth-1" data-kind="section" data-key="section:e9d07814f441" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0014</span> Build and check the public export (run before publishing or after changing exported files)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9d07814f441" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9d07814f441" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9d07814f441" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>python3 exports/chirality-app/export_public.py
+</p></div></div></section>
+<section id="SEC-RT003-0015" class="chunk sec depth-1" data-kind="section" data-key="section:32803fc1b351" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0015</span> Apply the public export to a local checkout</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:32803fc1b351" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:32803fc1b351" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:32803fc1b351" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>python3 exports/chirality-app/export_public.py --apply-target /path/to/chirality-app
+```
+</p></div></div></section>
+<section id="SEC-RT003-0016" class="chunk sec depth-2" data-kind="section" data-key="section:5c84ea419c97" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0016</span> Frontend Development</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c84ea419c97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c84ea419c97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c84ea419c97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```sh
+cd frontend
+npm install
+npm run dev              # Next.js dev server
+npm run build            # Production build
+npm run lint             # ESLint
+npm run desktop:dev      # Run Electron desktop app (dev mode)
+npm run desktop:pack     # Package Electron app (no publish)
+npm run desktop:dist     # Build distributable (signed)
+npm run desktop:dist:unsigned   # Build distributable (unsigned, for local testing)
+```</p>
+<p>Requires `ANTHROPIC_API_KEY` in the shell running the dev server.</p>
+<p>Harness validation (pre-merge) — server must be running first:
+```sh</p></div></div></section>
+<section id="SEC-RT003-0017" class="chunk sec depth-1" data-kind="section" data-key="section:73f8aaf4bea5" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0017</span> Shell 1</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73f8aaf4bea5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73f8aaf4bea5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73f8aaf4bea5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cd frontend &amp;&amp; npm run dev -- --hostname 127.0.0.1 --port 3000
+</p></div></div></section>
+<section id="SEC-RT003-0018" class="chunk sec depth-1" data-kind="section" data-key="section:f7f5b7a7efd3" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-RT003-0018</span> Shell 2</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7f5b7a7efd3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7f5b7a7efd3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7f5b7a7efd3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>cd frontend
+npm run harness:validate:toolkit
+npm run harness:validate:premerge
+```</p>
+<p>Summary artifact: `frontend/artifacts/harness/section8/latest/summary.json`. Diagnostics log to `.chirality/logs/harness.log` in the project root.</p>
+<p>The Electron app bundles `agents/`, `skills/`, `tools/`, `docs/`, and `init/` as `extraResources` under `instruction-root/` at package time.
+</p></div></div></section>
+<section id="SEC-RT003-0019" class="chunk sec depth-2" data-kind="section" data-key="section:620a9c8627e0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0019</span> Change Workflow</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:620a9c8627e0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:620a9c8627e0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:620a9c8627e0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Agent/routing changes** → `AGENTS.md` and `agents/`
+- **Skill changes** → `skills/` then run `validate_skill_metadata.py`
+- **Tool changes** → `tools/` and update `tools/REGISTRY.md` when it changes the curated tool contract
+- **Governance changes** → root `docs/`, not project-local docs
+- **App/frontend development** → `projects/chirality-app-dev/`, promote only reviewed material to root/export surfaces
+- **Public export** → regenerate manifest after changing any exported file</p>
+<p>When live folders, indexes, and narrative documents disagree, treat the live registry/discovery surface as authoritative and surface the discrepancy rather than silently preserving stale prose.
+</p></div></div></section>
+<section id="SEC-RT003-0020" class="chunk sec depth-2" data-kind="section" data-key="section:b16ba766f72e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-RT003-0020</span> Governing Invariants (Selected)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b16ba766f72e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b16ba766f72e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b16ba766f72e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The full set of 21 K-* invariants is in `docs/CONTRACT.md`. The most commonly relevant:</p>
+<p>- **K-AUTH-1:** Only humans author binding approval records.
+- **K-WRITE-1 / K-SNAP-1:** Agents write within explicit scope; every phase-boundary decision produces an immutable snapshot.
+- **K-PROV-1:** All governed claims require mandatory provenance. Unsourced assertions are marked `TBD` or `ASSUMPTION`, not silently asserted as fact.
+- **K-STATUS-1:** `_STATUS.md` is the canonical lifecycle state file for each deliverable. No other file determines deliverable state.
+- **K-HIER-1:** Projects decompose as packages containing deliverables (flat; no nesting; no phases layer).</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "RT003";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

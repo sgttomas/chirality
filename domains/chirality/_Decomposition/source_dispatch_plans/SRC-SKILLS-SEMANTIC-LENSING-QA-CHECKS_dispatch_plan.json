@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-SEMANTIC-LENSING-QA-CHECKS",
+  "source_prefix": "SK147",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-SEMANTIC-LENSING-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/semantic-lensing/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:13+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK147-0001",
+      "line_start": 1,
+      "line_end": 25,
+      "target_section_ids": [
+        "SEC-SK147-0001",
+        "SEC-SK147-0002",
+        "SEC-SK147-0003",
+        "SEC-SK147-0004"
+      ],
+      "estimated_md_tokens": 271,
+      "contains_oversized_section": false
+    }
+  ]
+}

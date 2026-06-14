@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-PDF2MD-FOLIO-EXTRACT-SKILL",
+  "source_prefix": "SK116",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-PDF2MD-FOLIO-EXTRACT-SKILL_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/pdf2md-folio-extract/SKILL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:11+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK116-0001",
+      "line_start": 10,
+      "line_end": 191,
+      "target_section_ids": [
+        "SEC-SK116-0001",
+        "SEC-SK116-0002",
+        "SEC-SK116-0003",
+        "SEC-SK116-0004",
+        "SEC-SK116-0005",
+        "SEC-SK116-0006",
+        "SEC-SK116-0007",
+        "SEC-SK116-0008",
+        "SEC-SK116-0009",
+        "SEC-SK116-0010",
+        "SEC-SK116-0011",
+        "SEC-SK116-0012",
+        "SEC-SK116-0013",
+        "SEC-SK116-0014"
+      ],
+      "estimated_md_tokens": 1447,
+      "contains_oversized_section": false
+    }
+  ]
+}

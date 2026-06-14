@@ -1,0 +1,8 @@
+CheckID,Status,Evidence,Notes
+GATE1_UPSTREAM_VALIDATION,PASS,validate_source_database PASS against SRCIDX_20260614T005449Z,Re-run before Batch 1 setup generation.
+SOURCE_MANIFEST_SHA256,PASS,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Matches accepted Gate 1 snapshot.
+BATCH1_SOURCE_COUNT,PASS,22,Binding-governance staged source set.
+BATCH1_DISPATCH_UNIT_COUNT,PASS,22,Every selected source has one dispatch unit.
+BATCH1_BRIEF_COUNT,PASS,22,One INIT-TASK brief rendered per dispatch unit.
+SOURCE_REF_BASE_EMITTED,PASS,all rendered briefs contain SOURCE_REF_BASE,Repo-backed SourceRef template is present for worker use.
+ATOMIZATION_WORKERS,NOT_RUN,no per-unit CSV outputs expected at setup stage,TASK + domain-source-atomize fan-out requires explicit next authorization.

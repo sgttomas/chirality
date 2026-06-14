@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-EQUATION-BBOX-DETECT-SKILL",
+  "source_prefix": "SK065",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-EQUATION-BBOX-DETECT-SKILL_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/equation-bbox-detect/SKILL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:07+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK065-0001",
+      "line_start": 10,
+      "line_end": 194,
+      "target_section_ids": [
+        "SEC-SK065-0001",
+        "SEC-SK065-0002",
+        "SEC-SK065-0003",
+        "SEC-SK065-0004",
+        "SEC-SK065-0005",
+        "SEC-SK065-0006",
+        "SEC-SK065-0007",
+        "SEC-SK065-0008",
+        "SEC-SK065-0009",
+        "SEC-SK065-0010",
+        "SEC-SK065-0011",
+        "SEC-SK065-0012",
+        "SEC-SK065-0013",
+        "SEC-SK065-0014",
+        "SEC-SK065-0015",
+        "SEC-SK065-0016",
+        "SEC-SK065-0017",
+        "SEC-SK065-0018",
+        "SEC-SK065-0019",
+        "SEC-SK065-0020",
+        "SEC-SK065-0021"
+      ],
+      "estimated_md_tokens": 1669,
+      "contains_oversized_section": false
+    }
+  ]
+}

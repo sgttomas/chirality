@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": "SRC-TOOLS-REGISTRY",
+  "source_prefix": "TL001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-TOOLS-REGISTRY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/tools/REGISTRY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:14+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-TL001-0001",
+      "line_start": 1,
+      "line_end": 279,
+      "target_section_ids": [
+        "SEC-TL001-0001",
+        "SEC-TL001-0002",
+        "SEC-TL001-0003",
+        "SEC-TL001-0004",
+        "SEC-TL001-0005",
+        "SEC-TL001-0006",
+        "SEC-TL001-0007",
+        "SEC-TL001-0008",
+        "SEC-TL001-0009",
+        "SEC-TL001-0010",
+        "SEC-TL001-0011",
+        "SEC-TL001-0012",
+        "SEC-TL001-0013",
+        "SEC-TL001-0014",
+        "SEC-TL001-0015",
+        "SEC-TL001-0016",
+        "SEC-TL001-0017",
+        "SEC-TL001-0018",
+        "SEC-TL001-0019",
+        "SEC-TL001-0020",
+        "SEC-TL001-0021"
+      ],
+      "estimated_md_tokens": 8886,
+      "contains_oversized_section": false
+    }
+  ]
+}

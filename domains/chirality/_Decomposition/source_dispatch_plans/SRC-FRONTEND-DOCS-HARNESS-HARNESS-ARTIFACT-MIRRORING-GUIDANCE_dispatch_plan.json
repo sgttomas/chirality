@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-FRONTEND-DOCS-HARNESS-HARNESS-ARTIFACT-MIRRORING-GUIDANCE",
+  "source_prefix": "HX006",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-FRONTEND-DOCS-HARNESS-HARNESS-ARTIFACT-MIRRORING-GUIDANCE_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/frontend/docs/harness/harness_artifact_mirroring_guidance.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:14+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-HX006-0001",
+      "line_start": 1,
+      "line_end": 54,
+      "target_section_ids": [
+        "SEC-HX006-0001",
+        "SEC-HX006-0002",
+        "SEC-HX006-0003",
+        "SEC-HX006-0004",
+        "SEC-HX006-0005",
+        "SEC-HX006-0006",
+        "SEC-HX006-0007"
+      ],
+      "estimated_md_tokens": 361,
+      "contains_oversized_section": false
+    }
+  ]
+}

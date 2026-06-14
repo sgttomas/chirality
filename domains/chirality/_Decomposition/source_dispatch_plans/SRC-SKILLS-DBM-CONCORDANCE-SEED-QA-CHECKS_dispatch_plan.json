@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DBM-CONCORDANCE-SEED-QA-CHECKS",
+  "source_prefix": "SK008",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DBM-CONCORDANCE-SEED-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/dbm-concordance-seed/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:03+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK008-0001",
+      "line_start": 1,
+      "line_end": 113,
+      "target_section_ids": [
+        "SEC-SK008-0001",
+        "SEC-SK008-0002",
+        "SEC-SK008-0003",
+        "SEC-SK008-0004",
+        "SEC-SK008-0005"
+      ],
+      "estimated_md_tokens": 838,
+      "contains_oversized_section": false
+    }
+  ]
+}

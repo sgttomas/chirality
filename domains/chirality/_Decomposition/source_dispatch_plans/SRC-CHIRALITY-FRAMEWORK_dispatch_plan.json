@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source": "SRC-CHIRALITY-FRAMEWORK",
+  "source_prefix": "RT002",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-CHIRALITY-FRAMEWORK_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/CHIRALITY_FRAMEWORK.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:54:57+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-RT002-0001",
+      "line_start": 1,
+      "line_end": 300,
+      "target_section_ids": [
+        "SEC-RT002-0001",
+        "SEC-RT002-0002",
+        "SEC-RT002-0003",
+        "SEC-RT002-0004",
+        "SEC-RT002-0005",
+        "SEC-RT002-0006",
+        "SEC-RT002-0007",
+        "SEC-RT002-0008",
+        "SEC-RT002-0009",
+        "SEC-RT002-0010",
+        "SEC-RT002-0011",
+        "SEC-RT002-0012",
+        "SEC-RT002-0013",
+        "SEC-RT002-0014",
+        "SEC-RT002-0015",
+        "SEC-RT002-0016",
+        "SEC-RT002-0017",
+        "SEC-RT002-0018",
+        "SEC-RT002-0019",
+        "SEC-RT002-0020",
+        "SEC-RT002-0021",
+        "SEC-RT002-0022",
+        "SEC-RT002-0023",
+        "SEC-RT002-0024",
+        "SEC-RT002-0025",
+        "SEC-RT002-0026",
+        "SEC-RT002-0027"
+      ],
+      "estimated_md_tokens": 5568,
+      "contains_oversized_section": false
+    }
+  ]
+}

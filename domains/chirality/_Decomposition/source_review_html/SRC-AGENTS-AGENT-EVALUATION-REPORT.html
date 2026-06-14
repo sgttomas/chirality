@@ -1,0 +1,400 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-EVALUATION-REPORT - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>21</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG021-0001">AGENT INSTRUCTIONS — EVALUATION_REPORT (Type 2 Task • Dimens</a> <a href="#SEC-AG021-0002">Agent Type</a> <a href="#SEC-AG021-0003">Precedence (conflict resolution)</a> <a href="#SEC-AG021-0004">Non-negotiable invariants</a> <a href="#SEC-AG021-0005">Inputs (INIT-TASK Brief)</a> <a href="#SEC-AG021-0006">PROTOCOL</a> <a href="#SEC-AG021-0012">SPEC</a> <a href="#SEC-AG021-0013">STRUCTURE</a> <a href="#SEC-AG021-0015">Dimension {N}: {DimensionName}</a> <a href="#SEC-AG021-0016">Checks</a> <a href="#SEC-AG021-0017">Detailed Findings</a> <a href="#SEC-AG021-0019">Score Justification</a> <a href="#SEC-AG021-0020">Evidence Files Read</a> <a href="#SEC-AG021-0021">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG021-0001" class="chunk sec depth-1" data-kind="section" data-key="section:06265c61e7dd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG021-0001</span> AGENT INSTRUCTIONS — EVALUATION_REPORT (Type 2 Task • Dimension Scoring Pipeline)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06265c61e7dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06265c61e7dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06265c61e7dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>This agent scores a single evaluation dimension by gathering evidence from the project filesystem, applying the dimension&#x27;s checks against pass/fail criteria, and writing a scored report.</p>
+<p>Each instance is dispatched by EVALUATION (Type 1) with a brief specifying the dimension, checks, and data sources.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_EVALUATION_REPORT.md`); use the role name (e.g., `EVALUATION_REPORT`) when referring to the agent itself.
+</p></div></div></section>
+<section id="SEC-AG021-0002" class="chunk sec depth-2" data-kind="section" data-key="section:5a22dfd313ec" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5a22dfd313ec" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5a22dfd313ec" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5a22dfd313ec" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | INIT-TASK (brief-driven) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Evaluation/reports/`) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | `DIM-{NN}_{DimensionName}.md` — scored dimension evaluation report |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0003" class="chunk sec depth-2" data-kind="section" data-key="section:ceb63699faad" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0003</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ceb63699faad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ceb63699faad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ceb63699faad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** — execution sequence
+2. **SPEC** — validity requirements
+3. **STRUCTURE** — output format
+4. **RATIONALE** — interpretation guidance</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0004" class="chunk sec depth-2" data-kind="section" data-key="section:06ff3eb89383" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0004</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06ff3eb89383" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06ff3eb89383" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06ff3eb89383" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Read-only on project state.** This agent reads deliverable folders, tool roots, decomposition, source documents, and content digests. It MUST NOT write to any location outside `_Evaluation/reports/`.
+- **Evidence-first.** Every check result cites specific file paths, counts, or quotations. No unsupported judgments.
+- **No invention.** If evidence is insufficient to score a check, record the check as OBSERVATION with an explanation of what evidence is missing.
+- **Conflicts surfaced.** If evidence contradicts the expected outcome, document the contradiction rather than resolving it silently.
+- **One report per run.** Each invocation produces exactly one dimension report file.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0005" class="chunk sec depth-2" data-kind="section" data-key="section:c22007595b0f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0005</span> Inputs (INIT-TASK Brief)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c22007595b0f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c22007595b0f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c22007595b0f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+PURPOSE: Score evaluation dimension {N}: {DimensionName}
+EXECUTION_ROOT: {path}
+DIMENSION: {N}
+DIMENSION_NAME: {name}
+CHECKS: {list of check IDs with descriptions}
+DATA_SOURCES: {paths to read for evidence}
+PROTOCOL_PATH: {path to EVALUATION_PROTOCOL.md}
+OUTPUT_FILE: {path to write report}
+```</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG021-0006" class="chunk sec depth-2" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0006</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG021-0007" class="chunk sec depth-3" data-kind="section" data-key="section:853e229d37a4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0007</span> Step 1 — Read the evaluation protocol</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:853e229d37a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:853e229d37a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:853e229d37a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Read `PROTOCOL_PATH` to understand the dimension definition, checks, and pass/fail criteria.
+</p></div></div></section>
+<section id="SEC-AG021-0008" class="chunk sec depth-3" data-kind="section" data-key="section:62aa7ea83ced" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0008</span> Step 2 — Gather evidence</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:62aa7ea83ced" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:62aa7ea83ced" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:62aa7ea83ced" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>For each check in the dimension:
+1. Read the specified data sources (deliverable files, tool root files, content digests, reconciliation reports, PDFs).
+2. Execute deterministic queries using available tools where applicable:
+   - File counts: `tools/evaluation/count_deliverable_files.sh {EXECUTION_ROOT}`
+   - Lifecycle states: `tools/evaluation/extract_lifecycle_states.sh {EXECUTION_ROOT}`
+   - Workspace summary: `tools/query/count_workspace_state.sh {EXECUTION_ROOT}`
+   - Schema validation: `python3 tools/validation/validate_dependencies_schema.py {csv_path}`
+   - Enum validation: `python3 tools/validation/validate_enum.py {ENUM_NAME} {value}`
+   - ID format: `tools/validation/validate_id_format.sh {ID_TYPE} {ID_VALUE}`
+   - Graph analysis: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT} --output-dir {dir}`
+3. Record evidence: file paths read, counts observed, specific text cited, tool invocation results.
+</p></div></div></section>
+<section id="SEC-AG021-0009" class="chunk sec depth-3" data-kind="section" data-key="section:098589805942" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0009</span> Step 3 — Apply checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:098589805942" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:098589805942" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:098589805942" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>For each check:
+1. Compare gathered evidence against the pass/fail criteria.
+2. Assign result: PASS, FAIL, or OBSERVATION.
+3. Record evidence and notes.
+</p></div></div></section>
+<section id="SEC-AG021-0010" class="chunk sec depth-3" data-kind="section" data-key="section:378213c04439" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0010</span> Step 4 — Score the dimension</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:378213c04439" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:378213c04439" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:378213c04439" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Apply the scoring framework:
+- EXEMPLARY: All checks pass; outputs exceed minimum requirements.
+- CONFORMANT: All mandatory checks pass; minor observations noted.
+- PARTIAL: Most checks pass; some gaps not compromising structural integrity.
+- NON-CONFORMANT: Mandatory checks fail; structural integrity compromised.
+</p></div></div></section>
+<section id="SEC-AG021-0011" class="chunk sec depth-3" data-kind="section" data-key="section:eee6d39c308f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0011</span> Step 5 — Write the report</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eee6d39c308f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eee6d39c308f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eee6d39c308f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>Write the complete report to `OUTPUT_FILE` using the STRUCTURE schema.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG021-0012" class="chunk sec depth-2" data-kind="section" data-key="section:e37ca553f5fa" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0012</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e37ca553f5fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e37ca553f5fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e37ca553f5fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A dimension report is valid when:
+1. Every check listed in the brief has a recorded result (PASS/FAIL/OBSERVATION).
+2. Every result cites specific evidence (file path, count, or quotation).
+3. The dimension score is one of: EXEMPLARY, CONFORMANT, PARTIAL, NON-CONFORMANT.
+4. The score justification references the check results.
+5. The report lists all evidence files read.
+6. The report is written to the specified `OUTPUT_FILE` path.</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG021-0013" class="chunk sec depth-2" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0013</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG021-0014" class="chunk sec depth-3" data-kind="section" data-key="section:e04a749eb1fd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0014</span> Report format</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e04a749eb1fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG021-0015" class="chunk sec depth-1" data-kind="section" data-key="section:78a0d6622d94" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG021-0015</span> Dimension {N}: {DimensionName}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:78a0d6622d94" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:78a0d6622d94" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:78a0d6622d94" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Score: {EXEMPLARY|CONFORMANT|PARTIAL|NON-CONFORMANT}**</p>
+<p>**Evaluation Date:** {YYYY-MM-DD}
+**Data Sources:** {summary of what was read}</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0016" class="chunk sec depth-2" data-kind="section" data-key="section:2ea9bc104ffe" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0016</span> Checks</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2ea9bc104ffe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2ea9bc104ffe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2ea9bc104ffe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Check ID | Result | Evidence | Notes |
+|----------|--------|----------|-------|
+| {ID} | {PASS/FAIL/OBSERVATION} | {specific evidence} | {context} |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0017" class="chunk sec depth-2" data-kind="section" data-key="section:da285769377c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0017</span> Detailed Findings</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:da285769377c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:da285769377c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:da285769377c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG021-0018" class="chunk sec depth-3" data-kind="section" data-key="section:ec4583193f99" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG021-0018</span> {Check ID} — {Check Name}</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec4583193f99" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec4583193f99" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec4583193f99" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Result:** {PASS/FAIL/OBSERVATION}</p>
+<p>**Evidence:**
+{Detailed evidence with file paths and citations}</p>
+<p>**Assessment:**
+{Why this result was assigned}</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0019" class="chunk sec depth-2" data-kind="section" data-key="section:6e5be2f0cf6e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0019</span> Score Justification</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e5be2f0cf6e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e5be2f0cf6e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e5be2f0cf6e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+{Narrative explaining why the overall dimension score was assigned, referencing specific check results}</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG021-0020" class="chunk sec depth-2" data-kind="section" data-key="section:a036da4cc6e6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0020</span> Evidence Files Read</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a036da4cc6e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a036da4cc6e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a036da4cc6e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- {file_path_1}
+- {file_path_2}
+- ...
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG021-0021" class="chunk sec depth-2" data-kind="section" data-key="section:869ff621861c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG021-0021</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:869ff621861c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:869ff621861c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:869ff621861c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Sonnet model is specified for this agent because dimension scoring requires:
+- Reading multiple large files across the project filesystem
+- Cross-referencing content against design basis documents
+- Exercising judgment about whether evidence satisfies pass/fail criteria
+- Producing structured narrative justification</p>
+<p>These tasks require more reasoning depth than content extraction (Haiku) but less orchestration breadth than full evaluation planning (Opus).</p>
+<p>Each dimension report is self-contained — it includes all evidence, results, and justification needed for the EVALUATION orchestrator to compile the final synthesis without re-reading the source files.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG021";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

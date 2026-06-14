@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-TOOLS-RETRIEVAL-README",
+  "source_prefix": "TL003",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-TOOLS-RETRIEVAL-README_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/tools/retrieval/README.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:14+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-TL003-0001",
+      "line_start": 1,
+      "line_end": 161,
+      "target_section_ids": [
+        "SEC-TL003-0001",
+        "SEC-TL003-0002",
+        "SEC-TL003-0003",
+        "SEC-TL003-0004",
+        "SEC-TL003-0005",
+        "SEC-TL003-0006",
+        "SEC-TL003-0007"
+      ],
+      "estimated_md_tokens": 648,
+      "contains_oversized_section": false
+    }
+  ]
+}

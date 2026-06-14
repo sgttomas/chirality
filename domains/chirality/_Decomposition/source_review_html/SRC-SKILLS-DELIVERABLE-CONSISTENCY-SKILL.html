@@ -1,0 +1,336 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-DELIVERABLE-CONSISTENCY-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>11</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK037-0001">SKILL — deliverable-consistency</a> <a href="#SEC-SK037-0002">Purpose</a> <a href="#SEC-SK037-0003">Suitable agent shells</a> <a href="#SEC-SK037-0004">Inputs</a> <a href="#SEC-SK037-0007">Runtime overrides</a> <a href="#SEC-SK037-0008">Tool usage</a> <a href="#SEC-SK037-0009">Outputs</a> <a href="#SEC-SK037-0010">Non-negotiable constraints</a> <a href="#SEC-SK037-0011">QA expectations</a></nav>
+<main>
+<section id="SEC-SK037-0001" class="chunk sec depth-1" data-kind="section" data-key="section:ef66f4c5a34d" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK037-0001</span> SKILL — deliverable-consistency</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ef66f4c5a34d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ef66f4c5a34d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ef66f4c5a34d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK037-0002" class="chunk sec depth-2" data-kind="section" data-key="section:ca4ed2958bc2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ca4ed2958bc2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ca4ed2958bc2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ca4ed2958bc2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Run a deliverable-local consistency sweep across the production documents in one deliverable.</p>
+<p>This skill is meant to work with generic `TASK` briefs that identify exactly one deliverable folder.</p>
+<p>It helps the agent:
+- surface contradictions,
+- find unresolved `TBD` / `ASSUMPTION` / `CONFLICT:` markers,
+- identify unsourced numeric parameters,
+- spot identity mismatches across the document set,
+- and propose minimal corrective edits when authorized.
+</p></div></div></section>
+<section id="SEC-SK037-0003" class="chunk sec depth-2" data-kind="section" data-key="section:9a469888c6f7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a469888c6f7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a469888c6f7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a469888c6f7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` (generic shell, no profile)
+</p></div></div></section>
+<section id="SEC-SK037-0004" class="chunk sec depth-2" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0004</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK037-0005" class="chunk sec depth-3" data-kind="section" data-key="section:b92a34ee517e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK037-0005</span> Required</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b92a34ee517e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b92a34ee517e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b92a34ee517e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath`
+- `RuntimeOverrides.DELIVERABLE_PATH`
+</p></div></div></section>
+<section id="SEC-SK037-0006" class="chunk sec depth-3" data-kind="section" data-key="section:06c6322dcbcb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK037-0006</span> Optional</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:06c6322dcbcb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:06c6322dcbcb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:06c6322dcbcb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `Tasks`
+- `RuntimeOverrides.FocusDocs`
+- `RuntimeOverrides.Strictness`
+- `RuntimeOverrides.MaxFindings`
+- `RuntimeOverrides.CheckIdentity`
+- `RuntimeOverrides.CheckUnsourcedNumerics`
+</p></div></div></section>
+<section id="SEC-SK037-0007" class="chunk sec depth-2" data-kind="section" data-key="section:eeebee1591e3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0007</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eeebee1591e3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eeebee1591e3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eeebee1591e3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default |
+|---|---|---|
+| `FocusDocs` | Limit the sweep to named production docs | all production docs |
+| `Strictness` | `conservative` or `aggressive` finding posture | `conservative` |
+| `MaxFindings` | Soft cap on reported findings | `10` |
+| `CheckIdentity` | Check folder/document naming consistency | `true` |
+| `CheckUnsourcedNumerics` | Flag numeric statements needing evidence review | `true` |
+</p></div></div></section>
+<section id="SEC-SK037-0008" class="chunk sec depth-2" data-kind="section" data-key="section:5b50609a8b95" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0008</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b50609a8b95" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b50609a8b95" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b50609a8b95" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Preferred deterministic helper:
+- `tools/validation/scan_deliverable_consistency.py`</p>
+<p>Preferred method:
+- run the deterministic scan first
+- read only the flagged deliverable-local files and nearby context
+- compare files directly where the deterministic scan cannot decide
+- produce recommendation-first output unless edits are explicitly authorized by the brief</p>
+<p>Disallowed behavior:
+- no widening scope beyond the single deliverable
+- no edits outside the effective bounded task brief&#x27;s write authorization
+- no silent conflict resolution
+</p></div></div></section>
+<section id="SEC-SK037-0009" class="chunk sec depth-2" data-kind="section" data-key="section:e0cf462cdb97" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0009</span> Outputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e0cf462cdb97" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e0cf462cdb97" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e0cf462cdb97" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `PROPOSAL:` blocks for consistency issues
+- `MISSING:` items where files or references are absent
+- `NEEDS_HUMAN_RULING:` items for true contradictions
+- optional applied minimal edits if `ApplyEdits: true`
+- optional `MEMORY.md` update only when the brief explicitly authorizes it
+</p></div></div></section>
+<section id="SEC-SK037-0010" class="chunk sec depth-2" data-kind="section" data-key="section:18404c4b3f69" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0010</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:18404c4b3f69" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:18404c4b3f69" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:18404c4b3f69" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Every finding must cite a file and best-effort section/heading.
+- Unknowns remain `TBD`.
+- Conflicts must be surfaced, not reconciled silently.
+- Proposed edits should be minimal and reversible.
+</p></div></div></section>
+<section id="SEC-SK037-0011" class="chunk sec depth-2" data-kind="section" data-key="section:717a92084f0d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK037-0011</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:717a92084f0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:717a92084f0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:717a92084f0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Findings are scoped to one deliverable.
+- The deterministic scan should be run first unless the brief explicitly forbids tool use.
+- Findings are grouped by issue type where practical.
+- Identity mismatches and unresolved markers are explicitly reported when found.
+- If no meaningful issues are found, the run should say so explicitly rather than padding output.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK037";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

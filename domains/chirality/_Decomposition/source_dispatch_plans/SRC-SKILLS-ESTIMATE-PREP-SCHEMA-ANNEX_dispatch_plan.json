@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-ESTIMATE-PREP-SCHEMA-ANNEX",
+  "source_prefix": "SK083",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-ESTIMATE-PREP-SCHEMA-ANNEX_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/estimate-prep/SCHEMA_ANNEX.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:09+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK083-0001",
+      "line_start": 1,
+      "line_end": 178,
+      "target_section_ids": [
+        "SEC-SK083-0001",
+        "SEC-SK083-0002",
+        "SEC-SK083-0003",
+        "SEC-SK083-0004",
+        "SEC-SK083-0005",
+        "SEC-SK083-0006",
+        "SEC-SK083-0007",
+        "SEC-SK083-0008",
+        "SEC-SK083-0009",
+        "SEC-SK083-0010",
+        "SEC-SK083-0011",
+        "SEC-SK083-0012",
+        "SEC-SK083-0013",
+        "SEC-SK083-0014"
+      ],
+      "estimated_md_tokens": 1120,
+      "contains_oversized_section": false
+    }
+  ]
+}

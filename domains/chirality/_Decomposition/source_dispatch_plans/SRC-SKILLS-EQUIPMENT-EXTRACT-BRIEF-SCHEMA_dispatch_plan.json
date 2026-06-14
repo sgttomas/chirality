@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-EQUIPMENT-EXTRACT-BRIEF-SCHEMA",
+  "source_prefix": "SK075",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-EQUIPMENT-EXTRACT-BRIEF-SCHEMA_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/equipment-extract/BRIEF_SCHEMA.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:08+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK075-0001",
+      "line_start": 1,
+      "line_end": 60,
+      "target_section_ids": [
+        "SEC-SK075-0001",
+        "SEC-SK075-0002",
+        "SEC-SK075-0003",
+        "SEC-SK075-0004",
+        "SEC-SK075-0005",
+        "SEC-SK075-0006",
+        "SEC-SK075-0007"
+      ],
+      "estimated_md_tokens": 304,
+      "contains_oversized_section": false
+    }
+  ]
+}

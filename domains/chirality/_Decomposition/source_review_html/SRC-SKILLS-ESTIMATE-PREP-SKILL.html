@@ -1,0 +1,444 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-ESTIMATE-PREP-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>19</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK084-0001">SKILL — estimate-prep</a> <a href="#SEC-SK084-0002">Purpose</a> <a href="#SEC-SK084-0003">Suitable agent shells</a> <a href="#SEC-SK084-0004">Phase parameter — single-run discipline</a> <a href="#SEC-SK084-0005">Inputs</a> <a href="#SEC-SK084-0009">Runtime overrides</a> <a href="#SEC-SK084-0010">Tool usage</a> <a href="#SEC-SK084-0011">Phase SCAFFOLD — method</a> <a href="#SEC-SK084-0012">Phase BOE — method</a> <a href="#SEC-SK084-0013">Outputs</a> <a href="#SEC-SK084-0016">Non-negotiable constraints</a> <a href="#SEC-SK084-0017">Human decision rights (must remain human)</a> <a href="#SEC-SK084-0018">QA expectations</a> <a href="#SEC-SK084-0019">Companion documents</a></nav>
+<main>
+<section id="SEC-SK084-0001" class="chunk sec depth-1" data-kind="section" data-key="section:125490b797a2" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK084-0001</span> SKILL — estimate-prep</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:125490b797a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:125490b797a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:125490b797a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK084-0002" class="chunk sec depth-2" data-kind="section" data-key="section:e111399b81dd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e111399b81dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e111399b81dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e111399b81dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Generate the complete input package consumed by ESTIMATING agents: pricing libraries, effort matrices, project parameter assumptions, and the Basis of Estimate (BOE).</p>
+<p>This skill runs in two phases, invoked separately with a human gate between:</p>
+<p>1. **SCAFFOLD** — generates a parametric pricing baseline + a BOE scaffold for human review.
+2. **BOE** — consumes the approved scaffold + dependency evidence to produce the full `BASIS_OF_ESTIMATE.md` with tier sequencing, cost ownership rules, and aggregation strategy.</p>
+<p>Each invocation runs exactly ONE phase, selected by the `PHASE` brief parameter. The human gate is external: a human reviews SCAFFOLD output, then re-invokes the skill with `PHASE=BOE`.</p>
+<p>**Non-goal:** this skill MUST NOT compute or publish project totals, bid prices, or line-item estimates. It prepares inputs; ESTIMATING produces estimates.
+</p></div></div></section>
+<section id="SEC-SK084-0003" class="chunk sec depth-2" data-kind="section" data-key="section:7e929f03e41d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e929f03e41d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e929f03e41d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e929f03e41d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` (generic shell mode, no profile)
+</p></div></div></section>
+<section id="SEC-SK084-0004" class="chunk sec depth-2" data-kind="section" data-key="section:f3ed8a68dd0b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0004</span> Phase parameter — single-run discipline</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f3ed8a68dd0b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f3ed8a68dd0b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f3ed8a68dd0b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The `PHASE` parameter determines which pipeline executes. A single invocation runs exactly one phase:</p>
+<p>| PHASE | Input expectation | Primary output |
+|---|---|---|
+| `SCAFFOLD` | Decomposition + source documents + project context (+ optional `HUMAN_PRICING` if `MODE=ENRICH`) | Pricing library CSVs + `PriceSources/INDEX.md` + `Scaffold/BOE_Scaffold.md` |
+| `BOE` | Approved `SCAFFOLD_PATH` + dependency evidence | Full `BASIS_OF_ESTIMATE.md` + `Tier_Analysis.md` |</p>
+<p>**Critical invariant:** a single run MUST NOT span both phases — the human gate between them is a non-negotiable decision point. If a brief requests both phases in one run, halt with `FAILED_INPUTS`.
+</p></div></div></section>
+<section id="SEC-SK084-0005" class="chunk sec depth-2" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0005</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK084-0006" class="chunk sec depth-3" data-kind="section" data-key="section:81ea6597e8b8" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK084-0006</span> Common (both phases)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:81ea6597e8b8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:81ea6597e8b8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:81ea6597e8b8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `EXECUTION_ROOT` — root of the current execution/workspace
+- `PHASE` — `SCAFFOLD` | `BOE` (validated enum; invalid = `FAILED_INPUTS`)
+- `DECOMPOSITION_PATH` — path to the latest decomposition markdown (PROJECT_DECOMP or SOFTWARE_DECOMP)
+- `SOURCE_DOCUMENTS` — path(s) to source documents (RFP, addenda, specs, reference reports)
+- `CURRENCY` — ISO-like code (e.g., `USD`, `CAD`)
+- `PROJECT_CONTEXT` — structured block (`Location`, `BaseYear`, `ProjectType`, `ProcurementModel`; `EstimatedValue` optional; `AdditionalContext` optional)</p>
+<p>Optional:
+- `OUTPUT_LABEL` — short label for snapshot naming (default `AUTO`)
+- `SECONDARY_SOURCES` — path(s) to secondary reference documents
+- `CANONICAL_PRICESOURCES_ROOT` — path to canonical pricing library (e.g., `{EXECUTION_ROOT}/_PriceSources/`) used for schema discovery and/or as ENRICH input
+- `SCHEMA_MODE` — `AUTO_FROM_CANONICAL` (default) | `DEFAULT_COMPAT`
+- `EXPORT_BUNDLE` — `MANIFEST_ONLY` (default) | `MANIFEST_AND_PACKAGE`
+</p></div></div></section>
+<section id="SEC-SK084-0007" class="chunk sec depth-3" data-kind="section" data-key="section:6aab406834ea" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK084-0007</span> SCAFFOLD-specific</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6aab406834ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6aab406834ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6aab406834ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `MODE` — `BOOTSTRAP` (default) | `ENRICH`
+- `PRIOR_SNAPSHOT` — required if `MODE=ENRICH` (or use `CANONICAL_PRICESOURCES_ROOT`)
+- `HUMAN_PRICING` — path(s) to human-provided pricing (quotes, rate tables, historical data, vendor proposals)
+- `RATE_SCOPE` — `PRODUCTION_ONLY` (default) | `PRODUCTION_AND_CONSTRUCTION`
+- `DISCIPLINE_HINTS` — override/supplement discipline detection from decomposition
+</p></div></div></section>
+<section id="SEC-SK084-0008" class="chunk sec depth-3" data-kind="section" data-key="section:f15452b1e111" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK084-0008</span> BOE-specific</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f15452b1e111" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f15452b1e111" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f15452b1e111" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `SCAFFOLD_PATH` — path to approved SCAFFOLD snapshot (may have been modified by human after Phase SCAFFOLD)</p>
+<p>Optional:
+- `DEPENDENCY_SOURCES` — `AUTO` (default; reads per-deliverable `Dependencies.csv`) or explicit path(s) to dependency registers
+- `EVALUATION_CRITERIA` — path to or structured block of evaluation criteria with point allocations
+- `AGGREGATION_HINTS` — human-specified aggregation preferences</p>
+<p>All resolved defaults and chosen paths MUST be recorded in the snapshot `Run_Context.md`.
+</p></div></div></section>
+<section id="SEC-SK084-0009" class="chunk sec depth-2" data-kind="section" data-key="section:26867ae70585" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0009</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:26867ae70585" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:26867ae70585" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:26867ae70585" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `PHASE` | Which pipeline to run | **Required** | `SCAFFOLD`, `BOE` |
+| `MODE` | SCAFFOLD only: baseline vs enrichment | `BOOTSTRAP` | `BOOTSTRAP`, `ENRICH` |
+| `RATE_SCOPE` | SCAFFOLD only: which rate files to generate | `PRODUCTION_ONLY` | `PRODUCTION_ONLY`, `PRODUCTION_AND_CONSTRUCTION` |
+| `SCHEMA_MODE` | Whether to auto-match canonical file headers | `AUTO_FROM_CANONICAL` | `AUTO_FROM_CANONICAL`, `DEFAULT_COMPAT` |
+| `EXPORT_BUNDLE` | Manifest-only vs manifest + copy-ready package | `MANIFEST_ONLY` | `MANIFEST_ONLY`, `MANIFEST_AND_PACKAGE` |
+| `DEPENDENCY_SOURCES` | BOE only: dependency source policy | `AUTO` | `AUTO` or explicit path(s) |
+| `OUTPUT_LABEL` | Label for snapshot folder naming | `AUTO` | free-form short token |
+</p></div></div></section>
+<section id="SEC-SK084-0010" class="chunk sec depth-2" data-kind="section" data-key="section:c98ee52f4471" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0010</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c98ee52f4471" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c98ee52f4471" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c98ee52f4471" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The `allowed-tools` frontmatter field is intentionally omitted. The skill dispatches several utility scripts under `tools/` (enum validation, snapshot scaffolding, INDEX generation) but their invocation is guided operationally, not enforced through the TASK-consumed allowed-tools contract.
+- Preferred utility scripts (invoked by the agent during the run when available):
+  - `tools/validation/validate_enum.py` — validates `PHASE` input.
+  - `tools/scaffolding/scaffold_tool_root.sh` — creates `_EstimatePrep/` tool root.
+  - `tools/scaffolding/create_snapshot_folder.sh` — creates immutable snapshot folder.
+  - `tools/reporting/generate_index_md.sh` — generates file inventory portion of `INDEX.md`.
+- Reasoning + file-write operations generate the content (CSVs, scaffold, BOE) based on the canonical schemas in the Schema Annex.</p>
+<p>Disallowed behavior:
+- No writes outside `{EXECUTION_ROOT}/_EstimatePrep/`.
+- No overwriting prior snapshots.
+- No modification of `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers.
+- No recursive ingestion of prior `_EstimatePrep/` outputs unless explicitly provided as `PRIOR_SNAPSHOT` / `SCAFFOLD_PATH`.
+</p></div></div></section>
+<section id="SEC-SK084-0011" class="chunk sec depth-2" data-kind="section" data-key="section:1e263a9da8de" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0011</span> Phase SCAFFOLD — method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1e263a9da8de" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1e263a9da8de" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1e263a9da8de" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Resolve tool root + create snapshot folder.** Validate `PHASE` enum; bootstrap `_EstimatePrep/`; create `EPREP_SCAFFOLD_{LABEL}_{DATE}_{TIME}/`.
+2. **Load decomposition.** Extract Package IDs, Deliverable IDs, scope items, disciplines, owner roles, variant hints.
+3. **Load source documents.** Extract project name, location, owner, timeline, submission requirements, scope boundaries, referenced standards, constraints. Record `TBD` for items not found.
+4. **Determine canonical schemas.** If `SCHEMA_MODE=AUTO_FROM_CANONICAL` and `CANONICAL_PRICESOURCES_ROOT` has a matching file, use its header exactly; otherwise use the Schema Annex (see `SCHEMA_ANNEX.md` for the 9 schema families).
+5. **Generate `Professional_Staff_Rates.csv`** (Family 4). Default `Confidence=MEDIUM`, `Basis=PARAMETRIC`. ENRICH mode overlays human rates and logs each override.
+6. **Generate `Level_of_Effort.csv`** (Family 9). Default `Basis=PARAMETRIC`. No `Confidence` column — provenance is `Basis` alone.
+7. **Generate `Assumed_Project_Parameters.csv`** (Family 8). Uses `Source` column (not `Basis`); canonical enum: `ASSUMPTION`, `DESIGN_BASIS`, `CONFIRMED`, `DERIVED`, `PARAMETRIC`.
+8. **Generate additional rate tables (conditional).** If `RATE_SCOPE=PRODUCTION_AND_CONSTRUCTION`, generate all applicable Family 1-7 files matching exact canonical schemas.
+9. **Generate `PriceSources/INDEX.md`** with the 7 required sections: header block, data quality statement (HIGH/MEDIUM/LOW definitions), file inventory, PS-ID to file mapping, ESTIMATING run configuration (DEL-to-PKG mapping + per-package `PRICE_SOURCES` list + usage guidance), open issues, gaps. Full section contract: see `INDEX_MD_CONTRACT.md`.
+10. **Generate `Scaffold/BOE_Scaffold.md`.** Per-deliverable table (DEL-ID, name, package, default basis, fallback policy, mixed-method flag, substance, cost drivers, roles), package cost ownership hints, SOW multi-mapping warnings. Marked `DRAFT — requires human review`.
+11. **QA + handoff artifacts.** Produce `Confidence_Summary.md`, `QA_Report.md` with `RUN_STATUS`, `Decision_Log.md`, `Assumptions_Log.md`, `Source_Index.md`, `Override_Log.csv` (ENRICH only), `Conflicts.csv` (when needed), `Publish_Manifest.md` (always).
+</p></div></div></section>
+<section id="SEC-SK084-0012" class="chunk sec depth-2" data-kind="section" data-key="section:fd11cd90e3d3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0012</span> Phase BOE — method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fd11cd90e3d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fd11cd90e3d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fd11cd90e3d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Resolve tool root + create snapshot folder.** Create `EPREP_BOE_{LABEL}_{DATE}_{TIME}/`.
+2. **Load approved scaffold.** Read `SCAFFOLD_PATH`; diff against original scaffold if identifiable; log human modifications in `Decision_Log.md`.
+3. **Load decomposition + dependencies.** Read `DEPENDENCY_SOURCES` (or `AUTO` for per-deliverable `Dependencies.csv`); build dependency DAG; detect cycles.
+4. **Derive tier sequencing.** Assign tiers via topological layering (T0, T1, ...); identify sequential chains and parallelization opportunities; output `Tier_Analysis.md`.
+5. **Generate per-deliverable estimation plan.** Tier assignment, basis/fallback/mixed-method from approved scaffold, substance and cost drivers, required price sources; package-level cost ownership rules.
+6. **Generate dependency-informed run sequence.** Tiers in order + within-tier parallelism + sequential chains + gates.
+7. **Generate aggregation strategy.** Rollups: deliverables to packages to project totals; add evaluation-weight views if `EVALUATION_CRITERIA` provided.
+8. **Generate missing/weak PRICE_SOURCES register.** Identify and prioritize low-confidence items impacting the plan.
+9. **Compile assumptions and constraints log.** Merge scaffold assumptions + BOE derivations with IDs and impact-if-wrong.
+10. **Compile full `BASIS_OF_ESTIMATE.md`.** Follow canonical BOE structure if one exists; otherwise use the 10-section set: Purpose, Project Context, Estimation Scope, Estimation Strategy, Per-Deliverable Plan, Dependency-Informed Run Sequence, Missing/Weak PRICE_SOURCES, Aggregation Strategy, Assumptions Log, Document Control. Full section contract + handoff artifact contracts: see `BOE_STRUCTURE.md`.
+11. **QA + handoff artifacts.** `QA_Report.md` with `RUN_STATUS`, `Decision_Log.md`, `Assumptions_Log.md`, `Source_Index.md`, `Conflicts.csv` (if cycles or contradictions), `Publish_Manifest.md` (always).
+</p></div></div></section>
+<section id="SEC-SK084-0013" class="chunk sec depth-2" data-kind="section" data-key="section:7835db447bc7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0013</span> Outputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7835db447bc7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7835db447bc7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7835db447bc7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK084-0014" class="chunk sec depth-3" data-kind="section" data-key="section:d6fa25a6a0e4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK084-0014</span> SCAFFOLD snapshot</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d6fa25a6a0e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d6fa25a6a0e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d6fa25a6a0e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{EXECUTION_ROOT}/_EstimatePrep/EPREP_SCAFFOLD_{LABEL}_{DATE}_{TIME}/
+  Run_Context.md
+  PriceSources/
+    [pricing library CSVs per RATE_SCOPE]
+    INDEX.md
+  Scaffold/
+    BOE_Scaffold.md
+    Package_Analysis.md
+  Confidence_Summary.md
+  QA_Report.md
+  Decision_Log.md
+  Assumptions_Log.md
+  Source_Index.md
+  Override_Log.csv          (ENRICH mode only)
+  Conflicts.csv             (when needed)
+  Publish_Manifest.md
+  Publish_Package/          (optional; if EXPORT_BUNDLE=MANIFEST_AND_PACKAGE)
+```
+</p></div></div></section>
+<section id="SEC-SK084-0015" class="chunk sec depth-3" data-kind="section" data-key="section:c83116cf944c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK084-0015</span> BOE snapshot</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c83116cf944c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c83116cf944c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c83116cf944c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{EXECUTION_ROOT}/_EstimatePrep/EPREP_BOE_{LABEL}_{DATE}_{TIME}/
+  Run_Context.md
+  BASIS_OF_ESTIMATE.md
+  Tier_Analysis.md
+  QA_Report.md
+  Decision_Log.md
+  Assumptions_Log.md
+  Source_Index.md
+  Conflicts.csv             (when needed)
+  Publish_Manifest.md
+  Publish_Package/          (optional)
+```
+</p></div></div></section>
+<section id="SEC-SK084-0016" class="chunk sec depth-2" data-kind="section" data-key="section:68cbec7c8b48" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0016</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68cbec7c8b48" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68cbec7c8b48" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68cbec7c8b48" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Write quarantine.** Write ONLY under `{EXECUTION_ROOT}/_EstimatePrep/`. Never modify `_PriceSources/`, `_Estimates/`, deliverable folders, decomposition outputs, or dependency registers. Publishing to canonical locations is a separate, human-approved step handled by the invoker.
+- **Snapshots are immutable.** Each run writes a new snapshot folder; never overwrite prior snapshots.
+- **Phase separation.** SCAFFOLD and BOE are distinct invocations. A single run MUST NOT span both phases — the human gate between them is a non-negotiable decision point.
+- **Provenance tracking is mandatory.** Every generated value carries provenance appropriate to its schema family: `Basis` + `Confidence` for Families 1-7; `Source` + `Confidence` for Family 8; `Basis` alone (no `Confidence`) for Family 9. Do not add columns that do not exist in the canonical schema for a given file.
+- **Parametric defaults are not human confirmation.** Parametric values MUST be labeled `PARAMETRIC` with `MEDIUM` or `LOW` confidence, never `HIGH`. Only human-confirmed, vendor-quoted, or directly source-document-derived values earn `HIGH`.
+- **No silent overrides.** When ENRICH mode overlays human data on a baseline, every override MUST be logged in `Override_Log.csv` (what changed, from what, to what, confidence change).
+- **Conflicts are surfaced.** If two sources disagree or schema mismatches exist, produce `Conflicts.csv`; do not silently pick a winner.
+- **Dependencies are read-only inputs.** Dependency registers inform tier sequencing in Phase BOE but are never modified by this skill.
+- **No recursive ingestion.** Do not treat prior `_EstimatePrep/` outputs as &quot;market evidence&quot; unless explicitly provided as `PRIOR_SNAPSHOT` / `SCAFFOLD_PATH`.
+- **CSV schema integrity.** Every generated CSV MUST match the exact column names and order specified by its schema family (or by the canonical file discovered via `AUTO_FROM_CANONICAL`). No invented columns.
+</p></div></div></section>
+<section id="SEC-SK084-0017" class="chunk sec depth-2" data-kind="section" data-key="section:65072afce1b1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0017</span> Human decision rights (must remain human)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:65072afce1b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:65072afce1b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:65072afce1b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This skill may propose, but MUST NOT decide:</p>
+<p>- Accepting / issuing the BOE strategy and publishing it to canonical locations.
+- Rulings on conflicts (two quotes disagree, scope overlaps, contradictory dependency assertions).
+- Approving any override that would change a `HIGH`-confidence value.
+- Scope boundary decisions (in/out; base vs option vs alternate).
+- Any irreversible publication action (git commit/push; copy into `_PriceSources/`).</p>
+<p>Human rulings SHOULD be recorded in the scaffold/BOE artifacts (or in a separate decision log maintained by the invoker).
+</p></div></div></section>
+<section id="SEC-SK084-0018" class="chunk sec depth-2" data-kind="section" data-key="section:3bafe86f832b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0018</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3bafe86f832b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3bafe86f832b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3bafe86f832b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+See `QA_CHECKS.md` for the full invariant + quality gate set. Summary:</p>
+<p>- `RUN_STATUS` declared in `QA_Report.md` (`OK` | `WARNINGS` | `FAILED_INPUTS`).
+- Snapshot folder created for every run (including failures).
+- No writes outside `_EstimatePrep/`.
+- CSV schemas match the canonical Schema Annex exactly.
+- Provenance complete per schema family.
+- `Publish_Manifest.md` exists and references the run outputs.
+- Phase-specific required artifacts present (see `QA_CHECKS.md`).
+</p></div></div></section>
+<section id="SEC-SK084-0019" class="chunk sec depth-2" data-kind="section" data-key="section:408f60e94e84" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK084-0019</span> Companion documents</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:408f60e94e84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:408f60e94e84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:408f60e94e84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This skill&#x27;s detailed contracts live in adjacent companion files. Consult these when implementing:</p>
+<p>- **`SCHEMA_ANNEX.md`** — 9 canonical CSV schema families covering 18 files in `_PriceSources/`; `Basis`/`Source`/`Confidence` enum references; `Override_Log.csv` and `Conflicts.csv` schemas. Hardened against the on-disk canonical library as of 2026-02-18.
+- **`BOE_STRUCTURE.md`** — `BOE_Scaffold.md` contract (Phase SCAFFOLD), `BASIS_OF_ESTIMATE.md` 10-section contract (Phase BOE), `Run_Context.md` minimum fields, `Publish_Manifest.md` handoff contract.
+- **`INDEX_MD_CONTRACT.md`** — 7-section `PriceSources/INDEX.md` contract including the ESTIMATING run configuration block.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK084";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

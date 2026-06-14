@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": "SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT",
+  "source_prefix": "HX011",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-EXPORTS-CHIRALITY-APP-EXPORT-REPORT_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/exports/chirality-app/export-report.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:15+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-HX011-0001",
+      "line_start": 1,
+      "line_end": 32,
+      "target_section_ids": [
+        "SEC-HX011-0001",
+        "SEC-HX011-0002",
+        "SEC-HX011-0003"
+      ],
+      "estimated_md_tokens": 168,
+      "contains_oversized_section": false
+    }
+  ]
+}

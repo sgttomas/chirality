@@ -21,8 +21,8 @@ For every row:
 |---|---|
 | `LocalSeq` | Strictly increasing positive integer; starts at `1`; no gaps; no duplicates |
 | `UnitStatement` | Non-empty; one concept per row; preferred length ≤ 50 words |
-| `SourceRef` | Non-empty; dual citation `<book>.md:L####\|<book>.html#anchor` |
-| `SourceRef` MD line | Falls within `LINE_START..LINE_END` (inclusive) |
+| `SourceRef` | Non-empty; dual citation. Default form is `<book>.md:L####\|<book>.html#anchor`; manifest-backed form `@repo/<RepoRelPath>:L####\|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>` is valid when `SOURCE_REF_BASE` is supplied. |
+| `SourceRef` source line | Falls within `LINE_START..LINE_END` (inclusive) |
 | `ContentHash` | Non-empty; exactly 12 lowercase hex characters; equals `sha1(UnitStatement)[:12]` |
 | `InOutStatus` | One of `IN`, `OUT`, `TBD` |
 | `SectionID` | Member of `TARGET_SECTION_IDS` from `RuntimeOverrides` |
@@ -84,7 +84,7 @@ These defects block the per-source merge step (`merge_source_atomizations.py per
 - Missing `ContentHash` or mismatch with re-derived hash
 - Non-monotonic `LocalSeq`
 - `SectionID` outside `TARGET_SECTION_IDS`
-- `SourceRef` MD line outside `LINE_START..LINE_END`
+- `SourceRef` source line outside `LINE_START..LINE_END`
 - Empty `UnitStatement` on an IN row
 - Boilerplate (page-numbers-only, header-only) emitted as IN
 - File-write outside the declared write boundary

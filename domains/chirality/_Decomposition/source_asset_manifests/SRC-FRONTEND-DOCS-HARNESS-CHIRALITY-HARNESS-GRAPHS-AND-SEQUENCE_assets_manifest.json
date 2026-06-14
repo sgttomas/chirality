@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-FRONTEND-DOCS-HARNESS-CHIRALITY-HARNESS-GRAPHS-AND-SEQUENCE",
+  "source_doc_id": "SRC-FRONTEND-DOCS-HARNESS-CHIRALITY-HARNESS-GRAPHS-AND-SEQUENCE",
+  "source_name": "frontend/docs/harness/chirality_harness_graphs_and_sequence.md",
+  "source_prefix": "HX002",
+  "repo_rel_path": "frontend/docs/harness/chirality_harness_graphs_and_sequence.md",
+  "catalog_rel_path": "@repo/frontend/docs/harness/chirality_harness_graphs_and_sequence.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

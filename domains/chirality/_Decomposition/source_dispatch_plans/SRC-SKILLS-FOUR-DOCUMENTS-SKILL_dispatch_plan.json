@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-FOUR-DOCUMENTS-SKILL",
+  "source_prefix": "SK092",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-FOUR-DOCUMENTS-SKILL_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/four-documents/SKILL.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:09+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK092-0001",
+      "line_start": 10,
+      "line_end": 321,
+      "target_section_ids": [
+        "SEC-SK092-0001",
+        "SEC-SK092-0002",
+        "SEC-SK092-0003",
+        "SEC-SK092-0004",
+        "SEC-SK092-0005",
+        "SEC-SK092-0006",
+        "SEC-SK092-0007",
+        "SEC-SK092-0008",
+        "SEC-SK092-0009",
+        "SEC-SK092-0010",
+        "SEC-SK092-0011",
+        "SEC-SK092-0012",
+        "SEC-SK092-0013",
+        "SEC-SK092-0014",
+        "SEC-SK092-0015",
+        "SEC-SK092-0016",
+        "SEC-SK092-0017",
+        "SEC-SK092-0018",
+        "SEC-SK092-0019",
+        "SEC-SK092-0020",
+        "SEC-SK092-0021",
+        "SEC-SK092-0022",
+        "SEC-SK092-0023"
+      ],
+      "estimated_md_tokens": 3483,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-10-CONCLUSION - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>6</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG022-0001">Chapter 10 — Conclusion</a> <a href="#SEC-DG022-0002">10.1 Research Question</a> <a href="#SEC-DG022-0003">10.2 Contributions</a> <a href="#SEC-DG022-0004">10.3 The Central Insight</a> <a href="#SEC-DG022-0005">10.4 Implications for Practice</a> <a href="#SEC-DG022-0006">10.5 Closing</a></nav>
+<main>
+<section id="SEC-DG022-0001" class="chunk sec depth-1" data-kind="section" data-key="section:5d5a75d95c04" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG022-0001</span> Chapter 10 — Conclusion</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5d5a75d95c04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5d5a75d95c04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5d5a75d95c04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+---
+</p></div></div></section>
+<section id="SEC-DG022-0002" class="chunk sec depth-2" data-kind="section" data-key="section:1bcdf7962e11" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG022-0002</span> 10.1 Research Question</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1bcdf7962e11" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1bcdf7962e11" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1bcdf7962e11" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This thesis asked: *How can systems engineering principles be applied to govern LLM-based agent systems such that their outputs can be relied upon in regulated professional engineering practice?*</p>
+<p>One answer developed and implemented in this thesis is the Chirality architecture — a formally specified agent operating system in which SE disciplines are not compliance artifacts applied to an agent system, but the mechanisms by which agents coordinate, failures are contained, and humans maintain authority.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG022-0003" class="chunk sec depth-2" data-kind="section" data-key="section:86d24b085b0e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG022-0003</span> 10.2 Contributions</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86d24b085b0e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86d24b085b0e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86d24b085b0e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The thesis presented five novel contributions:</p>
+<p>**1. An epistemic architecture for LLM reliability transparency (Chapter 5).** The fundamental problem of using LLMs in professional practice is that model outputs carry no intrinsic epistemic warrant — correct and incorrect claims are generated by the same mechanism and have the same surface properties. Chirality&#x27;s response is not to improve the model but to make the epistemic status of every claim transparent and auditable through four mechanisms: mandatory provenance (K-PROV-1), no invention (K-INVENT-1), conflict surfacing (K-CONFLICT-1), and epistemic labeling (FACT/ASSUMPTION/PROPOSAL/TBD). The result is that gaps in evidence are findings, not hidden failures. This is the system&#x27;s most distinctive contribution and the one that enables professional reliance.</p>
+<p>**2. A regulatory mapping grounding AI agent governance in existing professional obligations (Chapter 6).** The thesis argued that APEGA&#x27;s practice standard *Relying on the Work of Others and Outsourcing* can be interpreted to govern AI agent use because the professional&#x27;s obligations are defined by what the professional must do, not by what the worker is. The Chirality architecture maps APEGA §3.1.1 (direct supervision and control) and §3.1.2 (thorough review) to specific, traceable architectural mechanisms. This contribution shows that existing regulatory frameworks may govern AI agents without requiring entirely new AI-specific regulation, though the interpretation remains jurisdiction- and regulator-dependent.</p>
+<p>**3. A four-pillar philosophical framework with fractal instantiation (Chapter 3).** The thesis identified ontology, epistemology, praxiology, and axiology as the four pillars of the architecture and argued that the epistemology is load-bearing within this design — removing it most directly defeats the system&#x27;s ability to support professional reliance while the other three pillars remain necessary in service of it. The epistemology has its own formal ontology: six primitives (claim, warrant, status, gap, conflict, ruling) and a warrant lifecycle (UNWARRANTED → CITED → REVIEWED → AUTHENTICATED) that makes the epistemic state of claims within a deliverable explicitly trackable. The four pillars are presented as a compact and coherent framework for professional accountability rather than as the only possible ontology for every context. The framework identifies the chirality of knowledge — the structural property that knowledge is composed of complementary, non-superimposable components (claim and warrant, meaning and commitment, content and accountability) with a constitutive gap between them. This gap is the space where professional judgment is enacted. The architecture holds it open and makes both sides inspectable. The fractal property — the self-similar appearance of this chiral structure at every level — is treated as evidence of architectural coherence within Chirality.</p>
+<p>**4. A fault containment architecture through write scope quarantine (Chapter 4, §4.6).** The Type 0/1/2 agent hierarchy combined with declared write scopes creates formal fault containment zones. A Type 2 agent failure cannot corrupt source truth. Cross-deliverable operations are explicit, opt-in, and write to isolated tool roots. This adapts classical SE fault containment to the specific challenge of governing probabilistic agents.</p>
+<p>**5. A three-layer invariant system with four-layer enforcement (Chapter 4, §4.7; Chapter 7).** Nine workflow design requirements (R1–R9), ten decomposition invariants (I1–I10), and twenty system-wide invariants (K-*) are enforced through agent instructions, runtime orchestration, human gates, and deterministic tooling. The invariant system constitutes a formal specification of agent behavior constraints applied to a domain — LLM agent governance — where formal methods have not previously been deployed.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG022-0004" class="chunk sec depth-2" data-kind="section" data-key="section:e9a72dc90d6d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG022-0004</span> 10.3 The Central Insight</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9a72dc90d6d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9a72dc90d6d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9a72dc90d6d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The thesis rests on a single insight: **productivity tools optimize for output quality; professional engineering tools optimize for knowing what you can rely on.**</p>
+<p>This distinction determines the architecture. A productivity tool asks: how can we make the agent&#x27;s output better? A professional engineering tool asks: how can we make the epistemic status of the agent&#x27;s output transparent, so that a competent professional can determine what to rely on? The first question leads to model-level improvements (RLHF, RAG, fine-tuning). The second leads to architectural enforcement (mandatory provenance, epistemic labeling, conflict surfacing, content-addressed approval).</p>
+<p>Both questions are valid. Both approaches are complementary. But only the second supports professional authentication — the act by which a licensed professional accepts personal responsibility for work. Authentication requires evidence, not just quality. The epistemic architecture provides that evidence.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG022-0005" class="chunk sec depth-2" data-kind="section" data-key="section:a25fe9cf8b04" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG022-0005</span> 10.4 Implications for Practice</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a25fe9cf8b04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a25fe9cf8b04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a25fe9cf8b04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**For engineering firms using AI:** The Chirality architecture demonstrates one credible way that AI agents can be directed within existing professional regulatory frameworks. The key is governance architecture, not model capability alone. An engineering firm adopting AI may not need to wait for AI-specific regulation, but it does need a governance framework that can be defended under the existing &quot;relying on the work of others&quot; standard.</p>
+<p>**For regulators:** The thesis suggests that existing professional practice standards — supervision, review, authentication — may be sufficient to govern AI agent use, provided the AI system is architected to make compliance structurally supportable and auditable. The four-pillar framework offers a checklist for assessing whether a firm&#x27;s AI governance is coherent: does it define what exists (ontology)? does it enforce epistemic transparency (epistemology)? does it bound agent action (praxiology)? does it articulate and enforce professional values (axiology)?</p>
+<p>**For the AI agent research community:** The thesis identifies a gap between agent capability and agent governability. Current research focuses on making agents more capable. The Chirality architecture shows that capability without governance is insufficient for professional practice. The epistemic architecture — mandatory provenance, no-invention, conflict surfacing, epistemic labeling — is a contribution that other agent frameworks could adopt without adopting Chirality wholesale.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG022-0006" class="chunk sec depth-2" data-kind="section" data-key="section:9b0613b52457" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG022-0006</span> 10.5 Closing</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b0613b52457" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b0613b52457" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b0613b52457" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+&gt; *AI can accelerate engineering work. It cannot inherit professional responsibility.*</p>
+<p>The Chirality architecture is an answer to the question of how to reconcile these two facts. It engineers a harness that allows judgment to scale — widening and organizing the field of consideration while preserving the human professional&#x27;s authority to narrow, accept, and issue. What comes out the other end of that process still means what professional work outputs have always meant: a competent person warrants this under duty of care, backed by an auditable record.</p>
+<p>If we cannot make it auditable, we cannot rely on it. This system makes it auditable.</p>
+<p>The deeper question — whether the architecture, consistently practiced, produces something beyond its measurable outputs — is addressed not by proof but by the lived consistency of commitment and response. Appendix D develops the formal existential conditions under which that question can be asked. The answer, if it comes, emerges from practice.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG022";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

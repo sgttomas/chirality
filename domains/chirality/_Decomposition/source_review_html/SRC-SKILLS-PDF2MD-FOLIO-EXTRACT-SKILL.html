@@ -1,0 +1,414 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-PDF2MD-FOLIO-EXTRACT-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>14</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK116-0001">SKILL - pdf2md-folio-extract</a> <a href="#SEC-SK116-0002">Purpose</a> <a href="#SEC-SK116-0003">Suitable agent shells</a> <a href="#SEC-SK116-0004">Inputs</a> <a href="#SEC-SK116-0005">Read boundary</a> <a href="#SEC-SK116-0006">Write boundary</a> <a href="#SEC-SK116-0007">Tool usage</a> <a href="#SEC-SK116-0008">Method</a> <a href="#SEC-SK116-0012">Output rules</a> <a href="#SEC-SK116-0013">Non-negotiable constraints</a> <a href="#SEC-SK116-0014">QA expectations</a></nav>
+<main>
+<section id="SEC-SK116-0001" class="chunk sec depth-1" data-kind="section" data-key="section:b0dfbae2658f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK116-0001</span> SKILL - pdf2md-folio-extract</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0dfbae2658f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0dfbae2658f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0dfbae2658f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK116-0002" class="chunk sec depth-2" data-kind="section" data-key="section:7e23cc15b435" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e23cc15b435" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e23cc15b435" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e23cc15b435" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Read one rasterized PDF page image and emit the printed folio label that is visible on the page itself — the page number as the document prints it, not the physical PDF sequence position.</p>
+<p>Examples of valid folio labels:</p>
+<p>- Arabic numerals: `&quot;47&quot;`, `&quot;128&quot;`
+- Roman numerals: `&quot;xiv&quot;`, `&quot;iii&quot;`, `&quot;XLII&quot;`
+- Compound/prefixed labels: `&quot;B-3&quot;`, `&quot;A-12&quot;`, `&quot;3-7&quot;`
+- Section-prefixed labels: `&quot;Ch1-4&quot;`, `&quot;App-2&quot;`</p>
+<p>The skill reads exactly one page image and writes exactly one JSON file naming the visible folio. It does not assemble a folio map across pages, reconcile front-matter Roman numbering against body Arabic numbering, or interact with the PDF outline / TOC. Those are orchestrator-level concerns.
+</p></div></div></section>
+<section id="SEC-SK116-0003" class="chunk sec depth-2" data-kind="section" data-key="section:75cc85b044a7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:75cc85b044a7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:75cc85b044a7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:75cc85b044a7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` in generic shell mode, spawned by the `PDF2MD` orchestrator</p>
+<p>Not the right fit for:</p>
+<p>- whole-PDF folio map assembly
+- TOC / outline cross-referencing
+- inferring a folio from neighbouring pages
+- assigning final asset filenames or any non-folio metadata
+</p></div></div></section>
+<section id="SEC-SK116-0004" class="chunk sec depth-2" data-kind="section" data-key="section:585c6f75f0d6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0004</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:585c6f75f0d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:585c6f75f0d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:585c6f75f0d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required runtime overrides:</p>
+<p>- `IMAGE_PATH` - absolute path to the page PNG
+- `OUTPUT_PATH` - absolute path for the folio JSON
+- `PAGE_NUM` - 1-indexed physical PDF page number
+</p></div></div></section>
+<section id="SEC-SK116-0005" class="chunk sec depth-2" data-kind="section" data-key="section:5331268f8526" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0005</span> Read boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5331268f8526" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5331268f8526" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5331268f8526" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reads are limited to exactly one file:</p>
+<p>- `{IMAGE_PATH}`</p>
+<p>Do not read neighbouring pages, manifests, sibling Markdown, the source PDF, or any other folio JSON. This preserves page-level parallelism and prevents folio invention by inference from neighbours.
+</p></div></div></section>
+<section id="SEC-SK116-0006" class="chunk sec depth-2" data-kind="section" data-key="section:0a6fb77e0726" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0006</span> Write boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a6fb77e0726" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to exactly one file:</p>
+<p>- `{OUTPUT_PATH}`</p>
+<p>The output filename is supplied by the orchestrator and must not be derived or changed by the skill.
+</p></div></div></section>
+<section id="SEC-SK116-0007" class="chunk sec depth-2" data-kind="section" data-key="section:985bfd1a1616" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0007</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:985bfd1a1616" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:985bfd1a1616" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:985bfd1a1616" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- No deterministic tools.
+- The `allowed-tools` frontmatter field is intentionally omitted.
+- The agent uses native multimodal reading for `IMAGE_PATH` and native writing for `OUTPUT_PATH`.</p>
+<p>Disallowed behavior:</p>
+<p>- Do not crop images.
+- Do not write PNG, CSV, or XLSX files.
+- Do not read neighbouring page images or any other file.
+- Do not invent a folio from the physical sequence (e.g. do NOT return `&quot;47&quot;` just because `PAGE_NUM` is 47).
+- Do not infer a folio from neighbouring pages&#x27; numbering.
+- Do not consult outlines, TOCs, or sibling JSON.
+</p></div></div></section>
+<section id="SEC-SK116-0008" class="chunk sec depth-2" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0008</span> Method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK116-0009" class="chunk sec depth-3" data-kind="section" data-key="section:b0cc3a493262" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK116-0009</span> Step 1 - Validate inputs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0cc3a493262" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0cc3a493262" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0cc3a493262" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm `IMAGE_PATH` exists and has a `.png` extension.
+2. Confirm `OUTPUT_PATH` parent directory exists.
+3. If required inputs are missing or malformed, write a valid JSON file with `run_status: &quot;FAILED_INPUTS&quot;`, `page_label: null`, `location: null`, and a rationale naming the missing input.
+</p></div></div></section>
+<section id="SEC-SK116-0010" class="chunk sec depth-3" data-kind="section" data-key="section:8e734c2e7cc2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK116-0010</span> Step 2 - Inspect the page</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e734c2e7cc2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e734c2e7cc2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e734c2e7cc2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Read `IMAGE_PATH` and inspect the page visually.
+2. Scan the typical folio zones in order: bottom-center, bottom-outer (left/right), top-outer (left/right), top-center.
+3. Identify the printed folio if and only if it is visibly present as a page-number marking — typically a short numeric / Roman / alphanumeric token isolated in a header or footer, not part of running prose, figure captions, equation numbers, or section headings.
+4. If no folio is printed (blank page, cover page, chapter-opener page where the folio is suppressed, front-matter without numbering, full-bleed plate without page furniture, etc.), record that there is no folio. Do NOT invent one.
+</p></div></div></section>
+<section id="SEC-SK116-0011" class="chunk sec depth-3" data-kind="section" data-key="section:bcedcbfc4c2d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK116-0011</span> Step 3 - Emit JSON</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bcedcbfc4c2d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bcedcbfc4c2d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bcedcbfc4c2d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Write only JSON, with no Markdown fences or commentary.</p>
+<p>**REQUIRED EXACT VALUES — do not substitute synonyms or restructure.** Downstream consumers rely on these exact field names, types, and string literals:</p>
+<p>- Top-level field names are exactly: `schema_version`, `run_status`, `page`, `page_label`, `page_label_source`, `location`, `confidence`, `rationale`.
+- `schema_version` MUST be the literal string `&quot;pdf2md-folio-extract/v1&quot;`.
+- `run_status` MUST be one of the four uppercase literals: `&quot;SUCCESS&quot;`, `&quot;NO_FOLIO&quot;`, `&quot;FAILED&quot;`, `&quot;FAILED_INPUTS&quot;`. Do NOT use `&quot;ok&quot;`, `&quot;success&quot;`, `&quot;done&quot;`, etc.
+- `page` MUST be the integer 1-indexed physical PDF page number — i.e. echo `PAGE_NUM`. The field name is `page` (NOT `page_num`).
+- `page_label` is a JSON string OR JSON `null`. Use `null` when no folio is visibly printed.
+- `page_label_source` MUST be the literal string `&quot;vlm&quot;` on every successful skill run. On `FAILED` / `FAILED_INPUTS` / `NO_FOLIO` runs, set it to `&quot;vlm&quot;` as well — it identifies the producer of this record.
+- `location` is one of the six zone literals: `&quot;top-left&quot;`, `&quot;top-center&quot;`, `&quot;top-right&quot;`, `&quot;bottom-left&quot;`, `&quot;bottom-center&quot;`, `&quot;bottom-right&quot;`, or JSON `null` when there is no folio.
+- `confidence` is one of: `&quot;high&quot;`, `&quot;medium&quot;`, `&quot;low&quot;`.
+- `rationale` is one short sentence in plain English describing what was visually observed (or, on failure, what went wrong).</p>
+<p>Example - folio present:</p>
+<p>```json
+{
+  &quot;schema_version&quot;: &quot;pdf2md-folio-extract/v1&quot;,
+  &quot;run_status&quot;: &quot;SUCCESS&quot;,
+  &quot;page&quot;: 47,
+  &quot;page_label&quot;: &quot;47&quot;,
+  &quot;page_label_source&quot;: &quot;vlm&quot;,
+  &quot;location&quot;: &quot;bottom-center&quot;,
+  &quot;confidence&quot;: &quot;high&quot;,
+  &quot;rationale&quot;: &quot;Arabic numeral 47 centered in footer.&quot;
+}
+```</p>
+<p>Example - Roman numeral front-matter:</p>
+<p>```json
+{
+  &quot;schema_version&quot;: &quot;pdf2md-folio-extract/v1&quot;,
+  &quot;run_status&quot;: &quot;SUCCESS&quot;,
+  &quot;page&quot;: 9,
+  &quot;page_label&quot;: &quot;xiv&quot;,
+  &quot;page_label_source&quot;: &quot;vlm&quot;,
+  &quot;location&quot;: &quot;bottom-center&quot;,
+  &quot;confidence&quot;: &quot;high&quot;,
+  &quot;rationale&quot;: &quot;Lowercase Roman numeral xiv centered in footer of preface page.&quot;
+}
+```</p>
+<p>Example - no folio printed:</p>
+<p>```json
+{
+  &quot;schema_version&quot;: &quot;pdf2md-folio-extract/v1&quot;,
+  &quot;run_status&quot;: &quot;NO_FOLIO&quot;,
+  &quot;page&quot;: 3,
+  &quot;page_label&quot;: null,
+  &quot;page_label_source&quot;: &quot;vlm&quot;,
+  &quot;location&quot;: null,
+  &quot;confidence&quot;: &quot;high&quot;,
+  &quot;rationale&quot;: &quot;Chapter-opener page; folio suppressed per house style.&quot;
+}
+```</p>
+<p>Example - missing input:</p>
+<p>```json
+{
+  &quot;schema_version&quot;: &quot;pdf2md-folio-extract/v1&quot;,
+  &quot;run_status&quot;: &quot;FAILED_INPUTS&quot;,
+  &quot;page&quot;: 47,
+  &quot;page_label&quot;: null,
+  &quot;page_label_source&quot;: &quot;vlm&quot;,
+  &quot;location&quot;: null,
+  &quot;confidence&quot;: &quot;low&quot;,
+  &quot;rationale&quot;: &quot;IMAGE_PATH does not exist.&quot;
+}
+```
+</p></div></div></section>
+<section id="SEC-SK116-0012" class="chunk sec depth-2" data-kind="section" data-key="section:82d0f3005c51" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0012</span> Output rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82d0f3005c51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82d0f3005c51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82d0f3005c51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `page_label` MUST be the exact string visible on the page — preserve case, Roman vs. Arabic form, hyphens, and any section prefix. Do NOT normalize `&quot;xiv&quot;` to `&quot;14&quot;`, do NOT strip a `&quot;B-&quot;` prefix, do NOT zero-pad.
+- `page_label` is `null` only when no folio is visibly printed.
+- `location` MUST reflect the zone where the folio was observed; it is `null` if and only if `page_label` is `null`.
+- `page_label_source` is always `&quot;vlm&quot;`.
+- `confidence` should be `&quot;high&quot;` when the folio is clearly legible in a conventional folio zone, `&quot;medium&quot;` when the glyph is partially obscured or the zone is unusual, and `&quot;low&quot;` when the reading is a best guess.
+- `rationale` is one sentence; do not include multi-paragraph explanations.
+</p></div></div></section>
+<section id="SEC-SK116-0013" class="chunk sec depth-2" data-kind="section" data-key="section:9f4156ccd0c6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0013</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9f4156ccd0c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9f4156ccd0c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9f4156ccd0c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Single page in, one JSON out.
+- No cross-page context.
+- No folio invention from the physical sequence or from neighbours.
+- The emitted `page_label` must be visible on the page image.
+- The JSON must parse with standard `json.loads`.
+</p></div></div></section>
+<section id="SEC-SK116-0014" class="chunk sec depth-2" data-kind="section" data-key="section:5c1629710310" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK116-0014</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5c1629710310" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5c1629710310" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5c1629710310" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `OUTPUT_PATH` exists and is non-empty.
+- JSON parses successfully.
+- `run_status` is one of `SUCCESS`, `NO_FOLIO`, `FAILED`, or `FAILED_INPUTS`.
+- `page` equals the runtime `PAGE_NUM`.
+- `page_label` is a string when `run_status == &quot;SUCCESS&quot;`, and `null` otherwise.
+- `location` is one of the six zone literals when `page_label` is a string, and `null` otherwise.
+- `page_label_source` is the literal `&quot;vlm&quot;`.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK116";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

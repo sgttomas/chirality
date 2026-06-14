@@ -1,0 +1,343 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-THESIS-GLOSSARY - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>1</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG030-0001">Glossary</a></nav>
+<main>
+<section id="SEC-DG030-0001" class="chunk sec depth-1" data-kind="section" data-key="section:9746ff2cce00" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG030-0001</span> Glossary</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9746ff2cce00" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9746ff2cce00" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9746ff2cce00" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Terms are organized alphabetically. Where a term has a specific meaning in the APEGA regulatory context, that meaning is noted.</p>
+<p>| Term | Definition | Source |
+|------|-----------|--------|
+| Anchor (dependency class) | A tree edge connecting a deliverable to a definition or traceability node (e.g., parent WBS, requirement); provides vertical structure to the knowledge graph. | TYPES.md §3.1 |
+| Artifact | A tangible output produced within a deliverable folder, including the standard document kit (Datasheet, Specification, Guidance, Procedure) and any additional outputs appropriate to the deliverable type. | TYPES.md §1.3 |
+| Assumption | An epistemic label designating a claim that represents a reasonable inference not directly stated in source text and that requires validation before it may be relied upon. | TYPES.md §10 |
+| Authentication | The act by which a Licensed Professional formally signs, seals, or otherwise attests that a document is their engineering work product and is fit for its intended reliance purpose. | DIRECTIVE.md §3.2 |
+| Axiology | The philosophical pillar governing what the system values: public welfare as the first constraint, professional responsibility as personal and non-transferable, and evidence as the standard of authority over plausibility. | DIRECTIVE.md §2 |
+| Brief-driven pipeline | A task agent execution pattern in which all required inputs are provided up front in a structured brief (INIT-TASK format), enabling straight-through execution with no mid-run human decisions. | AGENT_HELPS_HUMANS.md §Step 6 |
+| Claim (epistemic primitive) | An assertion that something is the case; the atomic unit of the epistemic ontology. Every non-trivial assertion produced by an agent in a governed workflow is a claim. | TYPES.md §10.1 |
+| Conflict (epistemic primitive) | Two or more claims with incompatible warrants about the same key; the existence of a conflict is itself an epistemic entity requiring resolution through a ruling. | TYPES.md §10.1 |
+| Content-addressed approval | An approval mechanism in which a human sign-off binds to a specific git SHA, such that any subsequent change to the content automatically voids the approval. | DIRECTIVE.md §2 |
+| Coordination representation | The project-level choice of how teams sequence work: `SCHEDULE_FIRST` (Gantt-driven), `DEPENDENCY_TRACKED` (graph-driven), or `HYBRID` (combination); recorded in `_COORDINATION.md`. | TYPES.md §6 |
+| Coverage and telemetry | A summary section produced by PROJECT_DECOMP reporting counts, gaps, and open issues that make decomposition quality measurable. | TYPES.md §8 |
+| Datasheet | The document kit artifact capturing key parameters, identification, and structured metadata for a deliverable; the ontological instantiation of the four-document kit. | TYPES.md §7 |
+| Decision capture | The practice of recording a human decision or a logged default selection in a durable, versioned file so that it is retrievable for audit. | AGENT_HELPS_HUMANS.md §Definitions |
+| Decision right | A consequential choice that must be made by a human authority — including acceptance, conflict ruling, scope boundary change, and publication approval — and that cannot be delegated to an agent. | AGENT_HELPS_HUMANS.md §Definitions |
+| Deliverable | A unit of production within a package, belonging to exactly one package, having a responsible party and type, and producing one or more anticipated artifacts within its folder. | TYPES.md §1.2 |
+| Dependency | A relationship between deliverables, definition nodes, or external entities captured in a deliverable-local `Dependencies.csv` register and assigned a stable `DEP-XX-YY-NNN` identifier. | TYPES.md §3 |
+| Direct supervision and control | The standard of professional oversight under which a Licensed Professional takes personal responsibility for work performed by others or by automated tools, implying the ability to independently verify the outputs. | DIRECTIVE.md §3.3 |
+| Document kit | The standard four-artifact set (Datasheet, Specification, Guidance, Procedure) produced for every deliverable, whose structure mirrors the four philosophical pillars. | TYPES.md §7 |
+| Downstream (direction) | A dependency direction value indicating that the host deliverable produces information for the target deliverable. | TYPES.md §3.3 |
+| Epistemology | The philosophical pillar governing what can be known and how: every claim must carry provenance, missing information becomes TBD rather than a guess, conflicts are surfaced for human ruling, and every non-trivial claim carries an epistemic label. | DIRECTIVE.md §2 |
+| Epistemic label | One of four classification tags — FACT, ASSUMPTION, PROPOSAL, TBD — applied to claims in agent outputs to make the certainty status of each claim transparent and auditable. | TYPES.md §10 |
+| Execution (dependency class) | A DAG edge capturing information flow, prerequisites, handoffs, and constraints between work items; the horizontal dimension of the knowledge graph. | TYPES.md §3.1 |
+| Fact | An epistemic label designating a claim directly observed in source text and supported by a citation. | TYPES.md §10 |
+| Filesystem-as-state | The architectural principle that project state lives entirely in git-tracked plain files, with no separate database, server state, or configuration that could diverge; the filesystem is the single source of truth. | DIRECTIVE.md §2.1 |
+| Gap (epistemic primitive) | The explicit, positive assertion that a warrant has not been found; a gap is not the absence of information but an entity representing that absence, making it visible and actionable. | TYPES.md §10.1 |
+| Gate | A defined decision junction at which human approval is required before work may proceed to the next stage; no agent of any type may bypass a gate. | DIRECTIVE.md §2 |
+| Guidance | The document kit artifact containing design rationale, best practices, and contextual direction; the axiological instantiation of the four-document kit. | TYPES.md §7 |
+| Hybrid posture | An agent execution pattern combining a persona interface (interactive steering) with an internal bounded pipeline, allowing human steering without requiring human decisions at each pipeline step. | AGENT_HELPS_HUMANS.md §Definitions |
+| INITIALIZED | The deliverable lifecycle state in which the document kit (Datasheet, Specification, Guidance, Procedure) has been drafted. | TYPES.md §5.1 |
+| IN_PROGRESS | The deliverable lifecycle state in which active human and agent work is underway. | TYPES.md §5.1 |
+| Instruction root | The release-managed app bundle containing agent instruction files and framework documents; physically separated from the working root to ensure stable agent governance across projects. | DIRECTIVE.md §2.6 |
+| Invariant | A system-enforced architectural constraint — such as K-PROV-1 (mandatory provenance), K-INVENT-1 (no invention), K-CONFLICT-1 (conflict surfacing), K-AUTH-1/2, and K-BIND-1 (authority limits) — that makes epistemic and authority controls structural rather than advisory. | DIRECTIVE.md §2 |
+| ISSUED | The deliverable lifecycle state in which the deliverable has been released for use. | TYPES.md §5.1 |
+| Knowledge decomposition marker | A signal in a decomposition document (e.g., headings containing &quot;Knowledge Categories&quot; or &quot;Knowledge Types&quot;) that enables knowledge-type scope selection in TASK pipeline selectors. | TYPES.md §9.3 |
+| Knowledge graph | The combined structure formed by ANCHOR (tree) edges and EXECUTION (DAG) edges, in which the tree preserves stable intent and the DAG captures execution couplings. | TYPES.md §3.1 |
+| Knowledge type option | A canonical file-type bucket (Datasheet, Specification, Guidance, Procedure, Dependencies, References, Context, Status, Semantic, Memory) selectable in TASK scope mode. | TYPES.md §9.3 |
+| Licensed professional | A regulated professional holding a licence to practise (e.g., a Professional Engineer) who bears personal, non-transferable responsibility for engineering work product issued for reliance. | DIRECTIVE.md §3.2 |
+| Objective | A success criterion (`OBJ-NNN`) derived from project scope and mapped to supporting deliverables; assigned by PROJECT_DECOMP. | TYPES.md §8 |
+| Ontology | The philosophical pillar governing what exists in the system: the filesystem-native domain model comprising deliverable folders as nodes, dependency rows as edges, and markdown files as properties, all structured through stable identifiers, enumerated types, and the lifecycle state machine. | DIRECTIVE.md §2 |
+| OPEN | The initial deliverable lifecycle state in which a folder exists with the minimum viable fileset but no content has yet been produced. | TYPES.md §5.1 |
+| Package | A flat, non-nesting partition of project scope (`PKG-XX`) in which every scope item belongs to exactly one package with no overlaps and no gaps. | TYPES.md §1.1 |
+| Permit Holder | The organization or entity holding the regulatory permit to perform engineering work; responsible for ensuring that work performed under the permit meets applicable codes, standards, and regulatory requirements. | DIRECTIVE.md §3 |
+| Persona agent | A conversational interface agent that helps the human steer, interpret, and commit decisions; must preserve human authority and may generate briefs or propose actions but may not make binding decisions autonomously. | AGENT_HELPS_HUMANS.md §Definitions |
+| Pointer file | A mutable file (e.g., `_LATEST.md`) that references the most recent snapshot; may be overwritten on each run while the snapshot itself remains immutable. | AGENT_HELPS_HUMANS.md §Definitions |
+| Ruling (epistemic primitive) | A human decision that resolves a gap or conflict, transforming epistemic status; rulings are binding and recorded in versioned files. | TYPES.md §10.1 |
+| Praxiology | The philosophical pillar governing how work is done: the 0-1-2 agent authority model, gate-controlled workflows, brief-driven bounded pipelines, write quarantine, and physical separation of instruction root from working root. | DIRECTIVE.md §2 |
+| PROPOSAL | An epistemic label designating an agent suggestion that requires an explicit human decision before it becomes binding project truth. | TYPES.md §10 |
+| Provenance | File and location references (SourcePath, SectionRef) that substantiate any extracted or aggregated claim; mandatory for all agent outputs under invariant K-PROV-1. | AGENT_HELPS_HUMANS.md §Definitions; DIRECTIVE.md §2 |
+| PWP | Permit to Work in Progress; a regulatory instrument authorizing a scope of engineering work under defined conditions, typically requiring a Licensed Professional&#x27;s oversight and sign-off at defined stages. | DIRECTIVE.md §3 |
+| Responsible member | The Licensed Professional who has accepted personal responsibility for a specific piece of engineering work product and whose seal or signature constitutes the act of authentication. | DIRECTIVE.md §3.2 |
+| Scope item | An atomic, testable scope statement (`SOW-NNN`) from the Structured Scope of Work, assigned by PROJECT_DECOMP and traceable through the dependency model. | TYPES.md §8 |
+| Scope ledger | A machine-checkable mapping table correlating every scope item to its corresponding packages and deliverables, ensuring full coverage with no gaps or overlaps. | TYPES.md §8 |
+| SEMANTIC_READY | The deliverable lifecycle state in which the semantic lens (`_SEMANTIC.md`) has been generated, enabling knowledge-type routing and enrichment. | TYPES.md §5.1 |
+| Snapshot | An immutable output bundle produced by a task agent per run and stored under a tool root; reruns produce new snapshots rather than overwriting prior outputs, preserving the historical execution record. | AGENT_HELPS_HUMANS.md §Definitions |
+| Stable identifier | An identifier (Package: `PKG-XX`; Deliverable: `DEL-XX-YY`; Dependency: `DEP-XX-YY-NNN`; Scope Item: `SOW-NNN`; Objective: `OBJ-NNN`) assigned once and persisting across renames, path changes, and restructuring. | TYPES.md §2 |
+| Stage gate | A human-managed project-level milestone (e.g., 30%, 60%, 90%, IFC) tracked separately from deliverable lifecycle states in coordination records. | TYPES.md §5.2 |
+| Task agent | An execution agent that runs straight-through on a bounded scope and produces auditable artifacts without requiring human decisions mid-run. | AGENT_HELPS_HUMANS.md §Definitions |
+| TBD | An epistemic label designating an unknown value or missing information that serves as a placeholder requiring resolution; agents must not substitute a guess for a TBD value. | TYPES.md §10 |
+| Thorough review | The standard of professional scrutiny applied to engineering work product, requiring that the reviewing Licensed Professional independently assess the work to the degree necessary to accept responsibility for it. | DIRECTIVE.md §3.3 |
+| Tool root | A filesystem area reserved for derived outputs (snapshots, reports, registers) and isolated from source truth, enforcing write quarantine by preventing agents from contaminating authoritative project files with analytical artifacts. | AGENT_HELPS_HUMANS.md §Definitions |
+| Type 0 (Architect) | The agent classification for a project-wide agent that defines and maintains standards, contracts, and role boundaries; the highest authority in the agent hierarchy. | TYPES.md §4.1 |
+| Type 1 (Manager) | The agent classification for a package- or project-scoped agent that interprets intent, decomposes work, routes to specialists, and merges results. | TYPES.md §4.1 |
+| Type 2 (Specialist) | The agent classification for a narrow-scope agent that executes bounded briefs with minimal context and returns outputs with evidence; cannot modify rules set by Type 0. | TYPES.md §4.1 |
+| Upstream (direction) | A dependency direction value indicating that the host deliverable requires information from the target deliverable. | TYPES.md §3.3 |
+| Validation | The process of confirming that a deliverable or artifact satisfies its stated requirements and acceptance criteria; distinct from authentication in that it addresses fitness for purpose rather than professional attestation. | DIRECTIVE.md §3.2 |
+| Vocabulary map | A table of canonical terms and synonyms produced by PROJECT_DECOMP to prevent semantic drift across agents, documents, and stakeholders. | TYPES.md §8 |
+| Warrant (epistemic primitive) | The justification for believing a claim; always extrinsic (a source citation: file + section + quote), never intrinsic (model confidence or plausibility). | TYPES.md §10.1 |
+| Warrant lifecycle | The four-state progression tracking the epistemic status of claims within a deliverable: UNWARRANTED → CITED → REVIEWED → AUTHENTICATED; interleaved with the deliverable production lifecycle. | TYPES.md §10.4 |
+| Working root | The user-selected filesystem location where agents execute and create or update deliverable state; physically separated from the instruction root so that project execution remains fully filesystem-native in user-controlled folders. | DIRECTIVE.md §2.6 |
+| WRITE_SCOPE | An enumerated property in every agent header block declaring the filesystem zones the agent is permitted to write to (`repo-wide`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `none`). | TYPES.md §4.2 |
+| Write quarantine | The architectural pattern by which every agent is assigned an explicit write scope and tool roots are isolated from source truth, containing failures within declared zones and preventing agents from writing outside their designated areas. | DIRECTIVE.md §2; AGENT_HELPS_HUMANS.md §Step 5 |</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG030";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

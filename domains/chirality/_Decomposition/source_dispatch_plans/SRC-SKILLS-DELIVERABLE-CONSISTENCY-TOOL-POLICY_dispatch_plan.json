@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DELIVERABLE-CONSISTENCY-TOOL-POLICY",
+  "source_prefix": "SK038",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DELIVERABLE-CONSISTENCY-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/deliverable-consistency/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:05+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK038-0001",
+      "line_start": 1,
+      "line_end": 53,
+      "target_section_ids": [
+        "SEC-SK038-0001",
+        "SEC-SK038-0002",
+        "SEC-SK038-0003",
+        "SEC-SK038-0004",
+        "SEC-SK038-0005",
+        "SEC-SK038-0006",
+        "SEC-SK038-0007",
+        "SEC-SK038-0008"
+      ],
+      "estimated_md_tokens": 410,
+      "contains_oversized_section": false
+    }
+  ]
+}

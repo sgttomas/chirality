@@ -1,0 +1,225 @@
+# Chirality Domain Decomposition
+
+Package role: working surface
+
+Status: Gate 1 intake accepted. Phase 2 Batch 1 setup ready; atomization workers have not started.
+
+Generated UTC: 2026-06-14T00:55:15+00:00
+
+## Source Model
+
+The Chirality domain pack uses manifest-backed live repository files as source truth. Source files are not copied into `_Sources/`; decomposition companions point back to `@repo/<RepoRelPath>`.
+
+Accepted manifest for this Batch 0 packet: `domains/chirality/_Sources/Source_Manifest.csv`
+
+Current source manifest SHA-256: `f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1`
+
+Current source catalog snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z`
+
+Catalog schema: `chirality-source-db/v2`
+
+Catalog validation result: `PASS`
+
+Source files copied: `false`
+
+Retrieval index status: `BM25_ONLY`
+
+Retrieval smoke query: `PASS`
+
+## Intake Summary
+
+| Metric | Value |
+|---|---:|
+| Manifest source rows | 242 |
+| Catalog artifacts | 242 |
+| Catalog source docs | 242 |
+| Catalog chunks | 4523 |
+| Skeletons generated | 242 |
+| Review HTML files generated | 242 |
+| Section-node CSVs generated | 242 |
+| Total sections | 4449 |
+| In-scope sections | 4446 |
+| Dispatch units | 242 |
+| Oversized dispatch units | 0 |
+| Deferred sources | 1 |
+| Skeleton failures | 0 |
+
+## Group Telemetry
+
+| SourceGroup | Sources | Skeletons | Deferred | Sections | In-scope Sections | Dispatch Units | Oversized Units |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| AGENT_CONTRACTS | 37 | 37 | 0 | 1405 | 1403 | 37 | 0 |
+| HARNESS_EXPORT_DOCS | 11 | 11 | 0 | 106 | 106 | 11 | 0 |
+| ROOT_DOCS | 7 | 7 | 1 | 119 | 118 | 6 | 0 |
+| ROOT_GOVERNANCE_DOCS | 31 | 31 | 0 | 1059 | 1059 | 32 | 0 |
+| SKILL_CONTRACTS | 153 | 153 | 0 | 1713 | 1713 | 153 | 0 |
+| TOOL_REGISTRY_DOCS | 3 | 3 | 0 | 47 | 47 | 3 | 0 |
+
+## SourceRef Adapter Policy
+
+The manifest-backed SourceRef form is accepted for Phase 2 atomization:
+
+```text
+@repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>
+```
+
+This preserves live repo provenance and keeps the HTML half pointed at the Batch 0 review surface. `tools/decomp/build_atomization_brief.py` emits `SOURCE_REF_BASE` for the worker, and `skills/domain-source-atomize` explicitly accepts the repo-backed form for manifest-backed sources.
+
+## LICENSE.md Disposition
+
+`SRC-LICENSE` is headingless legal/license text. Batch 0 created a synthetic one-section review skeleton without copying or modifying `LICENSE.md`, marked the section OUT by default, and set `AtomizeInV1=NO`. This deferred-source decision was accepted at Gate 1.
+
+## Gate 1.5 Asset Surface Policy
+
+Per-kind asset audit surfaces are N/A for this Markdown-only manifest because the generated minimal asset manifests contain no assets or pages. The section review HTML remains required and has been generated under `domains/chirality/_Decomposition/source_review_html/`.
+
+## Phase 2 Batch Status
+
+Batch 1 binding-governance setup is ready. This is deterministic setup only; no `TASK + domain-source-atomize` workers have been dispatched.
+
+| Metric | Value |
+|---|---:|
+| Batch ID | `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` |
+| Selected sources | 22 |
+| Dispatch units | 22 |
+| Rendered INIT-TASK briefs | 22 |
+| Atomization worker status | `NOT_RUN` |
+
+Batch setup handoff: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_SETUP.md`
+
+Batch source register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Batch_Source_Register.csv`
+
+Dispatch unit register: `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/Dispatch_Unit_Register.csv`
+
+Dispatch briefs root: `domains/chirality/_Decomposition/dispatch_briefs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+
+Reserved dispatch outputs root: `domains/chirality/_Decomposition/dispatch_outputs/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`
+
+## References
+
+- `domains/chirality/_Sources/Source_Manifest.csv` - manifest-backed source membership.
+- `domains/chirality/_Sources/SOURCE_BOUNDARY.md` - source boundary.
+- `domains/chirality/_LocalIndexes/_LATEST.md` - latest source catalog pointer.
+- `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z` - current validated source catalog snapshot.
+
+## Companion Inventory
+
+| Filename | PackageRole | Description |
+|---|---|---|
+| `Chirality_Domain_Decomposition.md` | working surface | Main Batch 0 control surface and Gate 1 packet. |
+| `Source_Decomp_Prefix_Map.csv` | authoritative companion register | Stable source-prefix map and SourceRef adapter metadata. |
+| `Intake_Telemetry.csv` | authoritative companion register | Per-source intake, skeleton, render, and dispatch telemetry. |
+| `Intake_Telemetry.json` | authoritative companion register | Batch 0 summary telemetry. |
+| `Open_Issues_Register.csv` | authoritative companion register | Gate 1 open issues and required human rulings. |
+| `Validation_Checks.csv` | authoritative companion register | Batch 0 validation checks. |
+| `Companion_Inventory.csv` | authoritative companion register | File-level inventory of generated companion artifacts. |
+| `gate_snapshots/_LATEST_GATE1.md` | snapshot / handoff artifact | Pointer to the accepted Gate 1 snapshot. |
+| `gate_snapshots/GATE1_20260614T005942Z/GATE1_ACCEPTANCE.md` | snapshot / handoff artifact | Immutable Gate 1 acceptance record. |
+| `gate_snapshots/GATE1_20260614T005942Z/HANDOFF_STATE.md` | snapshot / handoff artifact | Gate 1 handoff state for later DOMAIN_DECOMP phases. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-AGENTS_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-AGENTS. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-AGENTS_skeleton.json` | authoritative companion register | Source skeleton for SRC-AGENTS. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-AGENTS_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-AGENTS. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-AGENTS.html` | authoritative companion register | Structure-mode section review HTML for SRC-AGENTS. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-AGENTS_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-AGENTS. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-CHIRALITY-FRAMEWORK_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-CHIRALITY-FRAMEWORK. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-CHIRALITY-FRAMEWORK_skeleton.json` | authoritative companion register | Source skeleton for SRC-CHIRALITY-FRAMEWORK. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-CHIRALITY-FRAMEWORK_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-CHIRALITY-FRAMEWORK. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-CHIRALITY-FRAMEWORK.html` | authoritative companion register | Structure-mode section review HTML for SRC-CHIRALITY-FRAMEWORK. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-CHIRALITY-FRAMEWORK_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-CHIRALITY-FRAMEWORK. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-CLAUDE_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-CLAUDE. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-CLAUDE_skeleton.json` | authoritative companion register | Source skeleton for SRC-CLAUDE. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-CLAUDE_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-CLAUDE. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-CLAUDE.html` | authoritative companion register | Structure-mode section review HTML for SRC-CLAUDE. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-CLAUDE_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-CLAUDE. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-INIT_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-INIT. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-INIT_skeleton.json` | authoritative companion register | Source skeleton for SRC-INIT. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-INIT_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-INIT. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-INIT.html` | authoritative companion register | Structure-mode section review HTML for SRC-INIT. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-INIT_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-INIT. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-LICENSE_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-LICENSE. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-LICENSE_skeleton.json` | authoritative companion register | Source skeleton for SRC-LICENSE. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-LICENSE_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-LICENSE. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html` | authoritative companion register | Structure-mode section review HTML for SRC-LICENSE. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-LICENSE_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-LICENSE. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-PROFESSIONAL-ENGINEERING_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-PROFESSIONAL-ENGINEERING. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-PROFESSIONAL-ENGINEERING_skeleton.json` | authoritative companion register | Source skeleton for SRC-PROFESSIONAL-ENGINEERING. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-PROFESSIONAL-ENGINEERING_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-PROFESSIONAL-ENGINEERING. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-PROFESSIONAL-ENGINEERING.html` | authoritative companion register | Structure-mode section review HTML for SRC-PROFESSIONAL-ENGINEERING. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-PROFESSIONAL-ENGINEERING_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-PROFESSIONAL-ENGINEERING. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-README_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-README. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-README_skeleton.json` | authoritative companion register | Source skeleton for SRC-README. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-README_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-README. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-README.html` | authoritative companion register | Structure-mode section review HTML for SRC-README. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-README_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-README. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-CONTRACT_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-CONTRACT. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-CONTRACT_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-CONTRACT. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-CONTRACT_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-CONTRACT. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-CONTRACT. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-CONTRACT_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-CONTRACT. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-DBM-AGENT-INSTRUCTION-ARCHITECTURE. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-DIRECTIVE_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-DIRECTIVE. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-DIRECTIVE_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-DIRECTIVE. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-DIRECTIVE_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-DIRECTIVE. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-DIRECTIVE.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-DIRECTIVE. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-DIRECTIVE_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-DIRECTIVE. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-PLAN_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-PLAN. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-PLAN_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-PLAN. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-PLAN_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-PLAN. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-PLAN.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-PLAN. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-PLAN_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-PLAN. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-PRD-CANDIDATE_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-PRD-CANDIDATE. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-PRD-CANDIDATE_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-PRD-CANDIDATE. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-PRD-CANDIDATE_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-PRD-CANDIDATE. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-PRD-CANDIDATE.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-PRD-CANDIDATE. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-PRD-CANDIDATE_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-PRD-CANDIDATE. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-SE-DESIGN-ANALYSIS_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-SE-DESIGN-ANALYSIS. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-SE-DESIGN-ANALYSIS_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-SE-DESIGN-ANALYSIS. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-SE-DESIGN-ANALYSIS_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-SE-DESIGN-ANALYSIS. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-SE-DESIGN-ANALYSIS.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-SE-DESIGN-ANALYSIS. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-SE-DESIGN-ANALYSIS_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-SE-DESIGN-ANALYSIS. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-SPEC_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-SPEC. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-SPEC_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-SPEC. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-SPEC_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-SPEC. |
+| `domains/chirality/_Decomposition/source_review_html/SRC-DOCS-SPEC.html` | authoritative companion register | Structure-mode section review HTML for SRC-DOCS-SPEC. |
+| `domains/chirality/_Decomposition/source_section_nodes/SRC-DOCS-SPEC_section_nodes.csv` | authoritative companion register | Section-node retrieval substrate for SRC-DOCS-SPEC. |
+| `domains/chirality/_Decomposition/source_asset_manifests/SRC-DOCS-TYPES_assets_manifest.json` | authoritative companion register | Minimal Markdown-only asset manifest for SRC-DOCS-TYPES. |
+| `domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-TYPES_skeleton.json` | authoritative companion register | Source skeleton for SRC-DOCS-TYPES. |
+| `domains/chirality/_Decomposition/source_dispatch_plans/SRC-DOCS-TYPES_dispatch_plan.json` | authoritative companion register | Phase 2 dispatch plan for SRC-DOCS-TYPES. |
+| `Companion_Inventory.csv` | authoritative companion register | Full file-level inventory for all 1248 generated companion entries. |
+
+## Open Issues
+
+| IssueID | Status | Issue | Recommendation |
+|---|---|---|---|
+| `OI-001` | ACCEPTED_FOR_PHASE_2 | LICENSE.md is headingless and legal/license text. | Keep AtomizeInV1=NO and InOutDefault=OUT for v1 unless human says license terms are in-domain. |
+| `OI-002` | ACCEPTED_FOR_PHASE_2 | DOMAIN_DECOMP source atomization docs specify older <book>.md:L#### SourceRefs. | @repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID> |
+| `OI-004` | ACCEPTED_FOR_PHASE_2 | Per-kind asset surfaces are N/A for Markdown-only manifest rows. | Use section review HTML only unless future sources carry actual asset manifests. |
+| `OI-005` | BATCH1_SETUP_READY | Full 242-file atomization is too large for one unbatched review gate. | Batch 1 setup is ready at `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`; run staged workers only after explicit authorization. |
+
+## Decision Log / Change Log
+
+| DecisionID | Date | Decision |
+|---|---|---|
+| DEC-001 | 2026-06-14 | Repaired `SRC-INIT` manifest path from `INIT.md` to `init/INIT.md` after validation found the root path missing. SourceDocID and content hash were preserved. |
+| DEC-002 | 2026-06-14 | Generated Batch 0 adapter companions from live repo paths; no source files were copied into `_Sources/`. |
+| DEC-003 | 2026-06-14 | Proposed `SRC-LICENSE` as headingless OUT/deferred for v1 atomization pending Gate 1 acceptance. |
+| DEC-004 | 2026-06-14 | Accepted repo-backed SourceRefs for manifest-backed atomization: `@repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>`. |
+| DEC-005 | 2026-06-14 | Forced standalone `SRC-DOCS-THESIS-GLOSSARY` in scope for v1 atomization; the generic late-document glossary back-matter heuristic remains unchanged for other sources. |
+| DEC-006 | 2026-06-14 | Human accepted Gate 1 intake, including the manifest-backed source set, source-prefix map, skeleton inventory, `SRC-LICENSE` OUT/deferred disposition, Markdown-only asset-surface N/A policy, and repo-backed SourceRef policy. |
+| DEC-007 | 2026-06-14 | Prepared `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` as the staged Phase 2 Batch 1 binding-governance setup: 22 sources, 22 dispatch units, 22 repo-backed dispatch briefs; no atomization workers were run. |
+
+## Gate 1 Acceptance
+
+Gate 1 was accepted by human confirmation on 2026-06-14:
+
+```text
+I accept Gate 1
+```
+
+Acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE1_20260614T005942Z/`.
+
+Batch 1 setup is ready at `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/`. Do not proceed to `TASK + domain-source-atomize` fan-out until the human explicitly authorizes the staged Batch 1 worker run.

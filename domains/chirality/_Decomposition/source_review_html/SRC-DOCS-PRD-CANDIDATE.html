@@ -1,0 +1,856 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-DOCS-PRD-CANDIDATE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>65</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-DG005-0001">PRD - Chirality Desktop Harness</a> <a href="#SEC-DG005-0002">1. Source Basis</a> <a href="#SEC-DG005-0003">2. Product Summary</a> <a href="#SEC-DG005-0004">3. Goals</a> <a href="#SEC-DG005-0007">4. Users and Personas</a> <a href="#SEC-DG005-0013">5. Product Principles</a> <a href="#SEC-DG005-0014">6. Scope</a> <a href="#SEC-DG005-0018">7. User Journeys</a> <a href="#SEC-DG005-0027">8. Functional Requirements</a> <a href="#SEC-DG005-0039">9. API Requirements</a> <a href="#SEC-DG005-0043">10. Data and File Requirements</a> <a href="#SEC-DG005-0051">11. Non-Functional Requirements</a> <a href="#SEC-DG005-0057">12. Validation Plan</a> <a href="#SEC-DG005-0062">13. Success Metrics</a> <a href="#SEC-DG005-0063">14. Known Gaps and Risks</a> <a href="#SEC-DG005-0064">15. Traceability Summary</a> <a href="#SEC-DG005-0065">16. Approval and Change Control</a></nav>
+<main>
+<section id="SEC-DG005-0001" class="chunk sec depth-1" data-kind="section" data-key="section:52dc2a0ff787" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-DG005-0001</span> PRD - Chirality Desktop Harness</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52dc2a0ff787" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52dc2a0ff787" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52dc2a0ff787" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** Draft  
+**Date:** 2026-05-03  
+**Product:** Chirality desktop harness and bundled agent operating system  
+**Primary repository:** `chirality-app-dev`  
+**Primary audience:** product owner, engineering, agent-instruction maintainers, reviewers, and release operators</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0002" class="chunk sec depth-2" data-kind="section" data-key="section:ac9e73283c28" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0002</span> 1. Source Basis</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac9e73283c28" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac9e73283c28" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac9e73283c28" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This PRD is derived from repository-local sources only. Primary inputs:</p>
+<p>- `README.md`
+- `AGENTS.md`
+- `INIT.md`
+- `docs/DIRECTIVE.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/CONTRACT.md`
+- `docs/PLAN.md`
+- `docs/DBM_Agent_Instruction_Architecture.md`
+- `docs/SE_Design_Analysis.md`
+- `docs/harness/*`
+- `docs/ui/UI_POLISH_EXECUTION_PLAN.md`
+- `execution/_Decomposition/ChiralityApp_SoftwareDecomposition_2026-02-21_G7-APPROVED.md`
+- `frontend/`
+- `tools/REGISTRY.md`
+- `PROFESSIONAL_ENGINEERING.md`</p>
+<p>Where documents and implementation disagree, this PRD states the product requirement and records the implementation note under &quot;Known Gaps and Risks.&quot;</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0003" class="chunk sec depth-2" data-kind="section" data-key="section:118cf71f86e9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0003</span> 2. Product Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:118cf71f86e9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:118cf71f86e9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:118cf71f86e9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Chirality is a desktop harness for running governed AI agents against a user-selected local filesystem workspace. It packages a release-managed instruction root (`AGENTS.md`, `agents/`, `docs/`, and framework files) inside the desktop app while keeping all project execution state in a user-selected working root (`projectRoot`).</p>
+<p>The product exists to accelerate deliverable-heavy professional work while preserving human authority, provenance, auditability, and filesystem-native state. Agents decompose scope, scaffold package/deliverable folders, draft document kits, extract dependencies, run semantic analysis, reconcile across deliverables, support estimates/schedules, and manage change. Outputs remain drafts or decision support until accepted by an accountable human.</p>
+<p>Core product thesis:</p>
+<p>&gt; Project truth lives in git-tracked plain files. If a decision is not in a versioned file, it does not exist for purposes of reliance.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0004" class="chunk sec depth-2" data-kind="section" data-key="section:f9245d4b1875" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0004</span> 3. Goals</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9245d4b1875" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9245d4b1875" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9245d4b1875" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0005" class="chunk sec depth-3" data-kind="section" data-key="section:7a6c90f6cf28" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0005</span> 3.1 Product Goals</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a6c90f6cf28" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a6c90f6cf28" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a6c90f6cf28" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Provide a local desktop application that runs agent workflows against a selected working root without requiring an external database.
+2. Preserve strict separation between bundled instruction root and mutable working root.
+3. Make agent work auditable through plain files, git diffs, lifecycle files, dependency registers, and immutable snapshots.
+4. Provide matrix-based navigation into two execution surfaces: WORKBENCH for interactive persona agents and PIPELINE for operative task categories.
+5. Support streaming chat turns with session persistence, runtime options, interrupts, multimodal attachments, and Anthropic provider integration.
+6. Enforce safety and governance boundaries: human authority at gates, no automated issuance, no hidden project memory, fail-closed subagent delegation, and Anthropic-only outbound network policy.
+7. Provide deterministic tools and validation workflows for scaffolding, schema checks, dependency closure, harness runtime validation, and release packaging.
+8. Ship a macOS 15+ Apple Silicon unsigned DMG build path with instruction-root integrity verification.
+</p></div></div></section>
+<section id="SEC-DG005-0006" class="chunk sec depth-3" data-kind="section" data-key="section:0e15e2243cb7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0006</span> 3.2 Non-Goals</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0e15e2243cb7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0e15e2243cb7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0e15e2243cb7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The product must not:</p>
+<p>- Replace professional judgment or produce binding approval records autonomously.
+- Sign, seal, certify, approve, issue, transmit, or otherwise release professional work for reliance.
+- Make safety-critical decisions without human review.
+- Conduct financial transactions or binding commitments.
+- Depend on an external project database.
+- Persist project truth in hidden app state, chats, caches, or vendor systems.
+- Allow outbound network access beyond the Anthropic API path required for provider execution.
+- Treat local UI preferences, API keys, or chat drafts as authoritative project state.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0007" class="chunk sec depth-2" data-kind="section" data-key="section:f80cffd082de" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0007</span> 4. Users and Personas</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f80cffd082de" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f80cffd082de" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f80cffd082de" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0008" class="chunk sec depth-3" data-kind="section" data-key="section:0ef8b954e705" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0008</span> 4.1 Professional Operator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0ef8b954e705" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0ef8b954e705" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0ef8b954e705" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The primary user is a licensed professional, project lead, or accountable reviewer who needs AI-assisted production while retaining decision rights. They select the working root, approve gates, review evidence, and decide what can be relied upon.
+</p></div></div></section>
+<section id="SEC-DG005-0009" class="chunk sec depth-3" data-kind="section" data-key="section:f3e7a3502abb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0009</span> 4.2 Project Orchestrator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f3e7a3502abb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f3e7a3502abb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f3e7a3502abb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A user who converts a scope of work into packages, deliverables, lifecycle records, document kits, dependency registers, and coordination artifacts. They use ORCHESTRATOR, WORKING_ITEMS, RECONCILIATION, CHANGE, and PIPELINE lanes.
+</p></div></div></section>
+<section id="SEC-DG005-0010" class="chunk sec depth-3" data-kind="section" data-key="section:f1fd4657e299" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0010</span> 4.3 Specialist Contributor</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f1fd4657e299" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f1fd4657e299" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f1fd4657e299" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A user or workflow that executes bounded deliverable-local work through TASK, DEPENDENCIES, CHIRALITY_FRAMEWORK, CHIRALITY_LENS, ESTIMATING, or audit agents.
+</p></div></div></section>
+<section id="SEC-DG005-0011" class="chunk sec depth-3" data-kind="section" data-key="section:44834a0e60e7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0011</span> 4.4 Governance Maintainer</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:44834a0e60e7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:44834a0e60e7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:44834a0e60e7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A maintainer responsible for agent instruction conformance, invariant consistency, deterministic tooling, and release-managed instruction root changes.
+</p></div></div></section>
+<section id="SEC-DG005-0012" class="chunk sec depth-3" data-kind="section" data-key="section:63f6a2b66d17" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0012</span> 4.5 Release Operator</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:63f6a2b66d17" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:63f6a2b66d17" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:63f6a2b66d17" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A maintainer who builds, validates, packages, and distributes local unsigned desktop builds.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0013" class="chunk sec depth-2" data-kind="section" data-key="section:f38463ed2491" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0013</span> 5. Product Principles</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f38463ed2491" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f38463ed2491" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f38463ed2491" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Filesystem is the database.** Project state is represented as human-readable files under the working root.
+2. **Git is the event store.** Review, audit, rollback, and approvals bind to git-tracked content.
+3. **Human authority at every gate.** Agents propose; humans approve, issue, sign, seal, and decide.
+4. **Evidence over plausibility.** Claims require provenance. Unknowns become `TBD`, not guesses.
+5. **No hidden memory for project truth.** Runtime convenience state is allowed only when it is explicitly non-authoritative.
+6. **Instruction root and working root are separate.** Release-managed agent OS files must not be modified by project execution.
+7. **Write quarantine.** Each agent has an explicit write scope. Derived outputs live in tool roots; source truth lives in deliverable folders.
+8. **Immutable snapshots.** Snapshot-producing runs create timestamped folders that are not overwritten. `_LATEST.md` pointers may move.
+9. **Least structure that works.** Rigor scales with stakes; structure is added when it reduces error, rework, or ambiguity.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0014" class="chunk sec depth-2" data-kind="section" data-key="section:301e4618197f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0014</span> 6. Scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:301e4618197f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:301e4618197f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:301e4618197f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0015" class="chunk sec depth-3" data-kind="section" data-key="section:934849256ba5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0015</span> 6.1 In Scope</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:934849256ba5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:934849256ba5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:934849256ba5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Desktop shell built with Next.js and Electron.
+- Working-root selection, validation, file tree browsing, and deliverable scanning.
+- Matrix navigation across PORTAL, WORKBENCH, and PIPELINE.
+- Session lifecycle APIs and turn execution via SSE.
+- Anthropic SDK provider path with local UI key storage and environment fallback.
+- Stub provider mode for deterministic local tests.
+- Server-side attachment resolution for supported file types.
+- Operator Toolkit for per-turn runtime options and local presets.
+- Execution-root scaffolding from decomposition markdown.
+- Deliverable status and dependency contract APIs.
+- Lifecycle transition enforcement for `_STATUS.md`.
+- Dependency register read/write support for `Dependencies.csv` v3.1.
+- Subagent governance evaluation and fail-closed delegation behavior.
+- Deterministic tool registry for scaffolding, validation, reporting, coordination, PDF-to-markdown, and evaluation.
+- Harness validation scripts and CI premerge workflow.
+- Instruction-root integrity verification in packaged builds.
+- macOS Apple Silicon unsigned DMG packaging workflow.
+</p></div></div></section>
+<section id="SEC-DG005-0016" class="chunk sec depth-3" data-kind="section" data-key="section:e339614b9163" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0016</span> 6.2 Current Release Target</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e339614b9163" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e339614b9163" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e339614b9163" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The current release target is:</p>
+<p>- macOS 15+
+- Apple Silicon (`arm64`)
+- Unsigned, unnotarized local-builder DMG
+- Node.js `&gt;=20` for development/build</p>
+<p>README references Windows packaging, but the current build config and runbook define macOS arm64 as the concrete release target.
+</p></div></div></section>
+<section id="SEC-DG005-0017" class="chunk sec depth-3" data-kind="section" data-key="section:6c811a28afeb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0017</span> 6.3 Out of Scope for Current Release</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6c811a28afeb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6c811a28afeb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6c811a28afeb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Automated staleness propagation and dirty-state SHA comparison.
+- Deliverable-level lock mechanism.
+- Unified pipeline run record persistence across all task agents.
+- Project-level dependency graph visualization output.
+- Automated merge gates beyond documented/human CHANGE constraints.
+- Windows release packaging unless separately scoped.
+- Runtime enforcement monitor that intercepts every agent file write.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0018" class="chunk sec depth-2" data-kind="section" data-key="section:f975ee332ffa" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0018</span> 7. User Journeys</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f975ee332ffa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f975ee332ffa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f975ee332ffa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0019" class="chunk sec depth-3" data-kind="section" data-key="section:e30635dda37e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0019</span> 7.1 Select and Validate a Working Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e30635dda37e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e30635dda37e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e30635dda37e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens Chirality.
+2. User enters an absolute path or chooses a folder via native Electron directory picker.
+3. App validates that the path exists, is a directory, is readable/writable, and is not inside the instruction root.
+4. App stores the selected root as local UI state and uses it for file tree, scan, chat session, scaffold, and contract APIs.</p>
+<p>Acceptance:</p>
+<p>- Relative paths are rejected.
+- Missing or inaccessible directories show actionable errors.
+- Instruction-root conflicts are blocked.
+- Clearing the root disables runtime actions that require `projectRoot`.
+</p></div></div></section>
+<section id="SEC-DG005-0020" class="chunk sec depth-3" data-kind="section" data-key="section:94f6a7da5477" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0020</span> 7.2 Navigate the Agent Matrix</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94f6a7da5477" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94f6a7da5477" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94f6a7da5477" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User enters PORTAL.
+2. User selects a NORMATIVE or EVALUATIVE cell and routes to WORKBENCH with agent context.
+3. User selects an OPERATIVE cell and routes to PIPELINE with category context.
+4. If deliverables are present, user can click a deliverable row to route to PIPELINE `TASK*` with that deliverable preselected.</p>
+<p>Acceptance:</p>
+<p>- NORMATIVE and EVALUATIVE route to WORKBENCH.
+- OPERATIVE routes to PIPELINE.
+- Disabled or unsupported variants remain visible as coming soon rather than silently disappearing.
+</p></div></div></section>
+<section id="SEC-DG005-0021" class="chunk sec depth-3" data-kind="section" data-key="section:29f16c2b36c6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0021</span> 7.3 Scaffold an Execution Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:29f16c2b36c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:29f16c2b36c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:29f16c2b36c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User selects a working root.
+2. User opens PIPELINE.
+3. User enters a decomposition markdown path and coordination mode.
+4. App calls `POST /api/harness/scaffold`.
+5. Runtime parses package/deliverable tables, creates tool roots, copies decomposition, writes `INIT.md`, writes `_Coordination/_COORDINATION.md`, creates packages and deliverable folders, and returns validation summaries.</p>
+<p>Acceptance:</p>
+<p>- Scaffolding is idempotent for existing directories/files.
+- Failures are fail-fast and include stage, target path, and created paths for recovery.
+- PREPARATION compatibility is reported before the user proceeds.
+</p></div></div></section>
+<section id="SEC-DG005-0022" class="chunk sec depth-3" data-kind="section" data-key="section:5b96dff68cea" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0022</span> 7.4 Run a Workbench Persona Session</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5b96dff68cea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5b96dff68cea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5b96dff68cea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User routes to WORKBENCH with an agent persona.
+2. Chat panel resolves persona aliases to instruction-file names.
+3. User sends a prompt with optional runtime options and attachments.
+4. App creates/boots a harness session if needed.
+5. Runtime streams turn events to the UI.
+6. User may interrupt the turn.</p>
+<p>Acceptance:</p>
+<p>- Session identity is preserved across turns for the same root/persona/mode.
+- Runtime errors preserve the draft and attachments for retry.
+- Interrupt returns a terminal `process:exit` event and updates UI state.
+</p></div></div></section>
+<section id="SEC-DG005-0023" class="chunk sec depth-3" data-kind="section" data-key="section:49817460be7c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0023</span> 7.5 Run an Operative Pipeline Intent</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:49817460be7c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:49817460be7c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:49817460be7c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens PIPELINE.
+2. User selects one of `DECOMP`, `PREP`, `TASK`, or `AUDIT`.
+3. User selects a category-specific agent or lane.
+4. For `TASK`, user selects scope mode and dynamic scope from the working root.
+5. User inspects deliverable status/dependency contract snapshots and may apply allowed lifecycle transitions.</p>
+<p>Acceptance:</p>
+<p>- Deliverable selections reset when the project root or scan results become stale.
+- `KNOWLEDGE_TYPES` mode is shown only when a knowledge decomposition marker is detected.
+- Lifecycle transitions enforce authorized actors and approval SHA requirements for human gate states.
+</p></div></div></section>
+<section id="SEC-DG005-0024" class="chunk sec depth-3" data-kind="section" data-key="section:96509386bf0b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0024</span> 7.6 Attach Files to a Turn</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:96509386bf0b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:96509386bf0b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:96509386bf0b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens file picker from Chat Panel.
+2. User selects supported files by absolute path.
+3. UI previews attachments as non-authoritative client metadata.
+4. Server validates, classifies, and reads attachments.
+5. Turn proceeds if user text exists or at least one valid attachment resolves.</p>
+<p>Acceptance:</p>
+<p>- Allowed extensions: `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.pdf`, `.txt`, `.md`, `.csv`.
+- Symlinks, directories, special files, unsupported extensions, unreadable files, files over 10 MB, and total raw bytes over 18 MB are rejected.
+- Partial attachment failure is non-fatal when executable content remains.
+- If all attachments fail and text is empty, request fails with `ATTACHMENT_FAILURE`.
+</p></div></div></section>
+<section id="SEC-DG005-0025" class="chunk sec depth-3" data-kind="section" data-key="section:dde3c7574a6e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0025</span> 7.7 Store and Use an Anthropic API Key</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dde3c7574a6e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dde3c7574a6e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dde3c7574a6e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. User opens API key settings.
+2. User stores a key through Electron IPC.
+3. Electron encrypts key material with `safeStorage` outside the working root.
+4. Server runtime reads UI key from process global; if absent, uses `ANTHROPIC_API_KEY` or `CHIRALITY_ANTHROPIC_API_KEY`.</p>
+<p>Acceptance:</p>
+<p>- Key material is never written to working-root files.
+- UI key takes precedence over env keys.
+- API key status can report source as `ui`, `env`, or `none`.
+- If secure storage is unavailable, UI reports an error.
+</p></div></div></section>
+<section id="SEC-DG005-0026" class="chunk sec depth-3" data-kind="section" data-key="section:945428987932" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0026</span> 7.8 Validate and Package a Release</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:945428987932" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:945428987932" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:945428987932" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Release operator installs dependencies in `frontend/`.
+2. Operator runs tests/typecheck/harness validation.
+3. Operator runs desktop distribution build.
+4. Build packages app resources and verifies instruction-root integrity.</p>
+<p>Acceptance:</p>
+<p>- `frontend/dist/Chirality-0.1.0-arm64.dmg` is produced for macOS arm64.
+- App bundle includes `agents/` and `docs/`.
+- App minimum macOS target is `15.0.0` or later.
+- Build is unsigned/adhoc by design.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0027" class="chunk sec depth-2" data-kind="section" data-key="section:f9e8e42e79ce" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0027</span> 8. Functional Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f9e8e42e79ce" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f9e8e42e79ce" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f9e8e42e79ce" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Priority:</p>
+<p>- `P0`: required for current release usefulness and safety.
+- `P1`: important for current release quality or governed operation.
+- `P2`: desirable or future hardening.
+</p></div></div></section>
+<section id="SEC-DG005-0028" class="chunk sec depth-3" data-kind="section" data-key="section:77ee3e090b67" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0028</span> 8.1 Desktop Shell and Navigation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:77ee3e090b67" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:77ee3e090b67" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:77ee3e090b67" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-001 | P0 | The app shall provide a desktop shell with PORTAL, PIPELINE, and WORKBENCH navigation. | Header nav routes to `/`, `/pipeline`, and `/workbench`; active route is visually indicated. |
+| FR-002 | P0 | The app shall expose working-root selection globally. | User can type a path, choose folder in Electron, apply, and clear root. |
+| FR-003 | P0 | The app shall validate working roots before use. | Non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths fail with typed errors. |
+| FR-004 | P0 | The app shall show a file tree for the selected working root. | Tree API skips `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`; depth is bounded; inaccessible directories mark truncation. |
+| FR-005 | P1 | The shell shall support resizable/collapsible File Tree, Toolkit, and Chat panes. | Drag and keyboard resize work; Home collapses; End expands; widths are persisted locally. |
+| FR-006 | P1 | The UI shall preserve a calm, professional, dense-but-readable interface. | UI polish acceptance from `docs/ui/UI_POLISH_EXECUTION_PLAN.md` remains applicable; no regression in harness behavior. |
+</p></div></div></section>
+<section id="SEC-DG005-0029" class="chunk sec depth-3" data-kind="section" data-key="section:142cae93bd51" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0029</span> 8.2 Matrix, Workbench, and Pipeline</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:142cae93bd51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:142cae93bd51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:142cae93bd51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-007 | P0 | PORTAL shall render the 3x4 agent matrix using canonical rows and columns. | Rows: `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`; columns: `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`. |
+| FR-008 | P0 | Matrix routing shall follow the docs/SPEC contract. | NORMATIVE/EVALUATIVE cells open WORKBENCH; OPERATIVE cells open PIPELINE categories. |
+| FR-009 | P0 | WORKBENCH shall present active agent context. | Selected agent, row, and column are shown from query params with sensible defaults. |
+| FR-010 | P1 | WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. |
+| FR-011 | P0 | PIPELINE shall expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | Each category has documented options; unsupported options are visible and disabled as coming soon. |
+| FR-012 | P0 | PIPELINE `TASK` shall use split selectors for task agent and scope. | Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. |
+| FR-013 | P1 | Dynamic scope scan shall reset invalid selections. | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. |
+</p></div></div></section>
+<section id="SEC-DG005-0030" class="chunk sec depth-3" data-kind="section" data-key="section:eb020c0b5b6f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0030</span> 8.3 Harness Sessions and Turns</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eb020c0b5b6f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eb020c0b5b6f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eb020c0b5b6f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-014 | P0 | The app shall create, list, resume, save, and delete harness sessions. | Session records are JSON files under `.chirality/sessions` or `CHIRALITY_SESSION_ROOT`; sessions are filtered by normalized project root. |
+| FR-015 | P0 | Session creation shall bind `projectRoot`, `persona`, and `mode`. | Missing persona/mode use defaults; invalid project root is rejected. |
+| FR-016 | P0 | Session boot shall accept runtime options. | `POST /api/harness/session/boot` accepts `opts` and records boot metadata. |
+| FR-017 | P0 | Turn execution shall stream Server-Sent Events. | `POST /api/harness/turn` returns `text/event-stream`; events include `session:init`, `chat:delta`, `chat:complete`, `session:complete`, `tool:result`, `turn:error`, and `process:exit`. |
+| FR-018 | P0 | Only one active turn may run per session. | Concurrent turn attempts return `TURN_IN_PROGRESS`. |
+| FR-019 | P0 | Users shall be able to interrupt active turns. | `POST /api/harness/interrupt` aborts the active provider request and yields interrupted `process:exit`. |
+| FR-020 | P1 | Runtime errors shall be typed and actionable in UI. | UI maps harness errors to title/message/next-step text and preserves drafts for retry. |
+</p></div></div></section>
+<section id="SEC-DG005-0031" class="chunk sec depth-3" data-kind="section" data-key="section:a375d27e2ea9" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0031</span> 8.4 Runtime Options and Personas</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a375d27e2ea9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a375d27e2ea9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a375d27e2ea9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-021 | P0 | Runtime option fallback chains shall be deterministic. | Model: `opts.model` -&gt; `CHIRALITY_GLOBAL_MODEL` or AGENTS frontmatter -&gt; default; tools: `opts.tools` -&gt; persona frontmatter -&gt; default; max turns: `opts.maxTurns` -&gt; persona frontmatter -&gt; default. |
+| FR-022 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
+| FR-023 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
+| FR-024 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -&gt; HELP_HUMAN`, `ORCHESTRATE -&gt; ORCHESTRATOR`, `AGGREGATE -&gt; AGGREGATION`, `RECONCILING -&gt; RECONCILIATION`, `AGENTS -&gt; HELPS_HUMANS`. |
+| FR-025 | P0 | Production provider mode shall support Anthropic SDK. | `CHIRALITY_HARNESS_PROVIDER=anthropic` uses the Anthropic SDK path; default/stub mode remains testable. |
+| FR-026 | P1 | The runtime shall compose real agent instruction context into turns. | Provider requests include the selected agent instruction/root context and working-root constraints. See Known Gap KG-001. |
+</p></div></div></section>
+<section id="SEC-DG005-0032" class="chunk sec depth-3" data-kind="section" data-key="section:7f4570898a1f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0032</span> 8.5 Anthropic Provider and Network Policy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7f4570898a1f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7f4570898a1f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7f4570898a1f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-027 | P0 | Anthropic API key resolution shall follow `ENV+UI`. | UI safeStorage key first; then `ANTHROPIC_API_KEY`; then `CHIRALITY_ANTHROPIC_API_KEY`. |
+| FR-028 | P0 | Key material shall remain non-project-truth convenience state. | No key is written to working root, docs, logs, or git-tracked execution files. |
+| FR-029 | P0 | Anthropic base URL shall be allowlisted. | Only `https://api.anthropic.com` with no credentials and port empty/443 is accepted. |
+| FR-030 | P0 | Electron renderer outbound traffic shall be blocked except loopback and Anthropic API. | `webRequest.onBeforeRequest` cancels non-allowlisted outbound requests and logs policy metadata. |
+| FR-031 | P1 | Provider errors shall be classified. | Auth, rate limit, timeout, API error, network error, invalid base URL, and policy violation produce typed `SDK_FAILURE` details with key redaction. |
+</p></div></div></section>
+<section id="SEC-DG005-0033" class="chunk sec depth-3" data-kind="section" data-key="section:e4c756e7e605" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0033</span> 8.6 Attachments</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4c756e7e605" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4c756e7e605" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4c756e7e605" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-032 | P0 | UI shall allow file attachments from the selected working root. | File picker supports navigation, multi-select, preview chips, remove, and clear. |
+| FR-033 | P0 | Server shall treat client attachment metadata as non-authoritative. | Server revalidates path, extension, file type, readability, symlink status, and size. |
+| FR-034 | P0 | Attachment resolver shall enforce supported file types and budgets. | Extension, regular-file, per-file 10 MB, and total 18 MB raw-byte rules are enforced. |
+| FR-035 | P0 | Anthropic provider shall map supported files to content blocks. | Images use base64 image blocks; PDFs use document blocks; text/markdown/csv use text document blocks. |
+| FR-036 | P1 | Attachment failure handling shall be resilient. | Partial failures prepend a warning; total failure without text rejects the turn; UI preserves draft/attachments on failed send. |
+</p></div></div></section>
+<section id="SEC-DG005-0034" class="chunk sec depth-3" data-kind="section" data-key="section:190e83cace90" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0034</span> 8.7 Operator Toolkit and Local UI State</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:190e83cace90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:190e83cace90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:190e83cace90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-037 | P1 | Toolkit panel shall expose per-turn options. | UI can set model/tools/max turns/mode/persona/governance metadata as supported by runtime. |
+| FR-038 | P1 | Toolkit settings shall persist locally and remain non-authoritative. | Local presets do not override governance enforcement or project truth. |
+| FR-039 | P1 | Chat drafts and attachment selections shall persist locally per root/persona/mode. | Malformed records are dropped; storage failures warn without breaking chat. |
+</p></div></div></section>
+<section id="SEC-DG005-0035" class="chunk sec depth-3" data-kind="section" data-key="section:f8e8754660b1" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0035</span> 8.8 Filesystem Execution Model</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f8e8754660b1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f8e8754660b1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f8e8754660b1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-040 | P0 | Execution roots shall follow the `docs/SPEC.md` layout. | Root contains `INIT.md`, package folders, and tool roots such as `_Aggregation`, `_Change`, `_Coordination`, `_Decomposition`, `_Estimates`, `_Reconciliation`, `_Archive`, `_Scripts`, `_Sources`. |
+| FR-041 | P0 | Package folders shall follow flat `PKG-XX_Label` or `PKG-XXX_Label` structure. | Required subfolders are created or validated. No nested packages are introduced. |
+| FR-042 | P0 | Deliverable folders shall follow `DEL-XX-YY_Label` or `DEL-XXX-YY_Label` structure. | Deliverable scan detects folders with `_STATUS.md` and valid DEL prefix. |
+| FR-043 | P0 | Deliverable metadata files shall be canonical. | `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`, and `MEMORY.md` expectations follow SPEC. |
+| FR-044 | P1 | Document kit files shall be supported as first-class knowledge buckets. | Datasheet, Specification, Guidance, and Procedure are detected for knowledge-type scope. |
+</p></div></div></section>
+<section id="SEC-DG005-0036" class="chunk sec depth-3" data-kind="section" data-key="section:30ae9ac246d3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0036</span> 8.9 Lifecycle and Dependency Contracts</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:30ae9ac246d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:30ae9ac246d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:30ae9ac246d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-045 | P0 | `_STATUS.md` shall be the canonical lifecycle state file. | Status parser reads `Current State`, `Last Updated`, and history. |
+| FR-046 | P0 | Lifecycle transitions shall be forward-only and actor-authorized. | Allowed transitions follow SPEC; unauthorized actors and backward transitions fail. |
+| FR-047 | P0 | Human gate transitions shall require approval SHA evidence. | Transitions to `CHECKING` or `ISSUED` require a 7-64 char hex SHA-like token. |
+| FR-048 | P0 | `Dependencies.csv` v3.1 shall be parsed and validated. | Required headers, enum values, identity rules, and warnings are exposed by contract APIs. |
+| FR-049 | P0 | Dependency rows shall preserve provenance. | Active extracted rows require `EvidenceFile` and `SourceRef` or explicit `location TBD`. |
+| FR-050 | P1 | Dependency writes shall preserve lifecycle behavior. | Rows are serialized with schema version, host deliverable consistency, and warnings for legacy/invalid data. |
+</p></div></div></section>
+<section id="SEC-DG005-0037" class="chunk sec depth-3" data-kind="section" data-key="section:eabfbd5c94ea" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0037</span> 8.10 Agents, Tools, and Governance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eabfbd5c94ea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eabfbd5c94ea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eabfbd5c94ea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-051 | P0 | The instruction root shall include the indexed core agent suite and governance docs. | Packaged resources contain `agents/`, `docs/`, `AGENTS.md`, `README.md`, `WHAT-IS-AN-AGENT.md`, and `PROFESSIONAL_ENGINEERING.md`. |
+| FR-052 | P0 | Agent instruction files shall declare type/class/surface/write-scope/blocking/output metadata. | Conformance is auditable against `AGENT_HELPS_HUMANS.md` and `docs/SPEC.md`. |
+| FR-053 | P0 | Type 2 subagent injection shall fail closed. | Requires `CHIRALITY_ENABLE_SUBAGENTS=true`, persona allowlist, `contextSealed=true`, `pipelineRunApproved=true`, non-empty `approvalRef`, and Type 2 candidate files. |
+| FR-054 | P1 | Deterministic tools shall remain indexed and callable by agents. | `tools/REGISTRY.md` lists tools by category with inputs/outputs; validation scripts remain executable. |
+| FR-055 | P1 | Snapshot-producing workflows shall write immutable snapshot folders and mutable `_LATEST.md` pointers. | Reruns create new timestamped folders; prior snapshots are not overwritten. |
+| FR-056 | P1 | CHANGE/publication workflows shall require explicit approval tokens and SHA checks. | Approval records include candidate SHA/action list; CHANGE rechecks HEAD before approved actions. |
+</p></div></div></section>
+<section id="SEC-DG005-0038" class="chunk sec depth-3" data-kind="section" data-key="section:f458e0c66b26" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0038</span> 8.11 Validation and Release</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f458e0c66b26" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f458e0c66b26" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f458e0c66b26" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| FR-057 | P0 | Unit and API tests shall cover runtime, workspace, lifecycle, dependency, scaffold, attachment, key storage, network policy, and packaging behavior. | `frontend/src/__tests__` remains comprehensive and `npm run test` passes. |
+| FR-058 | P0 | TypeScript typecheck shall pass for Next.js and Electron code. | `npm run typecheck` exits zero. |
+| FR-059 | P0 | Harness premerge validation shall be repeatable locally and in CI. | `npm run harness:validate:premerge` creates `frontend/artifacts/harness/section8/latest/summary.json` with required SDK test IDs. |
+| FR-060 | P0 | Desktop distribution build shall include instruction-root integrity verification. | `npm run desktop:dist` runs build, packages DMG, and runs `instruction-root:integrity`. |
+| FR-061 | P1 | CI shall upload stable harness summary artifact. | `.github/workflows/harness-premerge.yml` validates server readiness and uploads summary JSON. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0039" class="chunk sec depth-2" data-kind="section" data-key="section:7a4cd583a45a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0039</span> 9. API Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7a4cd583a45a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7a4cd583a45a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7a4cd583a45a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0040" class="chunk sec depth-3" data-kind="section" data-key="section:20a1f75aa37a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0040</span> 9.1 Harness APIs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:20a1f75aa37a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:20a1f75aa37a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:20a1f75aa37a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/harness/session/create` | POST | Create a session bound to `projectRoot`, persona, and mode. |
+| `/api/harness/session/boot` | POST | Boot a session and persist boot metadata. |
+| `/api/harness/session/list` | GET | List sessions for a normalized project root. |
+| `/api/harness/session/[id]` | GET/DELETE | Retrieve or delete a session. |
+| `/api/harness/turn` | POST | Execute a turn and stream UI events over SSE. |
+| `/api/harness/interrupt` | POST | Interrupt active turn for a session. |
+| `/api/harness/scaffold` | POST | Scaffold execution root from decomposition markdown. |
+</p></div></div></section>
+<section id="SEC-DG005-0041" class="chunk sec depth-3" data-kind="section" data-key="section:4fd05024c7ef" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0041</span> 9.2 Workspace APIs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4fd05024c7ef" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4fd05024c7ef" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4fd05024c7ef" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/api/working-root/validate` | POST | Validate and normalize a working root. |
+| `/api/working-root/tree` | GET | Return bounded file tree for the selected root. |
+| `/api/working-root/scope` | GET | Scan deliverables and knowledge-type directories. |
+| `/api/project/deliverables` | GET | Return deliverables plus knowledge decomposition metadata. |
+| `/api/working-root/deliverable/status` | GET | Read `_STATUS.md` snapshot for a deliverable. |
+| `/api/working-root/deliverable/status/transition` | POST | Apply an allowed lifecycle transition. |
+| `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv` snapshot rows. |
+</p></div></div></section>
+<section id="SEC-DG005-0042" class="chunk sec depth-3" data-kind="section" data-key="section:833ee41475c3" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0042</span> 9.3 SSE Event Contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:833ee41475c3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:833ee41475c3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:833ee41475c3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The turn stream shall emit named SSE events with JSON payloads:</p>
+<p>- `session:init`
+- `chat:delta`
+- `chat:complete`
+- `tool:result`
+- `session:complete`
+- `turn:error`
+- `process:exit`</p>
+<p>The stream must always terminate with a process-level completion/error signal unless the client disconnects and cancel cleanup runs.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0043" class="chunk sec depth-2" data-kind="section" data-key="section:9e570f5e699e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0043</span> 10. Data and File Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9e570f5e699e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9e570f5e699e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9e570f5e699e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0044" class="chunk sec depth-3" data-kind="section" data-key="section:9a2156f36c22" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0044</span> 10.1 Instruction Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a2156f36c22" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a2156f36c22" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a2156f36c22" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required entries:</p>
+<p>- `AGENTS.md`
+- `README.md`
+- `agents/`
+- `docs/`
+- `docs/DIRECTIVE.md`
+- `docs/CONTRACT.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/PLAN.md`</p>
+<p>Instruction root may be overridden by `CHIRALITY_INSTRUCTION_ROOT`; packaged builds set it to `process.resourcesPath`.
+</p></div></div></section>
+<section id="SEC-DG005-0045" class="chunk sec depth-3" data-kind="section" data-key="section:201e42fc9923" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0045</span> 10.2 Working Root</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:201e42fc9923" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:201e42fc9923" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:201e42fc9923" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Requirements:</p>
+<p>- Must be an absolute existing readable/writable directory.
+- Must not be inside instruction root.
+- Contains project execution state, packages, deliverables, and tool roots.
+- Is the only location where agents write project truth.
+</p></div></div></section>
+<section id="SEC-DG005-0046" class="chunk sec depth-3" data-kind="section" data-key="section:12d2f5e71961" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0046</span> 10.3 Session Store</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:12d2f5e71961" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:12d2f5e71961" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:12d2f5e71961" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Default location:</p>
+<p>- `{frontend cwd}/.chirality/sessions/*.json`</p>
+<p>Override:</p>
+<p>- `CHIRALITY_SESSION_ROOT`</p>
+<p>Session record fields:</p>
+<p>- `sessionId`
+- `projectRoot`
+- `persona`
+- `mode`
+- `createdAt`
+- `updatedAt`
+- `claudeSessionId`
+- `bootFingerprint`
+- `bootedAt`
+- `model`
+</p></div></div></section>
+<section id="SEC-DG005-0047" class="chunk sec depth-3" data-kind="section" data-key="section:211a461aa6c2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0047</span> 10.4 API Key Store</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:211a461aa6c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:211a461aa6c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:211a461aa6c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Electron storage:</p>
+<p>- `app.getPath(&#x27;userData&#x27;)/credentials/api-key.enc`</p>
+<p>Rules:</p>
+<p>- Encrypted with Electron `safeStorage`.
+- Process-global value is used by server runtime in packaged same-process builds.
+- Not project truth.
+- Not logged.
+</p></div></div></section>
+<section id="SEC-DG005-0048" class="chunk sec depth-3" data-kind="section" data-key="section:86bacdfad957" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0048</span> 10.5 Execution Root Layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86bacdfad957" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86bacdfad957" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86bacdfad957" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required or expected root entries include:</p>
+<p>- `INIT.md`
+- `PKG-XX_Label/`
+- `_Aggregation/`
+- `_Change/`
+- `_Coordination/_COORDINATION.md`
+- `_Decomposition/`
+- `_Estimates/`
+- `_Reconciliation/`
+- `_Archive/`
+- `_Scripts/`
+- `_Sources/`
+</p></div></div></section>
+<section id="SEC-DG005-0049" class="chunk sec depth-3" data-kind="section" data-key="section:6f02eb29273b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0049</span> 10.6 Deliverable Folder Layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f02eb29273b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f02eb29273b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f02eb29273b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required metadata:</p>
+<p>- `_STATUS.md`
+- `_CONTEXT.md`
+- `_DEPENDENCIES.md`
+- `_REFERENCES.md`</p>
+<p>Minimum PREPARATION fileset also includes:</p>
+<p>- `_SEMANTIC.md`</p>
+<p>Document kit:</p>
+<p>- `Datasheet.md`
+- `Specification.md`
+- `Guidance.md`
+- `Procedure.md`</p>
+<p>Additional expected/optional:</p>
+<p>- `Dependencies.csv`
+- `MEMORY.md`
+- `_SEMANTIC_LENSING.md`
+- `HASH_VERIFICATION_BYPASS.jsonl`</p>
+<p>Disabled in this project profile:</p>
+<p>- `_MEMORY.md`
+</p></div></div></section>
+<section id="SEC-DG005-0050" class="chunk sec depth-3" data-kind="section" data-key="section:29f60bec678e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0050</span> 10.7 Dependency Register</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:29f60bec678e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:29f60bec678e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:29f60bec678e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`Dependencies.csv` must follow schema version `v3.1` with 29 required core columns plus optional extension columns. Rows are append/lifecycle aware:</p>
+<p>- Rows are not deleted when retired.
+- `FirstSeen`, `LastSeen`, `Status`, and `SatisfactionStatus` track extraction and closure state.
+- `ANCHOR` rows connect deliverables to definition/traceability nodes.
+- `EXECUTION` rows capture information flow, prerequisites, handoffs, and constraints.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0051" class="chunk sec depth-2" data-kind="section" data-key="section:0481afabd66e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0051</span> 11. Non-Functional Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0481afabd66e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0481afabd66e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0481afabd66e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0052" class="chunk sec depth-3" data-kind="section" data-key="section:9350298613c6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0052</span> 11.1 Security and Privacy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9350298613c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9350298613c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9350298613c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| NFR-001 | P0 | No project data shall require external storage. | All authoritative state is local files under working root. |
+| NFR-002 | P0 | API keys shall not be written to project files or logs. | Key redaction is applied to provider errors; key storage stays under Electron userData. |
+| NFR-003 | P0 | Renderer outbound traffic shall be allowlisted. | Non-loopback/non-Anthropic renderer requests are canceled. |
+| NFR-004 | P0 | Attachment paths shall not follow symlinks. | Symlink attachments are rejected before provider execution. |
+| NFR-005 | P0 | Working root shall not be inside instruction root. | Runtime rejects conflicting root selection. |
+</p></div></div></section>
+<section id="SEC-DG005-0053" class="chunk sec depth-3" data-kind="section" data-key="section:baeb8e84a610" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0053</span> 11.2 Reliability</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:baeb8e84a610" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:baeb8e84a610" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:baeb8e84a610" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| NFR-006 | P0 | Harness turns shall be cancellable. | Interrupt/cancel aborts provider request and releases session lock. |
+| NFR-007 | P0 | Runtime operations shall expose typed errors. | Harness and workspace errors include type, status, message, and details where applicable. |
+| NFR-008 | P1 | Scaffolding shall be idempotent and recoverable. | Existing paths are preserved; failures include stage and created path inventory. |
+| NFR-009 | P1 | File scans shall avoid runaway traversal. | Tree and scope scan depth/count limits are enforced. |
+</p></div></div></section>
+<section id="SEC-DG005-0054" class="chunk sec depth-3" data-kind="section" data-key="section:6de215b48f9f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0054</span> 11.3 Performance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6de215b48f9f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6de215b48f9f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6de215b48f9f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| NFR-010 | P1 | Working-root scans shall remain responsive on large repos. | Scope scan caps directories at 2500 and depth at 8; tree limits entries per directory to 60 and depth to 6. |
+| NFR-011 | P1 | Provider streams shall time out. | Anthropic stream timeout defaults to 90 seconds and can be overridden by env. |
+| NFR-012 | P1 | Attachment budgets shall protect request size. | Per-file and per-turn raw-byte limits are enforced before provider call. |
+</p></div></div></section>
+<section id="SEC-DG005-0055" class="chunk sec depth-3" data-kind="section" data-key="section:f80ec3637047" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0055</span> 11.4 Accessibility and UX Quality</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f80ec3637047" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f80ec3637047" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f80ec3637047" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| NFR-013 | P1 | Keyboard users shall be able to resize/collapse panes. | Resize handles are focusable separators with arrow/Home/End behavior. |
+| NFR-014 | P1 | Controls shall expose disabled/loading/error states. | Primary surfaces avoid silent failure and show typed feedback. |
+| NFR-015 | P1 | UI shall avoid hydration mismatch from local browser state. | Browser-backed state initializes client-side and does not render conflicting server text. |
+</p></div></div></section>
+<section id="SEC-DG005-0056" class="chunk sec depth-3" data-kind="section" data-key="section:ff57421cdf6d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0056</span> 11.5 Auditability and Compliance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff57421cdf6d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff57421cdf6d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff57421cdf6d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Priority | Requirement | Acceptance |
+|---|---:|---|---|
+| NFR-016 | P0 | Human approval remains non-delegable. | No automated endpoint can sign/seal/issue for reliance without human actor/approval evidence. |
+| NFR-017 | P0 | Approval SHA evidence shall be captured for checking/issued transitions. | Status transition metadata includes SHA fields for human gate states. |
+| NFR-018 | P1 | Validation artifacts shall be stable and reviewable. | Harness summary artifact path is deterministic and uploaded in CI. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0057" class="chunk sec depth-2" data-kind="section" data-key="section:564f90354320" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0057</span> 12. Validation Plan</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:564f90354320" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:564f90354320" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:564f90354320" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-DG005-0058" class="chunk sec depth-3" data-kind="section" data-key="section:1d48c324bf5e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0058</span> 12.1 Required Local Checks</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d48c324bf5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d48c324bf5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d48c324bf5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+From `frontend/`:</p>
+<p>```bash
+npm run test
+npm run typecheck
+npm run harness:validate:premerge
+npm run instruction-root:integrity
+```</p>
+<p>Packaging check:</p>
+<p>```bash
+npm run desktop:dist
+```</p>
+<p>Expected packaging outputs:</p>
+<p>- `frontend/dist/Chirality-0.1.0-arm64.dmg`
+- `frontend/dist/mac-arm64/Chirality.app`
+- `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+</p></div></div></section>
+<section id="SEC-DG005-0059" class="chunk sec depth-3" data-kind="section" data-key="section:a79a7fa7a97f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0059</span> 12.2 Harness Validation Acceptance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a79a7fa7a97f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a79a7fa7a97f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a79a7fa7a97f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The Section 8 harness validation shall verify:</p>
+<p>- Server reachable.
+- Session CRUD.
+- Smoke stream ordering.
+- Session persistence and resume continuity.
+- Permissions behavior under `dontAsk`.
+- Interrupt behavior.
+- SDK-native stream handling with no legacy parser regressions.
+</p></div></div></section>
+<section id="SEC-DG005-0060" class="chunk sec depth-3" data-kind="section" data-key="section:03c7795dbc32" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0060</span> 12.3 CI Acceptance</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:03c7795dbc32" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:03c7795dbc32" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:03c7795dbc32" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The GitHub workflow shall:</p>
+<p>1. Checkout repository.
+2. Setup Node.js 20.
+3. Install dependencies with `npm ci`.
+4. Preflight validation script presence.
+5. Start Next server.
+6. Poll readiness.
+7. Run `npm run harness:validate:premerge`.
+8. Verify stable summary artifact.
+9. Upload summary artifact.
+</p></div></div></section>
+<section id="SEC-DG005-0061" class="chunk sec depth-3" data-kind="section" data-key="section:e88ce4b3484e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-DG005-0061</span> 12.4 Manual Release Verification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e88ce4b3484e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e88ce4b3484e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e88ce4b3484e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For macOS DMG:</p>
+<p>- Binary is arm64.
+- `LSMinimumSystemVersion` is `15.0.0` or later.
+- Codesign reports no developer TeamIdentifier and adhoc signature.
+- App resources contain `agents/` and `docs/`.
+- App launches and working-root selector is available.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0062" class="chunk sec depth-2" data-kind="section" data-key="section:6b2d485c6902" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0062</span> 13. Success Metrics</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6b2d485c6902" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6b2d485c6902" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6b2d485c6902" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. A first-time operator can select a working root, inspect the file tree, and start a WORKBENCH chat turn within one app session.
+2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation.
+3. A deliverable can be scanned, inspected, and transitioned according to lifecycle rules with approval SHA enforcement for human gate states.
+4. Harness premerge validation passes in CI and produces a stable summary artifact.
+5. Desktop DMG builds locally and passes instruction-root integrity checks.
+6. No API key or project truth is written outside its approved storage zone.
+7. Unsupported PIPELINE variants remain visible as disabled options, preserving operator awareness of roadmap scope.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0063" class="chunk sec depth-2" data-kind="section" data-key="section:4d73c16a0eda" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0063</span> 14. Known Gaps and Risks</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d73c16a0eda" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d73c16a0eda" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d73c16a0eda" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| ID | Area | Risk / Gap | Product Decision |
+|---|---|---|---|
+| KG-001 | Persona prompting | Current `StubPersonaManager.buildSystemPrompt()` validates persona existence but does not compose full instruction-root context into the Anthropic request path. | P0 before production reliance: provider turns must include selected agent instructions and working-root governance context. |
+| KG-002 | Runtime enforcement | Several K-* invariants are enforced by instructions and human review, not by a runtime guard that blocks non-compliant writes. | Accept for current governed-human use; track runtime guardrails as future hardening if risk profile increases. |
+| KG-003 | Staleness/dirty state | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2 automated enforcement is partial or future-scoped. | Keep human CHANGE constraints active; do not claim complete automated enforcement. |
+| KG-004 | Registry ownership | Current membership belongs in the source registries, not mutable count prose. | Treat `AGENTS.md`, `skills/README.md`, `tools/REGISTRY.md`, and generated test discovery output as the active registry surfaces. |
+| KG-005 | Release target ambiguity | README mentions Windows packaging, but current runbook/build config targets macOS 15+ Apple Silicon DMG. | PRD current release scope is macOS arm64 only; Windows requires explicit scope amendment. |
+| KG-006 | Optional hardening | Deliverable lock, project graph generation, unified run records, and staleness tooling are retired/out-of-scope in current decomposition. | Do not include in current release commitments except as future roadmap. |
+| KG-007 | Professional reliance | App supports auditability but does not make outputs professionally reliable by itself. | Product copy and UI must preserve &quot;draft/decision support until human review&quot; posture. |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0064" class="chunk sec depth-2" data-kind="section" data-key="section:ac89352707dd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0064</span> 15. Traceability Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ac89352707dd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ac89352707dd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ac89352707dd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Product Area | Source Requirements |
+|---|---|
+| Desktop build/package | SOW-001, SOW-002, SOW-044, SOW-047, OBJ-001, OBJ-008 |
+| UI workflow | SOW-022 through SOW-027, SOW-046, SOW-050, OBJ-005 |
+| Harness runtime | SOW-003 through SOW-006, SOW-011, SOW-012, SOW-045, OBJ-002 |
+| Attachments | SOW-007 through SOW-010, OBJ-003 |
+| Filesystem model | SOW-013 through SOW-018, OBJ-004 |
+| Agent/governance | SOW-017, SOW-019 through SOW-021, SOW-030, SOW-031, SOW-039 through SOW-043, OBJ-006 |
+| Validation/examples | SOW-028, SOW-029, SOW-048, SOW-049, OBJ-006 |
+| Integrity hardening | SOW-032, SOW-033 in scope; SOW-034 through SOW-038 retired/out in current decomposition |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-DG005-0065" class="chunk sec depth-2" data-kind="section" data-key="section:40fe64b5889f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-DG005-0065</span> 16. Approval and Change Control</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:40fe64b5889f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:40fe64b5889f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:40fe64b5889f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This PRD is a product requirements artifact. It does not supersede:</p>
+<p>- `docs/DIRECTIVE.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/CONTRACT.md`
+- `AGENTS.md`
+- Active decomposition and scope-change records under `execution/_Decomposition/`</p>
+<p>Changes to this PRD that alter scope, release targets, safety posture, data contracts, or professional responsibility boundaries should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.</p>
+<p>---</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "DG005";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

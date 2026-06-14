@@ -1,0 +1,501 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-FRONTEND-DOCS-UI-UI-POLISH-EXECUTION-PLAN - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>27</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-HX009-0001">Chirality UI Polish Execution Plan</a> <a href="#SEC-HX009-0002">1) Objective</a> <a href="#SEC-HX009-0003">2) Non-Negotiable Constraints</a> <a href="#SEC-HX009-0004">3) Current-State Audit Summary</a> <a href="#SEC-HX009-0005">3.1) Delta From Latest Cosmetic Pass (2026-02-08)</a> <a href="#SEC-HX009-0006">3.2) Incremental UI Updates Since Baseline (2026-02-21)</a> <a href="#SEC-HX009-0007">4) Design Direction</a> <a href="#SEC-HX009-0008">5) Workstreams</a> <a href="#SEC-HX009-0009">A. Foundation System (Tokens + Rules)</a> <a href="#SEC-HX009-0010">B. Global Shell Polish (Page Frame + Header + Navigation)</a> <a href="#SEC-HX009-0011">C. Portal Surface (Home View)</a> <a href="#SEC-HX009-0012">D. Workbench/Direct/Pipeline Layout System</a> <a href="#SEC-HX009-0013">E. Chat Experience Polish</a> <a href="#SEC-HX009-0014">F. File Surfaces + Utility Components</a> <a href="#SEC-HX009-0015">G. Accessibility and Interaction Quality</a> <a href="#SEC-HX009-0016">H. QA + Hardening</a> <a href="#SEC-HX009-0017">6) Execution Phases (Recommended)</a> <a href="#SEC-HX009-0018">Phase 0: Baseline and Freeze</a> <a href="#SEC-HX009-0019">Phase 1: Foundation Layer</a> <a href="#SEC-HX009-0020">Phase 2: Structural Surfaces</a> <a href="#SEC-HX009-0021">Phase 3: Chat and High-Usage UX</a> <a href="#SEC-HX009-0022">Phase 4: Accessibility + Responsive + QA</a> <a href="#SEC-HX009-0023">7) Component-by-Component Task Matrix</a> <a href="#SEC-HX009-0024">8) Acceptance Criteria</a> <a href="#SEC-HX009-0025">9) Delivery Strategy</a> <a href="#SEC-HX009-0026">10) Suggested Slice Order</a> <a href="#SEC-HX009-0027">11) Out of Scope (for this polish plan)</a></nav>
+<main>
+<section id="SEC-HX009-0001" class="chunk sec depth-1" data-kind="section" data-key="section:a4f7a252e9df" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-HX009-0001</span> Chirality UI Polish Execution Plan</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4f7a252e9df" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4f7a252e9df" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4f7a252e9df" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-HX009-0002" class="chunk sec depth-2" data-kind="section" data-key="section:ff2cb24b813e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0002</span> 1) Objective</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff2cb24b813e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff2cb24b813e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff2cb24b813e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Deliver a professional, high-clarity visual polish of the Chirality UI while preserving:</p>
+<p>- Existing color palette tokens in `frontend/app/globals.css`
+- Existing Portal hexagon row/column color semantics
+- Existing Portal hexagon labels/content taxonomy</p>
+<p>The goal is a cleaner, more intentional interface with stronger hierarchy, better readability, better interaction states, and production-level consistency across all views (`home`, `workbench`, `pipeline`, `direct`).
+</p></div></div></section>
+<section id="SEC-HX009-0003" class="chunk sec depth-2" data-kind="section" data-key="section:a0d274b854c9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0003</span> 2) Non-Negotiable Constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0d274b854c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0d274b854c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0d274b854c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Keep current palette values and semantic meaning.
+2. Keep current Portal hexagon coloring and label text unchanged.
+3. Preserve current harness/SSE behaviors and data flow contracts.
+4. Maintain existing information architecture (Portal -&gt; Workbench/Pipeline/Direct paths).
+5. Keep desktop and mobile behavior functional throughout.
+</p></div></div></section>
+<section id="SEC-HX009-0004" class="chunk sec depth-2" data-kind="section" data-key="section:b3fc58620e35" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0004</span> 3) Current-State Audit Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b3fc58620e35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b3fc58620e35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b3fc58620e35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Observed issues to address:</p>
+<p>- Visual density is high; too many simultaneous effects (glows, borders, heavy uppercase labeling).
+- Inconsistent spacing scale and radius usage across components.
+- Typography hierarchy is present but not systematic.
+- Panel chrome and metadata styling vary by view/component.
+- Interaction states (hover/focus/disabled/loading) are inconsistent.
+- Some components use noisy or placeholder-like visual language that weakens professional finish.
+</p></div></div></section>
+<section id="SEC-HX009-0005" class="chunk sec depth-2" data-kind="section" data-key="section:1057b9da42e4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0005</span> 3.1) Delta From Latest Cosmetic Pass (2026-02-08)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1057b9da42e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1057b9da42e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1057b9da42e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Recent UI updates already established a stronger baseline:</p>
+<p>- Light mode surface/background treatment was refreshed in `frontend/app/globals.css`.
+- Root directory selection was centralized into `frontend/components/ResizableLayout.tsx`.
+- `frontend/components/ChatPanel.tsx` moved to compact status-text loading feedback.
+- `frontend/app/page.tsx` now initializes `projectRoot` client-side to avoid hydration drift.</p>
+<p>Planning implication:</p>
+<p>- Focus polish work on consistency and hardening of this direction, not visual reset.
+</p></div></div></section>
+<section id="SEC-HX009-0006" class="chunk sec depth-2" data-kind="section" data-key="section:973e70932bc9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0006</span> 3.2) Incremental UI Updates Since Baseline (2026-02-21)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:973e70932bc9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:973e70932bc9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:973e70932bc9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Recent refinements after the original polish pass:</p>
+<p>- Chat bubbles now use role-structured presentation with calmer, low-contrast surfaces:
+  - assistant bubbles left-aligned and near-neutral with subtle role tint
+  - user bubbles right-aligned with stronger but still restrained role tint
+- Assistant responses in chat now render GitHub-flavored markdown for readability (lists, code blocks, tables, blockquotes), with ANSI fallback retained for terminal-style tool output.
+- Header status noise was reduced by removing static fallback copy (`SYSTEM_RECOVERY: SUCCESS`); update messaging now appears only when an update is actually available.</p>
+<p>Planning implication:</p>
+<p>- Future polish changes should preserve this lower-noise chat hierarchy and markdown readability baseline.
+</p></div></div></section>
+<section id="SEC-HX009-0007" class="chunk sec depth-2" data-kind="section" data-key="section:1d244371ea4b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0007</span> 4) Design Direction</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1d244371ea4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1d244371ea4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1d244371ea4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use the current aesthetic (glass + command-center) but reduce noise and increase precision:</p>
+<p>- Fewer competing accents, clearer content hierarchy.
+- Strong but restrained typography.
+- Uniform panel system with predictable spacing and state behavior.
+- Motion only where it communicates state/intent.
+</p></div></div></section>
+<section id="SEC-HX009-0008" class="chunk sec depth-2" data-kind="section" data-key="section:9a1a9eb30ecc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0008</span> 5) Workstreams</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9a1a9eb30ecc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9a1a9eb30ecc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9a1a9eb30ecc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-HX009-0009" class="chunk sec depth-2" data-kind="section" data-key="section:f23bbab19efb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0009</span> A. Foundation System (Tokens + Rules)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f23bbab19efb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f23bbab19efb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f23bbab19efb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Standardize design primitives in `frontend/app/globals.css`:
+  - spacing scale
+  - radius scale
+  - border/opacity scale
+  - shadow/elevation levels
+  - typography roles (`display`, `title`, `body`, `meta`, `mono-meta`)
+- Keep current color tokens; add semantic aliases only (no palette value change).</p>
+<p>Deliverables:</p>
+<p>- New token section and usage guide comments in `globals.css`
+- Removal of ad-hoc repeated values where practical</p>
+<p>Acceptance:</p>
+<p>- No new hard-coded one-off spacing/radius/shadow values in touched components.
+</p></div></div></section>
+<section id="SEC-HX009-0010" class="chunk sec depth-2" data-kind="section" data-key="section:e714c228bca9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0010</span> B. Global Shell Polish (Page Frame + Header + Navigation)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e714c228bca9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e714c228bca9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e714c228bca9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Refine top control bar + header in `frontend/app/page.tsx`.
+- Tighten layout rhythm:
+  - consistent vertical spacing
+  - uniform control sizing
+  - less visual crowding in top chrome
+- Improve selector visual clarity in Workbench/Pipeline header contexts.
+- Keep browser-storage initialization SSR-safe (no server/client text mismatch).</p>
+<p>Deliverables:</p>
+<p>- Header/control styling pass with unified control classes.</p>
+<p>Acceptance:</p>
+<p>- Header feels calmer and more legible without changing navigation behavior.
+</p></div></div></section>
+<section id="SEC-HX009-0011" class="chunk sec depth-2" data-kind="section" data-key="section:3de476d53c8f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0011</span> C. Portal Surface (Home View)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3de476d53c8f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3de476d53c8f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3de476d53c8f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Preserve HexGrid labels/colors exactly.
+- Improve supporting surfaces:
+  - `frontend/components/DashboardList.tsx`
+  - spacing, card rhythm, status readability, empty/loading states
+- Keep hex visual identity but reduce incidental glare/competing effects around it.</p>
+<p>Deliverables:</p>
+<p>- Portal side panel polish and consistent card treatment.</p>
+<p>Acceptance:</p>
+<p>- Hex grid visual semantics unchanged.
+- Dashboard appears production-grade and less “prototype-like.”
+</p></div></div></section>
+<section id="SEC-HX009-0012" class="chunk sec depth-2" data-kind="section" data-key="section:0fdfdaad2fed" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0012</span> D. Workbench/Direct/Pipeline Layout System</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0fdfdaad2fed" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0fdfdaad2fed" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0fdfdaad2fed" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Normalize panel chrome and structure in:
+  - `frontend/components/ResizableLayout.tsx`
+  - `frontend/components/WorkbenchView.tsx`
+  - `frontend/components/PipelineView.tsx`
+  - `frontend/components/DirectLinkView.tsx`
+- Unify sidebar headers, footer actions, pane paddings, and divider treatments.
+- Keep project-root selection as a shared footer-level control (single source of interaction).</p>
+<p>Deliverables:</p>
+<p>- A shared pane style language applied across all three modes.</p>
+<p>Acceptance:</p>
+<p>- Switching modes feels like one coherent product, not separate pages.
+</p></div></div></section>
+<section id="SEC-HX009-0013" class="chunk sec depth-2" data-kind="section" data-key="section:b8b5cb071b5e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0013</span> E. Chat Experience Polish</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b8b5cb071b5e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b8b5cb071b5e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b8b5cb071b5e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Refine message presentation and session metadata in `frontend/components/ChatPanel.tsx`:
+  - clearer assistant/user grouping
+  - improved metadata hierarchy (session/model/cwd/cost)
+  - status-text-first tool event presentation (non-verbose by default)
+  - stable, clear in-flight/interrupt affordances
+- Preserve SSE event interpretation contract.</p>
+<p>Deliverables:</p>
+<p>- Updated message/event visuals and interaction states.</p>
+<p>Acceptance:</p>
+<p>- Chat is easier to scan under long conversations/tool-heavy runs.
+</p></div></div></section>
+<section id="SEC-HX009-0014" class="chunk sec depth-2" data-kind="section" data-key="section:1b024f1d622e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0014</span> F. File Surfaces + Utility Components</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b024f1d622e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b024f1d622e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b024f1d622e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Polish consistency for:
+  - `frontend/components/FileTree.tsx`
+  - `frontend/components/FilePreview.tsx`
+  - `frontend/components/SystemFileTree.tsx`
+  - `frontend/components/DirectoryPicker.tsx`
+  - `frontend/components/SettingsModal.tsx`
+- Standardize empty/loading/error visual patterns.</p>
+<p>Deliverables:</p>
+<p>- Unified utility surface styling and state components.</p>
+<p>Acceptance:</p>
+<p>- Secondary tooling panels match the same visual quality as chat/portal.
+</p></div></div></section>
+<section id="SEC-HX009-0015" class="chunk sec depth-2" data-kind="section" data-key="section:dd107d510a54" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0015</span> G. Accessibility and Interaction Quality</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd107d510a54" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd107d510a54" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd107d510a54" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Ensure keyboard focus visibility on all actionable controls.
+- Improve contrast where needed to meet AA intent.
+- Ensure predictable hover/focus/disabled states.
+- Respect reduced motion preference in non-essential animations.</p>
+<p>Deliverables:</p>
+<p>- Focus ring standard and control state coverage.</p>
+<p>Acceptance:</p>
+<p>- Keyboard-only pass is usable and obvious.
+</p></div></div></section>
+<section id="SEC-HX009-0016" class="chunk sec depth-2" data-kind="section" data-key="section:d9b5ad23125a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0016</span> H. QA + Hardening</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d9b5ad23125a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d9b5ad23125a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d9b5ad23125a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope:</p>
+<p>- Cross-view responsive pass (desktop + common tablet/mobile widths).
+- Visual regression sanity checks (manual snapshots or checklist-driven verification).
+- Confirm no behavioral regressions in harness flows.</p>
+<p>Deliverables:</p>
+<p>- Short verification checklist and signoff notes.</p>
+<p>Acceptance:</p>
+<p>- No functional regression in runtime workflows.
+</p></div></div></section>
+<section id="SEC-HX009-0017" class="chunk sec depth-2" data-kind="section" data-key="section:dbe5e883a841" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0017</span> 6) Execution Phases (Recommended)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dbe5e883a841" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dbe5e883a841" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dbe5e883a841" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-HX009-0018" class="chunk sec depth-2" data-kind="section" data-key="section:d48e60d1c25d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0018</span> Phase 0: Baseline and Freeze</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d48e60d1c25d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d48e60d1c25d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d48e60d1c25d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Capture screenshots of current `home/workbench/pipeline/direct`.
+- Define “do-not-change” assets (palette + hex colors/labels).
+- Create utility class strategy for reusable controls/panels.
+</p></div></div></section>
+<section id="SEC-HX009-0019" class="chunk sec depth-2" data-kind="section" data-key="section:25bddc3c7644" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0019</span> Phase 1: Foundation Layer</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:25bddc3c7644" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:25bddc3c7644" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:25bddc3c7644" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implement token/rule normalization in `globals.css`.
+- Introduce consistent control and panel primitives.
+</p></div></div></section>
+<section id="SEC-HX009-0020" class="chunk sec depth-2" data-kind="section" data-key="section:8e508fc02bf3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0020</span> Phase 2: Structural Surfaces</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e508fc02bf3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e508fc02bf3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e508fc02bf3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Apply shell + layout system updates (`page.tsx`, `ResizableLayout`, view wrappers).
+- Keep root-directory selection unified in `ResizableLayout` while polishing affordances.
+- Polish Dashboard and file surfaces.
+</p></div></div></section>
+<section id="SEC-HX009-0021" class="chunk sec depth-2" data-kind="section" data-key="section:93cfa16d6df8" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0021</span> Phase 3: Chat and High-Usage UX</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:93cfa16d6df8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:93cfa16d6df8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:93cfa16d6df8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Refine `ChatPanel` messaging and status surfaces.
+- Tighten tool event readability and streaming affordances.
+</p></div></div></section>
+<section id="SEC-HX009-0022" class="chunk sec depth-2" data-kind="section" data-key="section:6e70c0ca9cb9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0022</span> Phase 4: Accessibility + Responsive + QA</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6e70c0ca9cb9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6e70c0ca9cb9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6e70c0ca9cb9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Focus/keyboard/contrast pass.
+- Responsive refinements and final visual tune.
+</p></div></div></section>
+<section id="SEC-HX009-0023" class="chunk sec depth-2" data-kind="section" data-key="section:23f9900522d5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0023</span> 7) Component-by-Component Task Matrix</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:23f9900522d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:23f9900522d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:23f9900522d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Component/File | Primary Changes | Priority |
+| --- | --- | --- |
+| `frontend/app/globals.css` | token normalization, spacing/radius/shadow/typography scales, utility cleanup | P0 |
+| `frontend/app/page.tsx` | top chrome hierarchy, control consistency, spacing rhythm, SSR-safe browser-storage init patterns | P1 |
+| `frontend/components/HexGrid.tsx` | minimal touch; preserve semantics, only micro-polish wrappers if needed | P2 |
+| `frontend/components/DashboardList.tsx` | card hierarchy, project-root selector polish, loading/empty states | P1 |
+| `frontend/components/ResizableLayout.tsx` | pane chrome consistency, shared project-root selector polish, footer action cleanup, responsive behavior | P1 |
+| `frontend/components/ChatPanel.tsx` | message hierarchy, status-text event readability, composer and in-flight states | P1 |
+| `frontend/components/WorkbenchView.tsx` | sidebar/header polish consistency | P2 |
+| `frontend/components/PipelineView.tsx` | sidebar/header polish consistency | P2 |
+| `frontend/components/DirectLinkView.tsx` | sidebar/header polish consistency | P2 |
+| `frontend/components/FileTree.tsx` | tree readability and row interaction states | P2 |
+| `frontend/components/FilePreview.tsx` | content header/readability/loading state polish | P2 |
+| `frontend/components/SystemFileTree.tsx` | compact utility-panel visual consistency | P3 |
+| `frontend/components/DirectoryPicker.tsx` | modal hierarchy and action affordances | P3 |
+| `frontend/components/SettingsModal.tsx` | settings form clarity and control consistency | P2 |
+</p></div></div></section>
+<section id="SEC-HX009-0024" class="chunk sec depth-2" data-kind="section" data-key="section:cd79a12b2dcb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0024</span> 8) Acceptance Criteria</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd79a12b2dcb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd79a12b2dcb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd79a12b2dcb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Functional:</p>
+<p>- No change to harness API contracts and chat behavior semantics.
+- No regression in session creation, turn streaming, interrupt, resume.
+- No hydration mismatch warnings from browser-storage-backed UI state.</p>
+<p>Visual:</p>
+<p>- Consistent spacing/typography across all primary surfaces.
+- Reduced visual noise while preserving brand identity.
+- Portal hexagon colors/labels remain unchanged.</p>
+<p>Interaction:</p>
+<p>- All interactive controls have complete state coverage.
+- Loading/empty/error states are visually intentional.</p>
+<p>Accessibility:</p>
+<p>- Focus-visible treatment exists for all actionable controls.
+- Contrast remains legible in dark and light modes.
+</p></div></div></section>
+<section id="SEC-HX009-0025" class="chunk sec depth-2" data-kind="section" data-key="section:552dd9cd2874" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0025</span> 9) Delivery Strategy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:552dd9cd2874" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:552dd9cd2874" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:552dd9cd2874" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Implement as small PR slices aligned to phases.
+- Keep each slice behavior-safe (style-first, minimal logic coupling).
+- Validate each slice with:
+  - `npm run lint`
+  - `npx tsc --noEmit`
+  - quick manual smoke across `home/workbench/pipeline/direct`
+</p></div></div></section>
+<section id="SEC-HX009-0026" class="chunk sec depth-2" data-kind="section" data-key="section:42dee6ee1620" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0026</span> 10) Suggested Slice Order</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:42dee6ee1620" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:42dee6ee1620" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:42dee6ee1620" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. `globals.css` foundation + reusable classes (preserve current gradient/frosted baseline)
+2. `page.tsx` shell + `ResizableLayout.tsx` shared root-selector consistency
+3. `DashboardList.tsx` + primary utility surfaces
+4. `ChatPanel.tsx` status language and readability polish
+5. file/system/utility components
+6. accessibility + responsive cleanup + hydration sanity checks
+</p></div></div></section>
+<section id="SEC-HX009-0027" class="chunk sec depth-2" data-kind="section" data-key="section:7ce86728df95" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-HX009-0027</span> 11) Out of Scope (for this polish plan)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ce86728df95" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ce86728df95" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ce86728df95" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Major IA/navigation restructuring.
+- New feature additions unrelated to UI quality.
+- Color palette redesign.
+- Changing Portal hex taxonomy content.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "HX009";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

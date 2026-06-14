@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "SRC-LICENSE",
+  "source_prefix": "RT005",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-LICENSE_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/LICENSE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 0,
+  "generated_utc": "2026-06-14T00:54:57+00:00",
+  "adapter_method": "headingless_source_deferred",
+  "adapter_note": "LICENSE.md is headingless legal/license text; AtomizeInV1=NO unless human overrides Gate 1.",
+  "units": []
+}

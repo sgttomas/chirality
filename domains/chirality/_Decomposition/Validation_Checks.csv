@@ -1,0 +1,12 @@
+CheckID,Status,Evidence,Notes
+CATALOG_VALIDATION,PASS,"PASS: /Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T005449Z (0 blockers, 0 warnings)",Required run-start source database validation.
+CATALOG_SNAPSHOT,PASS,snapshots/SRCIDX_20260614T005449Z,chunks=4523 retrieval=BM25_ONLY
+RETRIEVAL_SMOKE_QUERY,PASS,derivative-package rule -> @repo/AGENTS.md,BM25-only query check against accepted governance surface.
+SOURCE_MANIFEST_SHA256,RECORDED,f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1,Computed at adapter build time.
+SOURCE_PREFIX_UNIQUENESS,PASS,242/242 unique prefixes,Prefixes are explicit in Source_Decomp_Prefix_Map.csv.
+SKELETON_INVENTORY,PASS,skeletons=242 sources=242 failures=0,SRC-LICENSE uses a synthetic OUT/deferred skeleton.
+REVIEW_HTML_INVENTORY,PASS,html=242 skeletons=242,Structure-mode section review surfaces only.
+DISPATCH_ELIGIBILITY,PASS,no AtomizeInV1=YES source has zero dispatch units,Only explicitly deferred sources may have zero dispatch units.
+PHASE_2_ATOMIZATION,NOT_RUN,Gate 1 accepted; Phase 2 not started,No TASK + domain-source-atomize dispatch was started.
+GATE1_ACCEPTANCE,PASS,gate_snapshots/GATE1_20260614T005942Z,Human accepted Gate 1 on 2026-06-14; Phase 2 atomization remains NOT_RUN.
+PHASE2_BATCH1_SETUP,PASS,BATCH1_BINDING_GOVERNANCE_20260614T011101Z; sources=22; dispatch_units=22; briefs=22,Deterministic setup only; TASK + domain-source-atomize workers NOT_RUN.

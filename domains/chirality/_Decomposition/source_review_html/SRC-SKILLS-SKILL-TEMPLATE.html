@@ -1,0 +1,371 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-SKILL-TEMPLATE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>17</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK002-0001">SKILL TEMPLATE</a> <a href="#SEC-SK002-0002">`SKILL.md`</a> <a href="#SEC-SK002-0003">SKILL — &lt;skill-name&gt;</a> <a href="#SEC-SK002-0004">Purpose</a> <a href="#SEC-SK002-0005">Suitable agent shells</a> <a href="#SEC-SK002-0006">Inputs</a> <a href="#SEC-SK002-0007">Runtime overrides</a> <a href="#SEC-SK002-0008">Tool usage</a> <a href="#SEC-SK002-0009">Outputs</a> <a href="#SEC-SK002-0010">Non-negotiable constraints</a> <a href="#SEC-SK002-0011">QA expectations</a> <a href="#SEC-SK002-0012">`BRIEF_SCHEMA.md`</a> <a href="#SEC-SK002-0013">`TOOL_POLICY.md`</a> <a href="#SEC-SK002-0014">`QA_CHECKS.md`</a> <a href="#SEC-SK002-0015">`allowed-tools` format</a> <a href="#SEC-SK002-0016">Naming</a> <a href="#SEC-SK002-0017">Validation</a></nav>
+<main>
+<section id="SEC-SK002-0001" class="chunk sec depth-1" data-kind="section" data-key="section:8e722c2268d6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK002-0001</span> SKILL TEMPLATE</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8e722c2268d6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8e722c2268d6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8e722c2268d6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use this template when creating a new repo-native skill under `skills/`.</p>
+<p>Skill contracts conform to the design outcomes specified in `AGENT_HELPS_HUMANS.md` (Type 0) under its &quot;Design Outcomes for Skill Contracts&quot; section and compliance requirements R10 + R12. `AGENT_SKILLMAKER.md` (Type 1 manager) owns skill contract evolution and subsystem governance. New skills must pass `tools/validation/validate_skill_metadata.py`.
+</p></div></div></section>
+<section id="SEC-SK002-0002" class="chunk sec depth-2" data-kind="section" data-key="section:7de4cd8967af" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0002</span> `SKILL.md`</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7de4cd8967af" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7de4cd8967af" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7de4cd8967af" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```md
+---
+name: &lt;skill-name&gt;
+description: &lt;what the skill does and when to use it&gt;
+compatibility: &lt;optional; shell/brief compatibility note&gt;
+allowed-tools: &lt;optional; comma-space delimited command specs — see format below&gt;
+metadata:
+  chirality-skill-version: &quot;1&quot;
+  chirality-task-profile: NONE
+---
+</p></div></div></section>
+<section id="SEC-SK002-0003" class="chunk sec depth-1" data-kind="section" data-key="section:8d496ce707c8" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK002-0003</span> SKILL — &lt;skill-name&gt;</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d496ce707c8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d496ce707c8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d496ce707c8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK002-0004" class="chunk sec depth-2" data-kind="section" data-key="section:a3b1fe8b8e6b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0004</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a3b1fe8b8e6b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a3b1fe8b8e6b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a3b1fe8b8e6b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>What recurring bounded task this skill supports.
+</p></div></div></section>
+<section id="SEC-SK002-0005" class="chunk sec depth-2" data-kind="section" data-key="section:f7ba4ca2eaea" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0005</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f7ba4ca2eaea" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f7ba4ca2eaea" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f7ba4ca2eaea" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- TASK
+- &lt;optional brief-shape constraints&gt;
+</p></div></div></section>
+<section id="SEC-SK002-0006" class="chunk sec depth-2" data-kind="section" data-key="section:05337b8354d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0006</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:05337b8354d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:05337b8354d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:05337b8354d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Required:
+  - &lt;field&gt;
+- Optional:
+  - &lt;field&gt;
+</p></div></div></section>
+<section id="SEC-SK002-0007" class="chunk sec depth-2" data-kind="section" data-key="section:b4385729254e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0007</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b4385729254e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b4385729254e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b4385729254e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- &lt;KEY&gt;: meaning, default, allowed values
+</p></div></div></section>
+<section id="SEC-SK002-0008" class="chunk sec depth-2" data-kind="section" data-key="section:c8f0e46b3fc6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0008</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8f0e46b3fc6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8f0e46b3fc6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8f0e46b3fc6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Preferred tools:
+  - tools/&lt;path&gt;
+- Optional tools:
+  - tools/&lt;path&gt;
+- Disallowed tools:
+  - &lt;tool or class of tool&gt;
+</p></div></div></section>
+<section id="SEC-SK002-0009" class="chunk sec depth-2" data-kind="section" data-key="section:53a458c0dd62" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0009</span> Outputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:53a458c0dd62" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:53a458c0dd62" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:53a458c0dd62" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- &lt;artifact&gt;
+</p></div></div></section>
+<section id="SEC-SK002-0010" class="chunk sec depth-2" data-kind="section" data-key="section:958ec798c596" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0010</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:958ec798c596" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:958ec798c596" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:958ec798c596" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- &lt;constraint&gt;
+</p></div></div></section>
+<section id="SEC-SK002-0011" class="chunk sec depth-2" data-kind="section" data-key="section:2edcfc64a1cb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0011</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2edcfc64a1cb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2edcfc64a1cb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2edcfc64a1cb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- &lt;check&gt;
+```
+</p></div></div></section>
+<section id="SEC-SK002-0012" class="chunk sec depth-2" data-kind="section" data-key="section:ee20f321226e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0012</span> `BRIEF_SCHEMA.md`</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ee20f321226e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ee20f321226e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ee20f321226e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Required.** Every skill must include this file.</p>
+<p>This is the dispatch contract — what the orchestrator must provide in the INIT-TASK brief to invoke this skill through TASK. When TASK loads a skill via `TaskSkill`, it also loads `BRIEF_SCHEMA.md`.</p>
+<p>Document:
+- required brief fields (with types, defaults, examples)
+- optional fields
+- `RuntimeOverrides` guidance (what each override means, allowed values)
+- recommended `CustomInstructions` content for format-critical defense-in-depth (format reminders, completion checklists, canonical output references)
+- `CustomInstructions` carry run-specific reinforcement; they do not replace skill hydration. The contract in `SKILL.md` remains authoritative.
+</p></div></div></section>
+<section id="SEC-SK002-0013" class="chunk sec depth-2" data-kind="section" data-key="section:946a07223b56" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0013</span> `TOOL_POLICY.md`</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:946a07223b56" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:946a07223b56" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:946a07223b56" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Required.** Every skill must include this file. Implicit tool assumptions are a design defect (see `AGENT_HELPS_HUMANS.md` Design Outcomes for Skill Contracts).</p>
+<p>Use these canonical section headings (exact-string-match; case-sensitive):</p>
+<p>H2 headings:
+- `## Preferred tool order`
+- `## Allowed deterministic tools`
+- `## Expected use of reasoning`
+- `## Disallowed use`
+- `## Write boundary`</p>
+<p>H3 subheadings under `## Allowed deterministic tools`:
+- `### TASK-enforced` — tools from the `allowed-tools` frontmatter; enforced by TASK shell at load time
+- `### Operationally invoked` — tools named in `## Tool usage` body; agent-guided, not TASK-enforced</p>
+<p>Content floor: `## Allowed deterministic tools` (with both H3 subsections), `## Disallowed use`, and `## Write boundary` must be present on every skill. `## Preferred tool order` and `## Expected use of reasoning` may be skipped when no content applies.
+</p></div></div></section>
+<section id="SEC-SK002-0014" class="chunk sec depth-2" data-kind="section" data-key="section:82196defd338" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0014</span> `QA_CHECKS.md`</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:82196defd338" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:82196defd338" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:82196defd338" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Required.** Every skill must include this file.</p>
+<p>Document:
+- minimum output validity checks
+- failure reporting expectations
+- any required evidence or logs
+</p></div></div></section>
+<section id="SEC-SK002-0015" class="chunk sec depth-2" data-kind="section" data-key="section:1a28f820537d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0015</span> `allowed-tools` format</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a28f820537d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a28f820537d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a28f820537d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The `allowed-tools` frontmatter field is machine-consumed by TASK during skill resolution. It must follow this canonical format exactly:</p>
+<p>- Comma-space (`, `) delimited list of command specs
+- Each spec: `&lt;interpreter&gt; &lt;repo-relative-tool-path&gt;:&lt;scope_glob&gt;`
+- No flags, no extra arguments, no commas inside a spec
+- `&lt;interpreter&gt;` is a single token (e.g., `python3`)
+- `&lt;repo-relative-tool-path&gt;` is a single token relative to repo root (e.g., `tools/validation/scan_deliverable_consistency.py`)
+- `&lt;scope_glob&gt;` follows the final `:` (e.g., `*`)</p>
+<p>Example (single tool):
+```
+allowed-tools: python3 tools/validation/scan_deliverable_consistency.py:*
+```</p>
+<p>Example (multiple tools):
+```
+allowed-tools: python3 tools/pdf2md/rasterize_pdf.py:*, python3 tools/pdf2md/postprocess_page.py:*
+```</p>
+<p>If `allowed-tools` is malformed, TASK will reject the skill with an error. Omit the field entirely if the skill has no deterministic tool requirements.
+</p></div></div></section>
+<section id="SEC-SK002-0016" class="chunk sec depth-2" data-kind="section" data-key="section:bdd79e02b2e7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0016</span> Naming</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bdd79e02b2e7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bdd79e02b2e7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bdd79e02b2e7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Folder name should be the `TaskSkill` token used in briefs.
+- `name` frontmatter should match the folder name.
+- Prefer lowercase ASCII folder names using letters, digits, and hyphens only, e.g. `pdf2md`, `requirement-extract`, `table-reflow`.
+</p></div></div></section>
+<section id="SEC-SK002-0017" class="chunk sec depth-2" data-kind="section" data-key="section:4fef089f767b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK002-0017</span> Validation</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4fef089f767b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4fef089f767b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4fef089f767b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+After creating or updating a skill, run:</p>
+<p>```sh
+python3 tools/validation/validate_skill_metadata.py skills
+```</p>
+<p>This checks all skill folders under `skills/`. It does not target one named skill unless you point it at a narrower root yourself.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK002";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

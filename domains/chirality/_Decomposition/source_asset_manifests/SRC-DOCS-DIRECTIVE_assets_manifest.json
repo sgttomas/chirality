@@ -1,0 +1,12 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-DOCS-DIRECTIVE",
+  "source_doc_id": "SRC-DOCS-DIRECTIVE",
+  "source_name": "docs/DIRECTIVE.md",
+  "source_prefix": "DG003",
+  "repo_rel_path": "docs/DIRECTIVE.md",
+  "catalog_rel_path": "@repo/docs/DIRECTIVE.md",
+  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "assets": [],
+  "pages": []
+}

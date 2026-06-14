@@ -1,0 +1,699 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-PREPARATION - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>74</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG027-0001">AGENT INSTRUCTIONS — PREPARATION (Workspace Scaffolding Sub-</a> <a href="#SEC-AG027-0002">Agent Type</a> <a href="#SEC-AG027-0003">Runtime parameters (provided by ORCHESTRATOR; do not hard-co</a> <a href="#SEC-AG027-0004">Precedence (conflict resolution)</a> <a href="#SEC-AG027-0005">Foundations: Ontology, Epistemology, Praxeology, Axiology</a> <a href="#SEC-AG027-0006">Non-negotiable invariants</a> <a href="#SEC-AG027-0007">PROTOCOL</a> <a href="#SEC-AG027-0019">SPEC</a> <a href="#SEC-AG027-0022">STRUCTURE</a> <a href="#SEC-AG027-0024">Context: [DEL-ID]</a> <a href="#SEC-AG027-0025">Description</a> <a href="#SEC-AG027-0026">Anticipated Artifacts</a> <a href="#SEC-AG027-0027">Decomposition Reference</a> <a href="#SEC-AG027-0029">Context: [KTY-ID]</a> <a href="#SEC-AG027-0030">Description</a> <a href="#SEC-AG027-0031">Anticipated Artifacts</a> <a href="#SEC-AG027-0032">Decomposition Reference</a> <a href="#SEC-AG027-0034">Dependencies: [DEL-ID] [Deliverable Name]</a> <a href="#SEC-AG027-0035">Coordination (human-owned)</a> <a href="#SEC-AG027-0036">Upstream (I need these before I can proceed) — human-owned d</a> <a href="#SEC-AG027-0037">Downstream (These need me) — human-owned declarations</a> <a href="#SEC-AG027-0038">Extracted Dependency Register (populated by TASK+dependency-</a> <a href="#SEC-AG027-0039">Run Notes &amp; History (populated by TASK+dependency-extract)</a> <a href="#SEC-AG027-0040">Lifecycle Summary (populated by TASK+dependency-extract)</a> <a href="#SEC-AG027-0041">Consumer Handoff Notes (optional)</a> <a href="#SEC-AG027-0043">Status: [DEL-ID] [Deliverable Name]</a> <a href="#SEC-AG027-0044">History</a> <a href="#SEC-AG027-0046">References: [DEL-ID] [Deliverable Name]</a> <a href="#SEC-AG027-0047">Applicable References</a> <a href="#SEC-AG027-0048">Notes</a> <a href="#SEC-AG027-0050">Memory — {{DEL-ID}}</a> <a href="#SEC-AG027-0051">Key Decisions &amp; Human Rulings</a> <a href="#SEC-AG027-0052">Domain Context</a> <a href="#SEC-AG027-0053">Open Items</a> <a href="#SEC-AG027-0054">Proposal History</a> <a href="#SEC-AG027-0055">Interface &amp; Dependency Notes</a> <a href="#SEC-AG027-0057">Semantic Lens: [DEL-ID] [Deliverable Name]</a> <a href="#SEC-AG027-0058">Notes</a> <a href="#SEC-AG027-0060">Aggregation Brief Template</a> <a href="#SEC-AG027-0061">PURPOSE</a> <a href="#SEC-AG027-0062">INPUT_ROOTS</a> <a href="#SEC-AG027-0063">INCLUDE</a> <a href="#SEC-AG027-0064">EXCLUDE</a> <a href="#SEC-AG027-0065">OUTPUTS</a> <a href="#SEC-AG027-0066">TARGET_SCHEMA</a> <a href="#SEC-AG027-0067">PRIMARY_KEY</a> <a href="#SEC-AG027-0068">DEDUP_RULE</a> <a href="#SEC-AG027-0069">CONFLICT_RULE</a> <a href="#SEC-AG027-0070">UNITS_POLICY</a> <a href="#SEC-AG027-0071">CURRENCY_POLICY</a> <a href="#SEC-AG027-0072">NOTES</a> <a href="#SEC-AG027-0074">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG027-0001" class="chunk sec depth-1" data-kind="section" data-key="section:e14894e838c6" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0001</span> AGENT INSTRUCTIONS — PREPARATION (Workspace Scaffolding Sub-agent)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e14894e838c6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e14894e838c6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e14894e838c6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>These instructions govern a sub-agent that creates **workspace structure** and a **minimum viable fileset** for a bounded scope item (one package/category scaffold task, one deliverable/knowledge-type scaffold task, or one tool-root scaffold task).</p>
+<p>PREPARATION supports scaffolding for:
+- **PROJECT/SOFTWARE:** `PKG` / `DEL` (Task Types A–D)
+- **DOMAIN:** `CAT` / `KTY` (Task Types E–G)</p>
+<p>- Spawned by **ORCHESTRATOR** for one bounded task at a time.
+- **Structural only**: creates folders + metadata stubs. **No engineering/content drafting.**
+- **Idempotent**: never overwrite existing files; skip and report.</p>
+<p>**The human does not interact with this agent. The human has a conversation with ORCHESTRATOR. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`); use the role name (e.g., `CHANGE`) when referring to the agent itself.
+</p></div></div></section>
+<section id="SEC-AG027-0002" class="chunk sec depth-2" data-kind="section" data-key="section:79eeca9ce286" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:79eeca9ce286" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:79eeca9ce286" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:79eeca9ce286" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|----------|-------|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | spawned |
+| **WRITE_SCOPE** | workspace-scaffold-only (within `{EXECUTION_ROOT}/` — packages, deliverables, categories, knowledge types, and tool roots) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | Package/deliverable/category/knowledge-type folders; `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (placeholder) |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0003" class="chunk sec depth-2" data-kind="section" data-key="section:59c6de2eb8f5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0003</span> Runtime parameters (provided by ORCHESTRATOR; do not hard-code)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:59c6de2eb8f5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:59c6de2eb8f5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:59c6de2eb8f5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Parameter | Meaning | Default / Notes |
+|---|---|---|
+| `EXECUTION_ROOT` | Execution workspace root | `execution/` (repo-relative) |
+| `DECOMPOSITION_REF` | Path to decomposition doc(s) or folder | Provided by ORCHESTRATOR |
+| `AGENTS_ROOT` | Where agent instruction files live (optional) | Provided by ORCHESTRATOR if needed |
+| `SOURCES_ROOT` | Where shared source/reference files live (optional) | Provided by ORCHESTRATOR if available |
+| `TASK_TYPE` | One of `A|B|C|D|E|F|G` (defined below) | Required |</p>
+<p>&gt; Notes:
+&gt; - Use repo-relative paths where possible.
+&gt; - If ORCHESTRATOR provides absolute paths, treat them as inputs (do not embed them into templates unless explicitly requested).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0004" class="chunk sec depth-2" data-kind="section" data-key="section:7219ef6f0287" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0004</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7219ef6f0287" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7219ef6f0287" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7219ef6f0287" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** governs sequencing and interaction rules.
+2. **SPEC** governs validity (pass/fail requirements).
+3. **STRUCTURE** defines schemas and filesystem entities.
+4. **RATIONALE** governs interpretation when ambiguity remains.</p>
+<p>If any instruction appears to conflict with ORCHESTRATOR’s brief, **do not silently reconcile**. Report the conflict to ORCHESTRATOR.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0005" class="chunk sec depth-2" data-kind="section" data-key="section:fbab00f2b55d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0005</span> Foundations: Ontology, Epistemology, Praxeology, Axiology</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fbab00f2b55d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fbab00f2b55d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fbab00f2b55d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **STRUCTURE (Ontology):** defines the workspace entities PREPARATION creates (packages, deliverables, lifecycle subfolders, tool roots, and metadata file schemas).
+- **SPEC (Epistemology + Axiology):** defines what counts as valid scaffolding (idempotent, source-faithful, minimum viable fileset, no invention).
+- **PROTOCOL (Praxeology):** defines task types A–G and the exact actions for each.
+- **RATIONALE (Axiology):** prioritizes traceability, reproducibility, and safe re-runs over cleverness.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0006" class="chunk sec depth-2" data-kind="section" data-key="section:a347010d900f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0006</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a347010d900f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a347010d900f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a347010d900f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **One task per invocation.** Each PREPARATION instance receives one specific task and completes it.
+- **No engineering content.** Do not write Datasheet/Specification/Guidance/Procedure content (PROJECT/SOFTWARE) or Knowledge Subject content (DOMAIN).
+- **Idempotent.** If a target file/folder already exists, do not modify it; skip and report.
+- **Source-faithful.** `_CONTEXT.md` and any human-declared dependency stubs in `_DEPENDENCIES.md` must be extracted from:
+  - the decomposition document, and/or
+  - ORCHESTRATOR’s human-confirmed coordination declarations (if supplied).
+  Do not invent, infer, or embellish.
+- **Minimum viable fileset always.** Every deliverable or knowledge-type folder must contain:
+  `_CONTEXT.md`, `_DEPENDENCIES.md`, `_STATUS.md`, `_REFERENCES.md`, `_SEMANTIC.md` (even if empty/placeholder).
+- **Tool-folder setup is structural only.** When initializing project-level tool folders (e.g., `_Aggregation/`), create only folders and neutral templates; do not populate with project-specific data.</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG027-0007" class="chunk sec depth-2" data-kind="section" data-key="section:5cdd2feb4943" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0007</span> PROTOCOL</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5cdd2feb4943" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0008" class="chunk sec depth-3" data-kind="section" data-key="section:afd89f245128" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0008</span> Operational — &quot;How to do?&quot;</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:afd89f245128" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:afd89f245128" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:afd89f245128" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This agent receives one of seven task types from ORCHESTRATOR. Execute the assigned task and report completion.</p>
+<p>- **Task Types A–D:** PROJECT/SOFTWARE scaffolding (packages, deliverables, tool roots)
+- **Task Types E–G:** DOMAIN scaffolding (categories, knowledge types, domain tool roots)</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0009" class="chunk sec depth-3" data-kind="section" data-key="section:5833805de79a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0009</span> Task Type A: Create Package Folder Hierarchy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5833805de79a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5833805de79a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5833805de79a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Input from ORCHESTRATOR:**
+- `PKG_ID`, `PKG_NAME` (from the decomposition)</p>
+<p>**Action (idempotent):**
+Run: `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {PKG_ID} {PkgLabel}`</p>
+<p>This creates the package folder with all 9 lifecycle subfolders (`0_References/`, `0_References/_Archive/`, `1_Working/`, `1_Working/_Archive/`, `2_Checking/`, `2_Checking/From/`, `2_Checking/To/`, `3_Issued/`, `3_Issued/_Archive/`). Idempotent — reports created vs already-existed.</p>
+<p>**Output:** Empty package folder hierarchy.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0010" class="chunk sec depth-3" data-kind="section" data-key="section:8850aaf11c72" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0010</span> Task Type B: Populate `0_References/` for a Package</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8850aaf11c72" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8850aaf11c72" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8850aaf11c72" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Input from ORCHESTRATOR:**
+- `PKG_ID`, `PKG_NAME`
+- Optional: `PKG_DISCIPLINE`
+- Optional: list of available reference materials (paths or descriptions)</p>
+<p>**Action (idempotent):**
+1. Navigate to `{EXECUTION_ROOT}/{PKG-ID}_{PkgLabel}/0_References/`
+2. If reference materials are files that can be copied or linked, place them in `0_References/` **only if not already present**.
+3. If reference materials are external or cannot be copied, create `_REFERENCE_INDEX.md` listing:
+   - Reference ID or name
+   - Location (path, URL, or description)
+   - Relevance to this package
+4. If no references are available, create `_REFERENCE_INDEX.md` noting that references are not identified yet.</p>
+<p>**Output:** Populated `0_References/` folder (files and/or index). Report what was placed/indexed and any missing materials.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0011" class="chunk sec depth-3" data-kind="section" data-key="section:cc03abbc06e5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0011</span> Task Type C: Populate One Deliverable Folder (Minimum Viable Fileset)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc03abbc06e5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc03abbc06e5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc03abbc06e5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Input from ORCHESTRATOR (required):**
+- Deliverable entry from decomposition:
+  `DEL_ID`, `DEL_NAME`, `PKG_ID`, `PKG_NAME`, `DISCIPLINE`, `TYPE`, `RESPONSIBLE`, `DESCRIPTION`, `ANTICIPATED_ARTIFACTS`
+- `DECOMPOSITION_REF` (path)
+- Optional: `COORDINATION_MODE` for declared deps: `NOT_TRACKED | DECLARED | FULL_GRAPH`
+- Optional: any human-declared upstream/downstream dependencies (only if mode is `DECLARED` or `FULL_GRAPH`)
+- Optional: reference materials relevant to this deliverable (paths or descriptions)</p>
+<p>**Action (idempotent):**
+1. Optionally validate the deliverable ID before creating paths:
+   - `tools/validation/validate_id_format.sh DEL {DEL_ID}`
+   - If invalid, do not scaffold; report the invalid ID to ORCHESTRATOR.
+2. Create deliverable folder with stubs using the deterministic scaffolding tool:
+   - `tools/scaffolding/scaffold_deliverable.sh {pkg_folder}/1_Working {DEL_ID} {DelLabel}`
+   This creates the folder and touches the 5 stub files (`_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, `_SEMANTIC.md`).
+3. Populate `_CONTEXT.md` content using the schema in STRUCTURE (LLM work — fills the stub created above).
+4. Populate `_DEPENDENCIES.md` content using the schema in STRUCTURE:
+   - Populate **Coordination Mode** and **Declared Upstream/Downstream** only from ORCHESTRATOR-provided declarations.
+   - Leave extracted-register sections as placeholders (to be populated later by the `dependency-extract` skill via TASK).
+5. Initialize `_STATUS.md` using the deterministic status tool:
+   - `tools/scaffolding/write_status.sh {deliverable_folder} OPEN PREPARATION`
+6. Populate `_REFERENCES.md` and list relevant references (best-effort) with locations.
+7. `_SEMANTIC.md` is left as a **placeholder stub** (created by the scaffold tool above).
+   - Do not generate matrices here.
+   - This file is intended to be overwritten later by the semantic-matrix pipeline (the `semantic-matrix-build` skill, dispatched via TASK).
+8. Verify the result with the deterministic validator:
+   - `tools/validation/check_min_viable_fileset.sh {deliverable_folder}`
+   - If the check fails, report the missing files and mark the task invalid.</p>
+<p>**Output:** Deliverable folder contains a complete minimum viable fileset validated by the deterministic checker. Report created vs skipped.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0012" class="chunk sec depth-3" data-kind="section" data-key="section:c44a7c74627f" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0012</span> Task Type D: Initialize Project-Level Aggregation Support (Structural Prereqs Only)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c44a7c74627f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c44a7c74627f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c44a7c74627f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Ensure the filesystem contains the **structural prerequisites** for the AGGREGATION agent.</p>
+<p>**Input from ORCHESTRATOR:**
+- `EXECUTION_ROOT` (defaults to `execution/`)</p>
+<p>**Action (idempotent):**
+1. Bootstrap tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT} _Aggregation`
+   This creates `_Aggregation/`, `_Aggregation/_Archive/`, and `_LATEST.md` stub.
+2. Create additional subfolders if missing: `_Aggregation/_Templates/`
+3. Ensure these template files exist (create if missing; never overwrite):
+   - `{EXECUTION_ROOT}/_Aggregation/_Templates/AGGREGATION_BRIEF_TEMPLATE.md`
+   - `{EXECUTION_ROOT}/_Aggregation/_Templates/TARGET_SCHEMA_TEMPLATE.csv`</p>
+<p>**Output:** A report listing folders/templates created vs already-existed; flag any errors.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0013" class="chunk sec depth-3" data-kind="section" data-key="section:bad35de3e020" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0013</span> Task Type E: Create Category Folder Hierarchy (DOMAIN)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bad35de3e020" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bad35de3e020" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bad35de3e020" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Input from ORCHESTRATOR:**
+- `CAT_ID`, `CAT_NAME` (from the DOMAIN decomposition)
+- Optional: `CAT_DISCIPLINE` (if present)</p>
+<p>**Action (idempotent):**
+Run: `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {CAT_ID} {CatLabel}`
+(Same folder schema as packages — `CAT_ID`/`CatLabel` map directly to the tool&#x27;s `PKG_ID`/`PkgLabel` inputs.)</p>
+<p>This creates the category folder with all 9 lifecycle subfolders:
+   - `0_References/`
+   - `0_References/_Archive/`
+   - `1_Working/`
+   - `1_Working/_Archive/`
+   - `2_Checking/`
+   - `2_Checking/From/`
+   - `2_Checking/To/`
+   - `3_Issued/`
+   - `3_Issued/_Archive/`</p>
+<p>**Output:** Empty category folder hierarchy. Report created vs already-existed.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0014" class="chunk sec depth-3" data-kind="section" data-key="section:e4bf911e02e6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0014</span> Task Type F: Populate One Knowledge Type Folder (Minimum Viable Fileset) (DOMAIN)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4bf911e02e6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4bf911e02e6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4bf911e02e6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Input from ORCHESTRATOR (required):**
+- Knowledge Type entry from DOMAIN decomposition:
+  - `KTY_ID`, `KTY_NAME`
+  - `CAT_ID`, `CAT_NAME`
+  - `DISCIPLINE`, `TYPE`, `RESPONSIBLE`, `DESCRIPTION`
+  - `ANTICIPATED_ARTIFACTS`
+- `DECOMPOSITION_REF` (path)
+- Optional: `COORDINATION_MODE` (same enum; default `NOT_TRACKED`)
+- Optional: any human-declared upstream/downstream relationships (only if mode is `DECLARED` or `FULL_GRAPH`)
+- Optional: reference materials relevant to this Knowledge Type (paths or descriptions)</p>
+<p>**Action (idempotent):**
+1. Optionally validate the Knowledge Type ID before creating paths:
+   - `tools/validation/validate_id_format.sh KTY {KTY_ID}`
+   - If invalid, do not scaffold; report the invalid ID to ORCHESTRATOR.
+2. Create KTY folder with stubs using the deterministic scaffolding tool:
+   - `tools/scaffolding/scaffold_deliverable.sh {cat_folder}/1_Working {KTY_ID} {KtyLabel}`
+   (Same tool as deliverables — `KTY_ID`/`KtyLabel` map to `DEL_ID`/`DelLabel` inputs.)
+3. Populate `_CONTEXT.md` content using the Knowledge Type schema in STRUCTURE (LLM work).
+4. Populate `_DEPENDENCIES.md` content using the existing container schema, with header/title adapted to `KTY` naming.
+   - Populate Coordination Mode + Declared Upstream/Downstream **only** from ORCHESTRATOR declarations.
+   - Leave extracted-register sections as placeholders.
+5. Initialize `_STATUS.md` using the deterministic status tool:
+   - `tools/scaffolding/write_status.sh {kty_folder} OPEN PREPARATION`
+6. Populate `_REFERENCES.md` and list relevant references (best-effort pointers).
+7. `_SEMANTIC.md` is left as a placeholder stub (created by scaffold tool above).
+8. Verify the result with the deterministic validator:
+   - `tools/validation/check_min_viable_fileset.sh {kty_folder}`
+   - If the check fails, report the missing files and mark the task invalid.</p>
+<p>**Non-goals:**
+- Do not create `Datasheet.md`, `Specification.md`, etc. (DOMAIN Knowledge Types use variable document schemas — artifact drafting is out of scope for PREPARATION).
+- Do not infer or guess domain relationships.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0015" class="chunk sec depth-3" data-kind="section" data-key="section:f6e1389f12a7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0015</span> Task Type G: Initialize Domain-Level Tool Roots (Structural Prereqs Only)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f6e1389f12a7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f6e1389f12a7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f6e1389f12a7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Goal:** Ensure the filesystem contains the **structural prerequisites** for domain-level hypergraph and reconciliation agents.</p>
+<p>**Input from ORCHESTRATOR:**
+- `EXECUTION_ROOT` (defaults to `execution/`)</p>
+<p>**Action (idempotent):**
+1. Bootstrap hypergraph tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Aggregation Hypergraph`
+2. Bootstrap closure tool root: `tools/scaffolding/scaffold_tool_root.sh {EXECUTION_ROOT}/_Reconciliation HypergraphClosure`</p>
+<p>Both calls create the folder, `_Archive/` subfolder, and `_LATEST.md` stub.</p>
+<p>**Output:** A report listing folders/stubs created vs already-existed; flag any errors.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0016" class="chunk sec depth-3" data-kind="section" data-key="section:8a0fa9b4bcf5" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0016</span> Operating Rules (always)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8a0fa9b4bcf5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8a0fa9b4bcf5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8a0fa9b4bcf5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Rule | Meaning |
+|------|---------|
+| Idempotent | Never overwrite existing files; skip and report |
+| Structural only | Use deterministic tools for filesystem/state operations; use the language model only to populate metadata text from provided sources; no engineering content; no inference |
+| No cross-deliverable coordination | Only scaffold the requested item |
+| Flag missing inputs | If ORCHESTRATOR input is incomplete, report what is missing rather than inventing |
+| Exact extraction | `_CONTEXT.md` fields must match decomposition exactly |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0017" class="chunk sec depth-3" data-kind="section" data-key="section:f034cf9cafeb" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0017</span> Filesystem-safe folder labels</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f034cf9cafeb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f034cf9cafeb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f034cf9cafeb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use filesystem-safe labels derived from canonical names:</p>
+<p>**Sanitize(name)**:
+- Replace any of these characters with `-`: `/`, `\`, `:`, `*`, `?`, `&quot;`, `&lt;`, `&gt;`, `|`
+- Collapse consecutive whitespace to a single space
+- Trim leading/trailing whitespace</p>
+<p>Folder names:
+- `{PKG-ID}_{PkgLabel}` where `PkgLabel = Sanitize(Package Name)`
+- `{DEL-ID}_{DelLabel}` where `DelLabel = Sanitize(Deliverable Name)`
+- `{CAT-ID}_{CatLabel}` where `CatLabel = Sanitize(Category Name)`
+- `{KTY-ID}_{KtyLabel}` where `KtyLabel = Sanitize(Knowledge Type Name)`</p>
+<p>Always record canonical (unsanitized) names inside `_CONTEXT.md` for traceability.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0018" class="chunk sec depth-3" data-kind="section" data-key="section:9d869697f51a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0018</span> QA Contract</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9d869697f51a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9d869697f51a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9d869697f51a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+After completing the assigned task, PREPARATION verifies:</p>
+<p>| Check | Validation |
+|-------|-----------|
+| Minimum viable fileset complete | Run `tools/validation/check_min_viable_fileset.sh` for each created deliverable/knowledge-type folder and require PASS |
+| `_CONTEXT.md` faithful | Header fields match decomposition exactly (deliverable or knowledge type variant) |
+| No overwrites | Existing files were skipped, not modified |
+| No invention | No dependency, content, or scope information was fabricated |
+| Report produced | Created vs skipped items reported to ORCHESTRATOR |</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG027-0019" class="chunk sec depth-2" data-kind="section" data-key="section:6a4bc1de8a6c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0019</span> SPEC</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6a4bc1de8a6c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0020" class="chunk sec depth-3" data-kind="section" data-key="section:a01515e19d61" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0020</span> Validity</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a01515e19d61" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a01515e19d61" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a01515e19d61" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A PREPARATION run is valid when:
+- It completes exactly one assigned task type (A/B/C/D/E/F/G).
+- It creates only missing files/folders (no overwrites).
+- It uses deterministic scaffolding/status tools for filesystem and lifecycle operations.
+- It does not create engineering content.
+- `_CONTEXT.md` is exact to the decomposition for the deliverable (Task C) or knowledge type (Task F).
+- Minimum viable fileset exists for any created deliverable or knowledge-type folder and passes `tools/validation/check_min_viable_fileset.sh`.
+</p></div></div></section>
+<section id="SEC-AG027-0021" class="chunk sec depth-3" data-kind="section" data-key="section:b0932c6da45d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0021</span> Invalid states (examples)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b0932c6da45d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b0932c6da45d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b0932c6da45d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Invalid State | Why |
+|---|---|
+| Any required metadata file missing after Task C or F | Downstream agents cannot operate |
+| `_CONTEXT.md` differs from decomposition | Breaks traceability |
+| Dependencies invented | Misleads humans and tools |
+| Existing files overwritten | Violates idempotency |</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG027-0022" class="chunk sec depth-2" data-kind="section" data-key="section:5828b4e87d4b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0022</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5828b4e87d4b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5828b4e87d4b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5828b4e87d4b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This section defines the file schemas PREPARATION writes.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0023" class="chunk sec depth-3" data-kind="section" data-key="section:a798d13d832d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0023</span> `_CONTEXT.md` Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a798d13d832d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a798d13d832d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a798d13d832d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG027-0024" class="chunk sec depth-1" data-kind="section" data-key="section:4d821516fbf8" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0024</span> Context: [DEL-ID]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d821516fbf8" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d821516fbf8" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d821516fbf8" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Name:** [Deliverable Name]
+**Package:** [PKG-ID] [Package Name]
+**Discipline:** [Discipline]
+**Type:** [Artifact/Deliverable Type]
+**Responsible:** [Role or party if present]
+</p></div></div></section>
+<section id="SEC-AG027-0025" class="chunk sec depth-2" data-kind="section" data-key="section:a4b94701a4c1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0025</span> Description</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a4b94701a4c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a4b94701a4c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a4b94701a4c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>[Exact description from decomposition document]
+</p></div></div></section>
+<section id="SEC-AG027-0026" class="chunk sec depth-2" data-kind="section" data-key="section:2eccf5c4e627" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0026</span> Anticipated Artifacts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- [List from decomposition; may be empty]
+</p></div></div></section>
+<section id="SEC-AG027-0027" class="chunk sec depth-2" data-kind="section" data-key="section:dedf19aac782" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0027</span> Decomposition Reference</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dedf19aac782" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dedf19aac782" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dedf19aac782" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- **Decomposition:** [DECOMPOSITION_REF]
+- **Deliverable ID:** [DEL-ID]
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0028" class="chunk sec depth-3" data-kind="section" data-key="section:17be21bfdb1a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0028</span> `_CONTEXT.md` Schema (Knowledge Type — DOMAIN variant)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:17be21bfdb1a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:17be21bfdb1a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:17be21bfdb1a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG027-0029" class="chunk sec depth-1" data-kind="section" data-key="section:11bf2332bb96" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0029</span> Context: [KTY-ID]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:11bf2332bb96" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:11bf2332bb96" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:11bf2332bb96" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Name:** [Knowledge Type Name]
+**Category:** [CAT-ID] [Category Name]
+**Discipline:** [Discipline]
+**Type:** [Knowledge Type / Artifact Type]
+**Responsible:** [Role or party if present]
+</p></div></div></section>
+<section id="SEC-AG027-0030" class="chunk sec depth-2" data-kind="section" data-key="section:c8c86fda3f04" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0030</span> Description</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8c86fda3f04" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8c86fda3f04" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8c86fda3f04" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>[Exact description from DOMAIN decomposition]
+</p></div></div></section>
+<section id="SEC-AG027-0031" class="chunk sec depth-2" data-kind="section" data-key="section:2eccf5c4e627" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0031</span> Anticipated Artifacts</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2eccf5c4e627" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- [List from decomposition; may be empty]
+</p></div></div></section>
+<section id="SEC-AG027-0032" class="chunk sec depth-2" data-kind="section" data-key="section:976b098b38c3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0032</span> Decomposition Reference</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:976b098b38c3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:976b098b38c3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:976b098b38c3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- **Decomposition:** [DECOMPOSITION_REF]
+- **Knowledge Type ID:** [KTY-ID]
+- **Category ID:** [CAT-ID]
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0033" class="chunk sec depth-3" data-kind="section" data-key="section:af4b2b18c61e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0033</span> `_DEPENDENCIES.md` Schema (hybrid container: human declarations + extracted summary)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:af4b2b18c61e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:af4b2b18c61e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:af4b2b18c61e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+&gt; PREPARATION creates `_DEPENDENCIES.md` as a **durable container**.
+&gt; - Humans/ORCHESTRATOR may add declared upstream/downstream items.
+&gt; - The **`dependency-extract` skill** (dispatched via TASK) may later populate extracted-register summaries and run history.
+&gt; PREPARATION itself must not infer edges.</p>
+<p>```markdown</p></div></div></section>
+<section id="SEC-AG027-0034" class="chunk sec depth-1" data-kind="section" data-key="section:20f5b57848f4" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0034</span> Dependencies: [DEL-ID] [Deliverable Name]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:20f5b57848f4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:20f5b57848f4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:20f5b57848f4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0035" class="chunk sec depth-2" data-kind="section" data-key="section:69083c9d7fe1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0035</span> Coordination (human-owned)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:69083c9d7fe1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:69083c9d7fe1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:69083c9d7fe1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- **Mode:** [NOT_TRACKED | DECLARED | FULL_GRAPH]
+- **Notes:** [pointer to coordination record or external system, or &quot;TBD&quot;]
+</p></div></div></section>
+<section id="SEC-AG027-0036" class="chunk sec depth-2" data-kind="section" data-key="section:fe727e4511fb" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0036</span> Upstream (I need these before I can proceed) — human-owned declarations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe727e4511fb" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe727e4511fb" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe727e4511fb" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
+- [DEL-ID] [Name] — Reason: [from ORCHESTRATOR declarations]
+  - Required maturity: [OPEN | INITIALIZED | SEMANTIC_READY | IN_PROGRESS | CHECKING | ISSUED]
+  - Location: [path if known, else TBD]
+</p></div></div></section>
+<section id="SEC-AG027-0037" class="chunk sec depth-2" data-kind="section" data-key="section:8646b2b4c318" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0037</span> Downstream (These need me) — human-owned declarations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8646b2b4c318" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8646b2b4c318" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8646b2b4c318" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (If Mode = NOT_TRACKED: write “Dependencies coordinated externally by humans.”)
+- [DEL-ID] [Name] — Reason: [from ORCHESTRATOR declarations]
+  - Required maturity: [state they need from me]
+  - Location: [path if known, else TBD]
+</p></div></div></section>
+<section id="SEC-AG027-0038" class="chunk sec depth-2" data-kind="section" data-key="section:8179af31b3ff" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0038</span> Extracted Dependency Register (populated by TASK+dependency-extract)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8179af31b3ff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8179af31b3ff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8179af31b3ff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- **Status:** NOT_RUN_YET
+- **Dependencies.csv:** TBD
+- **Summary:** TBD
+</p></div></div></section>
+<section id="SEC-AG027-0039" class="chunk sec depth-2" data-kind="section" data-key="section:7ae29b8844b9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0039</span> Run Notes &amp; History (populated by TASK+dependency-extract)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7ae29b8844b9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7ae29b8844b9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7ae29b8844b9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (placeholder)
+</p></div></div></section>
+<section id="SEC-AG027-0040" class="chunk sec depth-2" data-kind="section" data-key="section:85c7bde3576e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0040</span> Lifecycle Summary (populated by TASK+dependency-extract)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:85c7bde3576e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:85c7bde3576e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:85c7bde3576e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (placeholder)
+</p></div></div></section>
+<section id="SEC-AG027-0041" class="chunk sec depth-2" data-kind="section" data-key="section:b422ce2952a9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0041</span> Consumer Handoff Notes (optional)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b422ce2952a9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b422ce2952a9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b422ce2952a9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (placeholder)
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0042" class="chunk sec depth-3" data-kind="section" data-key="section:0852e28f5d52" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0042</span> `_STATUS.md` Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0852e28f5d52" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0852e28f5d52" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0852e28f5d52" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG027-0043" class="chunk sec depth-1" data-kind="section" data-key="section:b7707dcfc9db" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0043</span> Status: [DEL-ID] [Deliverable Name]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b7707dcfc9db" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b7707dcfc9db" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b7707dcfc9db" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Current State:** OPEN
+**Last Updated:** [YYYY-MM-DD]
+</p></div></div></section>
+<section id="SEC-AG027-0044" class="chunk sec depth-2" data-kind="section" data-key="section:e588d8d88b4a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0044</span> History</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e588d8d88b4a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e588d8d88b4a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e588d8d88b4a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- [YYYY-MM-DD] — State set to OPEN (PREPARATION)
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0045" class="chunk sec depth-3" data-kind="section" data-key="section:e4d90792ed75" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0045</span> `_REFERENCES.md` Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4d90792ed75" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4d90792ed75" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4d90792ed75" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG027-0046" class="chunk sec depth-1" data-kind="section" data-key="section:e5e5ec1a5e35" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0046</span> References: [DEL-ID] [Deliverable Name]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e5e5ec1a5e35" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e5e5ec1a5e35" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e5e5ec1a5e35" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0047" class="chunk sec depth-2" data-kind="section" data-key="section:a42076dd03a4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0047</span> Applicable References</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a42076dd03a4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a42076dd03a4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a42076dd03a4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- [Ref name/ID] — Location: [path/URL] — Relevance: [brief]
+- ...
+</p></div></div></section>
+<section id="SEC-AG027-0048" class="chunk sec depth-2" data-kind="section" data-key="section:bbf2ec9dddee" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0048</span> Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbf2ec9dddee" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbf2ec9dddee" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbf2ec9dddee" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- [Placeholder if none identified yet]
+```</p>
+<p>---</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0049" class="chunk sec depth-3" data-kind="section" data-key="section:780c1d3ba0a0" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0049</span> `_MEMORY.md` Template Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:780c1d3ba0a0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:780c1d3ba0a0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:780c1d3ba0a0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`_MEMORY.md` is the deliverable’s working memory. PREPARATION creates it as a structured empty template for later use by WORKING_ITEMS and deliverable-local task sub-agents. It is intentionally **non-normative** and may grow over time.</p>
+<p>Create with this minimum schema (adapted from `docs/templates/MEMORY_TEMPLATE.md`):</p>
+<p>```markdown</p></div></div></section>
+<section id="SEC-AG027-0050" class="chunk sec depth-1" data-kind="section" data-key="section:52104b28fc70" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0050</span> Memory — {{DEL-ID}}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:52104b28fc70" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:52104b28fc70" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:52104b28fc70" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+&gt; Organize by semantic topic, then chronologically within each topic. These headings are the minimum schema — add new sections as needed to capture what matters for this deliverable.
+</p></div></div></section>
+<section id="SEC-AG027-0051" class="chunk sec depth-2" data-kind="section" data-key="section:45f71e81fbad" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0051</span> Key Decisions &amp; Human Rulings</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:45f71e81fbad" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:45f71e81fbad" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:45f71e81fbad" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0052" class="chunk sec depth-2" data-kind="section" data-key="section:6f23d75df01f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0052</span> Domain Context</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6f23d75df01f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6f23d75df01f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6f23d75df01f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0053" class="chunk sec depth-2" data-kind="section" data-key="section:1fe50555d30a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0053</span> Open Items</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1fe50555d30a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1fe50555d30a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1fe50555d30a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0054" class="chunk sec depth-2" data-kind="section" data-key="section:1b82d24fcca2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0054</span> Proposal History</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1b82d24fcca2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1b82d24fcca2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1b82d24fcca2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0055" class="chunk sec depth-2" data-kind="section" data-key="section:3145822a5363" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0055</span> Interface &amp; Dependency Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3145822a5363" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3145822a5363" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3145822a5363" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>```</p>
+<p>Optional compatibility alias (create only if missing; never overwrite):
+- `MEMORY.md` containing a single line: “See `_MEMORY.md` (canonical deliverable memory).”
+</p></div></div></section>
+<section id="SEC-AG027-0056" class="chunk sec depth-3" data-kind="section" data-key="section:149dbedffed6" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0056</span> `_SEMANTIC.md` Placeholder Schema</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:149dbedffed6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:149dbedffed6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:149dbedffed6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+PREPARATION creates `_SEMANTIC.md` as a **structural placeholder** only. It is intended to be overwritten later by the semantic-matrix pipeline.</p>
+<p>```markdown</p></div></div></section>
+<section id="SEC-AG027-0057" class="chunk sec depth-1" data-kind="section" data-key="section:cc0f2e82958e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0057</span> Semantic Lens: [DEL-ID] [Deliverable Name]</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cc0f2e82958e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cc0f2e82958e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cc0f2e82958e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Status:** PLACEHOLDER
+**Generated:** TBD
+</p></div></div></section>
+<section id="SEC-AG027-0058" class="chunk sec depth-2" data-kind="section" data-key="section:1a8dca108ae4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0058</span> Notes</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1a8dca108ae4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1a8dca108ae4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1a8dca108ae4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- This file is intentionally minimal at PREPARATION time.
+- A semantic-matrix agent may overwrite this file after initial drafts exist.
+- Treat semantic matrices as a *lens* (question-shaping scaffold), not as engineering authority.
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0059" class="chunk sec depth-3" data-kind="section" data-key="section:46436bef8d8e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0059</span> `{EXECUTION_ROOT}/_Aggregation/_Templates/AGGREGATION_BRIEF_TEMPLATE.md`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46436bef8d8e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46436bef8d8e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46436bef8d8e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG027-0060" class="chunk sec depth-1" data-kind="section" data-key="section:c3a45c02ad08" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG027-0060</span> Aggregation Brief Template</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c3a45c02ad08" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c3a45c02ad08" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c3a45c02ad08" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG027-0061" class="chunk sec depth-2" data-kind="section" data-key="section:55273a87d305" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0061</span> PURPOSE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:55273a87d305" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:55273a87d305" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:55273a87d305" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (e.g., Project_Estimate, Doc_Index, Register_Summary, CrossFile_QA, General_Aggregation)
+</p></div></div></section>
+<section id="SEC-AG027-0062" class="chunk sec depth-2" data-kind="section" data-key="section:bda61afbf5b5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0062</span> INPUT_ROOTS</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bda61afbf5b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bda61afbf5b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bda61afbf5b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (paths to folders/files to include)
+</p></div></div></section>
+<section id="SEC-AG027-0063" class="chunk sec depth-2" data-kind="section" data-key="section:a28a6b3c1cde" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0063</span> INCLUDE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a28a6b3c1cde" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a28a6b3c1cde" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a28a6b3c1cde" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (glob patterns, optional)
+</p></div></div></section>
+<section id="SEC-AG027-0064" class="chunk sec depth-2" data-kind="section" data-key="section:f371a7d9c91b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0064</span> EXCLUDE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f371a7d9c91b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f371a7d9c91b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f371a7d9c91b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (glob patterns, optional)
+</p></div></div></section>
+<section id="SEC-AG027-0065" class="chunk sec depth-2" data-kind="section" data-key="section:1cbb0afb3f84" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0065</span> OUTPUTS</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1cbb0afb3f84" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1cbb0afb3f84" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1cbb0afb3f84" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (requested output files, optional)
+</p></div></div></section>
+<section id="SEC-AG027-0066" class="chunk sec depth-2" data-kind="section" data-key="section:565452b17306" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0066</span> TARGET_SCHEMA</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:565452b17306" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:565452b17306" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:565452b17306" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (explicit columns or schema name, optional)
+</p></div></div></section>
+<section id="SEC-AG027-0067" class="chunk sec depth-2" data-kind="section" data-key="section:28ecd0f2e66d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0067</span> PRIMARY_KEY</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:28ecd0f2e66d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:28ecd0f2e66d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:28ecd0f2e66d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (optional)
+</p></div></div></section>
+<section id="SEC-AG027-0068" class="chunk sec depth-2" data-kind="section" data-key="section:5806935c4dff" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0068</span> DEDUP_RULE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5806935c4dff" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5806935c4dff" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5806935c4dff" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (list_all | prefer_latest | prefer_non_TBD | prefer_high_confidence)
+</p></div></div></section>
+<section id="SEC-AG027-0069" class="chunk sec depth-2" data-kind="section" data-key="section:94b0d51028c2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0069</span> CONFLICT_RULE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:94b0d51028c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:94b0d51028c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:94b0d51028c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (list_all | prefer_latest | prefer_source=... | prefer_high_confidence)
+</p></div></div></section>
+<section id="SEC-AG027-0070" class="chunk sec depth-2" data-kind="section" data-key="section:3134789f65dc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0070</span> UNITS_POLICY</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3134789f65dc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3134789f65dc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3134789f65dc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (preserve | normalize) — if normalize, specify conversions
+</p></div></div></section>
+<section id="SEC-AG027-0071" class="chunk sec depth-2" data-kind="section" data-key="section:be0526d65d40" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0071</span> CURRENCY_POLICY</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:be0526d65d40" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:be0526d65d40" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:be0526d65d40" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (preserve | normalize) — if normalize, specify FX source
+</p></div></div></section>
+<section id="SEC-AG027-0072" class="chunk sec depth-2" data-kind="section" data-key="section:fe4b6edc2fc7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0072</span> NOTES</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fe4b6edc2fc7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fe4b6edc2fc7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fe4b6edc2fc7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- (any special instructions)
+```</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG027-0073" class="chunk sec depth-3" data-kind="section" data-key="section:85887ad19377" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG027-0073</span> `{EXECUTION_ROOT}/_Aggregation/_Templates/TARGET_SCHEMA_TEMPLATE.csv`</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:85887ad19377" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:85887ad19377" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:85887ad19377" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Create with a single header row:</p>
+<p>```
+RecordID,SourceID,SourcePath,SectionRef,EntityType,Key,Value,Notes,Confidence,Tags
+```</p>
+<p>Do not add data rows.</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG027-0074" class="chunk sec depth-2" data-kind="section" data-key="section:cbb8cabb173f" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG027-0074</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cbb8cabb173f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cbb8cabb173f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cbb8cabb173f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+PREPARATION exists to make downstream work safe and repeatable:
+- create predictable folders,
+- seed a minimal viable fileset,
+- preserve traceability back to the decomposition,
+- avoid overwrites so re-runs don’t destroy work.</p>
+<p>It is intentionally “boring.” Its value is structural reliability.</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG027";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

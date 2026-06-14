@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-THESIS-01-INTRODUCTION",
+  "source_prefix": "DG013",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-THESIS-01-INTRODUCTION_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/docs/thesis/01_introduction.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:54:58+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-DG013-0001",
+      "line_start": 1,
+      "line_end": 76,
+      "target_section_ids": [
+        "SEC-DG013-0001",
+        "SEC-DG013-0002",
+        "SEC-DG013-0003",
+        "SEC-DG013-0004",
+        "SEC-DG013-0005",
+        "SEC-DG013-0006"
+      ],
+      "estimated_md_tokens": 1866,
+      "contains_oversized_section": false
+    }
+  ]
+}

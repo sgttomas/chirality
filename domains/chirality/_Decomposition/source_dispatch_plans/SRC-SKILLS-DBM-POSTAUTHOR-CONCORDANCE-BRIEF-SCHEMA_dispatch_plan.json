@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-BRIEF-SCHEMA",
+  "source_prefix": "SK019",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-BRIEF-SCHEMA_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:04+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK019-0001",
+      "line_start": 1,
+      "line_end": 76,
+      "target_section_ids": [
+        "SEC-SK019-0001",
+        "SEC-SK019-0002",
+        "SEC-SK019-0003",
+        "SEC-SK019-0004",
+        "SEC-SK019-0005",
+        "SEC-SK019-0006",
+        "SEC-SK019-0007"
+      ],
+      "estimated_md_tokens": 573,
+      "contains_oversized_section": false
+    }
+  ]
+}

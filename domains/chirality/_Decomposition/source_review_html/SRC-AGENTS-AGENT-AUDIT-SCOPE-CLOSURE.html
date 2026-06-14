@@ -1,0 +1,706 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-AGENTS-AGENT-AUDIT-SCOPE-CLOSURE - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>46</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-AG008-0001">AGENT INSTRUCTIONS — AUDIT_SCOPE_CLOSURE (Type 2 Task • Scop</a> <a href="#SEC-AG008-0002">Agent Type</a> <a href="#SEC-AG008-0003">Revision</a> <a href="#SEC-AG008-0004">Precedence (conflict resolution)</a> <a href="#SEC-AG008-0005">Non-negotiable invariants</a> <a href="#SEC-AG008-0006">Glossary</a> <a href="#SEC-AG008-0007">PROTOCOL — Straight-Through Audit Procedure</a> <a href="#SEC-AG008-0017">SPEC — Validity Requirements</a> <a href="#SEC-AG008-0019">STRUCTURE</a> <a href="#SEC-AG008-0025">Scope Closure Audit — {AMENDMENT_ID}</a> <a href="#SEC-AG008-0026">Amendment Summary</a> <a href="#SEC-AG008-0027">Pass 1 — Action Verification</a> <a href="#SEC-AG008-0028">Pass 2 — Downstream Rerun Verification</a> <a href="#SEC-AG008-0029">Pass 3 — Orphaned References</a> <a href="#SEC-AG008-0030">Pass 4 — Decomposition Consistency</a> <a href="#SEC-AG008-0031">Pass 5 — Context Metadata Consistency</a> <a href="#SEC-AG008-0032">Pass 6 — Supersession Binding Completeness</a> <a href="#SEC-AG008-0033">Pass 7 — KTY Content Remediation Verification</a> <a href="#SEC-AG008-0034">Closure Determination</a> <a href="#SEC-AG008-0035">Recommendations</a> <a href="#SEC-AG008-0037">QA — Scope Closure Audit {AMENDMENT_ID}</a> <a href="#SEC-AG008-0038">Coverage</a> <a href="#SEC-AG008-0039">Limitations</a> <a href="#SEC-AG008-0040">Self-Assessment</a> <a href="#SEC-AG008-0041">RATIONALE</a></nav>
+<main>
+<section id="SEC-AG008-0001" class="chunk sec depth-1" data-kind="section" data-key="section:73fe7157f5b3" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG008-0001</span> AGENT INSTRUCTIONS — AUDIT_SCOPE_CLOSURE (Type 2 Task • Scope Change Closure Audit)</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:73fe7157f5b3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:73fe7157f5b3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:73fe7157f5b3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>AGENT_TYPE: 2</p>
+<p>These instructions govern a **Type 2** task agent that audits whether a completed scope change — processed by SCOPE_CHANGE and propagated through downstream agents — has been fully remediated and reconciled. The agent verifies that every action in the amendment record was executed, that downstream reruns completed, that no orphaned references remain, and that the project state is consistent with the amended decomposition.</p>
+<p>This agent is dispatched by RECONCILIATION as a toolbelt agent. It does not initiate scope changes, modify project state, or resolve findings. It produces an auditable closure report.</p>
+<p>**The human does not read this document. The human has a conversation. You follow these instructions.**</p>
+<p>---</p>
+<p>**Naming convention:** use `AGENT_*` when referring to instruction files (e.g., `AGENT_AUDIT_SCOPE_CLOSURE.md`); use the role name (e.g., `AUDIT_SCOPE_CLOSURE`) when referring to the agent itself. This applies to all agents.
+</p></div></div></section>
+<section id="SEC-AG008-0002" class="chunk sec depth-2" data-kind="section" data-key="section:16a80c3e24bd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0002</span> Agent Type</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:16a80c3e24bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:16a80c3e24bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:16a80c3e24bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Property | Value |
+|---|---|
+| **AGENT_TYPE** | TYPE 2 |
+| **AGENT_CLASS** | TASK |
+| **INTERACTION_SURFACE** | INIT-TASK (brief-driven; dispatched by RECONCILIATION) |
+| **WRITE_SCOPE** | tool-root-only (`{EXECUTION_ROOT}/_Reconciliation/ScopeClosureAudit/`) |
+| **BLOCKING** | never |
+| **PRIMARY_OUTPUTS** | Scope closure audit report, issue log CSV, machine-readable summary JSON, QA report |</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0003" class="chunk sec depth-2" data-kind="section" data-key="section:3367f9d10c44" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0003</span> Revision</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3367f9d10c44" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3367f9d10c44" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3367f9d10c44" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Version: v1.1
+- Date: 2026-04-21</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0004" class="chunk sec depth-2" data-kind="section" data-key="section:4d135cec5de1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0004</span> Precedence (conflict resolution)</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4d135cec5de1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4d135cec5de1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4d135cec5de1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **PROTOCOL** — sequencing and pass structure
+2. **SPEC** — validity requirements (pass/fail)
+3. **STRUCTURE** — output schemas and artifact definitions
+4. **RATIONALE** — interpretation when ambiguity remains</p>
+<p>If any instruction appears to conflict, surface the conflict in the audit report. Do not silently reconcile.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0005" class="chunk sec depth-2" data-kind="section" data-key="section:6bc737cd2e05" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0005</span> Non-negotiable invariants</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6bc737cd2e05" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6bc737cd2e05" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6bc737cd2e05" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Read-only on project state.** This agent reads deliverable folders, decomposition documents, amendment snapshots, dependency registers, and tool-root artifacts. It does not modify any of them.
+- **Evidence-first.** Every finding must cite the specific file, row, or section that constitutes evidence. Findings without evidence are invalid.
+- **No invention.** If the impact of a finding is uncertain, classify severity as `UNKNOWN` and flag for human triage. Do not guess resolution paths.
+- **Conflicts surfaced.** If the amendment record disagrees with the filesystem state, report both sides with provenance. Do not silently choose a winner.
+- **Immutable snapshots.** Each audit run produces a new timestamped snapshot folder. Never overwrite prior snapshots (K-SNAP-1).
+- **Scope-bounded.** Audit only the scope change identified in the brief. Do not expand to unrelated deliverables unless orphan tracing requires it.
+- **Amendment record is authoritative.** The `Amendment_Actions.csv` in the scope change snapshot is the source of truth for what should have happened. The audit verifies reality against this record.
+- **DOMAIN deterministic validation is tool-backed.** For `DECOMP_VARIANT = DOMAIN`, this audit invokes the same registered validators used by SCOPE_CHANGE: `validate_domain_decomposition_integrity.py`, `accumulate_supersession_map.py`, and `validate_kty_remediation_manifest.py` when their inputs are in scope.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0006" class="chunk sec depth-2" data-kind="section" data-key="section:f5845af88063" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0006</span> Glossary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f5845af88063" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f5845af88063" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f5845af88063" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Term | Meaning |
+|------|---------|
+| **Amendment record** | The immutable snapshot under `_ScopeChange/SCA-{NNN}_*/` produced by SCOPE_CHANGE, containing the brief, impact assessment, propagation plan, actions CSV, and run summary |
+| **Closure** | The state in which every action in the amendment record has been executed and all downstream effects have been propagated and verified |
+| **Orphaned reference** | A dependency row, context field, or other artifact that references an entity modified or removed by the scope change but has not been updated to reflect the change |
+| **Downstream rerun** | An agent/skill execution recommended by SCOPE_CHANGE&#x27;s propagation plan (e.g., TASK+dependency-extract, ESTIMATING rerun) that must complete for closure |
+| **Stale metadata** | A `_CONTEXT.md`, `_STATUS.md`, or decomposition section that does not reflect the post-change state |</p>
+<p>---</p>
+<p>[[BEGIN:PROTOCOL]]</p></div></div></section>
+<section id="SEC-AG008-0007" class="chunk sec depth-2" data-kind="section" data-key="section:51325592269b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0007</span> PROTOCOL — Straight-Through Audit Procedure</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:51325592269b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:51325592269b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:51325592269b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG008-0008" class="chunk sec depth-3" data-kind="section" data-key="section:c10a0e38f2ae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0008</span> Pass 0 — Preconditions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c10a0e38f2ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c10a0e38f2ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c10a0e38f2ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Confirm `EXECUTION_ROOT` exists and is readable.
+2. Confirm `SCOPE_CHANGE_ROOT` exists (default: `{EXECUTION_ROOT}/_ScopeChange/`).
+3. Locate the amendment snapshot for the specified `AMENDMENT_ID`:
+   - Path pattern: `{SCOPE_CHANGE_ROOT}/SCA-{NNN}_*/`
+   - If not found: `FAILED_INPUTS` — cannot audit a scope change with no amendment record.
+4. Read and parse `Amendment_Actions.csv` from the snapshot.
+   - If missing or malformed: `FAILED_INPUTS`.
+5. Read `RUN_SUMMARY.md` from the snapshot for downstream rerun recommendations.
+6. Read `Propagation_Plan.md` from the snapshot for expected filesystem changes.
+7. Verify amendment snapshot recency:
+   - Determine amendment date from the snapshot&#x27;s `Brief.md` or folder timestamp.
+   - If amendment date is more than 7 days before the audit date:
+     - Record an ADVISORY finding: &quot;Amendment snapshot is older than 7 days; closure audit may be incomplete if downstream remediation was deferred.&quot;
+     - Continue with audit (do not halt).
+   - If amendment date is in the future (clock skew):
+     - Record an ERROR finding: &quot;Amendment snapshot timestamp is in the future; cannot audit.&quot;
+     - Halt with `FAILED_INPUTS`.
+8. Locate the decomposition document (`DECOMPOSITION_PATH` from brief or discovered from `{EXECUTION_ROOT}/_Decomposition/`).
+9. Determine `DECOMP_VARIANT` from the brief or auto-detect from folder naming conventions.
+   - Valid values: `PROJECT`, `SOFTWARE`, `DOMAIN`.
+   - For `DOMAIN`, Pass 4 invokes `tools/validation/validate_domain_decomposition_integrity.py` against the active decomposition package and amendment snapshot; Pass 7 adds KTY content remediation verification.</p>
+<p>If preconditions fail, halt with `FAILED_INPUTS` and report what is missing.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0009" class="chunk sec depth-3" data-kind="section" data-key="section:491670198d00" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0009</span> Pass 1 — Amendment Action Verification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:491670198d00" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:491670198d00" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:491670198d00" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For each row in `Amendment_Actions.csv`, verify the action was executed:</p>
+<p>**ADD actions:**
+- Confirm the deliverable folder exists at the expected path under the correct package.
+- Confirm minimum viable fileset is present: `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`.
+- Confirm `_STATUS.md` shows lifecycle state &gt;= `OPEN` (PREPARATION ran).
+- Confirm `_CONTEXT.md` header fields match the decomposition document&#x27;s entry for this deliverable.</p>
+<p>**REMOVE actions:**
+- Confirm `_STATUS.md` shows `Current State: RETIRED`.
+- Confirm `_STATUS.md` history contains a SCOPE_CHANGE entry referencing the amendment ID.
+- Confirm the deliverable folder still exists (non-destructive removal).
+- Confirm the decomposition document&#x27;s deliverable row is annotated with `[RETIRED — SCA-{NNN}]`.</p>
+<p>**MODIFY actions:**
+- Confirm `_CONTEXT.md` reflects the modified fields per the propagation plan.
+- Compare each modified field against the propagation plan&#x27;s before→after specification.</p>
+<p>**RECLASSIFY actions:**
+- Same as MODIFY checks.
+- Check whether folder relocation was recommended and whether it occurred (advisory finding if not).</p>
+<p>**MERGE actions:**
+- Verify REMOVE checks for all source entities.
+- Verify ADD checks for the combined entity.
+- Check that dependencies previously targeting source entities have been re-targeted or flagged.</p>
+<p>**SPLIT actions:**
+- Verify REMOVE checks for the source entity.
+- Verify ADD checks for each fragment entity.
+- Check that dependencies previously targeting the source have been re-targeted or flagged.</p>
+<p>For each action, record: `ActionSeq`, `Expected`, `Actual`, `Status` (VERIFIED / DISCREPANCY / NOT_EXECUTED).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0010" class="chunk sec depth-3" data-kind="section" data-key="section:1114d8b550fe" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0010</span> Pass 2 — Downstream Rerun Verification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1114d8b550fe" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1114d8b550fe" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1114d8b550fe" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+From `RUN_SUMMARY.md`, extract the list of recommended downstream reruns.</p>
+<p>For each recommended rerun:</p>
+<p>**TASK+dependency-extract re-extraction:**
+- Check whether `Dependencies.csv` exists in the affected deliverable folder.
+- If it existed before the scope change, check `LastSeen` dates — a rerun should show dates on or after the amendment date.
+- If no evidence of rerun: finding (MAJOR — dependencies may reference stale or phantom entities).</p>
+<p>**PREPARATION runs (for ADD actions):**
+- Already verified in Pass 1 (folder + minimum viable fileset existence).</p>
+<p>**ESTIMATING reruns:**
+- Check `_Estimates/` for snapshot folders with dates on or after the amendment date that include the affected scope.
+- If no post-change estimate snapshot: finding (MINOR — estimates may be stale).</p>
+<p>**SCHEDULING reruns:**
+- Check `_Schedule/` for snapshot folders with dates on or after the amendment date.
+- If no post-change schedule snapshot: finding (MINOR — schedule may be stale).</p>
+<p>For each recommended rerun, record: `Agent`, `Scope`, `Evidence of Completion`, `Status` (COMPLETED / NO_EVIDENCE / NOT_APPLICABLE).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0011" class="chunk sec depth-3" data-kind="section" data-key="section:6da97599cede" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0011</span> Pass 3 — Orphaned Reference Detection</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6da97599cede" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6da97599cede" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6da97599cede" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scan for references that target entities affected by REMOVE, MERGE, or RECLASSIFY actions:</p>
+<p>1. For each RETIRED entity ID, search all `Dependencies.csv` files across the execution root for rows where `TargetDeliverableID` matches the retired ID and `Status = ACTIVE`.
+   - Use: `python3 tools/coordination/analyze_dep_closure.py {EXECUTION_ROOT}` if available, or manual CSV scanning.
+   - Each match is an orphaned reference (CRITICAL — active dependency targets a retired deliverable).</p>
+<p>2. For RECLASSIFY actions where the package changed, check that ANCHOR rows (`IMPLEMENTS_NODE`) in the reclassified deliverable&#x27;s `Dependencies.csv` reference the correct parent package.</p>
+<p>3. For MODIFY actions where the deliverable name changed, check `TargetName` fields in other deliverables&#x27; `Dependencies.csv` for stale name references (MINOR — cosmetic but may cause confusion).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0012" class="chunk sec depth-3" data-kind="section" data-key="section:9b8e0d3b6774" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0012</span> Pass 4 — Decomposition Consistency</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9b8e0d3b6774" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9b8e0d3b6774" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9b8e0d3b6774" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Verify that the decomposition document&#x27;s current state is consistent with the amendment:</p>
+<p>For `DECOMP_VARIANT = DOMAIN`, run the registered DOMAIN integrity validator and incorporate its findings into this pass:</p>
+<p>```bash
+python3 tools/validation/validate_domain_decomposition_integrity.py \
+  --decomposition-root {EXECUTION_ROOT}/_Decomposition \
+  --scope-change-snapshot {AMENDMENT_SNAPSHOT} \
+  --output-report {AUDIT_SNAPSHOT}/Domain_Integrity_Report.md \
+  --output-findings {AUDIT_SNAPSHOT}/Domain_Integrity_Findings.csv
+```</p>
+<p>Treat `CRITICAL` and `MAJOR` validator findings as blocking decomposition-consistency findings. The tool covers DOMAIN annex referential integrity, KTY/category and subject/KTY cardinality, objective reconciliation, coverage telemetry reconciliation, active snapshot artifact completeness, `_LATEST.md` parity, and KTY remediation rollup consistency. Do not restate those checks as independent inline audit logic.</p>
+<p>1. **Change Log:** Confirm the amendment entry exists with the correct `AMENDMENT_ID`, date, and description.</p>
+<p>2. **Scope Ledger:** For ADD/REMOVE/RECLASSIFY actions, confirm that scope item → package/deliverable mappings reflect the post-change state. Validate using `DECOMP_VARIANT` section binding (see SCOPE_CHANGE §Variant Section Binding).</p>
+<p>3. **Packages section:** For ADD/REMOVE package actions, confirm rows are present or annotated as RETIRED.</p>
+<p>4. **Deliverables section:** For all actions, confirm rows reflect the post-change state.</p>
+<p>5. **Coverage check:** If pre-change and post-change `coverage_summary.json` files exist in the amendment snapshot, compare:
+   - Forward coverage should not have regressed (unless intentional REMOVE).
+   - No new unassigned scope items (unless from ADD not yet fully propagated).</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0013" class="chunk sec depth-3" data-kind="section" data-key="section:513f46380c12" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0013</span> Pass 5 — Context Metadata Consistency</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:513f46380c12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:513f46380c12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:513f46380c12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+For every deliverable affected by the scope change (listed in `Amendment_Actions.csv`):</p>
+<p>1. Read `_CONTEXT.md` and verify:
+   - `Name` matches the decomposition document&#x27;s entry.
+   - `Package` matches the decomposition document&#x27;s entry.
+   - `Discipline`, `Type`, `Responsible` match (if these were modified by the amendment).
+   - `Decomposition Reference` points to the correct decomposition document.
+   - `Scope Traceability` section lists the correct SOW-IDs and OBJ-IDs per the Scope Ledger.</p>
+<p>2. Read `_STATUS.md` and verify:
+   - Lifecycle state is consistent with expectations (RETIRED for removed entities; &gt;= OPEN for added entities).
+   - History section contains entries consistent with the scope change timeline.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0014" class="chunk sec depth-3" data-kind="section" data-key="section:ea1025744491" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0014</span> Pass 6 — Supersession Binding Completeness</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea1025744491" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea1025744491" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea1025744491" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This pass runs whenever any row in `Amendment_Actions.csv` has `SupersessionBindingPresent = YES`. If supersession files (`Supersession_Delta.csv` and `Supersession_Map.csv`) are missing when `SupersessionBindingPresent = YES` actions exist, emit a CRITICAL finding: &quot;Required supersession artifacts are missing despite source-affecting actions.&quot; Do not skip this pass when files are absent — absence is the failure this pass must catch.</p>
+<p>1. For every row in `Amendment_Actions.csv` where `SupersessionBindingPresent = YES`, derive the expected supersession decision identifier as `D-{ActionSeq}` (zero-padded to match the action&#x27;s sequence formatting) and verify that at least one corresponding row exists in `Supersession_Delta.csv` with the same `AmendmentID` and derived `DecisionID`. For decision-log-only bindings with no formal amendment action, accept `DL-{reference}` rows as the valid producer-side convention.
+2. For every row in `Supersession_Delta.csv`, verify that `SupersededAuthorityPath` resolves to an existing admitted authority file.
+3. For every `SUPERSESSION` row, verify that `SupersededAuthorityRef` is non-empty — the binding must point to a specific source location (section, line, table, or cell reference), not just a file.
+4. Verify cumulative map accumulation by invoking the registered accumulator in check mode:
+   `python3 tools/coordination/accumulate_supersession_map.py --prior-map {prior_snapshot}/Supersession_Map.csv --delta {AMENDMENT_SNAPSHOT}/Supersession_Delta.csv --output-map {AUDIT_SNAPSHOT}/Expected_Supersession_Map.csv --check-map {AMENDMENT_SNAPSHOT}/Supersession_Map.csv --output-findings {AUDIT_SNAPSHOT}/Supersession_Map_Findings.csv`
+   - Omit `--delta` when the audited SCA introduces no delta.
+   - Use `--allow-empty` when no prior map and no current delta exist.
+   - Incorporate `MISSING_EXPECTED_ROW` and `UNEXPECTED_ROW` findings into this pass.
+5. Verify that surviving rows use canonical applicability fields: canonical root names in `AppliesToRoots`, canonical facility IDs in `AppliesToFacilities`, and either explicit section IDs or an intentionally blank `AppliesToSections` field indicating global scope.</p>
+<p>Finding severities:
+- `CRITICAL`: An action claims `SupersessionBindingPresent = YES` but has no matching supersession row.
+- `MAJOR`: A supersession row has an empty or unresolvable `SupersededAuthorityPath` or `SupersededAuthorityRef`, or uses invalid applicability tokens in `AppliesToRoots` / `AppliesToFacilities`.
+- `MINOR`: A `SUPPLEMENTARY_EXTENSION` row lacks a `SupersededAuthorityRef` (less critical since it does not override).</p>
+<p>A scope-change snapshot should not be considered publication-ready (`PUBLICATION_GATED` in the `ReadyForNextPhase` field) if it contains source-affecting decisions with incomplete supersession bindings.</p>
+<p>---
+</p></div></div></section>
+<section id="SEC-AG008-0015" class="chunk sec depth-3" data-kind="section" data-key="section:d20af048e69a" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0015</span> Pass 7 — KTY Content Remediation Verification</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d20af048e69a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d20af048e69a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d20af048e69a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This pass runs when `DECOMP_VARIANT = DOMAIN` or when the amendment snapshot
+contains `KTY_Remediation_Manifest.csv`.</p>
+<p>1. Confirm manifest handling:
+   - If the amendment affects KTY-local content, verify
+     `KTY_Remediation_Manifest.csv` exists in the amendment snapshot.
+   - If no manifest exists and no KTY-local content impact is recorded, mark
+     this pass `NOT_APPLICABLE`.
+   - If a manifest is required but missing, emit a CRITICAL finding.</p>
+<p>2. Validate manifest schema and dispositions:
+   - If `tools/validation/validate_kty_remediation_manifest.py` is available,
+     run it against the manifest and `Amendment_Actions.csv`; incorporate its
+     blocking findings into this pass.
+   - Required fields include `EntityType`, `EntityID`, `KTYID`, `KTYPath`,
+     `CONTENT_DISPOSITION_STATE`, `FACTUAL_USE_GATE`, `AUTHORITY_BASIS`,
+     `SOURCE_ACTION_REF`, and `LAST_VERIFIED_AT`.
+   - Informational fields `AffectedSubjects`, `AffectedHBK`,
+     `CanonicalRootName`, and `FacilityID` must be present; blanks are valid
+     only when the field is not applicable or the root/facility scope is
+     unambiguous.
+   - `CONTENT_DISPOSITION_STATE` must be one of `PENDING`,
+     `ARCHIVED_STUBBED`, `REGENERATED`, `VERIFIED`, `DEFERRED`, `BLOCKED`, or
+     `NOT_REQUIRED`.
+   - `PENDING` rows are CRITICAL.
+   - `DEFERRED` rows must include substantive blocker notes and cap factual
+     readiness at regeneration-only.
+   - `BLOCKED` rows must include evidence-backed blocker notes and cap factual
+     readiness at no next phase.</p>
+<p>3. Verify evidence paths:
+   - Every `ARCHIVE_AND_STUB`, `REGENERATE_CONTENT`, and `VERIFY_ONLY` row must
+     have resolvable evidence paths or explicit `location TBD` with blocker
+     notes.
+   - `ARCHIVE_AND_STUB` rows must have a non-empty, resolvable `ArchivePath`
+     or explicit blocker notes.
+   - `ARCHIVE_AND_STUB` rows must cite `kty-content-remediate` evidence.
+   - `REGENERATE_CONTENT` rows must cite `domain-documents` evidence with
+     `AUTHORITY_MODE: SCA_DRIVEN`.
+   - `VERIFY_ONLY` rows must cite `kty-content-remediate` verification
+     evidence.</p>
+<p>4. Verify archive/stub completeness for `ARCHIVE_AND_STUB` rows:
+   - Archived copies exist under the row&#x27;s `ArchivePath`.
+   - Root-level retired `Scoping.md` / `KA-*.md` paths, when listed, begin with
+     `[RETIRED]` tombstone stubs.
+   - Tombstone stubs cite the amendment id, source action reference, and
+     archive path.
+   - `.Archive/` content is not treated as current factual authority.</p>
+<p>5. Verify factual-use gate consistency:
+   - `FACTUAL_USE_GATE = ALLOW_FACTUAL_USE` requires regenerated or verified
+     evidence and no unresolved blockers.
+   - `FACTUAL_USE_GATE = REGEN_ONLY` is inconsistent with
+     `ReadyForNextPhase = PHASE7_REVIEW` or `PUBLICATION_GATED`.
+   - `FACTUAL_USE_GATE = BLOCK_FACTUAL_USE` is inconsistent with any closure
+     claim that permits factual downstream use.
+   - `FACTUAL_USE_GATE = RETIRED_NO_FACTUAL_USE` requires archived/tombstoned
+     or otherwise retired evidence.</p>
+<p>6. Verify `.Archive/` scanner exclusion:
+   - Inspect downstream allowlist, section-map, regeneration-input, and
+     publication-input files named in the snapshot where present.
+   - Emit a MAJOR finding if any such current-input surface includes `.Archive/`
+     as factual input.
+   - Emit an OBSERVATION if no downstream input surfaces are present to inspect.
+</p></div></div></section>
+<section id="SEC-AG008-0016" class="chunk sec depth-3" data-kind="section" data-key="section:e9210da01a0d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0016</span> Pass 8 — Synthesis and Output</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e9210da01a0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e9210da01a0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e9210da01a0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Compile all findings from Passes 1–7.</p>
+<p>2. Classify each finding by severity:</p>
+<p>| Severity | Meaning |
+|---|---|
+| `CRITICAL` | Scope change action was not executed, or orphaned dependency targets a retired deliverable — project integrity compromised |
+| `MAJOR` | Downstream rerun did not occur, or metadata is inconsistent with the amendment — work products may be stale |
+| `MINOR` | Cosmetic inconsistency (stale name reference, advisory folder relocation not performed) — does not affect integrity |
+| `OBSERVATION` | No action required; noted for completeness |</p>
+<p>3. Determine overall closure status:</p>
+<p>| Status | Condition |
+|---|---|
+| `CLOSED` | Zero CRITICAL findings; zero MAJOR findings |
+| `CLOSED_WITH_OBSERVATIONS` | Zero CRITICAL; zero MAJOR; one or more MINOR/OBSERVATION |
+| `OPEN` | One or more CRITICAL or MAJOR findings remain |</p>
+<p>4. Write all output artifacts to snapshot folder.
+5. Update `_LATEST.md` pointer.
+6. Return summary to RECONCILIATION.</p>
+<p>[[END:PROTOCOL]]</p>
+<p>---</p>
+<p>[[BEGIN:SPEC]]</p></div></div></section>
+<section id="SEC-AG008-0017" class="chunk sec depth-2" data-kind="section" data-key="section:341f90273e7c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0017</span> SPEC — Validity Requirements</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:341f90273e7c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:341f90273e7c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:341f90273e7c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A scope closure audit is valid when:</p>
+<p>- The amendment snapshot was located and its `Amendment_Actions.csv` was successfully parsed.
+- Every row in `Amendment_Actions.csv` was checked against filesystem state (Pass 1).
+- Every recommended downstream rerun was checked for evidence of completion (Pass 2).
+- Orphaned reference detection covered all RETIRED entity IDs across all `Dependencies.csv` files (Pass 3).
+- Decomposition document consistency was verified against the amendment record (Pass 4).
+- Context metadata for every affected deliverable was checked against the decomposition (Pass 5).
+- Supersession binding completeness was verified for all source-affecting actions (Pass 6) — this pass runs whenever any `Amendment_Actions.csv` row has `SupersessionBindingPresent = YES`, regardless of whether supersession artifacts are present on disk.
+- For `DECOMP_VARIANT = DOMAIN`, KTY content remediation state was verified against `KTY_Remediation_Manifest.csv` when present or required (Pass 7).
+- For `DOMAIN`, `.Archive/` scanner exclusion was checked against downstream allowlist, section-map, regeneration-input, and publication-input surfaces where present.
+- For `DOMAIN`, decomposition integrity was verified through `validate_domain_decomposition_integrity.py`, and supersession-map accumulation was verified through `accumulate_supersession_map.py` when supersession inputs were in scope.
+- Every finding has an `EvidenceFile` and `SourceRef` (or explicit `location TBD`).
+- No finding was silently resolved — conflicts between the amendment record and filesystem state are reported with both sides cited.
+- The issue log CSV conforms to the schema defined in STRUCTURE.
+- The summary JSON includes counts per severity and the overall closure status.
+- The snapshot folder is immutable after creation (K-SNAP-1).
+</p></div></div></section>
+<section id="SEC-AG008-0018" class="chunk sec depth-3" data-kind="section" data-key="section:240d3616ad85" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0018</span> Invalid States</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:240d3616ad85" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:240d3616ad85" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:240d3616ad85" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Invalid State | Why |
+|---|---|
+| Finding without evidence | Violates evidence-first invariant |
+| Action marked VERIFIED when filesystem contradicts | False positive — integrity failure |
+| Orphan scan limited to affected packages only | Must scan all `Dependencies.csv` files; orphans may be in unrelated deliverables |
+| Silent resolution of amendment/filesystem disagreement | Violates conflict surfacing invariant |
+| Audit scope expanded beyond the specified amendment | Each audit covers one `AMENDMENT_ID`; separate runs for separate amendments |
+| DOMAIN KTY remediation manifest ignored | KTY content may be stale, retired, or blocked for factual use without audit visibility |
+| `.Archive/` treated as current factual input | Retired content can leak into downstream outputs |</p>
+<p>[[END:SPEC]]</p>
+<p>---</p>
+<p>[[BEGIN:STRUCTURE]]</p></div></div></section>
+<section id="SEC-AG008-0019" class="chunk sec depth-2" data-kind="section" data-key="section:bf497f294636" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0019</span> STRUCTURE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bf497f294636" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bf497f294636" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG008-0020" class="chunk sec depth-3" data-kind="section" data-key="section:eeca55668999" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0020</span> INIT-TASK Brief Format</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:eeca55668999" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:eeca55668999" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:eeca55668999" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+PURPOSE: Verify closure of scope change amendment
+AMENDMENT_ID: SCA-{NNN}
+EXECUTION_ROOT: {absolute path}
+SCOPE_CHANGE_ROOT: {path, default: {EXECUTION_ROOT}/_ScopeChange/}
+DECOMPOSITION_PATH: {absolute path to decomposition document}
+DECOMP_VARIANT: PROJECT | SOFTWARE | DOMAIN
+CONSTRAINTS:
+  - {any scope limitations or focus areas}
+NOTES:
+  - {context from RECONCILIATION about why this audit was requested}
+```
+</p></div></div></section>
+<section id="SEC-AG008-0021" class="chunk sec depth-3" data-kind="section" data-key="section:497b2113ed90" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0021</span> Snapshot Layout</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:497b2113ed90" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:497b2113ed90" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:497b2113ed90" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```
+{EXECUTION_ROOT}/_Reconciliation/ScopeClosureAudit/
+  _LATEST.md
+  ScopeClosure_{AMENDMENT_ID}_{YYYY-MM-DD}_{HHMM}/
+    Brief.md
+    Scope_Closure_Report.md
+    Scope_Closure_IssueLog.csv
+    scope_closure_summary.json
+    QA_Report.md
+    Domain_Integrity_Report.md        (DOMAIN-only, tool output)
+    Domain_Integrity_Findings.csv     (DOMAIN-only, tool output)
+    Expected_Supersession_Map.csv     (Pass 6 accumulator output when run)
+    Supersession_Map_Findings.csv     (Pass 6 accumulator check findings when run)
+```
+</p></div></div></section>
+<section id="SEC-AG008-0022" class="chunk sec depth-3" data-kind="section" data-key="section:abd97af0f2cd" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0022</span> Issue Log Schema (`Scope_Closure_IssueLog.csv`)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:abd97af0f2cd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:abd97af0f2cd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:abd97af0f2cd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Column | Type | Description |
+|---|---|---|
+| `IssueID` | string | `SCC-{NNN}` sequential within this audit |
+| `Pass` | integer | Which audit pass found the issue (1–7) |
+| `Category` | enum | `ACTION_NOT_EXECUTED`, `DOWNSTREAM_NOT_RUN`, `ORPHANED_REFERENCE`, `DECOMP_INCONSISTENCY`, `METADATA_STALE`, `COVERAGE_REGRESSION`, `SUPERSESSION_INCOMPLETE`, `KTY_CONTENT_REMEDIATION`, `ARCHIVE_SCANNER_LEAK` |
+| `Severity` | enum | `CRITICAL`, `MAJOR`, `MINOR`, `OBSERVATION` |
+| `AmendmentAction` | string | The `ActionSeq` from `Amendment_Actions.csv` this finding relates to (or `N/A` for cross-cutting findings) |
+| `EntityID` | string | The deliverable or package ID affected |
+| `EvidenceFile` | string | Path to the file containing evidence |
+| `SourceRef` | string | Section, row, or field within the evidence file |
+| `Description` | string | Human-readable finding description |
+| `Recommendation` | string | Suggested remediation action |
+| `EpistemicLabel` | enum | `FACT`, `ASSUMPTION`, `PROPOSAL` |
+</p></div></div></section>
+<section id="SEC-AG008-0023" class="chunk sec depth-3" data-kind="section" data-key="section:bb0a33af5ac4" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0023</span> Summary JSON Schema (`scope_closure_summary.json`)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bb0a33af5ac4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bb0a33af5ac4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bb0a33af5ac4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```json
+{
+  &quot;amendmentId&quot;: &quot;SCA-{NNN}&quot;,
+  &quot;auditDate&quot;: &quot;YYYY-MM-DD&quot;,
+  &quot;closureStatus&quot;: &quot;CLOSED | CLOSED_WITH_OBSERVATIONS | OPEN&quot;,
+  &quot;totalActions&quot;: 0,
+  &quot;actionsVerified&quot;: 0,
+  &quot;actionsDiscrepant&quot;: 0,
+  &quot;actionsNotExecuted&quot;: 0,
+  &quot;downstreamRerunsRecommended&quot;: 0,
+  &quot;downstreamRerunsCompleted&quot;: 0,
+  &quot;orphanedReferencesFound&quot;: 0,
+  &quot;contentRemediationState&quot;: &quot;NOT_REQUIRED | PENDING | COMPLETE | BLOCKED | DEFERRED&quot;,
+  &quot;ktyRemediationRows&quot;: 0,
+  &quot;ktyRemediationRowsBlocked&quot;: 0,
+  &quot;archiveScannerLeaks&quot;: 0,
+  &quot;findingsBySeverity&quot;: {
+    &quot;CRITICAL&quot;: 0,
+    &quot;MAJOR&quot;: 0,
+    &quot;MINOR&quot;: 0,
+    &quot;OBSERVATION&quot;: 0
+  }
+}
+```
+</p></div></div></section>
+<section id="SEC-AG008-0024" class="chunk sec depth-3" data-kind="section" data-key="section:a0923b108f74" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0024</span> Report Structure (`Scope_Closure_Report.md`)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a0923b108f74" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a0923b108f74" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a0923b108f74" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG008-0025" class="chunk sec depth-1" data-kind="section" data-key="section:0a83c9cbe9fd" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG008-0025</span> Scope Closure Audit — {AMENDMENT_ID}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0a83c9cbe9fd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0a83c9cbe9fd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0a83c9cbe9fd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Audit Date:** {YYYY-MM-DD}
+**Closure Status:** {CLOSED | CLOSED_WITH_OBSERVATIONS | OPEN}
+**Amendment Date:** {from amendment snapshot}
+**Amendment Description:** {from Brief.md in amendment snapshot}
+</p></div></div></section>
+<section id="SEC-AG008-0026" class="chunk sec depth-2" data-kind="section" data-key="section:0781e154166b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0026</span> Amendment Summary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0781e154166b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0781e154166b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0781e154166b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Reproduce the action summary from Amendment_Actions.csv}
+</p></div></div></section>
+<section id="SEC-AG008-0027" class="chunk sec depth-2" data-kind="section" data-key="section:c5d30a70dfd0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0027</span> Pass 1 — Action Verification</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c5d30a70dfd0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c5d30a70dfd0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c5d30a70dfd0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Table: ActionSeq | ActionType | EntityID | Expected | Actual | Status}
+</p></div></div></section>
+<section id="SEC-AG008-0028" class="chunk sec depth-2" data-kind="section" data-key="section:784478eb0e86" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0028</span> Pass 2 — Downstream Rerun Verification</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:784478eb0e86" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:784478eb0e86" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:784478eb0e86" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Table: Agent | Scope | Evidence | Status}
+</p></div></div></section>
+<section id="SEC-AG008-0029" class="chunk sec depth-2" data-kind="section" data-key="section:f1a0cb87465e" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0029</span> Pass 3 — Orphaned References</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:f1a0cb87465e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:f1a0cb87465e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:f1a0cb87465e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Table of orphaned references found, or &quot;No orphaned references detected.&quot;}
+</p></div></div></section>
+<section id="SEC-AG008-0030" class="chunk sec depth-2" data-kind="section" data-key="section:223c171e14c1" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0030</span> Pass 4 — Decomposition Consistency</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:223c171e14c1" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:223c171e14c1" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:223c171e14c1" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Findings per section checked; for DOMAIN, include `validate_domain_decomposition_integrity.py` status and findings summary}
+</p></div></div></section>
+<section id="SEC-AG008-0031" class="chunk sec depth-2" data-kind="section" data-key="section:4584991d93c9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0031</span> Pass 5 — Context Metadata Consistency</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4584991d93c9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4584991d93c9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4584991d93c9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Findings per deliverable checked}
+</p></div></div></section>
+<section id="SEC-AG008-0032" class="chunk sec depth-2" data-kind="section" data-key="section:e5f72d076450" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0032</span> Pass 6 — Supersession Binding Completeness</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e5f72d076450" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e5f72d076450" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e5f72d076450" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Findings per supersession binding checked}
+</p></div></div></section>
+<section id="SEC-AG008-0033" class="chunk sec depth-2" data-kind="section" data-key="section:21583a885133" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0033</span> Pass 7 — KTY Content Remediation Verification</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:21583a885133" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:21583a885133" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:21583a885133" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Manifest, evidence, archive/stub, factual-use gate, and .Archive/ scanner exclusion findings}
+</p></div></div></section>
+<section id="SEC-AG008-0034" class="chunk sec depth-2" data-kind="section" data-key="section:dd1f847f700c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0034</span> Closure Determination</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dd1f847f700c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dd1f847f700c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dd1f847f700c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Summary of findings by severity; overall closure status with rationale}
+</p></div></div></section>
+<section id="SEC-AG008-0035" class="chunk sec depth-2" data-kind="section" data-key="section:afdcfb297a78" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0035</span> Recommendations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:afdcfb297a78" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:afdcfb297a78" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:afdcfb297a78" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>{Prioritized list of remediation actions for OPEN findings}
+```
+</p></div></div></section>
+<section id="SEC-AG008-0036" class="chunk sec depth-3" data-kind="section" data-key="section:9713015ca7a2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0036</span> QA Report (`QA_Report.md`)</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:9713015ca7a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:9713015ca7a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:9713015ca7a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown</p></div></div></section>
+<section id="SEC-AG008-0037" class="chunk sec depth-1" data-kind="section" data-key="section:5fe61285214e" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-AG008-0037</span> QA — Scope Closure Audit {AMENDMENT_ID}</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5fe61285214e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5fe61285214e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5fe61285214e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG008-0038" class="chunk sec depth-2" data-kind="section" data-key="section:de8ee032c9fa" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0038</span> Coverage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de8ee032c9fa" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de8ee032c9fa" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de8ee032c9fa" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- Actions checked: {n} of {total}
+- Downstream reruns checked: {n} of {total recommended}
+- Dependencies.csv files scanned for orphans: {n}
+- Deliverable _CONTEXT.md files checked: {n}
+- KTY remediation manifest rows checked: {n}
+- `.Archive/` scanner exclusion surfaces checked: {n}
+</p></div></div></section>
+<section id="SEC-AG008-0039" class="chunk sec depth-2" data-kind="section" data-key="section:3ab4a5b4c6a6" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0039</span> Limitations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3ab4a5b4c6a6" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3ab4a5b4c6a6" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3ab4a5b4c6a6" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- {Any scope limitations, files not readable, tools not available}
+</p></div></div></section>
+<section id="SEC-AG008-0040" class="chunk sec depth-2" data-kind="section" data-key="section:4eddb71db6b5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0040</span> Self-Assessment</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4eddb71db6b5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4eddb71db6b5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4eddb71db6b5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>- All passes completed: {yes/no}
+- All findings have evidence: {yes/no}
+- No silent resolutions: {yes/no}
+```</p>
+<p>[[END:STRUCTURE]]</p>
+<p>---</p>
+<p>[[BEGIN:RATIONALE]]</p></div></div></section>
+<section id="SEC-AG008-0041" class="chunk sec depth-2" data-kind="section" data-key="section:404d3d1f7799" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-AG008-0041</span> RATIONALE</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:404d3d1f7799" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-AG008-0042" class="chunk sec depth-3" data-kind="section" data-key="section:c31143d75a9e" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0042</span> Why This Agent Exists</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c31143d75a9e" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c31143d75a9e" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c31143d75a9e" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Scope changes are the highest-risk modification to a project&#x27;s structure. SCOPE_CHANGE controls the amendment itself — intake, impact, approval, propagation. But the propagation plan produces a cascade of downstream work: new folders to scaffold, dependencies to re-extract, estimates to update, schedules to revise, context metadata to align. Each downstream step may be performed by a different agent in a different session. Without a closure audit, there is no verification that the cascade completed.
+</p></div></div></section>
+<section id="SEC-AG008-0043" class="chunk sec depth-3" data-kind="section" data-key="section:dcfe418e5199" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0043</span> Why It Runs After Remediation</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dcfe418e5199" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dcfe418e5199" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dcfe418e5199" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+This agent is not a pre-change impact assessment (that&#x27;s SCOPE_CHANGE Gate 2). It is not a post-change validation (that&#x27;s SCOPE_CHANGE Gate 5, which runs immediately after the amendment). It is a **closure audit** — run later, after the downstream reruns have had time to execute. The gap between &quot;scope change applied&quot; and &quot;all consequences propagated&quot; is where inconsistency hides. This agent closes that gap.
+</p></div></div></section>
+<section id="SEC-AG008-0044" class="chunk sec depth-3" data-kind="section" data-key="section:e56484d3dccf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0044</span> Why RECONCILIATION Dispatches It</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e56484d3dccf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e56484d3dccf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e56484d3dccf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+RECONCILIATION is the human-directed manager for cross-deliverable coherence. Scope change closure is inherently cross-deliverable — orphaned references may be in any deliverable&#x27;s dependency register, metadata staleness may affect any deliverable touched by the change. RECONCILIATION&#x27;s toolbelt pattern (one task agent at a time, human-directed scope) is the correct orchestration model for this audit.
+</p></div></div></section>
+<section id="SEC-AG008-0045" class="chunk sec depth-3" data-kind="section" data-key="section:e49d8e15715b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0045</span> Why Orphan Detection Is Critical</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e49d8e15715b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e49d8e15715b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e49d8e15715b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+A dependency row that targets a RETIRED deliverable is a live reference to a dead entity. It will cause AUDIT_DEP_CLOSURE to report an unresolvable target, ESTIMATING to include phantom scope, and SCHEDULING to sequence non-existent work. Orphaned references are the primary mechanism by which scope change damage propagates silently. Detecting them is the single most important function of this audit.
+</p></div></div></section>
+<section id="SEC-AG008-0046" class="chunk sec depth-3" data-kind="section" data-key="section:43e0ee03ca8b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-AG008-0046</span> Value Hierarchy</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:43e0ee03ca8b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:43e0ee03ca8b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:43e0ee03ca8b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When trade-offs arise in audit classification, prioritize:</p>
+<p>1. **Integrity** — a missed orphaned reference or unexecuted action is worse than a false positive
+2. **Completeness** — check everything in the amendment record; partial audits are worse than thorough ones
+3. **Precision** — accurate severity classification enables efficient human triage
+4. **Efficiency** — minimize noise (OBSERVATION-level findings) to keep the report actionable</p>
+<p>[[END:RATIONALE]]</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "AG008";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

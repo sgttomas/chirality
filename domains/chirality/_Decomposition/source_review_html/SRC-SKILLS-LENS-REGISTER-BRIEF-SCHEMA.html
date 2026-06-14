@@ -1,0 +1,342 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-LENS-REGISTER-BRIEF-SCHEMA - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>9</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK102-0001">lens-register — Brief Schema</a> <a href="#SEC-SK102-0002">Dispatch role</a> <a href="#SEC-SK102-0003">Required</a> <a href="#SEC-SK102-0004">Recommended</a> <a href="#SEC-SK102-0005">Optional / compatibility aliases</a> <a href="#SEC-SK102-0006">Unsupported</a> <a href="#SEC-SK102-0007">Canonical ORCHESTRATOR Phase 2.4 brief</a> <a href="#SEC-SK102-0008">Files the skill expects to find in scope</a> <a href="#SEC-SK102-0009">Output location</a></nav>
+<main>
+<section id="SEC-SK102-0001" class="chunk sec depth-1" data-kind="section" data-key="section:209b4361075b" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK102-0001</span> lens-register — Brief Schema</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:209b4361075b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:209b4361075b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:209b4361075b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK102-0002" class="chunk sec depth-2" data-kind="section" data-key="section:4112a69c0d25" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0002</span> Dispatch role</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:4112a69c0d25" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`lens-register` is the normal ORCHESTRATOR Phase 2.4 setup-pipeline skill for PROJECT / SOFTWARE semantic lensing. It is dispatched through TASK as a bounded method pack. It reads one deliverable folder, parses `_SEMANTIC.md`, scans production documents, and writes `_SEMANTIC_LENSING.md`.</p>
+<p>Use TASK generic shell for normal ORCHESTRATOR dispatch. This skill supplies its own method contract and write-boundary requirements, and the brief must authorize `_SEMANTIC_LENSING.md` writes.
+</p></div></div></section>
+<section id="SEC-SK102-0003" class="chunk sec depth-2" data-kind="section" data-key="section:138c0cdb0dbc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0003</span> Required</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:138c0cdb0dbc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` — absolute path to one production unit folder; this is the TASK-normalized scope root.
+- `TaskSkill` — `lens-register`.
+- `RuntimeOverrides.deliverable_folder` — same absolute path as `ScopePath`; this is the skill&#x27;s explicit scope anchor.
+- `_SEMANTIC.md` must exist in the deliverable folder. If absent, the skill writes a blocking `_SEMANTIC_LENSING.md` header and stops.
+</p></div></div></section>
+<section id="SEC-SK102-0004" class="chunk sec depth-2" data-kind="section" data-key="section:8ede6879f395" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0004</span> Recommended</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8ede6879f395" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `RuntimeOverrides.DECOMP_VARIANT` — `PROJECT` | `SOFTWARE` (default `PROJECT`).
+- `RuntimeOverrides.STATUS_POLICY` — `NO_STATUS_TOUCH` for normal Phase 2.4.
+- `AllowedWriteTargets` — include only:
+  - `{deliverable_folder}/_SEMANTIC_LENSING.md`
+  - `{deliverable_folder}/_run_records/` (TASK shell output)
+</p></div></div></section>
+<section id="SEC-SK102-0005" class="chunk sec depth-2" data-kind="section" data-key="section:ec2a5d5dbf3b" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0005</span> Optional / compatibility aliases</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ec2a5d5dbf3b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `deliverable_folder` may be provided as a top-level legacy field, but `RuntimeOverrides.deliverable_folder` is preferred.
+- `DeliverablePath` is accepted only as a compatibility alias when an existing caller provides it. It does not affect TASK write authorization.
+- `DECOMP_VARIANT` may be provided top-level or in `RuntimeOverrides`; runtime override wins.
+</p></div></div></section>
+<section id="SEC-SK102-0006" class="chunk sec depth-2" data-kind="section" data-key="section:8f394bc9c9c0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0006</span> Unsupported</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8f394bc9c9c0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `DECOMP_VARIANT=DOMAIN` is not supported. DOMAIN pipelines skip semantic lensing. The skill refuses gracefully and does not write `_SEMANTIC_LENSING.md`.
+- Multi-deliverable scope is not accepted.
+- Cross-deliverable scanning is not accepted.
+- Following external references from `_REFERENCES.md` is not accepted unless a separate explicitly authorized task provides those sources as in-scope inputs.
+</p></div></div></section>
+<section id="SEC-SK102-0007" class="chunk sec depth-2" data-kind="section" data-key="section:46404916fcdc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0007</span> Canonical ORCHESTRATOR Phase 2.4 brief</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:46404916fcdc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+```markdown
+PURPOSE: Generate the deliverable-local semantic lensing register for one production unit.
+RequestedBy: ORCHESTRATOR</p>
+<p>ScopePath: {DELIVERABLE_PATH}
+TaskSkill: lens-register</p>
+<p>Tasks:
+  - Load `skills/lens-register/SKILL.md` and companion files.
+  - Read `_SEMANTIC.md` and the production documents for this deliverable.
+  - Parse only primary Result tables for matrices A, B, C, F, D, X, E.
+  - Generate or overwrite `{DELIVERABLE_PATH}/_SEMANTIC_LENSING.md`.
+  - Run lens-register QA and validator when available.</p>
+<p>ApplyEdits: true
+AllowedWriteTargets:
+  - {DELIVERABLE_PATH}/_SEMANTIC_LENSING.md
+  - {DELIVERABLE_PATH}/_run_records/</p>
+<p>RuntimeOverrides:
+  DECOMP_VARIANT: {PROJECT|SOFTWARE}
+  deliverable_folder: {DELIVERABLE_PATH}
+  STATUS_POLICY: NO_STATUS_TOUCH</p>
+<p>CustomInstructions:
+  - Treat `_SEMANTIC.md` as a lens source, not an authority.
+  - Ignore Matrix Summary, Matrix Z, derivation tables, and structural matrices K, G, T.
+  - Keep production documents, `_SEMANTIC.md`, and `_STATUS.md` read-only.
+  - Record only warranted items with SourcePath and SectionRef.
+  - Use lens-specific `NO_ITEMS` notes; do not repeat boilerplate.
+  - Do not follow external references outside the deliverable folder.
+  - Do not claim `validate_lens_register.py` PASS unless the validator actually ran.</p>
+<p>ExpectedOutputs:
+  - `{DELIVERABLE_PATH}/_SEMANTIC_LENSING.md`
+  - `{DELIVERABLE_PATH}/_run_records/TASK_RUN_*.md`
+```
+</p></div></div></section>
+<section id="SEC-SK102-0008" class="chunk sec depth-2" data-kind="section" data-key="section:15c9ea70e475" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0008</span> Files the skill expects to find in scope</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:15c9ea70e475" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Required:
+- `_SEMANTIC.md` — source of lens matrices A, B, C, F, D, X, E.</p>
+<p>Recommended / contextual:
+- `_CONTEXT.md` — deliverable identity.
+- `_STATUS.md` — read-only lifecycle state.
+- `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md` — standard production document set. Missing docs produce `[WARNING] MISSING_DOC`, not failure.
+- `_REFERENCES.md` — deliverable-local metadata only; list pointers but do not expand them.
+</p></div></div></section>
+<section id="SEC-SK102-0009" class="chunk sec depth-2" data-kind="section" data-key="section:e4d457e598d3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK102-0009</span> Output location</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:e4d457e598d3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `{deliverable_folder}/_SEMANTIC_LENSING.md` — overwritten each run.
+- `{deliverable_folder}/_run_records/TASK_RUN_*.md` — TASK shell run record, not a skill-authored output.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK102";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

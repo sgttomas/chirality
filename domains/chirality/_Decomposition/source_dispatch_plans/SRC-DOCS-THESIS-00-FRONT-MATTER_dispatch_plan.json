@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source": "SRC-DOCS-THESIS-00-FRONT-MATTER",
+  "source_prefix": "DG012",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-DOCS-THESIS-00-FRONT-MATTER_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/docs/thesis/00_front_matter.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:54:58+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-DG012-0001",
+      "line_start": 1,
+      "line_end": 52,
+      "target_section_ids": [
+        "SEC-DG012-0001",
+        "SEC-DG012-0002",
+        "SEC-DG012-0003"
+      ],
+      "estimated_md_tokens": 807,
+      "contains_oversized_section": false
+    }
+  ]
+}

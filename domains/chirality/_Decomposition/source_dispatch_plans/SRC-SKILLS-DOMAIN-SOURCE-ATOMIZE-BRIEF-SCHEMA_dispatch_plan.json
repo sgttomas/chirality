@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-BRIEF-SCHEMA",
+  "source_prefix": "SK051",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-BRIEF-SCHEMA_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/domain-source-atomize/BRIEF_SCHEMA.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:06+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK051-0001",
+      "line_start": 1,
+      "line_end": 110,
+      "target_section_ids": [
+        "SEC-SK051-0001",
+        "SEC-SK051-0002",
+        "SEC-SK051-0003",
+        "SEC-SK051-0004",
+        "SEC-SK051-0005",
+        "SEC-SK051-0006",
+        "SEC-SK051-0007",
+        "SEC-SK051-0008"
+      ],
+      "estimated_md_tokens": 895,
+      "contains_oversized_section": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-EQUATION-BBOX-DETECT-QA-CHECKS",
+  "source_prefix": "SK064",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-EQUATION-BBOX-DETECT-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/equation-bbox-detect/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:07+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK064-0001",
+      "line_start": 1,
+      "line_end": 86,
+      "target_section_ids": [
+        "SEC-SK064-0001",
+        "SEC-SK064-0002",
+        "SEC-SK064-0003",
+        "SEC-SK064-0004",
+        "SEC-SK064-0005",
+        "SEC-SK064-0006",
+        "SEC-SK064-0007",
+        "SEC-SK064-0008",
+        "SEC-SK064-0009",
+        "SEC-SK064-0010",
+        "SEC-SK064-0011"
+      ],
+      "estimated_md_tokens": 1082,
+      "contains_oversized_section": false
+    }
+  ]
+}

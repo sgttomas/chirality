@@ -1,0 +1,466 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-KTY-METADATA-ALIGN-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>20</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK100-0001">SKILL — kty-metadata-align</a> <a href="#SEC-SK100-0002">Purpose</a> <a href="#SEC-SK100-0003">Suitable agent shells</a> <a href="#SEC-SK100-0004">Inputs</a> <a href="#SEC-SK100-0007">Runtime overrides</a> <a href="#SEC-SK100-0008">Read boundary</a> <a href="#SEC-SK100-0009">Write boundary</a> <a href="#SEC-SK100-0010">Tool usage</a> <a href="#SEC-SK100-0011">Method</a> <a href="#SEC-SK100-0018">Outputs</a> <a href="#SEC-SK100-0019">Non-negotiable constraints</a> <a href="#SEC-SK100-0020">QA expectations</a></nav>
+<main>
+<section id="SEC-SK100-0001" class="chunk sec depth-1" data-kind="section" data-key="section:6ba75f391bf2" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK100-0001</span> SKILL — kty-metadata-align</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:6ba75f391bf2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:6ba75f391bf2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:6ba75f391bf2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK100-0002" class="chunk sec depth-2" data-kind="section" data-key="section:8d75dde39421" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8d75dde39421" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8d75dde39421" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8d75dde39421" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Review and optionally align the metadata surface of one DOMAIN Knowledge Type
+folder to approved decomposition truth and current lifecycle evidence.</p>
+<p>In package-role terms: this skill aligns KTY-local derived metadata
+(`_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`) to the authoritative
+decomposition truth in the canonical working package, not the reverse. The
+decomposition package (main document + authoritative companion registers +
+`_ScopeChange` state) is the source of truth; KTY-local metadata is a
+downstream consumer of that truth.</p>
+<p>When this skill reads `_STATUS.md`, it also reads sibling `_MEMORY.md` or
+`MEMORY.md` when present. Memory is non-authoritative operational context only:
+it can explain prior local runs or caveats, but it must not override approved
+decomposition truth or SCA state.</p>
+<p>This skill supports two modes:</p>
+<p>- `REPORT_ONLY` — inspect and report only
+- `ALIGN_METADATA` — repair metadata-safe drift</p>
+<p>Metadata-safe writes are limited to:</p>
+<p>- `_CONTEXT.md`
+- `_STATUS.md`
+- `_REFERENCES.md`</p>
+<p>This skill never rewrites:</p>
+<p>- `Scoping.md`
+- `KA-*.md`
+- `_DEPENDENCIES.md`
+- `_MEMORY.md`
+- publication artifacts</p>
+<p>If content files appear stale after metadata alignment, the skill reports a
+follow-on rerun rather than widening scope.
+</p></div></div></section>
+<section id="SEC-SK100-0003" class="chunk sec depth-2" data-kind="section" data-key="section:68c62962bb0d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:68c62962bb0d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:68c62962bb0d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:68c62962bb0d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` (generic shell mode, no profile)</p>
+<p>Typical dispatchers:</p>
+<p>- root remediation loops after `domain-documents`
+- `SCOPE_CHANGE` follow-on closure work
+- targeted KTY metadata cleanup after audit findings
+</p></div></div></section>
+<section id="SEC-SK100-0004" class="chunk sec depth-2" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0004</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK100-0005" class="chunk sec depth-3" data-kind="section" data-key="section:7c46f11ad19c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0005</span> Required</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7c46f11ad19c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7c46f11ad19c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7c46f11ad19c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `ScopePath` — absolute path to one `KTY-*` folder
+- `AllowedWriteTargets` — report path plus any metadata files explicitly
+  authorized for alignment in this run
+- `RuntimeOverrides.KTY_PATH` — normally equal to `ScopePath`
+- `RuntimeOverrides.DECOMPOSITION_REF` — decomposition root or document used as
+  truth source
+- `RuntimeOverrides.MODE` — `REPORT_ONLY` or `ALIGN_METADATA`
+</p></div></div></section>
+<section id="SEC-SK100-0006" class="chunk sec depth-3" data-kind="section" data-key="section:b6601363de51" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0006</span> Optional</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b6601363de51" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b6601363de51" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b6601363de51" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `RuntimeOverrides.SOURCES_ROOT` — shared source/reference root for resolving
+  authoritative source pointers
+- `RuntimeOverrides.REVIEW_OUTPUT_PATH` — optional markdown report path
+- `RuntimeOverrides.REWRITE_REFERENCES` — `true` | `false`; default `true`
+- `RuntimeOverrides.ALLOW_STATUS_APPEND` — `true` | `false`; default `true`
+- `RuntimeOverrides.AUTHORITATIVE_STATUS_STATE` — optional lifecycle state to
+  append when the invoking workflow owns the state transition
+</p></div></div></section>
+<section id="SEC-SK100-0007" class="chunk sec depth-2" data-kind="section" data-key="section:0399b53078a2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0007</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:0399b53078a2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:0399b53078a2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:0399b53078a2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `KTY_PATH` | Knowledge Type folder to review/align | **Required** | Absolute path to one `KTY-*` folder |
+| `DECOMPOSITION_REF` | Decomposition truth source | **Required** | Absolute path |
+| `MODE` | Report or metadata alignment mode | **Required** | `REPORT_ONLY`, `ALIGN_METADATA` |
+| `SOURCES_ROOT` | Source-material root for reference-path resolution | omitted | Absolute path |
+| `REVIEW_OUTPUT_PATH` | Optional report path | omitted | Path inside `AllowedWriteTargets` |
+| `REWRITE_REFERENCES` | Rewrite `_REFERENCES.md` | `true` | `true`, `false` |
+| `ALLOW_STATUS_APPEND` | Permit append-only `_STATUS.md` corrections | `true` | `true`, `false` |
+| `AUTHORITATIVE_STATUS_STATE` | Explicit lifecycle state supplied by caller | omitted | `OPEN`, `INITIALIZED`, `SEMANTIC_READY`, `IN_PROGRESS`, `CHECKING`, `ISSUED`, `RETIRED` |
+</p></div></div></section>
+<section id="SEC-SK100-0008" class="chunk sec depth-2" data-kind="section" data-key="section:b669cb0e9214" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0008</span> Read boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b669cb0e9214" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b669cb0e9214" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b669cb0e9214" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Reads are limited to:</p>
+<p>- `{KTY_PATH}/_CONTEXT.md`
+- `{KTY_PATH}/_STATUS.md`
+- `{KTY_PATH}/_MEMORY.md` or `{KTY_PATH}/MEMORY.md` when present, paired with
+  `_STATUS.md` as non-authoritative operational context only
+- `{KTY_PATH}/_REFERENCES.md`
+- optional `{KTY_PATH}/Scoping.md` and `{KTY_PATH}/KA-*.md` for drift
+  observation only
+- decomposition materials under `{DECOMPOSITION_REF}`
+- source pointers under `{SOURCES_ROOT}` only when needed</p>
+<p>This skill must not scan sibling KTY folders or infer truth from unrelated
+roots.
+</p></div></div></section>
+<section id="SEC-SK100-0009" class="chunk sec depth-2" data-kind="section" data-key="section:c6cb31450ccc" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0009</span> Write boundary</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c6cb31450ccc" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c6cb31450ccc" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c6cb31450ccc" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Writes are limited to:</p>
+<p>- optional `{REVIEW_OUTPUT_PATH}`
+- `{KTY_PATH}/_CONTEXT.md`
+- `{KTY_PATH}/_STATUS.md`
+- `{KTY_PATH}/_REFERENCES.md`</p>
+<p>Only files explicitly authorized in `AllowedWriteTargets` may be modified.
+</p></div></div></section>
+<section id="SEC-SK100-0010" class="chunk sec depth-2" data-kind="section" data-key="section:7e28ecbd0412" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0010</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:7e28ecbd0412" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:7e28ecbd0412" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:7e28ecbd0412" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Reasoning-first only.
+- The `allowed-tools` frontmatter field is intentionally omitted.</p>
+<p>Disallowed behavior:</p>
+<p>- No edits to `Scoping.md`, `KA-*.md`, `_DEPENDENCIES.md`, `_MEMORY.md`, or any
+  decomposition file.
+- No invention of source paths, lifecycle state, or decomposition fields.
+- No silent deletion of human-authored reference notes unless the brief
+  explicitly authorizes replacement.
+</p></div></div></section>
+<section id="SEC-SK100-0011" class="chunk sec depth-2" data-kind="section" data-key="section:88306943fea7" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0011</span> Method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:88306943fea7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:88306943fea7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK100-0012" class="chunk sec depth-3" data-kind="section" data-key="section:1f08e562f659" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0012</span> Step 0 — Preconditions</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1f08e562f659" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1f08e562f659" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1f08e562f659" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. Validate `KTY_PATH` exists and resolves to exactly one `KTY-*` folder.
+2. Resolve the matching KTY row from `DECOMPOSITION_REF`.
+3. Validate every repair target is explicitly authorized by
+   `AllowedWriteTargets`.
+4. If the KTY row cannot be identified uniquely: `RUN_STATUS=FAILED_INPUTS`.
+</p></div></div></section>
+<section id="SEC-SK100-0013" class="chunk sec depth-3" data-kind="section" data-key="section:b83f96533dc7" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0013</span> Step 1 — Derive canonical metadata</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:b83f96533dc7" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:b83f96533dc7" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:b83f96533dc7" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Extract from decomposition truth, without invention:</p>
+<p>- `KnowledgeTypeID`
+- `Knowledge Type Name`
+- `Category ID`
+- `Category Name`
+- `Discipline`
+- `Type`
+- `Responsible`
+- `Description`
+- `AnticipatedArtifacts`
+- `CanonicalSchema`
+- `IntendedUsers`
+- `WhenUsed`
+- decomposition reference path
+- any authoritative source pointer or `SourceSpan` available for the KTY</p>
+<p>If a field is absent in decomposition truth, use `TBD` rather than inferring it.
+</p></div></div></section>
+<section id="SEC-SK100-0014" class="chunk sec depth-3" data-kind="section" data-key="section:c28bbd2b235c" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0014</span> Step 2 — Review current metadata state</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c28bbd2b235c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c28bbd2b235c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c28bbd2b235c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Review:</p>
+<p>- `_CONTEXT.md` for identity / category / description drift
+- `_STATUS.md` for append-only lifecycle validity and any obvious contradiction
+  with `AUTHORITATIVE_STATUS_STATE`, when provided
+- `_MEMORY.md` / `MEMORY.md`, when present, for non-authoritative operational
+  caveats paired with `_STATUS.md`
+- `_REFERENCES.md` for stale or contradictory authoritative pointers
+- `Scoping.md` / `KA-*.md` only to decide whether content regeneration follow-up
+  is still needed</p>
+<p>Classify each observed issue as:</p>
+<p>- `REPAIRED_NOW`
+- `RERUN_LATER`
+- `UNRESOLVED`
+</p></div></div></section>
+<section id="SEC-SK100-0015" class="chunk sec depth-3" data-kind="section" data-key="section:5637188ac9c2" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0015</span> Step 3 — Optional metadata alignment</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5637188ac9c2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5637188ac9c2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5637188ac9c2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Only when `MODE = ALIGN_METADATA`:</p>
+<p>1. Rewrite `_CONTEXT.md` to aligned decomposition truth.
+2. If `REWRITE_REFERENCES=true`, normalize `_REFERENCES.md` so authoritative
+   pointers are current and preserved notes stay clearly non-authoritative.
+3. If `ALLOW_STATUS_APPEND=true` and a status correction is unambiguous:
+   - append a correction line to `_STATUS.md`
+   - never invent a new lifecycle state
+   - if `AUTHORITATIVE_STATUS_STATE` is absent and the correction would require
+     judgment, do not edit `_STATUS.md`; report it instead
+</p></div></div></section>
+<section id="SEC-SK100-0016" class="chunk sec depth-3" data-kind="section" data-key="section:ea8331b7d6ae" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0016</span> Step 4 — Surface follow-on work</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ea8331b7d6ae" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ea8331b7d6ae" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ea8331b7d6ae" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If `Scoping.md` or any `KA-*.md` appear inconsistent with aligned metadata:</p>
+<p>- do not edit them
+- report the exact files
+- classify them as `RERUN_LATER`
+</p></div></div></section>
+<section id="SEC-SK100-0017" class="chunk sec depth-3" data-kind="section" data-key="section:5356ef16840d" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK100-0017</span> Step 5 — Write outputs</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:5356ef16840d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:5356ef16840d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:5356ef16840d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+If `REVIEW_OUTPUT_PATH` is provided, write a report containing:</p>
+<p>1. Title: `# KTY Metadata Alignment — {KTY-ID}`
+2. Metadata block: KTY path, decomposition ref, mode, review date
+3. Summary sections:
+   - repaired now
+   - rerun later
+   - unresolved
+4. Files modified in this run, if any
+5. Explicit `RUN_STATUS`
+</p></div></div></section>
+<section id="SEC-SK100-0018" class="chunk sec depth-2" data-kind="section" data-key="section:d468fb0bcfc9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0018</span> Outputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d468fb0bcfc9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d468fb0bcfc9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d468fb0bcfc9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- optional report at `REVIEW_OUTPUT_PATH`
+- optionally updated `_CONTEXT.md`
+- optionally updated `_STATUS.md`
+- optionally updated `_REFERENCES.md`
+</p></div></div></section>
+<section id="SEC-SK100-0019" class="chunk sec depth-2" data-kind="section" data-key="section:fffce34c7ff0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0019</span> Non-negotiable constraints</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:fffce34c7ff0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:fffce34c7ff0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:fffce34c7ff0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- **Single-KTY scope.** One invocation aligns one KTY folder only.
+- **Metadata-only writes.** No `Scoping.md` or `KA-*` edits.
+- **Decomposition authority.** `_CONTEXT.md` aligns to approved decomposition
+  truth (the canonical working package), not existing draft prose. The
+  direction of truth flow is always: authoritative decomposition package -&gt;
+  KTY-local metadata, never the reverse.
+- **Append-only lifecycle safety.** `_STATUS.md` changes must be append-only and
+  authority-backed.
+- **No invention.** Missing source pointers or lifecycle evidence remain
+  reported, not guessed.
+- **Downstream scope only.** This skill operates on KTY-local metadata surfaces
+  only. It must not modify the canonical working package, authoritative
+  companion registers, `_ScopeChange` state, or any derived publication
+  artifacts. It must not become a loophole for compensating for poor
+  decomposition package structure upstream.
+</p></div></div></section>
+<section id="SEC-SK100-0020" class="chunk sec depth-2" data-kind="section" data-key="section:de1a472fe18a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK100-0020</span> QA expectations</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:de1a472fe18a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:de1a472fe18a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:de1a472fe18a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- The target KTY ID is explicit.
+- The run separates `REPAIRED_NOW`, `RERUN_LATER`, and `UNRESOLVED`.
+- Any `_STATUS.md` modification is append-only and evidence-backed.
+- Any stale `Scoping.md` or `KA-*` content is surfaced as follow-on work, not
+  silently rewritten.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK100";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

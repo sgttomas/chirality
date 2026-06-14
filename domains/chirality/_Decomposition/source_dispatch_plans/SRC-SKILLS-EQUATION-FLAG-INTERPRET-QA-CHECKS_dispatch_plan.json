@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-EQUATION-FLAG-INTERPRET-QA-CHECKS",
+  "source_prefix": "SK068",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-EQUATION-FLAG-INTERPRET-QA-CHECKS_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/equation-flag-interpret/QA_CHECKS.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:07+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK068-0001",
+      "line_start": 1,
+      "line_end": 79,
+      "target_section_ids": [
+        "SEC-SK068-0001",
+        "SEC-SK068-0002",
+        "SEC-SK068-0003",
+        "SEC-SK068-0004",
+        "SEC-SK068-0005",
+        "SEC-SK068-0006",
+        "SEC-SK068-0007",
+        "SEC-SK068-0008",
+        "SEC-SK068-0009"
+      ],
+      "estimated_md_tokens": 871,
+      "contains_oversized_section": false
+    }
+  ]
+}

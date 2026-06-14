@@ -1,0 +1,544 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SRC-SKILLS-DBM-CONCORDANCE-SEED-SKILL - structure review</title>
+<style>
+body{font-family:-apple-system,sans-serif;margin:0;padding:0;background:#fafafa;color:#222}
+.toolbar{position:sticky;top:0;background:#fff;padding:.5rem 1rem;border-bottom:1px solid #ddd;z-index:30;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.toolbar button{padding:.35rem .7rem;border:1px solid #888;background:#f5f5f5;border-radius:3px;cursor:pointer;font-size:.85rem}
+.toolbar button.primary{background:#06c;color:#fff;border-color:#06c}
+.toolbar .stat{margin-right:.5rem;color:#444}
+.toolbar .stat b{color:#000}
+.toolbar .dirty{color:#c60;font-weight:bold}
+.toolbar .filter label{margin-right:.4rem;cursor:pointer}
+.toolbar .mode-pill{background:#06c;color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.75rem;text-transform:uppercase}
+nav.toc{position:sticky;top:2.6rem;background:#fff;padding:.4rem .75rem;border-bottom:1px solid #ddd;font-size:.7rem;max-height:4rem;overflow-y:auto;z-index:25}
+nav.toc a{margin-right:.5rem;color:#06c;text-decoration:none}
+main{padding:0 1rem}
+section.sec{margin:1.25rem 0;border-top:2px solid #333;padding-top:.5rem}
+section.sec.depth-3{border-top:1px solid #888;padding-top:.4rem}
+section.sec.depth-4{border-top:1px dashed #aaa}
+section.sec.front-matter{background:#f6f0ff}
+section.sec.back-matter{background:#fff4ec}
+section.sec.out-of-scope{opacity:.55}
+section.sec.cov-empty{outline:3px solid #d22}
+section.sec.cov-low{outline:2px solid #e8a04a}
+section.sec.cov-mid{outline:2px solid #5a8fd0}
+section.sec.cov-high{outline:2px solid #2a8a3a}
+.sec-head{display:flex;align-items:flex-start;gap:.75rem;justify-content:space-between;flex-wrap:wrap}
+.sec-title{margin:.25rem 0;flex:1}
+.sid{font-family:monospace;color:#888;font-size:.75em;margin-right:.4em}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;align-items:start;margin-top:.5rem}
+.row .img img{width:100%;border:1px solid #ccc;background:#fff;margin-bottom:.25rem;position:relative}
+.body p{margin:.5rem 0}
+.body h1,.body h2,.body h3,.body h4,.body h5,.body h6{margin:.6rem 0 .25rem;color:#234}
+.body .inline-img{max-width:100%;display:block;margin:.5rem 0}
+.chunk{padding:.5rem;margin:.4rem 0;border:1px solid #ddd;background:#fff;border-radius:4px;transition:background .15s,opacity .15s}
+.chunk[data-status="verified"]{background:#eef9ee;border-color:#9c9;opacity:.65}
+.chunk[data-status="flagged"]{background:#fff4e6;border-color:#e8a04a}
+.chunk.atom{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;padding:.4rem .5rem}
+.atom .prov{font-family:monospace;color:#888;font-size:.7em}
+.atom .inout{font-size:.65em;background:#eef;padding:.05em .3em;border-radius:2px}
+.atom .stmt{flex:1}
+ul.atoms{padding:0;list-style:none;margin:.5rem 0}
+.page-badge{font-size:.85em;color:#666;font-weight:normal;margin-left:.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ctrl{margin-top:.3rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.75rem;color:#555}
+.ctrl .badge{display:inline-block;min-width:1.5rem}
+.chunk[data-status="verified"] .badge::before{content:"✓ verified";color:#080;font-weight:bold}
+.chunk[data-status="flagged"] .badge::before{content:"⚠ flagged";color:#c60;font-weight:bold}
+.rb{cursor:pointer}
+textarea.flagnote{display:none;width:100%;box-sizing:border-box;padding:.3rem;font-family:monospace;font-size:.8rem;border:1px solid #e8a04a;border-radius:3px;min-height:2rem;resize:vertical}
+.chunk[data-status="flagged"] textarea.flagnote{display:block}
+.xref{color:#06c;text-decoration:none}
+.xref:hover{text-decoration:underline}
+body.hide-verified .chunk[data-status="verified"]{display:none}
+body.only-flagged .chunk:not([data-status="flagged"]){display:none}
+body.only-out .chunk:not([data-inout="OUT"]){display:none}
+body.only-tbd .chunk:not([data-inout="TBD"]){display:none}
+body.only-in  .chunk:not([data-inout="IN"]){display:none}
+body.only-atoms .chunk:not(.atom){display:none}
+body.only-sections .chunk:not(.sec){display:none}
+</style></head><body>
+<div class="toolbar">
+  <span class="mode-pill">structure</span>
+  <span class="stat">Sections: <b>19</b></span>
+  <span class="stat">Atoms: <b>0</b></span>
+  <span class="stat">✓ <b id="stat-verified">0</b></span>
+  <span class="stat">⚠ <b id="stat-flagged">0</b></span>
+  <span class="stat dirty" id="dirty-flag"></span>
+  <span class="filter">
+    <label><input type="checkbox" id="hide-verified"> Hide verified</label>
+    <label><input type="checkbox" id="only-flagged"> Only flagged</label>
+    <label><input type="checkbox" id="only-in"> IN</label>
+    <label><input type="checkbox" id="only-out"> OUT</label>
+    <label><input type="checkbox" id="only-tbd"> TBD</label>
+    <select id="kind-filter">
+      <option value="">All kinds</option>
+      <option value="only-sections">Sections only</option>
+      <option value="only-atoms">Atoms only</option>
+    </select>
+  </span>
+  <button onclick="exportSidecars()" class="primary">Export sidecars</button>
+  <button onclick="reloadFromDisk()">Reload from disk</button>
+  <button onclick="clearLocal()">Clear localStorage</button>
+</div>
+<nav class="toc"><a href="#SEC-SK009-0001">SKILL — dbm-concordance-seed</a> <a href="#SEC-SK009-0002">Purpose</a> <a href="#SEC-SK009-0003">Suitable agent shells</a> <a href="#SEC-SK009-0004">Inputs</a> <a href="#SEC-SK009-0007">Runtime overrides</a> <a href="#SEC-SK009-0008">Tool usage</a> <a href="#SEC-SK009-0009">Outputs</a> <a href="#SEC-SK009-0010">Authority hierarchy</a> <a href="#SEC-SK009-0011">Hypergraph evidence policy</a> <a href="#SEC-SK009-0012">Typed concordance fields</a> <a href="#SEC-SK009-0014">Candidate seeding rules</a> <a href="#SEC-SK009-0015">No-invention rules</a> <a href="#SEC-SK009-0016">Method</a> <a href="#SEC-SK009-0017">Seed QA output format</a> <a href="#SEC-SK009-0018">Candidate output format</a> <a href="#SEC-SK009-0019">Failure behavior</a></nav>
+<main>
+<section id="SEC-SK009-0001" class="chunk sec depth-1" data-kind="section" data-key="section:1bfeb545d26f" data-status="unreviewed" data-depth="1" data-page="" data-in-scope="true"><header class="sec-head"><h2 class="sec-title"><span class="sid">SEC-SK009-0001</span> SKILL — dbm-concordance-seed</h2><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:1bfeb545d26f" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:1bfeb545d26f" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:1bfeb545d26f" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK009-0002" class="chunk sec depth-2" data-kind="section" data-key="section:86625ef357d0" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0002</span> Purpose</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:86625ef357d0" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:86625ef357d0" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:86625ef357d0" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Transform raw concordance evidence atoms into **typed publication concordance candidates** for exactly one approved section, bounded section group, or strong-model consolidation pass. The deterministic tool produces raw evidence atoms with provenance and mechanical risk signals. This skill is the sole owner of determining which evidence atoms are concordance-relevant, type/domain classification, criticality assessment, authority section selection, comparison rule selection, normalization contract population, and source/reference-fidelity-critical designation.</p>
+<p>The skill consumes the frozen publication planning artifacts plus evidence atoms and the risk inventory, reads only the mapped publication inputs for its assigned scope, and emits two outputs:
+- one scope-local typed candidate CSV,
+- one scope-local seed QA markdown file.</p>
+<p>This skill is the reasoning layer between deterministic candidate harvesting and the final frozen `Publication_Concordance_Register.csv`. It is **not** a section writer, **not** a package gate, and **not** a dispatcher.
+</p></div></div></section>
+<section id="SEC-SK009-0003" class="chunk sec depth-2" data-kind="section" data-key="section:ce9d0f189038" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0003</span> Suitable agent shells</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ce9d0f189038" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ce9d0f189038" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ce9d0f189038" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `TASK` (generic shell mode, no profile)</p>
+<p>Typical dispatcher: `DBM_PUBLISHER` during the concordance seeding / freeze phase.
+</p></div></div></section>
+<section id="SEC-SK009-0004" class="chunk sec depth-2" data-kind="section" data-key="section:bbcf64a3a280" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0004</span> Inputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:bbcf64a3a280" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"></div></div></section>
+<section id="SEC-SK009-0005" class="chunk sec depth-3" data-kind="section" data-key="section:dcb088fa7dcf" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK009-0005</span> Required</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:dcb088fa7dcf" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:dcb088fa7dcf" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:dcb088fa7dcf" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `CONCORDANCE_SCOPE_ID`
+- `CONCORDANCE_SCOPE_MODE`
+- `SECTION_IDS`
+- `EVIDENCE_ATOMS_PATH`
+- `RISK_INVENTORY_PATH`
+- `CANDIDATE_OUTPUT_PATH`
+- `SEED_QA_OUTPUT_PATH`
+- `PUBLICATION_INPUT_MANIFEST`
+- `PUBLICATION_SCHEMA_PATH`
+- `SECTION_MAP_PATH`
+- `PUBLICATION_RULES_PATH`
+- `MAX_KA_FILES_TOTAL`
+</p></div></div></section>
+<section id="SEC-SK009-0006" class="chunk sec depth-3" data-kind="section" data-key="section:8be0215b181b" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK009-0006</span> Optional</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:8be0215b181b" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:8be0215b181b" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:8be0215b181b" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `CANDIDATE_INPUT_PATH` — optional draft candidate input for consolidation/rerun passes
+- `PUBLICATION_CONCORDANCE_REGISTER_PATH`
+- `SOURCE_DOMAIN`
+- `ALLOW_PROSE_ONLY_DISCOVERY`
+- `STRICT_REQUIRED_SECTION_MATCH`
+- `HYPERGRAPH_USE_MODE`
+- `HYPERGRAPH_SNAPSHOT_PATH`
+- `HYPERGRAPH_QA_REPORT_PATH`
+- `HYPERGRAPH_EVIDENCE_ROOT`
+</p></div></div></section>
+<section id="SEC-SK009-0007" class="chunk sec depth-2" data-kind="section" data-key="section:61edf99342bd" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0007</span> Runtime overrides</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:61edf99342bd" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:61edf99342bd" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:61edf99342bd" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `CONCORDANCE_SCOPE_ID` | Stable identity for this seeding run | **Required** | `SEC-##` for a single section or approved composite such as `SEC-03__SEC-04` |
+| `CONCORDANCE_SCOPE_MODE` | Whether the run covers one section or a bounded group | **Required** | `SINGLE_SECTION`, `SECTION_GROUP` |
+| `SECTION_IDS` | Approved section IDs included in this scope | **Required** | Non-empty list of approved section IDs |
+| `EVIDENCE_ATOMS_PATH` | Raw evidence atoms from `extract_concordance_evidence.py` | **Required** | `Publication_Concordance_Evidence_Atoms.csv` under `_Publication/DBM/_Planning/` |
+| `RISK_INVENTORY_PATH` | Mechanical risk inventory to cover or waive | **Required** | `Publication_Concordance_Risk_Inventory.csv` under `_Publication/DBM/_Planning/` |
+| `CANDIDATE_OUTPUT_PATH` | Output path for this scope-local refined candidate CSV | **Required** | Path under `_Publication/DBM/_Planning/` |
+| `SEED_QA_OUTPUT_PATH` | Output path for this scope-local seed QA artifact | **Required** | Path under `_Publication/DBM/_Planning/` |
+| `PUBLICATION_INPUT_MANIFEST` | Frozen exact input-path manifest | **Required** | Markdown path |
+| `PUBLICATION_SCHEMA_PATH` | Approved publication schema | **Required** | Markdown path |
+| `SECTION_MAP_PATH` | Approved section map | **Required** | CSV path |
+| `PUBLICATION_RULES_PATH` | Approved publication rules | **Required** | Markdown path |
+| `MAX_KA_FILES_TOTAL` | Hard cap on total mapped KA files across the scope | **Required** | Positive integer |
+| `CANDIDATE_INPUT_PATH` | Optional existing draft candidates to refine during consolidation/rerun passes | unset | CSV path under `_Publication/DBM/_Planning/` |
+| `PUBLICATION_CONCORDANCE_REGISTER_PATH` | Existing frozen register to avoid duplicate key invention during reruns/expansion passes | unset | CSV path |
+| `SOURCE_DOMAIN` | Source domain label for reporting | inferred | Non-empty string |
+| `ALLOW_PROSE_ONLY_DISCOVERY` | Permit semantically grounded candidates discovered from prose when no structured row exists | `true` | `true`, `false` |
+| `STRICT_REQUIRED_SECTION_MATCH` | Require every emitted candidate to map cleanly to the approved scope sections | `true` | `true`, `false` |
+| `HYPERGRAPH_USE_MODE` | Whether hypergraph evidence is admitted for this run | `NONE` | `NONE`, `AUXILIARY_PLANNING`, `AUXILIARY_QA`, `AUXILIARY_PLANNING_AND_QA` |
+| `HYPERGRAPH_SNAPSHOT_PATH` | Exact path to the admitted hypergraph snapshot | unset | Path under `_Aggregation/Hypergraph/` |
+| `HYPERGRAPH_QA_REPORT_PATH` | Exact path to the hypergraph QA report | unset | Path |
+| `HYPERGRAPH_EVIDENCE_ROOT` | Root folder containing hypergraph evidence CSVs | unset | Path under `_Aggregation/Hypergraph/` |
+</p></div></div></section>
+<section id="SEC-SK009-0008" class="chunk sec depth-2" data-kind="section" data-key="section:d74c2bbb2d5a" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0008</span> Tool usage</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:d74c2bbb2d5a" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:d74c2bbb2d5a" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:d74c2bbb2d5a" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- This is a reasoning-first concordance-seeding skill.
+- It consumes deterministic candidate input produced upstream rather than invoking publication tools itself.
+- The `allowed-tools` frontmatter field is intentionally omitted because this skill has no deterministic tool requirement of its own.</p>
+<p>Disallowed behavior:
+- No dispatching of other skills or agents.
+- No mutation of any frozen planning artifact besides the two scope-local outputs named in the brief.
+- No direct freezing of `Publication_Concordance_Register.csv`.
+- No modification of any `CAT-* / 1_Working / KTY-*` input files.
+- No use of `_Aggregation/*`, `_Coordination/*`, `_Evaluation/*`, `_Reconciliation/*`, `_MEMORY.md`, or `_SEMANTIC.md` as factual authority (exception: admitted hypergraph evidence under `_Aggregation/Hypergraph/` may be consumed as auxiliary structure evidence when `HYPERGRAPH_USE_MODE != NONE`). When this skill reads `_STATUS.md`, it must also read sibling `_MEMORY.md` when present as non-authoritative operational context.
+- No guessed assertions that are unsupported by explicit mapped content. Hypergraph evidence may suggest candidates but cannot supply assertion values.
+</p></div></div></section>
+<section id="SEC-SK009-0009" class="chunk sec depth-2" data-kind="section" data-key="section:cd69a6a1d622" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0009</span> Outputs</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:cd69a6a1d622" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:cd69a6a1d622" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:cd69a6a1d622" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `{CANDIDATE_OUTPUT_PATH}` — scope-local typed concordance candidate CSV
+- `{SEED_QA_OUTPUT_PATH}` — scope-local concordance seed QA markdown
+</p></div></div></section>
+<section id="SEC-SK009-0010" class="chunk sec depth-2" data-kind="section" data-key="section:2939c21787e2" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0010</span> Authority hierarchy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:2939c21787e2" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:2939c21787e2" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:2939c21787e2" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+When refining or adding candidates, consult inputs in this order of authority:</p>
+<p>1. approved `Publication_Schema.md`
+2. approved `Publication_Rules.md`
+3. approved `Section_Map.csv`
+4. existing `Publication_Concordance_Register.csv`, when provided
+5. current `Publication_Concordance_Evidence_Atoms.csv` and `Publication_Concordance_Risk_Inventory.csv`
+6. frozen `Publication_Input_Manifest.md`
+7. accepted scope-change state and approved decomposition state named in the manifest
+8. exact mapped KTY-local files named by the section map for the assigned sections
+9. vocabulary map, open-issues register, and decision log named in the manifest when required for typing, normalization, or state selection
+10. original/reference markdown and reference/provenance tables as reference/provenance only; they do not override accepted DOMAIN/SCA state or mapped CAT/KTY/KA-local content
+</p></div></div></section>
+<section id="SEC-SK009-0011" class="chunk sec depth-2" data-kind="section" data-key="section:3dfb0622db4c" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0011</span> Hypergraph evidence policy</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:3dfb0622db4c" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:3dfb0622db4c" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:3dfb0622db4c" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+**Authority statement:** Hypergraph evidence is auxiliary structure evidence only. It does not replace the content authority hierarchy defined above.</p>
+<p>When `HYPERGRAPH_USE_MODE` includes planning (`AUXILIARY_PLANNING` or `AUXILIARY_PLANNING_AND_QA`) and `HYPERGRAPH_SNAPSHOT_PATH` and `HYPERGRAPH_EVIDENCE_ROOT` are provided, the skill may use hypergraph evidence to:
+- suggest repeated-value/assertion clusters by identifying structural patterns across KTYs,
+- identify additional participant sections that the deterministic tool may have missed,
+- identify likely missing concordance candidates implied by graph adjacency.</p>
+<p>The skill must not:
+- invent assertion values from graph topology (e.g., deriving a numeric value from node/edge counts or labels),
+- prefer graph structure over mapped CAT/KTY/KA-local content when the two conflict.</p>
+<p>When a candidate row is discovered or strengthened by hypergraph evidence, it must be tagged with `DiscoverySource = HYPERGRAPH_AUXILIARY`. The seed QA output should note which candidates were influenced by hypergraph evidence and what structural pattern motivated the suggestion.
+</p></div></div></section>
+<section id="SEC-SK009-0012" class="chunk sec depth-2" data-kind="section" data-key="section:c02b40f167e4" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0012</span> Typed concordance fields</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c02b40f167e4" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c02b40f167e4" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c02b40f167e4" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Every emitted candidate row must preserve or fill these typed fields:</p>
+<p>- `AssertionKey`
+- `AssertionLabel`
+- `AssertionDomain`
+- `AssertionType`
+- `CanonicalTerm`
+- `Unit`
+- `ComparisonRule`
+- `ComparisonParameter`
+- `AuthoritySectionID`
+- `RequiredSectionIDs`
+- `FacilityScope`
+- `CurrentStateBasis`
+- `DecisionRefs`
+- `DiscoverySource`
+- `SourceKTYIDs`
+- `SourceSectionIDs`
+- `NormalizationHint`
+- `NormalizationContract` — machine-readable normalization specification section workers must follow. Use forms such as `ROUND_N:2`, `TOKEN_MATCH`, `EXACT`, `RANGE_MATCH`, or `SET_MATCH`.
+- `Criticality`
+- `CandidateValueExample`
+- `SourceArtifact`
+- `SourceRef`
+- `SourceFidelityCritical` — `YES` when this key represents a value that should be checked against admitted reference/provenance material at Gate 6 for traceability and conflict detection. Use `YES` for equipment counts, specification values, scope inclusion/exclusion decisions, and any value where unexplained reference-vs-publication divergence would be a material error. Use `NO` for structural/organizational keys that don&#x27;t have a direct reference counterpart.
+- `SourceExpectedValue` — the normalized expected value from admitted reference/provenance material, when `SourceFidelityCritical = YES`. Extract this from admitted reference/provenance files (narrative or canonical CSVs) during seeding when a direct counterpart exists. Leave empty when the key has no direct counterpart or when `SourceFidelityCritical = NO`.
+- `Notes`
+- `ResolutionStatus`
+</p></div></div></section>
+<section id="SEC-SK009-0013" class="chunk sec depth-3" data-kind="section" data-key="section:c8291f5e2eca" data-status="unreviewed" data-depth="3" data-page="" data-in-scope="true"><header class="sec-head"><h4 class="sec-title"><span class="sid">SEC-SK009-0013</span> Required field semantics</h4><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:c8291f5e2eca" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:c8291f5e2eca" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:c8291f5e2eca" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- `AssertionDomain` should classify the engineering role of the candidate:
+  - `PROCESS_CONDITION`
+  - `UTILITY_CONDITION`
+  - `PRODUCT_SPEC`
+  - `EQUIPMENT_LIMIT`
+  - `OPERATING_TARGET`
+  - `SCOPE_STATE`
+  - `LOCATION_STATE`
+  - `REGULATORY_STATE`
+  - `CONTROL_LOGIC`
+- `DiscoverySource` should record where the candidate came from:
+  - `STRUCTURED_TABLE`
+  - `METADATA_FIELD`
+  - `PROSE_EXTRACTION`
+  - `OPEN_ISSUE`
+  - `DECISION_LOG`
+  - `SCOPE_CHANGE`
+  - `HUMAN_ADDED`
+  - `SECTION_DISCOVERY`
+  - `HYPERGRAPH_AUXILIARY`
+- `Criticality` should be one of:
+  - `HIGH`
+  - `NORMAL`
+  - `LOW`
+- `ComparisonParameter` carries rule-specific details such as rounding precision for `ROUND_N` or normalization expectations for set/range comparison.
+- `NormalizationHint` should state how later section workers should normalize emitted values consistently.
+- `SourceKTYIDs` should identify the KTYs supporting the candidate.
+- `SourceSectionIDs` should identify the approved publication sections in scope that this candidate touches.
+- `ResolutionStatus` should be one of:
+  - `READY_FOR_FREEZE`
+  - `NEEDS_REVIEW`
+  - `DUPLICATE_CANDIDATE`
+  - `OUT_OF_SCOPE`
+</p></div></div></section>
+<section id="SEC-SK009-0014" class="chunk sec depth-2" data-kind="section" data-key="section:ff469d601c1d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0014</span> Candidate seeding rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:ff469d601c1d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:ff469d601c1d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:ff469d601c1d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+The skill should bias toward over-discovery, not under-discovery, but only when grounded in evidence atoms or mapped content.</p>
+<p>Two-tier model guidance:
+- Smaller models may be used only for per-section over-collection. Those outputs must be marked `NEEDS_REVIEW` and are not eligible for register freeze.
+- Strong-model consolidation is required for any output eligible for register freeze. Only rows reviewed by the strong-model consolidation pass and marked `READY_FOR_FREEZE` may be merged into `Publication_Concordance_Register.csv`.
+- Risk-class sweeps always require a strong model because they require cross-section reasoning and multi-KTY context.</p>
+<p>Always look for repeated or technically central items such as:
+- pressures,
+- temperatures,
+- flow rates,
+- compositions/specifications,
+- recoveries/yields,
+- capacities,
+- design limits / MAWP,
+- utility setpoints/conditions,
+- facility/location/state assignments,
+- scope/responsibility assignments,
+- regulatory or compliance state,
+- control/protection states repeated across sections.</p>
+<p>Preferred discovery order:
+1. evidence atoms in `EVIDENCE_ATOMS_PATH`, using `NearbyContext`, `HeadingPath`, `TableCaption`, and `RiskSignals`,
+2. risk inventory rows in `RISK_INVENTORY_PATH`,
+3. draft candidate rows already present in `CANDIDATE_INPUT_PATH`, when provided,
+4. KA metadata fields,
+5. explicit design/value tables,
+6. open-issues items affecting values or epistemic state,
+7. decision-log entries,
+8. accepted scope-change artifacts,
+9. prose-only assertions from mapped KA content when `ALLOW_PROSE_ONLY_DISCOVERY=true`.</p>
+<p>When an evidence atom carries the legacy `SOURCE_AUTHORITY` extraction signal and the skill determines the atom is concordance-critical, treat it as reference/provenance evidence: set `SourceFidelityCritical=YES` and populate `SourceExpectedValue` from the atom&#x27;s `RawValue` after applying the candidate&#x27;s `NormalizationContract`.</p>
+<p>When the dispatcher provides `CustomInstructions` naming a specific risk class, prioritize all risk inventory rows of that class within the scoped sections and verify that each is covered by a candidate, waived, deferred as blocking, or explicitly out of scope.
+</p></div></div></section>
+<section id="SEC-SK009-0015" class="chunk sec depth-2" data-kind="section" data-key="section:338007c95bf3" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0015</span> No-invention rules</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:338007c95bf3" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:338007c95bf3" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:338007c95bf3" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+- Every emitted candidate must be supported by explicit mapped content.
+- If a value or state is important but ambiguous, emit the candidate with `ResolutionStatus=NEEDS_REVIEW` rather than inventing a normalized value.
+- Do not invent units, section ownership, or authority sections.
+- Do not promote a prose hint into a precise numeric assertion unless the mapped text states the value.
+- If a candidate duplicates an existing key but the semantic match is uncertain, preserve both with explicit duplicate notes rather than silently merging.
+</p></div></div></section>
+<section id="SEC-SK009-0016" class="chunk sec depth-2" data-kind="section" data-key="section:56a5812e4b12" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0016</span> Method</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:56a5812e4b12" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:56a5812e4b12" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:56a5812e4b12" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+1. **Validate scope and write boundary.** Confirm required runtime overrides are present, all outputs fall under `_Publication/DBM/_Planning/`, and `SECTION_IDS` is non-empty.
+2. **Read the frozen planning artifacts.** Determine the approved section set, section-map rows, publication rules, evidence atom baseline, risk inventory, and optional draft candidate baseline for this scope.
+3. **Read only mapped publication inputs.** For KTYs mapped to the assigned sections, read:
+   - `Scoping.md`
+   - mapped `KA-*.md`
+   - `_CONTEXT.md`
+   - `_REFERENCES.md`
+   - `_STATUS.md`
+   - `_MEMORY.md` whenever `_STATUS.md` is read, as non-authoritative operational context only
+   - optional `_DEPENDENCIES.md` only when section-map notes or publication rules make interface context material
+4. **Apply scope and readiness discipline.** Refuse unmapped or out-of-scope content. Fail if total mapped KA count exceeds `MAX_KA_FILES_TOTAL`.
+5. **Transform evidence atoms into candidates.** Use atom context and risk signals to decide which atoms represent concordance-worthy values, states, or relationships.
+6. **Refine existing draft candidates when provided.** Fill missing typed fields, normalize labels/keys, and mark unresolved ambiguity with `ResolutionStatus`.
+7. **Add newly discovered candidates.** Add only candidates supported by evidence atoms or mapped content and relevant to the assigned sections.
+8. **Assign section ownership conservatively.** Use the approved schema and section map to propose `AuthoritySectionID` and `RequiredSectionIDs`; if authority is ambiguous, mark `NEEDS_REVIEW`.
+9. **Populate normalization and source-fidelity fields.** Every `READY_FOR_FREEZE` row must have `NormalizationContract`; reference-fidelity-critical rows must have `SourceFidelityCritical=YES` and `SourceExpectedValue` when a direct admitted reference counterpart exists.
+10. **Emit stable outputs.** Write the scope-local candidate CSV and the fixed seed QA artifact.
+</p></div></div></section>
+<section id="SEC-SK009-0017" class="chunk sec depth-2" data-kind="section" data-key="section:a8f32ecf22f9" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0017</span> Seed QA output format</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:a8f32ecf22f9" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:a8f32ecf22f9" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:a8f32ecf22f9" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`*_CONCORDANCE_SEED_QA.md` must contain these blocks in order:
+1. `## Scope Summary`
+2. `## Inputs Consumed`
+3. `## Candidate Refinements`
+4. `## New Candidate Additions`
+5. `## Ambiguities Requiring Review`
+6. `## Duplicate / Merge Notes`
+7. `## Normalization Guidance`</p>
+<p>The QA artifact should make targeted unresolved questions obvious without requiring the human to reconstruct the candidate set from scratch.
+</p></div></div></section>
+<section id="SEC-SK009-0018" class="chunk sec depth-2" data-kind="section" data-key="section:efeedefd608d" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0018</span> Candidate output format</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:efeedefd608d" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:efeedefd608d" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:efeedefd608d" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+`{CANDIDATE_OUTPUT_PATH}` must be a CSV containing at least these columns:
+- `AssertionKey`
+- `AssertionLabel`
+- `AssertionDomain`
+- `AssertionType`
+- `CanonicalTerm`
+- `Unit`
+- `ComparisonRule`
+- `ComparisonParameter`
+- `AuthoritySectionID`
+- `RequiredSectionIDs`
+- `FacilityScope`
+- `CurrentStateBasis`
+- `DecisionRefs`
+- `DiscoverySource`
+- `SourceKTYIDs`
+- `SourceSectionIDs`
+- `NormalizationHint`
+- `NormalizationContract`
+- `Criticality`
+- `CandidateValueExample`
+- `SourceArtifact`
+- `SourceRef`
+- `SourceFidelityCritical`
+- `SourceExpectedValue`
+- `Notes`
+- `ResolutionStatus`
+</p></div></div></section>
+<section id="SEC-SK009-0019" class="chunk sec depth-2" data-kind="section" data-key="section:79f8538ec8d5" data-status="unreviewed" data-depth="2" data-page="" data-in-scope="true"><header class="sec-head"><h3 class="sec-title"><span class="sid">SEC-SK009-0019</span> Failure behavior</h3><div class="ctrl"><span class="badge"></span><label class="rb"><input type="radio" name="s_section:79f8538ec8d5" value="unreviewed">Unreviewed</label><label class="rb"><input type="radio" name="s_section:79f8538ec8d5" value="verified">✓ Verified</label><label class="rb"><input type="radio" name="s_section:79f8538ec8d5" value="flagged">⚠ Flag</label><textarea class="flagnote" placeholder="Flag note..."></textarea></div></header><div class="row"><div class="img"></div><div class="body"><p>
+Use `FAILED_INPUTS` when:
+- required runtime overrides are missing,
+- output paths fall outside `_Publication/DBM/_Planning/`,
+- `SECTION_IDS` are empty or do not match the approved section map,
+- total mapped KA count exceeds `MAX_KA_FILES_TOTAL`,
+- the assigned scope requires inputs that are missing from the frozen planning artifacts.</p>
+<p>Use `FAILED` when:
+- a required output cannot be written despite valid inputs,
+- an internal run error prevents the stable outputs from being emitted.</p>
+<p>Even on successful runs, unresolved semantic duplicates, unclear authority assignment, or ambiguous normalization must remain explicit in the output CSV and QA markdown rather than being silently guessed.</p></div></div></section>
+</main>
+<script>
+const STORAGE_KEY = "decomp-audit:" + location.pathname;
+const SOURCE_PREFIX = "SK009";
+const INITIAL = {"verified": {}, "flagged": {}};
+let state = loadState();
+let dirty = false;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try { return JSON.parse(raw); } catch(e) {}
+  }
+  return JSON.parse(JSON.stringify(INITIAL));
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  markDirty(true);
+  updateStats();
+}
+
+function markDirty(d) {
+  dirty = d;
+  document.getElementById("dirty-flag").textContent = d ? "● unsaved changes (Export to persist)" : "";
+}
+
+function updateStats() {
+  let v=0,f=0;
+  document.querySelectorAll(".chunk").forEach(el => {
+    const s = el.dataset.status;
+    if (s === "verified") v++;
+    else if (s === "flagged") f++;
+  });
+  document.getElementById("stat-verified").textContent = v;
+  document.getElementById("stat-flagged").textContent = f;
+}
+
+function applyStateToDOM() {
+  document.querySelectorAll(".chunk").forEach(el => {
+    const key = el.dataset.key;
+    const legacy = el.dataset.legacyKey;
+    let status = "unreviewed";
+    let note = "";
+    if ((state.verified && state.verified[key]) || (legacy && state.verified && state.verified[legacy])) {
+      status = "verified";
+    } else if ((state.flagged && state.flagged[key]) || (legacy && state.flagged && state.flagged[legacy])) {
+      status = "flagged";
+      const entry = (state.flagged && (state.flagged[key] || state.flagged[legacy])) || {};
+      note = entry.description || entry.note || "";
+    }
+    el.dataset.status = status;
+    el.querySelectorAll('input[type=radio]').forEach(r => { r.checked = (r.value === status); });
+    const ta = el.querySelector("textarea.flagnote");
+    if (ta) ta.value = note;
+  });
+  updateStats();
+}
+
+document.addEventListener("change", e => {
+  if (e.target.matches('input[type=radio]')) {
+    const ck = e.target.closest(".chunk");
+    if (!ck) return;
+    const key = ck.dataset.key;
+    const status = e.target.value;
+    ck.dataset.status = status;
+    if (status === "verified") {
+      state.verified = state.verified || {};
+      state.verified[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        verified_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.flagged) delete state.flagged[key];
+    } else if (status === "flagged") {
+      const note = (ck.querySelector("textarea.flagnote") || {}).value || "";
+      state.flagged = state.flagged || {};
+      state.flagged[key] = {
+        kind: ck.dataset.kind,
+        page: ck.dataset.page || null,
+        description: note,
+        flagged_at: new Date().toISOString().slice(0,10)
+      };
+      if (state.verified) delete state.verified[key];
+    } else {
+      if (state.verified) delete state.verified[key];
+      if (state.flagged) delete state.flagged[key];
+    }
+    saveState();
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea.flagnote")) {
+    const ck = e.target.closest(".chunk");
+    if (!ck || ck.dataset.status !== "flagged") return;
+    const key = ck.dataset.key;
+    state.flagged = state.flagged || {};
+    state.flagged[key] = state.flagged[key] || {
+      kind: ck.dataset.kind,
+      page: ck.dataset.page || null,
+      flagged_at: new Date().toISOString().slice(0,10)
+    };
+    state.flagged[key].description = e.target.value;
+    saveState();
+  }
+});
+
+function download(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function bucketByKind(map) {
+  const buckets = {atom:{}, section:{}};
+  for (const [k, v] of Object.entries(map || {})) {
+    const idx = k.indexOf(":");
+    const kind = idx > 0 ? k.slice(0, idx) : "other";
+    if (buckets[kind]) buckets[kind][k] = v;
+    else (buckets.other = buckets.other || {})[k] = v;
+  }
+  return buckets;
+}
+
+function exportSidecars() {
+  const ts = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
+  const slug = SOURCE_PREFIX || "source";
+  const vbuckets = bucketByKind(state.verified);
+  const fbuckets = bucketByKind(state.flagged);
+  for (const kind of ["atom","section"]) {
+    const v = vbuckets[kind] || {};
+    const f = fbuckets[kind] || {};
+    if (Object.keys(v).length) download(`${slug}_${kind}s_verified_${ts}.json`, v);
+    if (Object.keys(f).length) download(`${slug}_${kind}s_flagged_${ts}.json`, f);
+  }
+  markDirty(false);
+}
+
+function reloadFromDisk() {
+  if (!confirm("Discard browser edits and reload state from on-disk sidecars baked into this HTML?")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL));
+  applyStateToDOM();
+  markDirty(false);
+}
+
+function clearLocal() {
+  if (!confirm("Wipe ALL review state from localStorage? Does not touch on-disk sidecars until you re-export.")) return;
+  state = {verified: {}, flagged: {}};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  applyStateToDOM();
+  markDirty(true);
+}
+
+document.getElementById("hide-verified").addEventListener("change", e => {
+  document.body.classList.toggle("hide-verified", e.target.checked);
+});
+document.getElementById("only-flagged").addEventListener("change", e => {
+  document.body.classList.toggle("only-flagged", e.target.checked);
+});
+document.getElementById("only-in").addEventListener("change", e => {
+  document.body.classList.toggle("only-in", e.target.checked);
+});
+document.getElementById("only-out").addEventListener("change", e => {
+  document.body.classList.toggle("only-out", e.target.checked);
+});
+document.getElementById("only-tbd").addEventListener("change", e => {
+  document.body.classList.toggle("only-tbd", e.target.checked);
+});
+document.getElementById("kind-filter").addEventListener("change", e => {
+  ["only-sections","only-atoms"].forEach(c => document.body.classList.remove(c));
+  if (e.target.value) document.body.classList.add(e.target.value);
+});
+
+applyStateToDOM();
+window.addEventListener("beforeunload", e => {
+  if (dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+</script>
+</body></html>

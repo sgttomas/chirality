@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source": "SRC-AGENTS-AGENT-DELIVERABLE-TASK",
+  "source_prefix": "AG013",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-AGENTS-AGENT-DELIVERABLE-TASK_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_DELIVERABLE_TASK.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:01+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-AG013-0001",
+      "line_start": 5,
+      "line_end": 24,
+      "target_section_ids": [
+        "SEC-AG013-0001"
+      ],
+      "estimated_md_tokens": 180,
+      "contains_oversized_section": false
+    }
+  ]
+}

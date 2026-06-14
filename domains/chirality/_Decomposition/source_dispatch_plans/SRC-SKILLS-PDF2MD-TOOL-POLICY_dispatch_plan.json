@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-PDF2MD-TOOL-POLICY",
+  "source_prefix": "SK133",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-PDF2MD-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/pdf2md/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:12+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK133-0001",
+      "line_start": 1,
+      "line_end": 46,
+      "target_section_ids": [
+        "SEC-SK133-0001",
+        "SEC-SK133-0002",
+        "SEC-SK133-0003",
+        "SEC-SK133-0004",
+        "SEC-SK133-0005",
+        "SEC-SK133-0006",
+        "SEC-SK133-0007",
+        "SEC-SK133-0008"
+      ],
+      "estimated_md_tokens": 217,
+      "contains_oversized_section": false
+    }
+  ]
+}

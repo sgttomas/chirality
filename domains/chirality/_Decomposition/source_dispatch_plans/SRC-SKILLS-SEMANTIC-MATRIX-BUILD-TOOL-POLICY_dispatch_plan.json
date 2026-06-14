@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLS-SEMANTIC-MATRIX-BUILD-TOOL-POLICY",
+  "source_prefix": "SK153",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLS-SEMANTIC-MATRIX-BUILD-TOOL-POLICY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/skills/semantic-matrix-build/TOOL_POLICY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T00:55:14+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SK153-0001",
+      "line_start": 1,
+      "line_end": 87,
+      "target_section_ids": [
+        "SEC-SK153-0001",
+        "SEC-SK153-0002",
+        "SEC-SK153-0003",
+        "SEC-SK153-0004",
+        "SEC-SK153-0005",
+        "SEC-SK153-0006",
+        "SEC-SK153-0007",
+        "SEC-SK153-0008",
+        "SEC-SK153-0009",
+        "SEC-SK153-0010"
+      ],
+      "estimated_md_tokens": 644,
+      "contains_oversized_section": false
+    }
+  ]
+}
