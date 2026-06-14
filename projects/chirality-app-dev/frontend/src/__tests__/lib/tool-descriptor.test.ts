@@ -57,6 +57,17 @@ describe('tool descriptor registry', () => {
       'shell',
       'list_files'
     ]);
+    expect(
+      resolution.permissionDecisions.map((decision) => ({
+        toolName: decision.toolName,
+        decision: decision.decision
+      }))
+    ).toEqual([
+      { toolName: 'Read', decision: 'allow' },
+      { toolName: 'bash', decision: 'deny' },
+      { toolName: 'mystery', decision: 'deny' },
+      { toolName: 'LS', decision: 'allow' }
+    ]);
     expect(resolution.allowedToolNames).toEqual([]);
     expect(resolution.disallowedToolNames).toEqual(getCurrentTrancheDisallowedToolNames());
     expect(resolution.unknownTools).toEqual([

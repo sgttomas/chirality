@@ -6,6 +6,18 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-13 - Capability policy / permission overlay skeleton landed
+
+Added a Chirality-owned permission overlay skeleton for the first-adapter runtime spine.
+
+The tranche introduced provider-neutral `HarnessPermissionDecision` records, a permission policy version, mode normalization for `readOnly`, `workspaceWrite`, `dontAsk`, `ask`, `bypass`, and legacy/default posture, and abstract allow/deny/ask resolution against tool-descriptor metadata. SDK option construction now attaches a `canUseTool` callback backed by the overlay, maps `readOnly` to SDK `plan`, keeps `workspaceWrite` on SDK `default` until write hooks land, and leaves `bypassPermissions` behind `CHIRALITY_ALLOW_SDK_BYPASS=1`.
+
+Tool execution remains disabled for this tranche: `tools: []`, `allowedTools: []`, and the broad descriptor-derived `disallowedTools` list are preserved. Read-class tools can receive abstract overlay allow decisions, but write approval, bash, network, subagent, concrete non-Anthropic provider work, Pi work, read MCP, and write/edit execution remain out of scope.
+
+Residual: SDK read-tool exposure behind the capability policy is the next runtime-spine item. Instruction-root integrity evidence remains pre-existing debt: the normal command resolves the nested app-dev workspace as the source root and fails looking for `agents/`; an explicit Chirality root source override then fails because current required governance docs live under app-dev while the existing packaged Resources docs match the archived root docs. This tranche did not modify package resources, instruction-root files, packaging scripts, package manifests, provider scope, network policy, or desktop wrapper behavior.
+
+Validation: `npm run test -- permission tool-descriptor sdk-options-builder`; `npm run test`; `npm run typecheck`; `git diff --check -- frontend/src/lib/harness/permission-overlay.ts frontend/src/lib/harness/tool-descriptor.ts frontend/src/lib/harness/sdk-options-builder.ts frontend/src/__tests__/lib/permission-overlay.test.ts frontend/src/__tests__/lib/tool-descriptor.test.ts frontend/src/__tests__/lib/sdk-options-builder.test.ts`. `npm run harness:validate:premerge` was skipped because `http://127.0.0.1:3000` was not reachable. `npm run instruction-root:integrity` was attempted and failed for the pre-existing source-root/package-resource posture described above.
+
 ## 2026-06-13 - Package-local context and local-kit refresh landed (`SCA-APP-001-CLOSURE-002`)
 
 Repaired the package-local `SCA-APP-001` closure follow-up for SCC-003 and SCC-004.

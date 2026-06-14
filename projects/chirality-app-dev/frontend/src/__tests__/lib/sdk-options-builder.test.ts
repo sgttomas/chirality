@@ -45,6 +45,8 @@ describe('buildSdkOptions', () => {
     expect(options.resume).toBe('sdk_resume');
     expect(options.model).toBe('claude-test');
     expect(options.maxTurns).toBe(3);
+    expect(options.permissionMode).toBe('default');
+    expect(options.canUseTool).toBeTypeOf('function');
   });
 
   it('allows only explicit project settings and never user or local sources', () => {
@@ -66,5 +68,93 @@ describe('buildSdkOptions', () => {
       systemPrompt: 'persona prompt'
     });
     expect(projectOnly.settingSources).toEqual(['project']);
+  });
+
+  it('maps Chirality modes to SDK permission posture without premature write auto-acceptance', () => {
+    const readOnly = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'readOnly' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(readOnly.permissionMode).toBe('plan');
+
+    const workspaceWrite = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'workspaceWrite' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(workspaceWrite.permissionMode).toBe('default');
+
+    const bypassWithoutGate = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'bypass' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(bypassWithoutGate.permissionMode).toBe('default');
+
+    process.env.CHIRALITY_ALLOW_SDK_BYPASS = '1';
+    const bypassWithGate = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'bypass' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(bypassWithGate.permissionMode).toBe('bypassPermissions');
+  });
+
+  it('attaches a canUseTool callback backed by Chirality permission decisions', async () => {
+    const askOptions = buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'ask' },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    await expect(
+      askOptions.canUseTool?.(
+        'Read',
+        { file_path: 'README.md' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_read'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_read'
+    });
+
+    await expect(
+      askOptions.canUseTool?.(
+        'Write',
+        { file_path: 'README.md', content: 'changed' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_write'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('requires application approval'),
+      toolUseID: 'tool_write'
+    });
+
+    await expect(
+      askOptions.canUseTool?.(
+        'mystery',
+        {},
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_unknown'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining("Unknown harness tool 'mystery'"),
+      toolUseID: 'tool_unknown'
+    });
   });
 });

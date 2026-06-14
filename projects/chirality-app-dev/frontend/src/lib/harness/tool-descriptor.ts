@@ -1,4 +1,8 @@
 import type { HarnessEventType } from './event-schema';
+import {
+  resolveHarnessPermissionDecision,
+  type HarnessPermissionDecision
+} from './permission-overlay';
 
 export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v1.descriptor-only';
 
@@ -106,6 +110,7 @@ export type HarnessToolPoolResolution = {
   mode: string;
   requestedTools: readonly string[];
   requestedDescriptors: readonly HarnessToolDescriptor[];
+  permissionDecisions: readonly HarnessPermissionDecision[];
   allowedToolNames: readonly ClaudeAgentSdkToolName[];
   disallowedToolNames: readonly ClaudeAgentSdkToolName[];
   deniedTools: readonly HarnessToolResolutionIssue[];
@@ -592,6 +597,7 @@ export function getCurrentTrancheDisallowedToolNames(): ClaudeAgentSdkToolName[]
 }
 
 export function resolveHarnessToolPool(input: {
+  sessionId?: string;
   requestedTools?: readonly string[];
   mode?: string;
 }): HarnessToolPoolResolution {
@@ -603,12 +609,21 @@ export function resolveHarnessToolPool(input: {
   const requestedDescriptors: HarnessToolDescriptor[] = [];
   const deniedTools: HarnessToolResolutionIssue[] = [];
   const unknownTools: HarnessToolResolutionIssue[] = [];
+  const permissionDecisions: HarnessPermissionDecision[] = [];
   const seenDescriptors = new Set<string>();
   const knownTools = getKnownHarnessToolNames();
 
   for (const toolName of requestedTools) {
     const descriptor = getHarnessToolDescriptor(toolName);
     if (!descriptor) {
+      permissionDecisions.push(
+        resolveHarnessPermissionDecision({
+          sessionId: input.sessionId,
+          toolName,
+          mode: input.mode,
+          source: 'chirality-policy'
+        })
+      );
       unknownTools.push({
         type: 'UNKNOWN_TOOL',
         toolName,
@@ -621,6 +636,15 @@ export function resolveHarnessToolPool(input: {
     if (!seenDescriptors.has(descriptor.name)) {
       seenDescriptors.add(descriptor.name);
       requestedDescriptors.push(descriptor);
+      permissionDecisions.push(
+        resolveHarnessPermissionDecision({
+          sessionId: input.sessionId,
+          toolName,
+          mode: input.mode,
+          descriptor,
+          source: 'chirality-policy'
+        })
+      );
       deniedTools.push({
         type: 'DENIED_BY_CURRENT_PHASE',
         toolName,
@@ -635,6 +659,7 @@ export function resolveHarnessToolPool(input: {
     mode: input.mode ?? 'default',
     requestedTools,
     requestedDescriptors,
+    permissionDecisions,
     allowedToolNames: [],
     disallowedToolNames: getCurrentTrancheDisallowedToolNames(),
     deniedTools,

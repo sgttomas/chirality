@@ -1,6 +1,10 @@
 import type { Options, PermissionMode, SettingSource } from '@anthropic-ai/claude-agent-sdk';
 import { ContentBlock, ResolvedOpts, SessionRecord } from './types';
-import { resolveHarnessToolPool } from './tool-descriptor';
+import {
+  createHarnessCanUseTool,
+  normalizeHarnessPermissionMode
+} from './permission-overlay';
+import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
 
 export type SdkProbeOptions = Options & {
   settingSources: SettingSource[];
@@ -24,16 +28,17 @@ function parseSettingSources(raw: string | undefined): SettingSource[] {
 }
 
 function mapPermissionMode(mode: string): PermissionMode {
-  if (mode === 'workspaceWrite') {
-    return 'acceptEdits';
+  const normalizedMode = normalizeHarnessPermissionMode(mode);
+  if (normalizedMode === 'readOnly') {
+    return 'plan';
   }
-  if (mode === 'dontAsk') {
+  if (normalizedMode === 'dontAsk') {
     return 'dontAsk';
   }
-  if (mode === 'ask') {
-    return 'default';
-  }
-  if (mode === 'bypass' && process.env.CHIRALITY_ALLOW_SDK_BYPASS === '1') {
+  if (
+    normalizedMode === 'bypass' &&
+    process.env.CHIRALITY_ALLOW_SDK_BYPASS === '1'
+  ) {
     return 'bypassPermissions';
   }
   return 'default';
@@ -67,6 +72,7 @@ export function buildSdkOptions(input: {
   systemPrompt: string;
 }): SdkProbeOptions {
   const toolPool = resolveHarnessToolPool({
+    sessionId: input.session.sessionId,
     requestedTools: input.opts.tools,
     mode: input.opts.mode
   });
@@ -80,6 +86,11 @@ export function buildSdkOptions(input: {
     tools: [],
     allowedTools: [...toolPool.allowedToolNames],
     disallowedTools: [...toolPool.disallowedToolNames],
+    canUseTool: createHarnessCanUseTool({
+      sessionId: input.session.sessionId,
+      mode: input.opts.mode,
+      resolveDescriptor: getHarnessToolDescriptor
+    }),
     mcpServers: {},
     resume: input.session.sdkSessionId,
     settingSources: parseSettingSources(process.env.CHIRALITY_SDK_SETTING_SOURCES),
