@@ -108,11 +108,16 @@ Descriptors record provider-neutral names, aliases, permissions, path scope, ide
 concurrency, interrupt behavior, result-budget policy, provenance events, human-gate
 metadata, and adapter tool names.
 
-This tranche is descriptor-only. Tool execution remains disabled until the permission
-overlay, hooks, result storage, and model/tool loop are implemented. The SDK options
-builder therefore keeps `tools: []` and `allowedTools: []`, while deriving a broad
-`disallowedTools` list from the descriptor registry so SDK read/write/shell/network/subagent
-tools are not exposed to the model by accident.
+The current tranche exposes only requested read-class first-adapter SDK built-ins
+(`Read`, `Glob`, `Grep`, and `LS`) after descriptor and permission-overlay resolution.
+The SDK options builder passes those names through both `tools` and `allowedTools`,
+keeps denied and unrequested SDK names in `disallowedTools`, and keeps `canUseTool`
+attached for explicit hard-deny enforcement. Unknown `opts.tools` fail structurally
+before adapter streaming begins.
+
+Write, edit, shell, network, subagent, and Chirality MCP tools remain unavailable to
+the model. Their descriptors remain metadata only until their bounded implementation,
+hook, result-storage, and validation tranches land.
 
 ## First Adapter Probe Posture
 
@@ -126,8 +131,9 @@ Probe posture:
 - SDK filesystem settings default to `settingSources: []`.
 - `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
-- Built-in tools are disabled for this tranche with `tools: []`, `allowedTools: []`, and
-  descriptor-derived `disallowedTools`.
+- Requested read built-ins are exposed for the opt-in `agentSdk` path after descriptor
+  and permission resolution. Denied or unrequested built-ins remain in descriptor-derived
+  `disallowedTools`.
 
 Pi is a pattern corpus/reference only. This contract does not authorize a Pi adapter, fork,
 package import, Node 22 sidecar, runtime-floor migration, or spike.

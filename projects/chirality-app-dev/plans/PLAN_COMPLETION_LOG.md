@@ -6,6 +6,18 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-14 - SDK read-tool exposure behind capability policy landed (`SDK-READ-TOOLS-001`)
+
+Enabled requested read-class Claude Agent SDK built-ins behind the Chirality-owned descriptor registry, permission overlay, and SDK options builder.
+
+The tranche bumps the tool registry posture from descriptor-only to read-tool exposure for `Read`, `Glob`, `Grep`, and `LS`. Requested read descriptors now become deterministic SDK `tools` and `allowedTools`; denied and unrequested SDK names remain in `disallowedTools`. Unknown `opts.tools` fail structurally before `agentSdk` adapter streaming begins. The `canUseTool` callback remains attached and now applies a basic hard-deny for path-bearing read calls that resolve outside the active project root or arrive with an SDK blocked path.
+
+Write, edit, bash, network, subagent, Pi, concrete non-Anthropic providers, Chirality MCP tools, package/runtime migration, and desktop-wrapper changes remain out of scope. Read MCP / descriptor integration is the next runtime-spine item. Tool result/event evidence expansion remains a later tranche.
+
+Residual: normal harness premerge and instruction-root integrity still expose the pre-existing split instruction-root posture. The root that contains `agents/` lacks current app-dev governance docs, while the nested app-dev source root contains current docs but no `agents/`. Running-app premerge passed only after using a temporary merged instruction root for validation. `npm run instruction-root:integrity` still fails in the default nested source-root mode looking for `projects/chirality-app-dev/agents`; an explicit root source run fails because root `docs/DIRECTIVE.md` and sibling required docs are absent.
+
+Validation: `npm run test -- permission-overlay tool-descriptor sdk-options-builder turn-engine claude-agent-sdk-manager`; `npm run test`; `npm run typecheck`; `CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.c2uFKG npm run harness:validate:premerge` against a local `next dev` server using the same temporary merged root, producing pass status with 8 checks at `frontend/artifacts/harness/section8/latest/summary.json`; `git diff --check` over touched runtime, test, contract, and plan/log files. Normal `npm run harness:validate:premerge` was attempted and failed with `INSTRUCTION_ROOT_INVALID` under the split-root posture. `npm run instruction-root:integrity` and `node ./scripts/verify-instruction-root-integrity.mjs --source-root /Users/ryan/ai-env/projects/chirality` were attempted and failed for the pre-existing split-root posture described above.
+
 ## 2026-06-13 - Capability policy / permission overlay skeleton landed
 
 Added a Chirality-owned permission overlay skeleton for the first-adapter runtime spine.

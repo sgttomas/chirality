@@ -4,7 +4,7 @@ import {
   type HarnessPermissionDecision
 } from './permission-overlay';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v1.descriptor-only';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v2.sdk-read-tools';
 
 export type ClaudeAgentSdkToolName =
   | 'Read'
@@ -63,10 +63,15 @@ export type HarnessToolProvenance = {
   recordsDiff: boolean;
 };
 
-export type HarnessToolRuntimeSupport = {
-  exposedToModel: false;
-  reason: string;
-};
+export type HarnessToolRuntimeSupport =
+  | {
+      exposedToModel: true;
+      reason: string;
+    }
+  | {
+      exposedToModel: false;
+      reason: string;
+    };
 
 export type HarnessToolDescriptor = {
   name: string;
@@ -125,10 +130,16 @@ const TOOL_EVENTS = [
   'tool.failed'
 ] as const satisfies readonly HarnessEventType[];
 
+const SDK_READ_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Read-class SDK built-ins are exposed behind Chirality permission overlay and hard-deny policy.'
+};
+
 const DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: false,
   reason:
-    'Tool execution remains disabled until the permission overlay, hooks, result storage, and tool loop are implemented.'
+    'This tool is not exposed until its permission overlay, hooks, result storage, and validation tranche land.'
 };
 
 const READ_RESULT_BUDGET: HarnessToolResultBudget = {
@@ -182,7 +193,7 @@ function readOnlyDescriptor(input: {
       }
     },
     inputSchema: input.inputSchema,
-    runtime: DESCRIPTOR_ONLY_RUNTIME
+    runtime: SDK_READ_RUNTIME
   };
 }
 
@@ -587,11 +598,18 @@ export function getKnownHarnessToolNames(): string[] {
   return HARNESS_TOOL_DESCRIPTORS.map((descriptor) => descriptor.name);
 }
 
-export function getCurrentTrancheDisallowedToolNames(): ClaudeAgentSdkToolName[] {
+function getSdkToolName(descriptor: HarnessToolDescriptor): ClaudeAgentSdkToolName | undefined {
+  return descriptor.adapter.claudeAgentSdk?.toolName;
+}
+
+export function getCurrentTrancheDisallowedToolNames(
+  allowedToolNames: readonly ClaudeAgentSdkToolName[] = []
+): ClaudeAgentSdkToolName[] {
+  const allowed = new Set(allowedToolNames);
   return uniqueValues(
     HARNESS_TOOL_DESCRIPTORS.flatMap((descriptor) => {
-      const sdkToolName = descriptor.adapter.claudeAgentSdk?.toolName;
-      return sdkToolName ? [sdkToolName] : [];
+      const sdkToolName = getSdkToolName(descriptor);
+      return sdkToolName && !allowed.has(sdkToolName) ? [sdkToolName] : [];
     })
   );
 }
@@ -610,6 +628,7 @@ export function resolveHarnessToolPool(input: {
   const deniedTools: HarnessToolResolutionIssue[] = [];
   const unknownTools: HarnessToolResolutionIssue[] = [];
   const permissionDecisions: HarnessPermissionDecision[] = [];
+  const allowedToolNames: ClaudeAgentSdkToolName[] = [];
   const seenDescriptors = new Set<string>();
   const knownTools = getKnownHarnessToolNames();
 
@@ -636,21 +655,26 @@ export function resolveHarnessToolPool(input: {
     if (!seenDescriptors.has(descriptor.name)) {
       seenDescriptors.add(descriptor.name);
       requestedDescriptors.push(descriptor);
-      permissionDecisions.push(
-        resolveHarnessPermissionDecision({
-          sessionId: input.sessionId,
-          toolName,
-          mode: input.mode,
-          descriptor,
-          source: 'chirality-policy'
-        })
-      );
-      deniedTools.push({
-        type: 'DENIED_BY_CURRENT_PHASE',
+      const decision = resolveHarnessPermissionDecision({
+        sessionId: input.sessionId,
         toolName,
-        descriptorName: descriptor.name,
-        message: descriptor.runtime.reason
+        mode: input.mode,
+        descriptor,
+        source: 'chirality-policy'
       });
+      permissionDecisions.push(decision);
+
+      const sdkToolName = getSdkToolName(descriptor);
+      if (decision.decision === 'allow' && descriptor.runtime.exposedToModel && sdkToolName) {
+        allowedToolNames.push(sdkToolName);
+      } else {
+        deniedTools.push({
+          type: 'DENIED_BY_CURRENT_PHASE',
+          toolName,
+          descriptorName: descriptor.name,
+          message: descriptor.runtime.exposedToModel ? decision.reason : descriptor.runtime.reason
+        });
+      }
     }
   }
 
@@ -660,8 +684,8 @@ export function resolveHarnessToolPool(input: {
     requestedTools,
     requestedDescriptors,
     permissionDecisions,
-    allowedToolNames: [],
-    disallowedToolNames: getCurrentTrancheDisallowedToolNames(),
+    allowedToolNames: uniqueValues(allowedToolNames),
+    disallowedToolNames: getCurrentTrancheDisallowedToolNames(allowedToolNames),
     deniedTools,
     unknownTools,
     issues: [...unknownTools, ...deniedTools]

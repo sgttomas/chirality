@@ -2,6 +2,7 @@ import { hasUiApiKey } from './api-key-store';
 import { asHarnessError, HarnessError } from './errors';
 import { resolveRuntimeOptions } from './options';
 import { evaluateSubagentGovernance } from './subagent-governance';
+import { resolveHarnessToolPool } from './tool-descriptor';
 import {
   AttachmentError,
   AttachmentFailureDetails,
@@ -145,6 +146,24 @@ function buildAttachmentFailureDetails(errors: AttachmentError[]): AttachmentFai
   };
 }
 
+function assertKnownAgentSdkTools(sessionId: string, opts: ResolvedOpts): void {
+  const toolPool = resolveHarnessToolPool({
+    sessionId,
+    requestedTools: opts.tools,
+    mode: opts.mode
+  });
+
+  if (toolPool.unknownTools.length === 0) {
+    return;
+  }
+
+  const toolNames = toolPool.unknownTools.map((issue) => issue.toolName).join(', ');
+  throw new HarnessError('INVALID_REQUEST', 400, `Unknown harness tool(s): ${toolNames}`, {
+    category: 'UNKNOWN_TOOLS',
+    unknownTools: toolPool.unknownTools
+  });
+}
+
 export class TurnEngine {
   private readonly activeSessionTurns = new Set<string>();
   private readonly resolveProviderMode: () => TurnEngineProviderMode;
@@ -205,6 +224,10 @@ export class TurnEngine {
 
     try {
       const resolvedOpts = await this.resolveRuntimeOptions(session, input.opts);
+      if (providerMode === 'agentSdk') {
+        assertKnownAgentSdkTools(input.sessionId, resolvedOpts);
+      }
+
       const attachmentResolution =
         await this.dependencies.attachmentResolver.resolveAttachmentsToContentBlocks(
           input.message,

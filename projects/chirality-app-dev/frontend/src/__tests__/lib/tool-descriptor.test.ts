@@ -8,7 +8,7 @@ import {
 } from '../../lib/harness/tool-descriptor';
 
 describe('tool descriptor registry', () => {
-  it('defines provider-neutral metadata before any tools are exposed', () => {
+  it('exposes only read-class SDK built-ins for the current tranche', () => {
     const descriptors = listHarnessToolDescriptors();
 
     expect(descriptors.map((descriptor) => descriptor.name)).toEqual([
@@ -25,9 +25,21 @@ describe('tool descriptor registry', () => {
       'web_search',
       'agent'
     ]);
-    expect(descriptors.every((descriptor) => descriptor.runtime.exposedToModel === false)).toBe(
-      true
-    );
+    expect(
+      descriptors
+        .filter((descriptor) => descriptor.permissions.includes('read'))
+        .map((descriptor) => descriptor.name)
+    ).toEqual(['read_file', 'find_files', 'search_files', 'list_files']);
+    expect(
+      descriptors
+        .filter((descriptor) => descriptor.permissions.includes('read'))
+        .every((descriptor) => descriptor.runtime.exposedToModel === true)
+    ).toBe(true);
+    expect(
+      descriptors
+        .filter((descriptor) => !descriptor.permissions.includes('read'))
+        .every((descriptor) => descriptor.runtime.exposedToModel === false)
+    ).toBe(true);
 
     const readFile = getHarnessToolDescriptor('read');
     expect(readFile?.permissions).toEqual(['read']);
@@ -68,8 +80,8 @@ describe('tool descriptor registry', () => {
       { toolName: 'mystery', decision: 'deny' },
       { toolName: 'LS', decision: 'allow' }
     ]);
-    expect(resolution.allowedToolNames).toEqual([]);
-    expect(resolution.disallowedToolNames).toEqual(getCurrentTrancheDisallowedToolNames());
+    expect(resolution.allowedToolNames).toEqual(['Read', 'LS']);
+    expect(resolution.disallowedToolNames).toEqual(getCurrentTrancheDisallowedToolNames(['Read', 'LS']));
     expect(resolution.unknownTools).toEqual([
       expect.objectContaining({
         type: 'UNKNOWN_TOOL',
@@ -77,18 +89,32 @@ describe('tool descriptor registry', () => {
         knownTools: expect.arrayContaining(['read_file', 'list_files'])
       })
     ]);
-    expect(resolution.deniedTools.map((issue) => issue.type)).toEqual([
-      'DENIED_BY_CURRENT_PHASE',
-      'DENIED_BY_CURRENT_PHASE',
-      'DENIED_BY_CURRENT_PHASE'
+    expect(resolution.deniedTools).toEqual([
+      expect.objectContaining({
+        type: 'DENIED_BY_CURRENT_PHASE',
+        toolName: 'bash',
+        descriptorName: 'shell'
+      })
     ]);
   });
 
-  it('keeps the descriptor-only SDK deny list broad enough to preserve no-tool exposure', () => {
+  it('keeps denied and unrequested tools out of the model context', () => {
     expect(getCurrentTrancheDisallowedToolNames()).toEqual([
       'Read',
       'Glob',
       'Grep',
+      'LS',
+      'Write',
+      'Edit',
+      'MultiEdit',
+      'NotebookEdit',
+      'Bash',
+      'WebFetch',
+      'WebSearch',
+      'Agent'
+    ]);
+    expect(getCurrentTrancheDisallowedToolNames(['Read', 'Grep'])).toEqual([
+      'Glob',
       'LS',
       'Write',
       'Edit',

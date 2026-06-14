@@ -109,7 +109,12 @@ function createAgentSdkManager(startTurnImpl?: IAgentSdkManager['startTurn']): I
   };
 }
 
-function createTurnEngine(startTurnImpl?: IAgentSdkManager['startTurn']): {
+function createTurnEngine(
+  startTurnImpl?: IAgentSdkManager['startTurn'],
+  options?: {
+    providerMode?: 'stub' | 'anthropic' | 'agentSdk';
+  }
+): {
   engine: TurnEngine;
   sessionManager: ISessionManager;
   personaManager: IPersonaManager;
@@ -125,10 +130,13 @@ function createTurnEngine(startTurnImpl?: IAgentSdkManager['startTurn']): {
     personaManager,
     attachmentResolver,
     agentSdkManager,
-    resolveProviderMode: () => 'stub',
+    resolveProviderMode: () => options?.providerMode ?? 'stub',
+    hasUiApiKey: () => options?.providerMode === 'agentSdk',
     resolveRuntimeOptions: async (_session: SessionRecord, opts?: HarnessOpts) => ({
       ...resolvedOpts,
-      model: opts?.model ?? resolvedOpts.model
+      model: opts?.model ?? resolvedOpts.model,
+      tools: opts?.tools ?? resolvedOpts.tools,
+      mode: opts?.mode ?? resolvedOpts.mode
     }),
     evaluateSubagentGovernance: async () => ({
       allowed: false,
@@ -219,5 +227,27 @@ describe('TurnEngine', () => {
       message: 'after cancel'
     });
     await recoveryTurn.cancel();
+  });
+
+  it('rejects unknown agentSdk tools before starting the adapter stream', async () => {
+    const { engine, agentSdkManager } = createTurnEngine(undefined, {
+      providerMode: 'agentSdk'
+    });
+
+    await expect(
+      engine.runTurn({
+        sessionId: session.sessionId,
+        message: 'hello',
+        opts: {
+          tools: ['read', 'mystery-tool']
+        }
+      })
+    ).rejects.toMatchObject({
+      type: 'INVALID_REQUEST',
+      status: 400,
+      message: expect.stringContaining('Unknown harness tool(s): mystery-tool')
+    });
+
+    expect(agentSdkManager.startTurn).not.toHaveBeenCalled();
   });
 });

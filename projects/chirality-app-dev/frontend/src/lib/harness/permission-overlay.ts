@@ -1,5 +1,6 @@
 import type { CanUseTool, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
 import { randomUUID } from 'node:crypto';
+import path from 'node:path';
 import type { HarnessToolDescriptor } from './tool-descriptor';
 
 export const HARNESS_PERMISSION_POLICY_VERSION = 'harness-permission.v1.overlay-skeleton';
@@ -44,6 +45,61 @@ export type ResolveHarnessPermissionDecisionInput = {
   explicitDenyReason?: string;
   safeMetadata?: Record<string, unknown>;
 };
+
+function isWithinRoot(root: string, candidate: string): boolean {
+  const relative = path.relative(path.resolve(root), path.resolve(candidate));
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function readPathFromToolInput(toolInput: Record<string, unknown>): string | undefined {
+  const pathValue = toolInput.file_path ?? toolInput.path;
+  return typeof pathValue === 'string' && pathValue.trim().length > 0
+    ? pathValue.trim()
+    : undefined;
+}
+
+function resolveReadPathDeny(input: {
+  descriptor?: HarnessToolDescriptor;
+  projectRoot?: string;
+  toolInput: Record<string, unknown>;
+  blockedPath?: string;
+}): { reason: string; metadata: Record<string, unknown> } | undefined {
+  if (input.blockedPath) {
+    return {
+      reason: `Read path '${input.blockedPath}' is blocked by SDK path policy.`,
+      metadata: {
+        denyClass: 'path-containment',
+        blockedPath: input.blockedPath
+      }
+    };
+  }
+
+  if (!input.projectRoot || input.descriptor?.pathScope !== 'project-root-read') {
+    return undefined;
+  }
+
+  const rawPath = readPathFromToolInput(input.toolInput);
+  if (!rawPath) {
+    return undefined;
+  }
+
+  const resolvedPath = path.isAbsolute(rawPath)
+    ? path.resolve(rawPath)
+    : path.resolve(input.projectRoot, rawPath);
+  if (isWithinRoot(input.projectRoot, resolvedPath)) {
+    return undefined;
+  }
+
+  return {
+    reason: `Read path '${rawPath}' resolves outside the active project root.`,
+    metadata: {
+      denyClass: 'path-containment',
+      projectRoot: path.resolve(input.projectRoot),
+      requestedPath: rawPath,
+      resolvedPath
+    }
+  };
+}
 
 export function normalizeHarnessPermissionMode(mode: string | undefined): NormalizedHarnessPermissionMode {
   if (mode === 'readOnly') {
@@ -229,21 +285,31 @@ export function permissionDecisionToSdkResult(
 export function createHarnessCanUseTool(input: {
   sessionId: string;
   mode: string;
+  projectRoot?: string;
   resolveDescriptor: (toolName: string) => HarnessToolDescriptor | undefined;
 }): CanUseTool {
   return async (toolName, toolInput, options) => {
+    const descriptor = input.resolveDescriptor(toolName);
+    const pathDeny = resolveReadPathDeny({
+      descriptor,
+      projectRoot: input.projectRoot,
+      toolInput,
+      blockedPath: options.blockedPath
+    });
     const decision = resolveHarnessPermissionDecision({
       sessionId: input.sessionId,
       mode: input.mode,
       toolName,
-      descriptor: input.resolveDescriptor(toolName),
+      descriptor,
       source: 'sdk-callback',
+      explicitDeny: Boolean(pathDeny),
+      explicitDenyReason: pathDeny?.reason,
       safeMetadata: {
         inputKeys: Object.keys(toolInput).sort(),
-        blockedPath: options.blockedPath,
         decisionReason: options.decisionReason,
         displayName: options.displayName,
-        sdkToolUseId: options.toolUseID
+        sdkToolUseId: options.toolUseID,
+        ...pathDeny?.metadata
       }
     });
 

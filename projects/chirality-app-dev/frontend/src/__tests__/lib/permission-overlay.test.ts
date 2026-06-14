@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  createHarnessCanUseTool,
   HARNESS_PERMISSION_POLICY_VERSION,
   permissionDecisionToSdkResult,
   resolveHarnessPermissionDecision
@@ -109,6 +110,44 @@ describe('permission overlay', () => {
     expect(explicit).toMatchObject({
       decision: 'deny',
       reason: 'Test hard deny.'
+    });
+  });
+
+  it('hard-denies path-bearing read callbacks outside the active project root', async () => {
+    const canUseTool = createHarnessCanUseTool({
+      sessionId,
+      mode: 'readOnly',
+      projectRoot: '/tmp/project',
+      resolveDescriptor: getHarnessToolDescriptor
+    });
+
+    await expect(
+      canUseTool(
+        'Read',
+        { file_path: '../outside.md' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_outside'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('outside the active project root'),
+      toolUseID: 'tool_outside'
+    });
+
+    await expect(
+      canUseTool(
+        'LS',
+        { path: 'PKG-01' },
+        {
+          signal: new AbortController().signal,
+          toolUseID: 'tool_inside'
+        }
+      )
+    ).resolves.toMatchObject({
+      behavior: 'allow',
+      toolUseID: 'tool_inside'
     });
   });
 });

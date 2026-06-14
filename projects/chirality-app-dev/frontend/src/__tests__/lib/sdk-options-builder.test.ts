@@ -26,7 +26,7 @@ afterEach(() => {
 });
 
 describe('buildSdkOptions', () => {
-  it('defaults to SDK settings isolation and exposes no built-in tools in the descriptor-only tranche', () => {
+  it('defaults to SDK settings isolation and exposes only requested read-class tools', () => {
     const options = buildSdkOptions({
       session,
       opts,
@@ -35,9 +35,9 @@ describe('buildSdkOptions', () => {
     });
 
     expect(options.settingSources).toEqual([]);
-    expect(options.tools).toEqual([]);
-    expect(options.allowedTools).toEqual([]);
-    expect(options.disallowedTools).toContain('Read');
+    expect(options.tools).toEqual(['Read']);
+    expect(options.allowedTools).toEqual(['Read']);
+    expect(options.disallowedTools).not.toContain('Read');
     expect(options.disallowedTools).toContain('LS');
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
@@ -47,6 +47,28 @@ describe('buildSdkOptions', () => {
     expect(options.maxTurns).toBe(3);
     expect(options.permissionMode).toBe('default');
     expect(options.canUseTool).toBeTypeOf('function');
+  });
+
+  it('exposes the full requested read set and keeps unrequested or denied tools disallowed', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: { ...opts, tools: ['read', 'Glob', 'grep', 'LS'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual(['Read', 'Glob', 'Grep', 'LS']);
+    expect(options.allowedTools).toEqual(['Read', 'Glob', 'Grep', 'LS']);
+    expect(options.disallowedTools).toEqual([
+      'Write',
+      'Edit',
+      'MultiEdit',
+      'NotebookEdit',
+      'Bash',
+      'WebFetch',
+      'WebSearch',
+      'Agent'
+    ]);
   });
 
   it('allows only explicit project settings and never user or local sources', () => {
@@ -77,7 +99,7 @@ describe('buildSdkOptions', () => {
       abortController: new AbortController(),
       systemPrompt: 'persona prompt'
     });
-    expect(readOnly.permissionMode).toBe('plan');
+    expect(readOnly.permissionMode).toBe('dontAsk');
 
     const workspaceWrite = buildSdkOptions({
       session,

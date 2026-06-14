@@ -29,10 +29,7 @@ function parseSettingSources(raw: string | undefined): SettingSource[] {
 
 function mapPermissionMode(mode: string): PermissionMode {
   const normalizedMode = normalizeHarnessPermissionMode(mode);
-  if (normalizedMode === 'readOnly') {
-    return 'plan';
-  }
-  if (normalizedMode === 'dontAsk') {
+  if (normalizedMode === 'readOnly' || normalizedMode === 'dontAsk') {
     return 'dontAsk';
   }
   if (
@@ -83,12 +80,13 @@ export function buildSdkOptions(input: {
     model: input.opts.model,
     maxTurns: input.opts.maxTurns,
     permissionMode: mapPermissionMode(input.opts.mode),
-    tools: [],
+    tools: [...toolPool.allowedToolNames],
     allowedTools: [...toolPool.allowedToolNames],
     disallowedTools: [...toolPool.disallowedToolNames],
     canUseTool: createHarnessCanUseTool({
       sessionId: input.session.sessionId,
       mode: input.opts.mode,
+      projectRoot: input.session.projectRoot,
       resolveDescriptor: getHarnessToolDescriptor
     }),
     mcpServers: {},
