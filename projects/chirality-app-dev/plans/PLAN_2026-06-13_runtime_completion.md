@@ -37,7 +37,8 @@ Completion is defined against:
 | Turn lifecycle extraction | LANDED 2026-06-13 (`c8d735e2e`) | Continue extracting policy from route-owned surfaces where planned. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Commit/test history. |
 | HarnessEvent expansion | LANDED 2026-06-13 (`e39d07827`) | Continue conformance and replay coverage as runtime surfaces grow. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Commit/test history. |
 | Engine conformance fixtures | LANDED 2026-06-13 (`02f92417b`) | Extend fixtures for tool and permission phases. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Commit/test history. |
-| Tool descriptor design | LANDED 2026-06-13 (`3bf6f9fb1`) | Permission overlay skeleton remains next. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Prior tranche closeout evidence recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| Tool descriptor design | LANDED 2026-06-13 (`3bf6f9fb1`) | Permission overlay skeleton has landed; continue preserving descriptor metadata as read exposure begins. Detail: `plans/PLAN_COMPLETION_LOG.md`. | Prior tranche closeout evidence recorded in `plans/PLAN_COMPLETION_LOG.md`. |
+| Capability policy / permission overlay skeleton | LANDED 2026-06-13 (`1532b32c7`) | SDK read-tool exposure remains next; pre-existing instruction-root integrity evidence debt remains recorded in `plans/PLAN_COMPLETION_LOG.md`. | Focused/full tests and typecheck passed; skipped/failed checks recorded in `plans/PLAN_COMPLETION_LOG.md`. |
 
 ## Dependency Spine
 
