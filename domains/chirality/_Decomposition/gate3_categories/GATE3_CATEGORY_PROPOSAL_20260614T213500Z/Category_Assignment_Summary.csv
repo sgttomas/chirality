@@ -1,0 +1,12 @@
+CategoryID,Name,InAtoms,AssignmentFindings,BM25Verdict,Blocking
+CAT-001,Epistemic and Professional-Practice Foundations,2180,136,PENDING_DENSE_RATIFICATION,YES
+CAT-002,Governance and Agent Instruction Architecture,1109,25,PENDING_DENSE_RATIFICATION,YES
+CAT-003,Decomposition Lifecycle and Domain Structuring,2252,207,PENDING_DENSE_RATIFICATION,YES
+CAT-004,"Task, Skill, and Tool Execution Contracts",2619,107,PENDING_DENSE_RATIFICATION,YES
+CAT-005,"Source Fidelity, Retrieval, and Validation Infrastructure",227,22,PENDING_DENSE_RATIFICATION,YES
+CAT-006,"Audit, Review, Reconciliation, and Evaluation",2563,174,PENDING_DENSE_RATIFICATION,YES
+CAT-007,"Publication, Aggregation, Hypergraph, and Synthesis",2118,88,PENDING_DENSE_RATIFICATION,YES
+CAT-008,"Document, Asset, Drawing, and Engineering-Data Extraction",3305,77,PENDING_DENSE_RATIFICATION,YES
+CAT-009,"Coordination, Change, Scheduling, and Deliverable Workflows",1691,30,PENDING_DENSE_RATIFICATION,YES
+CAT-010,"Work-Surface, Project, Product, and Integration Boundaries",1297,15,PENDING_DENSE_RATIFICATION,YES
+CAT-011,"Legal, License, and Public-Release Boundaries",42,0,PENDING_DENSE_RATIFICATION,YES

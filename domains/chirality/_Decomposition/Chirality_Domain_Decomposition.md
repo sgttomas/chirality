@@ -2,9 +2,9 @@
 
 Package role: working surface
 
-Status: Gate 2 normalization is accepted for the current Chirality Phase 2 source-unit set, and the grouped skill-pack source-unit caveat is closed by `GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z`. Gate 1 intake was accepted against the prior 242-row manifest; later source-boundary cleanup retired 21 rows (`HX001`..`HX009`, `AG013`, `RT003`, `RT004`, `DG001`..`DG009`), Batch 5 admitted four work-surface registry sources (`WSR001`..`WSR004`), and Batch 6 admitted `SRC-LICENSE` / `RT005`. The active file-level manifest remains 225 rows, while the accepted Gate 2 normalization surface is 110 source units: 9 active Batch 1 carry-forward units, 36 Batch 2 agent-contract units, 22 Batch 3 governance/thesis units, 38 grouped Batch 4 skill-pack units, 4 Batch 5 work-surface units, and 1 Batch 6 license unit. Canonical `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `Gate2_Source_Unit_Register.csv`, and `cross_source_toc_matrix.{md,csv}` have been regenerated for this accepted Gate 2 state. Phase 3 may proceed from the accepted Gate 2 snapshots after the Phase 2.5 catalog/retrieval refresh.
+Status: Gate 2 normalization is accepted for the current Chirality Phase 2 source-unit set, and Gate 3 is open. The grouped skill-pack source-unit caveat is closed by `GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z`. The active file-level manifest remains 225 rows, while the accepted Gate 2 normalization surface is 110 source units. Canonical `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `Gate2_Source_Unit_Register.csv`, and `cross_source_toc_matrix.{md,csv}` remain the accepted upstream truth. Gate 3 category proposal `GATE3_CATEGORY_PROPOSAL_20260614T213500Z` now proposes 11 flat Categories and assigns all 19403 IN atoms in `Domain_Ledger_Gate3_Category_Draft.csv`; Gate 3 is not closed because dense ratification is pending and 881 ambiguous-assignment candidates remain open.
 
-Generated UTC: 2026-06-14T20:44:03Z
+Generated UTC: 2026-06-14T21:37:18Z
 
 ## Source Model
 
@@ -28,7 +28,7 @@ Retrieval index status: `BM25_ONLY`
 
 Retrieval smoke query: `PASS` (`derivative-package rule` rank 1 -> `SRC-AGENTS` / `@repo/AGENTS.md`)
 
-Dense retrieval status: `DEFERRED`
+Dense retrieval status: `ATTEMPTED; DEFERRED_FOR_GATE3`
 
 ## Intake Summary
 
@@ -426,14 +426,14 @@ Batch 4 uses grouped skill-pack source units (`SKP000`..`SKP037`) as the accepte
 
 ## Phase 2.5 Retrieval Refresh
 
-Phase 2.5 is rerun after Gate 2 closure. The current source catalog pointer is `domains/chirality/_LocalIndexes/_LATEST.md`; source catalog validation and BM25 retrieval are structural checks over the accepted Gate 2 ledger/vocabulary and review companions. Dense embeddings remain deferred.
+Phase 2.5 is rerun after Gate 2 closure. The current source catalog pointer is `domains/chirality/_LocalIndexes/_LATEST.md`; source catalog validation and BM25 retrieval are structural checks over the accepted Gate 2 ledger/vocabulary and review companions. Dense embeddings were attempted for Gate 3 but remain deferred because the local fastembed pass reached only 1,000 of 29,843 vectors after roughly nine minutes; the index was restored to a consistent BM25-only state.
 
 | Metric | Value |
 |---|---:|
 | Source catalog pointer | `domains/chirality/_LocalIndexes/_LATEST.md` |
 | Catalog validation | `PASS` |
 | Retrieval status | `BM25_ONLY` |
-| Dense embeddings | `DEFERRED` |
+| Dense embeddings | `ATTEMPTED; DEFERRED_FOR_GATE3` |
 | BM25 smoke query | PASS - rank 1 `SRC-AGENTS` / `@repo/AGENTS.md` for `derivative-package rule` |
 | TOC-prior matrix scope | 110 accepted Gate 2 source units |
 | TOC-prior source-pair rows | 21964 |
@@ -441,6 +441,39 @@ Phase 2.5 is rerun after Gate 2 closure. The current source catalog pointer is `
 TOC-prior matrix Markdown: `domains/chirality/_Decomposition/cross_source_toc_matrix.md`
 
 TOC-prior matrix CSV: `domains/chirality/_Decomposition/cross_source_toc_matrix.csv`
+
+## Phase 3 Category Proposal (Open)
+
+Gate 3 is open from the accepted Gate 2 source-unit authority basis. The current proposal reconciles `cross_source_toc_matrix.*`, `Vocabulary_Map.csv`, and the accepted atom ledger into 11 flat Categories. `Atomic_Domain_Ledger.csv` remains the accepted Gate 2 ledger; the category-assigned draft is `Domain_Ledger_Gate3_Category_Draft.csv` until Gate 3 acceptance.
+
+| CategoryID | Name | IN Atoms | Ambiguous Findings | Ratification Verdict |
+|---|---|---:|---:|---|
+| `CAT-001` | Epistemic and Professional-Practice Foundations | 2,180 | 136 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-002` | Governance and Agent Instruction Architecture | 1,109 | 25 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-003` | Decomposition Lifecycle and Domain Structuring | 2,252 | 207 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-004` | Task, Skill, and Tool Execution Contracts | 2,619 | 107 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-005` | Source Fidelity, Retrieval, and Validation Infrastructure | 227 | 22 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-006` | Audit, Review, Reconciliation, and Evaluation | 2,563 | 174 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-007` | Publication, Aggregation, Hypergraph, and Synthesis | 2,118 | 88 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-008` | Document, Asset, Drawing, and Engineering-Data Extraction | 3,305 | 77 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-009` | Coordination, Change, Scheduling, and Deliverable Workflows | 1,691 | 30 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-010` | Work-Surface, Project, Product, and Integration Boundaries | 1,297 | 15 | `PENDING_DENSE_RATIFICATION` |
+| `CAT-011` | Legal, License, and Public-Release Boundaries | 42 | 0 | `PENDING_DENSE_RATIFICATION` |
+
+Gate 3 draft registers:
+
+- `Category_Register.csv` — proposed flat Categories with source-alignment citations.
+- `Domain_Ledger_Gate3_Category_Draft.csv` — all accepted Gate 2 atom rows plus proposed `CategoryID`; every `IN` atom has exactly one proposed Category.
+- `Category_Scope_Ratification.csv` — BM25-only draft scope evidence; all rows are `PENDING_DENSE_RATIFICATION`.
+- `Category_Assignment_Findings.csv` — 881 ambiguous category-assignment candidates requiring review.
+- `Category_Assignment_Summary.csv` — per-category counts.
+- `gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/GATE3_CATEGORY_PROPOSAL.md` and `gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/HANDOFF_STATE.md` — Gate 3 proposal snapshot and handoff state.
+
+Dense-ratification blocker: the current `source_v2` index is BM25-only. A dense rebuild was attempted but is not practical in this turn at observed local throughput. Gate 3 cannot close until dense ratification is completed or the human explicitly accepts BM25-only ratification as sufficient for this pass.
+
+Gate 3 closure wording remains:
+
+> Yes, Categories are correct, each IN-scope unit belongs to exactly one Category, every Category carries a `CLUSTER_COHERENT` ratification verdict, and all misassignment candidates have been resolved (advisory `LOW_COHESION` findings reviewed and accepted).
 
 ## References
 
@@ -466,6 +499,7 @@ TOC-prior matrix CSV: `domains/chirality/_Decomposition/cross_source_toc_matrix.
 | `Open_Issues_Register.csv` | authoritative companion register | Current issue register; no Gate 2 source-boundary, source-unit, or atomization blockers remain open. |
 | `Validation_Checks.csv` | authoritative companion register | Current validation checks including accepted Phase 2 merge and post-Gate2 catalog/retrieval refresh status. |
 | `Companion_Inventory.csv` | authoritative companion register | Full file-level inventory for generated companion entries and Gate 2 closure artifacts. |
+| `gate3_categories/_LATEST_GATE3_PROPOSAL.md` | snapshot / handoff artifact | Pointer to latest Gate 3 category proposal package. |
 | `gate_snapshots/_LATEST_GATE1.md` | snapshot / handoff artifact | Pointer to the accepted Gate 1 snapshot. |
 | `gate_snapshots/GATE1_20260614T005942Z/GATE1_ACCEPTANCE.md` | snapshot / handoff artifact | Immutable Gate 1 acceptance record. |
 | `gate_snapshots/GATE1_20260614T005942Z/HANDOFF_STATE.md` | snapshot / handoff artifact | Gate 1 handoff state for later DOMAIN_DECOMP phases. |

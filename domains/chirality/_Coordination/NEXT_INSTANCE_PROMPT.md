@@ -17,6 +17,13 @@
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z/HANDOFF_STATE.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_PHASE2_GATE2.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Gate2_Source_Unit_Register.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Assignment_Findings.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Scope_Ratification.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Domain_Ledger_Gate3_Category_Draft.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Category_Register.csv`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/HANDOFF_STATE.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z/GATE3_CATEGORY_PROPOSAL.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate3_categories/_LATEST_GATE3_PROPOSAL.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Validation_Checks.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Open_Issues_Register.csv`
 7. Read the Chirality domain-pack source surfaces:
@@ -71,6 +78,20 @@ Batch 1 is only partially carried forward for active V1: 11 retired Batch 1 rows
 
 `OI-018` is closed by human direction. `Gate2_Source_Unit_Register.csv` is the accepted Phase 3 source-unit authority; `Source_Manifest.csv` remains the file-level source-admission manifest. Batch 4 grouped skill-pack source units (`SKP000`..`SKP037`) represent 153 file-level `SKILL_CONTRACTS` rows through `source_components` maps. Phase 3 may proceed from the accepted 110-source-unit surface, but downstream wording must not claim every individual `SK###` file was separately atomized.
 
+## Gate 3 Open State
+
+Gate 3 category proposal is generated but not accepted.
+
+- Proposal pointer: `domains/chirality/_Decomposition/gate3_categories/_LATEST_GATE3_PROPOSAL.md`
+- Proposal snapshot: `domains/chirality/_Decomposition/gate3_categories/GATE3_CATEGORY_PROPOSAL_20260614T213500Z`
+- Proposed Categories: `11`
+- Draft category-assigned ledger: `domains/chirality/_Decomposition/Domain_Ledger_Gate3_Category_Draft.csv`
+- Assigned IN atoms: `19403` / `19403`
+- Ambiguous assignment findings: `881` in `Category_Assignment_Findings.csv`
+- Ratification status: `PENDING_DENSE_RATIFICATION` for all Categories in `Category_Scope_Ratification.csv`
+
+Dense embeddings were attempted for Gate 3 and stopped after 1,000 of 29,843 vectors at roughly nine minutes; the index was restored to `BM25_ONLY`. Gate 3 cannot close until dense ratification is completed or the human explicitly accepts BM25-only ratification for this pass.
+
 ## Rebuild Commands
 
 Rebuild the source catalog when the source boundary or companions change:
@@ -112,6 +133,6 @@ Expected rank 1 result is `SRC-AGENTS` / `@repo/AGENTS.md`.
 
 ## Next Recommended Action
 
-Proceed to Gate 3 preparation: propose and ratify the Chirality Category structure from the accepted Phase 2 ledger, vocabulary map, and TOC priors. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth for Phase 3.
+Continue Gate 3 review: inspect the proposed 11-category register, resolve `Category_Assignment_Findings.csv`, and complete dense category-scope ratification or obtain an explicit human ruling accepting BM25-only ratification for this pass. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth; `Domain_Ledger_Gate3_Category_Draft.csv` is draft until Gate 3 is accepted.
 
 Do not start hypergraph publication, DBM publication, dense embeddings, public export, or separate project-domain decomposition from this handoff unless the human explicitly authorizes that work.
