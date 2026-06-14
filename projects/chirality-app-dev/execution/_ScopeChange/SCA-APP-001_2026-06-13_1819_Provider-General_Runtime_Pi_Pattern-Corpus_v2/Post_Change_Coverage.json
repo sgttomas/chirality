@@ -63,6 +63,10 @@
       "aligned_count": 26,
       "source": "Execution_Deliverable_Impact.csv"
     },
+    "scope_closure_repair": [
+      "Closure_Repair_001.md",
+      "Supersession_Map.csv"
+    ],
     "runtime_source": [],
     "package_manifests": [],
     "desktop_wrapper": []
@@ -84,6 +88,7 @@
   "notes": [
     "SCA-APP-001 was applied as governance/decomposition/control-plane migration only.",
     "No runtime source, package manifests, dependencies, lockfiles, or desktop wrapper files were modified.",
-    "Validation results are recorded in RUN_SUMMARY.md."
+    "Validation results are recorded in RUN_SUMMARY.md.",
+    "SCA-APP-001-CLOSURE-001 repaired the stale active pointer, Gate 5 propagation classification gap, and supersession-map binding. Package-local context and derivative artifact refresh remains follow-up work."
   ]
 }

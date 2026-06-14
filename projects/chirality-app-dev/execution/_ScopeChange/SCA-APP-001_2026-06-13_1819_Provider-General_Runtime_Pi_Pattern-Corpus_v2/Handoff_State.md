@@ -48,13 +48,23 @@
 | Dependency extraction / SCC graph | ADVISORY_RERUN | Topology unchanged; rerun only if a future planning tranche needs refreshed dependency semantics. |
 | Runtime source and package manifests | CURRENT_NO_CHANGE | No runtime implementation or dependency changes were made. |
 
+## Closure Repair State
+
+| Finding | State | Evidence |
+|---|---|---|
+| SCC-001 | REPAIRED | `execution/_ScopeChange/_LATEST.md` now points to accepted Gate 5 state. |
+| SCC-002 | REPAIRED | `Propagation_Plan.md` includes the Gate 5 propagation classification addendum. |
+| SCC-005 | REPAIRED | `Supersession_Delta.csv` is canonical and `Supersession_Map.csv` has been generated. |
+| SCC-003 | OPEN_PACKAGE_LOCAL | Affected `_CONTEXT.md` base fields need bounded refresh against the amended decomposition. |
+| SCC-004 | OPEN_PACKAGE_LOCAL | Affected local kits and dependency/reference artifacts remain `STALE_LOCAL_REVIEW_REQUIRED`. |
+
 ## Remaining Blockers
 
-- No blockers remain for closing SCA-APP-001.
+- `SCA-APP-001` remains open for full derivative-package closure until SCC-003 and SCC-004 are refreshed or explicitly waived.
 - Concrete non-Anthropic provider implementation remains blocked pending bounded future tranche.
 - Pi adapter, fork, package import, Node 22 sidecar, runtime-floor migration, and immediate spike remain prohibited unless a future ruling explicitly reverses D-APP-01/D-APP-02.
 - Bash/write/subagent/runtime policy expansion remains blocked until its active plan row and validation gates authorize it.
 
 ## Recommended Next Runtime Tranche
 
-Resume the active runtime spine with the earliest unblocked provider-adapter architecture item in `plans/PLAN_2026-06-13_runtime_completion.md`, expected to remain bounded to provider-adapter architecture/governance before any new provider implementation.
+If scope-change closure remains the priority, run the bounded package-local context refresh for affected PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 contexts. Otherwise resume the active runtime spine with the earliest unblocked provider-adapter architecture item in `plans/PLAN_2026-06-13_runtime_completion.md`, expected to remain bounded to provider-adapter architecture/governance before any new provider implementation.

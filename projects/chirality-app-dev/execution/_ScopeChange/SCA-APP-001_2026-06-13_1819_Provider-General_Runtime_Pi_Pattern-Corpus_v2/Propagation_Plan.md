@@ -22,6 +22,19 @@ This plan is limited to governance, decomposition, coordination, planning, and r
 | `plans/pi-agent-harness-assessment.md`, `plans/pi-assessment/*.md`, `plans/claude-agent-sdk-implementation-followups.md` | Mark Pi as pattern corpus only and Claude SDK work as first-adapter work. |
 | Affected `execution/PKG-*/1_Working/DEL-*/_CONTEXT.md` files listed in `Execution_Deliverable_Impact.csv` | Align deliverable-local context with the accepted amendment, or record row-level blockers in `Handoff_State.md`. |
 
+## Gate 5 Propagation Classification Addendum
+
+`SCA-APP-001-CLOSURE-001` adds this classification after the 2026-06-13 scope-closure audit found that several Gate 5 governance surfaces were changed but not explicitly classified in the Gate 4 write-scope table. These surfaces were part of the approved active-governance/control-plane scope and did not authorize runtime source, dependency, wrapper, or provider implementation changes.
+
+| Surface | Classification | Gate 5 rationale |
+|---|---|---|
+| `docs/DIRECTIVE.md` | Active governance authority | Narrowly aligned the directive with provider-adapter strategy, Pi pattern-corpus posture, and capability-forward policy with explicit hard-deny precedence. |
+| `docs/README.md` | Workflow/index surface | Kept the docs index consistent with the amended governance package and active discovery model. |
+| `docs/MANIFEST.json` | Workflow/index manifest | Kept machine-readable docs discovery consistent with the amended governance package. |
+| `docs/BUILD_AND_RELEASE.md` | Governance support surface | Aligned build/release evidence routing with provider-adapter strategy and preserved no-release-authorization boundaries. |
+| `docs/VALIDATION_STRATEGY.md` | Governance support surface | Aligned validation routing with capability-forward permission governance and first-adapter/current-provider language. |
+| `docs/RELEASE_QUALITY_GATES.md` | Governance support surface | Aligned release-quality gate selection with the accepted provider/Pi/permission posture and preserved human-governed release boundaries. |
+
 ## Explicit No-Write Scope
 
 | Surface | Reason |

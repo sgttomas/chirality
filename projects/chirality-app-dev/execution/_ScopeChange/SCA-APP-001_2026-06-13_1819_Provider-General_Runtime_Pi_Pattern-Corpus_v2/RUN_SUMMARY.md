@@ -29,6 +29,7 @@ The accepted amendment:
 | Updated runtime/reference docs | `frontend/docs/harness/runtime_engine_contract.md`, Pi assessment plans, Claude SDK follow-up plans |
 | Aligned impacted deliverable contexts | 26 `_CONTEXT.md` files listed in `Execution_Deliverable_Impact.csv` |
 | Updated SCOPE_CHANGE closeout artifacts | `Decision_Log.md`, `Handoff_State.md`, `Post_Change_Coverage.json`, `Supersession_Delta.csv`, `RUN_SUMMARY.md` |
+| Applied closure-audit repair addendum | `Closure_Repair_001.md`, `Propagation_Plan.md`, `Supersession_Delta.csv`, `Supersession_Map.csv`, `execution/_ScopeChange/_LATEST.md` |
 
 ## Deferred / Stale Surfaces
 
@@ -74,9 +75,19 @@ Results:
 
 No frontend/runtime test suite was run because this tranche changed governance, decomposition, coordination, planning, and documentation only. It made no application/runtime code changes.
 
+## Closure Repair 001
+
+`SCA-APP-001-CLOSURE-001` responded to the 2026-06-13 scope-closure audit by repairing the closure findings that do not require package-local artifact refresh:
+
+- SCC-001: `execution/_ScopeChange/_LATEST.md` now records accepted Gate 5 state.
+- SCC-002: `Propagation_Plan.md` now classifies the additional governance docs changed during Gate 5.
+- SCC-005: `Supersession_Delta.csv` now uses the canonical supersession-map schema and `Supersession_Map.csv` has been generated.
+
+SCC-003 and SCC-004 remain package-local follow-up for affected context base fields and local deliverable kits.
+
 ## Recommended Next Step
 
-Resume the active runtime completion plan with the earliest unblocked provider-adapter runtime item. Concrete non-Anthropic provider implementation and any Pi implementation path remain blocked pending future bounded human rulings.
+Run the bounded package-local context refresh for `SCA-APP-001` if closure remains the priority. Otherwise resume the active runtime completion plan with the earliest unblocked provider-adapter runtime item. Concrete non-Anthropic provider implementation and any Pi implementation path remain blocked pending future bounded human rulings.
 
 ## Commit Message
 

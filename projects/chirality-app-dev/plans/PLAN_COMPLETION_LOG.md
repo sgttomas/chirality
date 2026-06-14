@@ -6,6 +6,16 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-13 - Scope-change pointer, propagation, and supersession repair landed (`SCA-APP-001-CLOSURE-001`)
+
+Repaired the first set of `AUDIT_SCOPE_CLOSURE` findings for `SCA-APP-001`.
+
+The tranche updated `execution/_ScopeChange/_LATEST.md` so it records accepted Gate 5 state, added a Gate 5 propagation classification addendum for the additional governance docs changed during Gate 5, and normalized `Supersession_Delta.csv` to the canonical supersession-map schema. `Supersession_Map.csv` was generated from the normalized delta.
+
+Residual: SCC-003 and SCC-004 remain open for bounded package-local context refresh and local-kit/dependency/reference artifact review across affected PKG-01, PKG-04, PKG-06, PKG-09, and PKG-10 deliverables. No runtime source, package manifest, dependency, lockfile, desktop wrapper, provider implementation, Pi implementation, or release-readiness posture changed.
+
+Validation: `git diff --check -- projects/chirality-app-dev/execution/_ScopeChange projects/chirality-app-dev/plans`; `node -e` JSON parse for `Post_Change_Coverage.json`; Ruby CSV schema checks for `Supersession_Delta.csv` and `Supersession_Map.csv`; supersession-map accumulation with `tools/coordination/accumulate_supersession_map.py`; source/package exclusion check. Frontend runtime tests were skipped because this tranche changed only governance/control-plane artifacts.
+
 ## 2026-06-13 - Quality and validation skeleton landed (`GOV-QUALITY-001`)
 
 Added app-dev `docs/VALIDATION_STRATEGY.md` and `docs/RELEASE_QUALITY_GATES.md` as first-class governance support surfaces for evidence routing and release-quality gate selection.
