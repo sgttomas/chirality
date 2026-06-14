@@ -8,7 +8,7 @@ import {
 } from '../../lib/harness/tool-descriptor';
 
 describe('tool descriptor registry', () => {
-  it('exposes only read-class SDK built-ins for the current tranche', () => {
+  it('exposes only read-class SDK and Chirality MCP tools for the current tranche', () => {
     const descriptors = listHarnessToolDescriptors();
 
     expect(descriptors.map((descriptor) => descriptor.name)).toEqual([
@@ -16,6 +16,10 @@ describe('tool descriptor registry', () => {
       'find_files',
       'search_files',
       'list_files',
+      'status_read',
+      'dependency_read',
+      'scope_scan',
+      'scaffold_preview',
       'write_file',
       'edit_file',
       'multi_edit_file',
@@ -29,7 +33,16 @@ describe('tool descriptor registry', () => {
       descriptors
         .filter((descriptor) => descriptor.permissions.includes('read'))
         .map((descriptor) => descriptor.name)
-    ).toEqual(['read_file', 'find_files', 'search_files', 'list_files']);
+    ).toEqual([
+      'read_file',
+      'find_files',
+      'search_files',
+      'list_files',
+      'status_read',
+      'dependency_read',
+      'scope_scan',
+      'scaffold_preview'
+    ]);
     expect(
       descriptors
         .filter((descriptor) => descriptor.permissions.includes('read'))
@@ -54,6 +67,41 @@ describe('tool descriptor registry', () => {
     const bash = getHarnessToolDescriptor('bash');
     expect(bash?.permissions).toEqual(['shell', 'danger']);
     expect(bash?.humanGate.required).toBe(true);
+  });
+
+  it('resolves read-only Chirality MCP descriptors without opening write or shell tools', () => {
+    const resolution = resolveHarnessToolPool({
+      requestedTools: ['status_read', 'deps_read', 'scope_scan', 'scaffold_preview'],
+      mode: 'readOnly'
+    });
+
+    expect(resolution.requestedDescriptors.map((descriptor) => descriptor.name)).toEqual([
+      'status_read',
+      'dependency_read',
+      'scope_scan',
+      'scaffold_preview'
+    ]);
+    expect(resolution.allowedToolNames).toEqual([
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read',
+      'mcp__chirality__scope_scan',
+      'mcp__chirality__scaffold_preview'
+    ]);
+    expect(resolution.deniedTools).toEqual([]);
+    expect(resolution.disallowedToolNames).toEqual([
+      'Read',
+      'Glob',
+      'Grep',
+      'LS',
+      'Write',
+      'Edit',
+      'MultiEdit',
+      'NotebookEdit',
+      'Bash',
+      'WebFetch',
+      'WebSearch',
+      'Agent'
+    ]);
   });
 
   it('resolves aliases deterministically and reports structured unknown tool issues', () => {
@@ -104,6 +152,10 @@ describe('tool descriptor registry', () => {
       'Glob',
       'Grep',
       'LS',
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read',
+      'mcp__chirality__scope_scan',
+      'mcp__chirality__scaffold_preview',
       'Write',
       'Edit',
       'MultiEdit',
@@ -116,6 +168,10 @@ describe('tool descriptor registry', () => {
     expect(getCurrentTrancheDisallowedToolNames(['Read', 'Grep'])).toEqual([
       'Glob',
       'LS',
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read',
+      'mcp__chirality__scope_scan',
+      'mcp__chirality__scaffold_preview',
       'Write',
       'Edit',
       'MultiEdit',

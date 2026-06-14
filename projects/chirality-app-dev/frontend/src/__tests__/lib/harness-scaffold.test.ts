@@ -2,7 +2,7 @@ import { mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { scaffoldExecutionRoot } from '../../lib/harness/scaffold';
+import { previewScaffoldExecutionRoot, scaffoldExecutionRoot } from '../../lib/harness/scaffold';
 
 const DECOMPOSITION_FIXTURE = `# Example System - Software Decomposition
 
@@ -39,6 +39,28 @@ afterEach(async () => {
 });
 
 describe('scaffoldExecutionRoot', () => {
+  it('previews execution-root scaffold paths without writing files', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-scaffold-preview-'));
+    const executionRoot = path.join(tmpDir, 'execution');
+    const decompositionPath = path.join(tmpDir, 'decomposition.md');
+    await writeFile(decompositionPath, DECOMPOSITION_FIXTURE, 'utf8');
+
+    const result = await previewScaffoldExecutionRoot({
+      executionRoot,
+      decompositionPath,
+      coordinationMode: 'HYBRID'
+    });
+
+    expect(result.projectName).toBe('Example System');
+    expect(result.packageCount).toBe(2);
+    expect(result.deliverableCount).toBe(3);
+    expect(result.planned.directories).toContain(
+      path.join(executionRoot, 'PKG-01_Build & Packaging', '1_Working')
+    );
+    expect(result.planned.files).toContain(path.join(executionRoot, 'INIT.md'));
+    await expect(stat(executionRoot)).rejects.toMatchObject({ code: 'ENOENT' });
+  });
+
   it('creates execution-root layout, package folders, and deliverable folders from decomposition', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-scaffold-test-'));
     const executionRoot = path.join(tmpDir, 'execution');

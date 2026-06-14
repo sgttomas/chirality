@@ -3,10 +3,15 @@ import {
   resolveHarnessPermissionDecision,
   type HarnessPermissionDecision
 } from './permission-overlay';
+import {
+  toChiralityMcpAllowedToolName,
+  type ChiralityMcpAllowedToolName,
+  type ChiralityMcpReadToolName
+} from './mcp/tool-names';
 
-export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v2.sdk-read-tools';
+export const HARNESS_TOOL_REGISTRY_VERSION = 'harness-tools.v3.read-mcp';
 
-export type ClaudeAgentSdkToolName =
+export type ClaudeAgentSdkBuiltinToolName =
   | 'Read'
   | 'Glob'
   | 'Grep'
@@ -19,6 +24,8 @@ export type ClaudeAgentSdkToolName =
   | 'WebFetch'
   | 'WebSearch'
   | 'Agent';
+
+export type ClaudeAgentSdkToolName = ClaudeAgentSdkBuiltinToolName | ChiralityMcpAllowedToolName;
 
 export type HarnessToolPermission =
   | 'read'
@@ -136,6 +143,12 @@ const SDK_READ_RUNTIME: HarnessToolRuntimeSupport = {
     'Read-class SDK built-ins are exposed behind Chirality permission overlay and hard-deny policy.'
 };
 
+const CHIRALITY_READ_MCP_RUNTIME: HarnessToolRuntimeSupport = {
+  exposedToModel: true,
+  reason:
+    'Read-only Chirality MCP tools are exposed behind descriptor resolution and permission overlay policy.'
+};
+
 const DESCRIPTOR_ONLY_RUNTIME: HarnessToolRuntimeSupport = {
   exposedToModel: false,
   reason:
@@ -194,6 +207,49 @@ function readOnlyDescriptor(input: {
     },
     inputSchema: input.inputSchema,
     runtime: SDK_READ_RUNTIME
+  };
+}
+
+function chiralityReadMcpDescriptor(input: {
+  name: string;
+  aliases: readonly string[];
+  description: string;
+  mcpToolName: ChiralityMcpReadToolName;
+  inputSchema: Record<string, unknown>;
+  outputSchema?: Record<string, unknown>;
+}): HarnessToolDescriptor {
+  return {
+    name: input.name,
+    aliases: [
+      ...input.aliases,
+      input.mcpToolName,
+      toChiralityMcpAllowedToolName(input.mcpToolName)
+    ],
+    description: input.description,
+    surface: 'chirality-mcp',
+    permissions: ['read'],
+    pathScope: 'project-root-read',
+    idempotence: 'idempotent',
+    concurrency: 'safe',
+    interruptBehavior: 'cancel',
+    resultBudget: READ_RESULT_BUDGET,
+    provenance: {
+      emits: TOOL_EVENTS,
+      storeInput: 'metadata',
+      storeOutput: 'inline-or-artifact',
+      recordsDiff: false
+    },
+    humanGate: {
+      required: false
+    },
+    adapter: {
+      claudeAgentSdk: {
+        toolName: toChiralityMcpAllowedToolName(input.mcpToolName)
+      }
+    },
+    inputSchema: input.inputSchema,
+    outputSchema: input.outputSchema,
+    runtime: CHIRALITY_READ_MCP_RUNTIME
   };
 }
 
@@ -259,6 +315,86 @@ export const HARNESS_TOOL_DESCRIPTORS = [
           type: 'string'
         }
       }
+    }
+  }),
+  chiralityReadMcpDescriptor({
+    name: 'status_read',
+    aliases: ['status', 'mcp.status_read'],
+    description: 'Read parsed lifecycle state from a project-root-contained deliverable _STATUS.md.',
+    mcpToolName: 'status_read',
+    inputSchema: {
+      type: 'object',
+      required: ['deliverablePath'],
+      properties: {
+        deliverablePath: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['projectRoot', 'deliverablePath', 'statusFilePath', 'status']
+    }
+  }),
+  chiralityReadMcpDescriptor({
+    name: 'dependency_read',
+    aliases: ['dependencies', 'deps', 'deps_read', 'mcp.deps_read'],
+    description: 'Read parsed dependency rows and warnings from a deliverable Dependencies.csv.',
+    mcpToolName: 'deps_read',
+    inputSchema: {
+      type: 'object',
+      required: ['deliverablePath'],
+      properties: {
+        deliverablePath: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['projectRoot', 'deliverablePath', 'dependenciesFilePath', 'headers', 'rows', 'warnings']
+    }
+  }),
+  chiralityReadMcpDescriptor({
+    name: 'scope_scan',
+    aliases: ['scope', 'mcp.scope_scan'],
+    description: 'Scan deliverable and knowledge-type scopes inside the selected project root.',
+    mcpToolName: 'scope_scan',
+    inputSchema: {
+      type: 'object',
+      properties: {}
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['projectRoot', 'deliverables', 'knowledgeTypes', 'truncated']
+    }
+  }),
+  chiralityReadMcpDescriptor({
+    name: 'scaffold_preview',
+    aliases: ['scaffold_dry_run', 'mcp.scaffold_preview'],
+    description: 'Preview execution-root scaffold paths from decomposition markdown without writing files.',
+    mcpToolName: 'scaffold_preview',
+    inputSchema: {
+      type: 'object',
+      required: ['executionRoot', 'decompositionPath'],
+      properties: {
+        executionRoot: {
+          type: 'string'
+        },
+        decompositionPath: {
+          type: 'string'
+        },
+        projectName: {
+          type: 'string'
+        },
+        coordinationMode: {
+          type: 'string'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      required: ['executionRoot', 'decompositionPath', 'planned', 'packages']
     }
   }),
   {

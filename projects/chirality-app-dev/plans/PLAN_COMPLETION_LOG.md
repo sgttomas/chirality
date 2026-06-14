@@ -6,6 +6,18 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-06-14 - Read MCP / descriptor integration landed (`READ-MCP-DESCRIPTORS-001`)
+
+Added Chirality-owned read-only MCP descriptors and in-process MCP handlers for status read, dependency read, scope scan, and scaffold preview.
+
+The tranche extends the descriptor registry with `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and `mcp__chirality__scaffold_preview`. The SDK options builder now attaches the in-process `chirality` MCP server only when one of those read MCP descriptors is explicitly requested and allowed. Unrequested MCP tools remain in descriptor-derived `disallowedTools`. Unknown tools still fail structurally before adapter streaming begins.
+
+The MCP handlers reuse existing project-root-contained status, dependency, and scope readers. Scaffold preview now has a non-mutating `previewScaffoldExecutionRoot` path planner that computes scaffold directories/files from decomposition markdown without creating them. The mutating scaffold function reuses the same planner to preserve behavior while avoiding duplicate path construction.
+
+Write, edit, bash, network, subagent, Pi, concrete non-Anthropic providers, package/runtime migration, and desktop-wrapper changes remain out of scope. Tool result and event evidence expansion is the next runtime-spine item. Normal instruction-root integrity remains blocked by the pre-existing split source-root/package-resource posture.
+
+Validation: `npm run test -- chirality-read-mcp tool-descriptor sdk-options-builder harness-scaffold permission-overlay`; `npm run test`; `npm run typecheck`; `CHIRALITY_INSTRUCTION_ROOT=/tmp/chirality-instruction-root.CehMaI npm run harness:validate:premerge` against a local `next dev` server using a temporary merged instruction root, producing pass status with 8 checks at `frontend/artifacts/harness/section8/latest/summary.json`. `npm run instruction-root:integrity` was attempted and failed because the nested app-dev source root lacks `agents/`. `node ./scripts/verify-instruction-root-integrity.mjs --source-root /Users/ryan/ai-env/projects/chirality` was attempted and failed because the root source lacks current required app-dev governance docs such as `docs/DIRECTIVE.md`.
+
 ## 2026-06-14 - SDK read-tool exposure behind capability policy landed (`SDK-READ-TOOLS-001`)
 
 Enabled requested read-class Claude Agent SDK built-ins behind the Chirality-owned descriptor registry, permission overlay, and SDK options builder.

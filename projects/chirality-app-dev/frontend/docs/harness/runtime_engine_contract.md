@@ -108,15 +108,20 @@ Descriptors record provider-neutral names, aliases, permissions, path scope, ide
 concurrency, interrupt behavior, result-budget policy, provenance events, human-gate
 metadata, and adapter tool names.
 
-The current tranche exposes only requested read-class first-adapter SDK built-ins
-(`Read`, `Glob`, `Grep`, and `LS`) after descriptor and permission-overlay resolution.
-The SDK options builder passes those names through both `tools` and `allowedTools`,
-keeps denied and unrequested SDK names in `disallowedTools`, and keeps `canUseTool`
-attached for explicit hard-deny enforcement. Unknown `opts.tools` fail structurally
-before adapter streaming begins.
+The current runtime exposes only requested read-class first-adapter SDK built-ins
+(`Read`, `Glob`, `Grep`, and `LS`) and requested read-only Chirality MCP tools after
+descriptor and permission-overlay resolution. The current Chirality MCP read tools are
+`mcp__chirality__status_read`, `mcp__chirality__deps_read`,
+`mcp__chirality__scope_scan`, and `mcp__chirality__scaffold_preview`.
 
-Write, edit, shell, network, subagent, and Chirality MCP tools remain unavailable to
-the model. Their descriptors remain metadata only until their bounded implementation,
+The SDK options builder passes requested and allowed names through both `tools` and
+`allowedTools`, keeps denied and unrequested tool names in `disallowedTools`, attaches
+the in-process `chirality` MCP server only when a Chirality MCP read descriptor is
+allowed, and keeps `canUseTool` attached for explicit hard-deny enforcement. Unknown
+`opts.tools` fail structurally before adapter streaming begins.
+
+Write, edit, shell, network, subagent, and mutating Chirality MCP tools remain unavailable
+to the model. Their descriptors remain metadata only until their bounded implementation,
 hook, result-storage, and validation tranches land.
 
 ## First Adapter Probe Posture
@@ -131,9 +136,9 @@ Probe posture:
 - SDK filesystem settings default to `settingSources: []`.
 - `CHIRALITY_SDK_SETTING_SOURCES=project` is the only accepted development override.
 - `user` and `local` settings are never passed by the CODEV-001 options builder.
-- Requested read built-ins are exposed for the opt-in `agentSdk` path after descriptor
-  and permission resolution. Denied or unrequested built-ins remain in descriptor-derived
-  `disallowedTools`.
+- Requested read built-ins and requested read-only Chirality MCP tools are exposed for the
+  opt-in `agentSdk` path after descriptor and permission resolution. Denied or unrequested
+  built-ins and MCP tools remain in descriptor-derived `disallowedTools`.
 
 Pi is a pattern corpus/reference only. This contract does not authorize a Pi adapter, fork,
 package import, Node 22 sidecar, runtime-floor migration, or spike.

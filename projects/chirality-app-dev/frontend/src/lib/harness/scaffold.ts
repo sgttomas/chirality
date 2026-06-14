@@ -112,6 +112,8 @@ export type ScaffoldExecutionRootInput = {
   now?: Date;
 };
 
+export type ScaffoldExecutionRootPreviewInput = Omit<ScaffoldExecutionRootInput, 'now'>;
+
 export type ScaffoldExecutionRootResult = {
   executionRoot: string;
   decompositionPath: string;
@@ -126,6 +128,21 @@ export type ScaffoldExecutionRootResult = {
   };
   layoutValidation: LayoutValidationResult;
   preparationCompatibility: PreparationCompatibilityResult;
+};
+
+export type ScaffoldExecutionRootPreviewResult = {
+  executionRoot: string;
+  decompositionPath: string;
+  copiedDecompositionPath: string;
+  projectName: string;
+  coordinationMode: CoordinationMode;
+  packageCount: number;
+  deliverableCount: number;
+  planned: {
+    directories: string[];
+    files: string[];
+  };
+  packages: PackagePlan[];
 };
 
 type ScaffoldFailureStage =
@@ -356,6 +373,47 @@ function parseCoordinationMode(input: unknown): CoordinationMode {
   return normalized;
 }
 
+function buildPackagePlans(executionRoot: string, parsed: ParsedDecomposition): PackagePlan[] {
+  return parsed.packages.map((pkg) => {
+    const packageLabel = sanitizeNonEmptyLabel(pkg.name, `package '${pkg.id}' name`);
+    const packageFolder = `${pkg.id}_${packageLabel}`;
+    const packagePath = path.join(executionRoot, packageFolder);
+    const expectedPackagePaths = [
+      packagePath,
+      ...REQUIRED_PACKAGE_SUBDIRECTORIES.map((subDirectory) =>
+        path.join(packagePath, subDirectory)
+      )
+    ];
+
+    return {
+      id: pkg.id,
+      path: packagePath,
+      expectedPaths: expectedPackagePaths,
+      deliverables: pkg.deliverables.map((deliverable) => {
+        const deliverableLabel = sanitizeNonEmptyLabel(
+          deliverable.name,
+          `deliverable '${deliverable.id}' name`
+        );
+        return {
+          id: deliverable.id,
+          path: path.join(packagePath, '1_Working', `${deliverable.id}_${deliverableLabel}`)
+        };
+      })
+    };
+  });
+}
+
+function getPlannedDirectories(executionRoot: string, packagePlans: readonly PackagePlan[]): string[] {
+  return [
+    executionRoot,
+    ...EXECUTION_ROOT_DIRECTORIES.map((relativePath) => path.join(executionRoot, relativePath)),
+    ...packagePlans.flatMap((pkg) => [
+      ...pkg.expectedPaths,
+      ...pkg.deliverables.map((deliverable) => deliverable.path)
+    ])
+  ];
+}
+
 async function ensureDirectory(targetPath: string, createdDirectories: string[]): Promise<void> {
   try {
     const existing = await stat(targetPath);
@@ -423,6 +481,51 @@ async function pathExists(candidatePath: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+export async function previewScaffoldExecutionRoot(
+  input: ScaffoldExecutionRootPreviewInput
+): Promise<ScaffoldExecutionRootPreviewResult> {
+  const executionRoot = requireAbsolutePath(input.executionRoot, 'executionRoot');
+  const decompositionPath = requireAbsolutePath(input.decompositionPath, 'decompositionPath');
+  const coordinationMode = parseCoordinationMode(input.coordinationMode);
+
+  let decompositionMarkdown: string;
+  try {
+    decompositionMarkdown = await readFile(decompositionPath, 'utf8');
+  } catch {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'decompositionPath must point to a readable markdown file',
+      { decompositionPath }
+    );
+  }
+
+  const parsed = parseDecomposition(decompositionMarkdown);
+  const projectName = input.projectName?.trim() || parsed.projectName;
+  const copiedDecompositionPath = path.join(executionRoot, '_Decomposition', path.basename(decompositionPath));
+  const packagePlans = buildPackagePlans(executionRoot, parsed);
+  const deliverableCount = packagePlans.reduce((count, pkg) => count + pkg.deliverables.length, 0);
+
+  return {
+    executionRoot,
+    decompositionPath,
+    copiedDecompositionPath,
+    projectName,
+    coordinationMode,
+    packageCount: packagePlans.length,
+    deliverableCount,
+    planned: {
+      directories: getPlannedDirectories(executionRoot, packagePlans),
+      files: [
+        copiedDecompositionPath,
+        path.join(executionRoot, 'INIT.md'),
+        path.join(executionRoot, '_Coordination', '_COORDINATION.md')
+      ]
+    },
+    packages: packagePlans
+  };
 }
 
 function buildInitTemplate(
@@ -623,6 +726,7 @@ export async function scaffoldExecutionRoot(
   const parsed = parseDecomposition(decompositionMarkdown);
   const projectName = input.projectName?.trim() || parsed.projectName;
   const copiedDecompositionPath = path.join(executionRoot, '_Decomposition', path.basename(decompositionPath));
+  const packagePlans = buildPackagePlans(executionRoot, parsed);
 
   const createdDirectories: string[] = [];
   const createdFiles: string[] = [];
@@ -672,48 +776,22 @@ export async function scaffoldExecutionRoot(
     failurePath = path.join(executionRoot, '_Coordination', '_COORDINATION.md');
     await ensureFile(failurePath, buildCoordinationTemplate(coordinationMode), createdFiles);
 
-    const packagePlans: PackagePlan[] = [];
-    for (const pkg of parsed.packages) {
-      const packageLabel = sanitizeNonEmptyLabel(pkg.name, `package '${pkg.id}' name`);
-      const packageFolder = `${pkg.id}_${packageLabel}`;
-      const packagePath = path.join(executionRoot, packageFolder);
-
+    for (const pkg of packagePlans) {
       failureStage = 'create_package';
-      failurePath = packagePath;
-      await ensureDirectory(packagePath, createdDirectories);
+      failurePath = pkg.path;
+      await ensureDirectory(pkg.path, createdDirectories);
 
-      const expectedPackagePaths = [packagePath];
-      for (const subDirectory of REQUIRED_PACKAGE_SUBDIRECTORIES) {
-        const absoluteSubDirectory = path.join(packagePath, subDirectory);
+      for (const absoluteSubDirectory of pkg.expectedPaths.slice(1)) {
         failureStage = 'create_package_subdir';
         failurePath = absoluteSubDirectory;
         await ensureDirectory(absoluteSubDirectory, createdDirectories);
-        expectedPackagePaths.push(absoluteSubDirectory);
       }
 
-      const deliverables = [];
       for (const deliverable of pkg.deliverables) {
-        const deliverableLabel = sanitizeNonEmptyLabel(
-          deliverable.name,
-          `deliverable '${deliverable.id}' name`
-        );
-        const deliverableFolder = `${deliverable.id}_${deliverableLabel}`;
-        const deliverablePath = path.join(packagePath, '1_Working', deliverableFolder);
         failureStage = 'create_deliverable';
-        failurePath = deliverablePath;
-        await ensureDirectory(deliverablePath, createdDirectories);
-        deliverables.push({
-          id: deliverable.id,
-          path: deliverablePath
-        });
+        failurePath = deliverable.path;
+        await ensureDirectory(deliverable.path, createdDirectories);
       }
-
-      packagePlans.push({
-        id: pkg.id,
-        path: packagePath,
-        expectedPaths: expectedPackagePaths,
-        deliverables
-      });
     }
 
     const deliverableCount = packagePlans.reduce((count, pkg) => count + pkg.deliverables.length, 0);

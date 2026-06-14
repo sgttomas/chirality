@@ -5,6 +5,10 @@ import {
   normalizeHarnessPermissionMode
 } from './permission-overlay';
 import { getHarnessToolDescriptor, resolveHarnessToolPool } from './tool-descriptor';
+import {
+  createChiralityReadMcpServers,
+  filterChiralityMcpAllowedToolNames
+} from './mcp/read-tools';
 
 export type SdkProbeOptions = Options & {
   settingSources: SettingSource[];
@@ -73,6 +77,9 @@ export function buildSdkOptions(input: {
     requestedTools: input.opts.tools,
     mode: input.opts.mode
   });
+  const allowedChiralityMcpToolNames = filterChiralityMcpAllowedToolNames(
+    toolPool.allowedToolNames
+  );
 
   return {
     abortController: input.abortController,
@@ -89,7 +96,12 @@ export function buildSdkOptions(input: {
       projectRoot: input.session.projectRoot,
       resolveDescriptor: getHarnessToolDescriptor
     }),
-    mcpServers: {},
+    mcpServers: createChiralityReadMcpServers({
+      context: {
+        projectRoot: input.session.projectRoot
+      },
+      allowedToolNames: allowedChiralityMcpToolNames
+    }),
     resume: input.session.sdkSessionId,
     settingSources: parseSettingSources(process.env.CHIRALITY_SDK_SETTING_SOURCES),
     systemPrompt: {

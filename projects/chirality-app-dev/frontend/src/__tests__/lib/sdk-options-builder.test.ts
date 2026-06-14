@@ -42,6 +42,8 @@ describe('buildSdkOptions', () => {
     expect(options.disallowedTools).toContain('Bash');
     expect(options.disallowedTools).toContain('Write');
     expect(options.disallowedTools).toContain('Edit');
+    expect(options.disallowedTools).toContain('mcp__chirality__status_read');
+    expect(options.mcpServers).toEqual({});
     expect(options.resume).toBe('sdk_resume');
     expect(options.model).toBe('claude-test');
     expect(options.maxTurns).toBe(3);
@@ -60,6 +62,10 @@ describe('buildSdkOptions', () => {
     expect(options.tools).toEqual(['Read', 'Glob', 'Grep', 'LS']);
     expect(options.allowedTools).toEqual(['Read', 'Glob', 'Grep', 'LS']);
     expect(options.disallowedTools).toEqual([
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read',
+      'mcp__chirality__scope_scan',
+      'mcp__chirality__scaffold_preview',
       'Write',
       'Edit',
       'MultiEdit',
@@ -69,6 +75,35 @@ describe('buildSdkOptions', () => {
       'WebSearch',
       'Agent'
     ]);
+  });
+
+  it('attaches the read-only Chirality MCP server when MCP descriptors are requested', () => {
+    const options = buildSdkOptions({
+      session,
+      opts: { ...opts, tools: ['status_read', 'deps_read'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+
+    expect(options.tools).toEqual([
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read'
+    ]);
+    expect(options.allowedTools).toEqual([
+      'mcp__chirality__status_read',
+      'mcp__chirality__deps_read'
+    ]);
+    expect(options.disallowedTools).not.toContain('mcp__chirality__status_read');
+    expect(options.disallowedTools).not.toContain('mcp__chirality__deps_read');
+    expect(options.disallowedTools).toContain('mcp__chirality__scope_scan');
+    expect(options.disallowedTools).toContain('Bash');
+    expect(options.disallowedTools).toContain('Write');
+    expect(options.mcpServers).toMatchObject({
+      chirality: {
+        type: 'sdk',
+        name: 'chirality'
+      }
+    });
   });
 
   it('allows only explicit project settings and never user or local sources', () => {
