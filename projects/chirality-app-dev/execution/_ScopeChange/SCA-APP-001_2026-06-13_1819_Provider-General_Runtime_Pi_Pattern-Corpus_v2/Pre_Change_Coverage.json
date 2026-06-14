@@ -1,0 +1,61 @@
+{
+  "amendment_id": "SCA-APP-001",
+  "status": "PRE_CHANGE_BASELINE_RECORDED",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "snapshot_path": "execution/_ScopeChange/SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2",
+  "baseline_date": "2026-06-13",
+  "baseline_source": "active decomposition self-reported coverage and targeted local inspection",
+  "counts": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10,
+    "context_envelope_s": 9,
+    "context_envelope_m": 40,
+    "context_envelope_l": 2,
+    "context_envelope_xl": 0
+  },
+  "affected_packages": [
+    "PKG-01",
+    "PKG-04",
+    "PKG-06",
+    "PKG-09",
+    "PKG-10"
+  ],
+  "affected_execution_deliverables": [
+    "DEL-01-01",
+    "DEL-01-02",
+    "DEL-01-03",
+    "DEL-01-04",
+    "DEL-04-01",
+    "DEL-04-02",
+    "DEL-04-03",
+    "DEL-04-04",
+    "DEL-04-05",
+    "DEL-06-01",
+    "DEL-06-02",
+    "DEL-06-03",
+    "DEL-06-04",
+    "DEL-06-05",
+    "DEL-06-06",
+    "DEL-09-01",
+    "DEL-09-02",
+    "DEL-09-03",
+    "DEL-09-04",
+    "DEL-09-05",
+    "DEL-09-06",
+    "DEL-10-01",
+    "DEL-10-02",
+    "DEL-10-03",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "topology_change_expected": false,
+  "gate5_executed": false,
+  "notes": [
+    "AUDIT_DECOMP was not dispatched in this preview pass.",
+    "No authoritative decomposition or governance edits have been applied.",
+    "Post-change coverage remains unavailable until Gate 5 executes after human approval."
+  ]
+}
