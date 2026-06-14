@@ -1,0 +1,23 @@
+{
+  "amendmentId": "SCA-APP-001",
+  "auditDate": "2026-06-13",
+  "closureStatus": "OPEN",
+  "totalActions": 6,
+  "actionsVerified": 5,
+  "actionsDiscrepant": 1,
+  "actionsNotExecuted": 0,
+  "downstreamRerunsRecommended": 3,
+  "downstreamRerunsCompleted": 1,
+  "orphanedReferencesFound": 0,
+  "contentRemediationState": "NOT_REQUIRED",
+  "ktyRemediationRows": 0,
+  "ktyRemediationRowsBlocked": 0,
+  "archiveScannerLeaks": 0,
+  "findingsBySeverity": {
+    "CRITICAL": 0,
+    "MAJOR": 5,
+    "MINOR": 0,
+    "OBSERVATION": 1
+  }
+}
+
