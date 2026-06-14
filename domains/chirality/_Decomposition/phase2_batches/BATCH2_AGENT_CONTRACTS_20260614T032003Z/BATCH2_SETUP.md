@@ -4,7 +4,7 @@ Package role: snapshot / handoff artifact
 
 BatchID: `BATCH2_AGENT_CONTRACTS_20260614T032003Z`
 
-Status: ATOMIZATION_COMPLETE_GATE2_OPEN
+Status: GATE2_ACCEPTED_IN_PHASE2_CLOSURE
 
 Generated UTC: 2026-06-14T03:20:03Z
 
@@ -69,7 +69,7 @@ This regenerated Batch 2 setup is the active Phase 2 setup package for admitted 
 - `Dispatch_Unit_Register.csv` - authoritative companion register for per-unit brief/output paths.
 - `Validation_Checks.csv` - setup, worker QA, merge, render, and Gate 2 status validation register.
 - `Dispatch_Run_Log.csv` - per-dispatch-unit run counts and output status.
-- `BATCH2_ATOMIZATION_HANDOFF.md` - atomization completion handoff and Gate 2 open state.
+- `BATCH2_ATOMIZATION_HANDOFF.md` - atomization completion handoff and Gate 2 acceptance state.
 - `BATCH2_Atomic_Domain_Ledger.csv` - batch-scoped merged atom ledger.
 - `BATCH2_Vocabulary_Map.csv` - batch-scoped merged vocabulary map.
 - `domains/chirality/_Decomposition/dispatch_briefs/BATCH2_AGENT_CONTRACTS_20260614T032003Z/` - one INIT-TASK brief per dispatch unit.
@@ -96,7 +96,7 @@ Workers must read only their assigned `LINE_START..LINE_END`, write only their t
 - Stale Batch 2 setup `BATCH2_AGENT_CONTRACTS_20260614T024251Z`: SUPERSEDED_STALE.
 - Regenerated Batch 2 setup `BATCH2_AGENT_CONTRACTS_20260614T032003Z`: CLOSED / SETUP_READY_REGENERATED.
 - Batch 2 Phase 2 atomization: COMPLETE / QA_PASS (`raw_atoms=7772`, `merged_atoms=7770`, `vocab_terms=968`).
-- Batch 2 Gate 2 normalization: OPEN / HUMAN_REVIEW_REQUIRED.
+- Batch 2 Gate 2 normalization: CLOSED / ACCEPTED.
 
 ## Rerun Requirements
 
@@ -106,6 +106,6 @@ Workers must read only their assigned `LINE_START..LINE_END`, write only their t
 
 ## Remaining Blockers
 
-- Batch 2 Gate 2 human review is required before the 7770 merged Batch 2 atom rows and 968 vocabulary terms become accepted decomposition truth.
+- Batch 2 Gate 2 is accepted in the Phase 2 closure snapshot; the 7770 merged Batch 2 atom rows and 968 vocabulary terms are promoted into canonical Phase 2 truth.
 - Batch 2 contains 8 merged `TBD` rows for review.
 - Active Batch 1 reuse remains blocked by OI-012 until explicit carry-forward or rebaseline.

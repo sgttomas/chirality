@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-PDF2MD-PAGE-ASSETS",
+  "source_doc_id": "SRC-SKILLPACK-PDF2MD-PAGE-ASSETS",
+  "source_name": "Skill pack: pdf2md-page-assets",
+  "source_prefix": "SKP031",
+  "repo_rel_path": "skills/pdf2md-page-assets/",
+  "catalog_rel_path": "@repo/skills/pdf2md-page-assets/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-PDF2MD-PAGE-ASSETS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-PDF2MD-PAGE-ASSETS.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/pdf2md-page-assets/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-PDF2MD-PAGE-ASSETS-BRIEF-SCHEMA",
+      "source_name": "skills/pdf2md-page-assets/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "a2c361750a0d65b6aef6483c2798028f4f291877accbb5b5695e03f804a02531",
+      "generated_line_start": 10,
+      "generated_line_end": 101,
+      "source_line_start": 1,
+      "source_line_end": 92,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/pdf2md-page-assets/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-PDF2MD-PAGE-ASSETS-QA-CHECKS",
+      "source_name": "skills/pdf2md-page-assets/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "84962f9c5dab40d8798fc8a6529975c6093b13c2586e0ee54db0e350260d5c5c",
+      "generated_line_start": 105,
+      "generated_line_end": 199,
+      "source_line_start": 1,
+      "source_line_end": 95,
+      "line_offset": -104
+    },
+    {
+      "repo_rel_path": "skills/pdf2md-page-assets/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-PDF2MD-PAGE-ASSETS-SKILL",
+      "source_name": "skills/pdf2md-page-assets/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "e722ac31e3381d8c974f196efc8f45f0dc78f6d2770b4442e09753a3d8550c2f",
+      "generated_line_start": 203,
+      "generated_line_end": 473,
+      "source_line_start": 1,
+      "source_line_end": 271,
+      "line_offset": -202
+    },
+    {
+      "repo_rel_path": "skills/pdf2md-page-assets/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-PDF2MD-PAGE-ASSETS-TOOL-POLICY",
+      "source_name": "skills/pdf2md-page-assets/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "29fa0d2a4a0e54ed8ff40e3ade913c572203fc899e63047827e4a1a611436914",
+      "generated_line_start": 477,
+      "generated_line_end": 526,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -476
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

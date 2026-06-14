@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-CONTENT-DIGEST",
+  "source_doc_id": "SRC-SKILLPACK-CONTENT-DIGEST",
+  "source_name": "Skill pack: content-digest",
+  "source_prefix": "SKP001",
+  "repo_rel_path": "skills/content-digest/",
+  "catalog_rel_path": "@repo/skills/content-digest/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-CONTENT-DIGEST.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-CONTENT-DIGEST.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/content-digest/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-CONTENT-DIGEST-BRIEF-SCHEMA",
+      "source_name": "skills/content-digest/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "f406b345ff7a47dd3b4fe079afbbbb0498b22965af3dc36737d96b686afe199c",
+      "generated_line_start": 10,
+      "generated_line_end": 43,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/content-digest/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-CONTENT-DIGEST-QA-CHECKS",
+      "source_name": "skills/content-digest/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "ef86cf89be23eb56d44a64dee21c448e163ccb2f88750e523c4199c8f061ced9",
+      "generated_line_start": 47,
+      "generated_line_end": 65,
+      "source_line_start": 1,
+      "source_line_end": 19,
+      "line_offset": -46
+    },
+    {
+      "repo_rel_path": "skills/content-digest/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-CONTENT-DIGEST-SKILL",
+      "source_name": "skills/content-digest/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "8958ce37a994a7471315b40359dfdd6c5e3e5e47baa440d4597ad0ccc2765092",
+      "generated_line_start": 69,
+      "generated_line_end": 268,
+      "source_line_start": 1,
+      "source_line_end": 200,
+      "line_offset": -68
+    },
+    {
+      "repo_rel_path": "skills/content-digest/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-CONTENT-DIGEST-TOOL-POLICY",
+      "source_name": "skills/content-digest/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "1720e988442d22b0d5ec0d993cf2a7ec7ff8dd7f678af85e423029898fb77e7a",
+      "generated_line_start": 272,
+      "generated_line_end": 302,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -271
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

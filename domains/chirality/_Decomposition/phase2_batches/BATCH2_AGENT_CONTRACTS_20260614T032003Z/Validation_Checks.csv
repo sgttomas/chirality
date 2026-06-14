@@ -7,4 +7,4 @@ BATCH2_PER_SOURCE_MERGE,PASS,per_source_ledgers=36; merged_rows=7770; dedupe_dro
 BATCH2_CROSS_SOURCE_MERGE,PASS,BATCH2_Atomic_Domain_Ledger.csv rows=7770; IN=7758; OUT=4; TBD=8; unresolved_corrects=0,Batch-scoped cross-source ledger created; global Atomic_Domain_Ledger.csv was not overwritten.
 BATCH2_VOCAB_MERGE,PASS,BATCH2_Vocabulary_Map.csv terms=968; multi_source=137,Batch-scoped vocabulary map created; global Vocabulary_Map.csv was not overwritten.
 BATCH2_ATOM_REVIEW_HTML,PASS,atom_review_html=36; section_node_csvs=36,Batch 2 selected source review HTML regenerated in atom-review mode using per-source ledgers.
-BATCH2_GATE2_STATUS,OPEN_HUMAN_REVIEW_REQUIRED,Gate 2 acceptance snapshot not created for Batch 2,"Human must accept Batch 2 atom boundaries, IN/OUT/TBD decisions, and vocabulary choices before treating these atoms as accepted decomposition truth."
+BATCH2_GATE2_STATUS,GATE2_ACCEPTED,domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z; accepted in Phase 2 closure,Batch rows are accepted decomposition truth through the canonical Phase 2 ledger/vocabulary.

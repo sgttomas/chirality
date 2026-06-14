@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-FOUR-DOCUMENTS",
+  "source_doc_id": "SRC-SKILLPACK-FOUR-DOCUMENTS",
+  "source_name": "Skill pack: four-documents",
+  "source_prefix": "SKP022",
+  "repo_rel_path": "skills/four-documents/",
+  "catalog_rel_path": "@repo/skills/four-documents/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-FOUR-DOCUMENTS.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-FOUR-DOCUMENTS.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/four-documents/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-FOUR-DOCUMENTS-BRIEF-SCHEMA",
+      "source_name": "skills/four-documents/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "b01c0f6d2dfe8b0b1a68d0fedcd9931458e6c3be6afd08c24caa01c2c1fce362",
+      "generated_line_start": 10,
+      "generated_line_end": 49,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/four-documents/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-FOUR-DOCUMENTS-QA-CHECKS",
+      "source_name": "skills/four-documents/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "03fb5eaadd4eb1cdba34461168c85e8835adcf61e15739e53f05353d0365dab9",
+      "generated_line_start": 53,
+      "generated_line_end": 80,
+      "source_line_start": 1,
+      "source_line_end": 28,
+      "line_offset": -52
+    },
+    {
+      "repo_rel_path": "skills/four-documents/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-FOUR-DOCUMENTS-SKILL",
+      "source_name": "skills/four-documents/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "58834b3954b2bbd829fdc0613733b15496847869ea2862ef0d7dbae6944f5269",
+      "generated_line_start": 84,
+      "generated_line_end": 404,
+      "source_line_start": 1,
+      "source_line_end": 321,
+      "line_offset": -83
+    },
+    {
+      "repo_rel_path": "skills/four-documents/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-FOUR-DOCUMENTS-TOOL-POLICY",
+      "source_name": "skills/four-documents/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "f16c8bf01b34c5879192bdc1938bc9e2abd1ccf2ee69a08f27716d7e4ffe7a3f",
+      "generated_line_start": 408,
+      "generated_line_end": 444,
+      "source_line_start": 1,
+      "source_line_end": 37,
+      "line_offset": -407
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

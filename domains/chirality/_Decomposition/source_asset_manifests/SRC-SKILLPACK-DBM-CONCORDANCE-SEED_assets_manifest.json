@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DBM-CONCORDANCE-SEED",
+  "source_doc_id": "SRC-SKILLPACK-DBM-CONCORDANCE-SEED",
+  "source_name": "Skill pack: dbm-concordance-seed",
+  "source_prefix": "SKP002",
+  "repo_rel_path": "skills/dbm-concordance-seed/",
+  "catalog_rel_path": "@repo/skills/dbm-concordance-seed/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DBM-CONCORDANCE-SEED.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DBM-CONCORDANCE-SEED.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/dbm-concordance-seed/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-SEED-BRIEF-SCHEMA",
+      "source_name": "skills/dbm-concordance-seed/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "9b5463d85973ef8a41f3cce5a1bdcf7a348f3c305e21fbd74b2492fee7cf3b99",
+      "generated_line_start": 10,
+      "generated_line_end": 114,
+      "source_line_start": 1,
+      "source_line_end": 105,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-seed/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-SEED-QA-CHECKS",
+      "source_name": "skills/dbm-concordance-seed/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "fc112ed19f5c088229e07677d4cf96f4047abd1392caa85b85aafc2a9a14e2bb",
+      "generated_line_start": 118,
+      "generated_line_end": 230,
+      "source_line_start": 1,
+      "source_line_end": 113,
+      "line_offset": -117
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-seed/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-SEED-SKILL",
+      "source_name": "skills/dbm-concordance-seed/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "641f320fb1e62e08c2036e195f75a9a8629b4a47d0bdb0a3e6301419de9816ee",
+      "generated_line_start": 234,
+      "generated_line_end": 555,
+      "source_line_start": 1,
+      "source_line_end": 322,
+      "line_offset": -233
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-seed/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-SEED-TOOL-POLICY",
+      "source_name": "skills/dbm-concordance-seed/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "476cf4769ad86add2c4ee29b1858ce4e3e56c833bee636265cce152eadc2127b",
+      "generated_line_start": 559,
+      "generated_line_end": 601,
+      "source_line_start": 1,
+      "source_line_end": 43,
+      "line_offset": -558
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

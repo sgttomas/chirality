@@ -1,0 +1,14 @@
+{
+  "schema_version": "chirality-domain-md-adapter/v1",
+  "doc_stem": "SRC-WSR-DOMAINS-CHIRALITY",
+  "source_doc_id": "SRC-WSR-DOMAINS-CHIRALITY",
+  "source_name": "WSR-DOMAINS-CHIRALITY.md",
+  "source_prefix": "WSR001",
+  "repo_rel_path": "domains/chirality/_Decomposition/work_surface_registry/WSR-DOMAINS-CHIRALITY.md",
+  "catalog_rel_path": "@repo/domains/chirality/_Decomposition/work_surface_registry/WSR-DOMAINS-CHIRALITY.md",
+  "source_manifest_sha256": "6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e",
+  "batch_id": "BATCH5_WORK_SURFACE_REGISTRY_20260614T191710Z",
+  "source_truth_policy": "Manifest-backed live repo file; SourceRefs cite @repo path directly.",
+  "assets": [],
+  "pages": []
+}

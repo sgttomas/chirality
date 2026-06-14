@@ -1,0 +1,113 @@
+# WSR-PROJECTS-CHIRALITY-PIPING
+
+## Registry Scope Note
+
+This document is a work-surface registry source for later DOMAIN_DECOMP Phase 2 atomization. It records topology, ownership, and governance principles for the live `projects/chirality-piping/` surface. It is not a project decomposition, implementation atomization, source manifest change, or Gate packet.
+
+## Work-Surface Identity and Role
+
+- Work surface: `projects/chirality-piping/`
+- Registry document: `WSR-PROJECTS-CHIRALITY-PIPING`
+- Role: OpenPipeStress application/project workspace for piping mechanics, rule-pack, GUI, validation, reporting, handoff, and governance work.
+
+The docs README describes OpenPipeStress as a source-available noncommercial, code-neutral piping flexibility and stress-analysis platform and says the docs package converts product intent and PRD into a flat package/deliverable decomposition for downstream agent execution. Evidence: @repo/projects/chirality-piping/docs/README.md:L8-L17.
+
+The project-local `AGENTS.md` maps the Chirality agent framework onto OpenPipeStress development and states that it does not redefine the canonical agent framework. Evidence: @repo/projects/chirality-piping/AGENTS.md:L8-L11.
+
+## Major Live Subareas
+
+- `docs/`: Governance, product requirements, policies, strategic plan, technical specification, validation strategy, guides, and machine-readable registers. Evidence: @repo/projects/chirality-piping/docs/README.md:L18-L40.
+- `execution/`: Project execution control surface with current SOFTWARE_DECOMP, DAG, coordination, package/deliverable folders, aggregation, change, evaluation, reconciliation, and scope-change records. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L8-L40; directory evidence: @repo/projects/chirality-piping/execution/.
+- `execution/_Decomposition/`: Current decomposition authority. `SOFTWARE_DECOMP.md` revision 0.7 records the current basis and packages PKG-00 through PKG-17. Evidence: @repo/projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:L1-L15; @repo/projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:L192-L214.
+- `apps/desktop/`: Tauri/Vite/React desktop app. The root npm workspace points to `apps/desktop`, and the desktop package defines Vite, Tauri, Vitest, Playwright, and wasm build scripts. Evidence: @repo/projects/chirality-piping/package.json:L1-L16; @repo/projects/chirality-piping/apps/desktop/package.json:L1-L24.
+- `core/`: Domain implementation modules for adapters, units, solver, loads, rules, GUI contracts, persistence, reporting, handoff, comparison, model operations, security, serialization, and product physics. Directory evidence: @repo/projects/chirality-piping/core/.
+- `schemas/`: Schema contracts for models, materials, components, units, reports, rules, analysis runs, exports, adapters, operations, persistence, constraints, and handoff packages. Directory evidence: @repo/projects/chirality-piping/schemas/.
+- `fixtures/` and `examples/`: Invented and test fixture data for model, rules, reports, exports, GUI, validation, and product preview paths. Directory evidence: @repo/projects/chirality-piping/fixtures/, @repo/projects/chirality-piping/examples/.
+- `tests/`: Python and security/product-preview test surface. Directory evidence: @repo/projects/chirality-piping/tests/.
+- `validation/`: Benchmarks, hand calculations, evidence sweeps, and calculation witnesses. The witness README states the JSON witness is authoritative and its renderings are deterministic validation evidence, not protected standards/compliance/professional approval content. Evidence: @repo/projects/chirality-piping/validation/witness/README.md:L1-L20.
+- `tools/`: Coordination, release, and validation tools. The tool registry identifies `list_deliverable_status` as read-only lifecycle discovery with no repo-tracked writes. Evidence: @repo/projects/chirality-piping/tools/REGISTRY.md:L1-L12.
+- `governance/`: Maintainer, contribution certification, and contribution review policy skeletons. Directory evidence: @repo/projects/chirality-piping/governance/.
+- `plans/`: Tactical assessments, completion plans, verification notes, and plan completion log. Directory evidence: @repo/projects/chirality-piping/plans/.
+
+## Organization and Apparent Rationale
+
+The project is organized around a layered architecture and a governed execution system. The SPEC describes five separable layers: GUI/UX, application services, domain core, adapters, and supporting storage/packaging paths. Evidence: @repo/projects/chirality-piping/docs/SPEC.md:L17-L38.
+
+The SPEC's repository-layout target maps those layers into `docs/`, `schemas/`, `core/`, GUI/adapters/examples/validation/scripts/tests. Evidence: @repo/projects/chirality-piping/docs/SPEC.md:L39-L65.
+
+The active decomposition extends that into executable governance packages: architecture runway, governance/IP, schemas, components/libraries, solver, loads/stress, rules, GUI, reporting, validation, build/interoperability, docs/examples, security/privacy, physical design knowledge, model states/runs/comparison, handoff/external prover, model operations, and export format interoperability. Evidence: @repo/projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:L195-L214.
+
+Inference: `core/`, `schemas/`, `apps/desktop/`, `fixtures/`, `tests/`, and `validation/` exist as implementation and evidence realizations of that decomposition, while `docs/` and `execution/` remain the governing/decomposition surfaces. This is supported by the coordination record's state rules, which say app code and tests are current implementation state but do not replace decomposition truth, DAG authority, deliverable lifecycle state, or human gates. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L125-L153.
+
+## Ownership and Decomposition Boundary
+
+This work surface owns OpenPipeStress project implementation and governance. Its scope includes open mechanics, user-supplied/private code data boundaries, centerline/frame solver behavior, rule-pack framework, GUI workflow, local-first persistence, validation, reporting, export/handoff, and professional-boundary notices.
+
+The PRD states that OpenPipeStress will implement open mechanical analysis methods while requiring the responsible engineer to provide code-specific, material, allowable, component, SIF/flexibility, and proprietary design data. Evidence: @repo/projects/chirality-piping/docs/PRD.md:L12-L23.
+
+This surface does not own the general Chirality agent framework, the Chirality desktop harness core, or the piping-design domain source corpus. It may consume domain knowledge and Chirality workflow patterns, but its project truth is governed by OpenPipeStress docs, decomposition, DAG, implementation, tests, and human gates.
+
+The public repository must not contain protected standards text/tables/figures, material allowable tables, copied standards content, proprietary vendor catalogs without redistribution rights, user private rule packs, owner standards, or private design bases. Evidence: @repo/projects/chirality-piping/docs/IP_AND_DATA_BOUNDARY.md:L34-L53.
+
+## Execution and Governance Model
+
+The local agent index defines `SOFTWARE_DECOMP`, `PREPARATION`, `TASK`, `REVIEW`, `RECONCILIATION`, `CHANGE`, and `AUDIT_*` roles for this project, and requires Type 2 execution to receive deliverable ID, package ID, scope/objectives, invariants, acceptance criteria, and explicit write scope. Evidence: @repo/projects/chirality-piping/AGENTS.md:L20-L60.
+
+The coordination record says authoritative state lives in `SOFTWARE_DECOMP`, approved DAG artifacts, deliverable-local `_STATUS.md`/`MEMORY.md`/run records, read-only status discovery, current implementation surfaces, and non-governing completion plan/decision register guidance. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L125-L153.
+
+The current operating mode is app-centric integration and issuance: all deliverables are `CHECKING` or `ISSUED`, `CHECKING` is mature design authority but not necessarily absorbed application scope, and formal issuance remains human-gated. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L180-L195.
+
+The Application Integration And Issuance Loop requires authority intake, status/git discovery, bounded tranche selection, decision escalation for human-gated TBDs, context selection through app surfaces and DAG-discovered deliverables, bounded execution, validation, evidence, and git closeout. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L248-L347.
+
+Review readiness requires matching deliverable/package, expected artifacts or deferrals, passing tests/lints where applicable, protected/private data checks, visible assumptions/warnings, dependencies, consistent local state, and no claim exceeding its warrant. Evidence: @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L377-L395.
+
+Release/build evidence is local and provider-neutral. The build guide defines local evidence profiles and a five-surface evidence sweep covering Rust crates, Python tests, desktop Vitest, Playwright e2e, and desktop production build; it explicitly says green sweep evidence is not a release/professional/code-compliance claim. Evidence: @repo/projects/chirality-piping/docs/BUILD_AND_RELEASE.md:L49-L83; @repo/projects/chirality-piping/docs/BUILD_AND_RELEASE.md:L121-L167.
+
+## Relationship to Chirality Domain Decomposition
+
+This registry describes a project work surface outside the current Chirality governance-core source boundary. The Chirality domain boundary excludes `projects/` and non-governance code internals, so this project should not be silently folded into the existing Chirality governance-core corpus. Evidence: @repo/domains/chirality/_Sources/SOURCE_BOUNDARY.md:L29-L38.
+
+If admitted later, atomization should describe project topology and governance boundaries, not implementation-level module behavior, source code details, individual test fixtures, generated evidence sweeps, or protected piping-design technical content.
+
+The `domains/piping-design/` corpus is a separate domain pack. OpenPipeStress may relate to that domain knowledge, but this project registry should not replace or duplicate the piping-design source-corpus registry. Evidence: @repo/domains/piping-design/_Sources/_LATEST.md:L1-L8.
+
+## Explicit Exclusions
+
+- `.archive/`, `_Archive/`, archived/retired material, and archived session/planning files.
+- `node_modules/`, `.pytest_cache/`, `__pycache__/`, `target/`, build outputs, generated wasm output, desktop `test-results/`, and other generated/vendor/cache folders.
+- `provenance/build-artifacts/` as source truth.
+- `execution/_Aggregation/**`, validation sweep outputs, and other derivative evidence packages as authoritative decomposition truth. They can be cited as derivative evidence only when the owning workflow accepts them.
+- `.claude/` local configuration as source truth; it is adjacent local operator/tooling state and requires explicit review before any admission.
+- Individual implementation files under `core/`, `apps/desktop/src/`, `schemas/`, `fixtures/`, `tests/`, and `validation/` for this registry task. Their directory presence is structural evidence only.
+
+## Review Flags
+
+- Current project wording has a historical/current-position tension: the PRD header says "Free and open-source" while current docs status names a source-available noncommercial project and records `PolyForm-Noncommercial-1.0.0` as the selected license. This registry follows the current docs/license posture and flags the older PRD wording for later source-boundary review. Evidence: @repo/projects/chirality-piping/docs/PRD.md:L1-L8; @repo/projects/chirality-piping/docs/README.md:L49-L54; @repo/projects/chirality-piping/docs/CONTRACT.md:L43-L46.
+- `.claude/` exists with local settings/configuration; do not treat it as source truth without human review. Directory evidence: @repo/projects/chirality-piping/.claude/.
+- `execution/_Aggregation/`, `validation/evidence/sweeps/`, and similar snapshot/evidence surfaces are structurally important but derivative. They should cite accepted upstream snapshots when used and should not substitute for decomposition, DAG, deliverable-local lifecycle, or human gate authority.
+- The desktop app smoke file contains extensive workflow selectors and prior live-browser status, but it is a smoke/evidence surface, not professional validation or release readiness. Evidence: @repo/projects/chirality-piping/apps/desktop/SMOKE.md:L1-L6; @repo/projects/chirality-piping/apps/desktop/SMOKE.md:L141-L145.
+
+## Evidence References
+
+- @repo/projects/chirality-piping/AGENTS.md:L1-L60
+- @repo/projects/chirality-piping/docs/README.md:L1-L70
+- @repo/projects/chirality-piping/docs/PRD.md:L1-L23
+- @repo/projects/chirality-piping/docs/PRD.md:L96-L109
+- @repo/projects/chirality-piping/docs/SPEC.md:L17-L65
+- @repo/projects/chirality-piping/docs/IP_AND_DATA_BOUNDARY.md:L13-L18
+- @repo/projects/chirality-piping/docs/IP_AND_DATA_BOUNDARY.md:L34-L53
+- @repo/projects/chirality-piping/docs/PROFESSIONAL_BOUNDARY.md:L16-L30
+- @repo/projects/chirality-piping/docs/PROFESSIONAL_BOUNDARY.md:L46-L56
+- @repo/projects/chirality-piping/docs/PLAN.md:L25-L39
+- @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L1-L40
+- @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L125-L195
+- @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L248-L347
+- @repo/projects/chirality-piping/execution/_Coordination/_COORDINATION.md:L377-L395
+- @repo/projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:L1-L39
+- @repo/projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md:L192-L214
+- @repo/projects/chirality-piping/package.json:L1-L16
+- @repo/projects/chirality-piping/apps/desktop/package.json:L1-L38
+- @repo/projects/chirality-piping/docs/BUILD_AND_RELEASE.md:L49-L83
+- @repo/projects/chirality-piping/docs/BUILD_AND_RELEASE.md:L121-L167
+- @repo/projects/chirality-piping/validation/witness/README.md:L1-L20
+- Directory evidence: @repo/projects/chirality-piping/core/, @repo/projects/chirality-piping/schemas/, @repo/projects/chirality-piping/fixtures/, @repo/projects/chirality-piping/validation/, @repo/projects/chirality-piping/tools/

@@ -1,5 +1,5 @@
-Latest: GATE2_BATCH1_20260614T023234Z
-Updated: 2026-06-14T02:32:34Z
+Latest: GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z
+Updated: 2026-06-14T21:17:25Z
 Gate: Gate 2 Atomization / Normalization
-Scope: BATCH1_BINDING_GOVERNANCE_20260614T011101Z
-Status: ACCEPTED
+Scope: Active Phase 2 source-unit set (110 accepted source units) plus source-unit authority caveat closure
+Status: ACCEPTED_CAVEAT_CLOSED

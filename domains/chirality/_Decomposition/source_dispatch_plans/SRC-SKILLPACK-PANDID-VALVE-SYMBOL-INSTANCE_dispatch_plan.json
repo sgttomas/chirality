@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLPACK-PANDID-VALVE-SYMBOL-INSTANCE",
+  "source_prefix": "SKP026",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLPACK-PANDID-VALVE-SYMBOL-INSTANCE_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-PANDID-VALVE-SYMBOL-INSTANCE.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T06:07:42+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SKP026-0001",
+      "line_start": 1,
+      "line_end": 102,
+      "target_section_ids": [
+        "SEC-SKP026-0001",
+        "SEC-SKP026-0002",
+        "SEC-SKP026-0003",
+        "SEC-SKP026-0004",
+        "SEC-SKP026-0005",
+        "SEC-SKP026-0006",
+        "SEC-SKP026-0007",
+        "SEC-SKP026-0008",
+        "SEC-SKP026-0009",
+        "SEC-SKP026-0010",
+        "SEC-SKP026-0011",
+        "SEC-SKP026-0012"
+      ],
+      "estimated_md_tokens": 615,
+      "contains_oversized_section": false
+    }
+  ]
+}

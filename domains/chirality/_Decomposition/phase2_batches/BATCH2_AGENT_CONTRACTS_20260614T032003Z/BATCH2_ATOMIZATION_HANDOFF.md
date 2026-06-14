@@ -4,7 +4,7 @@ Package role: snapshot / handoff artifact
 
 BatchID: `BATCH2_AGENT_CONTRACTS_20260614T032003Z`
 
-Status: ATOMIZATION_COMPLETE_GATE2_OPEN
+Status: GATE2_ACCEPTED_IN_PHASE2_CLOSURE
 
 Generated UTC: 2026-06-14T05:07:20Z
 
@@ -14,6 +14,10 @@ Generated UTC: 2026-06-14T05:07:20Z
 - Batch 1 Gate 2 acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z` (prior-boundary evidence only for active reuse)
 - Source manifest SHA-256: `acd2fd88ff66be89b33d5cde05ab15cbcb584adea2fd25e661d9ea9eb0f64b04`
 - Setup package: `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_SETUP.md`
+
+## Gate 2 Closure
+
+Accepted in `domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z` by human approval on 2026-06-14. This batch is included in canonical `Atomic_Domain_Ledger.csv` and `Vocabulary_Map.csv`; the batch-scoped ledger remains supporting evidence.
 
 ## Fan-Out / Fan-In Summary
 
@@ -54,8 +58,8 @@ Generated UTC: 2026-06-14T05:07:20Z
 - Regenerated Batch 2 setup: CLOSED / SETUP_READY_REGENERATED.
 - Batch 2 Phase 2 atomization fan-out: COMPLETE; all 36 dispatch units have valid atom and vocabulary CSV outputs.
 - Batch 2 per-source and cross-source merge: COMPLETE; batch-scoped outputs only.
-- Batch 2 Gate 2: OPEN / HUMAN_REVIEW_REQUIRED.
-- Global `Atomic_Domain_Ledger.csv` and `Vocabulary_Map.csv`: NOT UPDATED by this batch because Batch 2 has not been accepted at Gate 2.
+- Batch 2 Gate 2: CLOSED / GATE2_ACCEPTED.
+- Global `Atomic_Domain_Ledger.csv` and `Vocabulary_Map.csv`: UPDATED by the Phase 2 Gate 2 closure merge; Batch 2 rows are included in the canonical accepted ledger and vocabulary.
 
 ## Known Review Items
 
@@ -65,7 +69,7 @@ Generated UTC: 2026-06-14T05:07:20Z
 
 ## Gate 2 Acceptance Needed
 
-Gate 2 remains open until the human explicitly confirms:
+Gate 2 accepted in `domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z`. Prior acceptance prompt was:
 
 > The Batch 2 atom boundaries, IN/OUT/TBD classifications, source bindings, and vocabulary choices are accepted as decomposition truth for the active 36-source agent-contract batch.
 
@@ -73,4 +77,4 @@ Gate 2 remains open until the human explicitly confirms:
 
 - If any selected agent instruction source changes, rebuild the source catalog, regenerate affected skeleton/dispatch companions, rebuild this batch setup, and rerun affected atomization units.
 - If the source manifest changes, recompute the manifest SHA, rebuild the catalog and BM25 index, and decide whether this Batch 2 handoff remains usable or must be rebaselined.
-- Do not run Gate 3 category/KTY assignment from Batch 2 until Gate 2 is accepted.
+- Gate 3 category/KTY assignment may consume the canonical accepted Phase 2 ledger after the Phase 2.5 refresh.

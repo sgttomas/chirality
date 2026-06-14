@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DRAWING-EXTRACT-PAGE",
+  "source_doc_id": "SRC-SKILLPACK-DRAWING-EXTRACT-PAGE",
+  "source_name": "Skill pack: drawing-extract-page",
+  "source_prefix": "SKP014",
+  "repo_rel_path": "skills/drawing-extract-page/",
+  "catalog_rel_path": "@repo/skills/drawing-extract-page/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DRAWING-EXTRACT-PAGE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DRAWING-EXTRACT-PAGE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/drawing-extract-page/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-EXTRACT-PAGE-BRIEF-SCHEMA",
+      "source_name": "skills/drawing-extract-page/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "919ffff98c09a39881e0d3d899a1649660118ca42f2dd0caf9c9ca55ac833a91",
+      "generated_line_start": 10,
+      "generated_line_end": 256,
+      "source_line_start": 1,
+      "source_line_end": 247,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/drawing-extract-page/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-EXTRACT-PAGE-QA-CHECKS",
+      "source_name": "skills/drawing-extract-page/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "46e1e193c71b8c1ac940b1d854c8c7a19539d6b74ae8ba69d43a984a97caf916",
+      "generated_line_start": 260,
+      "generated_line_end": 458,
+      "source_line_start": 1,
+      "source_line_end": 199,
+      "line_offset": -259
+    },
+    {
+      "repo_rel_path": "skills/drawing-extract-page/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-EXTRACT-PAGE-SKILL",
+      "source_name": "skills/drawing-extract-page/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "e8f232f31de306ca45490e3c992d366821185ef489107c7265c0d04dbb67e2a0",
+      "generated_line_start": 462,
+      "generated_line_end": 939,
+      "source_line_start": 1,
+      "source_line_end": 478,
+      "line_offset": -461
+    },
+    {
+      "repo_rel_path": "skills/drawing-extract-page/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-EXTRACT-PAGE-TOOL-POLICY",
+      "source_name": "skills/drawing-extract-page/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "ee2eaf11cd6e961d8fea6bd524ce88774cb7de805978a2388cea01f1216c80db",
+      "generated_line_start": 943,
+      "generated_line_end": 983,
+      "source_line_start": 1,
+      "source_line_end": 41,
+      "line_offset": -942
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

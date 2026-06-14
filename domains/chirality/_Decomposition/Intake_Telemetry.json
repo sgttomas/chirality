@@ -1,20 +1,20 @@
 {
-  "generated_utc": "2026-06-14T03:16:02+00:00",
-  "source_count": 221,
+  "generated_utc": "2026-06-14T21:17:25Z",
+  "source_count": 225,
   "source_manifest": "domains/chirality/_Sources/Source_Manifest.csv",
-  "source_manifest_sha256": "acd2fd88ff66be89b33d5cde05ab15cbcb584adea2fd25e661d9ea9eb0f64b04",
+  "source_manifest_sha256": "6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e",
   "accepted_gate1_source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
-  "catalog_build_status": "PASS_WITH_PRIOR_BOUNDARY_WARNING",
-  "catalog_snapshot": "domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T031420Z",
+  "catalog_build_status": "PASS_CAVEAT_CLOSED",
+  "catalog_snapshot": "domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T204703Z",
   "catalog_meta": {
-    "status": "PASS_WITH_PRIOR_BOUNDARY_WARNING",
-    "active_manifest_sources": 221,
-    "catalog_source_docs": 232,
-    "artifacts": 454,
-    "chunks": 11652,
-    "markdown_section_chunks": 4032,
-    "section_node_chunks": 4346,
-    "ledger_atom_chunks": 3274,
+    "status": "PASS_CAVEAT_CLOSED",
+    "active_manifest_sources": 225,
+    "catalog_source_docs": 274,
+    "artifacts": 500,
+    "chunks": 29843,
+    "markdown_section_chunks": 4076,
+    "section_node_chunks": 6294,
+    "ledger_atom_chunks": 19473,
     "missing_active_sources": [],
     "prior_boundary_batch1_retired_sources": [
       "SRC-CLAUDE/RT003",
@@ -29,20 +29,25 @@
       "SRC-DOCS-TYPES/DG008",
       "SRC-DOCS-WHAT-IS-AN-AGENT/DG009"
     ],
-    "warning": "Catalog validates structurally, but retained Batch 1 ledger/section companions still reference 11 sources retired from active V1."
+    "warning": "Grouped skill-pack source-unit caveat closed: Gate2_Source_Unit_Register.csv is the accepted Phase 3 source-unit authority; Source_Manifest.csv remains file-level admission authority.",
+    "accepted_gate2_source_units": 110,
+    "accepted_gate2_atoms": 19473,
+    "accepted_gate2_in": 19403,
+    "accepted_gate2_out": 20,
+    "accepted_gate2_tbd": 50
   },
   "catalog_validation_status": "PASS",
-  "catalog_validation_evidence": "validate_source_database PASS on domains/chirality/_LocalIndexes/_LATEST.md (0 blockers, 0 warnings)",
+  "catalog_validation_evidence": "validate_source_database PASS on domains/chirality/_LocalIndexes/_LATEST.md -> SRCIDX_20260614T204703Z (0 blockers, 0 warnings)",
   "retrieval_smoke_status": "PASS",
-  "retrieval_smoke_evidence": "BM25 rank 1 for derivative-package rule is SRC-AGENTS SECTION_NODE",
-  "skeleton_count": 221,
-  "review_html_count": 221,
-  "section_nodes_count": 221,
-  "section_count": 3959,
-  "in_scope_section_count": 3956,
-  "dispatch_unit_count": 221,
+  "retrieval_smoke_evidence": "BM25 rank 1 for derivative-package rule is @repo/AGENTS.md MARKDOWN_SECTION",
+  "skeleton_count": 225,
+  "review_html_count": 225,
+  "section_nodes_count": 225,
+  "section_count": 4003,
+  "in_scope_section_count": 4001,
+  "dispatch_unit_count": 226,
   "oversized_dispatch_unit_count": 0,
-  "deferred_count": 1,
+  "deferred_count": 0,
   "retired_source_boundary_rows": 21,
   "retired_source_prefixes": [
     "AG013",
@@ -93,10 +98,10 @@
       "SourceGroup": "ROOT_DOCS",
       "SourceCount": 5,
       "SkeletonCount": 5,
-      "DeferredCount": 1,
+      "DeferredCount": 0,
       "SectionCount": 95,
-      "InScopeSectionCount": 94,
-      "DispatchUnitCount": 4,
+      "InScopeSectionCount": 95,
+      "DispatchUnitCount": 5,
       "OversizedDispatchUnitCount": 0
     },
     {
@@ -127,6 +132,16 @@
       "SectionCount": 47,
       "InScopeSectionCount": 47,
       "DispatchUnitCount": 3,
+      "OversizedDispatchUnitCount": 0
+    },
+    {
+      "SourceGroup": "WORK_SURFACE_REGISTRY",
+      "SourceCount": 4,
+      "SkeletonCount": 4,
+      "DeferredCount": 0,
+      "SectionCount": 44,
+      "InScopeSectionCount": 44,
+      "DispatchUnitCount": 4,
       "OversizedDispatchUnitCount": 0
     }
   ],
@@ -186,5 +201,24 @@
       "SourcePrefix": "RT004",
       "RepoRelPath": "init/INIT.md"
     }
-  ]
+  ],
+  "accepted_gate2": {
+    "snapshot": "domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z",
+    "source_unit_count": 110,
+    "atom_rows": 19473,
+    "in_rows": 19403,
+    "out_rows": 20,
+    "tbd_rows": 50,
+    "vocabulary_terms": 2582,
+    "toc_prior_pairs": 21964
+  },
+  "gate2_source_unit_authority": {
+    "status": "ACCEPTED_CAVEAT_CLOSED",
+    "snapshot": "domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z",
+    "accepted_source_unit_authority": "domains/chirality/_Decomposition/Gate2_Source_Unit_Register.csv",
+    "file_admission_authority": "domains/chirality/_Sources/Source_Manifest.csv",
+    "grouped_skill_pack_source_units": 38,
+    "skill_contract_manifest_component_rows": 153,
+    "closed_issue": "OI-018"
+  }
 }

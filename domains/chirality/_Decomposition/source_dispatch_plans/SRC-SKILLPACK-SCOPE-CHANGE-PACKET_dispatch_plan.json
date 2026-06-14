@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": "SRC-SKILLPACK-SCOPE-CHANGE-PACKET",
+  "source_prefix": "SKP035",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-SKILLPACK-SCOPE-CHANGE-PACKET_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-SCOPE-CHANGE-PACKET.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T06:07:43+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-SKP035-0001",
+      "line_start": 1,
+      "line_end": 249,
+      "target_section_ids": [
+        "SEC-SKP035-0001",
+        "SEC-SKP035-0002",
+        "SEC-SKP035-0003",
+        "SEC-SKP035-0004",
+        "SEC-SKP035-0005",
+        "SEC-SKP035-0006",
+        "SEC-SKP035-0007",
+        "SEC-SKP035-0008",
+        "SEC-SKP035-0009",
+        "SEC-SKP035-0010",
+        "SEC-SKP035-0011",
+        "SEC-SKP035-0012",
+        "SEC-SKP035-0013",
+        "SEC-SKP035-0014",
+        "SEC-SKP035-0015",
+        "SEC-SKP035-0016",
+        "SEC-SKP035-0017",
+        "SEC-SKP035-0018",
+        "SEC-SKP035-0019",
+        "SEC-SKP035-0020",
+        "SEC-SKP035-0021",
+        "SEC-SKP035-0022",
+        "SEC-SKP035-0023",
+        "SEC-SKP035-0024",
+        "SEC-SKP035-0025"
+      ],
+      "estimated_md_tokens": 1421,
+      "contains_oversized_section": false
+    }
+  ]
+}

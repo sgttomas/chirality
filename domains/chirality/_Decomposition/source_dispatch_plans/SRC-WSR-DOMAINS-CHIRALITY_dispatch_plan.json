@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "SRC-WSR-DOMAINS-CHIRALITY",
+  "source_prefix": "WSR001",
+  "skeleton_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_skeletons/SRC-WSR-DOMAINS-CHIRALITY_skeleton.json",
+  "md_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/work_surface_registry/WSR-DOMAINS-CHIRALITY.md",
+  "budget_tokens": 15000,
+  "section_split_threshold": 25000,
+  "unit_count": 1,
+  "generated_utc": "2026-06-14T19:19:15+00:00",
+  "units": [
+    {
+      "unit_id": "UNIT-WSR001-0001",
+      "line_start": 1,
+      "line_end": 82,
+      "target_section_ids": [
+        "SEC-WSR001-0001",
+        "SEC-WSR001-0002",
+        "SEC-WSR001-0003",
+        "SEC-WSR001-0004",
+        "SEC-WSR001-0005",
+        "SEC-WSR001-0006",
+        "SEC-WSR001-0007",
+        "SEC-WSR001-0008",
+        "SEC-WSR001-0009",
+        "SEC-WSR001-0010",
+        "SEC-WSR001-0011"
+      ],
+      "estimated_md_tokens": 1247,
+      "contains_oversized_section": false
+    }
+  ]
+}

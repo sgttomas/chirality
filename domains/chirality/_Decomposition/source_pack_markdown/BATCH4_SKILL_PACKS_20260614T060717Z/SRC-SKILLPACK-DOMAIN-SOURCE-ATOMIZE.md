@@ -1,0 +1,530 @@
+# Source Pack: Skill pack: domain-source-atomize
+
+BatchID: `BATCH4_SKILL_PACKS_20260614T060717Z`
+
+Source truth remains the original repo component files listed under each component heading.
+This generated markdown is a DOMAIN_DECOMP review and worker substrate only.
+
+## Component: skills/domain-source-atomize/BRIEF_SCHEMA.md
+
+### BRIEF SCHEMA — domain-source-atomize
+
+This is the dispatch contract. The DOMAIN_DECOMP orchestrator composes one INIT-TASK brief per dispatch unit (typically via `tools/decomp/build_atomization_brief.py`) following this schema.
+
+#### INIT-TASK brief shape (required fields)
+
+```
+PURPOSE: Atomize lines <LINE_START>..<LINE_END> of <SOURCE_NAME> (dispatch unit <DISPATCH_UNIT_ID>; ~<EST_TOKENS> estimated MD tokens; <N> target sections)
+RequestedBy: DOMAIN_DECOMP
+ActingSurface: TASK+domain-source-atomize
+
+ScopePath: <quarantined work folder; typically OUTPUT_LEDGER_PATH.parent>
+TaskSkill: domain-source-atomize
+
+AllowedWriteTargets:
+  - "<OUTPUT_LEDGER_PATH>"
+  - "<OUTPUT_VOCAB_SEED_PATH>"
+
+RuntimeOverrides:
+  SOURCE_NAME: <doc_stem>
+  SOURCE_PREFIX: <short prefix>
+  DISPATCH_UNIT_ID: UNIT-<prefix>-NNNN
+  MD_PATH: <absolute path to <book>.md>
+  LINE_START: <integer>
+  LINE_END: <integer>
+  SKELETON_PATH: <absolute path to <book>_skeleton.json>
+  ASSET_MANIFEST_PATH: <absolute path to <book>_assets_manifest.json>
+  SOURCE_REF_BASE: <optional dual-citation template for manifest-backed sources>
+  SOURCE_REF_MODE: <optional COMPONENT_MAP for grouped manifest-backed sources>
+  SOURCE_HTML_PATH: <optional review HTML path>
+  OUTPUT_LEDGER_PATH: <absolute path; per-unit atom CSV>
+  OUTPUT_VOCAB_SEED_PATH: <absolute path; per-unit vocab CSV>
+  TARGET_SECTION_IDS:
+    - SEC-<prefix>-NNNN
+    - SEC-<prefix>-NNNN
+    ...
+
+CustomInstructions:
+  - Read ONLY lines LINE_START..LINE_END of MD_PATH. Atoms whose evidence line falls outside that range MUST NOT be emitted.
+  - Every emitted atom MUST map to one of the TARGET_SECTION_IDS (its SectionID column).
+  - LocalSeq is monotonic across atoms in the same dispatch unit. Final stable IDs are NOT assigned here — the merge step assigns HBA-<PREFIX>-NNNNN.
+  - ContentHash MUST be sha1(UnitStatement)[:12]; this column is load-bearing for dedup and HTML cross-reference.
+  - SourceRef is dual. If SOURCE_REF_MODE is COMPONENT_MAP, use ASSET_MANIFEST_PATH source_components to map generated MD evidence lines back to original @repo component file lines. If SOURCE_REF_BASE is present, use that template by replacing L#### with the source line and <SectionID> with the mapped section. Otherwise use `<book>.md:L####|<book>.html#anchor`.
+  - InOutStatus ∈ {IN, OUT, TBD}. Default IN for substantive technical statements; OUT for boilerplate; TBD for ambiguous content.
+  - Do not invent (AOP-08).
+  - Write ONLY to OUTPUT_LEDGER_PATH and OUTPUT_VOCAB_SEED_PATH.
+
+ExpectedOutputs:
+  - <OUTPUT_LEDGER_PATH>
+  - <OUTPUT_VOCAB_SEED_PATH>
+```
+
+#### Required `RuntimeOverrides` fields
+
+| Field | Type | Example | Notes |
+|---|---|---|---|
+| `SOURCE_NAME` | string | `Pipe-Stress-Engineering` | doc_stem |
+| `SOURCE_PREFIX` | string | `PSE` | used downstream for ID assignment |
+| `DISPATCH_UNIT_ID` | string | `UNIT-PSE-0007` | dispatch unit identifier from the plan |
+| `MD_PATH` | absolute path | `/.../Pipe-Stress-Engineering.md` | the assembled source MD |
+| `LINE_START` | integer ≥ 1 | `3815` | inclusive lower bound |
+| `LINE_END` | integer ≥ `LINE_START` | `4488` | inclusive upper bound |
+| `TARGET_SECTION_IDS` | list[string] | `[SEC-PSE-0156, SEC-PSE-0157, …]` | every atom must map to one |
+| `SKELETON_PATH` | absolute path | `/.../Pipe-Stress-Engineering_skeleton.json` | section metadata reference |
+| `ASSET_MANIFEST_PATH` | absolute path | `/.../Pipe-Stress-Engineering_assets_manifest.json` | asset metadata reference |
+| `OUTPUT_LEDGER_PATH` | absolute path | `/.../PSE_UNIT-PSE-0007_atoms.csv` | per-unit atom CSV destination |
+| `OUTPUT_VOCAB_SEED_PATH` | absolute path | `/.../PSE_UNIT-PSE-0007_vocab.csv` | per-unit vocab seed CSV destination |
+
+#### Optional `RuntimeOverrides` fields
+
+| Field | Type | Example | Notes |
+|---|---|---|---|
+| `MAX_ATOMS` | positive integer | `200` | smoke-test bound; halt when reached |
+| `SOURCE_HTML_PATH` | string | `audit/Pipe-Stress-Engineering.html` | when known, included in dual SourceRefs |
+| `SOURCE_REF_BASE` | string | `@repo/docs/CONTRACT.md:L####\|domains/chirality/_Decomposition/source_review_html/SRC-DOCS-CONTRACT.html#<SectionID>` | manifest-backed dual-citation template; replace `L####` and `<SectionID>` per atom |
+| `SOURCE_REF_MODE` | string | `COMPONENT_MAP` | grouped-source mode; valid when the asset manifest contains `source_components` mapping generated MD lines to original repo component files |
+
+#### `AllowedWriteTargets`
+
+Exactly two entries:
+
+```
+- "<OUTPUT_LEDGER_PATH>"
+- "<OUTPUT_VOCAB_SEED_PATH>"
+```
+
+`AllowedWriteTargets` is the TASK-shell write-quarantine seal. The skill cannot write anywhere else.
+
+#### Recommended `CustomInstructions` content
+
+`CustomInstructions` carry run-specific reinforcement; they do not replace skill hydration. The contract in `SKILL.md` remains authoritative. The orchestrator's brief-builder (`tools/decomp/build_atomization_brief.py`) includes a defensive set of one-line reminders re-stating the constraints above — line-range discipline, target-section discipline, ContentHash rule, dual-SourceRef rule, component-map SourceRef rule when applicable, IN/OUT/TBD enum, the no-invention rule, and the write-boundary rule.
+
+When a particular dispatch surfaces a recurrent worker error (e.g., chronic over-atomization in dense reference sections, or chronic misclassification of TBD vs OUT), the orchestrator MAY add one or two run-specific reminders. Do not duplicate the skill contract.
+
+#### Brief-builder
+
+Use `tools/decomp/build_atomization_brief.py` to render a valid INIT-TASK brief from a `<book>_dispatch_plan.json` plus a `unit_id`. This is the deterministic source of truth for the brief shape; hand-composed briefs SHOULD be reserved for emergencies.
+
+#### Example invocation (manual)
+
+```text
+$ python3 tools/decomp/build_atomization_brief.py \
+    --dispatch-plan path/to/Pipe-Stress-Engineering_dispatch_plan.json \
+    --unit-id UNIT-PSE-0007 \
+    --md path/to/Pipe-Stress-Engineering.md \
+    --skeleton path/to/Pipe-Stress-Engineering_skeleton.json \
+    --asset-manifest path/to/Pipe-Stress-Engineering_assets_manifest.json \
+    --output-ledger-path /work/PSE/PSE_UNIT-PSE-0007_atoms.csv \
+    --output-vocab-seed-path /work/PSE/PSE_UNIT-PSE-0007_vocab.csv
+```
+
+The orchestrator pipes this stdout into the TASK dispatch surface.
+
+## Component: skills/domain-source-atomize/QA_CHECKS.md
+
+### QA CHECKS — domain-source-atomize
+
+#### Output presence
+
+- Exactly two files exist after the run:
+  - `OUTPUT_LEDGER_PATH` (per-unit atom CSV)
+  - `OUTPUT_VOCAB_SEED_PATH` (per-unit vocabulary seed CSV)
+- No files outside the declared write boundary were created or modified.
+
+#### Atom CSV schema
+
+- Header row is exactly: `LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes`
+- File is UTF-8.
+- Columns are present and correctly ordered. No extra columns.
+
+#### Per-row invariants (atom CSV)
+
+For every row:
+
+| Check | Rule |
+|---|---|
+| `LocalSeq` | Strictly increasing positive integer; starts at `1`; no gaps; no duplicates |
+| `UnitStatement` | Non-empty; one concept per row; preferred length ≤ 50 words |
+| `SourceRef` | Non-empty; dual citation. Default form is `<book>.md:L####\|<book>.html#anchor`; manifest-backed form `@repo/<RepoRelPath>:L####\|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>` is valid when `SOURCE_REF_BASE` is supplied. Grouped-source form `@repo/<component RepoRelPath>:L####\|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>` is valid when `SOURCE_REF_MODE=COMPONENT_MAP`. |
+| `SourceRef` source line | Normal mode: falls within `LINE_START..LINE_END` (inclusive). Component-map mode: the generated MD evidence line falls within `LINE_START..LINE_END`, and the cited repo component line is derived from `ASSET_MANIFEST_PATH.source_components`. |
+| `ContentHash` | Non-empty; exactly 12 lowercase hex characters; equals `sha1(UnitStatement)[:12]` |
+| `InOutStatus` | One of `IN`, `OUT`, `TBD` |
+| `SectionID` | Member of `TARGET_SECTION_IDS` from `RuntimeOverrides` |
+| `DispatchUnitID` | Equals `DISPATCH_UNIT_ID` from `RuntimeOverrides` |
+| `Corrects` | Empty OR semicolon-separated list of `HBA-<PREFIX>-NNNNN` IDs |
+| `Notes` | Optional; free-form |
+
+#### IN/OUT/TBD discipline
+
+- No IN row whose `UnitStatement` is a bare page number, isolated heading text, navigational marker, copyright statement, dedication, or other boilerplate. Such rows must be OUT or omitted.
+- TBD is reserved for content the persona must rule on at Gate 2 — not a catch-all for tired classification. Prefer IN or OUT when the classification is clear; use TBD only when ambiguity is real.
+- A slice that produces zero IN atoms is valid (`RUN_STATUS=NO_FINDINGS`) — write an empty (header-only) atom CSV plus the vocab CSV.
+
+#### ContentHash cross-check
+
+- The merge tool re-derives `sha1(UnitStatement)[:12]` and fails the merge if the declared `ContentHash` does not match. The worker must produce the correct hash.
+- Hashes are stable across reruns: identical `UnitStatement` → identical hash.
+
+#### Vocab seed CSV schema
+
+- Header row is exactly: `CandidateTerm,Synonyms,Definition,SourceRefs,Notes`
+- File is UTF-8.
+- Columns are present and correctly ordered. No extra columns.
+
+#### Per-row invariants (vocab CSV)
+
+For every row:
+
+| Check | Rule |
+|---|---|
+| `CandidateTerm` | Non-empty; case preserved as it appears in the source |
+| `Synonyms` | Empty OR semicolon-separated list |
+| `Definition` | Empty OR a single explicit definition extracted from the source |
+| `SourceRefs` | Non-empty; semicolon-separated dual-citation entries |
+| `Notes` | Optional; free-form |
+
+- The vocab CSV may be empty (header-only) when the slice contains no candidate canonical terms.
+
+#### Failure reporting
+
+The worker reports a structured `RUN_STATUS`:
+
+- `SUCCESS` — atoms emitted, all checks above pass
+- `NO_FINDINGS` — slice read but no IN atoms emitted; OUT rows MAY be emitted; vocab CSV MAY be empty
+- `FAILED_INPUTS` — inputs were invalid; header-only CSVs written at both output paths
+- `FAILED` — slice could not be processed (unexpected encoding, malformed skeleton, write-boundary violation attempt, etc.); a brief explanation accompanies the status
+
+The worker also reports:
+
+- `DISPATCH_UNIT_ID`
+- `ATOM_COUNT` (total rows in atom CSV)
+- `IN_COUNT`, `OUT_COUNT`, `TBD_COUNT`
+- `VOCAB_COUNT`
+
+#### Defects that block downstream
+
+These defects block the per-source merge step (`merge_source_atomizations.py per-source`) — surface them to the orchestrator for re-dispatch rather than allowing them to enter the merged ledger:
+
+- Missing `ContentHash` or mismatch with re-derived hash
+- Non-monotonic `LocalSeq`
+- `SectionID` outside `TARGET_SECTION_IDS`
+- `SourceRef` source line outside `LINE_START..LINE_END` for normal sources, or a component-map SourceRef that cannot be derived from the generated MD line and `source_components`
+- Empty `UnitStatement` on an IN row
+- Boilerplate (page-numbers-only, header-only) emitted as IN
+- File-write outside the declared write boundary
+- Final stable `AtomicUnitID` written by the worker (it's the merge tool's responsibility)
+
+#### Required evidence
+
+- Worker stdout / RUN_STATUS captured by TASK is sufficient evidence for routine success.
+- For `FAILED` and `FAILED_INPUTS` runs, the explanation accompanying RUN_STATUS is the evidence; the orchestrator decides whether to re-dispatch with corrected parameters.
+
+## Component: skills/domain-source-atomize/SKILL.md
+
+---
+name: domain-source-atomize
+description: Per-dispatch-unit bounded atomization of one slice of one DOMAIN source markdown into IN/OUT/TBD atomic units with dual SourceRefs, content hashes, and vocabulary seeds. Invoked by the DOMAIN_DECOMP orchestrator for per-skeleton-dispatch-unit fanout in Phase 2.
+compatibility: Chirality TASK; invoked by DOMAIN_DECOMP orchestrator for per-dispatch-unit fanout
+metadata:
+  chirality-skill-version: "1"
+  chirality-task-profile: NONE
+---
+
+### SKILL — domain-source-atomize
+
+#### Purpose
+
+Read **one assigned slice** (LINE_START..LINE_END) of **one source's `<book>.md`** and emit two CSVs:
+
+1. **Atomic-unit ledger** (`OUTPUT_LEDGER_PATH`) — one row per atomic unit extracted from the slice, with monotonic `LocalSeq`, dual `SourceRef`, `ContentHash`, IN/OUT/TBD classification, and target `SectionID`.
+2. **Vocabulary seed** (`OUTPUT_VOCAB_SEED_PATH`) — candidate canonical terms surfaced from the slice with source attribution.
+
+This is a **bounded extraction** skill, not a full-source analysis skill. One invocation processes one dispatch unit (~15k MD tokens) and writes exactly the two artifacts above. Cross-source reconciliation, ID assignment, and gate decisions are not part of this skill — the orchestrator handles them.
+
+#### Suitable agent shells
+
+- `TASK` in generic shell mode, spawned by the `DOMAIN_DECOMP` orchestrator.
+
+Not the best fit for:
+- whole-book atomization (use multiple dispatches via the orchestrator)
+- cross-source vocabulary reconciliation (orchestrator + `merge_vocabulary_seeds.py`)
+- final stable-ID assignment (merge step's responsibility via `merge_source_atomizations.py`)
+- IN/OUT ratification across multiple sources (Gate 2 persona responsibility)
+
+#### Inputs
+
+##### Required (via `RuntimeOverrides`)
+
+- `SOURCE_NAME` — the source's doc_stem (e.g., `Pipe-Stress-Engineering`)
+- `SOURCE_PREFIX` — short prefix used downstream for ID assignment (e.g., `PSE`)
+- `DISPATCH_UNIT_ID` — the dispatch unit being atomized (e.g., `UNIT-PSE-0007`)
+- `MD_PATH` — absolute path to the assembled `<book>.md`
+- `LINE_START`, `LINE_END` — 1-indexed line range to read (inclusive); the assigned slice
+- `TARGET_SECTION_IDS` — list of `SectionID`s covered by the dispatch unit; every emitted atom must map to one
+- `SKELETON_PATH` — absolute path to `<book>_skeleton.json` (read for section metadata only)
+- `ASSET_MANIFEST_PATH` — absolute path to `<book>_assets_manifest.json` (for asset-aware references)
+- `OUTPUT_LEDGER_PATH` — absolute path for the per-unit atom CSV
+- `OUTPUT_VOCAB_SEED_PATH` — absolute path for the per-unit vocabulary seed CSV
+
+##### Optional
+
+- `MAX_ATOMS` — bound for smoke testing; halt and write what you have when reached
+- `SOURCE_HTML_PATH` — when known, used as the second half of the dual `SourceRef` anchor
+- `SOURCE_REF_BASE` — when present, a full dual-citation template for manifest-backed sources, e.g. `@repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>`
+- `SOURCE_REF_MODE` — optional; `COMPONENT_MAP` for generated grouped-source markdown whose `ASSET_MANIFEST_PATH` includes `source_components` mapping generated MD lines back to original repo component files.
+
+#### Runtime overrides
+
+| Key | Meaning | Default | Allowed values |
+|---|---|---|---|
+| `SOURCE_NAME` | Doc stem | **Required** | String |
+| `SOURCE_PREFIX` | ID prefix | **Required** | String |
+| `DISPATCH_UNIT_ID` | Unit identifier | **Required** | `UNIT-<prefix>-NNNN` |
+| `MD_PATH` | Path to `<book>.md` | **Required** | Existing `.md` file |
+| `LINE_START` | First line to read | **Required** | Positive integer |
+| `LINE_END` | Last line to read | **Required** | Positive integer ≥ `LINE_START` |
+| `TARGET_SECTION_IDS` | Section IDs to map atoms into | **Required** | List of `SEC-<prefix>-NNNN` |
+| `SKELETON_PATH` | Path to skeleton JSON | **Required** | Existing `.json` file |
+| `ASSET_MANIFEST_PATH` | Path to asset manifest | **Required** | Existing `.json` file |
+| `OUTPUT_LEDGER_PATH` | Per-unit atom CSV | **Required** | Parent dir exists; `.csv` |
+| `OUTPUT_VOCAB_SEED_PATH` | Per-unit vocab CSV | **Required** | Parent dir exists; `.csv` |
+| `MAX_ATOMS` | Smoke-test bound | None | Positive integer |
+| `SOURCE_HTML_PATH` | `<book>.html` URL or path | None | String |
+| `SOURCE_REF_BASE` | Manifest-backed dual-citation template | None | String containing `L####` and `<SectionID>` |
+| `SOURCE_REF_MODE` | SourceRef construction mode | None | `COMPONENT_MAP` |
+
+#### Read boundary
+
+Reads are limited to:
+
+- `MD_PATH` — but ONLY lines `LINE_START..LINE_END` inclusive. Lines outside that range MUST NOT be inspected.
+- `SKELETON_PATH` — read in full for section metadata (titles, depth, in-scope status).
+- `ASSET_MANIFEST_PATH` — read in full for asset metadata (figure/table captions, page numbers) and, for grouped sources, `source_components` line maps.
+
+The skill MUST NOT read any other source files, other sources' MD, the v1.1 archive, prior decomposition ledgers, or cross-source artifacts.
+
+#### Write boundary
+
+Writes are limited to:
+
+- `OUTPUT_LEDGER_PATH` — exactly one per-unit atom CSV
+- `OUTPUT_VOCAB_SEED_PATH` — exactly one per-unit vocabulary seed CSV
+
+No other files are written. Parent directories must already exist; the skill does not create directories.
+
+#### Tool usage
+
+- No deterministic tools are invoked from inside this skill — the surrounding orchestrator pipeline (skeleton lift, dispatch-plan generation, brief building, merge, vocabulary consolidation) is handled by `tools/decomp/*` and `tools/retrieval/*` outside the worker.
+- The `allowed-tools` frontmatter field is intentionally omitted — this skill is LLM-reasoning-only over the assigned slice.
+
+Disallowed behavior:
+- No deterministic tool invocation from within the worker.
+- No writing outside `OUTPUT_LEDGER_PATH` or `OUTPUT_VOCAB_SEED_PATH`.
+- No reading outside the declared read boundary.
+- No sub-agent fanout.
+- No final stable-ID assignment (the merge tool owns that).
+- No cross-source reconciliation (Gate 3 persona owns that).
+
+#### Atom-CSV output schema
+
+Required columns (in order):
+
+```
+LocalSeq, UnitStatement, SourceRef, ContentHash, InOutStatus, SectionID, DispatchUnitID, Corrects, Notes
+```
+
+| Column | Meaning |
+|---|---|
+| `LocalSeq` | 1-indexed monotonic counter within this dispatch unit |
+| `UnitStatement` | One normalized atomic statement, one concept per row, ≤ ~50 words preferred |
+| `SourceRef` | Dual citation separated by `\|`. Default handbook form: `<book>.md:L####\|<book>.html#anchor` (e.g., `Pipe-Stress-Engineering.md:L1170\|Pipe-Stress-Engineering.html#SEC-PSE-0024`). Manifest-backed sources may provide `SOURCE_REF_BASE`; replace `L####` with the source line and `<SectionID>` with the mapped section, yielding forms like `@repo/<RepoRelPath>:L####\|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#SEC-XXXX-0001`. Grouped manifest-backed sources may set `SOURCE_REF_MODE=COMPONENT_MAP`; use `ASSET_MANIFEST_PATH.source_components` to map the generated MD line to the original component file and cite `@repo/<component RepoRelPath>:L####\|<SOURCE_HTML_PATH>#<SectionID>`. Section anchor is acceptable when no finer anchor applies. **Per-kind anchor routing:** atoms sourced from an asset rather than prose anchor into the per-kind surfaces — `figures.html#asset-{asset_id}`, `tables.html#asset-{asset_id}`, `images.html#asset-{asset_id}` (use `equations.html#p{page}` when anchoring an equation). The source HTML anchor remains the default for prose-derived atoms. |
+| `ContentHash` | `sha1(UnitStatement)[:12]` — load-bearing for dedup, retrieval, and HTML cross-reference |
+| `InOutStatus` | `IN` \| `OUT` \| `TBD` |
+| `SectionID` | One of the `TARGET_SECTION_IDS` from `RuntimeOverrides` |
+| `DispatchUnitID` | The `DISPATCH_UNIT_ID` from `RuntimeOverrides` |
+| `Corrects` | Optional; semicolon-separated list of `HBA-<PREFIX>-NNNNN` IDs the atom corrects (cross-source allowed). Empty when not applicable. |
+| `Notes` | Free-form note for ambiguity callouts or rationale. Empty when not applicable. |
+
+`AtomicUnitID` is NOT a column on the per-unit CSV — final stable IDs are assigned by the merge tool (`tools/decomp/merge_source_atomizations.py per-source`) at unit-walk time.
+
+#### Vocabulary-seed CSV output schema
+
+Required columns (in order):
+
+```
+CandidateTerm, Synonyms, Definition, SourceRefs, Notes
+```
+
+| Column | Meaning |
+|---|---|
+| `CandidateTerm` | The term as it appears in the source (case preserved) |
+| `Synonyms` | Semicolon-separated variants observed in this dispatch unit |
+| `Definition` | Best-effort definition extracted from the source; empty if not stated |
+| `SourceRefs` | Semicolon-separated dual-citation lines where the term appears |
+| `Notes` | Free-form notes (e.g., tradition / framing) |
+
+#### Method
+
+##### Step 1 — Validate inputs
+
+1. Confirm `MD_PATH`, `SKELETON_PATH`, `ASSET_MANIFEST_PATH` exist.
+2. Confirm `LINE_END ≥ LINE_START` and both are within the MD's total line count.
+3. Confirm every `TARGET_SECTION_IDS` entry exists in the skeleton's `sections` list.
+4. Confirm `OUTPUT_LEDGER_PATH` and `OUTPUT_VOCAB_SEED_PATH` parent directories exist.
+5. If any input is invalid, return `RUN_STATUS=FAILED_INPUTS` and write empty (header-only) CSVs at the two output paths.
+
+##### Step 2 — Read the assigned slice
+
+1. Read ONLY lines `LINE_START..LINE_END` of `MD_PATH`. Do not look outside this range.
+2. Read the skeleton's `sections` list, filtering to the entries matching `TARGET_SECTION_IDS` for context.
+3. Read the asset manifest's `assets` list, filtering to assets whose `page` falls within the slice's page range as derived from `sections[].page_first` / `page_last`.
+
+##### Step 3 — Atomize
+
+For each meaningful technical statement in the slice:
+
+1. Normalize it into a single short atomic statement (one concept, ≤ ~50 words).
+2. Assign `SectionID` — the target section whose line range covers the statement's MD line.
+3. Compute `SourceRef` — dual citation pinning to the source line and HTML anchor. If `SOURCE_REF_MODE=COMPONENT_MAP`, locate the atom's generated MD line in `ASSET_MANIFEST_PATH.source_components`, convert it to the original component file line, and cite `@repo/<component RepoRelPath>:L####|<SOURCE_HTML_PATH>#<SectionID>`. If `SOURCE_REF_BASE` is present, use it as the template; otherwise use the default `<book>.md:L####|<book>.html#anchor` form.
+4. Compute `ContentHash` — `sha1(UnitStatement)[:12]`.
+5. Classify `InOutStatus`:
+   - **IN** for substantive technical claims that belong in the domain decomposition: principles, procedures, formulas (referenced from text), rules of thumb, standards-citations with the requirement clearly stated, definitions of canonical terms.
+   - **OUT** for boilerplate that should not enter the decomposition: page numbers, running headers, copyright matter, indexed phrase repetitions, table-of-contents fragments, advertising / dust-jacket / dedication text, navigational markers (`<!-- PDF2MD-ASSETS:END page=N -->`), uninterpreted image-caption-only blocks.
+   - **TBD** for content the persona must rule on at Gate 2: ambiguous statements, conflicting cross-source claims you cannot resolve from the slice alone, text whose meaning is unclear without external context.
+6. If the statement appears to correct an earlier statement in another source (rare; only when explicitly noted in the text — e.g., errata, supersession statement), populate `Corrects` with the target atom's `HBA-…` ID. Leave empty if not applicable.
+7. Append to the atom-CSV row buffer with `LocalSeq = previous + 1`.
+
+If `MAX_ATOMS` is set, halt at that count and write what you have.
+
+##### Step 4 — Seed vocabulary
+
+In parallel with atomization, surface candidate canonical terms:
+
+1. Identify multi-word noun phrases that appear repeatedly within the slice or are explicitly emphasized (bold, italics, "called …", "known as …", "the term … refers to").
+2. Note observed synonyms ("flexibility analysis (also called flexibility study)").
+3. Capture an inline definition only when the source provides one explicitly.
+4. Append to the vocabulary-seed CSV with dual-citation `SourceRefs` for each occurrence.
+
+Do not invent canonical terms not visible in the text. Do not normalize beyond what the source uses.
+
+##### Step 5 — Write outputs
+
+1. Write `OUTPUT_LEDGER_PATH` as CSV with the schema above, header row included. Use `\r\n` or `\n` consistently; UTF-8 encoding; field-quoted via Python `csv` module conventions.
+2. Write `OUTPUT_VOCAB_SEED_PATH` likewise.
+
+##### Step 6 — Return status
+
+Return one of:
+
+- `RUN_STATUS=SUCCESS` — atoms emitted, `LocalSeq` monotonic, every row passes QA.
+- `RUN_STATUS=NO_FINDINGS` — slice read but no IN atoms emitted (rare; valid when the slice was almost entirely OUT-boilerplate).
+- `RUN_STATUS=FAILED_INPUTS` — inputs invalid; header-only CSVs written.
+- `RUN_STATUS=FAILED` — slice could not be processed (unexpected encoding, malformed skeleton, etc.).
+
+Also return: `DISPATCH_UNIT_ID`, `ATOM_COUNT`, `IN_COUNT`, `OUT_COUNT`, `TBD_COUNT`, `VOCAB_COUNT`.
+
+#### Non-negotiable constraints
+
+- **Line-range discipline.** Read only lines `LINE_START..LINE_END`. For normal sources, any atom whose `SourceRef` MD line falls outside that range is a contract violation. For `SOURCE_REF_MODE=COMPONENT_MAP`, the cited repo component line may differ from the generated MD line, but the generated MD evidence line used to derive it must fall within `LINE_START..LINE_END` and within a `source_components` range.
+- **Target-section discipline.** Every emitted atom's `SectionID` must be in `TARGET_SECTION_IDS`. Atoms whose source belongs to a section outside that list are a contract violation.
+- **Output-path-only writes.** Exactly two files are written per invocation. No other side effects.
+- **No invention (AOP-08).** Extract only what is visible in the assigned slice; if a fact is not present, do not invent — mark `TBD` or omit.
+- **Content-hash discipline.** `ContentHash` MUST equal `sha1(UnitStatement)[:12]` — the merge tool re-verifies this and fails if mismatched.
+- **LocalSeq monotonicity.** Strictly increasing positive integers starting at 1; no gaps, no reuse.
+- **No final stable IDs.** `AtomicUnitID` is not a column in the per-unit CSV; the merge tool owns assignment.
+- **Dual SourceRef.** Both halves required; HTML anchor falls back to the section anchor when no finer-grained anchor applies. Manifest-backed `@repo/<RepoRelPath>:L####|...#<SectionID>` refs are valid when `SOURCE_REF_BASE` is supplied. Grouped manifest-backed `@repo/<component RepoRelPath>:L####|...#<SectionID>` refs are valid when `SOURCE_REF_MODE=COMPONENT_MAP` and `ASSET_MANIFEST_PATH.source_components` supplies the line map.
+
+#### QA expectations
+
+- Exactly two files exist at `OUTPUT_LEDGER_PATH` and `OUTPUT_VOCAB_SEED_PATH` after the run.
+- No files other than those two were written.
+- Atom CSV header is exactly: `LocalSeq,UnitStatement,SourceRef,ContentHash,InOutStatus,SectionID,DispatchUnitID,Corrects,Notes`.
+- Vocab CSV header is exactly: `CandidateTerm,Synonyms,Definition,SourceRefs,Notes`.
+- For every IN row: `UnitStatement` non-empty, `SourceRef` non-empty, `ContentHash` non-empty.
+- `InOutStatus ∈ {IN, OUT, TBD}`.
+- Every row's MD line in `SourceRef` falls within `LINE_START..LINE_END`.
+- Every row's `SectionID` is in `TARGET_SECTION_IDS`.
+- `LocalSeq` is strictly increasing.
+- No row's `UnitStatement` is a bare page number, header line, navigational marker, or boilerplate-only fragment marked `IN`.
+- `ContentHash` recomputes correctly from `UnitStatement` (validated by the merge tool).
+- `RUN_STATUS` is one of: `SUCCESS`, `NO_FINDINGS`, `FAILED_INPUTS`, `FAILED`.
+
+#### Relationship to DOMAIN_DECOMP
+
+This skill is the per-dispatch-unit worker invoked by the `DOMAIN_DECOMP` orchestrator for per-skeleton-dispatch-unit fanout in Phase 2. The orchestrator:
+
+- runs `tools/decomp/build_source_skeleton.py` to produce the dispatch plan,
+- runs `tools/decomp/render_source_html.py --mode structure` to produce the HTML review surface for Gate 1.5,
+- iterates the dispatch plan and calls `tools/decomp/build_atomization_brief.py` per unit_id to render the INIT-TASK brief,
+- dispatches one `TASK + domain-source-atomize` invocation per dispatch unit,
+- collects per-unit CSVs and runs `tools/decomp/merge_source_atomizations.py per-source` then `cross-source` to assemble the final ledger,
+- runs `tools/decomp/merge_vocabulary_seeds.py` to consolidate vocabulary,
+- runs `tools/decomp/render_source_html.py --mode atom-review` to produce the Gate-2 atom-review surface in the browser,
+- proceeds to Gate 3 with the merged ledger.
+
+This skill is a sibling of `pdf2md-page` and `drawing-extract-page` — same per-item fanout pattern, but per-MD-slice atomization instead of per-page extraction.
+
+## Component: skills/domain-source-atomize/TOOL_POLICY.md
+
+### TOOL POLICY — domain-source-atomize
+
+#### Preferred tool order
+
+This skill is LLM-reasoning-only over the assigned slice — there is no deterministic tool the worker runs from inside the dispatch. The orchestrator (`DOMAIN_DECOMP`) runs `tools/decomp/*` and `tools/retrieval/*` outside the worker; this skill consumes their outputs (skeleton, dispatch plan, asset manifest) as runtime parameters.
+
+#### Allowed deterministic tools
+
+##### TASK-enforced
+
+None. The `allowed-tools` frontmatter field is intentionally omitted from `SKILL.md`. TASK does not whitelist any tool for this skill.
+
+##### Operationally invoked
+
+None inside the worker.
+
+The surrounding pipeline uses these deterministic tools (orchestrator side, not worker side):
+- `tools/decomp/build_source_skeleton.py` (Phase 1 prep — produces `SKELETON_PATH`)
+- `tools/decomp/render_source_html.py` (Phase 1 prep + Phase 2.5 — produces HTML review surface)
+- `tools/decomp/build_atomization_brief.py` (Phase 2 dispatch — produces the worker's brief)
+- `tools/decomp/merge_source_atomizations.py` (Phase 2 close — consumes the worker's outputs)
+- `tools/decomp/merge_vocabulary_seeds.py` (Phase 2 close — consumes the worker's vocab seeds)
+- `tools/source_catalog/build_source_database.py` and `tools/retrieval/build_source_index.py` (Phase 2.5 — catalog and index the merged outputs)
+
+These are orchestrator-side, not worker-side. The worker never invokes them.
+
+#### Expected use of reasoning
+
+The worker uses LLM reasoning to:
+
+1. **Identify atomic units** in the assigned slice — segment prose into single-concept statements, suitable for downstream partition and Knowledge-Type assignment.
+2. **Classify IN / OUT / TBD** per the SKILL contract's classification rules.
+3. **Surface candidate canonical terms** for vocabulary seeding.
+4. **Detect cross-source `Corrects` references** when the source text explicitly indicates an earlier-source correction (rare — only when noted).
+5. **Resolve target SectionID** for each atom by matching its MD line to the skeleton's section line ranges (intersected with `TARGET_SECTION_IDS`).
+6. **Compute `ContentHash` = sha1(UnitStatement)[:12]** — this is mechanical but the LLM must produce the correct hash deterministically per its own output. Downstream merge verifies; mismatches fail the merge.
+
+#### Disallowed use
+
+- No deterministic tool invocation from inside the worker (no `Bash`, no `python3`, no shell-out).
+- No writing outside `OUTPUT_LEDGER_PATH` or `OUTPUT_VOCAB_SEED_PATH`.
+- No reading outside `MD_PATH[LINE_START..LINE_END]`, `SKELETON_PATH`, or `ASSET_MANIFEST_PATH`.
+- No reading of other sources' MD or skeletons (cross-source reconciliation belongs to Gate 3).
+- No reading of the v1.1 archive at `domains/piping-design/.archive/_Decomposition/` (fresh-decomposition path).
+- No sub-agent fanout (TASK is a leaf in this dispatch pattern).
+- No final stable-ID assignment (`HBA-<PREFIX>-NNNNN` is the merge tool's job).
+- No cross-source `Corrects` validation (the merge tool surfaces unresolved refs).
+- No vocabulary canonicalization across sources (`merge_vocabulary_seeds.py` does this).
+- No invocation of retrieval indexes (Gate 3 / Gate 4 ratification, not Phase 2).
+
+#### Write boundary
+
+Exactly two writes per invocation:
+
+```
+<OUTPUT_LEDGER_PATH>
+<OUTPUT_VOCAB_SEED_PATH>
+```
+
+Both paths are absolute. Parent directories must exist; this skill does not create directories.
+
+If a write would violate the boundary, the worker returns `RUN_STATUS=FAILED` with an explanatory note and does NOT attempt a workaround.

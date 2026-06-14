@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-SEMANTIC-MATRIX-BUILD",
+  "source_doc_id": "SRC-SKILLPACK-SEMANTIC-MATRIX-BUILD",
+  "source_name": "Skill pack: semantic-matrix-build",
+  "source_prefix": "SKP037",
+  "repo_rel_path": "skills/semantic-matrix-build/",
+  "catalog_rel_path": "@repo/skills/semantic-matrix-build/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-SEMANTIC-MATRIX-BUILD.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-SEMANTIC-MATRIX-BUILD.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/semantic-matrix-build/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-MATRIX-BUILD-BRIEF-SCHEMA",
+      "source_name": "skills/semantic-matrix-build/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "17f9e18b7622c187b55059b09d1fe8900823322002fedafb619b69813cb8cc6a",
+      "generated_line_start": 10,
+      "generated_line_end": 118,
+      "source_line_start": 1,
+      "source_line_end": 109,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/semantic-matrix-build/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-MATRIX-BUILD-QA-CHECKS",
+      "source_name": "skills/semantic-matrix-build/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "920981fa03416a64e753e5da7ddb20a93fe9200f447e1455a19789700210eaf3",
+      "generated_line_start": 122,
+      "generated_line_end": 299,
+      "source_line_start": 1,
+      "source_line_end": 178,
+      "line_offset": -121
+    },
+    {
+      "repo_rel_path": "skills/semantic-matrix-build/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-MATRIX-BUILD-SKILL",
+      "source_name": "skills/semantic-matrix-build/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "4c58353c01a3441345ab4435237953946b6e2fbd08a6efeed4b6d39ef6a8f3b1",
+      "generated_line_start": 303,
+      "generated_line_end": 774,
+      "source_line_start": 1,
+      "source_line_end": 472,
+      "line_offset": -302
+    },
+    {
+      "repo_rel_path": "skills/semantic-matrix-build/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-MATRIX-BUILD-TOOL-POLICY",
+      "source_name": "skills/semantic-matrix-build/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "3a65c69a49710c34527d3039edb4dc0602286f562988456d759ef56821df31f1",
+      "generated_line_start": 778,
+      "generated_line_end": 864,
+      "source_line_start": 1,
+      "source_line_end": 87,
+      "line_offset": -777
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

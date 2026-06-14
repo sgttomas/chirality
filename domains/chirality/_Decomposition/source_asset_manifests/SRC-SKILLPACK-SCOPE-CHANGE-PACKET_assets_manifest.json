@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-SCOPE-CHANGE-PACKET",
+  "source_doc_id": "SRC-SKILLPACK-SCOPE-CHANGE-PACKET",
+  "source_name": "Skill pack: scope-change-packet",
+  "source_prefix": "SKP035",
+  "repo_rel_path": "skills/scope-change-packet/",
+  "catalog_rel_path": "@repo/skills/scope-change-packet/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-SCOPE-CHANGE-PACKET.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-SCOPE-CHANGE-PACKET.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/scope-change-packet/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-SCOPE-CHANGE-PACKET-BRIEF-SCHEMA",
+      "source_name": "skills/scope-change-packet/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "a84cca2c0de272ce919078442b28c9707f860e2d3a8c049d7a2513fbe3c2d297",
+      "generated_line_start": 10,
+      "generated_line_end": 60,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/scope-change-packet/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-SCOPE-CHANGE-PACKET-QA-CHECKS",
+      "source_name": "skills/scope-change-packet/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "dd857ff5dc5f95a54d28a8ed339ac576de3461b0737aa112ef2e4ac85fbc2894",
+      "generated_line_start": 64,
+      "generated_line_end": 90,
+      "source_line_start": 1,
+      "source_line_end": 27,
+      "line_offset": -63
+    },
+    {
+      "repo_rel_path": "skills/scope-change-packet/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-SCOPE-CHANGE-PACKET-SKILL",
+      "source_name": "skills/scope-change-packet/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "71bd346f33be31f23d41dfa78a85351fc2114feae679ece5877032b5982dc5c3",
+      "generated_line_start": 94,
+      "generated_line_end": 224,
+      "source_line_start": 1,
+      "source_line_end": 131,
+      "line_offset": -93
+    },
+    {
+      "repo_rel_path": "skills/scope-change-packet/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-SCOPE-CHANGE-PACKET-TOOL-POLICY",
+      "source_name": "skills/scope-change-packet/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "7c7ec23fc89e48ef63bb8078321d753d03ef2adb69893ffdb11a5a9dc086d03d",
+      "generated_line_start": 228,
+      "generated_line_end": 250,
+      "source_line_start": 1,
+      "source_line_end": 23,
+      "line_offset": -227
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

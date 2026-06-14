@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DBM-PUBLISH",
+  "source_doc_id": "SRC-SKILLPACK-DBM-PUBLISH",
+  "source_name": "Skill pack: dbm-publish",
+  "source_prefix": "SKP006",
+  "repo_rel_path": "skills/dbm-publish/",
+  "catalog_rel_path": "@repo/skills/dbm-publish/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DBM-PUBLISH.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DBM-PUBLISH.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/dbm-publish/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DBM-PUBLISH-BRIEF-SCHEMA",
+      "source_name": "skills/dbm-publish/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "a0d677301bb494101abae5431b0a6c305e8720d0046e00b0915c6caf93f0c1cc",
+      "generated_line_start": 10,
+      "generated_line_end": 114,
+      "source_line_start": 1,
+      "source_line_end": 105,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/dbm-publish/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DBM-PUBLISH-QA-CHECKS",
+      "source_name": "skills/dbm-publish/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "93dc6ecc6b0df31f9a0b3a53a1c385815a968d2e65a576c27cf9749f1a9b873f",
+      "generated_line_start": 118,
+      "generated_line_end": 217,
+      "source_line_start": 1,
+      "source_line_end": 100,
+      "line_offset": -117
+    },
+    {
+      "repo_rel_path": "skills/dbm-publish/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DBM-PUBLISH-SKILL",
+      "source_name": "skills/dbm-publish/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "7dd3e2b3099378db5d7fd31c919d53c7facbb617d39b170ea4ced277995e2006",
+      "generated_line_start": 221,
+      "generated_line_end": 477,
+      "source_line_start": 1,
+      "source_line_end": 257,
+      "line_offset": -220
+    },
+    {
+      "repo_rel_path": "skills/dbm-publish/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DBM-PUBLISH-TOOL-POLICY",
+      "source_name": "skills/dbm-publish/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "735b0e11cf6bae7c3d70a0f8105a075cee584d7fa93bf8d06b58de1447e0ab91",
+      "generated_line_start": 481,
+      "generated_line_end": 526,
+      "source_line_start": 1,
+      "source_line_end": 46,
+      "line_offset": -480
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

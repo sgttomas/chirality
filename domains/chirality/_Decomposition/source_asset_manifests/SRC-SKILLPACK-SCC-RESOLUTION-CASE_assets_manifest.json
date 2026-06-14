@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-SCC-RESOLUTION-CASE",
+  "source_doc_id": "SRC-SKILLPACK-SCC-RESOLUTION-CASE",
+  "source_name": "Skill pack: scc-resolution-case",
+  "source_prefix": "SKP034",
+  "repo_rel_path": "skills/scc-resolution-case/",
+  "catalog_rel_path": "@repo/skills/scc-resolution-case/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-SCC-RESOLUTION-CASE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-SCC-RESOLUTION-CASE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/scc-resolution-case/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-SCC-RESOLUTION-CASE-BRIEF-SCHEMA",
+      "source_name": "skills/scc-resolution-case/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "1d9d4ec5b517b42a718edf760bdd8cdccb90185815a1b258521088b38eed8610",
+      "generated_line_start": 10,
+      "generated_line_end": 56,
+      "source_line_start": 1,
+      "source_line_end": 47,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/scc-resolution-case/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-SCC-RESOLUTION-CASE-QA-CHECKS",
+      "source_name": "skills/scc-resolution-case/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "5a8308cc7a229feae7f5a12837b9521455012e25adf362f5c883b93e7953873b",
+      "generated_line_start": 60,
+      "generated_line_end": 76,
+      "source_line_start": 1,
+      "source_line_end": 17,
+      "line_offset": -59
+    },
+    {
+      "repo_rel_path": "skills/scc-resolution-case/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-SCC-RESOLUTION-CASE-SKILL",
+      "source_name": "skills/scc-resolution-case/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "a645ef7de9bf2916a570dd8fbb559c52a1d23a219f6ce710280c2d673ed0a888",
+      "generated_line_start": 80,
+      "generated_line_end": 198,
+      "source_line_start": 1,
+      "source_line_end": 119,
+      "line_offset": -79
+    },
+    {
+      "repo_rel_path": "skills/scc-resolution-case/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-SCC-RESOLUTION-CASE-TOOL-POLICY",
+      "source_name": "skills/scc-resolution-case/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "2c1ad342ffe9fdda5885b6e285b6551ee8e2da9d0ce48512f3d1359478166ef5",
+      "generated_line_start": 202,
+      "generated_line_end": 224,
+      "source_line_start": 1,
+      "source_line_end": 23,
+      "line_offset": -201
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

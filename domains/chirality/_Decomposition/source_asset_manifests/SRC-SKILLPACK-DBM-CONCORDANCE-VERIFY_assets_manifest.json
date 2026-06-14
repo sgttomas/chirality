@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DBM-CONCORDANCE-VERIFY",
+  "source_doc_id": "SRC-SKILLPACK-DBM-CONCORDANCE-VERIFY",
+  "source_name": "Skill pack: dbm-concordance-verify",
+  "source_prefix": "SKP003",
+  "repo_rel_path": "skills/dbm-concordance-verify/",
+  "catalog_rel_path": "@repo/skills/dbm-concordance-verify/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DBM-CONCORDANCE-VERIFY.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DBM-CONCORDANCE-VERIFY.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-BRIEF-SCHEMA",
+      "source_name": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "8efefed9b977fb8e0181d80215d929e4eaaacc595b2f801bb9f039483a616a98",
+      "generated_line_start": 10,
+      "generated_line_end": 76,
+      "source_line_start": 1,
+      "source_line_end": 67,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-verify/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-QA-CHECKS",
+      "source_name": "skills/dbm-concordance-verify/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "7e76c9fe7fb126b3b25e29818ee1da88af4a7772ffbe350b4d7715aacbde33d8",
+      "generated_line_start": 80,
+      "generated_line_end": 143,
+      "source_line_start": 1,
+      "source_line_end": 64,
+      "line_offset": -79
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-verify/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-SKILL",
+      "source_name": "skills/dbm-concordance-verify/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "21a1cbfd97546485bea6ef9632b52ce6deb7d5b838dc070d43f26cfdc93f42ec",
+      "generated_line_start": 147,
+      "generated_line_end": 262,
+      "source_line_start": 1,
+      "source_line_end": 116,
+      "line_offset": -146
+    },
+    {
+      "repo_rel_path": "skills/dbm-concordance-verify/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DBM-CONCORDANCE-VERIFY-TOOL-POLICY",
+      "source_name": "skills/dbm-concordance-verify/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "875f2664a66590f72edeb3b207946ab23e4cf9ab42fb9cb347c5fb126e378160",
+      "generated_line_start": 266,
+      "generated_line_end": 299,
+      "source_line_start": 1,
+      "source_line_end": 34,
+      "line_offset": -265
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

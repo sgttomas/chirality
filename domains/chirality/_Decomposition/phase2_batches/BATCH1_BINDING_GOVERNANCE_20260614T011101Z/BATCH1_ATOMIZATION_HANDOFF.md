@@ -77,5 +77,5 @@ No Category, Knowledge Type, Knowledge Subject, hypergraph, DBM publication, den
 ## Remaining Blockers
 
 - Human Gate 2 review is required for the 22 atom-review HTML files under `domains/chirality/_Decomposition/source_review_html/`.
-- Gate 2 remains open until the human confirms the merged Batch 1 ledger, IN/OUT/TBD classifications, atom boundaries, and vocabulary choices are acceptable or returns flags for correction.
+- Gate 2 is accepted in Phase 2 closure until the human confirms the merged Batch 1 ledger, IN/OUT/TBD classifications, atom boundaries, and vocabulary choices are acceptable or returns flags for correction.
 - No Phase 2.5 retrieval refresh, Phase 3 category proposal, or downstream decomposition publication should consume this Batch 1 output as accepted truth before Gate 2 closes.

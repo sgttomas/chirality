@@ -6,14 +6,17 @@
 2. Read `/Users/ryan/ai-env/projects/chirality/agents/AGENT_DECOMP_BASE.md`.
 3. Read `/Users/ryan/ai-env/projects/chirality/agents/AGENT_DOMAIN_DECOMP.md`.
 4. Act in the `DOMAIN_DECOMP` persona for `/Users/ryan/ai-env/projects/chirality/domains/chirality`.
-5. Read `/Users/ryan/ai-env/projects/chirality/skills/domain-source-atomize/SKILL.md` before any Phase 2 atomization work.
+5. Read `/Users/ryan/ai-env/projects/chirality/skills/domain-source-atomize/SKILL.md` before any additional Phase 2 atomization work.
 6. Read the current decomposition control and handoff surfaces:
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Chirality_Domain_Decomposition.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/_LATEST_GATE1.md`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/_LATEST_GATE2.md`
-   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_BATCH1_20260614T023234Z/HANDOFF_STATE.md`
-   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH1_GATE2.md`
-   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_BATCH2_SETUP.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z/GATE2_ACCEPTANCE.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z/HANDOFF_STATE.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z/GATE2_SOURCE_UNIT_AUTHORITY.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z/HANDOFF_STATE.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/phase2_batches/_LATEST_PHASE2_GATE2.md`
+   - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Gate2_Source_Unit_Register.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Validation_Checks.csv`
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/Open_Issues_Register.csv`
 7. Read the Chirality domain-pack source surfaces:
@@ -25,42 +28,48 @@
    - `/Users/ryan/ai-env/projects/chirality/domains/chirality/_LocalIndexes/_LATEST.md`
 8. Run `git status --short` before coordination-sensitive planning or edits.
 
-## Active Direction
+## Current Governed State
 
-Continue from accepted Batch 1 Gate 2, but treat it as prior-boundary evidence for active reuse until the source-boundary amendment is accepted or Batch 1 is rebaselined.
+Gate 2 is closed and accepted for the active Chirality DOMAIN_DECOMP Phase 2 source-unit set.
 
-Source-boundary cleanup has retired 21 rows from active V1 indexing and atomization:
+- Gate 2 acceptance snapshot: `domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z`
+- Gate 2 source-unit authority addendum: `domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_SOURCE_UNIT_AUTHORITY_20260614T211725Z`
+- Gate 2 pointer: `domains/chirality/_Decomposition/gate_snapshots/_LATEST_GATE2.md`
+- Phase 2 closure pointer: `domains/chirality/_Decomposition/phase2_batches/_LATEST_PHASE2_GATE2.md`
+- Human approval date: 2026-06-14
+- Accepted source units: `110`
+- Canonical atom ledger: `domains/chirality/_Decomposition/Atomic_Domain_Ledger.csv`
+- Accepted atom rows: `19473` (`IN=19403`, `OUT=20`, `TBD=50`)
+- Canonical vocabulary map: `domains/chirality/_Decomposition/Vocabulary_Map.csv`
+- Accepted vocabulary terms: `2582`
+- Phase 2.5 TOC prior pairs: `21964`
+- Accepted source-unit register: `domains/chirality/_Decomposition/Gate2_Source_Unit_Register.csv`
 
-- `SRC-FRONTEND-*` / `HX001`..`HX009` for `frontend/README.md` and `frontend/docs/...`.
-- `SRC-AGENTS-AGENT-DELIVERABLE-TASK` / `AG013`, because `agents/AGENT_DELIVERABLE_TASK.md` was archived as obsolete.
-- `SRC-CLAUDE` / `RT003`, `SRC-INIT` / `RT004`, and `SRC-DOCS-*` / `DG001`..`DG009` for eleven root/governance sources whose live repo files are now archived or removed.
+The active file-level source manifest remains authoritative for source-file admission:
 
-Current active manifest:
+- Active manifest rows: `225`
+- Active manifest SHA-256: `6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e`
+- Current catalog snapshot: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T204703Z`
+- Current catalog status: structural validation PASS; BM25 smoke query for `derivative-package rule` ranks `@repo/AGENTS.md` first.
 
-- Active rows: `221`
-- SHA-256: `acd2fd88ff66be89b33d5cde05ab15cbcb584adea2fd25e661d9ea9eb0f64b04`
-- Retired prefixes reserved in `Source_Decomp_Prefix_Map.csv`: `AG013`, `HX001`..`HX009`, `RT003`, `RT004`, `DG001`..`DG009`
-- Batch 0 generated companion files for retired frontend/AG013 rows were removed.
-- Prior-boundary Batch 1 companions for the eleven newly retired sources were retained as historical evidence; prefix-map active companion paths were cleared.
-- Batch 2 was regenerated as `BATCH2_AGENT_CONTRACTS_20260614T032003Z`, excluding retired `AG013`; fan-out/fan-in is complete and Gate 2 is open.
+## Accepted Batch State
 
-Gate 2 for `BATCH1_BINDING_GOVERNANCE_20260614T011101Z` remains **accepted** for its original 22-source binding-governance scope, but 11 of those sources are now retired from active V1. Do not use the accepted Batch 1 ledger for active Gate 3 or downstream closure without explicit carry-forward or a rebaseline.
+Phase 2 closure accepts these source units as decomposition truth:
 
-The previous Batch 2 setup package `BATCH2_AGENT_CONTRACTS_20260614T024251Z` is **superseded stale evidence** because it selected retired `AG013`. Use only `BATCH2_AGENT_CONTRACTS_20260614T032003Z` for Batch 2 review. Do not promote Batch 2 atoms to accepted decomposition truth until Gate 2 is human-accepted.
+| Batch | Accepted source units | Closure status |
+| --- | ---: | --- |
+| Batch 1 active carry-forward | 9 | `GATE2_ACCEPTED_ACTIVE_CARRY_FORWARD_PARTIAL` |
+| Batch 2 agent contracts | 36 | `GATE2_ACCEPTED_IN_PHASE2_CLOSURE` |
+| Batch 3 governance/thesis | 22 | `GATE2_ACCEPTED_IN_PHASE2_CLOSURE` |
+| Batch 4 grouped skill packs | 38 | `GATE2_ACCEPTED_IN_PHASE2_CLOSURE` |
+| Batch 5 work-surface registry | 4 | `GATE2_ACCEPTED_IN_PHASE2_CLOSURE` |
+| Batch 6 license | 1 | `GATE2_ACCEPTED_IN_PHASE2_CLOSURE` |
 
-## Current Validation State
+Batch 1 is only partially carried forward for active V1: 11 retired Batch 1 rows remain historical evidence and are not part of the accepted active source-unit set. Batch 4 uses grouped skill-pack source units (`SKP000`..`SKP037`) rather than one accepted source unit per file-level `SK###` manifest row. `SRC-SKILLS-README` and `SRC-SKILLS-SKILL-TEMPLATE` are superseded by grouped source unit `SRC-SKILLPACK-META`.
 
-The source catalog and BM25 retrieval index were rebuilt after Batch 2 atom-review section-node refresh:
+## Source-Unit Authority Basis
 
-- Latest source catalog: `domains/chirality/_LocalIndexes/snapshots/SRCIDX_20260614T050727Z`
-- `validate_source_database.py`: `PASS` with 0 blockers and 0 warnings
-- Source docs: `232`
-- Artifacts: `454`
-- Chunks: `11652`
-- Retrieval: `BM25_ONLY`, rows `11652`
-- Smoke query `derivative-package rule`: rank 1 `SRC-AGENTS` section node
-
-Important warning: source catalog validation is structural. The catalog still contains retained Batch 1 prior-boundary ledger/section companions that reference the eleven newly retired sources. Batch 2 also remains unaccepted at Gate 2. This is intentional evidence retention and review staging, not current active-boundary closure.
+`OI-018` is closed by human direction. `Gate2_Source_Unit_Register.csv` is the accepted Phase 3 source-unit authority; `Source_Manifest.csv` remains the file-level source-admission manifest. Batch 4 grouped skill-pack source units (`SKP000`..`SKP037`) represent 153 file-level `SKILL_CONTRACTS` rows through `source_components` maps. Phase 3 may proceed from the accepted 110-source-unit surface, but downstream wording must not claim every individual `SK###` file was separately atomized.
 
 ## Rebuild Commands
 
@@ -101,81 +110,8 @@ python3 tools/retrieval/query_source_index.py \
 
 Expected rank 1 result is `SRC-AGENTS` / `@repo/AGENTS.md`.
 
-## Batch 1 Accepted State
+## Next Recommended Action
 
-- batch ID: `BATCH1_BINDING_GOVERNANCE_20260614T011101Z`
-- selected sources: `22`
-- dispatch units: `22`
-- merged atom rows: `3274`
-- IN rows after merge: `3262`
-- OUT rows after merge: `12`
-- TBD rows after merge: `0`
-- merged vocabulary terms: `670`
-- Gate 2 status: `ACCEPTED`
-- Phase 2.5 status: `PASS_WITH_PRIOR_BOUNDARY_WARNING`
-- active reuse status: `BLOCKED_BY_OI_012` until carry-forward or rebaseline is accepted.
+Proceed to Gate 3 preparation: propose and ratify the Chirality Category structure from the accepted Phase 2 ledger, vocabulary map, and TOC priors. Treat `Atomic_Domain_Ledger.csv`, `Vocabulary_Map.csv`, `cross_source_toc_matrix.*`, `Gate2_Source_Unit_Register.csv`, and the Gate 2 snapshots as the accepted upstream truth for Phase 3.
 
-Primary Batch 1 outputs remain:
-
-- `domains/chirality/_Decomposition/Atomic_Domain_Ledger.csv`
-- `domains/chirality/_Decomposition/Vocabulary_Map.csv`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH1_BINDING_GOVERNANCE_20260614T011101Z/BATCH1_GATE2_HANDOFF.md`
-
-## Batch 2 State
-
-- batch ID: `BATCH2_AGENT_CONTRACTS_20260614T032003Z`
-- selected sources: `36` active `AGENT_CONTRACTS` rows
-- excluded retired source: `SRC-AGENTS-AGENT-DELIVERABLE-TASK` / `AG013`
-- dispatch units: `36`
-- rendered INIT-TASK briefs: `36`
-- per-unit atom CSVs: `36`
-- per-unit vocabulary CSVs: `36`
-- raw worker atom rows: `7772` (`IN=7760`, `OUT=4`, `TBD=8`)
-- per-source ledgers: `36`
-- merged atom rows: `7770` (`IN=7758`, `OUT=4`, `TBD=8`)
-- merged vocabulary terms: `968` (`137` multi-source)
-- atom-review HTML files: `36`
-- Gate 2 status: `OPEN_HUMAN_REVIEW_REQUIRED`
-
-Primary Batch 2 outputs:
-
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_SETUP.md`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_ATOMIZATION_HANDOFF.md`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/Dispatch_Run_Log.csv`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_Atomic_Domain_Ledger.csv`
-- `domains/chirality/_Decomposition/phase2_batches/BATCH2_AGENT_CONTRACTS_20260614T032003Z/BATCH2_Vocabulary_Map.csv`
-- `domains/chirality/_Decomposition/dispatch_outputs/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
-- `domains/chirality/_Decomposition/per_source_ledgers/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
-- `domains/chirality/_Decomposition/vocabulary_seeds/BATCH2_AGENT_CONTRACTS_20260614T032003Z/`
-
-Gate 2 remains open until the human explicitly confirms: “The Batch 2 atom boundaries, IN/OUT/TBD classifications, source bindings, and vocabulary choices are accepted as decomposition truth for the active 36-source agent-contract batch.”
-
-## Open Work
-
-- `OI-005`: active-manifest atomization remains staged/incomplete; active manifest is 221 rows, Batch 1 is prior-boundary accepted, and Batch 2 is complete but unaccepted.
-- `OI-007`: Batch 1 Gate 3 is blocked by the prior-boundary issue.
-- `OI-009`: source-boundary amendment retires 21 rows after Gate 1 accepted the prior 242-row manifest.
-- `OI-012`: 11 accepted Batch 1 sources are retired from active V1; explicit carry-forward or rebaseline is required before active Batch 1 reuse.
-- `OI-013`: Batch 2 Gate 2 human review is required before its 7770 merged atom rows and 968 vocabulary terms become accepted decomposition truth.
-
-Closed by the latest pass:
-
-- `OI-008`: stale 37-source Batch 2 setup was superseded by regenerated 36-source setup.
-- `OI-011`: retired AG013 is excluded from active Batch 2 and no AG013 output is used by the active merge.
-
-## Non-Goals
-
-Do not start with:
-
-- treating Batch 1 partial `Atomic_Domain_Ledger.csv` or unaccepted Batch 2 batch-scoped ledgers as full-corpus truth;
-- running Batch 2 workers from the superseded stale 37-source setup;
-- copying live repo source files into `_Sources/` as authoritative source truth;
-- admitting `.archive/`, `projects/`, `examples/`, or generated export staging as replacement source truth without explicit source-boundary acceptance;
-- dense embedding build as a prerequisite;
-- hypergraph generation;
-- DBM publication;
-- public export changes.
-
-## Closeout
-
-Report files created or changed, validation run, skipped checks and why, remaining human rulings, and whether Batch 1 Gate 2 remains accepted for its original 22-source scope.
+Do not start hypergraph publication, DBM publication, dense embeddings, public export, or separate project-domain decomposition from this handoff unless the human explicitly authorizes that work.

@@ -1,0 +1,98 @@
+# WSR-PROJECTS-CHIRALITY-APP-DEV
+
+## Registry Scope Note
+
+This document is a work-surface registry source for later DOMAIN_DECOMP Phase 2 atomization. It records topology, ownership, and governance principles for the live `projects/chirality-app-dev/` surface. It is not a project decomposition, implementation atomization, source manifest change, or Gate packet.
+
+## Work-Surface Identity and Role
+
+- Work surface: `projects/chirality-app-dev/`
+- Registry document: `WSR-PROJECTS-CHIRALITY-APP-DEV`
+- Role: Chirality desktop harness and bundled agent operating-system application development workspace.
+
+The docs README describes `docs/` as the app-dev governance and runtime-planning set for the Chirality desktop harness and bundled agent operating system. Evidence: @repo/projects/chirality-app-dev/docs/README.md:L1-L9.
+
+The PRD identifies Chirality as a desktop harness for governed AI agents over a user-selected local filesystem workspace, with a release-managed instruction root and mutable working root. Evidence: @repo/projects/chirality-app-dev/docs/PRD.md:L20-L41.
+
+The active frontend package describes itself as "Frontend workspace bootstrap for Chirality desktop runtime" and defines Next.js/Electron scripts, tests, validation, integrity checks, and macOS DMG packaging commands. Evidence: @repo/projects/chirality-app-dev/frontend/package.json:L1-L22.
+
+## Major Live Subareas
+
+- `docs/`: Governance and product authority package. The document map lists directive, contract, spec, types, PRD, strategic plan, validation strategy, release gates, build/release guide, workflow guide, and manifest. Evidence: @repo/projects/chirality-app-dev/docs/README.md:L11-L25.
+- `execution/`: SOFTWARE_DECOMP execution/control surface. `execution/INIT.md` records the decomposition variant, 10 packages, 51 deliverables, coordination representation, dependency threshold, and source corpus. Evidence: @repo/projects/chirality-app-dev/execution/INIT.md:L1-L25.
+- `execution/_Coordination/`: Active work entrypoint and tranche coordination. It names the active persona, current strategic focus, authority/state rules, active plan, decisions, validation, and closeout discipline. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L1-L67.
+- `execution/_Decomposition/`: Active software decomposition working surface. It is revision v3.2, derived from synchronized governance docs, and preserves 10 flat packages and 51 deliverables. Evidence: @repo/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:L1-L17.
+- `frontend/`: Active app implementation workspace. It contains Next.js app code, Electron code, harness runtime libraries, tests, validation scripts, public assets, and packaging configuration. Evidence: @repo/projects/chirality-app-dev/frontend/package.json:L8-L31; directory evidence: @repo/projects/chirality-app-dev/frontend/src/, @repo/projects/chirality-app-dev/frontend/electron/, @repo/projects/chirality-app-dev/frontend/scripts/.
+- `frontend/docs/harness/`: Runtime contract and validation documentation. The runtime contract defines Chirality's product-owned turn boundary, stable browser-facing event stream, `AgentEnginePort`, `TurnEngine`, persisted `HarnessEvent` categories, tool descriptor contract, and first-adapter probe posture. Evidence: @repo/projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md:L1-L20; @repo/projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md:L31-L57; @repo/projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md:L103-L139.
+- `plans/`: Active and supporting planning surfaces. The runtime completion plan is explicitly non-governing and is used as the active tranche-selection surface. Evidence: @repo/projects/chirality-app-dev/plans/PLAN_2026-06-13_runtime_completion.md:L1-L10.
+- `provenance/build-artifacts/` and `frontend/artifacts/`: Generated or evidence-output surfaces. They are structurally present but are not treated as source truth in this registry. Directory evidence: @repo/projects/chirality-app-dev/provenance/build-artifacts/, @repo/projects/chirality-app-dev/frontend/artifacts/.
+
+## Organization and Apparent Rationale
+
+The project is organized as a governed app-development workspace with a clear separation between product authority (`docs/`), execution/decomposition control (`execution/`), active implementation (`frontend/`), and planning/evidence surfaces (`plans/`, `provenance/`, `frontend/artifacts/`).
+
+The docs README explicitly distinguishes authority and guidance surfaces: governance docs supply requirements and constraints; `docs/PLAN.md` is strategic context rather than the ordinary active queue; validation and release docs route evidence; workflow docs help the agentic loop; and `MANIFEST.json` is an index only. Evidence: @repo/projects/chirality-app-dev/docs/README.md:L39-L50.
+
+The SPEC defines the physical execution-root layout as package folders plus tool roots, with package folders using `0_References/`, `1_Working/`, `2_Checking/`, and `3_Issued/`; tool roots include `_Coordination`, `_Decomposition`, `_Reconciliation`, `_Scripts`, and `_Sources`. Evidence: @repo/projects/chirality-app-dev/docs/SPEC.md:L59-L125.
+
+Inference: The `frontend/` tree is separated from `execution/` because source and tests are the implementation truth, while execution packages and deliverable folders carry decomposition, lifecycle, and evidence authority. This interpretation is supported by the coordination record's authority/state rules. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L43-L58.
+
+## Ownership and Decomposition Boundary
+
+This work surface owns the Chirality App vNext product/runtime work: the desktop shell, provider-adapter runtime contract, harness sessions/events, permission/tool governance, instruction-root packaging, filesystem working-root behavior, validation, packaging, and future domain-engine boundary posture.
+
+The active decomposition package maps this ownership into 10 flat packages: product governance, desktop shell, runtime engine, SDK adapter, session audit, permissioned tools, filesystem execution, agent suite dispatch, validation/release, and future domain-engine boundary. Evidence: @repo/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:L257-L270.
+
+This surface does not own domain-engine model truth, domain-specific solvers, OpenPipeStress implementation, or piping-design source corpora. The PRD explicitly says the product must not become OpenPipeStress or any other domain-specific engineering solver, and must not allow agents to write directly into protected domain-engine model paths. Evidence: @repo/projects/chirality-app-dev/docs/PRD.md:L107-L108.
+
+Future domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. Evidence: @repo/projects/chirality-app-dev/docs/CONTRACT.md:L130-L137.
+
+## Execution and Governance Model
+
+The active loop is bounded app-integration tranches. The coordination record requires one clear objective, narrow write scope, validation target, recorded human rulings, and containment within accepted policy. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L87-L108.
+
+The state model separates authoritative state from guidance/history surfaces. Authoritative state includes governance docs, the active software decomposition, accepted scope-change snapshots, deliverable-local lifecycle/memory/run records, dependency/SCC snapshots, and current implementation truth in source/tests/build/validation artifacts. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L43-L67.
+
+Closeout routes checks through frontend tests, typecheck, harness premerge validation, instruction-root integrity, and build/release docs where applicable; lifecycle issuance and professional/release claims remain human-governed. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L128-L149.
+
+The harness validation suite documents Section 8 validation scripts, prerequisites, CI integration, stable artifacts, and repeatability expectations. Evidence: @repo/projects/chirality-app-dev/frontend/docs/harness/README.md:L1-L67.
+
+## Relationship to Chirality Domain Decomposition
+
+`projects/chirality-app-dev/` is explicitly outside the current `domains/chirality/` source boundary. The Chirality domain source boundary excludes `projects/` and says active frontend work is outside the Chirality source boundary under `projects/chirality-app-dev/`. Evidence: @repo/domains/chirality/_Sources/SOURCE_BOUNDARY.md:L29-L38; @repo/domains/chirality/_Sources/SOURCE_BOUNDARY.md:L46-L48.
+
+This registry document exists to describe the project work surface as topology evidence for later admission. It must not be treated as admitting the entire project implementation into the Chirality governance-core domain.
+
+## Explicit Exclusions
+
+- `.archive/`, `_Archive/`, and archived/retired app-dev material.
+- `frontend/node_modules/`, `frontend/.next/`, `frontend/dist/`, `frontend/dist-electron/`, generated package/build artifacts, and caches.
+- `provenance/build-artifacts/` as source truth. Its presence is evidence-output topology only.
+- `frontend/artifacts/` as source truth unless a later registry or source-boundary decision specifically admits validation summaries as evidence.
+- `chirality-app-dev.zip`, `.DS_Store`, and other local package/OS residue.
+- Plans that are explicitly non-governing as authority; they may be cited only as planning/evidence surfaces. Evidence: @repo/projects/chirality-app-dev/plans/PLAN_2026-06-13_runtime_completion.md:L1-L10.
+
+## Review Flags
+
+- The project root contains generated/package-like artifacts such as `chirality-app-dev.zip`, plus local OS residue; these were excluded from source truth and should require separate review if an operator wants them admitted.
+- `plans/pi-*` surfaces are pattern-corpus references only, not an approved Pi adapter, fork, import, package-runtime, or spike scope. Evidence: @repo/projects/chirality-app-dev/execution/_Coordination/NEXT_INSTANCE_PROMPT.md:L48-L50.
+- Future domain-engine support is intentionally a future boundary. Do not infer current OpenPipeStress integration or domain-operation execution from PKG-10 alone. Evidence: @repo/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:L367-L372.
+- The active runtime completion plan records some validation/instruction-root integrity residuals. These are app-dev planning residuals, not registry blockers. Evidence: @repo/projects/chirality-app-dev/plans/PLAN_2026-06-13_runtime_completion.md:L32-L43.
+
+## Evidence References
+
+- @repo/projects/chirality-app-dev/docs/README.md:L1-L50
+- @repo/projects/chirality-app-dev/docs/PRD.md:L20-L82
+- @repo/projects/chirality-app-dev/docs/SPEC.md:L14-L125
+- @repo/projects/chirality-app-dev/docs/CONTRACT.md:L1-L8
+- @repo/projects/chirality-app-dev/docs/CONTRACT.md:L130-L137
+- @repo/projects/chirality-app-dev/execution/INIT.md:L1-L25
+- @repo/projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md:L1-L162
+- @repo/projects/chirality-app-dev/execution/_Coordination/NEXT_INSTANCE_PROMPT.md:L1-L70
+- @repo/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:L1-L17
+- @repo/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md:L257-L372
+- @repo/projects/chirality-app-dev/frontend/package.json:L1-L93
+- @repo/projects/chirality-app-dev/frontend/docs/harness/runtime_engine_contract.md:L1-L159
+- @repo/projects/chirality-app-dev/frontend/docs/harness/README.md:L1-L67
+- @repo/domains/chirality/_Sources/SOURCE_BOUNDARY.md:L29-L50
+- Directory evidence: @repo/projects/chirality-app-dev/docs/, @repo/projects/chirality-app-dev/execution/, @repo/projects/chirality-app-dev/frontend/, @repo/projects/chirality-app-dev/plans/

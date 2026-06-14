@@ -73,8 +73,4 @@ the recorded hashes.
 
 ## Downstream Status
 
-The current active manifest has 221 rows. The local source catalog validates
-structurally against this source boundary, but retained prior-boundary Batch 1
-companions still reference eleven retired sources. Category registers,
-knowledge-type registers, hypergraph snapshots, and publication packages remain
-out of scope until the Batch 1 prior-boundary issue is explicitly resolved.
+The current active file-level manifest has 225 rows. Gate 2 Phase 2 closure accepts a 110-source-unit normalization surface: active Batch 1 carry-forward source units, Batch 2 agent contracts, Batch 3 governance/thesis context, Batch 4 grouped skill-pack sources, Batch 5 work-surface registry sources, and Batch 6 license. Retired Batch 1 rows remain historical prior-boundary evidence only. Category registers, knowledge-type registers, hypergraph snapshots, and publication packages remain out of scope until later gates close. `Gate2_Source_Unit_Register.csv` is the accepted Phase 3 source-unit authority; `Source_Manifest.csv` remains file-level source-admission authority.

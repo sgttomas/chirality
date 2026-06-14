@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DOMAIN-PROSE-VALIDATE",
+  "source_doc_id": "SRC-SKILLPACK-DOMAIN-PROSE-VALIDATE",
+  "source_name": "Skill pack: domain-prose-validate",
+  "source_prefix": "SKP012",
+  "repo_rel_path": "skills/domain-prose-validate/",
+  "catalog_rel_path": "@repo/skills/domain-prose-validate/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DOMAIN-PROSE-VALIDATE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DOMAIN-PROSE-VALIDATE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/domain-prose-validate/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-PROSE-VALIDATE-BRIEF-SCHEMA",
+      "source_name": "skills/domain-prose-validate/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "585c07597d2dc7c8885d4f54e36e86ea35b07d53a88a0dc81e0e5fe32d6c96d6",
+      "generated_line_start": 10,
+      "generated_line_end": 111,
+      "source_line_start": 1,
+      "source_line_end": 102,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/domain-prose-validate/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-PROSE-VALIDATE-QA-CHECKS",
+      "source_name": "skills/domain-prose-validate/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "b8acaa551dfa438a250763812bd43ffb7dc8611d7d50d81d37d09e12cad98ded",
+      "generated_line_start": 115,
+      "generated_line_end": 172,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -114
+    },
+    {
+      "repo_rel_path": "skills/domain-prose-validate/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-PROSE-VALIDATE-SKILL",
+      "source_name": "skills/domain-prose-validate/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "ea2554c0587448808aa825f8746b74850aee48b6ee85099c419bdf402c099635",
+      "generated_line_start": 176,
+      "generated_line_end": 362,
+      "source_line_start": 1,
+      "source_line_end": 187,
+      "line_offset": -175
+    },
+    {
+      "repo_rel_path": "skills/domain-prose-validate/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-PROSE-VALIDATE-TOOL-POLICY",
+      "source_name": "skills/domain-prose-validate/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "80133aabeaf8c8d1557bacecb567ee0c80b6716ffa3db0294a5dfe28f520ec90",
+      "generated_line_start": 366,
+      "generated_line_end": 413,
+      "source_line_start": 1,
+      "source_line_end": 48,
+      "line_offset": -365
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-ESTIMATE-PREP",
+  "source_doc_id": "SRC-SKILLPACK-ESTIMATE-PREP",
+  "source_name": "Skill pack: estimate-prep",
+  "source_prefix": "SKP020",
+  "repo_rel_path": "skills/estimate-prep/",
+  "catalog_rel_path": "@repo/skills/estimate-prep/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-ESTIMATE-PREP.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-ESTIMATE-PREP.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/estimate-prep/BOE_STRUCTURE.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-BOE-STRUCTURE",
+      "source_name": "skills/estimate-prep/BOE_STRUCTURE.md",
+      "source_prefix": "",
+      "expected_sha256": "7bfdeb218ff44ee2ff528c5ef07a536326255a27c7b98d15cf0a21eccb03413d",
+      "generated_line_start": 10,
+      "generated_line_end": 108,
+      "source_line_start": 1,
+      "source_line_end": 99,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-BRIEF-SCHEMA",
+      "source_name": "skills/estimate-prep/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "959834c04154736f5ffc4ba47f86ab0c31ffae3712d4580e1c94adddad4d9e03",
+      "generated_line_start": 112,
+      "generated_line_end": 298,
+      "source_line_start": 1,
+      "source_line_end": 187,
+      "line_offset": -111
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/INDEX_MD_CONTRACT.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-INDEX-MD-CONTRACT",
+      "source_name": "skills/estimate-prep/INDEX_MD_CONTRACT.md",
+      "source_prefix": "",
+      "expected_sha256": "4ea51c22a68459228fbda841c8ec7ededf3da81fa9d9db8f6538294ee62040ae",
+      "generated_line_start": 302,
+      "generated_line_end": 377,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -301
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-QA-CHECKS",
+      "source_name": "skills/estimate-prep/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "b3f03b536a71f6ca923308669645414e5c19a4563fd2321d7502df025002941d",
+      "generated_line_start": 381,
+      "generated_line_end": 553,
+      "source_line_start": 1,
+      "source_line_end": 173,
+      "line_offset": -380
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/SCHEMA_ANNEX.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-SCHEMA-ANNEX",
+      "source_name": "skills/estimate-prep/SCHEMA_ANNEX.md",
+      "source_prefix": "",
+      "expected_sha256": "514f45a56864b6e92ac643e78647f4c3c276612fb1fbfe7ddcc7c0edd36f1612",
+      "generated_line_start": 557,
+      "generated_line_end": 734,
+      "source_line_start": 1,
+      "source_line_end": 178,
+      "line_offset": -556
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-SKILL",
+      "source_name": "skills/estimate-prep/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "df2e1ec4135b79f3f44056c67cb1b3a8fdbd6aed7324107d999efe7eb5f41943",
+      "generated_line_start": 738,
+      "generated_line_end": 955,
+      "source_line_start": 1,
+      "source_line_end": 218,
+      "line_offset": -737
+    },
+    {
+      "repo_rel_path": "skills/estimate-prep/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-ESTIMATE-PREP-TOOL-POLICY",
+      "source_name": "skills/estimate-prep/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "4965edcc1ae3b0bd4017f3869f19240cc1da909c8e4a15dad379f962a1fe48d9",
+      "generated_line_start": 959,
+      "generated_line_end": 998,
+      "source_line_start": 1,
+      "source_line_end": 40,
+      "line_offset": -958
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

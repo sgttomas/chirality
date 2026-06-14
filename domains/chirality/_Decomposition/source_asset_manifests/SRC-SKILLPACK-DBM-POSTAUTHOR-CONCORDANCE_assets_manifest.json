@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DBM-POSTAUTHOR-CONCORDANCE",
+  "source_doc_id": "SRC-SKILLPACK-DBM-POSTAUTHOR-CONCORDANCE",
+  "source_name": "Skill pack: dbm-postauthor-concordance",
+  "source_prefix": "SKP005",
+  "repo_rel_path": "skills/dbm-postauthor-concordance/",
+  "catalog_rel_path": "@repo/skills/dbm-postauthor-concordance/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DBM-POSTAUTHOR-CONCORDANCE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DBM-POSTAUTHOR-CONCORDANCE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-BRIEF-SCHEMA",
+      "source_name": "skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "ccc29005292edc15201e24aea7e8c0c8bea0d9fea43e9cbe62ea53bbfa972f2f",
+      "generated_line_start": 10,
+      "generated_line_end": 85,
+      "source_line_start": 1,
+      "source_line_end": 76,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/dbm-postauthor-concordance/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-QA-CHECKS",
+      "source_name": "skills/dbm-postauthor-concordance/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "18cc4594accb045b9fdd5d188bf0c3b1d60dddaec5c62e0e7a7e0e928c58537a",
+      "generated_line_start": 89,
+      "generated_line_end": 145,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -88
+    },
+    {
+      "repo_rel_path": "skills/dbm-postauthor-concordance/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-SKILL",
+      "source_name": "skills/dbm-postauthor-concordance/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "bdd3bcd29376000e6bbc252a4eb39380bfaa709bca8a84820aa18e9fb152c7bb",
+      "generated_line_start": 149,
+      "generated_line_end": 322,
+      "source_line_start": 1,
+      "source_line_end": 174,
+      "line_offset": -148
+    },
+    {
+      "repo_rel_path": "skills/dbm-postauthor-concordance/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DBM-POSTAUTHOR-CONCORDANCE-TOOL-POLICY",
+      "source_name": "skills/dbm-postauthor-concordance/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "5e922a5ab1fec37e0ac2dcfd56285c09df4e9adb31590a52375b4f165572e311",
+      "generated_line_start": 326,
+      "generated_line_end": 385,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -325
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

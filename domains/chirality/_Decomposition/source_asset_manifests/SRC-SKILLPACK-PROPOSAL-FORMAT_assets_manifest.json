@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-PROPOSAL-FORMAT",
+  "source_doc_id": "SRC-SKILLPACK-PROPOSAL-FORMAT",
+  "source_name": "Skill pack: proposal-format",
+  "source_prefix": "SKP033",
+  "repo_rel_path": "skills/proposal-format/",
+  "catalog_rel_path": "@repo/skills/proposal-format/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-PROPOSAL-FORMAT.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-PROPOSAL-FORMAT.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/proposal-format/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-PROPOSAL-FORMAT-BRIEF-SCHEMA",
+      "source_name": "skills/proposal-format/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "a4e0c7a327d404c8f820c35870ea0783275bfd98051464d6dccb9be5e8a09aca",
+      "generated_line_start": 10,
+      "generated_line_end": 59,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/proposal-format/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-PROPOSAL-FORMAT-QA-CHECKS",
+      "source_name": "skills/proposal-format/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "88bbb4fb57b7f2f5b7cdc436f80b56235df3cfba7b1761590ffccb3edf9a6f39",
+      "generated_line_start": 63,
+      "generated_line_end": 87,
+      "source_line_start": 1,
+      "source_line_end": 25,
+      "line_offset": -62
+    },
+    {
+      "repo_rel_path": "skills/proposal-format/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-PROPOSAL-FORMAT-SKILL",
+      "source_name": "skills/proposal-format/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "4d5dacbda77e2014efb366b79b36ee196dcc323b0b257b86774f55590d649e7d",
+      "generated_line_start": 91,
+      "generated_line_end": 230,
+      "source_line_start": 1,
+      "source_line_end": 140,
+      "line_offset": -90
+    },
+    {
+      "repo_rel_path": "skills/proposal-format/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-PROPOSAL-FORMAT-TOOL-POLICY",
+      "source_name": "skills/proposal-format/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "48557e12fdd936e26461a519fff0e041da11d8b76735c4cb8ec663a251d7c801",
+      "generated_line_start": 234,
+      "generated_line_end": 266,
+      "source_line_start": 1,
+      "source_line_end": 33,
+      "line_offset": -233
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

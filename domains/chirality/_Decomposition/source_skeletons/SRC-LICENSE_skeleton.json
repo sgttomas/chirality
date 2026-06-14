@@ -6,9 +6,9 @@
   "asset_manifest_path": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_asset_manifests/SRC-LICENSE_assets_manifest.json",
   "total_md_lines": 23,
   "section_count": 1,
-  "generated_utc": "2026-06-14T00:54:57+00:00",
-  "adapter_method": "headingless_source_synthetic_section",
-  "adapter_note": "Source has no Markdown headings. A synthetic review section was created without copying or modifying the source. Section defaults OUT and dispatch is deferred pending Gate 1 acceptance.",
+  "generated_utc": "2026-06-14T20:34:23Z",
+  "adapter_method": "headingless_source_synthetic_section_batch6",
+  "adapter_note": "Source has no Markdown headings. A synthetic review section was created without copying or modifying the source. Batch 6 marks the section in scope by human direction.",
   "sections": [
     {
       "section_id": "SEC-RT005-0001",
@@ -23,7 +23,7 @@
       "estimated_md_tokens": 273,
       "is_front_matter": false,
       "is_back_matter": false,
-      "in_scope_default": false,
+      "in_scope_default": true,
       "figure_refs": [],
       "table_refs": [],
       "equation_refs": [],

@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DBM-DRAFT-REVIEW",
+  "source_doc_id": "SRC-SKILLPACK-DBM-DRAFT-REVIEW",
+  "source_name": "Skill pack: dbm-draft-review",
+  "source_prefix": "SKP004",
+  "repo_rel_path": "skills/dbm-draft-review/",
+  "catalog_rel_path": "@repo/skills/dbm-draft-review/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DBM-DRAFT-REVIEW.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DBM-DRAFT-REVIEW.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/dbm-draft-review/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DBM-DRAFT-REVIEW-BRIEF-SCHEMA",
+      "source_name": "skills/dbm-draft-review/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "4a324b96c87f27cbce9ac63b82df26b91a7033cf4452c970ad5fc9ddcfff345e",
+      "generated_line_start": 10,
+      "generated_line_end": 93,
+      "source_line_start": 1,
+      "source_line_end": 84,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/dbm-draft-review/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DBM-DRAFT-REVIEW-QA-CHECKS",
+      "source_name": "skills/dbm-draft-review/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "848e36732b9fc206267bb8493cf59d87c68fa7902bfe649687104c69e42dab6e",
+      "generated_line_start": 97,
+      "generated_line_end": 215,
+      "source_line_start": 1,
+      "source_line_end": 119,
+      "line_offset": -96
+    },
+    {
+      "repo_rel_path": "skills/dbm-draft-review/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DBM-DRAFT-REVIEW-SKILL",
+      "source_name": "skills/dbm-draft-review/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "39d99da5432fb96662731c62acc2763de0c5a5bf64faa484709586358aedfdec",
+      "generated_line_start": 219,
+      "generated_line_end": 401,
+      "source_line_start": 1,
+      "source_line_end": 183,
+      "line_offset": -218
+    },
+    {
+      "repo_rel_path": "skills/dbm-draft-review/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DBM-DRAFT-REVIEW-TOOL-POLICY",
+      "source_name": "skills/dbm-draft-review/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "0c92b7039935cb9ae099e941b8869815bc4efef246892b9864168c653d51b407",
+      "generated_line_start": 405,
+      "generated_line_end": 461,
+      "source_line_start": 1,
+      "source_line_end": 57,
+      "line_offset": -404
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

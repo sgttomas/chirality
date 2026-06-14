@@ -6,7 +6,9 @@
   "source_prefix": "RT005",
   "repo_rel_path": "LICENSE.md",
   "catalog_rel_path": "@repo/LICENSE.md",
-  "source_manifest_sha256": "f072b1d43eb98b057cdb392a674bc9e7feaffbe483c7f59a06f5557219762fb1",
+  "source_manifest_sha256": "6d9ea9bf796ab83a0e0e01fc5d0d24e095fcb6ce0bf6a6739d4f50fa0296509e",
+  "batch_id": "BATCH6_LICENSE_20260614T203242Z",
+  "source_truth_policy": "Manifest-backed live repo file; headingless source uses synthetic review section for Batch 6 dispatch.",
   "assets": [],
   "pages": []
 }

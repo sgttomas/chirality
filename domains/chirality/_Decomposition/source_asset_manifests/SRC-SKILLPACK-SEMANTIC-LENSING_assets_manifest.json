@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-SEMANTIC-LENSING",
+  "source_doc_id": "SRC-SKILLPACK-SEMANTIC-LENSING",
+  "source_name": "Skill pack: semantic-lensing",
+  "source_prefix": "SKP036",
+  "repo_rel_path": "skills/semantic-lensing/",
+  "catalog_rel_path": "@repo/skills/semantic-lensing/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-SEMANTIC-LENSING.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-SEMANTIC-LENSING.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/semantic-lensing/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-LENSING-BRIEF-SCHEMA",
+      "source_name": "skills/semantic-lensing/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "3d2f9f4ae6b89eacea8dc6039ac550975013fa1ddb53c7def3c222e99cac2a6b",
+      "generated_line_start": 10,
+      "generated_line_end": 59,
+      "source_line_start": 1,
+      "source_line_end": 50,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/semantic-lensing/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-LENSING-QA-CHECKS",
+      "source_name": "skills/semantic-lensing/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "f38797b5e2cbb90f3624bcc037ba091538b000b66d2d9bb5cd84ae5a9919ed93",
+      "generated_line_start": 63,
+      "generated_line_end": 87,
+      "source_line_start": 1,
+      "source_line_end": 25,
+      "line_offset": -62
+    },
+    {
+      "repo_rel_path": "skills/semantic-lensing/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-LENSING-SKILL",
+      "source_name": "skills/semantic-lensing/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "9c429230e24f3dd939c06f386fd02545b3e9537a373aa9c206392f2c13e1c766",
+      "generated_line_start": 91,
+      "generated_line_end": 217,
+      "source_line_start": 1,
+      "source_line_end": 127,
+      "line_offset": -90
+    },
+    {
+      "repo_rel_path": "skills/semantic-lensing/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-SEMANTIC-LENSING-TOOL-POLICY",
+      "source_name": "skills/semantic-lensing/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "c3292450b3db7affddd95e0c1df5969ecaa5eceb02a521020661b69dfa65e76b",
+      "generated_line_start": 221,
+      "generated_line_end": 259,
+      "source_line_start": 1,
+      "source_line_end": 39,
+      "line_offset": -220
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

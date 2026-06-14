@@ -1,0 +1,10 @@
+CheckID,Status,Evidence,Notes
+BATCH3_SOURCE_SELECTION,PASS,BATCH3_GOVERNANCE_THESIS_20260614T052705Z; selected_sources=22; prefixes=DG010-DG031,Selected active AtomizeInV1=YES ROOT_GOVERNANCE_DOCS rows in the authorized DG010-DG031 range.
+BATCH3_DISPATCH_UNITS,PASS,dispatch_units=23; sources=22,Dispatch-unit register generated from current source dispatch plans.
+BATCH3_BRIEF_RENDER,PASS,briefs=23; source_ref_base=@repo form,All Batch 3 briefs include manifest-backed SOURCE_REF_BASE.
+BATCH3_OUTPUT_QA,PASS,dispatch_units=23; atom_csvs=23; vocab_csvs=23; raw_atoms=4007; IN=3967; OUT=4; TBD=36; vocab_rows=1040; schema_hash_ref_errors=0,"Per-unit CSV headers, LocalSeq, ContentHash, InOutStatus, SourceRef line bounds, SectionID, and DispatchUnitID validated."
+BATCH3_PER_SOURCE_MERGE,PASS,per_source_ledgers=22; merged_rows=4006; dedupe_dropped=1,Per-source stable HBA IDs assigned by merge_source_atomizations.py; duplicate same-source content hashes deduped.
+BATCH3_CROSS_SOURCE_MERGE,PASS,BATCH3_Atomic_Domain_Ledger.csv rows=4006; IN=3966; OUT=4; TBD=36; unresolved_corrects=0,Batch-scoped cross-source ledger created; global Atomic_Domain_Ledger.csv was not overwritten.
+BATCH3_VOCAB_MERGE,PASS,BATCH3_Vocabulary_Map.csv terms=766; multi_source=146,Batch-scoped vocabulary map created; global Vocabulary_Map.csv was not overwritten.
+BATCH3_ATOM_REVIEW_HTML,PASS,atom_review_html=22; section_node_csvs=22,Batch 3 selected source review HTML regenerated in atom-review mode using per-source ledgers.
+BATCH3_GATE2_STATUS,GATE2_ACCEPTED,domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z; accepted in Phase 2 closure,Batch rows are accepted decomposition truth through the canonical Phase 2 ledger/vocabulary.

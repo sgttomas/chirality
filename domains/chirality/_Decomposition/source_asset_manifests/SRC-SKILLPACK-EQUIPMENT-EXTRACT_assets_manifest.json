@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-EQUIPMENT-EXTRACT",
+  "source_doc_id": "SRC-SKILLPACK-EQUIPMENT-EXTRACT",
+  "source_name": "Skill pack: equipment-extract",
+  "source_prefix": "SKP019",
+  "repo_rel_path": "skills/equipment-extract/",
+  "catalog_rel_path": "@repo/skills/equipment-extract/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-EQUIPMENT-EXTRACT.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-EQUIPMENT-EXTRACT.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/equipment-extract/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-EQUIPMENT-EXTRACT-BRIEF-SCHEMA",
+      "source_name": "skills/equipment-extract/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "f4ee87a1d67726067a5f60caee4b9e73eb5e77bb164ca87c72d7c55c90992d6f",
+      "generated_line_start": 10,
+      "generated_line_end": 69,
+      "source_line_start": 1,
+      "source_line_end": 60,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/equipment-extract/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-EQUIPMENT-EXTRACT-QA-CHECKS",
+      "source_name": "skills/equipment-extract/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "6547af0d7fb137e497e983f63970f795a9ad012b7b5313d23958fd442d86475c",
+      "generated_line_start": 73,
+      "generated_line_end": 123,
+      "source_line_start": 1,
+      "source_line_end": 51,
+      "line_offset": -72
+    },
+    {
+      "repo_rel_path": "skills/equipment-extract/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-EQUIPMENT-EXTRACT-SKILL",
+      "source_name": "skills/equipment-extract/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "572575b6f7ab58fae294d1ad1772782c5611a040455c25b7ecc9b308ebe673bb",
+      "generated_line_start": 127,
+      "generated_line_end": 310,
+      "source_line_start": 1,
+      "source_line_end": 184,
+      "line_offset": -126
+    },
+    {
+      "repo_rel_path": "skills/equipment-extract/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-EQUIPMENT-EXTRACT-TOOL-POLICY",
+      "source_name": "skills/equipment-extract/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "b923b0508b45626171d93206f255ad42e253768245d2fcd5c942734e8d4a846b",
+      "generated_line_start": 314,
+      "generated_line_end": 349,
+      "source_line_start": 1,
+      "source_line_end": 36,
+      "line_offset": -313
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

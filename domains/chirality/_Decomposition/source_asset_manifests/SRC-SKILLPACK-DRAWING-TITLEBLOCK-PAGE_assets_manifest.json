@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DRAWING-TITLEBLOCK-PAGE",
+  "source_doc_id": "SRC-SKILLPACK-DRAWING-TITLEBLOCK-PAGE",
+  "source_name": "Skill pack: drawing-titleblock-page",
+  "source_prefix": "SKP015",
+  "repo_rel_path": "skills/drawing-titleblock-page/",
+  "catalog_rel_path": "@repo/skills/drawing-titleblock-page/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DRAWING-TITLEBLOCK-PAGE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DRAWING-TITLEBLOCK-PAGE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/drawing-titleblock-page/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-BRIEF-SCHEMA",
+      "source_name": "skills/drawing-titleblock-page/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "92a8e9247d4f46cd8bb16c3f77ea11f460421a6557a70db09e94950be3d833bf",
+      "generated_line_start": 10,
+      "generated_line_end": 67,
+      "source_line_start": 1,
+      "source_line_end": 58,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/drawing-titleblock-page/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-QA-CHECKS",
+      "source_name": "skills/drawing-titleblock-page/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "fc553ee5ed9b5c27f9977bae6bb333d2763e694bc70c7a8b9e3aae737887ac55",
+      "generated_line_start": 71,
+      "generated_line_end": 89,
+      "source_line_start": 1,
+      "source_line_end": 19,
+      "line_offset": -70
+    },
+    {
+      "repo_rel_path": "skills/drawing-titleblock-page/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-SKILL",
+      "source_name": "skills/drawing-titleblock-page/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "dffa76d7b5ce86994be72e2270025c768cf3b0c3b8da827c1442eb910033e134",
+      "generated_line_start": 93,
+      "generated_line_end": 222,
+      "source_line_start": 1,
+      "source_line_end": 130,
+      "line_offset": -92
+    },
+    {
+      "repo_rel_path": "skills/drawing-titleblock-page/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DRAWING-TITLEBLOCK-PAGE-TOOL-POLICY",
+      "source_name": "skills/drawing-titleblock-page/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "1534a4c8c4498088676a2e7209c9b5600d2c32090e47d3c49819c6b93bf13c07",
+      "generated_line_start": 226,
+      "generated_line_end": 256,
+      "source_line_start": 1,
+      "source_line_end": 31,
+      "line_offset": -225
+    }
+  ],
+  "assets": [],
+  "pages": []
+}

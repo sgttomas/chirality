@@ -1,0 +1,66 @@
+{
+  "schema_version": "chirality-skill-pack-source/v1",
+  "doc_stem": "SRC-SKILLPACK-DOMAIN-SOURCE-ATOMIZE",
+  "source_doc_id": "SRC-SKILLPACK-DOMAIN-SOURCE-ATOMIZE",
+  "source_name": "Skill pack: domain-source-atomize",
+  "source_prefix": "SKP013",
+  "repo_rel_path": "skills/domain-source-atomize/",
+  "catalog_rel_path": "@repo/skills/domain-source-atomize/",
+  "source_manifest_sha256": "86891c8d0b7be3aef68b3a32bd32284069c505ea2ef64161c9cfd3155e1d8574",
+  "batch_id": "BATCH4_SKILL_PACKS_20260614T060717Z",
+  "generated_pack_markdown": "/Users/ryan/ai-env/projects/chirality/domains/chirality/_Decomposition/source_pack_markdown/BATCH4_SKILL_PACKS_20260614T060717Z/SRC-SKILLPACK-DOMAIN-SOURCE-ATOMIZE.md",
+  "source_truth_policy": "Generated markdown is a worker/review substrate; cite original @repo component files via source_components.",
+  "source_html_path": "domains/chirality/_Decomposition/source_review_html/SRC-SKILLPACK-DOMAIN-SOURCE-ATOMIZE.html",
+  "source_components": [
+    {
+      "repo_rel_path": "skills/domain-source-atomize/BRIEF_SCHEMA.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-BRIEF-SCHEMA",
+      "source_name": "skills/domain-source-atomize/BRIEF_SCHEMA.md",
+      "source_prefix": "",
+      "expected_sha256": "460176c1827624e25643e0dcfa9efd2553024173970f0bdada7e0eca1b61d78e",
+      "generated_line_start": 10,
+      "generated_line_end": 121,
+      "source_line_start": 1,
+      "source_line_end": 112,
+      "line_offset": -9
+    },
+    {
+      "repo_rel_path": "skills/domain-source-atomize/QA_CHECKS.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-QA-CHECKS",
+      "source_name": "skills/domain-source-atomize/QA_CHECKS.md",
+      "source_prefix": "",
+      "expected_sha256": "43c1e390a38f17fd79c59f1dc6d7118e9a81eb5f5a4b7993845d3b01992491d2",
+      "generated_line_start": 125,
+      "generated_line_end": 220,
+      "source_line_start": 1,
+      "source_line_end": 96,
+      "line_offset": -124
+    },
+    {
+      "repo_rel_path": "skills/domain-source-atomize/SKILL.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-SKILL",
+      "source_name": "skills/domain-source-atomize/SKILL.md",
+      "source_prefix": "",
+      "expected_sha256": "48e3ac841f6284002e520d31a8e000ee96b7661fbf9d39deb7d8d2aa636541fc",
+      "generated_line_start": 224,
+      "generated_line_end": 465,
+      "source_line_start": 1,
+      "source_line_end": 242,
+      "line_offset": -223
+    },
+    {
+      "repo_rel_path": "skills/domain-source-atomize/TOOL_POLICY.md",
+      "source_doc_id": "SRC-SKILLS-DOMAIN-SOURCE-ATOMIZE-TOOL-POLICY",
+      "source_name": "skills/domain-source-atomize/TOOL_POLICY.md",
+      "source_prefix": "",
+      "expected_sha256": "afea97f57c52825a8f601ba6bf0fe4bf77e7c824369726effa362c6500935854",
+      "generated_line_start": 469,
+      "generated_line_end": 530,
+      "source_line_start": 1,
+      "source_line_end": 62,
+      "line_offset": -468
+    }
+  ],
+  "assets": [],
+  "pages": []
+}
