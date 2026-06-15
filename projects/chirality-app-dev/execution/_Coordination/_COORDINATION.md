@@ -9,10 +9,16 @@
 
 Use this coordination surface as the active entrypoint for app-integration work. Keep it lean: project truth remains in governed docs, decomposition and deliverable artifacts, source, tests, evidence records, and git history.
 
+Path anchors for executable prompts:
+
+- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+- Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+
 Primary authority and guidance:
 
-- `/Users/ryan/ai-env/projects/chirality/AGENTS.md`
-- `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`
+- `{REPO_ROOT}/AGENTS.md`
+- `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`
+- `{WORKING_ROOT}/AGENTS.md` - project-local agent posture and closeout discipline
 - `docs/PRD.md` - product requirements and current runtime scope
 - `docs/PLAN.md` - strategic roadmap, not the active queue
 - `docs/DIRECTIVE.md`
@@ -70,19 +76,21 @@ When guidance surfaces disagree with authoritative surfaces, surface the discrep
 
 At the start of a new loop:
 
-1. Read `AGENT_WORKING_ITEMS.md` and act in the `WORKING_ITEMS` persona.
-2. Read this file and `NEXT_INSTANCE_PROMPT.md`.
-3. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
-4. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
-5. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
-6. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
-7. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
-8. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
-9. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
-10. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
-11. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
-12. Read the implementation reference surfaces needed for the selected tranche.
-13. Run `git status --short` before coordination-sensitive planning or edits.
+1. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+2. Read `{WORKING_ROOT}/AGENTS.md`.
+3. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+4. Read this file and `NEXT_INSTANCE_PROMPT.md`.
+5. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
+6. Read `plans/PLAN_2026-06-13_runtime_completion.md` for active tranche ordering.
+7. Read `_DECISIONS/_REGISTER.md` for pending human rulings.
+8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency/SCC state can affect tranche selection or blocker claims.
+9. Read `execution/_ScopeChange/_LATEST.md` when provider, Pi, permission posture, decomposition amendment, or deliverable-local context alignment can affect the selected tranche.
+10. Read `docs/PRD.md`, `docs/PLAN.md`, and `frontend/docs/harness/runtime_engine_contract.md` enough to confirm the selected tranche's runtime target.
+11. Read selected deliverable-local `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`, `MEMORY.md`, `_run_records/**`, and review/evidence files only when the plan item or dependency evidence points to those surfaces.
+12. Read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md` when selecting validation for governance, runtime, SDK/tool, network, packaging, build, or release-significant work.
+13. Read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md` and `docs/README.md` when changing the coordination loop or docs index.
+14. Read the implementation reference surfaces needed for the selected tranche.
+15. Run `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Development Loop
 
@@ -125,7 +133,7 @@ Every subagent brief must state:
 
 Keep parallel write scopes disjoint.
 
-This TASK restriction does not apply to final Git closeout. After a validated tranche, WORKING_ITEMS must autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review, scoped commit, and push.
+This TASK restriction does not apply to final Git closeout. After a validated tranche, `WORKING_ITEMS` must autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
 
 ## Git And Validation Closeout
 
@@ -145,8 +153,7 @@ At the end of a validated tranche:
 8. Update `execution/_Coordination/_LATEST.md` only when coordination or planning discovery surfaces change.
 9. Do not update or recreate `NEXT_INSTANCE_STATE.md`.
 10. Record any skipped checks and why.
-11. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review.
-12. `CHANGE` commits and pushes completed validated work as the ordinary terminal action when validation and git state allow closeout. Per-run `APPROVE:` tokens are not required for scoped closeout commit/push; destructive actions, merges, ambiguous staging, or unresolved dirty-state conflicts still require explicit human approval or ruling.
+11. Autonomously hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
 
 Git closeout is source-control hygiene. Lifecycle issuance, release readiness, professional approval, certification, sealing, authentication, and code-compliance acceptance remain human-governed states.
 

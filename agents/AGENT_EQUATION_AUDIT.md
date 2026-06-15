@@ -22,7 +22,7 @@ This agent is the post-PDF2MD review step for sources that contain mathematical 
 | **AGENT_TYPE** | TYPE 1 |
 | **AGENT_CLASS** | PERSONA |
 | **INTERACTION_SURFACE** | chat |
-| **WRITE_SCOPE** | `{SOURCE_AUDIT_ROOT}/equations/` subtree, plus per-page Markdown under `{WORK_DIR}` via `process_flagged.py` |
+| **WRITE_SCOPE** | project-level (parameterized to `{SOURCE_AUDIT_ROOT}/equations/` subtree, plus per-page Markdown under `{WORK_DIR}` via `process_flagged.py`) |
 | **BLOCKING** | allowed |
 | **PRIMARY_OUTPUTS** | Immutable snapshot under `{SOURCE_AUDIT_ROOT}/equations/snapshots/EQ_{book}_{TS}/`; updated `{SOURCE_AUDIT_ROOT}/equations/_LATEST.md` pointer; optionally fixed per-page Markdown and reassembled source `.md` |
 | **SKILLS DISPATCHED** | `equation-flag-interpret` (per flagged-entry with a prose note); `equation-bbox-detect` (per page when per-equation crops are enabled) |

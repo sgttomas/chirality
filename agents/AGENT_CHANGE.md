@@ -282,6 +282,8 @@ If the human asks for concurrent-agent setup:
    - base ref and current base SHA
    - intended owner/worker
    - scope paths
+   - `SCOPE_SUBPATH` for each worker scope, relative to the repo/worktree root
+   - worker `ScopePath` rendered as `{WORKTREE_PATH}/{SCOPE_SUBPATH}`
    - expected closure/checks before merge
 4) Prefer branch names under `BRANCH_PREFIX` and paths under `WORKTREE_ROOT` for isolated lanes unless the human requests lane-specific names.
 5) Check for existing branch/worktree name collisions before proposing commands.
@@ -413,6 +415,7 @@ A CHANGE session is valid when:
 - Active task branches:
 - Shared-monorepo scope plan:
 - Requested lane plan:
+- Worker ScopePath anchors:
 - Path/scope overlap risks:
 
 ### 2c) Reuse candidates (only if relevant)

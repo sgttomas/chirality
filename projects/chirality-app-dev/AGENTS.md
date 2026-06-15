@@ -1,48 +1,49 @@
 ---
-doc_id: OPS-AGENTS
+doc_id: APP-AGENTS
 doc_kind: governance.agent_index
 status: draft
-created: 2026-04-30
+created: 2026-06-15
 ---
 
-# AGENTS — OpenPipeStress Agent Index
+# AGENTS - Chirality App Dev Agent Index
 
-This file maps the general Chirality agent framework onto OpenPipeStress development. It does not redefine the canonical agent framework; it specifies how the existing agent roles should be used for this project.
+This file maps the general Chirality agent framework onto Chirality App
+development. It does not redefine the canonical agent framework; it specifies
+how the existing agent roles should be used for this project.
 
 ## Path Anchors
 
 Executable prompts and TASK briefs must derive paths from the active checkout:
 
 - Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
-- Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-piping`.
+- Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
 - Use `{REPO_ROOT}` and `{WORKING_ROOT}` in project-local instructions and
   briefs instead of machine-specific absolute paths.
 
-## Agent posture
+## Agent Posture
 
-| Row | Purpose in OpenPipeStress |
+| Row | Purpose in Chirality App Dev |
 |---|---|
-| Normative | Define constraints: data boundary, solver architecture, validation, professional responsibility. |
-| Operative | Execute bounded deliverables: code, tests, schemas, GUI slices, docs, reports. |
+| Normative | Define runtime contracts, product boundaries, validation policy, and agent workflow constraints. |
+| Operative | Execute bounded app-integration tranches, implementation slices, tests, evidence updates, and docs updates. |
 | Evaluative | Review, reconcile, audit, and decide whether outputs are acceptable for the next stage. |
 
-## Primary agents
+## Primary Agents
 
 | Agent | Type | Role in this project |
 |---|---:|---|
-| `SOFTWARE_DECOMP` | 1 | Maintains `_Decomposition/SOFTWARE_DECOMP.md`, scope ledger, packages, deliverables, context budget, and open issues. |
-| `PREPARATION` | 2 | Scaffolds package and deliverable folders from the decomposition. |
-| `TASK` | 2 | Executes one sealed deliverable using an appropriate skill/profile. |
-| `REVIEW` | 1 | Reviews deliverables against scope, tests, data boundary, and acceptance criteria. |
-| `RECONCILIATION` | 1 | Detects cross-package conflicts, overlaps, stale assumptions, and inconsistent terminology. |
+| `WORKING_ITEMS` | 1 | Primary parent for bounded app-integration tranches; selects scope, integrates results, validates, updates coordination state, and prepares closeout. |
+| `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
 | `CHANGE` | 1 | Performs final Git/file-state closeout for validated tranches: scoped status review, staging, commit, and fast-forward-safe push. |
-| `AUDIT_*` | 2 | Runs bounded checks for decomposition coverage, governance conformance, dependency closure, and epistemic integrity. |
+| `RECONCILIATION` | 1 | Detects cross-surface conflicts, stale assumptions, dependency issues, and inconsistent terminology. |
+| `REVIEW` | 1 | Reviews project outputs against scope, validation evidence, product boundaries, and acceptance criteria. |
+| `AUDIT_*` | 2 | Runs bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
 
 ## Project-Wide Execution Discipline
 
-Use bounded app-integration or lifecycle tranches by default. A parent
-`WORKING_ITEMS` agent may orchestrate parallel `TASK` fan-out only when
-subscopes are separable, briefs are explicit, and write scopes are disjoint.
+Use bounded app-integration tranches by default. A parent `WORKING_ITEMS`
+agent may orchestrate parallel `TASK` fan-out only when subscopes are
+separable, briefs are explicit, and write scopes are disjoint.
 
 Agents may write inside the selected tranche scope, required evidence and
 coordination artifacts, and project-local plans created under the issue-plan
@@ -92,33 +93,3 @@ development loop, project governance, agents, or skills, record them in at
 most one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do
 not create a plan merely to satisfy this instruction when no actionable issue
 was found.
-
-## Project-specific TASK skill profiles
-
-These are proposed profile labels for `TASK`; they may be implemented as skills or as explicit sealed briefs.
-
-| Profile | Typical deliverables |
-|---|---|
-| `solver-core` | PKG-04 and PKG-05 solver/load/stress deliverables. |
-| `domain-schema` | PKG-02, PKG-03, PKG-06 schemas and data models. |
-| `rule-pack-engine` | PKG-06 evaluator and completeness-check deliverables. |
-| `gui-workflow` | PKG-07 GUI deliverables. |
-| `report-audit` | PKG-08 report and reproducibility deliverables. |
-| `validation-qa` | PKG-09 verification/validation deliverables. |
-| `interop-build` | PKG-10 API, plugin, packaging, and FEA handoff deliverables. |
-| `docs-education` | PKG-11 documentation and invented-example deliverables. |
-| `security-privacy` | PKG-12 private-data and telemetry deliverables. |
-| `ip-governance` | PKG-01 and data-boundary deliverables. |
-
-## Dispatch rule
-
-Every Type 2 execution must receive:
-
-- one `DeliverableID`;
-- the parent `PackageID`;
-- scope items and objectives from `_Registers/Deliverables.csv`;
-- applicable invariants from `CONTRACT.md`;
-- acceptance criteria from `_CONTEXT.md` or the sealed brief;
-- explicit write scope.
-
-If a requested task crosses package boundaries or requires protected data, stop and escalate to `SOFTWARE_DECOMP` or the human project authority.

@@ -22,7 +22,7 @@ This agent is used when the goal is **not** full-page transcription, but selecti
 | **AGENT_TYPE** | TYPE 1 |
 | **AGENT_CLASS** | PERSONA |
 | **INTERACTION_SURFACE** | chat |
-| **WRITE_SCOPE** | WORK_DIR + target-aware SOURCE_DIR subtree |
+| **WRITE_SCOPE** | project-level (parameterized to `WORK_DIR` + target-aware `SOURCE_DIR` subtree) |
 | **BLOCKING** | allowed |
 | **PRIMARY_OUTPUTS** | Target-aware combined `.md` and `.csv` extraction outputs; duplicate/reconciliation/aggregation `.csv` outputs; optional schema-validation and merge outputs; per-page/per-tile stub files; work manifest |
 | **SKILLS DISPATCHED** | `drawing-extract-page`, `drawing-titleblock-page`, `pandid-valve-symbol-instance` (via TASK shell) |

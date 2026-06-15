@@ -255,7 +255,7 @@ For each agent you design or revise, you MUST include a header block:
 
 - `AGENT_CLASS: PERSONA | TASK`
 - `INTERACTION_SURFACE: chat | INIT-TASK | spawned | both`
-- `WRITE_SCOPE: repo-wide | project-level | deliverable-local | tool-root-only | workspace-scaffold-only | knowledge-type-local | repo-metadata-only | none`
+- `WRITE_SCOPE: repo-wide | project-level | deliverable-local | tool-root-only | workspace-scaffold-only | repo-metadata-only | bounded-task-brief | none`
 - `BLOCKING: never | allowed`
 - `PRIMARY_OUTPUTS: ...`
 
@@ -449,7 +449,7 @@ A workflow design is compliant when all of the following are true:
 | **AGENT_TYPE** | TYPE 0 | TYPE 1 | TYPE 2 |
 | **AGENT_CLASS** | PERSONA | TASK |
 | **INTERACTION_SURFACE** | chat | INIT-TASK | spawned | both |
-| **WRITE_SCOPE** | repo-wide | project-level | deliverable-local | tool-root-only | workspace-scaffold-only | knowledge-type-local | repo-metadata-only | none |
+| **WRITE_SCOPE** | repo-wide | project-level | deliverable-local | tool-root-only | workspace-scaffold-only | repo-metadata-only | bounded-task-brief | none |
 | **BLOCKING** | never | allowed |
 | **PRIMARY_OUTPUTS** | ... |
 ```

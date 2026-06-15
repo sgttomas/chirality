@@ -43,10 +43,10 @@ Write scope distribution across the suite reflects the fault containment archite
 | `none` | HELPS_HUMANS, DECOMP_BASE, HELP_HUMAN |
 | `repo-metadata-only` | DOMAIN_DECOMP, CONTEXT_TRANSPOSE |
 | `project-level` | PROJECT_DECOMP, SOFTWARE_DECOMP, SCOPE_CHANGE, PREPARATION, ESTIMATE_PREP |
-| `deliverable-local` | WORKING_ITEMS, TASK, DELIVERABLE_TASK, REVIEW (also TASK+four-documents, TASK+domain-documents, TASK+semantic-matrix-build, TASK+lens-register, TASK+dependency-extract via TASK shell) |
+| `deliverable-local` | WORKING_ITEMS, DELIVERABLE_TASK, REVIEW; TASK skills may receive deliverable-local allowed targets through the bounded TASK shell |
 | `tool-root-only` | ORCHESTRATOR, RECONCILIATION, CHANGE, SCHEDULING, ESTIMATING, AGGREGATION, AUDIT_AGENTS, AUDIT_DECOMP, AUDIT_DEP_CLOSURE, DOMAIN_HYPERGRAPH, AUDIT_HYPERGRAPH_CLOSURE |
 | `workspace-scaffold-only` | PREPARATION (primary scaffold variant) |
-| `knowledge-type-local` | TASK+domain-documents (knowledge artifact variant) |
+| `bounded-task-brief` | TASK shell; effective writes are authorized by the bounded brief, including deliverable-local and KTY-local task variants |
 
 This distribution reflects the system's core invariant K-WRITE-1 (Appendix A): every agent's write zone is declared in its header block, and no agent may write outside that declared zone. The separation between source truth (deliverable-local agents) and derived outputs (tool-root agents) creates the fault containment boundary discussed in Chapter 4 (§4.6.2): a failing Type 2 tool-root agent cannot corrupt source truth because its write scope physically excludes deliverable folders.
 

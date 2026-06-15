@@ -2,18 +2,21 @@
 
 ## Entry Protocol
 
-1. Read `/Users/ryan/ai-env/projects/chirality/agents/AGENT_WORKING_ITEMS.md`.
-2. Act in the `WORKING_ITEMS` persona for `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev`.
-3. Read `execution/_Coordination/_COORDINATION.md`.
-4. Read `execution/_Coordination/_LATEST.md` for discovery pointers only.
-5. Read `plans/PLAN_2026-06-13_runtime_completion.md`.
-6. Read `execution/_Coordination/_DECISIONS/_REGISTER.md`.
-7. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
-8. Read `execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
-9. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
-10. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
-11. For workflow or docs-index work, read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json`.
-12. Record `git status --short` before coordination-sensitive planning or edits.
+1. Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+2. Set `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`.
+3. Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+4. Read `{WORKING_ROOT}/AGENTS.md`.
+5. Act in the `WORKING_ITEMS` persona for `{WORKING_ROOT}`.
+6. Read `{WORKING_ROOT}/execution/_Coordination/_COORDINATION.md`.
+7. Read `{WORKING_ROOT}/execution/_Coordination/_LATEST.md` for discovery pointers only.
+8. Read `{WORKING_ROOT}/plans/PLAN_2026-06-13_runtime_completion.md`.
+9. Read `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/_REGISTER.md`.
+10. Discover current state from the authoritative surfaces named by `_COORDINATION.md`: governed docs, decomposition and deliverable artifacts, dependency/SCC snapshots, decision records, source, tests, validation evidence, and git history.
+11. Read `{WORKING_ROOT}/execution/_Reconciliation/DepClosure/_LATEST.md` and the latest dependency closure report when dependency or SCC posture can affect blocker claims or selected-tranche scope.
+12. Read the relevant authority and implementation-reference files named by `_COORDINATION.md`.
+13. For validation, release-quality, build, packaging, network, or governance-control-plane work, read `docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, and `docs/BUILD_AND_RELEASE.md`.
+14. For workflow or docs-index work, read `docs/AGENTIC_DEVELOPMENT_WORKFLOW.md`, `docs/README.md`, and `docs/MANIFEST.json`.
+15. Record `git status --short` before coordination-sensitive planning or edits.
 
 ## Active Direction
 
@@ -44,9 +47,9 @@ Default priority:
 - Tranches selected from unblocked completion-plan items are pre-approved for execution.
 - Do not read, update, or recreate `NEXT_INSTANCE_STATE.md`; current state is discovered from the dependency and authority surfaces named above.
 - Spawn `TASK` agents only for separable subscopes with explicit briefs and disjoint write scopes.
-- At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review, commit, and push. This closeout handoff is required and is not a substitute implementation tranche.
+- At validated closeout, autonomously hand off to a `CHANGE` agent/subagent for Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline. This closeout handoff is required and is not a substitute implementation tranche.
 - Keep writes scoped to the selected tranche.
-- Use `/Users/ryan/ai-env/projects/pi` and `plans/pi-agent-harness-assessment.md` only as pattern-corpus references where they refine the active plan item.
+- Use `{REPO_ROOT}/../pi` and `plans/pi-agent-harness-assessment.md` only as read-only pattern-corpus references where they refine the active plan item.
 - Do not perform coding-language, application-wrapper, package-runtime, provider-network, write/edit/bash/tool-execution, concrete non-Anthropic provider, or Pi migrations unless the active plan item and human rulings explicitly allow them.
 - D-APP-01 and D-APP-02 rule out Pi adapter, fork, import, Node 22 sidecar, runtime-floor migration, and immediate spike work. D-APP-03 approves provider-adapter generality only; concrete new providers require bounded future implementation tranches.
 - Stop when any further progress requires a human ruling.
@@ -61,8 +64,7 @@ At completion of a validated tranche:
 4. Update `execution/_Coordination/_DECISIONS/_REGISTER.md` only when decision-packet state changes.
 5. Update `execution/_Coordination/_LATEST.md` only when discovery pointers change.
 6. Report skipped checks explicitly.
-7. Hand off to a `CHANGE` agent/subagent for final Git/file-state review.
-8. `CHANGE` commits and pushes the validated tranche as the ordinary terminal action when validation and git state allow closeout. Per-run `APPROVE:` tokens are not required for scoped closeout commit/push; destructive actions, merges, ambiguous staging, or unresolved dirty-state conflicts still require explicit human approval or ruling.
+7. Hand off to a `CHANGE` agent/subagent for final Git/file-state review under `{WORKING_ROOT}/AGENTS.md` closeout discipline.
 
 End the session summary with:
 

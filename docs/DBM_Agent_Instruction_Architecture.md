@@ -185,7 +185,7 @@ AGENT_TYPE: <0 | 1 | 2>
 | `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Position in the layered hierarchy |
 | `AGENT_CLASS` | `PERSONA`, `TASK` | Conversational interface vs straight-through execution |
 | `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
-| `WRITE_SCOPE` | `none`, `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `repo-metadata-only`, `workspace-scaffold-only`, `knowledge-type-local` | What filesystem area the agent may write to |
+| `WRITE_SCOPE` | `none`, `repo-wide`, `project-level`, `deliverable-local`, `tool-root-only`, `repo-metadata-only`, `workspace-scaffold-only`, `bounded-task-brief` | What filesystem area the agent may write to |
 | `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
 | `PRIMARY_OUTPUTS` | Free text | What the agent produces |
 

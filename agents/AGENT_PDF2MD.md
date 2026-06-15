@@ -22,7 +22,7 @@ This agent replaces the external `edgequake-pdf2md` Rust CLI as Step 0 of the DO
 | **AGENT_TYPE** | TYPE 1 |
 | **AGENT_CLASS** | PERSONA |
 | **INTERACTION_SURFACE** | chat |
-| **WRITE_SCOPE** | WORK_DIR + OUTPUT_PATH + optional ASSETS_ROOT subtree |
+| **WRITE_SCOPE** | project-level (parameterized to `WORK_DIR` + `OUTPUT_PATH` + optional `ASSETS_ROOT` subtree) |
 | **BLOCKING** | allowed |
 | **PRIMARY_OUTPUTS** | Final assembled `.md` file; `{WORK_DIR}/manifest.json`; per-page `.md` files; per-page asset JSON; optional asset manifest and materialized asset files |
 | **SKILLS DISPATCHED** | `pdf2md-page-full` (canonical, via TASK shell). Deprecated: `pdf2md-page` + `pdf2md-page-assets` (kept on disk for legacy resume only) |
